@@ -136,7 +136,8 @@ nav:
       - Memory Interface : linux-dfl/dfl_emif/dfl_emif.md
       - MAX 10 Board Management Controller: linux-dfl/intel_m10_bmc_core/intel_m10_bmc_core.md 
       - SPI: linux-dfl/spi_altera_dfl/spi_altera_dfl.md
-      - User space I/O (UIO): linux-dfl/uio_dfl/uio_dfl.md 
+      - Stratix 10 PHY Controller: linux-dfl/intel_s10_phy/intel_s10_phy
+      - User space I/O (UIO): docs/linux-dfl/uio_dfl/uio_dfl.md 
 # - Zephyr Drivers:
 #    - 'driver-list_zephyr/index.md'
 #    - HPS Zephyr Drivers:

@@ -20,7 +20,7 @@ For More information please refer to the following link:
 
 [Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346)
 
-![smmu_block_diagram](images/A5_SMMU_top_level_SMMU.png){: style="height:450px"}
+![smmu_block_diagram](images/A5_SMMU_top_level_SMMU.png){: style="height:450px;width:450px"}
 
 ## **Driver Sources**
 
