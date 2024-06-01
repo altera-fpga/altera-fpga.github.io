@@ -20,7 +20,7 @@ The following are required to be able to fully exercise the Agilex 5 Premium Dev
 
 * Altera Agilex 5 FPGA E-Series 065B Premium Development Kit, ordering code DK-A5E065BB32AES1. Refer to [board documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html) for more information about the development kit.
 
-  * HPS Enablement  Expansion Board. Included with the development kit.
+  * HPS Enablement Expansion Board. Included with the development kit.
   * HPS NAND Board. Enables eMMC storage for HPS. Orderable separately.
   * HPS Test Board. Supports SD card boot, and external Arm tracing. Orderable separately.
   * Mini USB Cable. Included with the development kit.
@@ -103,7 +103,7 @@ Y - hardware validated; N - hardware validation in progress; Y\* - tested with c
 | For HPS Boot First Mode, F2H bridge fails when phase 2 core.rbf is reconfigured | None | Bridge | 22019988055 | QPDS24.1_REL_AGILEX5_GSRD_PR |
 | ECC is not enabled for HPS EMIF in 24.1 GHRD | None | HPS EMIF | 15015984966 | QPDS24.1_REL_AGILEX5_GSRD_PR |
 | DDR calibration took about 10 seconds in 24.1 GSRD | None | HPS EMIF | 14022235400 | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| "XGMAC_DMA_MODE_SWR_stuck: -110" message seen after "dhcp" command on OOBE2 daughter card in 24.1 GSRD | You can ignore the error, "dhcp" works as usual. Alternatively, you can also disable gmac0 instance in socfpga_agilex5_socdk.dts. | EMAC | 15016071381 | QPDS24.1_REL_AGILEX5_GSRD_PR |
+| "XGMAC_DMA_MODE_SWR_stuck: -110" message seen after "dhcp" command on HPS Enablement Board in 24.1 GSRD | You can ignore the error, "dhcp" works as usual. Alternatively, you can also disable gmac0 instance in socfpga_agilex5_socdk.dts. | EMAC | 15016071381 | QPDS24.1_REL_AGILEX5_GSRD_PR |
 
 ### Development Kit
 
@@ -113,7 +113,7 @@ This release targets the Agilex 5 FPGA E-Series 065B Premium Development Kit. Re
 
 <h4>Installing HPS Daughtercard</h4>
 
-This section shows how to install the included HPS Enablement Daughtercard.  The installation for the other optional HPS daughtercards is similar.
+This section shows how to install the included HPS Enablement Daughtercard.  The installation for the other optional HPS Boards is similar.
 
 1\. Identify the correct thumb screws and washers needed, they are in a plastic bag:  
 ![](images/dc1-screws.png)
@@ -124,13 +124,13 @@ This section shows how to install the included HPS Enablement Daughtercard.  The
 3\. Place the plastic washers on top of the three hex mounting posts:  
 ![](images/dc3-washers.png)
 
-4\. Place daughtercard on top of the posts and washers:  
+4\. Place HPS Board on top of the posts and washers:  
 ![](images/dc4-placed.png)
 
-5\. Place the hex thumb screws on the two posts, as shown below. Note the 3rd one on the bottom is best unplaced as fully screwing that in may move the board. Also note the thumb screw close to the Ethernet connector is hard to screw, recommend to use small pliers and patience to make it secure. It is important that the HPS daughtercard is secure, and does not move:  
+5\. Place the hex thumb screws on the two posts, as shown below. Note the 3rd one on the bottom is best unplaced as fully screwing that in may move the board. Also note the thumb screw close to the Ethernet connector is hard to screw, recommend to use small pliers and patience to make it secure. It is important that the HPS Board is secure, and does not move:  
 ![](images/dc5-installed.png) 
 
-**Note**: If you need to swap HPS daughtercards frequently,  it is recommended to remove the hex posts, and install the plastic washers between the PCB and the posts. This way you do not need to be careful for the washers not to move when you place the daughtercard on top of the posts. Note there are also plastic washers underneath the development board PCB, make sure to leave those in place when performing this operation
+**Note**: If you need to swap HPS Boards frequently,  it is recommended to remove the hex posts, and install the plastic washers between the PCB and the posts. This way you do not need to be careful for the washers not to move when you place the HPS Board on top of the posts. Note there are also plastic washers underneath the development board PCB, make sure to leave those in place when performing this operation
 
 <h4>Changing MSEL</h4>
 
@@ -230,7 +230,7 @@ This section presents how to use the prebuilt binaries included with the GSRD re
 
 4\. Connect micro USB cable from development board to host PC. This is used by the tools for JTAG communication.
 
-5\. Connect Ethernet cable from HPS daughtercard to an Ethernet switch connected to local network. Local network must provide a DCHP server.
+5\. Connect Ethernet cable from HPS Board to an Ethernet switch connected to local network. Local network must provide a DCHP server.
 
 ### Configure Serial Console
 
@@ -243,7 +243,7 @@ All the scenarios included in this release require a serial connection. This sec
 
 2\. Power down your board if powered up. This is important, as once powered up, with the micro USB JTAG cable connected, a couple more USB serial ports will enumerate, and you may choose the wrong port.
 
-3\. Connect mini-USB cable from the vertical mini-USB connector on the HPS daughtercard to the host PC
+3\. Connect mini-USB cable from the vertical mini-USB connector on the HPS Board to the host PC
 
 4\. On the host PC, an USB serial port will enumerate. On Windows machines it will be something like `COM4`, while on Linux machines it will be something like `/dev/tty/USB0`.
 
@@ -258,9 +258,9 @@ All the scenarios included in this release require a serial connection. This sec
 
 6\. Connect your terminal emulator
 
-### HPS Enablement DC
+### HPS Enablement BOard
 
-This section presents how to use HPS Enablement DC to boot from SD card, and also from QSPI.
+This section presents how to use HPS Enablement BOard to boot from SD card, and also from QSPI.
 
 #### Booting from SD Card
 <hr/>
@@ -403,8 +403,11 @@ quartus_pgm -c 1 -m jtag -o "pvi;agilex_flash_image.hps.jic"
 <h5>Boot Linux</h5>
 
 1\. Power down board
+
 2\. Set MSEL dipswitch SW27 to QSPI: OFF-ON-ON-OFF
+
 3\. Power up the board
+
 4\. Wait for Linux to boot, use `root` as user name, and no password wil be requested.
 
 **Note**: On first boot, the UBIFS rootfilesystem is initialized, and that takes a few minutes. This will not happen on next reboots. See a sample log below:
@@ -421,9 +424,9 @@ quartus_pgm -c 1 -m jtag -o "pvi;agilex_flash_image.hps.jic"
 [  243.332653] UBIFS (ubi0:4): FS size: 167117440 bytes (159 MiB, 2555 LEBs), max 6500 LEBs, journal size 
 ```
 
-### HPS NAND DC
+### HPS NAND BOard
 
-This section presents how to use HPS NAND DC to boot from eMMC.
+This section presents how to use HPS NAND BOard to boot from eMMC.
 
 #### Booting from eMMC
 <hr/>
@@ -510,9 +513,9 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 
 4\. Board will boot to Linux. Enter `root` as username, no password will be requested
 
-### HPS Test DC
+### HPS Test BOard
 
-This section presents how to use HPS Test DC to boot from SD card.
+This section presents how to use HPS Test BOard to boot from SD card.
 
 #### Booting from SD Card
 <hr/>
@@ -571,11 +574,11 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 sudo ln -sf /bin/bash /bin/sh
 ```
-### HPS Enablement DC
+### HPS Enablement BOard
 
 <!--{"type":"recipe", "name":"Agilex5GSRD.Enablement", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf","$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/sdimage.tar.gz","$TOP_FOLDER/qspi_boot/agilex_flash_image.hps.jic"],"TOP_FOLDER":"artifacts.enablement", "board_keywords":["DK-A5E065BB32AES1","SD"], "test_commands":["write-sd=$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/sdimage.tar.gz","write-jic=$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","boot-linux-qspi","wipe-sd","write-jic=$TOP_FOLDER/qspi_boot/agilex_flash_image.hps.jic","boot-linux-qspi"]}-->
 
-This section presents how to build the binaries for HPS Enablement DC.
+This section presents how to build the binaries for HPS Enablement BOard.
 
 #### Build SD Card Boot Binaries
 <hr/>
@@ -729,6 +732,7 @@ quartus_pfg \
 <!--{"type":"/code" }-->
 <!--{"type":"/step" }-->
 The following file is created:
+
 * `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic`
 
 <h5>Build HPS RBF</h5>
@@ -808,9 +812,9 @@ quartus_pfg -c agilex5_devkit_flash_image_hps.pfg
 <!--{"type":"/step" }-->
 <!--{"type":"/recipe" }-->
 
-### HPS NAND DC
+### HPS NAND BOard
 
-This section presents how to build the binaries for HPS NAND DC, for booting from eMMC.
+This section presents how to build the binaries for HPS NAND BOard, for booting from eMMC.
 
 #### Build eMMC binaries
 <hr/>
@@ -1034,9 +1038,9 @@ The following file will be created:
 <!--{"type":"/step" }-->
 <!--{"type":"/recipe" }-->
 
-### HPS Test DC
+### HPS Test BOard
 
-This section presents how to build the binaries for HPS Test DC.
+This section presents how to build the binaries for HPS Test BOard.
 
 #### Build SD Card Binaries
 <hr/>
