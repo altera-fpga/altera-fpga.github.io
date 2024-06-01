@@ -3,15 +3,15 @@ hide:
   - toc
 ---
 
-# Altera FPGA Site <image src="assets/altera.png" align="right" width="125" height="50">
+# **Altera FPGA Developer Site** <image src="assets/altera.png" align="right" width="125" height="50">
 
-Welcome to the **Altera FPGA Site**!
+Welcome to the **Altera FPGA Developer Site**!
 
 This site provides key information for Altera Agilex 5 and Agilex 7 FPGAs including:
 
 * Comprehensive driver information for Linux and software utilities.
 
-* Documentation for how to use design examples and tutorials found on our altera-fpga GitHub site.
+* Documentation for how to use example designs and tutorials found on our altera-fpga GitHub site.
 
 <image src="common/images/agilex-7.png" align="right" width="50" height="50"> 
 <image src="common/images/agilex-5.png" align="right" width="50" height="50"> 

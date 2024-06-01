@@ -1,6 +1,6 @@
 # **I3C Driver for Hard Processor System**
 
-Last updated: **May 25, 2024** 
+Last updated: **June 01, 2024** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/i3c/master/dw-i3c-master.c)
 

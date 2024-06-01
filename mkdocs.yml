@@ -185,9 +185,8 @@ nav:
     - vabtool: host-attach-util/vabtool/vabtool.md
   - Example Designs: 
     - Agilex 5:
-        - Agilex 5 E-Series Premium Devkit GSRD: embedded-designs/agilex-5/e-series/premium/ug-gsrd-agx5e-premium.md
-    
-
+        - Agilex 5 E-Series Premium Devkit GSRD: embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium.md
+        - Agilex 5 E-Series GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium.md
 
 
 
