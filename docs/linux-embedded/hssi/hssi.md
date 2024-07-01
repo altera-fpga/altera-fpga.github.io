@@ -1,6 +1,6 @@
 # **Ethernet Subsystem (HSSI) Driver for Hard Processor System**
 
-Last updated: **June 01, 2024** 
+Last updated: **July 01, 2024** 
 
 **Upstream Status**: Not Upstreamed
 

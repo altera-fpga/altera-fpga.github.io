@@ -32,7 +32,7 @@ The Upstream source code for this driver can be found at [https://git.kernel.org
 
 UIO_DFL
 
-![](./images/**Introduction**)
+![](./images/uio_dfl_menuconfig.PNG)
 
 ## **Known Issues**
 
