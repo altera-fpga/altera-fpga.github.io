@@ -137,25 +137,16 @@ nav:
       - MAX 10 Board Management Controller: linux-dfl/intel_m10_bmc_core/intel_m10_bmc_core.md 
       - SPI: linux-dfl/spi_altera_dfl/spi_altera_dfl.md
       - User space I/O (UIO): linux-dfl/uio_dfl/uio_dfl.md 
-# - Zephyr Drivers:
-#    - 'driver-list_zephyr/index.md'
-#    - HPS Zephyr Drivers:
-#      - Arm Silicon Provider (SiP) Services: zephyr-embedded/sip_svc/sip_svc.md
-#      - Clock Manager: zephyr-embedded/clock_manager/clock_manager.md
-#      - FPGA Bridge: zephyr-embedded/fpga_bridge/fpga_bridge.md
-#      - GPIO: zephyr-embedded/gpio/gpio.md
-#      - Interrupt Controller (GICv3): zephyr-embedded/GIC/gic.md
-#      - Interrupt Latency Calculator: zephyr-embedded/ilc/ilc.md
-#      - Power State Coordination Interface (PSCI): zephyr-embedded/psci/psci.md
-#      - Quad SPI: zephyr-embedded/qspi/qspi.md
-#      - Remote OS Update: zephyr-embedded/remote_os_update/remote_os_update.md
-#      - Reset Manager: zephyr-embedded/reset_manager/reset_manager.md
-#      - SD/MMC: zephyr-embedded/sd-mmc/sd-mmc.md
+#  - Zephyr Drivers:
+#   - 'driver-list_zephyr/index.md'
+#   - HPS Zephyr Drivers:
+#     - Clock Manager: zephyr-embedded/clock_manager/clock_manager.md
+#     - DMA: zephyr-embedded/dma/dma.md
+#     - GPIO: zephyr-embedded/gpio/gpio.md
+#     - Quad SPI: zephyr-embedded/qspi/qspi.md
+#     - Reset Manager: zephyr-embedded/reset_manager/reset_manager.md
 #      - Single Error Upset (SEU): zephyr-embedded/seu/seu.md
-#      - SPI: zephyr-embedded/spi/spi.md
-#      - Timer: zephyr-embedded/timer/timer.md
 #      - UART: zephyr-embedded/uart/uart.md
-#      - USB 2.0: zephyr-embedded/usb2_0_otg/usb_2_0_otg.md
 #      - Watchdog Timer: zephyr-embedded/watchdog/watchdog.md
 #  - Bare Metal Drivers:
 #    - 'driver-list_baremetal/index.md'
@@ -173,8 +164,8 @@ nav:
     - HSSI ethernet mac: host-attach-util/hssi_ethernet/hssimac.md
     - mem_tg: host-attach-util/mem_tg/mem_tg.md
     - mmlink: host-attach-util/mmlink/mmlink.md
-    - ofs.uio: host-attach-util/ofs.uio/ofs.uio.md
-    - opae.io: host-attach-util/opae.io/opae.io.md
+    - ofs.uio: host-attach-util/ofs_uio/ofs_uio.md
+    - opae.io: host-attach-util/opae_io/opae_io.md
     - opaeuio: host-attach-util/opaeuio/opaeuio.md
     - opaevfio: host-attach-util/opaevfio/opaevfio.md
     - pac_hssi_config: host-attach-util/pac_hssi_config/pac_hssi_config.md
@@ -183,10 +174,17 @@ nav:
     - rsu: host-attach-util/rsu/rsu.md
     - userclk: host-attach-util/userclk/userclk.md
     - vabtool: host-attach-util/vabtool/vabtool.md
-  - Example Designs: 
+  - Example Designs:
+    - Example Designs Summary: ed-demo-list/ed-list.md
     - Agilex 5:
-        - Agilex 5 E-Series Premium Devkit GSRD: embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium.md
-        - Agilex 5 E-Series GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium.md
+        - Agilex 5 E-Series Premium Development Kit GSRD User Guide: embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium.md
+        - Agilex 5 E-Series Premium Development Kit GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium.md
+        - Agilex 5 E-Series Modular Development Kit GSRD User Guide: embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular.md
+        - Agilex 5 E-Series Modular Development Kit GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular.md
+        - Agilex™ 5 Intel Simics Virtual Platform Example User Guide - Linux GSRD: embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms.md
+        - Agilex™ 5 Intel Simics Virtual Platform Example User Guide - Zephyr GSRD: embedded-designs/agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms.md
+  - Demos:
+    - Demos Summary: ed-demo-list/demo-list.md
 
 
 

@@ -1,6 +1,6 @@
 # **Host Attach Memory Subsystem IP Driver**
 
-Last updated: **June 01, 2024** 
+Last updated: **August 07, 2024** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/memory/dfl-emif.c?h=master)
 
@@ -27,7 +27,7 @@ The memory subsystem IP provides the following components:
 
 The memory subsystem supports DDR4 and DIMMs. For more information about this IP, please refer to the [Agilex 7 F-Series and I-Series FPGA Memory Subsystem IP User Guide](https://www.intel.com/content/www/us/en/docs/programmable/789389).
 
-![](images/agx_mem_ss.png)
+![](./images/agx7_mem_ss.png)
 
 ## **Stratix 10 External Memory Interface**
 
@@ -72,4 +72,3 @@ You are responsible for safety of the overall system, including compliance with 
 <sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
 
 OpenCL and the OpenCL logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 
-

@@ -25,10 +25,10 @@ The following are required to be able to fully exercise the guides from this pag
   * Ethernet Cable. Included with the development kit
   * Micro SD card and USB card writer. Included with the development kit
 * Host PC with
-  * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
+  * 64 GB of RAM or more
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Intel Quartus Prime Pro Edition version 24.1. Used to recompile the hardware design. If only writing binaris is required, then the smaller Intel Quartus Prime Pro Edition Programmer version 24.1 is sufficient.
+  * Intel Quartus Prime Pro Edition version 24.2. Used to recompile the hardware design, generate programming files and configure the FPGA device.
   * TFTP server. This used to download the eMMC binaries to board to be flashed by U-Boot
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files.
@@ -39,12 +39,12 @@ The instructions on this page use the following component versions:
 
 | Component | Location | Branch | Commit ID/Tag |
 | :-- | :-- | :-- | :-- |
-| GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.1.68-lts | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| Arm Trusted Firmware | [https://github.com/altera-opensource/arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.10.0 | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2023.10   | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| Yocto Project: poky | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | nanbield | latest |
-| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | nanbield | QPDS24.1_REL_AGILEX5_GSRD_PR |
+| GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | QPDS24.2_REL_GSRD_PR |
+| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.22-lts | QPDS24.2_REL_GSRD_PR |
+| Arm Trusted Firmware | [https://github.com/altera-opensource/arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.10.1 | QPDS24.2_REL_GSRD_PR |
+| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.01   | QPDS24.2_REL_GSRD_PR |
+| Yocto Project: poky | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest |
+| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | QPDS24.2_REL_GSRD_PR |
 
 ### Development Kit
 
@@ -61,7 +61,7 @@ This section demonstrates how to build a Linux system from separate components, 
 
 
 ### Boot from SD Card 
-<!--{"type":"recipe", "name":"Bootloader.Enablement", "results":["$TOP_FOLDER/ghrd.hps.jic","$TOP_FOLDER/ghrd.hps.rbf","$TOP_FOLDER/sd_card/sdcard.img","$TOP_FOLDER/qspi-boot/flash_image.hps.jic"],"TOP_FOLDER":"artifacts.enablement", "board_keywords":["DK-A5E065BB32AES1","eMMC"], "test_commands":["write-sd=$TOP_FOLDER/sd_card/sdcard.img","write-jic=$TOP_FOLDER/ghrd.hps.jic","boot-linux-qspi","wipe-sd","write-jic=$TOP_FOLDER/qspi-boot/flash_image.hps.jic","boot-linux-qspi"]}-->
+<!--{"type":"recipe", "name":"Bootloader.Enablement", "results":["$TOP_FOLDER/ghrd.hps.jic","$TOP_FOLDER/ghrd.hps.rbf","$TOP_FOLDER/sd_card/sdcard.img","$TOP_FOLDER/qspi-boot/flash_image.hps.jic"],"TOP_FOLDER":"bootloader.enablement", "board_keywords":["DK-A5E065BB32AES1","SD"], "test_commands":["write-sd=$TOP_FOLDER/sd_card/sdcard.img","write-jic=$TOP_FOLDER/ghrd.hps.jic","boot-linux-qspi","wipe-sd","write-jic=$TOP_FOLDER/qspi-boot/flash_image.hps.jic","boot-linux-qspi"]}-->
 
 <h4>Setup Environment</h4>
 <!--{"type":"step", "name":"Setup Environment"}-->
@@ -70,9 +70,9 @@ This section demonstrates how to build a Linux system from separate components, 
 <!--{"type":"code" }-->
 
 ```bash
-sudo rm -rf artifacts.enablement
-mkdir artifacts.enablement
-cd artifacts.enablement
+sudo rm -rf bootloader.enablement
+mkdir bootloader.enablement
+cd bootloader.enablement
 export TOP_FOLDER=`pwd`
 ```
 <!--{"type":"/code" }-->
@@ -94,7 +94,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 <!--{"type":"code" }-->
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.1/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 <!--{"type":"/code" }-->
@@ -107,7 +107,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga agilex5_soc_devkit_ghrd
-git clone -b QPDS24.1_REL_AGILEX5_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/agilex5_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd agilex5_soc_devkit_ghrd
@@ -130,9 +130,8 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone https://github.com/altera-opensource/arm-trusted-firmware
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware
 cd arm-trusted-firmware
-git checkout -b test -t origin/socfpga_v2.10.0
 make -j 48 PLAT=agilex5 bl31 
 cd ..
 ```
@@ -149,12 +148,9 @@ The following file is created:
 
 ```bash
 cd $TOP_FOLDER
-rm -rf u-boot-socfpga v1-0001-HSD-15015933655-ddr-altera-agilex5-Hack-dual-port-DO-NOT-MERGE.patch
-wget https://raw.githubusercontent.com/altera-opensource/meta-intel-fpga-refdes/QPDS24.1_REL_AGILEX5_GSRD_PR/recipes-bsp/u-boot/files/v1-0001-HSD-15015933655-ddr-altera-agilex5-Hack-dual-port-DO-NOT-MERGE.patch
-git clone https://github.com/altera-opensource/u-boot-socfpga
+rm -rf u-boot-socfpga
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga
 cd u-boot-socfpga 
-git checkout -b test -t origin/socfpga_v2023.10
-patch -p1 < ../v1-0001-HSD-15015933655-ddr-altera-agilex5-Hack-dual-port-DO-NOT-MERGE.patch
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
 # only boot from SD, do not try QSPI and NAND
@@ -263,9 +259,8 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone https://github.com/altera-opensource/linux-socfpga
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga
 cd linux-socfpga
-git checkout -b test -t origin/socfpga-6.1.68-lts
 make defconfig 
 make -j 64 Image && make intel/socfpga_agilex5_socdk.dtb 
 ```
@@ -277,17 +272,17 @@ The following files are created:
 <!--{"type":"/step" }-->
 
 <h4>Build Rootfs</h4>
-<!--{"type":"step", "name":"Build Rootfs", "results":["$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_devkit/core-image-minimal-agilex5_devkit.rootfs.tar.gz"]}-->
+<!--{"type":"step", "name":"Build Rootfs", "results":["$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz"]}-->
 <!--{"type":"code" }-->
 
 ```bash
 cd $TOP_FOLDER
 rm -rf yocto && mkdir yocto && cd yocto
-git clone -b nanbield https://git.yoctoproject.org/poky
-git clone -b nanbield https://git.yoctoproject.org/meta-intel-fpga
-git clone -b nanbield https://github.com/openembedded/meta-openembedded
+git clone -b scarthgap https://git.yoctoproject.org/poky
+git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga
+git clone -b scarthgap https://github.com/openembedded/meta-openembedded
 source poky/oe-init-build-env ./build
-echo 'MACHINE = "agilex5_devkit"' >> conf/local.conf
+echo 'MACHINE = "agilex5_dk_a5e065bb32aes1"' >> conf/local.conf
 echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
 echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf
 echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf
@@ -296,7 +291,7 @@ bitbake core-image-minimal
 <!--{"type":"/code" }-->
 The following file is created:
 
-* `$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_devkit/core-image-minimal-agilex5_devkit.rootfs.tar.gz`
+* `$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz`
 <!--{"type":"/step" }-->
 
 
@@ -317,7 +312,7 @@ cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image .
 cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dtb .
 cd ..
 mkdir rootfs && cd rootfs
-sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_devkit/core-image-minimal-agilex5_devkit.rootfs.tar.gz
+sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz
 cd ..
 sudo python3 make_sdimage_p3.py -f \
 -P fatfs/*,num=1,format=fat32,size=64M \
@@ -333,7 +328,20 @@ The following file is created:
 
 <h4>Write SD Card</h4>
 
-Write the SD card image `sd_card/sdimage.img` to the micro SD card using the included USB writer, and `dd` utility on Linux, or  Win32DiskImager on Windows, available at [https://win32diskimager.org/](https://win32diskimager.org/).
+Write the SD card image `sd_card/sdcard.img` to the micro SD card using the included USB writer:
+
+- On Linux, use the `dd` utility as shown next:
+```bash
+	# Determine the device asociated with the SD card on the host computer.	
+	cat /proc/partitions
+	# This will return for example /dev/sdx
+	# Use dd to write the image in the corresponding device
+	sudo dd if=sdcard.img of=/dev/sdx bs=1M
+	# Flush the changes to the SD card
+	sync
+```
+- On Windows, use the Win32DiskImager program, available at [https://win32diskimager.org/](https://win32diskimager.org/). Write the image as shown in the next figure:
+![](images/win32diskimager.png) 
 
 <h4>Write QSPI Flash</h4>
 
@@ -354,7 +362,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 
 1\. Power down board
 
-2\. Set MSEL dipswitch SW27 to QSPI: OFF-ON-ON-OFF
+2\. Set MSEL dipswitch SW27 to ASX4 (QSPi): OFf-ON-ON-OFF
 
 3\. Power up the board
 
@@ -385,12 +393,9 @@ mkdir $TOP_FOLDER/qspi-boot
 <!--{"type":"code" }-->
 ```bash
 cd $TOP_FOLDER/qspi-boot
-rm -rf u-boot-socfpga v1-0001-HSD-15015933655-ddr-altera-agilex5-Hack-dual-port-DO-NOT-MERGE.patch
-wget https://raw.githubusercontent.com/altera-opensource/meta-intel-fpga-refdes/QPDS24.1_REL_AGILEX5_GSRD_PR/recipes-bsp/u-boot/files/v1-0001-HSD-15015933655-ddr-altera-agilex5-Hack-dual-port-DO-NOT-MERGE.patch
-git clone https://github.com/altera-opensource/u-boot-socfpga
+rm -rf u-boot-socfpga
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga
 cd u-boot-socfpga 
-git checkout -b test -t origin/socfpga_v2023.10
-patch -p1 < ../v1-0001-HSD-15015933655-ddr-altera-agilex5-Hack-dual-port-DO-NOT-MERGE.patch
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
 # only boot from QSPI
@@ -556,7 +561,7 @@ mv u-boot.itb u-boot.bin
 ```bash
 rm -rf rootfs rootfs.ubifs
 mkdir rootfs 
-tar -xzvf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_devkit/core-image-minimal-agilex5_devkit.rootfs.tar.gz -C rootfs 
+tar -xzvf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz -C rootfs 
 mkfs.ubifs -r rootfs -F -e 65408 -m 1 -c 6500 -o rootfs.ubifs 
 ```
 <!--{"type":"/code" }-->
@@ -686,12 +691,13 @@ The following file is created:
 cd $TOP_FOLDER
 quartus_pgm -c 1 -m jtag -o "qspi-boot/flash_image.hps.jic"
 ```
+Note: You need to wipe the micro SD card or remove it from the board before start running.
 
 <h4>Boot Linux</h4>
 
 1\. Power down board
 
-2\. Set MSEL dipswitch SW27 to QSPI: OFF-ON-ON-OFF
+2\. Set MSEL dipswitch SW27 to ASX4 (QSPi): OFf-ON-ON-OFF
 
 3\. Power up the board
 
@@ -705,7 +711,7 @@ quartus_pgm -c 1 -m jtag -o "qspi-boot/flash_image.hps.jic"
 This section demonstrates how to build a Linux system from separate components, targetting the HPS NAND Board. Boot source is eMMC Flash.
 
 ### Boot from eMMC
-<!--{"type":"recipe", "name":"Bootloader.eMMC", "results":["$TOP_FOLDER/ghrd.hps.jic","$TOP_FOLDER/ghrd.hps.rbf","$TOP_FOLDER/sd_card/sdcard.img"],"TOP_FOLDER":"artifacts.emmc", "board_keywords":["DK-A5E065BB32AES1","emmc"], "test_commands":["write-sd=$TOP_FOLDER/sd_card/sdcard.img","write-jic=$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","boot-linux-qspi"]}-->
+<!--{"type":"recipe", "name":"Bootloader.eMMC", "results":["$TOP_FOLDER/ghrd.hps.jic","$TOP_FOLDER/ghrd.hps.rbf","$TOP_FOLDER/sd_card/sdcard.img"],"TOP_FOLDER":"bootloader.emmc", "board_keywords":["DK-A5E065BB32AES1","emmc"], "test_commands":["write-sd=$TOP_FOLDER/sd_card/sdcard.img","write-jic=$TOP_FOLDER/ghrd.hps.jic","boot-linux-qspi"]}-->
 
 <h4>Setup Environment</h4>
 <!--{"type":"step", "name":"Setup Environment"}-->
@@ -714,9 +720,9 @@ This section demonstrates how to build a Linux system from separate components, 
 <!--{"type":"code" }-->
 
 ```bash
-sudo rm -rf artifacts.emmc
-mkdir artifacts.emmc
-cd artifacts.emmc
+sudo rm -rf bootloader.emmc
+mkdir bootloader.emmc
+cd bootloader.emmc
 export TOP_FOLDER=`pwd`
 ```
 <!--{"type":"/code" }-->
@@ -738,7 +744,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 <!--{"type":"code" }-->
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.1/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 <!--{"type":"/code" }-->
@@ -751,7 +757,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga agilex5_soc_devkit_ghrd
-git clone -b QPDS24.1_REL_AGILEX5_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/agilex5_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd agilex5_soc_devkit_ghrd
@@ -774,9 +780,8 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone https://github.com/altera-opensource/arm-trusted-firmware
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware
 cd arm-trusted-firmware
-git checkout -b test -t origin/socfpga_v2.10.0
 make -j 48 PLAT=agilex5 bl31 
 cd ..
 ```
@@ -793,12 +798,9 @@ The following file is created:
 
 ```bash
 cd $TOP_FOLDER
-rm -rf u-boot-socfpga v1-0001-HSD-15015933655-ddr-altera-agilex5-Hack-dual-port-DO-NOT-MERGE.patch
-wget https://raw.githubusercontent.com/altera-opensource/meta-intel-fpga-refdes/QPDS24.1_REL_AGILEX5_GSRD_PR/recipes-bsp/u-boot/files/v1-0001-HSD-15015933655-ddr-altera-agilex5-Hack-dual-port-DO-NOT-MERGE.patch
-git clone https://github.com/altera-opensource/u-boot-socfpga
+rm -rf u-boot-socfpga
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga
 cd u-boot-socfpga 
-git checkout -b test -t origin/socfpga_v2023.10
-patch -p1 < ../v1-0001-HSD-15015933655-ddr-altera-agilex5-Hack-dual-port-DO-NOT-MERGE.patch
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
 # only boot from SD, do not try QSPI and NAND
@@ -908,9 +910,8 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone https://github.com/altera-opensource/linux-socfpga
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga
 cd linux-socfpga
-git checkout -b test -t origin/socfpga-6.1.68-lts
 make defconfig 
 make -j 64 Image && make intel/socfpga_agilex5_socdk_emmc.dtb 
 ```
@@ -922,17 +923,17 @@ The following files are created:
 <!--{"type":"/step" }-->
 
 <h4>Build Rootfs</h4>
-<!--{"type":"step", "name":"Build Rootfs", "results":["$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_devkit/core-image-minimal-agilex5_devkit.rootfs.tar.gz"]}-->
+<!--{"type":"step", "name":"Build Rootfs", "results":["$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz"]}-->
 <!--{"type":"code" }-->
 
 ```bash
 cd $TOP_FOLDER
 rm -rf yocto && mkdir yocto && cd yocto
-git clone -b nanbield https://git.yoctoproject.org/poky
-git clone -b nanbield https://git.yoctoproject.org/meta-intel-fpga
-git clone -b nanbield https://github.com/openembedded/meta-openembedded
+git clone -b scarthgap https://git.yoctoproject.org/poky
+git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga
+git clone -b scarthgap https://github.com/openembedded/meta-openembedded
 source poky/oe-init-build-env ./build
-echo 'MACHINE = "agilex5_devkit"' >> conf/local.conf
+echo 'MACHINE = "agilex5_dk_a5e065bb32aes1"' >> conf/local.conf
 echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
 echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf
 echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf
@@ -941,7 +942,7 @@ bitbake core-image-minimal
 <!--{"type":"/code" }-->
 The following file is created:
 
-* `$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_devkit/core-image-minimal-agilex5_devkit.rootfs.tar.gz`
+* `$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz`
 <!--{"type":"/step" }-->
 
 
@@ -962,7 +963,7 @@ cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image .
 cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_emmc.dtb .
 cd ..
 mkdir rootfs && cd rootfs
-sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_devkit/core-image-minimal-agilex5_devkit.rootfs.tar.gz
+sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz
 cd ..
 sudo python3 make_sdimage_p3.py -f \
 -P fatfs/*,num=1,format=fat32,size=64M \
@@ -996,12 +997,9 @@ mkdir $TOP_FOLDER/helper-jic
 
 ```bash
 cd $TOP_FOLDER/helper-jic
-rm -rf u-boot-socfpga v1-0001-HSD-15015933655-ddr-altera-agilex5-Hack-dual-port-DO-NOT-MERGE.patch
-wget https://raw.githubusercontent.com/altera-opensource/meta-intel-fpga-refdes/QPDS24.1_REL_AGILEX5_GSRD_PR/recipes-bsp/u-boot/files/v1-0001-HSD-15015933655-ddr-altera-agilex5-Hack-dual-port-DO-NOT-MERGE.patch
-git clone https://github.com/altera-opensource/u-boot-socfpga
+rm -rf u-boot-socfpga
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga
 cd u-boot-socfpga 
-git checkout -b test -t origin/socfpga_v2023.10
-patch -p1 < ../v1-0001-HSD-15015933655-ddr-altera-agilex5-Hack-dual-port-DO-NOT-MERGE.patch 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
 # only boot from SD, do not try QSPI and NAND
@@ -1145,7 +1143,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;helper-jic/flash.hps.jic"
 2\. Boot to U-Boot prompt with the helper JIC:
 <ul>
 <li>Power down board</li>
-<li>Set MSEL dipswitch SW27 to QSPI: OFF-ON-ON-OFF</li>
+<li>Set MSEL dipswitch SW27 to ASX4 (QSPi): OFf-ON-ON-OFF</li>
 <li>Power up the board</li>
 <li>Wait for U-Boot to boot, press any key to get to U-Boot console</li></ul>
 
@@ -1183,7 +1181,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 
 1\. Power down board
 
-2\. Set MSEL dipswitch SW27 to QSPI: OFF-ON-ON-OFF
+2\. Set MSEL dipswitch SW27 to ASX4 (QSPi): OFf-ON-ON-OFF
 
 3\. Power up the board
 
@@ -1196,7 +1194,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 This section demonstrates how to build a Linux system from separate components, targetting the HPS Test Board. Boot source is SD Card.
 
 ### Boot from SD Card 
-<!--{"type":"recipe", "name":"Bootloader.Test", "results":["$TOP_FOLDER/ghrd.hps.jic","$TOP_FOLDER/ghrd.hps.rbf","$TOP_FOLDER/sd_card/sdcard.img"],"TOP_FOLDER":"artifacts.test", "board_keywords":["DK-A5E065BB32AES1","DEBUG"], "test_commands":["write-sd=$TOP_FOLDER/sd_card/sdcard.img","write-jic=$TOP_FOLDER/ghrd.hps.jic","boot-linux-qspi"]}-->
+<!--{"type":"recipe", "name":"Bootloader.Test", "results":["$TOP_FOLDER/ghrd.hps.jic","$TOP_FOLDER/ghrd.hps.rbf","$TOP_FOLDER/sd_card/sdcard.img"],"TOP_FOLDER":"bootloader.test", "board_keywords":["DK-A5E065BB32AES1","DEBUG"], "test_commands":["write-sd=$TOP_FOLDER/sd_card/sdcard.img","write-jic=$TOP_FOLDER/ghrd.hps.jic","boot-linux-qspi"]}-->
 
 <h4>Setup Environment</h4>
 <!--{"type":"step", "name":"Setup Environment"}-->
@@ -1205,9 +1203,9 @@ This section demonstrates how to build a Linux system from separate components, 
 <!--{"type":"code" }-->
 
 ```bash
-sudo rm -rf artifacts.test
-mkdir artifacts.test
-cd artifacts.test
+sudo rm -rf bootloader.test
+mkdir bootloader.test
+cd bootloader.test
 export TOP_FOLDER=`pwd`
 ```
 <!--{"type":"/code" }-->
@@ -1229,7 +1227,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 <!--{"type":"code" }-->
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.1/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 <!--{"type":"/code" }-->
@@ -1242,7 +1240,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga agilex5_soc_devkit_ghrd
-git clone -b QPDS24.1_REL_AGILEX5_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/agilex5_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd agilex5_soc_devkit_ghrd
@@ -1265,9 +1263,8 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone https://github.com/altera-opensource/arm-trusted-firmware
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware
 cd arm-trusted-firmware
-git checkout -b test -t origin/socfpga_v2.10.0
 make -j 48 PLAT=agilex5 bl31 
 cd ..
 ```
@@ -1284,12 +1281,9 @@ The following file is created:
 
 ```bash
 cd $TOP_FOLDER
-rm -rf u-boot-socfpga v1-0001-HSD-15015933655-ddr-altera-agilex5-Hack-dual-port-DO-NOT-MERGE.patch
-wget https://raw.githubusercontent.com/altera-opensource/meta-intel-fpga-refdes/QPDS24.1_REL_AGILEX5_GSRD_PR/recipes-bsp/u-boot/files/v1-0001-HSD-15015933655-ddr-altera-agilex5-Hack-dual-port-DO-NOT-MERGE.patch
-git clone https://github.com/altera-opensource/u-boot-socfpga
+rm -rf u-boot-socfpga
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga
 cd u-boot-socfpga 
-git checkout -b test -t origin/socfpga_v2023.10
-patch -p1 < ../v1-0001-HSD-15015933655-ddr-altera-agilex5-Hack-dual-port-DO-NOT-MERGE.patch
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
 # only boot from SD, do not try QSPI and NAND
@@ -1401,9 +1395,8 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone https://github.com/altera-opensource/linux-socfpga
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga
 cd linux-socfpga
-git checkout -b test -t origin/socfpga-6.1.68-lts
 make defconfig 
 make -j 64 Image && make intel/socfpga_agilex5_socdk_debug.dtb 
 ```
@@ -1415,17 +1408,17 @@ The following files are created:
 <!--{"type":"/step" }-->
 
 <h4>Build Rootfs</h4>
-<!--{"type":"step", "name":"Build Rootfs", "results":["$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_devkit/core-image-minimal-agilex5_devkit.rootfs.tar.gz"]}-->
+<!--{"type":"step", "name":"Build Rootfs", "results":["$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz"]}-->
 <!--{"type":"code" }-->
 
 ```bash
 cd $TOP_FOLDER
 rm -rf yocto && mkdir yocto && cd yocto
-git clone -b nanbield https://git.yoctoproject.org/poky
-git clone -b nanbield https://git.yoctoproject.org/meta-intel-fpga
-git clone -b nanbield https://github.com/openembedded/meta-openembedded
+git clone -b scarthgap https://git.yoctoproject.org/poky
+git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga
+git clone -b scarthgap https://github.com/openembedded/meta-openembedded
 source poky/oe-init-build-env ./build
-echo 'MACHINE = "agilex5_devkit"' >> conf/local.conf
+echo 'MACHINE = "agilex5_dk_a5e065bb32aes1"' >> conf/local.conf
 echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
 echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf
 echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf
@@ -1434,7 +1427,7 @@ bitbake core-image-minimal
 <!--{"type":"/code" }-->
 The following file is created:
 
-* `$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_devkit/core-image-minimal-agilex5_devkit.rootfs.tar.gz`
+* `$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz`
 <!--{"type":"/step" }-->
 
 
@@ -1455,7 +1448,7 @@ cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image .
 cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_debug.dtb .
 cd ..
 mkdir rootfs && cd rootfs
-sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_devkit/core-image-minimal-agilex5_devkit.rootfs.tar.gz
+sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz
 cd ..
 sudo python3 make_sdimage_p3.py -f \
 -P fatfs/*,num=1,format=fat32,size=64M \
@@ -1472,7 +1465,20 @@ The following file is created:
 
 <h4>Write SD Card</h4>
 
-Write the SD card image `sd_card/sdimage.img` to the micro SD card using the included USB writer, and `dd` utility on Linux, or  Win32DiskImager on Windows, available at [https://win32diskimager.org/](https://win32diskimager.org/).
+Write the SD card image `sd_card/sdcard.img` to the micro SD card using the included USB writer:
+
+- On Linux, use the `dd` utility as shown next:
+```bash
+	# Determine the device asociated with the SD card on the host computer.	
+	cat /proc/partitions
+	# This will return for example /dev/sdx
+	# Use dd to write the image in the corresponding device
+	sudo dd if=sdcard.img of=/dev/sdx bs=1M
+	# Flush the changes to the SD card
+	sync
+```
+- On Windows, use the Win32DiskImager program, available at [https://win32diskimager.org/](https://win32diskimager.org/). Write the image as shown in the next figure:
+![](images/win32diskimager.png) 
 
 <h4>Write QSPI Flash</h4>
 
@@ -1493,7 +1499,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 
 1\. Power down board
 
-2\. Set MSEL dipswitch SW27 to QSPI: OFF-ON-ON-OFF
+2\. Set MSEL dipswitch SW27 to ASX4 (QSPi): OFf-ON-ON-OFF
 
 3\. Power up the board
 

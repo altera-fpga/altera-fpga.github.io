@@ -27,83 +27,28 @@ The following are required to be able to fully exercise the Agilex 5 Premium Dev
   * Micro USB Cable. Included with the development kit.
   * Ethernet Cable. Included with the development kit.
   * Micro SD card and USB card writer. Included with the development kit.
-* Host PC with
+* Host PC with:
+
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Intel Quartus Prime Pro Edition version 24.1. Used to recompile the hardware design. If only writing binaris is required, then the smaller Intel Quartus Prime Pro Edition Programmer version 24.1 is sufficient.
+  * Intel Quartus Prime Pro Edition version. Used to recompile the hardware design. If only writing binaris is required, then the smaller Intel Quartus Prime Pro Edition Programmer is sufficient.
+  * The prebuilt binaries were built using Quartus version 24.1
+  * The instructions for rebuilding the binaries use Quartus version 24.2
   * TFTP server. This used to download the eMMC binaries to board to be flashed by U-Boot
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
 ### Release Contents
 
-<h4>Binaries</h4>
+This page documents the following:
 
-The Agilex 5 Premium Development Kit GSRD binaries are located at [https://releases.rocketboards.org/2024.05/](https://releases.rocketboards.org/2024.05/):
-
-| HPS Daughter Card | Boot Source | Link |
-| -- | ---------------------- | -- |
-| Enablement Board | SD Card | [https://releases.rocketboards.org/2024.05/gsrd/agilex5_dk_a5e065bb32aes1_gsrd](https://releases.rocketboards.org/2024.05/gsrd/agilex5_dk_a5e065bb32aes1_gsrd) |
-| Enablement Board | QSPI | [https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi](https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi) |
-| NAND Board | eMMC | [https://releases.rocketboards.org/2024.05/emmc/agilex5_dk_a5e065bb32aes1_emmc](https://releases.rocketboards.org/2024.05/emmc/agilex5_dk_a5e065bb32aes1_emmc) |
-| Test Board | SD Card | [https://releases.rocketboards.org/2024.05/debug/agilex5_dk_a5e065bb32aes1_debug](https://releases.rocketboards.org/2024.05/debug/agilex5_dk_a5e065bb32aes1_debug) |
-
-<h4>Sources</h4>
-
-Quartus Prime Pro v24.1 and the following software component versions are used to build the GSRD:
-
-| Component | Location | Branch | Commit ID/Tag |
-| :-- | :-- | :-- | :-- |
-| GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.1.68-lts | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| Arm Trusted Firmware | [https://github.com/altera-opensource/arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.10.0 | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2023.10   | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| Yocto Project: poky | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | nanbield | latest |
-| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | nanbield | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | nanbield | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| GSRD Build Script: gsrd-socfpga | [https://github.com/altera-opensource/gsrd-socfpga](https://github.com/altera-opensource/gsrd-socfpga) | nanbield | QPDS24.1_REL_AGILEX5_GSRD_PR |
+* 24.1 Binary Release - see [Exercising Prebuilt Binaries](#exercising-prebuilt-binaries) section for release content details
+* 24.2 Source Code Release - see [Rebuilding the GSRD](#rebuilding-the-gsrd) section for release content details
 
 ### Release Notes
-<h4>Embedded Software Readiness</h4>
 
-Y - hardware validated; N - hardware validation in progress; Y\* - tested with condition; Y\*\* - tested, with known issues listed in the next section.
-
-| HPS Peripherals/Features | 24.1 Readiness<br> QPDS24.1_REL_AGILEX5_GSRD_PR tag |
-| :-- | :--: |
-| Timer/Watchdog  | Y |
-| Clock Manager  | Y |
-| Power Manager  | Y |
-| MPU | Y |
-| Reset Manager  | Y\*\* |
-| UART | Y |
-| GPIO | Y |
-| QSPI | Y |
-| SD/eMMC | Y\*\* |
-| I3C | N |
-| I2C | Y |
-| USB3.1 | Y\* (2.0 mode only, 3.1 mode by PRQ) |
-| USB2.0 | Y |
-| NAND | Not supported in Agilex™ 5 FPGA E-Series 065B Premium Development Kit |
-| SPI | Y |
-| Bridge | Y\*\* |
-| EMAC | Y\*\* |
-| FPGA Configuration | Y\*\* |
-| RSU | Y\*\* |
-
-<h4>Known Issues</h4>
-
-| Issue | Workaround | Impacted Peripherals/Features | Internal IDs | Impacted Branch/Tag |
-| :-- | :-- | :-- | :-- | :-- |
-| HPS Ethernet controller (XGMAC)is observed performing at lower rates (~50%) and having packet loss when running at 1G Mbps speed mode. | Contact Altera support for more details. | Ethernet | 15015213942, 18036458750, 15015743194 | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| Read/write across the F2H bridge fails | Fixed in 24.1 Patch 0.08. Refer to [KDB](https://www.intel.com/content/www/us/en/support/programmable/articles/000098815.html) for details. | Bridge | 15015307934 | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| Warm reset fails in U-Boot | None | Reset Manager | 16023530680 | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| Reconfiguring FPGA fabric from Linux fail | A patch can be provided. Contact Altera support for more details. | FPGA Configuration | 15015929503 | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| ADMA error seen during "dd" operation | Avoid using "dd" command" | SD/eMMC | 15015146909 | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| For HPS Boot First Mode, F2H bridge fails when phase 2 core.rbf is reconfigured | None | Bridge | 22019988055 | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| ECC is not enabled for HPS EMIF in 24.1 GHRD | None | HPS EMIF | 15015984966 | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| DDR calibration took about 10 seconds in 24.1 GSRD | None | HPS EMIF | 14022235400 | QPDS24.1_REL_AGILEX5_GSRD_PR |
-| "XGMAC_DMA_MODE_SWR_stuck: -110" message seen after "dhcp" command on HPS Enablement Board in 24.1 GSRD | You can ignore the error, "dhcp" works as usual. Alternatively, you can also disable gmac0 instance in socfpga_agilex5_socdk.dts. | EMAC | 15016071381 | QPDS24.1_REL_AGILEX5_GSRD_PR |
+See [https://www.rocketboards.org/foswiki/Documentation/IntelFPGAHPSEmbeddedSoftwareRelease](https://www.rocketboards.org/foswiki/Documentation/IntelFPGAHPSEmbeddedSoftwareRelease)
 
 ### Development Kit
 
@@ -151,20 +96,20 @@ The Golden Hardware Reference Design is an important part of the GSRD and consis
 - Hard Processor System (HPS)
   - Dual core Arm Cortex-A76 processor
   - Dual core Arm Cortex-A55 processor
-  - HPS Peripherals connected to Out-of-Box Experience (OOBE2) Daughter Card:
-    - SDMMC
+  - HPS Peripherals connected to HPS Enablement Expansion Board:
+    - Micro SD Card
     - EMAC
     - HPS JTAG debug
     - I3C
-    - USB UART
+    - UART
     - USB 3.1
 - Multi-Ported Front End (MPFE) for HPS External Memory Interface (EMIF)
-- FPGA Peripherals connected to Lightweight HPS-to-FPGA (LWS2F) AXI Bridge and JTAG to Avalon Master Bridge
+- FPGA Peripherals connected to Lightweight HPS-to-FPGA (LWH2F) AXI Bridge and JTAG to Avalon Master Bridge
   - Three user LED outputs
   - Four user DIP switch inputs
   - Four user push-button inputs
   - System ID
-- FPGA Peripherals connected to HPS-to-FPGA (S2F) AXI Bridge
+- FPGA Peripherals connected to HPS-to-FPGA (H2F) AXI Bridge
   - 256KB of FPGA on-chip memory
 
 ![](images/agilex5_ghrd.png) 
@@ -220,6 +165,34 @@ The HPS exposes 64 interrupt inputs for the FPGA logic. The following table list
 
 This section presents how to use the prebuilt binaries included with the GSRD release.
 
+### Prebuilt Release Contents
+
+<h4>Binaries</h4>
+
+The Agilex 5 Premium Development Kit 24.1 GSRD binaries are located at [https://releases.rocketboards.org/2024.05/](https://releases.rocketboards.org/2024.05/):
+
+| HPS Daughter Card | Boot Source | Link |
+| -- | ---------------------- | -- |
+| Enablement Board | SD Card | [https://releases.rocketboards.org/2024.05/gsrd/agilex5_dk_a5e065bb32aes1_gsrd](https://releases.rocketboards.org/2024.05/gsrd/agilex5_dk_a5e065bb32aes1_gsrd) |
+| Enablement Board | QSPI | [https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi](https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi) |
+| NAND Board | eMMC | [https://releases.rocketboards.org/2024.05/emmc/agilex5_dk_a5e065bb32aes1_emmc](https://releases.rocketboards.org/2024.05/emmc/agilex5_dk_a5e065bb32aes1_emmc) |
+| Test Board | SD Card | [https://releases.rocketboards.org/2024.05/debug/agilex5_dk_a5e065bb32aes1_debug](https://releases.rocketboards.org/2024.05/debug/agilex5_dk_a5e065bb32aes1_debug) |
+
+<h4>Sources</h4>
+
+Quartus Prime Pro v24.1 and the following software component versions were used to build the provided prebuilt binaries:
+
+| Component | Location | Branch | Commit ID/Tag |
+| :-- | :-- | :-- | :-- |
+| GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | QPDS24.1_REL_AGILEX5_GSRD_PR |
+| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.1.68-lts | QPDS24.1_REL_AGILEX5_GSRD_PR |
+| Arm Trusted Firmware | [https://github.com/altera-opensource/arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.10.0 | QPDS24.1_REL_AGILEX5_GSRD_PR |
+| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2023.10   | QPDS24.1_REL_AGILEX5_GSRD_PR |
+| Yocto Project: poky | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | nanbield | latest |
+| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | nanbield | QPDS24.1_REL_AGILEX5_GSRD_PR |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | nanbield | QPDS24.1_REL_AGILEX5_GSRD_PR |
+| GSRD Build Script: gsrd-socfpga | [https://github.com/altera-opensource/gsrd-socfpga](https://github.com/altera-opensource/gsrd-socfpga) | nanbield | QPDS24.1_REL_AGILEX5_GSRD_PR |
+
 ### Configure Board
 
 1\. Leave all jumpers and switches in their default configuration.
@@ -258,9 +231,9 @@ All the scenarios included in this release require a serial connection. This sec
 
 6\. Connect your terminal emulator
 
-### HPS Enablement BOard
+### HPS Enablement Board
 
-This section presents how to use HPS Enablement BOard to boot from SD card, and also from QSPI.
+This section presents how to use HPS Enablement Board to boot from SD card, and also from QSPI.
 
 #### Booting from SD Card
 <hr/>
@@ -268,7 +241,21 @@ This section presents how to use HPS Enablement BOard to boot from SD card, and 
 
 1\. Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2024.05/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2024.05/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
 
-2\. Write the SD card image to the micro SD card using the included USB writer, and `dd` utility on Linux, or  Win32DiskImager on Windows, available at [https://win32diskimager.org/](https://win32diskimager.org/).
+2\. Write the gsrd-console-image-agilex5_devkit.wic. SD card image to the micro SD card using the included USB writer in the host computer:
+
+- On Linux, use the `dd` utility as shown next:
+```bash
+# Determine the device asociated with the SD card on the host computer.	
+cat /proc/partitions
+# This will return for example /dev/sdx
+# Use dd to write the image in the corresponding device
+sudo dd if=gsrd-console-image-agilex5_devkit.wic of=/dev/sdx bs=1M
+# Flush the changes to the SD card
+sync
+```
+- On Windows, use the Win32DiskImager program, available at [https://win32diskimager.org/](https://win32diskimager.org/). For this, first rename the gsrd-console-image-agilex5_devkit.wic to an .img file (sdcard.img for example) and write the image as shown in the next figure:
+
+![](images/win32diskimager.png) 
 
 <h5>Write QSPI Flash</h5>
 
@@ -289,7 +276,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 
 1\. Power down board
 
-2\. Set MSEL dipswitch SW27 to QSPI: OFF-ON-ON-OFF
+2\. Set MSEL dipswitch SW27 to ASX4 (QSPi): OFf-ON-ON-OFF
 
 3\. Power up the board
 
@@ -404,7 +391,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;agilex_flash_image.hps.jic"
 
 1\. Power down board
 
-2\. Set MSEL dipswitch SW27 to QSPI: OFF-ON-ON-OFF
+2\. Set MSEL dipswitch SW27 to ASX4 (QSPi): OFf-ON-ON-OFF
 
 3\. Power up the board
 
@@ -424,9 +411,9 @@ quartus_pgm -c 1 -m jtag -o "pvi;agilex_flash_image.hps.jic"
 [  243.332653] UBIFS (ubi0:4): FS size: 167117440 bytes (159 MiB, 2555 LEBs), max 6500 LEBs, journal size 
 ```
 
-### HPS NAND BOard
+### HPS NAND Board
 
-This section presents how to use HPS NAND BOard to boot from eMMC.
+This section presents how to use HPS NAND Board to boot from eMMC.
 
 #### Booting from eMMC
 <hr/>
@@ -464,7 +451,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;uboot.jic"
 
 8\. Power down the board
 
-9\. Set MSEL dipswitch SW27 to QSPI: OFF-ON-ON-OFF
+9\. Set MSEL dipswitch SW27 to ASX4 (QSPi): OFf-ON-ON-OFF
 
 10\. Power up the board
 
@@ -507,15 +494,15 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 <h5>Boot Linux</h5>
 1\. Power down the board. 
 
-2\. Set MSEL dipswitch SW27 to QSPI: OFF-ON-ON-OFF
+2\. Set MSEL dipswitch SW27 to ASX4 (QSPi): OFf-ON-ON-OFF
 
 3\. Power up the board
 
 4\. Board will boot to Linux. Enter `root` as username, no password will be requested
 
-### HPS Test BOard
+### HPS Test Board
 
-This section presents how to use HPS Test BOard to boot from SD card.
+This section presents how to use HPS Test Board to boot from SD card.
 
 #### Booting from SD Card
 <hr/>
@@ -527,7 +514,7 @@ For this scenario we are using the HPS Test Board. There is single dipswitch on 
 
 1\. Download SD card image from the prebuilt binaries https://releases.rocketboards.org/2024.05/debug/agilex5_dk_a5e065bb32aes1_debug/sdimage.tar.gz and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
 
-2\. Write the SD card image to the micro SD card using the included USB writer, and `dd` utility on Linux, or  Win32DiskImager on Windows, available at https://win32diskimager.org/.
+2\. Write the SD card image to the micro SD card using the included USB writer in the host computer, and `dd` utility on Linux, or  Win32DiskImager on Windows, available at https://win32diskimager.org/. Please refer to the [Booting from SD Card](#booting-from-sd-card) section for more details about this.
 
 <h5>Write QSPI Flash</h5>
 
@@ -548,7 +535,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 
 1\. Power down the board. 
 
-2\. Set MSEL dipswitch SW27 to QSPI: OFF-ON-ON-OFF
+2\. Set MSEL dipswitch SW27 to ASX4 (QSPi): OFf-ON-ON-OFF
 
 3\. Power up the board
 
@@ -556,8 +543,23 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 
 ## Rebuilding the GSRD
 
+### Component Versions
+
+Quartus Prime Pro v24.2 and the following software component versions were used to build the provided prebuilt binaries:
+
+| Component | Location | Branch | Commit ID/Tag |
+| :-- | :-- | :-- | :-- |
+| GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | QPDS24.2_REL_GSRD_PR |
+| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.22-lts | QPDS24.2_REL_GSRD_PR |
+| Arm Trusted Firmware | [https://github.com/altera-opensource/arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.10.1 | QPDS24.2_REL_GSRD_PR |
+| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.01   | QPDS24.2_REL_GSRD_PR |
+| Yocto Project: poky | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest |
+| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | QPDS24.2_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | scarthgap | QPDS24.2_REL_GSRD_PR |
+| GSRD Build Script: gsrd-socfpga | [https://github.com/altera-opensource/gsrd-socfpga](https://github.com/altera-opensource/gsrd-socfpga) | scarthgap | QPDS24.1_REL_GSRD_PR |
+
 ### Yocto Build Prerequisites
-Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/3.4.1/ref-manual/system-requirements.html#supported-linux-distributions.
+Make sure you have Yocto system requirements met: [Yocto Requirements](https://docs.yoctoproject.org/3.4.1/ref-manual/system-requirements.html#supported-linux-distributions).
 
 The command to install the required packages on Ubuntu 22.04-LTS is:
 ```bash
@@ -574,11 +576,11 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 sudo ln -sf /bin/bash /bin/sh
 ```
-### HPS Enablement BOard
+### HPS Enablement Board
 
-<!--{"type":"recipe", "name":"Agilex5GSRD.Enablement", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf","$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/sdimage.tar.gz","$TOP_FOLDER/qspi_boot/agilex_flash_image.hps.jic"],"TOP_FOLDER":"artifacts.enablement", "board_keywords":["DK-A5E065BB32AES1","SD"], "test_commands":["write-sd=$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/sdimage.tar.gz","write-jic=$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","boot-linux-qspi","wipe-sd","write-jic=$TOP_FOLDER/qspi_boot/agilex_flash_image.hps.jic","boot-linux-qspi"]}-->
+<!--{"type":"recipe", "name":"Agilex5GSRD.Enablement", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf","$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz","$TOP_FOLDER/qspi_boot/agilex_flash_image.hps.jic"],"TOP_FOLDER":"gsrd.enablement", "board_keywords":["DK-A5E065BB32AES1","SD"], "test_commands":["write-sd=$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/gsrd-console-image-agilex5.wic","write-jic=$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","boot-linux-qspi","wipe-sd","write-jic=$TOP_FOLDER/qspi_boot/agilex_flash_image.hps.jic","boot-linux-qspi"]}-->
 
-This section presents how to build the binaries for HPS Enablement BOard.
+This section presents how to build the binaries for HPS Enablement Board.
 
 #### Build SD Card Boot Binaries
 <hr/>
@@ -592,9 +594,9 @@ The following diagram shows an overview of how the build process works for this 
 <!--{"type":"code" }-->
 
 ```bash
-sudo rm -rf artifacts.enablement
-mkdir artifacts.enablement
-cd artifacts.enablement
+sudo rm -rf gsrd.enablement
+mkdir gsrd.enablement
+cd gsrd.enablement
 export TOP_FOLDER=`pwd`
 ```
 <!--{"type":"/code" }-->
@@ -615,7 +617,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 3\. Set up the Quartus tools in the PATH, so they are accessible without full path
 <!--{"type":"code" }-->
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.1/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 <!--{"type":"/code" }-->
@@ -627,7 +629,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga agilex5_soc_devkit_ghrd
-git clone -b QPDS24.1_REL_AGILEX5_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/agilex5_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd agilex5_soc_devkit_ghrd
@@ -657,45 +659,44 @@ The following file is created:
 
 * `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf`
 
+<!--{"type":"step","name":"Build Yocto", "results":["$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz","$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/console-image-minimal-agilex5_nor.ubifs","$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/kernel.itb","$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/boot.scr.uimg","$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex","$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb"]}-->
 <h5>Set Up Yocto</h5>
-<!--{"type":"step","name":"Set Up Yocto", "results":[]}-->
+
 1\. Clone the Yocto script and prepare the build:
 <!--{"type":"code" }-->
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone --branch QPDS24.1_REL_AGILEX5_GSRD_PR --single-branch https://github.com/altera-opensource/gsrd-socfpga
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
 cd gsrd-socfpga
-. agilex5_devkit-gsrd-build.sh
+. agilex5_dk_a5e065bb32aes1-gsrd-build.sh
 build_setup
 ```
 <!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
 
 <h5>Customize Yocto</h5>
-<!--{"type":"step","name":"Customize Yocto", "results":[]}-->
-1\. Save the `core.rbf` as `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_devkit_gsrd_ghrd.core.rbf`
+
+1\. Save the `core.rbf` as `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf`
 
 2\. Update the recipe `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb` as follows:  
 
-* Replace the entry `${GHRD_REPO}/agilex5_devkit_gsrd_${ARM64_GHRD_CORE_RBF};name=agilex5_devkit_gsrd_core` with `file://agilex5_devkit_gsrd_ghrd.core.rbf;sha256sum=<CORE_SHA>` where `CORE_SHA` is the sha256 checksum of the file
-* Delete the line `SRC_URI[agilex5_devkit_gsrd_core.sha256sum] = "bf11c8cb3b6d9487f93ce0e055b1e5256998a25b25ac4690bef3fcd6225ee1ae"`
+* Replace the entry `${GHRD_REPO}/agilex5_dk_a5e065bb32aes1_gsrd_${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_gsrd_core` with `file://agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf;sha256sum=<CORE_SHA>` where `CORE_SHA` is the sha256 checksum of the file
+* Delete the line `SRC_URI[agilex5_dk_a5e065bb32aes1_gsrd_core.sha256sum] = "bf11c8cb3b6d9487f93ce0e055b1e5256998a25b25ac4690bef3fcd6225ee1ae"`
 The above are achieved by the following instructions:
 <!--{"type":"code" }-->
 ```bash
-CORE_RBF=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_devkit_gsrd_ghrd.core.rbf
+CORE_RBF=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf
 ln -s $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf $CORE_RBF
-OLD_URI="\${GHRD_REPO}\/agilex5_devkit_gsrd_\${ARM64_GHRD_CORE_RBF};name=agilex5_devkit_gsrd_core"
+OLD_URI="\${GHRD_REPO}\/agilex5_dk_a5e065bb32aes1_gsrd_\${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_gsrd_core"
 CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ")
-NEW_URI="file:\/\/agilex5_devkit_gsrd_ghrd.core.rbf;sha256sum=$CORE_SHA"
+NEW_URI="file:\/\/agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf;sha256sum=$CORE_SHA"
 sed -i "s/$OLD_URI/$NEW_URI/g" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
-sed -i "/agilex5_devkit_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+sed -i "/agilex5_dk_a5e065bb32aes1_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
 ```
 <!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
 
 <h5>Build Yocto</h5>
-<!--{"type":"step","name":"Build Yocto", "results":["$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/sdimage.tar.gz","$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/console-image-minimal-agilex5_devkit_nor.ubifs","$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/kernel.itb","$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/boot.scr.uimg","$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot-spl-dtb.hex","$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot.itb"]}-->
+
 Build Yocto:
 <!--{"type":"code" }-->
 ```bash
@@ -708,12 +709,13 @@ Gather files:
 package
 ```
 <!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
+
 The following files are created:
 
-* `$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot-spl-dtb.hex`
-* `$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot.itb`
-* `$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/sdimage.tar.gz`
+* `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex`
+* `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot.itb`
+* `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz`
+<!--{"type":"/step" }-->
 
 <h5>Build QSPI Image</h5>
 <!--{"type":"step", "name":"Build QSPI Image", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic"]}-->
@@ -725,7 +727,7 @@ quartus_pfg \
 -c agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof ghrd_a5ed065bb32ae6sr0.jic \
 -o device=MT25QU128 \
 -o flash_loader=A5ED065BB32AE6SR0 \
--o hps_path=gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+-o hps_path=gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
 -o hps=1
 ```
@@ -744,7 +746,7 @@ cd $TOP_FOLDER
 rm -f ghrd_a5ed065bb32ae6sr0.hps.rbf
 quartus_pfg \
 -c agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof  ghrd_a5ed065bb32ae6sr0.rbf \
--o hps_path=gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+-o hps_path=gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
 -o hps=1
 ```
 <!--{"type":"/code" }-->
@@ -778,17 +780,17 @@ wget https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qs
 3\. Link to the files that are needed from building the hardware design, and yocto:
 <!--{"type":"code" }-->
 ```bash
-ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/console-image-minimal-agilex5_devkit_nor.ubifs rootfs.ubifs
-ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/kernel.itb .
-ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/boot.scr.uimg
-ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot-spl-dtb.hex .
+ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/console-image-minimal-agilex5_nor.ubifs rootfs.ubifs
+ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/kernel.itb .
+ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/boot.scr.uimg
+ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex .
 ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof .
 ```
 <!--{"type":"/code" }-->
 4\. Process the u-boot.itb file to be exactly 2MB in size:
 <!--{"type":"code" }-->
 ```bash
-cp $TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot.itb .
+cp $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb .
 uboot_part_size=2*1024*1024
 uboot_size=`wc -c < u-boot.itb`
 uboot_pad="$((uboot_part_size-uboot_size))"
@@ -812,13 +814,13 @@ quartus_pfg -c agilex5_devkit_flash_image_hps.pfg
 <!--{"type":"/step" }-->
 <!--{"type":"/recipe" }-->
 
-### HPS NAND BOard
+### HPS NAND Board
 
-This section presents how to build the binaries for HPS NAND BOard, for booting from eMMC.
+This section presents how to build the binaries for HPS NAND Board, for booting from eMMC.
 
 #### Build eMMC binaries
 <hr/>
-<!--{"type":"recipe", "name":"Agilex5GSRD.eMMC", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf","$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/sdimage.tar.gz","$TOP_FOLDER/jic-helper/agilex_flash_image.hps.jic"],"TOP_FOLDER":"artifacts.emmc", "board_keywords":["DK-A5E065BB32AES1","eMMC"], "test_commands":["write-sd=$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/sdimage.tar.gz","write-jic=$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","boot-linux-qspi"]}-->
+<!--{"type":"recipe", "name":"Agilex5GSRD.eMMC", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf","$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz","$TOP_FOLDER/jic-helper/agilex_flash_image.hps.jic"],"TOP_FOLDER":"gsrd.emmc", "board_keywords":["DK-A5E065BB32AES1","eMMC"], "test_commands":["write-sd=$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/gsrd-console-image-agilex5.wic","write-jic=$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","boot-linux-qspi"]}-->
 The following diagram shows how to build the eMMC binaries that target the HPS NAND Daughtercard:
 ![](images/agilex5-build-sd-flow.svg)
 <h5>Setup Environment</h5>
@@ -826,9 +828,9 @@ The following diagram shows how to build the eMMC binaries that target the HPS N
 1\. Create the top folder to store all the build artifacts:
 <!--{"type":"code" }-->
 ```bash
-sudo rm -rf artifacts.emmc
-mkdir artifacts.emmc
-cd artifacts.emmc
+sudo rm -rf gsrd.emmc
+mkdir gsrd.emmc
+cd gsrd.emmc
 export TOP_FOLDER=`pwd`
 ```
 <!--{"type":"/code" }-->
@@ -848,7 +850,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 3\. Set up the Quartus tools in the PATH, so they are accessible without full path:
 <!--{"type":"code" }-->
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.1/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 <!--{"type":"/code" }-->
@@ -859,7 +861,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga agilex5_soc_devkit_ghrd
-git clone -b QPDS24.1_REL_AGILEX5_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/agilex5_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd agilex5_soc_devkit_ghrd
@@ -888,46 +890,44 @@ The following file is created:
 
 * `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf`
 
+
+<!--{"type":"step","name":"Build Yocto", "results":["$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz","$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex","$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb"]}-->
+
 <h5>Set Up Yocto</h5>
-<!--{"type":"step","name":"Set Up Yocto", "results":[]}-->
 
 1\. Clone the Yocto script and prepare the build:
 <!--{"type":"code" }-->
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone --branch QPDS24.1_REL_AGILEX5_GSRD_PR --single-branch https://github.com/altera-opensource/gsrd-socfpga
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
 cd gsrd-socfpga
-. agilex5_devkit-gsrd-build.sh
+. agilex5_dk_a5e065bb32aes1-gsrd-build.sh
 build_setup
 ```
 <!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
 
 <h5>Customize Yocto</h5>
-<!--{"type":"step","name":"Customize Yocto", "results":[]}-->
-1\. Save the `core.rbf` as `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_devkit_emmc_ghrd.core.rbf`  
+1\. Save the `core.rbf` as `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_emmc_ghrd.core.rbf`  
 
 2\. Update the recipe `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb` as follows:  
 
-* Replace the entry `${GHRD_REPO}/agilex5_devkit_emmc_${ARM64_GHRD_CORE_RBF};name=agilex5_devkit_emmc_core` with `file://agilex5_devkit_emmc_ghrd.core.rbf;sha256sum=<CORE_SHA>` where `CORE_SHA` is the sha256 checksum of the file
-* Delete the line `SRC_URI[agilex5_devkit_emmc_core.sha256sum] = "bf11c8cb3b6d9487f93ce0e055b1e5256998a25b25ac4690bef3fcd6225ee1ae"`
+* Replace the entry `${GHRD_REPO}/agilex5_dk_a5e065bb32aes1_emmc_${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_emmc_core` with `file://agilex5_dk_a5e065bb32aes1_emmc_ghrd.core.rbf;sha256sum=<CORE_SHA>` where `CORE_SHA` is the sha256 checksum of the file
+* Delete the line `SRC_URI[agilex5_dk_a5e065bb32aes1_emmc_core.sha256sum] = "bf11c8cb3b6d9487f93ce0e055b1e5256998a25b25ac4690bef3fcd6225ee1ae"`
 The above are achieved by the following instructions:
 <!--{"type":"code" }-->
 ```bash
-CORE_RBF=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_devkit_emmc_ghrd.core.rbf
+CORE_RBF=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_emmc_ghrd.core.rbf
 ln -s $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf $CORE_RBF
-OLD_URI="\${GHRD_REPO}\/agilex5_devkit_emmc_\${ARM64_GHRD_CORE_RBF};name=agilex5_devkit_emmc_core"
+OLD_URI="\${GHRD_REPO}\/agilex5_dk_a5e065bb32aes1_emmc_\${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_emmc_core"
 CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ")
-NEW_URI="file:\/\/agilex5_devkit_emmc_ghrd.core.rbf;sha256sum=$CORE_SHA"
+NEW_URI="file:\/\/agilex5_dk_a5e065bb32aes1_emmc_ghrd.core.rbf;sha256sum=$CORE_SHA"
 sed -i "s/$OLD_URI/$NEW_URI/g" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
-sed -i "/agilex5_devkit_emmc_core\.sha256sum/d" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+sed -i "/agilex5_dk_a5e065bb32aes1_emmc_core\.sha256sum/d" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
 ```
 <!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
 
 <h5>Build Yocto</h5>
-<!--{"type":"step","name":"Build Yocto", "results":["$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/sdimage.tar.gz","$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot-spl-dtb.hex","$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot.itb"]}-->
 Build Yocto:
 <!--{"type":"code" }-->
 ```bash
@@ -940,13 +940,14 @@ Gather files:
 package
 ```
 <!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
+
 The following files are created:
 
-* `$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot-spl-dtb.hex`
-* `$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot.itb`
-* `$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/sdimage.tar.gz`
+* `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex`
+* `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot.itb`
+* `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz`
 
+<!--{"type":"/step" }-->
 <h5>Build QSPI Image</h5>
 <!--{"type":"step", "name":"Build QSPI Image", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic"]}-->
 <!--{"type":"code" }-->
@@ -957,16 +958,15 @@ quartus_pfg \
 -c agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof ghrd_a5ed065bb32ae6sr0.jic \
 -o device=MT25QU128 \
 -o flash_loader=A5ED065BB32AE6SR0 \
--o hps_path=gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+-o hps_path=gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
 -o hps=1
 ```
 <!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
 The following file is created:
 
 * `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic`
-
+<!--{"type":"/step" }-->
 <h5>Build HPS RBF</h5>
 This is an optional step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.
 <!--{"type":"step", "name":"Build HPS RBF", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf"]}-->
@@ -976,7 +976,7 @@ cd $TOP_FOLDER
 rm -f ghrd_a5ed065bb32ae6sr0.hps.rbf
 quartus_pfg \
 -c agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof  ghrd_a5ed065bb32ae6sr0.rbf \
--o hps_path=gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+-o hps_path=gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
 -o hps=1
 ```
 <!--{"type":"/code" }-->
@@ -1011,14 +1011,14 @@ sed -i 's/MT25QU02G/MT25QU01G/g' uboot-only.pfg
 3\. Bring in the files that are needed:
 <!--{"type":"code" }-->
 ```bash
-ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot-spl-dtb.hex .
+ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex .
 ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof .
 ```
 <!--{"type":"/code" }-->
 4\. Process `u-boot.itb` file to be exactly 2MB in size, and have a `.bin` extension as needed by Quartus Programming File Generator:
 <!--{"type":"code" }-->
 ```bash
-cp $TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot.itb .
+cp $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb .
 uboot_part_size=2*1024*1024
 uboot_size=`wc -c < u-boot.itb`
 uboot_pad="$((uboot_part_size-uboot_size))"
@@ -1038,13 +1038,13 @@ The following file will be created:
 <!--{"type":"/step" }-->
 <!--{"type":"/recipe" }-->
 
-### HPS Test BOard
+### HPS Test Board
 
-This section presents how to build the binaries for HPS Test BOard.
+This section presents how to build the binaries for HPS Test Board.
 
 #### Build SD Card Binaries
 <hr/>
-<!--{"type":"recipe", "name":"Agilex5GSRD.Test", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf","$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/sdimage.tar.gz"],"TOP_FOLDER":"artifacts.test", "board_keywords":["DK-A5E065BB32AES1","DEBUG"], "test_commands":["write-sd=$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/sdimage.tar.gz","write-jic=$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","boot-linux-qspi"]}-->
+<!--{"type":"recipe", "name":"Agilex5GSRD.Test", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf","$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz"],"TOP_FOLDER":"gsrd.test", "board_keywords":["DK-A5E065BB32AES1","DEBUG"], "test_commands":["write-sd=$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/gsrd-console-image-agilex5.wic","write-jic=$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","boot-linux-qspi"]}-->
 The following diagram shows how the binaries are built for the HPS Test Daughtercard:  
 
 ![](images/agilex5-build-sd-flow.svg)
@@ -1053,9 +1053,9 @@ The following diagram shows how the binaries are built for the HPS Test Daughter
 1\. Create the top folder to store all the build artifacts:
 <!--{"type":"code" }-->
 ```bash
-sudo rm -rf artifacts.test
-mkdir artifacts.test
-cd artifacts.test
+sudo rm -rf gsrd.test
+mkdir gsrd.test
+cd gsrd.test
 export TOP_FOLDER=`pwd`
 ```
 <!--{"type":"/code" }-->
@@ -1075,7 +1075,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 3\. Set up the Quartus tools in the PATH, so they are accessible without full path
 <!--{"type":"code" }-->
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.1/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 <!--{"type":"/code" }-->
@@ -1087,7 +1087,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga agilex5_soc_devkit_ghrd
-git clone -b QPDS24.1_REL_AGILEX5_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/agilex5_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd agilex5_soc_devkit_ghrd
@@ -1117,36 +1117,34 @@ The following file is created:
 
 * `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf`
 
+<!--{"type":"step","name":"Build Yocto", "results":["$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz","$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex"]}-->
+
 <h5>Set Up Yocto</h5>
-<!--{"type":"step","name":"Set Up Yocto", "results":[]}-->
 
 1\. Clone the Yocto script and prepare the build:
 <!--{"type":"code" }-->
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone --branch QPDS24.1_REL_AGILEX5_GSRD_PR --single-branch https://github.com/altera-opensource/gsrd-socfpga
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
 cd gsrd-socfpga
-. agilex5_devkit-gsrd-build.sh
+. agilex5_dk_a5e065bb32aes1-gsrd-build.sh
 build_setup
 ```
 <!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
 
 <h5>Customize Yocto</h5>
-<!--{"type":"step","name":"Customize Yocto", "results":[]}-->
-Replace the file `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_devkit_debug2_ghrd.core.rbf` with the rebuilt core.rbf file:
+Replace the file `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_debug2_ghrd.core.rbf` with the rebuilt core.rbf file:
 <!--{"type":"code" }-->
 ```bash
-CORE_RBF=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_devkit_debug2_ghrd.core.rbf
+CORE_RBF=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_debug2_ghrd.core.rbf
 rm -f $CORE_RBF
 ln -s $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf $CORE_RBF
 ```
 <!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
 
 <h5>Build Yocto</h5>
-<!--{"type":"step","name":"Build Yocto", "results":["$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/sdimage.tar.gz","$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot-spl-dtb.hex"]}-->
+
 Build Yocto:
 <!--{"type":"code" }-->
 ```bash
@@ -1159,11 +1157,11 @@ Gather files:
 package
 ```
 <!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
 The following files are created:
 
-* `$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot-spl-dtb.hex`
-* `$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/sdimage.tar.gz`
+* `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex`
+* `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz`
+<!--{"type":"/step" }-->
 
 <h5>Build QSPI Image</h5>
 <!--{"type":"step", "name":"Build QSPI Image", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic"]}-->
@@ -1175,17 +1173,17 @@ quartus_pfg \
 -c agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof ghrd_a5ed065bb32ae6sr0.jic \
 -o device=MT25QU128 \
 -o flash_loader=A5ED065BB32AE6SR0 \
--o hps_path=gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+-o hps_path=gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
 -o hps=1
 ```
 <!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
 
 The following file is created:
 
 * `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic`
 
+<!--{"type":"/step" }-->
 <h5>Build HPS RBF</h5>
 This is an optional step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.
 <!--{"type":"step", "name":"Build HPS RBF", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf"]}-->
@@ -1196,7 +1194,7 @@ cd $TOP_FOLDER
 rm -f ghrd_a5ed065bb32ae6sr0.hps.rbf
 quartus_pfg \
 -c agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof  ghrd_a5ed065bb32ae6sr0.rbf \
--o hps_path=gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+-o hps_path=gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
 -o hps=1
 ```
 <!--{"type":"/code" }-->
