@@ -2475,14 +2475,19 @@ The above are achieved by the following instructions:</li>
 
 <h5>Build Yocto</h5>
 
+<p>Remove reference to patch which was retired after 24.2 tag was applied:</p>
+<!--{"type":"code" }-->
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/fix-potential-signed-overflow-in-pointer-arithmatic.patch/d&#39;</span><span class="w"> </span>meta-intel-fpga-refdes/recipes-connectivity/openssh/openssh_%.bbappend
+</code></pre></div>
+<!--{"type":"/code" }-->
 <p>Build Yocto:</p>
 <!--{"type":"code" }-->
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>bitbake_image
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>bitbake_image
 </code></pre></div>
 <!--{"type":"/code" }-->
 <p>Gather files:</p>
 <!--{"type":"code" }-->
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>package
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>package
 </code></pre></div>
 <!--{"type":"/code" }-->
 <p>The following files are created:</p>
@@ -2495,15 +2500,15 @@ The above are achieved by the following instructions:</li>
 <h5>Build QSPI Image</h5>
 <!--{"type":"step", "name":"Build QSPI Image", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic"]}-->
 <!--{"type":"code" }-->
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.jic<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.core.rbf
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.jic<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU128<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A5ED065BB32AE6SR0<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.jic<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.core.rbf
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.jic<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU128<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A5ED065BB32AE6SR0<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 <!--{"type":"/code" }-->
 <!--{"type":"/step" }-->
@@ -2515,12 +2520,12 @@ The above are achieved by the following instructions:</li>
 <p>This is an optional step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.</p>
 <!--{"type":"step", "name":"Build HPS RBF", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf"]}-->
 <!--{"type":"code" }-->
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.rbf
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof<span class="w">  </span>ghrd_a5ed065bb32ae6sr0.rbf<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.rbf
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof<span class="w">  </span>ghrd_a5ed065bb32ae6sr0.rbf<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 <!--{"type":"/code" }-->
 <!--{"type":"/step" }-->
@@ -2535,46 +2540,46 @@ The above are achieved by the following instructions:</li>
 <a class="glightbox" href="../images/agilex5-build-qspi-flow.svg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/agilex5-build-qspi-flow.svg" /></a></p>
 <p>1. Create the folder to contain all the files:</p>
 <!--{"type":"code" }-->
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>qspi_boot
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>mkdir<span class="w"> </span>qspi_boot
-<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="nb">cd</span><span class="w"> </span>qspi_boot
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>qspi_boot
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>mkdir<span class="w"> </span>qspi_boot
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="nb">cd</span><span class="w"> </span>qspi_boot
 </code></pre></div>
 <!--{"type":"/code" }-->
 <p>2. Get the <code>ubinize.cfg</code> file which contains the details on how to build the <code>root.ubi</code> volume, and <code>agilex5_devkit_flash_image_hps.pfg</code> which contains the instructions for Programming File Generator on how to create the .jic file:</p>
 <!--{"type":"code" }-->
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi/ubinize.cfg
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi/agilex5_devkit_flash_image_hps.pfg
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi/ubinize.cfg
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi/agilex5_devkit_flash_image_hps.pfg
 </code></pre></div>
 <!--{"type":"/code" }-->
 <p>3. Link to the files that are needed from building the hardware design, and yocto:</p>
 <!--{"type":"code" }-->
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_modular-gsrd-images/console-image-minimal-agilex5_nor.ubifs<span class="w"> </span>rootfs.ubifs
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_modular-gsrd-images/kernel.itb<span class="w"> </span>.
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/boot.scr.uimg
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span>.
-<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof<span class="w"> </span>.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_modular-gsrd-images/console-image-minimal-agilex5_nor.ubifs<span class="w"> </span>rootfs.ubifs
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_modular-gsrd-images/kernel.itb<span class="w"> </span>.
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/boot.scr.uimg
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span>.
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof<span class="w"> </span>.
 </code></pre></div>
 <!--{"type":"/code" }-->
 <p>4. Process the u-boot.itb file to be exactly 2MB in size:</p>
 <!--{"type":"code" }-->
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb<span class="w"> </span>.
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nv">uboot_part_size</span><span class="o">=</span><span class="m">2</span>*1024*1024
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nv">uboot_size</span><span class="o">=</span><span class="sb">`</span>wc<span class="w"> </span>-c<span class="w"> </span>&lt;<span class="w"> </span>u-boot.itb<span class="sb">`</span>
-<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="nv">uboot_pad</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$((</span><span class="nv">uboot_part_size</span><span class="o">-</span><span class="nv">uboot_size</span><span class="k">))</span><span class="s2">&quot;</span>
-<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>truncate<span class="w"> </span>-s<span class="w"> </span>+<span class="nv">$uboot_pad</span><span class="w"> </span>u-boot.itb
-<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>mv<span class="w"> </span>u-boot.itb<span class="w"> </span>u-boot.bin
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb<span class="w"> </span>.
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="nv">uboot_part_size</span><span class="o">=</span><span class="m">2</span>*1024*1024
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="nv">uboot_size</span><span class="o">=</span><span class="sb">`</span>wc<span class="w"> </span>-c<span class="w"> </span>&lt;<span class="w"> </span>u-boot.itb<span class="sb">`</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="nv">uboot_pad</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$((</span><span class="nv">uboot_part_size</span><span class="o">-</span><span class="nv">uboot_size</span><span class="k">))</span><span class="s2">&quot;</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>truncate<span class="w"> </span>-s<span class="w"> </span>+<span class="nv">$uboot_pad</span><span class="w"> </span>u-boot.itb
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>mv<span class="w"> </span>u-boot.itb<span class="w"> </span>u-boot.bin
 </code></pre></div>
 <!--{"type":"/code" }-->
 <p>5. Create the <code>root.ubi</code> file and rename it to <code>hps.bin</code> as Programming File Generator needs the <code>.bin</code> extension:</p>
 <!--{"type":"code" }-->
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>ubinize<span class="w"> </span>-o<span class="w"> </span>root.ubi<span class="w"> </span>-p<span class="w"> </span><span class="m">65536</span><span class="w"> </span>-m<span class="w"> </span><span class="m">1</span><span class="w"> </span>-s<span class="w"> </span><span class="m">1</span><span class="w"> </span>ubinize.cfg
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>ln<span class="w"> </span>-s<span class="w"> </span>root.ubi<span class="w"> </span>hps.bin
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>ubinize<span class="w"> </span>-o<span class="w"> </span>root.ubi<span class="w"> </span>-p<span class="w"> </span><span class="m">65536</span><span class="w"> </span>-m<span class="w"> </span><span class="m">1</span><span class="w"> </span>-s<span class="w"> </span><span class="m">1</span><span class="w"> </span>ubinize.cfg
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>ln<span class="w"> </span>-s<span class="w"> </span>root.ubi<span class="w"> </span>hps.bin
 </code></pre></div>
 <!--{"type":"/code" }-->
 <p>6. Create the JIC file:</p>
 <!--{"type":"code" }-->
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex5_devkit_flash_image_hps.pfg
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex5_devkit_flash_image_hps.pfg
 </code></pre></div>
 <!--{"type":"/code" }-->
 
@@ -2590,7 +2595,7 @@ The above are achieved by the following instructions:</li>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 7, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 9, 2024</span>
       
         <br>
         Created:
