@@ -1,6 +1,6 @@
 # **Ethernet Media Access Controller (EMAC) Driver for Hard Processor System**
 
-Last updated: **August 07, 2024** 
+Last updated: **August 09, 2024** 
 
 **Upstream Status**: Not Upstreamed
 

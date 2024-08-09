@@ -697,6 +697,12 @@ sed -i "/agilex5_dk_a5e065bb32aes1_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel
 
 <h5>Build Yocto</h5>
 
+Remove reference to patch which was retired after 24.2 tag was applied:
+<!--{"type":"code" }-->
+```bash
+sed -i '/fix-potential-signed-overflow-in-pointer-arithmatic.patch/d' meta-intel-fpga-refdes/recipes-connectivity/openssh/openssh_%.bbappend
+```
+<!--{"type":"/code" }-->
 Build Yocto:
 <!--{"type":"code" }-->
 ```bash
@@ -928,6 +934,13 @@ sed -i "/agilex5_dk_a5e065bb32aes1_emmc_core\.sha256sum/d" $WORKSPACE/meta-intel
 <!--{"type":"/code" }-->
 
 <h5>Build Yocto</h5>
+
+Remove reference to patch which was retired after 24.2 tag was applied:
+<!--{"type":"code" }-->
+```bash
+sed -i '/fix-potential-signed-overflow-in-pointer-arithmatic.patch/d' meta-intel-fpga-refdes/recipes-connectivity/openssh/openssh_%.bbappend
+```
+<!--{"type":"/code" }-->
 Build Yocto:
 <!--{"type":"code" }-->
 ```bash
@@ -1145,6 +1158,12 @@ ln -s $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf $CORE_RBF
 
 <h5>Build Yocto</h5>
 
+Remove reference to patch which was retired after 24.2 tag was applied:
+<!--{"type":"code" }-->
+```bash
+sed -i '/fix-potential-signed-overflow-in-pointer-arithmatic.patch/d' meta-intel-fpga-refdes/recipes-connectivity/openssh/openssh_%.bbappend
+```
+<!--{"type":"/code" }-->
 Build Yocto:
 <!--{"type":"code" }-->
 ```bash

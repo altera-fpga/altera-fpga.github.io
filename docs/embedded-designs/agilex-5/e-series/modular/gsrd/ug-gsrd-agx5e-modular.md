@@ -551,6 +551,12 @@ sed -i "/agilex5_modular_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel-fpga-refd
 
 <h5>Build Yocto</h5>
 
+Remove reference to patch which was retired after 24.2 tag was applied:
+<!--{"type":"code" }-->
+```bash
+sed -i '/fix-potential-signed-overflow-in-pointer-arithmatic.patch/d' meta-intel-fpga-refdes/recipes-connectivity/openssh/openssh_%.bbappend
+```
+<!--{"type":"/code" }-->
 Build Yocto:
 <!--{"type":"code" }-->
 ```bash
