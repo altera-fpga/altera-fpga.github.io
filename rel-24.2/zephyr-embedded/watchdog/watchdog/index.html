@@ -1641,6 +1641,118 @@
 <h2 id="device-tree"><strong>Device Tree</strong><a class="headerlink" href="#device-tree" title="Permanent link">&para;</a></h2>
 <p>Device tree location to configure the Watchdog:<a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm64/intel/intel_socfpga_agilex5.dtsi">https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm64/intel/intel_socfpga_agilex5.dtsi</a></p>
 <p><a class="glightbox" href="../images/watchdog_device_tree.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="watchdog_device_tree" src="../images/watchdog_device_tree.png" /></a></p>
+<h2 id="driver-sample"><strong>Driver Sample</strong><a class="headerlink" href="#driver-sample" title="Permanent link">&para;</a></h2>
+<p>The source code for the driver sample can be found at: <a href="https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/watchdog">https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/watchdog</a>.</p>
+<p>The most relevant files are:
+1. Project yml -&gt; sample.yml:</p>
+<p>```
+  1 sample:
+  2   name: Watchdog Driver Sample
+  3 common:
+  4   tags:
+  5     - drivers
+  6     - watchdog
+  7   harness: console
+  8   harness_config:
+  9     type: multi_line
+ 10     ordered: true
+ 11     regex:
+ 12       - "Watchdog sample application"
+ 13       - "Feeding watchdog..."
+ 14       - "Waiting for reset..."
+ 15       - "Watchdog sample application"
+ 16   depends_on: watchdog</p>
+<p>```</p>
+<ol>
+<li>Config overlay -&gt; prj.conf:</li>
+</ol>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>  1 CONFIG_LOG=y
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  2 CONFIG_LOG_MODE_IMMEDIATE=y
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  3 CONFIG_WDT_LOG_LEVEL_DBG=y
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  4 CONFIG_WATCHDOG=y
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  5 CONFIG_WDT_DISABLE_AT_BOOT=n
+</code></pre></div>
+3. Specific board config -&gt; intel_socfpga_agilex5_socdk.conf 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>  1 CONFIG_WDT_DW_RESET_MODE=2
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  2 CONFIG_WDT_DW_PAUSE_BY_DBG=y
+</code></pre></div>
+4. Device tree overlay -&gt; intel_socfpga_agilex5_socdk.overlay<br />
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>  1 /*
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  2  * Copyright (C) 2023 Intel Corporation
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  3  *
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  4  * SPDX-License-Identifier: Apache-2.0
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  5  */
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  6
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  7 / {
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>  8         aliases {
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>  9                 watchdog0 = &amp;watchdog0;
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a> 10         };
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a> 11 };
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a> 12
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a> 13 &amp;watchdog0 {
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a> 14         interrupt-parent = &lt;&amp;gic&gt;;
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a> 15         interrupts = &lt;GIC_SPI 117 IRQ_TYPE_LEVEL
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a> 16                         IRQ_DEFAULT_PRIORITY&gt;;
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a> 17         status = &quot;okay&quot;;
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a> 18 };             
+</code></pre></div>
+5. Source code: <a href="https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/watchdog/src/main.c">https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/watchdog/src/main.c</a>.</p>
+<h2 id="steps-to-build"><strong>Steps to build</strong><a class="headerlink" href="#steps-to-build" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Execute the following commands:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>rm -rf agilex5
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>west build -b intel_socfpga_agilex5_socdk samples/drivers/watchdog/  -d agilex5
+</code></pre></div></li>
+</ol>
+<h2 id="output"><strong>Output</strong><a class="headerlink" href="#output" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>NOTICE:  return = 0 Hz
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>NOTICE:  mmc_clk = 200000000 Hz
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>NOTICE:  SDMMC boot
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>NOTICE:  BL2: v2.9.1(release):QPDS23.4_REL_GSRD_PR
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>NOTICE:  BL2: Built : 18:22:43, Jul  2 2024
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>NOTICE:  BL2: Booting BL31
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>NOTICE:  BL31: Boot Core = 0
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>NOTICE:  BL31: CPU ID = 81000000
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>NOTICE:  BL31: v2.9.1(release):QPDS23.4_REL_GSRD_PR
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>NOTICE:  BL31: Built : 18:22:43, Jul  2 2024
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>*** Booting Zephyr OS build 33d4a115fbed ***
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>Secondary CPU core 1 (MPID:0x100) is up
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>Secondary CPU core 2 (MPID:0x200) is up
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>Secondary CPU core 3 (MPID:0x300) is up
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>Watchdog sample application
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>Attempting to test pre-reset callback
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>Feeding watchdog 5 times
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>Feeding watchdog...
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>Feeding watchdog...
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>Feeding watchdog...
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>Feeding watchdog...
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>Feeding watchdog...
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>Waiting for reset...
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>Handled things..ready to reset
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>NOTICE:  return = 0 Hz
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>NOTICE:  mmc_clk = 200000000 Hz
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>NOTICE:  SDMMC boot
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>NOTICE:  BL2: v2.9.1(release):QPDS23.4_REL_GSRD_PR
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>NOTICE:  BL2: Built : 18:22:43, Jul  2 2024
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>NOTICE:  BL2: Booting BL31
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>NOTICE:  BL31: Boot Core = 0
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>NOTICE:  BL31: CPU ID = 81000000
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>NOTICE:  BL31: v2.9.1(release):QPDS23.4_REL_GSRD_PR
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>NOTICE:  BL31: Built : 18:22:43, Jul  2 2024
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>*** Booting Zephyr OS build 33d4a115fbed ***
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>Secondary CPU core 1 (MPID:0x100) is up
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>Secondary CPU core 2 (MPID:0x200) is up
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>Secondary CPU core 3 (MPID:0x300) is up
+<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>Watchdog sample application
+<a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a>Attempting to test pre-reset callback
+<a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a>Feeding watchdog 5 times
+<a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a>Feeding watchdog...
+<a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a>Feeding watchdog...
+<a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a>Feeding watchdog...
+<a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a>Feeding watchdog...
+<a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a>Feeding watchdog...
+<a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a>Waiting for reset...
+</code></pre></div>
 <h2 id="known-issues"><strong>Known Issues</strong><a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
 <p>None known</p>
 
@@ -1649,7 +1761,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 7, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 14, 2024</span>
       
         <br>
         Created:

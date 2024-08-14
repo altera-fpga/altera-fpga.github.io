@@ -1645,6 +1645,104 @@
 <h2 id="device-tree"><strong>Device Tree</strong><a class="headerlink" href="#device-tree" title="Permanent link">&para;</a></h2>
 <p>Device tree location to configure the QSPI: <a href="https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/dts/arm64/intel/intel_socfpga_agilex5.dtsi">https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/dts/arm64/intel/intel_socfpga_agilex5.dtsi</a></p>
 <p><a class="glightbox" href="../images/qspi_device_tree.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="qspi_device_tree" src="../images/qspi_device_tree.png" /></a></p>
+<h2 id="driver-sample"><strong>Driver Sample</strong><a class="headerlink" href="#driver-sample" title="Permanent link">&para;</a></h2>
+<p>The source code for the driver sample can be found at: <a href="https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/soc_flash_qspi">https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/soc_flash_qspi</a>.</p>
+<p>The most relevant files are:
+1. Project yml -&gt; sample.yml:</p>
+<p>```
+  1  sample:
+  2   description: Cadence QSPI Driver sample application.
+  3   name: cdns_qspi_nor
+  4 tests:
+  5   sample.drivers.flash.soc_flash_qspi:
+  6     platform_allow:
+  7       - intel_socfpga_agilex5_socdk
+  8     integration_platforms:
+  9       - intel_socfpga_agilex5_socdk
+ 10     tags:
+ 11       - flash
+ 12       - cdns
+ 13     harness: console
+ 14     harness_config:
+ 15       fixture: external_flash
+ 16       type: multi_line
+ 17       ordered: true</p>
+<p>```</p>
+<ol>
+<li>Config overlay -&gt; prj.conf:</li>
+</ol>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>  1 # Copyright (c) 2023, Intel Corporation.
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  2 # SPDX-License-Identifier: Apache-2.0
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  3 
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  4 # Misc
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  5 CONFIG_HEAP_MEM_POOL_SIZE=363840
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  6 
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  7 # Enable Flash
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  8 CONFIG_FLASH=y
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  9 CONFIG_FLASH_PAGE_LAYOUT=y
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a> 10 CONFIG_LOG=y
+</code></pre></div>
+4. Device tree overlay -&gt; intel_socfpga_agilex5_socdk.overlay<br />
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>  1 /*
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  2  * Copyright (C) 2023 Intel Corporation
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  3  * SPDX-License-Identifier: Apache-2.0
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  4  */
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  5
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  6 /* The overlay file should be used to enable any
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  7  * dts nodes required by this application for this
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  8  * board.
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  9  */
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a> 10
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a> 11 / {
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a> 12         aliases {
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a> 13                 qspi = &amp;qspi;
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a> 14         };
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a> 15 };
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a> 16
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a> 17 &amp;qspi {
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a> 18         status = &quot;okay&quot;;
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a> 19 };
+</code></pre></div>
+5. Source code: <a href="https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/soc_flash_qspi/src/main.c">https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/soc_flash_qspi/src/main.c</a>.</p>
+<h2 id="steps-to-build"><strong>Steps to build</strong><a class="headerlink" href="#steps-to-build" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Execute the following commands:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>rm -rf agilex5
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>west build -b intel_socfpga_agilex5_socdk samples/drivers/soc_flash_qspi/  -d agilex5
+</code></pre></div></li>
+</ol>
+<h2 id="output"><strong>Output</strong><a class="headerlink" href="#output" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>NOTICE:  return = 0 Hz
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>NOTICE:  mmc_clk = 200000000 Hz
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>NOTICE:  SDMMC boot
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>NOTICE:  BL2: v2.9.1(release):QPDS23.4_REL_GSRD_PR
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>NOTICE:  BL2: Built : 18:22:43, Jul  2 2024
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>NOTICE:  BL2: Booting BL31
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>NOTICE:  BL31: Boot Core = 0
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>NOTICE:  BL31: CPU ID = 81000000
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>NOTICE:  BL31: v2.9.1(release):QPDS23.4_REL_GSRD_PR
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>NOTICE:  BL31: Built : 18:22:43, Jul  2 2024
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>[00:00:00.219,000] &lt;inf&gt; clock_control_agilex5: Intel Agilex5 clock driver initialized!
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>[00:00:00.000,000] &lt;inf&gt; flash_cadence_ll: Initializing Qspi
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>[00:00:00.000,000] &lt;inf&gt; flash_cadence_ll: QSPI Capacity: 10000000
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>[00:00:00.000,000] &lt;inf&gt; flash_cadence_ll: Flash size: 268435456 Bytes
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>*** Booting Zephyr OS build 33d4a115fbed ***
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>Secondary CPU core 1 (MPID:0x100) is up
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>Secondary CPU core 2 (MPID:0x200) is up
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>Secondary CPU core 3 (MPID:0x300) is up
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>QSPI flash driver test sample
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>QSPI flash device block size = 100
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>QSPI flash number of pages = 100000
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>QSPI flash driver block size 100
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>The Page size of 100
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>QSPI flash driver data erase successful....
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>QSPI flash driver write completed....
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>QSPI flash driver read completed....
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>QSPI flash driver read verified
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>QSPI flash driver data erase successful....
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>QSPI flash driver read verified after erase....
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>QSPI flash driver test sample completed....
+</code></pre></div>
 <h2 id="known-issues"><strong>Known Issues</strong><a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
 <p>None known</p>
 
@@ -1653,7 +1751,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 7, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 14, 2024</span>
       
         <br>
         Created:

@@ -1617,7 +1617,7 @@
 
 
 <h1 id="dma-driver-for-hard-processor-system"><strong>DMA Driver for Hard Processor System</strong><a class="headerlink" href="#dma-driver-for-hard-processor-system" title="Permanent link">&para;</a></h1>
-<p>Last updated: <strong>August 09, 2024</strong> </p>
+<p>Last updated: <strong>August 14, 2024</strong> </p>
 <p><strong>Upstream Status</strong>: No</p>
 <p><strong>Devices supported</strong>: Agilex 5</p>
 <h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
@@ -1643,24 +1643,102 @@
 <h2 id="device-tree"><strong>Device Tree</strong><a class="headerlink" href="#device-tree" title="Permanent link">&para;</a></h2>
 <p>Device Tree location to configure DMA is</p>
 <p><a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm64/intel/intel_socfpga_agilex5.dtsi">https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm64/intel/intel_socfpga_agilex5.dtsi</a></p>
-<p>```dma0: dma@10DB0000 {
-compatible = "snps,dw-axi-dma";</p>
-<h1 id="dma-cells-2">dma-cells = &lt;2&gt;;<a class="headerlink" href="#dma-cells-2" title="Permanent link">&para;</a></h1>
-<p>reg = &lt;0x10DB0000 0x1000&gt;;
-interrupt-parent = &lt;&amp;gic&gt;;
-interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL
-         IRQ_DEFAULT_PRIORITY>,
-         <GIC_SPI 82 IRQ_TYPE_LEVEL
-         IRQ_DEFAULT_PRIORITY>,
-         <GIC_SPI 83 IRQ_TYPE_LEVEL
-         IRQ_DEFAULT_PRIORITY>,
-         <GIC_SPI 84 IRQ_TYPE_LEVEL
-         IRQ_DEFAULT_PRIORITY>;
-dma-channels = &lt;4&gt;;
-resets = &lt;&amp;reset RSTMGR_DMA_RSTLINE&gt;;
-status = "disabled";
-};
-```</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>dma0: dma@10DB0000 {
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>compatible = &quot;snps,dw-axi-dma&quot;;
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>#dma-cells = &lt;2&gt;;
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>reg = &lt;0x10DB0000 0x1000&gt;;
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>interrupt-parent = &lt;&amp;gic&gt;;
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>interrupts = &lt;GIC_SPI 81 IRQ_TYPE_LEVEL
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>         IRQ_DEFAULT_PRIORITY&gt;,
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>         &lt;GIC_SPI 82 IRQ_TYPE_LEVEL
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>         IRQ_DEFAULT_PRIORITY&gt;,
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>         &lt;GIC_SPI 83 IRQ_TYPE_LEVEL
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>         IRQ_DEFAULT_PRIORITY&gt;,
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>         &lt;GIC_SPI 84 IRQ_TYPE_LEVEL
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>         IRQ_DEFAULT_PRIORITY&gt;;
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>dma-channels = &lt;4&gt;;
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>resets = &lt;&amp;reset RSTMGR_DMA_RSTLINE&gt;;
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>status = &quot;disabled&quot;;
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>};
+</code></pre></div>
+<h2 id="driver-sample"><strong>Driver Sample</strong><a class="headerlink" href="#driver-sample" title="Permanent link">&para;</a></h2>
+<p>The source code for the driver sample can be found at: <a href="https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/dma/mem_to_mem/">https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/dma/mem_to_mem/</a>.</p>
+<p>The most relevant files are:</p>
+<ol>
+<li>Project yml -&gt; sample.yml:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a> 1 sample:
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a> 2   name: DMA
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a> 3   description: DMA Driver sample application
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a> 4 common:
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a> 5   tags:
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a> 6     - drivers
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a> 7     - dma
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a> 8 tests:
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a> 9   sample.drivers.dma.mem_to_mem:
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>10     build_only: true
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>11     harness: console
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>12     integration_platforms:
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>13       - intel_socfpga_agilex5_socdk
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>14     harness_config:
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>15       type: multi_line
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>16       ordered: true
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>17       regex:
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>18         - &quot;Sample application for Memory to Memory transfer using dma controller&quot;
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>19         - &quot;Successfully transferred&quot;
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>20         - &quot;Sample application for dma transfer complete&quot;
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>21     filter: DT_HAS_SNPS_DESIGNWARE_DMA_ENABLED
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>22     depends_on: dma
+</code></pre></div>
+<ol>
+<li>
+<p>Config overlay -&gt; prj.conf:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>  1 CONFIG_DMA=y
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  2 CONFIG_LOG=y
+</code></pre></div></p>
+</li>
+<li>
+<p>Device tree overlay -&gt; intel_socfpga_agilex5_socdk.overlay:</p>
+</li>
+</ol>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>  1 /*
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  2  * Copyright (c) 2023 Intel Corporation
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  3  *
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>  4  * SPDX-License-Identifier: Apache-2.0
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  5  */
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>  6 
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>  7 &amp;dma0 {
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>  8         status = &quot;okay&quot;;
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>  9 };
+</code></pre></div>
+4. Source code: <a href="https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/dma/mem_to_mem/src/main.c">https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/dma/mem_to_mem/src/main.c</a>.</p>
+<h2 id="steps-to-build"><strong>Steps to build</strong><a class="headerlink" href="#steps-to-build" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Execute the following commands:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>rm -rf agilex5
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>west build -b intel_socfpga_agilex5_socdk samples/drivers/dma/mem_to_mem/  -d agilex5
+</code></pre></div></li>
+</ol>
+<h2 id="output"><strong>Output</strong><a class="headerlink" href="#output" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>NOTICE:  return = 0 Hz
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>NOTICE:  mmc_clk = 200000000 Hz
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>NOTICE:  SDMMC boot
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>NOTICE:  BL2: v2.9.1(release):QPDS23.4_REL_GSRD_PR
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>NOTICE:  BL2: Built : 18:22:43, Jul  2 2024
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>NOTICE:  BL2: Booting BL31
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>NOTICE:  BL31: Boot Core = 0
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>NOTICE:  BL31: CPU ID = 81000000
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>NOTICE:  BL31: v2.9.1(release):QPDS23.4_REL_GSRD_PR
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>NOTICE:  BL31: Built : 18:22:43, Jul  2 2024
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>[00:00:00.125,000] &lt;inf&gt; clock_control_agilex5: Intel Agilex5 clock driver initialized!
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>*** Booting Zephyr OS build 33d4a115fbed ***
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>Secondary CPU core 1 (MPID:0x100) is up
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>Secondary CPU core 2 (MPID:0x200) is up
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>Secondary CPU core 3 (MPID:0x300) is up
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>Sample application for Memory to Memory transfer using dma controller
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>dma@10DB0000: Successfully transferred 10 blocks of size:200 channel:1
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>Sample application for dma transfer complete
+</code></pre></div>
 <h2 id="known-issues"><strong>Known Issues</strong><a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
 <p>None Known. </p>
 
@@ -1669,7 +1747,7 @@ status = "disabled";
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 9, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 14, 2024</span>
       
         <br>
         Created:

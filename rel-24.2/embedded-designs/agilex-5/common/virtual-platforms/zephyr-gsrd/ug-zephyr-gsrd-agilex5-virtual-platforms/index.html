@@ -2075,34 +2075,41 @@
 
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>Agilex™ 5 E-Series devices provide the next generation HPS after those provided with the Agilex™® 7 and Stratix 10® SoC FPGA devices.
-The Agilex™ 5 E-Series HPS application processors can run Zephyr RTOS and Linux with scalable performance using from one to four Arm* Cortex*-A cores that allow for a wide range of applications.
+The Agilex™ 5 E-Series HPS application processors can run Zephyr RTOS and Linux with scalable performance using from one to four Arm <strong>Cortex</strong> -A cores that allow for a wide range of applications.
 The Agilex™ 5 E-Series Simics virtual platform models the HPS processor with two Arm Cortex-A55 cores and two Arm Cortex-A76 cores along with the hard processor system (HPS) peripherals. The Agilex™ 5 E-Series HPS virtual platform is released as part of the Simics® Simulator for Agilex™ FPGAs software, which also includes several virtual platforms where the Agilex™ 5 E-Series device is instantiated, emulating the concept of having different versions of a development kit or daughter cards.
-The Agilex™ 5 E-Series has the following supported virtual platforms:
-   * Agilex™ 5 E-Series Virtual Platform - Universal
-The following sections describe the prerequisites for the Simics simulator for Altera FPGA and the available virtual platforms including prebuilt Zephyr binaries. Instructions about how to build these binaries and run the Software stack are provided as well.
+The Agilex™ 5 E-Series has the following supported virtual platforms:</p>
+<ul>
+<li>Agilex™ 5 E-Series Virtual Platform - Universal</li>
+</ul>
+<p>The following sections describe the prerequisites for the Simics simulator for Altera FPGA and the available virtual platforms including prebuilt Zephyr binaries. Instructions about how to build these binaries and run the Software stack are provided as well.
 Additionally, some common use cases that you can exercise with this Zephyr release are discussed.</p>
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
-<p>To exercise the instructions presented on this page, the following prerequisites need to be satisfied:
-   * Host PC with Linux. The instructions on this page use Ubuntu 20.04 LTS.
-   * The following package versions are needed to build Zephyr binaries:
-      * cmake - 3.20.5
-      * python3 - 3.8
-      * dtc - 1.4.6
-   * The following packages are needed to be able to deploy the Simics project: GCC 6.3 compiler or higher, g++ 9.4 or higher, GNU make 4.1 or higher.
-   * Simics® Simulator for Altera FPGAs installed.
-   * Agilex™ 5 Simics Virtual Platform components are available to be deployed.
-   * Quartus® Prime Pro Edition Programmer and Tools 23.4 or later.</p>
-<p><strong>Note</strong>: For installation instructions for the Simics Simulator for Altera® FPGAs and the Agilex™ 5 E-Series virtual platforms, refer to the following documents:
-   * <a href="https://www.intel.com/content/www/us/en/docs/programmable/784383/">Intel® Simics® Simulator for Intel® FPGAs User Guide</a>
-   * <a href="https://www.intel.com/content/www/us/en/docs/programmable/786901/">Agilex™ 5 E-Series Virtual Platform User Guide</a></p>
+<p>To exercise the instructions presented on this page, the following prerequisites need to be satisfied:</p>
+<ul>
+<li>Host PC with Linux. The instructions on this page use Ubuntu 20.04 LTS.  </li>
+<li>The following package versions are needed to build Zephyr binaries:<ul>
+<li>cmake - 3.20.5</li>
+<li>python3 - 3.8</li>
+<li>dtc - 1.4.6</li>
+</ul>
+</li>
+<li>The following packages are needed to be able to deploy the Simics project: GCC 6.3 compiler or higher, g++ 9.4 or higher, GNU make 4.1 or higher.</li>
+<li>Agilex™ 5 Simics Virtual Platform components are available to be deployed.</li>
+<li>Quartus® Prime Pro Edition Programmer and Tools 23.4 or later.</li>
+</ul>
+<p><strong>Note</strong>: For installation instructions for the Simics Simulator for Altera® FPGAs and the Agilex™ 5 E-Series virtual platforms, refer to the following documents:</p>
+<ul>
+<li><a href="https://www.intel.com/content/www/us/en/docs/programmable/784383/">Intel® Simics® Simulator for Intel® FPGAs User Guide</a></li>
+<li><a href="https://www.intel.com/content/www/us/en/docs/programmable/786901/">Agilex™ 5 E-Series Virtual Platform User Guide</a></li>
+</ul>
 <h4 id="release-contents">Release Contents<a class="headerlink" href="#release-contents" title="Permanent link">&para;</a></h4>
 <h4 id="source-code">Source Code<a class="headerlink" href="#source-code" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
-<th><strong>SW Component</strong></th>
-<th><strong>Repository</strong></th>
-<th><strong>Branch/tag</strong></th>
+<th>SW Component</th>
+<th>Repository</th>
+<th>Branch/tag</th>
 </tr>
 </thead>
 <tbody>
@@ -2116,23 +2123,33 @@ Additionally, some common use cases that you can exercise with this Zephyr relea
 <td><a href="https://github.com/altera-opensource/zephyr-socfpga/">https://github.com/altera-opensource/zephyr-socfpga/</a></td>
 <td>socfpga_rel_23.4/QPDS23.4_REL_GSRD_PR</td>
 </tr>
-<tr>
-<td><strong>Note:</strong> For information prior 24.2 release, please refer to <a href="https://www.rocketboards.org/foswiki/Documentation/Agilex5SoCSimicsVirtualPlatformsZephyr">Zephyr* GSRD for Intel Agilex® 5 E-Series Simics Virtual Platform</a>.</td>
-<td></td>
-<td></td>
-</tr>
 </tbody>
 </table>
+<p><strong>Note:</strong> For information prior 24.2 release, please refer to <a href="https://www.rocketboards.org/foswiki/Documentation/Agilex5SoCSimicsVirtualPlatformsZephyr">Zephyr* GSRD for Intel Agilex® 5 E-Series Simics Virtual Platform</a>.</p>
 <h4 id="prebuilt-binaries">Prebuilt Binaries<a class="headerlink" href="#prebuilt-binaries" title="Permanent link">&para;</a></h4>
 <p>Prebuilt binaries can be found at the following URL: <a href="https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/">https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/</a>.
 The prebuilt binaries consist of application programs built to run on the MPU cores in multicore configuration.
 There are binary files designed for boot devices such as SD cards, NAND flash, and QSPI.
 Additionally, files used by the recipes to create the binaries to boot from QSPI and NAND are provided in their respective folders.
-The sample applications provided are:
-| <strong>Directory</strong> | <strong>Application Description</strong> |
-| --- | --- |
-| cli  | Application to demonstrate Command Line Interface |
-| hello_world | Application that displays a Hello World! message|</p>
+The sample applications provided are:</p>
+<table>
+<thead>
+<tr>
+<th>Directory</th>
+<th>Application Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cli</td>
+<td>Application to demonstrate Command Line Interface</td>
+</tr>
+<tr>
+<td>hello_world</td>
+<td>Application that displays a Hello World! message</td>
+</tr>
+</tbody>
+</table>
 <p>Within each application directory, you'll find the following files: </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;application directory&gt; 
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    ├── bl31.bin 
@@ -2331,24 +2348,50 @@ The sample applications provided are:
 <a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>
 <a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>run
 </code></pre></div>
-<p>In this script, the most relevant parameters to run Zephyr  are the following:
-| <em>Parameter</em> | <em>Description</em> | <em>Range</em> | <em>Default Value</em> |
-|---| --- | --- | --- |
-| $sd_image_filename | Sdcard image path  | Filename string | "" |
-| $fsbl_image_filename | Fsbl image path | Filename string | "" |</p>
+<p>In this script, the most relevant parameters to run Zephyr  are the following:</p>
+<table>
+<thead>
+<tr>
+<th><em>Parameter</em></th>
+<th><em>Description</em></th>
+<th><em>Range</em></th>
+<th><em>Default Value</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$sd_image_filename</td>
+<td>Sdcard image path</td>
+<td>Filename string</td>
+<td>""</td>
+</tr>
+<tr>
+<td>$fsbl_image_filename</td>
+<td>Fsbl image path</td>
+<td>Filename string</td>
+<td>""</td>
+</tr>
+</tbody>
+</table>
 <h2 id="using-prebuilt-binaries_1">Using Prebuilt Binaries<a class="headerlink" href="#using-prebuilt-binaries_1" title="Permanent link">&para;</a></h2>
 <p>This section is a guide for you to run the prebuilt sample Zephyr applications.</p>
 <h4 id="setting-up-to-use-prebuilt-binaries">Setting Up to Use Prebuilt Binaries<a class="headerlink" href="#setting-up-to-use-prebuilt-binaries" title="Permanent link">&para;</a></h4>
 <p>You will need both the boot image as well the firmware(ATF) binaries. The links below go directly to the directory with binaries corresponding to the application and boot device:</p>
 <ul>
-<li>Hello World:
-    1. <a href="https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/hello_world/sdmmc_boot">SD Card</a>
-    2. <a href="https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/hello_world/nand_boot">NAND Flash</a>
-    3. <a href="https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/hello_world/qspi_boot">QSPI Flash</a></li>
-<li>CLI:
-    1. <a href="https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/sdmmc_boot">SD Card </a>
-    2. <a href="https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/nand_boot">NAND Flash</a>
-    3. <a href="https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/qspi_boot">QSPI Flash</a></li>
+<li>Hello World:<ol>
+<li><a href="https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/hello_world/sdmmc_boot">SD Card</a></li>
+<li><a href="https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/hello_world/nand_boot">NAND Flash</a></li>
+<li><a href="https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/hello_world/qspi_boot">QSPI Flash</a></li>
+</ol>
+</li>
+</ul>
+<ul>
+<li>CLI:<ol>
+<li><a href="https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/sdmmc_boot">SD Card </a></li>
+<li><a href="https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/nand_boot">NAND Flash</a></li>
+<li><a href="https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/qspi_boot">QSPI Flash</a></li>
+</ol>
+</li>
 </ul>
 <p>The following are the helper instructions to download the prebuilt binaries according to the application and boot device:</p>
 <ol>
@@ -2370,81 +2413,134 @@ Create the !ZephyrGSRD directory.
 <li>
 <p>Specify sample application and boot device</p>
 <ul>
-<li>App
-    | Application | Environment Variable |
-    | --------------- | --------------- |
-    | Hello World  | export app=hello_world |
-    | CLI          | export app=cli |</li>
+<li>App<table>
+<thead>
+<tr>
+<th>Application</th>
+<th>Environment Variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hello World</td>
+<td>export app=hello_world</td>
+</tr>
+<tr>
+<td>CLI</td>
+<td>export app=cli</td>
+</tr>
+</tbody>
+</table>
+</li>
 </ul>
 <ul>
-<li>Boot Device
-    | Boot Device | Environment Variable |
-    | --------------- | --------------- | 
-    | SDMMC | export bootdev=sdmmc_boot bootimg=sdimage.img|
-    | NAND | export bootdev=nand_boot bootimg=nand_mem.img |
-    | QSPI | export bootdev=qspi_boot bootimg=flash_image_jic.rpd |</li>
+<li>Boot Device<table>
+<thead>
+<tr>
+<th>Boot Device</th>
+<th>Environment Variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SDMMC</td>
+<td>export bootdev=sdmmc_boot bootimg=sdimage.img</td>
+</tr>
+<tr>
+<td>NAND</td>
+<td>export bootdev=nand_boot bootimg=nand_mem.img</td>
+</tr>
+<tr>
+<td>QSPI</td>
+<td>export bootdev=qspi_boot bootimg=flash_image_jic.rpd</td>
+</tr>
+</tbody>
+</table>
+</li>
 </ul>
 </li>
 <li>
-<p>Wget the prebuilt binaries into the prebuilt folder.
+<p>Wget the prebuilt binaries into the prebuilt folder.</p>
+</li>
+</ol>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/prebuilt
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>wget<span class="w"> </span>-N<span class="w"> </span>https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/<span class="nv">$app</span>/<span class="nv">$bootdev</span>/<span class="nv">$bootimg</span><span class="w"> </span>-P<span class="w"> </span><span class="nv">$app</span>/<span class="nv">$bootdev</span>/<span class="w"> </span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>wget<span class="w"> </span>-N<span class="w"> </span>https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/<span class="nv">$app</span>/<span class="nv">$bootdev</span>/bl2.bin<span class="w"> </span>-P<span class="w"> </span><span class="nv">$app</span>/<span class="nv">$bootdev</span>/
-</code></pre></div></p>
-</li>
-</ol>
+</code></pre></div>
 <p>The prebuilt samples for Agilex™ 5 would have the following structure:
    * prebuilt/hello_world
    * prebuilt/cli</p>
 <h4 id="organizing-the-prebuilt-binaries">Organizing the Prebuilt Binaries<a class="headerlink" href="#organizing-the-prebuilt-binaries" title="Permanent link">&para;</a></h4>
-<p>If you've downloaded the prebuilt binaries manually, please place them in the following structure, then refer below to the step "To boot on Simics"...
+<p>If you've downloaded the prebuilt binaries manually, please place them in the following structure, then refer below to the step "To boot on Simics"...</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>agilex5_zgsrd
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>└── bin
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    │   ├── atf
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    │   │   └── bl2.bin
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    └── sdimage.img OR nand_mem.img OR flash_image_jic.rpd 
-</code></pre></div></p>
-<p>If you've followed the helper steps above, follow the next instructions:
-   1. Prepare the binaries to run on Simics® Simulator.
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
+</code></pre></div>
+<p>If you've followed the helper steps above, follow the next instructions:</p>
+<ol>
+<li>Prepare the binaries to run on Simics® Simulator.</li>
+</ol>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>bin<span class="w"> </span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>bin/atf<span class="w"> </span>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/prebuilt/<span class="nv">$app</span>/<span class="nv">$bootdev</span>/<span class="nv">$bootimg</span><span class="w"> </span>bin/<span class="w"> </span>
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/prebuilt/<span class="nv">$app</span>/<span class="nv">$bootdev</span>/bl2.bin<span class="w"> </span>bin/atf/bl2.bin
 </code></pre></div>
-   1. For the first time run, set up the Agilex™ 5 virtual platform. Refer to <a href="#simulation-setup">Simulation Setup</a>.
-   2. To boot on Simics, based on the boot device refer to the corresponding sections:
-      * For SD Card boot:
-         * <a href="#booting-from-sd-card-image-binaries">Booting from SD Card Image binaries</a>
-      * For NAND boot:
-         * <a href="#booting-from-nand-binaries">Booting from NAND binaries</a> 
-      * For QSPI boot:
-         * <a href="#booting-from-qspi-binaries">Booting from QSPI binaries</a> </p>
+2. For the first time run, set up the Agilex™ 5 virtual platform. Refer to <a href="#simulation-setup">Simulation Setup</a>.</p>
+<ul>
+<li>To boot on Simics, based on the boot device refer to the corresponding sections :  <a href="#booting-from-sd-card-image-binaries">Booting from SD Card Image binaries</a>,  <a href="#booting-from-nand-binaries">Booting from NAND binaries</a> and <a href="#booting-from-qspi-binaries">Booting from QSPI binaries</a>.</li>
+</ul>
 <h2 id="build-instructions">Build Instructions<a class="headerlink" href="#build-instructions" title="Permanent link">&para;</a></h2>
 <h3 id="setting-up-environment">Setting up Environment<a class="headerlink" href="#setting-up-environment" title="Permanent link">&para;</a></h3>
-<ol>
+<ul>
 <li>Update your system</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade
 </code></pre></div>
-<ol>
+<ul>
 <li>Install all the required dependencies:</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>--no-install-recommends<span class="w"> </span>git<span class="w"> </span>cmake<span class="w"> </span>ninja-build<span class="w"> </span>gperf<span class="w"> </span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>ccache<span class="w"> </span>dfu-util<span class="w"> </span>device-tree-compiler<span class="w"> </span>wget<span class="w"> </span>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>python3-dev<span class="w"> </span>python3-pip<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-tk<span class="w"> </span>python3-wheel<span class="w"> </span>python3-venv<span class="w"> </span>xz-utils<span class="w"> </span>file<span class="w"> </span>libpython3-dev<span class="w"> </span>
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>make<span class="w"> </span>gcc<span class="w"> </span>gcc-multilib<span class="w"> </span>g++-multilib<span class="w"> </span>libsdl2-dev<span class="w"> </span>libmagic1<span class="w"> </span>libguestfs-tools<span class="w">  </span>libssl-dev
 </code></pre></div>
-<p>The table below shows the Zephyr required versions vs Ubuntu 20.04 packages version.
-|  <em>Package</em>  |  <em>Zephyr Requirement</em>  |  <em>Ubuntu 20.04 (default versions)</em>  |  <em>command</em>  |
-| --- | --- | --- | --- |
-| cmake | 3.20.5 | 3.16.3 (below required) | cmake --version |
-| python | 3.8 | 3.8.10 | python3 --version |
-| dtc | 1.4.6 | 1.5.0 | dtc --version |</p>
-<ol>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Zephyr Requirement</th>
+<th>Ubuntu 20.04 (default versions)</th>
+<th>command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmake</td>
+<td>3.20.5</td>
+<td>3.16.3 (below required)</td>
+<td>cmake --version</td>
+</tr>
+<tr>
+<td>python</td>
+<td>3.8</td>
+<td>3.8.10</td>
+<td>python3 --version</td>
+</tr>
+<tr>
+<td>dtc</td>
+<td>1.4.6</td>
+<td>1.5.0</td>
+<td>dtc --version</td>
+</tr>
+</tbody>
+</table>
+<ul>
 <li>As a minimum CMake version 3.20.0 is required, if you have an older version, then execute the following commands to add a non-intrusive CMake binary:</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">CURR_FOLDER</span><span class="o">=</span><span class="nv">$PWD</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</span>/bin/cmake<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$HOME</span>/bin/cmake
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>wget<span class="w"> </span>https://github.com/Kitware/CMake/releases/download/v3.21.1/cmake-3.21.1-Linux-x86_64.sh
@@ -2452,65 +2548,61 @@ Create the !ZephyrGSRD directory.
 <a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export PATH=</span><span class="nv">$PWD</span><span class="s2">/cmake-3.21.1-linux-x86_64/bin:\$PATH&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.zephyrrc
 <a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$CURR_FOLDER</span>
 </code></pre></div>
-<ol>
-<li>
-<p>Load the profile that was created to use the newer CMake (<em>this should be done for every session when</em> <a href="#zephyr-build-environment-setup">Building Zephyr</a>:
+<ul>
+<li>Load the profile that was created to use the newer CMake (<em>this should be done for every session when</em> <a href="#zephyr-build-environment-setup">Building Zephyr</a>:</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">source</span><span class="w">  </span><span class="nv">$HOME</span>/.zephyrrc
-</code></pre></div></p>
-</li>
-<li>
-<p>Create the ZephyrGSRD directories:
+</code></pre></div>
+<ul>
+<li>Create the ZephyrGSRD directories:</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_zgsrd
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>mkdir<span class="w"> </span>agilex5_zgsrd
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nb">cd</span><span class="w"> </span>agilex5_zgsrd
 <a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>
-</code></pre></div></p>
-</li>
-</ol>
+</code></pre></div>
 <h3 id="building-arm-trusted-firmware">Building Arm Trusted Firmware<a class="headerlink" href="#building-arm-trusted-firmware" title="Permanent link">&para;</a></h3>
-<ol>
+<ul>
 <li>Download the compiler toolchain. Define environment variables and append the toolchain path in the environment PATH variable. so the toolchain can be used to build the binaries:</li>
-</ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>wget<span class="w"> </span>https://developer.arm.com/-/media/Files/downloads/gnu/11.3.rel1/binrel/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>tar<span class="w"> </span>xf<span class="w"> </span>arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
 <a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>rm<span class="w"> </span>-f<span class="w"> </span>arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
 <a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu/bin:<span class="nv">$PATH</span>
 <a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export PATH=`pwd`/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu/bin:\$PATH&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/.zephyrrc
 </code></pre></div>
-<ol>
-<li>Clone the ATF repository from GitHub and build it</li>
-</ol>
+- Clone the ATF repository from GitHub and build it</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS23.4_REL_GSRD_PR<span class="w">  </span>https://github.com/altera-opensource/arm-trusted-firmware
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nb">cd</span><span class="w"> </span>arm-trusted-firmware
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span><span class="nb">test</span>
 <a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>make<span class="w"> </span>realclean
 <a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="nv">ARCH</span><span class="o">=</span>arm64<span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-<span class="w"> </span>make<span class="w"> </span><span class="nv">PLAT</span><span class="o">=</span>agilex5<span class="w"> </span>bl2<span class="w"> </span>bl31<span class="w"> </span><span class="nv">PRELOADED_BL33_BASE</span><span class="o">=</span>0x80100000<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span><span class="w"> </span>
 </code></pre></div>
-<ol>
+<ul>
 <li>Build Fiptool to be able to create the sdimage in later steps.</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>make<span class="w"> </span>fiptool
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>cp<span class="w"> </span>tools/fiptool/fiptool<span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 </code></pre></div>
 <p>The previous instructions will produce (in the $TOP_FOLDER/arm-trusted-firmware directory):
-   * build/agilex5/release/bl2.bin
-   * build/agilex5/release/bl31.bin
-   * tools/fiptool/fiptool</p>
+- build/agilex5/release/bl2.bin
+- build/agilex5/release/bl31.bin
+- tools/fiptool/fiptool</p>
 <!-- Proposed future structure -->
 
 <h3 id="zephyr-build-environment-setup">Zephyr Build Environment Setup<a class="headerlink" href="#zephyr-build-environment-setup" title="Permanent link">&para;</a></h3>
-<ol>
+<ul>
 <li>Create a new virtual environment and activate it</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>~/.zephyrproject/.venv
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="c1">#Environment Activation</span>
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="nb">source</span><span class="w"> </span>~/.zephyrproject/.venv/bin/activate
 </code></pre></div>
-<ol>
+<ul>
 <li>Install west, pull the official Zephyr repository and other Zephyr dependencies:</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>pip3<span class="w"> </span>install<span class="w"> </span>wheel
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>pip3<span class="w"> </span>install<span class="w"> </span>west
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>west<span class="w"> </span>init<span class="w"> </span>-m<span class="w"> </span>https://github.com/zephyrproject-rtos/zephyr<span class="w"> </span>--mr<span class="w"> </span>v3.4-branch<span class="w"> </span>zephyrproject
@@ -2526,9 +2618,9 @@ Create the !ZephyrGSRD directory.
 <p>Run:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>pip<span class="w"> </span>install<span class="w"> </span>sphinx-rtd-theme<span class="w"> </span>sphinx
 </code></pre></div></p>
-<ol>
+<ul>
 <li>Install Zephyr SDK in home folder so it can be used on many Zephyr projects:</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>wget<span class="w"> </span>https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/zephyr-sdk-0.16.4_linux-x86_64.tar.xz
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>wget<span class="w"> </span>-O<span class="w"> </span>-<span class="w"> </span>https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/sha256.sum<span class="w"> </span><span class="p">|</span><span class="w"> </span>shasum<span class="w"> </span>--check<span class="w"> </span>--ignore-missing
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>wget<span class="w"> </span>https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/zephyr-sdk-0.16.1_linux-x86_64.tar.xz
@@ -2537,41 +2629,45 @@ Create the !ZephyrGSRD directory.
 <a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>rm<span class="w"> </span>zephyr-sdk*.tar.xz
 <a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="nv">$HOME</span>/zephyr-sdk*/setup.sh<span class="w"> </span>-t<span class="w"> </span>aarch64-zephyr-elf<span class="w"> </span>-h<span class="w"> </span>-c
 </code></pre></div>
-<ol>
-<li>Substitute the official "Zephyr" folder for zephyr-socfpga repository:
+<ul>
+<li>Substitute the official "Zephyr" folder for zephyr-socfpga repository:</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zephyrproject
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>zephyr<span class="w"> </span>
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS23.4_REL_GSRD_PR<span class="w"> </span>--single-branch<span class="w"> </span>https://github.com/altera-opensource/zephyr-socfpga<span class="w"> </span>zephyr
 <a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>west<span class="w"> </span>update
 <a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>west<span class="w"> </span>zephyr-export
-</code></pre></div></li>
-</ol>
+</code></pre></div>
 <h3 id="building-zephyr-application">Building Zephyr Application<a class="headerlink" href="#building-zephyr-application" title="Permanent link">&para;</a></h3>
-<p>Every Zephyr application is composed of several configurable key components that work together in the same executable:
-   * Zephyr Kernel: Manages system resources and task scheduling.
-   * Device Drivers: Enable interaction with hardware peripherals.
-   * Libraries: Provide additional functionality and utilities.
-   * Application Code: Written in C to define application behavior</p>
+<p>Every Zephyr application is composed of several configurable key components that work together in the same executable:</p>
+<ul>
+<li>Zephyr Kernel: Manages system resources and task scheduling.</li>
+<li>Device Drivers: Enable interaction with hardware peripherals.</li>
+<li>Libraries: Provide additional functionality and utilities.</li>
+<li>Application Code: Written in C to define application behavior</li>
+</ul>
 <p>The following Zephyr sample applications are available to test:</p>
-<p>* HelloWorld: samples/hello_world/
-   * GPIO: samples/basic/blinky/
-   * I2C: samples/drivers/i2c_fujitsu_fram/
-   * Timer/Counter: samples/drivers/counter/alarm/
-   * Watchdog: samples/drivers/watchdog/
-   * SD: samples/subsys/fs/fat_fs/
-   * UART: samples/drivers/uart/echo_bot/
-   * Ethernet: samples/net/sockets/echo_client and samples/net/sockets/ echo_server
-   * NAND: samples/drivers/soc_flash_nand/
-   * SPI: samples/drivers/jesd216/
-   * QSPI : samples/drivers/soc_flash_qspi/
-   * SDM Mailbox: sample/subsys/sip_svc/
-   * USB 2.0 Host: samples/subsys/fs/fat_fs/
-   * HPS DMA: samples/drivers/dma/mem_to_mem/
-   * I3C: samples/drivers/i3c_sample_app_simics/</p>
+<ul>
+<li>HelloWorld: samples/hello_world/</li>
+<li>GPIO: samples/basic/blinky/</li>
+<li>I2C: samples/drivers/i2c_fujitsu_fram/</li>
+<li>Timer/Counter: samples/drivers/counter/alarm/</li>
+<li>Watchdog: samples/drivers/watchdog/</li>
+<li>SD: samples/subsys/fs/fat_fs/</li>
+<li>UART: samples/drivers/uart/echo_bot/</li>
+<li>Ethernet: samples/net/sockets/echo_client and samples/net/sockets/ echo_server</li>
+<li>NAND: samples/drivers/soc_flash_nand/</li>
+<li>SPI: samples/drivers/jesd216/</li>
+<li>QSPI : samples/drivers/soc_flash_qspi/</li>
+<li>SDM Mailbox: sample/subsys/sip_svc/</li>
+<li>USB 2.0 Host: samples/subsys/fs/fat_fs/</li>
+<li>HPS DMA: samples/drivers/dma/mem_to_mem/</li>
+<li>I3C: samples/drivers/i3c_sample_app_simics/</li>
+</ul>
 <p>In this regard, we will focus on building the "Hello World" sample that will allow us to test our development environment and run it in Simics® Simulator.</p>
-<ol>
+<ul>
 <li>Build the "Hello World" Zephyr application binary and place the built outputs in an "agilex5" directory in the current active directory.</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zephyrproject/zephyr
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>west<span class="w"> </span>build<span class="w"> </span>-b<span class="w"> </span>intel_socfpga_agilex5_socdk<span class="w"> </span>samples/hello_world<span class="w"> </span>-d<span class="w"> </span>agilex5
 </code></pre></div>
@@ -2588,9 +2684,9 @@ Create the !ZephyrGSRD directory.
 <a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>        IDT_LIST:          0 GB         2 KB      0.00%
 </code></pre></div>
 <h4 id="organizing-the-build-from-source-binaries">Organizing the Build-From-Source Binaries<a class="headerlink" href="#organizing-the-build-from-source-binaries" title="Permanent link">&para;</a></h4>
-<ol>
+<ul>
 <li>Create a folder to contain the ATF firmware and Zephyr RTOS binaries for creating boot source image, and create symlinks to the actual location. (Whenever you are switching from using prebuilt to build-from-source binaries, this step has to be performed)</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="c1"># First, remove any obsolete bin folder(optional)</span>
 <a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>rm<span class="w"> </span>-rf<span class="w"> </span>bin
@@ -2599,29 +2695,31 @@ Create the !ZephyrGSRD directory.
 <a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zephyrproject/zephyr/agilex5/zephyr/<span class="w">  </span>bin/zephyr
 </code></pre></div>
 <h3 id="creating-boot-images">Creating Boot Images<a class="headerlink" href="#creating-boot-images" title="Permanent link">&para;</a></h3>
-<p>Three types of boot devices are supported:
-   1. <a href="#sd-card-image-binaries">SD Card</a>
-   2. <a href="#nand-binaries">NAND Flash</a>
-   3. <a href="#qspi-binaries">QSPI Flash</a></p>
-<h4 id="sd-card-image-binaries">SD Card Image binaries<a class="headerlink" href="#sd-card-image-binaries" title="Permanent link">&para;</a></h4>
+<p>Three types of boot devices are supported:</p>
 <ol>
-<li>Create FIP(Firmware Image Package) binary. This will pack the Zephyr binary and ATF BL31 binary into one single binary called FIP binary.</li>
+<li><a href="#sd-card-image-binaries">SD Card</a></li>
+<li><a href="#nand-binaries">NAND Flash</a></li>
+<li><a href="#qspi-binaries">QSPI Flash</a></li>
 </ol>
+<h4 id="sd-card-image-binaries">SD Card Image binaries<a class="headerlink" href="#sd-card-image-binaries" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Create FIP(Firmware Image Package) binary. This will pack the Zephyr binary and ATF BL31 binary into one single binary called FIP binary.</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>./fiptool<span class="w"> </span>create<span class="w"> </span>--soc-fw<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/bin/atf/bl31.bin<span class="w">  </span>--nt-fw<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/bin/zephyr/zephyr.bin<span class="w"> </span>bin/fip.bin
 </code></pre></div>
 <p>To build the "SDCard Image" for simics use the following commands:</p>
-<ol>
+<ul>
 <li>Obtain the make_sdimage.sh script.</li>
-</ol>
+</ul>
 <!-- Use wget once public -->
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/sdmmc_boot/make_sdimage.sh
 <a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>chmod<span class="w"> </span>+x<span class="w"> </span>make_sdimage.sh
 </code></pre></div>
-<ol>
+<ul>
 <li>Create the sdimage.img</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>touch<span class="w"> </span>dummy.tar.gz
 <a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>sudo<span class="w"> </span>./make_sdimage.sh<span class="w"> </span>-k<span class="w"> </span>dummy.tar.gz<span class="w"> </span>-p<span class="w"> </span>bin/fip.bin<span class="w"> </span>-o<span class="w"> </span>bin/sdimage.img<span class="w"> </span>-g<span class="w"> </span>2G<span class="w"> </span>-pg<span class="w"> </span><span class="m">16</span>
 </code></pre></div>
@@ -2633,8 +2731,8 @@ Create the !ZephyrGSRD directory.
 <table>
 <thead>
 <tr>
-<th><em>File</em></th>
-<th><em>Description</em></th>
+<th>File</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2664,28 +2762,30 @@ Create the !ZephyrGSRD directory.
 For booting on Simics Virtual Platform for Agilex 5, refer <a href="#booting-from-sd-card-image-binaries">Booting from SD Card Image binaries</a></p>
 <h4 id="nand-binaries">NAND binaries<a class="headerlink" href="#nand-binaries" title="Permanent link">&para;</a></h4>
 <p>To build the "NAND Image" for simics use the following commands:</p>
-<ol>
+<ul>
 <li>Patch the Arm Trusted Firmware source code to enable nand boot:</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/arm-trusted-firmware
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/nand_boot/0001-plat-intel-soc-agilex5-enable-NAND-boot.patch
 </code></pre></div>
-<p>2.- Create alocal branch for nand boot, apply the patch and rebuild ATF:</p>
+<ul>
+<li>Create alocal branch for nand boot, apply the patch and rebuild ATF:</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>git<span class="w"> </span>branch<span class="w"> </span>nand
 <a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>git<span class="w"> </span>checkout<span class="w"> </span>nand
 <a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>git<span class="w"> </span>apply<span class="w"> </span><span class="m">0001</span>-plat-intel-soc-agilex5-enable-NAND-boot.patch
 <a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>git<span class="w"> </span>commit<span class="w"> </span>-a<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;nandboot&quot;</span>
 <a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="nv">ARCH</span><span class="o">=</span>arm64<span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-<span class="w"> </span>make<span class="w"> </span><span class="nv">PLAT</span><span class="o">=</span>agilex5<span class="w"> </span>bl2<span class="w"> </span>bl31<span class="w"> </span><span class="nv">PRELOADED_BL33_BASE</span><span class="o">=</span>0x80100000<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span>
 </code></pre></div>
-<ol>
+<ul>
 <li>Rebuild fip.bin</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>./fiptool<span class="w"> </span>create<span class="w"> </span>--soc-fw<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/bin/atf/bl31.bin<span class="w">  </span>--nt-fw<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/bin/zephyr/zephyr.bin<span class="w"> </span>bin/fip.bin
 </code></pre></div>
-<ol>
+<ul>
 <li>Create the nand_mem.img image and write the fip.bin within:</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/zero<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">8</span><span class="w"> </span><span class="nv">bs</span><span class="o">=</span>16MB<span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span><span class="s1">&#39;\0&#39;</span><span class="w"> </span><span class="s1">&#39;\377&#39;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/bin/nand_mem.img<span class="w"> </span>
 <a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>bin/fip.bin<span class="w"> </span><span class="nv">of</span><span class="o">=</span>bin/nand_mem.img<span class="w"> </span><span class="nv">conv</span><span class="o">=</span>notrunc<span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">seek</span><span class="o">=</span><span class="m">2097152</span>
 </code></pre></div>
@@ -2698,8 +2798,8 @@ For booting on Simics Virtual Platform for Agilex 5, refer <a href="#booting-fro
 <table>
 <thead>
 <tr>
-<th><em>File</em></th>
-<th><em>Description</em></th>
+<th>File</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2729,15 +2829,15 @@ For booting on Simics Virtual Platform for Agilex 5, refer <a href="#booting-fro
 For booting on Simics Virtual Platform for Agilex 5, refer <a href="#booting-from-nand-binaries">Booting from NAND binaries</a></p>
 <h4 id="qspi-binaries">QSPI binaries<a class="headerlink" href="#qspi-binaries" title="Permanent link">&para;</a></h4>
 <p>To build the "QSPI Image" for simics use the following commands:</p>
-<ol>
+<ul>
 <li>Patch the Arm Trusted Firmware source code to enable qspi boot:</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/arm-trusted-firmware
 <a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/qspi_boot/0001-plat-intel-soc-agilex5-enable-QSPI-boot.patch
 </code></pre></div>
-<ol>
+<ul>
 <li>Create a local branch for qspi boot, apply the patch and rebuild ATF:</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/arm-trusted-firmware
 <a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>git<span class="w"> </span>branch<span class="w"> </span>qspi
 <a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>git<span class="w"> </span>checkout<span class="w"> </span>qspi
@@ -2745,15 +2845,14 @@ For booting on Simics Virtual Platform for Agilex 5, refer <a href="#booting-fro
 <a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>git<span class="w"> </span>commit<span class="w"> </span>-a<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;qspiboot&quot;</span>
 <a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="nv">ARCH</span><span class="o">=</span>arm64<span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-<span class="w"> </span>make<span class="w"> </span><span class="nv">PLAT</span><span class="o">=</span>agilex5<span class="w"> </span>bl2<span class="w"> </span>bl31<span class="w"> </span><span class="nv">PRELOADED_BL33_BASE</span><span class="o">=</span>0x80100000<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span>
 </code></pre></div>
-<ol>
+<ul>
 <li>Rebuild fip.bin</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>./fiptool<span class="w"> </span>create<span class="w"> </span>--soc-fw<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/bin/atf/bl31.bin<span class="w">  </span>--nt-fw<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/bin/zephyr/zephyr.bin<span class="w"> </span>bin/fip.bin
 </code></pre></div>
-<ol>
-<li>
-<p>Create pfg file:
+<ul>
+<li>Create pfg file:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>tee qspi_flash_image_agilex5_boot.pfg  &lt;&lt; &#39;EOF&#39;
 <a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>&lt;pfg version=&quot;1&quot;&gt;
 <a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>  &lt;settings custom_db_dir=&quot;./&quot; mode=&quot;ASX4&quot;/&gt;
@@ -2795,17 +2894,16 @@ For booting on Simics Virtual Platform for Agilex 5, refer <a href="#booting-fro
 <a id="__codelineno-37-39" name="__codelineno-37-39" href="#__codelineno-37-39"></a>  &lt;/assignments&gt;
 <a id="__codelineno-37-40" name="__codelineno-37-40" href="#__codelineno-37-40"></a>&lt;/pfg&gt;
 <a id="__codelineno-37-41" name="__codelineno-37-41" href="#__codelineno-37-41"></a>EOF
-</code></pre></div></p>
-</li>
-<li>
-<p>Create <em>bl2.hex</em> from bl2.bin</p>
-</li>
-</ol>
+</code></pre></div></li>
+</ul>
+<ul>
+<li>Create <em>bl2.hex</em> from bl2.bin</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>aarch64-none-linux-gnu-objcopy<span class="w"> </span>-v<span class="w"> </span>-I<span class="w"> </span>binary<span class="w"> </span>-O<span class="w"> </span>ihex<span class="w"> </span>--change-addresses<span class="w"> </span>0xffe00000<span class="w"> </span>bin/atf/bl2.bin<span class="w">  </span>bin/atf/bl2.hex
 </code></pre></div>
-<ol>
+<ul>
 <li>Create <em>flash_image_jic.rpd</em> qspi image from fip.bin and *bl2.hex:</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>wget<span class="w">  </span>https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/qspi_boot/agilex5_factory.sof<span class="w"> </span>-O<span class="w"> </span>bin/agilex5_factory.sof
 <a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="c1"># The next command assumes Quartus® Prime Pro Edition Programmer and Tools is installed in the path ~/intelFPGA_pro/ (tested version: 23.4)</span>
 <a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>~/intelFPGA_pro/23.4/qprogrammer/quartus/bin/quartus_pfg<span class="w"> </span>-c<span class="w"> </span>qspi_flash_image_agilex5_boot.pfg
@@ -2820,8 +2918,8 @@ For booting on Simics Virtual Platform for Agilex 5, refer <a href="#booting-fro
 <table>
 <thead>
 <tr>
-<th><em>File</em></th>
-<th><em>Description</em></th>
+<th>File</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2851,15 +2949,19 @@ For booting on Simics Virtual Platform for Agilex 5, refer <a href="#booting-fro
 </tr>
 </tbody>
 </table>
-<p>If you have not set up Simics Virtual Platform for Agilex 5, go to <a href="#simulation-setup">Simulation Setup</a>. 
-For booting on Simics Virtual Platform for Agilex 5, refer <a href="#booting-from-qspi-binaries">Booting from QSPI binaries</a></p>
+<p>If you have not set up Simics Virtual Platform for Agilex 5, go to <a href="#simulation-setup">Simulation Setup</a>. </p>
+<p>For booting on Simics Virtual Platform for Agilex 5, refer <a href="#booting-from-qspi-binaries">Booting from QSPI binaries</a></p>
 <h3 id="simulation-setup">Simulation Setup<a class="headerlink" href="#simulation-setup" title="Permanent link">&para;</a></h3>
 <p>We assume that the Simics® Simulator for Intel® FPGAs Simulator has been installed in a Linux System.</p>
-<p><strong>1.</strong> Lets add the Simics binary to the path to make things easier:</p>
+<ul>
+<li>Lets add the Simics binary to the path to make things easier:</li>
+</ul>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:SIMICS_INSTALLATION/simics/bin/
 </code></pre></div>
 note: default path is "~/intelFPGA_pro/intel-fpga-ext_23.4/simics/bin"</p>
-<p><strong>2.</strong> Create a Simics project directory under ZephyrGSRD directory:</p>
+<ul>
+<li>Create a Simics project directory under ZephyrGSRD directory:</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>rm<span class="w"> </span>-r<span class="w"> </span>project-1
 <a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>mkdir<span class="w"> </span>project-1
@@ -2878,7 +2980,9 @@ note: default path is "~/intelFPGA_pro/intel-fpga-ext_23.4/simics/bin"</p>
 <a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a># created. This includes the target script corresponding to the deployed
 <a id="__codelineno-44-8" name="__codelineno-44-8" href="#__codelineno-44-8"></a># platform.
 </code></pre></div></p>
-<p><strong>3.</strong> Build the virtual platform components:</p>
+<ul>
+<li>Build the virtual platform components:</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>make
 </code></pre></div>
 <p>Example of console output:</p>
@@ -2903,12 +3007,32 @@ note: default path is "~/intelFPGA_pro/intel-fpga-ext_23.4/simics/bin"</p>
    * zephyr.bin
    * sdimage.img /nand_mem.img / flash_image_jic.rpd</p>
 <h5 id="booting-from-sd-card-image-binaries">Booting from SD Card Image binaries<a class="headerlink" href="#booting-from-sd-card-image-binaries" title="Permanent link">&para;</a></h5>
-<p>1. Zephyr's SMP support allow us to select the boot core within simics. Select the boot core as follows:
-      | <em>Core Selection</em> | <em>Env-variable</em> |
-      | --- | --- | 
-      | A55 | export cputype=a55|
-      | A76 | export cputype=a76  |</p>
-<p>3. You will need a Simics script named zephyr.simics with the contents detailed in <a href="#key-points-for-zephyr">Key points for Zephyr</a>. Run the following to create the script:
+<ul>
+<li>
+<p>Zephyr's SMP support allow us to select the boot core within simics. Select the boot core as follows:</p>
+<table>
+<thead>
+<tr>
+<th><em>Core Selection</em></th>
+<th><em>Env-variable</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A55</td>
+<td>export cputype=a55</td>
+</tr>
+<tr>
+<td>A76</td>
+<td>export cputype=a76</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<ul>
+<li>You will need a Simics script named zephyr.simics with the contents detailed in <a href="#key-points-for-zephyr">Key points for Zephyr</a>. Run the following to create the script:</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/project-1
 <a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="nv">cputypestring</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
 <a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$cputype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;a76&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
@@ -2942,15 +3066,34 @@ note: default path is "~/intelFPGA_pro/intel-fpga-ext_23.4/simics/bin"</p>
 <a id="__codelineno-47-31" name="__codelineno-47-31" href="#__codelineno-47-31"></a>
 <a id="__codelineno-47-32" name="__codelineno-47-32" href="#__codelineno-47-32"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;run-command-file &quot;targets/agilex5e-universal/agilex5e-universal.simics&quot;</span>
 <a id="__codelineno-47-33" name="__codelineno-47-33" href="#__codelineno-47-33"></a><span class="s1">run&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>zephyr.simics<span class="w"> </span>
-</code></pre></div></p>
-<h5 id="booting-from-nand-binaries">Booting from NAND binaries<a class="headerlink" href="#booting-from-nand-binaries" title="Permanent link">&para;</a></h5>
-<p>1. Zephyr's SMP support allow us to select the boot core within simics. Select the boot core by as follows:</p>
-<div class="highlight"><pre><span></span><code>  | *Core Selection* | *Env-variable* |
-  | --- | --- |
-  | A55 | export cputype=a55  |
-  | A76 | export cputype=a76  |
 </code></pre></div>
-<p>2. You will need a Simics script modified for NAND named zephyr.simics. This will take <a href="#key-points-for-zephyr">Key points for Zephyr</a> as base. Run the following to create the script:
+<h5 id="booting-from-nand-binaries">Booting from NAND binaries<a class="headerlink" href="#booting-from-nand-binaries" title="Permanent link">&para;</a></h5>
+<ul>
+<li>
+<p>Zephyr's SMP support allow us to select the boot core within simics. Select the boot core by as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Core Selection</th>
+<th>Env-variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A55</td>
+<td>export cputype=a55</td>
+</tr>
+<tr>
+<td>A76</td>
+<td>export cputype=a76</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<ul>
+<li>You will need a Simics script modified for NAND named zephyr.simics. This will take <a href="#key-points-for-zephyr">Key points for Zephyr</a> as base. Run the following to create the script:</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/project-1
 <a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="nv">cputypestring</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
 <a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$cputype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;a76&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
@@ -2978,14 +3121,34 @@ note: default path is "~/intelFPGA_pro/intel-fpga-ext_23.4/simics/bin"</p>
 <a id="__codelineno-48-25" name="__codelineno-48-25" href="#__codelineno-48-25"></a>
 <a id="__codelineno-48-26" name="__codelineno-48-26" href="#__codelineno-48-26"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;run-command-file &quot;targets/agilex5e-universal/agilex5e-universal.simics&quot;</span>
 <a id="__codelineno-48-27" name="__codelineno-48-27" href="#__codelineno-48-27"></a><span class="s1">run&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>zephyr.simics<span class="w"> </span>
-</code></pre></div></p>
+</code></pre></div>
 <h5 id="booting-from-qspi-binaries">Booting from QSPI binaries<a class="headerlink" href="#booting-from-qspi-binaries" title="Permanent link">&para;</a></h5>
-<p>1. Zephyr's SMP support allow us to select the boot core within simics. Select the boot core as follows:
-      | <em>Core Selection</em> | <em>Env-variable</em> |
-      | --- | --- | 
-      | A55 | export cputype=a55|
-      | A76 | export cputype=a76  |
-   2. You will need a Simics script modified for QSPI named zephyr.simics. This will take <a href="#key-points-for-zephyr">Key points for Zephyr</a> as base. Run the following to create the script:
+<ul>
+<li>
+<p>Zephyr's SMP support allow us to select the boot core within simics. Select the boot core as follows:</p>
+<table>
+<thead>
+<tr>
+<th><em>Core Selection</em></th>
+<th><em>Env-variable</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A55</td>
+<td>export cputype=a55</td>
+</tr>
+<tr>
+<td>A76</td>
+<td>export cputype=a76</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<ul>
+<li>You will need a Simics script modified for QSPI named zephyr.simics. This will take <a href="#key-points-for-zephyr">Key points for Zephyr</a> as base. Run the following to create the script:</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/project-1
 <a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="nv">cputypestring</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
 <a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$cputype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;a76&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
@@ -3013,12 +3176,12 @@ note: default path is "~/intelFPGA_pro/intel-fpga-ext_23.4/simics/bin"</p>
 <a id="__codelineno-49-25" name="__codelineno-49-25" href="#__codelineno-49-25"></a>
 <a id="__codelineno-49-26" name="__codelineno-49-26" href="#__codelineno-49-26"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;run-command-file &quot;targets/agilex5e-universal/agilex5e-universal.simics&quot;</span>
 <a id="__codelineno-49-27" name="__codelineno-49-27" href="#__codelineno-49-27"></a><span class="s1">run&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>zephyr.simics<span class="w"> </span>
-</code></pre></div></p>
+</code></pre></div>
 <h3 id="running-hello-world">Running Hello World!<a class="headerlink" href="#running-hello-world" title="Permanent link">&para;</a></h3>
 <p>To exercise this use case, follow the next steps once the Simulation setup has been completed:</p>
-<ol>
+<ul>
 <li>From the project directory, launch the simulation using the <em>zephyr.simics</em> target script. This will launch the simulator and the current terminal will become the Simics CLI:</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/project-1
 <a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>./simics<span class="w"> </span>zephyr.simics
 </code></pre></div>
@@ -3045,44 +3208,46 @@ note: default path is "~/intelFPGA_pro/intel-fpga-ext_23.4/simics/bin"</p>
 <h2 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h2>
 <p>The following sections provide instructions on how to exercise some supported use cases through cli using the <em>Intel Agilex® 5 E-Series Universal</em> virtual platform.
 The compatible sample for Agilex™ 5 can be found at:</p>
-<p>* {zephyrfolder}/samples/boards/intel_socfpga/cli</p>
+<ul>
+<li>{zephyrfolder}/samples/boards/intel_socfpga/cli</li>
+</ul>
 <p>The preconditions required to execute them are listed in the following section. To use the application built following the <a href="#build-instructions">Build Instructions</a>, jump to <a href="#simulation-setup">Simulation_Setup</a>.</p>
 <h3 id="running-zephyr-command-line-application">Running Zephyr Command Line Application<a class="headerlink" href="#running-zephyr-command-line-application" title="Permanent link">&para;</a></h3>
-<p>To demonstrate the use of some Zephyr peripherals/zephyr subsystems it supports commands like:
-   * device: Device commands
-   * flash: Flash shell commands
-   * fs: File system commands
-   * gpio: GPIO commands
-   * i2c: I2C commands
-   * io96b: IO96B information
-   * mailbox: Altera SoC FPGA SDM mailbox client commands
-   * mdio: MDIO commands
-   * net: Networking commands
-   * psci: ARM PSCI interface commands
-   * sip_svc: ARM SiP services commands
-   * spi: spi commands
-   * timer: Timer commands
-   * i3c: I3C commands</p>
+<p>To demonstrate the use of some Zephyr peripherals/zephyr subsystems it supports commands like:</p>
+<ul>
+<li>device: Device commands</li>
+<li>flash: Flash shell commands</li>
+<li>fs: File system commands</li>
+<li>gpio: GPIO commands</li>
+<li>i2c: I2C commands</li>
+<li>io96b: IO96B information</li>
+<li>mailbox: Altera SoC FPGA SDM mailbox client commands</li>
+<li>mdio: MDIO commands</li>
+<li>net: Networking commands</li>
+<li>psci: ARM PSCI interface commands</li>
+<li>sip_svc: ARM SiP services commands</li>
+<li>spi: spi commands</li>
+<li>timer: Timer commands</li>
+<li>i3c: I3C commands</li>
+</ul>
 <h5 id="cli-application-prebuilt-binaries">CLI application - Prebuilt binaries<a class="headerlink" href="#cli-application-prebuilt-binaries" title="Permanent link">&para;</a></h5>
 <p>Note: The following steps assume you have followed the instructions in <a href="#setting-up-to-use-prebuilt-binaries">Setting Up to Use Prebuilt Binaries</a></p>
-<ol>
+<ul>
 <li>Select the sample based on app and boot device (e.g. nand):</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">app</span><span class="o">=</span>cli
 <a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">bootdev</span><span class="o">=</span>sdmmc_boot<span class="w"> </span><span class="nv">bootimg</span><span class="o">=</span>sdimage.img
 </code></pre></div>
-<ol>
-<li>
-<p>Obtain the prebuilt binaries for the CLI sample app
+<ul>
+<li>Obtain the prebuilt binaries for the CLI sample app</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/prebuilt
 <a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>wget<span class="w"> </span>-N<span class="w"> </span>https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/<span class="nv">$app</span>/<span class="nv">$bootdev</span>/<span class="nv">$bootimg</span><span class="w"> </span>-P<span class="w"> </span><span class="nv">$app</span>/<span class="nv">$bootdev</span>/<span class="w"> </span>
 <a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a>wget<span class="w"> </span>-N<span class="w"> </span>https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/<span class="nv">$app</span>/<span class="nv">$bootdev</span>/bl2.bin<span class="w"> </span>-P<span class="w"> </span><span class="nv">$app</span>/<span class="nv">$bootdev</span>/
-</code></pre></div></p>
-</li>
-<li>
-<p>Prepare the binaries to run on Simics® Simulator</p>
-</li>
-</ol>
+</code></pre></div>
+<ul>
+<li>Prepare the binaries to run on Simics® Simulator</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>bin
 <a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>bin/atf
@@ -3099,7 +3264,7 @@ The compatible sample for Agilex™ 5 can be found at:</p>
 <a id="__codelineno-55-5" name="__codelineno-55-5" href="#__codelineno-55-5"></a><span class="c1">#west build -b intel_socfpga_agilex5_socdk samples/boards/intel_socfpga/cli/ -d agilex5 --pristine</span>
 <a id="__codelineno-55-6" name="__codelineno-55-6" href="#__codelineno-55-6"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 </code></pre></div>
-<p>* if you were using prebuilt binaries before this, perform this step: <a href="#organizing-the-build-from-source-binaries">Organizing the Build-From-Source Binaries</a>.</p>
+<p>A. if you were using prebuilt binaries before this, perform this step: <a href="#organizing-the-build-from-source-binaries">Organizing the Build-From-Source Binaries</a>.</p>
 <p>As the Zephyr application has been changed, you'll to create the bootable image according to the boot device you desire. Refer to <a href="#creating-boot-images">Creating Boot Images</a></p>
 <p>Run the application following <a href="#cli-application---run">CLI_application - Run</a>.</p>
 <h4 id="cli-application-run">CLI application - Run<a class="headerlink" href="#cli-application-run" title="Permanent link">&para;</a></h4>
@@ -3130,11 +3295,11 @@ The compatible sample for Agilex™ 5 can be found at:</p>
 <a id="__codelineno-57-20" name="__codelineno-57-20" href="#__codelineno-57-20"></a>agilex5$
 </code></pre></div>
 <p>At this point you can use the interactive command line and execute the following commands:
-   * help -&gt; Show all the available commands
-   * fs -&gt; To interact with file system for storage devices
-   * gpio -&gt; To interact with the gpio ports
-   * i2c -&gt; To send and receive data from the i2c ports
-   * timer -&gt; To interact with the timer interrupts.</p>
+- help -&gt; Show all the available commands\
+- fs -&gt; To interact with file system for storage devices
+- gpio -&gt; To interact with the gpio ports
+- i2c -&gt; To send and receive data from the i2c ports
+- timer -&gt; To interact with the timer interrupts.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>agilex5$ help
 <a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a>You can try to call commands with &lt;-h&gt; or &lt;--help&gt; parameter for more information.
 <a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a>
@@ -3156,7 +3321,7 @@ The compatible sample for Agilex™ 5 can be found at:</p>
 <a id="__codelineno-58-19" name="__codelineno-58-19" href="#__codelineno-58-19"></a>  timer    :Timer commands
 <a id="__codelineno-58-20" name="__codelineno-58-20" href="#__codelineno-58-20"></a>agilex5$
 </code></pre></div>
-<p>Let's execute blink through the gpio command to demonstrate the usage of the CLI(Command line interface):
+<p>Let's execute blink through the gpio command to demonstrate the usage of the CLI(Command line interface):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>agilex5$ gpio help
 <a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a>gpio - GPIO commands
 <a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a>Subcommands:
@@ -3170,28 +3335,35 @@ The compatible sample for Agilex™ 5 can be found at:</p>
 <a id="__codelineno-59-11" name="__codelineno-59-11" href="#__codelineno-59-11"></a>Blinking port gpio@10c03300 pin 5. Hit any key to exit
 <a id="__codelineno-59-12" name="__codelineno-59-12" href="#__codelineno-59-12"></a>agilex5$
 </code></pre></div>
-Note: GPIO port gpio@10c03200 pins 0 to 10 are used for sdcard boot and should not be used for other purposes.</p>
+<p>Note: GPIO port gpio@10c03200 pins 0 to 10 are used for sdcard boot and should not be used for other purposes.</p>
 <h3 id="using-i3c">Using I3C<a class="headerlink" href="#using-i3c" title="Permanent link">&para;</a></h3>
 <p>This use case is an extension to the CLI application. The CLI prebuilt or build from source binary can be used directly for this use case.</p>
 <p>The Zephyr driver enabled 2 I3C devices and 1 I2C device of the modeled board components and attached to the I3C master's bus.
 To test the I3C read and write operation to a device, set the <strong>inverted_loopback</strong> parameter to TRUE. This may be done in the zephyr.simics script.</p>
-<p>Note: 
-   1. The 2 I3C device enabled have the PIDs 0xFB1122330001 and 0xFB1122330002. You'll have to enable <strong>inverted_loopback</strong> for the desired devices to read-back the write operation.
-      * Device #1: <strong>system.board.i3c0_device1.target-&gt;inverted_loopback=TRUE</strong>
-      * Device #2: <strong>system.board.i3c0_device2.target-&gt;inverted_loopback=TRUE</strong>
-   2. The 1 I2C device has the address 0x50.
-   3. The read-back values are inverted(by NOT bit-wise operation) at byte level. (E.g. write 0xAF -&gt; read returns 0x50).
-   4. For the first usage, the read FIFO will contain a 1-byte value of 0xF0 due to initialization (this is not a driver issue but the device model behaviour). Reads will flush the FIFO.
-   5. When the FIFO is empty, a read-back will have a default 1-byte value of 0xA5. Data after the 1<sup>st</sup> byte are random constant value.</p>
-<div class="highlight"><pre><span></span><code> * For more details, refer to [Intel Agilex® 5 E-Series Virtual Platform User Guide - I3C Device](https://www.intel.com/content/www/us/en/docs/programmable/786901/23-4/i3c-device.html)
-</code></pre></div>
-<p>Enable the (inverted)loopback in target simics script.
+<p>Note: </p>
+<ol>
+<li>The 2 I3C device enabled have the PIDs 0xFB1122330001 and 0xFB1122330002. You'll have to enable <strong>inverted_loopback</strong> for the desired devices to read-back the write operation.<ul>
+<li>Device #1: <strong>system.board.i3c0_device1.target-&gt;inverted_loopback=TRUE</strong></li>
+<li>Device #2: <strong>system.board.i3c0_device2.target-&gt;inverted_loopback=TRUE</strong></li>
+</ul>
+</li>
+<li>The 1 I2C device has the address 0x50.</li>
+<li>The read-back values are inverted(by NOT bit-wise operation) at byte level. (E.g. write 0xAF -&gt; read returns 0x50).</li>
+<li>For the first usage, the read FIFO will contain a 1-byte value of 0xF0 due to initialization (this is not a driver issue but the device model behaviour). Reads will flush the FIFO.</li>
+<li>When the FIFO is empty, a read-back will have a default 1-byte value of 0xA5. Data after the 1<sup>st</sup> byte are random constant value.</li>
+</ol>
+<ul>
+<li>For more details, refer to <a href="https://www.intel.com/content/www/us/en/docs/programmable/786901/23-4/i3c-device.html">Intel Agilex® 5 E-Series Virtual Platform User Guide - I3C Device</a></li>
+</ul>
+<p>Enable the (inverted)loopback in target simics script.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/project-1
 <a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/^run$/i system.board.i3c0_device1.target-&gt;inverted_loopback=TRUE \</span>
 <a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="s1">system.board.i3c0_device2.target-&gt;inverted_loopback=TRUE&#39;</span><span class="w"> </span>zephyr.simics
-</code></pre></div></p>
-<p>If everything was done correctly we can execute "i3c" commands after running <strong>./simics zephyr.simics</strong> as shown below:
-   1. Perform a dummy i3c read for the first use after boot. This is to clear the data in the RX fifo resulting from CCC operation during driver initialization. The output seen will be 0xf0.
+</code></pre></div>
+<p>If everything was done correctly we can execute "i3c" commands after running <strong>./simics zephyr.simics</strong> as shown below:</p>
+<ul>
+<li>Perform a dummy i3c read for the first use after boot. This is to clear the data in the RX fifo resulting from CCC operation during driver initialization. The output seen will be 0xf0.</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>NOTICE:  return = 0 Hz
 <a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>NOTICE:  mmc_clk = 200000000 Hz
 <a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a>NOTICE:  SDMMC boot
@@ -3216,8 +3388,10 @@ To test the I3C read and write operation to a device, set the <strong>inverted_l
 <a id="__codelineno-61-22" name="__codelineno-61-22" href="#__codelineno-61-22"></a>Read 1 bytes from i3c device with address (9)
 <a id="__codelineno-61-23" name="__codelineno-61-23" href="#__codelineno-61-23"></a>
 <a id="__codelineno-61-24" name="__codelineno-61-24" href="#__codelineno-61-24"></a>00000000: f0                                               |.                |
-</code></pre></div></p>
-<p>2. Perform i3c commands for write and read test to I3C device.
+</code></pre></div>
+<ul>
+<li>Perform i3c commands for write and read test to I3C device.</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>agilex5$ i3c write i3c@10DA0000 0xfb11 0x22330001 0xf0 0xca 0x14 0x52
 <a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>To be Written data[0]: f0
 <a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a>To be Written data[1]: ca
@@ -3230,20 +3404,22 @@ To test the I3C read and write operation to a device, set the <strong>inverted_l
 <a id="__codelineno-62-10" name="__codelineno-62-10" href="#__codelineno-62-10"></a>
 <a id="__codelineno-62-11" name="__codelineno-62-11" href="#__codelineno-62-11"></a>00000000: 0f 35 eb ad                                      |.5..             |
 </code></pre></div>
-   3. Perform i3c commands for write and read test to I2C device.
+<ul>
+<li>Perform i3c commands for write and read test to I2C device.</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>agilex5$ i3c i2c_write i3c@10DA0000 0x50 0x08 0xb0 0x55 0xca 0xfe   
 <a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>agilex5$ i3c i2c_read i3c@10DA0000 0x50 0x08 0x4                    
 <a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a>00000000: b0 55 ca fe                                      |.U..             |
 <a id="__codelineno-63-4" name="__codelineno-63-4" href="#__codelineno-63-4"></a>agilex5$ 
-</code></pre></div></p>
+</code></pre></div>
 <h3 id="using-usb-20">Using USB 2.0<a class="headerlink" href="#using-usb-20" title="Permanent link">&para;</a></h3>
 <p>To test file operations We can load the USB 2.0 device model: "usb-msd.craff" in Simics.</p>
-<ol>
-<li>Download the USB2.0 model:
+<ul>
+<li>Download the USB2.0 model:</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/project-1
 <a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/usb-msd.craff
-</code></pre></div></li>
-</ol>
+</code></pre></div>
 <p>Then we need to modify our current zephyr.simics script to provide: <em>$usb_otg_image_filename</em> parameter as follows:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/project-1
 <a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;1i$usb_otg_image_filename = &quot;usb-msd.craff&quot;&#39;</span><span class="w"> </span>zephyr.simics
@@ -3290,15 +3466,15 @@ To test the I3C read and write operation to a device, set the <strong>inverted_l
 <h3 id="build-the-zephyr-application">Build the Zephyr Application<a class="headerlink" href="#build-the-zephyr-application" title="Permanent link">&para;</a></h3>
 <p>The default build configuration targets the A55 core. The following steps will guide you in rebuilding the "Hello World" application for A76.
 It's assumed you have already followed the <a href="#build-instructions">Build Instructions</a> with default settings.</p>
-<ol>
+<ul>
 <li>Load the profile and activate the python virtual environment</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a>source  $TOP_FOLDER/.zephyrrc
 <a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a>source ~/.zephyrproject/.venv/bin/activate 
 </code></pre></div>
-<ol>
+<ul>
 <li>Pick either core0(a55) or core2(a76):</li>
-</ol>
+</ul>
 <table>
 <thead>
 <tr>
@@ -3315,20 +3491,19 @@ It's assumed you have already followed the <a href="#build-instructions">Build I
 <td>A76</td>
 <td>export cputype=a76</td>
 </tr>
-<tr>
-<td>3. For demonstration purposes, we will create a new local branch so that we can revert to the default SMP configurations:</td>
-<td></td>
-</tr>
 </tbody>
 </table>
+<ul>
+<li>For demonstration purposes, we will create a new local branch so that we can revert to the default SMP configurations:</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zephyrproject/zephyr
 <a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a>git<span class="w"> </span>checkout<span class="w"> </span>QPDS23.4_REL_GSRD_PR
 <a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a>git<span class="w"> </span>branch<span class="w"> </span>nosmp_<span class="nv">$cputype</span>
 <a id="__codelineno-68-4" name="__codelineno-68-4" href="#__codelineno-68-4"></a>git<span class="w"> </span>checkout<span class="w"> </span>nosmp_<span class="nv">$cputype</span>
 </code></pre></div>
-<ol>
+<ul>
 <li>Modify the file in <em>$TOP_FOLDER/zephyrproject/zephyr/dts/arm64/intel/intel_socfpga_agilex5.dtsi</em>, to remove the rest of the cores:</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$cputype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;a55&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
 <a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;27,46d&#39;</span><span class="w"> </span>dts/arm64/intel/intel_socfpga_agilex5.dtsi<span class="p">;</span>
 <a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a><span class="k">else</span>
@@ -3377,31 +3552,37 @@ Remove CONFIG_SMP=y and CONFIG_MP_MAX_NUM_CPUS=4 within intel_socfpga_agilex5_so
 <a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/CONFIG_MP_MAX_NUM_CPUS/d&#39;</span><span class="w"> </span>boards/arm64/intel_socfpga_agilex5_socdk/intel_socfpga_agilex5_socdk_defconfig
 <a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a>git<span class="w"> </span>commit<span class="w"> </span>-a<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;smpremove_</span><span class="nv">$cputype</span><span class="s2">&quot;</span>
 </code></pre></div>
-<p>3.Re-build the "Hello World" sample.</p>
+<ul>
+<li>Re-build the "Hello World" sample.</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a>west<span class="w"> </span>build<span class="w"> </span>-b<span class="w"> </span>intel_socfpga_agilex5_socdk<span class="w"> </span>samples/hello_world<span class="w"> </span>-d<span class="w"> </span>agilex5<span class="w"> </span>--pristine
 </code></pre></div>
-<p>4.Prepare the binaries to run on Simics® Simulator
-   a. Remove obsolete folder and create the new fip binary.
+<ul>
+<li>
+<p>Prepare the binaries to run on Simics® Simulator</p>
+<p>a. Remove obsolete folder and create the new fip binary.</p>
+</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-74-2" name="__codelineno-74-2" href="#__codelineno-74-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>bin
 <a id="__codelineno-74-3" name="__codelineno-74-3" href="#__codelineno-74-3"></a>mkdir<span class="w"> </span>bin
 <a id="__codelineno-74-4" name="__codelineno-74-4" href="#__codelineno-74-4"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/arm-trusted-firmware/build/agilex5/release/<span class="w"> </span>bin/atf
 <a id="__codelineno-74-5" name="__codelineno-74-5" href="#__codelineno-74-5"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zephyrproject/zephyr/agilex5/zephyr/<span class="w">  </span>bin/zephyr
 <a id="__codelineno-74-6" name="__codelineno-74-6" href="#__codelineno-74-6"></a>./fiptool<span class="w"> </span>create<span class="w"> </span>--soc-fw<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/bin/atf/bl31.bin<span class="w">  </span>--nt-fw<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/bin/zephyr/zephyr.bin<span class="w"> </span>bin/fip.bin
-</code></pre></div></p>
+</code></pre></div>
 <p>To create the boot image, we will use the creating <a href="#sd-card-image-binaries">SD Card Image binaries</a> section as base. Refer back to <a href="#creating-boot-images">Creating Boot Images</a> to boot from other boot devices.</p>
 <!-- FINDME -->
 
-<ol>
+<ul>
 <li>Obtain the make_sdimage.sh script.</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-75-2" name="__codelineno-75-2" href="#__codelineno-75-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/sdmmc_boot/make_sdimage.sh
 <a id="__codelineno-75-3" name="__codelineno-75-3" href="#__codelineno-75-3"></a>chmod<span class="w"> </span>+x<span class="w"> </span>make_sdimage.sh
 </code></pre></div>
-<ol>
+<ul>
 <li>Create the sdimage.img</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a>touch<span class="w"> </span>dummy.tar.gz
 <a id="__codelineno-76-2" name="__codelineno-76-2" href="#__codelineno-76-2"></a>sudo<span class="w"> </span>./make_sdimage.sh<span class="w"> </span>-k<span class="w"> </span>dummy.tar.gz<span class="w"> </span>-p<span class="w"> </span>bin/fip.bin<span class="w"> </span>-o<span class="w"> </span>bin/sdimage.img<span class="w"> </span>-g<span class="w"> </span>2G<span class="w"> </span>-pg<span class="w"> </span><span class="m">16</span>&lt;/pre&gt;
 </code></pre></div>
@@ -3413,14 +3594,14 @@ To return to QPDS23.4_REL_GSRD_PR tag execute:</p>
 </code></pre></div>
 <h3 id="simulation-setup_1">Simulation Setup<a class="headerlink" href="#simulation-setup_1" title="Permanent link">&para;</a></h3>
 <p>It is assumed you have executed the steps at least once in <a href="#simulation-setup">Simulation Setup</a> with default settings.</p>
-<ol>
+<ul>
 <li>Lets add the Simics binary to the path to make things easier:</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a>export PATH=$PATH:&amp;ltSimics installation dir&amp;gt/simics/bin/
 </code></pre></div>
-<ol>
+<ul>
 <li>Configure the Simics top-level target script to run on a single core by adding the following parameters before the <strong>run-command-file</strong> command:</li>
-</ol>
+</ul>
 <p>A55:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a>$hps_core0_power_on = TRUE 
 <a id="__codelineno-79-2" name="__codelineno-79-2" href="#__codelineno-79-2"></a>$hps_core1_power_on = FALSE 
@@ -3433,7 +3614,7 @@ To return to QPDS23.4_REL_GSRD_PR tag execute:</p>
 <a id="__codelineno-80-3" name="__codelineno-80-3" href="#__codelineno-80-3"></a>$hps_core2_power_on = TRUE 
 <a id="__codelineno-80-4" name="__codelineno-80-4" href="#__codelineno-80-4"></a>$hps_core3_power_on = FALSE
 </code></pre></div>
-<p>This can be achieved by executing the following command:
+<p>This can be achieved by executing the following command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/project-1
 <a id="__codelineno-81-2" name="__codelineno-81-2" href="#__codelineno-81-2"></a><span class="nv">cputypestring</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
 <a id="__codelineno-81-3" name="__codelineno-81-3" href="#__codelineno-81-3"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$cputype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;a55&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
@@ -3473,17 +3654,18 @@ To return to QPDS23.4_REL_GSRD_PR tag execute:</p>
 <a id="__codelineno-81-37" name="__codelineno-81-37" href="#__codelineno-81-37"></a>
 <a id="__codelineno-81-38" name="__codelineno-81-38" href="#__codelineno-81-38"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;run-command-file &quot;targets/agilex5e-universal/agilex5e-universal.simics&quot;</span>
 <a id="__codelineno-81-39" name="__codelineno-81-39" href="#__codelineno-81-39"></a><span class="s1">run&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>zephyr.simics
-</code></pre></div></p>
+</code></pre></div>
 <p>Note: We based our approach on the SDCard script. For NAND boot and QSPI options, refer to <a href="#booting-from-nand-binaries">Booting from NAND binaries</a>
 and <a href="#booting-from-qspi-binaries">Booting from QSPI binaries</a>.</p>
 <h4 id="running-hello-world_1">Running Hello World<a class="headerlink" href="#running-hello-world_1" title="Permanent link">&para;</a></h4>
-<ol>
+<ul>
 <li>Run the hello world example:</li>
-</ol>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a>./simics<span class="w"> </span>zephyr.simics
 </code></pre></div>
-<ol>
-<li>Wait to get "Hello World!" message in the target serial console.
+<ul>
+<li>Wait to get "Hello World!" message in the target serial console.</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-83-1" name="__codelineno-83-1" href="#__codelineno-83-1"></a>NOTICE:  return = 0 Hz
 <a id="__codelineno-83-2" name="__codelineno-83-2" href="#__codelineno-83-2"></a>NOTICE:  mmc_clk = 200000000 Hz
 <a id="__codelineno-83-3" name="__codelineno-83-3" href="#__codelineno-83-3"></a>NOTICE:  SDMMC boot
@@ -3496,21 +3678,37 @@ and <a href="#booting-from-qspi-binaries">Booting from QSPI binaries</a>.</p>
 <a id="__codelineno-83-10" name="__codelineno-83-10" href="#__codelineno-83-10"></a>NOTICE:  BL31: Built : 19:41:33, Dec 18 2023
 <a id="__codelineno-83-11" name="__codelineno-83-11" href="#__codelineno-83-11"></a>*** Booting Zephyr OS build 33d4a115fbed ***
 <a id="__codelineno-83-12" name="__codelineno-83-12" href="#__codelineno-83-12"></a>Hello World! intel_socfpga_agilex5_socdk
-</code></pre></div></li>
-</ol>
+</code></pre></div>
 <h4 id="configuration-reference">Configuration Reference<a class="headerlink" href="#configuration-reference" title="Permanent link">&para;</a></h4>
-<p>You may rebuild and run on Simics for the target core based on the following configuration:
-| <em>Config file</em> | <em>A55</em> | <em>A76</em> |
-|--- | ---| ---|
-| $TOP_FOLDER/zephyrproject/zephyr/dts/arm64/intel/intel_socfpga_agilex5.dtsi | At node <strong>cpu@0</strong> : <strong>compatible</strong> = "arm,cortex-a75"  <strong>reg</strong> = | At node <strong>cpu@0</strong> :  <strong>compatible</strong> = "arm,cortex-a76" <strong>reg</strong> = |
-| $TOP_FOLDER/project-1/zephyr.simics | $hps_boot_core = 0 | $hps_boot_core = 2 |</p>
+<p>You may rebuild and run on Simics for the target core based on the following configuration:</p>
+<table>
+<thead>
+<tr>
+<th><em>Config file</em></th>
+<th><em>A55</em></th>
+<th><em>A76</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$TOP_FOLDER/zephyrproject/zephyr/dts/arm64/intel/intel_socfpga_agilex5.dtsi</td>
+<td>At node <strong>cpu@0</strong> : <strong>compatible</strong> = "arm,cortex-a75"  <strong>reg</strong> =</td>
+<td>At node <strong>cpu@0</strong> :  <strong>compatible</strong> = "arm,cortex-a76" <strong>reg</strong> =</td>
+</tr>
+<tr>
+<td>$TOP_FOLDER/project-1/zephyr.simics</td>
+<td>$hps_boot_core = 0</td>
+<td>$hps_boot_core = 2</td>
+</tr>
+</tbody>
+</table>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 7, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 14, 2024</span>
       
         <br>
         Created:

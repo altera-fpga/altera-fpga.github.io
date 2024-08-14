@@ -1617,7 +1617,7 @@
 
 
 <h1 id="general-purpose-io-driver-for-hard-processor-system"><strong>General Purpose I/O Driver for Hard Processor System</strong><a class="headerlink" href="#general-purpose-io-driver-for-hard-processor-system" title="Permanent link">&para;</a></h1>
-<p>Last updated: <strong>August 09, 2024</strong> </p>
+<p>Last updated: <strong>August 14, 2024</strong> </p>
 <p><strong>Upstream Status</strong>: Not Upstreamed</p>
 <p><strong>Devices supported</strong>: Agilex 5</p>
 <h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
@@ -1654,6 +1654,90 @@ All the design contained of this document is referred from “Synopsys GPIO Data
 <p>Example Device tree location:</p>
 <p><a href="https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/dts/arm64/intel/intel_socfpga_agilex5.dtsi">https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/dts/arm64/intel/intel_socfpga_agilex5.dtsi</a></p>
 <p><a class="glightbox" href="../images/gpio_device_tree.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="gpio_device_tree" src="../images/gpio_device_tree.png" /></a></p>
+<h2 id="driver-sample"><strong>Driver Sample</strong><a class="headerlink" href="#driver-sample" title="Permanent link">&para;</a></h2>
+<p>The source code for the driver sample can be found at: <a href="https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/basic/blinky">https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/basic/blinky</a>.</p>
+<p>The most relevant files are:
+1. Project yml -&gt; sample.yml:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a> 1 sample:
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a> 2   name: Blinky Sample
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a> 3 tests:
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a> 4   sample.basic.blinky:
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a> 5     tags:
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a> 6       - LED
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a> 7       - gpio
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a> 8     filter: dt_enabled_alias_with_parent_compat(&quot;led0&quot;, &quot;gpio-leds&quot;)
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a> 9     depends_on: gpio
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>10     harness: led
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>11     integration_platforms:
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>12       - frdm_k64f
+</code></pre></div>
+<ol>
+<li>Config overlay -&gt; prj.conf:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>CONFIG_GPIO=y
+</code></pre></div>
+<ol>
+<li>Device tree overlay -&gt; intel_socfpga_agilex5_socdk.overlay:</li>
+</ol>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>  1 /*
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  2  * Copyright (C) 2023 Intel Corporation
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  3  *
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  4  * SPDX-License-Identifier: Apache-2.0
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  5  */
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  6 
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  7 #include &lt;dt-bindings/gpio/gpio.h&gt;
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>  8 
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>  9 / {
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a> 10         aliases {
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a> 11                 led0 = &amp;myled0;
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a> 12         };
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a> 13 
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a> 14         leds {
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a> 15                 compatible = &quot;gpio-leds&quot;;
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a> 16                 myled0: led_0 {
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a> 17                         gpios = &lt;&amp;gpio1 19 GPIO_ACTIVE_HIGH&gt;;
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a> 18                 };
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a> 19         };
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a> 20 };
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a> 21 
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a> 22 &amp;gpio1 {
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a> 23         status = &quot;okay&quot;;
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a> 24 };
+</code></pre></div>
+4. Agilex™ 5 specific board configuration -&gt;  intel_socfpga_agilex5_socdk.conf 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>  1 # Copyright (c) 2023, Intel Corporation.
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  2 # SPDX-License-Identifier: Apache-2.0
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  3 
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>  4 CONFIG_STDOUT_CONSOLE=y
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  5 CONFIG_PRINTK=y
+</code></pre></div>
+5. Source code: <a href="https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/basic/blinky/src/main.c">https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/basic/blinky</a>.</p>
+<h2 id="steps-to-build"><strong>Steps to build</strong><a class="headerlink" href="#steps-to-build" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Execute the following commands:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>rm -rf agilex5
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>west build -b intel_socfpga_agilex5_socdk samples/basic/blinky  -d agilex5
+</code></pre></div></li>
+</ol>
+<h2 id="output"><strong>Output</strong><a class="headerlink" href="#output" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>NOTICE:  return = 0 Hz
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>NOTICE:  mmc_clk = 200000000 Hz
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>NOTICE:  SDMMC boot
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>NOTICE:  BL2: v2.9.1(release):QPDS23.4_REL_GSRD_PR
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>NOTICE:  BL2: Built : 18:22:43, Jul  2 2024
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>NOTICE:  BL2: Booting BL31
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>NOTICE:  BL31: Boot Core = 0
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>NOTICE:  BL31: CPU ID = 81000000
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>NOTICE:  BL31: v2.9.1(release):QPDS23.4_REL_GSRD_PR
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>NOTICE:  BL31: Built : 18:22:43, Jul  2 2024
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>*** Booting Zephyr OS build 33d4a115fbed ***
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>Secondary CPU core 1 (MPID:0x100) is up
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>Secondary CPU core 2 (MPID:0x200) is up
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>Secondary CPU core 3 (MPID:0x300) is up
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>GPIO blinky application started
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>GPIO toggle started for 10 times
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>GPIO blinky Application completed!!!
+</code></pre></div>
 <h2 id="known-issues"><strong>Known Issues</strong><a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
 <p>None known</p>
 <h2 id="other-consideration"><strong>Other Consideration</strong><a class="headerlink" href="#other-consideration" title="Permanent link">&para;</a></h2>
@@ -1664,7 +1748,7 @@ All the design contained of this document is referred from “Synopsys GPIO Data
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 9, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 14, 2024</span>
       
         <br>
         Created:
