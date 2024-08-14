@@ -1,6 +1,6 @@
 # **General Purpose I/O Driver for Hard Processor System**
 
-Last updated: **August 09, 2024** 
+Last updated: **August 14, 2024** 
 
 **Upstream Status**: Not Upstreamed
 
@@ -53,6 +53,109 @@ Example Device tree location:
 [https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/dts/arm64/intel/intel_socfpga_agilex5.dtsi](https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/dts/arm64/intel/intel_socfpga_agilex5.dtsi)
 
 ![gpio_device_tree](images/gpio_device_tree.png)
+## **Driver Sample**
+
+The source code for the driver sample can be found at: [https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/basic/blinky](https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/basic/blinky).
+
+The most relevant files are:
+1. Project yml -> sample.yml:
+
+ ```
+  1 sample:
+  2   name: Blinky Sample
+  3 tests:
+  4   sample.basic.blinky:
+  5     tags:
+  6       - LED
+  7       - gpio
+  8     filter: dt_enabled_alias_with_parent_compat("led0", "gpio-leds")
+  9     depends_on: gpio
+ 10     harness: led
+ 11     integration_platforms:
+ 12       - frdm_k64f
+
+ ```
+
+2. Config overlay -> prj.conf:
+
+```
+CONFIG_GPIO=y
+```
+
+3. Device tree overlay -> intel_socfpga_agilex5_socdk.overlay:
+
+```
+  1 /*
+  2  * Copyright (C) 2023 Intel Corporation
+  3  *
+  4  * SPDX-License-Identifier: Apache-2.0
+  5  */
+  6 
+  7 #include <dt-bindings/gpio/gpio.h>
+  8 
+  9 / {
+ 10         aliases {
+ 11                 led0 = &myled0;
+ 12         };
+ 13 
+ 14         leds {
+ 15                 compatible = "gpio-leds";
+ 16                 myled0: led_0 {
+ 17                         gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
+ 18                 };
+ 19         };
+ 20 };
+ 21 
+ 22 &gpio1 {
+ 23         status = "okay";
+ 24 };
+
+```
+4. Agilex™ 5 specific board configuration ->  intel_socfpga_agilex5_socdk.conf 
+```
+  1 # Copyright (c) 2023, Intel Corporation.
+  2 # SPDX-License-Identifier: Apache-2.0
+  3 
+  4 CONFIG_STDOUT_CONSOLE=y
+  5 CONFIG_PRINTK=y
+                   
+```
+5. Source code: [https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/basic/blinky](https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/basic/blinky/src/main.c).
+
+## **Steps to build**
+
+
+1. Execute the following commands:
+```
+rm -rf agilex5
+west build -b intel_socfpga_agilex5_socdk samples/basic/blinky  -d agilex5
+
+```
+## **Output**
+
+```
+NOTICE:  return = 0 Hz
+NOTICE:  mmc_clk = 200000000 Hz
+NOTICE:  SDMMC boot
+NOTICE:  BL2: v2.9.1(release):QPDS23.4_REL_GSRD_PR
+NOTICE:  BL2: Built : 18:22:43, Jul  2 2024
+NOTICE:  BL2: Booting BL31
+NOTICE:  BL31: Boot Core = 0
+NOTICE:  BL31: CPU ID = 81000000
+NOTICE:  BL31: v2.9.1(release):QPDS23.4_REL_GSRD_PR
+NOTICE:  BL31: Built : 18:22:43, Jul  2 2024
+*** Booting Zephyr OS build 33d4a115fbed ***
+Secondary CPU core 1 (MPID:0x100) is up
+Secondary CPU core 2 (MPID:0x200) is up
+Secondary CPU core 3 (MPID:0x300) is up
+GPIO blinky application started
+GPIO toggle started for 10 times
+GPIO blinky Application completed!!!
+
+```
+
+
+
 
 ## **Known Issues**
 
@@ -61,3 +164,4 @@ None known
 ## **Other Consideration**
 
 Pinmux configuration should be in GPIO mode to use respective IO functionality.
+

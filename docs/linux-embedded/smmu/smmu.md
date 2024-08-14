@@ -1,6 +1,6 @@
 # **System Memory Management Unit (SMMU) Driver for Hard Processor System**
 
-Last updated: **August 09, 2024** 
+Last updated: **August 14, 2024** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/iommu/arm/arm-smmu-v3)
 

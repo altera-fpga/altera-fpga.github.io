@@ -1,6 +1,6 @@
 # **UART Driver for Hard Processor System**
 
-Last updated: **August 09, 2024** 
+Last updated: **August 14, 2024** 
 
 **Upstream Status**: [Upstreamed](https://github.com/zephyrproject-rtos/zephyr/blob/main/drivers/serial/uart_ns16550.c)
 
@@ -69,6 +69,71 @@ Example Device tree location to configure the uart:
 
 ![uart_device_tree](images/uart_device_tree.png)
 
+
+## **Driver Sample**
+
+
+The source code for the driver sample can be found at: [https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/uart/echo_bot](https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/uart/echo_bot).
+
+The most relevant files are:
+1. Project yml -> sample.yml:
+
+ ```
+  1 sample:
+  2   name: UART driver sample
+  3 tests:
+  4   sample.drivers.uart:
+  5     integration_platforms:
+  6       - qemu_x86
+  7     tags:
+  8       - serial
+  9       - uart
+ 10     filter: CONFIG_SERIAL and
+ 11             CONFIG_UART_INTERRUPT_DRIVEN and
+ 12             dt_chosen_enabled("zephyr,shell-uart")
+ 13     harness: keyboard
+ ```
+
+2. Config overlay -> prj.conf:
+
+```
+  1 CONFIG_SERIAL=y
+  2 CONFIG_UART_INTERRUPT_DRIVEN=y
+```
+
+3. Source code: [https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/uart/echo_bot/src/main.c](https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/uart/echo_bot/src/main.c).
+
+## **Steps to build**
+
+
+1. Execute the following commands:
+```
+rm -rf agilex5
+west build -b intel_socfpga_agilex5_socdk samples/drivers/uart/echo_bot/  -d agilex5
+
+```
+## **Output**
+
+```
+NOTICE:  return = 0 Hz
+NOTICE:  mmc_clk = 200000000 Hz
+NOTICE:  SDMMC boot
+NOTICE:  BL2: v2.9.1(release):QPDS23.4_REL_GSRD_PR
+NOTICE:  BL2: Built : 18:22:43, Jul  2 2024
+NOTICE:  BL2: Booting BL31
+NOTICE:  BL31: Boot Core = 0
+NOTICE:  BL31: CPU ID = 81000000
+NOTICE:  BL31: v2.9.1(release):QPDS23.4_REL_GSRD_PR
+NOTICE:  BL31: Built : 18:22:43, Jul  2 2024
+*** Booting Zephyr OS build 33d4a115fbed ***
+Secondary CPU core 1 (MPID:0x100) is up
+Secondary CPU core 2 (MPID:0x200) is up
+Secondary CPU core 3 (MPID:0x300) is up
+Hello! I'm your echo bot.
+Tell me something and press enter:
+Echo: hello there
+
+```
 
 ## **Known Issues**
 

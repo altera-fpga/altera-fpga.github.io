@@ -1,6 +1,7 @@
 # **DMA Driver for Hard Processor System**
 
-Last updated: **August 09, 2024** 
+
+Last updated: **August 14, 2024** 
 
 **Upstream Status**: No
 
@@ -15,7 +16,6 @@ The hard processor system (HPS) provides two DMA Controllers based on the Synops
 For more information please refer to the [Intel Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
 
 ## **Driver Sources**
-
 The source code for this driver can be found at [https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/drivers/dma/dma_dw_axi.c](https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/drivers/dma/dma_dw_axi.c).
 
 ## **Driver Capabilities**
@@ -41,7 +41,8 @@ Device Tree location to configure DMA is
 
 [https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm64/intel/intel_socfpga_agilex5.dtsi](https://github.com/zephyrproject-rtos/zephyr/blob/main/dts/arm64/intel/intel_socfpga_agilex5.dtsi)
 
-```dma0: dma@10DB0000 {
+```
+dma0: dma@10DB0000 {
 compatible = "snps,dw-axi-dma";
 #dma-cells = <2>;
 reg = <0x10DB0000 0x1000>;
@@ -60,6 +61,96 @@ status = "disabled";
 };
 ```
 
+
+## **Driver Sample**
+
+The source code for the driver sample can be found at: [https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/dma/mem_to_mem/](https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/dma/mem_to_mem/).
+
+The most relevant files are:
+
+1. Project yml -> sample.yml:
+
+ ```
+  1 sample:
+  2   name: DMA
+  3   description: DMA Driver sample application
+  4 common:
+  5   tags:
+  6     - drivers
+  7     - dma
+  8 tests:
+  9   sample.drivers.dma.mem_to_mem:
+ 10     build_only: true
+ 11     harness: console
+ 12     integration_platforms:
+ 13       - intel_socfpga_agilex5_socdk
+ 14     harness_config:
+ 15       type: multi_line
+ 16       ordered: true
+ 17       regex:
+ 18         - "Sample application for Memory to Memory transfer using dma controller"
+ 19         - "Successfully transferred"
+ 20         - "Sample application for dma transfer complete"
+ 21     filter: DT_HAS_SNPS_DESIGNWARE_DMA_ENABLED
+ 22     depends_on: dma
+ ```
+
+2. Config overlay -> prj.conf:
+```
+  1 CONFIG_DMA=y
+  2 CONFIG_LOG=y
+```
+
+3. Device tree overlay -> intel_socfpga_agilex5_socdk.overlay:
+
+```
+  1 /*
+  2  * Copyright (c) 2023 Intel Corporation
+  3  *
+  4  * SPDX-License-Identifier: Apache-2.0
+  5  */
+  6 
+  7 &dma0 {
+  8         status = "okay";
+  9 };
+      
+```           
+4. Source code: [https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/dma/mem_to_mem/src/main.c](https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/samples/drivers/dma/mem_to_mem/src/main.c).
+
+## **Steps to build**
+
+1. Execute the following commands:
+```
+rm -rf agilex5
+west build -b intel_socfpga_agilex5_socdk samples/drivers/dma/mem_to_mem/  -d agilex5
+```
+## **Output**
+```
+NOTICE:  return = 0 Hz
+NOTICE:  mmc_clk = 200000000 Hz
+NOTICE:  SDMMC boot
+NOTICE:  BL2: v2.9.1(release):QPDS23.4_REL_GSRD_PR
+NOTICE:  BL2: Built : 18:22:43, Jul  2 2024
+NOTICE:  BL2: Booting BL31
+NOTICE:  BL31: Boot Core = 0
+NOTICE:  BL31: CPU ID = 81000000
+NOTICE:  BL31: v2.9.1(release):QPDS23.4_REL_GSRD_PR
+NOTICE:  BL31: Built : 18:22:43, Jul  2 2024
+[00:00:00.125,000] <inf> clock_control_agilex5: Intel Agilex5 clock driver initialized!
+*** Booting Zephyr OS build 33d4a115fbed ***
+Secondary CPU core 1 (MPID:0x100) is up
+Secondary CPU core 2 (MPID:0x200) is up
+Secondary CPU core 3 (MPID:0x300) is up
+Sample application for Memory to Memory transfer using dma controller
+dma@10DB0000: Successfully transferred 10 blocks of size:200 channel:1
+Sample application for dma transfer complete
+
+```
+
+
+
 ## **Known Issues**
 
 None Known. 
+
+
