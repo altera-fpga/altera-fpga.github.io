@@ -1,6 +1,6 @@
 # **Accelerator Functional Unit (aka workload) Driver For Host Attach**
 
-Last updated: **August 09, 2024** 
+Last updated: **August 14, 2024** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/fpga?h=master)
 
