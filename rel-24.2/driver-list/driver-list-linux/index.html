@@ -1844,7 +1844,7 @@
 </tr>
 <tr>
 <td align="center">General Purpose Timers</td>
-<td>Agilex 7 <br> Agilex 5</td>
+<td>Agilex 7 <br> Agilex 5 <br> Stratix10 <br> Cyclone V</td>
 <td>HPS</td>
 <td align="left"><a href="../../linux-embedded/apb_timers/apb_timers/">GP Timers</a></td>
 <td align="center">Yes</td>
@@ -1860,7 +1860,7 @@
 </tr>
 <tr>
 <td align="center">General Purpose I/O (GPIO)</td>
-<td>Agilex 7 <br> Agilex 5</td>
+<td>Agilex 7 <br> Agilex 5 <br> stratix10 <br> Cyclone V</td>
 <td>HPS</td>
 <td align="left"><a href="../../linux-embedded/gpio/gpio/">gpio</a></td>
 <td align="center">Yes</td>
@@ -1868,7 +1868,7 @@
 </tr>
 <tr>
 <td align="center">I2C</td>
-<td>Agilex 7 <br> Agilex 5</td>
+<td>Agilex 7 <br> Agilex 5 <br> Stratix10 <br> CycloneV</td>
 <td>HPS</td>
 <td align="left"><a href="../../linux-embedded/i2c/i2c/">I2C</a></td>
 <td align="center">Yes</td>
@@ -1900,7 +1900,7 @@
 </tr>
 <tr>
 <td align="center">MSGDMA</td>
-<td>Agilex 7</td>
+<td>Agilex 7 <br> Stratix10 <br> Cyclone V</td>
 <td>HPS</td>
 <td align="left"><a href="../../linux-embedded/msgdma/msgdma/">MSGDMA</a></td>
 <td align="center">No</td>
@@ -1908,7 +1908,7 @@
 </tr>
 <tr>
 <td align="center">NAND Controller</td>
-<td>Agilex 5</td>
+<td>Agilex 7 <br> Agilex 5 <br> Stratix10 <br> Cyclone V</td>
 <td>HPS</td>
 <td align="left"><a href="../../linux-embedded/nand/nand/">NAND</a></td>
 <td align="center">Yes</td>
@@ -1932,7 +1932,7 @@
 </tr>
 <tr>
 <td align="center">QSPI</td>
-<td>Agilex 5</td>
+<td><br> Agilex 7 <br> Agilex 5 <br> Stratix10 <br> Cyclone V</td>
 <td>HPS</td>
 <td align="left"><a href="../../linux-embedded/qspi/qspi/">QSPI</a></td>
 <td align="center">No</td>
@@ -1956,7 +1956,7 @@
 </tr>
 <tr>
 <td align="center">SPI</td>
-<td>Agilex 7<br> Agilex 5</td>
+<td>Agilex 7<br> Agilex 5<br> Stratix10<br> Cyclone V</td>
 <td>HPS</td>
 <td align="left"><a href="../../linux-embedded/spi/spi/">SPI</a></td>
 <td align="center">Yes</td>
@@ -1980,7 +1980,7 @@
 </tr>
 <tr>
 <td align="center">UART</td>
-<td>Agilex 7 <br> Agilex 5</td>
+<td>Agilex 7 <br> Agilex 5 <br> Stratix10 <br> Cyclone V</td>
 <td>HPS</td>
 <td align="left"><a href="../../linux-embedded/uart/uart/">UART</a></td>
 <td align="center">Yes</td>
@@ -1988,7 +1988,7 @@
 </tr>
 <tr>
 <td align="center">USB 2.0 OTG</td>
-<td>Agilex 7 <br> Agilex 5</td>
+<td>Agilex 7 <br> Agilex 5<br> Stratix10<br> Cyclone V</td>
 <td>HPS</td>
 <td align="left"><a href="../../linux-embedded/usb2_0_otg/usb_2_0_otg/">USB2.0</a></td>
 <td align="center">Yes</td>
@@ -2004,11 +2004,27 @@
 </tr>
 <tr>
 <td align="center">Watchdog Timer</td>
-<td>Agilex 5</td>
+<td>Agilex 7<br> Agilex 5<br> Stratix10<br> Cyclone V</td>
 <td>HPS</td>
 <td align="left"><a href="../../linux-embedded/watchdog_timers/watchdog_timers/">Watchdog Timer</a></td>
 <td align="center">Yes</td>
 <td><a href="https://github.com/torvalds/linux/blob/master/drivers/watchdog/dw_wdt.c">dw_wdt </a></td>
+</tr>
+<tr>
+<td align="center">Altera Triple Speed Ethernet MAC driver</td>
+<td>Agilex 7 <br> stratix10 <br> Cyclone V</td>
+<td>HPS</td>
+<td align="left"><a href="../../linux-embedded/tse/Triple-Speed-Ethernet/">Triple State Ethernet</a></td>
+<td align="center">yes</td>
+<td><a href="https://github.com/torvalds/linux/blob/master/drivers/net/ethernet/altera/altera_tse_main.c">TSE driver</a></td>
+</tr>
+<tr>
+<td align="center">Altera Triple Speed Ethernet MAC driver PTP</td>
+<td>Agilex 7</td>
+<td>HPS</td>
+<td align="left"><a href="../../linux-embedded/tse/Triple-Speed-Ethernet/">Triple State Ethernet</a></td>
+<td align="center">yes</td>
+<td><a href="https://github.com/torvalds/linux/blob/master/drivers/net/ethernet/altera/altera_tse_main.c">TSE driver</a></td>
 </tr>
 </tbody>
 </table>
@@ -2018,7 +2034,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 7, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 30, 2024</span>
       
         <br>
         Created:

@@ -9,17 +9,13 @@
       
       
       
-        <link rel="prev" href="../../smmu/smmu/">
-      
-      
-        <link rel="next" href="../../usb2_0_otg/usb_2_0_otg/">
       
       <link rel="icon" href="../../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
     
     
       
-        <title>UART - Altera-FPGA Site</title>
+        <title>**Triple Speed Ethernet Driver** - Altera-FPGA Site</title>
       
     
     
@@ -80,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#uart-driver-for-hard-processor-system" class="md-skip">
+        <a href="#triple-speed-ethernet-driver" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              UART
+              **Triple Speed Ethernet Driver**
             
           </span>
         </div>
@@ -246,16 +242,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
       
       
         
@@ -280,7 +274,7 @@
           
         </div>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Linux Drivers
@@ -293,16 +287,14 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
       
       
         
@@ -363,7 +355,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_2_2">
           <span class="md-nav__icon md-icon"></span>
           HPS Host Drivers
@@ -668,94 +660,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          UART
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../uart/uart/" class="md-nav__link">
         UART
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    Introduction
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#driver-sources" class="md-nav__link">
-    Driver Sources
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#driver-capabilities" class="md-nav__link">
-    Driver Capabilities
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#kernel-configurations" class="md-nav__link">
-    Kernel Configurations
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#device-tree" class="md-nav__link">
-    Device Tree
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#known-issues" class="md-nav__link">
-    Known Issues
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#notices-disclaimers" class="md-nav__link">
-    Notices &amp; Disclaimers
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1815,31 +1724,144 @@
   
 
 
-<h1 id="uart-driver-for-hard-processor-system"><strong>UART Driver for Hard Processor System</strong><a class="headerlink" href="#uart-driver-for-hard-processor-system" title="Permanent link">&para;</a></h1>
+<h1 id="triple-speed-ethernet-driver"><strong>Triple Speed Ethernet Driver</strong><a class="headerlink" href="#triple-speed-ethernet-driver" title="Permanent link">&para;</a></h1>
 <p>Last updated: <strong>August 30, 2024</strong> </p>
-<p><strong>Upstream Status</strong>: <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/tty/serial/8250/8250_dw.c">Upstreamed</a></p>
-<p><strong>Devices supported</strong>: Agilex 7, Agilex 5, Stratix10, Cyclone V</p>
+<p><strong>Upstream Status</strong>: Upstreamed</p>
+<p><strong>Devices supported</strong>:Agilex 5,  Agilex 7, Stratix10, Cyclone V</p>
 <h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>The Hard Processor System (HPS) provides two UART controllers for asynchronous serial communication.</p>
-<p>For More information please refer to the following link:</p>
-<p><a href="https://www.intel.com/content/www/us/en/docs/programmable/814346">Agilex 5 Hard Processor System Technical Reference Manual</a></p>
-<p><a class="glightbox" href="../images/uart_diagram.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="uart_diagram" src="../images/uart_diagram.png" style="height:450px;width:450px" /></a></p>
-<h2 id="driver-sources"><strong>Driver Sources</strong><a class="headerlink" href="#driver-sources" title="Permanent link">&para;</a></h2>
-<p>The source code for this driver can be found at <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/tty/serial/8250/8250_dw.c">https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/tty/serial/8250/8250_dw.c</a>.</p>
-<h2 id="driver-capabilities"><strong>Driver Capabilities</strong><a class="headerlink" href="#driver-capabilities" title="Permanent link">&para;</a></h2>
+<p>The Triple-Speed Ethernet, SGDMA, and MSGDMA components are all soft IP components that can be assembled and built into an FPGA using the Altera Quartus toolchain. The controller uses the SGDMA and MSGDMA soft DMA IP components.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Driver</th>
+<th align="left">Capability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">/drivers/net/ethernet/altera/altera_tse_main.c</td>
+<td align="left">Main network device driver</td>
+</tr>
+<tr>
+<td align="left">/drivers/net/ethernet/altera/altera_tse_ethtool.c</td>
+<td align="left">Ethtool support</td>
+</tr>
+</tbody>
+</table>
+<p>The following group of drivers is required to support TSE driver:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Driver</th>
+<th align="left">Capability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">/drivers/net/ethernet/altera/altera_msgdma.c</td>
+<td align="left">MSGDMA implementation</td>
+</tr>
+<tr>
+<td align="left">/drivers/net/ethernet/altera/altera_utils.c</td>
+<td align="left">Driver utility functions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="triple-speed-ethernet-overview"><strong>Triple Speed Ethernet Overview</strong><a class="headerlink" href="#triple-speed-ethernet-overview" title="Permanent link">&para;</a></h3>
+<p>The Triple-Speed Ethernet FPGA IP core consists of a 10/100/1000 Mbps Ethernet media access control (MAC) and physical coding sublayer (PCS) Intellectual Property (IP). This IP function enables FPGAs to interface to an external Ethernet PHY device, which interfaces to the Ethernet network.</p>
+<p>This IP is offered in MAC-only mode or in MAC+PHY mode. In the MAC only mode, the IP uses an external PHY chip to do signaling. The two supported interfaces to the external PHYs are: GMII (8-bit interface at 125 MHz SDR) and RGMII (4-bit interface at 125 MHz DDR).</p>
+<p>In the MAC+PHY mode, the PHY is realized using on-chip transceivers or LVDS I/O with dynamic phase alignment (DPA) logic that can operate up to 1.25 Gbps. SGMII or 1000Base-X protocol is used in this case. The usage of LVDS I/Os enables very scalable multiport gigabit Ethernet (GbE) system designs while saving the serial transceivers for higher performance protocols.</p>
+<p>Features</p>
 <ul>
-<li>Probing and resource allocation as well as memory mapping.</li>
-<li>It provides the support for busy detect interrupt.</li>
+<li>Complete 10/100/1000 Mbps Ethernet IP with all the necessary IP modules<ul>
+<li>10/100/1000 Mbps MAC, PCS, and PMA</li>
 </ul>
+</li>
+<li>Flexible IP options<ul>
+<li>MAC only, PCS only, MAC + PCS, MAC + PCS + PMA, PCS + PMA</li>
+<li>Many options for various applications and sizes as small as 900 logic elements (small-MAC)</li>
+<li>Standard-based statistics counters supporting simple network management protocol (SNMP) Management Information Base (MIB and MIB-II) and Remote Network Monitoring (RMON)</li>
+<li>Parameterizable FIFO or FIFO-less MAC options</li>
+<li>IEEE 1588 v2 high accuracy and high precision time stamping option in hardware IP<ul>
+<li>1-step and 2-step time sync</li>
+<li>Supports IEEE 1588 v2 PTP packet encapsulation in IPv4, IPv6, and Ethernet</li>
+<li>Real time of day clock generator (ToD) IP in design example</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Many external Ethernet interface options for various FPGA families<ul>
+<li>MII (10/100 Mbps), GMII, RGMII, and SGMII (10/100/1000 Mbps), 1000BASE-X, and TBI (1 Gbps)</li>
+<li>Management data I/O (MDIO) for external PHY device management</li>
+</ul>
+</li>
+</ul>
+<p><a class="glightbox" href="../images/functional_diagram.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Functional diagram" src="../images/functional_diagram.png" style="height:500px" /></a></p>
+<h2 id="driver-sources"><strong>Driver Sources</strong><a class="headerlink" href="#driver-sources" title="Permanent link">&para;</a></h2>
+<p>The source code for this driver can be found at <a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/net/ethernet/altera/">https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/net/ethernet/altera/altera_tse*</a>.  </p>
 <h2 id="kernel-configurations"><strong>Kernel Configurations</strong><a class="headerlink" href="#kernel-configurations" title="Permanent link">&para;</a></h2>
-<p>CONFIG_SERIAL_8250_DW</p>
-<p><a class="glightbox" href="../images/uart_config_path.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="uart_config_path" src="../images/uart_config_path.png" /></a></p>
+<p><a class="glightbox" href="../images/tse_configs.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="CONFIG_ALTERA_TSE" src="../images/tse_configs.png" /></a></p>
 <h2 id="device-tree"><strong>Device Tree</strong><a class="headerlink" href="#device-tree" title="Permanent link">&para;</a></h2>
-<p>Example Device tree location to configure the uart:</p>
-<p><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi">https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi</a></p>
-<p><a class="glightbox" href="../images/uart_device_tree.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="uart_device_tree" src="../images/uart_device_tree.png" /></a></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>tse_sub_0: ethernet@c0100000 {
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>        compatible = &quot;altr,tse-msgdma-1.0&quot;;
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        reg = &lt;0xc0100000 0x00000400&gt;,
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>              &lt;0xc0101000 0x00000020&gt;,
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>              &lt;0xc0102000 0x00000020&gt;,
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>              &lt;0xc0103000 0x00000008&gt;,
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>              &lt;0xc0104000 0x00000020&gt;,
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>              &lt;0xc0105000 0x00000020&gt;,
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>              &lt;0xc0106000 0x00000100&gt;;
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        reg-names = &quot;control_port&quot;, &quot;rx_csr&quot;, &quot;rx_desc&quot;, &quot;rx_resp&quot;, &quot;tx_csr&quot;, &quot;tx_desc&quot;, &quot;pcs&quot;;
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        interrupt-parent = &lt;&amp;intc&gt;;
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        interrupts = &lt;0 44 4&gt;,&lt;0 45 4&gt;; 
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        interrupt-names = &quot;rx_irq&quot;,&quot;tx_irq&quot;;
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        rx-fifo-depth = &lt;2048&gt;;
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        tx-fifo-depth = &lt;2048&gt;;
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        max-frame-size = &lt;1500&gt;;
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        local-mac-address = [ 00 00 00 00 00 00 ];
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        altr,has-supplementary-unicast;
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        altr,has-hash-multicast-filter;
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        sfp = &lt;&amp;sfp0&gt;;
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        phy-mode = &quot;sgmii&quot;;
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        managed = &quot;in-band-status&quot;;
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    };  
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    tse_sub_1_eth_tse_0: ethernet@1,00001000 {
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        compatible = &quot;altr,tse-msgdma-1.0&quot;;
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        reg = &lt;0x00001000 0x00000400&gt;,
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>              &lt;0x00001460 0x00000020&gt;,
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>              &lt;0x00001480 0x00000020&gt;,
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>              &lt;0x000014A0 0x00000008&gt;,
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>              &lt;0x00001400 0x00000020&gt;,
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>CONFIG_ALTERA_TSE              &lt;0x00001420 0x00000020&gt;;
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        reg-names = &quot;control_port&quot;, &quot;rx_csr&quot;, &quot;rx_desc&quot;, &quot;rx_resp&quot;, &quot;tx_csr&quot;, &quot;tx_desc&quot;;
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>        interrupt-parent = &lt;&amp;hps_0_arm_gic_0&gt;;
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>        interrupts = &lt;0 43 4&gt;, &lt;0 42 4&gt;; 
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>        interrupt-names = &quot;rx_irq&quot;, &quot;tx_irq&quot;;
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>        rx-fifo-depth = &lt;2048&gt;;
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>        tx-fifo-depth = &lt;2048&gt;;
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>        max-frame-size = &lt;1500&gt;;
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>        local-mac-address = [ 00 00 00 00 00 00 ];
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        phy-mode = &quot;gmii&quot;;
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        altr,has-supplementary-unicast;
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>        altr,has-hash-multicast-filter;
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>        phy-handle = &lt;&amp;phy1&gt;;
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>        mdio {
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>            compatible = &quot;altr,tse-mdio&quot;;
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>            #address-cells = &lt;1&gt;;
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>            #size-cells = &lt;0&gt;;
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>            phy1: ethernet-phy@1 {
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>                reg = &lt;0x1&gt;;
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>            };
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>        };
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    };  
+</code></pre></div>
+<h2 id="ptp-support"><strong>PTP Support</strong><a class="headerlink" href="#ptp-support" title="Permanent link">&para;</a></h2>
+<p>Ensure the board supports Precision Time Protocol (PTP). Then, append the following to your Triple Speed Ethernet (TSE) device tree node:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>altr,has-ptp
+</code></pre></div></p>
+<p>Note: For this feature only Agilex 7 has been well tested.</p>
 <h2 id="known-issues"><strong>Known Issues</strong><a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
-<p>None Known</p>
+<p>None known</p>
 <h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
 <p>Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
 No product or component can be absolutely secure. 
@@ -1862,7 +1884,7 @@ You are responsible for safety of the overall system, including compliance with 
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 25, 2024</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 30, 2024</span>
       
     
   </small>
@@ -1888,42 +1910,6 @@ You are responsible for safety of the overall system, including compliance with 
       
         <footer class="md-footer">
   
-    
-      
-      <nav class="md-footer__inner md-grid" aria-label="Footer" >
-        
-          
-          <a href="../../smmu/smmu/" class="md-footer__link md-footer__link--prev" aria-label="Previous: System Memory Management Unit" rel="prev">
-            <div class="md-footer__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                System Memory Management Unit
-              </div>
-            </div>
-          </a>
-        
-        
-          
-          <a href="../../usb2_0_otg/usb_2_0_otg/" class="md-footer__link md-footer__link--next" aria-label="Next: USB 2.0 OTG" rel="next">
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                USB 2.0 OTG
-              </div>
-            </div>
-            <div class="md-footer__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
     
   
   <div class="md-footer-meta md-typeset">
