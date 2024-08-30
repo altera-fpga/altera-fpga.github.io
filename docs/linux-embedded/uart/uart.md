@@ -4,7 +4,7 @@ Last updated: **August 30, 2024**
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/tty/serial/8250/8250_dw.c)
 
-**Devices supported**: Agilex 7, Agilex 5
+**Devices supported**: Agilex 7, Agilex 5, Stratix10, Cyclone V
 
 ## **Introduction**
 
@@ -57,3 +57,4 @@ You are responsible for safety of the overall system, including compliance with 
 <sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
 
 OpenCL and the OpenCL logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 
+

@@ -4,7 +4,7 @@ Last updated: **August 30, 2024**
 
 **Upstream Status**: Not Upstreamed
 
-**Devices supported**: Agilex 7
+**Devices supported**: Agilex 7, Stratix10, Cyclone V
 
 ## **Introduction**
 
@@ -57,3 +57,4 @@ You are responsible for safety of the overall system, including compliance with 
 <sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
 
 OpenCL and the OpenCL logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 
+
