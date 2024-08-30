@@ -1,6 +1,6 @@
 **Single Error Upset (SEU) Driver for Hard Processor System**
 
-Last updated: **August 14, 2024** 
+Last updated: **August 30, 2024** 
 
 **Upstream Status**: [In Progress](https://github.com/zephyrproject-rtos/zephyr/pull/67097)
 
