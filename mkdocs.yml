@@ -1,7 +1,7 @@
-
 site_name: Altera-FPGA Site 
 repo_url: https://github.com/altera-fpga
 repo_name: altera-fpga
+site_url: https://altera-fpga.github.io/
 
 theme:
   name: material
@@ -31,7 +31,6 @@ extra_css:
 extra:
   version:
     provider: mike
-    default: rel-24.2
   symlinks:
     - src: 'driver-list/driver-list-linux.md'
       dests:
@@ -66,10 +65,7 @@ plugins:
   - search:
       lang: en
   - symlink
-  - mike:
-      alias_type: symlink
-      redirect_template: null
-      deploy_prefix: ''
+  - mike:      
       canonical_version: null
       version_selector: true
       css_dir: css
