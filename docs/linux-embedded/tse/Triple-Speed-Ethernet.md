@@ -2,7 +2,7 @@
 # **Triple Speed Ethernet Driver**
 
 
-Last updated: **August 30, 2024** 
+Last updated: **August 31, 2024** 
 
 **Upstream Status**: Upstreamed
 
