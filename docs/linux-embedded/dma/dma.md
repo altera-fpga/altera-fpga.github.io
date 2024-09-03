@@ -1,6 +1,6 @@
 # **Direct Memory Access Controller (DMAC) Driver for Hard Processor System**
 
-Last updated: **August 31, 2024** 
+Last updated: **September 03, 2024** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c)
 

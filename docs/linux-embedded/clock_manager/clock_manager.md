@@ -1,6 +1,6 @@
 # **Clock Manager Driver for Hard Processor System**
 
-Last updated: **August 31, 2024** 
+Last updated: **September 03, 2024** 
 
 **Upstream Status**: No
 
