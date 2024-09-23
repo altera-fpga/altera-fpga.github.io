@@ -1744,6 +1744,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
@@ -1766,6 +1768,20 @@
     <li class="md-nav__item">
       <a href="../../../../../agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/" class="md-nav__link">
         Agilex™ 7 SoC HPS Remote System Update Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc/" class="md-nav__link">
+        Agilex™ 7 SoC HPS Multi-QSPI Remote System Update Example
       </a>
     </li>
   
@@ -2398,8 +2414,6 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 <a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>[  243.332653] UBIFS (ubi0:4): FS size: 167117440 bytes (159 MiB, 2555 LEBs), max 6500 LEBs, journal size 
 </code></pre></div>
 <h2 id="rebuilding-the-gsrd">Rebuilding the GSRD<a class="headerlink" href="#rebuilding-the-gsrd" title="Permanent link">&para;</a></h2>
-<!--{"type":"recipe", "name":"Agilex5GSRD.Modular", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf","$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/sdimage.tar.gz","$TOP_FOLDER/qspi_boot/agilex_flash_image.hps.jic"],"TOP_FOLDER":"gsrd.modular", "board_keywords":["DK-A5E065BB32AES1","SD"], "test_commands":["write-sd=$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/gsrd-console-image-agilex5.wic","write-jic=$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","boot-linux-qspi","wipe-sd","write-jic=$TOP_FOLDER/qspi_boot/agilex_flash_image.hps.jic","boot-linux-qspi"]}-->
-
 <h3 id="component-versions">Component Versions<a class="headerlink" href="#component-versions" title="Permanent link">&para;</a></h3>
 <p>Quartus Prime Pro v24.2 and the following software component versions were used to build the provided prebuilt binaries:</p>
 <table>
@@ -2482,19 +2496,14 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 <p>The following diagram shows an overview of how the build process works for this use case:</p>
 <p><a class="glightbox" href="../images/agilex5-build-sd-flow.svg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/agilex5-build-sd-flow.svg" /></a></p>
 <h5>Setup Environment</h5>
-<!--{"type":"step", "name":"Setup Environment"}-->
-<p>1. Create the top folder to store all the build artifacts:</p>
-<!--{"type":"code" }-->
 
+<p>1. Create the top folder to store all the build artifacts:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd.modular
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>mkdir<span class="w"> </span>gsrd.modular
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nb">cd</span><span class="w"> </span>gsrd.modular
 <a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>2. Download and setup the build toolchain. It will be used only by the GHRD makefile to build the debug HPS FSBL, to build the _hps_debug.sof file:</p>
-<!--{"type":"code" }-->
-
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>wget<span class="w"> </span>https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel<span class="se">\</span>
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
@@ -2504,18 +2513,12 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 <a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>arm64
 <a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>3. Set up the Quartus tools in the PATH, so they are accessible without full path</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.2/quartus/
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
 </code></pre></div>
-<!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
-
 <h5>Build Hardware Design</h5>
-<!--{"type":"step", "name":"Build Hardware Design", "results":["$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof","$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof"]}-->
-<!--{"type":"code" }-->
+
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga<span class="w"> </span>agilex5_soc_devkit_ghrd
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.2_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/ghrd-socfpga
@@ -2527,33 +2530,24 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 <a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>make<span class="w"> </span>all
 <a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
-<!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
 <p>The following files are created:</p>
 <ul>
 <li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof</code></li>
 <li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof</code></li>
 </ul>
 <h5>Build Core RBF</h5>
-<!--{"type":"step", "name":"Build Core RBF", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf"]}-->
-<!--{"type":"code" }-->
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.rbf
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.rbf<span class="w"> </span>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
-<!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
 <p>The following file is created:</p>
 <ul>
 <li><code>$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf</code></li>
 </ul>
-<!--{"type":"step","name":"Build Yocto", "results":["$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/sdimage.tar.gz","$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/console-image-minimal-agilex5_nor.ubifs","$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/kernel.itb","$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/boot.scr.uimg","$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex","$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb"]}-->
-
 <h5>Set Up Yocto</h5>
 
 <p>1. Clone the Yocto script and prepare the build:</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.2_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/gsrd-socfpga
@@ -2561,8 +2555,6 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 <a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>.<span class="w"> </span>agilex5_modular-gsrd-build.sh
 <a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>build_setup
 </code></pre></div>
-<!--{"type":"/code" }-->
-
 <h5>Customize Yocto</h5>
 
 <p>1. Save the <code>core.rbf</code> as <code>$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_modular_gsrd_ghrd.core.rbf</code></p>
@@ -2572,7 +2564,6 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 <li>Delete the line <code>SRC_URI[agilex5_modular_gsrd_core.sha256sum] = "bf11c8cb3b6d9487f93ce0e055b1e5256998a25b25ac4690bef3fcd6225ee1ae"</code>
 The above are achieved by the following instructions:</li>
 </ul>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nv">CORE_RBF</span><span class="o">=</span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_modular_gsrd_ghrd.core.rbf
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/ghrd_a5ed065bb32ae6sr0.core.rbf<span class="w"> </span><span class="nv">$CORE_RBF</span>
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="nv">OLD_URI</span><span class="o">=</span><span class="s2">&quot;\${GHRD_REPO}\/agilex5_modular_gsrd_\${ARM64_GHRD_CORE_RBF};name=agilex5_modular_gsrd_core&quot;</span>
@@ -2581,35 +2572,25 @@ The above are achieved by the following instructions:</li>
 <a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/</span><span class="nv">$OLD_URI</span><span class="s2">/</span><span class="nv">$NEW_URI</span><span class="s2">/g&quot;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
 <a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;/agilex5_modular_gsrd_core\.sha256sum/d&quot;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
 </code></pre></div>
-<!--{"type":"/code" }-->
-
 <h5>Build Yocto</h5>
 
 <p>Remove reference to patch which was retired after 24.2 tag was applied:</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/fix-potential-signed-overflow-in-pointer-arithmatic.patch/d&#39;</span><span class="w"> </span>meta-intel-fpga-refdes/recipes-connectivity/openssh/openssh_%.bbappend
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>Build Yocto:</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>bitbake_image
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>Gather files:</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>package
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>The following files are created:</p>
 <ul>
 <li><code>$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex</code></li>
 <li><code>$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot.itb</code></li>
 <li><code>$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/sdimage.tar.gz</code></li>
 </ul>
-<!--{"type":"/step" }-->
 <h5>Build QSPI Image</h5>
-<!--{"type":"step", "name":"Build QSPI Image", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic"]}-->
-<!--{"type":"code" }-->
+
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.jic<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.core.rbf
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
@@ -2620,16 +2601,12 @@ The above are achieved by the following instructions:</li>
 <a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
-<!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
 <p>The following file is created:</p>
 <ul>
 <li><code>$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic</code></li>
 </ul>
 <h5>Build HPS RBF</h5>
 <p>This is an optional step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.</p>
-<!--{"type":"step", "name":"Build HPS RBF", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf"]}-->
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.rbf
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
@@ -2637,42 +2614,33 @@ The above are achieved by the following instructions:</li>
 <a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
-<!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
 <p>The following file is created:</p>
 <ul>
 <li><code>$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf</code></li>
 </ul>
 <h3 id="build-qspi-boot-binaries">Build QSPI Boot Binaries<a class="headerlink" href="#build-qspi-boot-binaries" title="Permanent link">&para;</a></h3>
 <hr/>
-<!--{"type":"step","name":"Boot from QSPI", "results":["$TOP_FOLDER/qspi_boot/agilex_flash_image.hps.jic"]}-->
+
 <p>The diagram below shows how booting from QSPI JIC is built. The hardware project compilation and Yocto build remain the same, and the QSPI JIC is built based on the resulted files:
 <a class="glightbox" href="../images/agilex5-build-qspi-flow.svg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/agilex5-build-qspi-flow.svg" /></a></p>
 <p>1. Create the folder to contain all the files:</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>qspi_boot
 <a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>mkdir<span class="w"> </span>qspi_boot
 <a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="nb">cd</span><span class="w"> </span>qspi_boot
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>2. Get the <code>ubinize.cfg</code> file which contains the details on how to build the <code>root.ubi</code> volume, and <code>agilex5_devkit_flash_image_hps.pfg</code> which contains the instructions for Programming File Generator on how to create the .jic file:</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi/ubinize.cfg
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi/agilex5_devkit_flash_image_hps.pfg
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>3. Link to the files that are needed from building the hardware design, and yocto:</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_modular-gsrd-images/console-image-minimal-agilex5_nor.ubifs<span class="w"> </span>rootfs.ubifs
 <a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_modular-gsrd-images/kernel.itb<span class="w"> </span>.
 <a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/boot.scr.uimg
 <a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span>.
 <a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof<span class="w"> </span>.
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>4. Process the u-boot.itb file to be exactly 2MB in size:</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb<span class="w"> </span>.
 <a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="nv">uboot_part_size</span><span class="o">=</span><span class="m">2</span>*1024*1024
 <a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="nv">uboot_size</span><span class="o">=</span><span class="sb">`</span>wc<span class="w"> </span>-c<span class="w"> </span>&lt;<span class="w"> </span>u-boot.itb<span class="sb">`</span>
@@ -2680,32 +2648,24 @@ The above are achieved by the following instructions:</li>
 <a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>truncate<span class="w"> </span>-s<span class="w"> </span>+<span class="nv">$uboot_pad</span><span class="w"> </span>u-boot.itb
 <a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>mv<span class="w"> </span>u-boot.itb<span class="w"> </span>u-boot.bin
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>5. Create the <code>root.ubi</code> file and rename it to <code>hps.bin</code> as Programming File Generator needs the <code>.bin</code> extension:</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>ubinize<span class="w"> </span>-o<span class="w"> </span>root.ubi<span class="w"> </span>-p<span class="w"> </span><span class="m">65536</span><span class="w"> </span>-m<span class="w"> </span><span class="m">1</span><span class="w"> </span>-s<span class="w"> </span><span class="m">1</span><span class="w"> </span>ubinize.cfg
 <a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>ln<span class="w"> </span>-s<span class="w"> </span>root.ubi<span class="w"> </span>hps.bin
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>6. Create the JIC file:</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex5_devkit_flash_image_hps.pfg
 </code></pre></div>
-<!--{"type":"/code" }-->
-
 <p>The following file is created:</p>
 <ul>
 <li><code>$TOP_FOLDER/qspi_boot/agilex_flash_image.hps.jic</code></li>
 </ul>
-<!--{"type":"/step" }-->
-<!--{"type":"/recipe" }-->
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 9, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 23, 2024</span>
       
         <br>
         Created:

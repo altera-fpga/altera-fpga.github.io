@@ -2017,6 +2017,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
@@ -2039,6 +2041,20 @@
     <li class="md-nav__item">
       <a href="../../../../../agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/" class="md-nav__link">
         Agilex™ 7 SoC HPS Remote System Update Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc/" class="md-nav__link">
+        Agilex™ 7 SoC HPS Multi-QSPI Remote System Update Example
       </a>
     </li>
   
@@ -2700,8 +2716,6 @@ Create the !ZephyrGSRD directory.
 - build/agilex5/release/bl2.bin
 - build/agilex5/release/bl31.bin
 - tools/fiptool/fiptool</p>
-<!-- Proposed future structure -->
-
 <h3 id="zephyr-build-environment-setup">Zephyr Build Environment Setup<a class="headerlink" href="#zephyr-build-environment-setup" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Create a new virtual environment and activate it</li>
@@ -2821,8 +2835,6 @@ Create the !ZephyrGSRD directory.
 <ul>
 <li>Obtain the make_sdimage.sh script.</li>
 </ul>
-<!-- Use wget once public -->
-
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/sdmmc_boot/make_sdimage.sh
 <a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>chmod<span class="w"> </span>+x<span class="w"> </span>make_sdimage.sh
@@ -3681,8 +3693,6 @@ Remove CONFIG_SMP=y and CONFIG_MP_MAX_NUM_CPUS=4 within intel_socfpga_agilex5_so
 <a id="__codelineno-74-6" name="__codelineno-74-6" href="#__codelineno-74-6"></a>./fiptool<span class="w"> </span>create<span class="w"> </span>--soc-fw<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/bin/atf/bl31.bin<span class="w">  </span>--nt-fw<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/bin/zephyr/zephyr.bin<span class="w"> </span>bin/fip.bin
 </code></pre></div>
 <p>To create the boot image, we will use the creating <a href="#sd-card-image-binaries">SD Card Image binaries</a> section as base. Refer back to <a href="#creating-boot-images">Creating Boot Images</a> to boot from other boot devices.</p>
-<!-- FINDME -->
-
 <ul>
 <li>Obtain the make_sdimage.sh script.</li>
 </ul>
@@ -3818,7 +3828,7 @@ and <a href="#booting-from-qspi-binaries">Booting from QSPI binaries</a>.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 14, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 23, 2024</span>
       
         <br>
         Created:

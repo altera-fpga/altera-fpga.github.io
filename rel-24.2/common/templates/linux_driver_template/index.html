@@ -17,7 +17,7 @@
     
     
       
-        <title>Linux driver template - Altera-FPGA Site</title>
+        <title>**Host Attach DFL FPGA Management Engine IP Driver** - Altera-FPGA Site</title>
       
     
     
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Linux driver template
+              **Host Attach DFL FPGA Management Engine IP Driver**
             
           </span>
         </div>
@@ -1562,6 +1562,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
@@ -1584,6 +1586,20 @@
     <li class="md-nav__item">
       <a href="../../../embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/" class="md-nav__link">
         Agilex™ 7 SoC HPS Remote System Update Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc/" class="md-nav__link">
+        Agilex™ 7 SoC HPS Multi-QSPI Remote System Update Example
       </a>
     </li>
   
@@ -1726,18 +1742,12 @@
   
 
 
-<!--This template provides an outline for you to create your Linux driver page.  Below each guidance comment there is an example for your to reference.-->
 <h1 id="host-attach-dfl-fpga-management-engine-ip-driver"><strong>Host Attach DFL FPGA Management Engine IP Driver</strong><a class="headerlink" href="#host-attach-dfl-fpga-management-engine-ip-driver" title="Permanent link">&para;</a></h1>
-<!--Add this date comment below to include date document was last changed-->
-<p>Last updated: <strong>September 03, 2024</strong> </p>
-<!--Note whether your driver is upstreamed or not.  If it is upstreamed, provide linux kernel link-->
+<p>Last updated: <strong>September 23, 2024</strong> </p>
 <p><strong>Upstream Status</strong>: <a href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/fpga?h=master">Upstreamed</a></p>
-<!--Note devices supported-->
 <p><strong>Devices supported</strong>: Stratix 10, Agilex 7</p>
-<!--Introduction provides details of IP driver-->
 <h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>This set of drivers is designed to support FME functionality, as implemented under FPGA Device Feature List (DFL) framework. It is used to expose FME capabilities.</p>
-<!--If this is an OFS Driver include this table that notes the driver, what it maps to, the source and whether the driver is optional or not for DFL.-->
 <table>
 <thead>
 <tr>
@@ -1774,23 +1784,18 @@
 </tr>
 </tbody>
 </table>
-<!--If there are multiple drivers, you can create a driver dependency chart using mermaid.  Below is an example; to learn more about mermaid see https://mermaid.js.org/ -->
 <pre class="mermaid"><code>graph TD;
     A[dfl-fme]--&gt;B[dfl-fme-mgr];
     A[dfl-fme]--&gt;C[dfl-fme-br];
     A[dfl-fme]--&gt;D[dfl-fme-region]; </code></pre>
-<!--Describe the IP(s) that the driver controls, provide a block diagram and link to any user guide documentation. -->
 <h2 id="fpga-management-engine-ip"><strong>FPGA Management Engine IP</strong><a class="headerlink" href="#fpga-management-engine-ip" title="Permanent link">&para;</a></h2>
 <p>The FPGA Management Engine IP provides management features for the platform and controls reset and loading of the AFU into the partial reconfiguration region of the FPGA. Implementation of a PR region is optional.</p>
 <p>Each FME feature exposes its capability to host software drivers through a device feature header (DFH) register found at the beginning of its control status register (CSR) space. The FME CSR maps to physical function 0 (PF0) Base address register 0 (BAR0) so that software can access it through a single PCIe link. For more information about DFHs, refer to the <a href="https://ofs.github.io/latest/hw/d5005/reference_manuals/ofs_fim/mnl_fim_ofs_d5005/#721-device-feature-header-dfh-structure">Device Feature Header (DFH) structure</a>.</p>
-<!--Describe the driver source destinations. -->
 <h2 id="driver-sources"><strong>Driver Sources</strong><a class="headerlink" href="#driver-sources" title="Permanent link">&para;</a></h2>
 <p>The source code for these drivers can be found at https://github.com/OFS/linux-dfl/tree/master/drivers/fpga, where branches labelled fpga-ofs-dev-*-lts correspond with the latest developmental versions of the DFL driver suite on that specific kernel version.</p>
-<!--Provide Kernel Configurations and images-->
 <h2 id="driver-capabilities"><strong>Driver Capabilities</strong><a class="headerlink" href="#driver-capabilities" title="Permanent link">&para;</a></h2>
 <p>This driver set is a DFL specific implementation of generic FPGA drivers available in the kernel. <code>dfl-fme-mgr</code> is a DFL specific instantiation of the generic FPGA manager (drivers/linux/fpga/fpga-mgr.c), <code>dfl-fme-br</code> builds on top of a generic FPGA bridge (drivers/fpga/fpga-bridge.c), and <code>dfl-fme-region</code> instantiates an FPGA region. All three supplementary DFL Drivers depend on <code>dfl-fme</code>.</p>
 <p>The DFL FME driver is a feature device implemented under the Device Feature List (DFL) framework. It enables the platform driver for the FME IP and implements all FPGA platform level management features. Only one FME is created per DFL based FPGA device. The DFL Bridge, Manager, and Region drivers are only required when attempting to configure a PR region in the FIM.</p>
-<!--Provide Kernel Configurations and images-->
 <h2 id="kernel-configurations"><strong>Kernel Configurations</strong><a class="headerlink" href="#kernel-configurations" title="Permanent link">&para;</a></h2>
 <p>FPGA_DFL_FME</p>
 <p><a class="glightbox" href="./images/dfl_fme_menuconfig.PNG" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="./images/dfl_fme_menuconfig.PNG" /></a></p>
@@ -1800,10 +1805,8 @@
 <p><a class="glightbox" href="./images/dfl_fme_br_menuconfig.PNG" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="./images/dfl_fme_br_menuconfig.PNG" /></a></p>
 <p>FPGA_DFL_FME_REGION</p>
 <p><a class="glightbox" href="./images/dfl_fme_region_menuconfig.PNG" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="./images/dfl_fme_region_menuconfig.PNG" /></a></p>
-<!--If there are any known issues with the driver, please list them here or provide link-->
 <h2 id="known-issues"><strong>Known Issues</strong><a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
 <p>None known</p>
-<!--If the driver is used in an example design, describe it and provide links.  If there is a block diagram for the example design, include it. -->
 <h2 id="example-designs"><strong>Example Designs</strong><a class="headerlink" href="#example-designs" title="Permanent link">&para;</a></h2>
 <p>The FPGA Management Engine IP is included as a part of the FIM design for <a href="https://github.com/OFS/ofs-agx7-pcie-attach">PCIe Attach supporting DFL</a>, <a href="https://github.com/OFS/ofs-d5005.git">Stratix 10 PCIe Attach</a>, and <a href="https://github.com/OFS/ofs-f2000x-pl">SoC Attach</a>. Please refer to <a href="https://ofs.github.io/">site</a> for more information about these designs.</p>
 
@@ -1812,7 +1815,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 3, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 23, 2024</span>
       
         <br>
         Created:

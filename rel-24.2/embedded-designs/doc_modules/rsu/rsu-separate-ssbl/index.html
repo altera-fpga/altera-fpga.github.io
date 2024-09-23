@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#using-separate-ssbl-per-bitstream-example" class="md-skip">
+        <a href="#using-separate-ssbl-per-bitstream" class="md-skip">
           Skip to content
         </a>
       
@@ -1562,6 +1562,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
@@ -1584,6 +1586,20 @@
     <li class="md-nav__item">
       <a href="../../../agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/" class="md-nav__link">
         Agilex™ 7 SoC HPS Remote System Update Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc/" class="md-nav__link">
+        Agilex™ 7 SoC HPS Multi-QSPI Remote System Update Example
       </a>
     </li>
   
@@ -1728,7 +1744,7 @@
 
   <h1>Rsu separate ssbl</h1>
 
-<h2 id="using-separate-ssbl-per-bitstream-example">Using Separate SSBL Per Bitstream Example<a class="headerlink" href="#using-separate-ssbl-per-bitstream-example" title="Permanent link">&para;</a></h2>
+<h2 id="using-separate-ssbl-per-bitstream">Using Separate SSBL Per Bitstream<a class="headerlink" href="#using-separate-ssbl-per-bitstream" title="Permanent link">&para;</a></h2>
 <p>When using Remote System Update on Stratix 10, Agilex 7, Agilex 5 and N5X devices, each configuration bitstream from QSPI contains the HPS FSBL (First Stage Bootloader), specifically U-Boot SPL. In order to allow the most flexibility and compatibility, you must design your system so that each bitstream loads its own copy of the HPS SSBL, specifically U-Boot image.</p>
 <p>This page presents details on how to achieve this for both the cases when U-Boot images are stored in QSPI flash, and when they are stored in SD card. </p>
 <p>Refer to the following documents for details about the Remote System Update.</p>
@@ -1869,7 +1885,7 @@ For each application, a specific U-Boot is required to be built. Name correspond
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 30, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 23, 2024</span>
       
         <br>
         Created:

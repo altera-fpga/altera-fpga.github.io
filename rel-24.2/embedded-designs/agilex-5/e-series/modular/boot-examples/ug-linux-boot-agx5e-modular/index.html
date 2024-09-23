@@ -1662,6 +1662,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
@@ -1684,6 +1686,20 @@
     <li class="md-nav__item">
       <a href="../../../../../agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/" class="md-nav__link">
         Agilex™ 7 SoC HPS Remote System Update Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc/" class="md-nav__link">
+        Agilex™ 7 SoC HPS Multi-QSPI Remote System Update Example
       </a>
     </li>
   
@@ -1913,23 +1929,15 @@
 <p>Refer to <a href="../../gsrd/ug-gsrd-agx5e-modular/#release-notes">Release Notes</a> for release information.</p>
 <h2 id="boot-from-sd-card">Boot from SD Card<a class="headerlink" href="#boot-from-sd-card" title="Permanent link">&para;</a></h2>
 <p>This section demonstrates how to build Linux system from separate components, which boots from SD card.</p>
-<!--{"type":"recipe", "name":"Bootloader.Modular", "results":["$TOP_FOLDER/ghrd.hps.jic","$TOP_FOLDER/ghrd.hps.rbf","$TOP_FOLDER/sd_card/sdcard.img","$TOP_FOLDER/qspi-boot/flash_image.hps.jic"],"TOP_FOLDER":"bootloader.modular", "board_keywords":["MK-A5E065BB32AES1","SD"], "test_commands":["write-sd=$TOP_FOLDER/sd_card/sdcard.img","write-jic=$TOP_FOLDER/ghrd.hps.jic","boot-linux-qspi","wipe-sd","write-jic=$TOP_FOLDER/qspi-boot/flash_image.hps.jic","boot-linux-qspi"]}-->
-
 <h3>Setup Environment</h3>
-<!--{"type":"step", "name":"Setup Environment"}-->
 
 <p>1. Create the top folder to store all the build artifacts:</p>
-<!--{"type":"code" }-->
-
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>bootloader.modular
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>mkdir<span class="w"> </span>bootloader.modular
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">cd</span><span class="w"> </span>bootloader.modular
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>2. Download and setup the build toolchain. It will be used only by the GHRD makefile to build the debug HPS FSBL, to build the _hps_debug.sof file:</p>
-<!--{"type":"code" }-->
-
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>wget<span class="w"> </span>https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel<span class="se">\</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
@@ -1939,19 +1947,11 @@
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>arm64
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>3. Set up the Quartus tools in the PATH, so they are accessible without full path</p>
-<!--{"type":"code" }-->
-
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.2/quartus/
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
 </code></pre></div>
-<!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
-
 <h3>Build Hardware Design</h3>
-<!--{"type":"step", "name":"Build Hardware Design", "results":["$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof","$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof"]}-->
-<!--{"type":"code" }-->
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga<span class="w"> </span>agilex5_soc_devkit_ghrd
@@ -1964,17 +1964,12 @@
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>make<span class="w"> </span>all
 <a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>The following files are created:</p>
 <ul>
 <li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof</code></li>
 <li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof</code></li>
 </ul>
-<!--{"type":"/step" }-->
-
 <h3>Build Arm Trusted Firmware</h3>
-<!--{"type":"step", "name":"Build Arm Trusted Firmware", "results":["$TOP_FOLDER/arm-trusted-firmware/build/agilex5/release/bl31.bin"]}-->
-<!--{"type":"code" }-->
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>arm-trusted-firmware
@@ -1983,16 +1978,11 @@
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">48</span><span class="w"> </span><span class="nv">PLAT</span><span class="o">=</span>agilex5<span class="w"> </span>bl31<span class="w"> </span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>The following file is created:</p>
 <ul>
 <li><code>$TOP_FOLDER/arm-trusted-firmware/build/agilex5/release/bl31.bin</code></li>
 </ul>
-<!--{"type":"/step" }-->
-
 <h3>Build U-Boot</h3>
-<!--{"type":"step", "name":"Build U-Boot", "results":["$TOP_FOLDER/u-boot-socfpga/u-boot.itb","$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex"]}-->
-<!--{"type":"code" }-->
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>u-boot-socfpga
@@ -2054,17 +2044,12 @@
 <a id="__codelineno-5-58" name="__codelineno-5-58" href="#__codelineno-5-58"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">64</span>
 <a id="__codelineno-5-59" name="__codelineno-5-59" href="#__codelineno-5-59"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>The following files are created:</p>
 <ul>
 <li><code>$TOP_FOLDER/u-boot-socfpga/u-boot.itb</code></li>
 <li><code>$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex</code></li>
 </ul>
-<!--{"type":"/step" }-->
-
 <h3>Build QSPI Image</h3>
-<!--{"type":"step", "name":"Build QSPI Image", "results":["$TOP_FOLDER/ghrd.hps.jic"]}-->
-<!--{"type":"code" }-->
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof<span class="w"> </span>ghrd.jic<span class="w"> </span><span class="se">\</span>
@@ -2074,33 +2059,23 @@
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>The following file is created:</p>
 <ul>
 <li><code>$TOP_FOLDER/ghrd.hps.jic</code></li>
 </ul>
-<!--{"type":"/step" }-->
-
 <h3>Build HPS RBF</h3>
-<!--{"type":"step", "name":"Build HPS RBF", "results":["$TOP_FOLDER/ghrd.hps.rbf"]}-->
-<p>This is an optional step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.</p>
-<!--{"type":"code" }-->
 
+<p>This is an optional step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof<span class="w"> </span>ghrd.rbf<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span><span class="nv">$TOP_FOLDER</span>/u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>The following file is created:</p>
 <ul>
 <li>`$TOP_FOLDER/ghrd.hps.rbf</li>
 </ul>
-<!--{"type":"/step" }-->
-
 <h3>Build Linux</h3>
-<!--{"type":"step", "name":"Build Linux", "results":["$TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image","$TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dtb"]}-->
-<!--{"type":"code" }-->
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga
@@ -2109,17 +2084,12 @@
 <a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>make<span class="w"> </span>defconfig<span class="w"> </span>
 <a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">64</span><span class="w"> </span>Image<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>intel/socfpga_agilex5_socdk.dtb<span class="w"> </span>
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>The following files are created:</p>
 <ul>
 <li><code>$TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dtb</code></li>
 <li><code>$TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image</code></li>
 </ul>
-<!--{"type":"/step" }-->
-
 <h3>Build Rootfs</h3>
-<!--{"type":"step", "name":"Build Rootfs", "results":["$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz"]}-->
-<!--{"type":"code" }-->
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>yocto<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>yocto<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>yocto
@@ -2133,16 +2103,11 @@
 <a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;CORE_IMAGE_EXTRA_INSTALL += &quot;openssh gdbserver&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
 <a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>bitbake<span class="w"> </span>core-image-minimal
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>The following file is created:</p>
 <ul>
 <li><code>$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz</code></li>
 </ul>
-<!--{"type":"/step" }-->
-
 <h3>Create SD Card Image</h3>
-<!--{"type":"step", "name":"Create SD Card Image", "results":["$TOP_FOLDER/sd_card/sdcard.img"]}-->
-<!--{"type":"code" }-->
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>sd_card<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>sd_card<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>sd_card
@@ -2165,7 +2130,6 @@
 <a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>-n<span class="w"> </span>sdcard.img
 <a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>The following file is created:</p>
 <ul>
 <li><code>$TOP_FOLDER/sd_card/sdcard.img</code></li>
@@ -2201,12 +2165,8 @@
 <p>2. Set MSEL dipswitch S4 on SOM to ASX4 (QSpI): ON-ON</p>
 <p>3. Power up the board</p>
 <p>4. Wait for Linux to boot, use <code>root</code> as user name, and no password wil be requested.</p>
-<!--{"type":"/step" }-->
-
 <h2 id="boot-from-qspi">Boot from QSPI<a class="headerlink" href="#boot-from-qspi" title="Permanent link">&para;</a></h2>
 <p>This section demonstrates how to build Linux system from separate components, which boots from QSPI.</p>
-<!--{"type":"step", "name":"Boot From QSPI", "results":["$TOP_FOLDER/qspi-boot/flash_image.hps.jic"]}-->
-
 <p>This section presents how to build the binaries and boot from QSPI with the HPS Enablement Board.
 While the example is based on the GSRD, it contains the following differences:</p>
 <ul>
@@ -2215,14 +2175,10 @@ While the example is based on the GSRD, it contains the following differences:</
 <li>kernel.itb file contains only one set of core.rbf, kernel and device tree files, targeted for this scenario</li>
 </ul>
 <p>1. Prepare the top folder</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/qspi-boot
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>mkdir<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/qspi-boot
 </code></pre></div>
-<!--{"type":"/code" }-->
-
 <p>2. Build U-Boot:</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/qspi-boot
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>u-boot-socfpga
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.2_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/u-boot-socfpga
@@ -2282,14 +2238,12 @@ While the example is based on the GSRD, it contains the following differences:</
 <a id="__codelineno-14-57" name="__codelineno-14-57" href="#__codelineno-14-57"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">64</span>
 <a id="__codelineno-14-58" name="__codelineno-14-58" href="#__codelineno-14-58"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>The following files are created:</p>
 <ul>
 <li><code>$TOP_FOLDER/qspi-boot/u-boot-socfpga/u-boot.itb</code></li>
 <li><code>$TOP_FOLDER/qspi-boot/u-boot-socfpga/spl/u-boot-spl-dtb.hex</code></li>
 </ul>
 <p>3. Build <code>kernel.itb</code> FIT file containing kernel, device tree and fpga fabric configuration file:</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/qspi-boot
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>core.rbf<span class="w"> </span>devicetree.dtb<span class="w"> </span>Image.lzma<span class="w"> </span>kernel.its<span class="w"> </span>kernel.itb
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>ln<span class="w"> </span>-s<span class="w"> </span>../ghrd.core.rbf<span class="w"> </span>core.rbf
@@ -2366,13 +2320,11 @@ While the example is based on the GSRD, it contains the following differences:</
 <a id="__codelineno-15-74" name="__codelineno-15-74" href="#__codelineno-15-74"></a><span class="s">EOF</span>
 <a id="__codelineno-15-75" name="__codelineno-15-75" href="#__codelineno-15-75"></a>./u-boot-socfpga/tools/mkimage<span class="w"> </span>-f<span class="w"> </span>kernel.its<span class="w"> </span>kernel.itb
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>The following file is created:</p>
 <ul>
 <li><code>$TOP_FOLDER/qspi-boot/kernel.itb</code></li>
 </ul>
 <p>4. Create U-Boot binary <code>u-boot.bin</code> with a size of exactly 2MB:</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>cp<span class="w"> </span>u-boot-socfpga/u-boot.itb<span class="w"> </span>.
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nv">uboot_part_size</span><span class="o">=</span><span class="m">2</span>*1024*1024
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="nv">uboot_size</span><span class="o">=</span><span class="sb">`</span>wc<span class="w"> </span>-c<span class="w"> </span>&lt;<span class="w"> </span>u-boot.itb<span class="sb">`</span>
@@ -2380,22 +2332,17 @@ While the example is based on the GSRD, it contains the following differences:</
 <a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>truncate<span class="w"> </span>-s<span class="w"> </span>+<span class="nv">$uboot_pad</span><span class="w"> </span>u-boot.itb
 <a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>mv<span class="w"> </span>u-boot.itb<span class="w"> </span>u-boot.bin
 </code></pre></div>
-<!--{"type":"/code" }-->
-
 <p>5. Build the <code>rootfs.ubifs</code> file:</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>rm<span class="w"> </span>-rf<span class="w"> </span>rootfs<span class="w"> </span>rootfs.ubifs
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>mkdir<span class="w"> </span>rootfs<span class="w"> </span>
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>tar<span class="w"> </span>-xzvf<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz<span class="w"> </span>-C<span class="w"> </span>rootfs<span class="w"> </span>
 <a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>mkfs.ubifs<span class="w"> </span>-r<span class="w"> </span>rootfs<span class="w"> </span>-F<span class="w"> </span>-e<span class="w"> </span><span class="m">65408</span><span class="w"> </span>-m<span class="w"> </span><span class="m">1</span><span class="w"> </span>-c<span class="w"> </span><span class="m">6500</span><span class="w"> </span>-o<span class="w"> </span>rootfs.ubifs<span class="w"> </span>
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>The following file is created:</p>
 <ul>
 <li><code>$TOP_FOLDER/qspi-boot/rootfs.ubifs</code></li>
 </ul>
 <p>6. Build the <code>root.ubi</code> file:</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; ubinize.cfg</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="s">[env]</span>
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="s">mode=ubi</span>
@@ -2437,13 +2384,11 @@ While the example is based on the GSRD, it contains the following differences:</
 <a id="__codelineno-18-39" name="__codelineno-18-39" href="#__codelineno-18-39"></a><span class="s">EOF</span>
 <a id="__codelineno-18-40" name="__codelineno-18-40" href="#__codelineno-18-40"></a>ubinize<span class="w"> </span>-o<span class="w"> </span>root.ubi<span class="w"> </span>-p<span class="w"> </span><span class="m">65536</span><span class="w"> </span>-m<span class="w"> </span><span class="m">1</span><span class="w"> </span>-s<span class="w"> </span><span class="m">1</span><span class="w"> </span>ubinize.cfg
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>The following file is created:</p>
 <ul>
 <li><code>$TOP_FOLDER/qspi-boot/root.ubi</code></li>
 </ul>
 <p>7. Build the QSPI flash image:</p>
-<!--{"type":"code" }-->
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof<span class="w"> </span>fpga.sof
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>ln<span class="w"> </span>-s<span class="w"> </span>u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span>spl.hex
 <a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>ln<span class="w"> </span>-s<span class="w"> </span>root.ubi<span class="w"> </span>hps.bin
@@ -2492,7 +2437,6 @@ While the example is based on the GSRD, it contains the following differences:</
 <a id="__codelineno-19-46" name="__codelineno-19-46" href="#__codelineno-19-46"></a><span class="s">EOF</span>
 <a id="__codelineno-19-47" name="__codelineno-19-47" href="#__codelineno-19-47"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>flash_image.pfg
 </code></pre></div>
-<!--{"type":"/code" }-->
 <p>The following file is created:</p>
 <ul>
 <li><code>$TOP_FOLDER/qspi-boot/flash_image.hps.jic</code></li>
@@ -2513,15 +2457,13 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <p>2. Set MSEL dipswitch S4 on SOM to ASX4 (QSpI): ON-ON</p>
 <p>3. Power up the board</p>
 <p>4. Wait for Linux to boot, use <code>root</code> as user name, and no password wil be requested.</p>
-<!--{"type":"/step" }-->
-<!--{"type":"/recipe" }-->
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 7, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 23, 2024</span>
       
         <br>
         Created:
