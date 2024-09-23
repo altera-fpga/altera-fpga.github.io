@@ -1,4 +1,4 @@
-## Using Separate SSBL Per Bitstream Example
+## Using Separate SSBL Per Bitstream
 
 When using Remote System Update on Stratix 10, Agilex 7, Agilex 5 and N5X devices, each configuration bitstream from QSPI contains the HPS FSBL (First Stage Bootloader), specifically U-Boot SPL. In order to allow the most flexibility and compatibility, you must design your system so that each bitstream loads its own copy of the HPS SSBL, specifically U-Boot image.
 

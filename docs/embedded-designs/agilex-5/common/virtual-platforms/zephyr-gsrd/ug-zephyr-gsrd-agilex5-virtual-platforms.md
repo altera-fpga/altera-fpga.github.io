@@ -389,7 +389,7 @@ The previous instructions will produce (in the $TOP_FOLDER/arm-trusted-firmware 
 - build/agilex5/release/bl31.bin
 - tools/fiptool/fiptool
 
-<!-- Proposed future structure -->
+
 
 ### Zephyr Build Environment Setup
 
@@ -533,7 +533,7 @@ To build the "SDCard Image" for simics use the following commands:
 
 - Obtain the make_sdimage.sh script.
   
-<!-- Use wget once public -->
+
 
 ```bash
 cd $TOP_FOLDER
@@ -1385,7 +1385,7 @@ ln -s $TOP_FOLDER/zephyrproject/zephyr/agilex5/zephyr/  bin/zephyr
 ```
 
 To create the boot image, we will use the creating [SD Card Image binaries](#sd-card-image-binaries) section as base. Refer back to [Creating Boot Images](#creating-boot-images) to boot from other boot devices.
-<!-- FINDME -->
+
 
 - Obtain the make_sdimage.sh script.
 

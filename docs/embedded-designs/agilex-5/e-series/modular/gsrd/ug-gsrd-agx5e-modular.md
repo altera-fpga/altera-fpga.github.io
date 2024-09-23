@@ -399,7 +399,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;agilex_flash_image.hps.jic"
 
 ## Rebuilding the GSRD
 
-<!--{"type":"recipe", "name":"Agilex5GSRD.Modular", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf","$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/sdimage.tar.gz","$TOP_FOLDER/qspi_boot/agilex_flash_image.hps.jic"],"TOP_FOLDER":"gsrd.modular", "board_keywords":["DK-A5E065BB32AES1","SD"], "test_commands":["write-sd=$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/gsrd-console-image-agilex5.wic","write-jic=$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic","boot-linux-qspi","wipe-sd","write-jic=$TOP_FOLDER/qspi_boot/agilex_flash_image.hps.jic","boot-linux-qspi"]}-->
+
 
 ### Component Versions
 
@@ -442,9 +442,9 @@ The following diagram shows an overview of how the build process works for this 
 ![](images/agilex5-build-sd-flow.svg)
 
 <h5>Setup Environment</h5>
-<!--{"type":"step", "name":"Setup Environment"}-->
+
 1\. Create the top folder to store all the build artifacts:
-<!--{"type":"code" }-->
+
 
 ```bash
 sudo rm -rf gsrd.modular
@@ -452,9 +452,9 @@ mkdir gsrd.modular
 cd gsrd.modular
 export TOP_FOLDER=`pwd`
 ```
-<!--{"type":"/code" }-->
+
 2\. Download and setup the build toolchain. It will be used only by the GHRD makefile to build the debug HPS FSBL, to build the _hps_debug.sof file:
-<!--{"type":"code" }-->
+
 
 ```bash
 cd $TOP_FOLDER
@@ -466,19 +466,19 @@ export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
-<!--{"type":"/code" }-->
+
 3\. Set up the Quartus tools in the PATH, so they are accessible without full path
-<!--{"type":"code" }-->
+
 ```bash
 export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
-<!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
+
+
 
 <h5>Build Hardware Design</h5>
-<!--{"type":"step", "name":"Build Hardware Design", "results":["$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof","$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof"]}-->
-<!--{"type":"code" }-->
+
+
 ```bash
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga agilex5_soc_devkit_ghrd
@@ -491,33 +491,33 @@ make BOARD_TYPE=DK-MODULAR DEVICE=A5ED065BB32AE6SR0 DAUGHTER_CARD=mod_som HPS_EM
 make all
 cd ..
 ```
-<!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
+
+
 The following files are created:
 
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof`
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof`
 <h5>Build Core RBF</h5>
-<!--{"type":"step", "name":"Build Core RBF", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
 rm -f ghrd_a5ed065bb32ae6sr0.rbf
 quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof ghrd_a5ed065bb32ae6sr0.rbf -o hps=1
 ```
-<!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
+
+
 The following file is created:
 
 * `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf`
 
-<!--{"type":"step","name":"Build Yocto", "results":["$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/sdimage.tar.gz","$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/console-image-minimal-agilex5_nor.ubifs","$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/kernel.itb","$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/boot.scr.uimg","$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex","$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb"]}-->
+
 
 <h5>Set Up Yocto</h5>
 
 1\. Clone the Yocto script and prepare the build:
-<!--{"type":"code" }-->
+
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
@@ -526,7 +526,7 @@ cd gsrd-socfpga
 . agilex5_modular-gsrd-build.sh
 build_setup
 ```
-<!--{"type":"/code" }-->
+
 
 <h5>Customize Yocto</h5>
 
@@ -537,7 +537,7 @@ build_setup
 * Replace the entry `${GHRD_REPO}/agilex5_modular_gsrd_${ARM64_GHRD_CORE_RBF};name=agilex5_modular_gsrd_core` with `file://agilex5_modular_gsrd_ghrd.core.rbf;sha256sum=<CORE_SHA>` where `CORE_SHA` is the sha256 checksum of the file
 * Delete the line `SRC_URI[agilex5_modular_gsrd_core.sha256sum] = "bf11c8cb3b6d9487f93ce0e055b1e5256998a25b25ac4690bef3fcd6225ee1ae"`
 The above are achieved by the following instructions:
-<!--{"type":"code" }-->
+
 ```bash
 CORE_RBF=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_modular_gsrd_ghrd.core.rbf
 ln -s $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf $CORE_RBF
@@ -547,37 +547,37 @@ NEW_URI="file:\/\/agilex5_modular_gsrd_ghrd.core.rbf;sha256sum=$CORE_SHA"
 sed -i "s/$OLD_URI/$NEW_URI/g" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
 sed -i "/agilex5_modular_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
 ```
-<!--{"type":"/code" }-->
+
 
 <h5>Build Yocto</h5>
 
 Remove reference to patch which was retired after 24.2 tag was applied:
-<!--{"type":"code" }-->
+
 ```bash
 sed -i '/fix-potential-signed-overflow-in-pointer-arithmatic.patch/d' meta-intel-fpga-refdes/recipes-connectivity/openssh/openssh_%.bbappend
 ```
-<!--{"type":"/code" }-->
+
 Build Yocto:
-<!--{"type":"code" }-->
+
 ```bash
 bitbake_image
 ```
-<!--{"type":"/code" }-->
+
 Gather files:
-<!--{"type":"code" }-->
+
 ```bash
 package
 ```
-<!--{"type":"/code" }-->
+
 The following files are created:
 
 * `$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex`
 * `$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot.itb`
 * `$TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/sdimage.tar.gz`
-<!--{"type":"/step" }-->
+
 <h5>Build QSPI Image</h5>
-<!--{"type":"step", "name":"Build QSPI Image", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic"]}-->
-<!--{"type":"code" }-->
+
+
 ```bash
 cd $TOP_FOLDER
 rm -f ghrd_a5ed065bb32ae6sr0.hps.jic ghrd_a5ed065bb32ae6sr0.core.rbf
@@ -589,16 +589,16 @@ quartus_pfg \
 -o mode=ASX4 \
 -o hps=1
 ```
-<!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
+
+
 The following file is created:
 
 * `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic`
 
 <h5>Build HPS RBF</h5>
 This is an optional step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.
-<!--{"type":"step", "name":"Build HPS RBF", "results":["$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf"]}-->
-<!--{"type":"code" }-->
+
+
 ```bash
 cd $TOP_FOLDER
 rm -f ghrd_a5ed065bb32ae6sr0.hps.rbf
@@ -607,36 +607,36 @@ quartus_pfg \
 -o hps_path=gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
 -o hps=1
 ```
-<!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
+
+
 The following file is created:
 
 * `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf`
 
 ### Build QSPI Boot Binaries
 <hr/>
-<!--{"type":"step","name":"Boot from QSPI", "results":["$TOP_FOLDER/qspi_boot/agilex_flash_image.hps.jic"]}-->
+
 The diagram below shows how booting from QSPI JIC is built. The hardware project compilation and Yocto build remain the same, and the QSPI JIC is built based on the resulted files:
 ![](images/agilex5-build-qspi-flow.svg)
 
 1\. Create the folder to contain all the files:
-<!--{"type":"code" }-->
+
 ```bash
 cd $TOP_FOLDER
 sudo rm -rf qspi_boot
 mkdir qspi_boot
 cd qspi_boot
 ```
-<!--{"type":"/code" }-->
+
 2\. Get the `ubinize.cfg` file which contains the details on how to build the `root.ubi` volume, and `agilex5_devkit_flash_image_hps.pfg` which contains the instructions for Programming File Generator on how to create the .jic file:
-<!--{"type":"code" }-->
+
 ```bash
 wget https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi/ubinize.cfg
 wget https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi/agilex5_devkit_flash_image_hps.pfg
 ```
-<!--{"type":"/code" }-->
+
 3\. Link to the files that are needed from building the hardware design, and yocto:
-<!--{"type":"code" }-->
+
 ```bash
 ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/console-image-minimal-agilex5_nor.ubifs rootfs.ubifs
 ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/kernel.itb .
@@ -644,9 +644,9 @@ ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-
 ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex .
 ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof .
 ```
-<!--{"type":"/code" }-->
+
 4\. Process the u-boot.itb file to be exactly 2MB in size:
-<!--{"type":"code" }-->
+
 ```bash
 cp $TOP_FOLDER/gsrd-socfpga/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb .
 uboot_part_size=2*1024*1024
@@ -655,23 +655,22 @@ uboot_pad="$((uboot_part_size-uboot_size))"
 truncate -s +$uboot_pad u-boot.itb
 mv u-boot.itb u-boot.bin
 ```
-<!--{"type":"/code" }-->
+
 5\. Create the `root.ubi` file and rename it to `hps.bin` as Programming File Generator needs the `.bin` extension:
-<!--{"type":"code" }-->
+
 ```bash
 ubinize -o root.ubi -p 65536 -m 1 -s 1 ubinize.cfg
 ln -s root.ubi hps.bin
 ```
-<!--{"type":"/code" }-->
+
 6\. Create the JIC file:
-<!--{"type":"code" }-->
+
 ```bash
 quartus_pfg -c agilex5_devkit_flash_image_hps.pfg
 ```
-<!--{"type":"/code" }-->
+
 
 The following file is created:
 
 * `$TOP_FOLDER/qspi_boot/agilex_flash_image.hps.jic`
-<!--{"type":"/step" }-->
-<!--{"type":"/recipe" }-->
+
