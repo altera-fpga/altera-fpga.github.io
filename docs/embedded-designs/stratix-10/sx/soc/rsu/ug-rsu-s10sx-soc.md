@@ -48,7 +48,7 @@ The following items are required to run the RSU example.
 - [ Stratix 10 SX SoC Development Kit H-Tile (DK-SOC-1SSX-H-D)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/stratix/10-sx.html) production version  for running the example. 
 
 ## Building Binaries 
-<!--{"type":"recipe","name":"stratix10rsu","results":["$TOP_FOLDER/initial_image.jic","$TOP_FOLDER/initial_image_prev.jic", "$TOP_FOLDER/sd_card/sdcard_rsu.img"]}-->
+
 
 The diagram below illustrates the build flow used for this example.
 
@@ -62,22 +62,22 @@ The end results of the build flow are listed next.
 **Note: ** To build binaries for a different development kit than the one used in this page, please refer to the **Building the Hardware Projects** section in the corresponding  GSRD page for that development kit, which is the section that may differ from the instructions presented here.
 
 ### Setting up the Environment 
-<!--{"type":"step","name":"Setting up the Environment","results":["$TOP_FOLDER/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-gcc"]}-->
+
 
 Create a top folder to store the example files.
 
-<!--{"type":"code"}-->
+
 ```bash 
 sudo rm -rf s10-rsu 
 mkdir s10-rsu 
 cd s10-rsu 
 export set TOP_FOLDER=`pwd` 
 ```
-<!--{"type":"/code"}-->
+
 
 Download build toolchain and setup environment.
 
-<!--{"type":"code"}-->
+
 
 ```bash 
 cd $TOP_FOLDER 
@@ -92,11 +92,11 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
-<!--{"type":"/code"}-->
-<!--{"type":"/step"}-->
+
+
 
 ### Building the Hardware Projects 
-<!--{"type":"step","name":"Building the Hardware Projects","results":["$TOP_FOLDER/hw/ghrd.0/output_files/ghrd_1sx280hu2f50e1vgas.sof", "$TOP_FOLDER/hw/ghrd.1/output_files/ghrd_1sx280hu2f50e1vgas.sof", "$TOP_FOLDER/hw/ghrd.2/output_files/ghrd_1sx280hu2f50e1vgas.sof", "$TOP_FOLDER/hw/ghrd.3/output_files/ghrd_1sx280hu2f50e1vgas.sof"]}-->
+
 
 Create four different hardware projects, based on the GHRD from GitHub with a few changes listed next. 
 
@@ -107,7 +107,7 @@ Create four different hardware projects, based on the GHRD from GitHub with a fe
 
 The commands to create and compile the projects are listed below. 
 
-<!--{"type":"code"}-->
+
 
 ```bash 
 cd $TOP_FOLDER 
@@ -148,7 +148,7 @@ done
 rm -rf s10_soc_devkit_ghrd 
 cd .. 
 ```
-<!--{"type":"/code"}-->
+
 
 After completing the above steps, the following SOF files are created are listed next. 
 
@@ -157,13 +157,13 @@ After completing the above steps, the following SOF files are created are listed
 - $TOP_FOLDER/hw/ghrd.2/output_files/ghrd_1sx280hu2f50e1vgas.sof 
 - $TOP_FOLDER/hw/ghrd.3/output_files/ghrd_1sx280hu2f50e1vgas.sof 
 
-<!--{"type":"/step"}-->
+
 ### Building Arm Trusted Firmware 
-<!--{"type":"step","name":"Building Arm Trusted Firmware","results":["$TOP_FOLDER/arm-trusted-firmware/build/stratix10/release/bl31.bin"]}-->
+
 
 The following commands are used to retrieve the Arm Trusted Firmware (ATF) and compile it.
 
-<!--{"type":"code"}-->
+
 
 ```bash 
 cd $TOP_FOLDER 
@@ -175,20 +175,20 @@ cd arm-trusted-firmware
 make bl31 PLAT=stratix10 DEPRECATED=1 
 cd .. 
 ```
-<!--{"type":"/code"}-->
+
 
 After completing the above steps, the Arm Trusted Firmware binary file is created and is located here.
 
 - $TOP_FOLDER/arm-trusted-firmware/build/stratix10/release/bl31.bin 
 
-<!--{"type":"/step"}-->
+
 
 ### Building Linux 
-<!--{"type":"step","name":"Building Linux","results":["$TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image", "$TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtb"]}-->
+
 
 The following commands can be used to obtain the Linux source code and build Linux. 
 
-<!--{"type":"code"}-->
+
 
 ```bash 
 cd $TOP_FOLDER 
@@ -205,21 +205,21 @@ make oldconfig
 make -j 48 Image dtbs 
 cd .. 
 ```
-<!--{"type":"/code"}-->
+
 
 After completing the above steps, the following files are created. 
 
 - $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image - kernel image 
 - $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtb - kernel device tree 
 
-<!--{"type":"/step"}-->
+
 
 ### Building U-Boot 
-<!--{"type":"step","name":"Building U-Boot","results":["$TOP_FOLDER/u-boot-socfpga/u-boot.itb"]}-->
+
 
 The following commands can be used to get the U-Boot source code and compile it.
 
-<!--{"type":"code"}-->
+
 
 ```bash 
 cd $TOP_FOLDER 
@@ -285,22 +285,22 @@ make socfpga_stratix10_defconfig
 make -j 48 
 cd .. 
 ```
-<!--{"type":"/code"}-->
+
 
 After completing the above steps, the following files are created.
 
 - $TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex - FSBL (U-boot SPL) hex file 
 - $TOP_FOLDER/u-boot-socfpga/u-boot.itb - FIT image file containing SSBL (U-Boot) and ATF (Arm Trusted Firmware) binaries 
 
-<!--{"type":"/step"}-->
+
 ### Creating the Initial Flash Image 
-<!--{"type":"step","name":"Creating the Initial Flash Image","results":["$TOP_FOLDER/initial_image.jic", "$TOP_FOLDER/initial_image_prev.jic"]}-->
+
 
 This section presents detailed instructions on how to create the initial flash image, by using the Programming File Generator. 
 
 For reference, an example of the  Programming File Generator configuration file is provided below so and you can easily create the initial flash image by passing it to the Programming File Generator as shown below.
 
-<!--{"type":"code"}-->
+
 
 ```bash 
 cd $TOP_FOLDER 
@@ -360,7 +360,7 @@ mv initial_image_jic.map initial_image_jic_prev.map
 # Create Initial Image for this release
 quartus_pfg -c initial_image.pfg 
 ```
-<!--{"type":"/code"}-->
+
 
 Here are the complete instructions on how to create the initial flash image, without relying on the provided Programming File Generator configuration file.
 
@@ -439,7 +439,7 @@ Here are the complete instructions on how to create the initial flash image, wit
 
 20. You require to change the size of the SPTs and CPBs to 64 KB hence the HPS software uses now this size. This is done by selecting any of the components and pressing the **Edit** button. Expect to see a menu where you can select the option desired. Select the 64 KB size. You only need to update the size of one of these components and can expect to see the rest updated automatically with the same value chosen. 
 
-    ![](images/set SPT CPB size.jpg) 
+    ![](images/S10-set-SPT-CPB-size.jpg) 
 
 21. Click **File > Save As ..** and save the file as **$TOP_FOLDER/initial_image.pfg**. This file can be useful later, if you wanted to re-generate the initial image by using the command.
 
@@ -452,13 +452,13 @@ Here are the complete instructions on how to create the initial flash image, wit
 
 22. Click the **Generate** button to generate the initial flash image as **$TOP_FOLDER/initial_image.jic** and the map file as **$TOP_FOLDER/initial_image_jic.map**. A dialog box opens indicating the files were generated successfully. 
 
-<!--{"type":"/step"}-->
+
 ### Creating the Application Image 
-<!--{"type":"step","name":"Creating the Application Image","results":["$TOP_FOLDER/images/application2.rpd"]}-->
+
 
 The following commands are used to create the application image used in this example. 
 
-<!--{"type":"code"}-->
+
 ```bash 
 cd $TOP_FOLDER 
 mkdir -p images 
@@ -469,19 +469,19 @@ images/application2.rpd \
 -o mode=ASX4 \ 
 -o bitswap=ON 
 ```
-<!--{"type":"/code"}-->
+
 
 The following application image is created.
 
 - $TOP_FOLDER/images/application2.rpd. 
 
-<!--{"type":"/step"}-->
+
 ### Creating the Factory Update Image 
-<!--{"type":"step","name":"Creating the Factory Update Image","results":["$TOP_FOLDER/images/factory_update.rpd"]}-->
+
 
 The following commands are used to create the factory update image used in this example.
 
-<!--{"type":"code"}-->
+
 ```bash 
 cd $TOP_FOLDER 
 mkdir -p images 
@@ -493,19 +493,19 @@ images/factory_update.rpd \
 -o bitswap=ON \ 
 -o rsu_upgrade=ON 
 ```
-<!--{"type":"/code"}-->
+
 
 The following factory update image is created.
 
 - $TOP_FOLDER/images/factory_update.rpd 
 
-<!--{"type":"/step"}-->
+
 ### Creating the Decision Firmware Update Image 
-<!--{"type":"step","name":"Creating the Decision Firmware Update Image","results":["$TOP_FOLDER/images/decision_firmware_update.rpd"]}-->
+
 
 The following commands are used to create the decision firmware update image used in this example. 
 
-<!--{"type":"code"}-->
+
 ```bash 
 cd $TOP_FOLDER 
 mkdir -p images 
@@ -518,7 +518,7 @@ images/decision_firmware_update.rpd \
 -o rsu_upgrade=ON \ 
 -o firmware_only=ON 
 ```
-<!--{"type":"/code"}-->
+
 
 The following decision firmware update image is created.
 
@@ -526,14 +526,14 @@ The following decision firmware update image is created.
 
 **Note**: The provided SOF file is used by the quartus_pfg to determine the parameters that are writen to the decision firmware data structure. This includes QSPI clock and pin settings, the value of max_retry parameter, and the selected behavior of the HPS watchdog. The actual configuration data from the SOF file is not used. 
 
-<!--{"type":"/step"}-->
+
 
 ### Creating the Combined Application Image 
-<!--{"type":"step","name":"Creating the Combined Application Image","results":["$TOP_FOLDER/images/combined_application.rpd"]}-->
+
 
 The following commands are used to create the combined application image used in this example.
 
-<!--{"type":"code"}-->
+
 ```bash 
 cd $TOP_FOLDER 
 mkdir -p images 
@@ -548,15 +548,24 @@ images/combined_application.rpd \
 -o rsu_upgrade=ON \ 
 -o app_image_only=ON 
 ```
-<!--{"type":"/code"}-->
+
 
 The following file is created.
 
 - $TOP_FOLDER/images/combined_application.rpd 
 
-<!--{"type":"/step"}-->
+**Notes:**
+
+* The first SOF file contains the factory image, from which data is taken to fill out the new decision firmware data structure. This includes QSPI clock and pin settings, the value of max_retry parameter, and the selected behavior of the HPS watchdog. The actual configuration data from this SOF file is not used.
+* The **app_image** parameter contains the SOF that is used for the application image section of the combined image.
+* The **hps_path** parameter is unused, and may be removed in the future.
+* The **app_image_hps_path** parameter contains the HPS FSBL hex file to be used for the application imge section of the combined image.
+* When using HPS first, the additional parameter **"-o hps=1"** needs to be added, and
+the following files are created **combined_application.hps.rpd** (combined application image)  and **combined_application.core.rbf** (corresponding fabric configuration file).
+
+
 ### Building the Root File System 
-<!--{"type":"step","name":"Building the Root File System","results":["$TOP_FOLDER/yocto/build/tmp/deploy/images/stratix10/core-image-minimal-stratix10.rootfs.tar.gz"]}-->
+
 
 A root file system is required to boot Linux. There are a lot of ways to build a root file system, depending on your specific needs. This section shows how to build a small root file system using Yocto. 
 
@@ -575,7 +584,7 @@ A root file system is required to boot Linux. There are a lot of ways to build a
 
 2. Run the following commands to build the root file system. 
 
-    <!--{"type":"code"}-->
+    
     ```bash 
     cd $TOP_FOLDER 
     rm -rf yocto && mkdir yocto && cd yocto 
@@ -590,19 +599,19 @@ A root file system is required to boot Linux. There are a lot of ways to build a
     echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf
     bitbake core-image-minimal 
     ```
-    <!--{"type":"/code"}-->
+    
 
 After the build completes, which can take a few hours depending on your host system processing power and Internet connection speed, the following root file system archive is created.
 
 - $TOP_FOLDER/yocto/build/tmp/deploy/images/stratix10/core-image-minimal-stratix10.rootfs.tar.gz 
 
-<!--{"type":"/step"}-->
+
 ### Building ZLIB 
-<!--{"type":"step","name":"Building ZLIB","results":["$TOP_FOLDER/zlib-1.3.1"]}-->
+
 
 The ZLIB is required by LIBRSU. The following steps can be used to compile it.
 
-<!--{"type":"code"}-->
+
 ```bash 
 cd $TOP_FOLDER 
 rm -rf zlib-1.3.1 
@@ -616,7 +625,7 @@ make
 export ZLIB_PATH=`pwd` 
 cd .. 
 ```
-<!--{"type":"/code"}-->
+
 
 After the above steps are completed, the following items are available.
 
@@ -625,13 +634,13 @@ After the above steps are completed, the following items are available.
 
 **Note**: The version of zlib mentioned above is the one that was tested with this release. You may want to use the latest zlib version, as it may contain updates and bug fixes. 
 
-<!--{"type":"/step"}-->
+
 ### Building LIBRSU and RSU Client 
-<!--{"type":"step","name":"Building LIBRSU and RSU Client","results":["$TOP_FOLDER/intel-rsu/example/rsu_client", "$TOP_FOLDER/intel-rsu/lib/librsu.so", "$TOP_FOLDER/intel-rsu/etc/qspi.rc"]}-->
+
 
 The following commands can be used to build the LIBRSU and the example client application.
 
-<!--{"type":"code"}-->
+
 ```bash 
 cd $TOP_FOLDER 
 rm -rf intel-rsu 
@@ -651,7 +660,7 @@ make
 cd .. 
 cd .. 
 ```
-<!--{"type":"/code"}-->
+
 
 The following files are created.
 
@@ -659,13 +668,13 @@ The following files are created.
 - $TOP_FOLDER/intel-rsu/etc/qspi.rc - resource file for librsu configuration 
 - $TOP_FOLDER/intel-rsu/example/rsu_client - example client application using librsu 
 
-<!--{"type":"/step"}-->
+
 ### Building the SD Card 
-<!--{"type":"step","name":"Building the SD Card","results":["$TOP_FOLDER/sd_card/sdcard_rsu.img"]}-->
+
 
 The following commands can be used to create the SD card image used in this example. 
 
-<!--{"type":"code"}-->
+
 ```bash 
 cd $TOP_FOLDER 
 sudo rm -rf sd_card && mkdir sd_card && cd sd_card 
@@ -699,8 +708,8 @@ sudo python3 ./make_sdimage_p3.py -f \
 -n sdcard_rsu.img 
 cd .. 
 ```
-<!--{"type":"/code"}-->
-<!--{"type":"/step"}-->
+
+
 
 This creates the SD card image as. 
 
@@ -719,7 +728,7 @@ The following items are included in the rootfs on the SD card.
 - Decision firmware update image 
 - Combined application image 
 
-<!--{"type":"/recipe"}-->
+
 ## Flashing Binaries 
 
 ### Writing Initial RSU Image to QSPI 
@@ -1746,6 +1755,83 @@ This example uses U-Boot commands to demonstrate how sub-partition table corrupt
     ```
 
 9. Power cycle the board, the highest priority image loads, and all functionality is available. This power cycle is needed to cause the rsu_init function to be called in U-Boot, as it is only called once when the first RSU command is called. 
+
+### Using the Combined Application Image
+
+This section shows an example of using a combined application image, from U-Boot.
+Similar commands can be used from Linux.
+
+The combined application images are used the exact same way as regular application
+images, just that they first update the decision firmware and decision firmware data if
+necessary, before the device is configured with the functionality from the application
+SOF.
+
+**Note:** The combined application images do not have absolute pointers inside like the regular application images, the factory update images, or the decision firmware update images. Because of this, they can be written to flash with any of the U-Boot and LibRSU APIs that write to slots.
+
+1. Program the RSU initial image created with the previous version (**$TOP_FOLDER/initial_image_prev.jic**).
+
+    ```bash
+    cd $TOP_FOLDER
+    quartus_pgm -c 1 -m jtag -o "pvi;./initial_image_prev.jic"
+    ```
+
+2. Power cyle the board, stop to U-Boot prompt and query the decision firmware
+information from U-Boot, this should be a previous version.
+
+    ```bash 
+    SOCFPGA # rsu display_dcmf_version
+    DCMF0 version = 24.1.0
+    DCMF1 version = 24.1.0
+    DCMF2 version = 24.1.0
+    DCMF3 version = 24.1.0
+    ```
+
+3. Find an unused slot (slot 1, P2), erase it, write the combined application image to it, verify that it was programmed successfully  and check it is now the highest priority.
+
+    ```bash 
+    SOCFPGA # rsu slot_erase 1
+    Slot 1 erased.
+    SOCFPGA # fatload mmc 0:1 ${loadaddr} combined_application.rpd
+    151552 bytes read in 9 ms (16.1 MiB/s)
+    SOCFPGA # rsu slot_program_buf 1 ${loadaddr} ${filesize}
+    Slot 1 was programmed with buffer=0x0000000002000000 size=3510272.
+    SOCFPGA # rsu slot_verify_buf 1 ${loadaddr} ${filesize}
+    Slot 1 was verified with buffer=0x0000000002000000 size=3510272.
+    SOCFPGA # rsu slot_get_info 1
+    NAME: P2
+    OFFSET: 0x0000000002000000
+    SIZE: 0x01000000
+    PRIORITY: 1
+    ```
+
+4. Pass control to the combined application update image.
+
+    ```bash 
+    SOCFPGA # rsu slot_load 1
+    ```
+
+5. The combined application image checks the currently used decision firmware copy, it sees that it is older, then it updates the decision firmware and decision firmware data, then it loads the actual application image section. Everything takes a few seconds.
+
+6. Stop at U-Boot prompt and confirm the decision firmware is updated, and the
+application image is running fine.
+
+    ```bash
+    SOCFPGA # rsu status_log
+    Current Image : 0x02000000
+    Last Fail Image : 0x00000000
+    State : 0x00000000
+    Version : 0x00000202
+    Error location : 0x00000000
+    Error details : 0x00000000
+    Retry counter : 0x00000000
+    SOCFPGA # rsu display_dcmf_version
+    DCMF0 version = 24.2.0
+    DCMF1 version = 24.2.0
+    DCMF2 version = 24.2.0
+    DCMF3 version = 24.2.0    
+    ```
+
+7. Power cycle the board, the same combined application image is loaded, as it is the highest priority. But it takes a couple of seconds less, as the decision firmware does not need to be updated.
 
 ## Exercising RSU Client 
 
@@ -2802,7 +2888,7 @@ This example uses the RSU client to demonstrate how sub-partition table corrupti
     Operation completed 
     ```
 
-## Using Separate SSBL Per Bitstream Example
+## Using Separate SSBL Per Bitstream
 
 When using Remote System Update on Stratix 10, Agilex 7, Agilex 5 and N5X devices, each configuration bitstream from QSPI contains the HPS FSBL (First Stage Bootloader), specifically U-Boot SPL. In order to allow the most flexibility and compatibility, you must design your system so that each bitstream loads its own copy of the HPS SSBL, specifically U-Boot image.
 

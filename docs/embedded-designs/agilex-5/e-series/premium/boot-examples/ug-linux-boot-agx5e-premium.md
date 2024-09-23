@@ -61,13 +61,13 @@ This section demonstrates how to build a Linux system from separate components, 
 
 
 ### Boot from SD Card 
-<!--{"type":"recipe", "name":"Bootloader.Enablement", "results":["$TOP_FOLDER/ghrd.hps.jic","$TOP_FOLDER/ghrd.hps.rbf","$TOP_FOLDER/sd_card/sdcard.img","$TOP_FOLDER/qspi-boot/flash_image.hps.jic"],"TOP_FOLDER":"bootloader.enablement", "board_keywords":["DK-A5E065BB32AES1","SD"], "test_commands":["write-sd=$TOP_FOLDER/sd_card/sdcard.img","write-jic=$TOP_FOLDER/ghrd.hps.jic","boot-linux-qspi","wipe-sd","write-jic=$TOP_FOLDER/qspi-boot/flash_image.hps.jic","boot-linux-qspi"]}-->
+
 
 <h4>Setup Environment</h4>
-<!--{"type":"step", "name":"Setup Environment"}-->
+
 
 1\. Create the top folder to store all the build artifacts:
-<!--{"type":"code" }-->
+
 
 ```bash
 sudo rm -rf bootloader.enablement
@@ -75,9 +75,9 @@ mkdir bootloader.enablement
 cd bootloader.enablement
 export TOP_FOLDER=`pwd`
 ```
-<!--{"type":"/code" }-->
+
 2\. Download and setup the build toolchain. It will be used only by the GHRD makefile to build the debug HPS FSBL, to build the _hps_debug.sof file:
-<!--{"type":"code" }-->
+
 
 ```bash
 cd $TOP_FOLDER
@@ -89,20 +89,20 @@ export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
-<!--{"type":"/code" }-->
+
 3\. Set up the Quartus tools in the PATH, so they are accessible without full path
-<!--{"type":"code" }-->
+
 
 ```bash
 export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
-<!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
+
+
 
 <h4>Build Hardware Design</h4>
-<!--{"type":"step", "name":"Build Hardware Design", "results":["$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof","$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -116,16 +116,16 @@ make DEVICE=A5ED065BB32AE6SR0 HPS_EMIF_MEM_CLK_FREQ_MHZ=800 HPS_EMIF_REF_CLK_FRE
 make all
 cd ..
 ```
-<!--{"type":"/code" }-->
+
 The following files are created:
 
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof`
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof`
-<!--{"type":"/step" }-->
+
 
 <h4>Build Arm Trusted Firmware</h4>
-<!--{"type":"step", "name":"Build Arm Trusted Firmware", "results":["$TOP_FOLDER/arm-trusted-firmware/build/agilex5/release/bl31.bin"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -135,16 +135,16 @@ cd arm-trusted-firmware
 make -j 48 PLAT=agilex5 bl31 
 cd ..
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/arm-trusted-firmware/build/agilex5/release/bl31.bin`
-<!--{"type":"/step" }-->
+
 
 
 <h4>Build U-Boot</h4>
-<!--{"type":"step", "name":"Build U-Boot", "results":["$TOP_FOLDER/u-boot-socfpga/u-boot.itb","$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -207,16 +207,16 @@ make socfpga_agilex5_defconfig
 make -j 64
 cd ..
 ```
-<!--{"type":"/code" }-->
+
 The following files are created:
 
 * `$TOP_FOLDER/u-boot-socfpga/u-boot.itb`
 * `$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex`
-<!--{"type":"/step" }-->
+
 
 <h4>Build QSPI Image</h4>
-<!--{"type":"step", "name":"Build QSPI Image", "results":["$TOP_FOLDER/ghrd.hps.jic"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -228,16 +228,16 @@ quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof g
 -o hps=1
 
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/ghrd.hps.jic`
-<!--{"type":"/step" }-->
+
 
 <h4>Build HPS RBF</h4>
-<!--{"type":"step", "name":"Build HPS RBF", "results":["$TOP_FOLDER/ghrd.hps.rbf"]}-->
+
 This is an optional step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.
-<!--{"type":"code" }-->
+
 
 ```bash
 cd $TOP_FOLDER
@@ -245,16 +245,16 @@ quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof g
 -o hps_path=$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o hps=1
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/ghrd.hps.rbf
-<!--{"type":"/step" }-->
+
 
 
 <h4>Build Linux</h4>
-<!--{"type":"step", "name":"Build Linux", "results":["$TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image","$TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dtb"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -264,16 +264,16 @@ cd linux-socfpga
 make defconfig 
 make -j 64 Image && make intel/socfpga_agilex5_socdk.dtb 
 ```
-<!--{"type":"/code" }-->
+
 The following files are created:
 
 * `$TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dtb`
 * `$TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image`
-<!--{"type":"/step" }-->
+
 
 <h4>Build Rootfs</h4>
-<!--{"type":"step", "name":"Build Rootfs", "results":["$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -288,16 +288,16 @@ echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.c
 echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf
 bitbake core-image-minimal
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz`
-<!--{"type":"/step" }-->
+
 
 
 <h4>Create SD Card Image</h4>
-<!--{"type":"step", "name":"Create SD Card Image", "results":["$TOP_FOLDER/sd_card/sdcard.img"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -321,7 +321,7 @@ sudo python3 make_sdimage_p3.py -f \
 -n sdcard.img
 cd ..
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/sd_card/sdcard.img`
@@ -368,10 +368,10 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 
 4\. Wait for Linux to boot, use `root` as user name, and no password wil be requested.
 
-<!--{"type":"/step" }-->
+
 
 ### Boot from QSPI
-<!--{"type":"step", "name":"Boot From QSPI", "results":["$TOP_FOLDER/qspi-boot/flash_image.hps.jic"]}-->
+
 
 This section presents how to build the binaries and boot from QSPI with the HPS Enablement Board.
 While the example is based on the GSRD, it contains the following differences:
@@ -381,16 +381,16 @@ While the example is based on the GSRD, it contains the following differences:
 * kernel.itb file contains only one set of core.rbf, kernel and device tree files, targeted for this scenario
 
 1\. Prepare the top folder
-<!--{"type":"code" }-->
+
 ```bash
 rm -rf $TOP_FOLDER/qspi-boot
 mkdir $TOP_FOLDER/qspi-boot
 ```
-<!--{"type":"/code" }-->
+
 
 2\. Build U-Boot:
 
-<!--{"type":"code" }-->
+
 ```bash
 cd $TOP_FOLDER/qspi-boot
 rm -rf u-boot-socfpga
@@ -451,7 +451,7 @@ make socfpga_agilex5_defconfig
 make -j 64
 cd ..
 ```
-<!--{"type":"/code" }-->
+
 The following files are created:
 
 * `$TOP_FOLDER/qspi-boot/u-boot-socfpga/u-boot.itb`
@@ -459,7 +459,7 @@ The following files are created:
 
 3\. Build `kernel.itb` FIT file containing kernel, device tree and fpga fabric configuration file:
 
-<!--{"type":"code" }-->
+
 ```bash
 cd $TOP_FOLDER/qspi-boot
 rm -f core.rbf devicetree.dtb Image.lzma kernel.its kernel.itb
@@ -537,14 +537,14 @@ cat << EOF > kernel.its
 EOF
 ./u-boot-socfpga/tools/mkimage -f kernel.its kernel.itb
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/qspi-boot/kernel.itb`
 
 4\. Create U-Boot binary `u-boot.bin` with a size of exactly 2MB:
 
-<!--{"type":"code" }-->
+
 ```bash
 cp u-boot-socfpga/u-boot.itb .
 uboot_part_size=2*1024*1024
@@ -553,18 +553,18 @@ uboot_pad="$((uboot_part_size-uboot_size))"
 truncate -s +$uboot_pad u-boot.itb
 mv u-boot.itb u-boot.bin
 ```
-<!--{"type":"/code" }-->
+
 
 5\. Build the `rootfs.ubifs` file:
 
-<!--{"type":"code" }-->
+
 ```bash
 rm -rf rootfs rootfs.ubifs
 mkdir rootfs 
 tar -xzvf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz -C rootfs 
 mkfs.ubifs -r rootfs -F -e 65408 -m 1 -c 6500 -o rootfs.ubifs 
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/qspi-boot/rootfs.ubifs`
@@ -572,7 +572,7 @@ The following file is created:
 
 6\. Build the `root.ubi` file:
 
-<!--{"type":"code" }-->
+
 ```bash
 cat << EOF > ubinize.cfg
 [env]
@@ -615,14 +615,14 @@ vol_flag=autoresize
 EOF
 ubinize -o root.ubi -p 65536 -m 1 -s 1 ubinize.cfg
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/qspi-boot/root.ubi`
 
 7\. Build the QSPI flash image:
 
-<!--{"type":"code" }-->
+
 ```bash
 ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof fpga.sof
 ln -s u-boot-socfpga/spl/u-boot-spl-dtb.hex spl.hex
@@ -672,7 +672,7 @@ cat << EOF > flash_image.pfg
 EOF
 quartus_pfg -c flash_image.pfg
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/qspi-boot/flash_image.hps.jic`
@@ -703,21 +703,21 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 
 4\. Wait for Linux to boot, use `root` as user name, and no password wil be requested.
 
-<!--{"type":"/step" }-->
-<!--{"type":"/recipe" }-->
+
+
 
 ## HPS NAND Board
 
 This section demonstrates how to build a Linux system from separate components, targetting the HPS NAND Board. Boot source is eMMC Flash.
 
 ### Boot from eMMC
-<!--{"type":"recipe", "name":"Bootloader.eMMC", "results":["$TOP_FOLDER/ghrd.hps.jic","$TOP_FOLDER/ghrd.hps.rbf","$TOP_FOLDER/sd_card/sdcard.img"],"TOP_FOLDER":"bootloader.emmc", "board_keywords":["DK-A5E065BB32AES1","emmc"], "test_commands":["write-sd=$TOP_FOLDER/sd_card/sdcard.img","write-jic=$TOP_FOLDER/ghrd.hps.jic","boot-linux-qspi"]}-->
+
 
 <h4>Setup Environment</h4>
-<!--{"type":"step", "name":"Setup Environment"}-->
+
 
 1\. Create the top folder to store all the build artifacts:
-<!--{"type":"code" }-->
+
 
 ```bash
 sudo rm -rf bootloader.emmc
@@ -725,9 +725,9 @@ mkdir bootloader.emmc
 cd bootloader.emmc
 export TOP_FOLDER=`pwd`
 ```
-<!--{"type":"/code" }-->
+
 2\. Download and setup the build toolchain. It will be used only by the GHRD makefile to build the debug HPS FSBL, to build the _hps_debug.sof file:
-<!--{"type":"code" }-->
+
 
 ```bash
 cd $TOP_FOLDER
@@ -739,20 +739,20 @@ export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
-<!--{"type":"/code" }-->
+
 3\. Set up the Quartus tools in the PATH, so they are accessible without full path
-<!--{"type":"code" }-->
+
 
 ```bash
 export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
-<!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
+
+
 
 <h4>Build Hardware Design</h4>
-<!--{"type":"step", "name":"Build Hardware Design", "results":["$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof","$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -766,16 +766,16 @@ make DEVICE=A5ED065BB32AE6SR0 HPS_EMIF_MEM_CLK_FREQ_MHZ=800 HPS_EMIF_REF_CLK_FRE
 make all
 cd ..
 ```
-<!--{"type":"/code" }-->
+
 The following files are created:
 
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof`
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof`
-<!--{"type":"/step" }-->
+
 
 <h4>Build Arm Trusted Firmware</h4>
-<!--{"type":"step", "name":"Build Arm Trusted Firmware", "results":["$TOP_FOLDER/arm-trusted-firmware/build/agilex5/release/bl31.bin"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -785,16 +785,16 @@ cd arm-trusted-firmware
 make -j 48 PLAT=agilex5 bl31 
 cd ..
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/arm-trusted-firmware/build/agilex5/release/bl31.bin`
-<!--{"type":"/step" }-->
+
 
 
 <h4>Build U-Boot</h4>
-<!--{"type":"step", "name":"Build U-Boot", "results":["$TOP_FOLDER/u-boot-socfpga/u-boot.itb","$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -860,16 +860,16 @@ make socfpga_agilex5_defconfig
 make -j 64
 cd ..
 ```
-<!--{"type":"/code" }-->
+
 The following files are created:
 
 * `$TOP_FOLDER/u-boot-socfpga/u-boot.itb`
 * `$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex`
-<!--{"type":"/step" }-->
+
 
 <h4>Build QSPI Image</h4>
-<!--{"type":"step", "name":"Build QSPI Image", "results":["$TOP_FOLDER/ghrd.hps.jic"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -881,31 +881,31 @@ quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof g
 -o hps=1
 
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/ghrd.hps.jic`
-<!--{"type":"/step" }-->
+
 
 <h4>Build HPS RBF</h4>
-<!--{"type":"step", "name":"Build HPS RBF", "results":["$TOP_FOLDER/ghrd.hps.rbf"]}-->
+
 This is an optional step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.
-<!--{"type":"code" }-->
+
 ```bash
 cd $TOP_FOLDER
 quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof ghrd.rbf \
 -o hps_path=$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o hps=1
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/ghrd.hps.rbf
-<!--{"type":"/step" }-->
+
 
 <h4>Build Linux</h4>
-<!--{"type":"step", "name":"Build Linux", "results":["$TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image","$TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_emmc.dtb"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -915,16 +915,16 @@ cd linux-socfpga
 make defconfig 
 make -j 64 Image && make intel/socfpga_agilex5_socdk_emmc.dtb 
 ```
-<!--{"type":"/code" }-->
+
 The following files are created:
 
 * `$TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_emmc.dtb`
 * `$TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image`
-<!--{"type":"/step" }-->
+
 
 <h4>Build Rootfs</h4>
-<!--{"type":"step", "name":"Build Rootfs", "results":["$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -939,16 +939,16 @@ echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.c
 echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf
 bitbake core-image-minimal
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz`
-<!--{"type":"/step" }-->
+
 
 
 <h4>Create eMMC Image</h4>
-<!--{"type":"step", "name":"Create eMMC Image", "results":["$TOP_FOLDER/sd_card/sdcard.img"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -972,28 +972,28 @@ sudo python3 make_sdimage_p3.py -f \
 -n sdcard.img
 cd ..
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/sd_card/sdcard.img`
-<!--{"type":"/step" }-->
+
 
 <h4>Create Helper JIC</h4>
 In this section we are building a helper JIC which will boot from QSPI and will allow us to program the eMMC from U-Boot.
 
 1\. Create the jic helper folder to contain all related build artifacts:
 
-<!--{"type":"step", "name":"Create Helper JIC", "results":["$TOP_FOLDER/helper-jic/flash.hps.jic"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 rm -rf $TOP_FOLDER/helper-jic
 mkdir $TOP_FOLDER/helper-jic
 ```
-<!--{"type":"/code" }-->
+
 
 2\. Build a modified U-Boot, which boots from QSPI and stops at command line prompt:
-<!--{"type":"code" }-->
+
 
 ```bash
 cd $TOP_FOLDER/helper-jic
@@ -1063,7 +1063,7 @@ make socfpga_agilex5_defconfig
 make -j 64
 cd ..
 ```
-<!--{"type":"/code" }-->
+
 
 The following files are created:
 
@@ -1071,7 +1071,7 @@ The following files are created:
 * `$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex`
 
 3\. Build the helper JIC:
-<!--{"type":"code" }-->
+
 
 ```bash
 cd $TOP_FOLDER/helper-jic
@@ -1119,12 +1119,12 @@ cat << EOF > flash.pfg
 EOF
 quartus_pfg -c flash.pfg
 ```
-<!--{"type":"/code" }-->
+
 The following file will be created:
 
 * `$TOP_FOLDER/helper-jic/flash.hps.jic`
 
-<!--{"type":"/step" }-->
+
 
 <h4>Write eMMC Image</h4>
 
@@ -1187,20 +1187,20 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 
 4\. Wait for Linux to boot, use `root` as user name, and no password wil be requested.
 
-<!--{"type":"/recipe" }-->
+
 
 ## HPS Test Board
 
 This section demonstrates how to build a Linux system from separate components, targetting the HPS Test Board. Boot source is SD Card.
 
 ### Boot from SD Card 
-<!--{"type":"recipe", "name":"Bootloader.Test", "results":["$TOP_FOLDER/ghrd.hps.jic","$TOP_FOLDER/ghrd.hps.rbf","$TOP_FOLDER/sd_card/sdcard.img"],"TOP_FOLDER":"bootloader.test", "board_keywords":["DK-A5E065BB32AES1","DEBUG"], "test_commands":["write-sd=$TOP_FOLDER/sd_card/sdcard.img","write-jic=$TOP_FOLDER/ghrd.hps.jic","boot-linux-qspi"]}-->
+
 
 <h4>Setup Environment</h4>
-<!--{"type":"step", "name":"Setup Environment"}-->
+
 
 1\. Create the top folder to store all the build artifacts:
-<!--{"type":"code" }-->
+
 
 ```bash
 sudo rm -rf bootloader.test
@@ -1208,9 +1208,9 @@ mkdir bootloader.test
 cd bootloader.test
 export TOP_FOLDER=`pwd`
 ```
-<!--{"type":"/code" }-->
+
 2\. Download and setup the build toolchain. It will be used only by the GHRD makefile to build the debug HPS FSBL, to build the _hps_debug.sof file:
-<!--{"type":"code" }-->
+
 
 ```bash
 cd $TOP_FOLDER
@@ -1222,20 +1222,20 @@ export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
-<!--{"type":"/code" }-->
+
 3\. Set up the Quartus tools in the PATH, so they are accessible without full path
-<!--{"type":"code" }-->
+
 
 ```bash
 export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
-<!--{"type":"/code" }-->
-<!--{"type":"/step" }-->
+
+
 
 <h4>Build Hardware Design</h4>
-<!--{"type":"step", "name":"Build Hardware Design", "results":["$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof","$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -1249,16 +1249,16 @@ make DEVICE=A5ED065BB32AE6SR0 HPS_EMIF_MEM_CLK_FREQ_MHZ=800 HPS_EMIF_REF_CLK_FRE
 make all
 cd ..
 ```
-<!--{"type":"/code" }-->
+
 The following files are created:
 
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof`
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof`
-<!--{"type":"/step" }-->
+
 
 <h4>Build Arm Trusted Firmware</h4>
-<!--{"type":"step", "name":"Build Arm Trusted Firmware", "results":["$TOP_FOLDER/arm-trusted-firmware/build/agilex5/release/bl31.bin"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -1268,16 +1268,16 @@ cd arm-trusted-firmware
 make -j 48 PLAT=agilex5 bl31 
 cd ..
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/arm-trusted-firmware/build/agilex5/release/bl31.bin`
-<!--{"type":"/step" }-->
+
 
 
 <h4>Build U-Boot</h4>
-<!--{"type":"step", "name":"Build U-Boot", "results":["$TOP_FOLDER/u-boot-socfpga/u-boot.itb","$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -1343,16 +1343,16 @@ make socfpga_agilex5_defconfig
 make -j 64
 cd ..
 ```
-<!--{"type":"/code" }-->
+
 The following files are created:
 
 * `$TOP_FOLDER/u-boot-socfpga/u-boot.itb`
 * `$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex`
-<!--{"type":"/step" }-->
+
 
 <h4>Build QSPI Image</h4>
-<!--{"type":"step", "name":"Build QSPI Image", "results":["$TOP_FOLDER/ghrd.hps.jic"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -1364,16 +1364,16 @@ quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof g
 -o hps=1
 
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/ghrd.hps.jic`
-<!--{"type":"/step" }-->
+
 
 <h4>Build HPS RBF</h4>
-<!--{"type":"step", "name":"Build HPS RBF", "results":["$TOP_FOLDER/ghrd.hps.rbf"]}-->
+
 This is an optional step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.
-<!--{"type":"code" }-->
+
 
 ```bash
 cd $TOP_FOLDER
@@ -1381,16 +1381,16 @@ quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof g
 -o hps_path=$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o hps=1
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/ghrd.hps.rbf
-<!--{"type":"/step" }-->
+
 
 
 <h4>Build Linux</h4>
-<!--{"type":"step", "name":"Build Linux", "results":["$TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image","$TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_debug.dtb"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -1400,16 +1400,16 @@ cd linux-socfpga
 make defconfig 
 make -j 64 Image && make intel/socfpga_agilex5_socdk_debug.dtb 
 ```
-<!--{"type":"/code" }-->
+
 The following files are created:
 
 * `$TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_debug.dtb`
 * `$TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image`
-<!--{"type":"/step" }-->
+
 
 <h4>Build Rootfs</h4>
-<!--{"type":"step", "name":"Build Rootfs", "results":["$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -1424,16 +1424,16 @@ echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.c
 echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf
 bitbake core-image-minimal
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz`
-<!--{"type":"/step" }-->
+
 
 
 <h4>Create SD Card Image</h4>
-<!--{"type":"step", "name":"Create SD Card Image", "results":["$TOP_FOLDER/sd_card/sdcard.img"]}-->
-<!--{"type":"code" }-->
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -1457,11 +1457,11 @@ sudo python3 make_sdimage_p3.py -f \
 -n sdcard.img
 cd ..
 ```
-<!--{"type":"/code" }-->
+
 The following file is created:
 
 * `$TOP_FOLDER/sd_card/sdcard.img`
-<!--{"type":"/step" }-->
+
 
 <h4>Write SD Card</h4>
 
@@ -1505,5 +1505,5 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 
 4\. Wait for Linux to boot, use `root` as user name, and no password wil be requested.
 
-<!--{"type":"/recipe" }-->
+
 

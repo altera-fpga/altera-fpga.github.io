@@ -1,6 +1,6 @@
 # **Ethernet Subsystem Intel FPGA IP Tile Specific Ethernet MAC Driver for Hard Processor System**
 
-Last updated: **September 03, 2024** 
+Last updated: **September 23, 2024** 
 
 **Upstream Status**: Not Upstreamed
 
