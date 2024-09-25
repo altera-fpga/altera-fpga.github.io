@@ -1,6 +1,6 @@
 # **UART Driver for Hard Processor System**
 
-Last updated: **September 23, 2024** 
+Last updated: **September 25, 2024** 
 
 **Upstream Status**: [Upstreamed](https://github.com/zephyrproject-rtos/zephyr/blob/main/drivers/serial/uart_ns16550.c)
 
