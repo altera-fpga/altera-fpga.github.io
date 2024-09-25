@@ -179,11 +179,14 @@ nav:
         - Agilex 5 E-Series Modular Development Kit GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular.md
         - Agilex™ 5 Intel Simics Virtual Platform Example User Guide - Linux GSRD: embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms.md
         - Agilex™ 5 Intel Simics Virtual Platform Example User Guide - Zephyr GSRD: embedded-designs/agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms.md
+        - Agilex 5 FPGA Remote Debug Example: embedded-designs/agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium.md        
     - Agilex™ 7:
         - Agilex™ 7 SoC HPS Remote System Update Example: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc.md
         - Agilex™ 7 SoC HPS Multi-QSPI Remote System Update Example: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc.md
+        - Agilex™ 7 SoC FPGA Remote Debug Example: embedded-designs/agilex-7/f-series/soc/remote-debug/ug-remote-debug-agx7f-soc.md        
     - Stratix 10:
         - Stratix 10 SoC HPS Remote System Update Example: embedded-designs/stratix-10/sx/soc/rsu/ug-rsu-s10sx-soc.md
+        - Stratix 10 SoC FPGA Remote Debug Example: embedded-designs/stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc.md
   - Demos:
     - Demos Summary: ed-demo-list/demo-list.md
 
