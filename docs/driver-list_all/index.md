@@ -10,13 +10,14 @@ You can filter your search by entering your query into any number of available c
 | **IP Name** | Linux Driver | Zephyr Driver |
 | :-------:|:-----------------:|:----------:|
 | Altera 16550 Compatible UART Core | [Linux](../linux-dfl/uart_16550/uart_16550.md) | [Zephyr](../zephyr-embedded/uart/uart.md) |
+| Altera Hardware Monitor | [Linux](../linux-embedded/hwmon/hwmon.md) | N/A |
 | Clock Manager |  [Linux](../linux-embedded/clock_manager/clock_manager.md) |[Zephyr](../zephyr-embedded/clock_manager/clock_manager.md) |
 | Cold & Warm Reset -Power State Coordination Interface (PSCI) | N/A | [PSCI](../zephyr-embedded/psci/psci.md) |
 | Device Feature List (DFL) Capability | [Linux](../linux-dfl/dfl/dfl.md) |N/A |
 | DFL Accelerator Functional Unit (AFU workload) | [Linux](../linux-dfl/dfl_afu/dfl_afu.md) |N/A |
 | DFL FPGA Management Engine IP | [Linux](../linux-dfl/dfl_fme/dfl_fme.md) |N/A |
 | DFL Memory Interface/Subsystem | [Linux](../linux-dfl/dfl_emif/dfl_emif.md) |N/A |
-| DFL Time of Day Clock Intel FPGA IP | [Linux: Host Attach TOD](../linux-dfl/ptp_dfl_tod/ptp_dfl_tod.md)  <br> [Linux: Embedded TOD](../linux-embedded/ptp_dfl_tod/ptp_dfl_tod.md) |N/A | 
+| DFL Time of Day Clock Intel FPGA IP | [Linux: Host Attach TOD](../linux-dfl/ptp_dfl_tod/ptp_dfl_tod.md)  <br> [Linux: Embedded TOD](../linux-embedded/ptp_dfl_tod/ptp_dfl_tod.md) |N/A |
 | Direct Memory Access Controller (DMAC) | [Linux](../linux-embedded/dma/dma.md)|[zephyr](../zephyr-embedded/dma/dma.md) |
 | Error Detection and Correction (EDAC) | [Linux](../linux-embedded/edac/edac.md) |N/A |
 | Ethernet Media Access Controller | [Linux](../linux-embedded/emac/emac.md) |N/A |
@@ -25,11 +26,11 @@ You can filter your search by entering your query into any number of available c
 | Ethernet 1588 PTP Time of Day Clock | [Linux](../linux-dfl/ptp_dfl_tod/ptp_dfl_tod.md) |N/A |
 | General Purpose Timers | [Linux](../linux-embedded/apb_timers/apb_timers.md) |N/A |
 | Generic Serial Flash Interface Intel FPGA IP |[Linux](../linux-dfl/spi_altera_dfl/spi_altera_dfl.md) | N/A |
-| GPIO | [Linux](../linux-embedded/gpio/gpio.md) |[Zephyr](../zephyr-embedded/gpio/gpio.md) | 
+| GPIO | [Linux](../linux-embedded/gpio/gpio.md) |[Zephyr](../zephyr-embedded/gpio/gpio.md) |
 |  I2C | [Linux](../linux-embedded/i2c/i2c.md) |N/A |
 |  I3C | [Linux](../linux-embedded/i3c/i3c.md) |N/A |
-| Interrupt Controller (GICv3)  | [Linux](../linux-embedded/interrupt_controller_GICv3/irq_gic_v3.md) |Agilex 5 <br> Agilex 7 | N/A |
-| Microchip&reg; Zarlink ZL30793 Network Synchronizer  | [Linux](../linux-embedded/zarlink_clock_synchronizer/zarlink_clock_synchronizer.md) |N/A | 
+| Interrupt Controller (GICv3)  | [Linux](../linux-embedded/interrupt_controller_GICv3/irq_gic_v3.md) |Agilex 5 <br> Agilex 7 |
+| Microchip&reg; Zarlink ZL30793 Network Synchronizer  | [Linux](../linux-embedded/zarlink_clock_synchronizer/zarlink_clock_synchronizer.md) |N/A |
 | MSGDMA  | [Linux](../linux-embedded/dma/msgdma/msgdma.md) |N/A |
 | NAND Controller  |  [Linux](../linux-embedded/nand/nand.md)| N/A |
 | PCIe Subsystem | [Linux](../linux-dfl/dfl-pci/dfl-pcie.md) |N/A |

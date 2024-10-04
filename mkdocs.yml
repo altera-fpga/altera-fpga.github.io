@@ -1,4 +1,4 @@
-site_name: Altera-FPGA Site 
+site_name: Altera FPGA Developer Site 
 repo_url: https://github.com/altera-fpga
 repo_name: altera-fpga
 site_url: https://altera-fpga.github.io/
@@ -95,6 +95,7 @@ nav:
   - Linux Drivers: 
     - 'driver-list_linux/index.md'          
     - HPS Host Drivers:
+      - Altera Hardware Monitor: linux-embedded/hwmon/hwmon.md
       - Clock Manager: linux-embedded/clock_manager/clock_manager.md
       - DMA Controller: linux-embedded/dma/dma.md
       - Error Detection & Correction (EDAC): linux-embedded/edac/edac.md
@@ -241,4 +242,5 @@ env:
   GSRD_UBOOT_BRANCH: socfpga_v2024.01
   GSRD_ATF_BRANCH: socfpga_v2.10.1
   GSRD_YOCTO_BRANCH: socfpga_v2024.01
+  PREV_COMMON_QUARTUS_VER_S: 24.1
 
