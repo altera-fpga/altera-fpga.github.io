@@ -7,7 +7,7 @@ hide:
 
 Welcome to the **Altera FPGA Developer Site**!
 
-This site provides key information for Altera Agilex<sup>&trade;</sup> 5 and Agilex<sup>&trade;</sup> 7 FPGAs including:
+This site provides key information for Stratix 10®,  Agilex<sup>&trade;</sup> 5 and Agilex<sup>&trade;</sup> 7 FPGAs including:
 
 * Comprehensive driver information for Linux and software utilities.
 

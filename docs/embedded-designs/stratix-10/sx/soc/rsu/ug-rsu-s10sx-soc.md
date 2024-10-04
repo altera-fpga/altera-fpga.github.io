@@ -26,15 +26,15 @@ Refer to [Stratix® 10 Hard Processor System Remote System Update User Guide](ht
 
 ## Component Versions 
 
-This example was created with Quartus Prime Pro 24.2 and the following component versions.
+This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.2 and the following component versions.
 
-| Repository | Branch/Tag | 
-| :-- | :-- | 
-| [ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | releases/24.2/QPDS24.2_REL_GSRD_PR | 
-| [linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.22-lts/QPDS24.2_REL_GSRD_PR | 
-| [arm-trustedfirmware](https://github.com/altera-opensource/arm-trustedfirmware) | socfpga_v2.10.1/QPDS24.2_REL_GSRD_PR | 
-| [u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.01/QPDS24.2_REL_GSRD_PR | 
-| [intel-rsu](https://github.com/altera-opensource/intel-rsu) | master | 
+| Repository | Branch/Tag |
+| :-- | :-- |
+| [ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | QPDS24.2_REL_GSRD_PR |
+| [linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.22-lts/QPDS24.2_REL_GSRD_PR |
+| [arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.10.1/QPDS24.2_REL_GSRD_PR |
+| [u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.01/QPDS24.2_REL_GSRD_PR |
+| [intel-rsu](https://github.com/altera-opensource/intel-rsu) | master |
 
 For RSU example previous 24.2 version, please refer to [Stratix 10 HPS Remote System Update](https://www.rocketboards.org/foswiki/Projects/Stratix10HPSRemoteSystemUpdate).
 ## Prerequisites 
@@ -43,7 +43,7 @@ The following items are required to run the RSU example.
 
 - Host PC running Ubuntu 22.04 LTS (other Linux versions may work too) 
  - Minimum 48 GB of RAM, required for compiling the hardware designs 
- - Quartus Prime Pro Edition software version 24.2  for compiling the hardware projects, generating the flash images and writing to flash 
+ - Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.2 for compiling the hardware projects, generating the flash images and writing to flash 
 - Access to Internet to download the hardware project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. 
 - [ Stratix 10 SX SoC Development Kit H-Tile (DK-SOC-1SSX-H-D)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/stratix/10-sx.html) production version  for running the example. 
 
@@ -59,7 +59,7 @@ The end results of the build flow are listed next.
 - Initial flash image: contains the factory image, an application image and two empty application image partitions aka slots. 
 - SD card image: contains SSBL (U-Boot), ATF (Arm Trusted Firmware), Linux device tree, Linux kernel, Linux rootfs with the Intel RSU driver, LIBRSU, RSU Client, an application image, a factory update image and a decision firmware update image. 
 
-**Note: ** To build binaries for a different development kit than the one used in this page, please refer to the **Building the Hardware Projects** section in the corresponding  GSRD page for that development kit, which is the section that may differ from the instructions presented here.
+**Note:** To build binaries for a different development kit than the one used in this page, please refer to the [Building the Hardware Projects](building-the-hardware-projects) section in the corresponding  GSRD page for that development kit, which is the section that may differ from the instructions presented here.
 
 ### Setting up the Environment 
 
@@ -75,23 +75,29 @@ export set TOP_FOLDER=`pwd`
 ```
 
 
-Download build toolchain and setup environment.
+Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
 
 
+```bash
+cd $TOP_FOLDER
+wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
+gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-none-linux-gnu-
+```
 
-```bash 
-cd $TOP_FOLDER 
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\ 
-gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz 
-tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz 
-rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz 
-export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH 
-export ARCH=arm64 
-export CROSS_COMPILE=aarch64-none-linux-gnu- 
+Enable Quartus tools to be called from command line:
 
+
+```bash
 export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
+
 
 
 
@@ -564,42 +570,54 @@ The following file is created.
 the following files are created **combined_application.hps.rpd** (combined application image)  and **combined_application.core.rbf** (corresponding fabric configuration file).
 
 
+
 ### Building the Root File System 
 
 
 A root file system is required to boot Linux. There are a lot of ways to build a root file system, depending on your specific needs. This section shows how to build a small root file system using Yocto. 
 
-1. Various packages may be needed by the build system. On a Ubuntu 22.04 machine the following command was used to install the required packages.
+1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/3.4.1/ref-manual/system-requirements.html#supported-linux-distributions.
 
-    ```bash 
-    sudo apt-get update 
-    sudo apt-get upgrade 
-    sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \ 
-    build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \ 
-    python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm python3-subunit mesa-common-dev zstd \ 
-    liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \ 
-    tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \ 
-    device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y 
-    ```
+The command to install the required packages on Ubuntu 22.04 is:
 
-2. Run the following commands to build the root file system. 
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \
+build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
+python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm python3-subunit mesa-common-dev zstd \
+liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \
+tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
+device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
+```
 
+On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:
+
+```bash
+ sudo ln -sf /bin/bash /bin/sh
+```
+
+**Note**: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.
+
+2\. Run the following commands to build the root file system. 
+
+  
     
-    ```bash 
-    cd $TOP_FOLDER 
-    rm -rf yocto && mkdir yocto && cd yocto 
-    git clone -b scarthgap https://git.yoctoproject.org/poky 
-    git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga 
-    git clone -b scarthgap https://github.com/openembedded/meta-openembedded 
-    source poky/oe-init-build-env ./build 
-    echo 'MACHINE = "stratix10"' >> conf/local.conf 
-    echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 
-    echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf 
-    echo 'IMAGE_FSTYPES = "tar.gz"' >> conf/local.conf
-    echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf
-    bitbake core-image-minimal 
-    ```
-    
+  ```bash
+  cd $TOP_FOLDER 
+  rm -rf yocto && mkdir yocto && cd yocto 
+  git clone -b socfpga_v2024.01 https://git.yoctoproject.org/poky 
+  git clone -b socfpga_v2024.01 https://git.yoctoproject.org/meta-intel-fpga 
+  git clone -b socfpga_v2024.01 https://github.com/openembedded/meta-openembedded 
+  source poky/oe-init-build-env ./build 
+  echo 'MACHINE = "stratix10"' >> conf/local.conf 
+  echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 
+  echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf 
+  echo 'IMAGE_FSTYPES = "tar.gz"' >> conf/local.conf
+  echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf
+  bitbake core-image-minimal 
+  ```
+  
 
 After the build completes, which can take a few hours depending on your host system processing power and Internet connection speed, the following root file system archive is created.
 
@@ -1828,7 +1846,7 @@ application image is running fine.
     DCMF0 version = 24.2.0
     DCMF1 version = 24.2.0
     DCMF2 version = 24.2.0
-    DCMF3 version = 24.2.0    
+    DCMF3 version = 24.2.0
     ```
 
 7. Power cycle the board, the same combined application image is loaded, as it is the highest priority. But it takes a couple of seconds less, as the decision firmware does not need to be updated.
