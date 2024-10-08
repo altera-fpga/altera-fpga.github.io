@@ -1,6 +1,6 @@
 # **QSPI Driver for Hard Processor System (HPS)**
 
-Last updated: **October 04, 2024** 
+Last updated: **October 08, 2024** 
 
 **Upstream Status**: Not Upstreamed
 

@@ -1,6 +1,6 @@
 # **General Purpose I/O Driver for Hard Processor System**
 
-Last updated: **October 04, 2024** 
+Last updated: **October 08, 2024** 
 
 **Upstream Status**: Not Upstreamed
 
