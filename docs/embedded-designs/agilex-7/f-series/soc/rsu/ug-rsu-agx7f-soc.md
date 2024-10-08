@@ -565,7 +565,7 @@ the following files are created **combined_application.hps.rpd** (combined appli
 
 A root file system is required to boot Linux. There are a lot of ways to build a root file system, depending on your specific needs. This section shows how to build a small root file system using Yocto. 
 
-1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/3.4.1/ref-manual/system-requirements.html#supported-linux-distributions.
+1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
 
 The command to install the required packages on Ubuntu 22.04 is:
 
@@ -595,9 +595,9 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
   ```bash 
   cd $TOP_FOLDER 
   rm -rf yocto && mkdir yocto && cd yocto 
-  git clone -b socfpga_v2024.01 https://git.yoctoproject.org/poky 
-  git clone -b socfpga_v2024.01 https://git.yoctoproject.org/meta-intel-fpga 
-  git clone -b socfpga_v2024.01   https://github.com/openembedded/meta-openembedded 
+  git clone -b scarthgap https://git.yoctoproject.org/poky 
+  git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga 
+  git clone -b scarthgap   https://github.com/openembedded/meta-openembedded 
   source poky/oe-init-build-env ./build 
   echo 'MACHINE = "agilex7_dk_si_agf014eb"' >> conf/local.conf 
   echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 
