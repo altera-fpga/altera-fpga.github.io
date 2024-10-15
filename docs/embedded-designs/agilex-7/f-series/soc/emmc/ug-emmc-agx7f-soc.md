@@ -40,8 +40,8 @@ The following files are available as part of this example:
  
 | File | Description | 
 | :-- | :-- | 
-| [agilex7-u-boot-emmc.patch](https://altera-fpga.github.io/rel-24.2/embedded-designs/agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc/collateral/agilex7-u-boot-emmc.patch) | U-Boot DTS patch to use eMMC - device tree changes only | 
-| [agilex7-linux-emmc.patch](https://altera-fpga.github.io/rel-24.2/embedded-designs/agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc/collateral/agilex7-linux-emmc.patch) | Linux DTS patch to use eMMC - device tree changes only | 
+| [agilex7-u-boot-emmc.patch](https://altera-fpga.github.io/rel-24.2/embedded-designs/agilex-7/f-series/soc/emmc/collateral/agilex7-u-boot-emmc.patch) | U-Boot DTS patch to use eMMC - device tree changes only | 
+| [agilex7-linux-emmc.patch](https://altera-fpga.github.io/rel-24.2/embedded-designs/agilex-7/f-series/soc/emmc/collateral/agilex7-linux-emmc.patch) | Linux DTS patch to use eMMC - device tree changes only | 
  
 
 ## Build Instructions 
@@ -156,7 +156,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -f agilex7-u-boot-emmc.patch
-wget https://altera-fpga.github.io/rel-24.2/embedded-designs/agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc/collateral/agilex7-u-boot-emmc.patch
+wget https://altera-fpga.github.io/rel-24.2/embedded-designs/agilex-7/f-series/soc/emmc/collateral/agilex7-u-boot-emmc.patch
 rm -rf u-boot-socfpga 
 git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga 
 cd u-boot-socfpga 
@@ -259,7 +259,7 @@ The following instructions are used to build Linux:
 
 ```bash 
 cd $TOP_FOLDER 
-wget https://altera-fpga.github.io/rel-24.2/embedded-designs/agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc/collateral/agilex7-linux-emmc.patch
+wget https://altera-fpga.github.io/rel-24.2/embedded-designs/agilex-7/f-series/soc/emmc/collateral/agilex7-linux-emmc.patch
 rm -rf linux-socfpga 
 git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga 
 cd linux-socfpga 
