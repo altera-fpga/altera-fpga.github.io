@@ -1,29 +1,29 @@
 ## Intro 
 
-This page presents a complete Remote System Update example, running on the Agilex™ 7 Transceiver-SoC Development kit P-Tile E-Tile production Linear power solution (DK-SI-AGF014EB), including the following.
+This page presents a complete Remote System Update example, running on the Agilex™ 5 E-Series Premium Development Kit (DK-A5E065BB32AES1), including the following.
 
 - Creating the initial flash image containing the following components.
   - Bitstreams for a factory image 
   - One application image 
   - Two empty slots to contain additional application images 
-
 - Creating an SD card with the following components.
   - U-Boot 
   - Arm* Trusted Firmware 
-  - f22Linux 
+  - Linux 
   - LIBRSU 
   - RSU client 
   - Application image 
   - Factory update image 
   - Decision firmware update image 
   - Combined application image 
-
 - Exercising the Linux RSU client application. 
 - Exercising the U-Boot RSU commands. 
 
-Refer to [Agilex™ 7 Hard Processor System Remote System Update User Guide](https://www.intel.com/content/www/us/en/docs/programmable/683184/current/overview-s10-fm.html) for details about the Remote System Update. 
+At the moment, the Agilex™ 5 Hard Processor System Remote System Update User Guide is not availabe but you can refer to the  [Agilex™ 7 Hard Processor System Remote System Update User Guide](https://www.intel.com/content/www/us/en/docs/programmable/683184/current/overview-s10-fm.html ) for details about the Remote System Update. 
 
 ## Component Versions 
+
+**Note:** RSU functionality is first enabled in U-Boot in 24.3 release, while Linux functionality is enabled starting on 24.2 release.
 
 This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.2 and the following component versions.
 
@@ -33,19 +33,18 @@ This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 
 | [linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.22-lts/QPDS24.2_REL_GSRD_PR |
 | [arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.10.1/QPDS24.2_REL_GSRD_PR |
 | [u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.01/QPDS24.2_REL_GSRD_PR |
-| [intel-rsu](https://github.com/altera-opensource/intel-rsu) | master |
-
-For RSU example previous 24.2 version, please refer to [Agilex 7 SoC HPS Remote System Update](https://www.rocketboards.org/foswiki/Projects/AgilexHPSRemoteSystemUpdate).
+| [intel-rsu](https://github.com/altera-opensource/librsu/) | master |
 
 ## Prerequisites 
 
 The following items are required to run the RSU example.
 
 - Host PC running Ubuntu 22.04 LTS (other Linux versions may work too) 
- - Minimum 48 GB of RAM, required for compiling the hardware designs 
- - Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.2  for compiling the hardware projects, generating the flash images and writing to flash 
+- Minimum 48 GB of RAM, required for compiling the hardware designs 
+- Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.2  for compiling the hardware projects, generating the flash images and writing to flash 
+- cmake/3.24.0  (build configuration tool) or or above to build LibRSU library.
 - Access to Internet to download the hardware project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. 
-- [Agilex 7 Transceiver-SoC Development kit P-Tile E-Tile Production Linear power solution(DK-SI-AGF014EB)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agf014.html)  for running the example. 
+- [Agilex™ 5 E-Series Premium Development Kit (DK-A5E065BB32AES1)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html)  for running the example. 
 
 ## Building Binaries 
 
@@ -61,6 +60,18 @@ The end results of the build flow are these.
 
 **Note:** To build binaries for a different development kit than the one used in this page, please refer to the [Building the Hardware Projects](#building-the-hardware-projects) section in the corresponding  GSRD page for that development kit, which is the section that may differ from the instructions presented here.
 
+### Installing cmake 
+In case that you have installed a cmake version earlier than 3.24.0, you need to unistall this and install a new version. Here are the steps to achieve that. Note that this only need to performed once in your PC:
+
+```bash 
+sudo apt remove cmake
+Download cmake-x.y.z-linux-x86_64.sh from https://cmake.org/download
+sudo cp ~/Downloads/cmake-x.y.z-linux-x86_64.sh /opt/
+sudo chmod +x /opt/cmake-x.y.z-linux-x86_64.sh
+mkdir ~/cmake_install/  && cd ~/cmake_install/
+sudo bash /opt/cmake-x.y.z-linux-x86_64.sh
+sudo ln -s ~/cmake_install/cmake-x.y.z-linux-x86_64/bin/* /usr/local/bin/
+```
 ### Setting up the Environment 
 
 
@@ -68,9 +79,9 @@ Create a top folder to store the example files.
 
 
 ```bash 
-sudo rm -rf agilex-rsu 
-mkdir agilex-rsu 
-cd agilex-rsu 
+sudo rm -rf agilex5-rsu 
+mkdir agilex5-rsu 
+cd agilex5-rsu 
 export set TOP_FOLDER=`pwd` 
 ```
 
@@ -118,47 +129,33 @@ cd $TOP_FOLDER
 # compile hardware designs: 0-factory, 1,2-applications, 3-factory update 
 rm -rf hw && mkdir hw && cd hw 
 git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
-mv ghrd-socfpga/agilex_soc_devkit_ghrd . 
+mv ghrd-socfpga/agilex5_soc_devkit_ghrd . 
 rm -rf ghrd-socfpga 
-# boot from FPGA 
-export BOOTS_FIRST=fpga 
-# enable watchdog 
-export ENABLE_WATCHDOG_RST=1 
-# treat watchdog timeout as configuration failure to trigger RSU 
-export WATCHDOG_RST_ACTION=remote_update
-# Select Linal regulator
-export BOARD_PWRMGT=linear
-# disable SGMII to build faster 
-export HPS_ENABLE_SGMII=0 
-# disable PR to build faster 
-export ENABLE_PARTIAL_RECONFIGURATION=0 
-for version in {0..3} 
-do 
-rm -rf ghrd.$version 
-cp -r agilex_soc_devkit_ghrd ghrd.$version 
-cd ghrd.$version 
-# update sysid to make binaries slightly different 
-sed -i 's/0xACD5CAFE/0xABAB000'$version'/g' create_ghrd_qsys.tcl 
-make scrub_clean_all
-make generate_from_tcl 
-echo "set_global_assignment -name RSU_MAX_RETRY_COUNT 3" >> ghrd_agfb014r24b2e2v.qsf 
-# Change the board id to be zero - the one used when booting from SD card 
-sed -i 's/set_global_assignment -name STRATIX_JTAG_USER_CODE .*/set_global_assignment -name STRATIX_JTAG_USER_CODE 4/g' ghrd_agfb014r24b2e2v.qsf 
-make all
+for version in {0..3}
+do
+rm -rf ghrd.$version
+cp -r agilex5_soc_devkit_ghrd ghrd.$version
+cd ghrd.$version
+# update sysid to make binaries slightly different
+sed -i 's/0xACD5CAFE/0xABAB000'$version'/g' construct_subsys_peripheral.tcl
+make config
+make DEVICE=A5ED065BB32AE6SR0 HPS_EMIF_MEM_CLK_FREQ_MHZ=800 HPS_EMIF_REF_CLK_FREQ_MHZ=100 INITIALIZATION_FIRST=fpga RESET_WATCHDOG_EN=1 RESET_SDM_WATCHDOG_CFG=2 generate_from_tcl
+echo "set_global_assignment -name RSU_MAX_RETRY_COUNT 3" >> ghrd_a5ed065bb32ae6sr0.qsf
+make sof
 cd .. 
 done 
  
-rm -rf agilex_soc_devkit_ghrd 
+rm -rf agilex5_soc_devkit_ghrd 
 cd .. 
 ```
 
 
 After completing the above steps, the following SOF files are created.
 
-- $TOP_FOLDER/hw/ghrd.0/output_files/ghrd_agfb014r24b2e2v.sof 
-- $TOP_FOLDER/hw/ghrd.1/output_files/ghrd_agfb014r24b2e2v.sof 
-- $TOP_FOLDER/hw/ghrd.2/output_files/ghrd_agfb014r24b2e2v.sof 
-- $TOP_FOLDER/hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof 
+- $TOP_FOLDER/hw/ghrd.0/output_files/ghrd_a5ed065bb32ae6sr0.sof 
+- $TOP_FOLDER/hw/ghrd.1/output_files/ghrd_a5ed065bb32ae6sr0.sof 
+- $TOP_FOLDER/hw/ghrd.2/output_files/ghrd_a5ed065bb32ae6sr0.sof 
+- $TOP_FOLDER/hw/ghrd.3/output_files/ghrd_a5ed065bb32ae6sr0.sof 
 
 
 ### Building Arm Trusted Firmware 
@@ -168,14 +165,14 @@ The following commands are used to retrieve the Arm Trusted Firmware (ATF) and c
 
 
 ```bash 
-cd $TOP_FOLDER 
-rm -rf arm-trusted-firmware 
-git clone https://github.com/altera-opensource/arm-trusted-firmware 
-cd arm-trusted-firmware 
-# checkout the branch used for this document, comment out to use default 
-# git checkout -b test -t origin/socfpga_v2.10.1 
-make bl31 PLAT=agilex DEPRECATED=1 
-cd .. 
+cd $TOP_FOLDER
+rm -rf arm-trusted-firmware
+git clone https://github.com/altera-opensource/arm-trusted-firmware
+cd arm-trusted-firmware
+# checkout the branch used for this document, comment out to use default
+git checkout -b test -t origin/socfpga_v2.10.1
+make -j 48 PLAT=agilex5 bl31
+cd ..
 ```
 
 
@@ -196,59 +193,72 @@ rm -rf u-boot-socfpga
 git clone https://github.com/altera-opensource/u-boot-socfpga 
 cd u-boot-socfpga 
 # comment out next line to use the latest default branch 
-# git checkout -b test -t origin/socfpga_v2024.01 
-# enable dwarf4 debug info, for compatibility with arm ds 
-sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk 
+git checkout -b test -t origin/socfpga_v2024.01 
+# enable dwarf4 debug info, for compatibility with arm ds
+sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
+# only boot from SD, do not try QSPI and NAND
+sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&mmc;/g' arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi
+# disable NAND in the device tree
+sed -i '/&nand {/!b;n;c\\tstatus = "disabled";' arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi
 # use 'Image' for kernel image instead of 'kernel.itb' 
 sed -i 's/kernel\.itb/Image/g' arch/arm/Kconfig
-# only boot from SD, do not try QSPI and NAND 
-sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&mmc;/g' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi 
-# disable NAND in the device tree 
-sed -i '/&nand {/!b;n;c\\tstatus = "disabled";' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi 
-# remove the NAND configuration from device tree 
-sed -i '/images/,/binman/{/binman/!d}' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi 
-# link to atf 
-ln -s $TOP_FOLDER/arm-trusted-firmware/build/agilex/release/bl31.bin . 
-# Create configuration custom file. 
-cat << EOF > config-fragment-agilex 
-# - Disable NAND/UBI related settings from defconfig. 
-CONFIG_NAND_BOOT=n 
-CONFIG_SPL_NAND_SUPPORT=n 
-CONFIG_CMD_NAND_TRIMFFS=n 
-CONFIG_CMD_NAND_LOCK_UNLOCK=n 
-CONFIG_NAND_DENALI_DT=n 
-CONFIG_SYS_NAND_U_BOOT_LOCATIONS=n 
-CONFIG_SPL_NAND_FRAMEWORK=n 
-CONFIG_CMD_NAND=n 
-CONFIG_MTD_RAW_NAND=n 
-CONFIG_CMD_UBI=n 
-CONFIG_CMD_UBIFS=n 
-CONFIG_MTD_UBI=n 
-CONFIG_ENV_IS_IN_UBI=n 
-CONFIG_UBI_SILENCE_MSG=n 
-CONFIG_UBIFS_SILENCE_MSG=n 
-# - Disable distroboot and use specific boot command. 
-CONFIG_DISTRO_DEFAULTS=n 
-CONFIG_HUSH_PARSER=y 
-CONFIG_SYS_PROMPT_HUSH_PS2="> " 
-CONFIG_USE_BOOTCOMMAND=y 
-CONFIG_BOOTCOMMAND="bridge enable;run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot" 
-CONFIG_CMD_FAT=y 
-CONFIG_CMD_FS_GENERIC=y 
-CONFIG_DOS_PARTITION=y 
-CONFIG_SPL_DOS_PARTITION=y 
-CONFIG_CMD_PART=y 
-CONFIG_SPL_CRC32=y 
-CONFIG_LZO=y 
-CONFIG_CMD_DHCP=y 
-CONFIG_SYS_PROMPT="SOCFPGA # " 
-EOF 
-# build U-Boot 
-make clean && make mrproper 
-make socfpga_agilex_defconfig 
-# Use created custom configuration file to merge with the default configuration obtained in .config file. 
-./scripts/kconfig/merge_config.sh -O ./ ./.config ./config-fragment-agilex 
-make -j 48 
+# Replace configuration to match agilex5 (Address where dtb is loaded and address of QSPI controller 2nd occurrence in the file)
+
+# Need fix in arch/arm/mach-socfpga/smc_api.c from HSD:14023661564
+sed -i '/flush_dcache_range/s/arg + len/(arg + len)/g' arch/arm/mach-socfpga/smc_api.c
+sed -i '/flush_dcache_range/s/resp_buf + \*resp_buf_len/(resp_buf + \*resp_buf_len)/g' arch/arm/mach-socfpga/smc_api.c
+sed -i '/flush_dcache_range/s/(u64)/(uintptr_t)/g' arch/arm/mach-socfpga/smc_api.c
+sed -i '/if (ret == INTEL_SIP_SMC_STATUS_OK &&/a \\t\tinvalidate_dcache_range((uintptr_t)resp_buf, (uintptr_t)(resp_buf + \*resp_buf_len));' arch/arm/mach-socfpga/smc_api.c 
+
+# link to atf
+ln -s ../arm-trusted-firmware/build/agilex5/release/bl31.bin 
+# create configuration custom file. 
+cat << EOF > config-fragment
+# disable NAND/UBI related settings from defconfig. 
+CONFIG_NAND_BOOT=n
+CONFIG_SPL_NAND_SUPPORT=n
+CONFIG_CMD_NAND_TRIMFFS=n
+CONFIG_CMD_NAND_LOCK_UNLOCK=n
+CONFIG_NAND_DENALI_DT=n
+CONFIG_SYS_NAND_U_BOOT_LOCATIONS=n
+CONFIG_SPL_NAND_FRAMEWORK=n
+CONFIG_CMD_NAND=n
+CONFIG_MTD_RAW_NAND=n
+CONFIG_CMD_UBI=n
+CONFIG_CMD_UBIFS=n
+CONFIG_MTD_UBI=n
+CONFIG_ENV_IS_IN_UBI=n
+CONFIG_UBI_SILENCE_MSG=n
+CONFIG_UBIFS_SILENCE_MSG=n
+# disable distroboot and use specific boot command. 
+CONFIG_DISTRO_DEFAULTS=n
+CONFIG_HUSH_PARSER=y
+CONFIG_SYS_PROMPT_HUSH_PS2="> "
+# Enabling Watchdog automatically if it's not done already
+CONFIG_WATCHDOG_AUTOSTART=y
+CONFIG_USE_BOOTCOMMAND=y
+CONFIG_BOOTCOMMAND="bridge enable; mmc rescan; run mmcload; run linux_qspi_enable; run rsu_status; setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;run mmcboot"
+CONFIG_CMD_FAT=y
+CONFIG_CMD_FS_GENERIC=y
+CONFIG_DOS_PARTITION=y
+CONFIG_SPL_DOS_PARTITION=y
+CONFIG_CMD_PART=y
+CONFIG_SPL_CRC32=y
+CONFIG_LZO=y
+CONFIG_CMD_DHCP=y
+# enable more QSPI flash manufacturers
+CONFIG_SPI_FLASH_MACRONIX=y
+CONFIG_SPI_FLASH_GIGADEVICE=y
+CONFIG_SPI_FLASH_WINBOND=y
+CONFIG_SPI_FLASH_ISSI=y
+CONFIG_SYS_PROMPT="SOCFPGA # "
+EOF
+# build U-Boot
+make clean && make mrproper
+make socfpga_agilex5_defconfig 
+# use created custom configuration file to merge with the default configuration obtained in .config file. 
+./scripts/kconfig/merge_config.sh -O . -m .config config-fragment
+make -j 64
 cd .. 
 ```
 
@@ -257,6 +267,7 @@ After completing the above steps, the following files are created.
 
 - $TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex - FSBL (U-boot SPL) hex file 
 - $TOP_FOLDER/u-boot-socfpga/u-boot.itb - FIT image file containing SSBL (U-Boot) and ATF (Arm Trusted Firmware) binaries 
+
 
 
 ### Building Linux 
@@ -271,13 +282,13 @@ rm -rf linux-socfpga
 git clone https://github.com/altera-opensource/linux-socfpga 
 cd linux-socfpga 
 # checkout the branch used for this document, comment out to use default 
-# git checkout -b test -t origin/socfpga-6.6.22-lts 
+git checkout -b test -t origin/socfpga-6.6.22-lts 
 # configure the RSU driver to be built into the kernel 
 make clean && make mrproper 
 make defconfig 
 ./scripts/config --set-val CONFIG_INTEL_STRATIX10_RSU y 
 make oldconfig 
-make -j 48 Image dtbs 
+make -j 64 Image && make intel/socfpga_agilex5_socdk.dtb 
 cd .. 
 ```
 
@@ -285,7 +296,7 @@ cd ..
 After completing the above steps, the following files are created.
 
 - $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image - kernel image 
-- $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dtb - kernel device tree 
+- $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dtb - kernel device tree 
 
 
 ### Creating the Initial Flash Image 
@@ -293,13 +304,9 @@ After completing the above steps, the following files are created.
 
 This section presents detailed instructions on how to create the initial flash image, by using the Programming File Generator. 
 
-For reference, an example of the  Programming File Generator configuration file is provided below so and you can easily create the initial flash image by passing it to the Programming File Generator as shown below.
+For reference, an example of the  Programming File Generator configuration file is being included in this page. You can see it below. 
 
-
-```bash 
-cd $TOP_FOLDER 
-# Create automatically the .pfg file
-cat << EOF > initial_image.pfg
+```xml
 <pfg version="1">
     <settings custom_db_dir="./" mode="ASX4"/>
     <output_files>
@@ -309,21 +316,22 @@ cat << EOF > initial_image.pfg
                 <file_options/>
             </secondary_file>
             <secondary_file type="SEC_RPD" name="initial_image_jic">
-                <file_options bitswap="1"/>
+                <file_options/>
             </secondary_file>
             <flash_device_id>Flash_Device_1</flash_device_id>
         </output_file>
     </output_files>
     <bitstreams>
         <bitstream id="Bitstream_1">
-            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">hw/ghrd.0/output_files/ghrd_agfb014r24b2e2v.sof</path>
+            <path signing="OFF" finalize_encryption="0" hps_path="./u-boot-socfpga/spl/u-boot-spl-dtb.hex">./hw/ghrd.0/output_files/ghrd_a5ed065bb32ae6sr0.sof</path>
         </bitstream>
         <bitstream id="Bitstream_2">
-            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">hw/ghrd.1/output_files/ghrd_agfb014r24b2e2v.sof</path>
+            <path signing="OFF" finalize_encryption="0" hps_path="./u-boot-socfpga/spl/u-boot-spl-dtb.hex">./hw/ghrd.1/output_files/ghrd_a5ed065bb32ae6sr0.sof</path>
         </bitstream>
     </bitstreams>
     <flash_devices>
-        <flash_device type="MT25QU02G" id="Flash_Device_1">
+        <flash_loader>A5ED065BB32AR0</flash_loader>
+        <flash_device type="QSPI02G" id="Flash_Device_1">
             <partition reserved="1" fixed_s_addr="1" s_addr="0x00000000" e_addr="0x0020FFFF" fixed_e_addr="1" id="BOOT_INFO" size="0"/>
             <partition reserved="1" extra_space="262144" fixed_s_addr="1" s_addr="0x00210000" e_addr="0x0090FFFF" fixed_e_addr="0" id="FACTORY_IMAGE" size="0"/>
             <partition reserved="1" fixed_s_addr="1" s_addr="auto" e_addr="auto" fixed_e_addr="1" id="SPT0" size="65536"/>
@@ -334,7 +342,6 @@ cat << EOF > initial_image.pfg
             <partition reserved="0" fixed_s_addr="0" s_addr="0x02000000" e_addr="0x02FFFFFF" fixed_e_addr="0" id="P2" size="0"/>
             <partition reserved="0" fixed_s_addr="0" s_addr="0x03000000" e_addr="0x03FFFFFF" fixed_e_addr="0" id="P3" size="0"/>
         </flash_device>
-        <flash_loader>AGFB014R24B</flash_loader>
     </flash_devices>
     <assignments>
         <assignment page="0" partition_id="FACTORY_IMAGE">
@@ -346,7 +353,16 @@ cat << EOF > initial_image.pfg
     </assignments>
 </pfg>
 
-EOF
+```
+
+ You can also downloaded and use it to generate the flash image by passing it to the Programming File Generator as shown below.
+
+
+
+```bash 
+cd $TOP_FOLDER 
+# Get the .pfg file
+wget https://altera-fpga.github.io/rel-24.2/embedded-designs/agilex-5/e-series/premium/rsu/collateral/initial_image.pfg
 
 # Create Initial Image for previous release (in case needed to test  combined application)
 ~/intelFPGA_pro/24.1/quartus/bin/quartus_pfg -c initial_image.pfg
@@ -368,7 +384,7 @@ Here are the complete instructions on how to manually create the initial flash i
     qpfgw & 
     ```
 
-2. Select the **Device family** as **Agilex 7**, and **Configuration mode** as **Active Serial x4**. 
+2. Select the **Device family** as **Agilex 5**, and **Configuration mode** as **Active Serial x4**. 
 
 3. Change the **Name** to initial_image. 
 
@@ -380,41 +396,41 @@ Here are the complete instructions on how to manually create the initial flash i
 
     The window looks similar to this.
 
-    ![](images/jic-1.png) 
+    ![](images/create_pfg_1.png) 
 
 7. Click the **Raw Programming Data File (.rpd )** file to select it. Then click the **Edit ...** button and select the **Bitswap** option to be "On". This enables the RPD file to be usable by HPS software like U-Boot and Linux if needed. 
 
 8. Once the output type was selected, click the **Input Files** tab. 
 
-9. In the **Input Files** tab click the **Add Bitstream** button, then browse to **$TOP_FOLDER/hw/ghrd.0/output_files**, select the file **ghrd_agfb014r24b2e2v.sof**, and then click **Open**. This is the initial factory image. Do the same for the **$TOP_FOLDER/hw/ghrd.1/output_files/ghrd_agfb014r24b2e2v.sof** image. This is the initial application image. The tab now looks like below.
+9. In the **Input Files** tab click the **Add Bitstream** button, then browse to **$TOP_FOLDER/hw/ghrd.0/output_files**, select the file **ghrd_a5ed065bb32ae6sr0.sof**, and then click **Open**. This is the initial factory image. Do the same for the **$TOP_FOLDER/hw/ghrd.1/output_files/ghrd_a5ed065bb32ae6sr0.sof** image. This is the initial application image. The tab now looks like below.
 
-    ![](images/jic-2.png) 
+    ![](images/create_pfg_2.png) 
 
 10. Click the first .sof file, then click the **Properties** button on the right side. This opens the window to browse for the FSBL and select authentication and encryption settings. 
 
-    ![](images/jic-3.png) 
+    ![](images/create_pfg_3.png) 
 
 11. Click the **Bootloader  (Browse)** button and select the file **$TOP_FOLDER/uboot-socfpga/spl/u-boot-spl-dtb.hex**, then click **OK**. 
 
 12. Click the second .sof file and add the same FSBL file to it. The **Input Files** tab now looks like shown below.
 
-    ![](images/jic-4.png) 
+    ![](images/create_pfg_4.png) 
 
 13. Click the **Configuration Device** tab. Note that the tab is only enabled once at least one input file was added in the **Input Files** tab. 
 
 14. Because more than one input file was added in the **Input Files** tab, it displays the options for remote system update. Otherwise, it only enables the standard configuration flow. 
 
-15. In the **Configuration Device** tab, click **Add Device**, select the **MT25QU02G** in the dialog box window, then click **OK**. Once that is done, the window displays the default initial partitioning for RSU.
+15. In the **Configuration Device** tab, click **Add Device**, select the **QSPI02G** in the dialog box window, then click **OK**. Once that is done, the window displays the default initial partitioning for RSU.
 
-    ![](images/jic-5.png) 
+    ![](images/create_pfg_5.png) 
 
-16. Select the **FACTORY_IMAGE** entry, and click the **Edit** button. The **Edit Partition** window pops up. Select the **Input file** as **Bitstream_1 (ghrd_agfb014r24b2e2v.sof)**. Change **Address Mode** to **Block** because you want to make sure you are leaving enough space for the biggest factory image you anticipate using. Set the **End Address** to **0x0090FFFF** in order to reserve 7MB for the factory image. This end address was calculated by adding 8MB to the end of the **BOOT_INFO** partition. Click **OK**. 
+16. Select the **FACTORY_IMAGE** entry, and click the **Edit** button. The **Edit Partition** window pops up. Select the **Input file** as **Bitstream_1 (ghrd_a5ed065bb32ae6sr0.sof)**. Change **Address Mode** to **Block** because you want to make sure you are leaving enough space for the biggest factory image you anticipate using. Set the **End Address** to **0x0090FFFF** in order to reserve 7MB for the factory image. This end address was calculated by adding 8MB to the end of the **BOOT_INFO** partition. Click **OK**. 
 
-    ![](images/jic-6.png) 
+    ![](images/create_pfg_6.png) 
 
     **Note**: The Page property for **FACTORY_IMAGE** partition must always be set to 0. This means that the **FACTORY_IMAGE** will be trieed after all the application images failed. 
 
-17. Select the **MT25QU02G** flash device in the Configuration Device tab by clicking it, then click the **Add Partition** button to open the **Add Partition** window. Leave the **Name** as **P1** and select the **Input file** as **Bitstream_2(ghrd_agfb014r24b2e2v.sof)**. This becomes the initial application image. Select the **Page** as **1**. Select the **Address Mode** as **Block** and allocate 16MB of data by setting **Start Address** = **0x01000000** and **End Address** = **0x01FFFFFF**. Since this is the first partition defined, this becomes the initial application image to be loaded and has the highest priority of all application images that may be defined later.
+17. Select the **QSPI02G** flash device in the Configuration Device tab by clicking it, then click the **Add Partition** button to open the **Add Partition** window. Leave the **Name** as **P1** and select the **Input file** as **Bitstream_2(ghrd_agfb014r24b2e2v.sof)**. This becomes the initial application image. Select the **Page** as **1**. Select the **Address Mode** as **Block** and allocate 16MB of data by setting **Start Address** = **0x01000000** and **End Address** = **0x01FFFFFF**. Since this is the first partition defined, this becomes the initial application image to be loaded and has the highest priority of all application images that may be defined later.
 
     The actual priority in which an application in a partition is loaded is defined based on the order in which the partition is defined when creating the initial flash image as shown above in this step.
     The Programming File Generator issues an error if there are multiple partitions with the same page number, or if there are any “gaps” as in having a Page=1 then a Page=3, without a Page=2 for example.
@@ -428,15 +444,15 @@ Here are the complete instructions on how to manually create the initial flash i
 
 19. Click **Select** to select the **Flash loader**. The flash loader becomes part of the JIC file and is used by the Flash Programmer tool. Select the desired **Device family** and **Device name** as shown below.
 
-    ![](images/jic-7.png) 
+    ![](images/create_pfg_7.png) 
 
     The Configuration Device tab now looks like as shown below.
 
-    ![](images/jic-8.png) 
+    ![](images/create_pfg_8.png) 
 
 20. You require to change the size of the SPTs and CPBs to 64 KB hence the HPS software uses now this size. This is done by selecting any of the components and pressing the **Edit** button. Expect to see a menu where you can select the option desired. Select the 64 KB size. You only need to update the size of one of these components and can expect to see the rest updated automatically with the same value chosen. 
 
-    ![](images/Agilex7-STP-CPB-setSize.jpg) 
+    ![](images/create_pfg_9.png) 
 
 21. Click **File > Save As ..** and save the file as **$TOP_FOLDER/initial_image.pfg**. This file can be useful later, if you wanted to re-generate the initial image by using the command.
 
@@ -459,12 +475,12 @@ The following commands are used to create the application image used in this exa
 ```bash 
 cd $TOP_FOLDER 
 mkdir -p images 
-rm -rf images/application2.rpd 
-quartus_pfg -c hw/ghrd.2/output_files/ghrd_agfb014r24b2e2v.sof \ 
-images/application2.rpd \ 
--o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \ 
--o mode=ASX4 \ 
--o bitswap=ON 
+rm -rf images/application2.rpd
+quartus_pfg -c hw/ghrd.2/output_files/ghrd_a5ed065bb32ae6sr0.sof \
+images/application2.rpd \
+-o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o bitswap=ON
 ```
 
 
@@ -482,13 +498,13 @@ The following commands are used to create the factory update image used in this 
 ```bash 
 cd $TOP_FOLDER 
 mkdir -p images 
-rm -f images/factory_update.rpd 
-quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof \ 
-images/factory_update.rpd \ 
--o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \ 
--o mode=ASX4 \ 
--o bitswap=ON \ 
--o rsu_upgrade=ON 
+rm -f images/factory_update.rpd
+quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2vghrd_a5ed065bb32ae6sr0.sof \
+images/factory_update.rpd \
+-o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o bitswap=ON \
+-o rsu_upgrade=ON
 ```
 
 
@@ -506,14 +522,14 @@ The following commands are used to create the decision firmware update image use
 ```bash 
 cd $TOP_FOLDER 
 mkdir -p images 
-rm -f images/decision_firmware_update.rpd 
-quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof \ 
-images/decision_firmware_update.rpd \ 
--o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \ 
--o mode=ASX4 \ 
--o bitswap=ON \ 
--o rsu_upgrade=ON \ 
--o firmware_only=ON 
+rm -f images/decision_firmware_update.rpd
+quartus_pfg -c hw/ghrd.3/output_files/ghrd_a5ed065bb32ae6sr0.sof \
+images/decision_firmware_update.rpd \
+-o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o bitswap=ON \
+-o rsu_upgrade=ON \
+-o firmware_only=ON
 ```
 
 
@@ -532,17 +548,17 @@ The following commands are used to create the combined application image used in
 
 ```bash 
 cd $TOP_FOLDER 
-mkdir -p images 
-rm -f images/combined_application.rpd 
-quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof \ 
-images/combined_application.rpd \ 
--o app_image=hw/ghrd.2/output_files/ghrd_agfb014r24b2e2v.sof \ 
--o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \ 
--o app_image_hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \ 
--o mode=ASX4 \ 
--o bitswap=ON \ 
--o rsu_upgrade=ON \ 
--o app_image_only=ON 
+mkdir -p images
+rm -f images/combined_application.rpd
+quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof \
+images/combined_application.rpd \
+-o app_image=hw/ghrd.2/output_files/ghrd_a5ed065bb32ae6sr0.sof \
+-o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o app_image_hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o bitswap=ON \
+-o rsu_upgrade=ON \
+-o app_image_only=ON
 ```
 
 
@@ -599,7 +615,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
   git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga 
   git clone -b scarthgap   https://github.com/openembedded/meta-openembedded 
   source poky/oe-init-build-env ./build 
-  echo 'MACHINE = "agilex7_dk_si_agf014eb"' >> conf/local.conf 
+  echo 'MACHINE = "agilex5_dk_a5e065bb32aes1"' >> conf/local.conf 
   echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 
   echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf 
   echo 'IMAGE_FSTYPES = "tar.gz"' >> conf/local.conf
@@ -610,7 +626,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 
 After the build completes, which can take a few hours depending on your host system processing power and Internet connection speed, the following root file system archive is created.
 
-* TOP_FOLDER/yocto/build/tmp/deploy/images/agilex7_dk_si_agf014eb/core-image-minimal-agilex7_dk_si_agf014eb.rootfs.tar.gz 
+* TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz 
 
 
 
@@ -652,30 +668,21 @@ The following commands can be used to build the LIBRSU and the example client ap
 
 ```bash 
 cd $TOP_FOLDER 
-rm -rf intel-rsu 
-git clone https://github.com/altera-opensource/intel-rsu 
-cd intel-rsu 
+rm -rf librsu 
+git clone https://github.com/altera-opensource/librsu 
+cd librsu 
 # checkout the branch used for this document, comment out to use default 
 # git checkout -b test -t origin/master 
-cd lib 
-# add -I$(ZLIB_PATH) to CFLAGS 
-sed -i 's/\(CFLAGS := .*\)$/\1 -I\$\(ZLIB_PATH\)/g' makefile 
-make 
-cd .. 
-cd example 
-# add -L$(ZLIB_PATH) to LDFLAGS 
-sed -i 's/\(LDFLAGS := .*\)$/\1 -L\$\(ZLIB_PATH\)/g' makefile 
-make 
-cd .. 
+cmake -S . -B build -G"Ninja" -DPLATFORM=linux-aarch64 && cmake --build build
 cd .. 
 ```
 
 
 The following files are created.
 
-- $TOP_FOLDER/intel-rsu/lib/librsu.so - shared object required at runtime for running applications using librsu 
-- $TOP_FOLDER/intel-rsu/etc/qspi.rc - resource file for librsu configuration 
-- $TOP_FOLDER/intel-rsu/example/rsu_client - example client application using librsu 
+- $TOP_FOLDER/librsu/build/lib/libuniLibRSU.so.1 - shared object required at runtime for running applications using librsu 
+- $TOP_FOLDER/librsu/etc/qspi.rc - resource file for librsu configuration 
+- $TOP_FOLDER/librsu/build/bin/rsu_client - example client application using librsu 
 
 
 ### Building the SD Card 
@@ -694,18 +701,19 @@ chmod +x make_sdimage_p3.py
 mkdir fat && cd fat 
 cp $TOP_FOLDER/u-boot-socfpga/u-boot.itb . 
 cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image . 
-cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dtb . 
+cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dtb . 
 cp $TOP_FOLDER/images/*.rpd . 
 cd .. 
 # prepare the rootfs partition contents 
 mkdir rootfs && cd rootfs 
-sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex7_dk_si_agf014eb/core-image-minimal-agilex7_dk_si_agf014eb.rootfs.tar.gz
-sudo sed -i 's/agilex7_dk_si_agf014eb/linux/g' etc/hostname
+sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz
+sudo sed -i 's/agilex5_dk_a5e065bb32aes1/linux/g' etc/hostname
 sudo rm -rf lib/modules/* 
 sudo cp $TOP_FOLDER/images/*.rpd home/root 
-sudo cp $TOP_FOLDER/intel-rsu/example/rsu_client home/root/ 
-sudo cp $TOP_FOLDER/intel-rsu/lib/librsu.so lib/ 
-sudo cp $TOP_FOLDER/intel-rsu/etc/qspi.rc etc/librsu.rc 
+# This also could be copy to /usr/bin/ so it can be accessed from anywhere
+sudo cp $TOP_FOLDER/librsu/build/bin/rsu_client home/root/ 
+sudo cp $TOP_FOLDER/librsu/build/lib/libuniLibRSU.so.1 usr/lib/ 
+sudo cp $TOP_FOLDER/librsu/etc/qspi.rc etc/librsu.rc 
 sudo cp $TOP_FOLDER/zlib-1.3.1/libz.so* lib/ 
 cd .. 
 # create sd card image 
@@ -713,14 +721,14 @@ sudo python3 ./make_sdimage_p3.py -f \
 -P fat/*,num=1,format=vfat,size=100M \ 
 -P rootfs/*,num=2,format=ext3,size=100M \ 
 -s 256M \ 
--n sdcard_rsu.img 
+-n sdcard_agilex5_rsu.img 
 cd .. 
 ```
 
 
 This creates the SD card image as 
 
-- $TOP_FOLDER/sd_card/sdcard_rsu.img. 
+- $TOP_FOLDER/sd_card/sdcard_agilex5_rsu.img. 
 
 The following items are included in the rootfs on the SD card. 
 
@@ -758,7 +766,7 @@ The following items are included in the rootfs on the SD card.
 
 ### Writing the SD Card Image 
 
-1. Write the SD card image $TOP_FOLDER/sd_card/sdcard_rsu.img to a microSD card. You can use an USB micro SD card writer and the Linux dd command on your host PC to achieve this. Exercise caution when using the dd command, as incorrect usage can lead to your host Linux system becoming corrupted and non-bootable. 
+1. Write the SD card image $TOP_FOLDER/sd_card/sdcard_agilex5_rsu.img to a microSD card. You can use an USB micro SD card writer and the Linux dd command on your host PC to achieve this. Exercise caution when using the dd command, as incorrect usage can lead to your host Linux system becoming corrupted and non-bootable. 
 
 2. Insert the micro SD card in the slot on the Agilex SoC Development kit HPS daughtercard. 
 
@@ -776,9 +784,11 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 
 **Note**: This section assumes that the flash contains the initial RSU image. If that is not true, you need to re-flash the initial image, as shown in the Flashing the Initial RSU Image to QSPI . 
 
+**Note:** RSU functionality in U-Boot is enabled starting on 24.3 release.
+
 1. Power up the board and press any key when prompted, to get to the U-Boot command prompt.
 
-    ```bash 
+    ```
     U-Boot SPL 2024.01-33547-g098abd8f13-dirty (Aug 19 2024 - 12:15:42 -0500)
     Reset state: Cold
     MPU          1200000 kHz
@@ -790,7 +800,7 @@ This section demonstrates how to use U-Boot to perform the following basic opera
     DDR: 8192 MiB
     SDRAM-ECC: Initialized success with 1722 ms
     QSPI: Reference clock at 400000 kHz
-    WDT:   Started watchdog@ffd00200 with servicing every 1000ms (10s timeout)
+    WDT:   Started watchdog@10D00200 with servicing every 1000ms (10s timeout)
     Trying to boot from MMC1
     ## Checking hash(es) for config board-0 ... OK
     ## Checking hash(es) for Image atf ... crc32+ OK
@@ -805,7 +815,7 @@ This section demonstrates how to use U-Boot to perform the following basic opera
     Model: SoCFPGA Agilex SoCDK
     DRAM:  2 GiB (effective 8 GiB)
     Core:  28 devices, 23 uclasses, devicetree: separate
-    WDT:   Started watchdog@ffd00200 with servicing every 1000ms (10s timeout)
+    WDT:   Started watchdog@10D00200 with servicing every 1000ms (10s timeout)
     MMC:   dwmmc0@ff808000: 0
     Loading Environment from FAT... Unable to read "uboot.env" from mmc0:1...
     In:    serial0@ffc02000
@@ -820,7 +830,7 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 
 2. Run the rsu command without parameters, to display its help message, and usage options. 
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu 
     rsu - Agilex SoC Remote System Update 
  
@@ -894,7 +904,7 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 
 4. Run the rsu status_log command to display the RSU status.
 
-    ```bash 
+    ```bash
      SOCFPGA # rsu status_log 
      Current Image : 0x01000000 
      Last Fail Image : 0x00000000 
@@ -909,7 +919,7 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 
 5. Run the rsu display_dcmf_version to query and display the decision firmware versions.
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu display_dcmf_version 
     DCMF0 version = 24.2.0 
     DCMF1 version = 24.2.0  
@@ -942,7 +952,7 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 
 6. Erase slot 1 and add the application2.rpd image to slot 1.
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu slot_erase 1 
     Slot 1 erased. 
     SOCFPGA # load mmc 0:1 $loadaddr application2.rpd 
@@ -960,7 +970,7 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 
 7. Power cycle the board, stop U-Boot and check the RSU status log. 
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu status_log 
     Current Image : 0x02000000 
     Last Fail Image : 0x00000000 
@@ -975,13 +985,13 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 
     **Important Note**: Causing the newly written application image to be loaded can also be done without a power cycle, by requesting the specific image to be loaded, in this case using the following command.
 
-    ```bash 
-    rsu slot_load 1 
+    ```bash
+    SOCFPGA # rsu slot_load 1 
     ```
 
 8. Load the application image from slot 0 (partition P1) by running any of the following two commands. 
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu update 0x01000000 
     RSU: RSU update to 0x0000000001000000 
     or 
@@ -1017,7 +1027,7 @@ This section uses U-Boot to demonstrate the following.
 
 1. Power up the board, stop U-Boot and check the RSU status log. 
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu status_log 
     Current Image : 0x02000000 
     Last Fail Image : 0x00000000 
@@ -1036,15 +1046,15 @@ This section uses U-Boot to demonstrate the following.
 
 2. Query and display the max_retry value.
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu display_max_retry 
     max_retry = 3 
     ```
 
 3. Cause a watchdog timeout by setting the timeout value to lowest possible. This prevents U-Boot from being able to service it in time.
 
-    ```bash 
-    SOCFPGA # mw.l 0xffd00204 0 
+    ```bash
+    SOCFPGA # mw.l 10D00200 0 
     ```
 
 4. The watchdog immediately times out, and SDM reloads the same application image, since the max retry parameter is set to three. Look at the U-Boot console and check the status log.
@@ -1064,7 +1074,7 @@ This section uses U-Boot to demonstrate the following.
 
 5. Clear the error status so we can see the next errors. Query the status to show the errors were cleared.
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu clear_error_status 
     SOCFPGA # rsu status_log 
     Current Image : 0x02000000 
@@ -1078,7 +1088,7 @@ This section uses U-Boot to demonstrate the following.
 
 6. Cause another watchdog timeout. At the U-Boot prompt, query the RSU log and observe that the retry counter is now two.
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu status_log 
     Current Image : 0x02000000 
     Last Fail Image : 0x02000000 
@@ -1114,7 +1124,7 @@ This section uses U-Boot to demonstrate the following.
 
 10. Clear the errors and display the status - it shows no errors. 
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu clear_error_status 
     SOCFPGA # rsu status_log 
     Current Image : 0x01000000 
@@ -1141,7 +1151,7 @@ This section uses U-Boot to demonstrate the following.
 
 12. Reset the current retry counter value to zero and query the status again to confirm it. 
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu reset_retry_counter 
     SOCFPGA # rsu status_log 
     Current Image : 0x01000000 
@@ -1161,7 +1171,7 @@ This section demonstrates how to use U-Boot to update the factory image.
 
 1. Power up the board, stop U-Boot and check the RSU status log. 
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu status_log 
     Current Image : 0x02000000 
     Last Fail Image : 0x00000000 
@@ -1299,7 +1309,7 @@ This example uses U-Boot commands to demonstrate detecting that a decision firmw
 
 2. Display the RSU status. 
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu status_log 
     Current Image : 0x01000000 
     Last Fail Image : 0x00000000 
@@ -1314,7 +1324,7 @@ This example uses U-Boot commands to demonstrate detecting that a decision firmw
 
 3. Display the decision firmware status. 
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu display_dcmf_status 
     DCMF0: OK 
     DCMF1: OK 
@@ -1326,7 +1336,7 @@ This example uses U-Boot commands to demonstrate detecting that a decision firmw
 
 4. Corrupt decision firmware copies 0 and 2 (each copy is 512 KB). 
 
-    ```bash 
+    ```bash
     SOCFPGA # sf probe 
     SF: Detected mt25qu02g with page size 256 Bytes, erase size 4 KiB, total 
     256 MiB 
@@ -1384,7 +1394,7 @@ This example uses U-Boot commands to demonstrate detecting that a decision firmw
 
 9. Stop at U-Boot prompt and confirm the decision firmware copies are all good, the decision firmware update image was removed from CPB, and the highest priority image is running. 
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu status_log 
     Current Image : 0x01000000 
     Last Fail Image : 0x00000000 
@@ -1430,7 +1440,7 @@ This example uses U-Boot commands to demonstrate detecting that the decision fir
 
 3. Corrupt decision firmware data. 
 
-    ```bash 
+    ```bash
     SOCFPGA # sf probe 
     SF: Detected mt25qu02g with page size 256 Bytes, erase size 4 KiB, total 
     256 MiB 
@@ -1472,7 +1482,7 @@ This example uses U-Boot commands to demonstrate detecting that the decision fir
     ```
 6. Pass control to the decision firmware update image. 
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu slot_load 2 
     ```
 
@@ -1544,6 +1554,7 @@ This section uses U-Boot commands to demonstrate how configuration pointer block
     SOCFPGA # sf erase 0x0930000 0x10000 
     SF: 4096 bytes @ 0x930000 Erased: OK 
     ```
+    
 4. Power cycle the board, the stop to U-Boot prompt and query the RSU status.
 
     ```bash 
@@ -1568,6 +1579,7 @@ This section uses U-Boot commands to demonstrate how configuration pointer block
     SOCFPGA # fatwrite mmc 0:1 ${loadaddr} cpb-backup.bin ${filesize} 
     4100 bytes written 
     ```
+    
 6. Corrupt both CPBs by erasing the flash at their location: 
 
     ```bash 
@@ -1593,7 +1605,6 @@ This section uses U-Boot commands to demonstrate how configuration pointer block
     Error details : 0x00000000 
     Retry counter : 0x00000000 
     ```
-
     The Current Image is reported as being the factory image, as expected. The State field has the special error code 0xf004d011 which indicates that both CPBs were corrupted. The Last Fail Image has the special value 0x00100000 which is used in this case. The Version field indicates that the eror was reported by the decision firmware (0xDCF). The rsu_init function which is called first time an U-Boot RSU command is executed detected and reported that both CPBs are corrupted. 
 
 8. Try to run a command which requires a valid CPB - it is rejected. 
@@ -1605,7 +1616,7 @@ This section uses U-Boot commands to demonstrate how configuration pointer block
 
 9. Restore the saved CPB from the backup file that we created. 
 
-    ```bash 
+    ```bash
     SOCFPGA # fatload mmc 0:1 ${loadaddr} cpb-backup.bin 
     4100 bytes read in 3 ms (1.3 MiB/s) 
     SOCFPGA # rsu restore_cpb ${loadaddr} 
@@ -1620,7 +1631,7 @@ This section uses U-Boot commands to demonstrate how configuration pointer block
 
 11. Try again to run a command which require a valid CPB - it succeeds. 
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu slot_get_info 1 
     NAME: P2 
     OFFSET: 0x0000000002000000 
@@ -1680,7 +1691,7 @@ This example uses U-Boot commands to demonstrate how sub-partition table corrupt
 
 4. Save the currently used SPT to a file for backup purposes. 
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu save_spt ${loadaddr} 
     4100 bytes SPT data saved 
     SOCFPGA # fatwrite mmc 0:1 ${loadaddr} spt-backup.bin ${filesize} 
@@ -1758,7 +1769,7 @@ SOF.
 2. Power cyle the board, stop to U-Boot prompt and query the decision firmware
 information from U-Boot, this should be a previous version.
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu display_dcmf_version
     DCMF0 version = 24.1.0 
     DCMF1 version = 24.1.0 
@@ -1786,7 +1797,7 @@ information from U-Boot, this should be a previous version.
 
 4. Pass control to the combined application update image.
 
-    ```bash 
+    ```bash
     SOCFPGA # rsu slot_load 1
     ```
 
@@ -1827,6 +1838,8 @@ This section demonstrates how to use the RSU client to perform the following bas
 - Requesting a specific application image to be loaded. 
 
 **Note**: This section assumes that the flash contains the initial RSU image. If that is not true, you need to re-flash the initial image, as shown in the Flashing the Initial RSU Image to QSPI section. 
+
+**Note:** RSU functionality in Linux is enabled starting on 24.2 release.
 
 1. Power up the board and let Linux boot. 
 
@@ -1914,7 +1927,7 @@ This section demonstrates how to use the RSU client to perform the following bas
 
     ```bash 
     root@linux:~# ./rsu_client --display-dcmf-version 
-    DCMF0 version = 24.2.0
+    DCMF0 version = 24.2.0 
     DCMF1 version = 24.2.0
     DCMF2 version = 24.2.0
     DCMF3 version = 24.2.0
