@@ -181,6 +181,7 @@ nav:
         - Agilex™ 5 Intel Simics Virtual Platform Example User Guide - Linux GSRD: embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms.md
         - Agilex™ 5 Intel Simics Virtual Platform Example User Guide - Zephyr GSRD: embedded-designs/agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms.md
         - Agilex™ 5 FPGA Remote Debug Example: embedded-designs/agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium.md        
+        - Agilex™ 5 SoC HPS Remote System Update Example: embedded-designs/agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc.md
     - Agilex™ 7:
         - Agilex™ 7 SoC HPS Remote System Update Example: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc.md
         - Agilex™ 7 SoC HPS Multi-QSPI Remote System Update Example: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc.md
@@ -249,4 +250,4 @@ env:
   GSRD_DATE: 2024.04
   GSRD_TAG: QPDS24.2_REL_GSRD_PR
   GSRD_YOCTO_BRANCH: scarthgap
-  
+

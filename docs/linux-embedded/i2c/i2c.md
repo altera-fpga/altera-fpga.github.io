@@ -1,6 +1,6 @@
 # **I2C Driver for Hard Processor System**
 
-Last updated: **October 23, 2024** 
+Last updated: **November 01, 2024** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/i2c?h=master)
 
