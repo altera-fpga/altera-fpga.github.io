@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://altera-fpga.github.io/rel-24.2/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/">
       
       
-        <link rel="prev" href="../../../../../agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium/">
+        <link rel="prev" href="../../../../../agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc/">
       
       
         <link rel="next" href="../ug-rsu-multiqspi-agx7f-soc/">
@@ -1464,6 +1464,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
@@ -1570,6 +1572,20 @@
     <li class="md-nav__item">
       <a href="../../../../../agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium/" class="md-nav__link">
         Agilex™ 5 FPGA Remote Debug Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc/" class="md-nav__link">
+        Agilex™ 5 SoC HPS Remote System Update Example
       </a>
     </li>
   
@@ -2263,7 +2279,7 @@
 <li>Creating an SD card with the following components.<ul>
 <li>U-Boot </li>
 <li>Arm* Trusted Firmware </li>
-<li>Linux </li>
+<li>f22Linux </li>
 <li>LIBRSU </li>
 <li>RSU client </li>
 <li>Application image </li>
@@ -2531,7 +2547,7 @@
 <a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="s">            &lt;path signing=&quot;OFF&quot; finalize_encryption=&quot;0&quot; hps_path=&quot;u-boot-socfpga/spl/u-boot-spl-dtb.hex&quot;&gt;hw/ghrd.0/output_files/ghrd_agfb014r24b2e2v.sof&lt;/path&gt;</span>
 <a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="s">        &lt;/bitstream&gt;</span>
 <a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="s">        &lt;bitstream id=&quot;Bitstream_2&quot;&gt;</span>
-<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="s">            &lt;path signing=&quot;OFF&quot; finalize_encryption=&quot;0&quot; hps_path=&quot;u-boot-socfpga/spl/u-boot-spl-dtb.hex&quot;&gt;hw/ghrd.0/output_files/ghrd_agfb014r24b2e2v.sof&lt;/path&gt;</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="s">            &lt;path signing=&quot;OFF&quot; finalize_encryption=&quot;0&quot; hps_path=&quot;u-boot-socfpga/spl/u-boot-spl-dtb.hex&quot;&gt;hw/ghrd.1/output_files/ghrd_agfb014r24b2e2v.sof&lt;/path&gt;</span>
 <a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="s">        &lt;/bitstream&gt;</span>
 <a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="s">    &lt;/bitstreams&gt;</span>
 <a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="s">    &lt;flash_devices&gt;</span>
@@ -2962,37 +2978,37 @@ the following files are created <strong>combined_application.hps.rpd</strong> (c
 <a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>Usage:<span class="w"> </span>
 <a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>rsu<span class="w"> </span>dtb<span class="w"> </span>-<span class="w"> </span>Update<span class="w"> </span>Linux<span class="w"> </span>DTB<span class="w"> </span>qspi-boot<span class="w"> </span>parition<span class="w"> </span>offset<span class="w"> </span>with<span class="w"> </span>spt0<span class="w"> </span>value<span class="w"> </span>
 <a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>list<span class="w"> </span>-<span class="w"> </span>List<span class="w"> </span>down<span class="w"> </span>the<span class="w"> </span>available<span class="w"> </span>bitstreams<span class="w"> </span><span class="k">in</span><span class="w"> </span>flash<span class="w"> </span>
-<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>slot_by_name<span class="w"> </span>lt<span class="p">;</span>namegt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>find<span class="w"> </span>slot<span class="w"> </span>by<span class="w"> </span>name<span class="w"> </span>and<span class="w"> </span>display<span class="w"> </span>the<span class="w"> </span>slot<span class="w"> </span>number<span class="w"> </span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>slot_by_name<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-<span class="w"> </span>find<span class="w"> </span>slot<span class="w"> </span>by<span class="w"> </span>name<span class="w"> </span>and<span class="w"> </span>display<span class="w"> </span>the<span class="w"> </span>slot<span class="w"> </span>number<span class="w"> </span>
 <a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>slot_count<span class="w"> </span>-<span class="w"> </span>display<span class="w"> </span>the<span class="w"> </span>slot<span class="w"> </span>count<span class="w"> </span>
-<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>slot_disable<span class="w"> </span>lt<span class="p">;</span>slotgt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>remove<span class="w"> </span>slot<span class="w"> </span>from<span class="w"> </span>CPB<span class="w"> </span>
-<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>slot_enable<span class="w"> </span>lt<span class="p">;</span>slotgt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>make<span class="w"> </span>slot<span class="w"> </span>the<span class="w"> </span>highest<span class="w"> </span>priority<span class="w"> </span>
-<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>slot_erase<span class="w"> </span>lt<span class="p">;</span>slotgt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>erase<span class="w"> </span>slot<span class="w"> </span>
-<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>slot_get_info<span class="w"> </span>lt<span class="p">;</span>slotgt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>display<span class="w"> </span>slot<span class="w"> </span>information<span class="w"> </span>
-<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>slot_load<span class="w"> </span>lt<span class="p">;</span>slotgt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>load<span class="w"> </span>slot<span class="w"> </span>immediately<span class="w"> </span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>slot_disable<span class="w"> </span>&lt;slot&gt;<span class="w"> </span>-<span class="w"> </span>remove<span class="w"> </span>slot<span class="w"> </span>from<span class="w"> </span>CPB<span class="w"> </span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>slot_enable<span class="w"> </span>&lt;slot&gt;<span class="w"> </span>-<span class="w"> </span>make<span class="w"> </span>slot<span class="w"> </span>the<span class="w"> </span>highest<span class="w"> </span>priority<span class="w"> </span>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>slot_erase<span class="w"> </span>&lt;slot&gt;<span class="w"> </span>-<span class="w"> </span>erase<span class="w"> </span>slot<span class="w"> </span>
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>slot_get_info<span class="w"> </span>&lt;slot&gt;<span class="w"> </span>-<span class="w"> </span>display<span class="w"> </span>slot<span class="w"> </span>information<span class="w"> </span>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>slot_load<span class="w"> </span>&lt;slot&gt;<span class="w"> </span>-<span class="w"> </span>load<span class="w"> </span>slot<span class="w"> </span>immediately<span class="w"> </span>
 <a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>slot_load_factory<span class="w"> </span>-<span class="w"> </span>load<span class="w"> </span>factory<span class="w"> </span>immediately<span class="w"> </span>
-<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>slot_priority<span class="w"> </span>lt<span class="p">;</span>slotgt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>display<span class="w"> </span>slot<span class="w"> </span>priority<span class="w"> </span>
-<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a>slot_program_buf<span class="w"> </span>lt<span class="p">;</span>slotgt<span class="p">;</span><span class="w"> </span>lt<span class="p">;</span>buffergt<span class="p">;</span><span class="w"> </span>lt<span class="p">;</span>sizegt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>program<span class="w"> </span>buffer<span class="w"> </span>into<span class="w"> </span>slot,<span class="w"> </span>and<span class="w"> </span>make<span class="w"> </span>it<span class="w"> </span>highest<span class="w"> </span>priority<span class="w"> </span>
-<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a>slot_program_buf_raw<span class="w"> </span>lt<span class="p">;</span>slotgt<span class="p">;</span><span class="w"> </span>lt<span class="p">;</span>buffergt<span class="p">;</span><span class="w"> </span>lt<span class="p">;</span>sizegt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>program<span class="w"> </span>raw<span class="w"> </span>buffer<span class="w"> </span>into<span class="w"> </span>slot<span class="w"> </span>
-<a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a>slot_program_factory_update_buf<span class="w"> </span>lt<span class="p">;</span>slotgt<span class="p">;</span><span class="w"> </span>lt<span class="p">;</span>buffergt<span class="p">;</span><span class="w"> </span>lt<span class="p">;</span>sizegt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>program<span class="w"> </span>factory<span class="w"> </span>update<span class="w"> </span>buffer<span class="w"> </span>into<span class="w"> </span>slot,<span class="w"> </span>and<span class="w"> </span>make<span class="w"> </span>it<span class="w"> </span>highest<span class="w"> </span>priority<span class="w"> </span>
-<a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a>slot_rename<span class="w"> </span>lt<span class="p">;</span>slotgt<span class="p">;</span><span class="w"> </span>lt<span class="p">;</span>namegt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>rename<span class="w"> </span>slot<span class="w"> </span>
-<a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a>slot_delete<span class="w"> </span>lt<span class="p">;</span>slotgt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>delete<span class="w"> </span>slot<span class="w"> </span>
-<a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a>slot_create<span class="w"> </span>lt<span class="p">;</span>namegt<span class="p">;</span><span class="w"> </span>lt<span class="p">;</span>addressgt<span class="p">;</span><span class="w"> </span>lt<span class="p">;</span>sizegt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>create<span class="w"> </span>slot<span class="w"> </span>
-<a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a>slot_size<span class="w"> </span>lt<span class="p">;</span>slotgt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>display<span class="w"> </span>slot<span class="w"> </span>size<span class="w"> </span>
-<a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a>slot_verify_buf<span class="w"> </span>lt<span class="p">;</span>slotgt<span class="p">;</span><span class="w"> </span>lt<span class="p">;</span>buffergt<span class="p">;</span><span class="w"> </span>lt<span class="p">;</span>sizegt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>verify<span class="w"> </span>slot<span class="w"> </span>contents<span class="w"> </span>against<span class="w"> </span>buffer<span class="w"> </span>
-<a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a>slot_verify_buf_raw<span class="w"> </span>lt<span class="p">;</span>slotgt<span class="p">;</span><span class="w"> </span>lt<span class="p">;</span>buffergt<span class="p">;</span><span class="w"> </span>lt<span class="p">;</span>sizegt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>verify<span class="w"> </span>slot<span class="w"> </span>contents<span class="w"> </span>against<span class="w"> </span>raw<span class="w"> </span>buffer<span class="w"> </span>
+<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>slot_priority<span class="w"> </span>&lt;slot&gt;<span class="w"> </span>-<span class="w"> </span>display<span class="w"> </span>slot<span class="w"> </span>priority<span class="w"> </span>
+<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a>slot_program_buf<span class="w"> </span>&lt;slot&gt;<span class="w"> </span>&lt;buffer&gt;<span class="w"> </span>&lt;size&gt;<span class="w"> </span>-<span class="w"> </span>program<span class="w"> </span>buffer<span class="w"> </span>into<span class="w"> </span>slot,<span class="w"> </span>and<span class="w"> </span>make<span class="w"> </span>it<span class="w"> </span>highest<span class="w"> </span>priority<span class="w"> </span>
+<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a>slot_program_buf_raw<span class="w"> </span>&lt;slot&gt;<span class="w"> </span>&lt;buffer&gt;<span class="w"> </span>&lt;size&gt;<span class="w"> </span>-<span class="w"> </span>program<span class="w"> </span>raw<span class="w"> </span>buffer<span class="w"> </span>into<span class="w"> </span>slot<span class="w"> </span>
+<a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a>slot_program_factory_update_buf<span class="w"> </span>&lt;slot&gt;<span class="w"> </span>&lt;buffer&gt;<span class="w"> </span>&lt;size&gt;<span class="w"> </span>-<span class="w"> </span>program<span class="w"> </span>factory<span class="w"> </span>update<span class="w"> </span>buffer<span class="w"> </span>into<span class="w"> </span>slot,<span class="w"> </span>and<span class="w"> </span>make<span class="w"> </span>it<span class="w"> </span>highest<span class="w"> </span>priority<span class="w"> </span>
+<a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a>slot_rename<span class="w"> </span>&lt;slot&gt;<span class="w"> </span>&lt;name&gt;<span class="w"> </span>-<span class="w"> </span>rename<span class="w"> </span>slot<span class="w"> </span>
+<a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a>slot_delete<span class="w"> </span>&lt;slot&gt;<span class="w"> </span>-<span class="w"> </span>delete<span class="w"> </span>slot<span class="w"> </span>
+<a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a>slot_create<span class="w"> </span>&lt;name&gt;<span class="w"> </span>&lt;address&gt;<span class="w"> </span>&lt;size&gt;<span class="w"> </span>-<span class="w"> </span>create<span class="w"> </span>slot<span class="w"> </span>
+<a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a>slot_size<span class="w"> </span>&lt;slot&gt;<span class="w"> </span>-<span class="w"> </span>display<span class="w"> </span>slot<span class="w"> </span>size<span class="w"> </span>
+<a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a>slot_verify_buf<span class="w"> </span>&lt;slot&gt;<span class="w"> </span>&lt;buffer&gt;<span class="w"> </span>&lt;size&gt;<span class="w"> </span>-<span class="w"> </span>verify<span class="w"> </span>slot<span class="w"> </span>contents<span class="w"> </span>against<span class="w"> </span>buffer<span class="w"> </span>
+<a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a>slot_verify_buf_raw<span class="w"> </span>&lt;slot&gt;<span class="w"> </span>&lt;buffer&gt;<span class="w"> </span>&lt;size&gt;<span class="w"> </span>-<span class="w"> </span>verify<span class="w"> </span>slot<span class="w"> </span>contents<span class="w"> </span>against<span class="w"> </span>raw<span class="w"> </span>buffer<span class="w"> </span>
 <a id="__codelineno-22-25" name="__codelineno-22-25" href="#__codelineno-22-25"></a>status_log<span class="w"> </span>-<span class="w"> </span>display<span class="w"> </span>RSU<span class="w"> </span>status<span class="w"> </span>
-<a id="__codelineno-22-26" name="__codelineno-22-26" href="#__codelineno-22-26"></a>update<span class="w"> </span>lt<span class="p">;</span>flash_offsetgt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>Initiate<span class="w"> </span>firmware<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>bitstream<span class="w"> </span>as<span class="w"> </span>specified<span class="w"> </span>by<span class="w"> </span>flash_offset<span class="w"> </span>
-<a id="__codelineno-22-27" name="__codelineno-22-27" href="#__codelineno-22-27"></a>notify<span class="w"> </span>lt<span class="p">;</span>valuegt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>Let<span class="w"> </span>SDM<span class="w"> </span>know<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>state<span class="w"> </span>of<span class="w"> </span>HPS<span class="w"> </span>software<span class="w"> </span>
+<a id="__codelineno-22-26" name="__codelineno-22-26" href="#__codelineno-22-26"></a>update<span class="w"> </span>&lt;flash_offset&gt;<span class="w"> </span>-<span class="w"> </span>Initiate<span class="w"> </span>firmware<span class="w"> </span>to<span class="w"> </span>load<span class="w"> </span>bitstream<span class="w"> </span>as<span class="w"> </span>specified<span class="w"> </span>by<span class="w"> </span>flash_offset<span class="w"> </span>
+<a id="__codelineno-22-27" name="__codelineno-22-27" href="#__codelineno-22-27"></a>notify<span class="w"> </span>&lt;value&gt;<span class="w"> </span>-<span class="w"> </span>Let<span class="w"> </span>SDM<span class="w"> </span>know<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>state<span class="w"> </span>of<span class="w"> </span>HPS<span class="w"> </span>software<span class="w"> </span>
 <a id="__codelineno-22-28" name="__codelineno-22-28" href="#__codelineno-22-28"></a>clear_error_status<span class="w"> </span>-<span class="w"> </span>clear<span class="w"> </span>the<span class="w"> </span>RSU<span class="w"> </span>error<span class="w"> </span>status<span class="w"> </span>
 <a id="__codelineno-22-29" name="__codelineno-22-29" href="#__codelineno-22-29"></a>reset_retry_counter<span class="w"> </span>-<span class="w"> </span>reset<span class="w"> </span>the<span class="w"> </span>RSU<span class="w"> </span>retry<span class="w"> </span>counter<span class="w"> </span>
 <a id="__codelineno-22-30" name="__codelineno-22-30" href="#__codelineno-22-30"></a>display_dcmf_version<span class="w"> </span>-<span class="w"> </span>display<span class="w"> </span>DCMF<span class="w"> </span>versions<span class="w"> </span>and<span class="w"> </span>store<span class="w"> </span>them<span class="w"> </span><span class="k">for</span><span class="w"> </span>SMC<span class="w"> </span>handler<span class="w"> </span>usage<span class="w"> </span>
 <a id="__codelineno-22-31" name="__codelineno-22-31" href="#__codelineno-22-31"></a>display_dcmf_status<span class="w"> </span>-<span class="w"> </span>display<span class="w"> </span>DCMF<span class="w"> </span>status<span class="w"> </span>and<span class="w"> </span>store<span class="w"> </span>it<span class="w"> </span><span class="k">for</span><span class="w"> </span>SMC<span class="w"> </span>handler<span class="w"> </span>usage<span class="w"> </span>
 <a id="__codelineno-22-32" name="__codelineno-22-32" href="#__codelineno-22-32"></a>display_max_retry<span class="w"> </span>-<span class="w"> </span>display<span class="w"> </span>max_retry<span class="w"> </span>parameter,<span class="w"> </span>and<span class="w"> </span>store<span class="w"> </span>it<span class="w"> </span><span class="k">for</span><span class="w"> </span>SMC<span class="w"> </span>handler<span class="w"> </span>usage<span class="w"> </span>
-<a id="__codelineno-22-33" name="__codelineno-22-33" href="#__codelineno-22-33"></a>restore_spt<span class="w"> </span>lt<span class="p">;</span>addressgt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>restore<span class="w"> </span>SPT<span class="w"> </span>from<span class="w"> </span>an<span class="w"> </span>address<span class="w"> </span>
-<a id="__codelineno-22-34" name="__codelineno-22-34" href="#__codelineno-22-34"></a>save_spt<span class="w"> </span>lt<span class="p">;</span>addressgt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>save<span class="w"> </span>SPT<span class="w"> </span>to<span class="w"> </span>an<span class="w"> </span>address<span class="w"> </span>
+<a id="__codelineno-22-33" name="__codelineno-22-33" href="#__codelineno-22-33"></a>restore_spt<span class="w"> </span>&lt;address&gt;<span class="w"> </span>-<span class="w"> </span>restore<span class="w"> </span>SPT<span class="w"> </span>from<span class="w"> </span>an<span class="w"> </span>address<span class="w"> </span>
+<a id="__codelineno-22-34" name="__codelineno-22-34" href="#__codelineno-22-34"></a>save_spt<span class="w"> </span>&lt;address&gt;<span class="w"> </span>-<span class="w"> </span>save<span class="w"> </span>SPT<span class="w"> </span>to<span class="w"> </span>an<span class="w"> </span>address<span class="w"> </span>
 <a id="__codelineno-22-35" name="__codelineno-22-35" href="#__codelineno-22-35"></a>create_empty_cpb<span class="w"> </span>-<span class="w"> </span>create<span class="w"> </span>a<span class="w"> </span>empty<span class="w"> </span>CPB<span class="w"> </span>
-<a id="__codelineno-22-36" name="__codelineno-22-36" href="#__codelineno-22-36"></a>restore_cpb<span class="w"> </span>lt<span class="p">;</span>addressgt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>restore<span class="w"> </span>CPB<span class="w"> </span>from<span class="w"> </span>an<span class="w"> </span>address<span class="w"> </span>
-<a id="__codelineno-22-37" name="__codelineno-22-37" href="#__codelineno-22-37"></a>save_cpb<span class="w"> </span>lt<span class="p">;</span>addressgt<span class="p">;</span><span class="w"> </span>-<span class="w"> </span>save<span class="w"> </span>CPB<span class="w"> </span>to<span class="w"> </span>an<span class="w"> </span>address<span class="w"> </span>
+<a id="__codelineno-22-36" name="__codelineno-22-36" href="#__codelineno-22-36"></a>restore_cpb<span class="w"> </span>&lt;address&gt;<span class="w"> </span>-<span class="w"> </span>restore<span class="w"> </span>CPB<span class="w"> </span>from<span class="w"> </span>an<span class="w"> </span>address<span class="w"> </span>
+<a id="__codelineno-22-37" name="__codelineno-22-37" href="#__codelineno-22-37"></a>save_cpb<span class="w"> </span>&lt;address&gt;<span class="w"> </span>-<span class="w"> </span>save<span class="w"> </span>CPB<span class="w"> </span>to<span class="w"> </span>an<span class="w"> </span>address<span class="w"> </span>
 <a id="__codelineno-22-38" name="__codelineno-22-38" href="#__codelineno-22-38"></a>check_running_factory<span class="w"> </span>-<span class="w"> </span>check<span class="w"> </span><span class="k">if</span><span class="w"> </span>currently<span class="w"> </span>running<span class="w"> </span>the<span class="w"> </span>factory<span class="w"> </span>image<span class="w"> </span>
 </code></pre></div>
 </li>
@@ -3954,10 +3970,10 @@ application image is running fine.</p>
 <li>
 <p>Display the decision firmware version information.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-89-1" name="__codelineno-89-1" href="#__codelineno-89-1"></a>root@linux:~#<span class="w"> </span>./rsu_client<span class="w"> </span>--display-dcmf-version<span class="w"> </span>
-<a id="__codelineno-89-2" name="__codelineno-89-2" href="#__codelineno-89-2"></a>DCMF0<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">21</span>.2.0<span class="w"> </span>
-<a id="__codelineno-89-3" name="__codelineno-89-3" href="#__codelineno-89-3"></a>DCMF1<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">21</span>.2.0<span class="w"> </span>
-<a id="__codelineno-89-4" name="__codelineno-89-4" href="#__codelineno-89-4"></a>DCMF2<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">21</span>.2.0<span class="w"> </span>
-<a id="__codelineno-89-5" name="__codelineno-89-5" href="#__codelineno-89-5"></a>DCMF3<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">21</span>.2.0<span class="w"> </span>
+<a id="__codelineno-89-2" name="__codelineno-89-2" href="#__codelineno-89-2"></a>DCMF0<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24</span>.2.0
+<a id="__codelineno-89-3" name="__codelineno-89-3" href="#__codelineno-89-3"></a>DCMF1<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24</span>.2.0
+<a id="__codelineno-89-4" name="__codelineno-89-4" href="#__codelineno-89-4"></a>DCMF2<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24</span>.2.0
+<a id="__codelineno-89-5" name="__codelineno-89-5" href="#__codelineno-89-5"></a>DCMF3<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24</span>.2.0
 <a id="__codelineno-89-6" name="__codelineno-89-6" href="#__codelineno-89-6"></a>Operation<span class="w"> </span>completed<span class="w"> </span>
 </code></pre></div>
 </li>
@@ -4826,12 +4842,13 @@ application image is running fine.</p>
 </li>
 </ol>
 <h2 id="using-separate-ssbl-per-bitstream">Using Separate SSBL Per Bitstream<a class="headerlink" href="#using-separate-ssbl-per-bitstream" title="Permanent link">&para;</a></h2>
-<p>When using Remote System Update on Stratix 10, Agilex 7, Agilex 5 and N5X devices, each configuration bitstream from QSPI contains the HPS FSBL (First Stage Bootloader), specifically U-Boot SPL. In order to allow the most flexibility and compatibility, you must design your system so that each bitstream loads its own copy of the HPS SSBL, specifically U-Boot image.</p>
+<p>When using Remote System Update on Stratix® 10, Agilex™ 7, Agilex™ 5 and N5X™ devices, each configuration bitstream from QSPI contains the HPS FSBL (First Stage Bootloader), specifically U-Boot SPL. In order to allow the most flexibility and compatibility, you must design your system so that each bitstream loads its own copy of the HPS SSBL, specifically U-Boot image.</p>
 <p>This page presents details on how to achieve this for both the cases when U-Boot images are stored in QSPI flash, and when they are stored in SD card. </p>
 <p>Refer to the following documents for details about the Remote System Update.</p>
 <ul>
 <li><a href="https://www.intel.com/content/www/us/en/docs/programmable/683021/current/overview-s10-fm.html">Stratix® 10 Hard Processor System Remote System Update User Guide</a></li>
 <li><a href="https://www.intel.com/content/www/us/en/docs/programmable/683184/current/overview-s10-fm.html">Agilex™ Hard Processor System Remote System Update User Guide</a> </li>
+<li><a href="">Agilex™ 5 Hard Processor System Remote System Update User Guide</a> </li>
 </ul>
 <p><strong>Note:</strong> In the scenario in which both SPTs tables are corrupted, U-Boot will fail to be launched because the FSBL won't be able to identify which SSBL needs to be launched since the partition information is kept in SPT tables.</p>
 <h3 id="configuring-u-boot-for-separate-u-boot-images">Configuring U-Boot for Separate U-Boot Images<a class="headerlink" href="#configuring-u-boot-for-separate-u-boot-images" title="Permanent link">&para;</a></h3>
@@ -4978,7 +4995,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 8, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 1, 2024</span>
       
         <br>
         Created:
@@ -5013,7 +5030,7 @@ You are responsible for safety of the overall system, including compliance with 
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../../../../agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Agilex™ 5 FPGA Remote Debug Example" rel="prev">
+          <a href="../../../../../agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Agilex™ 5 SoC HPS Remote System Update Example" rel="prev">
             <div class="md-footer__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
             </div>
@@ -5022,7 +5039,7 @@ You are responsible for safety of the overall system, including compliance with 
                 Previous
               </span>
               <div class="md-ellipsis">
-                Agilex™ 5 FPGA Remote Debug Example
+                Agilex™ 5 SoC HPS Remote System Update Example
               </div>
             </div>
           </a>
