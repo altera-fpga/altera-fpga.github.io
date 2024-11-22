@@ -1,6 +1,6 @@
 # **USB 2.0 OTG Driver for Hard Processor System**
 
-Last updated: **November 01, 2024** 
+Last updated: **November 22, 2024** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/usb/dwc2)
 

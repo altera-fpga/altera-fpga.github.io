@@ -23,7 +23,7 @@ At the moment, the Agilex™ 5 Hard Processor System Remote System Update User G
 
 ## Component Versions 
 
-**Note:** RSU functionality is first enabled in U-Boot in 24.3 release, while Linux functionality is enabled starting on 24.2 release.
+**Note:** RSU functionality is first fully enabled in U-Boot in 24.3 release, while Linux functionality is enabled starting on 24.2 release.
 
 This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.2 and the following component versions.
 
@@ -33,7 +33,7 @@ This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 
 | [linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.22-lts/QPDS24.2_REL_GSRD_PR |
 | [arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.10.1/QPDS24.2_REL_GSRD_PR |
 | [u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.01/QPDS24.2_REL_GSRD_PR |
-| [intel-rsu](https://github.com/altera-opensource/librsu/) | master |
+| [librsu](https://github.com/altera-opensource/librsu/) | master |
 
 ## Prerequisites 
 
@@ -139,7 +139,9 @@ cd ghrd.$version
 # update sysid to make binaries slightly different
 sed -i 's/0xACD5CAFE/0xABAB000'$version'/g' construct_subsys_peripheral.tcl
 make config
+# Select FPGA Boot first, Enable WDT, Configure WDT to trigger cold reset + RSU on expiration
 make DEVICE=A5ED065BB32AE6SR0 HPS_EMIF_MEM_CLK_FREQ_MHZ=800 HPS_EMIF_REF_CLK_FREQ_MHZ=100 INITIALIZATION_FIRST=fpga RESET_WATCHDOG_EN=1 RESET_SDM_WATCHDOG_CFG=2 generate_from_tcl
+# Set to 3 the WDT retry counter to trigger a RSU
 echo "set_global_assignment -name RSU_MAX_RETRY_COUNT 3" >> ghrd_a5ed065bb32ae6sr0.qsf
 make sof
 cd .. 
@@ -202,13 +204,19 @@ sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&mmc;/g' arch/arm/dt
 sed -i '/&nand {/!b;n;c\\tstatus = "disabled";' arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi
 # use 'Image' for kernel image instead of 'kernel.itb' 
 sed -i 's/kernel\.itb/Image/g' arch/arm/Kconfig
-# Replace configuration to match agilex5 (Address where dtb is loaded and address of QSPI controller 2nd occurrence in the file)
+# Replace configuration to match agilex5 (Address where dtb is loaded and address of QSPI controller 2nd occurrence in the file) HSD:14023640947
+sed -i 's/fdt_addr=8000000/fdt_addr=86000000/g' include/configs/socfpga_soc64_common.h
+sed -i ':a;N;$!ba;s/spi@ff8d2000/spi@108d2000/2' include/configs/socfpga_soc64_common.h
 
-# Need fix in arch/arm/mach-socfpga/smc_api.c from HSD:14023661564
-sed -i '/flush_dcache_range/s/arg + len/(arg + len)/g' arch/arm/mach-socfpga/smc_api.c
-sed -i '/flush_dcache_range/s/resp_buf + \*resp_buf_len/(resp_buf + \*resp_buf_len)/g' arch/arm/mach-socfpga/smc_api.c
-sed -i '/flush_dcache_range/s/(u64)/(uintptr_t)/g' arch/arm/mach-socfpga/smc_api.c
-sed -i '/if (ret == INTEL_SIP_SMC_STATUS_OK &&/a \\t\tinvalidate_dcache_range((uintptr_t)resp_buf, (uintptr_t)(resp_buf + \*resp_buf_len));' arch/arm/mach-socfpga/smc_api.c 
+## Fix to report FSBL state to SDM HSD: 14023897270
+sed -i '/mbox_init();/d' arch/arm/mach-socfpga/spl_agilex5.c
+sed -i '/timer_init();/a\\tmbox_init();\n\tmbox_hps_stage_notify(HPS_EXECUTION_STATE_FSBL);' arch/arm/mach-socfpga/spl_agilex5.c
+
+# Need fix in arch/arm/mach-socfpga/smc_api.c from HSD:14023661564 (needed in 24.3). In 24.2 need something else
+#sed -i '/flush_dcache_range/s/arg + len/(arg + len)/g' arch/arm/mach-socfpga/smc_api.c
+#sed -i '/flush_dcache_range/s/resp_buf + \*resp_buf_len/(resp_buf + \*resp_buf_len)/g' arch/arm/mach-socfpga/smc_api.c
+#sed -i '/flush_dcache_range/s/(u64)/(uintptr_t)/g' arch/arm/mach-socfpga/smc_api.c
+#sed -i '/if (ret == INTEL_SIP_SMC_STATUS_OK &&/a \\t\tinvalidate_dcache_range((uintptr_t)resp_buf, (uintptr_t)(resp_buf + \*resp_buf_len));' arch/arm/mach-socfpga/smc_api.c 
 
 # link to atf
 ln -s ../arm-trusted-firmware/build/agilex5/release/bl31.bin 
@@ -499,7 +507,7 @@ The following commands are used to create the factory update image used in this 
 cd $TOP_FOLDER 
 mkdir -p images 
 rm -f images/factory_update.rpd
-quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2vghrd_a5ed065bb32ae6sr0.sof \
+quartus_pfg -c hw/ghrd.3/output_files/ghrd_a5ed065bb32ae6sr0.sof \
 images/factory_update.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -550,7 +558,7 @@ The following commands are used to create the combined application image used in
 cd $TOP_FOLDER 
 mkdir -p images
 rm -f images/combined_application.rpd
-quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof \
+quartus_pfg -c hw/ghrd.3/output_files/ghrd_a5ed065bb32ae6sr0.sof \
 images/combined_application.rpd \
 -o app_image=hw/ghrd.2/output_files/ghrd_a5ed065bb32ae6sr0.sof \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
@@ -694,35 +702,35 @@ The following commands can be used to create the SD card image used in this exam
 ```bash 
 cd $TOP_FOLDER 
 sudo rm -rf sd_card && mkdir sd_card && cd sd_card 
-wget https://releases.rocketboards.org/release/2021.04/gsrd/\ 
-tools/make_sdimage_p3.py 
-chmod +x make_sdimage_p3.py 
+wget https://releases.rocketboards.org/release/2021.04/gsrd/\
+tools/make_sdimage_p3.py
+chmod +x make_sdimage_p3.py
 # prepare the fat contents 
-mkdir fat && cd fat 
-cp $TOP_FOLDER/u-boot-socfpga/u-boot.itb . 
-cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image . 
-cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dtb . 
-cp $TOP_FOLDER/images/*.rpd . 
-cd .. 
-# prepare the rootfs partition contents 
-mkdir rootfs && cd rootfs 
+mkdir fat && cd fat
+cp $TOP_FOLDER/u-boot-socfpga/u-boot.itb .
+cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image .
+cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dtb .
+cp $TOP_FOLDER/images/*.rpd .
+cd ..
+# prepare the rootfs partition contents
+mkdir rootfs && cd rootfs
 sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz
 sudo sed -i 's/agilex5_dk_a5e065bb32aes1/linux/g' etc/hostname
-sudo rm -rf lib/modules/* 
-sudo cp $TOP_FOLDER/images/*.rpd home/root 
+sudo rm -rf lib/modules/*
+sudo cp $TOP_FOLDER/images/*.rpd home/root
 # This also could be copy to /usr/bin/ so it can be accessed from anywhere
-sudo cp $TOP_FOLDER/librsu/build/bin/rsu_client home/root/ 
-sudo cp $TOP_FOLDER/librsu/build/lib/libuniLibRSU.so.1 usr/lib/ 
-sudo cp $TOP_FOLDER/librsu/etc/qspi.rc etc/librsu.rc 
-sudo cp $TOP_FOLDER/zlib-1.3.1/libz.so* lib/ 
-cd .. 
+sudo cp $TOP_FOLDER/librsu/build/bin/rsu_client home/root/
+sudo cp $TOP_FOLDER/librsu/build/lib/libuniLibRSU.so.1 usr/lib/
+sudo cp $TOP_FOLDER/librsu/etc/qspi.rc etc/librsu.rc
+sudo cp $TOP_FOLDER/zlib-1.3.1/libz.so* lib/
+cd ..
 # create sd card image 
-sudo python3 ./make_sdimage_p3.py -f \ 
--P fat/*,num=1,format=vfat,size=100M \ 
--P rootfs/*,num=2,format=ext3,size=100M \ 
--s 256M \ 
--n sdcard_agilex5_rsu.img 
-cd .. 
+sudo python3 ./make_sdimage_p3.py -f \
+-P fat/*,num=1,format=vfat,size=100M \
+-P rootfs/*,num=2,format=ext3,size=100M \
+-s 256M \
+-n sdcard_agilex5_rsu.img
+cd ..
 ```
 
 
@@ -1054,7 +1062,7 @@ This section uses U-Boot to demonstrate the following.
 3. Cause a watchdog timeout by setting the timeout value to lowest possible. This prevents U-Boot from being able to service it in time.
 
     ```bash
-    SOCFPGA # mw.l 10D00200 0 
+    SOCFPGA # mw.l 10D00204 0 
     ```
 
 4. The watchdog immediately times out, and SDM reloads the same application image, since the max retry parameter is set to three. Look at the U-Boot console and check the status log.
