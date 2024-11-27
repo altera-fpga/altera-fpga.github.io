@@ -23,7 +23,7 @@ You will need the following items:
 - Linux host PC (Ubuntu 22.04LTS was used for developing this project, but other versions may work too) 
 - Internet access (for downloading files attached to this page, and cloning git trees from github) 
 - TFTP server running on host computer (or other accessible computer on the local network) 
-- Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.2
+- Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3
 
 Refer to [board documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/stratix/10-sx.html) for more details about the development kit.
 
@@ -68,7 +68,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -83,7 +83,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash 
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga s10_soc_devkit_ghrd
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/s10_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd s10_soc_devkit_ghrd
@@ -108,7 +108,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf arm-trusted-firmware 
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware 
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware 
 cd arm-trusted-firmware 
 make -j 48 bl31 PLAT=stratix10 
 cd .. 
@@ -123,7 +123,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf u-boot-socfpga 
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga 
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga 
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk 
@@ -212,7 +212,7 @@ quartus_pfg -c s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas.sof ghrd
 ```bash 
 cd $TOP_FOLDER 
 rm -rf linux-socfpga 
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga 
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga 
 cd linux-socfpga 
 make clean && make mrproper 
 make defconfig 
@@ -431,7 +431,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -446,7 +446,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash 
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga s10_soc_devkit_ghrd
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/s10_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd s10_soc_devkit_ghrd
@@ -490,7 +490,7 @@ rm ghrd.hps.jic
 ```bash 
 cd $TOP_FOLDER 
 rm -rf gsrd_socfpga 
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/gsrd_socfpga 
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/gsrd_socfpga 
 cd gsrd_socfpga 
 . stratix10-gsrd-build.sh 
 build_setup 
@@ -506,7 +506,7 @@ build_setup
 
 ```bash
 rm -f stratix10-fabric-config-yocto.patch
-wget https://altera-fpga.github.io/rel-24.2/embedded-designs/stratix-10/sx/soc/fabric-config/collateral/stratix10-fabric-config-yocto.patch 
+wget https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/fabric-config/collateral/stratix10-fabric-config-yocto.patch 
 patch -d meta-intel-fpga-refdes -p1 < stratix10-fabric-config-yocto.patch 
 ``` 
 
@@ -621,7 +621,6 @@ sed -i "s/$OLD_CORE_SHA/$NEW_CORE_SHA/g" $RECIPE
  
 
 ```bash 
-sed -i '/fix-potential-signed-overflow-in-pointer-arithmatic.patch/d' meta-intel-fpga-refdes/recipes-connectivity/openssh/openssh_%.bbappend 
 bitbake_image 
 package 
 ``` 

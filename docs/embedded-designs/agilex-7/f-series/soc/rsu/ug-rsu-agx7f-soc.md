@@ -25,14 +25,14 @@ Refer to [Agilex™ 7 Hard Processor System Remote System Update User Guide](htt
 
 ## Component Versions 
 
-This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.2 and the following component versions.
+This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 and the following component versions.
 
 | Repository | Branch/Tag |
 | :-- | :-- |
-| [ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | QPDS24.2_REL_GSRD_PR |
-| [linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.22-lts/QPDS24.2_REL_GSRD_PR |
-| [arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.10.1/QPDS24.2_REL_GSRD_PR |
-| [u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.01/QPDS24.2_REL_GSRD_PR |
+| [ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | QPDS24.3_REL_GSRD_PR |
+| [linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.37-lts/QPDS24.3_REL_GSRD_PR |
+| [arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.11.0/QPDS24.3_REL_GSRD_PR |
+| [u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.04/QPDS24.3_REL_GSRD_PR |
 | [intel-rsu](https://github.com/altera-opensource/intel-rsu) | master |
 
 For RSU example previous 24.2 version, please refer to [Agilex 7 SoC HPS Remote System Update](https://www.rocketboards.org/foswiki/Projects/AgilexHPSRemoteSystemUpdate).
@@ -43,7 +43,7 @@ The following items are required to run the RSU example.
 
 - Host PC running Ubuntu 22.04 LTS (other Linux versions may work too) 
  - Minimum 48 GB of RAM, required for compiling the hardware designs 
- - Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.2  for compiling the hardware projects, generating the flash images and writing to flash 
+ - Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3  for compiling the hardware projects, generating the flash images and writing to flash 
 - Access to Internet to download the hardware project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. 
 - [Agilex 7 Transceiver-SoC Development kit P-Tile E-Tile Production Linear power solution(DK-SI-AGF014EB)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agf014.html)  for running the example. 
 
@@ -93,7 +93,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -117,7 +117,7 @@ The commands to create and compile the projects are listed below.
 cd $TOP_FOLDER 
 # compile hardware designs: 0-factory, 1,2-applications, 3-factory update 
 rm -rf hw && mkdir hw && cd hw 
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
 mv ghrd-socfpga/agilex_soc_devkit_ghrd . 
 rm -rf ghrd-socfpga 
 # boot from FPGA 
@@ -126,7 +126,7 @@ export BOOTS_FIRST=fpga
 export ENABLE_WATCHDOG_RST=1 
 # treat watchdog timeout as configuration failure to trigger RSU 
 export WATCHDOG_RST_ACTION=remote_update
-# Select Linal regulator
+# Select Linear regulator
 export BOARD_PWRMGT=linear
 # disable SGMII to build faster 
 export HPS_ENABLE_SGMII=0 
@@ -173,7 +173,7 @@ rm -rf arm-trusted-firmware
 git clone https://github.com/altera-opensource/arm-trusted-firmware 
 cd arm-trusted-firmware 
 # checkout the branch used for this document, comment out to use default 
-# git checkout -b test -t origin/socfpga_v2.10.1 
+# git checkout -b test -t origin/socfpga_v2.11.0 
 make bl31 PLAT=agilex DEPRECATED=1 
 cd .. 
 ```
@@ -191,64 +191,64 @@ The following commands can be used to get the U-Boot source code and compile it.
 
 
 ```bash 
-cd $TOP_FOLDER 
-rm -rf u-boot-socfpga 
-git clone https://github.com/altera-opensource/u-boot-socfpga 
-cd u-boot-socfpga 
+cd $TOP_FOLDER
+rm -rf u-boot-socfpga
+git clone https://github.com/altera-opensource/u-boot-socfpga
+cd u-boot-socfpga
 # comment out next line to use the latest default branch 
-# git checkout -b test -t origin/socfpga_v2024.01 
+# git checkout -b test -t origin/socfpga_v2024.04 
 # enable dwarf4 debug info, for compatibility with arm ds 
-sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk 
+sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
 # use 'Image' for kernel image instead of 'kernel.itb' 
 sed -i 's/kernel\.itb/Image/g' arch/arm/Kconfig
 # only boot from SD, do not try QSPI and NAND 
-sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&mmc;/g' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi 
+sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&mmc;/g' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
 # disable NAND in the device tree 
 sed -i '/&nand {/!b;n;c\\tstatus = "disabled";' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi 
 # remove the NAND configuration from device tree 
-sed -i '/images/,/binman/{/binman/!d}' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi 
-# link to atf 
-ln -s $TOP_FOLDER/arm-trusted-firmware/build/agilex/release/bl31.bin . 
-# Create configuration custom file. 
-cat << EOF > config-fragment-agilex 
-# - Disable NAND/UBI related settings from defconfig. 
-CONFIG_NAND_BOOT=n 
-CONFIG_SPL_NAND_SUPPORT=n 
-CONFIG_CMD_NAND_TRIMFFS=n 
-CONFIG_CMD_NAND_LOCK_UNLOCK=n 
-CONFIG_NAND_DENALI_DT=n 
-CONFIG_SYS_NAND_U_BOOT_LOCATIONS=n 
-CONFIG_SPL_NAND_FRAMEWORK=n 
-CONFIG_CMD_NAND=n 
-CONFIG_MTD_RAW_NAND=n 
-CONFIG_CMD_UBI=n 
-CONFIG_CMD_UBIFS=n 
-CONFIG_MTD_UBI=n 
-CONFIG_ENV_IS_IN_UBI=n 
-CONFIG_UBI_SILENCE_MSG=n 
-CONFIG_UBIFS_SILENCE_MSG=n 
-# - Disable distroboot and use specific boot command. 
-CONFIG_DISTRO_DEFAULTS=n 
-CONFIG_HUSH_PARSER=y 
-CONFIG_SYS_PROMPT_HUSH_PS2="> " 
-CONFIG_USE_BOOTCOMMAND=y 
-CONFIG_BOOTCOMMAND="bridge enable;run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot" 
-CONFIG_CMD_FAT=y 
-CONFIG_CMD_FS_GENERIC=y 
-CONFIG_DOS_PARTITION=y 
-CONFIG_SPL_DOS_PARTITION=y 
-CONFIG_CMD_PART=y 
-CONFIG_SPL_CRC32=y 
-CONFIG_LZO=y 
-CONFIG_CMD_DHCP=y 
-CONFIG_SYS_PROMPT="SOCFPGA # " 
-EOF 
+sed -i '/images/,/binman/{/binman/!d}' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+# link to atf
+ln -s $TOP_FOLDER/arm-trusted-firmware/build/agilex/release/bl31.bin .
+# Create configuration custom file.
+cat << EOF > config-fragment-agilex
+# - Disable NAND/UBI related settings from defconfig.
+CONFIG_NAND_BOOT=n
+CONFIG_SPL_NAND_SUPPORT=n
+CONFIG_CMD_NAND_TRIMFFS=n
+CONFIG_CMD_NAND_LOCK_UNLOCK=n
+CONFIG_NAND_DENALI_DT=n
+CONFIG_SYS_NAND_U_BOOT_LOCATIONS=n
+CONFIG_SPL_NAND_FRAMEWORK=n
+CONFIG_CMD_NAND=n
+CONFIG_MTD_RAW_NAND=n
+CONFIG_CMD_UBI=n
+CONFIG_CMD_UBIFS=n
+CONFIG_MTD_UBI=n
+CONFIG_ENV_IS_IN_UBI=n
+CONFIG_UBI_SILENCE_MSG=n
+CONFIG_UBIFS_SILENCE_MSG=n
+# - Disable distroboot and use specific boot command.
+CONFIG_DISTRO_DEFAULTS=n
+CONFIG_HUSH_PARSER=y
+CONFIG_SYS_PROMPT_HUSH_PS2="> "
+CONFIG_USE_BOOTCOMMAND=y
+CONFIG_BOOTCOMMAND="bridge enable;run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot"
+CONFIG_CMD_FAT=y
+CONFIG_CMD_FS_GENERIC=y
+CONFIG_DOS_PARTITION=y
+CONFIG_SPL_DOS_PARTITION=y
+CONFIG_CMD_PART=y
+CONFIG_SPL_CRC32=y
+CONFIG_LZO=y
+CONFIG_CMD_DHCP=y
+CONFIG_SYS_PROMPT="SOCFPGA # "
+EOF
 # build U-Boot 
-make clean && make mrproper 
-make socfpga_agilex_defconfig 
-# Use created custom configuration file to merge with the default configuration obtained in .config file. 
-./scripts/kconfig/merge_config.sh -O ./ ./.config ./config-fragment-agilex 
-make -j 48 
+make clean && make mrproper
+make socfpga_agilex_defconfig
+# Use created custom configuration file to merge with the default configuration obtained in .config file.
+./scripts/kconfig/merge_config.sh -O ./ ./.config ./config-fragment-agilex
+make -j 48
 cd .. 
 ```
 
@@ -267,18 +267,18 @@ The following commands can be used to obtain the Linux source code and build Lin
 
 ```bash 
 cd $TOP_FOLDER 
-rm -rf linux-socfpga 
-git clone https://github.com/altera-opensource/linux-socfpga 
-cd linux-socfpga 
-# checkout the branch used for this document, comment out to use default 
-# git checkout -b test -t origin/socfpga-6.6.22-lts 
-# configure the RSU driver to be built into the kernel 
-make clean && make mrproper 
-make defconfig 
-./scripts/config --set-val CONFIG_INTEL_STRATIX10_RSU y 
-make oldconfig 
-make -j 48 Image dtbs 
-cd .. 
+rm -rf linux-socfpga
+git clone https://github.com/altera-opensource/linux-socfpga
+cd linux-socfpga
+# checkout the branch used for this document, comment out to use default
+# git checkout -b test -t origin/socfpga-6.6.37-lts 
+# configure the RSU driver to be built into the kernel
+make clean && make mrproper
+make defconfig
+./scripts/config --set-val CONFIG_INTEL_STRATIX10_RSU y
+make oldconfig
+make -j 48 Image dtbs
+cd ..
 ```
 
 
@@ -349,13 +349,13 @@ cat << EOF > initial_image.pfg
 EOF
 
 # Create Initial Image for previous release (in case needed to test  combined application)
-~/intelFPGA_pro/24.1/quartus/bin/quartus_pfg -c initial_image.pfg
+~/intelFPGA_pro/24.2/quartus/bin/quartus_pfg -c initial_image.pfg
 mv initial_image.jic initial_image_prev.jic
 mv initial_image_jic.rpd initial_image_jic_prev.rpd
 mv initial_image_jic.map initial_image_jic_prev.map
 
 # Create Initial Image for this release
-quartus_pfg -c initial_image.pfg 
+quartus_pfg -c initial_image.pfg
 ```
 
 
@@ -364,8 +364,8 @@ Here are the complete instructions on how to manually create the initial flash i
 1. Start the **Programming File Generator** tool by running the qpfgw command.
 
     ```bash 
-    cd $TOP_FOLDER 
-    qpfgw & 
+    cd $TOP_FOLDER
+    qpfgw &
     ```
 
 2. Select the **Device family** as **Agilex 7**, and **Configuration mode** as **Active Serial x4**. 
@@ -441,8 +441,8 @@ Here are the complete instructions on how to manually create the initial flash i
 21. Click **File > Save As ..** and save the file as **$TOP_FOLDER/initial_image.pfg**. This file can be useful later, if you wanted to re-generate the initial image by using the command.
 
     ```bash 
-    cd $TOP_FOLDER 
-    quartus_pfg -c initial_image.pfg 
+    cd $TOP_FOLDER
+    quartus_pfg -c initial_image.pfg
     ```
 
     **Note**: The created pfg file is actually an XML file which can be manually edited to replace the absolute file paths with relative file paths. You cannot directly edit the .pfg file for other purposes. The .pfg file can be opened from Programming File Generator, if changes are needed. 
@@ -457,14 +457,14 @@ The following commands are used to create the application image used in this exa
 
 
 ```bash 
-cd $TOP_FOLDER 
-mkdir -p images 
-rm -rf images/application2.rpd 
-quartus_pfg -c hw/ghrd.2/output_files/ghrd_agfb014r24b2e2v.sof \ 
-images/application2.rpd \ 
--o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \ 
--o mode=ASX4 \ 
--o bitswap=ON 
+cd $TOP_FOLDER
+mkdir -p images
+rm -rf images/application2.rpd
+quartus_pfg -c hw/ghrd.2/output_files/ghrd_agfb014r24b2e2v.sof \
+images/application2.rpd \
+-o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o bitswap=ON
 ```
 
 
@@ -480,15 +480,15 @@ The following commands are used to create the factory update image used in this 
 
 
 ```bash 
-cd $TOP_FOLDER 
-mkdir -p images 
-rm -f images/factory_update.rpd 
-quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof \ 
-images/factory_update.rpd \ 
--o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \ 
--o mode=ASX4 \ 
--o bitswap=ON \ 
--o rsu_upgrade=ON 
+cd $TOP_FOLDER
+mkdir -p images
+rm -f images/factory_update.rpd
+quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof \
+images/factory_update.rpd \
+-o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o bitswap=ON \
+-o rsu_upgrade=ON
 ```
 
 
@@ -505,15 +505,15 @@ The following commands are used to create the decision firmware update image use
 
 ```bash 
 cd $TOP_FOLDER 
-mkdir -p images 
-rm -f images/decision_firmware_update.rpd 
-quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof \ 
-images/decision_firmware_update.rpd \ 
--o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \ 
--o mode=ASX4 \ 
--o bitswap=ON \ 
--o rsu_upgrade=ON \ 
--o firmware_only=ON 
+mkdir -p images
+rm -f images/decision_firmware_update.rpd
+quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof \
+images/decision_firmware_update.rpd \
+-o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o bitswap=ON \
+-o rsu_upgrade=ON \
+-o firmware_only=ON
 ```
 
 
@@ -532,17 +532,17 @@ The following commands are used to create the combined application image used in
 
 ```bash 
 cd $TOP_FOLDER 
-mkdir -p images 
-rm -f images/combined_application.rpd 
-quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof \ 
-images/combined_application.rpd \ 
--o app_image=hw/ghrd.2/output_files/ghrd_agfb014r24b2e2v.sof \ 
--o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \ 
--o app_image_hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \ 
--o mode=ASX4 \ 
--o bitswap=ON \ 
--o rsu_upgrade=ON \ 
--o app_image_only=ON 
+mkdir -p images
+rm -f images/combined_application.rpd
+quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof \
+images/combined_application.rpd \
+-o app_image=hw/ghrd.2/output_files/ghrd_agfb014r24b2e2v.sof \
+-o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o app_image_hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o bitswap=ON \
+-o rsu_upgrade=ON \
+-o app_image_only=ON
 ```
 
 
@@ -594,17 +594,17 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 
   ```bash 
   cd $TOP_FOLDER 
-  rm -rf yocto && mkdir yocto && cd yocto 
-  git clone -b scarthgap https://git.yoctoproject.org/poky 
-  git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga 
-  git clone -b scarthgap   https://github.com/openembedded/meta-openembedded 
-  source poky/oe-init-build-env ./build 
-  echo 'MACHINE = "agilex7_dk_si_agf014eb"' >> conf/local.conf 
-  echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 
-  echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf 
+  rm -rf yocto && mkdir yocto && cd yocto
+  git clone -b scarthgap https://git.yoctoproject.org/poky
+  git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga
+  git clone -b scarthgap   https://github.com/openembedded/meta-openembedded
+  source poky/oe-init-build-env ./build
+  echo 'MACHINE = "agilex7_dk_si_agf014eb"' >> conf/local.conf
+  echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
+  echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf
   echo 'IMAGE_FSTYPES = "tar.gz"' >> conf/local.conf
   echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf
-  bitbake core-image-minimal 
+  bitbake core-image-minimal
   ```
   
 
@@ -622,17 +622,17 @@ The ZLIB is required by LIBRSU. The following steps can be used to compile it.
 
 
 ```bash 
-cd $TOP_FOLDER 
-rm -rf zlib-1.3.1 
-wget http://zlib.net/zlib-1.3.1.tar.gz 
-tar xf zlib-1.3.1.tar.gz 
-rm zlib-1.3.1.tar.gz 
-cd zlib-1.3.1/ 
-export CROSS_PREFIX=${CROSS_COMPILE} 
-./configure 
-make 
-export ZLIB_PATH=`pwd` 
-cd .. 
+cd $TOP_FOLDER
+rm -rf zlib-1.3.1
+wget http://zlib.net/zlib-1.3.1.tar.gz
+tar xf zlib-1.3.1.tar.gz
+rm zlib-1.3.1.tar.gz
+cd zlib-1.3.1/
+export CROSS_PREFIX=${CROSS_COMPILE}
+./configure
+make
+export ZLIB_PATH=`pwd`
+cd ..
 ```
 
 
@@ -652,22 +652,22 @@ The following commands can be used to build the LIBRSU and the example client ap
 
 ```bash 
 cd $TOP_FOLDER 
-rm -rf intel-rsu 
-git clone https://github.com/altera-opensource/intel-rsu 
-cd intel-rsu 
+rm -rf intel-rsu
+git clone https://github.com/altera-opensource/intel-rsu
+cd intel-rsu
 # checkout the branch used for this document, comment out to use default 
-# git checkout -b test -t origin/master 
-cd lib 
-# add -I$(ZLIB_PATH) to CFLAGS 
-sed -i 's/\(CFLAGS := .*\)$/\1 -I\$\(ZLIB_PATH\)/g' makefile 
-make 
-cd .. 
-cd example 
-# add -L$(ZLIB_PATH) to LDFLAGS 
-sed -i 's/\(LDFLAGS := .*\)$/\1 -L\$\(ZLIB_PATH\)/g' makefile 
-make 
-cd .. 
-cd .. 
+# git checkout -b test -t origin/master
+cd lib
+# add -I$(ZLIB_PATH) to CFLAGS
+sed -i 's/\(CFLAGS := .*\)$/\1 -I\$\(ZLIB_PATH\)/g' makefile
+make
+cd ..
+cd example
+# add -L$(ZLIB_PATH) to LDFLAGS
+sed -i 's/\(LDFLAGS := .*\)$/\1 -L\$\(ZLIB_PATH\)/g' makefile
+make
+cd ..
+cd ..
 ```
 
 
@@ -685,36 +685,35 @@ The following commands can be used to create the SD card image used in this exam
 
 
 ```bash 
-cd $TOP_FOLDER 
-sudo rm -rf sd_card && mkdir sd_card && cd sd_card 
-wget https://releases.rocketboards.org/release/2021.04/gsrd/\ 
-tools/make_sdimage_p3.py 
-chmod +x make_sdimage_p3.py 
+cd $TOP_FOLDER
+sudo rm -rf sd_card && mkdir sd_card && cd sd_card
+wget https://releases.rocketboards.org/release/2021.04/gsrd/tools/make_sdimage_p3.py 
+chmod +x make_sdimage_p3.py
 # prepare the fat contents 
-mkdir fat && cd fat 
-cp $TOP_FOLDER/u-boot-socfpga/u-boot.itb . 
-cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image . 
-cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dtb . 
-cp $TOP_FOLDER/images/*.rpd . 
-cd .. 
+mkdir fat && cd fat
+cp $TOP_FOLDER/u-boot-socfpga/u-boot.itb .
+cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image .
+cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dtb .
+cp $TOP_FOLDER/images/*.rpd .
+cd ..
 # prepare the rootfs partition contents 
-mkdir rootfs && cd rootfs 
+mkdir rootfs && cd rootfs
 sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex7_dk_si_agf014eb/core-image-minimal-agilex7_dk_si_agf014eb.rootfs.tar.gz
 sudo sed -i 's/agilex7_dk_si_agf014eb/linux/g' etc/hostname
-sudo rm -rf lib/modules/* 
-sudo cp $TOP_FOLDER/images/*.rpd home/root 
-sudo cp $TOP_FOLDER/intel-rsu/example/rsu_client home/root/ 
-sudo cp $TOP_FOLDER/intel-rsu/lib/librsu.so lib/ 
-sudo cp $TOP_FOLDER/intel-rsu/etc/qspi.rc etc/librsu.rc 
-sudo cp $TOP_FOLDER/zlib-1.3.1/libz.so* lib/ 
-cd .. 
-# create sd card image 
-sudo python3 ./make_sdimage_p3.py -f \ 
--P fat/*,num=1,format=vfat,size=100M \ 
--P rootfs/*,num=2,format=ext3,size=100M \ 
--s 256M \ 
--n sdcard_rsu.img 
-cd .. 
+sudo rm -rf lib/modules/*
+sudo cp $TOP_FOLDER/images/*.rpd home/root
+sudo cp $TOP_FOLDER/intel-rsu/example/rsu_client home/root/
+sudo cp $TOP_FOLDER/intel-rsu/lib/librsu.so lib/
+sudo cp $TOP_FOLDER/intel-rsu/etc/qspi.rc etc/librsu.rc
+sudo cp $TOP_FOLDER/zlib-1.3.1/libz.so* lib/
+cd ..
+# create sd card image
+sudo python3 ./make_sdimage_p3.py -f \
+-P fat/*,num=1,format=vfat,size=100M \
+-P rootfs/*,num=2,format=ext3,size=100M \
+-s 256M \
+-n sdcard_rsu.img
+cd ..
 ```
 
 
@@ -751,7 +750,7 @@ The following items are included in the rootfs on the SD card.
 
     ```bash 
     cd $TOP_FOLDER 
-    quartus_pgm -c 1 -m jtag -o "pvi;./initial_image.jic" 
+    quartus_pgm -c 1 -m jtag -o "pvi;./initial_image.jic"
     ```
 
 5. Configure the Agilex SoC Development Kit switches to have MSEL set to QSPI. 
@@ -911,10 +910,10 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 
     ```bash 
     SOCFPGA # rsu display_dcmf_version 
-    DCMF0 version = 24.2.0 
-    DCMF1 version = 24.2.0  
-    DCMF2 version = 24.2.0  
-    DCMF3 version = 24.2.0  
+    DCMF0 version = 24.3.0 
+    DCMF1 version = 24.3.0  
+    DCMF2 version = 24.3.0  
+    DCMF3 version = 24.3.0  
     SOCFPGA # rsu slot_count 
     Number of slots = 3. 
     SOCFPGA # rsu slot_get_info 0 
@@ -1760,10 +1759,10 @@ information from U-Boot, this should be a previous version.
 
     ```bash 
     SOCFPGA # rsu display_dcmf_version
-    DCMF0 version = 24.1.0 
-    DCMF1 version = 24.1.0 
-    DCMF2 version = 24.1.0 
-    DCMF3 version = 24.1.0 
+    DCMF0 version = 24.2.0 
+    DCMF1 version = 24.2.0 
+    DCMF2 version = 24.2.0 
+    DCMF3 version = 24.2.0 
     ```
 
 3. Find an unused slot (slot 1, P2), erase it, write the combined application image to it, verify that it was programmed successfully  and check it is now the highest priority.
@@ -1805,10 +1804,10 @@ application image is running fine.
     Error details : 0x00000000
     Retry counter : 0x00000000
     SOCFPGA # rsu display_dcmf_version
-    DCMF0 version = 24.2.0 
-    DCMF1 version = 24.2.0 
-    DCMF2 version = 24.2.0 
-    DCMF3 version = 24.2.0
+    DCMF0 version = 24.3.0 
+    DCMF1 version = 24.3.0 
+    DCMF2 version = 24.3.0 
+    DCMF3 version = 24.3.0
     ```
 
 7. Power cycle the board, the same combined application image is loaded, as it is the highest priority. But it takes a couple of seconds less, as the decision firmware does not need to be updated.
@@ -1914,10 +1913,10 @@ This section demonstrates how to use the RSU client to perform the following bas
 
     ```bash 
     root@linux:~# ./rsu_client --display-dcmf-version 
-    DCMF0 version = 24.2.0
-    DCMF1 version = 24.2.0
-    DCMF2 version = 24.2.0
-    DCMF3 version = 24.2.0
+    DCMF0 version = 24.3.0
+    DCMF1 version = 24.3.0
+    DCMF2 version = 24.3.0
+    DCMF3 version = 24.3.0
     Operation completed 
     ```
 

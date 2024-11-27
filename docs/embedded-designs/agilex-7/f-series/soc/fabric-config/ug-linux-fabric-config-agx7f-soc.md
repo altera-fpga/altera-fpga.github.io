@@ -24,7 +24,7 @@ Two different examples are provided:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.2
+  * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -71,7 +71,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -86,7 +86,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash 
 cd $TOP_FOLDER 
 rm -rf ghrd-socfpga agilex_soc_devkit_ghrd 
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
 mv ghrd-socfpga/agilex_soc_devkit_ghrd . 
 rm -rf ghrd-socfpga 
 cd agilex_soc_devkit_ghrd 
@@ -111,7 +111,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf arm-trusted-firmware 
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware 
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware 
 cd arm-trusted-firmware 
 make bl31 PLAT=agilex DEPRECATED=1 
 cd .. 
@@ -126,7 +126,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf u-boot-socfpga 
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga 
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga 
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk 
@@ -222,7 +222,7 @@ rm -rf linux-socfpga
 git clone https://github.com/altera-opensource/linux-socfpga linux-socfpga 
 cd linux-socfpga 
 # comment out next line to use the latest Linux kernel branch 
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga linux-socfpga 
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga linux-socfpga 
 make clean && make mrproper 
 make defconfig 
 # enable device tree overlays and fpga bridges 
@@ -442,7 +442,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -457,7 +457,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash 
 cd $TOP_FOLDER 
 rm -rf ghrd-socfpga agilex_soc_devkit_ghrd 
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
 mv ghrd-socfpga/agilex_soc_devkit_ghrd . 
 rm -rf ghrd-socfpga 
 cd agilex_soc_devkit_ghrd 
@@ -501,7 +501,7 @@ quartus_pfg -c \
 ```bash 
 cd $TOP_FOLDER 
 rm -rf gsrd_socfpga 
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/gsrd_socfpga 
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/gsrd_socfpga 
 cd gsrd_socfpga 
 . agilex7_dk_si_agf014eb-gsrd-build.sh 
 build_setup 
@@ -517,7 +517,7 @@ build_setup
 
 ```bash 
 rm -f agilex7-fabric-config-yocto.patch
-wget https://altera-fpga.github.io/rel-24.2/embedded-designs/agilex-7/f-series/soc/fabric-config/collateral/agilex7-fabric-config-yocto.patch 
+wget https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/soc/fabric-config/collateral/agilex7-fabric-config-yocto.patch 
 patch -d meta-intel-fpga-refdes -p1 < agilex7-fabric-config-yocto.patch
 ``` 
 
@@ -620,8 +620,7 @@ sed -i "/agilex7_dk_si_agf014eb_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel-fp
 7\. Build Yocto: 
  
 
-```bash 
-sed -i '/fix-potential-signed-overflow-in-pointer-arithmatic.patch/d' meta-intel-fpga-refdes/recipes-connectivity/openssh/openssh_%.bbappend 
+```bash
 bitbake_image 
 package 
 ``` 

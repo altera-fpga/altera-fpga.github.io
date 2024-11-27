@@ -25,14 +25,14 @@ At the moment, the Agilex™ 5 Hard Processor System Remote System Update User G
 
 **Note:** RSU functionality is first fully enabled in U-Boot in 24.3 release, while Linux functionality is enabled starting on 24.2 release.
 
-This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.2 and the following component versions.
+This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 and the following component versions.
 
 | Repository | Branch/Tag |
 | :-- | :-- |
-| [ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | QPDS24.2_REL_GSRD_PR |
-| [linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.22-lts/QPDS24.2_REL_GSRD_PR |
-| [arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.10.1/QPDS24.2_REL_GSRD_PR |
-| [u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.01/QPDS24.2_REL_GSRD_PR |
+| [ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | QPDS24.3_REL_GSRD_PR |
+| [linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.37-lts/QPDS24.3_REL_GSRD_PR |
+| [arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.11.0/QPDS24.3_REL_GSRD_PR |
+| [u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.04/QPDS24.3_REL_GSRD_PR |
 | [librsu](https://github.com/altera-opensource/librsu/) | master |
 
 ## Prerequisites 
@@ -41,7 +41,7 @@ The following items are required to run the RSU example.
 
 - Host PC running Ubuntu 22.04 LTS (other Linux versions may work too) 
 - Minimum 48 GB of RAM, required for compiling the hardware designs 
-- Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.2  for compiling the hardware projects, generating the flash images and writing to flash 
+- Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3  for compiling the hardware projects, generating the flash images and writing to flash 
 - cmake/3.24.0  (build configuration tool) or or above to build LibRSU library.
 - Access to Internet to download the hardware project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. 
 - [Agilex™ 5 E-Series Premium Development Kit (DK-A5E065BB32AES1)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html)  for running the example. 
@@ -104,7 +104,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -128,7 +128,7 @@ The commands to create and compile the projects are listed below.
 cd $TOP_FOLDER 
 # compile hardware designs: 0-factory, 1,2-applications, 3-factory update 
 rm -rf hw && mkdir hw && cd hw 
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
 mv ghrd-socfpga/agilex5_soc_devkit_ghrd . 
 rm -rf ghrd-socfpga 
 for version in {0..3}
@@ -172,7 +172,7 @@ rm -rf arm-trusted-firmware
 git clone https://github.com/altera-opensource/arm-trusted-firmware
 cd arm-trusted-firmware
 # checkout the branch used for this document, comment out to use default
-git checkout -b test -t origin/socfpga_v2.10.1
+git checkout -b test -t origin/socfpga_v2.11.0
 make -j 48 PLAT=agilex5 bl31
 cd ..
 ```
@@ -180,7 +180,7 @@ cd ..
 
 After completing the above steps, the Arm Trusted Firmware binary file is created and is located here.
 
-- $TOP_FOLDER/arm-trusted-firmware/build/agilex/release/bl31.bin 
+- $TOP_FOLDER/arm-trusted-firmware/build/agilex5/release/bl31.bin 
 
 
 ### Building U-Boot 
@@ -195,7 +195,7 @@ rm -rf u-boot-socfpga
 git clone https://github.com/altera-opensource/u-boot-socfpga 
 cd u-boot-socfpga 
 # comment out next line to use the latest default branch 
-git checkout -b test -t origin/socfpga_v2024.01 
+git checkout -b test -t origin/socfpga_v2024.04 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
 # only boot from SD, do not try QSPI and NAND
@@ -204,19 +204,16 @@ sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&mmc;/g' arch/arm/dt
 sed -i '/&nand {/!b;n;c\\tstatus = "disabled";' arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi
 # use 'Image' for kernel image instead of 'kernel.itb' 
 sed -i 's/kernel\.itb/Image/g' arch/arm/Kconfig
-# Replace configuration to match agilex5 (Address where dtb is loaded and address of QSPI controller 2nd occurrence in the file) HSD:14023640947
-sed -i 's/fdt_addr=8000000/fdt_addr=86000000/g' include/configs/socfpga_soc64_common.h
-sed -i ':a;N;$!ba;s/spi@ff8d2000/spi@108d2000/2' include/configs/socfpga_soc64_common.h
 
 ## Fix to report FSBL state to SDM HSD: 14023897270
 sed -i '/mbox_init();/d' arch/arm/mach-socfpga/spl_agilex5.c
 sed -i '/timer_init();/a\\tmbox_init();\n\tmbox_hps_stage_notify(HPS_EXECUTION_STATE_FSBL);' arch/arm/mach-socfpga/spl_agilex5.c
 
-# Need fix in arch/arm/mach-socfpga/smc_api.c from HSD:14023661564 (needed in 24.3). In 24.2 need something else
-#sed -i '/flush_dcache_range/s/arg + len/(arg + len)/g' arch/arm/mach-socfpga/smc_api.c
-#sed -i '/flush_dcache_range/s/resp_buf + \*resp_buf_len/(resp_buf + \*resp_buf_len)/g' arch/arm/mach-socfpga/smc_api.c
-#sed -i '/flush_dcache_range/s/(u64)/(uintptr_t)/g' arch/arm/mach-socfpga/smc_api.c
-#sed -i '/if (ret == INTEL_SIP_SMC_STATUS_OK &&/a \\t\tinvalidate_dcache_range((uintptr_t)resp_buf, (uintptr_t)(resp_buf + \*resp_buf_len));' arch/arm/mach-socfpga/smc_api.c 
+# Need fix in arch/arm/mach-socfpga/smc_api.c from HSD:14023661564  
+sed -i '/flush_dcache_range/s/arg + len/(arg + len)/g' arch/arm/mach-socfpga/smc_api.c
+sed -i '/flush_dcache_range/s/resp_buf + \*resp_buf_len/(resp_buf + \*resp_buf_len)/g' arch/arm/mach-socfpga/smc_api.c
+sed -i '/flush_dcache_range/s/(u64)/(uintptr_t)/g' arch/arm/mach-socfpga/smc_api.c
+sed -i '/if (ret == INTEL_SIP_SMC_STATUS_OK &&/a \\t\tinvalidate_dcache_range((uintptr_t)resp_buf, (uintptr_t)(resp_buf + \*resp_buf_len));' arch/arm/mach-socfpga/smc_api.c 
 
 # link to atf
 ln -s ../arm-trusted-firmware/build/agilex5/release/bl31.bin 
@@ -290,7 +287,7 @@ rm -rf linux-socfpga
 git clone https://github.com/altera-opensource/linux-socfpga 
 cd linux-socfpga 
 # checkout the branch used for this document, comment out to use default 
-git checkout -b test -t origin/socfpga-6.6.22-lts 
+git checkout -b test -t origin/socfpga-6.6.37-lts 
 # configure the RSU driver to be built into the kernel 
 make clean && make mrproper 
 make defconfig 
@@ -370,10 +367,10 @@ For reference, an example of the  Programming File Generator configuration file 
 ```bash 
 cd $TOP_FOLDER 
 # Get the .pfg file
-wget https://altera-fpga.github.io/rel-24.2/embedded-designs/agilex-5/e-series/premium/rsu/collateral/initial_image.pfg
+wget https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/rsu/collateral/initial_image.pfg
 
 # Create Initial Image for previous release (in case needed to test  combined application)
-~/intelFPGA_pro/24.1/quartus/bin/quartus_pfg -c initial_image.pfg
+~/intelFPGA_pro/24.2/quartus/bin/quartus_pfg -c initial_image.pfg
 mv initial_image.jic initial_image_prev.jic
 mv initial_image_jic.rpd initial_image_jic_prev.rpd
 mv initial_image_jic.map initial_image_jic_prev.map
@@ -696,7 +693,8 @@ The following files are created.
 ### Building the SD Card 
 
 
-The following commands can be used to create the SD card image used in this example.
+The following commands can be used to create the SD card image used in this example. The **rsu_client** application requires to be linked with the libuniLibRSU.so.1 library. This can be performed from Linux running in the Agilex 5 device using the **ldconfig** command. In this example, we are accomplishing this by adding the **S99linkRSULib.sh** script into the **/etc/rcS.d/ directoyy** in the file system. This script will be executed automatically at boot time. Notice that this only needs to be done once, after the SD card gets programmed.
+
 
 
 ```bash 
@@ -705,6 +703,22 @@ sudo rm -rf sd_card && mkdir sd_card && cd sd_card
 wget https://releases.rocketboards.org/release/2021.04/gsrd/\
 tools/make_sdimage_p3.py
 chmod +x make_sdimage_p3.py
+# Creating  initial script to execute it during Linux boot up so we can link rsu_client with 
+cat << EOF > S99linkRSULib.sh
+#!/bin/sh
+# SPDX-License-Identifier: GPL-2.0-only
+
+### BEGIN INIT INFO
+# Provides: banner
+# Required-Start:
+# Required-Stop:
+# Default-Start:     S
+# Default-Stop:
+### END INIT INFO
+echo "Calling ldconfig to Lin rsu_client with libuniLibRSU.so.1"
+ldconfig
+EOF
+
 # prepare the fat contents 
 mkdir fat && cd fat
 cp $TOP_FOLDER/u-boot-socfpga/u-boot.itb .
@@ -723,6 +737,9 @@ sudo cp $TOP_FOLDER/librsu/build/bin/rsu_client home/root/
 sudo cp $TOP_FOLDER/librsu/build/lib/libuniLibRSU.so.1 usr/lib/
 sudo cp $TOP_FOLDER/librsu/etc/qspi.rc etc/librsu.rc
 sudo cp $TOP_FOLDER/zlib-1.3.1/libz.so* lib/
+# We need to link rsu_client with libuniLibRSU.so.1. So we do it during Linux bootup
+sudo cp ../S99linkRSULib.sh etc/rcS.d/
+sudo chmod +x etc/rcS.d/S99linkRSULib.sh
 cd ..
 # create sd card image 
 sudo python3 ./make_sdimage_p3.py -f \
@@ -797,41 +814,47 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 1. Power up the board and press any key when prompted, to get to the U-Boot command prompt.
 
     ```
-    U-Boot SPL 2024.01-33547-g098abd8f13-dirty (Aug 19 2024 - 12:15:42 -0500)
+    U-Boot SPL 2024.04-35102-g135e53726d-dirty (Nov 23 2024 - 13:23:54 -0600)
     Reset state: Cold
-    MPU          1200000 kHz
+    MPU           800000 kHz
     L4 Main	      400000 kHz
     L4 sys free   100000 kHz
     L4 MP         200000 kHz
     L4 SP         100000 kHz
     SDMMC          50000 kHz
-    DDR: 8192 MiB
-    SDRAM-ECC: Initialized success with 1722 ms
-    QSPI: Reference clock at 400000 kHz
-    WDT:   Started watchdog@10D00200 with servicing every 1000ms (10s timeout)
+    is_ddr_csr_clkgen_locked: ddr csr io96b_0 clkgenA is successfully locked
+    io96b_cal_status: Calibration for IO96B instance 0x18400400 done at 0 msec!
+    init_mem_cal: Initial DDR calibration IO96B_0 succeed
+    :
     Trying to boot from MMC1
     ## Checking hash(es) for config board-0 ... OK
     ## Checking hash(es) for Image atf ... crc32+ OK
     ## Checking hash(es) for Image uboot ... crc32+ OK
     ## Checking hash(es) for Image fdt-0 ... crc32+ OK
-    NOTICE:  BL31: v2.10.1	(release):QPDS24.2_REL_GSRD_PR
-    NOTICE:  BL31: Built : 12:14:02, Aug 19 2024
-
-    U-Boot 2024.01-33547-g098abd8f13-dirty (Aug 19 2024 - 12:15:42 -0500)socfpga_agilex
+    WARNING: Data cache not enabled
+    NOTICE:  BL31: Boot Core = 0
+    NOTICE:  BL31: CPU ID = 0
+    NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
+    NOTICE:  BL31: Built : 13:23:25, Nov 23 2024
     
-    CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
-    Model: SoCFPGA Agilex SoCDK
+    
+    U-Boot 2024.04-35102-g135e53726d-dirty (Nov 23 2024 - 13:23:54 -0600)socfpga_agilex5
+    
+    CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
+    Model: SoCFPGA Agilex5 SoCDK
     DRAM:  2 GiB (effective 8 GiB)
-    Core:  28 devices, 23 uclasses, devicetree: separate
-    WDT:   Started watchdog@10D00200 with servicing every 1000ms (10s timeout)
-    MMC:   dwmmc0@ff808000: 0
+    Core:  50 devices, 25 uclasses, devicetree: separate
+    WDT:   Started watchdog@10d00200 with servicing every 1000ms (10s timeout)
+    WDT:   Started watchdog@10d00300 with servicing every 1000ms (10s timeout)
+    WDT:   Started watchdog@10d00400 with servicing every 1000ms (10s timeout)
+    WDT:   Started watchdog@10d00500 with servicing every 1000ms (10s timeout)
+    WDT:   Started watchdog@10d00600 with servicing every 1000ms (10s timeout)
+    MMC:   mmc0@10808000: 0
     Loading Environment from FAT... Unable to read "uboot.env" from mmc0:1...
-    In:    serial0@ffc02000
-    Out:   serial0@ffc02000
-    Err:   serial0@ffc02000
-    Net:   
-    Warning: ethernet@ff800000 (eth0) using random MAC address - 86:c6:bd:7c:4f:7d
-    eth0: ethernet@ff800000
+    In:    serial0@10c02000
+    Out:   serial0@10c02000
+    Err:   serial0@10c02000
+    :
     Hit any key to stop autoboot:  0 
     SOCFPGA # 
     ```
@@ -929,10 +952,10 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 
     ```bash
     SOCFPGA # rsu display_dcmf_version 
-    DCMF0 version = 24.2.0 
-    DCMF1 version = 24.2.0  
-    DCMF2 version = 24.2.0  
-    DCMF3 version = 24.2.0  
+    DCMF0 version = 24.3.0 
+    DCMF1 version = 24.3.0  
+    DCMF2 version = 24.3.0  
+    DCMF3 version = 24.3.0  
     SOCFPGA # rsu slot_count 
     Number of slots = 3. 
     SOCFPGA # rsu slot_get_info 0 
@@ -1779,10 +1802,10 @@ information from U-Boot, this should be a previous version.
 
     ```bash
     SOCFPGA # rsu display_dcmf_version
-    DCMF0 version = 24.1.0 
-    DCMF1 version = 24.1.0 
-    DCMF2 version = 24.1.0 
-    DCMF3 version = 24.1.0 
+    DCMF0 version = 24.2.0 
+    DCMF1 version = 24.2.0 
+    DCMF2 version = 24.2.0 
+    DCMF3 version = 24.2.0 
     ```
 
 3. Find an unused slot (slot 1, P2), erase it, write the combined application image to it, verify that it was programmed successfully  and check it is now the highest priority.
@@ -1824,10 +1847,10 @@ application image is running fine.
     Error details : 0x00000000
     Retry counter : 0x00000000
     SOCFPGA # rsu display_dcmf_version
-    DCMF0 version = 24.2.0 
-    DCMF1 version = 24.2.0 
-    DCMF2 version = 24.2.0 
-    DCMF3 version = 24.2.0
+    DCMF0 version = 24.3.0 
+    DCMF1 version = 24.3.0 
+    DCMF2 version = 24.3.0 
+    DCMF3 version = 24.3.0
     ```
 
 7. Power cycle the board, the same combined application image is loaded, as it is the highest priority. But it takes a couple of seconds less, as the decision firmware does not need to be updated.
@@ -1935,10 +1958,10 @@ This section demonstrates how to use the RSU client to perform the following bas
 
     ```bash 
     root@linux:~# ./rsu_client --display-dcmf-version 
-    DCMF0 version = 24.2.0 
-    DCMF1 version = 24.2.0
-    DCMF2 version = 24.2.0
-    DCMF3 version = 24.2.0
+    DCMF0 version = 24.3.0 
+    DCMF1 version = 24.3.0
+    DCMF2 version = 24.3.0
+    DCMF3 version = 24.3.0
     Operation completed 
     ```
 
