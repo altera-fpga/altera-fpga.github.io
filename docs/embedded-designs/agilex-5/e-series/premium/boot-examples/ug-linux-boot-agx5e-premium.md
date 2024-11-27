@@ -16,7 +16,7 @@ The instructions on this page are based on the [GSRD](../../gsrd/ug-gsrd-agx5e-p
 
 The following are required to be able to fully exercise the guides from this page:
 
-* Altera Agilex 5 FPGA E-Series 065B Premium Development Kit, ordering code DK-A5E065BB32AES1. Refer to [board documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html) for more information about the development kit.
+* Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit, ordering code DK-A5E065BB32AES1. Refer to [board documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html) for more information about the development kit.
   * HPS Enablement  Expansion Board. Included with the development kit
   * HPS NAND Board. Enables eMMC storage for HPS. Orderable separately
   * HPS Test Board. Supports SD card boot, and external Arm tracing. Orderable separately
@@ -28,23 +28,24 @@ The following are required to be able to fully exercise the guides from this pag
   * 64 GB of RAM or more
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Intel Quartus Prime Pro Edition version 24.2. Used to recompile the hardware design, generate programming files and configure the FPGA device.
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 
   * TFTP server. This used to download the eMMC binaries to board to be flashed by U-Boot
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files.
 
 ### Component Versions
 
-The instructions on this page use the following component versions:
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 and the following software component versions are used to build the GSRD: 
 
-| Component | Location | Branch | Commit ID/Tag |
+| **Component** | **Location** | **Branch** | **Commit ID/Tag** |
 | :-- | :-- | :-- | :-- |
-| GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | QPDS24.2_REL_GSRD_PR |
-| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.22-lts | QPDS24.2_REL_GSRD_PR |
-| Arm Trusted Firmware | [https://github.com/altera-opensource/arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.10.1 | QPDS24.2_REL_GSRD_PR |
-| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.01   | QPDS24.2_REL_GSRD_PR |
-| Yocto Project: poky | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest |
-| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | QPDS24.2_REL_GSRD_PR |
+| GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | QPDS24.3_REL_GSRD_PR |
+| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.37-lts | QPDS24.3_REL_GSRD_PR |
+| Arm Trusted Firmware | [https://github.com/arm-trusted-firmware](https://github.com/arm-trusted-firmware) | socfpga_v2.11.0 | QPDS24.3_REL_GSRD_PR |
+| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.04 | QPDS24.3_REL_GSRD_PR |
+| Yocto Project | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest | 
+| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | scarthgap | QPDS24.3_REL_GSRD_PR |
 
 ### Development Kit
 
@@ -70,19 +71,20 @@ This section demonstrates how to build a Linux system from separate components, 
 
 
 ```bash
-sudo rm -rf bootloader.enablement
-mkdir bootloader.enablement
-cd bootloader.enablement
+sudo rm -rf agilex5_boot.enablement
+mkdir agilex5_boot.enablement
+cd agilex5_boot.enablement
 export TOP_FOLDER=`pwd`
 ```
 
-2\. Download and setup the build toolchain. It will be used only by the GHRD makefile to build the debug HPS FSBL, to build the _hps_debug.sof file:
+
+Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
 
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel\
-/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
+gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
 tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
 rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
 export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
@@ -90,13 +92,15 @@ export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
 
-3\. Set up the Quartus tools in the PATH, so they are accessible without full path
+Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
+
 
 
 
@@ -107,13 +111,13 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga agilex5_soc_devkit_ghrd
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/agilex5_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd agilex5_soc_devkit_ghrd
 make config
 make DEVICE=A5ED065BB32AE6SR0 HPS_EMIF_MEM_CLK_FREQ_MHZ=800 HPS_EMIF_REF_CLK_FREQ_MHZ=100 generate_from_tcl
-make all
+make sof
 cd ..
 ```
 
@@ -130,7 +134,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware
 cd arm-trusted-firmware
 make -j 48 PLAT=agilex5 bl31 
 cd ..
@@ -149,7 +153,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -259,7 +263,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga
 cd linux-socfpga
 make defconfig 
 make -j 64 Image && make intel/socfpga_agilex5_socdk.dtb 
@@ -270,6 +274,31 @@ The following files are created:
 * `$TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dtb`
 * `$TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image`
 
+
+<h4>Install Yocto Dependencies</h4>
+
+1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
+
+The command to install the required packages on Ubuntu 22.04 is:
+
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \
+build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
+python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm python3-subunit mesa-common-dev zstd \
+liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \
+tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
+device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
+```
+
+On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:
+
+```bash
+ sudo ln -sf /bin/bash /bin/sh
+```
+
+**Note**: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.
 
 <h4>Build Rootfs</h4>
 
@@ -340,7 +369,7 @@ Write the SD card image `sd_card/sdcard.img` to the micro SD card using the incl
 	# Flush the changes to the SD card
 	sync
 ```
-- On Windows, use the Win32DiskImager program, available at [https://win32diskimager.org/](https://win32diskimager.org/). Write the image as shown in the next figure:
+- On Windows, use the Win32DiskImager program, available at [https://sourceforge.net/projects/win32diskimager](https://sourceforge.net/projects/win32diskimager). Write the image as shown in the next figure:
 ![](images/win32diskimager.png) 
 
 <h4>Write QSPI Flash</h4>
@@ -394,7 +423,7 @@ mkdir $TOP_FOLDER/qspi-boot
 ```bash
 cd $TOP_FOLDER/qspi-boot
 rm -rf u-boot-socfpga
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -720,19 +749,20 @@ This section demonstrates how to build a Linux system from separate components, 
 
 
 ```bash
-sudo rm -rf bootloader.emmc
-mkdir bootloader.emmc
-cd bootloader.emmc
+sudo rm -rf agilex5_boot.emmc
+mkdir agilex5_boot.emmc
+cd agilex5_boot.emmc
 export TOP_FOLDER=`pwd`
 ```
 
-2\. Download and setup the build toolchain. It will be used only by the GHRD makefile to build the debug HPS FSBL, to build the _hps_debug.sof file:
+
+Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
 
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel\
-/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
+gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
 tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
 rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
 export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
@@ -740,13 +770,15 @@ export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
 
-3\. Set up the Quartus tools in the PATH, so they are accessible without full path
+Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
+
 
 
 
@@ -757,13 +789,13 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga agilex5_soc_devkit_ghrd
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/agilex5_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd agilex5_soc_devkit_ghrd
 make config
 make DEVICE=A5ED065BB32AE6SR0 HPS_EMIF_MEM_CLK_FREQ_MHZ=800 HPS_EMIF_REF_CLK_FREQ_MHZ=100 DAUGHTER_CARD=devkit_dc_emmc generate_from_tcl
-make all
+make sof
 cd ..
 ```
 
@@ -780,7 +812,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware
 cd arm-trusted-firmware
 make -j 48 PLAT=agilex5 bl31 
 cd ..
@@ -799,7 +831,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -910,7 +942,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga
 cd linux-socfpga
 make defconfig 
 make -j 64 Image && make intel/socfpga_agilex5_socdk_emmc.dtb 
@@ -998,7 +1030,7 @@ mkdir $TOP_FOLDER/helper-jic
 ```bash
 cd $TOP_FOLDER/helper-jic
 rm -rf u-boot-socfpga
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -1203,19 +1235,20 @@ This section demonstrates how to build a Linux system from separate components, 
 
 
 ```bash
-sudo rm -rf bootloader.test
-mkdir bootloader.test
-cd bootloader.test
+sudo rm -rf agilex5_boot.test
+mkdir agilex5_boot.test
+cd agilex5_boot.test
 export TOP_FOLDER=`pwd`
 ```
 
-2\. Download and setup the build toolchain. It will be used only by the GHRD makefile to build the debug HPS FSBL, to build the _hps_debug.sof file:
+
+Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
 
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel\
-/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
+gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
 tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
 rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
 export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
@@ -1223,13 +1256,15 @@ export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
 
-3\. Set up the Quartus tools in the PATH, so they are accessible without full path
+Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
+
 
 
 
@@ -1240,13 +1275,13 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga agilex5_soc_devkit_ghrd
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/agilex5_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd agilex5_soc_devkit_ghrd
 make config
 make DEVICE=A5ED065BB32AE6SR0 HPS_EMIF_MEM_CLK_FREQ_MHZ=800 HPS_EMIF_REF_CLK_FREQ_MHZ=100 DAUGHTER_CARD=debug2 generate_from_tcl
-make all
+make sof
 cd ..
 ```
 
@@ -1263,7 +1298,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware
 cd arm-trusted-firmware
 make -j 48 PLAT=agilex5 bl31 
 cd ..
@@ -1282,7 +1317,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -1395,7 +1430,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga
 cd linux-socfpga
 make defconfig 
 make -j 64 Image && make intel/socfpga_agilex5_socdk_debug.dtb 
@@ -1506,4 +1541,17 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 4\. Wait for Linux to boot, use `root` as user name, and no password wil be requested.
 
 
+## Notices & Disclaimers
 
+Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
+No product or component can be absolutely secure. 
+Performance varies by use, configuration and other factors.
+Your costs and results may vary. 
+You may not use or facilitate the use of this document in connection with any infringement or other legal analysis concerning Altera or Intel products described herein. You agree to grant Altera Corporation a non-exclusive, royalty-free license to any patent claim thereafter drafted which includes subject matter disclosed herein.
+No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document, with the sole exception that you may publish an unmodified copy. You may create software implementations based on this document and in compliance with the foregoing that are intended to execute on the Altera or Intel product(s) referenced in this document. No rights are granted to create modifications or derivatives of this document.
+The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications.  Current characterized errata are available on request.
+Altera disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade.
+You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
+<sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
+
+OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 

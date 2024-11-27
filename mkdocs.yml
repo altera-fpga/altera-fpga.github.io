@@ -183,11 +183,15 @@ nav:
         - Agilex™ 5 FPGA Remote Debug Example: embedded-designs/agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium.md        
         - Agilex™ 5 SoC HPS Remote System Update Example: embedded-designs/agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc.md
     - Agilex™ 7:
+        - Agilex™ 7 F-Series SoC Development Kit GSRD User Guide: embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc.md
+        - Agilex™ 7 I-Series FPGA Development Kit GSRD User Guide: embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc.md        
+        - Agilex™ 7 M-Series HBM2e Development Kit GSRD User Guide: embedded-designs/agilex-7/m-series/hbm2e/ug-gsrd-agx7m-hbm2e.md
         - Agilex™ 7 SoC HPS Remote System Update Example: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc.md
         - Agilex™ 7 SoC HPS Multi-QSPI Remote System Update Example: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc.md
         - Agilex™ 7 SoC FPGA Remote Debug Example: embedded-designs/agilex-7/f-series/soc/remote-debug/ug-remote-debug-agx7f-soc.md
         - Agilex™ 7 HPS eMMC Boot Example: embedded-designs/agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc.md
     - Stratix® 10:
+        - Stratix® 10 SX SoC Development Kit GSRD User Guide: embedded-designs/stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc.md      
         - Stratix® 10 SoC HPS Remote System Update Example: embedded-designs/stratix-10/sx/soc/rsu/ug-rsu-s10sx-soc.md
         - Stratix® 10 SoC FPGA Remote Debug Example: embedded-designs/stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc.md
         - Stratix® 10 HPS eMMC Boot Example: embedded-designs/stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc.md
@@ -236,18 +240,18 @@ markdown_extensions:
 env: 
 # Devices         
   AGILEX: Intel® Agilex® 7 FPGA
-  ALTERA_RELEASE: rel-24.2
-  COMMON_QUARTUS_VER_L: Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.2
-  COMMON_QUARTUS_VER_S: 24.2
-  PREV_COMMON_QUARTUS_VER_S: 24.1
+  ALTERA_RELEASE: rel-24.3
+  COMMON_QUARTUS_VER_L: Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3
+  COMMON_QUARTUS_VER_S: 24.3
+  PREV_COMMON_QUARTUS_VER_S: 24.2
  # GSRD
-  GSRD_LINUX_BRANCH_S: 6.6.22-lts
-  GSRD_UBOOT_BRANCH_S: 2024.01
-  GSRD_ATF_BRANCH_S: 2.10.1
-  GSRD_LINUX_BRANCH: socfpga-6.6.22-lts
-  GSRD_UBOOT_BRANCH: socfpga_v2024.01
-  GSRD_ATF_BRANCH: socfpga_v2.10.1
-  GSRD_DATE: 2024.04
-  GSRD_TAG: QPDS24.2_REL_GSRD_PR
+  GSRD_LINUX_BRANCH_S: 6.6.37-lts
+  GSRD_UBOOT_BRANCH_S: 2024.04
+  GSRD_ATF_BRANCH_S: 2.11.0
+  GSRD_LINUX_BRANCH: socfpga-6.6.37-lts
+  GSRD_UBOOT_BRANCH: socfpga_v2024.04
+  GSRD_ATF_BRANCH: socfpga_v2.11.0
+  GSRD_DATE: 2024.11
+  GSRD_TAG: QPDS24.3_REL_GSRD_PR
   GSRD_YOCTO_BRANCH: scarthgap
 

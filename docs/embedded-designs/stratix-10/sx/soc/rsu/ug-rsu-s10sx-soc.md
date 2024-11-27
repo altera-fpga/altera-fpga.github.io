@@ -26,14 +26,14 @@ Refer to [Stratix® 10 Hard Processor System Remote System Update User Guide](ht
 
 ## Component Versions 
 
-This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.2 and the following component versions.
+This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 and the following component versions.
 
 | Repository | Branch/Tag |
 | :-- | :-- |
-| [ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | QPDS24.2_REL_GSRD_PR |
-| [linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.22-lts/QPDS24.2_REL_GSRD_PR |
-| [arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.10.1/QPDS24.2_REL_GSRD_PR |
-| [u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.01/QPDS24.2_REL_GSRD_PR |
+| [ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | QPDS24.3_REL_GSRD_PR |
+| [linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.37-lts/QPDS24.3_REL_GSRD_PR |
+| [arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.11.0/QPDS24.3_REL_GSRD_PR |
+| [u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.04/QPDS24.3_REL_GSRD_PR |
 | [intel-rsu](https://github.com/altera-opensource/intel-rsu) | master |
 
 For RSU example previous 24.2 version, please refer to [Stratix 10 HPS Remote System Update](https://www.rocketboards.org/foswiki/Projects/Stratix10HPSRemoteSystemUpdate).
@@ -43,7 +43,7 @@ The following items are required to run the RSU example.
 
 - Host PC running Ubuntu 22.04 LTS (other Linux versions may work too) 
  - Minimum 48 GB of RAM, required for compiling the hardware designs 
- - Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.2 for compiling the hardware projects, generating the flash images and writing to flash 
+ - Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 for compiling the hardware projects, generating the flash images and writing to flash 
 - Access to Internet to download the hardware project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. 
 - [ Stratix 10 SX SoC Development Kit H-Tile (DK-SOC-1SSX-H-D)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/stratix/10-sx.html) production version  for running the example. 
 
@@ -93,7 +93,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -116,43 +116,43 @@ The commands to create and compile the projects are listed below.
 
 
 ```bash 
-cd $TOP_FOLDER 
+cd $TOP_FOLDER
 # compile hardware designs: 0-factory, 1,2-applications, 3-factory update 
-rm -rf hw && mkdir hw && cd hw 
-rm -rf ghrd-socfpga s10_soc_devkit_ghrd 
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
-mv ghrd-socfpga/s10_soc_devkit_ghrd . 
-rm -rf ghrd-socfpga 
+rm -rf hw && mkdir hw && cd hw
+rm -rf ghrd-socfpga s10_soc_devkit_ghrd
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+mv ghrd-socfpga/s10_soc_devkit_ghrd .
+rm -rf ghrd-socfpga
 # use fpga configuration first mode 
-export BOOTS_FIRST=fpga 
+export BOOTS_FIRST=fpga
 # enable watchdog operation 
-export ENABLE_WATCHDOG_RST=1 
+export ENABLE_WATCHDOG_RST=1
 # configure watchdog to trigger remote update 
-export WATCHDOG_RST_ACTION=remote_update 
+export WATCHDOG_RST_ACTION=remote_update
 # disable sgmii and partial reconfiguration - to decrease build time 
-export HPS_ENABLE_SGMII=0 
+export HPS_ENABLE_SGMII=0
 export ENABLE_PARTIAL_RECONFIGURATION=0
 # Select device for S10 H-Tile
 export QUARTUS_DEVICE=1SX280HU2F50E1VGAS
 
-for version in {0..3} 
-do 
-rm -rf ghrd.$version 
-cp -r s10_soc_devkit_ghrd ghrd.$version 
-cd ghrd.$version 
-# change sysid to make binaries slightly different 
-sed -i 's/0xACD5CAFE/0xABAB000'$version'/g' create_ghrd_qsys.tcl 
-make scrub_clean_all 
-make generate_from_tcl 
-echo "set_global_assignment -name RSU_MAX_RETRY_COUNT 3" >> ghrd_1sx280hu2f50e1vgas.qsf 
+for version in {0..3}
+do
+rm -rf ghrd.$version
+cp -r s10_soc_devkit_ghrd ghrd.$version
+cd ghrd.$version
+# change sysid to make binaries slightly different
+sed -i 's/0xACD5CAFE/0xABAB000'$version'/g' create_ghrd_qsys.tcl
+make scrub_clean_all
+make generate_from_tcl
+echo "set_global_assignment -name RSU_MAX_RETRY_COUNT 3" >> ghrd_1sx280hu2f50e1vgas.qsf
 # change the board id to ha a simple boot from sd 
-sed -i 's/set_global_assignment -name STRATIX_JTAG_USER_CODE .*/set_global_assignment -name STRATIX_JTAG_USER_CODE 0/g' ghrd_1sx280hu2f50e1vgas.qsf 
-make all 
-cd .. 
-done 
+sed -i 's/set_global_assignment -name STRATIX_JTAG_USER_CODE .*/set_global_assignment -name STRATIX_JTAG_USER_CODE 0/g' ghrd_1sx280hu2f50e1vgas.qsf
+make all
+cd ..
+done
  
-rm -rf s10_soc_devkit_ghrd 
-cd .. 
+rm -rf s10_soc_devkit_ghrd
+cd ..
 ```
 
 
@@ -172,14 +172,14 @@ The following commands are used to retrieve the Arm Trusted Firmware (ATF) and c
 
 
 ```bash 
-cd $TOP_FOLDER 
-rm -rf arm-trusted-firmware 
-git clone https://github.com/altera-opensource/arm-trusted-firmware 
-cd arm-trusted-firmware 
-# checkout the branch used for this document, comment out to use default 
-# git checkout -b test -t origin/socfpga_v2.10.1 
-make bl31 PLAT=stratix10 DEPRECATED=1 
-cd .. 
+cd $TOP_FOLDER
+rm -rf arm-trusted-firmware
+git clone https://github.com/altera-opensource/arm-trusted-firmware
+cd arm-trusted-firmware
+# checkout the branch used for this document, comment out to use default
+# git checkout -b test -t origin/socfpga_v2.11.0
+make bl31 PLAT=stratix10 DEPRECATED=1
+cd ..
 ```
 
 
@@ -198,18 +198,18 @@ The following commands can be used to obtain the Linux source code and build Lin
 
 ```bash 
 cd $TOP_FOLDER 
-rm -rf linux-socfpga 
-git clone https://github.com/altera-opensource/linux-socfpga 
-cd linux-socfpga 
-# checkout the branch used for this document, comment out to use default 
-# git checkout -b test -t origin/socfpga-6.6.22-lts 
-# configure the RSU driver to be built into the kernel 
-make clean && make mrproper 
-make defconfig 
-./scripts/config --set-val CONFIG_INTEL_STRATIX10_RSU y 
-make oldconfig 
-make -j 48 Image dtbs 
-cd .. 
+rm -rf linux-socfpga
+git clone https://github.com/altera-opensource/linux-socfpga
+cd linux-socfpga
+# checkout the branch used for this document, comment out to use default
+# git checkout -b test -t origin/socfpga-6.6.37-lts
+# configure the RSU driver to be built into the kernel
+make clean && make mrproper
+make defconfig
+./scripts/config --set-val CONFIG_INTEL_STRATIX10_RSU y
+make oldconfig
+make -j 48 Image dtbs
+cd ..
 ```
 
 
@@ -228,68 +228,68 @@ The following commands can be used to get the U-Boot source code and compile it.
 
 
 ```bash 
-cd $TOP_FOLDER 
-rm -rf u-boot-socfpga 
-git clone https://github.com/altera-opensource/u-boot-socfpga 
-cd u-boot-socfpga 
-# comment out next line to use the latest default branch 
-# git checkout -b test -t origin/socfpga_v2024.01 
-# enable dwarf4 debug info, for compatibility with arm ds 
-sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk 
-# use 'Image' for kernel image instead of 'kernel.itb' 
+cd $TOP_FOLDER
+rm -rf u-boot-socfpga
+git clone https://github.com/altera-opensource/u-boot-socfpga
+cd u-boot-socfpga
+# comment out next line to use the latest default branch
+# git checkout -b test -t origin/socfpga_v2024.04
+# enable dwarf4 debug info, for compatibility with arm ds
+sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
+# use 'Image' for kernel image instead of 'kernel.itb'
 sed -i 's/kernel\.itb/Image/g' arch/arm/Kconfig
-# only boot from SD, do not try QSPI and NAND 
-sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&mmc;/g' arch/arm/dts/socfpga_stratix10_socdk-u-boot.dtsi 
-# disable NAND in the device tree 
-sed -i '/&nand {/!b;n;c\\tstatus = "disabled";' arch/arm/dts/socfpga_stratix10_socdk-u-boot.dtsi 
-# remove the NAND configuration from device tree 
-sed -i '/images/,/binman/{/binman/!d}' arch/arm/dts/socfpga_stratix10_socdk-u-boot.dtsi 
+# only boot from SD, do not try QSPI and NAND
+sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&mmc;/g' arch/arm/dts/socfpga_stratix10_socdk-u-boot.dtsi
+# disable NAND in the device tree
+sed -i '/&nand {/!b;n;c\\tstatus = "disabled";' arch/arm/dts/socfpga_stratix10_socdk-u-boot.dtsi
+# remove the NAND configuration from device tree
+sed -i '/images/,/binman/{/binman/!d}' arch/arm/dts/socfpga_stratix10_socdk-u-boot.dtsi
  
 # link to atf 
-ln -s $TOP_FOLDER/arm-trusted-firmware/build/stratix10/release/bl31.bin . 
+ln -s $TOP_FOLDER/arm-trusted-firmware/build/stratix10/release/bl31.bin .
  
-# Create configuration custom file. 
-cat << EOF > config-fragment-stratix10 
-# - Disable NAND/UBI related settings from defconfig. 
-CONFIG_NAND_BOOT=n 
-CONFIG_SPL_NAND_SUPPORT=n 
-CONFIG_CMD_NAND_TRIMFFS=n 
-CONFIG_CMD_NAND_LOCK_UNLOCK=n 
-CONFIG_NAND_DENALI_DT=n 
-CONFIG_SYS_NAND_U_BOOT_LOCATIONS=n 
-CONFIG_SPL_NAND_FRAMEWORK=n 
-CONFIG_CMD_NAND=n 
-CONFIG_MTD_RAW_NAND=n 
-CONFIG_CMD_UBI=n 
-CONFIG_CMD_UBIFS=n 
-CONFIG_MTD_UBI=n 
-CONFIG_ENV_IS_IN_UBI=n 
-CONFIG_UBI_SILENCE_MSG=n 
-CONFIG_UBIFS_SILENCE_MSG=n 
-# - Disable distroboot and use specific boot command. 
-CONFIG_DISTRO_DEFAULTS=n 
-CONFIG_HUSH_PARSER=y 
-CONFIG_SYS_PROMPT_HUSH_PS2="> " 
-CONFIG_USE_BOOTCOMMAND=y 
-CONFIG_BOOTCOMMAND="bridge enable;run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot" 
-CONFIG_CMD_FAT=y 
-CONFIG_CMD_FS_GENERIC=y 
-CONFIG_DOS_PARTITION=y 
-CONFIG_SPL_DOS_PARTITION=y 
-CONFIG_CMD_PART=y 
-CONFIG_SPL_CRC32=y 
-CONFIG_LZO=y 
-CONFIG_CMD_DHCP=y 
-CONFIG_SYS_PROMPT="SOCFPGA # " 
-EOF 
+# Create configuration custom file.
+cat << EOF > config-fragment-stratix10
+# - Disable NAND/UBI related settings from defconfig.
+CONFIG_NAND_BOOT=n
+CONFIG_SPL_NAND_SUPPORT=n
+CONFIG_CMD_NAND_TRIMFFS=n
+CONFIG_CMD_NAND_LOCK_UNLOCK=n
+CONFIG_NAND_DENALI_DT=n
+CONFIG_SYS_NAND_U_BOOT_LOCATIONS=n
+CONFIG_SPL_NAND_FRAMEWORK=n
+CONFIG_CMD_NAND=n
+CONFIG_MTD_RAW_NAND=n
+CONFIG_CMD_UBI=n
+CONFIG_CMD_UBIFS=n
+CONFIG_MTD_UBI=n
+CONFIG_ENV_IS_IN_UBI=n
+CONFIG_UBI_SILENCE_MSG=n
+CONFIG_UBIFS_SILENCE_MSG=n
+# - Disable distroboot and use specific boot command.
+CONFIG_DISTRO_DEFAULTS=n
+CONFIG_HUSH_PARSER=y
+CONFIG_SYS_PROMPT_HUSH_PS2="> "
+CONFIG_USE_BOOTCOMMAND=y
+CONFIG_BOOTCOMMAND="bridge enable;run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot"
+CONFIG_CMD_FAT=y
+CONFIG_CMD_FS_GENERIC=y
+CONFIG_DOS_PARTITION=y
+CONFIG_SPL_DOS_PARTITION=y
+CONFIG_CMD_PART=y
+CONFIG_SPL_CRC32=y
+CONFIG_LZO=y
+CONFIG_CMD_DHCP=y
+CONFIG_SYS_PROMPT="SOCFPGA # "
+EOF
  
 # build U-Boot 
-make clean && make mrproper 
-make socfpga_stratix10_defconfig 
-# Use created custom configuration file to merge with the default configuration obtained in .config file. 
-./scripts/kconfig/merge_config.sh -O ./ ./.config ./config-fragment-stratix10 
-make -j 48 
-cd .. 
+make clean && make mrproper
+make socfpga_stratix10_defconfig
+# Use created custom configuration file to merge with the default configuration obtained in .config file.
+./scripts/kconfig/merge_config.sh -O ./ ./.config ./config-fragment-stratix10
+make -j 48
+cd ..
 ```
 
 
@@ -309,7 +309,7 @@ For reference, an example of the  Programming File Generator configuration file 
 
 
 ```bash 
-cd $TOP_FOLDER 
+cd $TOP_FOLDER
 cat << EOF > initial_image.pfg
 <pfg version="1">
     <settings custom_db_dir="./" mode="ASX4"/>
@@ -358,13 +358,13 @@ cat << EOF > initial_image.pfg
 </pfg>
 EOF
 # Create Initial Image for previous release (in case needed to test  combined application)
-~/intelFPGA_pro/24.1/quartus/bin/quartus_pfg -c initial_image.pfg
+~/intelFPGA_pro/24.2/quartus/bin/quartus_pfg -c initial_image.pfg
 mv initial_image.jic initial_image_prev.jic
 mv initial_image_jic.rpd initial_image_jic_prev.rpd
 mv initial_image_jic.map initial_image_jic_prev.map
 
 # Create Initial Image for this release
-quartus_pfg -c initial_image.pfg 
+quartus_pfg -c initial_image.pfg
 ```
 
 
@@ -373,8 +373,8 @@ Here are the complete instructions on how to create the initial flash image, wit
 1. Start the **Programming File Generator** tool by running the qpfgw command.
 
     ```bash 
-    cd $TOP_FOLDER 
-    qpfgw & 
+    cd $TOP_FOLDER
+    qpfgw &
     ```
 
 2. Select the **Device family** as **Stratix 10**, and **Configuration mode** as **Active Serial x4**. 
@@ -451,7 +451,7 @@ Here are the complete instructions on how to create the initial flash image, wit
 
     ```bash 
     cd $TOP_FOLDER 
-    quartus_pfg -c initial_image.pfg 
+    quartus_pfg -c initial_image.pfg
     ```
 
     **Note**: The created pfg file is actually an XML file which can be manually edited to replace the absolute file paths with relative file paths. You cannot directly edit the .pfg file for other purposes. The .pfg file can be opened from Programming File Generator, if changes are needed. 
@@ -467,13 +467,13 @@ The following commands are used to create the application image used in this exa
 
 ```bash 
 cd $TOP_FOLDER 
-mkdir -p images 
-rm -rf images/application2.rpd 
-quartus_pfg -c hw/ghrd.2/output_files/ghrd_1sx280hu2f50e1vgas.sof \ 
-images/application2.rpd \ 
--o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \ 
--o mode=ASX4 \ 
--o bitswap=ON 
+mkdir -p images
+rm -rf images/application2.rpd
+quartus_pfg -c hw/ghrd.2/output_files/ghrd_1sx280hu2f50e1vgas.sof \
+images/application2.rpd \
+-o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o bitswap=ON
 ```
 
 
@@ -489,15 +489,15 @@ The following commands are used to create the factory update image used in this 
 
 
 ```bash 
-cd $TOP_FOLDER 
-mkdir -p images 
-rm -f images/factory_update.rpd 
-quartus_pfg -c hw/ghrd.3/output_files/ghrd_1sx280hu2f50e1vgas.sof \ 
-images/factory_update.rpd \ 
--o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \ 
--o mode=ASX4 \ 
--o bitswap=ON \ 
--o rsu_upgrade=ON 
+cd $TOP_FOLDER
+mkdir -p images
+rm -f images/factory_update.rpd
+quartus_pfg -c hw/ghrd.3/output_files/ghrd_1sx280hu2f50e1vgas.sof \
+images/factory_update.rpd \
+-o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o bitswap=ON \
+-o rsu_upgrade=ON
 ```
 
 
@@ -513,16 +513,16 @@ The following commands are used to create the decision firmware update image use
 
 
 ```bash 
-cd $TOP_FOLDER 
-mkdir -p images 
-rm -f images/decision_firmware_update.rpd 
-quartus_pfg -c hw/ghrd.3/output_files/ghrd_1sx280hu2f50e1vgas.sof \ 
-images/decision_firmware_update.rpd \ 
--o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \ 
--o mode=ASX4 \ 
--o bitswap=ON \ 
--o rsu_upgrade=ON \ 
--o firmware_only=ON 
+cd $TOP_FOLDER
+mkdir -p images
+rm -f images/decision_firmware_update.rpd
+quartus_pfg -c hw/ghrd.3/output_files/ghrd_1sx280hu2f50e1vgas.sof \
+images/decision_firmware_update.rpd \
+-o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o bitswap=ON \
+-o rsu_upgrade=ON \
+-o firmware_only=ON
 ```
 
 
@@ -542,17 +542,17 @@ The following commands are used to create the combined application image used in
 
 ```bash 
 cd $TOP_FOLDER 
-mkdir -p images 
-rm -f images/combined_application.rpd 
-quartus_pfg -c hw/ghrd.3/output_files/ghrd_1sx280hu2f50e1vgas.sof \ 
-images/combined_application.rpd \ 
--o app_image=hw/ghrd.2/output_files/ghrd_1sx280hu2f50e1vgas.sof \ 
--o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \ 
--o app_image_hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \ 
--o mode=ASX4 \ 
--o bitswap=ON \ 
--o rsu_upgrade=ON \ 
--o app_image_only=ON 
+mkdir -p images
+rm -f images/combined_application.rpd
+quartus_pfg -c hw/ghrd.3/output_files/ghrd_1sx280hu2f50e1vgas.sof \
+images/combined_application.rpd \
+-o app_image=hw/ghrd.2/output_files/ghrd_1sx280hu2f50e1vgas.sof \
+-o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o app_image_hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o bitswap=ON \
+-o rsu_upgrade=ON \
+-o app_image_only=ON
 ```
 
 
@@ -604,18 +604,18 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
   
     
   ```bash
-  cd $TOP_FOLDER 
-  rm -rf yocto && mkdir yocto && cd yocto 
-  git clone -b scarthgap https://git.yoctoproject.org/poky 
-  git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga 
-  git clone -b scarthgap https://github.com/openembedded/meta-openembedded 
-  source poky/oe-init-build-env ./build 
-  echo 'MACHINE = "stratix10"' >> conf/local.conf 
-  echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 
-  echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf 
+  cd $TOP_FOLDER
+  rm -rf yocto && mkdir yocto && cd yocto
+  git clone -b scarthgap https://git.yoctoproject.org/poky
+  git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga
+  git clone -b scarthgap https://github.com/openembedded/meta-openembedded
+  source poky/oe-init-build-env ./build
+  echo 'MACHINE = "stratix10"' >> conf/local.conf
+  echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
+  echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf
   echo 'IMAGE_FSTYPES = "tar.gz"' >> conf/local.conf
   echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf
-  bitbake core-image-minimal 
+  bitbake core-image-minimal
   ```
   
 
@@ -631,17 +631,17 @@ The ZLIB is required by LIBRSU. The following steps can be used to compile it.
 
 
 ```bash 
-cd $TOP_FOLDER 
-rm -rf zlib-1.3.1 
-wget http://zlib.net/zlib-1.3.1.tar.gz 
-tar xf zlib-1.3.1.tar.gz 
-rm zlib-1.3.1.tar.gz 
-cd zlib-1.3.1/ 
-export CROSS_PREFIX=${CROSS_COMPILE} 
-./configure 
-make 
-export ZLIB_PATH=`pwd` 
-cd .. 
+cd $TOP_FOLDER
+rm -rf zlib-1.3.1
+wget http://zlib.net/zlib-1.3.1.tar.gz
+tar xf zlib-1.3.1.tar.gz
+rm zlib-1.3.1.tar.gz
+cd zlib-1.3.1/
+export CROSS_PREFIX=${CROSS_COMPILE}
+./configure
+make
+export ZLIB_PATH=`pwd`
+cd ..
 ```
 
 
@@ -661,22 +661,22 @@ The following commands can be used to build the LIBRSU and the example client ap
 
 ```bash 
 cd $TOP_FOLDER 
-rm -rf intel-rsu 
-git clone https://github.com/altera-opensource/intel-rsu 
-cd intel-rsu 
+rm -rf intel-rsu
+git clone https://github.com/altera-opensource/intel-rsu
+cd intel-rsu
 # checkout the branch used for this document, comment out to use default 
-# git checkout -b test -t origin/master 
-cd lib 
+# git checkout -b test -t origin/master
+cd lib
 # add -I$(ZLIB_PATH) to CFLAGS 
-sed -i 's/\(CFLAGS := .*\)$/\1 -I\$\(ZLIB_PATH\)/g' makefile 
-make 
-cd .. 
-cd example 
+sed -i 's/\(CFLAGS := .*\)$/\1 -I\$\(ZLIB_PATH\)/g' makefile
+make
+cd ..
+cd example
 # add -L$(ZLIB_PATH) to LDFLAGS 
-sed -i 's/\(LDFLAGS := .*\)$/\1 -L\$\(ZLIB_PATH\)/g' makefile 
-make 
-cd .. 
-cd .. 
+sed -i 's/\(LDFLAGS := .*\)$/\1 -L\$\(ZLIB_PATH\)/g' makefile
+make
+cd ..
+cd ..
 ```
 
 
@@ -694,37 +694,37 @@ The following commands can be used to create the SD card image used in this exam
 
 
 ```bash 
-cd $TOP_FOLDER 
-sudo rm -rf sd_card && mkdir sd_card && cd sd_card 
+cd $TOP_FOLDER
+sudo rm -rf sd_card && mkdir sd_card && cd sd_card
 wget https://releases.rocketboards.org/release/2021.04/gsrd/\ 
-tools/make_sdimage_p3.py 
-chmod +x make_sdimage_p3.py 
-# prepare the fat contents 
-mkdir fat && cd fat 
-cp $TOP_FOLDER/u-boot-socfpga/u-boot.itb . 
-cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image . 
-cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtb . 
-cp $TOP_FOLDER/images/*.rpd . 
-cd .. 
+tools/make_sdimage_p3.py
+chmod +x make_sdimage_p3.py
+# prepare the fat contents
+mkdir fat && cd fat
+cp $TOP_FOLDER/u-boot-socfpga/u-boot.itb .
+cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image .
+cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtb .
+cp $TOP_FOLDER/images/*.rpd .
+cd ..
 # prepare the rootfs partition contents 
-mkdir rootfs && cd rootfs 
-sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/stratix10/\ 
-core-image-minimal-stratix10.rootfs.tar.gz 
-sudo sed -i 's/stratix10/linux/g' etc/hostname 
-sudo rm -rf lib/modules/* 
-sudo cp $TOP_FOLDER/images/*.rpd home/root 
-sudo cp $TOP_FOLDER/intel-rsu/example/rsu_client home/root/ 
-sudo cp $TOP_FOLDER/intel-rsu/lib/librsu.so lib/ 
-sudo cp $TOP_FOLDER/intel-rsu/etc/qspi.rc etc/librsu.rc 
-sudo cp $TOP_FOLDER/zlib-1.3.1/libz.so* lib/ 
-cd .. 
+mkdir rootfs && cd rootfs
+sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/stratix10/\
+core-image-minimal-stratix10.rootfs.tar.gz
+sudo sed -i 's/stratix10/linux/g' etc/hostname
+sudo rm -rf lib/modules/*
+sudo cp $TOP_FOLDER/images/*.rpd home/root
+sudo cp $TOP_FOLDER/intel-rsu/example/rsu_client home/root/
+sudo cp $TOP_FOLDER/intel-rsu/lib/librsu.so lib/
+sudo cp $TOP_FOLDER/intel-rsu/etc/qspi.rc etc/librsu.rc
+sudo cp $TOP_FOLDER/zlib-1.3.1/libz.so* lib/
+cd ..
 # create sd card image 
-sudo python3 ./make_sdimage_p3.py -f \ 
--P fat/*,num=1,format=vfat,size=100M \ 
--P rootfs/*,num=2,format=ext3,size=100M \ 
--s 256M \ 
--n sdcard_rsu.img 
-cd .. 
+sudo python3 ./make_sdimage_p3.py -f \
+-P fat/*,num=1,format=vfat,size=100M \
+-P rootfs/*,num=2,format=ext3,size=100M \
+-s 256M \
+-n sdcard_rsu.img
+cd ..
 ```
 
 
@@ -796,7 +796,7 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 1. Power cycle the board and press any key when prompted, to get to the U-Boot command prompt.
 
     ```bash 
-    U-Boot SPL 2024.01-33547-g098abd8f13-dirty (Aug 19 2024 - 17:09:51 -0500)
+    U-Boot SPL 2024.04-35102-g135e53726d-dirty (Nov 23 2024 - 13:23:54 -0600)
     Reset state: Cold
     MPU         1200000 kHz
     L3 main     400000 kHz
@@ -814,11 +814,11 @@ This section demonstrates how to use U-Boot to perform the following basic opera
     ## Checking hash(es) for Image atf ... crc32+ OK
     ## Checking hash(es) for Image uboot ... crc32+ OK
     ## Checking hash(es) for Image fdt-0 ... crc32+ OK
-    NOTICE:  BL31: v2.10.1	(release):QPDS24.2_REL_GSRD_PR
-    NOTICE:  BL31: Built : 17:01:57, Aug 19 2024
+    NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
+    NOTICE:  BL31: Built : 13:23:25, Nov 23 2024
 
 
-    U-Boot 2024.01-33547-g098abd8f13-dirty (Aug 19 2024 - 17:09:51 -0500)socfpga_stratix10
+    U-Boot 2024.04-35102-g135e53726d-dirty (Nov 23 2024 - 13:23:54 -0600)socfpga_stratix10
     
     CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
     Model: SoCFPGA Stratix 10 SoCDK
@@ -932,10 +932,10 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 
     ```bash 
     SOCFPGA # rsu display_dcmf_version 
-    DCMF0 version = 24.2.0 
-    DCMF1 version = 24.2.0 
-    DCMF2 version = 24.2.0 
-    DCMF3 version = 24.2.0 
+    DCMF0 version = 24.3.0 
+    DCMF1 version = 24.3.0 
+    DCMF2 version = 24.3.0 
+    DCMF3 version = 24.3.0 
     ```
     
 6. Display information about the slots: 
@@ -1798,10 +1798,10 @@ information from U-Boot, this should be a previous version.
 
     ```bash 
     SOCFPGA # rsu display_dcmf_version
-    DCMF0 version = 24.1.0
-    DCMF1 version = 24.1.0
-    DCMF2 version = 24.1.0
-    DCMF3 version = 24.1.0
+    DCMF0 version = 24.2.0
+    DCMF1 version = 24.2.0
+    DCMF2 version = 24.2.0
+    DCMF3 version = 24.2.0
     ```
 
 3. Find an unused slot (slot 1, P2), erase it, write the combined application image to it, verify that it was programmed successfully  and check it is now the highest priority.
@@ -1843,10 +1843,10 @@ application image is running fine.
     Error details : 0x00000000
     Retry counter : 0x00000000
     SOCFPGA # rsu display_dcmf_version
-    DCMF0 version = 24.2.0
-    DCMF1 version = 24.2.0
-    DCMF2 version = 24.2.0
-    DCMF3 version = 24.2.0
+    DCMF0 version = 24.3.0
+    DCMF1 version = 24.3.0
+    DCMF2 version = 24.3.0
+    DCMF3 version = 24.3.0
     ```
 
 7. Power cycle the board, the same combined application image is loaded, as it is the highest priority. But it takes a couple of seconds less, as the decision firmware does not need to be updated.

@@ -2,7 +2,7 @@
 
 ### GSRD Overview
 
-The Golden System Reference Design (GSRD) is a reference design running on the Agilex 5 E-Series Modular Development Kit.
+The Golden System Reference Design (GSRD) is a reference design running on the Agilex&trade; 5 E-Series Modular Development Kit.
 
 The GSRD is comprised of the following components:
 
@@ -18,7 +18,7 @@ The GSRD is comprised of the following components:
 
 The following are required to be able to fully exercise the Agilex 5 Modular Development Kit GSRD:
 
-* Altera Agilex 5 FPGA E-Series 065B Modular Development Kit, ordering code MK-A5E065BB32AES1. Refer to [board documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html) for more information about the development kit.
+* Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Modular Development Kit, ordering code MK-A5E065BB32AES1. Refer to [board documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html) for more information about the development kit.
   * Power supply
   * 2 x Micro USB Cable
   * Ethernet Cable
@@ -27,18 +27,32 @@ The following are required to be able to fully exercise the Agilex 5 Modular Dev
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Intel Quartus Prime Pro Edition version. Used to recompile the hardware design. If only writing binaris is required, then the smaller Intel Quartus Prime Pro Edition Programmer is sufficient.
-    * The prebuilt binaries were built using Quartus version 24.2
-    * The instructions for rebuilding the binaries use Quartus version 24.2
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
-### Release Contents
+### Prebuilt Binaries
 
-This page documents the following:
+The Agilex 5 Modular Development Kit GSRD binaries are located at [https://releases.rocketboards.org/2024.11/](https://releases.rocketboards.org/2024.11/):
 
-* 24.2 Binary Release - see [Exercising Prebuilt Binaries](#exercising-prebuilt-binaries) section for release content details
-* 24.2 Source Code Release - see [Rebuilding the GSRD](#rebuilding-the-gsrd) section for release content details
+Boot Source | Link |
+| ---------------------- | -- |
+| SD Card | [https://releases.rocketboards.org/2024.11/gsrd/agilex5_modular_gsrd/](https://releases.rocketboards.org/2024.11/gsrd/agilex5_modular_gsrd/) |
+| QSPI | [https://releases.rocketboards.org/2024.11/qspi/agilex5_modular_qspi/](https://releases.rocketboards.org/2024.11/qspi/agilex5_modular_qspi/) |
+
+### Component Versions
+
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 and the following software component versions are used to build the GSRD: 
+
+| **Component** | **Location** | **Branch** | **Commit ID/Tag** |
+| :-- | :-- | :-- | :-- |
+| GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | QPDS24.3_REL_GSRD_PR |
+| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.37-lts | QPDS24.3_REL_GSRD_PR |
+| Arm Trusted Firmware | [https://github.com/arm-trusted-firmware](https://github.com/arm-trusted-firmware) | socfpga_v2.11.0 | QPDS24.3_REL_GSRD_PR |
+| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.04 | QPDS24.3_REL_GSRD_PR |
+| Yocto Project | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest | 
+| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | scarthgap | QPDS24.3_REL_GSRD_PR |
 
 ### Release Notes
 
@@ -136,32 +150,6 @@ The HPS exposes 64 interrupt inputs for the FPGA logic. The following table list
 
 This section presents how to use the prebuilt binaries included with the GSRD release.
 
-### Prebuilt Release Contents
-
-<h4>Binaries</h4>
-
-The Agilex 5 Modular Development Kit 24.2 GSRD binaries are located at [https://releases.rocketboards.org/2024.07/](https://releases.rocketboards.org/2024.05/):
-
-Boot Source | Link |
-| ---------------------- | -- |
-| SD Card | [https://releases.rocketboards.org/2024.07/gsrd/agilex5_modular_gsrd/](https://releases.rocketboards.org/2024.07/gsrd/agilex5_modular_gsrd/) |
-| QSPI | [https://releases.rocketboards.org/2024.07/qspi/agilex5_modular_qspi/](https://releases.rocketboards.org/2024.07/qspi/agilex5_modular_qspi/) |
-
-<h4>Sources</h4>
-
-Quartus Prime Pro v24.2 and the following software component versions were used to build the provided prebuilt binaries:
-
-| Component | Location | Branch | Commit ID/Tag |
-| :-- | :-- | :-- | :-- |
-| GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | QPDS24.2_REL_AGILEX5_GSRD_PR |
-| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.22-lts | QPDS24.2_REL_AGILEX5_GSRD_PR |
-| Arm Trusted Firmware | [https://github.com/altera-opensource/arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.10.1 | QPDS24.2_REL_AGILEX5_GSRD_PR |
-| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.01   | QPDS24.2_REL_AGILEX5_GSRD_PR |
-| Yocto Project: poky | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest |
-| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | QPDS24.2_REL_AGILEX5_GSRD_PR |
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | scarthgap | QPDS24.2_REL_AGILEX5_GSRD_PR |
-| GSRD Build Script: gsrd-socfpga | [https://github.com/altera-opensource/gsrd-socfpga](https://github.com/altera-opensource/gsrd-socfpga) | scarthgap | QPDS24.2_REL_AGILEX5_GSRD_PR |
-
 ### Configure Board
 
 1\. Leave all jumpers and switches in their default configuration.
@@ -241,7 +229,7 @@ sudo dd if=gsrd-console-image-agilex5_devkit.wic of=/dev/sdx bs=1M
 # Flush the changes to the SD card
 sync
 ```
-- On Windows, use the Win32DiskImager program, available at [https://win32diskimager.org/](https://win32diskimager.org/). For this, first rename the gsrd-console-image-agilex5_devkit.wic to an .img file (sdcard.img for example) and write the image as shown in the next figure:
+- On Windows, use the Win32DiskImager program, available at [https://sourceforge.net/projects/win32diskimager](https://sourceforge.net/projects/win32diskimager). For this, first rename the gsrd-console-image-agilex5_devkit.wic to an .img file (sdcard.img for example) and write the image as shown in the next figure:
 
 ![](images/win32diskimager.png) 
 
@@ -401,25 +389,12 @@ quartus_pgm -c 1 -m jtag -o "pvi;agilex_flash_image.hps.jic"
 
 
 
-### Component Versions
-
-Quartus Prime Pro v24.2 and the following software component versions were used to build the provided prebuilt binaries:
-
-| Component | Location | Branch | Commit ID/Tag |
-| :-- | :-- | :-- | :-- |
-| GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | QPDS24.2_REL_GSRD_PR |
-| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.22-lts | QPDS24.2_REL_GSRD_PR |
-| Arm Trusted Firmware | [https://github.com/altera-opensource/arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.10.1 | QPDS24.2_REL_GSRD_PR |
-| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.01   | QPDS24.2_REL_GSRD_PR |
-| Yocto Project: poky | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest |
-| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | QPDS24.2_REL_GSRD_PR |
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | scarthgap | QPDS24.2_REL_GSRD_PR |
-| GSRD Build Script: gsrd-socfpga | [https://github.com/altera-opensource/gsrd-socfpga](https://github.com/altera-opensource/gsrd-socfpga) | scarthgap | QPDS24.2_REL_GSRD_PR |
-
 ### Yocto Build Prerequisites
-Make sure you have Yocto system requirements met: [Yocto Requirements](https://docs.yoctoproject.org/3.4.1/ref-manual/system-requirements.html#supported-linux-distributions).
 
-The command to install the required packages on Ubuntu 22.04-LTS is:
+1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
+
+The command to install the required packages on Ubuntu 22.04 is:
+
 ```bash
 sudo apt-get update
 sudo apt-get upgrade
@@ -430,10 +405,14 @@ liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex
 tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
 device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
 ```
-On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to `/bin/dash`:
+
+On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:
+
 ```bash
-sudo ln -sf /bin/bash /bin/sh
+ sudo ln -sf /bin/bash /bin/sh
 ```
+
+**Note**: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.
 
 ### Build SD Card Boot Binaries
 <hr/>
@@ -447,19 +426,20 @@ The following diagram shows an overview of how the build process works for this 
 
 
 ```bash
-sudo rm -rf gsrd.modular
-mkdir gsrd.modular
-cd gsrd.modular
+sudo rm -rf agilex5_gsrd.modular
+mkdir agilex5_gsrd.modular
+cd agilex5_gsrd.modular
 export TOP_FOLDER=`pwd`
 ```
 
-2\. Download and setup the build toolchain. It will be used only by the GHRD makefile to build the debug HPS FSBL, to build the _hps_debug.sof file:
+
+Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
 
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel\
-/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
+gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
 tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
 rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
 export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
@@ -467,12 +447,15 @@ export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
 
-3\. Set up the Quartus tools in the PATH, so they are accessible without full path
+Enable Quartus tools to be called from command line:
+
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
+
 
 
 
@@ -482,13 +465,13 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga agilex5_soc_devkit_ghrd
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/agilex5_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd agilex5_soc_devkit_ghrd
 make config
-make BOARD_TYPE=DK-MODULAR DEVICE=A5ED065BB32AE6SR0 DAUGHTER_CARD=mod_som HPS_EMIF_EN=1 HPS_EMIF_MEM_CLK_FREQ_MHZ=800 HPS_EMIF_REF_CLK_FREQ_MHZ=150 INITIALIZATION_FIRST=hps generate_from_tcl
-make all
+make BOARD_TYPE=MK-A5E065BB32AES1 DEVICE=A5ED065BB32AE6SR0 DAUGHTER_CARD=mod_som HPS_EMIF_EN=1 HPS_EMIF_MEM_CLK_FREQ_MHZ=800 HPS_EMIF_REF_CLK_FREQ_MHZ=150 INITIALIZATION_FIRST=hps generate_from_tcl
+make sof
 cd ..
 ```
 
@@ -521,7 +504,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
 cd gsrd-socfpga
 . agilex5_modular-gsrd-build.sh
 build_setup
@@ -550,12 +533,6 @@ sed -i "/agilex5_modular_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel-fpga-refd
 
 
 <h5>Build Yocto</h5>
-
-Remove reference to patch which was retired after 24.2 tag was applied:
-
-```bash
-sed -i '/fix-potential-signed-overflow-in-pointer-arithmatic.patch/d' meta-intel-fpga-refdes/recipes-connectivity/openssh/openssh_%.bbappend
-```
 
 Build Yocto:
 
@@ -674,3 +651,18 @@ The following file is created:
 
 * `$TOP_FOLDER/qspi_boot/agilex_flash_image.hps.jic`
 
+
+## Notices & Disclaimers
+
+Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
+No product or component can be absolutely secure. 
+Performance varies by use, configuration and other factors.
+Your costs and results may vary. 
+You may not use or facilitate the use of this document in connection with any infringement or other legal analysis concerning Altera or Intel products described herein. You agree to grant Altera Corporation a non-exclusive, royalty-free license to any patent claim thereafter drafted which includes subject matter disclosed herein.
+No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document, with the sole exception that you may publish an unmodified copy. You may create software implementations based on this document and in compliance with the foregoing that are intended to execute on the Altera or Intel product(s) referenced in this document. No rights are granted to create modifications or derivatives of this document.
+The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications.  Current characterized errata are available on request.
+Altera disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade.
+You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
+<sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
+
+OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 

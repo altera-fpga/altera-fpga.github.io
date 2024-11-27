@@ -1,17 +1,17 @@
 ## Overview
 
-Agilex™ 5 E-Series devices provide the next-generation hard processor system (HPS) after those provided with the Agilex™ 7 and  Stratix® 10 SoC FPGA devices. Agilex™ 5 E-Series devices support new features, such as TSN, USB 3.1 Gen 1, and I3C, SPI.
+Agilex™ 5 E-Series and D-Series devices provide the next-generation hard processor system (HPS) after those provided with the Agilex™ 7 and  Stratix® 10 SoC FPGA devices. Agilex™ 5 E-Series devices support new features, such as TSN, USB 3.1 Gen 1, and I3C, SPI.
 
 
-The Agilex™ 5 E-Series HPS application processors can run Linux or an RTOS, such as Zephyr*, with a scalable performance using one to four Arm* Cortex*-A cores with variable frequencies that allow for a wide range of applications.
+The Agilex™ 5 HPS application processors can run Linux or an RTOS, such as Zephyr*, with a scalable performance using one to four Arm* Cortex*-A cores with variable frequencies that allow for a wide range of applications.
 
-The Agilex™ 5 E-Series Simics virtual platform models the HPS processor with two Arm Cortex-A55 cores, two Arm Cortex-A76 cores, and HPS peripherals. The Agilex™ 5 E-Series HPS virtual platform is released as part of the Simics® Simulator for Intel® FPGAs software, which also includes several virtual platforms where the Agilex™ 5 E-Series device is instantiated, emulating the concept of having different versions of a development kit or daughter cards.
+The Agilex™ 5 Simics virtual platform models the HPS processor with two Arm Cortex-A55 cores, two Arm Cortex-A76 cores, and HPS peripherals. The Agilex™ 5 E-Series HPS virtual platform is released as part of the Simics® Simulator for Intel® FPGAs software, which also includes a virtual platforms where the Agilex™ 5 device is instantiated, emulating the concept of having different versions of a development kit or daughter cards.
 
 
 
 The Agilex™ 5 E-Series device has the following supported virtual platforms:
 
-- Agilex™ 5 E-Series Virtual Platform - Universal
+- Agilex™ 5  Universal Virtual Platform - Used to simulate E-Series and D-Series devices.
 
 
 
@@ -40,6 +40,7 @@ To exercise the instructions presented on this page (build your binaries and exe
 
 - For binaries building instructions, see [Build Instructions](#build-instructions).
 - For installation instructions for the Intel Simics Simulator for Intel FPGAs and the Agilex™ 5 E-Series virtual platforms, refer to the following documents:
+  - [Intel® Simics® Simulator Landing Page](https://www.intel.com/content/www/us/en/products/details/fpga/development-tools/simics-virtual-platform.html) 
   - [Intel® Simics® Simulator for Intel® FPGAs User Guide](https://www.intel.com/content/www/us/en/docs/programmable/784383/)
   - [Agilex™ 5 E-Series Virtual Platform User Guide](https://www.intel.com/content/www/us/en/docs/programmable/786901/)
 - U-Boot, Linux compilation, Yocto compilation, and the creation of an SD card image require a Linux host PC.
@@ -53,38 +54,34 @@ To exercise the instructions presented on this page (build your binaries and exe
 
 
 
-**Version: 24.2**
+**Version: 24.3**
 
 | SW Component             | Repository                                                   | Branch/TAG/Version                                           |
 | :----------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| U-Boot                   | https://github.com/altera-opensource/u-boot-socfpga          | v2024.01/QPDS24.2_REL_GSRD_PR/ 157b759210e2024649081657b56adfc41fb56f34 |
-| ATF                      | https://github.com/altera-opensource/arm-trusted-firmware    | v2.10.1/QPDS24.2_REL_GSRD_PR/ 4837356693ede42b849ed72f1864cc9c76c53a46 |
-| Linux                    | https://github.com/altera-opensource/linux-socfpga           | v6.6.22/QPDS24.2_REL_GSRD_PR/ f939c80e4195178b511c7577e0dc2a570ca0a426 |
-| Reference Design Sources | https://github.com/altera-opensource/meta-intel-fpga-refdes  | scarthgap(5.0)/QPDS24.2_REL_GSRD_PR/ 538621d98ec91ce4c474c14e65b72c99615531e8 |
-| GSRD                     | https://github.com/altera-opensource/gsrd-socfpga            | scarthgap                                                    |
-| Yocto Project            | https://git.yoctoproject.org/poky                            | scarthgap(5.0)/ a099b484c5b245a335a5ec9b293638e1362383ae     |
-| Reference Design Recipes | https://git.yoctoproject.org/meta-intel-fpga                 | scarthgap(5.0)/QPDS24.2_REL_GSRD_PR/ 03de87a47b70d7cec1d6cb657714b0ef55e47cae |
-| Arm Debugger             | http://fpgasoftware.intel.com/armds                          | ARM DS 2022.2                                                |
-| Ashling RiscFree         | https://www.intel.com/content/www/us/en/software-kit/826843/intel-quartus-prime-pro-edition-design-software-version-24-2-for-linux.html Additional Software/Stand-Alone Software tab | 24.2                                                         |
+| U-Boot                   | https://github.com/altera-opensource/u-boot-socfpga          | socfpga_v2024.04/QPDS24.3_REL_GSRD_PR |
+| ATF                      | https://github.com/altera-opensource/arm-trusted-firmware    | socfpga_v2.11.0/QPDS24.3_REL_GSRD_PR |
+| Linux                    | https://github.com/altera-opensource/linux-socfpga           | socfpga-6.6.37-lts/QPDS24.3_REL_GSRD_PR  |
+| Reference Design Sources | https://github.com/altera-opensource/meta-intel-fpga-refdes  | scarthgap/QPDS24.3_REL_GSRD_PR |
+| GSRD                     | https://github.com/altera-opensource/gsrd-socfpga            | scarthgap |
+| Yocto Project            | https://git.yoctoproject.org/poky                            |  scarthgap/latest     |
+| Reference Design Recipes | https://git.yoctoproject.org/meta-intel-fpga                 | scarthgap/latest |
+| Arm Debugger             | http://fpgasoftware.intel.com/armds                          | ARM DS 2022.2 |
+| Ashling RiscFree         | https://www.intel.com/content/www/us/en/software-kit/826843/ Additional Software/Stand-Alone Software tab | 24.3 |
 
 **Note:** For information prior 24.2 release, please refer to [Linux GSRD Intel Simics Virtual Platform for Intel Agilex® 5 E-Series](https://www.rocketboards.org/foswiki/Documentation/Agilex5SoCSimicsVirtualPlatformsReferenceGuide). 
 
 ### Prebuilt Binaries
 
+You can find the prebuilt binaries from the GSRD prebuilt at the following URL: [https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/](https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/). The files in this folder allow you to boot directly from SDCard. It also contains some of the files that are used to generate the final images used to boot from QSPI and from NAND. The following folders contain the remaining files used by the recipes to create the binaries to boot from QSPI and NAND.
 
-
-**Note: For 24.2 release, there are not binaries since this is a source code release.**
-
-You can find the prebuilt binaries from the GSRD prebuilt at the following URL: https://releases.rocketboards.org/2024.05/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ . The files in this folder allow you to boot directly from SDCard. It also contains some of the files that are used to generate the final images used to boot from QSPI and from NAND. The following folders contain the remaining files used by the recipes to create the binaries to boot from QSPI and NAND.
-
-- QSPI: [QSPI boot complement files](https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi/). Here is the link to obtain the [uboot_script.its](https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/nanbield/recipes-bsp/u-boot/files/uboot_script.its) file which is also needed.
+- QSPI: [QSPI boot complement files](https://releases.rocketboards.org/2024.11/qspi/agilex5_dk_a5e065bb32aes1_qspi/). Here is the link to obtain the [uboot_script.its](https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot_script.its) file which is also needed.
 - NAND: No available since NAND is not supported in silicon yet.
 
 
 
 **Note:** The final images used to boot from QSPI and NAND are not provided, but the binaries used to generate these are provided, so you can generate the final images following the instructions in [Build QSPI Boot Image](#build-qspi-boot-image) and [Build NAND Boot Image](#build-nand-boot-image) sections.
 
-**Note:**  In 24.2 release the binaries targeted for silicon can also be used with Simics simulator.
+**Note:**  Starting from 24.2 release, the binaries targeted for silicon can also be used with Simics simulator.
 
 
 
@@ -126,7 +123,6 @@ You can find the prebuilt binaries from the GSRD prebuilt at the following URL: 
 The following diagram illustrates the full-build flow for the binaries used with the Intel Simics simulator. The build flow utilizes the source code placed in [GitHub](https://github.com/altera-opensource) in repositories and uses a flow based on Yocto.
 
 
-
 ![](images/BuildBinariesFlow.jpg)
 
 
@@ -143,13 +139,16 @@ export TOP_FOLDER=$(pwd)
 ```
 
 
-Download the compiler toolchain. Define environment variables so that the toolchain can be used to build the binaries:
+
+
+
+Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
 
 
 ```bash
-# Setup toolchain
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
+gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
 tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
 rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
 export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
@@ -157,14 +156,11 @@ export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
 
-
-Set up the Quartus tools in the PATH, so they are accessible without full path:
-
+Enable Quartus tools to be called from command line:
 
 
 ```bash
-# Setup Quartus tool in PATH
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -172,7 +168,9 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
 
 
-#### Build the Hardware Design
+
+
+#### Get SOF from Hardware Design
 
 In Simics, the SOF file generated as result of the build of the hardware design is not used at all in the simulation, but this is needed to create the RPD file to exercise the QSPI boot. This is the reason why we provide the steps to build the hardware desgin here.
 
@@ -181,53 +179,45 @@ In Simics, the SOF file generated as result of the build of the hardware design 
 
 ```bash
 cd $TOP_FOLDER
-rm -rf ghrd-socfpga agilex5_soc_devkit_ghrd
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
-mv ghrd-socfpga/agilex5_soc_devkit_ghrd .
-rm -rf ghrd-socfpga
-cd agilex5_soc_devkit_ghrd
-make config
-make DEVICE=A5ED065BB32AE6SR0 HPS_EMIF_MEM_CLK_FREQ_MHZ=800 HPS_EMIF_REF_CLK_FREQ_MHZ=100 generate_from_tcl
-make all
-cd ..
+rm ghrd_a5ed065bb32ae6sr0_hps.sof
+wget https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0_hps.sof 
 ```
 
 
 The following file is created:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps.sof
 
 
 
 #### Set Up the Yocto Build System
 
 
-1. Ensure your system satisfies the Yocto system requirements provided at https://docs.yoctoproject.org/3.4.1/ref-manual/system-requirements.html#supported-linux-distributions.
+1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
 
-  Use the following commands to install required packages on Ubuntu 22.04:
+The command to install the required packages on Ubuntu 22.04 is:
 
-  ```bash
-  sudo apt-get update
-  sudo apt-get upgrade
-  sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc\ 
-  build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping\ 
-  python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm python3-subunit mesa-common-dev zstd\ 
-  liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd\ 
-  tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1\ 
-  device-tree-compiler curl mtd-utils mtd-tools u-boot-tools net-tools swig -y
-  ```
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \
+build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
+python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm python3-subunit mesa-common-dev zstd \
+liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \
+tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
+device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
+```
 
-  On Ubuntu 22.04, point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:
+On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:
 
-  ```bash
-  sudo ln -sf /bin/bash /bin/sh
-  ```
+```bash
+ sudo ln -sf /bin/bash /bin/sh
+```
 
-  **Note**: You can also use Docker containers to build the Yocto recipes. Refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.
-
+**Note**: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.
 
 2. Clone the Yocto script and prepare the build:
-  
+    
   ```bash
   cd $TOP_FOLDER
   rm -rf gsrd-socfpga
@@ -288,7 +278,7 @@ After the build is completed successfully, the following two folders are created
 
 
 
-**Note**: If you want to build binaries creating each one of the binaries independently, you could refer to [Agilex™ 5 E-Series GHRD Linux Boot Examples](https://altera-fpga.github.io/rel-24.2/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/).
+**Note**: If you want to build binaries creating each one of the binaries independently, you could refer to [Agilex™ 5 E-Series GHRD Linux Boot Examples](https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/).
 
 
 
@@ -298,7 +288,7 @@ The most relevant files created in the `$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-
 
 |                          File                           |                        Description                        | SD Card Boot | QSPI Boot | NAND Boot |
 | :-----------------------------------------------------: | :-------------------------------------------------------: | ------------ | --------- | --------- |
-| ghrd_a5ed065bb32ae6sr0.sof | SOF file from the hardware design |  | * | | 
+| ghrd_a5ed065bb32ae6sr0_hps.sof | SOF file from the hardware design |  | * | | 
 | u-boot-spl-dtb.bin |                  U-Boot SPL binary file                   | * | * | * |
 |                       u-boot.itb                        |                       U-Boot (SSBL)                       | * | * | * |
 |                      boot.scr.uimg                      |                  Distroboot boot script                   | * |  | * |
@@ -330,12 +320,12 @@ The layout of the QSPI image is shown in the following table:
 
 
 1. Gather the required files.
-  
+    
   ```bash
   # Gattering files
   cd $TOP_FOLDER
   rm -rf qspi-bin && mkdir qspi-bin && cd qspi-bin 
-  ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof agilex5_factory.sof
+  mv $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0_hps.sof agilex5_factory.sof
   ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb u-boot-itb.bin
   ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex u-boot-spl.hex
   ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/kernel.itb kernel-image
@@ -397,6 +387,7 @@ The layout of the QSPI image is shown in the following table:
       </assignments>
   </pfg>
   EOF
+  
   ```
   
 
@@ -450,12 +441,12 @@ The layout of the QSPI image is shown in the following table:
   
 
   The following file is created:
-  
+
   * $TOP_FOLDER/qspi-bin/ubinize_nor.cfg
 
 4. Generate the *root.ubi* file for root partition. For this, the *ubinize_nor.cfg* is used with the files obtained from the previous steps. This file defines the components to be included in the root.ubi file as indicated in the table above. The ubinize executable is available as part of the *mtd-tools* package. 
-  The parameters for ubinize command are:
-  
+    The parameters for ubinize command are:
+
   -p: physical erase block size of the flash<br>
   -m: minimum input/output unit size of the flash<br>
   -s: sub-pages and sub-page size 
@@ -474,7 +465,7 @@ The layout of the QSPI image is shown in the following table:
   
 
   The following file is created:
-  
+
    * $TOP_FOLDER/qspi-bin/hps.bin
 
 5. Using Quartus Programming File Generator to compile an RPD file by using the configuration specified in the PFG file.
@@ -490,7 +481,7 @@ The layout of the QSPI image is shown in the following table:
   quartus_pfg -c agilex5_flash_image.pfg
   ```
   
-  
+
 
 
 The following file is created:
@@ -515,7 +506,7 @@ Based on the table above, we have 2 partitions. One contains just the U-Boot fit
 
 
 1. Bring the required files from the GSRD build directory to a NAND boot directory:
-  
+    
 
   ```bash
   # Gathering the required files
@@ -644,7 +635,9 @@ The following file is created:
 
 For known issues in this release please refer to the [Intel Simics Simulator for FPGA Release page](https://www.rocketboards.org/foswiki/Documentation/SimicsSimulatorForIntelFPGAReleasePage#Known_Issues).
 
-## Agilex™ 5 E-Series Simics Virtual Platform - Universal
+## Agilex™ 5  Simics Virtual Platform - Universal
+
+Note: The Agilex 5 Simics Virtual Platform - Universal was initially developed to support the Agilex 5 E-Series device, but it also supports the Agilex 5 D-Series device which matches the B0 steping of the E-Series device. In this page we refer to Agilex 5 E-Series,  but it also applies for the Agilex 5 D-Series, unless other thing is indicated.
 
 This virtual platform is associated with the **agilex5e-universal.simics** target script. The following figure shows a high-level block diagram of this virtual platform. In this diagram, you can observe the main components that can be exercised during the execution of the use cases described later on this page. The implementation of this virtual platform allows all the peripherals in the HPS to be enabled at the same time, which is not possible in physical hardware implementations. The pinmux and Combo PHY impose restrictions on the physical hardware. In the case of the pinmux in the physical hardware, you can enable only a subset of peripherals simultaneously because there are not enough pins if all pins are enabled simultaneously. This limitation does not exist in the Agilex™ 5 E-Series Universal Virtual Platform. For the Combo PHY, the physical hardware allows only one flash controller (NAND or SDMMC) to be enabled at a time. However, the virtual platform allows both to be enabled simultaneously.
 
@@ -810,7 +803,7 @@ You can send read and write transactions through each one of the bridges from th
 
 The Agilex 5 E-Series Universal Virtual Platform allows you to select the stepping
 silicon features that the Agilex 5 Simics model supports by stepping the target script
-parameter accepting the value of A0 or B0.
+parameter accepting the value of A0 or B0. The B0 stepping corresponds to the HPS model of the Agilex 5 D-Series.
 
 **Note:** Agilex 5 E-Series Universal Virtual Platform stepping features support is released in
 the 24.1 Intel Simics Simulator for Intel FPGAs release although the default stepping
@@ -842,7 +835,7 @@ The parameters that you can configure are shown in the following table:
 | **usb3_hs_image_filename**     | Name of the USB disk image corresponding to the high-speed disk in the board component connected to the USB 3.1 controller. | Filename string      | ""            |
 | **usb_otg_image_filename**     | Name of the USB disk image corresponding to the high-speed disk in the board component connected to the USB 2.0 OTG controller. | Filename string      | ""            |
 | **hps_cpu_freq_mhz**           | ARM cores frequency in Megahertz (MHz).                      | Integer [400 - 1500] | 400           |
-| **stepping**     | Select the silicon features that the Agilex 5 Simics model supports. | A0 or B0      | A0  | 
+| **stepping**     | Select the silicon features that the Agilex 5 Simics model supports. | A0 or B0. D-Series corresponds to B0 device.      | A0  | 
 
 ### Use Cases Supported by the Agilex™ 5 E-Series Universal Virtual Platform
 
@@ -931,18 +924,19 @@ To exercise this use case, follow the below steps once the Simulation setup is c
   ```bash
   $ ./simics uboot-linux_sdcard.simics 
   ```
-  
+
 2. From the Simics CLI, start running the simulation with the **run** command.
 
   ```bash
   simics>  run
   ```
 
-3. Wait to get to the Linux prompt in the target serial console. 4. Login into the Linux prompt using the **root** user without a password.
+3. Wait to get to the Linux prompt in the target serial console. 
+4. Login into the Linux prompt using the **root** user without a password.
 
   ```bash
-  # Target Serial console 
-  U-Boot SPL 2024.01 (Jun 25 2024 - 09:28:56 +0000)
+  # Target Serial console
+  U-Boot SPL 2024.04 (Oct 16 2024 - 02:54:45 +0000)
   Reset state: Cold
   MPU           875000 kHz
   L4 Main       400000 kHz
@@ -950,6 +944,8 @@ To exercise this use case, follow the below steps once the Simulation setup is c
   L4 MP         200000 kHz
   L4 SP         100000 kHz
   SDMMC          50000 kHz
+  io96b_cal_status: Calibration for IO96B instance 0x18400400 done at 0 msec!
+
   init_mem_cal: Initial DDR calibration IO96B_0 succeed
   io96b_mb_init: num_instance 1
   io96b_mb_init: get memory interface IO96B 0
@@ -965,12 +961,11 @@ To exercise this use case, follow the below steps once the Simulation setup is c
   ## Checking hash(es) for Image fdt-0 ... crc32+ OK
   WARNING: Data cache not enabled
   NOTICE:  BL31: Boot Core = 0
-  NOTICE:  BL31: CPU ID = 81000000
-  NOTICE:  BL31: v2.10.1  (release):rel_socfpga_v2.10.1_24.05.02_pr-4-g483735669
-  NOTICE:  BL31: Built : 08:56:04, Jun 25 2024
+  NOTICE:  BL31: CPU ID = 0
+  NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
+  NOTICE:  BL31: Built : 07:09:49, Oct 15 2024
 
-
-  U-Boot 2024.01 (Jun 25 2024 - 09:28:56 +0000)socfpga_agilex5
+  U-Boot 2024.04 (Oct 16 2024 - 02:54:45 +0000)socfpga_agilex5
 
   CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
   Model: SoCFPGA Agilex5 SoCDK
@@ -1008,7 +1003,8 @@ To exercise this use case, follow the below steps once the Simulation setup is c
 
   Deasserting all peripheral resets
   [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x412fd050]
-  [    0.000000] Linux version 6.6.22-altera-g6ad76f9ca568 (oe-user@oe-host) (aarch64-poky-linux-gcc (GCC) 13.3.0, GNU ld (GNU Binutils) 2.42.0.20240620) #1 SMP PREEMPT Fri Jun 21 09:02:27 UTC 2024
+  [    0.000000] Linux version 6.6.37-altera-g978b3d90f408 (oe-user@oe-host) (aarch64-poky-linux-gcc (GCC) 13.3.0, GNU ld (GNU Binutils) 2.42.0.20240723) #1 SMP PREEMPT Mon Oct 14 01:56:39 UTC 2024
+
   [    0.000000] KASLR disabled due to lack of seed
   [    0.000000] Machine model: SoCFPGA Agilex5 SoCDK
   [    0.000000] efi: UEFI not found.
@@ -1016,19 +1012,18 @@ To exercise this use case, follow the below steps once the Simulation setup is c
   [    0.000000] OF: reserved mem: initialized node svcbuffer@0, compatible id shared-dma-pool
   [    0.000000] OF: reserved mem: 0x0000000080000000..0x0000000081ffffff (32768 KiB) nomap non-reusable svcbuffer@0
   :
-  Poky (Yocto Project Reference Distro) 5.0.2 agilex5dka5e065bb32aes1 ttyS0
+  Poky (Yocto Project Reference Distro) 5.0.5 dhcp0 ttyS0
 
-  [   37.547237] kauditd_printk_skb: 15 callbacks suppressed
-  [   37.547244] audit: type=1334 audit(1709054800.368:33): prog-id=27 op=UNLOAD
-  [   37.548523] audit: type=1334 audit(1709054800.368:34): prog-id=26 op=UNLOAD
-  [   37.549259] audit: type=1334 audit(1709054800.368:35): prog-id=25 op=UNLOAD
-  agilex5dka5e065bb32aes1 login: root
+  dhcp0 login: [   37.881580] kauditd_printk_skb: 15 callbacks suppressed
+  [   37.881588] audit: type=1334 audit(1709054800.748:33): prog-id=27 op=UNLOAD
+  [   37.882865] audit: type=1334 audit(1709054800.748:34): prog-id=26 op=UNLOAD
+  [   37.883602] audit: type=1334 audit(1709054800.748:35): prog-id=25 op=UNLOAD
 
-  WARNING: Poky is a reference Yocto Project distribution that should be used for
-  testing and development purposes only. It is recommended that you create your
-  own distribution for production use.
+  dhcp0 login: root
 
-  root@agilex5dka5e065bb32aes1:~# 
+  WARNING: Poky is a reference Yocto Project distribution that should be used for testing and development purposes only. It is recommended that you create your own distribution for production use.
+
+  root@dhcp0:~# 
   ```
   This finishes the main scenario of this use case, but there are some extensions that are described next.
 
@@ -1489,7 +1484,7 @@ Start with the setup as the parent use case an continue with next steps. 1. Crea
   root@dhcp0:~# umount /media/usbDrive/ 
   [ 7348.324046] EXT4-fs (sda1): unmounting filesystem 0fe6c96c-996c-4659-b7e2-e694076e5aef.
   ```
-  
+
 #### Use Case: Exercise UBIFS QSPI Boot Flow from FSBL to Linux
 
 This use case consists of booting from a QSPI flash device going from U-Boot to Linux prompt passing through **U-Boot SPL → ATF → U-Boot → Linux** using an image with UBIFS format.
@@ -1501,7 +1496,7 @@ Perform steps 1 to 4 described in the [Simulation Setup](#simulation-setup) sect
 5. In the Intel Simics environment at the project directory, generate a compressed version of the .rpd file created (.craff) file using the **craff** tool provided under the Simics Base installation directory:
 
   ```bash
-  <SimicsInstallDir>/simics-6.0.191/bin/craff -o qspi_image.img.craff flash_image_jic.rpd
+  <SimicsInstallDir>/simics-6.0.202/bin/craff -o qspi_image.img.craff flash_image_jic.rpd
   ```
 
   The following file is created under the Simics project directory:
@@ -1535,125 +1530,134 @@ To exercise this use case, follow the steps below once the Simulation setup is c
   ```
 
 3. Wait for the simulation to get to the Linux prompt in the target serial console.
-4. Login into the Linux prompt using the **root** user without a password.
 
-  ```bash
-  U-Boot SPL 2024.01 (Jun 25 2024 - 09:28:56 +0000)
-  Reset state: Cold
-  MPU           875000 kHz
-  L4 Main       400000 kHz
-  L4 sys free   100000 kHz
-  L4 MP         200000 kHz
-  L4 SP         100000 kHz
-  SDMMC          50000 kHz
-  init_mem_cal: Initial DDR calibration IO96B_0 succeed
-  io96b_mb_init: num_instance 1
-  io96b_mb_init: get memory interface IO96B 0
-  :
-  DDR: size check success
-  DDR: firewall init success
-  DDR: init success
-  QSPI: Reference clock at 400000 kHz
-  Trying to boot from MMC1
-  MMC: no card present
-  spl: mmc init failed with error: -123
-  Trying to boot from SPI
-  ## Checking hash(es) for config board-0 ... OK
-  ## Checking hash(es) for Image atf ... crc32+ OK
-  ## Checking hash(es) for Image uboot ... crc32+ OK
-  ## Checking hash(es) for Image fdt-0 ... crc32+ OK
-  WARNING: Data cache not enabled
-  NOTICE:  BL31: Boot Core = 0
-  NOTICE:  BL31: CPU ID = 81000000
-  NOTICE:  BL31: v2.10.1  (release):rel_socfpga_v2.10.1_24.05.02_pr-4-g483735669
-  NOTICE:  BL31: Built : 08:56:04, Jun 25 2024
+4. Login into the Linux prompt using the **root** user without a password.  
 
+   ```bash
+    U-Boot SPL 2024.04 (Oct 16 2024 - 02:54:45 +0000)
+     Reset state: Cold
+     MPU           875000 kHz
+     L4 Main       400000 kHz
+     L4 sys free   100000 kHz
+     L4 MP         200000 kHz
+     L4 SP         100000 kHz
+     SDMMC          50000 kHz
+     io96b_cal_status: Calibration for IO96B instance 0x18400400 done at 0 msec!
+     init_mem_cal: Initial DDR calibration IO96B_0 succeed
+     io96b_mb_init: num_instance 1
+     io96b_mb_init: get memory interface IO96B 0
+     :
+     ecc_enable_status: ECC enable status: 0
+     DDR: size check success
+     DDR: firewall init success
+     DDR: init success
+     QSPI: Reference clock at 400000 kHz
+     Trying to boot from MMC1
+     MMC: no card present
+     spl: mmc init failed with error: -123
+     Trying to boot from SPI
+     ## Checking hash(es) for config board-0 ... OK
+     ## Checking hash(es) for Image atf ... crc32+ OK
+     ## Checking hash(es) for Image uboot ... crc32+ OK
+     ## Checking hash(es) for Image fdt-0 ... crc32+ OK
+     WARNING: Data cache not enabled
+     NOTICE:  BL31: Boot Core = 0
+     NOTICE:  BL31: CPU ID = 0
+     NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
+     NOTICE:  BL31: Built : 07:09:49, Oct 15 2024
+     
+     U-Boot 2024.04 (Oct 16 2024 - 02:54:45 +0000)socfpga_agilex5
+     
+     CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
+     Model: SoCFPGA Agilex5 SoCDK
+     DRAM:  2 GiB (effective 8 GiB)
+     Core:  51 devices, 26 uclasses, devicetree: separate
+     WDT:   Not starting watchdog@10d00200
+     WDT:   Not starting watchdog@10d00300
+     WDT:   Not starting watchdog@10d00400
+     WDT:   Not starting watchdog@10d00500
+     WDT:   Not starting watchdog@10d00600
+     NAND:  4096 MiB
+     MMC:   mmc0@10808000: 0
+     Loading Environment from FAT... MMC: no card present
+     :
+     Hit any key to stop autoboot:  0 
+     MMC: no card present
+     SF: Detected mt25qu02g with page size 256 Bytes, erase size 64 KiB, total 256 MiB
+     Select Environment on UBI: OK
+     Saving Environment to UBI... done
+     OK
+     UBI partition 'root' already selected
+     UBI partition 'root' already selected
+     No size specified -> Using max size (196224)
+     Read 196224 bytes from volume script to 0000000081000000
+     QSPI: Running script from UBIFS
+     QSPI: Trying to boot script at 0x81000000
+     ## Executing script at 81000000
+     crc32+ Trying to boot Linux from device qspi
+     
+     device nor0 <nor0>, # parts = 2
+     #: name                size            offset          mask_flags
+     0: u-boot              0x04200000      0x00000000      0
+     1: root                0x0be00000      0x04200000      0
+     
+     device nand0 <nand.0>, # parts = 2
+     #: name                size            offset          mask_flags
+     0: nand_uboot          0x00200000      0x00000000      0
+     1: nand_root           0x1f400000      0x00200000      0
+     
+     active partition: nor0,0 - (u-boot) 0x04200000 @ 0x00000000
+     
+     defaults:
+     mtdids  : nand0=10b80000.nand.0
+     mtdparts: mtdparts=10b80000.nand.0:2m(u-boot),-(root)
+     UBI partition 'root' already selected
+     :
+     SF: Detected mt25qu02g with page size 256 Bytes, erase size 64 KiB, total 256 MiB
+     Enabling QSPI at Linux DTB...
+     Working FDT set to ffae1000
+     QSPI clock frequency updated
+     RSU: Firmware or flash content not supporting RSU
+     RSU: Firmware or flash content not supporting RSU
+     RSU: Firmware or flash content not supporting RSU
+     RSU: Firmware or flash content not supporting RSU
+     
+     Starting kernel ...
+     
+     Deasserting all peripheral resets
+     [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x412fd050]
+     [    0.000000] Linux version 6.6.37-altera-g978b3d90f408 (oe-user@oe-host) (aarch64-poky-linux-gcc (GCC) 13.3.0, GNU ld (GNU Binutils) 2.42.0.20240723) #1 SMP PREEMPT Mon Oct 14 01:56:39 UTC 2024
+     [    0.000000] KASLR disabled due to lack of seed
+     [    0.000000] Machine model: SoCFPGA Agilex5 SoCDK
+     [    0.000000] efi: UEFI not found.
+     [    0.000000] Reserved memory: created DMA memory pool at 0x0000000080000000, size 32 MiB
+     [    0.000000] OF: reserved mem: initialized node svcbuffer@0, compatible id shared-dma-pool
+     [    0.000000] OF: reserved mem: 0x0000000080000000..0x0000000081ffffff (32768 KiB) nomap non-reusable svcbuffer@0
+     [    0.000000] earlycon: uart0 at MMIO32 0x0000000010c02000 (options '115200n8')
+     [    0.000000] printk: bootconsole [uart0] enabled
+     [    0.000000] NUMA: No NUMA configuration found
+     :
+     Poky (Yocto Project Reference Distro) 5.0.5 agilex5dka5e065bb32aes1 ttyS0
+     
+    agilex5dka5e065bb32aes1 login: [  270.942017] socfpga-dwmac 10830000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+     [  270.947263] socfpga-dwmac 10830000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-1
+     [  270.952619] socfpga-dwmac 10830000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-2
+     :
+     [  281.452200] socfpga-dwmac 10830000.ethernet eth0: Link is Up - 1Gbps/Full - flow control rx/tx
+     [  311.541769] audit: type=1334 audit(1709054902.844:15): prog-id=18 op=UNLOAD
+     [  311.542509] audit: type=1334 audit(1709054902.844:16): prog-id=17 op=UNLOAD
+     [  311.543247] audit: type=1334 audit(1709054902.844:17): prog-id=16 op=UNLOAD
+     
+     dhcp0 login: root
+     
+     WARNING: Poky is a reference Yocto Project distribution that should be used for testing and development purposes only. It is recommended that you create your own distribution for production use.
+     
+     root@dhcp0:~#
+   ```
 
-  U-Boot 2024.01 (Jun 25 2024 - 09:28:56 +0000)socfpga_agilex5
+   
 
-  CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
-  Model: SoCFPGA Agilex5 SoCDK
-  DRAM:  2 GiB (effective 8 GiB)
-  Core:  51 devices, 26 uclasses, devicetree: separate
-  WDT:   Not starting watchdog@10d00200
-  WDT:   Not starting watchdog@10d00300
-  WDT:   Not starting watchdog@10d00400
-  WDT:   Not starting watchdog@10d00500
-  WDT:   Not starting watchdog@10d00600
-  NAND:  4096 MiB
-  MMC:   mmc0@10808000: 0
-  Loading Environment from FAT... MMC: no card present
-  :
-  SF: Detected mt25qu02g with page size 256 Bytes, erase size 64 KiB, total 256 MiB
-  Select Environment on UBI: OK
-  Saving Environment to UBI... done
-  OK
-  UBI partition 'root' already selected
-  UBI partition 'root' already selected
-  No size specified -> Using max size (196224)
-  Read 196224 bytes from volume script to 0000000081000000
-  QSPI: Running script from UBIFS
-  QSPI: Trying to boot script at 0x81000000
-  ## Executing script at 81000000
-  crc32+ Trying to boot Linux from device qspi
-
-  device nor0 <nor0>, # parts = 2
-   #: name                size            offset          mask_flags
-   0: u-boot              0x04200000      0x00000000      0
-   1: root                0x0be00000      0x04200000      0
-
-  device nand0 <nand.0>, # parts = 2
-   #: name                size            offset          mask_flags
-   0: nand_uboot          0x00200000      0x00000000      0
-   1: nand_root           0x1f400000      0x00200000      0
-
-  active partition: nor0,0 - (u-boot) 0x04200000 @ 0x00000000
-
-
-  :
-  Enabling QSPI at Linux DTB...
-  Working FDT set to ffad7000
-  QSPI clock frequency updated
-  RSU: Firmware or flash content not supporting RSU
-  RSU: Firmware or flash content not supporting RSU
-  RSU: Firmware or flash content not supporting RSU
-  RSU: Firmware or flash content not supporting RSU
-
-  Starting kernel ...
-
-  Deasserting all peripheral resets
-  [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x412fd050]
-  [    0.000000] Linux version 6.6.22-altera-g6ad76f9ca568 (oe-user@oe-host) (aarch64-poky-linux-gcc (GCC) 13.3.0, GNU ld (GNU Binutils) 2.42.0.20240620) #1 SMP PREEMPT Fri Jun 21 09:02:27 UTC 2024
-  [    0.000000] KASLR disabled due to lack of seed
-  [    0.000000] Machine model: SoCFPGA Agilex5 SoCDK
-  [    0.000000] efi: UEFI not found.
-  [    0.000000] Reserved memory: created DMA memory pool at 0x0000000080000000, size 32 MiB
-  [    0.000000] OF: reserved mem: initialized node svcbuffer@0, compatible id shared-dma-pool
-  [    0.000000] OF: reserved mem: 0x0000000080000000..0x0000000081ffffff (32768 KiB) nomap non-reusable svcbuffer@0
-  [    0.000000] earlycon: uart0 at MMIO32 0x0000000010c02000 (options '115200n8')
-  :
-  Poky (Yocto Project Reference Distro) 5.0.2 agilex5dka5e065bb32aes1 ttyS0
-
-  agilex5dka5e065bb32aes1 login: [  275.419833] socfpga-dwmac 10830000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
-  [  275.425090] socfpga-dwmac 10830000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-1
-  [  275.430446] socfpga-dwmac 10830000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-2
-  :
-  [  285.755775] audit: type=1334 audit(1709054871.096:12): prog-id=16 op=LOAD
-  [  285.756498] audit: type=1334 audit(1709054871.096:13): prog-id=17 op=LOAD
-  [  285.757223] audit: type=1334 audit(1709054871.096:14): prog-id=18 op=LOAD
-  [  316.819432] audit: type=1334 audit(1709054902.160:15): prog-id=18 op=UNLOAD
-  [  316.820175] audit: type=1334 audit(1709054902.160:16): prog-id=17 op=UNLOAD
-  [  316.820912] audit: type=1334 audit(1709054902.160:17): prog-id=16 op=UNLOAD
-
-  agilex5dka5e065bb32aes1 login: root
-
-  WARNING: Poky is a reference Yocto Project distribution that should be used for
-  testing and development purposes only. It is recommended that you create your
-  own distribution for production use.
-
-  ```
-
-#### Use Case: Exercise NAND Boot Flow from FSBL to Linux
+####Use Case: Exercise NAND Boot Flow from FSBL to Linux
 
 This use case consists of booting from a NAND flash device going from U-Boot to Linux prompt passing through **U-Boot SPL → ATF → U-Boot → Linux**.
 
@@ -1701,133 +1705,125 @@ To exercise this use case, follow the below steps once the Simulation setup is c
 
 3. Wait for the simulation to get to the Linux prompt in the target serial console.
 
-4. Login into the Linux prompt using the **root** user without a password.
+4. Login into the Linux prompt using the **root** user without a password.  
 
-  ```bash
-  U-Boot SPL 2024.01 (Jun 25 2024 - 09:28:56 +0000)
-  Reset state: Cold
-  MPU           875000 kHz
-  L4 Main       400000 kHz
-  L4 sys free   100000 kHz
-  L4 MP         200000 kHz
-  L4 SP         100000 kHz
-  SDMMC          50000 kHz
-  init_mem_cal: Initial DDR calibration IO96B_0 succeed
-  io96b_mb_init: num_instance 1
-  io96b_mb_init: get memory interface IO96B 0
-  io96b_mb_req: Write 0x10001 to IOSSM_CMD_REQ_OFFSET 0x1840043c
-  :
-  MMC: no card present
-  spl: mmc init failed with error: -123
-  Trying to boot from SPI
-  Trying to boot from NAND
-  ## Checking hash(es) for config board-0 ... OK
-  ## Checking hash(es) for Image atf ... crc32+ OK
-  ## Checking hash(es) for Image uboot ... crc32+ OK
-  ## Checking hash(es) for Image fdt-0 ... crc32+ OK
-  WARNING: Data cache not enabled
-  NOTICE:  BL31: Boot Core = 0
-  NOTICE:  BL31: CPU ID = 81000000
-  NOTICE:  BL31: v2.10.1  (release):rel_socfpga_v2.10.1_24.05.02_pr-4-g483735669
-  NOTICE:  BL31: Built : 08:56:04, Jun 25 2024
+   ```bash
+     U-Boot SPL 2024.04 (Oct 16 2024 - 02:54:45 +0000)  
+     Reset state: Cold
+     MPU           875000 kHz
+     L4 Main       400000 kHz
+     L4 sys free   100000 kHz
+     L4 MP         200000 kHz
+     L4 SP         100000 kHz
+     SDMMC          50000 kHz
+     io96b_cal_status: Calibration for IO96B instance 0x18400400 done at 0 msec!
+     init_mem_cal: Initial DDR calibration IO96B_0 succeed
+     :
+     ecc_enable_status: ECC enable status: 0
+     DDR: size check success
+     DDR: firewall init success
+     DDR: init success
+     QSPI: Reference clock at 400000 kHz
+     Trying to boot from MMC1
+     MMC: no card present
+     spl: mmc init failed with error: -123
+     Trying to boot from SPI
+     Trying to boot from NAND
+     ## Checking hash(es) for config board-0 ... OK
+     ## Checking hash(es) for Image atf ... crc32+ OK
+     ## Checking hash(es) for Image uboot ... crc32+ OK
+     ## Checking hash(es) for Image fdt-0 ... crc32+ OK
+     WARNING: Data cache not enabled
+     NOTICE:  BL31: Boot Core = 0
+     NOTICE:  BL31: CPU ID = 0
+     NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
+     NOTICE:  BL31: Built : 07:09:49, Oct 15 2024
+   
+     U-Boot 2024.04 (Oct 16 2024 - 02:54:45 +0000)socfpga_agilex5
+   
+     CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
+     Model: SoCFPGA Agilex5 SoCDK
+     DRAM:  2 GiB (effective 8 GiB)
+     Core:  51 devices, 26 uclasses, devicetree: separate
+     WDT:   Not starting watchdog@10d00200
+     WDT:   Not starting watchdog@10d00300
+     WDT:   Not starting watchdog@10d00400
+     WDT:   Not starting watchdog@10d00500
+     WDT:   Not starting watchdog@10d00600
+     NAND:  4096 MiB
+     MMC:   mmc0@10808000: 0
+     Loading Environment from FAT... MMC: no card present
+     :
+     ** Cannot find mtd partition "root"
+     In:    serial0@10c02000
+     Out:   serial0@10c02000
+     Err:   serial0@10c02000
+     Net:   
+     Warning: ethernet@10810000 (eth0) using random MAC address - 9a:4a:35:36:eb:71
+     eth0: ethernet@10810000
+     Warning: ethernet@10830000 (eth2) using random MAC address - 8e:87:b0:0c:94:09, eth2: ethernet@10830000
+     Hit any key to stop autoboot:  0 
+     MMC: no card present
+     SF: Detected mt25qu02g with page size 256 Bytes, erase size 64 KiB, total 256 MiB
+     Select Environment on UBI: OK
+   NAND: Trying to boot script at 0x81000000
+   
+     ## Executing script at 81000000
+     crc32+ Trying to boot Linux from device nand
+     Select Environment on UBI: OK
+     Saving Environment to UBI... UBI partition 'root' already selected
+     done
+     OK
+     :
+     device nor0 <nor0>, # parts = 2
+      #: name                size            offset          mask_flags
+      0: u-boot              0x04200000      0x00000000      0
+      1: qspi_root           0x0be00000      0x04200000      0
+   
+     device nand0 <ffb90000.nand.0>, # parts = 2
+      #: name                size            offset          mask_flags
+      0: u-boot              0x00200000      0x00000000      0
+      1: root                0xffe00000      0x00200000      0
+   
+     active partition: nor0,0 - (u-boot) 0x04200000 @ 0x00000000
+   
+     defaults:
+     mtdids  : nand0=10b80000.nand.0
+     mtdparts: mtdparts=10b80000.nand.0:2m(u-boot),-(root)
+     :
+     Starting kernel ...
+   
+     Deasserting all peripheral resets
+     [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x412fd050]
+     [    0.000000] Linux version 6.6.37-altera-g978b3d90f408 (oe-user@oe-host) (aarch64-poky-linux-gcc (GCC) 13.3.0, GNU ld (GNU Binutils) 2.42.0.20240723) #1 SMP PREEMPT Mon Oct 14 01:56:39 UTC 2024
+   
+     [    0.000000] KASLR disabled due to lack of seed
+     [    0.000000] Machine model: SoCFPGA Agilex5 SoCDK
+     [    0.000000] efi: UEFI not found.
+     [    0.000000] Reserved memory: created DMA memory pool at 0x0000000080000000, size 32 MiB
+     [    0.000000] OF: reserved mem: initialized node svcbuffer@0, compatible id shared-dma-pool
+     [    0.000000] OF: reserved mem: 0x0000000080000000..0x0000000081ffffff (32768 KiB) nomap non-reusable svcbuffer@0
+     [    0.000000] earlycon: uart0 at MMIO32 0x0000000010c02000 (options '115200n8')
+     :
+     Poky (Yocto Project Reference Distro) 5.0.2 dhcp0 ttyS0
+   
+     [   15.586539] soc64-hwmon soc@0:firmware:svc:hwmon: Initialized 4 temperature and 6 voltage channels
+     [   15.587715] soc64-hwmon soc@0:firmware:svc:hwmon: couldn't get service channel rsu
+     [   15.594272] Stratix10 SoC FPGA manager soc@0:firmware:svc:fpga-mgr: couldn't get service channel (fpga)
+     [   15.595272] platform soc@0:firmware:svc:hwmon: deferred probe pending
+     [   15.595948] platform soc@0:base_fpga_region: deferred probe pending
+     [   15.596631] platform soc@0:firmware:svc:fpga-mgr: deferred probe pending
+     [   36.588749] audit: type=1334 audit(1709054799.316:15): prog-id=18 op=UNLOAD
+     [   36.589487] audit: type=1334 audit(1709054799.316:16): prog-id=17 op=UNLOAD
+     [   36.590224] audit: type=1334 audit(1709054799.316:17): prog-id=16 op=UNLOAD
+   
+     WARNING: Poky is a reference Yocto Project distribution that should be used for testing and development purposes only. It is recommended that you create your own distribution for production use.
+   
+     root@dhcp0:~#
+   ```
 
+   
 
-  U-Boot 2024.01 (Jun 25 2024 - 09:28:56 +0000)socfpga_agilex5
-
-  CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
-  Model: SoCFPGA Agilex5 SoCDK
-  DRAM:  2 GiB (effective 8 GiB)
-  Core:  51 devices, 26 uclasses, devicetree: separate
-  WDT:   Not starting watchdog@10d00200
-  WDT:   Not starting watchdog@10d00300
-  WDT:   Not starting watchdog@10d00400
-  WDT:   Not starting watchdog@10d00500
-  WDT:   Not starting watchdog@10d00600
-  NAND:  4096 MiB
-  MMC:   mmc0@10808000: 0
-  Loading Environment from FAT... MMC: no card present
-  ** Bad device specification mmc 0 **
-  :
-  QSPI: Trying to boot script at 0x81000000
-  ## Executing script at 81000000
-  Wrong image format for "source" command
-  QSPI: SCRIPT FAILED: continuing...
-  Select Environment on UBI: OK
-  Saving Environment to UBI... done
-  OK
-  UBI partition 'root' already selected
-  No size specified -> Using max size (1032192)
-  Read 1032192 bytes from volume script to 0000000081000000
-  NAND: Trying to boot script at 0x81000000
-  ## Executing script at 81000000
-  crc32+ Trying to boot Linux from device nand
-  Select Environment on UBI: OK
-  Saving Environment to UBI... UBI partition 'root' already selected
-  done
-  OK
-
-  device nor0 <nor0>, # parts = 2
-   #: name                size            offset          mask_flags
-   0: u-boot              0x04200000      0x00000000      0
-   1: qspi_root           0x0be00000      0x04200000      0
-
-  device nand0 <ffb90000.nand.0>, # parts = 2
-   #: name                size            offset          mask_flags
-   0: u-boot              0x00200000      0x00000000      0
-   1: root                0xffe00000      0x00200000      0
-
-  active partition: nor0,0 - (u-boot) 0x04200000 @ 0x00000000
-
-  defaults:
-  mtdids  : nand0=10b80000.nand.0
-  mtdparts: mtdparts=10b80000.nand.0:2m(u-boot),-(root)
-  UBI partition 'root' already selected
-  No size specified -> Using max size (25804800)
-  Read 25804800 bytes from volume kernel to 0000000082000000
-  ## Loading kernel from FIT Image at 82000000 ...
-  :
-  Enabling QSPI at Linux DTB...
-  Working FDT set to ffad7000
-  QSPI clock frequency updated
-  RSU: Firmware or flash content not supporting RSU
-  RSU: Firmware or flash content not supporting RSU
-  RSU: Firmware or flash content not supporting RSU
-  RSU: Firmware or flash content not supporting RSU
-
-  Starting kernel ...
-
-  Deasserting all peripheral resets
-  [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x412fd050]
-  [    0.000000] Linux version 6.6.22-altera-g6ad76f9ca568 (oe-user@oe-host) (aarch64-poky-linux-gcc (GCC) 13.3.0, GNU ld (GNU Binutils) 2.42.0.20240620) #1 SMP PREEMPT Fri Jun 21 09:02:27 UTC 2024
-  [    0.000000] KASLR disabled due to lack of seed
-  [    0.000000] Machine model: SoCFPGA Agilex5 SoCDK
-  [    0.000000] efi: UEFI not found.
-  [    0.000000] Reserved memory: created DMA memory pool at 0x0000000080000000, size 32 MiB
-  [    0.000000] OF: reserved mem: initialized node svcbuffer@0, compatible id shared-dma-pool
-  [    0.000000] OF: reserved mem: 0x0000000080000000..0x0000000081ffffff (32768 KiB) nomap non-reusable svcbuffer@0
-  [    0.000000] earlycon: uart0 at MMIO32 0x0000000010c02000 (options '115200n8')
-  :
-  Poky (Yocto Project Reference Distro) 5.0.2 dhcp0 ttyS0
-
-  [   15.586539] soc64-hwmon soc@0:firmware:svc:hwmon: Initialized 4 temperature and 6 voltage channels
-  [   15.587715] soc64-hwmon soc@0:firmware:svc:hwmon: couldn't get service channel rsu
-  [   15.594272] Stratix10 SoC FPGA manager soc@0:firmware:svc:fpga-mgr: couldn't get service channel (fpga)
-  [   15.595272] platform soc@0:firmware:svc:hwmon: deferred probe pending
-  [   15.595948] platform soc@0:base_fpga_region: deferred probe pending
-  [   15.596631] platform soc@0:firmware:svc:fpga-mgr: deferred probe pending
-  [   36.588749] audit: type=1334 audit(1709054799.316:15): prog-id=18 op=UNLOAD
-  [   36.589487] audit: type=1334 audit(1709054799.316:16): prog-id=17 op=UNLOAD
-  [   36.590224] audit: type=1334 audit(1709054799.316:17): prog-id=16 op=UNLOAD
-
-  dhcp0 login: root
-
-  WARNING: Poky is a reference Yocto Project distribution that should be used for
-  testing and development purposes only. It is recommended that you create your
-  own distribution for production use.
-
-  root@dhcp0:~# 
-
-  ```
   **Note:** Most of the same use cases that are exercised from the **Exercise SDCard Boot Flow from FSBL to Linux** use case can also be exercised from this use case. There are some exceptions due to the limitation in the size of the file system which does not support the required commands.
 
 #### Use Case: Debug Bare-Metal Code Using Intel Simics Simulator
@@ -1951,7 +1947,7 @@ bp.source_location.break do_helloTestApp
   ```bash
     [tcf] Breakpoint 1 on execution in context board.fpga.soc_inst.hps_subsys.agilex_hps.core[0] 
   ```
-  
+
 3. From Simics CLI, start a debug session by calling the following command:
   ```bash
   simics> (psel).debug 
@@ -2065,17 +2061,17 @@ This section requires the **simics-riscfree** script. It is included in your Int
   ```
 
 2. Following the command, you must set up a **RiscFree**  workspace. You should use a new directory as a **RiscFree** workspace different from the Simics project directory.
-  ![riscfreeworkspace.png](images/riscfreeworkspace.png)
+    ![riscfreeworkspace.png](images/riscfreeworkspace.png)
 
 3. In the **RiscFree** IDE GUI launched, you should see the current Simics project you selected shown in the Project Explorer window. If this is not shown, you can open it from **"Window > Show View > Project Explorer"** menu.
 
   ![riscfreeworkspace2.png](images/riscfreeworkspace2.png)
 
 4. From the Project Explorer window, right-click on the target script you want to launch (**uboot-linux_sdcard.simics**) and select **“Debug As > Simics Session”**.
-  ![riscfreeworkspace3.png](images/riscfreeworkspace3.png)
+    ![riscfreeworkspace3.png](images/riscfreeworkspace3.png)
 
 5. When prompted for Switching Perspective, select **Yes**. The interface switches to the RiscFree Debugger, which is more user-friendly for debugging.
-  ![riscfreeworkspace4.png](images/riscfreeworkspace4.png)
+    ![riscfreeworkspace4.png](images/riscfreeworkspace4.png)
 
 <h5>Procedure</h5>
 
@@ -2234,33 +2230,33 @@ This use case is an extension of the **Use Case: Exercise SDCard Boot Flow from 
   Process /home/root/myArmDSDebugExample created; pid = 283
   Listening on port 9123
   ```
-  
+
 4. In ARM Development Studio, create a new debug connection following the next steps:
 
   a) Create a New Debug Connection to a **Linux Application Connection**. Press Next.
-  
+
     ![ARMDS Fig1.jpg](images/ARMDS_Fig1.jpg) 
 
   b) Give a name to the Debug connection: **DebugLinuxAppSimicsGDB** . Press Finish.
-  
+
     ![ARMDS Fig2.jpg](images/ARMDS_Fig2.jpg)
 
   c) Edit the configuration. In the **Connection** tab, select:<br>
-  
+
     - Linux Application Debug → Application Debug → Connections via AArch64 gdbserver → Connect to already running application<br>
     - Address: localhost (or host PC IP if want to be accessed from a different PC in the same network)<br>
     - Port: 4001<br>
     - Select Terminate gdbserver on disconnect
-
+    
     ![ARMDS Fig3.jpg](images/ARMDS_Fig3.jpg)
 
   d) Edit the configuration. In **Files** tab, select the application binary loaded as symbol file: <br>  
     ![ARMDS Fig4.jpg](images/ARMDS_Fig4.jpg)
 
   e) Edit the configuration. In **Debugger** tab, select **Debug from symbol: main** 
-  
-    ![ARMDS Fig5.jpg](images/ARMDS_Fig5.jpg)
 
+    ![ARMDS Fig5.jpg](images/ARMDS_Fig5.jpg)
+    
     Press **Debug** button to start the debug.
 
 5. The application debug can be performed now. ARM DS shows the source code of the test application stopped at the entry point of the **main()** function and we observe at the left the Debug Control panel with the options to control the execution of the code:
@@ -2272,11 +2268,11 @@ This use case is an extension of the **Use Case: Exercise SDCard Boot Flow from 
     a) Run the code and after a few seconds pause it. Observe that it stops under the while loop (or under the **getCore()** function which is called under the loop). You can observe the value of the variables using the Variables tab. The **iter** variable is increased in every iteration in the loop and the current value of **exitVar** variable is 0. You can also observe that the application is being executed in core 0. The loop will exit whenever the **exitVar** variable has a value of 1 or the iterator reaches gets greater than 1000000000. At this point, the application already printed the **=== My Debug example started on Core 0 ===** message in the serial console. 
     
     ![ARMDS Fig7.jpg](images/ARMDS_Fig7.jpg)
-
+    
     b) You can change the value of the **exitVar** variable from the **Value** column in the **Variables** tab, use the **step-over** button to advance in the execution of the application, and confirm that this condition makes it exit from the loop. You can continue advancing in the code execution and observe that the variables **a** and **b** gets initialized with the value of **x**. Observe that the **c** variable gets updated with the result of the addition of **a** and **b** variables.
-
+    
     ![ARMDS Fig8.jpg](images/ARMDS_Fig8.jpg)
-
+    
     c) Proceed to continue the code execution and observe that the application gets finished printing the results. Also, you can get disconnected from the gdb server session and after this, the serial console shows again the Linux prompt.
-
+    
     ![ARMDS Fig9.jpg](images/ARMDS_Fig9.jpg)

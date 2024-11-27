@@ -65,7 +65,7 @@ The following are required:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.2
+  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -102,7 +102,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -118,7 +118,7 @@ The hardware design is based on the GSRD, just that the JOP component is added, 
 ```bash
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga agilex_soc_devkit_ghrd
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/agilex_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd agilex_soc_devkit_ghrd
@@ -216,7 +216,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd_socfpga
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/gsrd_socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/gsrd_socfpga
 cd gsrd_socfpga
 . agilex7_dk_si_agf014eb-gsrd-build.sh
 build_setup
@@ -250,7 +250,7 @@ This can be done with the provided patch file:
 
 ```bash
 rm -f agilex7-dts-add-jop.patch
-wget https://altera-fpga.github.io/rel-24.2/embedded-designs/agilex-7/f-series/soc/remote-debug/collateral/agilex7-dts-add-jop.patch
+wget https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/soc/remote-debug/collateral/agilex7-dts-add-jop.patch
 pushd meta-intel-fpga-refdes
 patch -p1 < ../agilex7-dts-add-jop.patch
 popd
@@ -271,15 +271,7 @@ sed -i "/agilex7_dk_si_agf014eb_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel-fp
 ```
 
 
-5\. Fix issue stemming from community changes after the GSRD tag was released:
-
-
-```bash
-sed -i '/fix-potential-signed-overflow-in-pointer-arithmatic.patch/d' meta-intel-fpga-refdes/recipes-connectivity/openssh/openssh_%.bbappend
-```
-
-
-6\. Build the Yocto recipes:
+5\. Build the Yocto recipes:
 
 
 ```bash
@@ -287,7 +279,7 @@ bitbake_image
 ```
 
 
-7\. Gather the Yocto binaries:
+6\. Gather the Yocto binaries:
 
 
 ```bash

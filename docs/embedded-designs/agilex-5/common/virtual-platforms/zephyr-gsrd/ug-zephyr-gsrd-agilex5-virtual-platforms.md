@@ -5,7 +5,7 @@ The Agilex™ 5 E-Series Simics virtual platform models the HPS processor with t
 The Agilex™ 5 E-Series has the following supported virtual platforms:
 
 - Agilex™ 5 E-Series Virtual Platform - Universal
- 
+
 The following sections describe the prerequisites for the Simics simulator for Altera FPGA and the available virtual platforms including prebuilt Zephyr binaries. Instructions about how to build these binaries and run the Software stack are provided as well.
 Additionally, some common use cases that you can exercise with this Zephyr release are discussed.
 
@@ -21,7 +21,7 @@ To exercise the instructions presented on this page, the following prerequisites
 - The following packages are needed to be able to deploy the Simics project: GCC 6.3 compiler or higher, g++ 9.4 or higher, GNU make 4.1 or higher.
 - Agilex™ 5 Simics Virtual Platform components are available to be deployed.
 - Quartus® Prime Pro Edition Programmer and Tools 23.4 or later.
-     
+  
 
 **Note**: For installation instructions for the Simics Simulator for Altera® FPGAs and the Agilex™ 5 E-Series virtual platforms, refer to the following documents:
 
@@ -38,7 +38,6 @@ To exercise the instructions presented on this page, the following prerequisites
 | Zephyr | [https://github.com/altera-opensource/zephyr-socfpga/](https://github.com/altera-opensource/zephyr-socfpga/)  | socfpga_rel_23.4/QPDS23.4_REL_GSRD_PR |
 
 
-**Note:** For information prior 24.2 release, please refer to [Zephyr* GSRD for Intel Agilex® 5 E-Series Simics Virtual Platform](https://www.rocketboards.org/foswiki/Documentation/Agilex5SoCSimicsVirtualPlatformsZephyr).
 
 #### Prebuilt Binaries
 
@@ -287,7 +286,7 @@ agilex5_zgsrd
 If you've followed the helper steps above, follow the next instructions:
 
 1. Prepare the binaries to run on Simics® Simulator.
-      
+   
 ```bash
 cd $TOP_FOLDER 
 rm -rf bin 
@@ -299,14 +298,14 @@ ln -s $TOP_FOLDER/prebuilt/$app/$bootdev/bl2.bin bin/atf/bl2.bin
    
 - To boot on Simics, based on the boot device refer to the corresponding sections :  [Booting from SD Card Image binaries](#booting-from-sd-card-image-binaries),  [Booting from NAND binaries](#booting-from-nand-binaries) and [Booting from QSPI binaries](#booting-from-qspi-binaries).
   
- 
+
 
 ## Build Instructions
 
 ### Setting up Environment
 
 - Update your system
-   
+  
    
 ```bash
 sudo apt-get update
@@ -340,13 +339,13 @@ cd $CURR_FOLDER
 ```
 
 - Load the profile that was created to use the newer CMake (*this should be done for every session when* [Building Zephyr](#zephyr-build-environment-setup):
-   
+  
 ```bash
 source  $HOME/.zephyrrc
 ```
 
 - Create the ZephyrGSRD directories:
-   
+  
 ```bash
 rm -rf agilex5_zgsrd
 mkdir agilex5_zgsrd
@@ -437,7 +436,7 @@ $HOME/zephyr-sdk*/setup.sh -t aarch64-zephyr-elf -h -c
 ```
 
 - Substitute the official "Zephyr" folder for zephyr-socfpga repository:
-   
+  
 ```bash
 cd $TOP_FOLDER/zephyrproject
 rm -rf zephyr 
@@ -533,6 +532,7 @@ To build the "SDCard Image" for simics use the following commands:
 
 - Obtain the make_sdimage.sh script.
   
+
 
 
 ```bash
@@ -861,7 +861,7 @@ run' >> zephyr.simics
 
 ##### Booting from NAND binaries
 
- 
+
 - Zephyr's SMP support allow us to select the boot core within simics. Select the boot core by as follows:
   
   | Core Selection | Env-variable |
@@ -1012,7 +1012,7 @@ export bootdev=sdmmc_boot bootimg=sdimage.img
 ```
 
 - Obtain the prebuilt binaries for the CLI sample app
-   
+  
 ```bash
 cd $TOP_FOLDER/prebuilt
 wget -N https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/$app/$bootdev/$bootimg -P $app/$bootdev/ 
@@ -1374,7 +1374,7 @@ west build -b intel_socfpga_agilex5_socdk samples/hello_world -d agilex5 --prist
 - Prepare the binaries to run on Simics® Simulator
   
    a. Remove obsolete folder and create the new fip binary.
-  
+
 ```bash
 cd $TOP_FOLDER
 rm -rf bin

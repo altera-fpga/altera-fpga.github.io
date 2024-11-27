@@ -66,7 +66,7 @@ The following are required:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.2
+  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -103,7 +103,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.2/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -121,7 +121,7 @@ The hardware design is based on the GSRD, with the JOP component added.
 ```bash
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga s10_soc_devkit_ghrd
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/s10_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd s10_soc_devkit_ghrd
@@ -151,7 +151,7 @@ make generate_from_tcl
 ```bash
 cd $TOP_FOLDER
 rm -f s10-ghrd-add-jop.tcl
-wget https://altera-fpga.github.io/rel-24.2/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-ghrd-add-jop.tcl
+wget https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-ghrd-add-jop.tcl
 cd s10_soc_devkit_ghrd
 qsys-script --qpf=ghrd_1sx280hu2f50e1vgas.qpf --script=../s10-ghrd-add-jop.tcl --system-file=qsys_top.qsys
 ```
@@ -233,9 +233,9 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd_socfpga
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/gsrd_socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/gsrd_socfpga
 cd gsrd_socfpga
-. stratix10-gsrd-build.sh
+. stratix10_htile-gsrd-build.sh
 build_setup
 ```
 
@@ -267,7 +267,7 @@ This can be done with the provided patch file:
 
 ```bash
 rm -f s10-dts-add-jop.patch
-wget https://altera-fpga.github.io/rel-24.2/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-dts-add-jop.patch
+wget https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-dts-add-jop.patch
 pushd meta-intel-fpga-refdes
 patch -p1 < ../s10-dts-add-jop.patch
 popd
@@ -279,28 +279,20 @@ popd
 
 ```bash
 GHRD_LOC=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files
-CORE_RBF=$GHRD_LOC/stratix10_gsrd_ghrd.core.rbf
+CORE_RBF=$GHRD_LOC/stratix10_htile_gsrd_ghrd.core.rbf
 cp $TOP_FOLDER/ghrd_1sx280hu2f50e1vgas.core.rbf $CORE_RBF
-OLD_CORE_URI="\${GHRD_REPO}\/stratix10_gsrd_\${ARM64_GHRD_CORE_RBF};name=stratix10_gsrd_core"
-NEW_CORE_URI="file:\/\/stratix10_gsrd_ghrd.core.rbf"
+OLD_CORE_URI="\${GHRD_REPO}\/stratix10_htile_gsrd_\${ARM64_GHRD_CORE_RBF};name=stratix10_htile_gsrd_core"
+NEW_CORE_URI="file:\/\/stratix10_htile_gsrd_ghrd.core.rbf"
 RECIPE=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
 sed -i "s/$OLD_CORE_URI/$NEW_CORE_URI/g" $RECIPE
 CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ")
-OLD_CORE_SHA="SRC_URI\[stratix10_gsrd_core\.sha256sum\] = .*"
-NEW_CORE_SHA="SRC_URI[stratix10_gsrd_core.sha256sum] =  \"$CORE_SHA\""
+OLD_CORE_SHA="SRC_URI\[stratix10_htile_gsrd_core\.sha256sum\] = .*"
+NEW_CORE_SHA="SRC_URI[stratix10_htile_gsrd_core.sha256sum] =  \"$CORE_SHA\""
 sed -i "s/$OLD_CORE_SHA/$NEW_CORE_SHA/g" $RECIPE
 ```
 
 
-5\. Fix issue stemming from community changes after the GSRD tag was released:
-
-
-```bash
-sed -i '/fix-potential-signed-overflow-in-pointer-arithmatic.patch/d' meta-intel-fpga-refdes/recipes-connectivity/openssh/openssh_%.bbappend
-```
-
-
-6\. Build the Yocto recipes:
+5\. Build the Yocto recipes:
 
 
 ```bash
@@ -308,7 +300,7 @@ bitbake_image
 ```
 
 
-7\. Gather the Yocto binaries:
+6\. Gather the Yocto binaries:
 
 
 ```bash
@@ -318,9 +310,9 @@ package
 
 The following relevant files are created:
 
-* `$TOP_FOLDER/gsrd-socfpga/stratix10-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex`
-* `$TOP_FOLDER/gsrd_socfpga/stratix10-gsrd-images/gsrd-console-image-stratix10.wic`
-* `$TOP_FOLDER/gsrd-socfpga/stratix10-gsrd-images/sdimage.tar.gz`
+* `$TOP_FOLDER/gsrd-socfpga/stratix10_htile-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex`
+* `$TOP_FOLDER/gsrd_socfpga/stratix10_htile-gsrd-images/gsrd-console-image-stratix10.wic`
+* `$TOP_FOLDER/gsrd-socfpga/stratix10_htile-gsrd-images/sdimage.tar.gz`
 
 
 
@@ -337,7 +329,7 @@ quartus_pfg -c s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas.sof \
   ghrd_1sx280hu2f50e1vgas.jic \
   -o device=MT25QU128 \
   -o flash_loader=1SX280HU2 \
-  -o hps_path=gsrd_socfpga/stratix10-gsrd-images/u-boot-stratix10-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+  -o hps_path=gsrd_socfpga/stratix10_htile-gsrd-images/u-boot-stratix10-socdk-gsrd-atf/u-boot-spl-dtb.hex \
   -o mode=ASX4 \
   -o hps=1
 ```
@@ -355,7 +347,7 @@ The instructions from this section present how to run the remote debug example. 
 
 1\. Write the QSPI image `$TOP_FOLDER/ghrd_1sx280hu2f50e1vgas.jic` to flash.
 
-2\. Extract and write the SD card image `$TOP_FOLDER/gsrd_socfpga/stratix10-gsrd-images/gsrd-console-image-stratix10.wic` to the SD card
+2\. Extract and write the SD card image `$TOP_FOLDER/gsrd_socfpga/stratix10_htile-gsrd-images/gsrd-console-image-stratix10.wic` to the SD card
 
 3\. Boot board and log into Linux.
 
