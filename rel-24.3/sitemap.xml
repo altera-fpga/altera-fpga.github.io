@@ -6,6 +6,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://altera-fpga.github.io/rel-24.3/baremetal-embedded/agilex-5/e-series/premium/ug-baremetal-agx5e-premium/</loc>
+         <lastmod>2024-12-03</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://altera-fpga.github.io/rel-24.3/common/templates/linux_driver_template/</loc>
          <lastmod>2024-12-03</lastmod>
          <changefreq>daily</changefreq>
