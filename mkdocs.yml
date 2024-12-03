@@ -190,11 +190,14 @@ nav:
         - Agilex™ 7 SoC HPS Multi-QSPI Remote System Update Example: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc.md
         - Agilex™ 7 SoC FPGA Remote Debug Example: embedded-designs/agilex-7/f-series/soc/remote-debug/ug-remote-debug-agx7f-soc.md
         - Agilex™ 7 HPS eMMC Boot Example: embedded-designs/agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc.md
+        - Agilex™ 7 SoC Fabric Configuration from Linux Example: embedded-designs/agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc.md
     - Stratix® 10:
         - Stratix® 10 SX SoC Development Kit GSRD User Guide: embedded-designs/stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc.md      
         - Stratix® 10 SoC HPS Remote System Update Example: embedded-designs/stratix-10/sx/soc/rsu/ug-rsu-s10sx-soc.md
         - Stratix® 10 SoC FPGA Remote Debug Example: embedded-designs/stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc.md
         - Stratix® 10 HPS eMMC Boot Example: embedded-designs/stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc.md
+        - Stratix® 10 SoC Fabric Configuration from Linux Example: embedded-designs/stratix-10/sx/soc/fabric-config/ug-linux-fabric-config-s10sx-soc.md
+
   - Demos:
     - Demos Summary: ed-demo-list/demo-list.md
 

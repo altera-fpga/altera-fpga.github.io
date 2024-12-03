@@ -9,41 +9,40 @@ You can filter your search by entering your query into any number of available c
 
 | **IP Name** | Linux Driver | Zephyr Driver |
 | :-------:|:-----------------:|:----------:|
-| Altera 16550 Compatible UART Core | [Linux](../linux-dfl/uart_16550/uart_16550.md) | [Zephyr](../zephyr-embedded/uart/uart.md) |
-| Altera Hardware Monitor | [Linux](../linux-embedded/hwmon/hwmon.md) | N/A |
-| Clock Manager |  [Linux](../linux-embedded/clock_manager/clock_manager.md) |[Zephyr](../zephyr-embedded/clock_manager/clock_manager.md) |
-| Cold & Warm Reset -Power State Coordination Interface (PSCI) | N/A | [PSCI](../zephyr-embedded/psci/psci.md) |
-| Device Feature List (DFL) Capability | [Linux](../linux-dfl/dfl/dfl.md) |N/A |
-| DFL Accelerator Functional Unit (AFU workload) | [Linux](../linux-dfl/dfl_afu/dfl_afu.md) |N/A |
-| DFL FPGA Management Engine IP | [Linux](../linux-dfl/dfl_fme/dfl_fme.md) |N/A |
-| DFL Memory Interface/Subsystem | [Linux](../linux-dfl/dfl_emif/dfl_emif.md) |N/A |
-| DFL Time of Day Clock Intel FPGA IP | [Linux: Host Attach TOD](../linux-dfl/ptp_dfl_tod/ptp_dfl_tod.md)  <br> [Linux: Embedded TOD](../linux-embedded/ptp_dfl_tod/ptp_dfl_tod.md) |N/A |
-| Direct Memory Access Controller (DMAC) | [Linux](../linux-embedded/dma/dma.md)|[zephyr](../zephyr-embedded/dma/dma.md) |
-| Error Detection and Correction (EDAC) | [Linux](../linux-embedded/edac/edac.md) |N/A |
-| Ethernet Media Access Controller | [Linux](../linux-embedded/emac/emac.md) |N/A |
-| Ethernet Subsystem (HSSI SS) | [Linux](../linux-embedded/hssi/hssi.md)  |N/A |
-| Ethernet Subsystem Intel FPGA IP (HSSI xTile) | [Linux](../linux-embedded/hssi_xtile/hssi_xtile.md) |N/A |
-| Ethernet 1588 PTP Time of Day Clock | [Linux](../linux-dfl/ptp_dfl_tod/ptp_dfl_tod.md) |N/A |
-| General Purpose Timers | [Linux](../linux-embedded/apb_timers/apb_timers.md) |N/A |
-| Generic Serial Flash Interface Intel FPGA IP |[Linux](../linux-dfl/spi_altera_dfl/spi_altera_dfl.md) | N/A |
-| GPIO | [Linux](../linux-embedded/gpio/gpio.md) |[Zephyr](../zephyr-embedded/gpio/gpio.md) |
-|  I2C | [Linux](../linux-embedded/i2c/i2c.md) |N/A |
-|  I3C | [Linux](../linux-embedded/i3c/i3c.md) |N/A |
-| Interrupt Controller (GICv3)  | [Linux](../linux-embedded/interrupt_controller_GICv3/irq_gic_v3.md) |Agilex 5 <br> Agilex 7 |
-| Microchip&reg; Zarlink ZL30793 Network Synchronizer  | [Linux](../linux-embedded/zarlink_clock_synchronizer/zarlink_clock_synchronizer.md) |N/A |
-| MSGDMA  | [Linux](../linux-embedded/dma/msgdma/msgdma.md) |N/A |
-| NAND Controller  |  [Linux](../linux-embedded/nand/nand.md)| N/A |
-| PCIe Subsystem | [Linux](../linux-dfl/dfl-pci/dfl-pcie.md) |N/A |
-| QSPI |  [Linux](../linux-embedded/qspi/qspi.md) |[Zephyr](../zephyr-embedded/qspi/qspi.md) |
-| QSFP  | [Linux](../linux-embedded/qsfp/qsfp.md) |N/A |
-| Reset Manager  |  [Linux](../linux-embedded/reset_manager/reset_manager.md) |[Zephyr](../zephyr-embedded/reset_manager/reset_manager.md) |
-| Single Error Upset (SEU) | N/A |[Zephyr](../zephyr-embedded/seu/seu.md) |
-| SD/eMMC Controller  | [Linux](../linux-embedded/sd-emmc/sd-emmc.md) | N/A |
-| SMMU  | [Linux](../linux-embedded/smmu/smmu.md) |N/A |
-| SPI  |  [Linux](../linux-embedded/spi/spi.md) | N/A |
-| System Manager  | [Linux](../linux-embedded/system_manager/system_manager.md) |N/A |
-| Timer  |  N/A |[Zephyr](../zephyr-embedded/timer/timer.md) |
-| UART | [Linux](../linux-embedded/uart/uart.md) |N/A |
-| USB 2.0 OTG | [Linux](../linux-embedded/usb2_0_otg/usb2_0_otg.md) |N/A |
-| Watchdog Timer |  [Linux](../linux-embedded/watchdog_timers/watchdog_timers.md) |[Zephyr](../zephyr-embedded/watchdog/watchdog.md) |
-
+| Altera 16550 Compatible UART Core                            | <a href="../linux-dfl/uart_16550/uart_16550.md" target="_blank">Linux</a> | <a href="../zephyr-embedded/uart/uart.md" target="_blank">Zephyr</a> |
+| Altera Hardware Monitor                                      | <a href="../linux-embedded/hwmon/hwmon.md" target="_blank">Linux</a> | N/A                                                          |
+| Clock Manager                                                | <a href="../linux-embedded/clock_manager/clock_manager.md" target="_blank">Linux</a> | <a href="../zephyr-embedded/clock_manager/clock_manager.md" target="_blank">Zephyr</a> |
+| Cold & Warm Reset -Power State Coordination Interface (PSCI) | N/A                                                          | <a href="../zephyr-embedded/psci/psci.md" target="_blank">PSCI</a> |
+| Device Feature List (DFL) Capability                         | <a href="../linux-dfl/dfl/dfl.md" target="_blank">Linux</a>  | N/A                                                          |
+| DFL Accelerator Functional Unit (AFU workload)               | <a href="../linux-dfl/dfl_afu/dfl_afu.md" target="_blank">Linux</a> | N/A                                                          |
+| DFL FPGA Management Engine IP                                | <a href="../linux-dfl/dfl_fme/dfl_fme.md" target="_blank">Linux</a> | N/A                                                          |
+| DFL Memory Interface/Subsystem                               | <a href="../linux-dfl/dfl_emif/dfl_emif.md" target="_blank">Linux</a> | N/A                                                          |
+| DFL Time of Day Clock Intel FPGA IP                          | <a href="../linux-dfl/ptp_dfl_tod/ptp_dfl_tod.md" target="_blank">Linux: Host Attach TOD</a>   <a href="../linux-embedded/ptp_dfl_tod/ptp_dfl_tod.md" target="_blank">Linux: Embedded TOD</a> | N/A                                                          |
+| Direct Memory Access Controller (DMAC)                       | <a href="../linux-embedded/dma/dma.md" target="_blank">Linux</a> | <a href="../zephyr-embedded/dma/dma.md" target="_blank">Zephyr</a> |
+| Error Detection and Correction (EDAC)                        | <a href="../linux-embedded/edac/edac.md" target="_blank">Linux</a> | N/A                                                          |
+| Ethernet Media Access Controller                             | <a href="../linux-embedded/emac/emac.md" target="_blank">Linux</a> | N/A                                                          |
+| Ethernet Subsystem (HSSI SS)                                 | <a href="../linux-embedded/hssi/hssi.md" target="_blank">Linux</a> | N/A                                                          |
+| Ethernet Subsystem Intel FPGA IP (HSSI xTile)                | <a href="../linux-embedded/hssi_xtile/hssi_xtile.md" target="_blank">Linux</a> | N/A                                                          |
+| Ethernet 1588 PTP Time of Day Clock                          | <a href="../linux-dfl/ptp_dfl_tod/ptp_dfl_tod.md" target="_blank">Linux</a> | N/A                                                          |
+| General Purpose Timers                                       | <a href="../linux-embedded/apb_timers/apb_timers.md" target="_blank">Linux</a> | N/A                                                          |
+| Generic Serial Flash Interface Intel FPGA IP                 | <a href="../linux-dfl/spi_altera_dfl/spi_altera_dfl.md" target="_blank">Linux</a> | N/A                                                          |
+| GPIO                                                         | <a href="../linux-embedded/gpio/gpio.md" target="_blank">Linux</a> | <a href="../zephyr-embedded/gpio/gpio.md" target="_blank">Zephyr</a> |
+| I2C                                                          | <a href="../linux-embedded/i2c/i2c.md" target="_blank">Linux</a> | N/A                                                          |
+| I3C                                                          | <a href="../linux-embedded/i3c/i3c.md" target="_blank">Linux</a> | N/A                                                          |
+| Interrupt Controller (GICv3)                                 | <a href="../linux-embedded/interrupt_controller_GICv3/irq_gic_v3.md" target="_blank">Linux</a> | Agilex 5   Agilex 7                                          |
+| Microchip® Zarlink ZL30793 Network Synchronizer              | <a href="../linux-embedded/zarlink_clock_synchronizer/zarlink_clock_synchronizer.md" target="_blank">Linux</a> | N/A                                                          |
+| MSGDMA                                                       | <a href="../linux-embedded/dma/msgdma/msgdma.md" target="_blank">Linux</a> | N/A                                                          |
+| NAND Controller                                              | <a href="../linux-embedded/nand/nand.md" target="_blank">Linux</a> | N/A                                                          |
+| PCIe Subsystem                                               | <a href="../linux-dfl/dfl-pci/dfl-pcie.md" target="_blank">Linux</a> | N/A                                                          |
+| QSPI                                                         | <a href="../linux-embedded/qspi/qspi.md" target="_blank">Linux</a> | <a href="../zephyr-embedded/qspi/qspi.md" target="_blank">Zephyr</a> |
+| QSFP                                                         | <a href="../linux-embedded/qsfp/qsfp.md" target="_blank">Linux</a> | N/A                                                          |
+| Reset Manager                                                | <a href="../linux-embedded/reset_manager/reset_manager.md" target="_blank">Linux</a> | <a href="../zephyr-embedded/reset_manager/reset_manager.md" target="_blank">Zephyr</a> |
+| Single Error Upset (SEU)                                     | N/A                                                          | <a href="../zephyr-embedded/seu/seu.md" target="_blank">Zephyr</a> |
+| SD/eMMC Controller                                           | <a href="../linux-embedded/sd-emmc/sd-emmc.md" target="_blank">Linux</a> | N/A                                                          |
+| SMMU                                                         | <a href="../linux-embedded/smmu/smmu.md" target="_blank">Linux</a> | N/A                                                          |
+| SPI                                                          | <a href="../linux-embedded/spi/spi.md" target="_blank">Linux</a> | N/A                                                          |
+| System Manager                                               | <a href="../linux-embedded/system_manager/system_manager.md" target="_blank">Linux</a> | N/A                                                          |
+| Timer                                                        | N/A                                                          | <a href="../zephyr-embedded/timer/timer.md" target="_blank">Zephyr</a> |
+| UART                                                         | <a href="../linux-embedded/uart/uart.md" target="_blank">Linux</a> | N/A                                                          |
+| USB 2.0 OTG                                                  | <a href="../linux-embedded/usb2_0_otg/usb2_0_otg.md" target="_blank">Linux</a> | N/A                                                          |
+| Watchdog Timer                                               | <a href="../linux-embedded/watchdog_timers/watchdog_timers.md" target="_blank">Linux</a> | <a href="../zephyr-embedded/watchdog/watchdog.md" target="_blank">Zephyr</a> |
