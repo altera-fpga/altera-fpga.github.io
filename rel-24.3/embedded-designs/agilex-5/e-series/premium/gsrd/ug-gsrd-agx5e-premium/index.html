@@ -2278,6 +2278,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
@@ -2300,6 +2302,20 @@
     <li class="md-nav__item">
       <a href="../../../../../../baremetal-embedded/agilex-5/e-series/premium/ug-baremetal-agx5e-premium/" class="md-nav__link">
         Agilex™ 5 E-Series Premium Development Kit Baremetal Hello World Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/altera-fpga/agilex5-demo-hps2fpga-interfaces/blob/main/documentation/01_index.md" class="md-nav__link">
+        Agilex™ 5 E-Series Premium Development Kit and Third Party Boards - HPS-FPGA Interfaces Demos User Guide
       </a>
     </li>
   
@@ -2776,7 +2792,13 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 <p>2. Determine board IP address using <code>ifconfig</code> like in the previous scenario  </p>
 <p>3. Start a web browser and enter the IP address in the address bar  </p>
 <p>4. The web browser will display a page served by the web server running on the board.  </p>
-<p><strong>Note</strong>: Current release has a limitation, in that the LEDs are not controllable from the web page. This will be resolved in the next release.</p>
+<p><a class="glightbox" href="../images/A5-webserver.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/A5-webserver.png" /></a></p>
+<ul>
+<li>You will able to see which LED are ON and OFF in <strong>LED Status</strong>.</li>
+<li>You can <strong>Start</strong> and <strong>Stop</strong> the LED from scrolling. Set the delay(ms) in the <strong>LED Lightshow</strong> box. </li>
+<li>You can controll each LED with ON and OFF button.</li>
+<li>Blink each LED by entering the delay(ms) and click on the <strong>BLINK</strong> button.</li>
+</ul>
 <h4 id="booting-from-qspi">Booting from QSPI<a class="headerlink" href="#booting-from-qspi" title="Permanent link">&para;</a></h4>
 <hr/>
 <p>This section presents how to boot from QSPI. One notable aspect is that you need to wipe the SD card partitioning information, as otherwise U-Boot SPL could find a valid SD card image, and try to boot from that first.</p>
@@ -3375,7 +3397,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 27, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 5, 2024</span>
       
         <br>
         Created:
