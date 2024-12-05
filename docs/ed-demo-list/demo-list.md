@@ -12,6 +12,5 @@ You can use the filter fields to narrow your search.
 
  | **Demos Repository**    | Supported Device(s)  | Development Kit Target| Summary | Documentation |
 |:---------------:|:----------------:|:--------------------|:----------------|:---------------:|
-| <a href="https://github.com/altera-fpga/agilex5-demo-hps2fpga-interfaces" target="_blank">HPS-FPGA Interface Demos</a> | Agilex 5            | Agilex 5 E-Series Premium Development Kit </br> Third Party Boards | Shows how users can implement and interact with the various hardware interfaces between the Hard Processing System (SoC) and FPGA fabric on the Agilex 5 FPGA device family | <a href="https://github.com/altera-fpga/agilex5-demo-hps2fpga-interfaces/blob/main/documentation/01_index.md" target="_blank">HPS-FPGA Interfaces Demos User Guide</a> |
-
-
+| [HPS-FPGA Interface Demos](https://github.com/altera-fpga/agilex5-demo-hps2fpga-interfaces) | Agilex 5 | Agilex 5 E-Series Premium Development Kit </br> Third Party Boards | Shows how users can implement and interact with the various hardware interfaces between the Hard Processing System (SoC) and FPGA fabric on the Agilex 5 FPGA device family | [HPS-FPGA Interfaces Demos User Guide](https://github.com/altera-fpga/agilex5-demo-hps2fpga-interfaces/blob/main/documentation/01_index.md)|
+| n/a | Agilex 5 | Agilex 5 E-Series Premium Development Kit | Demonstrates a simple hello world message using baremetal | [Agilex™ 5 E-Series Premium Development Kit Baremetal Hello](https://altera-fpga.github.io/rel-24.3/baremetal-embedded/agilex-5/e-series/premium/ug-baremetal-agx5e-premium/) |
