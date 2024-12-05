@@ -349,7 +349,13 @@ ssh root@192.168.1.153
 
 4\. The web browser will display a page served by the web server running on the board.  
 
-**Note**: Current release has a limitation, in that the LEDs are not controllable from the web page. This will be resolved in the next release.
+![](images/A5-webserver.png)
+
+* You will able to see which LED are ON and OFF in **LED Status**.
+* You can **Start** and **Stop** the LED from scrolling. Set the delay(ms) in the **LED Lightshow** box. 
+* You can controll each LED with ON and OFF button.
+* Blink each LED by entering the delay(ms) and click on the **BLINK** button.
+
 
 #### Booting from QSPI
 <hr/>

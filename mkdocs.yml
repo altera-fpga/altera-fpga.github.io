@@ -145,8 +145,8 @@ nav:
 #      - Single Error Upset (SEU): zephyr-embedded/seu/seu.md
 #      - UART: zephyr-embedded/uart/uart.md
 #      - Watchdog Timer: zephyr-embedded/watchdog/watchdog.md
-#  - Bare Metal Drivers:
-#    - 'driver-list_baremetal/index.md'
+  - Baremetal Drivers:
+    - 'driver-list_baremetal/index.md'
   - Host Attach Utilities:
     - Host Attach Utilities Summary: sw-tools-list/host-attach-tools.md
     - fpgaconf: host-attach-util/fpgaconf/fpgaconf.md
@@ -197,9 +197,11 @@ nav:
         - Stratix® 10 SoC FPGA Remote Debug Example: embedded-designs/stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc.md
         - Stratix® 10 HPS eMMC Boot Example: embedded-designs/stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc.md
         - Stratix® 10 SoC Fabric Configuration from Linux Example: embedded-designs/stratix-10/sx/soc/fabric-config/ug-linux-fabric-config-s10sx-soc.md
-
   - Demos:
     - Demos Summary: ed-demo-list/demo-list.md
+    - Agilex™ 5:
+      - Agilex™ 5 E-Series Premium Development Kit Baremetal Hello World Example: baremetal-embedded/agilex-5/e-series/premium/ug-baremetal-agx5e-premium.md 
+      -  Agilex™ 5 E-Series Premium Development Kit and Third Party Boards - HPS-FPGA Interfaces Demos User Guide: https://github.com/altera-fpga/agilex5-demo-hps2fpga-interfaces/blob/main/documentation/01_index.md
 
 
 markdown_extensions:
