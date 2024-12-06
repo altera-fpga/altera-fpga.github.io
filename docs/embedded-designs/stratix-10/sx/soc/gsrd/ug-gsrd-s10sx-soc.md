@@ -2075,7 +2075,7 @@ This can be accomplished using the following instructions:
 
 ```bash
 GHRD_LOC=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files
-CORE_RBF=$GHRD_LOC/stratix10_htile_gsrd_ghrd.core.rbf
+CORE_RBF=$GHRD_LOC/stratix10_htile_pr_ghrd.core.rbf
 PER0_RBF=$GHRD_LOC/stratix10_htile_pr_persona0.rbf
 PER1_RBF=$GHRD_LOC/stratix10_htile_pr_persona1.rbf
 cp $TOP_FOLDER/ghrd_1sx280hu2f50e1vgas.core.rbf $CORE_RBF
@@ -2087,22 +2087,24 @@ cp $TOP_FOLDER/s10_soc_devkit_ghrd/output_files/alternate_persona.pr_partition_0
 2\. Update the Yocto recipe at `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb` to change the `SRC_URI:stratix10` from the orginal value:
 
 ```bash
-SRC_URI:stratix10 ?= "\
- ${GHRD_REPO}/stratix10_htile_gsrd_${ARM64_GHRD_CORE_RBF};name=stratix10_htile_gsrd_core \
- ${GHRD_REPO}/stratix10_htile_nand_${ARM64_GHRD_CORE_RBF};name=stratix10_htile_nand_core \
- ${GHRD_REPO}/stratix10_htile_pr_persona0.rbf;name=stratix10_htile_pr_persona0 \
- ${GHRD_REPO}/stratix10_htile_pr_persona1.rbf;name=stratix10_htile_pr_persona1 \
- "
+SRC_URI:stratix10_htile ?= "\
+    ${GHRD_REPO}/stratix10_htile_gsrd_${ARM64_GHRD_CORE_RBF};name=stratix10_htile_gsrd_core \
+    ${GHRD_REPO}/stratix10_htile_nand_${ARM64_GHRD_CORE_RBF};name=stratix10_htile_nand_core \
+    ${GHRD_REPO}/stratix10_htile_pr_${ARM64_GHRD_CORE_RBF};name=stratix10_htile_pr_core \
+    ${GHRD_REPO}/stratix10_htile_pr_persona0.rbf;name=stratix10_htile_pr_persona0 \
+    ${GHRD_REPO}/stratix10_htile_pr_persona1.rbf;name=stratix10_htile_pr_persona1 \
+    "
 ```
 
 to be:
 
 ```bash
-SRC_URI:stratix10 ?= "\
- file://stratix10_htile_gsrd_ghrd.core.rbf \
- ${GHRD_REPO}/stratix10_htile_nand_${ARM64_GHRD_CORE_RBF};name=stratix10_htile_nand_core \
- file://stratix10_htile_pr_persona0.rbf \
- file://stratix10_htile_pr_persona1.rbf \
+SRC_URI:stratix10_htile ?= "\
+    ${GHRD_REPO}/stratix10_htile_gsrd_${ARM64_GHRD_CORE_RBF};name=stratix10_htile_gsrd_core \
+    ${GHRD_REPO}/stratix10_htile_nand_${ARM64_GHRD_CORE_RBF};name=stratix10_htile_nand_core \
+    file://stratix10_htile_pr_ghrd.core.rbf \    
+    file://stratix10_htile_pr_persona0.rbf \
+    file://stratix10_htile_pr_persona1.rbf \
  "
 ```
 
@@ -2110,8 +2112,8 @@ using the following commands from the console:
 
 
 ```bash
-OLD_CORE_URI="\${GHRD_REPO}\/stratix10_htile_gsrd_\${ARM64_GHRD_CORE_RBF};name=stratix10_htile_gsrd_core"
-NEW_CORE_URI="file:\/\/stratix10_htile_gsrd_ghrd.core.rbf"
+OLD_CORE_URI="\${GHRD_REPO}\/stratix10_htile_pr_\${ARM64_GHRD_CORE_RBF};name=stratix10_htile_pr_core"
+NEW_CORE_URI="file:\/\/stratix10_htile_pr_ghrd.core.rbf"
 OLD_PER0_URI="\${GHRD_REPO}\/stratix10_htile_pr_persona0.rbf;name=stratix10_htile_pr_persona0"
 NEW_PER0_URI="file:\/\/stratix10_htile_pr_persona0.rbf"
 OLD_PER1_URI="\${GHRD_REPO}\/stratix10_htile_pr_persona1.rbf;name=stratix10_htile_pr_persona1"
@@ -2128,10 +2130,11 @@ Note we have left the NAND file alone, that will be downloaded from rocketboards
 3\. Update the same Yocto recipe to change the SHA checksums for the new files:
 
 ```bash
-SRC_URI[stratix10_htile_gsrd_core.sha256sum] = "ea26a77ebc1b3141193de6dd32e22f332785e05c956de85118c3790392141d3c"
-SRC_URI[stratix10_htile_nand_core.sha256sum] = "d782c05085f8f13cb792b687fd002773e0897e4d7ecf5451994b1823d62cdc92"
-SRC_URI[stratix10_htile_pr_persona0.sha256sum] = "60af20604f8756b251d3bff23ceaf8c4edec6d37cf4558ed763e1e311ab4c81e"
-SRC_URI[stratix10_htile_pr_persona1.sha256sum] = "c555e432574431ec0d2596fe7dc3f4ace86899add91599023d26127a9d78293b"
+SRC_URI[stratix10_htile_gsrd_core.sha256sum] = "6a7e4b9ed6146fa02ad6f37896d7d7a34ed14a0895e9e7ef92e2d6e442c8fd62"
+SRC_URI[stratix10_htile_nand_core.sha256sum] = "3ea5efca3cb223e150d0600742881daf7b1f1c364498d60d20dd952d5150e3ef"
+SRC_URI[stratix10_htile_pr_core.sha256sum] = "a10931cbb11efb091d8794f9e87cfec65b5a53067926d212449a914bab411b88"
+SRC_URI[stratix10_htile_pr_persona0.sha256sum] = "150c60bb1d6abd5b8998599bd244d2a687a3d5e6433d0edc2f8035dea7c9311f"
+SRC_URI[stratix10_htile_pr_persona1.sha256sum] = "80ba157a813a2db2fdbd03d05735f85a4ecde37553a26ebdf27eb07bdc259bc6"
 ```
 
 to the new values using the following commands:
@@ -2141,8 +2144,8 @@ to the new values using the following commands:
 CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ")
 PER0_SHA=$(sha256sum $PER0_RBF | cut -f1 -d" ")
 PER1_SHA=$(sha256sum $PER1_RBF | cut -f1 -d" ")
-OLD_CORE_SHA="SRC_URI\[stratix10_htile_gsrd_core\.sha256sum\] = .*"
-NEW_CORE_SHA="SRC_URI[stratix10_htile_gsrd_core.sha256sum] = \"$CORE_SHA\""
+OLD_CORE_SHA="SRC_URI\[stratix10_htile_pr_core\.sha256sum\] = .*"
+NEW_CORE_SHA="SRC_URI[stratix10_htile_pr_core.sha256sum] = \"$CORE_SHA\""
 OLD_PER0_SHA="SRC_URI\[stratix10_htile_pr_persona0\.sha256sum\] = .*"
 NEW_PER0_SHA="SRC_URI[stratix10_htile_pr_persona0.sha256sum] = \"$PER0_SHA\""
 OLD_PER1_SHA="SRC_URI\[stratix10_htile_pr_persona1\.sha256sum\] = .*"

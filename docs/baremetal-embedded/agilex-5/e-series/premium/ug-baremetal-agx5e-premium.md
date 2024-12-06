@@ -90,8 +90,6 @@ make -C atf bl2 bl31 PLAT=agilex5 DEBUG=1 SOCFPGA_BOOT_SOURCE_QSPI=1 LOG_LEVEL=5
 cd $TOP_FOLDER
 rm -rf baremetal-drivers*
 git clone -b 24.3 https://github.com/altera-fpga/baremetal-drivers
-# workaround for library to be included as subfolder
-find ./baremetal-drivers/test -type f -exec sed -i 's/CMAKE_SOURCE_DIR/PROJECT_SOURCE_DIR/g' {} +
 ```
 
 

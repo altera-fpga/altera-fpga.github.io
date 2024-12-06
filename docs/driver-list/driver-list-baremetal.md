@@ -6,7 +6,7 @@ This page presents the pre-release of the Agilex 5 baremetal drivers. The purpos
 
 Resources:
 
-* [Documentation](https://github.com/altera-fpga/baremetal-drivers/blob/{{env.COMMON_QUARTUS_VER_S}}/DOCUMENTATION.md)
+* [Documentation](https://github.com/altera-fpga/baremetal-drivers/blob/24.3/DOCUMENTATION.md)
 * [API Construction](https://github.com/altera-fpga/baremetal-drivers/blob/24.3/DESIGN.md)
 * [Build Details](https://github.com/altera-fpga/baremetal-drivers/blob/24.3/BUILD.md)
 * [Release Notes](https://github.com/altera-fpga/baremetal-drivers/releases/tag/24.3)
