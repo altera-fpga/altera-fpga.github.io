@@ -1,0 +1,7 @@
+# the YAML file can contain multiple short strings in one file
+meaning_of_life: 42
+
+
+tsncfg1_sdcard: https://releases.rocketboards.org/2024.05/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz
+tsncfg1_jic: https://releases.rocketboards.org/2024.05/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+tsncfg1_pbdir: "https://psg-png-arc.png.intel.com/p/psg/swip/etools/socfpga_refdes/mainline/596/designs/agilex5_devkit_soc_ghrd/"
