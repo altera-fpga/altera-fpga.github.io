@@ -1,6 +1,6 @@
 # Linux Drivers
 
-The table below provides a comprehensive list of the drivers available for Agilex 5 and Agilex 7.
+The table below provides a comprehensive list of the drivers available for Agilex™  5 and Agilex™  7.
 
 * IP Name column indicates what type of IP the driver targets.  
 * HPS or PCIe column indicates if the driver is targeting the embedded Host Processor System found on our devices or a server host or both.
