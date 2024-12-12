@@ -20,7 +20,7 @@ To exercise the instructions presented on this page, the following prerequisites
   - dtc - 1.4.6
 - The following packages are needed to be able to deploy the Simics project: GCC 6.3 compiler or higher, g++ 9.4 or higher, GNU make 4.1 or higher.
 - Agilex™ 5 Simics Virtual Platform components are available to be deployed.
-- Quartus® Prime Pro Edition Programmer and Tools 23.4 or later.
+- Quartus® Prime Pro Edition Programmer and Tools 24.3 or later.
   
 
 **Note**: For installation instructions for the Simics Simulator for Altera® FPGAs and the Agilex™ 5 E-Series virtual platforms, refer to the following documents:
@@ -34,79 +34,47 @@ To exercise the instructions presented on this page, the following prerequisites
 
 | SW Component | Repository | Branch/tag |
 | --- | --- | --- |
-| ATF | [https://github.com/altera-opensource/arm-trusted-firmware/](https://github.com/altera-opensource/arm-trusted-firmware/) | socfpga_v2.9.1/QPDS23.4_REL_GSRD_PR |
-| Zephyr | [https://github.com/altera-opensource/zephyr-socfpga/](https://github.com/altera-opensource/zephyr-socfpga/)  | socfpga_rel_23.4/QPDS23.4_REL_GSRD_PR |
+| ATF | [https://github.com/altera-opensource/arm-trusted-firmware/](https://github.com/altera-opensource/arm-trusted-firmware/) | socfpga_v2.11.0/QPDS24.3_REL_GSRD_PR |
+| Zephyr | [https://github.com/altera-opensource/zephyr-socfpga/](https://github.com/altera-opensource/zephyr-socfpga/)  | socfpga_rel_24.3/QPDS24.3_REL_GSRD_PR |
 
-
+<span style="color: red;">NOTE:  For 24.3 release only QSPI Boot is supported. Regardless of this, we are providing instructions on how the binaries for SDCard and NAND boot are generated, but these has not been validated.  </span>
 
 #### Prebuilt Binaries
 
-Prebuilt binaries can be found at the following URL: [https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/](https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/).
+Prebuilt binaries can be found at the following URL: [https://releases.rocketboards.org/2024.11/zephyr/agilex5/hps_zephyr/](https://releases.rocketboards.org/2024.11/zephyr/agilex5/hps_zephyr/).
 The prebuilt binaries consist of application programs built to run on the MPU cores in multicore configuration.
 There are binary files designed for boot devices such as SD cards, NAND flash, and QSPI.
 Additionally, files used by the recipes to create the binaries to boot from QSPI and NAND are provided in their respective folders.
 The sample applications provided are:
-
 
 | Directory | Application Description |
 | --- | --- |
 | cli  | Application to demonstrate Command Line Interface |
 | hello_world | Application that displays a Hello World! message|
 
-Within each application directory, you'll find the following files: 
+<span style="color: red;">NOTE:  For 24.3 release only binaries for QSPI Boot are supported, so files for SDMMC and NAND are not provided. </span>
 
-```
-<application directory> 
-    ├── bl31.bin 
-    ├── bl31.elf 
-    ├── fip.bin 
-    ├── fiptool 
-    ├── nand_boot 
-    │   ├── 0001-plat-intel-soc-agilex5-enable-NAND-boot.patch 
-    │   ├── bl2.bin 
-    │   ├── bl2.elf 
-    │   └── nand_mem.img 
-    ├── qspi_boot
-    │   ├── 0001-plat-intel-soc-agilex5-enable-QSPI-boot.patch
-    │   ├── agilex5_factory.sof
-    │   ├── bl2.bin
-    │   ├── bl2.elf
-    │   ├── flash_image_jic.rpd
-    │   └── qspi_flash_image_agilex5_boot.pfg
-    ├── sdmmc_boot
-    │   ├── bl2.bin
-    │   ├── bl2.elf
-    │   ├── make_sdimage.sh
-    │   └── sdimage.img
-    ├── usb-msd.craff
-    ├── zephyr.bin
-    ├── zephyr.dts
-    ├── zephyr.elf
-    ├── zephyr.lst
-    ├── zephyr.map
-    └── zephyr.stat
-```
 ## Embedded Software Peripheral Zephyr Drivers Availability
 
 | HPS Peripheral | Supported | 
 | --- | --- | 
-| SD Card driver | Yes | 
+| SD Card driver | Partially | 
 | GPIO Driver | Yes | 
-| I2C Driver | Yes | 
+| I2C Driver | Partially | 
 | UART Driver | Yes | 
 | Timer Driver | Yes | 
 | WatchDog Driver  | Yes | 
-| SMP Driver | Yes | 
+| SMP Driver | No | 
 | QSPI Driver | Yes | 
-| NAND Driver | Yes | 
+| NAND Driver | Partially | 
 | SDRAM Driver | Yes | 
-| Ethernet Driver | Yes | 
-| SPI Driver | Yes | 
+| Ethernet Driver | Partially | 
+| SPI Driver | Partially | 
 | SDM Mailbox Driver | Yes | 
-| USB 2.0 Driver | Yes | 
-| HPS DMA Driver | Yes | 
-| I3C driver | Yes | 
-| EDAC/RAS drivers | Yes | 
+| USB 2.0 Driver | Partially | 
+| HPS DMA Driver | Partially | 
+| I3C driver | Partially | 
+| EDAC/RAS drivers | No | 
 
 ### Boot Flow 
 Starting with this release the Arm Trusted Firmware will act as the FSBL and SSBL bootloader for  Zephyr as described in the following diagram: 
@@ -151,10 +119,10 @@ $create_hps_sd_card=TRUE
 $create_hps_mmc=FALSE
 
 # SD Card boot Image file path
-$sd_image_filename = ../bin/sdimage.img
+$sd_image_filename = ../sdcard_bin/sdimage.img
 
 # First stage boot loader, ATF BL2 path
-$fsbl_image_filename = ../bin/atf/bl2.bin
+$fsbl_image_filename = ../sdcard_bin/bl2.bin
 
 run-command-file "targets/agilex5e-universal/agilex5e-universal.simics"  
 
@@ -168,7 +136,7 @@ In this script, the most relevant parameters to run Zephyr  are the following:
 | $sd_image_filename | Sdcard image path  | Filename string | "" |
 | $fsbl_image_filename | Fsbl image path | Filename string | "" |
 
-## Using Prebuilt Binaries
+## Using Prebuilt Binaries With Simics
 
 The Zephyr GSRD requires a top-level target script that wraps the agilex5e-universal.simics and execute Simics commands to run Zephyr. The example of the file contents is shown below:
 
@@ -187,14 +155,12 @@ $create_hps_sd_card=TRUE
 $create_hps_mmc=FALSE
 
 # SD Card boot Image file path
-$sd_image_filename = ../bin/sdimage.img
+$sd_image_filename = ../sdcard_bin/sdimage.img
 
 # First stage boot loader, ATF BL2 path
-$fsbl_image_filename = ../bin/atf/bl2.bin
+$fsbl_image_filename = ../sdcard_bin/bl2.bin
 
-run-command-file "targets/agilex5e-universal/agilex5e-universal.simics"  
-
-run
+run-command-file "targets/agilex5e-universal/agilex5e-universal.simics"  run
 ```
 
 In this script, the most relevant parameters to run Zephyr  are the following:
@@ -205,24 +171,17 @@ In this script, the most relevant parameters to run Zephyr  are the following:
 | $fsbl_image_filename | Fsbl image path | Filename string | "" |
 
 
-## Using Prebuilt Binaries
-
-This section is a guide for you to run the prebuilt sample Zephyr applications.
-
-#### Setting Up to Use Prebuilt Binaries
+### Setting Up to Use Prebuilt Binaries
 
 You will need both the boot image as well the firmware(ATF) binaries. The links below go directly to the directory with binaries corresponding to the application and boot device:
 
 - Hello World:
-  1. [SD Card](https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/hello_world/sdmmc_boot)
-  2. [NAND Flash](https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/hello_world/nand_boot)
-  3. [QSPI Flash](https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/hello_world/qspi_boot)
+  1. [QSPI Flash](https://releases.rocketboards.org/2024.11/zephyr/agilex5/hps_zephyr/hello_world/qspi_boot/)
+  
 
 - CLI:
-  1. [SD Card ](https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/sdmmc_boot)
-  2. [NAND Flash](https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/nand_boot)
-  3. [QSPI Flash](https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/qspi_boot)
-
+  1. [QSPI Flash](https://releases.rocketboards.org/2024.11/zephyr/agilex5/hps_zephyr/cli/qspi_boot/) 
+  
 
 The following are the helper instructions to download the prebuilt binaries according to the application and boot device:
 
@@ -254,33 +213,33 @@ mkdir prebuilt
      
       | Boot Device | Environment Variable |
       | --------------- | --------------- | 
-      | SDMMC | export bootdev=sdmmc_boot bootimg=sdimage.img|
-      | NAND | export bootdev=nand_boot bootimg=nand_mem.img |
-      | QSPI | export bootdev=qspi_boot bootimg=flash_image_jic.rpd |
+      | QSPI | export bootdev=qspi_boot bin_dir=qspi_bin bootimg=flash_image_jic.rpd |
 
 
-4. Wget the prebuilt binaries into the prebuilt folder.
-   
+4. Get the prebuilt binaries into the prebuilt folder.
+
+<span style="color: red;"> NOTE:  At the moment of creating this page, the .jic file for the prebuild applications was not included in the officila binaries release page, so in the example below we are using an alternate location in the meantime these binaries are uploaded. The temporary location of the page is https://www.rocketboards.org/foswiki/Projects/ZephyrPrebuildBinaries </span>. The .rpd files were generated from the current available binaries from the official page following the instuctions at [Creating Boot Images](#Creating Boot Images) section.
 ```bash
 cd $TOP_FOLDER/prebuilt
-wget -N https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/$app/$bootdev/$bootimg -P $app/$bootdev/ 
-wget -N https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/$app/$bootdev/bl2.bin -P $app/$bootdev/
+wget https://www.rocketboards.org/foswiki/pub/Projects/ZephyrPrebuildBinaries/ZephyrPrebuildBinaries24p3.tar
+tar xf ZephyrPrebuildBinaries24p3.tar
+
 ```
 
 The prebuilt samples for Agilex™ 5 would have the following structure:
    * prebuilt/hello_world
    * prebuilt/cli
 
-#### Organizing the Prebuilt Binaries
+### Organizing the Prebuilt Binaries
 
 If you've downloaded the prebuilt binaries manually, please place them in the following structure, then refer below to the step "To boot on Simics"...
 
 ```
 agilex5_zgsrd
-└── bin
-    │	├── atf
-    │	│   └── bl2.bin
-    └── sdimage.img OR nand_mem.img OR flash_image_jic.rpd 
+└── qspi_bin
+    └── bl2.bin
+    └── flash_image_jic.rpd
+
 ```
 
 If you've followed the helper steps above, follow the next instructions:
@@ -289,10 +248,11 @@ If you've followed the helper steps above, follow the next instructions:
    
 ```bash
 cd $TOP_FOLDER 
-rm -rf bin 
-mkdir -p bin/atf 
-ln -s $TOP_FOLDER/prebuilt/$app/$bootdev/$bootimg bin/ 
-ln -s $TOP_FOLDER/prebuilt/$app/$bootdev/bl2.bin bin/atf/bl2.bin
+rm -rf $bin_dir
+mkdir -p $bin_dir
+
+ln -s $TOP_FOLDER/prebuilt/ZephyrPrebuildBinaries24p3/$app/$bootdev/$bootimg $bin_dir/$bootimg
+ln -s $TOP_FOLDER/prebuilt/ZephyrPrebuildBinaries24p3/$app/$bootdev/bl2.bin $bin_dir/bl2.bin
 ```
 2. For the first time run, set up the Agilex™ 5 virtual platform. Refer to [Simulation Setup](#simulation-setup).
    
@@ -301,6 +261,8 @@ ln -s $TOP_FOLDER/prebuilt/$app/$bootdev/bl2.bin bin/atf/bl2.bin
 
 
 ## Build Instructions
+
+
 
 ### Setting up Environment
 
@@ -321,9 +283,9 @@ python3-dev python3-pip python3-setuptools python3-tk python3-wheel python3-venv
 make gcc gcc-multilib g++-multilib libsdl2-dev libmagic1 libguestfs-tools  libssl-dev
 ```
 
-|  Package  |  Zephyr Requirement  |  Ubuntu 20.04 (default versions)  |  command  |
+|  Package  |  Zephyr Requirement  |  Ubuntu 22.04 (default versions)  |  command  |
 | --- | --- | --- | --- |
-| cmake | 3.20.5 | 3.16.3 (below required) | cmake --version |
+| cmake | 3.20.5 | 3.16.3 (upgrade required) | cmake --version |
 | python | 3.8 | 3.8.10 | python3 --version |
 | dtc | 1.4.6 | 1.5.0 | dtc --version |
 
@@ -338,14 +300,16 @@ echo "export PATH=$PWD/cmake-3.21.1-linux-x86_64/bin:\$PATH" >> $HOME/.zephyrrc
 cd $CURR_FOLDER
 ```
 
-- Load the profile that was created to use the newer CMake (*this should be done for every session when* [Building Zephyr](#zephyr-build-environment-setup):
+- Load the profile that was created to use the newer cmake (*this should be done for every session when* [Building Zephyr](#zephyr-build-environment-setup):
   
 ```bash
 source  $HOME/.zephyrrc
 ```
-
 - Create the ZephyrGSRD directories:
-  
+
+
+
+
 ```bash
 rm -rf agilex5_zgsrd
 mkdir agilex5_zgsrd
@@ -353,9 +317,9 @@ cd agilex5_zgsrd
 export TOP_FOLDER=$(pwd)
 ```
 
-### Building Arm Trusted Firmware
-
 - Download the compiler toolchain. Define environment variables and append the toolchain path in the environment PATH variable. so the toolchain can be used to build the binaries:
+
+
 
 ```bash
 cd $TOP_FOLDER
@@ -365,52 +329,141 @@ rm -f arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
 export PATH=`pwd`/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu/bin:$PATH
 echo "export PATH=`pwd`/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu/bin:\$PATH" >> $TOP_FOLDER/.zephyrrc
 ```
+
+
+
+- Enable Quartus Toot lo be called from command line:
+
+```bash
+  export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
+  export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+```
+
+
+
+### Get SOF file from Hardware Design
+
+In Simics, the SOF file generated as result of the build of the hardware design is not used at all in the simulation, but this is needed to create the RPD file to exercise the QSPI boot. This is the reason why we provide the steps to build the hardware desgin here.
+
+
+
+
+```bash
+cd $TOP_FOLDER
+rm ghrd_a5ed065bb32ae6sr0_hps.sof
+wget https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0_hps.sof 
+```
+
+
+The following file is created:
+
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps.sof
+
+
+### Building Arm Trusted Firmware
+
+We will build 3 ATF sets of binaries: One for SDCard boot, other for NAND boot and other for QSPI boot.
+
+#### Build ATF SDCard
+
+
 - Clone the ATF repository from GitHub and build it
 
 ```bash
-git clone -b QPDS23.4_REL_GSRD_PR  https://github.com/altera-opensource/arm-trusted-firmware
-cd arm-trusted-firmware
+git clone -b QPDS24.3_REL_GSRD_PR  https://github.com/altera-opensource/arm-trusted-firmware arm-trusted-firmware-sdcard
+cd arm-trusted-firmware-sdcard
 git switch -c test
 make realclean
-ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu- make PLAT=agilex5 bl2 bl31 PRELOADED_BL33_BASE=0x80100000 -j$(nproc) 
+ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu- make PLAT=agilex5 SOCFPGA_BOOT_SOURCE_SDMMC=1 bl2 bl31 PRELOADED_BL33_BASE=0x80100000 -j$(nproc) 
 ```
 
+
 - Build Fiptool to be able to create the sdimage in later steps.
+
 
 ```bash
 make fiptool
 cp tools/fiptool/fiptool $TOP_FOLDER
-cd $TOP_FOLDER
 ```
 
+
+
 The previous instructions will produce (in the $TOP_FOLDER/arm-trusted-firmware directory):
-- build/agilex5/release/bl2.bin
-- build/agilex5/release/bl31.bin
-- tools/fiptool/fiptool
+- $TOP_FOLDER/arm-trusted-firmware-sdcard/build/agilex5/release/bl2.bin
+- $TOP_FOLDER/arm-trusted-firmware-sdcard/build/agilex5/release/bl31.bin
+- $TOP_FOLDER/fiptool
+
+#### Build ATF NAND
 
 
+
+- Clone the ATF repository from GitHub and build it
+
+```bash
+cd $TOP_FOLDER
+git clone -b QPDS24.3_REL_GSRD_PR  https://github.com/altera-opensource/arm-trusted-firmware arm-trusted-firmware-nand
+cd arm-trusted-firmware-nand
+wget https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/nand_boot/0001-plat-intel-soc-agilex5-enable-NAND-boot.patch
+git apply 0001-plat-intel-soc-agilex5-enable-NAND-boot.patch
+make realclean
+ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu- make PLAT=agilex5 SOCFPGA_BOOT_SOURCE_NAND=1 bl2 bl31 PRELOADED_BL33_BASE=0x80100000 -j$(nproc)
+```
+
+
+
+The previous instructions will produce (in the $TOP_FOLDER/arm-trusted-firmware directory):
+- $TOP_FOLDER/arm-trusted-firmware-nand/build/agilex5/release/bl2.bin
+- $TOP_FOLDER/arm-trusted-firmware-nand/build/agilex5/release/bl31.bin
+
+#### Build ATF QSPI
+
+
+- Clone the ATF repository from GitHub and build it
+
+```bash
+cd $TOP_FOLDER
+git clone -b QPDS24.3_REL_GSRD_PR  https://github.com/altera-opensource/arm-trusted-firmware arm-trusted-firmware-qspi
+cd arm-trusted-firmware-qspi
+git switch -c test
+make realclean
+ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu- make PLAT=agilex5 SOCFPGA_BOOT_SOURCE_QSPI=1 bl2 bl31 PRELOADED_BL33_BASE=0x80100000 -j$(nproc)
+```
+
+
+
+The previous instructions will produce (in the $TOP_FOLDER/arm-trusted-firmware directory):
+- $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex5/release/bl2.bin
+- $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex5/release/bl31.bin
 
 ### Zephyr Build Environment Setup
 
+
+
+
 - Create a new virtual environment and activate it
 
+
 ```bash
+cd $TOP_FOLDER
 python3 -m venv ~/.zephyrproject/.venv
 #Environment Activation
 source ~/.zephyrproject/.venv/bin/activate
 ```
 
+
 - Install west, pull the official Zephyr repository and other Zephyr dependencies:
+
 
 ```bash
 pip3 install wheel
 pip3 install west
-west init -m https://github.com/zephyrproject-rtos/zephyr --mr v3.4-branch zephyrproject
+west init -m https://github.com/zephyrproject-rtos/zephyr --mr v3.6-branch zephyrproject
 cd $TOP_FOLDER/zephyrproject
 west update
 west zephyr-export
 pip install -r $TOP_FOLDER/zephyrproject/zephyr/scripts/requirements.txt
 ```
+
 
 Note: If you get a similar error like:
 ```
@@ -425,6 +478,7 @@ pip install sphinx-rtd-theme sphinx
 
 - Install Zephyr SDK in home folder so it can be used on many Zephyr projects:
 
+
 ```bash
 wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/zephyr-sdk-0.16.4_linux-x86_64.tar.xz
 wget -O - https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/sha256.sum | shasum --check --ignore-missing
@@ -435,15 +489,20 @@ rm zephyr-sdk*.tar.xz
 $HOME/zephyr-sdk*/setup.sh -t aarch64-zephyr-elf -h -c
 ```
 
+
 - Substitute the official "Zephyr" folder for zephyr-socfpga repository:
   
+
+
 ```bash
 cd $TOP_FOLDER/zephyrproject
 rm -rf zephyr 
-git clone -b QPDS23.4_REL_GSRD_PR --single-branch https://github.com/altera-opensource/zephyr-socfpga zephyr
+git clone -b QPDS24.3_REL_GSRD_PR --single-branch https://github.com/altera-opensource/zephyr-socfpga zephyr
 west update
 west zephyr-export
 ```
+
+
 
 ### Building Zephyr Application
 
@@ -476,15 +535,19 @@ In this regard, we will focus on building the "Hello World" sample that will all
 
 - Build the "Hello World" Zephyr application binary and place the built outputs in an "agilex5" directory in the current active directory.
 
+
+
+
 ```bash
 cd $TOP_FOLDER/zephyrproject/zephyr
 west build -b intel_socfpga_agilex5_socdk samples/hello_world -d agilex5
 ```
 
+
 Successful build console output should be similar to the following:
 
 ```
-Zephyr version: 3.4.0 (/home/msangele/Artifacts/zephyr_samples/agilex5_zgsrd/zephyrproject/zephyr), build: f1571bf6e7e2
+Zephyr version: 3.6.0 (/home/msangele/Artifacts/zephyr_samples/agilex5_zgsrd/zephyrproject/zephyr), build: f1571bf6e7e2
 [134/144] Linking C executable zephyr/zephyr_pre0.elf
 
 [138/144] Linking C executable zephyr/zephyr_pre1.elf
@@ -496,19 +559,9 @@ Memory region         Used Size  Region Size  %age Used
         IDT_LIST:          0 GB         2 KB      0.00%
 ```
 
-#### Organizing the Build-From-Source Binaries
+The output of this stage is:
 
-- Create a folder to contain the ATF firmware and Zephyr RTOS binaries for creating boot source image, and create symlinks to the actual location. (Whenever you are switching from using prebuilt to build-from-source binaries, this step has to be performed)
-
-```bash
-
-cd $TOP_FOLDER
-# First, remove any obsolete bin folder(optional)
-rm -rf bin
-mkdir bin
-ln -s $TOP_FOLDER/arm-trusted-firmware/build/agilex5/release/ bin/atf
-ln -s $TOP_FOLDER/zephyrproject/zephyr/agilex5/zephyr/  bin/zephyr
-```
+- $TOP_FOLDER/zephyrproject/zephyr/agilex5/zephyr/zephyr.bin
 
 ### Creating Boot Images
 
@@ -524,9 +577,15 @@ Three types of boot devices are supported:
 
 - Create FIP(Firmware Image Package) binary. This will pack the Zephyr binary and ATF BL31 binary into one single binary called FIP binary.
 
+
+
 ```bash
-./fiptool create --soc-fw $TOP_FOLDER/bin/atf/bl31.bin  --nt-fw $TOP_FOLDER/bin/zephyr/zephyr.bin bin/fip.bin
+cd $TOP_FOLDER
+mkdir sdcard_bin && cd sdcard_bin
+cp $TOP_FOLDER/arm-trusted-firmware-sdcard/build/agilex5/release/bl2.bin .
+$TOP_FOLDER/fiptool create --soc-fw $TOP_FOLDER/arm-trusted-firmware-sdcard/build/agilex5/release/bl31.bin --nt-fw $TOP_FOLDER/zephyrproject/zephyr/agilex5/zephyr/zephyr.bin fip.bin
 ```
+
 
 To build the "SDCard Image" for simics use the following commands:
 
@@ -534,20 +593,21 @@ To build the "SDCard Image" for simics use the following commands:
   
 
 
-
 ```bash
-cd $TOP_FOLDER
+cd $TOP_FOLDER/sdcard_bin
 wget https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/sdmmc_boot/make_sdimage.sh
 chmod +x make_sdimage.sh
 ```
+
 
 - Create the sdimage.img
 
 ```bash
 touch dummy.tar.gz
-sudo ./make_sdimage.sh -k dummy.tar.gz -p bin/fip.bin -o bin/sdimage.img -g 2G -pg 16
-
+sudo ./make_sdimage.sh -k dummy.tar.gz -p fip.bin -o sdimage.img -g 2G -pg 16
 ```
+
+
 
 To deactivate the environment when development is done execute:
 
@@ -572,44 +632,34 @@ For booting on Simics Virtual Platform for Agilex 5, refer [Booting from SD Card
 
 #### NAND binaries
 
-To build the "NAND Image" for simics use the following commands:
 
-- Patch the Arm Trusted Firmware source code to enable nand boot:
 
-```bash
-cd $TOP_FOLDER/arm-trusted-firmware
-wget https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/nand_boot/0001-plat-intel-soc-agilex5-enable-NAND-boot.patch
-```
+To build the "NAND Image" for simics use the following commands with the ATF created for NAND boot:
 
-- Create alocal branch for nand boot, apply the patch and rebuild ATF:
 
-```bash
-git branch nand
-git checkout nand
-git apply 0001-plat-intel-soc-agilex5-enable-NAND-boot.patch
-git commit -a -m "nandboot"
-ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu- make PLAT=agilex5 bl2 bl31 PRELOADED_BL33_BASE=0x80100000 -j$(nproc)
-```
-
-- Rebuild fip.bin
+- Rebuild fip.bin with NAND ATF
 
 ```bash
 cd $TOP_FOLDER
-./fiptool create --soc-fw $TOP_FOLDER/bin/atf/bl31.bin  --nt-fw $TOP_FOLDER/bin/zephyr/zephyr.bin bin/fip.bin
+mkdir nand_bin && cd nand_bin
+cp $TOP_FOLDER/arm-trusted-firmware-nand/build/agilex5/release/bl2.bin .
+$TOP_FOLDER/fiptool create --soc-fw $TOP_FOLDER/arm-trusted-firmware-nand/build/agilex5/release/bl31.bin  --nt-fw $TOP_FOLDER/zephyrproject/zephyr/agilex5/zephyr/zephyr.bin fip.bin
 ```
+
 
 - Create the nand_mem.img image and write the fip.bin within:
 
 ```bash
-dd if=/dev/zero count=8 bs=16MB | tr '\0' '\377' > $TOP_FOLDER/bin/nand_mem.img 
-dd if=bin/fip.bin of=bin/nand_mem.img conv=notrunc bs=1 seek=2097152
+cd $TOP_FOLDER/nand_bin
+dd if=/dev/zero count=8 bs=16MB | tr '\0' '\377' > nand_mem.img 
+dd if=fip.bin of=nand_mem.img conv=notrunc bs=1 seek=2097152
 ```
+
 
 To deactivate the environment when development is done and return to the main branch execute:
 
 ```bash
 deactivate
-git checkout test
 ```
 
 ##### Resulted Files
@@ -630,35 +680,25 @@ For booting on Simics Virtual Platform for Agilex 5, refer [Booting from NAND bi
 
 #### QSPI binaries
 
-To build the "QSPI Image" for simics use the following commands:
+To build the "QSPI Image" for simics use the following commands using the ATF built for QSPI boot:
 
-- Patch the Arm Trusted Firmware source code to enable qspi boot:
 
-```bash
-cd $TOP_FOLDER/arm-trusted-firmware
-wget https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/qspi_boot/0001-plat-intel-soc-agilex5-enable-QSPI-boot.patch
-```
-
-- Create a local branch for qspi boot, apply the patch and rebuild ATF:
-
-```bash
-cd $TOP_FOLDER/arm-trusted-firmware
-git branch qspi
-git checkout qspi
-git apply 0001-plat-intel-soc-agilex5-enable-QSPI-boot.patch
-git commit -a -m "qspiboot"
-ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu- make PLAT=agilex5 bl2 bl31 PRELOADED_BL33_BASE=0x80100000 -j$(nproc)
-```
 
 - Rebuild fip.bin
 
+
 ```bash
 cd $TOP_FOLDER
-./fiptool create --soc-fw $TOP_FOLDER/bin/atf/bl31.bin  --nt-fw $TOP_FOLDER/bin/zephyr/zephyr.bin bin/fip.bin
+mkdir qspi_bin && cd qspi_bin
+cp $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex5/release/bl2.bin .
+$TOP_FOLDER/fiptool create --soc-fw $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex5/release/bl31.bin --nt-fw $TOP_FOLDER/zephyrproject/zephyr/agilex5/zephyr/zephyr.bin fip.bin
 ```
 
+
 - Create pfg file:
-```
+
+```bash
+cd $TOP_FOLDER/qspi_bin
 tee qspi_flash_image_agilex5_boot.pfg  << 'EOF'
 <pfg version="1">
   <settings custom_db_dir="./" mode="ASX4"/>
@@ -676,7 +716,7 @@ tee qspi_flash_image_agilex5_boot.pfg  << 'EOF'
   </output_files>
   <bitstreams>
       <bitstream id="Bitstream_1">
-          <path hps_path="bin/atf/bl2.hex">bin/agilex5_factory.sof</path>
+          <path hps_path="bl2.hex">agilex5_factory.sof</path>
       </bitstream>
   </bitstreams>
   <raw_files>
@@ -688,7 +728,7 @@ tee qspi_flash_image_agilex5_boot.pfg  << 'EOF'
           <partition reserved="0" fixed_s_addr="0" s_addr="auto" e_addr="auto" fixed_e_addr="0" id="P1" size="0"/>
           <partition reserved="0" fixed_s_addr="0" s_addr="0x03C00000" e_addr="auto" fixed_e_addr="0" id="fip" size="0"/>
       </flash_device>
-      <flash_loader>AGFB014R24B2E2V</flash_loader>
+      <flash_loader>A5ED065BB32AE6SR0</flash_loader>
   </flash_devices>
   <assignments>
       <assignment page="0" partition_id="P1">
@@ -702,26 +742,32 @@ tee qspi_flash_image_agilex5_boot.pfg  << 'EOF'
 EOF
 ```
 
-- Create *bl2.hex* from bl2.bin
+
+- Create *bl2.hex* from *bl2.bin*
 
 ```bash 
-aarch64-none-linux-gnu-objcopy -v -I binary -O ihex --change-addresses 0xffe00000 bin/atf/bl2.bin  bin/atf/bl2.hex
+cd $TOP_FOLDER/qspi_bin
+aarch64-none-linux-gnu-objcopy -v -I binary -O ihex --change-addresses 0x00000000 bl2.bin bl2.hex
 ```
 
-- Create *flash_image_jic.rpd* qspi image from fip.bin and *bl2.hex:
+
+- Create *flash_image_jic.rpd* qspi image from fip.bin and *bl2.hex*:
 
 ```bash
-wget  https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/qspi_boot/agilex5_factory.sof -O bin/agilex5_factory.sof
-# The next command assumes Quartus® Prime Pro Edition Programmer and Tools is installed in the path ~/intelFPGA_pro/ (tested version: 23.4)
-~/intelFPGA_pro/23.4/qprogrammer/quartus/bin/quartus_pfg -c qspi_flash_image_agilex5_boot.pfg
-mv flash* bin
+cd $TOP_FOLDER/qspi_bin
+ln -s $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0_hps.sof agilex5_factory.sof
+quartus_pfg -c qspi_flash_image_agilex5_boot.pfg
 ```
+
+
+
+The output of this stage is:
+- flash_image_jic.rpd
 
 To deactivate the environment when development is done and return to the main branch execute:
 
 ```bash
 deactivate
-git checkout test
 ```
 
 ##### Resulted Files
@@ -741,6 +787,8 @@ If you have not set up Simics Virtual Platform for Agilex 5, go to [Simulation S
 
 For booting on Simics Virtual Platform for Agilex 5, refer [Booting from QSPI binaries](#booting-from-qspi-binaries)
 
+
+
 ### Simulation Setup
 
 We assume that the Simics® Simulator for Intel® FPGAs Simulator has been installed in a Linux System.
@@ -750,7 +798,7 @@ We assume that the Simics® Simulator for Intel® FPGAs Simulator has been insta
 ```bash
 export PATH=$PATH:SIMICS_INSTALLATION/simics/bin/
 ```
-note: default path is "~/intelFPGA_pro/intel-fpga-ext_23.4/simics/bin"
+note: default path is "~/intelFPGA_pro/intel-fpga-ext_24.3/simics/bin"
 
 - Create a Simics project directory under ZephyrGSRD directory:
 
@@ -833,7 +881,7 @@ $hps_core2_power_on = TRUE
 $hps_core3_power_on = TRUE'
 fi;
 
-tee zephyr.simics << 'EOF'
+tee zephyr_sdcard.simics << 'EOF'
 # TOP-LEVEL CONFIG Script TO BOOT ZEPHYR.
 local $board_name = "system.board.fpga"
 
@@ -847,16 +895,16 @@ $create_hps_sd_card=TRUE
 $create_hps_mmc=FALSE
 
 # SD Card boot Image file path
-$sd_image_filename = ../bin/sdimage.img
+$sd_image_filename = ../sdcard_bin/sdimage.img
 
 # First stage boot loader, ATF BL2 path
-$fsbl_image_filename = ../bin/atf/bl2.bin
+$fsbl_image_filename = ../sdcard_bin/bl2.bin
 EOF
 
-echo "$cputypestring" >> zephyr.simics 
+echo "$cputypestring" >> zephyr_sdcard.simics 
 
 echo 'run-command-file "targets/agilex5e-universal/agilex5e-universal.simics"
-run' >> zephyr.simics 
+run' >> zephyr_sdcard.simics 
 ```
 
 ##### Booting from NAND binaries
@@ -882,24 +930,24 @@ $hps_core2_power_on = TRUE
 $hps_core3_power_on = TRUE '
 fi;
 
-tee zephyr.simics << 'EOF'
+tee zephyr_nand.simics << 'EOF'
 # TOP-LEVEL CONFIG Script TO BOOT ZEPHYR.
 local $board_name = "system.board.fpga"
 
 # Ensure the nand_mem.img & bl2.bin paths are relative to the simics executable
 
 # First stage boot loader, ATF BL2 path
-$fsbl_image_filename = ../bin/atf/bl2.bin
+$fsbl_image_filename = ../nand_bin/bl2.bin
 #Boot from NAND
-$nand_data_image_filename = ../bin/nand_mem.img 
+$nand_data_image_filename = ../nand_bin/nand_mem.img 
 # Enable Console
 $create_hps_serial0_console=TRUE
 EOF
 
-echo "$cputypestring" >> zephyr.simics 
+echo "$cputypestring" >> zephyr_nand.simics 
 
 echo 'run-command-file "targets/agilex5e-universal/agilex5e-universal.simics"
-run' >> zephyr.simics 
+run' >> zephyr_nand.simics 
 ```
 ##### Booting from QSPI binaries
 
@@ -922,33 +970,34 @@ $hps_core2_power_on = TRUE
 $hps_core3_power_on = TRUE '
 fi;
 
-tee zephyr.simics << 'EOF'
+tee zephyr_qspi.simics << 'EOF'
 # TOP-LEVEL CONFIG Script TO BOOT ZEPHYR.
 local $board_name = "system.board.fpga"
 
 # Ensure the nand_mem.img & bl2.bin paths are relative to the simics executable
 
 # First stage boot loader, ATF BL2 path
-$fsbl_image_filename = ../bin/atf/bl2.bin
+$fsbl_image_filename = ../qspi_bin/bl2.bin
 #Boot from QSPI
-$qspi_image_filename = ../bin/flash_image_jic.rpd  
+$qspi_image_filename = ../qspi_bin/flash_image_jic.rpd  
 # Enable Console
 $create_hps_serial0_console=TRUE 
 EOF
 
-echo "$cputypestring" >> zephyr.simics 
+echo "$cputypestring" >> zephyr_qspi.simics 
 
 echo 'run-command-file "targets/agilex5e-universal/agilex5e-universal.simics"
-run' >> zephyr.simics 
+run' >> zephyr_qspi.simics 
 ```
 ### Running Hello World!
 
 To exercise this use case, follow the next steps once the Simulation setup has been completed:
 
-- From the project directory, launch the simulation using the *zephyr.simics* target script. This will launch the simulator and the current terminal will become the Simics CLI:
+- From the project directory, launch the simulation using the *zephyr.simics* (a soft link to the desired .simics file) target script. This will launch the simulator and the current terminal will become the Simics CLI:
 
 ```bash
 cd $TOP_FOLDER/project-1
+ln -s zephyr_sdcard.simics  zephyr.simics
 ./simics zephyr.simics
 ```
 
@@ -956,19 +1005,22 @@ cd $TOP_FOLDER/project-1
 
 ```
 # Target Serial console</b>
-NOTICE:  return = 0 Hz
-NOTICE:  mmc_clk = 200000000 Hz
+NOTICE:  DDR: Reset type is 'Power-On'
+NOTICE:  IOSSM: Calibration success status check...
+NOTICE:  IOSSM: All EMIF instances within the IO96 have calibrated successfully!
+NOTICE:  DDR: Calibration success
+NOTICE:  ###DDR:init success###
 NOTICE:  SDMMC boot
-NOTICE:  BL2: v2.9.1(release):f0d41e37d
-NOTICE:  BL2: Built : 08:55:04, Nov 17 2023
+NOTICE:  BL2: v2.11.0(release):QPDS24.3_REL_GSRD_PR
+NOTICE:  BL2: Built : 14:04:49, Dec  6 2024
 NOTICE:  BL2: Booting BL31
 NOTICE:  BL31: Boot Core = 0
-NOTICE:  BL31: CPU ID = 81000000
-NOTICE:  BL31: v2.9.1(release):f0d41e37d
-NOTICE:  BL31: Built : 08:55:08, Nov 17 2023
-*** Booting Zephyr OS build 33d4a115fbed ***
-Secondary CPU core 1 (MPID:0x0) is up
-Secondary CPU core 2 (MPID:0x100) is up
+NOTICE:  BL31: CPU ID = 0
+NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
+NOTICE:  BL31: Built : 14:04:50, Dec  6 2024
+*** Booting Zephyr OS build b755e7bab5f8 ***
+Secondary CPU core 1 (MPID:0x100) is up
+Secondary CPU core 2 (MPID:0x200) is up
 Secondary CPU core 3 (MPID:0x300) is up
 Hello World! intel_socfpga_agilex5_socdk
 ```
@@ -1015,8 +1067,8 @@ export bootdev=sdmmc_boot bootimg=sdimage.img
   
 ```bash
 cd $TOP_FOLDER/prebuilt
-wget -N https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/$app/$bootdev/$bootimg -P $app/$bootdev/ 
-wget -N https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/$app/$bootdev/bl2.bin -P $app/$bootdev/
+wget -N https://releases.rocketboards.org/2024.11/zephyr/agilex5/hps_zephyr/$app/$bootdev/$bootimg -P $app/$bootdev/ 
+wget -N https://releases.rocketboards.org/2024.11/zephyr/agilex5/hps_zephyr/$app/$bootdev/bl2.bin -P $app/$bootdev/
 ```
 
 - Prepare the binaries to run on Simics® Simulator
@@ -1300,7 +1352,7 @@ source ~/.zephyrproject/.venv/bin/activate
 
 ```bash
 cd $TOP_FOLDER/zephyrproject/zephyr
-git checkout QPDS23.4_REL_GSRD_PR
+git checkout QPDS24.3_REL_GSRD_PR
 git branch nosmp_$cputype
 git checkout nosmp_$cputype
 ```
@@ -1377,11 +1429,9 @@ west build -b intel_socfpga_agilex5_socdk samples/hello_world -d agilex5 --prist
 
 ```bash
 cd $TOP_FOLDER
-rm -rf bin
-mkdir bin
-ln -s $TOP_FOLDER/arm-trusted-firmware/build/agilex5/release/ bin/atf
-ln -s $TOP_FOLDER/zephyrproject/zephyr/agilex5/zephyr/  bin/zephyr
-./fiptool create --soc-fw $TOP_FOLDER/bin/atf/bl31.bin  --nt-fw $TOP_FOLDER/bin/zephyr/zephyr.bin bin/fip.bin
+rm -rf sdcard_bin
+mkdir sdcard_bin && cd sdcard_bin
+$TOP_FOLDER/fiptool create --soc-fw $TOP_FOLDER/arm-trusted-firmware-sdcard/build/agilex5/release/bl31.bin  --nt-fw $TOP_FOLDER/zephyrproject/zephyr/agilex5/zephyr/zephyr.bin fip.bin
 ```
 
 To create the boot image, we will use the creating [SD Card Image binaries](#sd-card-image-binaries) section as base. Refer back to [Creating Boot Images](#creating-boot-images) to boot from other boot devices.
@@ -1390,7 +1440,7 @@ To create the boot image, we will use the creating [SD Card Image binaries](#sd-
 - Obtain the make_sdimage.sh script.
 
 ```bash
-cd $TOP_FOLDER
+cd $TOP_FOLDER/sdcard_bin
 wget https://releases.rocketboards.org/2023.12/zephyr/gsrd_zephyr/agilex5/cli/sdmmc_boot/make_sdimage.sh
 chmod +x make_sdimage.sh
 ```
@@ -1399,15 +1449,15 @@ chmod +x make_sdimage.sh
 
 ```bash
 touch dummy.tar.gz
-sudo ./make_sdimage.sh -k dummy.tar.gz -p bin/fip.bin -o bin/sdimage.img -g 2G -pg 16</pre>
+sudo ./make_sdimage.sh -k dummy.tar.gz -p fip.bin -o sdimage.img -g 2G -pg 16</pre>
 ```
 
 Note:
-To return to QPDS23.4_REL_GSRD_PR tag execute:
+To return to QPDS24.3_REL_GSRD_PR tag execute:
 
 ```bash
 cd $TOP_FOLDER/zephyrproject/zephyr
-git checkout QPDS23.4_REL_GSRD_PR
+git checkout QPDS24.3_REL_GSRD_PR
 cd $TOP_FOLDER
 ```
 
@@ -1459,7 +1509,7 @@ cputypestring='$hps_boot_core = 2
    $hps_core3_power_on = FALSE'
 fi;
 
-tee zephyr.simics << 'EOF'
+tee zephyr_sdcard.simics << 'EOF'
 # TOP-LEVEL CONFIG Script TO BOOT ZEPHYR.
 local $board_name = "system.board.fpga"
 
@@ -1473,16 +1523,16 @@ $create_hps_sd_card=TRUE
 $create_hps_mmc=FALSE
 
 # SD Card boot Image file path
-$sd_image_filename = ../bin/sdimage.img
+$sd_image_filename = ../sdcard_bin/sdimage.img
 
 # First stage boot loader, ATF BL2 path
-$fsbl_image_filename = ../bin/atf/bl2.bin
+$fsbl_image_filename = ../arm-trusted-firmware-sdcard/build/agilex5/release/bl2.bin
 EOF
 
-echo "$cputypestring" >> zephyr.simics 
+echo "$cputypestring" >> zephyr_sdcard.simics 
 
 echo 'run-command-file "targets/agilex5e-universal/agilex5e-universal.simics"
-run' >> zephyr.simics
+run' >> zephyr_sdcard.simics
 ```
 
 Note: We based our approach on the SDCard script. For NAND boot and QSPI options, refer to [Booting from NAND binaries](#booting-from-nand-binaries)
@@ -1523,3 +1573,18 @@ You may rebuild and run on Simics for the target core based on the following con
 |--- | ---| ---|
 | $TOP_FOLDER/zephyrproject/zephyr/dts/arm64/intel/intel_socfpga_agilex5.dtsi | At node **cpu@0** : **compatible** = "arm,cortex-a75"  **reg** = | At node **cpu@0** :  **compatible** = "arm,cortex-a76" **reg** = |
 | $TOP_FOLDER/project-1/zephyr.simics | $hps_boot_core = 0 | $hps_boot_core = 2 |
+
+## Notices & Disclaimers
+
+Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
+No product or component can be absolutely secure. 
+Performance varies by use, configuration and other factors.
+Your costs and results may vary. 
+You may not use or facilitate the use of this document in connection with any infringement or other legal analysis concerning Altera or Intel products described herein. You agree to grant Altera Corporation a non-exclusive, royalty-free license to any patent claim thereafter drafted which includes subject matter disclosed herein.
+No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document, with the sole exception that you may publish an unmodified copy. You may create software implementations based on this document and in compliance with the foregoing that are intended to execute on the Altera or Intel product(s) referenced in this document. No rights are granted to create modifications or derivatives of this document.
+The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications.  Current characterized errata are available on request.
+Altera disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade.
+You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
+<sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
+
+OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 

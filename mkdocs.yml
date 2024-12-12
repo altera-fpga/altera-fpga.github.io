@@ -133,18 +133,18 @@ nav:
       - Memory Interface : linux-dfl/dfl_emif/dfl_emif.md
       - MAX 10 Board Management Controller: linux-dfl/intel_m10_bmc_core/intel_m10_bmc_core.md 
       - SPI: linux-dfl/spi_altera_dfl/spi_altera_dfl.md
-      - User space I/O (UIO): linux-dfl/uio_dfl/uio_dfl.md 
-#  - Zephyr Drivers:
-#   - 'driver-list_zephyr/index.md'
-#   - HPS Zephyr Drivers:
-#     - Clock Manager: zephyr-embedded/clock_manager/clock_manager.md
-#     - DMA: zephyr-embedded/dma/dma.md
-#     - GPIO: zephyr-embedded/gpio/gpio.md
-#     - Quad SPI: zephyr-embedded/qspi/qspi.md
-#     - Reset Manager: zephyr-embedded/reset_manager/reset_manager.md
-#      - Single Error Upset (SEU): zephyr-embedded/seu/seu.md
-#      - UART: zephyr-embedded/uart/uart.md
-#      - Watchdog Timer: zephyr-embedded/watchdog/watchdog.md
+      - User space I/O (UIO): linux-dfl/uio_dfl/uio_dfl.md
+  - Zephyr Drivers:
+    - 'driver-list_zephyr/index.md'
+    - HPS Zephyr Drivers:
+      - Clock Manager: zephyr-embedded/clock_manager/clock_manager.md
+      - DMA: zephyr-embedded/dma/dma.md
+      - GPIO: zephyr-embedded/gpio/gpio.md
+      - Quad SPI: zephyr-embedded/qspi/qspi.md
+      - Reset Manager: zephyr-embedded/reset_manager/reset_manager.md
+      - Single Error Upset (SEU): zephyr-embedded/seu/seu.md
+      - UART: zephyr-embedded/uart/uart.md
+      - Watchdog Timer: zephyr-embedded/watchdog/watchdog.md
   - Baremetal Drivers:
     - 'driver-list_baremetal/index.md'
   - Host Attach Utilities:
@@ -180,7 +180,7 @@ nav:
         - Agilex™ 5 E-Series Premium Development Kit Time Sensitive Network (TSN) - SGMII XCVR System Example Design: embedded-designs/agilex-5/e-series/premium/tsn/sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5.md
         - Agilex™ 5 E-Series Modular Development Kit GSRD User Guide: embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular.md
         - Agilex™ 5 E-Series Modular Development Kit GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular.md
-        - Agilex™ 5 E-Series Modular Development Kit GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular.md
+        - Agilex™ 5 E-Series Premium Development Kit Zephyr GSRD User Guide: embedded-designs/agilex-5/e-series/premium/gsrd_zephyr/ug-zgsrd-agx5e-premium.md
         - Agilex™ 5 Intel Simics Virtual Platform Example User Guide - Linux GSRD: embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms.md
         - Agilex™ 5 Intel Simics Virtual Platform Example User Guide - Zephyr GSRD: embedded-designs/agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms.md
         - Agilex™ 5 FPGA Remote Debug Example: embedded-designs/agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium.md        
