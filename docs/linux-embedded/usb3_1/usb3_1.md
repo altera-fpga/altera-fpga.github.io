@@ -1,6 +1,6 @@
 # **USB 3.1 Driver for Hard Processor System**
 
-Last updated: **December 11, 2024** 
+Last updated: **December 12, 2024** 
 
 **Upstream Status**: Not Upstreamed
 
