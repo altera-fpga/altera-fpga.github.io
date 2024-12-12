@@ -18,14 +18,24 @@ theme:
     - navigation.indexes
     - navigation.footer
     - navigation.path
+    - navigation.tabs
+    - navigation.tabs.sticky
     - search.suggest
     - search.highlight
     - content.code.copy
     - navigation.indexes
-    - toc.integrate
     - toc.follow
+#  custom_dir: overrides
 extra_css:
   - stylesheets/extra.css
+extra_javascript:
+  - https://unpkg.com/tablefilter@0.7.3/dist/tablefilter/tablefilter.js
+  - assets/tables.js
+  - assets/extra.js
+
+
+
+
 
 extra:
   version:
@@ -50,11 +60,6 @@ extra:
       link: https://github.com/altera-fpga  
     - icon: fontawesome/brands/linkedin 
       link: https://www.linkedin.com/company/altera-fpga/
-      
-
-extra_javascript:
-  - https://unpkg.com/tablefilter@0.7.3/dist/tablefilter/tablefilter.js
-  - assets/tables.js
 
 
 plugins:
@@ -172,39 +177,49 @@ nav:
     - userclk: host-attach-util/userclk/userclk.md
     - vabtool: host-attach-util/vabtool/vabtool.md
   - Example Designs:
-    - Example Designs Summary: ed-demo-list/ed-list.md
+    - Summary: ed-demo-list/ed-list.md
     - Agilex™ 5:
-        - Agilex™ 5 E-Series Premium Development Kit GSRD User Guide: embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium.md
-        - Agilex™ 5 E-Series Premium Development Kit GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium.md
-        - Agilex™ 5 E-Series Premium Development Kit Time Sensitive Network (TSN) - HPS RGMII System Example Design: embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hps/ug-tsncfg1-agx5e-premium.md
-        - Agilex™ 5 E-Series Premium Development Kit Time Sensitive Network (TSN) - SGMII XCVR System Example Design: embedded-designs/agilex-5/e-series/premium/tsn/sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5.md
-        - Agilex™ 5 E-Series Modular Development Kit GSRD User Guide: embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular.md
-        - Agilex™ 5 E-Series Modular Development Kit GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular.md
-        - Agilex™ 5 E-Series Premium Development Kit Zephyr GSRD User Guide: embedded-designs/agilex-5/e-series/premium/gsrd_zephyr/ug-zgsrd-agx5e-premium.md
-        - Agilex™ 5 Intel Simics Virtual Platform Example User Guide - Linux GSRD: embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms.md
-        - Agilex™ 5 Intel Simics Virtual Platform Example User Guide - Zephyr GSRD: embedded-designs/agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms.md
-        - Agilex™ 5 FPGA Remote Debug Example: embedded-designs/agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium.md        
-        - Agilex™ 5 SoC HPS Remote System Update Example: embedded-designs/agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc.md
+      - E-Series Premium Development Kit:
+        - GSRD User Guide: embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium.md
+        - Zephyr GSRD User Guide: embedded-designs/agilex-5/e-series/premium/gsrd_zephyr/ug-zgsrd-agx5e-premium.md
+        - GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium.md
+        - TSN Examples:
+          - TSN - HPS RGMII System: embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hps/ug-tsncfg1-agx5e-premium.md
+          - TSN - SGMII XCVR System: embedded-designs/agilex-5/e-series/premium/tsn/sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5.md
+        - FPGA Remote Debug Example: embedded-designs/agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium.md
+        - SoC HPS Remote System Update Example: embedded-designs/agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc.md
+
+      - E-Series Modular Development Kit:
+        - GSRD User Guide: embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular.md
+        - GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular.md
+      - Intel Simics Virtual Platform Examples:
+        - Linux GSRD: embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms.md
+        - Zephyr GSRD: embedded-designs/agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms.md
     - Agilex™ 7:
-        - Agilex™ 7 F-Series SoC Development Kit GSRD User Guide: embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc.md
-        - Agilex™ 7 I-Series FPGA Development Kit GSRD User Guide: embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc.md        
-        - Agilex™ 7 M-Series HBM2e Development Kit GSRD User Guide: embedded-designs/agilex-7/m-series/hbm2e/ug-gsrd-agx7m-hbm2e.md
-        - Agilex™ 7 SoC HPS Remote System Update Example: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc.md
-        - Agilex™ 7 SoC HPS Multi-QSPI Remote System Update Example: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc.md
-        - Agilex™ 7 SoC FPGA Remote Debug Example: embedded-designs/agilex-7/f-series/soc/remote-debug/ug-remote-debug-agx7f-soc.md
-        - Agilex™ 7 HPS eMMC Boot Example: embedded-designs/agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc.md
-        - Agilex™ 7 SoC Fabric Configuration from Linux Example: embedded-designs/agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc.md
+      - F-Series SoC Development Kit:
+        - GSRD User Guide: embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc.md
+        - SoC HPS Remote System Update Example: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc.md
+        - SoC HPS Multi-QSPI Remote System Update Example: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc.md
+        - SoC FPGA Remote Debug Example: embedded-designs/agilex-7/f-series/soc/remote-debug/ug-remote-debug-agx7f-soc.md
+        - HPS eMMC Boot Example: embedded-designs/agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc.md
+        - SoC Fabric Configuration from Linux Example: embedded-designs/agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc.md
+      - I-Series FPGA Development Kit:
+        - GSRD User Guide: embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc.md
+      - M-Series HBM2e Development Kit:
+        - GSRD User Guide: embedded-designs/agilex-7/m-series/hbm2e/ug-gsrd-agx7m-hbm2e.md
     - Stratix® 10:
-        - Stratix® 10 SX SoC Development Kit GSRD User Guide: embedded-designs/stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc.md      
-        - Stratix® 10 SoC HPS Remote System Update Example: embedded-designs/stratix-10/sx/soc/rsu/ug-rsu-s10sx-soc.md
-        - Stratix® 10 SoC FPGA Remote Debug Example: embedded-designs/stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc.md
-        - Stratix® 10 HPS eMMC Boot Example: embedded-designs/stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc.md
-        - Stratix® 10 SoC Fabric Configuration from Linux Example: embedded-designs/stratix-10/sx/soc/fabric-config/ug-linux-fabric-config-s10sx-soc.md
+      - SX SoC Development Kit:
+        - GSRD User Guide: embedded-designs/stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc.md
+        - SoC HPS Remote System Update Example: embedded-designs/stratix-10/sx/soc/rsu/ug-rsu-s10sx-soc.md
+        - SoC FPGA Remote Debug Example: embedded-designs/stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc.md
+        - HPS eMMC Boot Example: embedded-designs/stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc.md
+        - SoC Fabric Configuration from Linux Example: embedded-designs/stratix-10/sx/soc/fabric-config/ug-linux-fabric-config-s10sx-soc.md
   - Demos:
-    - Demos Summary: ed-demo-list/demo-list.md
+    - Summary: ed-demo-list/demo-list.md
     - Agilex™ 5:
-      - Agilex™ 5 E-Series Premium Development Kit Baremetal Hello World Example: baremetal-embedded/agilex-5/e-series/premium/ug-baremetal-agx5e-premium.md 
-      -  Agilex™ 5 E-Series Premium Development Kit and Third Party Boards - HPS-FPGA Interfaces Demos User Guide: https://github.com/altera-fpga/agilex5-demo-hps2fpga-interfaces/blob/main/documentation/01_index.md
+      - E-Series Premium Development Kit:
+        - Baremetal Hello World Example: baremetal-embedded/agilex-5/e-series/premium/ug-baremetal-agx5e-premium.md
+        - Third Party Boards - HPS-FPGA Interfaces Demos User Guide: https://github.com/altera-fpga/agilex5-demo-hps2fpga-interfaces/blob/main/documentation/01_index.md
 
 
 markdown_extensions:
