@@ -260,6 +260,10 @@ markdown_extensions:
       auto_append:
         - includes/abbreviations.md
 
+ignorefiles:
+  docs/doc_modules/
+  docs/embedded-designs/doc_modules/
+  
 env: 
 # Devices         
   AGILEX: Intel® Agilex® 7 FPGA
