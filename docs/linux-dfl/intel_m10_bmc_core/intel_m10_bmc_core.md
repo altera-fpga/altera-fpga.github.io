@@ -1,6 +1,6 @@
 # **Max® 10 Board Management Controller Driver**
 
-Last updated: **December 12, 2024** 
+Last updated: **December 13, 2024** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/mfd?h=master)
 

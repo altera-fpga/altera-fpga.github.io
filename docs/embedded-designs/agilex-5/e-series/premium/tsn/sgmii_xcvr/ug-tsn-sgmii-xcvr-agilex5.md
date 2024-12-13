@@ -88,14 +88,14 @@ Internet connection. For downloading the files, especially when rebuilding the G
 
   |Component	|Location	|Branch	| Commit ID/Tag|
   |-|-|-|-|
-  |GHRD|https://github.com/altera-fpga/agilex5-ed-tsn-sgmii/tree/rel/24.3/src/hw|rel/24.3|[24.3-1](https://githubcom/altera-fpga/agilex5-ed-tsn-sgmii/releases/tag/24.3-1)|
+  |GHRD|https://github.com/altera-fpga/agilex5-ed-tsn-sgmii/tree/rel/24.3/src/hw|rel/24.3|[24.3-1](https://github.com/altera-fpga/agilex5-ed-tsn-sgmii/releases/tag/24.3-1)|
   |Linux|https://github.com/altera-opensource/linux-socfpga|socfpga-6.6.37-lts|[QPDS24.3_REL_GSRD_PR](https://github.com/altera-opensource/linux-socfpga/releases/tag/QPDS24.3_REL_GSRD_PR)|
   |Arm Trusted Firmware|https://github.com/altera-opensource/arm-trusted-firmware|socfpga_v2.11.0|[QPDS24.3_REL_GSRD_PR](https://github.com/altera-opensource/arm-trusted-firmware/releases/tag/QPDS24.3_REL_GSRD_PR)|
   |U-Boot|https://github.com/altera-opensource/u-boot-socfpga|socfpga_v2024.04|[QPDS24.3_REL_GSRD_PR](https://github.com/altera-opensource/u-boot-socfpga/releases/tag/QPDS24.3_REL_GSRD_PR)|
   |Yocto Project: poky|https://git.yoctoproject.org/poky/|scarthgap|Latest|
   |Yocto Project: meta-intel-fpga|https://git.yoctoproject.org/meta-intel-fpga/|scarthgap|[QPDS24.3_REL_GSRD_PR](https://git.yoctoproject.org/meta-intel-fpga/tag/?h=QPDS24.3_REL_GSRD_PR)|
   |Yocto Project: meta-intel-fpga-refdes|https://github.com/altera-opensource/meta-intel-fpga-refdes|scarthgap|[QPDS24.3_REL_GSRD_PR](https://github.com/altera-opensource/meta-intel-fpga-refdes/releases/tag/QPDS24.3_REL_GSRD_PR)|
-  |GSRD Build Script: gsrd-socfpga|https://github.com/altera-fpga/agilex5-ed-tsn-sgmii/tree/rel/24.3/src/sw|rel/24.3|[24.3-1](https://githubcom/altera-fpga/agilex5-ed-tsn-sgmii/releases/tag/24.3-1)|
+  |GSRD Build Script: gsrd-socfpga|https://github.com/altera-fpga/agilex5-ed-tsn-sgmii/tree/rel/24.3/src/sw|rel/24.3|[24.3-1](https://github.com/altera-fpga/agilex5-ed-tsn-sgmii/releases/tag/24.3-1)|
 
 ### Release Notes 
 
@@ -232,7 +232,7 @@ The User Space CSR contains registers specific to system-level status (e.g. PLL 
 
 1\. Quartus Prime Pro
    
-* Download the Quartus® Prime Pro Edition software version 24.3 from the FPGA Software Download Center [webpage]((https://www.intel.com/content/www/us/en/software-kit/839515/intel-quartus-prime-pro-edition-design-software-version-24-3-for-linux.html)) of the Intel website. Follow the on-screen instructions to complete the installation process. Choose an installation directory that is relative to the Quartus® Prime Pro Edition software installation directory.
+* Download the Quartus® Prime Pro Edition software version 24.3 from the FPGA Software Download Center [webpage](https://www.intel.com/content/www/us/en/software-kit/839515/intel-quartus-prime-pro-edition-design-software-version-24-3-for-linux.html) of the Intel website. Follow the on-screen instructions to complete the installation process. Choose an installation directory that is relative to the Quartus® Prime Pro Edition software installation directory.
    
 * Set up the Quartus tools in the PATH, so they are accessible without full path.
   
