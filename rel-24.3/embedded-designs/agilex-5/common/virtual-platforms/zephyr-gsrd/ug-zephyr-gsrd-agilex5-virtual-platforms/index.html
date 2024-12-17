@@ -1170,6 +1170,12 @@
         
           
         
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
@@ -1204,8 +1210,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../../../zephyr-embedded/psci/psci/" class="md-nav__link">
+        Cold & Warm Reset -Power State Coordination Interface (PSCI)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../../../zephyr-embedded/dma/dma/" class="md-nav__link">
         DMA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../zephyr-embedded/timer/timer/" class="md-nav__link">
+        General Purpose Timer
       </a>
     </li>
   
@@ -1261,7 +1295,21 @@
   
     <li class="md-nav__item">
       <a href="../../../../../../zephyr-embedded/seu/seu/" class="md-nav__link">
-        Single Error Upset (SEU)
+        Single Event Upset (SEU)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../zephyr-embedded/smp/smp/" class="md-nav__link">
+        SMP
       </a>
     </li>
   
@@ -4075,7 +4123,7 @@ Create the !ZephyrGSRD directory.
 <p>Get the prebuilt binaries into the prebuilt folder.</p>
 </li>
 </ol>
-<p><span style="color: red;"> NOTE:  At the moment of creating this page, the .jic file for the prebuild applications was not included in the officila binaries release page, so in the example below we are using an alternate location in the meantime these binaries are uploaded. The temporary location of the page is https://www.rocketboards.org/foswiki/Projects/ZephyrPrebuildBinaries </span>. The .rpd files were generated from the current available binaries from the official page following the instuctions at <a href="#Creating Boot Images">Creating Boot Images</a> section.
+<p><span style="color: red;"> NOTE:  At the moment of creating this page, the .jic file for the prebuild applications was not included in the official binaries release page, so in the example below we are using an alternate location in the meantime these binaries are uploaded. The temporary location of the page is https://www.rocketboards.org/foswiki/Projects/ZephyrPrebuildBinaries </span>. The .rpd files were generated from the current available binaries from the official page following the instuctions at <a href="#Creating Boot Images">Creating Boot Images</a> section.
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/prebuilt
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>wget<span class="w"> </span>https://www.rocketboards.org/foswiki/pub/Projects/ZephyrPrebuildBinaries/ZephyrPrebuildBinaries24p3.tar
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>tar<span class="w"> </span>xf<span class="w"> </span>ZephyrPrebuildBinaries24p3.tar
@@ -4182,11 +4230,9 @@ Create the !ZephyrGSRD directory.
 <a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu/bin:<span class="nv">$PATH</span>
 <a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export PATH=`pwd`/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu/bin:\$PATH&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/.zephyrrc
 </code></pre></div>
-<ul>
-<li>Enable Quartus Toot lo be called from command line:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3/quartus/
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
+<p>Enable Quartus tools to be called from command line:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3/quartus/
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
 </code></pre></div>
 <h3 id="get-sof-file-from-hardware-design">Get SOF file from Hardware Design<a class="headerlink" href="#get-sof-file-from-hardware-design" title="Permanent link">&para;</a></h3>
 <p>In Simics, the SOF file generated as result of the build of the hardware design is not used at all in the simulation, but this is needed to create the RPD file to exercise the QSPI boot. This is the reason why we provide the steps to build the hardware desgin here.</p>
@@ -5347,7 +5393,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 12, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 17, 2024</span>
       
         <br>
         Created:

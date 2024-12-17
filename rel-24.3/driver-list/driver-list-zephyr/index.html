@@ -1164,6 +1164,12 @@
         
           
         
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
@@ -1198,8 +1204,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../../zephyr-embedded/psci/psci/" class="md-nav__link">
+        Cold & Warm Reset -Power State Coordination Interface (PSCI)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../zephyr-embedded/dma/dma/" class="md-nav__link">
         DMA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zephyr-embedded/timer/timer/" class="md-nav__link">
+        General Purpose Timer
       </a>
     </li>
   
@@ -1255,7 +1289,21 @@
   
     <li class="md-nav__item">
       <a href="../../zephyr-embedded/seu/seu/" class="md-nav__link">
-        Single Error Upset (SEU)
+        Single Event Upset (SEU)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zephyr-embedded/smp/smp/" class="md-nav__link">
+        SMP
       </a>
     </li>
   
@@ -2828,18 +2876,10 @@
 </thead>
 <tbody>
 <tr>
-<td align="center">Arm<sup>®</sup> Silicon Provider (SiP) Services</td>
-<td align="center">Agilex 5</td>
-<td align="center">HPS</td>
-<td align="center"><a href="../zephyr-embedded/sip_svc/sip_svc.md" target="_blank">SiP-SVC</a></td>
-<td align="center">Yes</td>
-<td align="left"><a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/drivers/sip_svc/sip_smc_intel_socfpga.c" target="_blank">sip_smc_intel_socfpga</a></td>
-</tr>
-<tr>
 <td align="center">Clock Manager</td>
 <td align="center">Agilex 5</td>
 <td align="center">HPS</td>
-<td align="center"><a href="../zephyr-embedded/clock_manager/clock_manager.md" target="_blank">Clock Manager</a></td>
+<td align="center"><a href="../zephyr-embedded/clock_manager/clock_manager" target="_blank">Clock Manager</a></td>
 <td align="center">Yes</td>
 <td align="left"><a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/drivers/clock_control/clock_control_agilex5.c" target="_blank">clock_control_agilex5</a></td>
 </tr>
@@ -2847,15 +2887,15 @@
 <td align="center">Cold &amp; Warm Reset -Power State Coordination Interface (PSCI)</td>
 <td align="center">Agilex 5</td>
 <td align="center">HPS</td>
-<td align="center"><a href="../zephyr-embedded/psci/psci.md" target="_blank">PSCI</a></td>
+<td align="center"><a href="../zephyr-embedded/psci/psci" target="_blank">PSCI</a></td>
 <td align="center">Yes</td>
 <td align="left"><a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/drivers/pm_cpu_ops/pm_cpu_ops_psci.c" target="_blank">pm_cpu_ops_psci</a></td>
 </tr>
 <tr>
-<td align="center">DMAC</td>
+<td align="center">DMA Controller</td>
 <td align="center">Agilex 5</td>
 <td align="center">HPS</td>
-<td align="center"><a href="../zephyr-embedded/dma/dma.md" target="_blank">DMAC</a></td>
+<td align="center"><a href="../zephyr-embedded/dma/dma" target="_blank">DMAC</a></td>
 <td align="center">Yes</td>
 <td align="left"><a href="https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/drivers/dma/dma_dw_axi.c" target="_blank">dma</a></td>
 </tr>
@@ -2863,7 +2903,7 @@
 <td align="center">General Purpose Timer</td>
 <td align="center">Agilex 5</td>
 <td align="center">HPS</td>
-<td align="center"><a href="../zephyr-embedded/timer/timer.md" target="_blank">Timer</a></td>
+<td align="center"><a href="../zephyr-embedded/timer/timer" target="_blank">Timer</a></td>
 <td align="center">Yes</td>
 <td align="left"><a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/drivers/counter/counter_dw_timer.c" target="_blank">counter_dw_timer</a></td>
 </tr>
@@ -2871,23 +2911,15 @@
 <td align="center">GPIO</td>
 <td align="center">Agilex 5</td>
 <td align="center">HPS</td>
-<td align="center"><a href="../zephyr-embedded/gpio/gpio.md" target="_blank">gpio</a></td>
+<td align="center"><a href="../zephyr-embedded/gpio/gpio" target="_blank">gpio</a></td>
 <td align="center">No</td>
 <td align="left"><a href="https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/drivers/gpio/gpio_intel_socfpga.c" target="_blank">gpio_intel_socfpga</a></td>
-</tr>
-<tr>
-<td align="center">Cold &amp; Warm Reset -Power State Coordination Interface (PSCI)</td>
-<td align="center">Agilex 5</td>
-<td align="center">HPS</td>
-<td align="center"><a href="../zephyr-embedded/psci/psci.md" target="_blank">psci</a></td>
-<td align="center">No</td>
-<td align="left"><a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/drivers/pm_cpu_ops/pm_cpu_ops_psci.c" target="_blank">psci</a></td>
 </tr>
 <tr>
 <td align="center">QSPI</td>
 <td align="center">Agilex 5</td>
 <td align="center">HPS</td>
-<td align="center"><a href="../zephyr-embedded/qspi/qspi.md" target="_blank">QSPI</a></td>
+<td align="center"><a href="../zephyr-embedded/qspi/qspi" target="_blank">QSPI</a></td>
 <td align="center">Yes</td>
 <td align="left"><a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/drivers/flash/flash_cadence_qspi_nor.c" target="_blank">flash_cadence_qspi_nor</a></td>
 </tr>
@@ -2895,7 +2927,7 @@
 <td align="center">Reset Manager</td>
 <td align="center">Agilex 5</td>
 <td align="center">HPS</td>
-<td align="center"><a href="../zephyr-embedded/reset_manager/reset_manager.md" target="_blank">Reset Manager</a></td>
+<td align="center"><a href="../zephyr-embedded/reset_manager/reset_manager" target="_blank">Reset Manager</a></td>
 <td align="center">Yes</td>
 <td align="left"><a href="https://github.com/zephyrproject-rtos/zephyr/commits/main/drivers/reset/reset_intel_socfpga.c" target="_blank">reset_intel_socfpga</a></td>
 </tr>
@@ -2903,7 +2935,7 @@
 <td align="center">Single Event Upset (SEU)</td>
 <td align="center">Agilex 5</td>
 <td align="center">HPS</td>
-<td align="center"><a href="../zephyr-embedded/seu/seu.md" target="_blank">SEU</a></td>
+<td align="center"><a href="../zephyr-embedded/seu/seu" target="_blank">SEU</a></td>
 <td align="center"><a href="https://github.com/zephyrproject-rtos/zephyr/pull/67097" target="_blank">In Progress</a></td>
 <td align="left"><a href="https://github.com/zephyrproject-rtos/zephyr/pull/67097" target="_blank">pull/67097</a></td>
 </tr>
@@ -2911,7 +2943,7 @@
 <td align="center">SMP</td>
 <td align="center">Agilex 5</td>
 <td align="center">HPS</td>
-<td align="center"><a href="../zephyr-embedded/smp/smp.md" target="_blank">SMP</a></td>
+<td align="center"><a href="../zephyr-embedded/smp/smp" target="_blank">SMP</a></td>
 <td align="center">Yes</td>
 <td align="left"><a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/arch/arm64/core/smp.c" target="_blank">smp</a></td>
 </tr>
@@ -2919,7 +2951,7 @@
 <td align="center">UART</td>
 <td align="center">Agilex 5</td>
 <td align="center">HPS</td>
-<td align="center"><a href="../zephyr-embedded/uart/uart.md" target="_blank">UART</a></td>
+<td align="center"><a href="../zephyr-embedded/uart/uart" target="_blank">UART</a></td>
 <td align="center">Yes</td>
 <td align="left"><a href="https://github.com/zephyrproject-rtos/zephyr/commits/main/drivers/serial/uart_ns16550.c" target="_blank">uart_ns16550</a></td>
 </tr>
@@ -2927,7 +2959,7 @@
 <td align="center">Watchdog Timer</td>
 <td align="center">Agilex 5</td>
 <td align="center">HPS</td>
-<td align="center"><a href="../zephyr-embedded/watchdog/watchdog.md" target="_blank">Watchdog Timer</a></td>
+<td align="center"><a href="../zephyr-embedded/watchdog/watchdog" target="_blank">Watchdog Timer</a></td>
 <td align="center">Yes</td>
 <td align="left"><a href="https://github.com/zephyrproject-rtos/zephyr/blob/main/drivers/watchdog/wdt_dw.c" target="_blank">wdt_dw</a></td>
 </tr>
@@ -2939,7 +2971,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 3, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 17, 2024</span>
       
         <br>
         Created:
