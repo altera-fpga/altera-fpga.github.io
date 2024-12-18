@@ -2,622 +2,627 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/baremetal-embedded/agilex-5/e-series/premium/ug-baremetal-agx5e-premium/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/common/templates/linux_driver_template/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/doc_modules/Notices_%26_Disclaimers/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/doc_modules/links/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/driver-list/driver-list-all/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/driver-list/driver-list-baremetal/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/driver-list/driver-list-linux/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/driver-list/driver-list-zephyr/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/driver-list_all/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/driver-list_baremetal/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/driver-list_linux/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/driver-list_zephyr/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/ed-demo-list/demo-list/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/ed-demo-list/ed-list/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/gsrd_zephyr/ug-zgsrd-agx5e-premium/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hps/ug-tsncfg1-agx5e-premium/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/tsn/sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/soc/remote-debug/ug-remote-debug-agx7f-soc/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/m-series/hbm2e/ug-gsrd-agx7m-hbm2e/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/m-series/pcie_rp/ug-pcie_rp-agx7m-hbm2e/</loc>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/doc_modules/links/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/doc_modules/setup-console/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/doc_modules/setup-quartus/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/doc_modules/setup-toolchain/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/doc_modules/setup-yocto/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/doc_modules/rsu/links/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/doc_modules/rsu/rsu-separate-ssbl/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/doc_modules/tsn/test-tsn-app_txrx/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/doc_modules/tsn/test-tsn-timesync/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/fabric-config/ug-linux-fabric-config-s10sx-soc/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/rsu/ug-rsu-s10sx-soc/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/fpgaconf/fpgaconf/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/fpgad/fpgad/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/fpgainfo/fpgainfo/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/fpgaport/fpgaport/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/fpgasupdate/fpgasupdate/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/host_exerciser/host_exerciser/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/hssi/hssi/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/hssi_ethernet/hssiloopback/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/hssi_ethernet/hssimac/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/hssi_ethernet/hssistats/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/hssi_loopback/hssi_loopback/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/mem_tg/mem_tg/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/mmlink/mmlink/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/ofs_uio/ofs_uio/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/opae_io/opae_io/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/opaeuio/opaeuio/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/opaevfio/opaevfio/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/pac_hssi_config/pac_hssi_config/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/packager/packager/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/pci_device/pci_device/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/rsu/rsu/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/userclk/userclk/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/host-attach-util/vabtool/vabtool/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-dfl/dfl/dfl/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-dfl/dfl_afu/dfl_afu/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-dfl/dfl_emif/dfl_emif/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-dfl/dfl_fme/dfl_fme/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-dfl/dfl_n3000_nios/dfl_n3000_nios/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-dfl/dfl_pci/dfl_pci/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-dfl/intel_m10_bmc_core/intel_m10_bmc_core/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-dfl/intel_s10_phy/intel_s10_phy/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-dfl/ptp_dfl_tod/ptp_dfl_tod/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-dfl/qsfp_mem_dfl/qsfp_mem_dfl/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-dfl/s10hssi/s10hssi/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-dfl/spi_altera_dfl/spi_altera_dfl/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-dfl/uart_16550/uart_16550/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-dfl/uio_dfl/uio_dfl/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/apb_timers/apb_timers/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/clock_manager/clock_manager/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/dma/dma/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/edac/edac/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/emac/emac/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/gpio/gpio/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/hssi/hssi/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/hssi_xtile/hssi_xtile/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/hwmon/hwmon/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/i2c/i2c/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/i3c/i3c/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/interrupt_controller_GICv3/irq_gic_v3/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/msgdma/msgdma/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/nand/nand/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/ptp_tod/ptp_emb_tod/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/qsfp/qsfp/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/qspi/qspi/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/reset_manager/reset_manager/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/sd-emmc/sd-emmc/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/smmu/smmu/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/spi/spi/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/system_manager/system_manager/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/uart/uart/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/usb2_0_otg/usb_2_0_otg/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/usb3_1/usb3_1/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/watchdog_timers/watchdog_timers/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/linux-embedded/zarlink_clock_synchronizer/zarlink_clock_synchronizer/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/sw-tools-list/host-attach-tools/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/zephyr-embedded/clock_manager/clock_manager/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/zephyr-embedded/dma/dma/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/zephyr-embedded/gpio/gpio/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/zephyr-embedded/psci/psci/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/zephyr-embedded/qspi/qspi/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/zephyr-embedded/reset_manager/reset_manager/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/zephyr-embedded/seu/seu/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/zephyr-embedded/smp/smp/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/zephyr-embedded/timer/timer/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/zephyr-embedded/uart/uart/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/zephyr-embedded/watchdog/watchdog/</loc>
-         <lastmod>2024-12-17</lastmod>
+         <lastmod>2024-12-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
