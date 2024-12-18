@@ -26,7 +26,7 @@ The following are required to be able to fully exercise the Agilex 5 Premium Dev
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Intel Quartus Prime Pro Edition version 24.3. Used to recompile the hardware design. If only writing binaris is required, then the smaller Intel Quartus Prime Pro Edition Programmer version 24.3 is sufficient.
+  * Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 Used to recompile the hardware design. If only writing binaries is required, then the smaller Quartus Prime Pro Edition Programmer version 24.3 is sufficient.
 
 ### Release Contents
 
@@ -40,7 +40,7 @@ The Agilex 5 Premium Development Kit Zephyr GSRD binaries are located at [https:
 
 <h4>Sources</h4>
 
-Quartus Prime Pro 24.3 and the following software component versions are used to build the GSRD:
+Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 and the following software component versions are used to build the GSRD:
 
 | Component | Location | Branch | Commit ID/Tag |
 | :-- | :-- | :-- | :-- |
@@ -198,7 +198,7 @@ This section presents how to boot from QSPI.
 
 1\. Download prebuilt binaries and create jic file. This example uses as reference the **CLI** application, but the **hello world application** could be excercised in the same way. 
 
-<span style="color: red;">NOTE:  At the moment of creating this page, the .jic file for the prebuild applications was not included in the officila binaries release page, so in the example below we are using an alternate location in the meantime these binaries are uploaded. The temporary location of the page is https://www.rocketboards.org/foswiki/Projects/ZephyrPrebuildBinaries </span>. The .jic files were generated from the current available binaries from the official page following the instuctions at [Creating Boot Images](#Creating Boot Images) section.
+<span style="color: red;">NOTE:  At the moment of creating this page, the .jic file for the prebuild applications was not included in the official binaries release page, so in the example below we are using an alternate location in the meantime these binaries are uploaded. The temporary location of the page is https://www.rocketboards.org/foswiki/Projects/ZephyrPrebuildBinaries </span>. The .jic files were generated from the current available binaries from the official page following the instuctions at [Creating Boot Images](#Creating Boot Images) section.
 
 ```bash
 mkdir agilex5_zgsrd
@@ -240,14 +240,14 @@ NOTICE:  IOSSM: All EMIF instances within the IO96 have calibrated successfully!
 NOTICE:  DDR: Calibration success
 NOTICE:  ###DDR:init success###
 NOTICE:  QSPI boot
-NOTICE:  BL2: v2.11.0(release):9aee18305
+NOTICE:  BL2: 2.11.0(release):9aee18305
 NOTICE:  BL2: Built : 12:01:53, Nov 18 2024
 NOTICE:  BL2: Booting BL31
 NOTICE:  BL31: Boot Core = 0
 NOTICE:  BL31: CPU ID = 0
 NOTICE:  BL31: v2.11.0(release):9aee18305
 NOTICE:  BL31: Built : 12:02:02, Nov 18 2024
-*** Booting Zephyr OS build SOCFPGA_REL_24.3 ***
+*** Booting Zephyr OS build socfpga_rel_24.3 ***
 Secondary CPU core 1 (MPID:0x100) is up
 Secondary CPU core 2 (MPID:0x200) is up
 Secondary CPU core 3 (MPID:0x300) is up
@@ -358,13 +358,14 @@ echo "export PATH=`pwd`/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gn
 ```
 
 
-Enable Quartus tools to be called from command line: 
+Enable Quartus tools to be called from command line:
 
 
 ```bash
 export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
 
 
 
@@ -592,7 +593,7 @@ The output of this stage is:
 - $TOP_FOLDER/qspi_bin/qspi_image.jic
 
 
-  
+
 
 ##### Resulted Files
 
@@ -679,13 +680,14 @@ echo "export PATH=`pwd`/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gn
 ```
 
 
-Enable Quartus tools to be called from command line: 
+Enable Quartus tools to be called from command line:
 
 
 ```bash
 export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
 
 
 
@@ -711,6 +713,7 @@ make sof
 
 
 The output from the GHRD build is:
+
 - $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof
 
 
@@ -741,7 +744,8 @@ cd $TOP_FOLDER
 
 
 
-The previous instructions will produce::
+The previous instructions will produce:
+
 - $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex5/release/bl2.bin
 - $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex5/release/bl31.bin
 - $TOP_FOLDER/fiptool
