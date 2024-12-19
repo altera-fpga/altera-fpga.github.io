@@ -834,6 +834,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#test-procedure" class="md-nav__link">
+    Test Procedure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#known-issues" class="md-nav__link">
     Known Issues
   </a>
@@ -2988,6 +2995,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#test-procedure" class="md-nav__link">
+    Test Procedure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#known-issues" class="md-nav__link">
     Known Issues
   </a>
@@ -3020,7 +3034,7 @@
 
 
 <h1 id="spi-driver-for-hard-processor-system"><strong>SPI Driver for Hard Processor System</strong><a class="headerlink" href="#spi-driver-for-hard-processor-system" title="Permanent link">&para;</a></h1>
-<p>Last updated: <strong>December 18, 2024</strong> </p>
+<p>Last updated: <strong>December 19, 2024</strong> </p>
 <p><strong>Upstream Status</strong>: <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/spi">Upstreamed</a></p>
 <p><strong>Devices supported</strong>: Agilex7, Agilex 5</p>
 <h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
@@ -3045,6 +3059,45 @@ The DMA controller interface is integrated with the HPS DMA controller.</p>
 <p>Example Device tree location to configure the SPI:</p>
 <p><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi">https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi</a></p>
 <p><a class="glightbox" href="../images/spi_device_tree.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="spi_device_tree" src="../images/spi_device_tree.png" /></a></p>
+<h2 id="test-procedure"><strong>Test Procedure</strong><a class="headerlink" href="#test-procedure" title="Permanent link">&para;</a></h2>
+<p>The <strong>spidev_test</strong> tool can be used to demonstrate the SPI capabilities on Linux. This application can be made available for Linux in any of the following ways:</p>
+<ul>
+<li><strong>From GSRD build flow:</strong> Include this application during <strong>Customize Yocto</strong> stage by adding <strong>spidev-test</strong> to the list of tools in the <a href="https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/master/recipes-images/packagegroups/packagegroup-dev-tools-essential.bb">packagegroup-dev-tools-essential.bb</a> Yocto recipe.</li>
+<li><strong>From the Linux Boot example build flow:</strong> Include this application during the <strong>Build Rootfs</strong> stage by adding  <strong>spidev-test</strong> to the list of applications to be included in the file system defined with the <strong>CORE_IMAGE_EXTRA_INSTALL</strong> configuration.</li>
+</ul>
+<p>The following test procedure can be exercised using the Agilex 5 E-Series device using the DEBUG2 daughter card for the Premium development kit, in which the <strong>spidev-test</strong> application targets the built-in Microchip 25AA128 EEPROM device. The test procedure consist on enabling the writing in the EEPROM device, then writing a byte (0xC6) to a memory location (0x68D) and then reading this back.</p>
+<ol>
+<li>
+<p>Send the 'Transmits the Write Enable' (WREN) instruction code (0x06).
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>root@testsocfpga# spidev_test -D /dev/spidev1.0 -v -p &quot;\x06&quot;
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>spi mode: 0x0
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>bits per word: 8
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>max speed: 500000 Hz (500 kHz)
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>TX | 06 __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |.|
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>RX | FF __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |.|
+</code></pre></div></p>
+</li>
+<li>
+<p>Perform byte write (instruction code x02) with random value (xC6) and offset (MSB x06, LSB x8D)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>root@testsocfpga# spidev_test -D /dev/spidev1.0 -v -p &quot;\x02\x06\x8D\xC6&quot;
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>spi mode: 0x0
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>bits per word: 8
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>max speed: 500000 Hz (500 kHz)
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>TX | 02 06 8D C6 __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |....|
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>RX | FF FF FF FF __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |....|
+</code></pre></div></p>
+</li>
+<li>
+<p>Perform byte read (instruction code x03) on the previously written offset. xC6 will be received.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>root@testsocfpga# spidev_test -D /dev/spidev1.0 -v -p &quot;\x03\x06\x8D\x00&quot;
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>spi mode: 0x0
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>bits per word: 8
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>max speed: 500000 Hz (500 kHz)
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>TX | 03 06 8D 00 __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |....|
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>RX | FF FF FF C6 __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |....|
+</code></pre></div></p>
+</li>
+</ol>
 <h2 id="known-issues"><strong>Known Issues</strong><a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
 <p>None Known</p>
 <h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
@@ -3065,7 +3118,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 18, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 19, 2024</span>
       
         <br>
         Created:
