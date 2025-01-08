@@ -214,11 +214,11 @@ mkdir prebuilt
       | Boot Device | Environment Variable |
       | --------------- | --------------- | 
       | QSPI | export bootdev=qspi_boot bin_dir=qspi_bin bootimg=flash_image_jic.rpd |
-
+     
 
 4. Get the prebuilt binaries into the prebuilt folder.
 
-<span style="color: red;"> NOTE:  At the moment of creating this page, the .jic file for the prebuild applications was not included in the officila binaries release page, so in the example below we are using an alternate location in the meantime these binaries are uploaded. The temporary location of the page is https://www.rocketboards.org/foswiki/Projects/ZephyrPrebuildBinaries </span>. The .rpd files were generated from the current available binaries from the official page following the instuctions at [Creating Boot Images](#Creating Boot Images) section.
+<span style="color: red;"> NOTE:  At the moment of creating this page, the .jic file for the prebuild applications was not included in the official binaries release page, so in the example below we are using an alternate location in the meantime these binaries are uploaded. The temporary location of the page is https://www.rocketboards.org/foswiki/Projects/ZephyrPrebuildBinaries </span>. The .rpd files were generated from the current available binaries from the official page following the instuctions at [Creating Boot Images](#Creating Boot Images) section.
 ```bash
 cd $TOP_FOLDER/prebuilt
 wget https://www.rocketboards.org/foswiki/pub/Projects/ZephyrPrebuildBinaries/ZephyrPrebuildBinaries24p3.tar
@@ -332,12 +332,15 @@ echo "export PATH=`pwd`/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gn
 
 
 
-- Enable Quartus Toot lo be called from command line:
+Enable Quartus tools to be called from command line:
+
 
 ```bash
-  export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
-  export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
+
 
 
 
@@ -452,6 +455,7 @@ source ~/.zephyrproject/.venv/bin/activate
 
 
 - Install west, pull the official Zephyr repository and other Zephyr dependencies:
+
 
 
 ```bash

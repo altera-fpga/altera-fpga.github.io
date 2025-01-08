@@ -1,6 +1,6 @@
 # **SPI Driver for Hard Processor System**
 
-Last updated: **December 13, 2024** 
+Last updated: **January 08, 2025** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/spi)
 
@@ -42,6 +42,47 @@ Example Device tree location to configure the SPI:
 [https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi)
 
 ![spi_device_tree](images/spi_device_tree.png)
+
+## **Test Procedure**
+The **spidev_test** tool can be used to demonstrate the SPI capabilities on Linux. This application can be made available for Linux in any of the following ways:
+
+- **From GSRD build flow:** Include this application during **Customize Yocto** stage by adding **spidev-test** to the list of tools in the [packagegroup-dev-tools-essential.bb](https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/master/recipes-images/packagegroups/packagegroup-dev-tools-essential.bb) Yocto recipe.
+- **From the Linux Boot example build flow:** Include this application during the **Build Rootfs** stage by adding  **spidev-test** to the list of applications to be included in the file system defined with the **CORE_IMAGE_EXTRA_INSTALL** configuration.
+
+The following test procedure can be exercised using the Agilex 5 E-Series device using the DEBUG2 daughter card for the Premium development kit, in which the **spidev-test** application targets the built-in Microchip 25AA128 EEPROM device. The test procedure consist on enabling the writing in the EEPROM device, then writing a byte (0xC6) to a memory location (0x68D) and then reading this back.
+
+1. Send the 'Transmits the Write Enable' (WREN) instruction code (0x06).
+```
+root@testsocfpga# spidev_test -D /dev/spidev1.0 -v -p "\x06"
+spi mode: 0x0
+bits per word: 8
+max speed: 500000 Hz (500 kHz)
+TX | 06 __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |.|
+RX | FF __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |.|
+```
+
+2. Perform byte write (instruction code x02) with random value (xC6) and offset (MSB x06, LSB x8D)
+```
+root@testsocfpga# spidev_test -D /dev/spidev1.0 -v -p "\x02\x06\x8D\xC6"
+spi mode: 0x0
+bits per word: 8
+max speed: 500000 Hz (500 kHz)
+TX | 02 06 8D C6 __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |....|
+RX | FF FF FF FF __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |....|
+```
+
+3. Perform byte read (instruction code x03) on the previously written offset. xC6 will be received.
+```
+root@testsocfpga# spidev_test -D /dev/spidev1.0 -v -p "\x03\x06\x8D\x00"
+spi mode: 0x0
+bits per word: 8
+max speed: 500000 Hz (500 kHz)
+TX | 03 06 8D 00 __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |....|
+RX | FF FF FF C6 __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |....|
+```
+
+
+
 
 ## **Known Issues**
 

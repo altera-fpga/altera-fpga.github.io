@@ -143,11 +143,14 @@ nav:
     - 'driver-list_zephyr/index.md'
     - HPS Zephyr Drivers:
       - Clock Manager: zephyr-embedded/clock_manager/clock_manager.md
+      - Cold & Warm Reset -Power State Coordination Interface (PSCI): zephyr-embedded/psci/psci.md
       - DMA: zephyr-embedded/dma/dma.md
+      - General Purpose Timer: zephyr-embedded/timer/timer.md
       - GPIO: zephyr-embedded/gpio/gpio.md
       - Quad SPI: zephyr-embedded/qspi/qspi.md
       - Reset Manager: zephyr-embedded/reset_manager/reset_manager.md
-      - Single Error Upset (SEU): zephyr-embedded/seu/seu.md
+      - Single Event Upset (SEU): zephyr-embedded/seu/seu.md
+      - SMP: zephyr-embedded/smp/smp.md
       - UART: zephyr-embedded/uart/uart.md
       - Watchdog Timer: zephyr-embedded/watchdog/watchdog.md
   - Baremetal Drivers:
@@ -207,6 +210,7 @@ nav:
         - GSRD User Guide: embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc.md
       - M-Series HBM2e Development Kit:
         - GSRD User Guide: embedded-designs/agilex-7/m-series/hbm2e/ug-gsrd-agx7m-hbm2e.md
+        - PCIe Root Port User Guide: embedded-designs/agilex-7/m-series/pcie_rp/ug-pcie_rp-agx7m-hbm2e.md
     - Stratix® 10:
       - SX SoC Development Kit:
         - GSRD User Guide: embedded-designs/stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc.md
@@ -263,7 +267,7 @@ markdown_extensions:
 ignorefiles:
   docs/doc_modules/
   docs/embedded-designs/doc_modules/
-  
+
 env: 
 # Devices         
   AGILEX: Intel® Agilex® 7 FPGA
@@ -281,4 +285,12 @@ env:
   GSRD_DATE: 2024.11
   GSRD_TAG: QPDS24.3_REL_GSRD_PR
   GSRD_YOCTO_BRANCH: scarthgap
+  GSRD_CMAKE_VER: 3.21.1
+  GSRD_ZEPHYR_BRANCH: socfpga_rel_24.3 
+  GSRD_ZEPHYR_PRJ_BRANCH: v3.6-branch
+  GSRD_ZEPHYR_PRJ_BRANCH_S: 3.6
+
+  
+
+
 
