@@ -40,12 +40,14 @@ The following are required to be able to fully exercise the Agilex 5 Premium Dev
 
 ### Prebuilt Binaries
 
-The Agilex&trade; 5 Modular Development Kit GSRD binaries are located at [https://releases.rocketboards.org/2024.07/](https://releases.rocketboards.org/2024.05/):
+The Agilex&trade; 5 Premium Development Kit GSRD binaries are located at [https://releases.rocketboards.org/2024.11/](https://releases.rocketboards.org/2024.11/):
 
-Boot Source | Link |
-| ---------------------- | -- |
-| SD Card | [https://releases.rocketboards.org/2024.11/gsrd/agilex5_modular_gsrd/](https://releases.rocketboards.org/2024.11/gsrd/agilex5_modular_gsrd/) |
-| QSPI | [https://releases.rocketboards.org/2024.11/qspi/agilex5_modular_qspi/](https://releases.rocketboards.org/2024.11/qspi/agilex5_modular_qspi/) |
+| HPS Daughter Card | Boot Source | Link |
+| -- | ---------------------- | -- |
+| Enablement Board | SD Card | [https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd](https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd) |
+| Enablement Board | QSPI | [https://releases.rocketboards.org/2024.11/qspi/agilex5_dk_a5e065bb32aes1_qspi](https://releases.rocketboards.org/2024.11/qspi/agilex5_dk_a5e065bb32aes1_qspi) |
+| NAND Board | eMMC | [https://releases.rocketboards.org/2024.11/emmc/agilex5_dk_a5e065bb32aes1_emmc](https://releases.rocketboards.org/2024.11/emmc/agilex5_dk_a5e065bb32aes1_emmc) |
+| Test Board | SD Card | [https://releases.rocketboards.org/2024.11/debug/agilex5_dk_a5e065bb32aes1_debug](https://releases.rocketboards.org/2024.11/debug/agilex5_dk_a5e065bb32aes1_debug) |
 
 ### Component Versions
 
@@ -226,7 +228,7 @@ This section presents how to use HPS Enablement Board to boot from SD card, and 
 <hr/>
 <h5>Write SD Card</h5>
 
-1\. Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2024.05/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2024.05/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
+1\. Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
 
 2\. Write the gsrd-console-image-agilex5_devkit.wic. SD card image to the micro SD card using the included USB writer in the host computer:
 
@@ -254,7 +256,7 @@ sync
 
 4\. Download and extract the JIC image, then write it to QSPI
 ```bash
-wget https://releases.rocketboards.org/2024.05/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+wget https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
 tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
 quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 ```
@@ -375,7 +377,7 @@ Either write 1MB of zeroes at the beginning of the SD card, or remove the SD car
 
 4\. Download and extract the JIC image, then write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi/agilex_flash_image.hps.jic.tar.gz
+wget https://releases.rocketboards.org/2024.11/qspi/agilex5_dk_a5e065bb32aes1_qspi/agilex_flash_image.hps.jic.tar.gz
 tar xf agilex_flash_image.hps.jic.tar.gz
 quartus_pgm -c 1 -m jtag -o "pvi;agilex_flash_image.hps.jic"
 ```
@@ -419,7 +421,7 @@ We are writing the eMMC Flash by using U-Boot commands. We are getting to U-Boot
 
 1\. Download, and extract the eMMC image
 ```bash
-wget https://releases.rocketboards.org/2024.05/emmc/agilex5_dk_a5e065bb32aes1_emmc/sdimage.tar.gz
+wget https://releases.rocketboards.org/2024.11/emmc/agilex5_dk_a5e065bb32aes1_emmc/sdimage.tar.gz
 tar xf sdimage.tar.gz
 ```
 2\. Split the eMMC image into 1GB chunks and copy them to your TFT folder:
@@ -436,7 +438,7 @@ This will put the two chunks called `xaa` and `xab` on your TFTP folder.
 
 6\. Download the helper JIC used to write the eMMC image, extract it and write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2024.05/emmc/agilex5_dk_a5e065bb32aes1_emmc/uboot.jic.tar.gz
+wget https://releases.rocketboards.org/2024.11/emmc/agilex5_dk_a5e065bb32aes1_emmc/uboot.jic.tar.gz
 tar xf uboot.jic.tar.gz
 quartus_pgm -c 1 -m jtag -o "pvi;uboot.jic"
 ```
@@ -480,7 +482,7 @@ reset
 
 4\. Download the JIC and write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2024.05/emmc/agilex5_dk_a5e065bb32aes1_emmc/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz 
+wget https://releases.rocketboards.org/2024.11/emmc/agilex5_dk_a5e065bb32aes1_emmc/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz 
 tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz 
 quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 ```
@@ -505,7 +507,7 @@ For this scenario we are using the HPS Test Board. There is single dipswitch on 
 
 <h5>Write SD Card</h5>
 
-1\. Download SD card image from the prebuilt binaries https://releases.rocketboards.org/2024.05/debug/agilex5_dk_a5e065bb32aes1_debug/sdimage.tar.gz and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
+1\. Download SD card image from the prebuilt binaries https://releases.rocketboards.org/2024.11/debug/agilex5_dk_a5e065bb32aes1_debug/sdimage.tar.gz and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
 
 2\. Write the SD card image to the micro SD card using the included USB writer in the host computer, and `dd` utility on Linux, or  Win32DiskImager on Windows, available at [https://sourceforge.net/projects/win32diskimager](https://sourceforge.net/projects/win32diskimager). Please refer to the [Booting from SD Card](#booting-from-sd-card) section for more details about this.
 
@@ -519,7 +521,7 @@ For this scenario we are using the HPS Test Board. There is single dipswitch on 
 
 4\. Download the JIC and write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2024.05/debug/agilex5_dk_a5e065bb32aes1_debug/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz 
+wget https://releases.rocketboards.org/2024.11/debug/agilex5_dk_a5e065bb32aes1_debug/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz 
 tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz 
 quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 ```
@@ -762,8 +764,8 @@ cd qspi_boot
 2\. Get the `ubinize.cfg` file which contains the details on how to build the `root.ubi` volume, and `agilex5_devkit_flash_image_hps.pfg` which contains the instructions for Programming File Generator on how to create the .jic file:
 
 ```bash
-wget https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi/ubinize.cfg
-wget https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi/agilex5_devkit_flash_image_hps.pfg
+wget https://releases.rocketboards.org/2024.11/qspi/agilex5_dk_a5e065bb32aes1_qspi/ubinize.cfg
+wget https://releases.rocketboards.org/2024.11/qspi/agilex5_dk_a5e065bb32aes1_qspi/agilex5_devkit_flash_image_hps.pfg
 ```
 
 3\. Link to the files that are needed from building the hardware design, and yocto:
@@ -997,7 +999,7 @@ mkdir jic-helper
 
 ```bash
 cd jic-helper
-wget https://releases.rocketboards.org/2024.05/emmc/agilex5_dk_a5e065bb32aes1_emmc/uboot-only.pfg
+wget https://releases.rocketboards.org/2024.11/emmc/agilex5_dk_a5e065bb32aes1_emmc/uboot-only.pfg
 sed -i 's/directory=/hps="1" directory=/g' uboot-only.pfg
 sed -i 's/type="JIC"/type="PERIPH_JIC"/g' uboot-only.pfg
 sed -i 's/MT25QU02G/MT25QU01G/g' uboot-only.pfg

@@ -1,6 +1,6 @@
 # **Host Attach DFL FPGA Management Engine IP Driver**
 
-Last updated: **December 13, 2024** 
+Last updated: **January 08, 2025** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/fpga?h=master)
 

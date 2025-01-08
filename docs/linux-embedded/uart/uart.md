@@ -1,6 +1,6 @@
 # **UART Driver for Hard Processor System**
 
-Last updated: **December 13, 2024** 
+Last updated: **January 08, 2025** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/tty/serial/8250/8250_dw.c)
 
