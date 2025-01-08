@@ -3462,22 +3462,35 @@
 </li>
 </ul>
 <h3 id="prebuilt-binaries">Prebuilt Binaries<a class="headerlink" href="#prebuilt-binaries" title="Permanent link">&para;</a></h3>
-<p>The Agilex&trade; 5 Modular Development Kit GSRD binaries are located at <a href="https://releases.rocketboards.org/2024.05/">https://releases.rocketboards.org/2024.07/</a>:</p>
+<p>The Agilex&trade; 5 Premium Development Kit GSRD binaries are located at <a href="https://releases.rocketboards.org/2024.11/">https://releases.rocketboards.org/2024.11/</a>:</p>
 <table>
 <thead>
 <tr>
+<th>HPS Daughter Card</th>
 <th>Boot Source</th>
 <th>Link</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td>Enablement Board</td>
 <td>SD Card</td>
-<td><a href="https://releases.rocketboards.org/2024.11/gsrd/agilex5_modular_gsrd/">https://releases.rocketboards.org/2024.11/gsrd/agilex5_modular_gsrd/</a></td>
+<td><a href="https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd">https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd</a></td>
 </tr>
 <tr>
+<td>Enablement Board</td>
 <td>QSPI</td>
-<td><a href="https://releases.rocketboards.org/2024.11/qspi/agilex5_modular_qspi/">https://releases.rocketboards.org/2024.11/qspi/agilex5_modular_qspi/</a></td>
+<td><a href="https://releases.rocketboards.org/2024.11/qspi/agilex5_dk_a5e065bb32aes1_qspi">https://releases.rocketboards.org/2024.11/qspi/agilex5_dk_a5e065bb32aes1_qspi</a></td>
+</tr>
+<tr>
+<td>NAND Board</td>
+<td>eMMC</td>
+<td><a href="https://releases.rocketboards.org/2024.11/emmc/agilex5_dk_a5e065bb32aes1_emmc">https://releases.rocketboards.org/2024.11/emmc/agilex5_dk_a5e065bb32aes1_emmc</a></td>
+</tr>
+<tr>
+<td>Test Board</td>
+<td>SD Card</td>
+<td><a href="https://releases.rocketboards.org/2024.11/debug/agilex5_dk_a5e065bb32aes1_debug">https://releases.rocketboards.org/2024.11/debug/agilex5_dk_a5e065bb32aes1_debug</a></td>
 </tr>
 </tbody>
 </table>
@@ -3762,7 +3775,7 @@
 <hr/>
 <h5>Write SD Card</h5>
 
-<p>1. Download SD card image from the prebuilt binaries <a href="https://releases.rocketboards.org/2024.05/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz">https://releases.rocketboards.org/2024.05/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz</a> and extract the archive, obtaining the file <code>gsrd-console-image-agilex5_devkit.wic</code>.</p>
+<p>1. Download SD card image from the prebuilt binaries <a href="https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz">https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz</a> and extract the archive, obtaining the file <code>gsrd-console-image-agilex5_devkit.wic</code>.</p>
 <p>2. Write the gsrd-console-image-agilex5_devkit.wic. SD card image to the micro SD card using the included USB writer in the host computer:</p>
 <ul>
 <li>On Linux, use the <code>dd</code> utility as shown next:
@@ -3783,7 +3796,7 @@
 <p>2. Set MSEL dipswitch SW27 to JTAG: OFF-OFF-OFF-OFF</p>
 <p>3. Power up the board</p>
 <p>4. Download and extract the JIC image, then write it to QSPI
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.05/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>tar<span class="w"> </span>xf<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;ghrd_a5ed065bb32ae6sr0.hps.jic&quot;</span>
 </code></pre></div></p>
@@ -3875,7 +3888,7 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 <p>2. Set MSEL dipswitch SW27 to JTAG: OFF-OFF-OFF-OFF</p>
 <p>3. Power up the board</p>
 <p>4. Download and extract the JIC image, then write it to QSPI:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi/agilex_flash_image.hps.jic.tar.gz
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.11/qspi/agilex5_dk_a5e065bb32aes1_qspi/agilex_flash_image.hps.jic.tar.gz
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>tar<span class="w"> </span>xf<span class="w"> </span>agilex_flash_image.hps.jic.tar.gz
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;agilex_flash_image.hps.jic&quot;</span>
 </code></pre></div></p>
@@ -3906,7 +3919,7 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 
 <p>We are writing the eMMC Flash by using U-Boot commands. We are getting to U-Boot prompt by booting from QSPI using a JIC image which contains U-Boot, thereby not relying on what is already in eMMC.</p>
 <p>1. Download, and extract the eMMC image
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.05/emmc/agilex5_dk_a5e065bb32aes1_emmc/sdimage.tar.gz
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.11/emmc/agilex5_dk_a5e065bb32aes1_emmc/sdimage.tar.gz
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>tar<span class="w"> </span>xf<span class="w"> </span>sdimage.tar.gz
 </code></pre></div>
 2. Split the eMMC image into 1GB chunks and copy them to your TFT folder:
@@ -3918,7 +3931,7 @@ This will put the two chunks called <code>xaa</code> and <code>xab</code> on you
 <p>4. Set MSEL dipswitch SW27 to JTAG: OFF-OFF-OFF-OFF</p>
 <p>5. Power up the board</p>
 <p>6. Download the helper JIC used to write the eMMC image, extract it and write it to QSPI:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.05/emmc/agilex5_dk_a5e065bb32aes1_emmc/uboot.jic.tar.gz
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.11/emmc/agilex5_dk_a5e065bb32aes1_emmc/uboot.jic.tar.gz
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>tar<span class="w"> </span>xf<span class="w"> </span>uboot.jic.tar.gz
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;uboot.jic&quot;</span>
 </code></pre></div>
@@ -3950,7 +3963,7 @@ This will put the two chunks called <code>xaa</code> and <code>xab</code> on you
 <p>2. Set MSEL dipswitch SW27 to JTAG: OFF-OFF-OFF-OFF</p>
 <p>3. Power up the board</p>
 <p>4. Download the JIC and write it to QSPI:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.05/emmc/agilex5_dk_a5e065bb32aes1_emmc/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz<span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.11/emmc/agilex5_dk_a5e065bb32aes1_emmc/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz<span class="w"> </span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>tar<span class="w"> </span>xf<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz<span class="w"> </span>
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;ghrd_a5ed065bb32ae6sr0.hps.jic&quot;</span>
 </code></pre></div></p>
@@ -3968,7 +3981,7 @@ This will put the two chunks called <code>xaa</code> and <code>xab</code> on you
 <p>For this scenario we are using the HPS Test Board. There is single dipswitch on that board called SW1, which needs to be set to the ON position.</p>
 <h5>Write SD Card</h5>
 
-<p>1. Download SD card image from the prebuilt binaries https://releases.rocketboards.org/2024.05/debug/agilex5_dk_a5e065bb32aes1_debug/sdimage.tar.gz and extract the archive, obtaining the file <code>gsrd-console-image-agilex5_devkit.wic</code>.</p>
+<p>1. Download SD card image from the prebuilt binaries https://releases.rocketboards.org/2024.11/debug/agilex5_dk_a5e065bb32aes1_debug/sdimage.tar.gz and extract the archive, obtaining the file <code>gsrd-console-image-agilex5_devkit.wic</code>.</p>
 <p>2. Write the SD card image to the micro SD card using the included USB writer in the host computer, and <code>dd</code> utility on Linux, or  Win32DiskImager on Windows, available at <a href="https://sourceforge.net/projects/win32diskimager">https://sourceforge.net/projects/win32diskimager</a>. Please refer to the <a href="#booting-from-sd-card">Booting from SD Card</a> section for more details about this.</p>
 <h5>Write QSPI Flash</h5>
 
@@ -3976,7 +3989,7 @@ This will put the two chunks called <code>xaa</code> and <code>xab</code> on you
 <p>2. Set MSEL dipswitch SW27 to JTAG: OFF-OFF-OFF-OFF</p>
 <p>3. Power up the board</p>
 <p>4. Download the JIC and write it to QSPI:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.05/debug/agilex5_dk_a5e065bb32aes1_debug/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz<span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.11/debug/agilex5_dk_a5e065bb32aes1_debug/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz<span class="w"> </span>
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>tar<span class="w"> </span>xf<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz<span class="w"> </span>
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;ghrd_a5ed065bb32ae6sr0.hps.jic&quot;</span>
 </code></pre></div></p>
@@ -4141,8 +4154,8 @@ The above are achieved by the following instructions:</li>
 <a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="nb">cd</span><span class="w"> </span>qspi_boot
 </code></pre></div>
 <p>2. Get the <code>ubinize.cfg</code> file which contains the details on how to build the <code>root.ubi</code> volume, and <code>agilex5_devkit_flash_image_hps.pfg</code> which contains the instructions for Programming File Generator on how to create the .jic file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi/ubinize.cfg
-<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.05/qspi/agilex5_dk_a5e065bb32aes1_qspi/agilex5_devkit_flash_image_hps.pfg
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.11/qspi/agilex5_dk_a5e065bb32aes1_qspi/ubinize.cfg
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.11/qspi/agilex5_dk_a5e065bb32aes1_qspi/agilex5_devkit_flash_image_hps.pfg
 </code></pre></div>
 <p>3. Link to the files that are needed from building the hardware design, and yocto:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/console-image-minimal-agilex5_nor.ubifs<span class="w"> </span>rootfs.ubifs
@@ -4304,7 +4317,7 @@ The following diagram illustrates how the helper JIC is built, base on the GHRD 
 </code></pre></div>
 <p>2. Retrieve the .pfg file instructing the Quartus Programming File Generator on how to create the JIC file, and tweak it a little bit to make it smaller:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="nb">cd</span><span class="w"> </span>jic-helper
-<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.05/emmc/agilex5_dk_a5e065bb32aes1_emmc/uboot-only.pfg
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.11/emmc/agilex5_dk_a5e065bb32aes1_emmc/uboot-only.pfg
 <a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/directory=/hps=&quot;1&quot; directory=/g&#39;</span><span class="w"> </span>uboot-only.pfg
 <a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/type=&quot;JIC&quot;/type=&quot;PERIPH_JIC&quot;/g&#39;</span><span class="w"> </span>uboot-only.pfg
 <a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/MT25QU02G/MT25QU01G/g&#39;</span><span class="w"> </span>uboot-only.pfg
@@ -4461,7 +4474,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 11, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 8, 2025</span>
       
         <br>
         Created:
