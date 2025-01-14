@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {% set title = config.site_name %}
+  {% if page and page.meta and page.meta.title %}
+    {% set title = title ~ " - " ~ page.meta.title %}
+  {% elif page and page.title and not page.is_homepage %}
+    {% set title = title ~ " - " ~ page.title %}
+  {% endif %}
+
+
+<script defer src="https://cloud.umami.is/script.js" data-website-id="95a45ca2-f7f4-47e3-ab82-76a7057c6f0f"></script>
+ 
+{% endblock %}
