@@ -25,7 +25,7 @@ theme:
     - content.code.copy
     - navigation.indexes
     - toc.follow
-    - custom_dir: overrides
+  custom_dir: overrides
 extra_css:
   - stylesheets/extra.css
 extra_javascript:
