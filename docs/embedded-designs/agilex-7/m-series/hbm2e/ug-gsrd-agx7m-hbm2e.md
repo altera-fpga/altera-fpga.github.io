@@ -22,42 +22,42 @@ The following are required in order to be able to fully exercise the GSRD:
   - Linux - Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too 
   - Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows) 
   - Micro SD card slot or Micro SD card writer/reader 
-  - Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3
+  - Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1
 - Local Ethernet network, with DHCP server (will be used to provide IP address to the board) 
 
 The U-Boot and Linux compilation, Yocto compilation and creating the SD card image require a Linux host PC. The rest of the operations can be performed on either a Windows or Linux host PC. 
 
 ### Release Notes 
 
-The Intel FPGA HPS Embedded Software release notes can be accessed from the following link: [https://www.rocketboards.org/foswiki/Documentation/IntelFPGAHPSEmbeddedSoftwareRelease](https://www.rocketboards.org/foswiki/Documentation/IntelFPGAHPSEmbeddedSoftwareRelease)
+The Intel FPGA HPS Embedded Software release notes can be accessed from the following link: [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS24.3.1_REL_GSRD_PR](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS24.3.1_REL_GSRD_PR)
 
 ### Binary Release Contents 
 
-The binary release files are accessible at [https://releases.rocketboards.org/2024.04/gsrd/agilex7_dk_dev_agm039fes_gsrd/](https://releases.rocketboards.org/2024.11/gsrd/agilex7_dk_dev_agm039fes_gsrd/).
+The binary release files are accessible at [https://releases.rocketboards.org/2024.04/gsrd/agilex7_dk_dev_agm039fes_gsrd/](https://releases.rocketboards.org/2025.01/gsrd/agilex7_dk_dev_agm039fes_gsrd/).
 
 The source code is also included on the SD card in the Linux rootfs path `/home/root`: 
 
-| **File** | **Description** | 
+| File | Description | 
 | :-- | :-- | 
-| linux-socfpga-v6.6.37-lts-src.tar.gz | Source code for Linux kernel | 
-| u-boot-socfpga-v2024.04-src.tar.gz | Source code for U-Boot | 
-| arm-trusted-firmware-v2.11.0-src.tar.gz | Source code for Arm Trusted Firmware | 
+| linux-socfpga-v6.6.51-lts-src.tar.gz | Source code for Linux kernel | 
+| u-boot-socfpga-v2024.07-src.tar.gz | Source code for U-Boot | 
+| arm-trusted-firmware-v2.11.1-src.tar.gz | Source code for Arm Trusted Firmware | 
 
 Before downloading the hardware design please read the agreement in the link [https://www.intel.com/content/www/us/en/programmable/downloads/software/license/lic-prog_lic.html](https://www.intel.com/content/www/us/en/programmable/downloads/software/license/lic-prog_lic.html)
 
 #### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 and the following software component versions are used to build the GSRD: 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1 and the following software component versions are used to build the GSRD: 
 
-| **Component** | **Location** | **Branch** | **Commit ID/Tag** |
+| Component | Location | Branch | Commit ID/Tag |
 | :-- | :-- | :-- | :-- |
-| GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | QPDS24.3_REL_GSRD_PR |
-| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.37-lts | QPDS24.3_REL_GSRD_PR |
-| Arm Trusted Firmware | [https://github.com/arm-trusted-firmware](https://github.com/arm-trusted-firmware) | socfpga_v2.11.0 | QPDS24.3_REL_GSRD_PR |
-| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.04 | QPDS24.3_REL_GSRD_PR |
-| Yocto Project | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest | 
-| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | scarthgap | QPDS24.3_REL_GSRD_PR |
+| GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | QPDS24.3.1_REL_GSRD_PR |
+| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.51-lts | QPDS24.3.1_REL_GSRD_PR |
+| Arm Trusted Firmware | [https://github.com/arm-trusted-firmware](https://github.com/arm-trusted-firmware) | socfpga_v2.11.1 | QPDS24.3.1_REL_GSRD_PR |
+| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.07 | QPDS24.3.1_REL_GSRD_PR |
+| Yocto Project | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | styhead | latest | 
+| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | styhead | latest |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | styhead | QPDS24.3.1_REL_GSRD_PR |
 
 ## Development Kit 
 
@@ -80,7 +80,7 @@ Refer to the following for more information about the Development Kit:
 - HPS UART Console: from vertical mini USB connector on the HPS daughtercard to host PC 
 - JTAG: from micro USB cable on edge of the board to host PC 
 
-2\. Download, extract and write to SD card the following SD card image: [https://releases.rocketboards.org/2024.11/gsrd/agilex7_dk_dev_agm039fes_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2024.11/gsrd/agilex7_dk_dev_agm039fes_gsrd/sdimage.tar.gz). Then insert SD card into the HPS OOBE Daughtercard socket. 
+2\. Download, extract and write to SD card the following SD card image: [https://releases.rocketboards.org/2025.01/gsrd/agilex7_dk_dev_agm039fes_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2025.01/gsrd/agilex7_dk_dev_agm039fes_gsrd/sdimage.tar.gz). Then insert SD card into the HPS OOBE Daughtercard socket. 
 
 3\. Configure board to the default settings, making sure set S24 dipswitch to OFF-OFF-OFF-ON, to select MSEL=JTAG, so that board does not configure on power up. 
 
@@ -89,7 +89,7 @@ Refer to the following for more information about the Development Kit:
 5\. Download the HPS RBF file and configure the HPS RBF file over JTAG: 
 
 ```bash 
-wget https://releases.rocketboards.org/2024.11/gsrd/agilex7_dk_dev_agm039fes_gsrd/ghrd.hps.rbf 
+wget https://releases.rocketboards.org/2025.01/gsrd/agilex7_dk_dev_agm039fes_gsrd/ghrd.hps.rbf 
 quartus_pgm -c 1 -m jtag -o "p;ghrd_agmf039r47a1e2vr0.hps.rbf" 
 ```
 
@@ -201,7 +201,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -218,18 +218,11 @@ Use the following commands to build the hardware design:
 ```bash 
 cd $TOP_FOLDER 
 rm -rf ghrd-socfpga agilex_soc_devkit_ghrd 
-git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
+git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
 mv ghrd-socfpga/agilex_soc_devkit_ghrd . 
 rm -rf ghrd-socfpga 
 cd agilex_soc_devkit_ghrd 
-# configure GHRD for the board 
-sed -i 's,^\(BOARD_TYPE[ \t]*[:?]=\).*,\1 devkit_fp82,g' Makefile 
-sed -i 's,^\(set[ \t]CONFIG_SCHEME[ \t]\).*,\1"AVST X8",g' design_config.tcl 
-sed -i 's,^\(set[ \t]BOARD[ \t]\).*,\1"devkit_fp82",g' design_config.tcl 
-sed -i 's,^\(BOARD_PWRMGT[ \t]*[:?]=\).*,\1 linear,g' Makefile
-make scrub_clean_all 
-make generate_from_tcl 
-make all 
+make BOARD_TYPE=devkit_fp82 CONFIG_SCHEME="AVST\ X8" BOARD_PWRMGT=linear ENABLE_HPS_EMIF_ECC=0 ENABLE_WATCHDOG_RST=0 HPS_F2S_IRQ_EN=0 HPS_STM_EN=0 generate_from_tcl all
 cd .. 
 ```
 
@@ -293,9 +286,9 @@ Then clone the Yocto script and prepare the build:
 
 ```bash 
 cd $TOP_FOLDER 
-rm -rf gsrd_socfpga 
-git clone -b QPDS24.3_REL_GSRD_PR  https://github.com/altera-opensource/gsrd_socfpga 
-cd gsrd_socfpga 
+rm -rf gsrd-socfpga 
+git clone -b QPDS24.3.1_REL_GSRD_PR  https://github.com/altera-opensource/gsrd-socfpga 
+cd gsrd-socfpga 
 . agilex7_dk_dev_agm039fes-gsrd-build.sh 
 build_setup 
 ```
@@ -366,9 +359,9 @@ Once the build is completed successfully, you will see the following two folders
 - `agilex7_dk_dev_agm039fes-gsrd-rootfs`: area used by OpenEmbedded build system for builds. Description of build directory structure - https://docs.yoctoproject.org/ref-manual/structure.html#the-build-directory-build 
 - `agilex7_dk_dev_agm039fes-gsrd-images`: the build script copies here relevant files built by Yocto from the `agilex7_dk_dev_agf027f1es-gsrd-rootfs/tmp/deploy/images/agilex7_dk_dev_agm039fes/` folder, but also other relevant files. 
 
-The two most relevant files created in the `$TOP_FOLDER/gsrd_socfpga/agilex7_dk_dev_agm039fes-gsrd-images` folder are: 
+The two most relevant files created in the `$TOP_FOLDER/gsrd-socfpga/agilex7_dk_dev_agm039fes-gsrd-images` folder are: 
 
-| **File** | **Description** | 
+| File | Description | 
 | :-- | :-- | 
 | sdimage.tar.gz | SD Card Image, to be written on SD card | 
 | u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex | U-Boot SPL Hex file, to be used for generating the bootable SOF file | 
@@ -383,7 +376,7 @@ cd $TOP_FOLDER
 rm -f *rbf* 
 quartus_pfg -c agilex_soc_devkit_ghrd/output_files/ghrd_agmf039r47a1e2vr0.sof \ 
  ghrd_agmf039r47a1e2vr0.rbf \ 
- -o hps_path=gsrd_socfpga/agilex7_dk_dev_agm039fes-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex \ 
+ -o hps_path=gsrd-socfpga/agilex7_dk_dev_agm039fes-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex \ 
  -o hps=1 
 ```
 
@@ -400,7 +393,7 @@ This section presents the details on how the GSRD can be configured automaticall
 
 The required steps are: 
 
-1\. Create the PFG file (optional, PFG file already provided here: [ghrd_agmf039r47a1e2vr0.pfg](https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/m-series/hbm2e/collateral/ghrd_agmf039r47a1e2vr0.pfg)) 
+1\. Create the PFG file (optional, PFG file already provided here: [ghrd_agmf039r47a1e2vr0.pfg](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/m-series/hbm2e/collateral/ghrd_agmf039r47a1e2vr0.pfg)) 
 2\. Create the POF file, using the above PFG file 
 3\. Create the CDF file, used by Quartus Programmer to know how to write the POF file 
 4\. Write the the POF file to MAX10 board controller flash, using the Quartus Programmer 
@@ -412,7 +405,7 @@ The required steps are:
 
 The PFG file contains information needed by the Quartus Programming File Generator to create the POF file to be stored on the QSPI flash attached to the MAX 10 board controller. The MAX 10 board controller reads the information from that QSPI file and configures the FPGA device over AVST. 
 
-This section provides the details on how the PFG file is created. A copy of the file is also attached to this page: [ghrd_agmf039r47a1e2vr0.pfg](https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/m-series/hbm2e/collateral/ghrd_agmf039r47a1e2vr0.pfg). 
+This section provides the details on how the PFG file is created. A copy of the file is also attached to this page: [ghrd_agmf039r47a1e2vr0.pfg](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/m-series/hbm2e/collateral/ghrd_agmf039r47a1e2vr0.pfg). 
 
 The steps required to create the file are: 
 
@@ -488,7 +481,7 @@ The POF file is created by using the PFG file and running the following command:
 
 ```bash 
 cd $TOP_FOLDER 
-wget https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/m-series/hbm2e/collateral/ghrd_agmf039r47a1e2vr0.pfg
+wget https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/m-series/hbm2e/collateral/ghrd_agmf039r47a1e2vr0.pfg
 quartus_pfg -c ghrd_agmf039r47a1e2vr0.pfg 
 ```
 
@@ -498,7 +491,7 @@ The following file is created:
 
 ### Create CDF Programmer Configuration File 
 
-The provided [ghrd_agmf039r47a1e2vr0.cdf](https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/m-series/hbm2e/collateral/ghrd_agmf039r47a1e2vr0.cdf)) file contains the configuration required for the Quartus Programmer to be able to write the POF file to the QSPI attached to the MAX 10 Board Controller. 
+The provided [ghrd_agmf039r47a1e2vr0.cdf](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/m-series/hbm2e/collateral/ghrd_agmf039r47a1e2vr0.cdf)) file contains the configuration required for the Quartus Programmer to be able to write the POF file to the QSPI attached to the MAX 10 Board Controller. 
 
 This section provides instructions on how this CDF file was created, for reference purposes. 
 
@@ -586,7 +579,7 @@ Browse to "ghrd_agmf039r47a1e2vr0.pof" and click **Open**.
 
 ```bash 
 cd $TOP_FOLDER 
-wget https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/m-series/hbm2e/collateral/ghrd_agmf039r47a1e2vr0.cdf
+wget https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/m-series/hbm2e/collateral/ghrd_agmf039r47a1e2vr0.cdf
 quartus_pgm ghrd_agmf039r47a1e2vr0.cdf 
 ```
 

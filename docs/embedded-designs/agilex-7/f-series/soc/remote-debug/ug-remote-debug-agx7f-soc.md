@@ -65,7 +65,7 @@ The following are required:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3
+  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -102,7 +102,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -118,7 +118,7 @@ The hardware design is based on the GSRD, just that the JOP component is added, 
 ```bash
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga agilex_soc_devkit_ghrd
-git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/agilex_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd agilex_soc_devkit_ghrd
@@ -215,9 +215,9 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 
 ```bash
 cd $TOP_FOLDER
-rm -rf gsrd_socfpga
-git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/gsrd_socfpga
-cd gsrd_socfpga
+rm -rf gsrd-socfpga
+git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
+cd gsrd-socfpga
 . agilex7_dk_si_agf014eb-gsrd-build.sh
 build_setup
 ```
@@ -250,7 +250,7 @@ This can be done with the provided patch file:
 
 ```bash
 rm -f agilex7-dts-add-jop.patch
-wget https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/soc/remote-debug/collateral/agilex7-dts-add-jop.patch
+wget https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/remote-debug/collateral/agilex7-dts-add-jop.patch
 pushd meta-intel-fpga-refdes
 patch -p1 < ../agilex7-dts-add-jop.patch
 popd
@@ -305,7 +305,7 @@ cd $TOP_FOLDER
 rm -f *jic* *rbf*
 quartus_pfg -c agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof \
   ghrd_agfb014r24b2e2v.jic \
-  -o hps_path=gsrd_socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+  -o hps_path=gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex \
   -o device=MT25QU02G \
   -o flash_loader=AGFB014R24B2E2V \
   -o mode=ASX4 \

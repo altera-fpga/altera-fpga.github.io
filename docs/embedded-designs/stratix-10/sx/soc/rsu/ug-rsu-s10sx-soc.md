@@ -271,7 +271,7 @@ CONFIG_DISTRO_DEFAULTS=n
 CONFIG_HUSH_PARSER=y
 CONFIG_SYS_PROMPT_HUSH_PS2="> "
 CONFIG_USE_BOOTCOMMAND=y
-CONFIG_BOOTCOMMAND="bridge enable;run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot"
+CONFIG_BOOTCOMMAND="bridge enable; setenv bootfile Image; run mmcload; run linux_qspi_enable;run rsu_status;run mmcboot"
 CONFIG_CMD_FAT=y
 CONFIG_CMD_FS_GENERIC=y
 CONFIG_DOS_PARTITION=y
@@ -407,7 +407,7 @@ Here are the complete instructions on how to create the initial flash image, wit
 
 12. Click the second .sof file and add the same FSBL file to it. The **Input Files** tab now looks like shown below.
 
-    ![](images/jic-4.png) 
+     ![](images/jic-4.png) 
 
 13. Click the **Configuration Device** tab. Note that the tab is only enabled once at least one input file was added in the **Input Files** tab. 
 
@@ -415,46 +415,50 @@ Here are the complete instructions on how to create the initial flash image, wit
 
 15. In the **Configuration Device** tab, click **Add Device**, select the **MT25QU02G** in the dialog box window, then click **OK**. Once that is done, the window displays the default initial partitioning for RSU.
 
-    ![](images/jic-5.png) 
+     ![](images/jic-5.png) 
 
 16. Select the **FACTORY_IMAGE** entry, and click the **Edit** button. The **Edit Partition** window pops up. Select the **Input file** as **Bitstream_1 (ghrd_1sx280hu2f50e1vgas)**. Change **Address Mode** to **Block** because you want to make sure you are leaving enough space for the biggest factory image you anticipate using. Set the **End Address** to **0x0090FFFF** in order to reserve 8MB for the factory image. This end address was calculated by adding 8MB to the end of the **BOOT_INFO** partition. Click **OK**. 
 
-    ![](images/jic-6.png) 
+     **Note:** There is a requirement that the starting address of the **SPT0** partition is aligned to 64KB. In order to warranty this, the **End Address** of the **FACTORY_IMAGE** must finish at an address ending with **0xXXXXFFFF**.
 
-    **Note**: The Page property for **FACTORY_IMAGE** partition must always be set to 0. This means that the **FACTORY_IMAGE** will be trieed after all the application images failed. 
+     ![](images/jic-6.png) 
+
+     **Note**: The Page property for **FACTORY_IMAGE** partition must always be set to 0. This means that the **FACTORY_IMAGE** will be trieed after all the application images failed. 
 
 17. Select the **MT25QU02G** flash device in the Configuration Device tab by clicking it, then click the **Add Partition** button to open the **Add Partition** window. Leave the **Name** as **P1** and select the **Input file** as **Bitstream_2(ghrd_1sx280hu2f50e1vgas.sof)**. This becomes the initial application image. Select the **Address Mode** as **Block** and allocate 16MB of data by setting **Start Address** = **0x01000000** and **End Address** = **0x01FFFFFF**. Since this is the first partition defined, this becomes the initial application image to be loaded and has the highest priority of all application images that may be defined later.
 
-    The actual priority in which an application in a partition is loaded is defined based on the order in which the partition is defined when creating the initial flash image as shown above in this step.
-    The Programming File Generator issues an error if there are multiple partitions with the same page number, or if there are any “gaps” as in having a Page=1 then a Page=3, without a Page=2 for example.
+     The actual priority in which an application in a partition is loaded is defined based on the order in which the partition is defined when creating the initial flash image as shown above in this step.
+     The Programming File Generator issues an error if there are multiple partitions with the same page number, or if there are any “gaps” as in having a Page=1 then a Page=3, without a Page=2 for example.
 
-    Only up to seven partitions can contain application images at initial flash image creation time. This limitation does not have adverse effects, as typically at creation time it is expected to have just a factory image and one application image. 
+     Only up to seven partitions can contain application images at initial flash image creation time. This limitation does not have adverse effects, as typically at creation time it is expected to have just a factory image and one application image. 
 
 18. Create two more partitions **P2** and **P3** using the same procedure as for the previous step, except set the **Input file** to **None**, leave **Page** unchanged (it does not matter for empty partitions) and set the start and end addresses as follows.
 
-    * **P2**: **Start Address** = **0x02000000** and **End Address** = **0x02FFFFFF**. 
-    * **P3**: **Start Address** = **0x03000000** and **End Address** = **0x03FFFFFF**. 
+     * **P2**: **Start Address** = **0x02000000** and **End Address** = **0x02FFFFFF**. <br>
+     * **P3**: **Start Address** = **0x03000000** and **End Address** = **0x03FFFFFF**. 
+
+    **Note:** Make sure that all the partitions created for the applications fit in the appropriate QSPI partition or partitions defined in device corresponding device tree in U-Boot and Linux. In the case of Linux, also make sure that the QSPI partition or partitions defined in the device tree to store the applications partitions are also defined in the **qspi.rc** file in **LIBRSU**.
 
 19. Click **Select** to select the **Flash loader**. The flash loader becomes part of the JIC file and is used by the Flash Programmer tool. Select the desired **Device family** and **Device name** as shown below.
 
-    ![](images/jic-7.png) 
+     ![](images/jic-7.png) 
 
-    The Configuration Device tab now looks like as shown below.
+     The Configuration Device tab now looks like as shown below.
 
-    ![](images/jic-8.png) 
+     ![](images/jic-8.png) 
 
 20. You require to change the size of the SPTs and CPBs to 64 KB hence the HPS software uses now this size. This is done by selecting any of the components and pressing the **Edit** button. Expect to see a menu where you can select the option desired. Select the 64 KB size. You only need to update the size of one of these components and can expect to see the rest updated automatically with the same value chosen. 
 
-    ![](images/S10-set-SPT-CPB-size.jpg) 
+     ![](images/S10-set-SPT-CPB-size.jpg) 
 
 21. Click **File > Save As ..** and save the file as **$TOP_FOLDER/initial_image.pfg**. This file can be useful later, if you wanted to re-generate the initial image by using the command.
 
-    ```bash 
-    cd $TOP_FOLDER 
-    quartus_pfg -c initial_image.pfg
-    ```
+     ```bash 
+     cd $TOP_FOLDER 
+     quartus_pfg -c initial_image.pfg
+     ```
 
-    **Note**: The created pfg file is actually an XML file which can be manually edited to replace the absolute file paths with relative file paths. You cannot directly edit the .pfg file for other purposes. The .pfg file can be opened from Programming File Generator, if changes are needed. 
+     **Note**: The created pfg file is actually an XML file which can be manually edited to replace the absolute file paths with relative file paths. You cannot directly edit the .pfg file for other purposes. The .pfg file can be opened from Programming File Generator, if changes are needed. 
 
 22. Click the **Generate** button to generate the initial flash image as **$TOP_FOLDER/initial_image.jic** and the map file as **$TOP_FOLDER/initial_image_jic.map**. A dialog box opens indicating the files were generated successfully. 
 
@@ -796,7 +800,7 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 1. Power cycle the board and press any key when prompted, to get to the U-Boot command prompt.
 
     ```bash 
-    U-Boot SPL 2024.04-35102-g135e53726d-dirty (Nov 23 2024 - 13:23:54 -0600)
+    U-Boot SPL 2024.04-35102-g135e53726d-dirty (Jan 28 2025 - 13:23:54 -0600)
     Reset state: Cold
     MPU         1200000 kHz
     L3 main     400000 kHz
@@ -814,11 +818,10 @@ This section demonstrates how to use U-Boot to perform the following basic opera
     ## Checking hash(es) for Image atf ... crc32+ OK
     ## Checking hash(es) for Image uboot ... crc32+ OK
     ## Checking hash(es) for Image fdt-0 ... crc32+ OK
-    NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
-    NOTICE:  BL31: Built : 13:23:25, Nov 23 2024
+    NOTICE:  BL31: v2.11.0(release): QPDS24.3_REL_GSRD_PR
+    NOTICE:  BL31: Built : 13:23:25, Jan 28 2025
 
-
-    U-Boot 2024.04-35102-g135e53726d-dirty (Nov 23 2024 - 13:23:54 -0600)socfpga_stratix10
+    U-Boot 2024.04-35102-g135e53726d-dirty (Jan 28 2025 - 13:23:54 -0600)socfpga_stratix10
     
     CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
     Model: SoCFPGA Stratix 10 SoCDK

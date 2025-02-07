@@ -476,8 +476,10 @@ pip install sphinx-rtd-theme sphinx
 wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/zephyr-sdk-0.16.4_linux-x86_64.tar.xz
 wget -O - https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/sha256.sum | shasum --check --ignore-missing
 wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/zephyr-sdk-0.16.1_linux-x86_64.tar.xz
-wget -O - https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/sha256.sum | shasum --check --ignore-missing 
-tar xf zephyr-sdk*.tar.xz -C ~/
+wget -O - https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/sha256.sum | shasum --check --ignore-missing
+for file in zephyr-sdk*.tar.xz; do
+  tar xf "$file" -C ~/
+done
 rm zephyr-sdk*.tar.xz
 $HOME/zephyr-sdk*/setup.sh -t aarch64-zephyr-elf -h -c
 ```
@@ -797,8 +799,10 @@ pip install sphinx-rtd-theme sphinx
 wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/zephyr-sdk-0.16.4_linux-x86_64.tar.xz
 wget -O - https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/sha256.sum | shasum --check --ignore-missing
 wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/zephyr-sdk-0.16.1_linux-x86_64.tar.xz
-wget -O - https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/sha256.sum | shasum --check --ignore-missing 
-tar xf zephyr-sdk*.tar.xz -C ~/
+wget -O - https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/sha256.sum | shasum --check --ignore-missing
+for file in zephyr-sdk*.tar.xz; do
+  tar xf "$file" -C ~/
+done
 rm zephyr-sdk*.tar.xz
 $HOME/zephyr-sdk*/setup.sh -t aarch64-zephyr-elf -h -c
 ```
@@ -809,7 +813,7 @@ $HOME/zephyr-sdk*/setup.sh -t aarch64-zephyr-elf -h -c
 ```bash
 cd $TOP_FOLDER/zephyrproject
 rm -rf zephyr
-git clone -b QPDS24.3_REL_GSRD_PR  --single-branch https://github.com/altera-opensource/zephyr-socfpga zephyr
+git clone -b QPDS24.3_REL_GSRD_PR --single-branch https://github.com/altera-opensource/zephyr-socfpga zephyr
 west update
 west zephyr-export
 ```

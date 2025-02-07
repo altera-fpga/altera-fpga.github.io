@@ -488,7 +488,9 @@ wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/zeph
 wget -O - https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/sha256.sum | shasum --check --ignore-missing
 wget https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/zephyr-sdk-0.16.1_linux-x86_64.tar.xz
 wget -O - https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/sha256.sum | shasum --check --ignore-missing 
-tar xf zephyr-sdk*.tar.xz -C ~/
+for file in zephyr-sdk*.tar.xz; do
+  tar xf "$file" -C ~/
+done
 rm zephyr-sdk*.tar.xz
 $HOME/zephyr-sdk*/setup.sh -t aarch64-zephyr-elf -h -c
 ```
@@ -1356,7 +1358,7 @@ source ~/.zephyrproject/.venv/bin/activate
 
 ```bash
 cd $TOP_FOLDER/zephyrproject/zephyr
-git checkout QPDS24.3_REL_GSRD_PR
+git checkout QPDS24.3_REL_GSRD_PR 
 git branch nosmp_$cputype
 git checkout nosmp_$cputype
 ```

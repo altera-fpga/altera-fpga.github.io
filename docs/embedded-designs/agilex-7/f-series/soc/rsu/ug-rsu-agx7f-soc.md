@@ -25,14 +25,14 @@ Refer to [Agilex™ 7 Hard Processor System Remote System Update User Guide](htt
 
 ## Component Versions 
 
-This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 and the following component versions.
+This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1 and the following component versions.
 
 | Repository | Branch/Tag |
 | :-- | :-- |
-| [ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | QPDS24.3_REL_GSRD_PR |
-| [linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.37-lts/QPDS24.3_REL_GSRD_PR |
-| [arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.11.0/QPDS24.3_REL_GSRD_PR |
-| [u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.04/QPDS24.3_REL_GSRD_PR |
+| [ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | QPDS24.3.1_REL_GSRD_PR |
+| [linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.51-lts/QPDS24.3.1_REL_GSRD_PR |
+| [arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.11.1/QPDS24.3.1_REL_GSRD_PR |
+| [u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.07/QPDS24.3.1_REL_GSRD_PR |
 | [intel-rsu](https://github.com/altera-opensource/intel-rsu) | master |
 
 For RSU example previous 24.2 version, please refer to [Agilex 7 SoC HPS Remote System Update](https://www.rocketboards.org/foswiki/Projects/AgilexHPSRemoteSystemUpdate).
@@ -43,7 +43,7 @@ The following items are required to run the RSU example.
 
 - Host PC running Ubuntu 22.04 LTS (other Linux versions may work too) 
  - Minimum 48 GB of RAM, required for compiling the hardware designs 
- - Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3  for compiling the hardware projects, generating the flash images and writing to flash 
+ - Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1  for compiling the hardware projects, generating the flash images and writing to flash 
 - Access to Internet to download the hardware project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. 
 - [Agilex 7 Transceiver-SoC Development kit P-Tile E-Tile Production Linear power solution(DK-SI-AGF014EB)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agf014.html)  for running the example. 
 
@@ -93,7 +93,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -117,7 +117,7 @@ The commands to create and compile the projects are listed below.
 cd $TOP_FOLDER 
 # compile hardware designs: 0-factory, 1,2-applications, 3-factory update 
 rm -rf hw && mkdir hw && cd hw 
-git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
+git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
 mv ghrd-socfpga/agilex_soc_devkit_ghrd . 
 rm -rf ghrd-socfpga 
 # boot from FPGA 
@@ -173,7 +173,7 @@ rm -rf arm-trusted-firmware
 git clone https://github.com/altera-opensource/arm-trusted-firmware 
 cd arm-trusted-firmware 
 # checkout the branch used for this document, comment out to use default 
-# git checkout -b test -t origin/socfpga_v2.11.0 
+git checkout -b test -t origin/socfpga_v2.11.1 
 make bl31 PLAT=agilex DEPRECATED=1 
 cd .. 
 ```
@@ -196,11 +196,9 @@ rm -rf u-boot-socfpga
 git clone https://github.com/altera-opensource/u-boot-socfpga
 cd u-boot-socfpga
 # comment out next line to use the latest default branch 
-# git checkout -b test -t origin/socfpga_v2024.04 
+git checkout -b test -t origin/socfpga_v2024.07 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
-# use 'Image' for kernel image instead of 'kernel.itb' 
-sed -i 's/kernel\.itb/Image/g' arch/arm/Kconfig
 # only boot from SD, do not try QSPI and NAND 
 sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&mmc;/g' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
 # disable NAND in the device tree 
@@ -211,6 +209,8 @@ sed -i '/images/,/binman/{/binman/!d}' arch/arm/dts/socfpga_agilex_socdk-u-boot.
 ln -s $TOP_FOLDER/arm-trusted-firmware/build/agilex/release/bl31.bin .
 # Create configuration custom file.
 cat << EOF > config-fragment-agilex
+# Use 'Image' for kernel image instead of 'kernel.itb'
+CONFIG_BOOTFILE="Image"
 # - Disable NAND/UBI related settings from defconfig.
 CONFIG_NAND_BOOT=n
 CONFIG_SPL_NAND_SUPPORT=n
@@ -232,7 +232,7 @@ CONFIG_DISTRO_DEFAULTS=n
 CONFIG_HUSH_PARSER=y
 CONFIG_SYS_PROMPT_HUSH_PS2="> "
 CONFIG_USE_BOOTCOMMAND=y
-CONFIG_BOOTCOMMAND="bridge enable;run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot"
+CONFIG_BOOTCOMMAND="bridge enable; setenv bootfile Image; run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot"
 CONFIG_CMD_FAT=y
 CONFIG_CMD_FS_GENERIC=y
 CONFIG_DOS_PARTITION=y
@@ -271,7 +271,7 @@ rm -rf linux-socfpga
 git clone https://github.com/altera-opensource/linux-socfpga
 cd linux-socfpga
 # checkout the branch used for this document, comment out to use default
-# git checkout -b test -t origin/socfpga-6.6.37-lts 
+git checkout -b test -t origin/socfpga-6.6.51-lts 
 # configure the RSU driver to be built into the kernel
 make clean && make mrproper
 make defconfig
@@ -349,7 +349,7 @@ cat << EOF > initial_image.pfg
 EOF
 
 # Create Initial Image for previous release (in case needed to test  combined application)
-~/intelFPGA_pro/24.2/quartus/bin/quartus_pfg -c initial_image.pfg
+~/intelFPGA_pro/24.3/quartus/bin/quartus_pfg -c initial_image.pfg
 mv initial_image.jic initial_image_prev.jic
 mv initial_image_jic.rpd initial_image_jic_prev.rpd
 mv initial_image_jic.map initial_image_jic_prev.map
@@ -398,7 +398,7 @@ Here are the complete instructions on how to manually create the initial flash i
 
 12. Click the second .sof file and add the same FSBL file to it. The **Input Files** tab now looks like shown below.
 
-    ![](images/jic-4.png) 
+     ![](images/jic-4.png) 
 
 13. Click the **Configuration Device** tab. Note that the tab is only enabled once at least one input file was added in the **Input Files** tab. 
 
@@ -406,46 +406,50 @@ Here are the complete instructions on how to manually create the initial flash i
 
 15. In the **Configuration Device** tab, click **Add Device**, select the **MT25QU02G** in the dialog box window, then click **OK**. Once that is done, the window displays the default initial partitioning for RSU.
 
-    ![](images/jic-5.png) 
+     ![](images/jic-5.png) 
 
 16. Select the **FACTORY_IMAGE** entry, and click the **Edit** button. The **Edit Partition** window pops up. Select the **Input file** as **Bitstream_1 (ghrd_agfb014r24b2e2v.sof)**. Change **Address Mode** to **Block** because you want to make sure you are leaving enough space for the biggest factory image you anticipate using. Set the **End Address** to **0x0090FFFF** in order to reserve 7MB for the factory image. This end address was calculated by adding 8MB to the end of the **BOOT_INFO** partition. Click **OK**. 
 
-    ![](images/jic-6.png) 
+     **Note:** There is a requirement that the starting address of the **SPT0** partition is aligned to 64KB. In order to warranty this, the **End Address** of the **FACTORY_IMAGE** must finish at an address ending with **0xXXXXFFFF**.
 
-    **Note**: The Page property for **FACTORY_IMAGE** partition must always be set to 0. This means that the **FACTORY_IMAGE** will be trieed after all the application images failed. 
+     ![](images/jic-6.png) 
+
+     **Note**: The Page property for **FACTORY_IMAGE** partition must always be set to 0. This means that the **FACTORY_IMAGE** will be trieed after all the application images failed. 
 
 17. Select the **MT25QU02G** flash device in the Configuration Device tab by clicking it, then click the **Add Partition** button to open the **Add Partition** window. Leave the **Name** as **P1** and select the **Input file** as **Bitstream_2(ghrd_agfb014r24b2e2v.sof)**. This becomes the initial application image. Select the **Page** as **1**. Select the **Address Mode** as **Block** and allocate 16MB of data by setting **Start Address** = **0x01000000** and **End Address** = **0x01FFFFFF**. Since this is the first partition defined, this becomes the initial application image to be loaded and has the highest priority of all application images that may be defined later.
 
-    The actual priority in which an application in a partition is loaded is defined based on the order in which the partition is defined when creating the initial flash image as shown above in this step.
-    The Programming File Generator issues an error if there are multiple partitions with the same page number, or if there are any “gaps” as in having a Page=1 then a Page=3, without a Page=2 for example.
+     The actual priority in which an application in a partition is loaded is defined based on the order in which the partition is defined when creating the initial flash image as shown above in this step.
+     The Programming File Generator issues an error if there are multiple partitions with the same page number, or if there are any “gaps” as in having a Page=1 then a Page=3, without a Page=2 for example.
 
-    Only up to seven partitions can contain application images at initial flash image creation time. This limitation does not have adverse effects, as typically at creation time it is expected to have just a factory image and one application image
+     Only up to seven partitions can contain application images at initial flash image creation time. This limitation does not have adverse effects, as typically at creation time it is expected to have just a factory image and one application image
 
 18. Create two more partitions **P2** and **P3** using the same procedure as for the previous step, except set the **Input file** to **None**, leave **Page** unchanged (it does not matter for empty partitions) and set the start and end addresses as follows. 
 
-    * **P2**: **Start Address** = **0x02000000** and **End Address** = **0x02FFFFFF**. 
-    * **P3**: **Start Address** = **0x03000000** and **End Address** = **0x03FFFFFF**. 
+     * **P2**: **Start Address** = **0x02000000** and **End Address** = **0x02FFFFFF**. <br>
+     * **P3**: **Start Address** = **0x03000000** and **End Address** = **0x03FFFFFF**. 
+
+    **Note:** Make sure that all the partitions created for the applications fit in the appropriate QSPI partition or partitions defined in device corresponding device tree in U-Boot and Linux. In the case of Linux, also make sure that the QSPI partition or partitions defined in the device tree to store the applications partitions are also defined in the **qspi.rc** file in **LIBRSU**.
 
 19. Click **Select** to select the **Flash loader**. The flash loader becomes part of the JIC file and is used by the Flash Programmer tool. Select the desired **Device family** and **Device name** as shown below.
 
-    ![](images/jic-7.png) 
+     ![](images/jic-7.png) 
 
-    The Configuration Device tab now looks like as shown below.
+     The Configuration Device tab now looks like as shown below.
 
-    ![](images/jic-8.png) 
+     ![](images/jic-8.png) 
 
 20. You require to change the size of the SPTs and CPBs to 64 KB hence the HPS software uses now this size. This is done by selecting any of the components and pressing the **Edit** button. Expect to see a menu where you can select the option desired. Select the 64 KB size. You only need to update the size of one of these components and can expect to see the rest updated automatically with the same value chosen. 
 
-    ![](images/Agilex7-STP-CPB-setSize.jpg) 
+     ![](images/Agilex7-STP-CPB-setSize.jpg) 
 
 21. Click **File > Save As ..** and save the file as **$TOP_FOLDER/initial_image.pfg**. This file can be useful later, if you wanted to re-generate the initial image by using the command.
 
-    ```bash 
-    cd $TOP_FOLDER
-    quartus_pfg -c initial_image.pfg
-    ```
+     ```bash 
+     cd $TOP_FOLDER
+     quartus_pfg -c initial_image.pfg
+     ```
 
-    **Note**: The created pfg file is actually an XML file which can be manually edited to replace the absolute file paths with relative file paths. You cannot directly edit the .pfg file for other purposes. The .pfg file can be opened from Programming File Generator, if changes are needed. 
+     **Note**: The created pfg file is actually an XML file which can be manually edited to replace the absolute file paths with relative file paths. You cannot directly edit the .pfg file for other purposes. The .pfg file can be opened from Programming File Generator, if changes are needed. 
 
 22. Click the **Generate** button to generate the initial flash image as **$TOP_FOLDER/initial_image.jic** and the map file as **$TOP_FOLDER/initial_image_jic.map**. A dialog box opens indicating the files were generated successfully. 
 
@@ -595,9 +599,11 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
   ```bash 
   cd $TOP_FOLDER 
   rm -rf yocto && mkdir yocto && cd yocto
-  git clone -b scarthgap https://git.yoctoproject.org/poky
-  git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga
-  git clone -b scarthgap   https://github.com/openembedded/meta-openembedded
+  git clone -b styhead https://git.yoctoproject.org/poky
+  git clone -b styhead https://git.yoctoproject.org/meta-intel-fpga
+  git clone -b styhead   https://github.com/openembedded/meta-openembedded
+  # work around issue
+  echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
   source poky/oe-init-build-env ./build
   echo 'MACHINE = "agilex7_dk_si_agf014eb"' >> conf/local.conf
   echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
@@ -910,10 +916,10 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 
     ```bash 
     SOCFPGA # rsu display_dcmf_version 
-    DCMF0 version = 24.3.0 
-    DCMF1 version = 24.3.0  
-    DCMF2 version = 24.3.0  
-    DCMF3 version = 24.3.0  
+    DCMF0 version = 24.3.1.0 
+    DCMF1 version = 24.3.1.0  
+    DCMF2 version = 24.3.1.0  
+    DCMF3 version = 24.3.1.0  
     SOCFPGA # rsu slot_count 
     Number of slots = 3. 
     SOCFPGA # rsu slot_get_info 0 
@@ -1759,10 +1765,10 @@ information from U-Boot, this should be a previous version.
 
     ```bash 
     SOCFPGA # rsu display_dcmf_version
-    DCMF0 version = 24.2.0 
-    DCMF1 version = 24.2.0 
-    DCMF2 version = 24.2.0 
-    DCMF3 version = 24.2.0 
+    DCMF0 version = 24.3.0 
+    DCMF1 version = 24.3.0 
+    DCMF2 version = 24.3.0 
+    DCMF3 version = 24.3.0 
     ```
 
 3. Find an unused slot (slot 1, P2), erase it, write the combined application image to it, verify that it was programmed successfully  and check it is now the highest priority.
@@ -1804,10 +1810,10 @@ application image is running fine.
     Error details : 0x00000000
     Retry counter : 0x00000000
     SOCFPGA # rsu display_dcmf_version
-    DCMF0 version = 24.3.0 
-    DCMF1 version = 24.3.0 
-    DCMF2 version = 24.3.0 
-    DCMF3 version = 24.3.0
+    DCMF0 version = 24.3.1.0 
+    DCMF1 version = 24.3.1.0 
+    DCMF2 version = 24.3.1.0 
+    DCMF3 version = 24.3.1.0
     ```
 
 7. Power cycle the board, the same combined application image is loaded, as it is the highest priority. But it takes a couple of seconds less, as the decision firmware does not need to be updated.
@@ -1913,10 +1919,10 @@ This section demonstrates how to use the RSU client to perform the following bas
 
     ```bash 
     root@linux:~# ./rsu_client --display-dcmf-version 
-    DCMF0 version = 24.3.0
-    DCMF1 version = 24.3.0
-    DCMF2 version = 24.3.0
-    DCMF3 version = 24.3.0
+    DCMF0 version = 24.3.1.0
+    DCMF1 version = 24.3.1.0
+    DCMF2 version = 24.3.1.0
+    DCMF3 version = 24.3.1.0
     Operation completed 
     ```
 

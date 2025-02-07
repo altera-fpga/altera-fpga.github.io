@@ -506,7 +506,7 @@ build_setup
 
 ```bash
 rm -f stratix10-fabric-config-yocto.patch
-wget https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/fabric-config/collateral/stratix10-fabric-config-yocto.patch 
+wget https://altera-fpga.github.io/rel-24.3.1/embedded-designs/stratix-10/sx/soc/fabric-config/collateral/stratix10-fabric-config-yocto.patch 
 patch -d meta-intel-fpga-refdes -p1 < stratix10-fabric-config-yocto.patch 
 ``` 
 
