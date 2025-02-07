@@ -227,7 +227,7 @@ This section presents how to use HPS Enablement Board to boot from SD card, and 
 
 #### Booting from SD Card
 <hr/>
-<h5>Write SD Card</h5>
+<h5 id="write-sd-card-image">Write SD Card</h5>
 
 1\. Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2025.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2025.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
 
