@@ -13,7 +13,7 @@ This project demonstrates how to boot to Linux on the Agilex&trade; SoC HPS usin
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -40,8 +40,8 @@ The following files are available as part of this example:
  
 | File | Description | 
 | :-- | :-- | 
-| [agilex7-u-boot-emmc.patch](https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/soc/emmc/collateral/agilex7-u-boot-emmc.patch) | U-Boot DTS patch to use eMMC - device tree changes only | 
-| [agilex7-linux-emmc.patch](https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/soc/emmc/collateral/agilex7-linux-emmc.patch) | Linux DTS patch to use eMMC - device tree changes only | 
+| [agilex7-u-boot-emmc.patch](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/emmc/collateral/agilex7-u-boot-emmc.patch) | U-Boot DTS patch to use eMMC - device tree changes only | 
+| [agilex7-linux-emmc.patch](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/emmc/collateral/agilex7-linux-emmc.patch) | Linux DTS patch to use eMMC - device tree changes only | 
  
 
 ## Build Instructions 
@@ -90,7 +90,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -107,7 +107,7 @@ The hardware design is downloaded from Github, then it's configured to enable th
 ```bash 
 cd $TOP_FOLDER 
 rm -rf ghrd-socfpga agilex_soc_devkit_ghrd 
-git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
+git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
 mv ghrd-socfpga/agilex_soc_devkit_ghrd . 
 rm -rf ghrd-socfpga 
 cd agilex_soc_devkit_ghrd 
@@ -141,7 +141,7 @@ The following relevant files are created:
 ```bash 
 cd $TOP_FOLDER 
 rm -rf arm-trusted-firmware 
-git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware 
+git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware 
 cd arm-trusted-firmware 
 make -j 64 bl31 PLAT=agilex DEPRECATED=1 
 cd .. 
@@ -156,9 +156,9 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -f agilex7-u-boot-emmc.patch
-wget https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/soc/emmc/collateral/agilex7-u-boot-emmc.patch
+wget https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/emmc/collateral/agilex7-u-boot-emmc.patch
 rm -rf u-boot-socfpga 
-git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga 
+git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga 
 cd u-boot-socfpga 
 # change device tree to account for board differences 
 patch -p 1 < ../u-boot-socfpga-emmc.patch 
@@ -259,9 +259,9 @@ The following instructions are used to build Linux:
 
 ```bash 
 cd $TOP_FOLDER 
-wget https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/soc/emmc/collateral/agilex7-linux-emmc.patch
+wget https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/emmc/collateral/agilex7-linux-emmc.patch
 rm -rf linux-socfpga 
-git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga 
+git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga 
 cd linux-socfpga 
 patch -p 1 < ../agilex7-linux-emmc.patch
 make clean && make mrproper 
@@ -311,16 +311,16 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash 
 cd $TOP_FOLDER 
 rm -rf yocto && mkdir yocto && cd yocto 
-git clone -b scarthgap http://git.yoctoproject.org/poky
-git clone -b scarthgap http://git.yoctoproject.org/meta-intel-fpga
-git clone -b scarthgap http://git.openembedded.org/meta-openembedded
+git clone -b styhead http://git.yoctoproject.org/poky
+git clone -b styhead http://git.yoctoproject.org/meta-intel-fpga
+git clone -b styhead http://git.openembedded.org/meta-openembedded
+# work around issue
+echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
 source poky/oe-init-build-env ./build 
 echo 'MACHINE = "agilex7_dk_si_agf014eb"' >> conf/local.conf 
 echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 
 echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf 
-echo 'IMAGE_FSTYPES = "tar.gz"' >> conf/local.conf 
-echo 'CORE_IMAGE_EXTRA_INSTALL += " fio"' >> conf/local.conf 
-bitbake core-image-minimal 
+bitbake core-image-minimal
 ``` 
 
  

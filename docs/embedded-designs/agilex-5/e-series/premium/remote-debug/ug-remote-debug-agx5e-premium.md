@@ -66,7 +66,7 @@ The following are required:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3
+  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -103,7 +103,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -119,7 +119,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga agilex5_soc_devkit_ghrd
-git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/agilex5_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd agilex5_soc_devkit_ghrd
@@ -148,7 +148,7 @@ make DEVICE=A5ED065BB32AE6SR0 HPS_EMIF_MEM_CLK_FREQ_MHZ=800 HPS_EMIF_REF_CLK_FRE
 ```bash
 cd $TOP_FOLDER
 rm -f agilex5-ghrd-add-jop.tcl
-wget https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/remote-debug/collateral/agilex5-ghrd-add-jop.tcl
+wget https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/remote-debug/collateral/agilex5-ghrd-add-jop.tcl
 cd agilex5_soc_devkit_ghrd
 qsys-script --qpf=ghrd_a5ed065bb32ae6sr0.qpf --script=../agilex5-ghrd-add-jop.tcl --system-file=qsys_top.qsys
 ```
@@ -224,7 +224,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
+git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
 cd gsrd-socfpga
 . agilex5_dk_a5e065bb32aes1-gsrd-build.sh
 build_setup
@@ -258,7 +258,7 @@ This can be done with the provided patch file:
 
 ```bash
 rm -f agilex5-dts-add-jop.patch
-wget https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/remote-debug/collateral/agilex5-dts-add-jop.patch
+wget https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/remote-debug/collateral/agilex5-dts-add-jop.patch
 pushd meta-intel-fpga-refdes
 patch -p1 < ../agilex5-dts-add-jop.patch
 popd

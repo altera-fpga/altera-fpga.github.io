@@ -1376,7 +1376,7 @@ ln -s root.ubi hps.bin
 
 ```bash
 cd $TOP_FOLDER/qspi-boot
-wget https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg
+wget https://altera-fpga.github.io/rel-24.3.1/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg
 quartus_pfg -c stratix10_gsrd.pfg
 ```
 
@@ -1389,7 +1389,7 @@ The following files will be generated:
 
 #### Create Programming File Generator File
 
-This section presents how to manually re-create the PFG file provided at [https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg](https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg)
+This section presents how to manually re-create the PFG file provided at [https://altera-fpga.github.io/rel-24.3.1/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg)
 
 1\. Start Quartus Programming File Generator GUI:
 

@@ -151,7 +151,7 @@ make generate_from_tcl
 ```bash
 cd $TOP_FOLDER
 rm -f s10-ghrd-add-jop.tcl
-wget https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-ghrd-add-jop.tcl
+wget https://altera-fpga.github.io/rel-24.3.1/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-ghrd-add-jop.tcl
 cd s10_soc_devkit_ghrd
 qsys-script --qpf=ghrd_1sx280hu2f50e1vgas.qpf --script=../s10-ghrd-add-jop.tcl --system-file=qsys_top.qsys
 ```
@@ -267,7 +267,7 @@ This can be done with the provided patch file:
 
 ```bash
 rm -f s10-dts-add-jop.patch
-wget https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-dts-add-jop.patch
+wget https://altera-fpga.github.io/rel-24.3.1/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-dts-add-jop.patch
 pushd meta-intel-fpga-refdes
 patch -p1 < ../s10-dts-add-jop.patch
 popd

@@ -27,36 +27,36 @@ The following are required to be able to fully exercise the Agilex 5 Modular Dev
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1 
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
 ### Prebuilt Binaries
 
-The Agilex 5 Modular Development Kit GSRD binaries are located at [https://releases.rocketboards.org/2024.11/](https://releases.rocketboards.org/2024.11/):
+The Agilex 5 Modular Development Kit GSRD binaries are located at [https://releases.rocketboards.org/2025.01/](https://releases.rocketboards.org/2025.01/):
 
 Boot Source | Link |
 | ---------------------- | -- |
-| SD Card | [https://releases.rocketboards.org/2024.11/gsrd/agilex5_modular_gsrd/](https://releases.rocketboards.org/2024.11/gsrd/agilex5_modular_gsrd/) |
-| QSPI | [https://releases.rocketboards.org/2024.11/qspi/agilex5_modular_qspi/](https://releases.rocketboards.org/2024.11/qspi/agilex5_modular_qspi/) |
+| SD Card | [https://releases.rocketboards.org/2025.01/gsrd/agilex5_modular_gsrd/](https://releases.rocketboards.org/2025.01/gsrd/agilex5_modular_gsrd/) |
+| QSPI | [https://releases.rocketboards.org/2025.01/qspi/agilex5_modular_qspi/](https://releases.rocketboards.org/2025.01/qspi/agilex5_modular_qspi/) |
 
 ### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 and the following software component versions are used to build the GSRD: 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1 and the following software component versions are used to build the GSRD: 
 
-| **Component** | **Location** | **Branch** | **Commit ID/Tag** |
+| Component | Location | Branch | Commit ID/Tag |
 | :-- | :-- | :-- | :-- |
-| GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | QPDS24.3_REL_GSRD_PR |
-| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.37-lts | QPDS24.3_REL_GSRD_PR |
-| Arm Trusted Firmware | [https://github.com/arm-trusted-firmware](https://github.com/arm-trusted-firmware) | socfpga_v2.11.0 | QPDS24.3_REL_GSRD_PR |
-| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.04 | QPDS24.3_REL_GSRD_PR |
-| Yocto Project | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest | 
-| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | scarthgap | QPDS24.3_REL_GSRD_PR |
+| GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | QPDS24.3.1_REL_GSRD_PR |
+| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.51-lts | QPDS24.3.1_REL_GSRD_PR |
+| Arm Trusted Firmware | [https://github.com/arm-trusted-firmware](https://github.com/arm-trusted-firmware) | socfpga_v2.11.1 | QPDS24.3.1_REL_GSRD_PR |
+| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.07 | QPDS24.3.1_REL_GSRD_PR |
+| Yocto Project | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | styhead | latest | 
+| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | styhead | latest |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | styhead | QPDS24.3.1_REL_GSRD_PR |
 
 ### Release Notes
 
-See [https://www.rocketboards.org/foswiki/Documentation/IntelFPGAHPSEmbeddedSoftwareRelease](https://www.rocketboards.org/foswiki/Documentation/IntelFPGAHPSEmbeddedSoftwareRelease)
+See [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS24.3.1_REL_GSRD_PR](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS24.3.1_REL_GSRD_PR)
 
 ### Development Kit
 
@@ -215,7 +215,7 @@ Notes:
 <hr/>
 <h4>Write SD Card</h4>
 
-1\. Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2024.11/gsrd/agilex5_modular_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2024.11/gsrd/agilex5_modular_gsrd/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
+1\. Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2025.01/gsrd/agilex5_modular_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2025.01/gsrd/agilex5_modular_gsrd/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
 
 2\. Write the gsrd-console-image-agilex5_devkit.wic. SD card image to the micro SD card using the included USB writer in the host computer:
 
@@ -243,7 +243,7 @@ sync
 
 4\. Download and extract the JIC image, then write it to QSPI
 ```bash
-wget https://releases.rocketboards.org/2024.11/gsrd/agilex5_modular_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+wget https://releases.rocketboards.org/2025.01/gsrd/agilex5_modular_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
 tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
 quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 ```
@@ -356,7 +356,7 @@ Either write 1MB of zeroes at the beginning of the SD card, or remove the SD car
 
 4\. Download and extract the JIC image, then write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2024.11/qspi/agilex5_modular_qspi/agilex_flash_image.hps.jic.tar.gz
+wget https://releases.rocketboards.org/2025.01/qspi/agilex5_modular_qspi/agilex_flash_image.hps.jic.tar.gz
 tar xf agilex_flash_image.hps.jic.tar.gz
 quartus_pgm -c 1 -m jtag -o "pvi;agilex_flash_image.hps.jic"
 ```
@@ -451,7 +451,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -465,7 +465,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga agilex5_soc_devkit_ghrd
-git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/agilex5_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd agilex5_soc_devkit_ghrd
@@ -504,7 +504,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
+git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
 cd gsrd-socfpga
 . agilex5_modular-gsrd-build.sh
 build_setup
@@ -608,8 +608,8 @@ cd qspi_boot
 2\. Get the `ubinize.cfg` file which contains the details on how to build the `root.ubi` volume, and `agilex5_devkit_flash_image_hps.pfg` which contains the instructions for Programming File Generator on how to create the .jic file:
 
 ```bash
-wget https://releases.rocketboards.org/2024.11/qspi/agilex5_dk_a5e065bb32aes1_qspi/ubinize.cfg
-wget https://releases.rocketboards.org/2024.11/qspi/agilex5_dk_a5e065bb32aes1_qspi/agilex5_devkit_flash_image_hps.pfg
+wget https://releases.rocketboards.org/2025.01/qspi/agilex5_dk_a5e065bb32aes1_qspi/ubinize.cfg
+wget https://releases.rocketboards.org/2025.01/qspi/agilex5_dk_a5e065bb32aes1_qspi/agilex5_devkit_flash_image_hps.pfg
 ```
 
 3\. Link to the files that are needed from building the hardware design, and yocto:

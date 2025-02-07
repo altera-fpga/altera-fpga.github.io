@@ -1,6 +1,6 @@
 ## Overview
 
-This page demonstrates how to use the [baremetal drivers](https://altera-fpga.github.io/rel-24.3/driver-list_baremetal/) for a simple hello world program, running from SDRAM, and booting from QSPI, on the [Agilex 5 E-Series Premium Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html)
+This page demonstrates how to use the [baremetal drivers](https://altera-fpga.github.io/rel-24.3.1/driver-list_baremetal/) for a simple hello world program, running from SDRAM, and booting from QSPI, on the [Agilex 5 E-Series Premium Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html)
 
 ATF (Arm Trusted Firmware) is used, composed of the following two components:
 
@@ -24,11 +24,11 @@ The following inputs are used:
  
 | Item | Link |
 | -- | -- |
-| Baremetal Drivers Source | [baremetal-drivers](https://github.com/altera-fpga/baremetal-drivers/tree/24.3) |
-| Baremetal CMake Project File | [CMakeLists.txt](https://altera-fpga.github.io/rel-24.3/baremetal-embedded/agilex-5/e-series/premium/collateral/CMakeLists.txt)|
-| Programming File Generator File | [flash_image.pfg](https://altera-fpga.github.io/rel-24.3/baremetal-embedded/agilex-5/e-series/premium/collateral/flash_image.pfg) |
-| Arm Trusted Firmware Source | [arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware/tree/QPDS24.3_REL_GSRD_PR) |
-| Precompiled GHRD SOF | [ghrd_a5ed065bb32ae6sr0_hps_debug.sof](https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0_hps_debug.sof) |
+| Baremetal Drivers Source | [baremetal-drivers](https://github.com/altera-fpga/baremetal-drivers/tree/24.3.1) |
+| Baremetal CMake Project File | [CMakeLists.txt](https://altera-fpga.github.io/rel-24.3.1/baremetal-embedded/agilex-5/e-series/premium/collateral/CMakeLists.txt)|
+| Programming File Generator File | [flash_image.pfg](https://altera-fpga.github.io/rel-24.3.1/baremetal-embedded/agilex-5/e-series/premium/collateral/flash_image.pfg) |
+| Arm Trusted Firmware Source | [arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware/tree/QPDS24.3.1_REL_GSRD_PR) |
+| Precompiled GHRD SOF | [ghrd_a5ed065bb32ae6sr0_hps_debug.sof](https://releases.rocketboards.org/2025.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0_hps_debug.sof) |
 
 Note that for the GHRD SOF we are using the SOF which has the debug FSBL inside as it was more convenient to download with an existing direct file link. However, the debug FSBL inside is overwritten with the ATF bl2 when the output QSPI flash JIC image is created.
 
@@ -75,7 +75,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
 ```bash
 cd $TOP_FOLDER
-git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware atf
+git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware atf
 make -C atf fiptool
 make -C atf bl2 bl31 PLAT=agilex5 DEBUG=1 SOCFPGA_BOOT_SOURCE_QSPI=1 LOG_LEVEL=50
 ```
@@ -89,7 +89,7 @@ make -C atf bl2 bl31 PLAT=agilex5 DEBUG=1 SOCFPGA_BOOT_SOURCE_QSPI=1 LOG_LEVEL=5
 ```bash
 cd $TOP_FOLDER
 rm -rf baremetal-drivers*
-git clone -b 24.3 https://github.com/altera-fpga/baremetal-drivers
+git clone -b 24.3.1 https://github.com/altera-fpga/baremetal-drivers
 ```
 
 
@@ -118,7 +118,7 @@ cp $TOP_FOLDER/baremetal-drivers/test/simics/hello-world/printf_hello_world.c he
 
 
 ```bash
-wget https://altera-fpga.github.io/rel-24.3/baremetal-embedded/agilex-5/e-series/premium/collateral/CMakeLists.txt
+wget https://altera-fpga.github.io/rel-24.3.1/baremetal-embedded/agilex-5/e-series/premium/collateral/CMakeLists.txt
 ```
 
 
@@ -188,7 +188,7 @@ $TOP_FOLDER/atf/tools/fiptool/fiptool create --soc-fw $TOP_FOLDER/atf/build/agil
 11\. Bring the Programming File Generator file, used to instruct Quartus Programmer how to create the flash image:
 
 ```bash
-wget https://altera-fpga.github.io/rel-24.3/baremetal-embedded/agilex-5/e-series/premium/collateral/flash_image.pfg
+wget https://altera-fpga.github.io/rel-24.3.1/baremetal-embedded/agilex-5/e-series/premium/collateral/flash_image.pfg
 ```
 
 
@@ -247,7 +247,7 @@ ${CROSS_COMPILE}objcopy -v -I binary -O ihex --change-addresses 0x0 $TOP_FOLDER/
 
 
 ```bash
-wget -O design.sof https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0_hps_debug.sof
+wget -O design.sof https://releases.rocketboards.org/2025.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0_hps_debug.sof
 quartus_pfg -c flash_image.pfg
 ```
 
@@ -256,7 +256,7 @@ quartus_pfg -c flash_image.pfg
 
 ## Run Example
 
-1\. Set up the board as described in the GSRD [Configure Board](https://altera-fpga.github.io/rel-24.3embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#configure-board).
+1\. Set up the board as described in the GSRD [Configure Board](https://altera-fpga.github.io/rel-24.3.1embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#configure-board).
 
 2\. Power down board
 
