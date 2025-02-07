@@ -213,7 +213,7 @@ Notes:
 
 ### Booting from SD Card
 <hr/>
-<h4>Write SD Card</h4>
+<h4 id="write-sd-card-image">Write SD Card</h4>
 
 1\. Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2025.01/gsrd/agilex5_modular_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2025.01/gsrd/agilex5_modular_gsrd/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
 

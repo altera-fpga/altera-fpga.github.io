@@ -53,6 +53,16 @@ extra:
     - src: 'driver-list/driver-list-all.md'
       dests:
         - 'driver-list_all/index.md'
+    - src: 'embedded-designs/agilex-5/e-series/premium/xen/ug-xen-agx5e-premium.md'
+      dests:
+        - 'virtualization/hypervisors/xen/ug-xen-agx5e-premium.md'
+    - src: 'embedded-designs/agilex-5/e-series/modular/xen/ug-xen-agx5e-modular.md'
+      dests:
+        - 'virtualization/hypervisors/xen/ug-xen-agx5e-modular.md'
+    - src: 'embedded-designs/agilex-7/f-series/soc/xen/ug-xen-agx7f-soc.md'
+      dests:
+        - 'virtualization/hypervisors/xen/ug-xen-agx7f-soc.md'
+
   social:
     - icon: material/web  
       link: https://www.altera.com 
@@ -153,6 +163,14 @@ nav:
       - SMP: zephyr-embedded/smp/smp.md
       - UART: zephyr-embedded/uart/uart.md
       - Watchdog Timer: zephyr-embedded/watchdog/watchdog.md
+  - Virtualization:
+      - Hypervisors:
+        - Xen:
+          - Overview: virtualization/hypervisors/xen/xen-overview.md
+          - Examples:
+            - Agilex™ 5 E-Series Premium Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx5e-premium.md
+            - Agilex™ 5 E-Series Modular Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx5e-modular.md
+            - Agilex™ 7 F-Series SoC Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx7f-soc.md
   - Baremetal Drivers:
     - 'driver-list_baremetal/index.md'
   - Host Attach Utilities:
@@ -191,10 +209,11 @@ nav:
           - TSN - SGMII XCVR System: embedded-designs/agilex-5/e-series/premium/tsn/sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5.md
         - FPGA Remote Debug Example: embedded-designs/agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium.md
         - SoC HPS Remote System Update Example: embedded-designs/agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc.md
-
+        - Xen Hypervisor GSRD: embedded-designs/agilex-5/e-series/premium/xen/ug-xen-agx5e-premium.md
       - E-Series Modular Development Kit:
         - GSRD User Guide: embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular.md
         - GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular.md
+        - Xen Hypervisor GSRD: embedded-designs/agilex-5/e-series/modular/xen/ug-xen-agx5e-modular.md
       - Intel Simics Virtual Platform Examples:
         - Linux GSRD: embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms.md
         - Zephyr GSRD: embedded-designs/agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms.md
@@ -207,6 +226,7 @@ nav:
         - HPS eMMC Boot Example: embedded-designs/agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc.md
         - SoC Fabric Configuration from Linux Example: embedded-designs/agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc.md
         - GHRD Linux Boot Examples: embedded-designs/agilex-7/f-series/soc/boot-examples/ug-linux-boot-agx7-soc.md
+        - Xen Hypervisor GSRD: embedded-designs/agilex-7/f-series/soc/xen/ug-xen-agx7f-soc.md
       - F-Series FPGA Development Kit:
         - GSRD User Guide: embedded-designs/agilex-7/f-series/fpga/gsrd/ug-gsrd-agx7f-fpga.md       
       - I-Series FPGA Development Kit:
