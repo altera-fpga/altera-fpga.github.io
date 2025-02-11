@@ -185,7 +185,7 @@ The GSRD boot flow includes the following stages:
 
 6\. Application
 
-![](images/s10 agilex hps boot flow.png)
+![](images/s10_agilex_hps_boot_flow.png)
 
 The following table presents a short description of the different boot stages:
 

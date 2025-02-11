@@ -9,7 +9,7 @@ The following scenarios are covered:
 * Boot from SD Card
 * Boot from QSPI
 
-The instructions on this page are based on the [GSRD](../../gsrd/ug-gsrd-agx5e-modular).
+The instructions on this page are based on the [GSRD](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/).
 
 ### Prerequisites
 
@@ -44,11 +44,11 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1 and the fol
 
 ### Development Kit
 
-Refer to [Development Kit](../../gsrd/ug-gsrd-agx5e-modular/#development-kit) for details about the board, including how to install the HPS Boards, and how to set MSEL dispswitches.
+Refer to [Development Kit](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular//#development-kit) for details about the board, including how to install the HPS Boards, and how to set MSEL dispswitches.
 
 ### Release Notes
 
-Refer to [Release Notes](../../gsrd/ug-gsrd-agx5e-modular/#release-notes) for release information.
+Refer to [Release Notes](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular//#release-notes) for release information.
 
 ## Boot from SD Card 
 

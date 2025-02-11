@@ -59,7 +59,7 @@ The end results of the build flow are listed next.
 - Initial flash image: contains the factory image, an application image and two empty application image partitions aka slots. 
 - SD card image: contains SSBL (U-Boot), ATF (Arm Trusted Firmware), Linux device tree, Linux kernel, Linux rootfs with the Intel RSU driver, LIBRSU, RSU Client, an application image, a factory update image and a decision firmware update image. 
 
-**Note:** To build binaries for a different development kit than the one used in this page, please refer to the [Building the Hardware Projects](building-the-hardware-projects) section in the corresponding  GSRD page for that development kit, which is the section that may differ from the instructions presented here.
+**Note:** To build binaries for a different development kit than the one used in this page, please refer to the [Building the Hardware Projects](#building-the-hardware-projects) section in the corresponding  GSRD page for that development kit, which is the section that may differ from the instructions presented here.
 
 ### Setting up the Environment 
 

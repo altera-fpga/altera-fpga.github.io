@@ -43,7 +43,7 @@ The etherlink works with the standard UIO Linux kernel driver.
 
 This section shows an example of how to use the Remote Debug feature. Communication is established from the board to the host PC through Ethernet, so that the board appears as another JTAG device, listed by jtagconfig utility.
 
-The example is based on the [GSRD](../gsrd/ug-gsrd-agx5e-premium), with the following changes:
+The example is based on the [GSRD](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/), with the following changes:
 
  * Adding JOP component to the GHRD
  * Adding JOP to the Linux device tree
@@ -329,7 +329,7 @@ The following file is created:
 
 ### Run Example
 
-The instructions from this section present how to run the remote debug example. Refer to the [GSRD](../gsrd/ug-gsrd-agx5e-premium) for more detailed instructions on how to set up the board, serial port, and write the binaries.
+The instructions from this section present how to run the remote debug example. Refer to the [GSRD](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/) for more detailed instructions on how to set up the board, serial port, and write the binaries.
 
 1\. Write the QSPI image `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic` to flash.
 

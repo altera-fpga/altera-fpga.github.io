@@ -52,7 +52,7 @@ The Intel FPGA HPS Embedded Software release notes can be accessed from the foll
 | Board | Binaries |
 | :-- | :-- | 
 | AGI027FB | [https://releases.rocketboards.org/2025.01/gsrd/agilex7_dk_si_agi027fb_gsrd/](https://releases.rocketboards.org/2025.01/gsrd/agilex7_dk_si_agi027fb_gsrd/) |
-| AGI027FA | [https://releases.rocketboards.org/2025.01/gsrd/agilex7_dk_si_agi027fa_gsrd/](https://releases.rocketboards.org/2025.01.04/gsrd/agilex7_dk_si_agi027fa_gsrd/) |
+| AGI027FA | [https://releases.rocketboards.org/2025.01/gsrd/agilex7_dk_si_agi027fa_gsrd/](https://releases.rocketboards.org/2025.01/gsrd/agilex7_dk_si_agi027fa_gsrd/) |
 | AGI027FC | [https://releases.rocketboards.org/2025.01/gsrd/agilex7_dk_si_agi027fc_gsrd/](https://releases.rocketboards.org/2025.01/gsrd/agilex7_dk_si_agi027fc_gsrd/) |
  
 The source code is included on the SD card in the Linux rootfs path `/home/root`: 

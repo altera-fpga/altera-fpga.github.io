@@ -604,7 +604,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
 
  The **Debug Configurations** window should now look like this:
 
-  ![](images/agilex-ds-boot-spl-debugger.png)
+  ![](images/s10-ds-boot-spl-debugger.png)
      
   7.- Click the **Debug** button. Arm Development Studio will run the commands, therefore downloading the SPL to board and starting it. The Eclipse window should now look like this: 
     

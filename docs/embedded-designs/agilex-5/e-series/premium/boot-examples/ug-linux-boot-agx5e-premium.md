@@ -10,13 +10,13 @@ The following scenarios are covered:
 * HPS NAND Board: boot from eMMC flash
 * HPS Test Board: boot from SD card
 
-The instructions on this page are based on the [GSRD](../../gsrd/ug-gsrd-agx5e-premium).
+The instructions on this page are based on the [GSRD](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/).
 
 ### Prerequisites
 
 The following are required to be able to fully exercise the guides from this page:
 
-* [Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit]((https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html)), ordering code DK-A5E065BB32AES1.
+* [Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html), ordering code DK-A5E065BB32AES1.
   * HPS Enablement  Expansion Board. Included with the development kit
   * HPS NAND Board. Enables eMMC storage for HPS. Orderable separately
   * HPS Test Board. Supports SD card boot, and external Arm tracing. Orderable separately
@@ -49,11 +49,11 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1 and the fol
 
 ### Development Kit
 
-Refer to [Development Kit](../../gsrd/ug-gsrd-agx5e-premium/#development-kit) for details about the board, including how to install the HPS Boards, and how to set MSEL dispswitches.
+Refer to [Development Kit](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#development-kit) for details about the board, including how to install the HPS Boards, and how to set MSEL dispswitches.
 
 ### Release Notes
 
-Refer to [Release Notes](../../gsrd/ug-gsrd-agx5e-premium/#release-contents) for release readiness information and known issues.
+Refer to [Release Notes](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#release-contents) for release readiness information and known issues.
 
 
 ## HPS Enablement Board
