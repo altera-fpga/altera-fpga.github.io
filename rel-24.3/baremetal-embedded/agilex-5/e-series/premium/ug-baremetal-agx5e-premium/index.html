@@ -2988,7 +2988,7 @@
   <h1>Baremetal Hello World Example</h1>
 
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>This page demonstrates how to use the <a href="https://altera-fpga.github.io/rel-24.3/driver-list_baremetal/">baremetal drivers</a> for a simple hello world program, running from SDRAM, and booting from QSPI, on the <a href="https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html">Agilex 5 E-Series Premium Development Kit</a></p>
+<p>This page demonstrates how to use the <a href="https://altera-fpga.github.io/rel-24.3.1/driver-list_baremetal/">baremetal drivers</a> for a simple hello world program, running from SDRAM, and booting from QSPI, on the <a href="https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html">Agilex 5 E-Series Premium Development Kit</a></p>
 <p>ATF (Arm Trusted Firmware) is used, composed of the following two components:</p>
 <ul>
 <li>ATF bl22: First stage bootloader. Part of the bitstream. Initializes hardware, including SDRAM, and loads FIP image.</li>
@@ -3027,23 +3027,23 @@
 <tbody>
 <tr>
 <td>Baremetal Drivers Source</td>
-<td><a href="https://github.com/altera-fpga/baremetal-drivers/tree/24.3">baremetal-drivers</a></td>
+<td><a href="https://github.com/altera-fpga/baremetal-drivers/tree/QPDS24.3.1_REL_GSRD_PR">baremetal-drivers</a></td>
 </tr>
 <tr>
 <td>Baremetal CMake Project File</td>
-<td><a href="https://altera-fpga.github.io/rel-24.3/baremetal-embedded/agilex-5/e-series/premium/collateral/CMakeLists.txt">CMakeLists.txt</a></td>
+<td><a href="https://altera-fpga.github.io/rel-24.3.1/baremetal-embedded/agilex-5/e-series/premium/collateral/CMakeLists.txt">CMakeLists.txt</a></td>
 </tr>
 <tr>
 <td>Programming File Generator File</td>
-<td><a href="https://altera-fpga.github.io/rel-24.3/baremetal-embedded/agilex-5/e-series/premium/collateral/flash_image.pfg">flash_image.pfg</a></td>
+<td><a href="https://altera-fpga.github.io/rel-24.3.1/baremetal-embedded/agilex-5/e-series/premium/collateral/flash_image.pfg">flash_image.pfg</a></td>
 </tr>
 <tr>
 <td>Arm Trusted Firmware Source</td>
-<td><a href="https://github.com/altera-opensource/arm-trusted-firmware/tree/QPDS24.3_REL_GSRD_PR">arm-trusted-firmware</a></td>
+<td><a href="https://github.com/altera-opensource/arm-trusted-firmware/tree/QPDS24.3.1_REL_GSRD_PR">arm-trusted-firmware</a></td>
 </tr>
 <tr>
 <td>Precompiled GHRD SOF</td>
-<td><a href="https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0_hps_debug.sof">ghrd_a5ed065bb32ae6sr0_hps_debug.sof</a></td>
+<td><a href="https://releases.rocketboards.org/2025.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0_hps_debug.sof">ghrd_a5ed065bb32ae6sr0_hps_debug.sof</a></td>
 </tr>
 </tbody>
 </table>
@@ -3064,19 +3064,19 @@
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-elf-
 </code></pre></div>
 <p>3. Add Quartus tools to the PATH - only the Quartus Programmer tools are actually used:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3/quartus/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3.1/quartus/
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
 </code></pre></div>
 <p>4. Build ATF</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/arm-trusted-firmware<span class="w"> </span>atf
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/arm-trusted-firmware<span class="w"> </span>atf
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>make<span class="w"> </span>-C<span class="w"> </span>atf<span class="w"> </span>fiptool
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>make<span class="w"> </span>-C<span class="w"> </span>atf<span class="w"> </span>bl2<span class="w"> </span>bl31<span class="w"> </span><span class="nv">PLAT</span><span class="o">=</span>agilex5<span class="w"> </span><span class="nv">DEBUG</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">SOCFPGA_BOOT_SOURCE_QSPI</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">LOG_LEVEL</span><span class="o">=</span><span class="m">50</span>
 </code></pre></div>
 <p>5. Retrieve the baremetal library sources:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>baremetal-drivers*
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span><span class="m">24</span>.3<span class="w"> </span>https://github.com/altera-fpga/baremetal-drivers
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/baremetal-drivers
 </code></pre></div>
 <p>6. Create the sample application folder:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
@@ -3085,10 +3085,10 @@
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">cd</span><span class="w"> </span>baremetal-example
 </code></pre></div>
 <p>7. Bring in the hello world source code:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/baremetal-drivers/test/simics/hello-world/printf_hello_world.c<span class="w"> </span>hello_world.c
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/baremetal-drivers/examples/hello_world/hello_world.c<span class="w"> </span>.
 </code></pre></div>
 <p>8. Bring in the cmake file for the project:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>wget<span class="w"> </span>https://altera-fpga.github.io/rel-24.3/baremetal-embedded/agilex-5/e-series/premium/collateral/CMakeLists.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>wget<span class="w"> </span>https://altera-fpga.github.io/rel-24.3.1/baremetal-embedded/agilex-5/e-series/premium/collateral/CMakeLists.txt
 </code></pre></div>
 <p>The file looks like this:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cmake_minimum_required<span class="o">(</span>VERSION<span class="w"> </span><span class="m">3</span>.5...3.28<span class="o">)</span>
@@ -3138,7 +3138,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">$TOP_FOLDER</span>/atf/tools/fiptool/fiptool<span class="w"> </span>create<span class="w"> </span>--soc-fw<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/atf/build/agilex5/debug/bl31.bin<span class="w"> </span>--nt-fw<span class="w"> </span>hello_world.bin<span class="w"> </span>fip.bin
 </code></pre></div>
 <p>11. Bring the Programming File Generator file, used to instruct Quartus Programmer how to create the flash image:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>wget<span class="w"> </span>https://altera-fpga.github.io/rel-24.3/baremetal-embedded/agilex-5/e-series/premium/collateral/flash_image.pfg
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>wget<span class="w"> </span>https://altera-fpga.github.io/rel-24.3.1/baremetal-embedded/agilex-5/e-series/premium/collateral/flash_image.pfg
 </code></pre></div>
 <p>The file looks like this:</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">&lt;pfg</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
@@ -3185,11 +3185,11 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="si">${</span><span class="nv">CROSS_COMPILE</span><span class="si">}</span>objcopy<span class="w"> </span>-v<span class="w"> </span>-I<span class="w"> </span>binary<span class="w"> </span>-O<span class="w"> </span>ihex<span class="w"> </span>--change-addresses<span class="w"> </span>0x0<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/atf/build/agilex5/debug/bl2.bin<span class="w"> </span>bl2.hex
 </code></pre></div>
 <p>13. Create JIC File, using the prebuilt hardware SOF file from GSRD release:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>wget<span class="w"> </span>-O<span class="w"> </span>design.sof<span class="w"> </span>https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0_hps_debug.sof
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>wget<span class="w"> </span>-O<span class="w"> </span>design.sof<span class="w"> </span>https://releases.rocketboards.org/2025.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0_hps_debug.sof
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>flash_image.pfg
 </code></pre></div>
 <h2 id="run-example">Run Example<a class="headerlink" href="#run-example" title="Permanent link">&para;</a></h2>
-<p>1. Set up the board as described in the GSRD <a href="https://altera-fpga.github.io/rel-24.3embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#configure-board">Configure Board</a>.</p>
+<p>1. Set up the board as described in the GSRD <a href="https://altera-fpga.github.io/rel-24.3.1embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#configure-board">Configure Board</a>.</p>
 <p>2. Power down board</p>
 <p>3. Set up MSEL dipswitch SW27 for JTAG boot: OFF-OFF-OFF-OFF</p>
 <p>4. Power up board</p>
@@ -3218,7 +3218,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 6, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 11, 2025</span>
       
         <br>
         Created:

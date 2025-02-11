@@ -3575,7 +3575,7 @@
 <li>In case any use case requires additional prerequisites, these are listed as part of the use case description.</li>
 </ul>
 <h2 id="release-content">Release Content<a class="headerlink" href="#release-content" title="Permanent link">&para;</a></h2>
-<p><strong>Version: 24.3</strong></p>
+<p><strong>Version: 24.3.1</strong></p>
 <table>
 <thead>
 <tr>
@@ -3588,37 +3588,37 @@
 <tr>
 <td align="left">U-Boot</td>
 <td align="left">https://github.com/altera-opensource/u-boot-socfpga</td>
-<td align="left">socfpga_v2024.04/QPDS24.3_REL_GSRD_PR</td>
+<td align="left">socfpga_v2024.07/QPDS24.3.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">ATF</td>
 <td align="left">https://github.com/altera-opensource/arm-trusted-firmware</td>
-<td align="left">socfpga_v2.11.0/QPDS24.3_REL_GSRD_PR</td>
+<td align="left">socfpga_v2.11.1/QPDS24.3.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Linux</td>
 <td align="left">https://github.com/altera-opensource/linux-socfpga</td>
-<td align="left">socfpga-6.6.37-lts/QPDS24.3_REL_GSRD_PR</td>
+<td align="left">socfpga-6.6.51-lts/QPDS24.3.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Reference Design Sources</td>
 <td align="left">https://github.com/altera-opensource/meta-intel-fpga-refdes</td>
-<td align="left">scarthgap/QPDS24.3_REL_GSRD_PR</td>
+<td align="left">styhead/QPDS24.3.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">GSRD</td>
 <td align="left">https://github.com/altera-opensource/gsrd-socfpga</td>
-<td align="left">scarthgap</td>
+<td align="left">styhead</td>
 </tr>
 <tr>
 <td align="left">Yocto Project</td>
 <td align="left">https://git.yoctoproject.org/poky</td>
-<td align="left">scarthgap/latest</td>
+<td align="left">styhead/latest</td>
 </tr>
 <tr>
 <td align="left">Reference Design Recipes</td>
 <td align="left">https://git.yoctoproject.org/meta-intel-fpga</td>
-<td align="left">scarthgap/latest</td>
+<td align="left">styhead/latest</td>
 </tr>
 <tr>
 <td align="left">Arm Debugger</td>
@@ -3628,15 +3628,15 @@
 <tr>
 <td align="left">Ashling RiscFree</td>
 <td align="left">https://www.intel.com/content/www/us/en/software-kit/826843/ Additional Software/Stand-Alone Software tab</td>
-<td align="left">24.3</td>
+<td align="left">24.3.1</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Note:</strong> For information prior 24.2 release, please refer to <a href="https://www.rocketboards.org/foswiki/Documentation/Agilex5SoCSimicsVirtualPlatformsReferenceGuide">Linux GSRD Intel Simics Virtual Platform for Intel Agilex® 5 E-Series</a>. </p>
 <h3 id="prebuilt-binaries">Prebuilt Binaries<a class="headerlink" href="#prebuilt-binaries" title="Permanent link">&para;</a></h3>
-<p>You can find the prebuilt binaries from the GSRD prebuilt at the following URL: <a href="https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/">https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/</a>. The files in this folder allow you to boot directly from SDCard. It also contains some of the files that are used to generate the final images used to boot from QSPI and from NAND. The following folders contain the remaining files used by the recipes to create the binaries to boot from QSPI and NAND.</p>
+<p>You can find the prebuilt binaries from the GSRD prebuilt at the following URL: <a href="https://releases.rocketboards.org/2025.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/">https://releases.rocketboards.org/2025.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/</a>. The files in this folder allow you to boot directly from SDCard. It also contains some of the files that are used to generate the final images used to boot from QSPI and from NAND. The following folders contain the remaining files used by the recipes to create the binaries to boot from QSPI and NAND.</p>
 <ul>
-<li>QSPI: <a href="https://releases.rocketboards.org/2024.11/qspi/agilex5_dk_a5e065bb32aes1_qspi/">QSPI boot complement files</a>. Here is the link to obtain the <a href="https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot_script.its">uboot_script.its</a> file which is also needed.</li>
+<li>QSPI: <a href="https://releases.rocketboards.org/2025.01/qspi/agilex5_dk_a5e065bb32aes1_qspi/">QSPI boot complement files</a>. Here is the link to obtain the <a href="https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/styhead/recipes-bsp/u-boot/files/uboot_script.its">uboot_script.its</a> file which is also needed.</li>
 <li>NAND: No available since NAND is not supported in silicon yet.</li>
 </ul>
 <p><strong>Note:</strong> The final images used to boot from QSPI and NAND are not provided, but the binaries used to generate these are provided, so you can generate the final images following the instructions in <a href="#build-qspi-boot-image">Build QSPI Boot Image</a> and <a href="#build-nand-boot-image">Build NAND Boot Image</a> sections.</p>
@@ -3783,14 +3783,14 @@
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3/quartus/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3.1/quartus/
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
 </code></pre></div>
 <h4 id="get-sof-from-hardware-design">Get SOF from Hardware Design<a class="headerlink" href="#get-sof-from-hardware-design" title="Permanent link">&para;</a></h4>
 <p>In Simics, the SOF file generated as result of the build of the hardware design is not used at all in the simulation, but this is needed to create the RPD file to exercise the QSPI boot. This is the reason why we provide the steps to build the hardware desgin here.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>rm<span class="w"> </span>ghrd_a5ed065bb32ae6sr0_hps.sof
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0_hps.sof<span class="w"> </span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2025.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0_hps.sof<span class="w"> </span>
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
@@ -3817,7 +3817,7 @@
 <p>Clone the Yocto script and prepare the build:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>scarthgap<span class="w"> </span>https://github.com/altera-opensource/gsrd-socfpga
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://github.com/altera-opensource/gsrd-socfpga
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>.<span class="w"> </span>agilex5_dk_a5e065bb32aes1-gsrd-build.sh
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>build_setup
@@ -3862,7 +3862,7 @@
 <li><code>agilex5_devkit-gsrd-rootfs</code>: area used by OpenEmbedded build system for builds. For the description of the build directory structure, refer to https://docs.yoctoproject.org/ref-manual/structure.html#the-build-directory-build.</li>
 <li><code>agilex5_devkit-gsrd-images</code>: the build script copies here are relevant files built by Yocto from the <code>agilex5_devkit-gsrd-rootfs/tmp/deploy/images/agilex5</code> folder. It also includes other relevant files.</li>
 </ul>
-<p><strong>Note</strong>: If you want to build binaries creating each one of the binaries independently, you could refer to <a href="https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/">Agilex™ 5 E-Series GHRD Linux Boot Examples</a>.</p>
+<p><strong>Note</strong>: If you want to build binaries creating each one of the binaries independently, you could refer to <a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/">Agilex™ 5 E-Series GHRD Linux Boot Examples</a>.</p>
 <p>The most relevant files created in the <code>$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images</code> folder are:</p>
 <table>
 <thead>
@@ -5981,7 +5981,7 @@ In Linux shell:</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 11, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 7, 2025</span>
       
         <br>
         Created:

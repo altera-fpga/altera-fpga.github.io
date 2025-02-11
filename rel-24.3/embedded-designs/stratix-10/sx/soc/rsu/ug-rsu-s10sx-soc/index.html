@@ -3740,7 +3740,7 @@
 <li>Initial flash image: contains the factory image, an application image and two empty application image partitions aka slots. </li>
 <li>SD card image: contains SSBL (U-Boot), ATF (Arm Trusted Firmware), Linux device tree, Linux kernel, Linux rootfs with the Intel RSU driver, LIBRSU, RSU Client, an application image, a factory update image and a decision firmware update image. </li>
 </ul>
-<p><strong>Note:</strong> To build binaries for a different development kit than the one used in this page, please refer to the <a href="building-the-hardware-projects">Building the Hardware Projects</a> section in the corresponding  GSRD page for that development kit, which is the section that may differ from the instructions presented here.</p>
+<p><strong>Note:</strong> To build binaries for a different development kit than the one used in this page, please refer to the <a href="#building-the-hardware-projects">Building the Hardware Projects</a> section in the corresponding  GSRD page for that development kit, which is the section that may differ from the instructions presented here.</p>
 <h3 id="setting-up-the-environment">Setting up the Environment<a class="headerlink" href="#setting-up-the-environment" title="Permanent link">&para;</a></h3>
 <p>Create a top folder to store the example files.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>s10-rsu<span class="w"> </span>
@@ -3897,7 +3897,7 @@
 <a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a><span class="s">CONFIG_HUSH_PARSER=y</span>
 <a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a><span class="s">CONFIG_SYS_PROMPT_HUSH_PS2=&quot;&gt; &quot;</span>
 <a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a><span class="s">CONFIG_USE_BOOTCOMMAND=y</span>
-<a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a><span class="s">CONFIG_BOOTCOMMAND=&quot;bridge enable;run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot&quot;</span>
+<a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a><span class="s">CONFIG_BOOTCOMMAND=&quot;bridge enable; setenv bootfile Image; run mmcload; run linux_qspi_enable;run rsu_status;run mmcboot&quot;</span>
 <a id="__codelineno-6-45" name="__codelineno-6-45" href="#__codelineno-6-45"></a><span class="s">CONFIG_CMD_FAT=y</span>
 <a id="__codelineno-6-46" name="__codelineno-6-46" href="#__codelineno-6-46"></a><span class="s">CONFIG_CMD_FS_GENERIC=y</span>
 <a id="__codelineno-6-47" name="__codelineno-6-47" href="#__codelineno-6-47"></a><span class="s">CONFIG_DOS_PARTITION=y</span>
@@ -4040,19 +4040,21 @@
 </li>
 <li>
 <p>Select the <strong>FACTORY_IMAGE</strong> entry, and click the <strong>Edit</strong> button. The <strong>Edit Partition</strong> window pops up. Select the <strong>Input file</strong> as <strong>Bitstream_1 (ghrd_1sx280hu2f50e1vgas)</strong>. Change <strong>Address Mode</strong> to <strong>Block</strong> because you want to make sure you are leaving enough space for the biggest factory image you anticipate using. Set the <strong>End Address</strong> to <strong>0x0090FFFF</strong> in order to reserve 8MB for the factory image. This end address was calculated by adding 8MB to the end of the <strong>BOOT_INFO</strong> partition. Click <strong>OK</strong>. </p>
+<p><strong>Note:</strong> There is a requirement that the starting address of the <strong>SPT0</strong> partition is aligned to 64KB. In order to warranty this, the <strong>End Address</strong> of the <strong>FACTORY_IMAGE</strong> must finish at an address ending with <strong>0xXXXXFFFF</strong>.</p>
 <p><a class="glightbox" href="../images/jic-6.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/jic-6.png" /></a> </p>
 <p><strong>Note</strong>: The Page property for <strong>FACTORY_IMAGE</strong> partition must always be set to 0. This means that the <strong>FACTORY_IMAGE</strong> will be trieed after all the application images failed. </p>
 </li>
 <li>
 <p>Select the <strong>MT25QU02G</strong> flash device in the Configuration Device tab by clicking it, then click the <strong>Add Partition</strong> button to open the <strong>Add Partition</strong> window. Leave the <strong>Name</strong> as <strong>P1</strong> and select the <strong>Input file</strong> as <strong>Bitstream_2(ghrd_1sx280hu2f50e1vgas.sof)</strong>. This becomes the initial application image. Select the <strong>Address Mode</strong> as <strong>Block</strong> and allocate 16MB of data by setting <strong>Start Address</strong> = <strong>0x01000000</strong> and <strong>End Address</strong> = <strong>0x01FFFFFF</strong>. Since this is the first partition defined, this becomes the initial application image to be loaded and has the highest priority of all application images that may be defined later.</p>
 <p>The actual priority in which an application in a partition is loaded is defined based on the order in which the partition is defined when creating the initial flash image as shown above in this step.
-  The Programming File Generator issues an error if there are multiple partitions with the same page number, or if there are any “gaps” as in having a Page=1 then a Page=3, without a Page=2 for example.</p>
+   The Programming File Generator issues an error if there are multiple partitions with the same page number, or if there are any “gaps” as in having a Page=1 then a Page=3, without a Page=2 for example.</p>
 <p>Only up to seven partitions can contain application images at initial flash image creation time. This limitation does not have adverse effects, as typically at creation time it is expected to have just a factory image and one application image. </p>
 </li>
 <li>
 <p>Create two more partitions <strong>P2</strong> and <strong>P3</strong> using the same procedure as for the previous step, except set the <strong>Input file</strong> to <strong>None</strong>, leave <strong>Page</strong> unchanged (it does not matter for empty partitions) and set the start and end addresses as follows.</p>
-<p>* <strong>P2</strong>: <strong>Start Address</strong> = <strong>0x02000000</strong> and <strong>End Address</strong> = <strong>0x02FFFFFF</strong>. 
-  * <strong>P3</strong>: <strong>Start Address</strong> = <strong>0x03000000</strong> and <strong>End Address</strong> = <strong>0x03FFFFFF</strong>. </p>
+<p>* <strong>P2</strong>: <strong>Start Address</strong> = <strong>0x02000000</strong> and <strong>End Address</strong> = <strong>0x02FFFFFF</strong>. <br>
+   * <strong>P3</strong>: <strong>Start Address</strong> = <strong>0x03000000</strong> and <strong>End Address</strong> = <strong>0x03FFFFFF</strong>. </p>
+<p><strong>Note:</strong> Make sure that all the partitions created for the applications fit in the appropriate QSPI partition or partitions defined in device corresponding device tree in U-Boot and Linux. In the case of Linux, also make sure that the QSPI partition or partitions defined in the device tree to store the applications partitions are also defined in the <strong>qspi.rc</strong> file in <strong>LIBRSU</strong>.</p>
 </li>
 <li>
 <p>Click <strong>Select</strong> to select the <strong>Flash loader</strong>. The flash loader becomes part of the JIC file and is used by the Flash Programmer tool. Select the desired <strong>Device family</strong> and <strong>Device name</strong> as shown below.</p>
@@ -4334,7 +4336,7 @@ the following files are created <strong>combined_application.hps.rpd</strong> (c
 <ol>
 <li>
 <p>Power cycle the board and press any key when prompted, to get to the U-Boot command prompt.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>U-Boot<span class="w"> </span>SPL<span class="w"> </span><span class="m">2024</span>.04-35102-g135e53726d-dirty<span class="w"> </span><span class="o">(</span>Nov<span class="w"> </span><span class="m">23</span><span class="w"> </span><span class="m">2024</span><span class="w"> </span>-<span class="w"> </span><span class="m">13</span>:23:54<span class="w"> </span>-0600<span class="o">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>U-Boot<span class="w"> </span>SPL<span class="w"> </span><span class="m">2024</span>.04-35102-g135e53726d-dirty<span class="w"> </span><span class="o">(</span>Jan<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">2025</span><span class="w"> </span>-<span class="w"> </span><span class="m">13</span>:23:54<span class="w"> </span>-0600<span class="o">)</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>Reset<span class="w"> </span>state:<span class="w"> </span>Cold
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>MPU<span class="w">         </span><span class="m">1200000</span><span class="w"> </span>kHz
 <a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>L3<span class="w"> </span>main<span class="w">     </span><span class="m">400000</span><span class="w"> </span>kHz
@@ -4352,28 +4354,27 @@ the following files are created <strong>combined_application.hps.rpd</strong> (c
 <a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="c1">## Checking hash(es) for Image atf ... crc32+ OK</span>
 <a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="c1">## Checking hash(es) for Image uboot ... crc32+ OK</span>
 <a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="c1">## Checking hash(es) for Image fdt-0 ... crc32+ OK</span>
-<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>NOTICE:<span class="w">  </span>BL31:<span class="w"> </span>v2.11.0<span class="o">(</span>release<span class="o">)</span>:QPDS24.3_REL_GSRD_PR
-<a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>NOTICE:<span class="w">  </span>BL31:<span class="w"> </span>Built<span class="w"> </span>:<span class="w"> </span><span class="m">13</span>:23:25,<span class="w"> </span>Nov<span class="w"> </span><span class="m">23</span><span class="w"> </span><span class="m">2024</span>
+<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>NOTICE:<span class="w">  </span>BL31:<span class="w"> </span>v2.11.0<span class="o">(</span>release<span class="o">)</span>:<span class="w"> </span>QPDS24.3_REL_GSRD_PR
+<a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>NOTICE:<span class="w">  </span>BL31:<span class="w"> </span>Built<span class="w"> </span>:<span class="w"> </span><span class="m">13</span>:23:25,<span class="w"> </span>Jan<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">2025</span>
 <a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>
-<a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>
-<a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>U-Boot<span class="w"> </span><span class="m">2024</span>.04-35102-g135e53726d-dirty<span class="w"> </span><span class="o">(</span>Nov<span class="w"> </span><span class="m">23</span><span class="w"> </span><span class="m">2024</span><span class="w"> </span>-<span class="w"> </span><span class="m">13</span>:23:54<span class="w"> </span>-0600<span class="o">)</span>socfpga_stratix10
-<a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>
-<a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a>CPU:<span class="w">   </span>Intel<span class="w"> </span>FPGA<span class="w"> </span>SoCFPGA<span class="w"> </span>Platform<span class="w"> </span><span class="o">(</span>ARMv8<span class="w"> </span>64bit<span class="w"> </span>Cortex-A53<span class="o">)</span>
-<a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a>Model:<span class="w"> </span>SoCFPGA<span class="w"> </span>Stratix<span class="w"> </span><span class="m">10</span><span class="w"> </span>SoCDK
-<a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a>DRAM:<span class="w">  </span><span class="m">2</span><span class="w"> </span>GiB<span class="w"> </span><span class="o">(</span>effective<span class="w"> </span><span class="m">4</span><span class="w"> </span>GiB<span class="o">)</span>
-<a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a>Core:<span class="w">  </span><span class="m">26</span><span class="w"> </span>devices,<span class="w"> </span><span class="m">21</span><span class="w"> </span>uclasses,<span class="w"> </span>devicetree:<span class="w"> </span>separate
-<a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a>WDT:<span class="w">   </span>Started<span class="w"> </span>watchdog@ffd00200<span class="w"> </span>with<span class="w"> </span>servicing<span class="w"> </span>every<span class="w"> </span>1000ms<span class="w"> </span><span class="o">(</span>10s<span class="w"> </span>timeout<span class="o">)</span>
-<a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a>MMC:<span class="w">   </span>dwmmc0@ff808000:<span class="w"> </span><span class="m">0</span>
-<a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a>Loading<span class="w"> </span>Environment<span class="w"> </span>from<span class="w"> </span>FAT...<span class="w"> </span>Unable<span class="w"> </span>to<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="s2">&quot;uboot.env&quot;</span><span class="w"> </span>from<span class="w"> </span>mmc0:1...
-<a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a>In:<span class="w">    </span>serial0@ffc02000
-<a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a>Out:<span class="w">   </span>serial0@ffc02000
-<a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a>Err:<span class="w">   </span>serial0@ffc02000
-<a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a>Net:<span class="w">   </span>
-<a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a>Warning:<span class="w"> </span>ethernet@ff800000<span class="w"> </span><span class="o">(</span>eth0<span class="o">)</span><span class="w"> </span>using<span class="w"> </span>random<span class="w"> </span>MAC<span class="w"> </span>address<span class="w"> </span>-<span class="w"> </span><span class="m">66</span>:b9:e3:95:2d:82
-<a id="__codelineno-21-37" name="__codelineno-21-37" href="#__codelineno-21-37"></a>eth0:<span class="w"> </span>ethernet@ff800000
-<a id="__codelineno-21-38" name="__codelineno-21-38" href="#__codelineno-21-38"></a>Hit<span class="w"> </span>any<span class="w"> </span>key<span class="w"> </span>to<span class="w"> </span>stop<span class="w"> </span>autoboot:<span class="w">  </span><span class="m">0</span><span class="w"> </span>
-<a id="__codelineno-21-39" name="__codelineno-21-39" href="#__codelineno-21-39"></a>
-<a id="__codelineno-21-40" name="__codelineno-21-40" href="#__codelineno-21-40"></a>SOCFPGA<span class="w"> </span><span class="c1"># </span>
+<a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>U-Boot<span class="w"> </span><span class="m">2024</span>.04-35102-g135e53726d-dirty<span class="w"> </span><span class="o">(</span>Jan<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">2025</span><span class="w"> </span>-<span class="w"> </span><span class="m">13</span>:23:54<span class="w"> </span>-0600<span class="o">)</span>socfpga_stratix10
+<a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>
+<a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>CPU:<span class="w">   </span>Intel<span class="w"> </span>FPGA<span class="w"> </span>SoCFPGA<span class="w"> </span>Platform<span class="w"> </span><span class="o">(</span>ARMv8<span class="w"> </span>64bit<span class="w"> </span>Cortex-A53<span class="o">)</span>
+<a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a>Model:<span class="w"> </span>SoCFPGA<span class="w"> </span>Stratix<span class="w"> </span><span class="m">10</span><span class="w"> </span>SoCDK
+<a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a>DRAM:<span class="w">  </span><span class="m">2</span><span class="w"> </span>GiB<span class="w"> </span><span class="o">(</span>effective<span class="w"> </span><span class="m">4</span><span class="w"> </span>GiB<span class="o">)</span>
+<a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a>Core:<span class="w">  </span><span class="m">26</span><span class="w"> </span>devices,<span class="w"> </span><span class="m">21</span><span class="w"> </span>uclasses,<span class="w"> </span>devicetree:<span class="w"> </span>separate
+<a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a>WDT:<span class="w">   </span>Started<span class="w"> </span>watchdog@ffd00200<span class="w"> </span>with<span class="w"> </span>servicing<span class="w"> </span>every<span class="w"> </span>1000ms<span class="w"> </span><span class="o">(</span>10s<span class="w"> </span>timeout<span class="o">)</span>
+<a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a>MMC:<span class="w">   </span>dwmmc0@ff808000:<span class="w"> </span><span class="m">0</span>
+<a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a>Loading<span class="w"> </span>Environment<span class="w"> </span>from<span class="w"> </span>FAT...<span class="w"> </span>Unable<span class="w"> </span>to<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="s2">&quot;uboot.env&quot;</span><span class="w"> </span>from<span class="w"> </span>mmc0:1...
+<a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a>In:<span class="w">    </span>serial0@ffc02000
+<a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a>Out:<span class="w">   </span>serial0@ffc02000
+<a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a>Err:<span class="w">   </span>serial0@ffc02000
+<a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a>Net:<span class="w">   </span>
+<a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a>Warning:<span class="w"> </span>ethernet@ff800000<span class="w"> </span><span class="o">(</span>eth0<span class="o">)</span><span class="w"> </span>using<span class="w"> </span>random<span class="w"> </span>MAC<span class="w"> </span>address<span class="w"> </span>-<span class="w"> </span><span class="m">66</span>:b9:e3:95:2d:82
+<a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a>eth0:<span class="w"> </span>ethernet@ff800000
+<a id="__codelineno-21-37" name="__codelineno-21-37" href="#__codelineno-21-37"></a>Hit<span class="w"> </span>any<span class="w"> </span>key<span class="w"> </span>to<span class="w"> </span>stop<span class="w"> </span>autoboot:<span class="w">  </span><span class="m">0</span><span class="w"> </span>
+<a id="__codelineno-21-38" name="__codelineno-21-38" href="#__codelineno-21-38"></a>
+<a id="__codelineno-21-39" name="__codelineno-21-39" href="#__codelineno-21-39"></a>SOCFPGA<span class="w"> </span><span class="c1"># </span>
 </code></pre></div>
 </li>
 <li>
@@ -6417,7 +6418,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 11, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 11, 2025</span>
       
         <br>
         Created:

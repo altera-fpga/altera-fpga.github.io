@@ -3188,7 +3188,7 @@
 <p>6. Alternatively, steps 2-5 can be peformed from command line, using the provided tcl script:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>s10-ghrd-add-jop.tcl
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>wget<span class="w"> </span>https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-ghrd-add-jop.tcl
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>wget<span class="w"> </span>https://altera-fpga.github.io/rel-24.3.1/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-ghrd-add-jop.tcl
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nb">cd</span><span class="w"> </span>s10_soc_devkit_ghrd
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>qsys-script<span class="w"> </span>--qpf<span class="o">=</span>ghrd_1sx280hu2f50e1vgas.qpf<span class="w"> </span>--script<span class="o">=</span>../s10-ghrd-add-jop.tcl<span class="w"> </span>--system-file<span class="o">=</span>qsys_top.qsys
 </code></pre></div>
@@ -3262,7 +3262,7 @@
 <p>Note that the range of memory where the JOP is located is <code>0xf9008000</code> .. <code>0xf900dfff</code>.</p>
 <p>This can be done with the provided patch file:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>rm<span class="w"> </span>-f<span class="w"> </span>s10-dts-add-jop.patch
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>wget<span class="w"> </span>https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-dts-add-jop.patch
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>wget<span class="w"> </span>https://altera-fpga.github.io/rel-24.3.1/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-dts-add-jop.patch
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">pushd</span><span class="w"> </span>meta-intel-fpga-refdes
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>patch<span class="w"> </span>-p1<span class="w"> </span>&lt;<span class="w"> </span>../s10-dts-add-jop.patch
 <a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nb">popd</span>
@@ -3367,7 +3367,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 11, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 7, 2025</span>
       
         <br>
         Created:

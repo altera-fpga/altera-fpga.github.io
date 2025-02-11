@@ -5470,7 +5470,7 @@
 </code></pre></div>
 <p>5. Create the QSPI image using the provided Quartus Programming File Generator (PFG) file:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/qspi-boot
-<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>wget<span class="w"> </span>https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>wget<span class="w"> </span>https://altera-fpga.github.io/rel-24.3.1/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg
 <a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>stratix10_gsrd.pfg
 </code></pre></div>
 <p>The following files will be generated:</p>
@@ -5479,7 +5479,7 @@
 <li>$TOP_FOLDER/qspi-boot/s10_flash_image.core.rbf - fabric configuration file, already generated previously with the debug HPS FSBL</li>
 </ul>
 <h4 id="create-programming-file-generator-file">Create Programming File Generator File<a class="headerlink" href="#create-programming-file-generator-file" title="Permanent link">&para;</a></h4>
-<p>This section presents how to manually re-create the PFG file provided at <a href="https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg">https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg</a></p>
+<p>This section presents how to manually re-create the PFG file provided at <a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg">https://altera-fpga.github.io/rel-24.3.1/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg</a></p>
 <p>1. Start Quartus Programming File Generator GUI:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/qspi-boot
 <a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>qpfgw<span class="w"> </span><span class="p">&amp;</span>
@@ -6306,7 +6306,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 11, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 7, 2025</span>
       
         <br>
         Created:

@@ -4345,9 +4345,11 @@ Create the !ZephyrGSRD directory.
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>wget<span class="w"> </span>-O<span class="w"> </span>-<span class="w"> </span>https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/sha256.sum<span class="w"> </span><span class="p">|</span><span class="w"> </span>shasum<span class="w"> </span>--check<span class="w"> </span>--ignore-missing
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>wget<span class="w"> </span>https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/zephyr-sdk-0.16.1_linux-x86_64.tar.xz
 <a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>wget<span class="w"> </span>-O<span class="w"> </span>-<span class="w"> </span>https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/sha256.sum<span class="w"> </span><span class="p">|</span><span class="w"> </span>shasum<span class="w"> </span>--check<span class="w"> </span>--ignore-missing<span class="w"> </span>
-<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>tar<span class="w"> </span>xf<span class="w"> </span>zephyr-sdk*.tar.xz<span class="w"> </span>-C<span class="w"> </span>~/
-<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>rm<span class="w"> </span>zephyr-sdk*.tar.xz
-<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="nv">$HOME</span>/zephyr-sdk*/setup.sh<span class="w"> </span>-t<span class="w"> </span>aarch64-zephyr-elf<span class="w"> </span>-h<span class="w"> </span>-c
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>zephyr-sdk*.tar.xz<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">  </span>tar<span class="w"> </span>xf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span><span class="w"> </span>-C<span class="w"> </span>~/
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="k">done</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>rm<span class="w"> </span>zephyr-sdk*.tar.xz
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="nv">$HOME</span>/zephyr-sdk*/setup.sh<span class="w"> </span>-t<span class="w"> </span>aarch64-zephyr-elf<span class="w"> </span>-h<span class="w"> </span>-c
 </code></pre></div>
 <ul>
 <li>Substitute the official "Zephyr" folder for zephyr-socfpga repository:</li>
@@ -5190,7 +5192,7 @@ It's assumed you have already followed the <a href="#build-instructions">Build I
 <li>For demonstration purposes, we will create a new local branch so that we can revert to the default SMP configurations:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zephyrproject/zephyr
-<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>git<span class="w"> </span>checkout<span class="w"> </span>QPDS24.3_REL_GSRD_PR
+<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>git<span class="w"> </span>checkout<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>
 <a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a>git<span class="w"> </span>branch<span class="w"> </span>nosmp_<span class="nv">$cputype</span>
 <a id="__codelineno-66-4" name="__codelineno-66-4" href="#__codelineno-66-4"></a>git<span class="w"> </span>checkout<span class="w"> </span>nosmp_<span class="nv">$cputype</span>
 </code></pre></div>
@@ -5409,7 +5411,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 8, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 7, 2025</span>
       
         <br>
         Created:
