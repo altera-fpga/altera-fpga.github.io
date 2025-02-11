@@ -1,0 +1,2837 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://altera-fpga.github.io/rel-24.2/embedded-designs/agilex-5/e-series/premium/gsrd_zephyr/ug-zgsrd-agx5e-premium/">
+      
+      
+      
+      <link rel="icon" href="../../../../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+    
+    
+      
+        <title>Ug zgsrd agx5e premium - Altera FPGA Developer Site</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../../assets/stylesheets/main.85bb2934.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../../assets/stylesheets/palette.a6bdf11c.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../../../../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../../.." title="Altera FPGA Developer Site" class="md-header__button md-logo" aria-label="Altera FPGA Developer Site" data-md-component="logo">
+      
+  <img src="../../../../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Altera FPGA Developer Site
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ug zgsrd agx5e premium
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/altera-fpga" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    altera-fpga
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../../.." title="Altera FPGA Developer Site" class="md-nav__button md-logo" aria-label="Altera FPGA Developer Site" data-md-component="logo">
+      
+  <img src="../../../../../../assets/logo.png" alt="logo">
+
+    </a>
+    Altera FPGA Developer Site
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/altera-fpga" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    altera-fpga
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../.." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../../../../driver-list_linux/">Linux Drivers</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux Drivers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+          HPS Host Drivers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          HPS Host Drivers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/hwmon/hwmon/" class="md-nav__link">
+        Altera Hardware Monitor
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/clock_manager/clock_manager/" class="md-nav__link">
+        Clock Manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/dma/dma/" class="md-nav__link">
+        DMA Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/edac/edac/" class="md-nav__link">
+        Error Detection & Correction (EDAC)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/ptp_tod/ptp_emb_tod/" class="md-nav__link">
+        Ethernet 1588 PTP Time of Day Clock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/emac/emac/" class="md-nav__link">
+        Ethernet Media Access Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/hssi/hssi/" class="md-nav__link">
+        Ethernet Subsystem FPGA IP MAC Specific Ctrl
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/hssi_xtile/hssi_xtile/" class="md-nav__link">
+        Ethernet Subsystem FPGA IP Tile Specific Ctrl
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/apb_timers/apb_timers/" class="md-nav__link">
+        General Purpose Timers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/gpio/gpio/" class="md-nav__link">
+        General Purpose I/O (GPIO)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/i2c/i2c/" class="md-nav__link">
+        I2C
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/i3c/i3c/" class="md-nav__link">
+        I3C
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/interrupt_controller_GICv3/irq_gic_v3/" class="md-nav__link">
+        Interrupt Controller (GICv3)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/msgdma/msgdma/" class="md-nav__link">
+        MSGDMA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/nand/nand/" class="md-nav__link">
+        NAND Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/qsfp/qsfp/" class="md-nav__link">
+        QSFP Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/qspi/qspi/" class="md-nav__link">
+        QSPI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/reset_manager/reset_manager/" class="md-nav__link">
+        Reset Manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/sd-emmc/sd-emmc/" class="md-nav__link">
+        SD/eMMC Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/spi/spi/" class="md-nav__link">
+        SPI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/system_manager/system_manager/" class="md-nav__link">
+        System Manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/smmu/smmu/" class="md-nav__link">
+        System Memory Management Unit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/uart/uart/" class="md-nav__link">
+        UART
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/usb2_0_otg/usb_2_0_otg/" class="md-nav__link">
+        USB 2.0 OTG
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/watchdog_timers/watchdog_timers/" class="md-nav__link">
+        Watchdog Timers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/zarlink_clock_synchronizer/zarlink_clock_synchronizer/" class="md-nav__link">
+        Zarlink Clock Synchronizer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+          PCIe Host Drivers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          PCIe Host Drivers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/uart_16550/uart_16550/" class="md-nav__link">
+        Altera 16550 Compatible UART
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/dfl_afu/dfl_afu/" class="md-nav__link">
+        Accelerator Functional Unit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/intel_m10_bmc_core/intel_m10_bmc_core/" class="md-nav__link">
+        Board Management Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/dfl/dfl/" class="md-nav__link">
+        Device Feature List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/s10hssi/s10hssi/" class="md-nav__link">
+        Ethernet
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/ptp_dfl_tod/ptp_dfl_tod/" class="md-nav__link">
+        Ethernet 1588 PTP Time of Day Clock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/dfl_fme/dfl_fme/" class="md-nav__link">
+        FPGA Management Engine
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/dfl_pci/dfl_pci/" class="md-nav__link">
+        PCIe Subsystem
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/dfl_emif/dfl_emif/" class="md-nav__link">
+        Memory Interface
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/intel_m10_bmc_core/intel_m10_bmc_core/" class="md-nav__link">
+        MAX 10 Board Management Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/spi_altera_dfl/spi_altera_dfl/" class="md-nav__link">
+        SPI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/uio_dfl/uio_dfl/" class="md-nav__link">
+        User space I/O (UIO)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Host Attach Utilities
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Host Attach Utilities
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../sw-tools-list/host-attach-tools/" class="md-nav__link">
+        Host Attach Utilities Summary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/fpgaconf/fpgaconf/" class="md-nav__link">
+        fpgaconf
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/fpgad/fpgad/" class="md-nav__link">
+        fpgad
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/fpgainfo/fpgainfo/" class="md-nav__link">
+        fpgainfo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/fpgaport/fpgaport/" class="md-nav__link">
+        fpgaport
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/fpgasupdate/fpgasupdate/" class="md-nav__link">
+        fpgasupdate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/hssi/hssi/" class="md-nav__link">
+        hssi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/host_exerciser/host_exerciser/" class="md-nav__link">
+        host_exerciser
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/hssi_ethernet/hssimac/" class="md-nav__link">
+        HSSI ethernet loopback
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/hssi_ethernet/hssistats/" class="md-nav__link">
+        HSSI ethernet statistics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/hssi_ethernet/hssimac/" class="md-nav__link">
+        HSSI ethernet mac
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/mem_tg/mem_tg/" class="md-nav__link">
+        mem_tg
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/mmlink/mmlink/" class="md-nav__link">
+        mmlink
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/ofs_uio/ofs_uio/" class="md-nav__link">
+        ofs.uio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/opae_io/opae_io/" class="md-nav__link">
+        opae.io
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/opaeuio/opaeuio/" class="md-nav__link">
+        opaeuio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/opaevfio/opaevfio/" class="md-nav__link">
+        opaevfio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/pac_hssi_config/pac_hssi_config/" class="md-nav__link">
+        pac_hssi_config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/packager/packager/" class="md-nav__link">
+        packager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/pci_device/pci_device/" class="md-nav__link">
+        pci_device
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/rsu/rsu/" class="md-nav__link">
+        rsu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/userclk/userclk/" class="md-nav__link">
+        userclk
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/vabtool/vabtool/" class="md-nav__link">
+        vabtool
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Example Designs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Example Designs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../ed-demo-list/ed-list/" class="md-nav__link">
+        Example Designs Summary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+          Agilex™ 5
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Agilex™ 5
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gsrd/ug-gsrd-agx5e-premium/" class="md-nav__link">
+        Agilex™ 5 E-Series Premium Development Kit GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../boot-examples/ug-linux-boot-agx5e-premium/" class="md-nav__link">
+        Agilex™ 5 E-Series Premium Development Kit GHRD Linux Boot Examples
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modular/gsrd/ug-gsrd-agx5e-modular/" class="md-nav__link">
+        Agilex™ 5 E-Series Modular Development Kit GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modular/boot-examples/ug-linux-boot-agx5e-modular/" class="md-nav__link">
+        Agilex™ 5 E-Series Modular Development Kit GHRD Linux Boot Examples
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms/" class="md-nav__link">
+        Agilex™ 5 Intel Simics Virtual Platform Example User Guide - Linux GSRD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms/" class="md-nav__link">
+        Agilex™ 5 Intel Simics Virtual Platform Example User Guide - Zephyr GSRD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../remote-debug/ug-remote-debug-agx5e-premium/" class="md-nav__link">
+        Agilex™ 5 FPGA Remote Debug Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rsu/ug-rsu-agx5e-soc/" class="md-nav__link">
+        Agilex™ 5 SoC HPS Remote System Update Example
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+          Agilex™ 7
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Agilex™ 7
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/" class="md-nav__link">
+        Agilex™ 7 SoC HPS Remote System Update Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc/" class="md-nav__link">
+        Agilex™ 7 SoC HPS Multi-QSPI Remote System Update Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-7/f-series/soc/remote-debug/ug-remote-debug-agx7f-soc/" class="md-nav__link">
+        Agilex™ 7 SoC FPGA Remote Debug Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc/" class="md-nav__link">
+        Agilex™ 7 HPS eMMC Boot Example
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+          Stratix® 10
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Stratix® 10
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stratix-10/sx/soc/rsu/ug-rsu-s10sx-soc/" class="md-nav__link">
+        Stratix® 10 SoC HPS Remote System Update Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc/" class="md-nav__link">
+        Stratix® 10 SoC FPGA Remote Debug Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc/" class="md-nav__link">
+        Stratix® 10 HPS eMMC Boot Example
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Demos
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Demos
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../ed-demo-list/demo-list/" class="md-nav__link">
+        Demos Summary
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Ug zgsrd agx5e premium</h1>
+
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h3 id="gsrd-overview">GSRD Overview<a class="headerlink" href="#gsrd-overview" title="Permanent link">&para;</a></h3>
+<p>The Zephyr Golden System Reference Design (ZGSRD) is a reference design running on the Agilex 5 E-Series Premium  Development Kit.</p>
+<p>The GSRD is comprised of the following components:</p>
+<ul>
+<li>Golden Hardware Reference Design (GHRD)</li>
+<li>Reference HPS software including:<ul>
+<li>Arm Trusted Firmware</li>
+<li>Zephyr RTOS</li>
+<li>Zephyr Drivers</li>
+<li>Sample Applications</li>
+</ul>
+</li>
+</ul>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<p>The following are required to be able to fully exercise the Agilex 5 Premium Development Kit GSRD:</p>
+<ul>
+<li>
+<p>Altera Agilex 5 FPGA E-Series 065B Premium Development Kit, ordering code DK-A5E065BB32AES1. Refer to <a href="https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html">board documentation</a> for more information about the development kit.</p>
+<ul>
+<li>HPS Enablement Expansion Board. Included with the development kit.</li>
+<li>Mini USB Cable. Included with the development kit.</li>
+<li>Micro USB Cable. Included with the development kit.</li>
+<li>Host PC with</li>
+<li>64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.</li>
+<li>Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too</li>
+<li>Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
+<li>Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 Used to recompile the hardware design. If only writing binaries is required, then the smaller Quartus Prime Pro Edition Programmer version 24.3 is sufficient.</li>
+</ul>
+</li>
+</ul>
+<h3 id="release-contents">Release Contents<a class="headerlink" href="#release-contents" title="Permanent link">&para;</a></h3>
+<h4>Binaries</h4>
+
+<p>The Agilex 5 Premium Development Kit Zephyr GSRD binaries are located at <a href="https://releases.rocketboards.org/2024.11/zephyr/agilex5/hps_zephyr/">https://releases.rocketboards.org/2024.11/zephyr/agilex5/hps_zephyr/</a>:</p>
+<table>
+<thead>
+<tr>
+<th>HPS Daughter Card</th>
+<th>Boot Source</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enablement Board</td>
+<td>QSPI</td>
+<td>CLI Application: <a href="https://releases.rocketboards.org/2024.11/zephyr/agilex5/hps_zephyr/cli/qspi_boot/">https://releases.rocketboards.org/2024.11/zephyr/agilex5/hps_zephyr/cli/qspi_boot/</a> <br>Hello World Application: <a href="https://releases.rocketboards.org/2024.11/zephyr/agilex5/hps_zephyr/hello_world/qspi_boot">https://releases.rocketboards.org/2024.11/zephyr/agilex5/hps_zephyr/hello_world/qspi_boot</a></td>
+</tr>
+</tbody>
+</table>
+<h4>Sources</h4>
+
+<p>Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 and the following software component versions are used to build the GSRD:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Component</th>
+<th align="left">Location</th>
+<th align="left">Branch</th>
+<th align="left">Commit ID/Tag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">GHRD</td>
+<td align="left"><a href="https://github.com/altera-opensource/ghrd-socfpga">https://github.com/altera-opensource/ghrd-socfpga</a></td>
+<td align="left">master</td>
+<td align="left">QPDS24.3_REL_GSRD_PR</td>
+</tr>
+<tr>
+<td align="left">Zephyr</td>
+<td align="left"><a href="https://github.com/altera-opensource/zephyr-socfpga">https://github.com/altera-opensource/zephyr-socfpga</a></td>
+<td align="left">socfpga_rel_24.3</td>
+<td align="left">QPDS24.3_REL_GSRD_PR</td>
+</tr>
+<tr>
+<td align="left">Arm Trusted Firmware</td>
+<td align="left"><a href="https://github.com/altera-opensource/arm-trusted-firmware">https://github.com/altera-opensource/arm-trusted-firmware</a></td>
+<td align="left">socfpga_v2.11.0</td>
+<td align="left">QPDS24.3_REL_GSRD_PR</td>
+</tr>
+</tbody>
+</table>
+<h3 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h3>
+<h4>Embedded Software Readiness</h4>
+
+<p>Yes - hardware validated; No - hardware validation in progress; Yes* - tested with condition; Yes** - tested, with known issues listed in the next section.</p>
+<table>
+<thead>
+<tr>
+<th align="left">HPS Peripheral</th>
+<th align="left">Sample App</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">GPIO Driver</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">UART Driver</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">Timer Driver</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">WatchDog Driver</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">SMP Driver</td>
+<td align="left">No</td>
+</tr>
+<tr>
+<td align="left">QSPI Driver</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">SDRAM Driver</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">HPS DMA Driver</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">SDM Mailbox drivers</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">SEU</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">Clock Driver</td>
+<td align="left">Yes</td>
+</tr>
+<tr>
+<td align="left">Warm/Cold reset Driver</td>
+<td align="left">Yes-CLI App</td>
+</tr>
+</tbody>
+</table>
+<h3 id="development-kit">Development Kit<a class="headerlink" href="#development-kit" title="Permanent link">&para;</a></h3>
+<p>This release targets the Agilex 5 FPGA E-Series 065B Premium Development Kit. Refer to <a href="https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html">board documentation</a> for more information about the development kit.</p>
+<p><a class="glightbox" href="../images/agilex5-premium-devkit-es.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/agilex5-premium-devkit-es.png" /></a></p>
+<h4>Installing HPS Daughtercard</h4>
+
+<p>This section shows how to install the included HPS Enablement Daughtercard.  The installation for the other optional HPS Boards is similar.</p>
+<p>1. Identify the correct thumb screws and washers needed, they are in a plastic bag:<br />
+<a class="glightbox" href="../images/dc1-screws.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/dc1-screws.png" /></a></p>
+<p>2. Locate the area on the development board where the HPS Daughtercard needs to be installed:<br />
+<a class="glightbox" href="../images/dc2-location.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/dc2-location.png" /></a></p>
+<p>3. Place the plastic washers on top of the three hex mounting posts:<br />
+<a class="glightbox" href="../images/dc3-washers.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/dc3-washers.png" /></a></p>
+<p>4. Place HPS Board on top of the posts and washers:<br />
+<a class="glightbox" href="../images/dc4-placed.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/dc4-placed.png" /></a></p>
+<p>5. Place the hex thumb screws on the two posts, as shown below. Note the 3<sup>rd</sup> one on the bottom is best unplaced as fully screwing that in may move the board. Also note the thumb screw close to the Ethernet connector is hard to screw, recommend to use small pliers and patience to make it secure. It is important that the HPS Board is secure, and does not move:<br />
+<a class="glightbox" href="../images/dc5-installed.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/dc5-installed.png" /></a> </p>
+<p><strong>Note</strong>: If you need to swap HPS Boards frequently,  it is recommended to remove the hex posts, and install the plastic washers between the PCB and the posts. This way you do not need to be careful for the washers not to move when you place the HPS Board on top of the posts. Note there are also plastic washers underneath the development board PCB, make sure to leave those in place when performing this operation</p>
+<h4>Changing MSEL</h4>
+
+<p>MSEL signals instruct the FPGA device on which configuration scheme to use. Configuration schemes used by the scenarios presented in this guide are JTAG and QSPI. MSEL is changed through dipswitch SW27. Only change the settings while the board is powered off.</p>
+<p>Configuration OFF-OFF-OFF-OFF corresponds to JTAG:</p>
+<p><a class="glightbox" href="../images/devkit-msel-jtag.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/devkit-msel-jtag.png" /></a></p>
+<p>Configuration OFF-ON-ON-OFF corresponds to JTAG:</p>
+<p><a class="glightbox" href="../images/devkit-msel-qspi.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/devkit-msel-qspi.png" /></a></p>
+<h3 id="ghrd-overview">GHRD Overview<a class="headerlink" href="#ghrd-overview" title="Permanent link">&para;</a></h3>
+<p>The Golden Hardware Reference Design is an important part of the Zephyr GSRD and consists of the following components:</p>
+<ul>
+<li>Hard Processor System (HPS)<ul>
+<li>Dual core Arm Cortex-A76 processor</li>
+<li>Dual core Arm Cortex-A55 processor</li>
+<li>HPS Peripherals connected to Out-of-Box Experience (OOBE2) Daughter Card:<ul>
+<li>EMAC</li>
+<li>HPS JTAG debug</li>
+<li>USB UART</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Multi-Ported Front End (MPFE) for HPS External Memory Interface (EMIF)</li>
+<li>FPGA Peripherals connected to Lightweight HPS-to-FPGA (LWS2F) AXI Bridge and JTAG to Avalon Master Bridge<ul>
+<li>Three user LED outputs</li>
+<li>Four user DIP switch inputs</li>
+<li>Four user push-button inputs</li>
+<li>System ID</li>
+</ul>
+</li>
+<li>FPGA Peripherals connected to HPS-to-FPGA (S2F) AXI Bridge<ul>
+<li>256KB of FPGA on-chip memory</li>
+</ul>
+</li>
+</ul>
+<p><a class="glightbox" href="../images/agilex5_ghrd.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/agilex5_ghrd.png" /></a> </p>
+<p>The GHRD allows hardware designers to access each peripheral in the FPGA portion of the SoC with System Console, through the JTAG master module. This signal-level access is independent of the driver readiness of each peripheral.</p>
+<h2 id="exercising-prebuilt-binaries">Exercising Prebuilt Binaries<a class="headerlink" href="#exercising-prebuilt-binaries" title="Permanent link">&para;</a></h2>
+<p>This section presents how to use the prebuilt binaries included with the GSRD release.</p>
+<h3 id="prebuilt-binaries">Prebuilt Binaries<a class="headerlink" href="#prebuilt-binaries" title="Permanent link">&para;</a></h3>
+<p>Prebuilt binaries can be found at the following URL: <a href="https://releases.rocketboards.org/2024.11/zephyr/agilex5/hps_zephyr/">https://releases.rocketboards.org/2024.11/zephyr/agilex5/hps_zephyr/</a>.
+The prebuilt binaries consist of application programs built to run on the MPU cores in multicore configuration.
+Additionally, files used by the recipes to create the binaries to boot from QSPI and NAND are provided in their respective folders.
+The sample applications provided are:</p>
+<table>
+<thead>
+<tr>
+<th>Directory</th>
+<th>Application Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cli</td>
+<td>Application to demonstrate Command Line Interface</td>
+</tr>
+<tr>
+<td>hello_world</td>
+<td>Application that displays a Hello World! message</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configure-board">Configure Board<a class="headerlink" href="#configure-board" title="Permanent link">&para;</a></h3>
+<p>1. Leave all jumpers and switches in their default configuration.</p>
+<p>2. Install the appropriate HPS Daughtercard.</p>
+<p>3. Connect mini USB cable from vertical connector on HPS Daughtercard to host PC. This is used for the HPS serial console.</p>
+<p>4. Connect micro USB cable from development board to host PC. This is used by the tools for JTAG communication.</p>
+<h3 id="configure-serial-console">Configure Serial Console<a class="headerlink" href="#configure-serial-console" title="Permanent link">&para;</a></h3>
+<p>All the scenarios included in this release require a serial connection. This section presents how to configure the serial connection.</p>
+<p>1. Install a serial terminal emulator application on your host PC:  </p>
+<ul>
+<li>For Windows: TeraTerm or PuTTY are available</li>
+<li>For Linux: GtkTerm or Minicom are available</li>
+</ul>
+<p>2. Power down your board if powered up. This is important, as once powered up, with the micro USB JTAG cable connected, a couple more USB serial ports will enumerate, and you may choose the wrong port.</p>
+<p>3. Connect mini-USB cable from the vertical mini-USB connector on the HPS Board to the host PC</p>
+<p>4. On the host PC, an USB serial port will enumerate. On Windows machines it will be something like <code>COM4</code>, while on Linux machines it will be something like <code>/dev/tty/USB0</code>.</p>
+<p>5. Configure your serial terminal emulator to use the following settings:  </p>
+<ul>
+<li>Serial port: as mentioned above</li>
+<li>Baud rate: 115,200</li>
+<li>Data bits: 8</li>
+<li>Stop bits: 1</li>
+<li>CRC: disabled</li>
+<li>Hardware flow control: disabled</li>
+</ul>
+<p>6. Connect your terminal emulator</p>
+<h3 id="hps-enablement-board">HPS Enablement Board<a class="headerlink" href="#hps-enablement-board" title="Permanent link">&para;</a></h3>
+<p>This section presents how to use HPS Enablement Board to boot  from QSPI.</p>
+<h4 id="booting-from-qspi">Booting from QSPI<a class="headerlink" href="#booting-from-qspi" title="Permanent link">&para;</a></h4>
+<hr/>
+<p>This section presents how to boot from QSPI. </p>
+<p>1. Download prebuilt binaries and create jic file. This example uses as reference the <strong>CLI</strong> application, but the <strong>hello world application</strong> could be excercised in the same way. </p>
+<p><span style="color: red;">NOTE:  At the moment of creating this page, the .jic file for the prebuild applications was not included in the official binaries release page, so in the example below we are using an alternate location in the meantime these binaries are uploaded. The temporary location of the page is https://www.rocketboards.org/foswiki/Projects/ZephyrPrebuildBinaries </span>. The .jic files were generated from the current available binaries from the official page following the instuctions at <a href="#Creating Boot Images">Creating Boot Images</a> section.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir<span class="w"> </span>agilex5_zgsrd
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>agilex5_zgsrd
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>mkdir<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/prebuiltbin
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/prebuiltbin
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>wget<span class="w"> </span>https://www.rocketboards.org/foswiki/pub/Projects/ZephyrPrebuildBinaries/ZephyrPrebuildBinaries24p3.tar
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>tar<span class="w"> </span>xf<span class="w"> </span>ZephyrPrebuildBinaries24p3.tar
+</code></pre></div>
+The file to be used to flash the QSPI device is:</p>
+<ul>
+<li>$TOP_FOLDER/prebuiltbin/ZephyrPrebuildBinaries24.3/cli/qspi_boot/qspi_image.jic</li>
+</ul>
+<p>2. Power down board</p>
+<p>3. Set MSEL dipswitch SW27 to JTAG: OFF-OFF-OFF-OFF</p>
+<p>4. Power up the board</p>
+<p>5. Flash the QSPI flash device using the command:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;</span><span class="nv">$TOP_FOLDER</span><span class="s2">/prebuiltbin/ZephyrPrebuildBinaries24.3/cli/qspi_boot/qspi_image.jic&quot;</span>
+</code></pre></div>
+6. Power down board</p>
+<p>7. Set MSEL dipswitch SW27 to QSPI: OFF-ON-ON-OFF</p>
+<p>8. Power up the board</p>
+<p>9. Wait for Zephyr CLI App  to boot.</p>
+<p>The output from the CLI application will look like this:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>NOTICE:  DDR: Reset type is &#39;Power-On&#39;
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>NOTICE:  IOSSM: Calibration success status check...
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>NOTICE:  IOSSM: All EMIF instances within the IO96 have calibrated successfully!
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>NOTICE:  DDR: Calibration success
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>NOTICE:  ###DDR:init success###
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>NOTICE:  QSPI boot
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>NOTICE:  BL2: 2.11.0(release):9aee18305
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>NOTICE:  BL2: Built : 12:01:53, Nov 18 2024
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>NOTICE:  BL2: Booting BL31
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>NOTICE:  BL31: Boot Core = 0
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>NOTICE:  BL31: CPU ID = 0
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>NOTICE:  BL31: v2.11.0(release):9aee18305
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>NOTICE:  BL31: Built : 12:02:02, Nov 18 2024
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>*** Booting Zephyr OS build socfpga_rel_24.3 ***
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>Secondary CPU core 1 (MPID:0x100) is up
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>Secondary CPU core 2 (MPID:0x200) is up
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>Secondary CPU core 3 (MPID:0x300) is up
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>intel_socfpga_agilex5_socdk: Starting Command Line Interface...
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>agilex5$ help
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>You can try to call commands with &lt;-h&gt; or &lt;--help&gt; parameter for more information.
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>Available commands:
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>  device   : Device commands
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>  flash    : Flash shell commands
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>  gpio     : GPIO commands
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>  help     : Prints the help message.
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>  mailbox  : Intel SoC FPGA SDM mailbox client commands
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>  psci     : ARM PSCI interface commands
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>  sip_svc  : ARM SiP services commands
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>  timer    : Timer commands
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>agilex5$ device list
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>devices:
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>- clock@10d10000 (READY)
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>- reset-controller@10D11000 (READY)
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>- interrupt-controller@1d000000 (READY)
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>- gpio@10c03300 (READY)
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>- gpio@10c03200 (READY)
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>- psci (READY)
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>- uart@10c02000 (READY)
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>- sysmgr@10d12000 (READY)
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>- dma@10DC0000 (READY)
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>- dma@10DB0000 (READY)
+<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>- smc (READY)
+<a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>- qspi@108d2000 (READY)
+<a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>- timer@10D00100 (READY)
+<a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>- timer@10D00000 (READY)
+<a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>- timer@10C03100 (READY)
+<a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>- timer@10C03000 (READY)
+<a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>agilex5$ 
+</code></pre></div></p>
+<h2 id="building-the-zephyr-gsrd">Building the Zephyr GSRD<a class="headerlink" href="#building-the-zephyr-gsrd" title="Permanent link">&para;</a></h2>
+<p><a class="glightbox" href="../images/zephyr_model.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/zephyr_model.png" /></a></p>
+<ul>
+<li>Update and upgrade your Ubuntu system</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade
+</code></pre></div>
+<ul>
+<li>Install all the required dependencies: </li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>--no-install-recommends<span class="w"> </span>git<span class="w"> </span>cmake<span class="w"> </span>ninja-build<span class="w"> </span>gperf<span class="w"> </span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>ccache<span class="w"> </span>dfu-util<span class="w"> </span>device-tree-compiler<span class="w"> </span>wget<span class="w"> </span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>python3-dev<span class="w"> </span>python3-pip<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-tk<span class="w"> </span>python3-wheel<span class="w"> </span>python3-venv<span class="w"> </span>xz-utils<span class="w"> </span>file<span class="w"> </span>libpython3-dev<span class="w"> </span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>make<span class="w"> </span>gcc<span class="w"> </span>gcc-multilib<span class="w"> </span>g++-multilib<span class="w"> </span>libsdl2-dev<span class="w"> </span>libmagic1<span class="w"> </span>libguestfs-tools<span class="w">  </span>libssl-dev
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Zephyr Requirement</th>
+<th>Ubuntu 22.04 (default versions)</th>
+<th>command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cmake</td>
+<td>3.20.5</td>
+<td>3.16.3 (Upgrade is required)</td>
+<td>cmake --version</td>
+</tr>
+<tr>
+<td>python</td>
+<td>3.8</td>
+<td>3.8.10</td>
+<td>python3 --version</td>
+</tr>
+<tr>
+<td>dtc</td>
+<td>1.4.6</td>
+<td>1.5.0</td>
+<td>dtc --version</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>As a minimum cmake version 3.20.5 is required, if you have an older version, then execute the following commands to add a non-intrusive cmake binary:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nv">CURR_FOLDER</span><span class="o">=</span><span class="nv">$PWD</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</span>/bin/cmake<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$HOME</span>/bin/cmake
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>wget<span class="w"> </span>https://github.com/Kitware/CMake/releases/download/v3.21.1/cmake-3.21.1-Linux-x86_64.sh
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>yes<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh<span class="w"> </span>cmake-3.21.1-Linux-x86_64.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>cat
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export PATH=</span><span class="nv">$PWD</span><span class="s2">/cmake-3.21.1-linux-x86_64/bin:\$PATH&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$HOME</span>/.zephyrrc
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$CURR_FOLDER</span>
+</code></pre></div>
+<ul>
+<li>Load the profile that was created to use the newer CMake (<em>this should be done for every session when</em> <a href="#zephyr-build-environment-setup">Building Zephyr</a>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">source</span><span class="w">  </span><span class="nv">$HOME</span>/.zephyrrc
+</code></pre></div>
+<h3 id="setting-up-environment">Setting up Environment<a class="headerlink" href="#setting-up-environment" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Create the Zephyr GSRD top level directory:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_zgsrd
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>mkdir<span class="w"> </span>agilex5_zgsrd
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nb">cd</span><span class="w"> </span>agilex5_zgsrd
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>
+</code></pre></div>
+<ul>
+<li>Download the compiler toolchain. Define environment variables and append the toolchain path in the environment PATH variable. so the toolchain can be used to build the binaries:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>wget<span class="w"> </span>https://developer.arm.com/-/media/Files/downloads/gnu/11.3.rel1/binrel/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>tar<span class="w"> </span>xf<span class="w"> </span>arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>rm<span class="w"> </span>-f<span class="w"> </span>arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu/bin:<span class="nv">$PATH</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export PATH=`pwd`/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu/bin:\$PATH&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/.zephyrrc
+</code></pre></div>
+<p>Enable Quartus tools to be called from command line:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3/quartus/
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
+</code></pre></div>
+<h3 id="build-the-hardware-design">Build the hardware design<a class="headerlink" href="#build-the-hardware-design" title="Permanent link">&para;</a></h3>
+<p>Use the following commands to build the hardware design: </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga<span class="w"> </span>agilex5_soc_devkit_ghrd
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w">  </span>https://github.com/altera-opensource/ghrd-socfpga<span class="w"> </span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>mv<span class="w"> </span>ghrd-socfpga/agilex5_soc_devkit_ghrd<span class="w"> </span>.
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>make<span class="w"> </span>config
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>make<span class="w"> </span><span class="nv">DEVICE</span><span class="o">=</span>A5ED065BB32AE6SR0<span class="w"> </span><span class="nv">HPS_EMIF_MEM_CLK_FREQ_MHZ</span><span class="o">=</span><span class="m">800</span><span class="w"> </span><span class="nv">HPS_EMIF_REF_CLK_FREQ_MHZ</span><span class="o">=</span><span class="m">100</span><span class="w"> </span><span class="nv">INITIALIZATION_FIRST</span><span class="o">=</span>hps<span class="w"> </span>generate_from_tcl
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>make<span class="w"> </span>sof
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="nb">cd</span><span class="w"> </span>..
+</code></pre></div>
+<p>The following files are created:</p>
+<ul>
+<li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof</code></li>
+<li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof</code></li>
+</ul>
+<h3 id="building-arm-trusted-firmware">Building Arm Trusted Firmware<a class="headerlink" href="#building-arm-trusted-firmware" title="Permanent link">&para;</a></h3>
+<p>The ATF needs to be built accordingliy to the boot device. This is needed because the BL2 stage requires to load the fip.bin (that includes the BL31 and Zephyr application) from the specific flash device. The next sub-sections provides you with instructions on how to build the ATF for each one of the boot flows supported.</p>
+<h4 id="build-atf-qspi">Build ATF QSPI<a class="headerlink" href="#build-atf-qspi" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w">  </span>QPDS24.3_REL_GSRD_PR<span class="w">   </span>https://github.com/altera-opensource/arm-trusted-firmware<span class="w"> </span>arm-trusted-firmware-qspi
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">cd</span><span class="w"> </span>arm-trusted-firmware-qspi
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>make<span class="w"> </span>realclean
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nv">ARCH</span><span class="o">=</span>arm64<span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-<span class="w"> </span>make<span class="w"> </span><span class="nv">PLAT</span><span class="o">=</span>agilex5<span class="w"> </span><span class="nv">SOCFPGA_BOOT_SOURCE_QSPI</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>bl2<span class="w"> </span>bl31<span class="w"> </span><span class="nv">PRELOADED_BL33_BASE</span><span class="o">=</span>0x80100000<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span>
+</code></pre></div>
+<ul>
+<li>Build Fiptool to be able to create the sdimage in later steps.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>make<span class="w"> </span>fiptool
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>cp<span class="w"> </span>tools/fiptool/fiptool<span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+</code></pre></div>
+<p>The previous instructions will produce:</p>
+<ul>
+<li>$TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex5/release/bl2.bin</li>
+<li>$TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex5/release/bl31.bin</li>
+<li>$TOP_FOLDER/fiptool</li>
+</ul>
+<h3 id="zephyr-build-environment-setup">Zephyr Build Environment Setup<a class="headerlink" href="#zephyr-build-environment-setup" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Create a new virtual environment and activate it</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>~/.zephyrproject/.venv
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1">#Environment Activation</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="nb">source</span><span class="w"> </span>~/.zephyrproject/.venv/bin/activate
+</code></pre></div>
+<ul>
+<li>Install west, pull the official Zephyr repository and other Zephyr dependencies:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>pip3<span class="w"> </span>install<span class="w"> </span>wheel
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>pip3<span class="w"> </span>install<span class="w"> </span>west
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>west<span class="w"> </span>init<span class="w"> </span>-m<span class="w"> </span>https://github.com/zephyrproject-rtos/zephyr<span class="w"> </span>--mr<span class="w"> </span>v3.6-branch<span class="w"> </span>zephyrproject
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zephyrproject
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>west<span class="w"> </span>update
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>west<span class="w"> </span>zephyr-export
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zephyrproject/zephyr/scripts/requirements.txt
+</code></pre></div>
+<p>Note: If you get a similar error like:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ERROR: sphinx-tabs 3.4.1 has requirement docutils~=0.18.0, but you&#39;ll have docutils 0.19 which is incompatible.
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>ERROR: sphinx-rtd-theme 1.2.2 has requirement docutils&lt;0.19, but you&#39;ll have docutils 0.19 which is incompatible
+</code></pre></div></p>
+<p>Run:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>pip<span class="w"> </span>install<span class="w"> </span>sphinx-rtd-theme<span class="w"> </span>sphinx
+</code></pre></div></p>
+<ul>
+<li>Install Zephyr SDK in home folder so it can be used on many Zephyr projects:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>wget<span class="w"> </span>https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/zephyr-sdk-0.16.4_linux-x86_64.tar.xz
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>wget<span class="w"> </span>-O<span class="w"> </span>-<span class="w"> </span>https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/sha256.sum<span class="w"> </span><span class="p">|</span><span class="w"> </span>shasum<span class="w"> </span>--check<span class="w"> </span>--ignore-missing
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>wget<span class="w"> </span>https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/zephyr-sdk-0.16.1_linux-x86_64.tar.xz
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>wget<span class="w"> </span>-O<span class="w"> </span>-<span class="w"> </span>https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/sha256.sum<span class="w"> </span><span class="p">|</span><span class="w"> </span>shasum<span class="w"> </span>--check<span class="w"> </span>--ignore-missing
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>zephyr-sdk*.tar.xz<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">  </span>tar<span class="w"> </span>xf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span><span class="w"> </span>-C<span class="w"> </span>~/
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="k">done</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>rm<span class="w"> </span>zephyr-sdk*.tar.xz
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="nv">$HOME</span>/zephyr-sdk*/setup.sh<span class="w"> </span>-t<span class="w"> </span>aarch64-zephyr-elf<span class="w"> </span>-h<span class="w"> </span>-c
+</code></pre></div>
+<ul>
+<li>Substitute the official "Zephyr" folder for zephyr-socfpga repository:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zephyrproject
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>zephyr
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w">  </span>--single-branch<span class="w"> </span>https://github.com/altera-opensource/zephyr-socfpga<span class="w"> </span>zephyr
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>west<span class="w"> </span>update
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>west<span class="w"> </span>zephyr-export
+</code></pre></div>
+<h3 id="building-zephyr-application">Building Zephyr Application<a class="headerlink" href="#building-zephyr-application" title="Permanent link">&para;</a></h3>
+<p>Every Zephyr application is composed of several configurable key components that work together in the same executable:</p>
+<ul>
+<li>Zephyr Kernel: Manages system resources and task scheduling.</li>
+<li>Device Drivers: Enable interaction with hardware peripherals.</li>
+<li>Libraries: Provide additional functionality and utilities.</li>
+<li>Application Code: Written in C to define application behavior</li>
+</ul>
+<p>The following Zephyr sample applications are available to test:</p>
+<ul>
+<li>HelloWorld: samples/hello_world/</li>
+<li>GPIO: samples/basic/blinky/</li>
+<li>Timer/Counter: samples/drivers/counter/alarm/</li>
+<li>Watchdog: samples/drivers/watchdog/</li>
+<li>UART: samples/drivers/uart/echo_bot/</li>
+<li>SPI: samples/drivers/jesd216/</li>
+<li>QSPI : samples/drivers/soc_flash_qspi/</li>
+<li>SDM Mailbox: sample/subsys/sip_svc/</li>
+<li>HPS DMA: samples/drivers/dma/mem_to_mem/</li>
+<li>SEU: samples/drivers/seu</li>
+<li>CLI: samples/boards/intel_socfpga/cli</li>
+</ul>
+<p>In this regard, we will focus on building the "Hello World" sample that will allow us to test our development environment and run it in Agilex 5 E-Series Premium Development Kit.</p>
+<ul>
+<li>Build the "Hello World" Zephyr application binary and place the built outputs in an "agilex5" directory in the current active directory.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zephyrproject/zephyr
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>west<span class="w"> </span>build<span class="w"> </span>-b<span class="w"> </span>intel_socfpga_agilex5_socdk<span class="w"> </span>samples/hello_world<span class="w"> </span>-d<span class="w"> </span>agilex5
+</code></pre></div>
+<p>Successful build console output should be similar to the following:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>Zephyr version: 3.6.0 (/home/miguel/tasks/agilex5-zgsrd/agilex5_zgsrd/zephyrproject/zephyr), build: v3.6.0-128-gc49ce6725d2d
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>[112/113] Linking C executable zephyr/zephyr.elf
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>Memory region         Used Size  Region Size  %age Used
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>           FLASH:          0 GB         0 GB
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>             RAM:      155652 B         8 MB      1.86%
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>        IDT_LIST:          0 GB        32 KB      0.00%
+</code></pre></div>
+The output of this stage is:</p>
+<ul>
+<li>$TOP_FOLDER/zephyrproject/zephyr/agilex5/zephyr/zephyr.bin</li>
+</ul>
+<h3 id="creating-boot-images">Creating Boot Images<a class="headerlink" href="#creating-boot-images" title="Permanent link">&para;</a></h3>
+<p>The types of boot devices are supported:</p>
+<ol>
+<li><a href="#qspi-binaries">QSPI Flash</a></li>
+</ol>
+<h4 id="qspi-binaries">QSPI binaries<a class="headerlink" href="#qspi-binaries" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Create FIP(Firmware Image Package) binary. This will pack the Zephyr binary and ATF BL31 binary into one single binary called FIP binary.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>mkdir<span class="w"> </span>qspi_bin<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>qspi_bin
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/arm-trusted-firmware-qspi/build/agilex5/release/bl2.bin<span class="w"> </span>.
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="nv">$TOP_FOLDER</span>/fiptool<span class="w"> </span>create<span class="w"> </span>--soc-fw<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/arm-trusted-firmware-qspi/build/agilex5/release/bl31.bin<span class="w">  </span>--nt-fw<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zephyrproject/zephyr/agilex5/zephyr/zephyr.bin<span class="w"> </span>fip.bin
+</code></pre></div>
+<p>Build <em>bl2.hex</em> file from <em>bl2.bin</em> to create a QSPI JIC file through Quartus:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/qspi_bin
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>aarch64-none-linux-gnu-objcopy<span class="w"> </span>-v<span class="w"> </span>-I<span class="w"> </span>binary<span class="w"> </span>-O<span class="w"> </span>ihex<span class="w"> </span>--change-addresses<span class="w"> </span>0x0<span class="w"> </span>bl2.bin<span class="w">  </span>bl2.hex
+</code></pre></div>
+<p>Build JIC Image:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/qspi_bin
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof<span class="w"> </span>.
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.11/zephyr/agilex5/hps_zephyr/hello_world/qspi_boot/qspi_flash_image_agilex5_boot.pfg<span class="w">  </span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>qspi_flash_image_agilex5_boot.pfg
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="nb">cd</span><span class="w"> </span>..
+</code></pre></div>
+<p>The output of this stage is:</p>
+<ul>
+<li>$TOP_FOLDER/qspi_bin/qspi_image.jic</li>
+</ul>
+<h5 id="resulted-files">Resulted Files<a class="headerlink" href="#resulted-files" title="Permanent link">&para;</a></h5>
+<p>After the build is completed successfully the most relevant files are:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bl2.bin</td>
+<td>The BL2 FSBL</td>
+</tr>
+<tr>
+<td>bl2.hex</td>
+<td>The FSBL in hex format</td>
+</tr>
+<tr>
+<td>bl31.bin</td>
+<td>The ATF BL31 (similar to legacy SSBL stage)</td>
+</tr>
+<tr>
+<td>zephyr.bin</td>
+<td>Zephyr Application/Kernel</td>
+</tr>
+<tr>
+<td>fip.bin</td>
+<td>Firmware Image Package</td>
+</tr>
+<tr>
+<td>qspi_image.jic</td>
+<td>QSPI Application image</td>
+</tr>
+</tbody>
+</table>
+<h3 id="writing-the-qspi-flash-image">Writing the QSPI Flash Image<a class="headerlink" href="#writing-the-qspi-flash-image" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Configure MSEL to JTAG:</p>
+</li>
+<li>
+<p>Power cycle the board</p>
+</li>
+<li>
+<p>Write the image using the following commands:</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;bin/qspi_image.jic&quot;</span>
+</code></pre></div>
+<ol>
+<li>Set Msel to QSPI and power cycle the board. You should see the following:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>NOTICE:  DDR: Reset type is &#39;Power-On&#39;
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>NOTICE:  IOSSM: Calibration success status check...
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>NOTICE:  IOSSM: All EMIF instances within the IO96 have calibrated successfully!
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>NOTICE:  DDR: Calibration success
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>NOTICE:  ###DDR:init success###
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>NOTICE:  QSPI boot
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>NOTICE:  BL2: v2.11.0(release):QPDS24.3_REL_GSRD_PR
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>NOTICE:  BL2: Built : 18:47:30, Dic 10 2024
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>NOTICE:  BL2: Booting BL31
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>NOTICE:  BL31: Boot Core = 0
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>NOTICE:  BL31: CPU ID = 0
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>NOTICE:  BL31: Built : 18:47:30, Dic 10 2024
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>*** Booting Zephyr OS build b755e7bab5f8 ***
+<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a>Secondary CPU core 1 (MPID:0x100) is up
+<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a>Secondary CPU core 2 (MPID:0x200) is up
+<a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a>Secondary CPU core 3 (MPID:0x300) is up
+<a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a>Hello World! intel_socfpga_agilex5_socdk
+</code></pre></div>
+<h2 id="exercising-seu-test">Exercising SEU test<a class="headerlink" href="#exercising-seu-test" title="Permanent link">&para;</a></h2>
+<p>Zephyr RTOS brings a driver and implementation for SEU's tests (Single Event Upsets). These tests are intended to monitor changes in the internal memory elements of the FPGA caused by cosmic radiation. If you need to know more about it, please visit: <a href="https://www.intel.com/content/www/us/en/docs/programmable/683128/24-1/seu-mitigation-overview-fm-sm.html">Intel SEU Mitigation Overview</a>.</p>
+<p>This driver requires some special configurations to be executed.</p>
+<h3 id="setting-up-environment-seu">Setting up Environment - SEU<a class="headerlink" href="#setting-up-environment-seu" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Create the Zephyr GSRD top level directory:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_zgsrd_seu
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>mkdir<span class="w"> </span>agilex5_zgsrd_seu
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nb">cd</span><span class="w"> </span>agilex5_zgsrd_seu
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>
+</code></pre></div>
+<ul>
+<li>Download the compiler toolchain. Define environment variables and append the toolchain path in the environment PATH variable. so the toolchain can be used to build the binaries:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>wget<span class="w"> </span>https://developer.arm.com/-/media/Files/downloads/gnu/11.3.rel1/binrel/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>tar<span class="w"> </span>xf<span class="w"> </span>arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>rm<span class="w"> </span>-f<span class="w"> </span>arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu/bin:<span class="nv">$PATH</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export PATH=`pwd`/arm-gnu-toolchain-11.3.rel1-x86_64-aarch64-none-linux-gnu/bin:\$PATH&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/.zephyrrc
+</code></pre></div>
+<p>Enable Quartus tools to be called from command line:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3/quartus/
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
+</code></pre></div>
+<h3 id="ghrd-with-fpga-first-boot-seu">GHRD with FPGA First Boot - SEU<a class="headerlink" href="#ghrd-with-fpga-first-boot-seu" title="Permanent link">&para;</a></h3>
+<p>As this driver requires the FPGA to boot first and SEU fault injection enabled, please execute the following commands:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga<span class="w"> </span>agilex5_soc_devkit_ghrd
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w">  </span>https://github.com/altera-opensource/ghrd-socfpga<span class="w"> </span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>mv<span class="w"> </span>ghrd-socfpga/agilex5_soc_devkit_ghrd<span class="w"> </span>.
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>make<span class="w"> </span>config
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>make<span class="w"> </span><span class="nv">DEVICE</span><span class="o">=</span>A5ED065BB32AE6SR0<span class="w"> </span><span class="nv">HPS_EMIF_MEM_CLK_FREQ_MHZ</span><span class="o">=</span><span class="m">800</span><span class="w"> </span><span class="nv">HPS_EMIF_REF_CLK_FREQ_MHZ</span><span class="o">=</span><span class="m">100</span><span class="w"> </span><span class="nv">INITIALIZATION_FIRST</span><span class="o">=</span>fpga<span class="w"> </span>generate_from_tcl
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;set_global_assignment -name ALLOW_SEU_FAULT_INJECTION ON&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.qsf
+<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a>make<span class="w"> </span>sof
+</code></pre></div>
+<p>The output from the GHRD build is:</p>
+<ul>
+<li>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof</li>
+</ul>
+<h3 id="building-arm-trusted-firmware-seu">Building Arm Trusted Firmware - SEU<a class="headerlink" href="#building-arm-trusted-firmware-seu" title="Permanent link">&para;</a></h3>
+<p>The ATF needs to be built accordingliy to the boot device. This is needed because the BL2 stage requires to load the fip.bin (that includes the BL31 and Zephyr application) from the specific flash device. The next sub-sections provides you with instructions on how to build the ATF for each one of the boot flows supported.</p>
+<h4 id="build-atf-qspi-seu">Build ATF QSPI - SEU<a class="headerlink" href="#build-atf-qspi-seu" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w">  </span>QPDS24.3_REL_GSRD_PR<span class="w">   </span>https://github.com/altera-opensource/arm-trusted-firmware<span class="w"> </span>arm-trusted-firmware-qspi
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="nb">cd</span><span class="w"> </span>arm-trusted-firmware-qspi
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>make<span class="w"> </span>realclean
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="nv">ARCH</span><span class="o">=</span>arm64<span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-<span class="w"> </span>make<span class="w"> </span><span class="nv">PLAT</span><span class="o">=</span>agilex5<span class="w"> </span><span class="nv">SOCFPGA_BOOT_SOURCE_QSPI</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>bl2<span class="w"> </span>bl31<span class="w"> </span><span class="nv">PRELOADED_BL33_BASE</span><span class="o">=</span>0x80100000<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span>
+</code></pre></div>
+<ul>
+<li>Build Fiptool to be able to create the sdimage in later steps.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>make<span class="w"> </span>fiptool
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>cp<span class="w"> </span>tools/fiptool/fiptool<span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+</code></pre></div>
+<p>The previous instructions will produce:</p>
+<ul>
+<li>$TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex5/release/bl2.bin</li>
+<li>$TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex5/release/bl31.bin</li>
+<li>$TOP_FOLDER/fiptool</li>
+</ul>
+<h3 id="zephyr-build-environment-setup-seu">Zephyr Build Environment Setup - SEU<a class="headerlink" href="#zephyr-build-environment-setup-seu" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Create a new virtual environment and activate it</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>~/.zephyrproject/.venv
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="c1">#Environment Activation</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="nb">source</span><span class="w"> </span>~/.zephyrproject/.venv/bin/activate
+</code></pre></div>
+<ul>
+<li>Install west, pull the official Zephyr repository and other Zephyr dependencies:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>pip3<span class="w"> </span>install<span class="w"> </span>wheel
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>pip3<span class="w"> </span>install<span class="w"> </span>west
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>west<span class="w"> </span>init<span class="w"> </span>-m<span class="w"> </span>https://github.com/zephyrproject-rtos/zephyr<span class="w"> </span>--mr<span class="w"> </span>v3.6-branch<span class="w"> </span>zephyrproject
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zephyrproject
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>west<span class="w"> </span>update
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>west<span class="w"> </span>zephyr-export
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zephyrproject/zephyr/scripts/requirements.txt
+</code></pre></div>
+<p>Note: If you get a similar error like:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>ERROR: sphinx-tabs 3.4.1 has requirement docutils~=0.18.0, but you&#39;ll have docutils 0.19 which is incompatible.
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>ERROR: sphinx-rtd-theme 1.2.2 has requirement docutils&lt;0.19, but you&#39;ll have docutils 0.19 which is incompatible
+</code></pre></div></p>
+<p>Run:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>pip<span class="w"> </span>install<span class="w"> </span>sphinx-rtd-theme<span class="w"> </span>sphinx
+</code></pre></div></p>
+<ul>
+<li>Install Zephyr SDK in home folder so it can be used on many Zephyr projects:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>wget<span class="w"> </span>https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/zephyr-sdk-0.16.4_linux-x86_64.tar.xz
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>wget<span class="w"> </span>-O<span class="w"> </span>-<span class="w"> </span>https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.4/sha256.sum<span class="w"> </span><span class="p">|</span><span class="w"> </span>shasum<span class="w"> </span>--check<span class="w"> </span>--ignore-missing
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>wget<span class="w"> </span>https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/zephyr-sdk-0.16.1_linux-x86_64.tar.xz
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>wget<span class="w"> </span>-O<span class="w"> </span>-<span class="w"> </span>https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v0.16.1/sha256.sum<span class="w"> </span><span class="p">|</span><span class="w"> </span>shasum<span class="w"> </span>--check<span class="w"> </span>--ignore-missing
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="k">for</span><span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>zephyr-sdk*.tar.xz<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a><span class="w">  </span>tar<span class="w"> </span>xf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span><span class="w"> </span>-C<span class="w"> </span>~/
+<a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a><span class="k">done</span>
+<a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a>rm<span class="w"> </span>zephyr-sdk*.tar.xz
+<a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a><span class="nv">$HOME</span>/zephyr-sdk*/setup.sh<span class="w"> </span>-t<span class="w"> </span>aarch64-zephyr-elf<span class="w"> </span>-h<span class="w"> </span>-c
+</code></pre></div>
+<ul>
+<li>Substitute the official "Zephyr" folder for zephyr-socfpga repository:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zephyrproject
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>zephyr
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>--single-branch<span class="w"> </span>https://github.com/altera-opensource/zephyr-socfpga<span class="w"> </span>zephyr
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>west<span class="w"> </span>update
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>west<span class="w"> </span>zephyr-export
+</code></pre></div>
+<h3 id="building-zephyr-application-seu">Building  Zephyr Application - SEU<a class="headerlink" href="#building-zephyr-application-seu" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Build the "SEU" Zephyr application binary and place the built outputs in an "agilex5" directory in the current active directory.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zephyrproject/zephyr
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>west<span class="w"> </span>build<span class="w"> </span>-b<span class="w"> </span>intel_socfpga_agilex5_socdk<span class="w"> </span>samples/drivers/seu<span class="w"> </span>-d<span class="w"> </span>agilex5
+</code></pre></div>
+<p>The output of this stage is:</p>
+<ul>
+<li>$TOP_FOLDER/zephyrproject/zephyr/agilex5/zephyr/zephyr.bin</li>
+</ul>
+<h3 id="creating-boot-images-seu">Creating Boot Images - SEU<a class="headerlink" href="#creating-boot-images-seu" title="Permanent link">&para;</a></h3>
+<p>The types of boot devices are supported:</p>
+<ol>
+<li><a href="#qspi-binaries">QSPI Flash</a></li>
+</ol>
+<h4 id="qspi-binaries-seu">QSPI binaries - SEU<a class="headerlink" href="#qspi-binaries-seu" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Create FIP(Firmware Image Package) binary. This will pack the Zephyr binary and ATF BL31 binary into one single binary called FIP binary.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>mkdir<span class="w"> </span>qspi_bin<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>qspi_bin
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/arm-trusted-firmware-qspi/build/agilex5/release/bl2.bin<span class="w"> </span>.
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="nv">$TOP_FOLDER</span>/fiptool<span class="w"> </span>create<span class="w"> </span>--soc-fw<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/arm-trusted-firmware-qspi/build/agilex5/release/bl31.bin<span class="w">  </span>--nt-fw<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zephyrproject/zephyr/agilex5/zephyr/zephyr.bin<span class="w"> </span>fip.bin
+</code></pre></div>
+<p>Build <em>bl2.hex</em> file from <em>bl2.bin</em> to create a QSPI JIC file through Quartus:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/qspi_bin
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>aarch64-none-linux-gnu-objcopy<span class="w"> </span>-v<span class="w"> </span>-I<span class="w"> </span>binary<span class="w"> </span>-O<span class="w"> </span>ihex<span class="w"> </span>--change-addresses<span class="w"> </span>0x0<span class="w"> </span>bl2.bin<span class="w">  </span>bl2.hex
+</code></pre></div>
+<p>Build JIC Image:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/qspi_bin
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof<span class="w"> </span>.
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2024.11/zephyr/agilex5/hps_zephyr/hello_world/qspi_boot/qspi_flash_image_agilex5_boot.pfg<span class="w">  </span>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>qspi_flash_image_agilex5_boot.pfg
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="nb">cd</span><span class="w"> </span>..
+</code></pre></div>
+<p>The output of this stage is:</p>
+<ul>
+<li>$TOP_FOLDER/qspi_bin/qspi_image.jic</li>
+</ul>
+<h3 id="writing-the-qspi-flash-image-seu">Writing the QSPI Flash Image - SEU<a class="headerlink" href="#writing-the-qspi-flash-image-seu" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Configure MSEL to JTAG</p>
+</li>
+<li>
+<p>Power cycle the board</p>
+</li>
+<li>
+<p>Write the image using the following commands:</p>
+</li>
+</ol>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;bin/qspi_image.jic&quot;</span>
+</code></pre></div>
+4. Set Msel to QSPI and power cycle the board. You should see the following:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>ser2net port telnet,2000 device serialdev, /dev/ttyBoard, 115200n81,local [,115200N81,CLOCAL] (Debian GNU/Linux)
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>NOTICE:  DDR: Reset type is &#39;Power-On&#39;
+<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>NOTICE:  IOSSM: Calibration success status check...
+<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a>NOTICE:  IOSSM: All EMIF instances within the IO96 have calibrated successfully!
+<a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a>NOTICE:  DDR: Calibration success
+<a id="__codelineno-43-7" name="__codelineno-43-7" href="#__codelineno-43-7"></a>NOTICE:  ###DDR:init success###
+<a id="__codelineno-43-8" name="__codelineno-43-8" href="#__codelineno-43-8"></a>NOTICE:  QSPI boot
+<a id="__codelineno-43-9" name="__codelineno-43-9" href="#__codelineno-43-9"></a>NOTICE:  BL2: v2.11.0(release):QPDS24.3_REL_GSRD_PR
+<a id="__codelineno-43-10" name="__codelineno-43-10" href="#__codelineno-43-10"></a>NOTICE:  BL2: Built : 18:47:30, Dec 10 2024
+<a id="__codelineno-43-11" name="__codelineno-43-11" href="#__codelineno-43-11"></a>NOTICE:  BL2: Booting BL31
+<a id="__codelineno-43-12" name="__codelineno-43-12" href="#__codelineno-43-12"></a>NOTICE:  BL31: Boot Core = 0
+<a id="__codelineno-43-13" name="__codelineno-43-13" href="#__codelineno-43-13"></a>NOTICE:  BL31: CPU ID = 0
+<a id="__codelineno-43-14" name="__codelineno-43-14" href="#__codelineno-43-14"></a>NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
+<a id="__codelineno-43-15" name="__codelineno-43-15" href="#__codelineno-43-15"></a>NOTICE:  BL31: Built : 18:47:30, Dic 10 2024
+<a id="__codelineno-43-16" name="__codelineno-43-16" href="#__codelineno-43-16"></a>*** Booting Zephyr OS build b755e7bab5f8 ***
+<a id="__codelineno-43-17" name="__codelineno-43-17" href="#__codelineno-43-17"></a>Secondary CPU core 1 (MPID:0x100) is up
+<a id="__codelineno-43-18" name="__codelineno-43-18" href="#__codelineno-43-18"></a>Secondary CPU core 2 (MPID:0x200) is up
+<a id="__codelineno-43-19" name="__codelineno-43-19" href="#__codelineno-43-19"></a>Secondary CPU core 3 (MPID:0x300) is up
+<a id="__codelineno-43-20" name="__codelineno-43-20" href="#__codelineno-43-20"></a>SEU Test Started
+<a id="__codelineno-43-21" name="__codelineno-43-21" href="#__codelineno-43-21"></a>The Client No is 0x3ea509eb
+<a id="__codelineno-43-22" name="__codelineno-43-22" href="#__codelineno-43-22"></a>The Client No is 0x3eb4528c
+<a id="__codelineno-43-23" name="__codelineno-43-23" href="#__codelineno-43-23"></a>SEU Safe Error Insert Test Started
+<a id="__codelineno-43-24" name="__codelineno-43-24" href="#__codelineno-43-24"></a>The SEU Error Type: 1:
+<a id="__codelineno-43-25" name="__codelineno-43-25" href="#__codelineno-43-25"></a>The Sector Address: 5
+<a id="__codelineno-43-26" name="__codelineno-43-26" href="#__codelineno-43-26"></a>The Correction status: 0
+<a id="__codelineno-43-27" name="__codelineno-43-27" href="#__codelineno-43-27"></a>The row frame index: 0
+<a id="__codelineno-43-28" name="__codelineno-43-28" href="#__codelineno-43-28"></a>The bit position: 0
+<a id="__codelineno-43-29" name="__codelineno-43-29" href="#__codelineno-43-29"></a>SEU Safe Error Insert Test Completed
+<a id="__codelineno-43-30" name="__codelineno-43-30" href="#__codelineno-43-30"></a>Read SEU Statistics Test Started
+<a id="__codelineno-43-31" name="__codelineno-43-31" href="#__codelineno-43-31"></a>The value of t_seu_cycle : 0x77359469
+<a id="__codelineno-43-32" name="__codelineno-43-32" href="#__codelineno-43-32"></a>The value of t_seu_detect : 0xb7309
+<a id="__codelineno-43-33" name="__codelineno-43-33" href="#__codelineno-43-33"></a>The value of t_seu_correct : 0xffffffff
+<a id="__codelineno-43-34" name="__codelineno-43-34" href="#__codelineno-43-34"></a>The value of t_seu_inject_detect : 0x4f19e1a4
+<a id="__codelineno-43-35" name="__codelineno-43-35" href="#__codelineno-43-35"></a>The value of t_sdm_seu_poll_interval : 0x61a87
+<a id="__codelineno-43-36" name="__codelineno-43-36" href="#__codelineno-43-36"></a>The value of t_sdm_seu_pin_toggle_overhead : 0x3be6
+<a id="__codelineno-43-37" name="__codelineno-43-37" href="#__codelineno-43-37"></a>Read SEU Statistics Test Completed
+<a id="__codelineno-43-38" name="__codelineno-43-38" href="#__codelineno-43-38"></a>Read ECC Error Test Started
+<a id="__codelineno-43-39" name="__codelineno-43-39" href="#__codelineno-43-39"></a>The ECC Error Type: 1:
+<a id="__codelineno-43-40" name="__codelineno-43-40" href="#__codelineno-43-40"></a>The Sector Address: 255
+<a id="__codelineno-43-41" name="__codelineno-43-41" href="#__codelineno-43-41"></a>The Correction status: 1
+<a id="__codelineno-43-42" name="__codelineno-43-42" href="#__codelineno-43-42"></a>Ram Id: 1
+<a id="__codelineno-43-43" name="__codelineno-43-43" href="#__codelineno-43-43"></a>Read ECC Error Test Completed
+<a id="__codelineno-43-44" name="__codelineno-43-44" href="#__codelineno-43-44"></a>SEU Test Completed
+</code></pre></div>
+<h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
+<p>Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
+No product or component can be absolutely secure. 
+Performance varies by use, configuration and other factors.
+Your costs and results may vary. 
+You may not use or facilitate the use of this document in connection with any infringement or other legal analysis concerning Altera or Intel products described herein. You agree to grant Altera Corporation a non-exclusive, royalty-free license to any patent claim thereafter drafted which includes subject matter disclosed herein.
+No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document, with the sole exception that you may publish an unmodified copy. You may create software implementations based on this document and in compliance with the foregoing that are intended to execute on the Altera or Intel product(s) referenced in this document. No rights are granted to create modifications or derivatives of this document.
+The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications.  Current characterized errata are available on request.
+Altera disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade.
+You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
+<sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. </p>
+<p>OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. </p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 7, 2025</span>
+      
+        <br>
+        Created:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 12, 2024</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.altera.com" target="_blank" rel="noopener" title="www.altera.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2 0-.68.06-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.923 7.923 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8.008 8.008 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.65 15.65 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/altera-fpga" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/altera-fpga/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.indexes", "navigation.footer", "navigation.path", "search.suggest", "search.highlight", "content.code.copy", "navigation.indexes", "toc.integrate", "toc.follow"], "search": "../../../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../../../../assets/javascripts/bundle.fac441b0.min.js"></script>
+      
+        <script src="https://unpkg.com/tablefilter@0.7.3/dist/tablefilter/tablefilter.js"></script>
+      
+        <script src="../../../../../../assets/tables.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

@@ -1,0 +1,2528 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://altera-fpga.github.io/rel-24.2/embedded-designs/agilex-7/f-series/soc/xen/ug-xen-agx7f-soc/">
+      
+      
+      
+      <link rel="icon" href="../../../../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+    
+    
+      
+        <title>Ug xen agx7f soc - Altera FPGA Developer Site</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../../assets/stylesheets/main.85bb2934.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../../assets/stylesheets/palette.a6bdf11c.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../../../../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../../.." title="Altera FPGA Developer Site" class="md-header__button md-logo" aria-label="Altera FPGA Developer Site" data-md-component="logo">
+      
+  <img src="../../../../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Altera FPGA Developer Site
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ug xen agx7f soc
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/altera-fpga" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    altera-fpga
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../../.." title="Altera FPGA Developer Site" class="md-nav__button md-logo" aria-label="Altera FPGA Developer Site" data-md-component="logo">
+      
+  <img src="../../../../../../assets/logo.png" alt="logo">
+
+    </a>
+    Altera FPGA Developer Site
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/altera-fpga" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    altera-fpga
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../.." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../../../../driver-list_linux/">Linux Drivers</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux Drivers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+          HPS Host Drivers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          HPS Host Drivers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/hwmon/hwmon/" class="md-nav__link">
+        Altera Hardware Monitor
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/clock_manager/clock_manager/" class="md-nav__link">
+        Clock Manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/dma/dma/" class="md-nav__link">
+        DMA Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/edac/edac/" class="md-nav__link">
+        Error Detection & Correction (EDAC)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/ptp_tod/ptp_emb_tod/" class="md-nav__link">
+        Ethernet 1588 PTP Time of Day Clock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/emac/emac/" class="md-nav__link">
+        Ethernet Media Access Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/hssi/hssi/" class="md-nav__link">
+        Ethernet Subsystem FPGA IP MAC Specific Ctrl
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/hssi_xtile/hssi_xtile/" class="md-nav__link">
+        Ethernet Subsystem FPGA IP Tile Specific Ctrl
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/apb_timers/apb_timers/" class="md-nav__link">
+        General Purpose Timers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/gpio/gpio/" class="md-nav__link">
+        General Purpose I/O (GPIO)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/i2c/i2c/" class="md-nav__link">
+        I2C
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/i3c/i3c/" class="md-nav__link">
+        I3C
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/interrupt_controller_GICv3/irq_gic_v3/" class="md-nav__link">
+        Interrupt Controller (GICv3)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/msgdma/msgdma/" class="md-nav__link">
+        MSGDMA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/nand/nand/" class="md-nav__link">
+        NAND Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/qsfp/qsfp/" class="md-nav__link">
+        QSFP Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/qspi/qspi/" class="md-nav__link">
+        QSPI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/reset_manager/reset_manager/" class="md-nav__link">
+        Reset Manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/sd-emmc/sd-emmc/" class="md-nav__link">
+        SD/eMMC Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/spi/spi/" class="md-nav__link">
+        SPI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/system_manager/system_manager/" class="md-nav__link">
+        System Manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/smmu/smmu/" class="md-nav__link">
+        System Memory Management Unit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/uart/uart/" class="md-nav__link">
+        UART
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/usb2_0_otg/usb_2_0_otg/" class="md-nav__link">
+        USB 2.0 OTG
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/watchdog_timers/watchdog_timers/" class="md-nav__link">
+        Watchdog Timers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-embedded/zarlink_clock_synchronizer/zarlink_clock_synchronizer/" class="md-nav__link">
+        Zarlink Clock Synchronizer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+          PCIe Host Drivers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          PCIe Host Drivers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/uart_16550/uart_16550/" class="md-nav__link">
+        Altera 16550 Compatible UART
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/dfl_afu/dfl_afu/" class="md-nav__link">
+        Accelerator Functional Unit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/intel_m10_bmc_core/intel_m10_bmc_core/" class="md-nav__link">
+        Board Management Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/dfl/dfl/" class="md-nav__link">
+        Device Feature List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/s10hssi/s10hssi/" class="md-nav__link">
+        Ethernet
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/ptp_dfl_tod/ptp_dfl_tod/" class="md-nav__link">
+        Ethernet 1588 PTP Time of Day Clock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/dfl_fme/dfl_fme/" class="md-nav__link">
+        FPGA Management Engine
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/dfl_pci/dfl_pci/" class="md-nav__link">
+        PCIe Subsystem
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/dfl_emif/dfl_emif/" class="md-nav__link">
+        Memory Interface
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/intel_m10_bmc_core/intel_m10_bmc_core/" class="md-nav__link">
+        MAX 10 Board Management Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/spi_altera_dfl/spi_altera_dfl/" class="md-nav__link">
+        SPI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../linux-dfl/uio_dfl/uio_dfl/" class="md-nav__link">
+        User space I/O (UIO)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Host Attach Utilities
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Host Attach Utilities
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../sw-tools-list/host-attach-tools/" class="md-nav__link">
+        Host Attach Utilities Summary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/fpgaconf/fpgaconf/" class="md-nav__link">
+        fpgaconf
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/fpgad/fpgad/" class="md-nav__link">
+        fpgad
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/fpgainfo/fpgainfo/" class="md-nav__link">
+        fpgainfo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/fpgaport/fpgaport/" class="md-nav__link">
+        fpgaport
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/fpgasupdate/fpgasupdate/" class="md-nav__link">
+        fpgasupdate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/hssi/hssi/" class="md-nav__link">
+        hssi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/host_exerciser/host_exerciser/" class="md-nav__link">
+        host_exerciser
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/hssi_ethernet/hssimac/" class="md-nav__link">
+        HSSI ethernet loopback
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/hssi_ethernet/hssistats/" class="md-nav__link">
+        HSSI ethernet statistics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/hssi_ethernet/hssimac/" class="md-nav__link">
+        HSSI ethernet mac
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/mem_tg/mem_tg/" class="md-nav__link">
+        mem_tg
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/mmlink/mmlink/" class="md-nav__link">
+        mmlink
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/ofs_uio/ofs_uio/" class="md-nav__link">
+        ofs.uio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/opae_io/opae_io/" class="md-nav__link">
+        opae.io
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/opaeuio/opaeuio/" class="md-nav__link">
+        opaeuio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/opaevfio/opaevfio/" class="md-nav__link">
+        opaevfio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/pac_hssi_config/pac_hssi_config/" class="md-nav__link">
+        pac_hssi_config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/packager/packager/" class="md-nav__link">
+        packager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/pci_device/pci_device/" class="md-nav__link">
+        pci_device
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/rsu/rsu/" class="md-nav__link">
+        rsu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/userclk/userclk/" class="md-nav__link">
+        userclk
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../host-attach-util/vabtool/vabtool/" class="md-nav__link">
+        vabtool
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Example Designs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Example Designs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../ed-demo-list/ed-list/" class="md-nav__link">
+        Example Designs Summary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+          Agilex™ 5
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Agilex™ 5
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/" class="md-nav__link">
+        Agilex™ 5 E-Series Premium Development Kit GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/" class="md-nav__link">
+        Agilex™ 5 E-Series Premium Development Kit GHRD Linux Boot Examples
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/" class="md-nav__link">
+        Agilex™ 5 E-Series Modular Development Kit GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular/" class="md-nav__link">
+        Agilex™ 5 E-Series Modular Development Kit GHRD Linux Boot Examples
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms/" class="md-nav__link">
+        Agilex™ 5 Intel Simics Virtual Platform Example User Guide - Linux GSRD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms/" class="md-nav__link">
+        Agilex™ 5 Intel Simics Virtual Platform Example User Guide - Zephyr GSRD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium/" class="md-nav__link">
+        Agilex™ 5 FPGA Remote Debug Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc/" class="md-nav__link">
+        Agilex™ 5 SoC HPS Remote System Update Example
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+          Agilex™ 7
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Agilex™ 7
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rsu/ug-rsu-agx7f-soc/" class="md-nav__link">
+        Agilex™ 7 SoC HPS Remote System Update Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rsu/ug-rsu-multiqspi-agx7f-soc/" class="md-nav__link">
+        Agilex™ 7 SoC HPS Multi-QSPI Remote System Update Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../remote-debug/ug-remote-debug-agx7f-soc/" class="md-nav__link">
+        Agilex™ 7 SoC FPGA Remote Debug Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../emmc/ug-emmc-agx7f-soc/" class="md-nav__link">
+        Agilex™ 7 HPS eMMC Boot Example
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+          Stratix® 10
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Stratix® 10
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stratix-10/sx/soc/rsu/ug-rsu-s10sx-soc/" class="md-nav__link">
+        Stratix® 10 SoC HPS Remote System Update Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc/" class="md-nav__link">
+        Stratix® 10 SoC FPGA Remote Debug Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc/" class="md-nav__link">
+        Stratix® 10 HPS eMMC Boot Example
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Demos
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Demos
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../ed-demo-list/demo-list/" class="md-nav__link">
+        Demos Summary
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Ug xen agx7f soc</h1>
+
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>This page presents the Xen GSRD, which is based on the <a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/">Linux GSRD for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles &amp; E-Tile)</a>.</p>
+<p>The Xen GSRD uses the SD card for storing the root filesystem.</p>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<p>The following are required in order to be able to fully exercise the Xen GSRD:</p>
+<ul>
+<li><a href="https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agf014.html">Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles &amp; E-Tile)</a> ordering code DK-SI-AGF014EB</li>
+<li>SD/MMC HPS Daughtercard<ul>
+<li>SDM QSPI Bootcard</li>
+<li>Mini USB cable for serial output</li>
+<li>Micro USB cable for on-board Intel FPGA Download Cable II</li>
+<li>Micro SD card (4GB or greater)</li>
+</ul>
+</li>
+<li>Host PC with<ul>
+<li>Linux - Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too</li>
+<li>Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
+<li>Micro SD card slot or Micro SD card writer/reader</li>
+<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1</li>
+<li>Local Ethernet network, with DHCP server (will be used to provide IP address to the board)</li>
+</ul>
+</li>
+</ul>
+<p>You can determine your board version by referring to the following table from <a href="https://www.intel.com/content/www/us/en/docs/programmable/683752/current/overview.html">https://www.intel.com/content/www/us/en/docs/programmable/683752/current/overview.html</a></p>
+<table>
+<thead>
+<tr>
+<th align="left">Development Kit Version</th>
+<th align="left">Ordering Code</th>
+<th align="left">Device Part Number</th>
+<th align="right">Starting Serial Number</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Intel Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (Production 2 P-Tiles &amp; E-Tiles)</td>
+<td align="left">DK-SI-AGF014EB</td>
+<td align="left">AGFB014R24B2E2V (Power Solution 2)</td>
+<td align="right">00205001</td>
+</tr>
+<tr>
+<td align="left">Intel Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (Production 1 P-Tiles &amp; E-Tiles)</td>
+<td align="left">DK-SI-AGF014EA</td>
+<td align="left">AGFB014R24B2E2V (Power Solution 1)</td>
+<td align="right">0001101</td>
+</tr>
+<tr>
+<td align="left">Intel Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (ES P-Tiles &amp; E-Tiles)</td>
+<td align="left">DK-SI-AGF014E3ES</td>
+<td align="left">AGFB014E3ES (Power Solution 1)</td>
+<td align="right">0001001</td>
+</tr>
+</tbody>
+</table>
+<p>The DK-SI-AGF014E3ES and DK-SI-AGF014EA are deprecated, and not supported anymore.</p>
+<p>The U-Boot and Linux compilation, Yocto compilation and creating the SD card image require a Linux host PC. The rest of the operations can be performed on either a Windows or Linux host PC.</p>
+<h3 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h3>
+<p>See <a href="https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS24.3.1_REL_GSRD_PR">https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS24.3.1_REL_GSRD_PR</a>.</p>
+<h3 id="prebuilt-binaries">Prebuilt Binaries<a class="headerlink" href="#prebuilt-binaries" title="Permanent link">&para;</a></h3>
+<p>The release files are accessible at <a href="https://releases.rocketboards.org/2025.01/xen/agilex7_dk_si_agf014eb_xen/">https://releases.rocketboards.org/2025.01/xen/agilex7_dk_si_agf014eb_xen/</a></p>
+<p>The source code is also included on the SD card in the Linux rootfs path <code>/home/root</code>:</p>
+<table>
+<thead>
+<tr>
+<th align="left">File</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">linux-socfpga-v6.6.51-lts-src.tar.gz</td>
+<td align="left">Source code for Linux kernel</td>
+</tr>
+<tr>
+<td align="left">u-boot-socfpga-v2024.07-src.tar.gz</td>
+<td align="left">Source code for U-Boot</td>
+</tr>
+<tr>
+<td align="left">arm-trusted-firmware-v2.11.1-src.tar.gz</td>
+<td align="left">Source code for Arm Trusted Firmware</td>
+</tr>
+</tbody>
+</table>
+<p>Before downloading the hardware design please read the agreement in the link <a href="https://www.intel.com/content/www/us/en/programmable/downloads/software/license/lic-prog_lic.html">https://www.intel.com/content/www/us/en/programmable/downloads/software/license/lic-prog_lic.html</a></p>
+<h4 id="component-versions">Component Versions<a class="headerlink" href="#component-versions" title="Permanent link">&para;</a></h4>
+<p>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1 and the following software component versions are used to build the GSRD: </p>
+<table>
+<thead>
+<tr>
+<th align="left"><em>Component</em></th>
+<th align="left"><em>Location</em></th>
+<th align="left"><em>Branch*</em></th>
+<th align="left"><em>Commit ID/Tag</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">GHRD</td>
+<td align="left"><a href="https://github.com/altera-opensource/ghrd-socfpga">https://github.com/altera-opensource/ghrd-socfpga</a></td>
+<td align="left">master</td>
+<td align="left">QPDS24.3.1_REL_GSRD_PR</td>
+</tr>
+<tr>
+<td align="left">Linux</td>
+<td align="left"><a href="https://github.com/altera-opensource/linux-socfpga">https://github.com/altera-opensource/linux-socfpga</a></td>
+<td align="left">socfpga-6.6.51-lts</td>
+<td align="left">QPDS24.3.1_REL_GSRD_PR</td>
+</tr>
+<tr>
+<td align="left">Arm Trusted Firmware</td>
+<td align="left"><a href="https://github.com/arm-trusted-firmware">https://github.com/arm-trusted-firmware</a></td>
+<td align="left">socfpga_v2.11.1</td>
+<td align="left">QPDS24.3.1_REL_GSRD_PR</td>
+</tr>
+<tr>
+<td align="left">U-Boot</td>
+<td align="left"><a href="https://github.com/altera-opensource/u-boot-socfpga">https://github.com/altera-opensource/u-boot-socfpga</a></td>
+<td align="left">socfpga_v2024.07</td>
+<td align="left">QPDS24.3.1_REL_GSRD_PR</td>
+</tr>
+<tr>
+<td align="left">Yocto Project</td>
+<td align="left"><a href="https://git.yoctoproject.org/poky">https://git.yoctoproject.org/poky</a></td>
+<td align="left">styhead</td>
+<td align="left">latest</td>
+</tr>
+<tr>
+<td align="left">Yocto Project: meta-intel-fpga</td>
+<td align="left"><a href="https://git.yoctoproject.org/meta-intel-fpga">https://git.yoctoproject.org/meta-intel-fpga</a></td>
+<td align="left">styhead</td>
+<td align="left">latest</td>
+</tr>
+<tr>
+<td align="left">Yocto Project: meta-intel-fpga-refdes</td>
+<td align="left"><a href="https://github.com/altera-opensource/meta-intel-fpga-refdes">https://github.com/altera-opensource/meta-intel-fpga-refdes</a></td>
+<td align="left">styhead</td>
+<td align="left">QPDS24.3.1_REL_GSRD_PR</td>
+</tr>
+<tr>
+<td align="left">Yocto Build Script: gsrd-socfpga</td>
+<td align="left"><a href="https://github.com/altera-opensource/gsrd-socfpga">https://github.com/altera-opensource/gsrd-socfpga</a></td>
+<td align="left">styhead</td>
+<td align="left">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="exercise-xen-gsrd-prebuilt-binaries">Exercise Xen GSRD Prebuilt Binaries<a class="headerlink" href="#exercise-xen-gsrd-prebuilt-binaries" title="Permanent link">&para;</a></h2>
+<p>This section presents how to use the prebuilt binaries included with the Xen GSRD, on the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit.</p>
+<p>Refer to the following links for additional help on getting started:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Link</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agf014.html">Board Documentation</a></td>
+<td align="left">Board user guide, schematics, etc</td>
+</tr>
+<tr>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/#configure-board">GSRD Board Setup Section</a></td>
+<td align="left">Setting up the development kit</td>
+</tr>
+<tr>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/#configure-serial-console">GSRD Serial Console Section</a></td>
+<td align="left">Setting up serial console</td>
+</tr>
+<tr>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/#write-sd-card-image">GSRD Write SD Card Section</a></td>
+<td align="left">Writing SD card image</td>
+</tr>
+</tbody>
+</table>
+<h3 id="write-binaries">Write Binaries<a class="headerlink" href="#write-binaries" title="Permanent link">&para;</a></h3>
+<p>This section shows presents downloading and flashing the SD card image and JIC files, and downloading the xen rootfs cpio archive to be used by DomUs VMs.</p>
+<p>1. Download and write to SD card the image <a href="https://releases.rocketboards.org/2025.01/xen/agilex7_dk_si_agf014eb_xen/sdimage.tar.gz">https://releases.rocketboards.org/2025.01/xen/agilex7_dk_si_agf014eb_xen/sdimage.tar.gz</a></p>
+<p>2. Download and write to QSPI flash the JIC file <a href="https://releases.rocketboards.org/2025.01/xen/agilex7_dk_si_agf014eb_xen/ghrd_agfb014r24b2e2v.hps.jic.tar.gz">https://releases.rocketboards.org/2025.01/xen/agilex7_dk_si_agf014eb_xen/ghrd_agfb014r24b2e2v.hps.jic.tar.gz</a></p>
+<p>3. Set MSEL to QSPI, and power cycle the board to boot to Linux.</p>
+<p>4. Once logged into Linux, run the following command to remove the source code archives, to make some room on the rootfs:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>rm<span class="w"> </span>-rf<span class="w"> </span>*src*
+</code></pre></div>
+<strong>Note</strong>: In future releases the rootfs partition will be In Xen's architecture, there are two domains. Dom0 is the privileged management domain that runs the hypervisor and has full access to physical hardware, acting as the bridge between the hypervisor and other virtual machines. DomUs are unprivileged guest domains that run operating systems or applications, relying on Dom0 for resource allocation. Dom0 and DomUs operate independently, ensuring isolation and security.</p>
+<p>larger, and this step would not be necessary.</p>
+<p>5. On the host computer, download the xen rootf cpio archive:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2025.01/xen/agilex7_dk_si_agf014eb_xen/xen-image-minimal-agilex7.cpio.gz
+</code></pre></div>
+<p>6. On the Linux on target board, copy over the above downloaded file in 'xen' folder:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>xen
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>scp<span class="w"> </span>&lt;host_user&gt;@&lt;host-ip&gt;:/&lt;host-folder&gt;/xen-image-minimal-agilex7.cpio.gz<span class="w"> </span>.
+</code></pre></div>
+<h3 id="boot-xen-gsrd">Boot Xen GSRD<a class="headerlink" href="#boot-xen-gsrd" title="Permanent link">&para;</a></h3>
+<p>This section shows how to boot the Xen GSRD. By default, if no other operation is done, the board boots into normal, non-Xen enabled GSRD on a power cycle. In order to boot with the Xen Hypervisor, you need to stop the U-Boot countdown, and boot Linux manually using the commands shown in the below sections. This is provided for convenience, and when used in a real production system, U-Boot can be configured to boot the required Xen configuration automatically.</p>
+<p><a class="glightbox" href="../images/xen-boot-flow.svg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/xen-boot-flow.svg" /></a></p>
+<h4>Boot Without Passthrough</h4>
+
+<p>1. Set MSEL to QSPI, and power cycle the board</p>
+<p>2. Press any key during U-Boot countdown to stop it</p>
+<p>3. Run the following U-Boot commands:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>fatls<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="nv">$loadaddr</span><span class="w"> </span>boot.scr.xen.uimg
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">source</span><span class="w"> </span><span class="nv">$loadaddr</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>booti<span class="w"> </span>0x0a000000<span class="w"> </span>-<span class="w"> </span>0x08000000
+</code></pre></div>
+<p>4. Xen console messages will be shown, then regular Linux boot console messages.</p>
+<p>5. Log into Linux as usual with 'root' login and no passoword will be requested</p>
+<h4>Boot With Passthrough</h4>
+
+<p>The instructions are the same as without passthrough, just that the following command needs to be added befote the 'booti' command:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Device Passthrough</th>
+<th align="left">Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">QSPI</td>
+<td align="left">fdt set /soc/spi@ff8d2000 xen,passthrough</td>
+</tr>
+<tr>
+<td align="left">Ethernet</td>
+<td align="left">fdt set /soc/ ethernet@ff800000 xen,passthrough</td>
+</tr>
+<tr>
+<td align="left">USB</td>
+<td align="left">fdt set /soc/usb@ffb00000 xen,passthrough</td>
+</tr>
+<tr>
+<td align="left">SD/eMMC</td>
+<td align="left">fdt set /soc/ ethernet@ff808000 xen,passthrough</td>
+</tr>
+</tbody>
+</table>
+<h3 id="manage-vms">Manage VMs<a class="headerlink" href="#manage-vms" title="Permanent link">&para;</a></h3>
+<p>This section shows how to use the 'xl' Xen utility to manage VMs running on DomUs. Only a few options are used, refer to 'xl' command help for more options.</p>
+<p>1. Boot Xen GSRD as shown above. It can be either with or without passthrough</p>
+<p>2. Create VM1 configuration file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOT &gt; test_vm_1.cfg</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="s"># Guest name</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="s">name = &quot;DomU1&quot;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="s"># Kernel image to boot</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="s">kernel = &quot;/boot/Image&quot;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="s">ramdisk = &quot;xen-image-minimal-agilex7.cpio.gz&quot;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="s">extra = &quot;root=/dev/ram0 init=/bin/sh console=hvc0 rdinit=/sbin/init&quot;</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="s"># Initial memory allocation (MB)</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="s">memory = 1024</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="s">EOT</span>
+</code></pre></div>
+<p>3. Start VM1:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>xl<span class="w"> </span>create<span class="w"> </span>test_vm_1.cfg
+</code></pre></div>
+<p>4. List running VMs:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>xl<span class="w"> </span>list
+</code></pre></div>
+<p>5. Connect to VM1 console:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>xl<span class="w"> </span>console<span class="w"> </span>DomU1
+</code></pre></div>
+<p>6. Run some commands in VM1:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">pwd</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ls<span class="w"> </span>-la
+</code></pre></div>
+<p>7. Exit from VM1 console by pressing CTRL + ]. Note this works only from serial console, and not over SSH connection.</p>
+<p>8. Create VM2 configuration file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOT &gt; test_vm_2.cfg</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="s"># Guest name</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="s">name = &quot;DomU2&quot;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="s"># Kernel image to boot</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="s">kernel = &quot;/boot/Image&quot;</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="s">ramdisk = &quot;xen-image-minimal-agilex7.cpio.gz&quot;</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="s">extra = &quot;root=/dev/ram0 init=/bin/sh console=hvc0 rdinit=/sbin/init&quot;</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="s"># Initial memory allocation (MB)</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="s">memory = 1024</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="s">EOT</span>
+</code></pre></div>
+<p>9. Start VM2:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>xl<span class="w"> </span>create<span class="w"> </span>test_vm_2.cfg
+</code></pre></div>
+<p>10. List running VMs:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>xl<span class="w"> </span>list
+</code></pre></div>
+<p>11. Shutdown VM1:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>xl<span class="w"> </span>shutdown<span class="w"> </span>DomU1
+</code></pre></div>
+<p>The above command politely asks DomU1 to shut down by using the ACPI shutdown signal and letting the OS shut down.</p>
+<p>Alternatively, when needed, you can also use 'destroy' commands which acts as a hard power cycle:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>xl<span class="w"> </span>destroy<span class="w"> </span>DomU1
+</code></pre></div>
+<p>12. List VMs again, it will not show VM1 anymore</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>xl<span class="w"> </span>list
+</code></pre></div>
+<h3 id="qspi-passthrough">QSPI Passthrough<a class="headerlink" href="#qspi-passthrough" title="Permanent link">&para;</a></h3>
+<p>This section shows an example of how to assign the QSPI IP to a DomU VM, instead of being used by Dom0, which is the default.</p>
+<p><a class="glightbox" href="../images/qspi-passthrough.svg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/qspi-passthrough.svg" /></a></p>
+<p>1. Write binaries</p>
+<p>2. Boot to U-Boot prompt by interrupting the U-Boot countdown</p>
+<p>3. Run the following U-Boot commands:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>fatls<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="nv">$loadaddr</span><span class="w"> </span>boot.scr.xen.uimg
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nb">source</span><span class="w"> </span><span class="nv">$loadaddr</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>fdt<span class="w"> </span><span class="nb">set</span><span class="w"> </span>/soc/spi@ff8d2000<span class="w"> </span>xen,passthrough
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>booti<span class="w"> </span>0x0a000000<span class="w"> </span>-<span class="w"> </span>0x08000000
+</code></pre></div>
+<p>4. Xen console messages will be shown, then regular Linux boot console messages.</p>
+<p>5. Log into Linux as usual with 'root' login and no passoword will be requested</p>
+<p>6. Go to xen folder and look at the provided QSPI passthrough files (dtb file and VM configuration file):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>root@agilex7dksiagf014eb:~/#<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>xen
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>root@agilex7dksiagf014eb:~/xen#<span class="w"> </span>ls<span class="w"> </span>*spi*
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>spi@ff8d2000.cfg<span class="w">  </span>spi@ff8d2000.dtb
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>root@agilex7dksiagf014eb:~/xen#<span class="w"> </span>cat<span class="w"> </span>spi@ff8d2000.cfg
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="c1"># SPDX-License-Identifier: MIT-0</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="c1"># Guest name</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;DomU1&quot;</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="c1"># Kernel image to boot</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="nv">kernel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/boot/Image&quot;</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="nv">ramdisk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;/home/root/xen/xen-image-minimal-agilex7.cpio.gz&quot;</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="nv">extra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;root=/dev/ram0 init=/bin/sh console=hvc0 rdinit=/sbin/init&quot;</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="c1"># Initial memory allocation (MB)</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="nv">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1024</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="c1"># Optional incase any passthrough or share mem</span>
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="nv">device_tree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;spi@ff8d2000.dtb&quot;</span>
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="nv">iomem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;0xff8d2,1&quot;</span>,<span class="w"> </span><span class="s2">&quot;0xff900,100&quot;</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="nv">irqs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">35</span><span class="w"> </span><span class="o">]</span>
+</code></pre></div>
+<p>7. Start the VM, and connect to its console</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>xl<span class="w"> </span>create<span class="w"> </span>spi@ff8d2000.cfg
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>xl<span class="w"> </span>console<span class="w"> </span>DomU1
+</code></pre></div>
+<p>8. In the VM console, login with 'root' account, then run a couple of commands to see QSPI is enabled:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>root@agilex7dksiagf014eb:~#<span class="w"> </span>cat<span class="w"> </span>/proc/mtd<span class="w"> </span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>dev:<span class="w">    </span>size<span class="w">   </span>erasesize<span class="w">  </span>name
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>mtd0:<span class="w"> </span><span class="m">04200000</span><span class="w"> </span><span class="m">00010000</span><span class="w"> </span><span class="s2">&quot;u-boot&quot;</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>mtd1:<span class="w"> </span>0be00000<span class="w"> </span><span class="m">00010000</span><span class="w"> </span><span class="s2">&quot;root&quot;</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>root@agilex7dksiagf014eb:~#<span class="w"> </span>mtdinfo<span class="w">       </span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>Count<span class="w"> </span>of<span class="w"> </span>MTD<span class="w"> </span>devices:<span class="w">           </span><span class="m">2</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>Present<span class="w"> </span>MTD<span class="w"> </span>devices:<span class="w">            </span>mtd0,<span class="w"> </span>mtd1
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>Sysfs<span class="w"> </span>interface<span class="w"> </span>supported:<span class="w">      </span>yes
+</code></pre></div>
+<h2 id="rebuild-xen-gsrd">Rebuild Xen GSRD<a class="headerlink" href="#rebuild-xen-gsrd" title="Permanent link">&para;</a></h2>
+<h4 id="build-flow">Build Flow<a class="headerlink" href="#build-flow" title="Permanent link">&para;</a></h4>
+<p>The following diagram illustrates the full build flow for the GSRD based on source code from GitHub.</p>
+<p>The instructions are the same as for the GSRD, except that the environment variable BUILD_HYP=1 needs to be set for building the Xen enabled GSRD version. This environment variable is only used by the Yocto GSRD script.</p>
+<p><a class="glightbox" href="../images/agilex-gsrd-build-flow.svg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/agilex-gsrd-build-flow.svg" /></a></p>
+<p>The current build flow creates a single boot image which is able to boot in different board configurations (either using OOBE or eMMC/NAND daughter card). For more information about how this single boot image is created, please refer to the following article: <a href="https://rocketboards.org/foswiki/Documentation/SingleImageBoot">https://rocketboards.org/foswiki/Documentation/SingleImageBoot</a></p>
+<h4 id="set-up-environment">Set up Environment<a class="headerlink" href="#set-up-environment" title="Permanent link">&para;</a></h4>
+<p>Create a top folder for this example, as the rest of the commands assume this location:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>agilex7f_gsrd.xen
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>mkdir<span class="w"> </span>agilex7f_gsrd.xen
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="nb">cd</span><span class="w"> </span>agilex7f_gsrd.xen
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>
+</code></pre></div>
+<p>Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>wget<span class="w"> </span>https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/<span class="se">\</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>tar<span class="w"> </span>xf<span class="w"> </span>gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:<span class="nv">$PATH</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>arm64
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
+</code></pre></div>
+<p>Enable Quartus tools to be called from command line:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3.1/quartus/
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
+</code></pre></div>
+<h4 id="build-hardware-design">Build Hardware Design<a class="headerlink" href="#build-hardware-design" title="Permanent link">&para;</a></h4>
+<p>Use the following commands to build the hardware design:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga<span class="w"> </span>agilex_soc_devkit_ghrd
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/ghrd-socfpga
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>mv<span class="w"> </span>ghrd-socfpga/agilex_soc_devkit_ghrd<span class="w"> </span>.
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="nb">cd</span><span class="w"> </span>agilex_soc_devkit_ghrd
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>make<span class="w"> </span><span class="nv">BOARD_TYPE</span><span class="o">=</span>DK-SI-AGF014E<span class="w"> </span><span class="nv">BOARD_PWRMGT</span><span class="o">=</span>linear<span class="w"> </span>generate_from_tcl<span class="w"> </span>all
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="nb">cd</span><span class="w"> </span>..
+</code></pre></div>
+<p>The following files are created:</p>
+<ul>
+<li>$TOP_FOLDER/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof - FPGA configuration file, without HPS FSBL</li>
+<li>$TOP_FOLDER/agilex_soc_devkit_ghrd/software/hps_debug/hps_debug.ihex - HPS Debug FSBL</li>
+<li>$TOP_FOLDER/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps_debug.sof - FPGA configuration file, with HPS Debug FSBL</li>
+</ul>
+<h4 id="build-core-rbf">Build Core RBF<a class="headerlink" href="#build-core-rbf" title="Permanent link">&para;</a></h4>
+<p>Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the GHRD makefile:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>*jic*<span class="w"> </span>*rbf*
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps_debug.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w"> </span>ghrd_agfb014r24b2e2v.jic<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU02G<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>AGFB014R24B2E2V<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>rm<span class="w"> </span>ghrd_agfb014r24b2e2v.hps.jic
+</code></pre></div>
+<p>The following files will be created:</p>
+<ul>
+<li>$TOP_FOLDER/ghrd_agfb014r24b2e2v.core.rbf - HPS First configuration bitstream, phase 2: FPGA fabric</li>
+</ul>
+<p>Note we are also creating an HPS JIC file, but we are discarding it, as it has the HPS Debug FSBL, while the final image needs to have the U-Boot SPL created by the Yocto recipes.</p>
+<h4 id="set-up-yocto">Set Up Yocto<a class="headerlink" href="#set-up-yocto" title="Permanent link">&para;</a></h4>
+<p>1. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.</p>
+<p>The command to install the required packages on Ubuntu 22.04 is:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>openssh-server<span class="w"> </span>mc<span class="w"> </span>libgmp3-dev<span class="w"> </span>libmpc-dev<span class="w"> </span>gawk<span class="w"> </span>wget<span class="w"> </span>git<span class="w"> </span>diffstat<span class="w"> </span>unzip<span class="w"> </span>texinfo<span class="w"> </span>gcc<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>build-essential<span class="w"> </span>chrpath<span class="w"> </span>socat<span class="w"> </span>cpio<span class="w"> </span>python3<span class="w"> </span>python3-pip<span class="w"> </span>python3-pexpect<span class="w"> </span>xz-utils<span class="w"> </span>debianutils<span class="w"> </span>iputils-ping<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>python3-git<span class="w"> </span>python3-jinja2<span class="w"> </span>libegl1-mesa<span class="w"> </span>libsdl1.2-dev<span class="w"> </span>pylint<span class="w"> </span>xterm<span class="w"> </span>python3-subunit<span class="w"> </span>mesa-common-dev<span class="w"> </span>zstd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>liblz4-tool<span class="w"> </span>git<span class="w"> </span>fakeroot<span class="w"> </span>build-essential<span class="w"> </span>ncurses-dev<span class="w"> </span>xz-utils<span class="w"> </span>libssl-dev<span class="w"> </span>bc<span class="w"> </span>flex<span class="w"> </span>libelf-dev<span class="w"> </span>bison<span class="w"> </span>xinetd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>tftpd<span class="w"> </span>tftp<span class="w"> </span>nfs-kernel-server<span class="w"> </span>libncurses5<span class="w"> </span>libc6-i386<span class="w"> </span>libstdc++6:i386<span class="w"> </span>libgcc++1:i386<span class="w"> </span>lib32z1<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>device-tree-compiler<span class="w"> </span>curl<span class="w"> </span>mtd-utils<span class="w"> </span>u-boot-tools<span class="w"> </span>net-tools<span class="w"> </span>swig<span class="w"> </span>-y
+</code></pre></div>
+<p>On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="w"> </span>sudo<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span>/bin/bash<span class="w"> </span>/bin/sh
+</code></pre></div>
+<p><strong>Note</strong>: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.</p>
+<p>2. Clone the Yocto script and prepare the build:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://github.com/altera-opensource/gsrd-socfpga
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">HYP_BUILD</span><span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>.<span class="w"> </span>agilex7_dk_si_agf014eb-gsrd-build.sh
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>build_setup
+</code></pre></div>
+<p><strong>Note</strong>: Run the following commands to set up again the yocto build environments, if you closed the current window (for example when rebooting the Linux host) and want to resume the next steps:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>.<span class="w"> </span>./poky/oe-init-build-env<span class="w"> </span>agilex-gsrd-rootfs/
+</code></pre></div>
+<h4 id="customize-yocto">Customize Yocto<a class="headerlink" href="#customize-yocto" title="Permanent link">&para;</a></h4>
+<p>1. Copy the rebuilt files to <code>$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files</code> using the following names, as expected by the yocto recipes:</p>
+<ul>
+<li>agilex7_dk_si_agf014eb_gsrd_ghrd.core.rbf</li>
+<li>agilex7_dk_si_agf014eb_nand_ghrd.core.rbf: not applicable</li>
+<li>agilex7_dk_si_agf014eb_pr_ghrd.core.rbf: not applicable</li>
+<li>agilex7_dk_si_agf014eb_pr_persona0.rbf: not applicable</li>
+<li>agilex7_dk_si_agf014eb_pr_persona1.rbf: not applicable</li>
+</ul>
+<p>In our case we just copy the core.ghrd file in the Yocto recipe location:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nv">CORE_RBF</span><span class="o">=</span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex7_dk_si_agf014eb_gsrd_ghrd.core.rbf
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/ghrd_agfb014r24b2e2v.core.rbf<span class="w"> </span><span class="nv">$CORE_RBF</span>
+</code></pre></div>
+<p>2. In the Yocto recipe <code>$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb</code> modify the agilex_gsrd_code file location:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>SRC_URI:agilex7_dk_si_agf014eb<span class="w"> </span>?<span class="o">=</span><span class="w"> </span><span class="s2">&quot;\</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_gsrd_</span><span class="si">${</span><span class="nv">ARM64_GHRD_CORE_RBF</span><span class="si">}</span><span class="s2">;name=agilex7_dk_si_agf014eb_gsrd_core \</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_nand_</span><span class="si">${</span><span class="nv">ARM64_GHRD_CORE_RBF</span><span class="si">}</span><span class="s2">;name=agilex7_dk_si_agf014eb_nand_core \</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_</span><span class="si">${</span><span class="nv">ARM64_GHRD_CORE_RBF</span><span class="si">}</span><span class="s2">;name=agilex7_dk_si_agf014eb_pr_core \</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_persona0.rbf;name=agilex7_dk_si_agf014eb_pr_persona0 \</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_persona1.rbf;name=agilex7_dk_si_agf014eb_pr_persona1 \</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="s2"> &quot;</span>
+</code></pre></div>
+<p>to look like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>SRC_URI:agilex7_dk_si_agf014eb<span class="w"> </span>?<span class="o">=</span><span class="w"> </span><span class="s2">&quot;\</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="s2"> file://agilex7_dk_si_agf014eb_gsrd_ghrd.core.rbf;sha256sum=xxxxxxxxx \</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_nand_</span><span class="si">${</span><span class="nv">ARM64_GHRD_CORE_RBF</span><span class="si">}</span><span class="s2">;name=agilex7_dk_si_agf014eb_nand_core \</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_</span><span class="si">${</span><span class="nv">ARM64_GHRD_CORE_RBF</span><span class="si">}</span><span class="s2">;name=agilex7_dk_si_agf014eb_pr_core \</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_persona0.rbf;name=agilex7_dk_si_agf014eb_pr_persona0 \</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_persona1.rbf;name=agilex7_dk_si_agf014eb_pr_persona1 \</span>
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="s2"> &quot;</span>
+</code></pre></div>
+<p>using the following commands:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nv">OLD_URI</span><span class="o">=</span><span class="s2">&quot;\${GHRD_REPO}\/agilex7_dk_si_agf014eb_gsrd_\${ARM64_GHRD_CORE_RBF};name=agilex7_dk_si_agf014eb_gsrd_core&quot;</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="nv">CORE_SHA</span><span class="o">=</span><span class="k">$(</span>sha256sum<span class="w"> </span><span class="nv">$CORE_RBF</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f1<span class="w"> </span>-d<span class="s2">&quot; &quot;</span><span class="k">)</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="nv">NEW_URI</span><span class="o">=</span><span class="s2">&quot;file:\/\/agilex7_dk_si_agf014eb_gsrd_ghrd.core.rbf;sha256sum=</span><span class="nv">$CORE_SHA</span><span class="s2">&quot;</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/</span><span class="nv">$OLD_URI</span><span class="s2">/</span><span class="nv">$NEW_URI</span><span class="s2">/g&quot;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+</code></pre></div>
+<p>3. In the same Yocto recipe delete the old SHA256 checksum for the file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>SRC_URI<span class="o">[</span>agilex7_dk_si_agf014eb_gsrd_core.sha256sum<span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;5d633ee561d5cc8c22b51211a144654fdc0be47ee14b07ac134074cbff84eb8b&quot;</span>
+</code></pre></div>
+<p>by using the following commands:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;/agilex7_dk_si_agf014eb_gsrd_core\.sha256sum/d&quot;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+</code></pre></div>
+<p>4. Optionally change the following files in <code>$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/</code>:</p>
+<ul>
+<li><a href="https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/styhead/recipes-bsp/u-boot/files/uboot.txt">uboot.txt</a> - distroboot script</li>
+<li><a href="https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/styhead/recipes-bsp/u-boot/files/uboot_script.its">uboot_script.its</a> - its file for creating FIT image from the above script</li>
+</ul>
+<p>5. Optionally change the following file in <code>$WORKSPACE/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts</code>:</p>
+<ul>
+<li>fit_kernel_agilex7_dk_si_agf014eb.its</li>
+</ul>
+<p>- its file for creating the kernel.itb image, containing by default:</p>
+<ul>
+<li>Kernel</li>
+<li>Device trees for SD, NAND and PR board configurations</li>
+<li>Core RBF files for SD, NAND and PR board configurations</li>
+<li>Board configurations for SD, NAND and PR cases</li>
+</ul>
+<h4 id="build-yocto">Build Yocto<a class="headerlink" href="#build-yocto" title="Permanent link">&para;</a></h4>
+<p>Build Yocto:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>bitbake_image
+</code></pre></div>
+<p>Gather files:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>package
+</code></pre></div>
+<p>Once the build is completed successfully, you will see the following two folders are created:</p>
+<ul>
+<li><code>agilex7_dk_si_agf014eb-gsrd-rootfs</code>: area used by OpenEmbedded build system for builds. Description of build directory structure - https://docs.yoctoproject.org/ref-manual/structure.html#the-build-directory-build</li>
+<li><code>agilex7_dk_si_agf014eb-gsrd-images</code>: the build script copies here relevant files built by Yocto from the <code>agilex7_dk_si_agf014eb-gsrd-rootfs/tmp/deploy/images/agilex</code> folder, but also other relevant files.</li>
+</ul>
+<p>The two most relevant files created in the <code>$TOP_FOLDER/gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images</code> folder are:</p>
+<table>
+<thead>
+<tr>
+<th align="left">File</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">sdimage.tar.gz</td>
+<td align="left">SD Card Image</td>
+</tr>
+<tr>
+<td align="left">u-boot-agilex-socdk-gsrd-atf/u-boot-spl-dtb.hex</td>
+<td align="left">U-Boot SPL Hex file</td>
+</tr>
+</tbody>
+</table>
+<h4 id="create-qspi-image">Create QSPI Image<a class="headerlink" href="#create-qspi-image" title="Permanent link">&para;</a></h4>
+<p>The QSPI image will contain the FPGA configuration data and the HPS FSBL and it can be built using the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>*jic*<span class="w"> </span>*rbf*
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="w"> </span>ghrd_agfb014r24b2e2v.jic<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU02G<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>AGFB014R24B2E2V<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
+</code></pre></div>
+<p>The following files will be created:</p>
+<ul>
+<li>$TOP_FOLDER/ghrd_agfb014r24b2e2v.hps.jic - Flash image for HPS First configuration bitstream, phase 1: HPS and DDR</li>
+<li>$TOP_FOLDER/ghrd.core.rbf - HPS First configuration bitstream, phase 2: FPGA fabric, discarded, as we already have it on the SD card</li>
+</ul>
+<h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
+<p>Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
+No product or component can be absolutely secure. 
+Performance varies by use, configuration and other factors.
+Your costs and results may vary. 
+You may not use or facilitate the use of this document in connection with any infringement or other legal analysis concerning Altera or Intel products described herein. You agree to grant Altera Corporation a non-exclusive, royalty-free license to any patent claim thereafter drafted which includes subject matter disclosed herein.
+No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document, with the sole exception that you may publish an unmodified copy. You may create software implementations based on this document and in compliance with the foregoing that are intended to execute on the Altera or Intel product(s) referenced in this document. No rights are granted to create modifications or derivatives of this document.
+The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications.  Current characterized errata are available on request.
+Altera disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade.
+You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
+<sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. </p>
+<p>OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. </p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 11, 2025</span>
+      
+        <br>
+        Created:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 7, 2025</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.altera.com" target="_blank" rel="noopener" title="www.altera.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2 0-.68.06-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.923 7.923 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8.008 8.008 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.65 15.65 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/altera-fpga" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/altera-fpga/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.indexes", "navigation.footer", "navigation.path", "search.suggest", "search.highlight", "content.code.copy", "navigation.indexes", "toc.integrate", "toc.follow"], "search": "../../../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../../../../assets/javascripts/bundle.fac441b0.min.js"></script>
+      
+        <script src="https://unpkg.com/tablefilter@0.7.3/dist/tablefilter/tablefilter.js"></script>
+      
+        <script src="../../../../../../assets/tables.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
