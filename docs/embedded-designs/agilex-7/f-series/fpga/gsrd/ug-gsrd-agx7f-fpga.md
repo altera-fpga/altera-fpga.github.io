@@ -140,7 +140,7 @@ $ sudo sync
 
 <h5>  Write SD Card on Windows </h5>
 
-1\. Download the SD card from [https://releases.rocketboards.org/2025.01/gsrd/agilex_fm_86_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2025.01/gsrd/agilex_fm_86_gsrd/sdimage.tar.gz) and extract it. 
+1\. Download the SD card from [https://releases.rocketboards.org/2025.01/gsrd/agilex7_dk_dev_agf027f1es_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2025.01/agilex7_dk_dev_agf027f1es_gsrd/sdimage.tar.gz) and extract it. 
 
 The extacted file is named `gsrd-console-image-agilex.wic`. 
 

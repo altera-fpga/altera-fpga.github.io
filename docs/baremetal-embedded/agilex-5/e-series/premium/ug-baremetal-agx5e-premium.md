@@ -24,7 +24,7 @@ The following inputs are used:
  
 | Item | Link |
 | -- | -- |
-| Baremetal Drivers Source | [baremetal-drivers](https://github.com/altera-fpga/baremetal-drivers/tree/24.3.1) |
+| Baremetal Drivers Source | [baremetal-drivers](https://github.com/altera-fpga/baremetal-drivers/tree/QPDS24.3.1_REL_GSRD_PR) |
 | Baremetal CMake Project File | [CMakeLists.txt](https://altera-fpga.github.io/rel-24.3.1/baremetal-embedded/agilex-5/e-series/premium/collateral/CMakeLists.txt)|
 | Programming File Generator File | [flash_image.pfg](https://altera-fpga.github.io/rel-24.3.1/baremetal-embedded/agilex-5/e-series/premium/collateral/flash_image.pfg) |
 | Arm Trusted Firmware Source | [arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware/tree/QPDS24.3.1_REL_GSRD_PR) |
@@ -64,7 +64,7 @@ export CROSS_COMPILE=aarch64-none-elf-
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -89,7 +89,7 @@ make -C atf bl2 bl31 PLAT=agilex5 DEBUG=1 SOCFPGA_BOOT_SOURCE_QSPI=1 LOG_LEVEL=5
 ```bash
 cd $TOP_FOLDER
 rm -rf baremetal-drivers*
-git clone -b 24.3.1 https://github.com/altera-fpga/baremetal-drivers
+git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-fpga/baremetal-drivers
 ```
 
 
@@ -110,7 +110,7 @@ cd baremetal-example
 
 
 ```bash
-cp $TOP_FOLDER/baremetal-drivers/test/simics/hello-world/printf_hello_world.c hello_world.c
+cp $TOP_FOLDER/baremetal-drivers/examples/hello_world/hello_world.c .
 ```
 
 

@@ -39,7 +39,7 @@ See [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS24.3.1_R
 
 ### Prebuilt Binaries
 
-The release files are accessible at [https://releases.rocketboards.org/2025.01/xen/agilex7_dk_si_agf014eb_xen/](https://releases.rocketboards.org/2025.01/gsrd/agilex7_dk_si_agf014eb_xen/)
+The release files are accessible at [https://releases.rocketboards.org/2025.01/xen/agilex7_dk_si_agf014eb_xen/](https://releases.rocketboards.org/2025.01/xen/agilex7_dk_si_agf014eb_xen/)
 
 The source code is also included on the SD card in the Linux rootfs path `/home/root`:
 
