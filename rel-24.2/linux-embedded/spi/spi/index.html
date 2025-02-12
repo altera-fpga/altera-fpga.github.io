@@ -715,13 +715,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#test-procedure" class="md-nav__link">
-    Test Procedure
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#known-issues" class="md-nav__link">
     Known Issues
   </a>
@@ -1953,11 +1946,11 @@
 
 
 <h1 id="spi-driver-for-hard-processor-system"><strong>SPI Driver for Hard Processor System</strong><a class="headerlink" href="#spi-driver-for-hard-processor-system" title="Permanent link">&para;</a></h1>
-<p>Last updated: <strong>February 11, 2025</strong> </p>
+<p>Last updated: <strong>February 12, 2025</strong> </p>
 <p><strong>Upstream Status</strong>: <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/spi">Upstreamed</a></p>
 <p><strong>Devices supported</strong>: Agilex7, Agilex 5</p>
 <h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>Serial master and serial slave controllers are instances of the Synopsys DesignWare Synchronous Serial Interface (SSI) controller.   These enable serial communication with serial-master or serial-slave peripheral devices.
+<p>Serial master and serial slave controllers Enable serial communication with serial-master or serial-slave peripheral devices.
 Each SPI master has a maximum bit rate of 60 Mbps.
 Each SPI slave has a maximum bit rate of 33.33 Mbps.
 The DMA controller interface is integrated with the HPS DMA controller.</p>
@@ -1965,110 +1958,19 @@ The DMA controller interface is integrated with the HPS DMA controller.</p>
 <p><a href="https://www.intel.com/content/www/us/en/docs/programmable/814346">Agilex 5 Hard Processor System Technical Reference Manual</a></p>
 <p><a class="glightbox" href="../images/spi_diagram.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="spi_diagram" src="../images/spi_diagram.png" style="height:450px;width:450px" /></a></p>
 <h2 id="driver-sources"><strong>Driver Sources</strong><a class="headerlink" href="#driver-sources" title="Permanent link">&para;</a></h2>
-<p>The source code for this driver can be found at <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/spi/spi-dw-mmio.c">https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/spi/spi-dw-mmio.c</a>.</p>
+<p>The source code for this driver can be found at <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/spi">https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/spi</a>.</p>
 <h2 id="driver-capabilities"><strong>Driver Capabilities</strong><a class="headerlink" href="#driver-capabilities" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Handle the data transfer between connected devices over the SPI bus.</li>
 <li>Support the peripheral slave DMA.</li>
 </ul>
 <h2 id="kernel-configurations"><strong>Kernel Configurations</strong><a class="headerlink" href="#kernel-configurations" title="Permanent link">&para;</a></h2>
-<p><strong>CONFIG_SPI_DW_MMIO</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Symbol: SPI_DW_MMIO [=y]                                                                               
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  Type  : tristate                                                                                       
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  Defined at drivers/spi/Kconfig:313                                                                     
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>     Prompt: Memory-mapped io interface driver for DW SPI core                                           
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>     Depends on: SPI [=y] &amp;&amp; SPI_MASTER [=y] &amp;&amp; SPI_DESIGNWARE [=y] &amp;&amp; \                                 
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>     HAS_IOMEM [=y]                                                                                         
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>     Location:                                                                                             
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>       -&gt; Device Drivers                                                                                    
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>         -&gt; SPI support (SPI [=y])                                                                        
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>           -&gt; DesignWare SPI controller core support (SPI_DESIGNWARE [=y])                                 
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>             -&gt; Memory-mapped io interface driver for DW SPI core (SPI_DW_MMIO [=y])
-</code></pre></div>
-<p><strong>SPI_DW_DMA</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Symbol: SPI_DW_DMA [=y]                                                                                  
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>   Type  : bool                                                                                          
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>   Defined at drivers/spi/Kconfig:306                                                                      
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>     Prompt: DMA support for DW SPI controller                                                              
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>     Depends on: SPI [=y] &amp;&amp; SPI_MASTER [=y] &amp;&amp; SPI_DESIGNWARE [=y]                                         
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>     Location:                                                                                              
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>       -&gt; Device Drivers                                                                                    
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>         -&gt; SPI support (SPI [=y])                                                                          
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>           -&gt; DesignWare SPI controller core support (SPI_DESIGNWARE [=y])                                  
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>             -&gt; DMA support for DW SPI controller (SPI_DW_DMA [=y])  
-</code></pre></div>
-<p><strong>Note:</strong> The DMA feature in the SPI controller depends on the HPS DMA controller driver. This driver uses the <strong>CONFIG_DW_AXI_DMAC</strong> configuration which need to be set to <strong>y</strong> to be included in the kernel image.</p>
+<p>CONFIG_SPI_ALTERA</p>
+<p><a class="glightbox" href="../images/spi_config_path_1.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="spi_config_path" src="../images/spi_config_path_1.png" /></a></p>
 <h2 id="device-tree"><strong>Device Tree</strong><a class="headerlink" href="#device-tree" title="Permanent link">&para;</a></h2>
-<p>An example of the device tree configuration of the SPI driver for the Synopsys DesignWare Synchronous Serial Interface (SSI) controller in the HPS is shown next:</p>
+<p>Example Device tree location to configure the SPI:</p>
 <p><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi">https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi</a></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>spi0: spi@10da4000 {
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>            compatible = &quot;snps,dw-apb-ssi&quot;;
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>            reg = &lt;0x10da4000 0x1000&gt;;
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>            #address-cells = &lt;1&gt;;
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>            #size-cells = &lt;0&gt;;
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>            interrupts = &lt;GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH&gt;;
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>            resets = &lt;&amp;rst SPIM0_RESET&gt;;
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>            reset-names = &quot;spi&quot;;
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            reg-io-width = &lt;4&gt;;
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>            num-cs = &lt;4&gt;;
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>            clocks = &lt;&amp;clkmgr AGILEX5_L4_MAIN_CLK&gt;;
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>            dmas = &lt;&amp;dmac0 16&gt;, &lt;&amp;dmac0 17&gt;;
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>            dma-names =&quot;tx&quot;, &quot;rx&quot;;
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>            status = &quot;disable&quot;;
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        };
-</code></pre></div>
-<p><strong>Note:</strong> This node is disabled by default in the <strong>socfpga_agilex5.dtsi</strong>. This is enabled in the <strong>arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_debug.dts</strong> as shown in the <a href="#test-procedure">Test procedure</a> section. </p>
-<h2 id="test-procedure"><strong>Test Procedure</strong><a class="headerlink" href="#test-procedure" title="Permanent link">&para;</a></h2>
-<p>The <strong>spidev_test</strong> tool can be used to demonstrate the SPI capabilities on Linux. This application can be made available for Linux in any of the following ways:</p>
-<ul>
-<li><strong>From GSRD build flow:</strong> Include this application during <strong>Customize Yocto</strong> stage by adding <strong>spidev-test</strong> to the list of tools in the <a href="https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/master/recipes-images/packagegroups/packagegroup-dev-tools-essential.bb">packagegroup-dev-tools-essential.bb</a> Yocto recipe.</li>
-<li><strong>From the Linux Boot example build flow:</strong> Include this application during the <strong>Build Rootfs</strong> stage by adding  <strong>spidev-test</strong> to the list of applications to be included in the file system defined with the <strong>CORE_IMAGE_EXTRA_INSTALL</strong> configuration.</li>
-</ul>
-<p>The <strong>spidev-test</strong> application depends on the <strong>drivers/spi/spidev.c</strong> driver to access the SPI devices throught regular userspace I/O calls. This driver is built through the <strong>CONFIG_SPI_SPIDEV</strong> kernel configuration. This driver also must be enabled in the device tree through the <strong>spidev</strong> node  as shown next. This is already done in the <strong>arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_debug.dts</strong> file.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>&amp;spi0 {
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    status= &quot;okay&quot;;
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    spidev@0{
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        compatible = &quot;rohm,dh2228fv&quot;;
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        reg = &lt;0&gt;;
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        spi-max-frequency = &lt;10000000&gt;;
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    };
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>};
-</code></pre></div>
-<p><strong>Note:</strong> When building binaries to exercise this test procedure using the Linux Boot example build flow, it is necessary to enable the drivers and their dependencies as indicated in <a href="#kernel-configurations">Kernel Configurations</a> section. In the case of the GSRB build flow, all the required drivers are already included either as part of the kernel image (included through kernel configuration) or including and loading the <strong>.ko</strong> driver file from the file system. </p>
-<p>The following test procedure can be exercised using the Agilex 5 E-Series device using the DEBUG2 daughter card for the Premium development kit, in which the <strong>spidev-test</strong> application targets the built-in Microchip 25AA128 EEPROM device. The <strong>spidev</strong> driver is compatible with this device.</p>
-<p>The test procedure consist on enabling the writing in the EEPROM device, then writing a byte (0xC6) to a memory location (0x68D) and then reading this back.</p>
-<ol>
-<li>
-<p>Send the 'Transmits the Write Enable' (WREN) instruction code (0x06).
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>root@testsocfpga# spidev_test -D /dev/spidev1.0 -v -p &quot;\x06&quot;
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>spi mode: 0x0
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>bits per word: 8
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>max speed: 500000 Hz (500 kHz)
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>TX | 06 __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |.|
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>RX | FF __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |.|
-</code></pre></div></p>
-</li>
-<li>
-<p>Perform byte write (instruction code x02) with random value (xC6) and offset (MSB x06, LSB x8D)
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>root@testsocfpga# spidev_test -D /dev/spidev1.0 -v -p &quot;\x02\x06\x8D\xC6&quot;
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>spi mode: 0x0
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>bits per word: 8
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>max speed: 500000 Hz (500 kHz)
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>TX | 02 06 8D C6 __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |....|
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>RX | FF FF FF FF __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |....|
-</code></pre></div></p>
-</li>
-<li>
-<p>Perform byte read (instruction code x03) on the previously written offset. xC6 will be received.
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>root@testsocfpga# spidev_test -D /dev/spidev1.0 -v -p &quot;\x03\x06\x8D\x00&quot;
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>spi mode: 0x0
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>bits per word: 8
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>max speed: 500000 Hz (500 kHz)
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>TX | 03 06 8D 00 __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |....|
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>RX | FF FF FF C6 __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __ __  |....|
-</code></pre></div></p>
-</li>
-</ol>
+<p><a class="glightbox" href="../images/spi_device_tree.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="spi_device_tree" src="../images/spi_device_tree.png" /></a></p>
 <h2 id="known-issues"><strong>Known Issues</strong><a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
 <p>None Known</p>
 <h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>

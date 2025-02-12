@@ -1855,7 +1855,7 @@
 
 
 <h1 id="linux-drivers">Linux Drivers<a class="headerlink" href="#linux-drivers" title="Permanent link">&para;</a></h1>
-<p>The table below provides a comprehensive list of the drivers available for Agilex™  5 and Agilex™  7.</p>
+<p>The table below provides a comprehensive list of the drivers available for Agilex 5 and Agilex 7.</p>
 <ul>
 <li>IP Name column indicates what type of IP the driver targets.  </li>
 <li>HPS or PCIe column indicates if the driver is targeting the embedded Host Processor System found on our devices or a server host or both.</li>
@@ -1877,276 +1877,276 @@
 </thead>
 <tbody>
 <tr>
-<td align="center">Altera 16550 Compatible UART Core</td>
+<td align="center">Altera 16550 Compatibe UART Core</td>
 <td>Agilex 7</td>
 <td>PCIe</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-dfl/uart_16550/uart_16550" target="_blank">UART</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-dfl/uart_16550/uart_16550.md">UART</a></td>
 <td align="center">Yes</td>
-<td><a href="https://github.com/OFS/linux-dfl/blob/master/drivers/tty/serial/8250/8250_dfl.c" target="_blank">8250_dfl</a></td>
+<td><a href="https://github.com/OFS/linux-dfl/blob/master/drivers/tty/serial/8250/8250_dfl.c">8250_dfl</a></td>
 </tr>
 <tr>
 <td align="center">Altera Hardware Monitor</td>
-<td>Agilex 5  Agilex 7</td>
+<td>Agilex 5 <br>Agilex 7</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/hwmon/hwmon" target="_blank">Hardware Monitor</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/hwmon/hwmon.md">Hardware Monitor</a></td>
 <td align="center">No</td>
-<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/HEAD/drivers/hwmon/soc64-hwmon.c" target="_blank">Hwmon driver</a></td>
+<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/HEAD/drivers/hwmon/soc64-hwmon.c">Hwmon driver</a></td>
 </tr>
 <tr>
 <td align="center">Clock Manager</td>
 <td>Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/clock_manager/clock_manager" target="_blank">Clock Manager</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/clock_manager/clock_manager.md">Clock Manager</a></td>
 <td align="center">No</td>
-<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/clk/socfpga/clk-agilex5.c" target="_blank">clk_agilex5</a></td>
+<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/clk/socfpga/clk-agilex5.c">clk_agilex5</a></td>
 </tr>
 <tr>
-<td align="center">Device Feature List (DFL) Capability</td>
-<td>Stratix 10   Agilex 7</td>
+<td align="center">Device Feature List  (DFL) Capability</td>
+<td>Stratix 10 <br> Agilex 7</td>
 <td>PCIe</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-dfl/dfl/dfl" target="_blank">dfl</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-dfl/dfl/dfl.md">dfl</a></td>
 <td align="center">Yes</td>
-<td><a href="https://github.com/OFS/linux-dfl/blob/master/drivers/fpga/dfl.c" target="_blank">dfl</a></td>
+<td><a href="https://github.com/OFS/linux-dfl/blob/master/drivers/fpga/dfl.c">dfl</a></td>
 </tr>
 <tr>
 <td align="center">DFL Accelerator Functional Unit (AFU workload)</td>
-<td>Agilex 7   Stratix 10</td>
+<td>Agilex 7 <br> Stratix 10</td>
 <td>PCIe</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-dfl/dfl_afu/dfl_afu" target="_blank">dfl-afu</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-dfl/dfl_afu/dfl_afu.md">dfl-afu</a></td>
 <td align="center">Yes</td>
-<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/fpga/dfl-afu-dma-region.c?h=master" target="_blank">dfl-afu-dma-region</a> <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/fpga/dfl-afu-error.c?h=master" target="_blank">dfl-afu-error</a> <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/fpga/dfl-afu-region.c?h=master" target="_blank">dfl-afu-region</a> <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/fpga/dfl-afu-main.c?h=master" target="_blank">dfl-afu-main</a></td>
+<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/fpga/dfl-afu-dma-region.c?h=master">dfl-afu-dma-region</a><br><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/fpga/dfl-afu-error.c?h=master">dfl-afu-error</a><br><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/fpga/dfl-afu-region.c?h=master">dfl-afu-region</a><br><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/fpga/dfl-afu-main.c?h=master">dfl-afu-main</a></td>
 </tr>
 <tr>
 <td align="center">DFL FPGA Management Engine IP</td>
-<td>Agilex 7  Stratix 10</td>
+<td>Agilex 7 <br>Stratix 10</td>
 <td>PCIe</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-dfl/dfl_fme/dfl_fme" target="_blank">dfl-fme</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-dfl/dfl_fme/dfl_fme.md">dfl-fme</a></td>
 <td align="center">Yes</td>
-<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/fpga/fpga-mgr.c" target="_blank">dfl-fme-mgr</a>   <a href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/fpga/dfl-fme-br.c" target="_blank">dfl-fme-br</a> <a href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/fpga/dfl-fme-region.c" target="_blank">dfl-fme-region</a></td>
+<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/fpga/fpga-mgr.c">dfl-fme-mgr</a> <br> <a href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/fpga/dfl-fme-br.c">dfl-fme-br</a><br><a href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/fpga/dfl-fme-region.c">dfl-fme-region</a></td>
 </tr>
 <tr>
 <td align="center">DFL Memory Interface/Subsystem</td>
-<td>Agilex 7 Stratix 10</td>
+<td>Agilex 7<br>Stratix 10</td>
 <td>PCIe</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-dfl/dfl_emif/dfl_emif" target="_blank">Memory</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-dfl/dfl_emif/dfl_emif.md">Memory</a></td>
 <td align="center">Yes</td>
-<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/memory/dfl-emif.c?h=master" target="_blank">dfl-emif</a></td>
+<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/memory/dfl-emif.c?h=master">dfl-emif</a></td>
 </tr>
 <tr>
 <td align="center">Direct Memory Access Controller (DMAC)</td>
 <td>Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/dma/dma" target="_blank">DMAC</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/dma/dma.md">DMAC</a></td>
 <td align="center">Yes</td>
-<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c" target="_blank">dmac</a></td>
+<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c">dmac</a></td>
 </tr>
 <tr>
 <td align="center">Error Detection and Correction (EDAC)</td>
 <td>Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/edac/edac" target="_blank">EDAC</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/edac/edac.md">EDAC</a></td>
 <td align="center">Yes</td>
-<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/edac/altera_edac.c" target="_blank">altera_edac</a></td>
+<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/edac/altera_edac.c">altera_edac</a></td>
 </tr>
 <tr>
 <td align="center">Ethernet 1588 PTP Time of Day Clock</td>
 <td>Agilex 7</td>
 <td>HPS/PCIe</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-dfl/ptp_dfl_tod/ptp_dfl_tod" target="_blank">PCIe Attach ToD</a>   <a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/ptp_tod/ptp_emb_tod" target="_blank">Embedded ToD</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-dfl/ptp_dfl_tod/ptp_dfl_tod.md">PCIe Attach ToD</a>  <br> <a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/ptp_tod/ptp_emb_tod.md">Embedded ToD</a></td>
 <td align="center">Yes</td>
-<td><a href="https://github.com/OFS/linux-dfl/blob/master/drivers/ptp/ptp_dfl_tod.c" target="_blank">ToD PCIe-Attach driver</a>   <a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/net/ethernet/altera/intel_fpga_tod.c" target="_blank">ToD Embedded driver</a></td>
+<td><a href="https://github.com/OFS/linux-dfl/blob/master/drivers/ptp/ptp_dfl_tod.c">ToD PCIe-Attach driver </a> <br> <a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/net/ethernet/altera/intel_fpga_tod.c">ToD Embedded driver </a></td>
 </tr>
 <tr>
 <td align="center">Ethernet Media Access Controller</td>
 <td>Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/emac/emac" target="_blank">EMAC</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/emac/emac.md">EMAC</a></td>
 <td align="center">No</td>
-<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c" target="_blank">dwxgmac2_core</a></td>
+<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/net/ethernet/stmicro/stmmac/dwxgmac2_core.c">dwxgmac2_core</a></td>
 </tr>
 <tr>
 <td align="center">Ethernet Subsystem Intel FPGA IP (MAC-Specific)</td>
 <td>Agilex 7</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/hssi/hssi" target="_blank">HSSI</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/hssi/hssi.md">HSSI</a></td>
 <td align="center">No</td>
-<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera/intel_fpga_hssiss.c" target="_blank">intel_fpga_hssiss</a></td>
+<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera/intel_fpga_hssiss.c">intel_fpga_hssiss</a></td>
 </tr>
 <tr>
 <td align="center">Ethernet Subsystem Intel FPGA IP (Tile-Specific)</td>
 <td>Agilex 7</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/hssi_xtile/hssi_xtile" target="_blank">hssi_xtile</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/hssi_xtile/hssi_xtile.md">hssi_xtile</a></td>
 <td align="center">No</td>
-<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera/intel_fpga_eth_main.c" target="_blank">eth_main</a>   <a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera/intel_fpga_etile_fec.c" target="_blank">etile_fec</a>   <a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera/intel_fpga_etile_driver.c" target="_blank">etile_driver</a>   <a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera/intel_fpga_hssi_etile_ethtool.c" target="_blank">etile_ethtool</a>   <a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera/intel_fpga_hssi_ftile_ethtool.c" target="_blank">ftile_ethtool</a>   <a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera/intel_fpga_hssi_ftile_fec.c" target="_blank">ftile_fec</a>   <a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera/intel_fpga_ftile_driver.c" target="_blank">ftile_driver</a></td>
+<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera/intel_fpga_eth_main.c">eth_main</a> <br> <a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera/intel_fpga_etile_fec.c">etile_fec</a> <br> <a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera/intel_fpga_etile_driver.c">etile_driver</a> <br> <a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera/intel_fpga_hssi_etile_ethtool.c">etile_ethtool</a> <br> <a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera/intel_fpga_hssi_ftile_ethtool.c">ftile_ethtool</a> <br> <a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera/intel_fpga_hssi_ftile_fec.c">ftile_fec</a> <br> <a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera/intel_fpga_ftile_driver.c">ftile_driver</a></td>
 </tr>
 <tr>
 <td align="center">General Purpose Timers</td>
-<td>Agilex 7   Agilex 5</td>
+<td>Agilex 7 <br> Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/apb_timers/apb_timers" target="_blank">GP Timers</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/apb_timers/apb_timers.md">GP Timers</a></td>
 <td align="center">Yes</td>
-<td><a href="https://github.com/torvalds/linux/blob/master/drivers/clocksource/dw_apb_timer.c" target="_blank">dw_apb_timer</a></td>
+<td><a href="https://github.com/torvalds/linux/blob/master/drivers/clocksource/dw_apb_timer.c">dw_apb_timer</a></td>
 </tr>
 <tr>
 <td align="center">Generic Serial Flash Interface Intel FPGA IP</td>
-<td>Agilex 7 Stratix 10</td>
+<td>Agilex 7<br>Stratix 10</td>
 <td>PCIe</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-dfl/spi_altera_dfl/spi_altera_dfl" target="_blank">Generic Serial Flash</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-dfl/spi_altera_dfl/spi_altera_dfl.md">Generic Serial Flash</a></td>
 <td align="center">Yes</td>
-<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/spi/" target="_blank">spi</a></td>
+<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/spi/">spi</a></td>
 </tr>
 <tr>
 <td align="center">General Purpose I/O (GPIO)</td>
-<td>Agilex 7   Agilex 5</td>
+<td>Agilex 7 <br> Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/gpio/gpio" target="_blank">gpio</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/gpio/gpio.md">gpio</a></td>
 <td align="center">Yes</td>
-<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpio/gpio-dwapb.c?h=master" target="_blank">gpio-dwapb</a></td>
+<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpio/gpio-dwapb.c?h=master">gpio-dwapb</a></td>
 </tr>
 <tr>
 <td align="center">I2C</td>
-<td>Agilex 7   Agilex 5</td>
+<td>Agilex 7 <br> Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/i2c/i2c" target="_blank">I2C</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/i2c/i2c.md">I2C</a></td>
 <td align="center">Yes</td>
-<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/i2c" target="_blank">I2c driver</a></td>
+<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/i2c">I2c driver</a></td>
 </tr>
 <tr>
 <td align="center">I3C</td>
 <td>Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/i3c/i3c" target="_blank">I3C</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/i3c/i3c.md">I3C</a></td>
 <td align="center">Yes</td>
-<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/i3c/master/dw-i3c-master.c" target="_blank">I3c driver</a></td>
+<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/i3c/master/dw-i3c-master.c">I3c driver</a></td>
 </tr>
 <tr>
 <td align="center">Interrupt Controller (GICv3)</td>
 <td>Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/interrupt_controller_GICv3/irq_gic_v3" target="_blank">GICv3</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/interrupt_controller_GICv3/irq_gic_v3.md">GICv3</a></td>
 <td align="center">Yes</td>
-<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/irqchip/irq-gic-v3.c" target="_blank">GICv3 driver</a></td>
+<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/irqchip/irq-gic-v3.c">GICv3 driver</a></td>
 </tr>
 <tr>
-<td align="center">Microchip® Zarlink ZL30793 Network Synchronizer</td>
+<td align="center">Microchip&reg; Zarlink ZL30793 Network Synchronizer</td>
 <td>Agilex 7</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/zarlink_clock_synchronizer/zarlink_clock_synchronizer" target="_blank">Zarlink</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/zarlink_clock_synchronizer/zarlink_clock_synchronizer.md">Zarlink</a></td>
 <td align="center">No</td>
-<td><a href="https://github.com/altera-opensource/linux-socfpga/tree/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera" target="_blank">Zarlink driver</a></td>
+<td><a href="https://github.com/altera-opensource/linux-socfpga/tree/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/ethernet/altera">Zarlink driver </a></td>
 </tr>
 <tr>
 <td align="center">MSGDMA</td>
 <td>Agilex 7</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/msgdma/msgdma" target="_blank">MSGDMA</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/msgdma/msgdma.md">MSGDMA</a></td>
 <td align="center">No</td>
-<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/dma/altera-msgdma.c" target="_blank">MSGDMA driver</a></td>
+<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/dma/altera-msgdma.c">MSGDMA driver</a></td>
 </tr>
 <tr>
 <td align="center">NAND Controller</td>
 <td>Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/nand/nand" target="_blank">NAND</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/nand/nand.md">NAND</a></td>
 <td align="center">Yes</td>
-<td><a href="https://github.com/torvalds/linux/blob/master/drivers/mtd/nand/raw/cadence-nand-controller.c" target="_blank">cadence-nand-controller</a></td>
+<td><a href="https://github.com/torvalds/linux/blob/master/drivers/mtd/nand/raw/cadence-nand-controller.c">cadence-nand-controller</a></td>
 </tr>
 <tr>
 <td align="center">PCIe Subsystem</td>
 <td>Agilex 7</td>
 <td>PCIe</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-dfl/dfl_pci/dfl_pci" target="_blank">PCIe Subsystem</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-dfl/dfl_pci/dfl_pci.md">PCIe Subsystem</a></td>
 <td align="center">Yes</td>
-<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/fpga/dfl-pci.c?h=master" target="_blank">dfl-pcie</a></td>
+<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/fpga/dfl-pci.c?h=master">dfl-pcie</a></td>
 </tr>
 <tr>
 <td align="center">QSFP</td>
 <td>Agilex 7</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/qsfp/qsfp" target="_blank">QSFP</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/qsfp/qsfp.md">QSFP</a></td>
 <td align="center">No</td>
-<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/phy/qsfp.c" target="_blank">qsfp</a></td>
+<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-5.15.90-lts-ftile-1588ptp/drivers/net/phy/qsfp.c">qsfp</a></td>
 </tr>
 <tr>
 <td align="center">QSPI</td>
 <td>Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/qspi/qspi" target="_blank">QSPI</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/qspi/qspi.md">QSPI</a></td>
 <td align="center">No</td>
-<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/spi/spi-cadence-quadspi.c" target="_blank">spi-cadence-quadspi</a></td>
+<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/spi/spi-cadence-quadspi.c">spi-cadence-quadspi</a></td>
 </tr>
 <tr>
 <td align="center">Reset Manager</td>
 <td>Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/reset_manager/reset_manager" target="_blank">Reset Manager</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/reset_manager/reset_manager.md">Reset Manager</a></td>
 <td align="center">No</td>
-<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/reset/reset-simple.c" target="_blank">Reset Manager driver</a></td>
+<td><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/reset/reset-simple.c">Reset Manager driver</a></td>
 </tr>
 <tr>
 <td align="center">SD/eMMC Controller</td>
 <td>Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/sd-emmc/sd-emmc" target="_blank">SD/eMMC</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/sd-emmc/sd-emmc.md">SD/eMMC</a></td>
 <td align="center">Yes</td>
-<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/mmc/host/sdhci-cadence.c" target="_blank">SD/eMMC driver</a></td>
+<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/mmc/host/sdhci-cadence.c">SD/eMMC driver</a></td>
 </tr>
 <tr>
 <td align="center">SPI</td>
-<td>Agilex 7  Agilex 5</td>
+<td>Agilex 7<br> Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/spi/spi" target="_blank">SPI</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/spi/spi.md">SPI</a></td>
 <td align="center">Yes</td>
-<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/spi" target="_blank">SPI driver</a></td>
+<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/spi">SPI driver</a></td>
 </tr>
 <tr>
 <td align="center">System Manager</td>
 <td>Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/system_manager/system_manager" target="_blank">System manager</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/system_manager/system_manager.md">System manager</a></td>
 <td align="center">Yes</td>
-<td><a href="https://github.com/torvalds/linux/blob/master/drivers/mfd/altera-sysmgr.c" target="_blank">sysmgr</a></td>
+<td><a href="https://github.com/torvalds/linux/blob/master/drivers/mfd/altera-sysmgr.c">sysmgr</a></td>
 </tr>
 <tr>
 <td align="center">System Memory Management Unit</td>
 <td>Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/smmu/smmu" target="_blank">SMMU</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/smmu/smmu.md">SMMU</a></td>
 <td align="center">Yes</td>
-<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/iommu/arm/arm-smmu-v3" target="_blank">SMMU driver</a></td>
+<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/iommu/arm/arm-smmu-v3">SMMU driver</a></td>
 </tr>
 <tr>
 <td align="center">UART</td>
-<td>Agilex 7   Agilex 5</td>
+<td>Agilex 7 <br> Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/uart/uart" target="_blank">UART</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/uart/uart.md">UART</a></td>
 <td align="center">Yes</td>
-<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/tty/serial/8250/8250_dw.c" target="_blank">UART driver</a></td>
+<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/tty/serial/8250/8250_dw.c">UART driver</a></td>
 </tr>
 <tr>
 <td align="center">USB 2.0 OTG</td>
-<td>Agilex 7   Agilex 5</td>
+<td>Agilex 7 <br> Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/usb2_0_otg/usb_2_0_otg" target="_blank">USB2.0</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/usb2_0_otg/usb_2_0_otg.md">USB2.0</a></td>
 <td align="center">Yes</td>
-<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/usb/dwc2" target="_blank">USB 2.0 driver</a></td>
+<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/usb/dwc2">USB 2.0 driver </a></td>
 </tr>
 <tr>
 <td align="center">Userspace I/O (UIO)</td>
-<td>Agilex 7  Stratix 10</td>
+<td>Agilex 7 <br>Stratix 10</td>
 <td>PCIe</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-dfl/uio_dfl/uio_dfl" target="_blank">UIO</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-dfl/uio_dfl/uio_dfl.md">UIO</a></td>
 <td align="center">Yes</td>
-<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/uio/uio_dfl.c" target="_blank">UIO driver</a></td>
+<td><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/uio/uio_dfl.c">UIO driver</a></td>
 </tr>
 <tr>
 <td align="center">Watchdog Timer</td>
 <td>Agilex 5</td>
 <td>HPS</td>
-<td align="left"><a href="https://altera-fpga.github.io/rel-24.3.1/linux-embedded/watchdog_timers/watchdog_timers" target="_blank">Watchdog Timer</a></td>
+<td align="left"><a href="https://altera-fpga.github.io/rel-24.2/linux-embedded/watchdog_timers/watchdog_timers.md">Watchdog Timer</a></td>
 <td align="center">Yes</td>
-<td><a href="https://github.com/torvalds/linux/blob/master/drivers/watchdog/dw_wdt.c" target="_blank">dw_wdt</a></td>
+<td><a href="https://github.com/torvalds/linux/blob/master/drivers/watchdog/dw_wdt.c">dw_wdt </a></td>
 </tr>
 </tbody>
 </table>
