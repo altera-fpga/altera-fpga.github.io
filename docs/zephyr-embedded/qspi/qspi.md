@@ -24,7 +24,7 @@ QSPI driver (Polling-based mechanism - Upstreamed):
 [https://github.com/zephyrproject-rtos/zephyr/blob/main/drivers/flash/flash_cadence_qspi_nor.c](https://github.com/zephyrproject-rtos/zephyr/blob/main/drivers/flash/flash_cadence_qspi_nor.c)
 
 QSPI driver (with Interrupt-based mechanism – Not yet Upstreamed):
-[https://github.com/altera-opensource/zephyrsocfpga/blob/socfpga_rel_23.4/drivers/flash/flash_cadence_qspi_nor.c](https://github.com/altera-opensource/zephyrsocfpga/blob/socfpga_rel_23.4/drivers/flash/flash_cadence_qspi_nor.c)
+[https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/drivers/flash/flash_cadence_qspi_nor.c](https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/drivers/flash/flash_cadence_qspi_nor.c)
 
 ## **Driver Capabilities**
 
