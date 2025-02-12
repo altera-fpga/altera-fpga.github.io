@@ -2189,7 +2189,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tsn/sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5/" class="md-nav__link">
+      <a href="../../tsn/sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5.md" class="md-nav__link">
         TSN - SGMII XCVR System
       </a>
     </li>
@@ -3172,11 +3172,11 @@
 <li>HPS NAND Board: boot from eMMC flash</li>
 <li>HPS Test Board: boot from SD card</li>
 </ul>
-<p>The instructions on this page are based on the <a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/">GSRD</a>.</p>
+<p>The instructions on this page are based on the <a href="https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/">GSRD</a>.</p>
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
 <p>The following are required to be able to fully exercise the guides from this page:</p>
 <ul>
-<li><a href="https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html">Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit</a>, ordering code DK-A5E065BB32AES1.<ul>
+<li>Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit, ordering code DK-A5E065BB32AES1. Refer to <a href="https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html">board documentation</a> for more information about the development kit.<ul>
 <li>HPS Enablement  Expansion Board. Included with the development kit</li>
 <li>HPS NAND Board. Enables eMMC storage for HPS. Orderable separately</li>
 <li>HPS Test Board. Supports SD card boot, and external Arm tracing. Orderable separately</li>
@@ -3190,7 +3190,7 @@
 <li>64 GB of RAM or more</li>
 <li>Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too</li>
 <li>Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
-<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1 </li>
+<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 </li>
 <li>TFTP server. This used to download the eMMC binaries to board to be flashed by U-Boot</li>
 </ul>
 </li>
@@ -3198,14 +3198,14 @@
 <li>Internet connection. For downloading the files.</li>
 </ul>
 <h3 id="component-versions">Component Versions<a class="headerlink" href="#component-versions" title="Permanent link">&para;</a></h3>
-<p>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1 and the following software component versions are used to build the GSRD: </p>
+<p>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 and the following software component versions are used to build the GSRD: </p>
 <table>
 <thead>
 <tr>
-<th align="left">Component</th>
-<th align="left">Location</th>
-<th align="left">Branch</th>
-<th align="left">Commit ID/Tag</th>
+<th align="left"><strong>Component</strong></th>
+<th align="left"><strong>Location</strong></th>
+<th align="left"><strong>Branch</strong></th>
+<th align="left"><strong>Commit ID/Tag</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -3213,50 +3213,50 @@
 <td align="left">GHRD</td>
 <td align="left"><a href="https://github.com/altera-opensource/ghrd-socfpga">https://github.com/altera-opensource/ghrd-socfpga</a></td>
 <td align="left">master</td>
-<td align="left">QPDS24.3.1_REL_GSRD_PR</td>
+<td align="left">QPDS24.3_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Linux</td>
 <td align="left"><a href="https://github.com/altera-opensource/linux-socfpga">https://github.com/altera-opensource/linux-socfpga</a></td>
-<td align="left">socfpga-6.6.51-lts</td>
-<td align="left">QPDS24.3.1_REL_GSRD_PR</td>
+<td align="left">socfpga-6.6.37-lts</td>
+<td align="left">QPDS24.3_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Arm Trusted Firmware</td>
 <td align="left"><a href="https://github.com/arm-trusted-firmware">https://github.com/arm-trusted-firmware</a></td>
-<td align="left">socfpga_v2.11.1</td>
-<td align="left">QPDS24.3.1_REL_GSRD_PR</td>
+<td align="left">socfpga_v2.11.0</td>
+<td align="left">QPDS24.3_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">U-Boot</td>
 <td align="left"><a href="https://github.com/altera-opensource/u-boot-socfpga">https://github.com/altera-opensource/u-boot-socfpga</a></td>
-<td align="left">socfpga_v2024.07</td>
-<td align="left">QPDS24.3.1_REL_GSRD_PR</td>
+<td align="left">socfpga_v2024.04</td>
+<td align="left">QPDS24.3_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Yocto Project</td>
 <td align="left"><a href="https://git.yoctoproject.org/poky">https://git.yoctoproject.org/poky</a></td>
-<td align="left">styhead</td>
+<td align="left">scarthgap</td>
 <td align="left">latest</td>
 </tr>
 <tr>
 <td align="left">Yocto Project: meta-intel-fpga</td>
 <td align="left"><a href="https://git.yoctoproject.org/meta-intel-fpga">https://git.yoctoproject.org/meta-intel-fpga</a></td>
-<td align="left">styhead</td>
+<td align="left">scarthgap</td>
 <td align="left">latest</td>
 </tr>
 <tr>
 <td align="left">Yocto Project: meta-intel-fpga-refdes</td>
 <td align="left"><a href="https://github.com/altera-opensource/meta-intel-fpga-refdes">https://github.com/altera-opensource/meta-intel-fpga-refdes</a></td>
-<td align="left">styhead</td>
-<td align="left">QPDS24.3.1_REL_GSRD_PR</td>
+<td align="left">scarthgap</td>
+<td align="left">QPDS24.3_REL_GSRD_PR</td>
 </tr>
 </tbody>
 </table>
 <h3 id="development-kit">Development Kit<a class="headerlink" href="#development-kit" title="Permanent link">&para;</a></h3>
-<p>Refer to <a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#development-kit">Development Kit</a> for details about the board, including how to install the HPS Boards, and how to set MSEL dispswitches.</p>
+<p>Refer to <a href="https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium//#development-kit">Development Kit</a> for details about the board, including how to install the HPS Boards, and how to set MSEL dispswitches.</p>
 <h3 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h3>
-<p>Refer to <a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#release-contents">Release Notes</a> for release readiness information and known issues.</p>
+<p>Refer to <a href="https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium//#release-contents">Release Notes</a> for release readiness information and known issues.</p>
 <h2 id="hps-enablement-board">HPS Enablement Board<a class="headerlink" href="#hps-enablement-board" title="Permanent link">&para;</a></h2>
 <p>This section demonstrates how to build a Linux system from separate components, targetting the HPS Enablement Board. Both booting from SD card and booting from QSPI are covered.</p>
 <h3 id="boot-from-sd-card">Boot from SD Card<a class="headerlink" href="#boot-from-sd-card" title="Permanent link">&para;</a></h3>
@@ -3279,14 +3279,14 @@
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3.1/quartus/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3/quartus/
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
 </code></pre></div>
 <h4>Build Hardware Design</h4>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga<span class="w"> </span>agilex5_soc_devkit_ghrd
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/ghrd-socfpga
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/ghrd-socfpga
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>mv<span class="w"> </span>ghrd-socfpga/agilex5_soc_devkit_ghrd<span class="w"> </span>.
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
@@ -3304,7 +3304,7 @@
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>arm-trusted-firmware
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/arm-trusted-firmware
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/arm-trusted-firmware
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nb">cd</span><span class="w"> </span>arm-trusted-firmware
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">48</span><span class="w"> </span><span class="nv">PLAT</span><span class="o">=</span>agilex5<span class="w"> </span>bl31<span class="w"> </span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">cd</span><span class="w"> </span>..
@@ -3317,7 +3317,7 @@
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>u-boot-socfpga
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/u-boot-socfpga
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/u-boot-socfpga
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">cd</span><span class="w"> </span>u-boot-socfpga<span class="w"> </span>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># enable dwarf4 debug info, for compatibility with arm ds</span>
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g&#39;</span><span class="w"> </span>arch/arm/config.mk
@@ -3410,7 +3410,7 @@
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nb">cd</span><span class="w"> </span>linux-socfpga
 <a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>make<span class="w"> </span>defconfig<span class="w"> </span>
 <a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">64</span><span class="w"> </span>Image<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>intel/socfpga_agilex5_socdk.dtb<span class="w"> </span>
@@ -3441,17 +3441,15 @@
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>yocto<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>yocto<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>yocto
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://git.yoctoproject.org/poky
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://git.yoctoproject.org/meta-intel-fpga
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://github.com/openembedded/meta-openembedded
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="c1"># work around issue</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;do_package_qa[noexec] = &quot;1&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>meta-intel-fpga<span class="w"> </span>-name<span class="w"> </span>linux-socfpga_6.6.bb<span class="k">)</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>./build
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;MACHINE = &quot;agilex5_dk_a5e065bb32aes1&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-intel-fpga &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-openembedded/meta-oe &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
-<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;CORE_IMAGE_EXTRA_INSTALL += &quot;openssh gdbserver&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
-<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>bitbake<span class="w"> </span>core-image-minimal
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>scarthgap<span class="w"> </span>https://git.yoctoproject.org/poky
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>scarthgap<span class="w"> </span>https://git.yoctoproject.org/meta-intel-fpga
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>scarthgap<span class="w"> </span>https://github.com/openembedded/meta-openembedded
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>./build
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;MACHINE = &quot;agilex5_dk_a5e065bb32aes1&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-intel-fpga &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-openembedded/meta-oe &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;CORE_IMAGE_EXTRA_INSTALL += &quot;openssh gdbserver&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>bitbake<span class="w"> </span>core-image-minimal
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
@@ -3512,7 +3510,7 @@
 <h4>Boot Linux</h4>
 
 <p>1. Power down board</p>
-<p>2. Set MSEL dipswitch SW27 to ASX4 (QSPi): OFF-ON-ON-OFF</p>
+<p>2. Set MSEL dipswitch SW27 to ASX4 (QSPi): OFf-ON-ON-OFF</p>
 <p>3. Power up the board</p>
 <p>4. Wait for Linux to boot, use <code>root</code> as user name, and no password wil be requested.</p>
 <h3 id="boot-from-qspi">Boot from QSPI<a class="headerlink" href="#boot-from-qspi" title="Permanent link">&para;</a></h3>
@@ -3530,7 +3528,7 @@ While the example is based on the GSRD, it contains the following differences:</
 <p>2. Build U-Boot:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/qspi-boot
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>u-boot-socfpga
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/u-boot-socfpga
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/u-boot-socfpga
 <a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="nb">cd</span><span class="w"> </span>u-boot-socfpga<span class="w"> </span>
 <a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="c1"># enable dwarf4 debug info, for compatibility with arm ds</span>
 <a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g&#39;</span><span class="w"> </span>arch/arm/config.mk
@@ -3803,7 +3801,7 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <h4>Boot Linux</h4>
 
 <p>1. Power down board</p>
-<p>2. Set MSEL dipswitch SW27 to ASX4 (QSPi): OFF-ON-ON-OFF</p>
+<p>2. Set MSEL dipswitch SW27 to ASX4 (QSPi): OFf-ON-ON-OFF</p>
 <p>3. Power up the board</p>
 <p>4. Wait for Linux to boot, use <code>root</code> as user name, and no password wil be requested.</p>
 <h2 id="hps-nand-board">HPS NAND Board<a class="headerlink" href="#hps-nand-board" title="Permanent link">&para;</a></h2>
@@ -3828,14 +3826,14 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3.1/quartus/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3/quartus/
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
 </code></pre></div>
 <h4>Build Hardware Design</h4>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga<span class="w"> </span>agilex5_soc_devkit_ghrd
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/ghrd-socfpga
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/ghrd-socfpga
 <a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>mv<span class="w"> </span>ghrd-socfpga/agilex5_soc_devkit_ghrd<span class="w"> </span>.
 <a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga
 <a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
@@ -3853,7 +3851,7 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>arm-trusted-firmware
-<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/arm-trusted-firmware
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/arm-trusted-firmware
 <a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="nb">cd</span><span class="w"> </span>arm-trusted-firmware
 <a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">48</span><span class="w"> </span><span class="nv">PLAT</span><span class="o">=</span>agilex5<span class="w"> </span>bl31<span class="w"> </span>
 <a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="nb">cd</span><span class="w"> </span>..
@@ -3866,7 +3864,7 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>u-boot-socfpga
-<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/u-boot-socfpga
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/u-boot-socfpga
 <a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="nb">cd</span><span class="w"> </span>u-boot-socfpga<span class="w"> </span>
 <a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="c1"># enable dwarf4 debug info, for compatibility with arm ds</span>
 <a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g&#39;</span><span class="w"> </span>arch/arm/config.mk
@@ -3962,7 +3960,7 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga
-<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga
 <a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="nb">cd</span><span class="w"> </span>linux-socfpga
 <a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>make<span class="w"> </span>defconfig<span class="w"> </span>
 <a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">64</span><span class="w"> </span>Image<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>intel/socfpga_agilex5_socdk_emmc.dtb<span class="w"> </span>
@@ -3976,17 +3974,15 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>yocto<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>yocto<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>yocto
-<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://git.yoctoproject.org/poky
-<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://git.yoctoproject.org/meta-intel-fpga
-<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://github.com/openembedded/meta-openembedded
-<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="c1"># work around issue</span>
-<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;do_package_qa[noexec] = &quot;1&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>meta-intel-fpga<span class="w"> </span>-name<span class="w"> </span>linux-socfpga_6.6.bb<span class="k">)</span>
-<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>./build
-<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;MACHINE = &quot;agilex5_dk_a5e065bb32aes1&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
-<a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-intel-fpga &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
-<a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-openembedded/meta-oe &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
-<a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;CORE_IMAGE_EXTRA_INSTALL += &quot;openssh gdbserver&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
-<a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a>bitbake<span class="w"> </span>core-image-minimal
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>scarthgap<span class="w"> </span>https://git.yoctoproject.org/poky
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>scarthgap<span class="w"> </span>https://git.yoctoproject.org/meta-intel-fpga
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>scarthgap<span class="w"> </span>https://github.com/openembedded/meta-openembedded
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>./build
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;MACHINE = &quot;agilex5_dk_a5e065bb32aes1&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-intel-fpga &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
+<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-openembedded/meta-oe &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
+<a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;CORE_IMAGE_EXTRA_INSTALL += &quot;openssh gdbserver&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
+<a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a>bitbake<span class="w"> </span>core-image-minimal
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
@@ -4028,7 +4024,7 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <p>2. Build a modified U-Boot, which boots from QSPI and stops at command line prompt:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/helper-jic
 <a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>u-boot-socfpga
-<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/u-boot-socfpga
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/u-boot-socfpga
 <a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="nb">cd</span><span class="w"> </span>u-boot-socfpga<span class="w"> </span>
 <a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="c1"># enable dwarf4 debug info, for compatibility with arm ds</span>
 <a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g&#39;</span><span class="w"> </span>arch/arm/config.mk
@@ -4164,7 +4160,7 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <p>2. Boot to U-Boot prompt with the helper JIC:</p>
 <ul>
 <li>Power down board</li>
-<li>Set MSEL dipswitch SW27 to ASX4 (QSPi): OFF-ON-ON-OFF</li>
+<li>Set MSEL dipswitch SW27 to ASX4 (QSPi): OFf-ON-ON-OFF</li>
 <li>Power up the board</li>
 <li>Wait for U-Boot to boot, press any key to get to U-Boot console</li></ul>
 
@@ -4190,7 +4186,7 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <h4>Boot Linux</h4>
 
 <p>1. Power down board</p>
-<p>2. Set MSEL dipswitch SW27 to ASX4 (QSPi): OFF-ON-ON-OFF</p>
+<p>2. Set MSEL dipswitch SW27 to ASX4 (QSPi): OFf-ON-ON-OFF</p>
 <p>3. Power up the board</p>
 <p>4. Wait for Linux to boot, use <code>root</code> as user name, and no password wil be requested.</p>
 <h2 id="hps-test-board">HPS Test Board<a class="headerlink" href="#hps-test-board" title="Permanent link">&para;</a></h2>
@@ -4215,14 +4211,14 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3.1/quartus/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3/quartus/
 <a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
 </code></pre></div>
 <h4>Build Hardware Design</h4>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga<span class="w"> </span>agilex5_soc_devkit_ghrd
-<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/ghrd-socfpga
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/ghrd-socfpga
 <a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>mv<span class="w"> </span>ghrd-socfpga/agilex5_soc_devkit_ghrd<span class="w"> </span>.
 <a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga
 <a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
@@ -4240,7 +4236,7 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>arm-trusted-firmware
-<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/arm-trusted-firmware
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/arm-trusted-firmware
 <a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="nb">cd</span><span class="w"> </span>arm-trusted-firmware
 <a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">48</span><span class="w"> </span><span class="nv">PLAT</span><span class="o">=</span>agilex5<span class="w"> </span>bl31<span class="w"> </span>
 <a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a><span class="nb">cd</span><span class="w"> </span>..
@@ -4253,7 +4249,7 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>u-boot-socfpga
-<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/u-boot-socfpga
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/u-boot-socfpga
 <a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="nb">cd</span><span class="w"> </span>u-boot-socfpga<span class="w"> </span>
 <a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a><span class="c1"># enable dwarf4 debug info, for compatibility with arm ds</span>
 <a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g&#39;</span><span class="w"> </span>arch/arm/config.mk
@@ -4349,7 +4345,7 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga
-<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga
 <a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a><span class="nb">cd</span><span class="w"> </span>linux-socfpga
 <a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a>make<span class="w"> </span>defconfig<span class="w"> </span>
 <a id="__codelineno-48-6" name="__codelineno-48-6" href="#__codelineno-48-6"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">64</span><span class="w"> </span>Image<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>intel/socfpga_agilex5_socdk_debug.dtb<span class="w"> </span>
@@ -4363,17 +4359,15 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>yocto<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>yocto<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>yocto
-<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://git.yoctoproject.org/poky
-<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://git.yoctoproject.org/meta-intel-fpga
-<a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://github.com/openembedded/meta-openembedded
-<a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a><span class="c1"># work around issue</span>
-<a id="__codelineno-49-7" name="__codelineno-49-7" href="#__codelineno-49-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;do_package_qa[noexec] = &quot;1&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>meta-intel-fpga<span class="w"> </span>-name<span class="w"> </span>linux-socfpga_6.6.bb<span class="k">)</span>
-<a id="__codelineno-49-8" name="__codelineno-49-8" href="#__codelineno-49-8"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>./build
-<a id="__codelineno-49-9" name="__codelineno-49-9" href="#__codelineno-49-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;MACHINE = &quot;agilex5_dk_a5e065bb32aes1&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
-<a id="__codelineno-49-10" name="__codelineno-49-10" href="#__codelineno-49-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-intel-fpga &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
-<a id="__codelineno-49-11" name="__codelineno-49-11" href="#__codelineno-49-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-openembedded/meta-oe &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
-<a id="__codelineno-49-12" name="__codelineno-49-12" href="#__codelineno-49-12"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;CORE_IMAGE_EXTRA_INSTALL += &quot;openssh gdbserver&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
-<a id="__codelineno-49-13" name="__codelineno-49-13" href="#__codelineno-49-13"></a>bitbake<span class="w"> </span>core-image-minimal
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>scarthgap<span class="w"> </span>https://git.yoctoproject.org/poky
+<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>scarthgap<span class="w"> </span>https://git.yoctoproject.org/meta-intel-fpga
+<a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>scarthgap<span class="w"> </span>https://github.com/openembedded/meta-openembedded
+<a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>./build
+<a id="__codelineno-49-7" name="__codelineno-49-7" href="#__codelineno-49-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;MACHINE = &quot;agilex5_dk_a5e065bb32aes1&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
+<a id="__codelineno-49-8" name="__codelineno-49-8" href="#__codelineno-49-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-intel-fpga &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
+<a id="__codelineno-49-9" name="__codelineno-49-9" href="#__codelineno-49-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-openembedded/meta-oe &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
+<a id="__codelineno-49-10" name="__codelineno-49-10" href="#__codelineno-49-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;CORE_IMAGE_EXTRA_INSTALL += &quot;openssh gdbserver&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
+<a id="__codelineno-49-11" name="__codelineno-49-11" href="#__codelineno-49-11"></a>bitbake<span class="w"> </span>core-image-minimal
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
@@ -4434,7 +4428,7 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <h4>Boot Linux</h4>
 
 <p>1. Power down board</p>
-<p>2. Set MSEL dipswitch SW27 to ASX4 (QSPi): OFF-ON-ON-OFF</p>
+<p>2. Set MSEL dipswitch SW27 to ASX4 (QSPi): OFf-ON-ON-OFF</p>
 <p>3. Power up the board</p>
 <p>4. Wait for Linux to boot, use <code>root</code> as user name, and no password wil be requested.</p>
 <h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>

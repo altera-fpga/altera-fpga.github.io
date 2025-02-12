@@ -16,26 +16,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-24.3/demos/agilex-5/e-series/premium/armds-debug-linux/ug-armds-debug-linux-agx5e-premium/</loc>
-         <lastmod>2025-02-12</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://altera-fpga.github.io/rel-24.3/demos/agilex-5/e-series/premium/armds-debug-uboot/ug-armds-debug-uboot-agx5e-premium/</loc>
-         <lastmod>2025-02-12</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://altera-fpga.github.io/rel-24.3/demos/agilex-5/e-series/premium/riscfree-debug-linux/ug-riscfree-debug-linux-agx5e-premium/</loc>
-         <lastmod>2025-02-12</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://altera-fpga.github.io/rel-24.3/demos/agilex-5/e-series/premium/riscfree-debug-u-boot/ug-riscfree-debug-uboot-agx5e-premium/</loc>
-         <lastmod>2025-02-12</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://altera-fpga.github.io/rel-24.3/driver-list/driver-list-all/</loc>
          <lastmod>2025-02-12</lastmod>
          <changefreq>daily</changefreq>
@@ -106,11 +86,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/modular/xen/ug-xen-agx5e-modular/</loc>
-         <lastmod>2025-02-12</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/</loc>
          <lastmod>2025-02-12</lastmod>
          <changefreq>daily</changefreq>
@@ -141,22 +116,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/tsn/sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5/</loc>
-         <lastmod>2025-02-12</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/xen/ug-xen-agx5e-premium/</loc>
-         <lastmod>2025-02-12</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/fpga/gsrd/ug-gsrd-agx7f-fpga/</loc>
-         <lastmod>2025-02-12</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/soc/boot-examples/ug-linux-boot-agx7-soc/</loc>
+         <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/tsn/sgmii-xcvr/ug-tsn-sgmii-xcvr-agilex5/</loc>
          <lastmod>2025-02-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -191,11 +151,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/soc/xen/ug-xen-agx7f-soc/</loc>
-         <lastmod>2025-02-12</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/</loc>
          <lastmod>2025-02-12</lastmod>
          <changefreq>daily</changefreq>
@@ -207,11 +162,6 @@
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/m-series/pcie_rp/ug-pcie_rp-agx7m-hbm2e/</loc>
-         <lastmod>2025-02-12</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/boot-examples/ug-linux-boot-s10-soc/</loc>
          <lastmod>2025-02-12</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -562,26 +512,6 @@
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-24.3/sw-tools-list/host-attach-tools/</loc>
-         <lastmod>2025-02-12</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://altera-fpga.github.io/rel-24.3/virtualization/hypervisors/xen/ug-xen-agx5e-modular/</loc>
-         <lastmod>2025-02-12</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://altera-fpga.github.io/rel-24.3/virtualization/hypervisors/xen/ug-xen-agx5e-premium/</loc>
-         <lastmod>2025-02-12</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://altera-fpga.github.io/rel-24.3/virtualization/hypervisors/xen/ug-xen-agx7f-soc/</loc>
-         <lastmod>2025-02-12</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://altera-fpga.github.io/rel-24.3/virtualization/hypervisors/xen/xen-overview/</loc>
          <lastmod>2025-02-12</lastmod>
          <changefreq>daily</changefreq>
     </url>

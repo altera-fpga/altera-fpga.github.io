@@ -2033,7 +2033,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../agilex-5/e-series/premium/tsn/sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5/" class="md-nav__link">
+      <a href="../../../../../agilex-5/e-series/premium/tsn/sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5.md" class="md-nav__link">
         TSN - SGMII XCVR System
       </a>
     </li>
@@ -3136,7 +3136,7 @@
 <li>64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.</li>
 <li>Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too</li>
 <li>Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
-<li>Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1</li>
+<li>Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3</li>
 </ul>
 </li>
 <li>Local Ethernet network, with DHCP server</li>
@@ -3161,14 +3161,14 @@
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3.1/quartus/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3/quartus/
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
 </code></pre></div>
 <h3 id="build-hardware-design">Build Hardware Design<a class="headerlink" href="#build-hardware-design" title="Permanent link">&para;</a></h3>
 <p>The hardware design is based on the GSRD, just that the JOP component is added, and connected to clock, reset and the LWH2F bridge. The following instructions are used:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga<span class="w"> </span>agilex_soc_devkit_ghrd
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/ghrd-socfpga
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/ghrd-socfpga
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>mv<span class="w"> </span>ghrd-socfpga/agilex_soc_devkit_ghrd<span class="w"> </span>.
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">cd</span><span class="w"> </span>agilex_soc_devkit_ghrd
@@ -3229,9 +3229,9 @@
 <p><strong>Note</strong>: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.</p>
 <p>2. Clone the Yocto script and prepare the build:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/gsrd-socfpga
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd_socfpga
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/gsrd_socfpga
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd_socfpga
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>.<span class="w"> </span>agilex7_dk_si_agf014eb-gsrd-build.sh
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>build_setup
 </code></pre></div>
@@ -3255,7 +3255,7 @@
 <p>Note that the range of memory where the JOP is located is <code>0xf9008000</code> .. <code>0xf900dfff</code>.</p>
 <p>This can be done with the provided patch file:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>rm<span class="w"> </span>-f<span class="w"> </span>agilex7-dts-add-jop.patch
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>wget<span class="w"> </span>https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/remote-debug/collateral/agilex7-dts-add-jop.patch
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>wget<span class="w"> </span>https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/soc/remote-debug/collateral/agilex7-dts-add-jop.patch
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nb">pushd</span><span class="w"> </span>meta-intel-fpga-refdes
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>patch<span class="w"> </span>-p1<span class="w"> </span>&lt;<span class="w"> </span>../agilex7-dts-add-jop.patch
 <a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nb">popd</span>
@@ -3286,7 +3286,7 @@
 <a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>*jic*<span class="w"> </span>*rbf*
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span>ghrd_agfb014r24b2e2v.jic<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd_socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU02G<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>AGFB014R24B2E2V<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
