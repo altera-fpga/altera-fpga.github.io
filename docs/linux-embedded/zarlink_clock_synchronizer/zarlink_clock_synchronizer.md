@@ -1,6 +1,6 @@
 # **Zarlink Clock Synchronizer Driver for Hard Processor System**
 
-Last updated: **February 12, 2025** 
+Last updated: **February 13, 2025** 
 
 **Upstream Status**: Not Upstreamed
 
