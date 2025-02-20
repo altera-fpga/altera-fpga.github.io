@@ -23,7 +23,7 @@ Refer to the [GitHub repository](https://github.com/altera-fpga/agilex7-ed-pcie-
   * PCIe Gen 5 NVMe M2 SSD connected with MCIO cable x8 to x8.
 - [Pre-compiled Software/Firmware](https://github.com/altera-fpga/agilex7-ed-pcie-rp/releases/tag/24.3-1).
 - Tools and software.
-  * System with supported Linux distribution with Ubuntu 20.04 (LTS)
+  * System with supported Linux distribution with Ubuntu 22.04 (LTS)
   * Intel ® Quartus ®Prime Design Suite software 24.3 version 
   * Serial terminal application such as Putty
 
@@ -47,6 +47,15 @@ Refer to the [GitHub repository](https://github.com/altera-fpga/agilex7-ed-pcie-
 * [R-Tile Avalon ® Intel ® FPGA IP for PCI Express](https://www.intel.com/content/www/us/en/docs/programmable/683501/24-3/about-the-r-tile-streaming-fpga-ip-for.html)
 
  
+
+## Build Agilex PCIe Root Port 
+
+Here are the steps to build either SW and HW files:
+
+- [SW_Readme](https://github.com/altera-fpga/agilex7-ed-pcie-rp/blob/main/src/sw/README.md)
+- [HW_Readme](https://github.com/altera-fpga/agilex7-ed-pcie-rp/tree/main/src/hw)
+
+Both links show how to build the files needed for the project, acording with the [Intel® SoC FPGA Golden Software Reference Design (GSRD)](https://github.com/altera-opensource/gsrd-socfpga)
 
 ## Hardware Description
 
@@ -1115,18 +1124,33 @@ fio --filename=/dev/nvme0n1 --rw=read --gtod_reduce=1 --blocksize=64k --size=2G 
 ```
 
 !!! note 
-    You could change the parameter ==--numjobs=== with values 4, 8, 16 or 20, i.e.:
+    You could change the parameters ==--size=**xG**== with 2G and 8G, ==--rw=**x**== write and read, ==--numjobs=**x**== with values 4, 8, 16 or 20, i.e.:
     
-    * fio --filename=/dev/nvme0n1 --rw=write --gtod_reduce=1 --blocksize=64k --size=2G --iodepth=2 --group_reporting --name=myjob --ioengine=libaio ==--numjobs=4==
+    * fio --filename=/dev/nvme0n1 --rw= ==**write**== --gtod_reduce=1 --blocksize=64k --size= ==**2G**== --iodepth=2 --group_reporting --name=myjob --ioengine=libaio --numjobs= ==**4**==
     
-    * fio --filename=/dev/nvme0n1 --rw=read --gtod_reduce=1 --blocksize=64k --size=2G --iodepth=2 --group_reporting --name=myjob --ioengine=libaio ==--numjobs=8==
+    * fio --filename=/dev/nvme0n1 --rw= ==**read**== --gtod_reduce=1 --blocksize=64k --size= ==**2G**== --iodepth=2 --group_reporting --name=myjob --ioengine=libaio --numjobs= ==**8**==
     
-    * fio --filename=/dev/nvme0n1 --rw=write --gtod_reduce=1 --blocksize=64k --size=2G --iodepth=2 --group_reporting --name=myjob --ioengine=libaio ==--numjobs=16==
+    * fio --filename=/dev/nvme0n1 --rw= ==**write**== --gtod_reduce=1 --blocksize=64k --size= ==**8G**== --iodepth=2 --group_reporting --name=myjob --ioengine=libaio --numjobs= ==**16**==
     
-    * fio --filename=/dev/nvme0n1 --rw=read --gtod_reduce=1 --blocksize=64k --size=2G --iodepth=2 --group_reporting --name=myjob --ioengine=libaio ==--numjobs=20==
+    * fio --filename=/dev/nvme0n1 --rw= ==**read**== --gtod_reduce=1 --blocksize=64k --size= ==**8G**== --iodepth=2 --group_reporting --name=myjob --ioengine=libaio --numjobs= ==**20**==
+
+
+
+Example of the values that we got for the Wr & Rd fio transactions using the recommended commands:
+
+
+
+| numjobs     |   Wr      |   Rd      |
+| ----------- | --------- | --------- |
+| 4           | 1109 MB/S | 1360 MB/S |
+| 8           | 1407 MB/S | 1967 MB/S |
+| 16          | 1544 MB/S | 2225 MB/S |
+| 20          | 1697 MB/S | 2284 MB/S |
+
 
 
 ## Notices & Disclaimers
+
 Altera® Corporation technologies may require enabled hardware, software or service activation. No product or component can be absolutely secure. Performance varies by use, configuration and other factors. Your costs and results may vary. You may not use or facilitate the use of this document in connection with any infringement or other legal analysis concerning Altera or Intel products described herein. You agree to grant Altera Corporation a non-exclusive, royalty-free license to any patent claim thereafter drafted which includes subject matter disclosed herein. No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document, with the sole exception that you may publish an unmodified copy. You may create software implementations based on this document and in compliance with the foregoing that are intended to execute on the Altera or Intel product(s) referenced in this document. No rights are granted to create modifications or derivatives of this document. The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications. Current characterized errata are available on request. Altera disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade. You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. © Altera Corporation. Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation. Other names and brands may be claimed as the property of others.
 
  
