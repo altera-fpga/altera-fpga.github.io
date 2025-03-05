@@ -2246,6 +2246,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_2_1_4" id="__nav_7_2_1_4_label" tabindex="0">
@@ -2268,6 +2270,20 @@
     <li class="md-nav__item">
       <a href="../../../../../agilex-5/e-series/premium/tsn/rgmii-hps/ug-tsncfg1-agx5e-premium/" class="md-nav__link">
         TSN - HPS RGMII System
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/e-series/premium/tsn/rgmii-hvio/ug-tsncfg2-agx5e-premium/" class="md-nav__link">
+        TSN - RGMII HVIO System
       </a>
     </li>
   
@@ -3047,13 +3063,6 @@
         <li class="md-nav__item">
   <a href="#boot-scratch-register-usage" class="md-nav__link">
     Boot Scratch Register Usage
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#qspi-reference-clock" class="md-nav__link">
-    QSPI Reference Clock
   </a>
   
 </li>
@@ -4052,13 +4061,6 @@
         <li class="md-nav__item">
   <a href="#boot-scratch-register-usage" class="md-nav__link">
     Boot Scratch Register Usage
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#qspi-reference-clock" class="md-nav__link">
-    QSPI Reference Clock
   </a>
   
 </li>
@@ -5342,10 +5344,6 @@ Note:</p>
 <li><a href="https://www.intel.com/content/www/us/en/programmable/hps/agilex/hps.html">Agilex™ 7 HPS Registers</a></li>
 <li>Review device-specific Boot User Guide for more information about these registers.</li>
 </ul>
-<h2 id="qspi-reference-clock">QSPI Reference Clock<a class="headerlink" href="#qspi-reference-clock" title="Permanent link">&para;</a></h2>
-<p>The QSPI peripheral clocks are provided by the SDM, based on the SDM input clocks and configuration clock settings defined in the Quartus® Pro project. However, the HPS needs to know the QSPI reference clock, so that it can properly set the dividers in the QSPI controller to create the desired external QSPI clock frequency.</p>
-<p>The HPS obtains the QSPI controller reference clock frequency when it obtains exclusive access to the QSPI from the SDM. The frequency reported by the SDM is stored in the U-Boot environment variable called <strong>${qspi_clock}</strong>.</p>
-<p>Before booting Linux, U-Boot loads the Linux device tree in memory, then runs the command <strong>linux_qspi_enable</strong> which sets the QSPI controller reference clock appropriately using the value from the <strong>${qspi_clock}</strong> environment variable.</p>
 <h2 id="reconfiguring-core-fabric-from-u-boot">Reconfiguring Core Fabric from U-Boot<a class="headerlink" href="#reconfiguring-core-fabric-from-u-boot" title="Permanent link">&para;</a></h2>
 <p>The GSRD configures the FPGA core fabric only once, from U-Boot, by using the <strong>bootm</strong> command. The example in this page configures the fabric only once, from U-Boot, using <strong>fpga load</strong> command.</p>
 <p><strong>Important</strong>: If the FPGA fabric is already configured and bridges are enabled, you must call the <strong>bridge disable</strong> command from U-Boot before issuing the <strong>bootm</strong> or <strong>fppga load</strong> commands to reconfigure the fabric. Only do this if you are using an <strong>arm-trusted-firmware</strong> version more recent than the following:</p>
@@ -5427,7 +5425,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 7, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 5, 2025</span>
       
         <br>
         Created:
