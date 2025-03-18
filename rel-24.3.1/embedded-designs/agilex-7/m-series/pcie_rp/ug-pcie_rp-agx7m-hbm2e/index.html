@@ -3000,6 +3000,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#fio-performance-transactions" class="md-nav__link">
+    fio Performance transactions
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3550,6 +3557,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#fio-performance-transactions" class="md-nav__link">
+    fio Performance transactions
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3592,11 +3606,17 @@
 <li>Agilex™ 7 FPGA M-Series Development Kit – HBM2e.</li>
 </ul>
 </li>
-<li>Example End Points.<ul>
-<li>PCIe Gen 5 NVMe M2 SSD connected with MCIO cable x8 to x8.</li>
+</ul>
+<ul>
+<li>Hardware needed for End Point.<ul>
+<li>PCI Express NVMe Gen 5.0 x4 M.2 SSD<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></li>
+<li>PCIe Gen5 capable x4 U.2 to M.2 Adapter</li>
+<li>PCIe Gen5 MCIO x4 for U.2 2x2 Dual Port<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></li>
 </ul>
 </li>
-<li><a href="https://github.com/altera-fpga/agilex7-ed-pcie-rp/releases/tag/24.3-1">Pre-compiled Software/Firmware</a>.</li>
+<li><a href="https://github.com/altera-fpga/agilex7-ed-pcie-rp/releases/tag/24.3-rc1">Pre-compiled Software/Firmware</a>.</li>
+</ul>
+<ul>
 <li>Tools and software.<ul>
 <li>System with supported Linux distribution with Ubuntu 22.04 (LTS)</li>
 <li>Intel ® Quartus ®Prime Design Suite software 24.3 version </li>
@@ -3604,10 +3624,10 @@
 </ul>
 </li>
 </ul>
-<p><a class="glightbox" href="../images/Agilex7_MSeries_DevKit_RTile.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img" src="../images/Agilex7_MSeries_DevKit_RTile.png" width="400" /></a></p>
-<p>*Full setup (yellow boxes) with the Agilex™ 7 FPGA M-Series Development Kit – HBM2e, MCIO cables and daughter card.</p>
-<p><a class="glightbox" href="../images/Daughter_Card.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img" src="../images/Daughter_Card.png" width="400" /></a></p>
-<p>*Daughter card to connect the NVMe.</p>
+<p><a class="glightbox" href="../images/newSetUp.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img" src="../images/newSetUp.png" width="700" /></a></p>
+<p>*Full setup with the Agilex™ 7 FPGA M-Series Development Kit – HBM2e, MCIO cables, adapter &amp; NVMe.</p>
+<p><a class="glightbox" href="../images/newAdapter.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img" src="../images/newAdapter.png" width="500" /></a></p>
+<p>*NVMe connected to the U.2 to M.2 adapter.</p>
 <h2 id="helpful-reference-documentation">Helpful Reference Documentation<a class="headerlink" href="#helpful-reference-documentation" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/agm039.html">Intel Agilex ® 7 FPGA M-Series Development Kit – HBM2e</a></li>
@@ -4758,7 +4778,7 @@
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You could change the parameters <mark>--size=<strong>xG</strong></mark> with 2G and 8G, <mark>--rw=<strong>x</strong></mark> write and read, <mark>--numjobs=<strong>x</strong></mark> with values 4, 8, 16 or 20, i.e.:</p>
+<p>You could change the parameters <mark>--size=<strong>xG</strong></mark> with 2G or 8G, <mark>--rw=<strong>x</strong></mark> with write or read, <mark>--numjobs=<strong>x</strong></mark> with values 4, 8, 16 or 20, i.e.:</p>
 <ul>
 <li>fio --filename=/dev/nvme0n1 --rw= <mark><strong>write</strong></mark> --gtod_reduce=1 --blocksize=64k --size= <mark><strong>2G</strong></mark> --iodepth=2 --group_reporting --name=myjob --ioengine=libaio --numjobs= <mark><strong>4</strong></mark></li>
 </ul>
@@ -4777,8 +4797,8 @@
 <thead>
 <tr>
 <th>numjobs</th>
-<th>Wr</th>
-<th>Rd</th>
+<th>Writes</th>
+<th>Reads</th>
 </tr>
 </thead>
 <tbody>
@@ -4804,15 +4824,65 @@
 </tr>
 </tbody>
 </table>
+<h3 id="fio-performance-transactions">fio Performance transactions<a class="headerlink" href="#fio-performance-transactions" title="Permanent link">&para;</a></h3>
+<p>Performance command to manage write transactions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>fio<span class="w"> </span>--filename<span class="o">=</span>/dev/nvme0n1<span class="w"> </span>--rw<span class="o">=</span>write<span class="w"> </span>--gtod_reduce<span class="o">=</span><span class="m">1</span><span class="w"> </span>--blocksize<span class="o">=</span>64k<span class="w"> </span>--size<span class="o">=</span>2G<span class="w"> </span>--iodepth<span class="o">=</span><span class="m">2</span><span class="w"> </span>--group_reporting<span class="w"> </span>--name<span class="o">=</span>myjob<span class="w"> </span>--ioengine<span class="o">=</span>libaio<span class="w"> </span>--numjobs<span class="o">=</span><span class="m">4</span>
+</code></pre></div>
+<p>Performance command to manage read transactions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>fio<span class="w"> </span>--filename<span class="o">=</span>/dev/nvme0n1<span class="w"> </span>--rw<span class="o">=</span><span class="nb">read</span><span class="w"> </span>--gtod_reduce<span class="o">=</span><span class="m">1</span><span class="w"> </span>--blocksize<span class="o">=</span>64k<span class="w"> </span>--size<span class="o">=</span>2G<span class="w"> </span>--iodepth<span class="o">=</span><span class="m">2</span><span class="w"> </span>--group_reporting<span class="w"> </span>--name<span class="o">=</span>myjob<span class="w"> </span>--ioengine<span class="o">=</span>libaio<span class="w"> </span>--numjobs<span class="o">=</span><span class="m">4</span>
+</code></pre></div>
+<p><strong>Performance Results Gen5</strong></p>
+<table>
+<thead>
+<tr>
+<th>numjobs</th>
+<th>Writes</th>
+<th>Reads</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>1118 MB/S</td>
+<td>1358 MB/S</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1429 MB/S</td>
+<td>1966 MB/S</td>
+</tr>
+<tr>
+<td>16</td>
+<td>1561 MB/S</td>
+<td>2222 MB/S</td>
+</tr>
+<tr>
+<td>20</td>
+<td>1673 MB/S</td>
+<td>2281 MB/S</td>
+</tr>
+</tbody>
+</table>
 <h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
 <p>Altera® Corporation technologies may require enabled hardware, software or service activation. No product or component can be absolutely secure. Performance varies by use, configuration and other factors. Your costs and results may vary. You may not use or facilitate the use of this document in connection with any infringement or other legal analysis concerning Altera or Intel products described herein. You agree to grant Altera Corporation a non-exclusive, royalty-free license to any patent claim thereafter drafted which includes subject matter disclosed herein. No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document, with the sole exception that you may publish an unmodified copy. You may create software implementations based on this document and in compliance with the foregoing that are intended to execute on the Altera or Intel product(s) referenced in this document. No rights are granted to create modifications or derivatives of this document. The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications. Current characterized errata are available on request. Altera disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade. You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. © Altera Corporation. Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation. Other names and brands may be claimed as the property of others.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Crutial T700 1TB Solid State Drive - M.2 2280 Internal - PCI Express NVMe (PCI Express NVMe 5.0 x4) - 600TB TBW - 11700MB/s Maximum Read Transfer&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>PCIe Gen5 MCIO x4 (SFF-TA-1016) 38P to Gen5 Multilink Drive Receptacle (SFF-8639) 68P, for U.2 2x2 Dual port, for use with Serial Cables Gen5 Switch cards 0.5M&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 20, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 18, 2025</span>
       
         <br>
         Created:
@@ -4927,6 +4997,14 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
     </a>
   
+    
+    
+    
+    
+    <a href="https://community.intel.com/t5/FPGA/ct-p/fpga" target="_blank" rel="noopener" title="Need Help" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 18h2v-2h-2v2m1-16A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-14a4 4 0 0 0-4 4h2a2 2 0 0 1 2-2 2 2 0 0 1 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5a4 4 0 0 0-4-4Z"/></svg>
+    </a>
+  
 </div>
       
     </div>
@@ -4952,6 +5030,15 @@
         <script src="../../../../../assets/extra.js"></script>
       
     
+  <!-- Floating Need Help Button -->
+  <a href="https://community.intel.com/t5/FPGA/ct-p/fpga" class="floating-help-button" target="_blank" aria-label="Ask a question in the FPGA Forum">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"></circle>
+      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+    </svg>
+    <span>Ask in the Forum</span>
+  </a>
 
   <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
 </html>
