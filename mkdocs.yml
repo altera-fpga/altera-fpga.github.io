@@ -70,6 +70,10 @@ extra:
       link: https://github.com/altera-fpga  
     - icon: fontawesome/brands/linkedin 
       link: https://www.linkedin.com/company/altera-fpga/
+    - icon: material/help-circle-outline
+      name: Need Help
+      link: https://community.intel.com/t5/FPGA/ct-p/fpga
+      class: need-help
 
 
 plugins:

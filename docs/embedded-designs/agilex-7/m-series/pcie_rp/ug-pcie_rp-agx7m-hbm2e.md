@@ -19,23 +19,27 @@ Refer to the [GitHub repository](https://github.com/altera-fpga/agilex7-ed-pcie-
 
 - Root Port Host Board.
   * Agilex™ 7 FPGA M-Series Development Kit – HBM2e.
-- Example End Points.
-  * PCIe Gen 5 NVMe M2 SSD connected with MCIO cable x8 to x8.
-- [Pre-compiled Software/Firmware](https://github.com/altera-fpga/agilex7-ed-pcie-rp/releases/tag/24.3-1).
+
+- Hardware needed for End Point.
+  * PCI Express NVMe Gen 5.0 x4 M.2 SSD[^1]
+  * PCIe Gen5 capable x4 U.2 to M.2 Adapter
+  * PCIe Gen5 MCIO x4 for U.2 2x2 Dual Port[^2]
+- [Pre-compiled Software/Firmware](https://github.com/altera-fpga/agilex7-ed-pcie-rp/releases/tag/24.3-rc1).
+
 - Tools and software.
   * System with supported Linux distribution with Ubuntu 22.04 (LTS)
   * Intel ® Quartus ®Prime Design Suite software 24.3 version 
   * Serial terminal application such as Putty
 
 
-![img](images/Agilex7_MSeries_DevKit_RTile.png){ width="400"}
+![img](images/newSetUp.png){ width="700"}
 
-*Full setup (yellow boxes) with the Agilex™ 7 FPGA M-Series Development Kit – HBM2e, MCIO cables and daughter card.
+*Full setup with the Agilex™ 7 FPGA M-Series Development Kit – HBM2e, MCIO cables, adapter & NVMe.
 
 
-![img](images/Daughter_Card.png){ width="400"}
+![img](images/newAdapter.png){ width="500"}
 
-*Daughter card to connect the NVMe.
+*NVMe connected to the U.2 to M.2 adapter.
 
 
 ## Helpful Reference Documentation 
@@ -1124,8 +1128,9 @@ fio --filename=/dev/nvme0n1 --rw=read --gtod_reduce=1 --blocksize=64k --size=2G 
 ```
 
 !!! note 
-    You could change the parameters ==--size=**xG**== with 2G and 8G, ==--rw=**x**== write and read, ==--numjobs=**x**== with values 4, 8, 16 or 20, i.e.:
+    You could change the parameters ==--size=**xG**== with 2G or 8G, ==--rw=**x**== with write or read, ==--numjobs=**x**== with values 4, 8, 16 or 20, i.e.:
     
+
     * fio --filename=/dev/nvme0n1 --rw= ==**write**== --gtod_reduce=1 --blocksize=64k --size= ==**2G**== --iodepth=2 --group_reporting --name=myjob --ioengine=libaio --numjobs= ==**4**==
     
     * fio --filename=/dev/nvme0n1 --rw= ==**read**== --gtod_reduce=1 --blocksize=64k --size= ==**2G**== --iodepth=2 --group_reporting --name=myjob --ioengine=libaio --numjobs= ==**8**==
@@ -1140,12 +1145,44 @@ Example of the values that we got for the Wr & Rd fio transactions using the rec
 
 
 
-| numjobs     |   Wr      |   Rd      |
+| numjobs     |   Writes  |   Reads   |
 | ----------- | --------- | --------- |
 | 4           | 1109 MB/S | 1360 MB/S |
 | 8           | 1407 MB/S | 1967 MB/S |
 | 16          | 1544 MB/S | 2225 MB/S |
 | 20          | 1697 MB/S | 2284 MB/S |
+
+
+
+### fio Performance transactions
+
+Performance command to manage write transactions:
+
+```bash
+fio --filename=/dev/nvme0n1 --rw=write --gtod_reduce=1 --blocksize=64k --size=2G --iodepth=2 --group_reporting --name=myjob --ioengine=libaio --numjobs=4
+```
+
+Performance command to manage read transactions:
+
+```bash
+fio --filename=/dev/nvme0n1 --rw=read --gtod_reduce=1 --blocksize=64k --size=2G --iodepth=2 --group_reporting --name=myjob --ioengine=libaio --numjobs=4
+```
+
+**Performance Results Gen5**
+
+| numjobs     |   Writes  |   Reads   |
+| ----------- | --------- | --------- |
+| 4           | 1118 MB/S | 1358 MB/S |
+| 8           | 1429 MB/S | 1966 MB/S |
+| 16          | 1561 MB/S | 2222 MB/S |
+| 20          | 1673 MB/S | 2281 MB/S |
+
+
+[^1]: 
+Crutial T700 1TB Solid State Drive - M.2 2280 Internal - PCI Express NVMe (PCI Express NVMe 5.0 x4) - 600TB TBW - 11700MB/s Maximum Read Transfer
+
+[^2]: 
+PCIe Gen5 MCIO x4 (SFF-TA-1016) 38P to Gen5 Multilink Drive Receptacle (SFF-8639) 68P, for U.2 2x2 Dual port, for use with Serial Cables Gen5 Switch cards 0.5M
 
 
 
