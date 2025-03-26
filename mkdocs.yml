@@ -232,6 +232,7 @@ nav:
         - SoC Fabric Configuration from Linux Example: embedded-designs/agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc.md
         - GHRD Linux Boot Examples: embedded-designs/agilex-7/f-series/soc/boot-examples/ug-linux-boot-agx7-soc.md
         - Xen Hypervisor GSRD: embedded-designs/agilex-7/f-series/soc/xen/ug-xen-agx7f-soc.md
+        - Setting up and Using Bridges Linux Example: embedded-designs/agilex-7/f-series/soc/setup-use-bridges/ug-setup-use-bridges-agx7f-soc.md
       - F-Series FPGA Development Kit:
         - GSRD User Guide: embedded-designs/agilex-7/f-series/fpga/gsrd/ug-gsrd-agx7f-fpga.md       
       - I-Series FPGA Development Kit:

@@ -1,0 +1,567 @@
+#!/bin/bash
+
+#############################################################################
+#
+# Copyright (C) 2022-2025 Altera Corporation
+# This code and the related documents are Altera copyrighted materials, and
+# your use of them is governed by the express license under which they were
+# provided to you ("License"). Unless the License provides otherwise, you may
+# not use, modify, copy, publish, distribute, disclose or transmit this
+# code or the related documents without Altera's prior written permission.
+#
+# This code and the related documents are provided as is, with no express
+# or implied warranties, other than those that are expressly stated in the
+# License.
+##############################################################################
+
+
+help()
+{
+	echo 'Usage: '$commandname 'options
+		Options:
+			--help, -h
+			--privilaged-only, -p
+			--privilaged-secure, -s
+			--ccu-uncached, -u
+			--ccu-cached, -c'
+		
+}
+
+writebuffer_fixpattern()
+{
+count=0
+addrAd=0
+startAddr=$1
+while [ $count -le 128 ]
+do
+addrAd=$((0x4*$count))
+addr=$(($startAddr+$addrAd))
+pattern=$2
+#echo $addr $pattern
+devmem2 $addr w $pattern >& /dev/null
+((count++))
+done
+
+}
+
+writebuffer_pattern()
+{
+count=0
+addrAd=0
+startAddr=$1
+while [ $count -le 128 ]
+do
+addrAd=$((0x4*$count))
+addr=$(($startAddr+$addrAd))
+pattern=$(($2+$addrAd))
+#echo $addr $pattern
+devmem2 $addr w $pattern >& /dev/null
+((count++))
+done
+
+}
+
+commandname=$0;
+select=""
+options=$(getopt -l "help,privilaged-only,privilaged-secure,ccu-uncached,ccu-cached"  -o "hpsuc" -a "--"  "$@") 
+eval set -- "$options"
+
+case "$1" in 
+
+	-h|--help)
+	help
+	exit 0;
+	;;
+	-p|--privilaged-only)
+		select="po"
+	;;
+	-s|--privilaged-secure)
+		select="ps"
+	;;
+	-u|--ccu-uncached)
+	 	select="cu"
+	;;
+	-c| --ccu-cached)
+		 select="cc"
+	;;
+
+	*)
+	echo error
+	help
+	exit -1;
+;;
+esac;
+
+
+
+
+#Address Spaces Agilex
+#H2F_LW  0xf900 0000
+#H2F     0x20 0000 0000 - 0x20 FFFF FFFF ( base + 4GB )
+#H2F     0x00 8000 0000 - 0x00 DFFF FFFF ( base + 1.5GB )
+
+
+
+
+#MEMORY LOCATIONS 
+read_buffer0_manual_reserved=40001000
+read_buffer1_cma_reserved=10002000
+write_buffer_manual_reserved=40000000
+write_buffer_cma_reserved=10000000
+
+CCU_cached="disabled"
+
+#Bridges pointers
+icct_csr=0xf9000010
+msgdma_csr=0xf9000040
+msgdma_descriptorlave=0xf9000020
+msgdma_response=0xf9000008
+
+
+#offsets
+msgdma_csr_control=0x4
+msgdma_descriptorlave_read_high=0x14
+msgdma_descriptorlave_write_low=0x4
+msgdma_descriptorlave_write_high=0x18
+msgdma_descriptorlave_length=0x8
+msgdma_descriptorlave_burst=0xc
+msgdma_descriptorlave_control=0x1c
+
+
+
+echo "read sysID perif,  should read back 0xACD5CAFE"
+devmem2 0xf9000000 w
+
+#echo "Setup AXI Security Bridge via CSR H2F_LW + 0x8"
+#Via CCU,  ACE-LITE
+#Transactions may be cached or non-cached
+#Transactions could be privileged or non- privileged depending on Memory Allocation 
+
+#AXUSER : CCU 
+#-	[7:0] : 0x04 
+
+#Cached	
+#ACE-LITE Signaling : 
+#[1:0]   - ardomain    - 0b10	    : OK:  10  Read Once : Coherent (could also be 01): Altera recommended setting 01 Inner shareable for cashable transactions.  See Note below
+#[3:2]   - arbar       - 0b00	    :
+#[7:4]   - arsnoop     - 0b0000	  : 
+#[11:8]  - arcache     - 0b1111   : WB R Allocate.   Could also be WB WA (1011).  Check against desired behavior and against Linux memory Attrib. being used  (Check Memory Attrib.)
+#[13:12] - awdomain    - 0b10	    : 10 Write(line)Unique Coherent (could also be 01). : Altera recommended setting 01 Inner shareable for cashable transactions.  See Note below
+#[15:14] - awbar       - 0b00	    : 
+#[18:16] - awsnoop     - 0b000	  : (could be 001 for write line unique)
+#[22:19] - awcache     - 0b1111	  : WB W Allocate  (needs to match memory attrib.) 
+#[28:23] - axuser[7:2] - 0b000001	: 0x04  = CCU
+#[31:29] - axprot      - 0b011	  : Privileged access : Assumes Cache Coherent access to Kernel memory (privileged). 
+#[31:29] - axprot      - 0b001	  : Secure, Privileged access : Assumes Cache Coherent access to Kernel memory (privileged). 
+
+
+#Non-cashed 
+#[1:0]   - ardomain    - 0b01	    :  01 Inner shareable, could also be 10 Read Once : Coherent
+#[3:2]   - arbar       - 0b00	    : 
+#[7:4]   - arsnoop     - 0b0000	  : 
+#[11:8]  - arcache     - 0b0011   : non cashed 
+#[13:12] - awdomain    - 0b01	    : 01 Inner shareable on DM.
+#[15:14] - awbar       - 0b00	    : 
+#[18:16] - awsnoop     - 0b000	  : (could be 001 for write line unique)
+#[22:19] - awcache     - 0b0011	  : non cachsed
+#[28:23] - axuser[7:2] - 0b000001	: 0x04  = CCU
+#[31:29] - axprot      - 0b011	  : Privileged access : Assumes Cache Coherent access to Kernel memory (privileged).
+#[31:29] - axprot      - 0b001	  : Secure, Privileged access : Assumes Cache Coherent access to Kernel memory (privileged). 
+
+#Note on AxDomain for cached transactions via the CCU
+#-The CCU on Agilex / DM overrides the inner / outer shareable signal to inner- shareable
+#-Altera recommend setting inner-shareable on Axdomain (01) purely for clarity
+
+
+#SDRAM Direct, ACE-LITE
+#Transactions non-cached (CCU Bypass)
+#Transactions could be privileged or non- privileged depending on Memory Allocation 
+
+#AXUSER : SDRAM direct  
+#-	[7:0] : 0xE0	
+
+#ACE-LITE Signaling : 
+#[1:0]   - ardomain    - 0b00	       : non-coherent (non snooping)
+#[3:2]   - arbar       - 0b10	       : 
+#[7:4]   - arsnoop     - 0b0000	     :
+#[1:8]   - arcache     - 0b0010	     : Normal Non-Cashable, non bufferable
+#[13:12] - awdomain    - 0b00	       : non-coherent (non snooping)
+#[15:14] - awbar       - 0b10	       :
+#[18:16] - awsnoop     - 0b000       : 
+#[22:19] - awcache     - 0b0010	     : Normal Non-Cashable, non bufferable
+#[28:23] - axuser[7:2] - 0b111000 00 : E0 SDRAM Direct 
+#[31:29] - axprot      - 0b001  	   : Secure, Privileged access : Assumes Kernel alloc. memory (privileged).
+
+#defualt at boot 0x20108208
+#xprot xusr[7:2] wcache wsnoop  wbar  wdom  rcache  rsnoop  rbar  rdom
+#001   000000    0010   000     10    00    0010    0000    10    00
+#0x20108208
+
+#SDRAM DIRECT 
+#xprot xusr[7:2] wcache wsnoop  wbar  wdom  rcache  rsnoop  rbar  rdom
+#011   111000    0010   000     10    00    0010    0000    10    00
+#31b 01111100000100001000001000001000
+#0x7C108208
+
+#SDRAM DIRECT SECURE 
+#xprot xusr[7:2] wcache wsnoop  wbar  wdom  rcache  rsnoop  rbar  rdom
+#001   111000    0010   000     10    00    0010    0000    10    00
+#31b 00111100000100001000001000001000
+#0x3C108208
+#######
+#SDRAM secure is the normally required values to access kernelreserved, or non allocated memory, The allow secure bit must be set on F2S firewall in the system manager registers. i_sys_mgr_fpga2soc_ctrl:Allow_secure
+#######
+#CCU Cached 
+#xprot xusr[7:2] wcache wsnoop  wbar  wdom  rcache  rsnoop  rbar  rdom
+#011   000001    1111   000     00    10    1111    0000    00    10
+#31b 01100000111110000010111100000010
+#0x60F82F02
+
+#CCU Cached - Secure  
+#xprot xusr[7:2] wcache wsnoop  wbar  wdom  rcache  rsnoop  rbar  rdom
+#001   000001    1111   000     00    10    1111    0000    00    10
+#31b 00100000111110000010111100000010
+#0x20F82F02
+
+
+#CCU Non-cached   
+#xprot xusr[7:2] wcache wsnoop  wbar  wdom  rcache  rsnoop  rbar  rdom
+#011   000001    0011   000     00    10    0011    0000    00    10
+#31b 01100000100110000010001100000010
+#0x60982302
+
+#CCU Non-cached Secure 
+#xprot xusr[7:2] wcache wsnoop  wbar  wdom  rcache  rsnoop  rbar  rdom
+#001   000001    0011   000     00    10    0011    0000    00    10
+#31b 00100000100110000010001100000010
+#0x20982302
+
+#echo "Read ACE-LITE Bridge Mode"
+#devmem2 $icct_csr w
+
+# Commands for all 3 Modes,  SDRAM Direct, CCU Cached, CCU-Non Cached
+#echo "Set ACE-LITE Bridge to SDRAM Direct Mode  : 0x3C108208"
+#devmem2 $icct_csr w 0x7C108208 #non secure
+#devmem2 $icct_csr w 0x3C108208 #secure Note: This is the normally required values to access kernelreserved, or non allocated memory, The allow secure bit must be set on F2S firewall in the system manager registers. i_sys_mgr_fpga2soc_ctrl:Allow_secure
+
+#ACCERSS MODE code
+
+#echo "Set ACE-LITE Bridge to via CCU Cached Mode : 0x60F82F02"
+#devmem2 $icct_csr w 0x60F82F02
+#devmem2 $icct_csr w 0x20F82F02 #secure
+
+
+#echo "Set ACE-LITE Bridge to via CCU Non-Cached Mode : 0x60F82F02"
+#devmem2 $icct_csr w 0x60982302
+#devmem2 $icct_csr w 0x20982302 #secure 
+
+#echo "Set ACE-LITE Bridge to defaults : 0x20108208"
+#devmem2 $icct_csr w 0x20108208
+
+
+#############################################################################
+#############################################################################
+
+#TESTS 
+
+# -------------- SDRAM Direct tests ----------------------
+#1. Privilged only (Non-secure)
+#-Write to manually reserved area via dma secure tansaction attributes 
+#-Read back from user space
+
+#2. Privilge and secure 
+#-Write to manually reserved area via dma using secure and protected transaction attributes 
+#-Read back from user space
+
+# ---------------- CCU tests ----------------------------
+#3. non cashed transactions (privileged and secure)
+#-Write to cashed area from user space
+#-Write to cached area via dma in non cachsed mode 
+#-Read back from user space
+
+#4. cashed transactions (privileged and secure)
+#-Write to cashed area from user space
+#-Write to cached area via dma in cached mode 
+#-Read back from user space
+
+
+#SETUP FOR TEST 
+
+echo "Setup AXI Security Bridge via CSR H2F_LW + 0x8"
+echo "Read ACE-LITE Bridge Mode"
+devmem2 $icct_csr w
+echo "########################################"
+if [ $select == "po" ]; then 
+
+echo "======================================================="	
+echo " Test 1: SDRAM Direct Privilege Non-Secure Non-Cached  "
+echo "======================================================="	
+#1. Privileged only 
+#-Wrtie to manually reserved area via dma Non-secure tansaction attributes 
+#-Read back from user space
+
+datapattern_buffer0=0xBEAF0000
+datapattern_buffer1=0xEEEEEEEE
+
+dma_read_pointer_low=$read_buffer0_manual_reserved
+dma_read_pointer_high=00000000
+
+dma_write_pointer_low=$write_buffer_manual_reserved
+dma_write_pointer_high=00000000
+
+
+#SET ACCERSS MODE 
+
+echo "Read ACE-LITE Bridge Mode"
+devmem2 $icct_csr w
+echo "Set ACE-LITE Bridge to SDRAM Direct Mode - Privileged - Non-Secure : 0x7C108208"
+devmem2 $icct_csr w 0x7C108208 #non secure
+#devmem2 $icct_csr w 0x3C108208 #secure Note: This is the normally required values to access kernelreserved, or non allocated memory, The allow secure bit must be set on F2S firewall in the system manager registers. i_sys_mgr_fpga2soc_ctrl:Allow_secure
+
+
+elif [ $select == "ps" ]; then
+echo "===================================================="	
+echo " Test 2: SDRAM Direct Privileged Secure Non-Cached  "
+echo "===================================================="	
+#2. Privalge and secure 
+#-Wrtie to manually reserved area via dma using secure and protected transaction attributes 
+#-Read back from user space
+
+datapattern_buffer0=0xFEAD0000
+datapattern_buffer1=0xEEEEEEEE
+
+dma_read_pointer_low=$read_buffer0_manual_reserved
+dma_read_pointer_high=00000000
+
+dma_write_pointer_low=$write_buffer_manual_reserved
+dma_write_pointer_high=00000000
+
+
+#SET ACCERSS MODE 
+echo "Setup AXI Security Bridge via CSR H2F_LW + 0x8"
+echo "Set ACE-LITE Bridge to SDRAM Direct Mode  : 0x3C108208"
+#devmem2 $icct_csr w 0x7C108208 #non secure
+devmem2 $icct_csr w 0x3C108208 #secure Note: This is the normally required values to access kernelreserved, or non allocated memory, The allow secure bit must be set on F2S firewall in the system manager registers. i_sys_mgr_fpga2soc_ctrl:Allow_secure
+
+
+elif [ $select == "cu" ]; then
+	
+echo "============================================"	
+echo " Test 3: CCU Non-cached Privileged Secure   "
+echo "============================================"	
+
+#3. non cashed transactions
+#-Write to cashed area from user space
+#-Write to cached area via dma in non cachsed mode 
+#-Read back from user space
+
+# trigger a write from user space to the write data buffer area.
+datapattern_buffer0=0xAAAA0000
+datapattern_buffer1=0x05050505
+
+dma_read_pointer_low=$read_buffer0_manual_reserved
+dma_read_pointer_high=00000000
+
+dma_write_pointer_low=$write_buffer_cma_reserved 
+#dma_write_pointer_low=$write_buffer_manual_reserved
+dma_write_pointer_high=00000000
+
+#SET ACCERSS MODE 
+echo "Setup AXI Security Bridge via CSR H2F_LW + 0x8"
+echo "Set ACE-LITE Bridge to via CCU Non-Cached Mode : 0x60F82F02"
+#devmem2 $icct_csr w 0x60982302
+devmem2 $icct_csr w 0x20982302 #secure 
+
+
+elif [ $select == "cc" ]; then 
+echo "========================================"	
+echo " Test 4: CCU Cached Privileged Secure   "
+echo "========================================"	
+
+#Cache tests
+#-Write to cashed area from user space
+#-Write to cached area via dma in  cached mode 
+#-Read back from user space
+
+
+CCU_cached="enabled"
+  # trigger a write from user space to the write data buffer area...  which I think the arm caches..
+datapattern_buffer0=0xDDDD0000
+datapattern_buffer1=0x05050505
+
+dma_read_pointer_low=$read_buffer0_manual_reserved
+dma_read_pointer_high=00000000
+
+dma_write_pointer_low=$write_buffer_cma_reserved 
+dma_write_pointer_high=00000000
+
+#SET ACCERSS MODE 
+#echo "Set ACE-LITE Bridge to via CCU Cached Mode : 0x60F82F02"
+#devmem2 $icct_csr w 0x60F82F02
+devmem2 $icct_csr w 0x20F82F02 #secure
+
+fi
+
+######################################################################################
+######################################################################################
+
+
+#RUN TEST 
+echo "###################################################"
+echo "Initial setup done. Now running the test..."
+
+
+echo "Read ACE-LITE Bridge Mode"
+devmem2 $icct_csr w
+echo "###################################################"
+echo "Creating populated data buffer at 0x$read_buffer0_manual_reserved in unused memory (above 1GB) "
+
+
+writebuffer_pattern 0x$read_buffer0_manual_reserved $datapattern_buffer0
+
+echo "Check data by reading 1st address"
+devmem2 0x$read_buffer0_manual_reserved w
+echo "###################################################"
+
+echo "Creating populated data buffer at in CMA reserved cached memory at 0x$read_buffer1_cma_reserved from userspace"
+
+writebuffer_pattern 0x$read_buffer1_cma_reserved $datapattern_buffer1
+
+echo "Check data by reading 1st address"
+devmem2 0x$read_buffer1_cma_reserved w
+echo "###################################################"
+
+#ccu_cached
+if [ $CCU_cached = "enabled" ]; then
+echo "Clearing manual write buffer 0x$write_buffer_manual_reserved in unused memory (above 1GB) to 0x0A0A0A0A"
+
+writebuffer_fixpattern 0x$write_buffer_manual_reserved $((0x0A0A0A0A))
+
+echo "Check data by reading 1st address"
+devmem2 0x$write_buffer_manual_reserved w
+echo "###################################################"
+sleep 5
+
+echo "Clearing cma write buffer 0x$write_buffer_cma_reserved in CMA reserved cached memory to 0x0B0B0B0B"
+
+writebuffer_fixpattern 0x$write_buffer_cma_reserved  $((0x0B0B0B0B))
+
+echo "Check data by reading 1st address"
+devmem2 0x$write_buffer_cma_reserved w
+
+echo "###################################################"
+sleep 5
+
+fi
+
+
+echo "##################################################"
+echo "Finished filling buffers with with initial data"
+
+echo "##################################################"
+echo "Setup DMA controller to start transfering data"
+echo "read buffer(0x$dma_read_pointer_low) -> Write buffer(0x$dma_write_pointer_low)"
+
+
+# Initialize and start DMA controller to transder data
+#Stop the dispatched (just incase its running..), then reset it.
+#CSR 0x0000 0040
+echo "msgdma : Stop dispatcher"
+devmem2 $(($msgdma_csr+$msgdma_csr_control))  w 0x1
+echo "msgdma : Stop descriptors"
+devmem2 $(($msgdma_csr+$msgdma_csr_control))  w 0x20
+echo "msgdma : Reset Dispatcher" 
+devmem2 $(($msgdma_csr+$msgdma_csr_control))  w 0x2
+
+
+#Extended descriptor setup 
+
+#Create descriptor in memory 
+
+echo "msgdma : Read address,  lower 32bits, upper 32bits : 0x$dma_read_pointer_high$dma_read_pointer_low"
+devmem2 $msgdma_descriptorlave w 0x$dma_read_pointer_low
+devmem2 $(($msgdma_descriptorlave+$msgdma_descriptorlave_read_high)) w 0x$dma_read_pointer_high
+echo "msgdma : Write address, lower 32bits, upper 32bits : 0x$dma_write_pointer_high$dma_write_pointer_low"
+devmem2 $(($msgdma_descriptorlave+$msgdma_descriptorlave_write_low))  w 0x$dma_write_pointer_low
+devmem2 $(($msgdma_descriptorlave+$msgdma_descriptorlave_write_high)) w 0x$dma_wrtie_pointer_high
+echo "msgdma : length in bytes 4068,  128bit x 32"
+devmem2 $(($msgdma_descriptorlave+$msgdma_descriptorlave_length)) w 0x200
+echo "msgdma : Burst counts 32, sequence number = 1"
+devmem2 $(($msgdma_descriptorlave+$msgdma_descriptorlave_burst)) w  0x20200001  ; #2020 0001
+# stride = 1 (word addresses, increment )  N/A Stride is currently disabled on the IP 
+# devmem2 0xf9000030 w   0x0101 ; 0000 0001 0000 0001
+		
+#Check status
+echo "msgdma : Check Status"
+devmem2 $msgdma_csr w
+
+    	
+#Control: 
+
+#Go			1
+#Reserved 		00000
+#Wait for Write Resp	1
+#Early done		0
+#Tx Err  Err IRQ		00000000
+#Early Term IRQ		0
+#Tx Complete IRQ 	0
+#Reserved		0
+#End on EOP		0
+#Park Writes		0
+#Park reads		0
+#EOP : Disable 		0
+#SOP : Disable	  	0
+#Trans channel 00000000
+#1000 0010 0000 0000
+echo "msgdma : Control,  wait for resp"
+devmem2 $(($msgdma_descriptorlave+$msgdma_descriptorlave_control)) w  0x02000000 ; #0000 0010 0000 0000
+echo "###################################################"
+echo "###################################################"
+echo "###################################################"
+echo "###################################################"
+			   
+echo "msgdma : Control,  wait for resp and go"
+devmem2  $(($msgdma_descriptorlave+$msgdma_descriptorlave_control)) w 0x82000000;   #1000 0010 0000 0000
+#	If this was more complex, or non 0 I would be using byte accesses to write, not a single word access
+
+
+#Check status
+echo "msgdma : Check Status"
+devmem2 $msgdma_csr w
+
+echo "###################################################"
+echo "Reading back data from write buffer.    "
+if [ $select == "po" ]; then 
+  echo "   Note: When executing Priveleged Only Non-Secure test, data read should not match data written. "
+fi
+
+echo "ReadBack from 0x$dma_write_pointer_high$dma_write_pointer_low"
+count=0
+addrAd=0
+startAddr=0x$dma_write_pointer_low
+while [ $count -le 4 ] #128 ]
+do
+addrAd=$((0x4*$count))
+addr=$(($startAddr+$addrAd))
+devmem2 $addr w
+((count++))
+done
+
+echo "================="
+echo "    TEST DONE    "
+echo "================="
+
+#devmem2 0x40000000 w
+
+
+#addr =
+#base = 0x40001000 
+#(( base + 0x4 ))
+#(( base + 0x8 ))
+#(( base + 0xc ))
+#base = (( base + 
+##devmem2 0x40001000 w $((pattern++));
+##devmem2 0x40001000 w $((pattern++));
+#devmem2 0x40001000 w $((pattern++));
+#devmem2 0x40001000 w $((pattern++));
+
