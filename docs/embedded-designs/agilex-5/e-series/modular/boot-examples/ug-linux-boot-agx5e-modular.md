@@ -36,7 +36,7 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1 and the fol
 | :-- | :-- | :-- | :-- |
 | GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | QPDS24.3.1_REL_GSRD_PR |
 | Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.51-lts | QPDS24.3.1_REL_GSRD_PR |
-| Arm Trusted Firmware | [https://github.com/arm-trusted-firmware](https://github.com/arm-trusted-firmware) | socfpga_v2.11.1 | QPDS24.3.1_REL_GSRD_PR |
+| Arm Trusted Firmware | [https://github.com/altera-opensource/arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.11.1 | QPDS24.3.1_REL_GSRD_PR |
 | U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.07 | QPDS24.3.1_REL_GSRD_PR |
 | Yocto Project | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | styhead | latest | 
 | Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | styhead | latest |
@@ -280,8 +280,15 @@ cd $TOP_FOLDER
 rm -rf linux-socfpga
 git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga
 cd linux-socfpga
-make defconfig 
-make -j 64 Image && make intel/socfpga_agilex5_socdk.dtb 
+cat << EOF > config-fragment-agilex5
+# Enable Ethernet connectivity so we can get an IP address
+CONFIG_MARVELL_PHY=y
+EOF
+make defconfig
+# Apply custom Configs in file
+./scripts/kconfig/merge_config.sh -O ./ ./.config ./config-fragment-agilex5
+make oldconfig
+make -j 64 Image && make intel/socfpga_agilex5_socdk.dtb
 ```
 
 The following files are created:
@@ -375,6 +382,7 @@ Write the SD card image `sd_card/sdcard.img` to the micro SD card using the incl
 
 ```bash
 cd $TOP_FOLDER
+jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 ```
 
@@ -393,6 +401,8 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 ## Boot from QSPI
 
 This section demonstrates how to build Linux system from separate components, which boots from QSPI.
+
+**NOTE:**  This section assumes that the [Boot from SD Card](#boot-from-sd-card) section has been already built and the environment setup in that section is still available.
 
 
 
@@ -712,6 +722,7 @@ The following file is created:
 
 ```bash
 cd $TOP_FOLDER
+jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "qspi-boot/flash_image.hps.jic"
 ```
 Note: You need to wipe the micro SD card or remove it from the board before start running.

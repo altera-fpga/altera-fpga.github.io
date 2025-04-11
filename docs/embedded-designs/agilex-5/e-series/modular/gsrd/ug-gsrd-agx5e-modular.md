@@ -48,7 +48,7 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1 and the fol
 | :-- | :-- | :-- | :-- |
 | GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | QPDS24.3.1_REL_GSRD_PR |
 | Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.51-lts | QPDS24.3.1_REL_GSRD_PR |
-| Arm Trusted Firmware | [https://github.com/arm-trusted-firmware](https://github.com/arm-trusted-firmware) | socfpga_v2.11.1 | QPDS24.3.1_REL_GSRD_PR |
+| Arm Trusted Firmware | [https://github.com/altera-opensource/arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.11.1 | QPDS24.3.1_REL_GSRD_PR |
 | U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.07 | QPDS24.3.1_REL_GSRD_PR |
 | Yocto Project | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | styhead | latest | 
 | Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | styhead | latest |
@@ -245,6 +245,7 @@ sync
 ```bash
 wget https://releases.rocketboards.org/2025.01/gsrd/agilex5_modular_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
 tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 ```
 
@@ -358,6 +359,7 @@ Either write 1MB of zeroes at the beginning of the SD card, or remove the SD car
 ```bash
 wget https://releases.rocketboards.org/2025.01/qspi/agilex5_modular_qspi/agilex_flash_image.hps.jic.tar.gz
 tar xf agilex_flash_image.hps.jic.tar.gz
+jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;agilex_flash_image.hps.jic"
 ```
 

@@ -21,13 +21,14 @@ This example allocates memory using two methods:
   * An open source 3rd party driver is used to allocate this memory.
   * This memory will typically be marked as privileged as it has been kernel allocated, and may be marked as non-secure.
 
-\* Note: The dev kit have 8 GB of memory which is mapped in 2 regions:  one region of 2 GB (going from 0x0 - 0x80000000) and second region of 6 GB (going from 0x280000000 - 0x400000000). The 2 GB region mentioned in the manually reserved memory above is referring  to this 1st region.
+**Note:** The dev kit have 8 GB of memory which is mapped in 2 regions:  one region of 2 GB (going from 0x0 - 0x80000000) and second region of 6 GB (going from 0x280000000 - 0x400000000). The 2 GB region mentioned in the manually reserved memory above is referring  to this 1st region.
 
 
 For further reading:
 
 * Linux Kernel [DMA API](https://docs.kernel.org/core-api/dma-api-howto.html), and CMA documentation can be found in the Linux Kernel Documentation.
 * Information on Memory Attributes in Arm® architectures can be found in the Arm Architecture documentation available on arm.com.
+
 
 This example requires a correct configuration for the FPGA Firewall settings to allow only secure access through F2S bridge( through the fpga2soc bit on the **soc_noc_fw_mpfe_csr_inst_0_mpfe_scr** register with offset 0xF8020018).  For more detail see [Intel® Agilex™ Hard Processor System Address Map and Register Definitions](https://www.intel.com/content/www/us/en/programmable/hps/agilex/hps.html). 
 
@@ -58,8 +59,6 @@ For further reading:
 
 * The AMBA® AXI™ and ACE™ Protocol Specification available form arm.com contains more information on the AXI Side band signals.
 * The Bridges chapter of the [Intel® Agilex™ Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/683567/22-4/hard-processor-system-technical-reference.html) contains information and examples bridge settings for AXI Side Band Signals.
-
-
 
 ### Testing of the Project
 
@@ -128,6 +127,7 @@ The following table describes the configuration that is being performed in the C
 | AxUSER7_1[28:23] | 0x38<br>AxUSER[7:0]=0xE0 | 0x38<br>AxUSER[7:0]=0xE0 | 0x1<br>AxUSER[7:0]=0x4 | 0x1<br>AxUSER[7:0]=0x4 |
 | AxPROT[31:29] | 0x3 | 0x1 | 0x1 | 0x1 |
 
+<span style="color: red;">**Note:** This page was migrated from Rocketboards in 24.3.1 release. In case you need to see the content from earlier versions, please go to https://www.rocketboards.org/foswiki/Projects/SettingUpAndUsingBridgesOnAgilex and see the Revision History of that page.</span>
 
 ## Prerequisites
 
@@ -140,8 +140,6 @@ The following table describes the configuration that is being performed in the C
   * SD/MMC HPS Daughtercard.
 
   * Micro SD card.
-
-    
 
 * Host PC with
 
