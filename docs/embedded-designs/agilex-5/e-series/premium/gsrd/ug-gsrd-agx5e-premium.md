@@ -259,6 +259,7 @@ sync
 ```bash
 wget https://releases.rocketboards.org/2025.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
 tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 ```
 
@@ -380,6 +381,7 @@ Either write 1MB of zeroes at the beginning of the SD card, or remove the SD car
 ```bash
 wget https://releases.rocketboards.org/2025.01/qspi/agilex5_dk_a5e065bb32aes1_qspi/agilex_flash_image.hps.jic.tar.gz
 tar xf agilex_flash_image.hps.jic.tar.gz
+jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;agilex_flash_image.hps.jic"
 ```
 
@@ -441,6 +443,7 @@ This will put the two chunks called `xaa` and `xab` on your TFTP folder.
 ```bash
 wget https://releases.rocketboards.org/2025.01/emmc/agilex5_dk_a5e065bb32aes1_emmc/uboot.jic.tar.gz
 tar xf uboot.jic.tar.gz
+jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;uboot.jic"
 ```
 7\. Determine your host IP address using `ifconfig` to use it as the IP address of the TFTP server
@@ -484,7 +487,8 @@ reset
 4\. Download the JIC and write it to QSPI:
 ```bash
 wget https://releases.rocketboards.org/2025.01/emmc/agilex5_dk_a5e065bb32aes1_emmc/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz 
-tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz 
+tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 ```
 <h5>Boot Linux</h5>
@@ -523,7 +527,8 @@ For this scenario we are using the HPS Test Board. There is single dipswitch on 
 4\. Download the JIC and write it to QSPI:
 ```bash
 wget https://releases.rocketboards.org/2025.01/debug/agilex5_dk_a5e065bb32aes1_debug/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz 
-tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz 
+tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 ```
 

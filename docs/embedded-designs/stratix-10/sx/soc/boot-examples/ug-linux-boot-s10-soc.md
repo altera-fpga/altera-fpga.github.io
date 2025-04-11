@@ -1,3 +1,5 @@
+**NOTE:** This page is not available in this release. The current version of this page applies to release 24.3, but keeping the content here because it was ported from RocketBoards in 24.3.1 release. 
+
 ## Intro
 
 This page contains instructions on how to build U-Boot  for Stratix® 10 SX SOC Development kit H-Tile (DK-SOC-1SSX-H-D). 
@@ -101,7 +103,7 @@ Note that the examples presented on this page boot to Linux and they require Lin
   mkdir s10_example.sdmmc
   cd s10_example.sdmmc
   export TOP_FOLDER=`pwd`
-  ```  
+  ```
 
 
 Download and setup the the toolchain as follows:
@@ -412,13 +414,13 @@ Use Quartus® Pro Programmer to program the QSPI flash:
   ```
   cd $TOP_FOLDER/
   quartus_pgm -m jtag -o "pvi;./ghrd.hps.jic"
-  ```    
+  ```
 **Note**:If there was no previous design running, or if the previous design has been running fine, the MSEL does not need to be set to JTAG. It can remain set to QSPI, and you can still program QSPI flash succesfully. In case there was a previous design running, run "jtagconfig" to determine if the Stratix® 10 (SDM) is first or second in the JTAG scan chain. If it is second, change the above command to:
 
   ```
   cd $TOP_FOLDER/
   quartus_pgm -m jtag -o "pvi;ghrd.hps.jic@2"  
-    ```
+  ```
 Set MSEL back to QSPI:
 
 * SW2: 1:ON 2:OFF 3:OFF 4: OFF
@@ -486,7 +488,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   continue
   EOT
   ```
-  
+
   5.- Run the debugger from command line, using the connection parameters reported above by jtagconfig, shown in red below:
 
   ```
@@ -574,9 +576,9 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ```
 
   Note the above creates a new workspace in the **s10_example.sdmmc** folder.<br>
-  
+
   3.- In **Eclipse**, Go to **Run > Debug Configurations** to open the **Debug Configurations** window. <br>
-  
+
   4.- In the **Debug Configurations** window: <br>
   a) Select the **Generic Arm C/C++ Application** on the left panel and right-click it. From the menu that appears, select **New Configuration**.<br>
   b) Edit the **Name** field from **New_configuration** to something more descriptive, such as **Debug S10 Bootloader**.<br>

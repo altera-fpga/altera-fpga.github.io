@@ -680,9 +680,11 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
 
 Starting from 24.2 release, the Agilex™ 7 device is provided with the support of direct booting from ATF to Linux. In this boot flow, ATF acts as a First Stage Bootloader (BL2) and also as a Second Stage Bootloader (BL31). This last one is in charge of loading and launching Linux OS, so U-Boot is not used in this boot flow.
 
-  ![](images/ATF_Linux_bootflow.jpg)
+<div align="center">
+  <img src="images/ATF_Linux_bootflow.jpg">
+</div>
 
- In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and hardware design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (SSBL) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI or SDCard). The following sections provide instructions about how to generate the binaries to exercise this boot flow booting from an SDcard and QSPI devices.
+ In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and hardware design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (SSBL) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI or SDCard). 
 
 When creating the flash image, it's necessary to provide the location in where ATF expects to find the FIP image (fip.bin). This is hardcoded in the ATF code (**plat/intel/soc/common/include/platform_def.h**) for each one of the flash devices in which this boot flow is supported as indicated in the next table:
 
@@ -691,18 +693,21 @@ When creating the flash image, it's necessary to provide the location in where A
 | QSPI | PLAT_QSPI_DATA_BASE | 0x3C00000 |
 | SDCard | PLAT_SDMMC_DATA_BASE | 0x0 |
 
+The following sections provide instructions about how to generate the binaries to exercise this boot flow booting from an SDcard and QSPI devices. The instructions provided to build the binaries to boot form SD Card and boot from QSPI are expected to be executed togheter, so you need to build these starting from the steps to generate the SD Card binaries.
+
 ### ATF to Linux from SD Card
 
 The following recipe provides all the steps needed to create the binaries that allow you to exercise the ATF to Linux boot flow from a SD Card device. The recipe includes building the hardware design, ATF (BL2, BL31), Linux file system, and Linux. These are some notes about the build instructions:
 
 * Excercise the HPS boot first flow.
 * When building ATF, we indicate the device used to boot from. We also indicate the SDRAM memory locations where the Linux kernel image and device tree will be loaded and launched from. In this boot flow, Linux is referred to as BL33.
-* The FIP image (fip.bin) is created using the ATF fiptool, indicating the binaries that integrates this image.
+* The FIP image (fip.bin) is created using the ATF fiptool, indicating the binaries that integrate this image.
 * The SD Card created will include 2 partitions. One in which the fip.bin file is located (raw format and type A2) and the other for the file system (ext3 format).
 * If wanted to perform FPGA configuration (2nd phase from Linux) from Linux create overlays.dtb as indicated in [Agilex™ 7 SoC Fabric Configuration from Linux Example](https://altera-fpga.github.io/latest/embedded-designs/agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc/)
 
-  ![](images/ATF_Linux_Image_SDCard.jpg){: style="height:500px"}
-
+<div align="center">
+  <img src="images/ATF_Linux_Image_SDCard.jpg">
+</div>  
 
 
 #### Toolchain Setup (ATF-To-Linux)
@@ -967,9 +972,20 @@ When booting with the binaries generated, this is the log that you will see:
   ```
 ### ATF to Linux from QSPI
 
-For boot from QSPI flow, some of the binaries created in the section are reused. ATF requires to be rebuilt to enable booting from QSPI updating BOOT_SOURCE to BOOT_SOURCE_QSPI. Linux also need to be rebuild since this time we are included the file system in the kernel. The file system will be loaded as RAM file system, so there is no data persistency in Linux. The FIP image is created in the same way but this time the FIP image is put into the QSPI image using a specific .pfg file. In this .pfg file we are indicating that the fip file will be located at **0x3C00000** location in the QSPI since this is also indicated by the **PLAT_QSPI_DATA_BASE** definition.
+This section provides instructions to build binaries to exercise ATF to Linux direct boot flow booting from a QSPI device.
 
- ![](images/ATF_Linux_Image_QSPI.jpg){: style="height:500px"}
+**NOTE:** This section depends on some steps from the [ATF to Linux from SD Card](#atf-to-linux-from-sd-card) section. So, to build the binaries in this section, the instructions in the following sections need to be executed earlier:
+
+* [Toolchain Setup (ATF-To-Linux)](#toolchain-setup-(atf-to-linux))
+* [Build Hardware Design (ATF-To-Linux)](#build-hardware-design-atf-to-linux)
+* [Build Linux File System  (ATF-To-Linux)](#build-linux-file-system-atf-to-linux)
+
+
+ATF requires to be rebuilt to enable booting from QSPI updating BOOT_SOURCE to BOOT_SOURCE_QSPI. Linux also need to be rebuild since this time we are including a JFFS2 file system and since booting from QSPI we need to change some parameters in the device tree. The FIP image is created in the same way but this time the FIP image is put into the QSPI image using a specific .pfg file. In this .pfg file we are indicating that the fip file will be located at **0x3C00000** location in the QSPI since this is also indicated by the **PLAT_QSPI_DATA_BASE** definition in the ATF.
+
+ <div align="center">
+  <img src="images/ATF_Linux_Image_QSPI.jpg">
+</div> 
 
 #### Build Arm Trusted Firmware for QSPI (ATF-To-Linux)
 
@@ -998,6 +1014,7 @@ The following files are created:
 
 * $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex/release/bl2.bin 
 * $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex/release/bl31.bin
+* $TOP_FOLDER/arm-trusted-firmware-qspi/tools/fiptool/fiptool
 
 #### Build Linux for QSPI (ATF-To-Linux)
 
@@ -1356,12 +1373,6 @@ Links:
 * Review device-specific Boot User Guide for more information about these registers.
 
 
-## QSPI Reference Clock
-The QSPI peripheral clocks are provided by the SDM, based on the SDM input clocks and configuration clock settings defined in the Quartus® Pro project. However, the HPS needs to know the QSPI reference clock, so that it can properly set the dividers in the QSPI controller to create the desired external QSPI clock frequency.
-
-The HPS obtains the QSPI controller reference clock frequency when it obtains exclusive access to the QSPI from the SDM. The frequency reported by the SDM is stored in the U-Boot environment variable called **${qspi_clock}**.
-
-Before booting Linux, U-Boot loads the Linux device tree in memory, then runs the command **linux_qspi_enable** which sets the QSPI controller reference clock appropriately using the value from the **${qspi_clock}** environment variable.
 
 ## Reconfiguring Core Fabric from U-Boot
 The GSRD configures the FPGA core fabric only once, from U-Boot, by using the **bootm** command. The example in this page configures the fabric only once, from U-Boot, using **fpga load** command.

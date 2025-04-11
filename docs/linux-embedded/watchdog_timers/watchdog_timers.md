@@ -1,6 +1,6 @@
 # **Watchdog Timers Driver for Hard Processor System**
 
-Last updated: **March 26, 2025** 
+Last updated: **April 11, 2025** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/watchdog/dw_wdt.c)
 
@@ -40,6 +40,69 @@ Example Device tree location:
 [https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi)
 
 ![watchdog_device_tree](images/watchdog_device_tree.png)
+
+## Test Procedures
+
+This test procedure was exercised on Agilex 5 E-Series Premium Development Kit using the [GSRD for HPS Enablement Board (booting from SD Card)  from 24.3.1 release](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-sd-card-boot-binaries) which uses Linux Kernel 6.6.51.
+
+### Step 1: Verify that the Watchdog Node is in the Device Tree
+
+First, verify that the watchdog node is present in the device tree. You can do this by booting the system and running:
+
+  ```sh
+  ls /proc/device-tree/soc\@0/watchdog*
+  /proc/device-tree/soc@0/watchdog@10d00200:
+  clocks	compatible  interrupts	name  phandle  reg  resets  status
+
+  /proc/device-tree/soc@0/watchdog@10d00300:
+  clocks	compatible  interrupts	name  phandle  reg  resets  status
+
+  /proc/device-tree/soc@0/watchdog@10d00400:
+  clocks	compatible  interrupts	name  phandle  reg  resets  status
+
+  /proc/device-tree/soc@0/watchdog@10d00500:
+  clocks	compatible  interrupts	name  phandle  reg  resets  status
+
+  /proc/device-tree/soc@0/watchdog@10d00600:
+  clocks	compatible  disable-over-current  interrupts  name  phandle  reg  resets  status
+  ```
+
+Read the status of the watchdog that is present.
+
+```sh
+cat /proc/device-tree/soc\@0/watchdog\@10d00200/status
+okay
+```
+
+You should see output indicating the presence of the watchdog node (The printout of the following cat command should be 'okay' as shown above)
+
+### Step 2: Check Watchdog Status
+
+Next, check the status of the watchdog to ensure it is active. Run the following command:
+
+```sh
+ls /dev/watchdog*
+/dev/watchdog	/dev/watchdog1	/dev/watchdog3
+/dev/watchdog0	/dev/watchdog2	/dev/watchdog4
+
+```
+This command will display the watchdog timers that are active. 
+
+### Step 3: Test Watchdog Reset Functionality
+
+To test the watchdog's ability to reset the system, you can disable the watchdog by writing to its control register. Run the following command:
+
+```sh
+cat >> /dev/watchdog
+```
+
+After running this command, the system should reset within a few seconds. You will see the login prompt reappear after the reset.
+
+### Step 4: Verify System Recovery
+
+Once the system has recovered from the reset, all the services and applications should run as expected.
+
+
 
 ## **Known Issues**
 
