@@ -934,6 +934,47 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#test-procedures" class="md-nav__link">
+    Test Procedures
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-verify-that-the-watchdog-node-is-in-the-device-tree" class="md-nav__link">
+    Step 1: Verify that the Watchdog Node is in the Device Tree
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-check-watchdog-status" class="md-nav__link">
+    Step 2: Check Watchdog Status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-test-watchdog-reset-functionality" class="md-nav__link">
+    Step 3: Test Watchdog Reset Functionality
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-verify-system-recovery" class="md-nav__link">
+    Step 4: Verify System Recovery
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#known-issues" class="md-nav__link">
     Known Issues
   </a>
@@ -3463,6 +3504,47 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#test-procedures" class="md-nav__link">
+    Test Procedures
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-verify-that-the-watchdog-node-is-in-the-device-tree" class="md-nav__link">
+    Step 1: Verify that the Watchdog Node is in the Device Tree
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-check-watchdog-status" class="md-nav__link">
+    Step 2: Check Watchdog Status
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-test-watchdog-reset-functionality" class="md-nav__link">
+    Step 3: Test Watchdog Reset Functionality
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-verify-system-recovery" class="md-nav__link">
+    Step 4: Verify System Recovery
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#known-issues" class="md-nav__link">
     Known Issues
   </a>
@@ -3495,7 +3577,7 @@
 
 
 <h1 id="watchdog-timers-driver-for-hard-processor-system"><strong>Watchdog Timers Driver for Hard Processor System</strong><a class="headerlink" href="#watchdog-timers-driver-for-hard-processor-system" title="Permanent link">&para;</a></h1>
-<p>Last updated: <strong>March 26, 2025</strong> </p>
+<p>Last updated: <strong>April 11, 2025</strong> </p>
 <p><strong>Upstream Status</strong>: <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/watchdog/dw_wdt.c">Upstreamed</a></p>
 <p><strong>Device Supported</strong>: Agilex 5</p>
 <h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
@@ -3518,6 +3600,45 @@
 <p>Example Device tree location:</p>
 <p><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi">https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi</a></p>
 <p><a class="glightbox" href="../images/watchdog_device_tree.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="watchdog_device_tree" src="../images/watchdog_device_tree.png" /></a></p>
+<h2 id="test-procedures">Test Procedures<a class="headerlink" href="#test-procedures" title="Permanent link">&para;</a></h2>
+<p>This test procedure was exercised on Agilex 5 E-Series Premium Development Kit using the <a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-sd-card-boot-binaries">GSRD for HPS Enablement Board (booting from SD Card)  from 24.3.1 release</a> which uses Linux Kernel 6.6.51.</p>
+<h3 id="step-1-verify-that-the-watchdog-node-is-in-the-device-tree">Step 1: Verify that the Watchdog Node is in the Device Tree<a class="headerlink" href="#step-1-verify-that-the-watchdog-node-is-in-the-device-tree" title="Permanent link">&para;</a></h3>
+<p>First, verify that the watchdog node is present in the device tree. You can do this by booting the system and running:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ls<span class="w"> </span>/proc/device-tree/soc<span class="se">\@</span><span class="m">0</span>/watchdog*
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>/proc/device-tree/soc@0/watchdog@10d00200:
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>clocks<span class="w">    </span>compatible<span class="w">  </span>interrupts<span class="w">  </span>name<span class="w">  </span>phandle<span class="w">  </span>reg<span class="w">  </span>resets<span class="w">  </span>status
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>/proc/device-tree/soc@0/watchdog@10d00300:
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>clocks<span class="w">    </span>compatible<span class="w">  </span>interrupts<span class="w">  </span>name<span class="w">  </span>phandle<span class="w">  </span>reg<span class="w">  </span>resets<span class="w">  </span>status
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>/proc/device-tree/soc@0/watchdog@10d00400:
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>clocks<span class="w">    </span>compatible<span class="w">  </span>interrupts<span class="w">  </span>name<span class="w">  </span>phandle<span class="w">  </span>reg<span class="w">  </span>resets<span class="w">  </span>status
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>/proc/device-tree/soc@0/watchdog@10d00500:
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>clocks<span class="w">    </span>compatible<span class="w">  </span>interrupts<span class="w">  </span>name<span class="w">  </span>phandle<span class="w">  </span>reg<span class="w">  </span>resets<span class="w">  </span>status
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>/proc/device-tree/soc@0/watchdog@10d00600:
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>clocks<span class="w">    </span>compatible<span class="w">  </span>disable-over-current<span class="w">  </span>interrupts<span class="w">  </span>name<span class="w">  </span>phandle<span class="w">  </span>reg<span class="w">  </span>resets<span class="w">  </span>status
+</code></pre></div>
+<p>Read the status of the watchdog that is present.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cat<span class="w"> </span>/proc/device-tree/soc<span class="se">\@</span><span class="m">0</span>/watchdog<span class="se">\@</span>10d00200/status
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>okay
+</code></pre></div>
+<p>You should see output indicating the presence of the watchdog node (The printout of the following cat command should be 'okay' as shown above)</p>
+<h3 id="step-2-check-watchdog-status">Step 2: Check Watchdog Status<a class="headerlink" href="#step-2-check-watchdog-status" title="Permanent link">&para;</a></h3>
+<p>Next, check the status of the watchdog to ensure it is active. Run the following command:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ls<span class="w"> </span>/dev/watchdog*
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>/dev/watchdog<span class="w">   </span>/dev/watchdog1<span class="w">  </span>/dev/watchdog3
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>/dev/watchdog0<span class="w">  </span>/dev/watchdog2<span class="w">  </span>/dev/watchdog4
+</code></pre></div>
+This command will display the watchdog timers that are active. </p>
+<h3 id="step-3-test-watchdog-reset-functionality">Step 3: Test Watchdog Reset Functionality<a class="headerlink" href="#step-3-test-watchdog-reset-functionality" title="Permanent link">&para;</a></h3>
+<p>To test the watchdog's ability to reset the system, you can disable the watchdog by writing to its control register. Run the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cat<span class="w"> </span>&gt;&gt;<span class="w"> </span>/dev/watchdog
+</code></pre></div>
+<p>After running this command, the system should reset within a few seconds. You will see the login prompt reappear after the reset.</p>
+<h3 id="step-4-verify-system-recovery">Step 4: Verify System Recovery<a class="headerlink" href="#step-4-verify-system-recovery" title="Permanent link">&para;</a></h3>
+<p>Once the system has recovered from the reset, all the services and applications should run as expected.</p>
 <h2 id="known-issues"><strong>Known Issues</strong><a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
 <p>None known</p>
 <h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
@@ -3538,7 +3659,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 26, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 11, 2025</span>
       
         <br>
         Created:

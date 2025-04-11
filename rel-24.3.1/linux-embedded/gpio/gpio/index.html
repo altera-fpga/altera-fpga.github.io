@@ -724,6 +724,40 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#test-procedure" class="md-nav__link">
+    Test Procedure
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-export-a-gpio-pin" class="md-nav__link">
+    Step 1: Export a GPIO Pin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-toggle-gpio-pin-value" class="md-nav__link">
+    Step 2: Toggle GPIO Pin Value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-unexport-the-gpio-pin" class="md-nav__link">
+    Step 3: Unexport the GPIO Pin
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#known-issues" class="md-nav__link">
     Known Issues
   </a>
@@ -3463,6 +3497,40 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#test-procedure" class="md-nav__link">
+    Test Procedure
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-export-a-gpio-pin" class="md-nav__link">
+    Step 1: Export a GPIO Pin
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-toggle-gpio-pin-value" class="md-nav__link">
+    Step 2: Toggle GPIO Pin Value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-unexport-the-gpio-pin" class="md-nav__link">
+    Step 3: Unexport the GPIO Pin
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#known-issues" class="md-nav__link">
     Known Issues
   </a>
@@ -3495,7 +3563,7 @@
 
 
 <h1 id="general-purpose-io-driver-for-hard-processor-system"><strong>General Purpose I/O Driver for Hard Processor System</strong><a class="headerlink" href="#general-purpose-io-driver-for-hard-processor-system" title="Permanent link">&para;</a></h1>
-<p>Last updated: <strong>March 26, 2025</strong> </p>
+<p>Last updated: <strong>April 11, 2025</strong> </p>
 <p><strong>Upstream Status</strong>: <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpio/gpio-dwapb.c">Upstreamed</a></p>
 <p><strong>Devices supported</strong>: Agilex 5, Agilex 7</p>
 <h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
@@ -3520,6 +3588,68 @@
 <p>Example Device tree location:</p>
 <p><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi">https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi</a></p>
 <p><a class="glightbox" href="../images/gpio_device_tree.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="gpio_device_tree" src="../images/gpio_device_tree.png" /></a></p>
+<h2 id="test-procedure">Test Procedure<a class="headerlink" href="#test-procedure" title="Permanent link">&para;</a></h2>
+<p>In the following sub-sections are described  some common GPIO operations that are performed through the GPIO driver. These are exercised from the Linux shell once the GPIO driver has been probed. The test procedures are exercised using the <strong>/sys/class/gpio</strong> interface.</p>
+<p>This test procedure was exercised on Agilex 5 E-Series Premium Development Kit using the <a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-sd-card-boot-binaries">GSRD for HPS Enablement Board (booting from SD Card)  from 24.3.1 release</a> which uses Linux Kernel 6.6.51.</p>
+<p>When the driver has been initialized you will se the following under this GPIO interface:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">  </span>ls<span class="w"> </span>/sys/class/gpio/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">export</span><span class="w">  </span>gpiochip512<span class="w">  </span>gpiochip536<span class="w">  </span>gpiochip560<span class="w">  </span>gpiochip592<span class="w">  </span>gpiochip624<span class="w">  </span>unexport
+</code></pre></div>
+<p><strong>NOTE:</strong> You can determine which GPIOs are available using the information provided by the <strong>gpiochipXYZ</strong> directories  included in the <strong>/sys/class/interface</strong> interface. Each one of the <strong>gpiochipXYZ</strong> represents a GPIO controller. In the following example you can see that the GPIO controller referred as <strong>gpiochip512</strong> starts in the GPIO 512 and is extended to 24 pins going from 512 to 535 using the information provided by <strong>base</strong> and <strong>ngpio</strong>. You can also see which is the base address of this GPIO controller in the memory map using the information in <strong>label</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ls<span class="w"> </span>/sys/class/gpio/gpiochip512/<span class="w">          </span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>base<span class="w">       </span>device/<span class="w">    </span>label<span class="w">      </span>ngpio<span class="w">      </span>power/<span class="w">     </span>subsystem/<span class="w"> </span>uevent
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>cat<span class="w"> </span>/sys/class/gpio/gpiochip512/base
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="m">512</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>cat<span class="w"> </span>/sys/class/gpio/gpiochip512/ngpio<span class="w"> </span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="m">24</span><span class="w">  </span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>cat<span class="w"> </span>/sys/class/gpio/gpiochip512/label<span class="w"> </span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>10c03200.gpio<span class="w">    </span>
+</code></pre></div>
+<h3 id="step-1-export-a-gpio-pin">Step 1: Export a GPIO Pin<a class="headerlink" href="#step-1-export-a-gpio-pin" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Export a GPIO Pin</strong>: You export a pin to make it available to the user for control through the <strong>/sys/class/gpio/</strong> interface. Use the <code>echo</code> command to export a GPIO pin. For example, to export GPIO pin 512:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">echo</span><span class="w"> </span><span class="m">512</span><span class="w"> </span>&gt;<span class="w"> </span>/sys/class/gpio/export
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ls<span class="w"> </span>/sys/class/gpio
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">export</span><span class="w">    </span>gpio512<span class="w">  </span>gpiochip512<span class="w">  </span>gpiochip536<span class="w">  </span>gpiochip560<span class="w">  </span>gpiochip592<span class="w">  </span>gpiochip624<span class="w">  </span>unexport
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>ls<span class="w"> </span>/sys/class/gpio/gpio512
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>active_low<span class="w">  </span>device<span class="w">  </span>direction<span class="w">  </span>edge<span class="w">  </span>power<span class="w">  </span>subsystem<span class="w">  </span>uevent<span class="w">  </span>value
+</code></pre></div>
+Observe that once the pin has been export, a new interface named <strong>gpio512</strong> is created. This provides additional interfaced under this that will help to configure, control and get information from this pin.</p>
+</li>
+<li>
+<p><strong>Set Direction</strong>: Set the direction of the GPIO pin to either input or output. To set it as an output:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">echo</span><span class="w"> </span>out<span class="w"> </span>&gt;<span class="w"> </span>/sys/class/gpio/gpio512/direction
+</code></pre></div>
+</li>
+</ol>
+<h3 id="step-2-toggle-gpio-pin-value">Step 2: Toggle GPIO Pin Value<a class="headerlink" href="#step-2-toggle-gpio-pin-value" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Write a Value</strong>: Write a value (either 0 or 1) to the GPIO pin. Set a value of 1:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">echo</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>&gt;<span class="w"> </span>/sys/class/gpio/gpio512/value
+</code></pre></div>
+</li>
+<li>
+<p><strong>Read the Value</strong>: Read back the current value of the GPIO pin.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cat<span class="w"> </span>/sys/class/gpio/gpio512/value
+</code></pre></div>
+</li>
+<li>
+<p><strong>Toggle the value</strong>: Change the value to the opposite and verify it.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">echo</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>&gt;<span class="w"> </span>/sys/class/gpio/gpio512/value
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>cat<span class="w"> </span>/sys/class/gpio/gpio512/value
+</code></pre></div>
+</li>
+</ol>
+<h3 id="step-3-unexport-the-gpio-pin">Step 3: Unexport the GPIO Pin<a class="headerlink" href="#step-3-unexport-the-gpio-pin" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Unexport the GPIO Pin</strong>: After you are done, unexport the GPIO pin to free up resources.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">echo</span><span class="w"> </span><span class="m">512</span><span class="w"> </span>&gt;<span class="w"> </span>/sys/class/gpio/unexport
+</code></pre></div>
+</li>
+</ol>
 <h2 id="known-issues"><strong>Known Issues</strong><a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
 <p>None known</p>
 <h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
@@ -3540,7 +3670,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 26, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 11, 2025</span>
       
         <br>
         Created:

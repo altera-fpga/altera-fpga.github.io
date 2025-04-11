@@ -3814,10 +3814,6 @@
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>arm64
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
-<p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3.1/quartus/
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
-</code></pre></div>
 <h3 id="building-the-hardware-projects">Building the Hardware Projects<a class="headerlink" href="#building-the-hardware-projects" title="Permanent link">&para;</a></h3>
 <p>Create four different hardware projects, based on the GHRD from GitHub with a few changes.</p>
 <ul>
@@ -3827,45 +3823,45 @@
 <li>Set the max retry parameter to 3, so that each application image and the factory image are tried up to three time when configuration failures occur. </li>
 </ul>
 <p>The commands to create and compile the projects are listed below.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># compile hardware designs: 0-factory, 1,2-applications, 3-factory update</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>rm<span class="w"> </span>-rf<span class="w"> </span>hw<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>hw<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>hw
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/ghrd-socfpga
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>mv<span class="w"> </span>ghrd-socfpga/agilex_soc_devkit_ghrd<span class="w"> </span>.
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># boot from FPGA</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">BOOTS_FIRST</span><span class="o">=</span>fpga
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># enable watchdog</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ENABLE_WATCHDOG_RST</span><span class="o">=</span><span class="m">1</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1"># treat watchdog timeout as configuration failure to trigger RSU</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="nb">export</span><span class="w"> </span><span class="nv">WATCHDOG_RST_ACTION</span><span class="o">=</span>remote_update
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="c1"># Select Linal regulator</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="nb">export</span><span class="w"> </span><span class="nv">BOARD_PWRMGT</span><span class="o">=</span>linear
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="c1"># disable SGMII to build faster</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="nb">export</span><span class="w"> </span><span class="nv">HPS_ENABLE_SGMII</span><span class="o">=</span><span class="m">0</span>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="c1"># disable PR to build faster</span>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ENABLE_PARTIAL_RECONFIGURATION</span><span class="o">=</span><span class="m">0</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="k">for</span><span class="w"> </span>version<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">0</span>..3<span class="o">}</span>
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="k">do</span>
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd.<span class="nv">$version</span>
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>cp<span class="w"> </span>-r<span class="w"> </span>agilex_soc_devkit_ghrd<span class="w"> </span>ghrd.<span class="nv">$version</span>
-<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="nb">cd</span><span class="w"> </span>ghrd.<span class="nv">$version</span>
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="c1"># update sysid to make binaries slightly different</span>
-<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/0xACD5CAFE/0xABAB000&#39;</span><span class="nv">$version</span><span class="s1">&#39;/g&#39;</span><span class="w"> </span>create_ghrd_qsys.tcl
-<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>make<span class="w"> </span>scrub_clean_all
-<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>make<span class="w"> </span>generate_from_tcl
-<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="c1"># Set retry count to 3</span>
-<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;set_global_assignment -name RSU_MAX_RETRY_COUNT 3&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>ghrd_agfb014r24b2e2v.qsf
-<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="c1"># Set QSPI clock to 25 Mhz (needed for multi-qspi support)</span>
-<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;set_global_assignment -name ACTIVE_SERIAL_CLOCK AS_FREQ_25MHZ&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>ghrd_agfb014r24b2e2v.qsf
-<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="c1"># Change the board id to be 4 - the one used when booting from SD card (OOB)</span>
-<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/set_global_assignment -name STRATIX_JTAG_USER_CODE .*/set_global_assignment -name STRATIX_JTAG_USER_CODE 4/g&#39;</span><span class="w"> </span>ghrd_agfb014r24b2e2v.qsf
-<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>make<span class="w"> </span>all
-<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="nb">cd</span><span class="w"> </span>..
-<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="k">done</span>
-<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>
-<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="nb">unset</span><span class="w"> </span>BOARD_PWRMGT
-<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="nb">unset</span><span class="w"> </span>HPS_ENABLE_SGMII
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># compile hardware designs: 0-factory, 1,2-applications, 3-factory update</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>rm<span class="w"> </span>-rf<span class="w"> </span>hw<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>hw<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>hw
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/ghrd-socfpga
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>mv<span class="w"> </span>ghrd-socfpga/agilex_soc_devkit_ghrd<span class="w"> </span>.
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># boot from FPGA</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">BOOTS_FIRST</span><span class="o">=</span>fpga
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1"># enable watchdog</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ENABLE_WATCHDOG_RST</span><span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1"># treat watchdog timeout as configuration failure to trigger RSU</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="nb">export</span><span class="w"> </span><span class="nv">WATCHDOG_RST_ACTION</span><span class="o">=</span>remote_update
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c1"># Select Linal regulator</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="nb">export</span><span class="w"> </span><span class="nv">BOARD_PWRMGT</span><span class="o">=</span>linear
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="c1"># disable SGMII to build faster</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="nb">export</span><span class="w"> </span><span class="nv">HPS_ENABLE_SGMII</span><span class="o">=</span><span class="m">0</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="c1"># disable PR to build faster</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ENABLE_PARTIAL_RECONFIGURATION</span><span class="o">=</span><span class="m">0</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="k">for</span><span class="w"> </span>version<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">{</span><span class="m">0</span>..3<span class="o">}</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="k">do</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd.<span class="nv">$version</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>cp<span class="w"> </span>-r<span class="w"> </span>agilex_soc_devkit_ghrd<span class="w"> </span>ghrd.<span class="nv">$version</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="nb">cd</span><span class="w"> </span>ghrd.<span class="nv">$version</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="c1"># update sysid to make binaries slightly different</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/0xACD5CAFE/0xABAB000&#39;</span><span class="nv">$version</span><span class="s1">&#39;/g&#39;</span><span class="w"> </span>create_ghrd_qsys.tcl
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>make<span class="w"> </span>scrub_clean_all
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>make<span class="w"> </span>generate_from_tcl
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="c1"># Set retry count to 3</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;set_global_assignment -name RSU_MAX_RETRY_COUNT 3&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>ghrd_agfb014r24b2e2v.qsf
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="c1"># Set QSPI clock to 25 Mhz (needed for multi-qspi support)</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;set_global_assignment -name ACTIVE_SERIAL_CLOCK AS_FREQ_25MHZ&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>ghrd_agfb014r24b2e2v.qsf
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="c1"># Change the board id to be 4 - the one used when booting from SD card (OOB)</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/set_global_assignment -name STRATIX_JTAG_USER_CODE .*/set_global_assignment -name STRATIX_JTAG_USER_CODE 4/g&#39;</span><span class="w"> </span>ghrd_agfb014r24b2e2v.qsf
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>make<span class="w"> </span>all
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="nb">cd</span><span class="w"> </span>..
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="k">done</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="nb">unset</span><span class="w"> </span>BOARD_PWRMGT
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="nb">unset</span><span class="w"> </span>HPS_ENABLE_SGMII
 </code></pre></div>
 <p>After completing the above steps, the following SOF files are created.</p>
 <ul>
@@ -3876,14 +3872,14 @@
 </ul>
 <h3 id="building-arm-trusted-firmware">Building Arm Trusted Firmware<a class="headerlink" href="#building-arm-trusted-firmware" title="Permanent link">&para;</a></h3>
 <p>The following commands are used to retrieve the Arm Trusted Firmware (ATF) and compile it.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>arm-trusted-firmware
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/altera-opensource/arm-trusted-firmware
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nb">cd</span><span class="w"> </span>arm-trusted-firmware
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># checkout the branch used for this document, comment out to use default</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># git checkout -b test -t origin/socfpga_v2.11.1</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>make<span class="w"> </span>bl31<span class="w"> </span><span class="nv">PLAT</span><span class="o">=</span>agilex<span class="w"> </span><span class="nv">DEPRECATED</span><span class="o">=</span><span class="m">1</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nb">cd</span><span class="w"> </span>..
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>arm-trusted-firmware
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/altera-opensource/arm-trusted-firmware
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nb">cd</span><span class="w"> </span>arm-trusted-firmware
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># checkout the branch used for this document, comment out to use default</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># git checkout -b test -t origin/socfpga_v2.11.1</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>make<span class="w"> </span>bl31<span class="w"> </span><span class="nv">PLAT</span><span class="o">=</span>agilex<span class="w"> </span><span class="nv">DEPRECATED</span><span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
 <p>After completing the above steps, the Arm Trusted Firmware binary file is created and is located here.</p>
 <ul>
@@ -3897,107 +3893,107 @@
 <li>For each one of the flash nodes is necessary to  reduce the maximum SPI clock frequency to 25 MHz. This is done through the <strong>spi-max-frequency</strong> field. You also need to assign the corresponding chip select number to each one of the QSPI devices using the <strong>reg</strong> field. You also need to define any partitions that you want to create in each of the flash devices. In this case a single partition is created in each of the chips. The partition size corresponds to the size of each chip. These updates are done in the <strong>socfpga_agilex_socdk.dts</strong> file.</li>
 <li>You can also add QSPI flash0 as the 1<sup>st</sup> device from which SPL will try to boot from. This is done by updating the <strong>u-boot,spl-boot-order</strong> field in the <strong>socfpga_agilex_socdk-u-boot.dtsi</strong>. </li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>u-boot-socfpga
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/altera-opensource/u-boot-socfpga
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">cd</span><span class="w"> </span>u-boot-socfpga
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># comment out next line to use the latest default branch </span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># git checkout -b test -t origin/socfpga_v2024.07</span>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1"># enable dwarf4 debug info, for compatibility with arm ds </span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g&#39;</span><span class="w"> </span>arch/arm/config.mk
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="c1"># Update device tree to enable multi-qspi</span>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="c1"># Adding the number of QSPI devices</span>
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/clocks = &lt;&amp;qspi_clk&gt;;/a \\t\t\tnum-cs = &lt;2&gt;;&#39;</span><span class="w">  </span>arch/arm/dts/socfpga_agilex.dtsi
-<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
-<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="c1"># Starting booting from QSPI to probe QSPI devices. Removing atempt to boot from NAND</span>
-<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&amp;flash0,\&amp;mmc;/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
-<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>
-<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="c1"># Rename the flash0 to flash1 (later will recreate the node for flash0)</span>
-<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="c1"># This is done to have a QSPI flash reference to add the new node just above the reference one.</span>
-<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/\&amp;flash0 {/\&amp;flash1 {/&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
-<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/\&amp;flash1 {/i \&amp;flash0 {\n\tcompatible = \&quot;jedec,spi-nor\&quot;;\n\tspi-tx-bus-width = &lt;4&gt;;\n\tspi-rx-bus-width = &lt;4&gt;;\n\tbootph-all;\n\t/delete-property/ cdns,read-delay; \n};\n&#39;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
-<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="c1"># disable NAND in the device tree</span>
-<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/&amp;nand {/!b;n;c\\tstatus = &quot;disabled&quot;;&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
-<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="c1"># remove the NAND configuration from device tree</span>
-<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/images/,/binman/{/binman/!d}&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
-<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>
-<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="c1"># Change max clk frequency of SPI flash0</span>
-<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/spi-max-frequency = &lt;100000000&gt;;/spi-max-frequency = &lt;25000000&gt;;/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk.dts
-<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="c1"># Change the partition size for flash0</span>
-<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/reg = &lt;0x0 0x04200000&gt;;/reg = &lt;0x0 0x10000000&gt;;/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk.dts
-<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="c1"># Delete 2nd partition</span>
-<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/root/,/};/d&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk.dts
-<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>
-<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="c1"># make this one flash1 (later will recreate node for flash0 using flash1 location as reference )</span>
-<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/flash0: flash@0 {/flash1: flash@1 {/&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk.dts
-<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/flash1: flash@1 {/!b;n;n;n;n;c\\t\treg = &lt;1&gt;;&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk.dts
-<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/qspi_boot:/flash1_boot:/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk.dts
-<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a><span class="c1"># Re-create the original node for flash0</span>
-<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/flash1: flash@1 {/i \\tflash0: flash@0 {\n\t\t#address-cells = &lt;1&gt;;\n\t\t#size-cells = &lt;1&gt;;\</span>
-<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a><span class="s1">\t\tcompatible = &quot;mt25qu02g&quot;;\n\t\treg = &lt;0&gt;;\n\t\tspi-max-frequency = &lt;25000000&gt;;\n\n\t\tm25p,fast-read;\</span>
-<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a><span class="s1">\t\tcdns,page-size = &lt;256&gt;;\n\t\tcdns,block-size = &lt;16&gt;;\n\t\tcdns,read-delay = &lt;1&gt;;\n\t\tcdns,tshsl-ns = &lt;50&gt;;\</span>
-<a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a><span class="s1">\t\tcdns,tsd2d-ns = &lt;50&gt;;\n\t\tcdns,tchsh-ns = &lt;4&gt;;\n\t\tcdns,tslch-ns = &lt;4&gt;;\n\n\t\tpartitions {\</span>
-<a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a><span class="s1">\t\t\tcompatible = &quot;fixed-partitions&quot;;\n\t\t\t#address-cells = &lt;1&gt;;\n\t\t\t#size-cells = &lt;1&gt;;\</span>
-<a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a><span class="s1">\t\t\tqspi_boot: partition@0 {\n\t\t\t\tlabel = &quot;u-boot&quot;;\n\t\t\t\treg = &lt;0x0 0x10000000&gt;;\</span>
-<a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a><span class="s1">\t\t\t};\n\n\t\t};\n\t};\n&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk.dts
-<a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a>
-<a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a>
-<a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a><span class="c1"># link to atf </span>
-<a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/arm-trusted-firmware/build/agilex/release/bl31.bin<span class="w"> </span>.
-<a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a><span class="c1"># Create configuration custom file.</span>
-<a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; config-fragment-agilex</span>
-<a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a><span class="s"># Use &#39;Image&#39; for kernel image instead of &#39;kernel.itb&#39;</span>
-<a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a><span class="s">CONFIG_BOOTFILE=&quot;Image&quot;</span>
-<a id="__codelineno-5-55" name="__codelineno-5-55" href="#__codelineno-5-55"></a><span class="s"># ENABLE MULTIFLASH</span>
-<a id="__codelineno-5-56" name="__codelineno-5-56" href="#__codelineno-5-56"></a><span class="s">CONFIG_SOCFPGA_RSU_MULTIFLASH=y</span>
-<a id="__codelineno-5-57" name="__codelineno-5-57" href="#__codelineno-5-57"></a><span class="s">CONFIG_SF_DEFAULT_CS=0</span>
-<a id="__codelineno-5-58" name="__codelineno-5-58" href="#__codelineno-5-58"></a><span class="s"># - Disable NAND/UBI related settings from defconfig.</span>
-<a id="__codelineno-5-59" name="__codelineno-5-59" href="#__codelineno-5-59"></a><span class="s">CONFIG_NAND_BOOT=n</span>
-<a id="__codelineno-5-60" name="__codelineno-5-60" href="#__codelineno-5-60"></a><span class="s">CONFIG_SPL_NAND_SUPPORT=n</span>
-<a id="__codelineno-5-61" name="__codelineno-5-61" href="#__codelineno-5-61"></a><span class="s">CONFIG_CMD_NAND_TRIMFFS=n</span>
-<a id="__codelineno-5-62" name="__codelineno-5-62" href="#__codelineno-5-62"></a><span class="s">CONFIG_CMD_NAND_LOCK_UNLOCK=n</span>
-<a id="__codelineno-5-63" name="__codelineno-5-63" href="#__codelineno-5-63"></a><span class="s">CONFIG_NAND_DENALI_DT=n</span>
-<a id="__codelineno-5-64" name="__codelineno-5-64" href="#__codelineno-5-64"></a><span class="s">CONFIG_SYS_NAND_U_BOOT_LOCATIONS=n</span>
-<a id="__codelineno-5-65" name="__codelineno-5-65" href="#__codelineno-5-65"></a><span class="s">CONFIG_SPL_NAND_FRAMEWORK=n</span>
-<a id="__codelineno-5-66" name="__codelineno-5-66" href="#__codelineno-5-66"></a><span class="s">CONFIG_CMD_NAND=n</span>
-<a id="__codelineno-5-67" name="__codelineno-5-67" href="#__codelineno-5-67"></a><span class="s">CONFIG_MTD_RAW_NAND=n</span>
-<a id="__codelineno-5-68" name="__codelineno-5-68" href="#__codelineno-5-68"></a><span class="s">CONFIG_CMD_UBI=n</span>
-<a id="__codelineno-5-69" name="__codelineno-5-69" href="#__codelineno-5-69"></a><span class="s">CONFIG_CMD_UBIFS=n</span>
-<a id="__codelineno-5-70" name="__codelineno-5-70" href="#__codelineno-5-70"></a><span class="s">CONFIG_MTD_UBI=n</span>
-<a id="__codelineno-5-71" name="__codelineno-5-71" href="#__codelineno-5-71"></a><span class="s">CONFIG_ENV_IS_IN_UBI=n</span>
-<a id="__codelineno-5-72" name="__codelineno-5-72" href="#__codelineno-5-72"></a><span class="s">CONFIG_UBI_SILENCE_MSG=n</span>
-<a id="__codelineno-5-73" name="__codelineno-5-73" href="#__codelineno-5-73"></a><span class="s">CONFIG_UBIFS_SILENCE_MSG=n</span>
-<a id="__codelineno-5-74" name="__codelineno-5-74" href="#__codelineno-5-74"></a><span class="s"># - Disable distroboot and use specific boot command.</span>
-<a id="__codelineno-5-75" name="__codelineno-5-75" href="#__codelineno-5-75"></a><span class="s">CONFIG_DISTRO_DEFAULTS=n</span>
-<a id="__codelineno-5-76" name="__codelineno-5-76" href="#__codelineno-5-76"></a><span class="s">CONFIG_HUSH_PARSER=y</span>
-<a id="__codelineno-5-77" name="__codelineno-5-77" href="#__codelineno-5-77"></a><span class="s">CONFIG_SYS_PROMPT_HUSH_PS2=&quot;&gt; &quot;</span>
-<a id="__codelineno-5-78" name="__codelineno-5-78" href="#__codelineno-5-78"></a><span class="s">CONFIG_USE_BOOTCOMMAND=y</span>
-<a id="__codelineno-5-79" name="__codelineno-5-79" href="#__codelineno-5-79"></a><span class="s">CONFIG_BOOTCOMMAND=&quot;bridge enable; setenv bootfile Image; setenv fdtimage socfpga_agilex7f_socdk_multiqspi.dtb; run mmcload; run linux_qspi_enable; run rsu_status; run mmcboot&quot;</span>
-<a id="__codelineno-5-80" name="__codelineno-5-80" href="#__codelineno-5-80"></a><span class="s">CONFIG_CMD_FAT=y</span>
-<a id="__codelineno-5-81" name="__codelineno-5-81" href="#__codelineno-5-81"></a><span class="s">CONFIG_CMD_FS_GENERIC=y</span>
-<a id="__codelineno-5-82" name="__codelineno-5-82" href="#__codelineno-5-82"></a><span class="s">CONFIG_DOS_PARTITION=y</span>
-<a id="__codelineno-5-83" name="__codelineno-5-83" href="#__codelineno-5-83"></a><span class="s">CONFIG_SPL_DOS_PARTITION=y</span>
-<a id="__codelineno-5-84" name="__codelineno-5-84" href="#__codelineno-5-84"></a><span class="s">CONFIG_CMD_PART=y</span>
-<a id="__codelineno-5-85" name="__codelineno-5-85" href="#__codelineno-5-85"></a><span class="s">CONFIG_SPL_CRC32=y</span>
-<a id="__codelineno-5-86" name="__codelineno-5-86" href="#__codelineno-5-86"></a><span class="s">CONFIG_LZO=y</span>
-<a id="__codelineno-5-87" name="__codelineno-5-87" href="#__codelineno-5-87"></a><span class="s">CONFIG_CMD_DHCP=y</span>
-<a id="__codelineno-5-88" name="__codelineno-5-88" href="#__codelineno-5-88"></a><span class="s">CONFIG_SYS_PROMPT=&quot;SOCFPGA # &quot;</span>
-<a id="__codelineno-5-89" name="__codelineno-5-89" href="#__codelineno-5-89"></a><span class="s"># Enable more QSPI flash manufacturers</span>
-<a id="__codelineno-5-90" name="__codelineno-5-90" href="#__codelineno-5-90"></a><span class="s">CONFIG_SPI_FLASH_MACRONIX=y</span>
-<a id="__codelineno-5-91" name="__codelineno-5-91" href="#__codelineno-5-91"></a><span class="s">CONFIG_SPI_FLASH_GIGADEVICE=y</span>
-<a id="__codelineno-5-92" name="__codelineno-5-92" href="#__codelineno-5-92"></a><span class="s">CONFIG_SPI_FLASH_WINBOND=y</span>
-<a id="__codelineno-5-93" name="__codelineno-5-93" href="#__codelineno-5-93"></a><span class="s">CONFIG_SPI_FLASH_ISSI=y</span>
-<a id="__codelineno-5-94" name="__codelineno-5-94" href="#__codelineno-5-94"></a><span class="s">EOF</span>
-<a id="__codelineno-5-95" name="__codelineno-5-95" href="#__codelineno-5-95"></a><span class="c1"># build U-Boot</span>
-<a id="__codelineno-5-96" name="__codelineno-5-96" href="#__codelineno-5-96"></a>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>mrproper
-<a id="__codelineno-5-97" name="__codelineno-5-97" href="#__codelineno-5-97"></a>make<span class="w"> </span>socfpga_agilex_defconfig
-<a id="__codelineno-5-98" name="__codelineno-5-98" href="#__codelineno-5-98"></a><span class="c1"># Use created custom configuration file to merge with the default configuration obtained in .config file.</span>
-<a id="__codelineno-5-99" name="__codelineno-5-99" href="#__codelineno-5-99"></a>./scripts/kconfig/merge_config.sh<span class="w"> </span>-O<span class="w"> </span>./<span class="w"> </span>./.config<span class="w"> </span>./config-fragment-agilex
-<a id="__codelineno-5-100" name="__codelineno-5-100" href="#__codelineno-5-100"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">48</span>
-<a id="__codelineno-5-101" name="__codelineno-5-101" href="#__codelineno-5-101"></a><span class="nb">cd</span><span class="w"> </span>..
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>u-boot-socfpga
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/altera-opensource/u-boot-socfpga
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nb">cd</span><span class="w"> </span>u-boot-socfpga
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># comment out next line to use the latest default branch </span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># git checkout -b test -t origin/socfpga_v2024.07</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># enable dwarf4 debug info, for compatibility with arm ds </span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g&#39;</span><span class="w"> </span>arch/arm/config.mk
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="c1"># Update device tree to enable multi-qspi</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="c1"># Adding the number of QSPI devices</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/clocks = &lt;&amp;qspi_clk&gt;;/a \\t\t\tnum-cs = &lt;2&gt;;&#39;</span><span class="w">  </span>arch/arm/dts/socfpga_agilex.dtsi
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="c1"># Starting booting from QSPI to probe QSPI devices. Removing atempt to boot from NAND</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&amp;flash0,\&amp;mmc;/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="c1"># Rename the flash0 to flash1 (later will recreate the node for flash0)</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="c1"># This is done to have a QSPI flash reference to add the new node just above the reference one.</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/\&amp;flash0 {/\&amp;flash1 {/&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/\&amp;flash1 {/i \&amp;flash0 {\n\tcompatible = \&quot;jedec,spi-nor\&quot;;\n\tspi-tx-bus-width = &lt;4&gt;;\n\tspi-rx-bus-width = &lt;4&gt;;\n\tbootph-all;\n\t/delete-property/ cdns,read-delay; \n};\n&#39;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="c1"># disable NAND in the device tree</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/&amp;nand {/!b;n;c\\tstatus = &quot;disabled&quot;;&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="c1"># remove the NAND configuration from device tree</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/images/,/binman/{/binman/!d}&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="c1"># Change max clk frequency of SPI flash0</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/spi-max-frequency = &lt;100000000&gt;;/spi-max-frequency = &lt;25000000&gt;;/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk.dts
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="c1"># Change the partition size for flash0</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/reg = &lt;0x0 0x04200000&gt;;/reg = &lt;0x0 0x10000000&gt;;/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk.dts
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="c1"># Delete 2nd partition</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/root/,/};/d&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk.dts
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="c1"># make this one flash1 (later will recreate node for flash0 using flash1 location as reference )</span>
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/flash0: flash@0 {/flash1: flash@1 {/&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk.dts
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/flash1: flash@1 {/!b;n;n;n;n;c\\t\treg = &lt;1&gt;;&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk.dts
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/qspi_boot:/flash1_boot:/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk.dts
+<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="c1"># Re-create the original node for flash0</span>
+<a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/flash1: flash@1 {/i \\tflash0: flash@0 {\n\t\t#address-cells = &lt;1&gt;;\n\t\t#size-cells = &lt;1&gt;;\</span>
+<a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="s1">\t\tcompatible = &quot;mt25qu02g&quot;;\n\t\treg = &lt;0&gt;;\n\t\tspi-max-frequency = &lt;25000000&gt;;\n\n\t\tm25p,fast-read;\</span>
+<a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a><span class="s1">\t\tcdns,page-size = &lt;256&gt;;\n\t\tcdns,block-size = &lt;16&gt;;\n\t\tcdns,read-delay = &lt;1&gt;;\n\t\tcdns,tshsl-ns = &lt;50&gt;;\</span>
+<a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a><span class="s1">\t\tcdns,tsd2d-ns = &lt;50&gt;;\n\t\tcdns,tchsh-ns = &lt;4&gt;;\n\t\tcdns,tslch-ns = &lt;4&gt;;\n\n\t\tpartitions {\</span>
+<a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a><span class="s1">\t\t\tcompatible = &quot;fixed-partitions&quot;;\n\t\t\t#address-cells = &lt;1&gt;;\n\t\t\t#size-cells = &lt;1&gt;;\</span>
+<a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a><span class="s1">\t\t\tqspi_boot: partition@0 {\n\t\t\t\tlabel = &quot;u-boot&quot;;\n\t\t\t\treg = &lt;0x0 0x10000000&gt;;\</span>
+<a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a><span class="s1">\t\t\t};\n\n\t\t};\n\t};\n&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk.dts
+<a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a>
+<a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a>
+<a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a><span class="c1"># link to atf </span>
+<a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/arm-trusted-firmware/build/agilex/release/bl31.bin<span class="w"> </span>.
+<a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a><span class="c1"># Create configuration custom file.</span>
+<a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; config-fragment-agilex</span>
+<a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a><span class="s"># Use &#39;Image&#39; for kernel image instead of &#39;kernel.itb&#39;</span>
+<a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a><span class="s">CONFIG_BOOTFILE=&quot;Image&quot;</span>
+<a id="__codelineno-4-55" name="__codelineno-4-55" href="#__codelineno-4-55"></a><span class="s"># ENABLE MULTIFLASH</span>
+<a id="__codelineno-4-56" name="__codelineno-4-56" href="#__codelineno-4-56"></a><span class="s">CONFIG_SOCFPGA_RSU_MULTIFLASH=y</span>
+<a id="__codelineno-4-57" name="__codelineno-4-57" href="#__codelineno-4-57"></a><span class="s">CONFIG_SF_DEFAULT_CS=0</span>
+<a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a><span class="s"># - Disable NAND/UBI related settings from defconfig.</span>
+<a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a><span class="s">CONFIG_NAND_BOOT=n</span>
+<a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a><span class="s">CONFIG_SPL_NAND_SUPPORT=n</span>
+<a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a><span class="s">CONFIG_CMD_NAND_TRIMFFS=n</span>
+<a id="__codelineno-4-62" name="__codelineno-4-62" href="#__codelineno-4-62"></a><span class="s">CONFIG_CMD_NAND_LOCK_UNLOCK=n</span>
+<a id="__codelineno-4-63" name="__codelineno-4-63" href="#__codelineno-4-63"></a><span class="s">CONFIG_NAND_DENALI_DT=n</span>
+<a id="__codelineno-4-64" name="__codelineno-4-64" href="#__codelineno-4-64"></a><span class="s">CONFIG_SYS_NAND_U_BOOT_LOCATIONS=n</span>
+<a id="__codelineno-4-65" name="__codelineno-4-65" href="#__codelineno-4-65"></a><span class="s">CONFIG_SPL_NAND_FRAMEWORK=n</span>
+<a id="__codelineno-4-66" name="__codelineno-4-66" href="#__codelineno-4-66"></a><span class="s">CONFIG_CMD_NAND=n</span>
+<a id="__codelineno-4-67" name="__codelineno-4-67" href="#__codelineno-4-67"></a><span class="s">CONFIG_MTD_RAW_NAND=n</span>
+<a id="__codelineno-4-68" name="__codelineno-4-68" href="#__codelineno-4-68"></a><span class="s">CONFIG_CMD_UBI=n</span>
+<a id="__codelineno-4-69" name="__codelineno-4-69" href="#__codelineno-4-69"></a><span class="s">CONFIG_CMD_UBIFS=n</span>
+<a id="__codelineno-4-70" name="__codelineno-4-70" href="#__codelineno-4-70"></a><span class="s">CONFIG_MTD_UBI=n</span>
+<a id="__codelineno-4-71" name="__codelineno-4-71" href="#__codelineno-4-71"></a><span class="s">CONFIG_ENV_IS_IN_UBI=n</span>
+<a id="__codelineno-4-72" name="__codelineno-4-72" href="#__codelineno-4-72"></a><span class="s">CONFIG_UBI_SILENCE_MSG=n</span>
+<a id="__codelineno-4-73" name="__codelineno-4-73" href="#__codelineno-4-73"></a><span class="s">CONFIG_UBIFS_SILENCE_MSG=n</span>
+<a id="__codelineno-4-74" name="__codelineno-4-74" href="#__codelineno-4-74"></a><span class="s"># - Disable distroboot and use specific boot command.</span>
+<a id="__codelineno-4-75" name="__codelineno-4-75" href="#__codelineno-4-75"></a><span class="s">CONFIG_DISTRO_DEFAULTS=n</span>
+<a id="__codelineno-4-76" name="__codelineno-4-76" href="#__codelineno-4-76"></a><span class="s">CONFIG_HUSH_PARSER=y</span>
+<a id="__codelineno-4-77" name="__codelineno-4-77" href="#__codelineno-4-77"></a><span class="s">CONFIG_SYS_PROMPT_HUSH_PS2=&quot;&gt; &quot;</span>
+<a id="__codelineno-4-78" name="__codelineno-4-78" href="#__codelineno-4-78"></a><span class="s">CONFIG_USE_BOOTCOMMAND=y</span>
+<a id="__codelineno-4-79" name="__codelineno-4-79" href="#__codelineno-4-79"></a><span class="s">CONFIG_BOOTCOMMAND=&quot;bridge enable; setenv bootfile Image; setenv fdtimage socfpga_agilex7f_socdk_multiqspi.dtb; run mmcload; run linux_qspi_enable; run rsu_status; run mmcboot&quot;</span>
+<a id="__codelineno-4-80" name="__codelineno-4-80" href="#__codelineno-4-80"></a><span class="s">CONFIG_CMD_FAT=y</span>
+<a id="__codelineno-4-81" name="__codelineno-4-81" href="#__codelineno-4-81"></a><span class="s">CONFIG_CMD_FS_GENERIC=y</span>
+<a id="__codelineno-4-82" name="__codelineno-4-82" href="#__codelineno-4-82"></a><span class="s">CONFIG_DOS_PARTITION=y</span>
+<a id="__codelineno-4-83" name="__codelineno-4-83" href="#__codelineno-4-83"></a><span class="s">CONFIG_SPL_DOS_PARTITION=y</span>
+<a id="__codelineno-4-84" name="__codelineno-4-84" href="#__codelineno-4-84"></a><span class="s">CONFIG_CMD_PART=y</span>
+<a id="__codelineno-4-85" name="__codelineno-4-85" href="#__codelineno-4-85"></a><span class="s">CONFIG_SPL_CRC32=y</span>
+<a id="__codelineno-4-86" name="__codelineno-4-86" href="#__codelineno-4-86"></a><span class="s">CONFIG_LZO=y</span>
+<a id="__codelineno-4-87" name="__codelineno-4-87" href="#__codelineno-4-87"></a><span class="s">CONFIG_CMD_DHCP=y</span>
+<a id="__codelineno-4-88" name="__codelineno-4-88" href="#__codelineno-4-88"></a><span class="s">CONFIG_SYS_PROMPT=&quot;SOCFPGA # &quot;</span>
+<a id="__codelineno-4-89" name="__codelineno-4-89" href="#__codelineno-4-89"></a><span class="s"># Enable more QSPI flash manufacturers</span>
+<a id="__codelineno-4-90" name="__codelineno-4-90" href="#__codelineno-4-90"></a><span class="s">CONFIG_SPI_FLASH_MACRONIX=y</span>
+<a id="__codelineno-4-91" name="__codelineno-4-91" href="#__codelineno-4-91"></a><span class="s">CONFIG_SPI_FLASH_GIGADEVICE=y</span>
+<a id="__codelineno-4-92" name="__codelineno-4-92" href="#__codelineno-4-92"></a><span class="s">CONFIG_SPI_FLASH_WINBOND=y</span>
+<a id="__codelineno-4-93" name="__codelineno-4-93" href="#__codelineno-4-93"></a><span class="s">CONFIG_SPI_FLASH_ISSI=y</span>
+<a id="__codelineno-4-94" name="__codelineno-4-94" href="#__codelineno-4-94"></a><span class="s">EOF</span>
+<a id="__codelineno-4-95" name="__codelineno-4-95" href="#__codelineno-4-95"></a><span class="c1"># build U-Boot</span>
+<a id="__codelineno-4-96" name="__codelineno-4-96" href="#__codelineno-4-96"></a>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>mrproper
+<a id="__codelineno-4-97" name="__codelineno-4-97" href="#__codelineno-4-97"></a>make<span class="w"> </span>socfpga_agilex_defconfig
+<a id="__codelineno-4-98" name="__codelineno-4-98" href="#__codelineno-4-98"></a><span class="c1"># Use created custom configuration file to merge with the default configuration obtained in .config file.</span>
+<a id="__codelineno-4-99" name="__codelineno-4-99" href="#__codelineno-4-99"></a>./scripts/kconfig/merge_config.sh<span class="w"> </span>-O<span class="w"> </span>./<span class="w"> </span>./.config<span class="w"> </span>./config-fragment-agilex
+<a id="__codelineno-4-100" name="__codelineno-4-100" href="#__codelineno-4-100"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">48</span>
+<a id="__codelineno-4-101" name="__codelineno-4-101" href="#__codelineno-4-101"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
 <p>After completing the above steps, the following files are created.</p>
 <ul>
@@ -4014,23 +4010,23 @@
 </ul>
 <p><a class="glightbox" href="../images/multiqspi-linux-layout.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/multiqspi-linux-layout.png" /></a> </p>
 <p>The following commands can be used to obtain the Linux source code and build Linux.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga<span class="w"> </span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga<span class="w"> </span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">cd</span><span class="w"> </span>linux-socfpga<span class="w"> </span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># checkout the branch used for this document, comment out to use default </span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1"># git checkout -b test -t origin/socfpga-6.6.51-lts </span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># configure the RSU driver to be built into the kernel </span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>mrproper<span class="w"> </span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>make<span class="w"> </span>defconfig<span class="w"> </span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>./scripts/config<span class="w"> </span>--set-val<span class="w"> </span>CONFIG_INTEL_STRATIX10_RSU<span class="w"> </span>y
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="c1"># enable kernel debugging with RiscFree</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>./scripts/config<span class="w"> </span>--set-val<span class="w"> </span>CONFIG_DEBUG_INFO<span class="w">  </span>y
-<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>./scripts/config<span class="w"> </span>--set-val<span class="w"> </span>CONFIG_GDB_SCRIPTS<span class="w"> </span>y
-<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>make<span class="w"> </span>oldconfig<span class="w"> </span>
-<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">48</span><span class="w"> </span>Image<span class="w"> </span>dtbs<span class="w"> </span>
-<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga<span class="w"> </span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga<span class="w"> </span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">cd</span><span class="w"> </span>linux-socfpga<span class="w"> </span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># checkout the branch used for this document, comment out to use default </span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># git checkout -b test -t origin/socfpga-6.6.51-lts </span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1"># configure the RSU driver to be built into the kernel </span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>mrproper<span class="w"> </span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>make<span class="w"> </span>defconfig<span class="w"> </span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>./scripts/config<span class="w"> </span>--set-val<span class="w"> </span>CONFIG_INTEL_STRATIX10_RSU<span class="w"> </span>y
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="c1"># enable kernel debugging with RiscFree</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>./scripts/config<span class="w"> </span>--set-val<span class="w"> </span>CONFIG_DEBUG_INFO<span class="w">  </span>y
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>./scripts/config<span class="w"> </span>--set-val<span class="w"> </span>CONFIG_GDB_SCRIPTS<span class="w"> </span>y
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>make<span class="w"> </span>oldconfig<span class="w"> </span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">48</span><span class="w"> </span>Image<span class="w"> </span>dtbs<span class="w"> </span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
 </code></pre></div>
 <p>After completing the above steps, the following files are created.</p>
 <ul>
@@ -4040,66 +4036,66 @@
 <h3 id="creating-the-initial-flash-image">Creating the Initial Flash Image<a class="headerlink" href="#creating-the-initial-flash-image" title="Permanent link">&para;</a></h3>
 <p>This section presents detailed instructions on how to create the initial flash image, by using the Programming File Generator. </p>
 <p>For reference, an example of the  Programming File Generator configuration file is provided below so and you can easily create the initial flash image by passing it to the Programming File Generator as shown below. The layout described in this <strong>.pfg</strong> file matches the layout described earlier in this page.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># Create automatically the .pfg file</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; initial_image_multiQSPI.pfg</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="s">&lt;pfg version=&quot;1&quot;&gt;</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="s">    &lt;settings custom_db_dir=&quot;./&quot; mode=&quot;ASX4&quot;/&gt;</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="s">    &lt;output_files&gt;</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="s">        &lt;output_file name=&quot;initial_image_multiQSPI&quot; directory=&quot;./&quot; type=&quot;JIC&quot;&gt;</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="s">            &lt;file_options/&gt;</span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="s">            &lt;secondary_file type=&quot;MAP&quot; name=&quot;initial_image_multiQSPI_jic&quot;&gt;</span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="s">                &lt;file_options/&gt;</span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="s">            &lt;/secondary_file&gt;</span>
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="s">            &lt;secondary_file type=&quot;SEC_RPD&quot; name=&quot;initial_image_multiQSPI_jic&quot;&gt;</span>
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="s">                &lt;file_options bitswap=&quot;1&quot;/&gt;</span>
-<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="s">            &lt;/secondary_file&gt;</span>
-<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="s">            &lt;flash_device_id&gt;Flash_Device_1&lt;/flash_device_id&gt;</span>
-<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="s">        &lt;/output_file&gt;</span>
-<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="s">    &lt;/output_files&gt;</span>
-<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="s">    &lt;bitstreams&gt;</span>
-<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="s">        &lt;bitstream id=&quot;Bitstream_1&quot;&gt;</span>
-<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="s">            &lt;path signing=&quot;OFF&quot; finalize_encryption=&quot;0&quot; hps_path=&quot;u-boot-socfpga/spl/u-boot-spl-dtb.hex&quot;&gt;hw/ghrd.0/output_files/ghrd_agfb014r24b2e2v.sof&lt;/path&gt;</span>
-<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="s">        &lt;/bitstream&gt;</span>
-<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="s">        &lt;bitstream id=&quot;Bitstream_2&quot;&gt;</span>
-<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="s">            &lt;path signing=&quot;OFF&quot; finalize_encryption=&quot;0&quot; hps_path=&quot;u-boot-socfpga/spl/u-boot-spl-dtb.hex&quot;&gt;hw/ghrd.1/output_files/ghrd_agfb014r24b2e2v.sof&lt;/path&gt;</span>
-<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="s">        &lt;/bitstream&gt;</span>
-<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="s">    &lt;/bitstreams&gt;</span>
-<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="s">    &lt;flash_devices&gt;</span>
-<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="s">        &lt;flash_device type=&quot;QSPI04G&quot; id=&quot;Flash_Device_1&quot;&gt;</span>
-<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="s">            &lt;partition reserved=&quot;1&quot; fixed_s_addr=&quot;1&quot; s_addr=&quot;0x00000000&quot; multiple_flash_cs=&quot;2&quot; factory_fallback=&quot;0&quot; e_addr=&quot;0x0020FFFF&quot; fixed_e_addr=&quot;1&quot; id=&quot;BOOT_INFO&quot; size=&quot;0&quot;/&gt;</span>
-<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="s">            &lt;partition reserved=&quot;1&quot; extra_space=&quot;262144&quot; fixed_s_addr=&quot;1&quot; s_addr=&quot;0x00210000&quot; e_addr=&quot;0x0090FFFF&quot; fixed_e_addr=&quot;0&quot; id=&quot;FACTORY_IMAGE&quot; size=&quot;0&quot;/&gt;</span>
-<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="s">            &lt;partition reserved=&quot;1&quot; fixed_s_addr=&quot;1&quot; s_addr=&quot;auto&quot; e_addr=&quot;auto&quot; fixed_e_addr=&quot;1&quot; id=&quot;SPT0&quot; size=&quot;65536&quot;/&gt;</span>
-<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a><span class="s">            &lt;partition reserved=&quot;1&quot; fixed_s_addr=&quot;1&quot; s_addr=&quot;auto&quot; e_addr=&quot;auto&quot; fixed_e_addr=&quot;1&quot; id=&quot;SPT1&quot; size=&quot;65536&quot;/&gt;</span>
-<a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a><span class="s">            &lt;partition reserved=&quot;1&quot; fixed_s_addr=&quot;1&quot; s_addr=&quot;auto&quot; e_addr=&quot;auto&quot; fixed_e_addr=&quot;1&quot; id=&quot;CPB0&quot; size=&quot;65536&quot;/&gt;</span>
-<a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a><span class="s">            &lt;partition reserved=&quot;1&quot; fixed_s_addr=&quot;1&quot; s_addr=&quot;auto&quot; e_addr=&quot;auto&quot; fixed_e_addr=&quot;1&quot; id=&quot;CPB1&quot; size=&quot;65536&quot;/&gt;</span>
-<a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a><span class="s">            &lt;partition reserved=&quot;0&quot; fixed_s_addr=&quot;0&quot; s_addr=&quot;0x01000000&quot; e_addr=&quot;0x01FFFFFF&quot; fixed_e_addr=&quot;0&quot; id=&quot;P1&quot; size=&quot;0&quot;/&gt;</span>
-<a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a><span class="s">            &lt;partition reserved=&quot;0&quot; fixed_s_addr=&quot;0&quot; s_addr=&quot;0x10000000&quot; e_addr=&quot;0x10FFFFFF&quot; fixed_e_addr=&quot;0&quot; id=&quot;P2&quot; size=&quot;0&quot;/&gt;</span>
-<a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a><span class="s">            &lt;partition reserved=&quot;0&quot; fixed_s_addr=&quot;0&quot; s_addr=&quot;0x11000000&quot; e_addr=&quot;0x11FFFFFF&quot; fixed_e_addr=&quot;0&quot; id=&quot;P3&quot; size=&quot;0&quot;/&gt;</span>
-<a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a><span class="s">        &lt;/flash_device&gt;</span>
-<a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a><span class="s">        &lt;flash_loader&gt;AGFB014R24B&lt;/flash_loader&gt;</span>
-<a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a><span class="s">    &lt;/flash_devices&gt;</span>
-<a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a><span class="s">    &lt;assignments&gt;</span>
-<a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a><span class="s">        &lt;assignment page=&quot;0&quot; partition_id=&quot;FACTORY_IMAGE&quot;&gt;</span>
-<a id="__codelineno-7-42" name="__codelineno-7-42" href="#__codelineno-7-42"></a><span class="s">            &lt;bitstream_id&gt;Bitstream_1&lt;/bitstream_id&gt;</span>
-<a id="__codelineno-7-43" name="__codelineno-7-43" href="#__codelineno-7-43"></a><span class="s">        &lt;/assignment&gt;</span>
-<a id="__codelineno-7-44" name="__codelineno-7-44" href="#__codelineno-7-44"></a><span class="s">        &lt;assignment page=&quot;1&quot; partition_id=&quot;P1&quot;&gt;</span>
-<a id="__codelineno-7-45" name="__codelineno-7-45" href="#__codelineno-7-45"></a><span class="s">            &lt;bitstream_id&gt;Bitstream_2&lt;/bitstream_id&gt;</span>
-<a id="__codelineno-7-46" name="__codelineno-7-46" href="#__codelineno-7-46"></a><span class="s">        &lt;/assignment&gt;</span>
-<a id="__codelineno-7-47" name="__codelineno-7-47" href="#__codelineno-7-47"></a><span class="s">    &lt;/assignments&gt;</span>
-<a id="__codelineno-7-48" name="__codelineno-7-48" href="#__codelineno-7-48"></a><span class="s">&lt;/pfg&gt;</span>
-<a id="__codelineno-7-49" name="__codelineno-7-49" href="#__codelineno-7-49"></a><span class="s">EOF</span>
-<a id="__codelineno-7-50" name="__codelineno-7-50" href="#__codelineno-7-50"></a>
-<a id="__codelineno-7-51" name="__codelineno-7-51" href="#__codelineno-7-51"></a><span class="c1"># MultiQSPI is supported starting in 24.3</span>
-<a id="__codelineno-7-52" name="__codelineno-7-52" href="#__codelineno-7-52"></a>~/intelFPGA_pro/24.3/quartus/bin/quartus_pfg<span class="w"> </span>-c<span class="w"> </span>initial_image_multiQSPI.pfg
-<a id="__codelineno-7-53" name="__codelineno-7-53" href="#__codelineno-7-53"></a>mv<span class="w"> </span>initial_image_multiQSPI.jic<span class="w"> </span>initial_image_multiQSPI_prev.jic
-<a id="__codelineno-7-54" name="__codelineno-7-54" href="#__codelineno-7-54"></a>mv<span class="w"> </span>initial_image_multiQSPI_jic_2Gb_cs0.rpd<span class="w"> </span><span class="c1">#initial_image_multiQSPI_jic_2Gb_cs0_prev.rpd</span>
-<a id="__codelineno-7-55" name="__codelineno-7-55" href="#__codelineno-7-55"></a>mv<span class="w"> </span>initial_image_multiQSPI_jic_2Gb_cs1.rpd<span class="w"> </span>initial_image_multiQSPI_jic_2Gb_cs1_prev.rpd
-<a id="__codelineno-7-56" name="__codelineno-7-56" href="#__codelineno-7-56"></a>mv<span class="w"> </span>initial_image_multiQSPI_jic.map<span class="w"> </span>initial_image_multiQSPI_jic_prev.map
-<a id="__codelineno-7-57" name="__codelineno-7-57" href="#__codelineno-7-57"></a>
-<a id="__codelineno-7-58" name="__codelineno-7-58" href="#__codelineno-7-58"></a><span class="c1"># Create Initial Image for this release</span>
-<a id="__codelineno-7-59" name="__codelineno-7-59" href="#__codelineno-7-59"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-7-60" name="__codelineno-7-60" href="#__codelineno-7-60"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>initial_image_multiQSPI.pfg
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># Create automatically the .pfg file</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; initial_image_multiQSPI.pfg</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="s">&lt;pfg version=&quot;1&quot;&gt;</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="s">    &lt;settings custom_db_dir=&quot;./&quot; mode=&quot;ASX4&quot;/&gt;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="s">    &lt;output_files&gt;</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="s">        &lt;output_file name=&quot;initial_image_multiQSPI&quot; directory=&quot;./&quot; type=&quot;JIC&quot;&gt;</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="s">            &lt;file_options/&gt;</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="s">            &lt;secondary_file type=&quot;MAP&quot; name=&quot;initial_image_multiQSPI_jic&quot;&gt;</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="s">                &lt;file_options/&gt;</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="s">            &lt;/secondary_file&gt;</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="s">            &lt;secondary_file type=&quot;SEC_RPD&quot; name=&quot;initial_image_multiQSPI_jic&quot;&gt;</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="s">                &lt;file_options bitswap=&quot;1&quot;/&gt;</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="s">            &lt;/secondary_file&gt;</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="s">            &lt;flash_device_id&gt;Flash_Device_1&lt;/flash_device_id&gt;</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="s">        &lt;/output_file&gt;</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="s">    &lt;/output_files&gt;</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="s">    &lt;bitstreams&gt;</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="s">        &lt;bitstream id=&quot;Bitstream_1&quot;&gt;</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="s">            &lt;path signing=&quot;OFF&quot; finalize_encryption=&quot;0&quot; hps_path=&quot;u-boot-socfpga/spl/u-boot-spl-dtb.hex&quot;&gt;hw/ghrd.0/output_files/ghrd_agfb014r24b2e2v.sof&lt;/path&gt;</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="s">        &lt;/bitstream&gt;</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="s">        &lt;bitstream id=&quot;Bitstream_2&quot;&gt;</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="s">            &lt;path signing=&quot;OFF&quot; finalize_encryption=&quot;0&quot; hps_path=&quot;u-boot-socfpga/spl/u-boot-spl-dtb.hex&quot;&gt;hw/ghrd.1/output_files/ghrd_agfb014r24b2e2v.sof&lt;/path&gt;</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="s">        &lt;/bitstream&gt;</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="s">    &lt;/bitstreams&gt;</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="s">    &lt;flash_devices&gt;</span>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="s">        &lt;flash_device type=&quot;QSPI04G&quot; id=&quot;Flash_Device_1&quot;&gt;</span>
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a><span class="s">            &lt;partition reserved=&quot;1&quot; fixed_s_addr=&quot;1&quot; s_addr=&quot;0x00000000&quot; multiple_flash_cs=&quot;2&quot; factory_fallback=&quot;0&quot; e_addr=&quot;0x0020FFFF&quot; fixed_e_addr=&quot;1&quot; id=&quot;BOOT_INFO&quot; size=&quot;0&quot;/&gt;</span>
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="s">            &lt;partition reserved=&quot;1&quot; extra_space=&quot;262144&quot; fixed_s_addr=&quot;1&quot; s_addr=&quot;0x00210000&quot; e_addr=&quot;0x0090FFFF&quot; fixed_e_addr=&quot;0&quot; id=&quot;FACTORY_IMAGE&quot; size=&quot;0&quot;/&gt;</span>
+<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="s">            &lt;partition reserved=&quot;1&quot; fixed_s_addr=&quot;1&quot; s_addr=&quot;auto&quot; e_addr=&quot;auto&quot; fixed_e_addr=&quot;1&quot; id=&quot;SPT0&quot; size=&quot;65536&quot;/&gt;</span>
+<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="s">            &lt;partition reserved=&quot;1&quot; fixed_s_addr=&quot;1&quot; s_addr=&quot;auto&quot; e_addr=&quot;auto&quot; fixed_e_addr=&quot;1&quot; id=&quot;SPT1&quot; size=&quot;65536&quot;/&gt;</span>
+<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="s">            &lt;partition reserved=&quot;1&quot; fixed_s_addr=&quot;1&quot; s_addr=&quot;auto&quot; e_addr=&quot;auto&quot; fixed_e_addr=&quot;1&quot; id=&quot;CPB0&quot; size=&quot;65536&quot;/&gt;</span>
+<a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a><span class="s">            &lt;partition reserved=&quot;1&quot; fixed_s_addr=&quot;1&quot; s_addr=&quot;auto&quot; e_addr=&quot;auto&quot; fixed_e_addr=&quot;1&quot; id=&quot;CPB1&quot; size=&quot;65536&quot;/&gt;</span>
+<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="s">            &lt;partition reserved=&quot;0&quot; fixed_s_addr=&quot;0&quot; s_addr=&quot;0x01000000&quot; e_addr=&quot;0x01FFFFFF&quot; fixed_e_addr=&quot;0&quot; id=&quot;P1&quot; size=&quot;0&quot;/&gt;</span>
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a><span class="s">            &lt;partition reserved=&quot;0&quot; fixed_s_addr=&quot;0&quot; s_addr=&quot;0x10000000&quot; e_addr=&quot;0x10FFFFFF&quot; fixed_e_addr=&quot;0&quot; id=&quot;P2&quot; size=&quot;0&quot;/&gt;</span>
+<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a><span class="s">            &lt;partition reserved=&quot;0&quot; fixed_s_addr=&quot;0&quot; s_addr=&quot;0x11000000&quot; e_addr=&quot;0x11FFFFFF&quot; fixed_e_addr=&quot;0&quot; id=&quot;P3&quot; size=&quot;0&quot;/&gt;</span>
+<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a><span class="s">        &lt;/flash_device&gt;</span>
+<a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a><span class="s">        &lt;flash_loader&gt;AGFB014R24B&lt;/flash_loader&gt;</span>
+<a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a><span class="s">    &lt;/flash_devices&gt;</span>
+<a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a><span class="s">    &lt;assignments&gt;</span>
+<a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a><span class="s">        &lt;assignment page=&quot;0&quot; partition_id=&quot;FACTORY_IMAGE&quot;&gt;</span>
+<a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a><span class="s">            &lt;bitstream_id&gt;Bitstream_1&lt;/bitstream_id&gt;</span>
+<a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a><span class="s">        &lt;/assignment&gt;</span>
+<a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a><span class="s">        &lt;assignment page=&quot;1&quot; partition_id=&quot;P1&quot;&gt;</span>
+<a id="__codelineno-6-45" name="__codelineno-6-45" href="#__codelineno-6-45"></a><span class="s">            &lt;bitstream_id&gt;Bitstream_2&lt;/bitstream_id&gt;</span>
+<a id="__codelineno-6-46" name="__codelineno-6-46" href="#__codelineno-6-46"></a><span class="s">        &lt;/assignment&gt;</span>
+<a id="__codelineno-6-47" name="__codelineno-6-47" href="#__codelineno-6-47"></a><span class="s">    &lt;/assignments&gt;</span>
+<a id="__codelineno-6-48" name="__codelineno-6-48" href="#__codelineno-6-48"></a><span class="s">&lt;/pfg&gt;</span>
+<a id="__codelineno-6-49" name="__codelineno-6-49" href="#__codelineno-6-49"></a><span class="s">EOF</span>
+<a id="__codelineno-6-50" name="__codelineno-6-50" href="#__codelineno-6-50"></a>
+<a id="__codelineno-6-51" name="__codelineno-6-51" href="#__codelineno-6-51"></a><span class="c1"># MultiQSPI is supported starting in 24.3</span>
+<a id="__codelineno-6-52" name="__codelineno-6-52" href="#__codelineno-6-52"></a>~/intelFPGA_pro/24.3/quartus/bin/quartus_pfg<span class="w"> </span>-c<span class="w"> </span>initial_image_multiQSPI.pfg
+<a id="__codelineno-6-53" name="__codelineno-6-53" href="#__codelineno-6-53"></a>mv<span class="w"> </span>initial_image_multiQSPI.jic<span class="w"> </span>initial_image_multiQSPI_prev.jic
+<a id="__codelineno-6-54" name="__codelineno-6-54" href="#__codelineno-6-54"></a>mv<span class="w"> </span>initial_image_multiQSPI_jic_2Gb_cs0.rpd<span class="w"> </span><span class="c1">#initial_image_multiQSPI_jic_2Gb_cs0_prev.rpd</span>
+<a id="__codelineno-6-55" name="__codelineno-6-55" href="#__codelineno-6-55"></a>mv<span class="w"> </span>initial_image_multiQSPI_jic_2Gb_cs1.rpd<span class="w"> </span>initial_image_multiQSPI_jic_2Gb_cs1_prev.rpd
+<a id="__codelineno-6-56" name="__codelineno-6-56" href="#__codelineno-6-56"></a>mv<span class="w"> </span>initial_image_multiQSPI_jic.map<span class="w"> </span>initial_image_multiQSPI_jic_prev.map
+<a id="__codelineno-6-57" name="__codelineno-6-57" href="#__codelineno-6-57"></a>
+<a id="__codelineno-6-58" name="__codelineno-6-58" href="#__codelineno-6-58"></a><span class="c1"># Create Initial Image for this release</span>
+<a id="__codelineno-6-59" name="__codelineno-6-59" href="#__codelineno-6-59"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-6-60" name="__codelineno-6-60" href="#__codelineno-6-60"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>initial_image_multiQSPI.pfg
 </code></pre></div>
 <p>After completion of this stage you should see the following files created. These are the images QSPI images.</p>
 <ul>
@@ -4119,14 +4115,14 @@
 </ul>
 <h3 id="creating-the-application-image">Creating the Application Image<a class="headerlink" href="#creating-the-application-image" title="Permanent link">&para;</a></h3>
 <p>The following commands are used to create the application image used in this example.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>images
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>rm<span class="w"> </span>-rf<span class="w"> </span>images/application2.rpd
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>hw/ghrd.2/output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>images/application2.rpd<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>-o<span class="w"> </span><span class="nv">bitswap</span><span class="o">=</span>ON
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>images
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>rm<span class="w"> </span>-rf<span class="w"> </span>images/application2.rpd
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>hw/ghrd.2/output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>images/application2.rpd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>-o<span class="w"> </span><span class="nv">bitswap</span><span class="o">=</span>ON
 </code></pre></div>
 <p>The following application image is created: </p>
 <ul>
@@ -4134,15 +4130,15 @@
 </ul>
 <h3 id="creating-the-factory-update-image">Creating the Factory Update Image<a class="headerlink" href="#creating-the-factory-update-image" title="Permanent link">&para;</a></h3>
 <p>The following commands are used to create the factory update image used in this example.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>images
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>rm<span class="w"> </span>-f<span class="w"> </span>images/factory_update.rpd
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>images/factory_update.rpd<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>-o<span class="w"> </span><span class="nv">bitswap</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>-o<span class="w"> </span><span class="nv">rsu_upgrade</span><span class="o">=</span>ON
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>images
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>rm<span class="w"> </span>-f<span class="w"> </span>images/factory_update.rpd
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>images/factory_update.rpd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>-o<span class="w"> </span><span class="nv">bitswap</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>-o<span class="w"> </span><span class="nv">rsu_upgrade</span><span class="o">=</span>ON
 </code></pre></div>
 <p>The following factory update image is created.</p>
 <ul>
@@ -4150,16 +4146,16 @@
 </ul>
 <h3 id="creating-the-decision-firmware-update-image">Creating the Decision Firmware Update Image<a class="headerlink" href="#creating-the-decision-firmware-update-image" title="Permanent link">&para;</a></h3>
 <p>The following commands are used to create the decision firmware update image used in this example.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>images<span class="w"> </span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>rm<span class="w"> </span>-f<span class="w"> </span>images/decision_firmware_update.rpd
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>images/decision_firmware_update.rpd<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>-o<span class="w"> </span><span class="nv">bitswap</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>-o<span class="w"> </span><span class="nv">rsu_upgrade</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>-o<span class="w"> </span><span class="nv">firmware_only</span><span class="o">=</span>ON
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>images<span class="w"> </span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>rm<span class="w"> </span>-f<span class="w"> </span>images/decision_firmware_update.rpd
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>images/decision_firmware_update.rpd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>-o<span class="w"> </span><span class="nv">bitswap</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>-o<span class="w"> </span><span class="nv">rsu_upgrade</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>-o<span class="w"> </span><span class="nv">firmware_only</span><span class="o">=</span>ON
 </code></pre></div>
 <p>The following decistion firmware update image is created.</p>
 <ul>
@@ -4168,18 +4164,18 @@
 <p><strong>Note</strong>: The provided SOF file is used by the quartus_pfg to determine the parameters that are writen to the decision firmware data structure. This includes QSPI clock and pin settings, the value of max_retry parameter, and the selected behavior of the HPS watchdog. The actual configuration data from the SOF file is not used. </p>
 <h3 id="creating-the-combined-application-image">Creating the Combined Application Image<a class="headerlink" href="#creating-the-combined-application-image" title="Permanent link">&para;</a></h3>
 <p>The following commands are used to create the combined application image used in this example.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>images
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>rm<span class="w"> </span>-f<span class="w"> </span>images/combined_application.rpd
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>images/combined_application.rpd<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>-o<span class="w"> </span><span class="nv">app_image</span><span class="o">=</span>hw/ghrd.2/output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>-o<span class="w"> </span><span class="nv">app_image_hps_path</span><span class="o">=</span>u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>-o<span class="w"> </span><span class="nv">bitswap</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>-o<span class="w"> </span><span class="nv">rsu_upgrade</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>-o<span class="w"> </span><span class="nv">app_image_only</span><span class="o">=</span>ON
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>images
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>rm<span class="w"> </span>-f<span class="w"> </span>images/combined_application.rpd
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>images/combined_application.rpd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>-o<span class="w"> </span><span class="nv">app_image</span><span class="o">=</span>hw/ghrd.2/output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>-o<span class="w"> </span><span class="nv">app_image_hps_path</span><span class="o">=</span>u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>-o<span class="w"> </span><span class="nv">bitswap</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>-o<span class="w"> </span><span class="nv">rsu_upgrade</span><span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>-o<span class="w"> </span><span class="nv">app_image_only</span><span class="o">=</span>ON
 </code></pre></div>
 <p>The following file is created.</p>
 <ul>
@@ -4189,34 +4185,34 @@
 <p>A root file system is required to boot Linux. There are a lot of ways to build a root file system, depending on your specific needs. This section shows how to build a small root file system using Yocto. </p>
 <p>1. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.</p>
 <p>The command to install the required packages on Ubuntu 22.04 is:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>openssh-server<span class="w"> </span>mc<span class="w"> </span>libgmp3-dev<span class="w"> </span>libmpc-dev<span class="w"> </span>gawk<span class="w"> </span>wget<span class="w"> </span>git<span class="w"> </span>diffstat<span class="w"> </span>unzip<span class="w"> </span>texinfo<span class="w"> </span>gcc<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>build-essential<span class="w"> </span>chrpath<span class="w"> </span>socat<span class="w"> </span>cpio<span class="w"> </span>python3<span class="w"> </span>python3-pip<span class="w"> </span>python3-pexpect<span class="w"> </span>xz-utils<span class="w"> </span>debianutils<span class="w"> </span>iputils-ping<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>python3-git<span class="w"> </span>python3-jinja2<span class="w"> </span>libegl1-mesa<span class="w"> </span>libsdl1.2-dev<span class="w"> </span>pylint<span class="w"> </span>xterm<span class="w"> </span>python3-subunit<span class="w"> </span>mesa-common-dev<span class="w"> </span>zstd<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>liblz4-tool<span class="w"> </span>git<span class="w"> </span>fakeroot<span class="w"> </span>build-essential<span class="w"> </span>ncurses-dev<span class="w"> </span>xz-utils<span class="w"> </span>libssl-dev<span class="w"> </span>bc<span class="w"> </span>flex<span class="w"> </span>libelf-dev<span class="w"> </span>bison<span class="w"> </span>xinetd<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>tftpd<span class="w"> </span>tftp<span class="w"> </span>nfs-kernel-server<span class="w"> </span>libncurses5<span class="w"> </span>libc6-i386<span class="w"> </span>libstdc++6:i386<span class="w"> </span>libgcc++1:i386<span class="w"> </span>lib32z1<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>device-tree-compiler<span class="w"> </span>curl<span class="w"> </span>mtd-utils<span class="w"> </span>u-boot-tools<span class="w"> </span>net-tools<span class="w"> </span>swig<span class="w"> </span>-y
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>openssh-server<span class="w"> </span>mc<span class="w"> </span>libgmp3-dev<span class="w"> </span>libmpc-dev<span class="w"> </span>gawk<span class="w"> </span>wget<span class="w"> </span>git<span class="w"> </span>diffstat<span class="w"> </span>unzip<span class="w"> </span>texinfo<span class="w"> </span>gcc<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>build-essential<span class="w"> </span>chrpath<span class="w"> </span>socat<span class="w"> </span>cpio<span class="w"> </span>python3<span class="w"> </span>python3-pip<span class="w"> </span>python3-pexpect<span class="w"> </span>xz-utils<span class="w"> </span>debianutils<span class="w"> </span>iputils-ping<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>python3-git<span class="w"> </span>python3-jinja2<span class="w"> </span>libegl1-mesa<span class="w"> </span>libsdl1.2-dev<span class="w"> </span>pylint<span class="w"> </span>xterm<span class="w"> </span>python3-subunit<span class="w"> </span>mesa-common-dev<span class="w"> </span>zstd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>liblz4-tool<span class="w"> </span>git<span class="w"> </span>fakeroot<span class="w"> </span>build-essential<span class="w"> </span>ncurses-dev<span class="w"> </span>xz-utils<span class="w"> </span>libssl-dev<span class="w"> </span>bc<span class="w"> </span>flex<span class="w"> </span>libelf-dev<span class="w"> </span>bison<span class="w"> </span>xinetd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>tftpd<span class="w"> </span>tftp<span class="w"> </span>nfs-kernel-server<span class="w"> </span>libncurses5<span class="w"> </span>libc6-i386<span class="w"> </span>libstdc++6:i386<span class="w"> </span>libgcc++1:i386<span class="w"> </span>lib32z1<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>device-tree-compiler<span class="w"> </span>curl<span class="w"> </span>mtd-utils<span class="w"> </span>u-boot-tools<span class="w"> </span>net-tools<span class="w"> </span>swig<span class="w"> </span>-y
 </code></pre></div>
 <p>On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="w"> </span>sudo<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span>/bin/bash<span class="w"> </span>/bin/sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="w"> </span>sudo<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span>/bin/bash<span class="w"> </span>/bin/sh
 </code></pre></div>
 <p><strong>Note</strong>: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.</p>
 <p>2. Run the following commands to build the root file system.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>yocto<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>yocto<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>yocto
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://git.yoctoproject.org/poky
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://git.yoctoproject.org/meta-intel-fpga
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://github.com/openembedded/meta-openembedded
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="c1"># work around issue</span>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;do_package_qa[noexec] = &quot;1&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>meta-intel-fpga<span class="w"> </span>-name<span class="w"> </span>linux-socfpga_6.6.bb<span class="k">)</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>./build<span class="w"> </span>
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;MACHINE = &quot;agilex7_dk_si_agf014eb&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf<span class="w"> </span>
-<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-intel-fpga &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf<span class="w"> </span>
-<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-openembedded/meta-oe &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf<span class="w"> </span>
-<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;IMAGE_FSTYPES = &quot;tar.gz&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
-<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;CORE_IMAGE_EXTRA_INSTALL += &quot;openssh gdbserver&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
-<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>bitbake<span class="w"> </span>core-image-minimal<span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>yocto<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>yocto<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>yocto
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://git.yoctoproject.org/poky
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://git.yoctoproject.org/meta-intel-fpga
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://github.com/openembedded/meta-openembedded
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="c1"># work around issue</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;do_package_qa[noexec] = &quot;1&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>meta-intel-fpga<span class="w"> </span>-name<span class="w"> </span>linux-socfpga_6.6.bb<span class="k">)</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>./build<span class="w"> </span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;MACHINE = &quot;agilex7_dk_si_agf014eb&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf<span class="w"> </span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-intel-fpga &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf<span class="w"> </span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-openembedded/meta-oe &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf<span class="w"> </span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;IMAGE_FSTYPES = &quot;tar.gz&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;CORE_IMAGE_EXTRA_INSTALL += &quot;openssh gdbserver&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>bitbake<span class="w"> </span>core-image-minimal<span class="w"> </span>
 </code></pre></div>
 <p>After the build completes, which can take a few hours depending on your host system processing power and Internet connection speed, the following root file system archive is created.</p>
 <ul>
@@ -4224,17 +4220,17 @@
 </ul>
 <h3 id="building-zlib">Building ZLIB<a class="headerlink" href="#building-zlib" title="Permanent link">&para;</a></h3>
 <p>The ZLIB is required by LIBRSU. The following steps can be used to compile it.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>zlib-1.3.1<span class="w"> </span>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>wget<span class="w"> </span>http://zlib.net/zlib-1.3.1.tar.gz<span class="w"> </span>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>tar<span class="w"> </span>xf<span class="w"> </span>zlib-1.3.1.tar.gz<span class="w"> </span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>rm<span class="w"> </span>zlib-1.3.1.tar.gz<span class="w"> </span>
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="nb">cd</span><span class="w"> </span>zlib-1.3.1/<span class="w"> </span>
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_PREFIX</span><span class="o">=</span><span class="si">${</span><span class="nv">CROSS_COMPILE</span><span class="si">}</span><span class="w"> </span>
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>./configure<span class="w"> </span>
-<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>make<span class="w"> </span>
-<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ZLIB_PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span><span class="w"> </span>
-<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>zlib-1.3.1<span class="w"> </span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>wget<span class="w"> </span>http://zlib.net/zlib-1.3.1.tar.gz<span class="w"> </span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>tar<span class="w"> </span>xf<span class="w"> </span>zlib-1.3.1.tar.gz<span class="w"> </span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>rm<span class="w"> </span>zlib-1.3.1.tar.gz<span class="w"> </span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="nb">cd</span><span class="w"> </span>zlib-1.3.1/<span class="w"> </span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_PREFIX</span><span class="o">=</span><span class="si">${</span><span class="nv">CROSS_COMPILE</span><span class="si">}</span><span class="w"> </span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>./configure<span class="w"> </span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>make<span class="w"> </span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ZLIB_PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span><span class="w"> </span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
 </code></pre></div>
 <p>After the above steps are completed, the following items are available.</p>
 <ul>
@@ -4244,26 +4240,26 @@
 <p><strong>Note</strong>: The version of zlib mentioned above is the one that was tested with this release. You may want to use the latest zlib version, as it may contain updates and bug fixes. </p>
 <h3 id="building-librsu-and-rsu-client">Building LIBRSU and RSU Client<a class="headerlink" href="#building-librsu-and-rsu-client" title="Permanent link">&para;</a></h3>
 <p>The following commands can be used to build the LIBRSU and the example client application. Notice that you will need to modify the <strong>qspi.rc</strong> file (file used by <strong>librsu</strong> to retreive some of the RSU configuration) to provide  the <strong>mtd</strong> partitions in QSPI to be used for RSU, in this case it will be <strong>mtd0</strong> and <strong>mtd1</strong>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>intel-rsu<span class="w"> </span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/altera-opensource/intel-rsu<span class="w"> </span>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="nb">cd</span><span class="w"> </span>intel-rsu<span class="w"> </span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="c1"># checkout the branch used for this document, comment out to use default </span>
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="c1"># git checkout -b test -t origin/master </span>
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="c1"># Replace single mtd device with the the mtd devices created </span>
-<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="c1"># from each one of the QSPI partitions</span>
-<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>sed<span class="w">  </span>-i<span class="w"> </span><span class="s1">&#39;s/root qspi \/dev\/mtd0/root qspi \/dev\/mtd0,\/dev\/mtd1/g&#39;</span><span class="w">  </span>etc/qspi.rc<span class="w"> </span>
-<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="nb">cd</span><span class="w"> </span>lib<span class="w"> </span>
-<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="c1"># add -I$(ZLIB_PATH) to CFLAGS </span>
-<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/\(CFLAGS := .*\)$/\1 -I\$\(ZLIB_PATH\)/g&#39;</span><span class="w"> </span>makefile<span class="w"> </span>
-<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>make<span class="w"> </span>
-<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
-<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="nb">cd</span><span class="w"> </span>example<span class="w"> </span>
-<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="c1"># add -L$(ZLIB_PATH) to LDFLAGS </span>
-<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/\(LDFLAGS := .*\)$/\1 -L\$\(ZLIB_PATH\)/g&#39;</span><span class="w"> </span>makefile<span class="w"> </span>
-<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>make<span class="w"> </span>
-<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
-<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>intel-rsu<span class="w"> </span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/altera-opensource/intel-rsu<span class="w"> </span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="nb">cd</span><span class="w"> </span>intel-rsu<span class="w"> </span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1"># checkout the branch used for this document, comment out to use default </span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="c1"># git checkout -b test -t origin/master </span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1"># Replace single mtd device with the the mtd devices created </span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="c1"># from each one of the QSPI partitions</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>sed<span class="w">  </span>-i<span class="w"> </span><span class="s1">&#39;s/root qspi \/dev\/mtd0/root qspi \/dev\/mtd0,\/dev\/mtd1/g&#39;</span><span class="w">  </span>etc/qspi.rc<span class="w"> </span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="nb">cd</span><span class="w"> </span>lib<span class="w"> </span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="c1"># add -I$(ZLIB_PATH) to CFLAGS </span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/\(CFLAGS := .*\)$/\1 -I\$\(ZLIB_PATH\)/g&#39;</span><span class="w"> </span>makefile<span class="w"> </span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>make<span class="w"> </span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="nb">cd</span><span class="w"> </span>example<span class="w"> </span>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="c1"># add -L$(ZLIB_PATH) to LDFLAGS </span>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/\(LDFLAGS := .*\)$/\1 -L\$\(ZLIB_PATH\)/g&#39;</span><span class="w"> </span>makefile<span class="w"> </span>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>make<span class="w"> </span>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
 </code></pre></div>
 <p>The following files are created.</p>
 <ul>
@@ -4273,38 +4269,38 @@
 </ul>
 <h3 id="building-the-sd-card">Building the SD Card<a class="headerlink" href="#building-the-sd-card" title="Permanent link">&para;</a></h3>
 <p>The following commands can be used to create the SD card image used in this example.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>sd_card<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>sd_card<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>sd_card
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>wget<span class="w"> </span>https://releases.rocketboards.org/release/2021.04/gsrd/<span class="se">\</span>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>tools/make_sdimage_p3.py
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="c1"># remove mkfs.fat parameter which has some issues on Ubuntu 22.04</span>
-<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/\&quot;\-F 32\&quot;,//g&#39;</span><span class="w"> </span>make_sdimage_p3.py
-<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>chmod<span class="w"> </span>+x<span class="w"> </span>make_sdimage_p3.py
-<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="c1"># prepare the fat contents</span>
-<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>mkdir<span class="w"> </span>fat<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>fat
-<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/u-boot-socfpga/u-boot.itb<span class="w"> </span>.
-<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/linux-socfpga/arch/arm64/boot/Image<span class="w"> </span>.
-<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_multiqspi.dtb<span class="w"> </span>.
-<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/images/*.rpd<span class="w"> </span>.
-<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="nb">cd</span><span class="w"> </span>..
-<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="c1"># prepare the rootfs partition contents</span>
-<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>mkdir<span class="w"> </span>rootfs<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>rootfs
-<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>sudo<span class="w"> </span>tar<span class="w"> </span>xf<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/yocto/build/tmp/deploy/images/agilex7_dk_si_agf014eb/core-image-minimal-agilex7_dk_si_agf014eb.rootfs.tar.gz
-<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/agilex7_dk_si_agf014eb/linux/g&#39;</span><span class="w"> </span>etc/hostname
-<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>lib/modules/*
-<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>sudo<span class="w"> </span>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/images/*.rpd<span class="w"> </span>home/root
-<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>sudo<span class="w"> </span>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/intel-rsu/example/rsu_client<span class="w"> </span>home/root/
-<a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>sudo<span class="w"> </span>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/intel-rsu/lib/librsu.so<span class="w"> </span>lib/
-<a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>sudo<span class="w"> </span>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/intel-rsu/etc/qspi.rc<span class="w"> </span>etc/librsu.rc
-<a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>sudo<span class="w"> </span>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zlib-1.3.1/libz.so*<span class="w"> </span>lib/
-<a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
-<a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a><span class="c1"># create sd card image </span>
-<a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>sudo<span class="w"> </span>python3<span class="w"> </span>./make_sdimage_p3.py<span class="w"> </span>-f<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a>-P<span class="w"> </span>fat/*,num<span class="o">=</span><span class="m">1</span>,format<span class="o">=</span>vfat,size<span class="o">=</span>100M<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a>-P<span class="w"> </span>rootfs/*,num<span class="o">=</span><span class="m">2</span>,format<span class="o">=</span>ext3,size<span class="o">=</span>100M<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a>-s<span class="w"> </span>256M<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a>-n<span class="w"> </span>sdcard_rsu.img
-<a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a><span class="nb">cd</span><span class="w"> </span>..
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>sd_card<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>sd_card<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>sd_card
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>wget<span class="w"> </span>https://releases.rocketboards.org/release/2021.04/gsrd/<span class="se">\</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>tools/make_sdimage_p3.py
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="c1"># remove mkfs.fat parameter which has some issues on Ubuntu 22.04</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/\&quot;\-F 32\&quot;,//g&#39;</span><span class="w"> </span>make_sdimage_p3.py
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>chmod<span class="w"> </span>+x<span class="w"> </span>make_sdimage_p3.py
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="c1"># prepare the fat contents</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>mkdir<span class="w"> </span>fat<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>fat
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/u-boot-socfpga/u-boot.itb<span class="w"> </span>.
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/linux-socfpga/arch/arm64/boot/Image<span class="w"> </span>.
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_multiqspi.dtb<span class="w"> </span>.
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/images/*.rpd<span class="w"> </span>.
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="nb">cd</span><span class="w"> </span>..
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="c1"># prepare the rootfs partition contents</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>mkdir<span class="w"> </span>rootfs<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>rootfs
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>sudo<span class="w"> </span>tar<span class="w"> </span>xf<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/yocto/build/tmp/deploy/images/agilex7_dk_si_agf014eb/core-image-minimal-agilex7_dk_si_agf014eb.rootfs.tar.gz
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/agilex7_dk_si_agf014eb/linux/g&#39;</span><span class="w"> </span>etc/hostname
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>lib/modules/*
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>sudo<span class="w"> </span>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/images/*.rpd<span class="w"> </span>home/root
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>sudo<span class="w"> </span>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/intel-rsu/example/rsu_client<span class="w"> </span>home/root/
+<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a>sudo<span class="w"> </span>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/intel-rsu/lib/librsu.so<span class="w"> </span>lib/
+<a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a>sudo<span class="w"> </span>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/intel-rsu/etc/qspi.rc<span class="w"> </span>etc/librsu.rc
+<a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a>sudo<span class="w"> </span>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/zlib-1.3.1/libz.so*<span class="w"> </span>lib/
+<a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
+<a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a><span class="c1"># create sd card image </span>
+<a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a>sudo<span class="w"> </span>python3<span class="w"> </span>./make_sdimage_p3.py<span class="w"> </span>-f<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a>-P<span class="w"> </span>fat/*,num<span class="o">=</span><span class="m">1</span>,format<span class="o">=</span>vfat,size<span class="o">=</span>100M<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-29" name="__codelineno-16-29" href="#__codelineno-16-29"></a>-P<span class="w"> </span>rootfs/*,num<span class="o">=</span><span class="m">2</span>,format<span class="o">=</span>ext3,size<span class="o">=</span>100M<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-30" name="__codelineno-16-30" href="#__codelineno-16-30"></a>-s<span class="w"> </span>256M<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-16-31" name="__codelineno-16-31" href="#__codelineno-16-31"></a>-n<span class="w"> </span>sdcard_rsu.img
+<a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
 <p>This creates the SD card image as indicated next.</p>
 <ul>
@@ -4337,8 +4333,8 @@
 </li>
 <li>
 <p>Run the following command to write the image to SDM QSPI by using the command line version of the Quartus Prime Programmer: </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;./initial_image_multiQSPI.jic&quot;</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;./initial_image_multiQSPI.jic&quot;</span><span class="w"> </span>
 </code></pre></div>
 </li>
 <li>
@@ -4406,7 +4402,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 7, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 11, 2025</span>
       
         <br>
         Created:

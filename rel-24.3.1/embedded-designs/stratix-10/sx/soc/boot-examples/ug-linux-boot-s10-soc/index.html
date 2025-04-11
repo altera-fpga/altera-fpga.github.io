@@ -3904,6 +3904,7 @@
 
   <h1>GHRD Linux Boot Examples</h1>
 
+<p><strong>NOTE:</strong> This page is not available in this release. The current version of this page applies to release 24.3, but keeping the content here because it was ported from RocketBoards in 24.3.1 release. </p>
 <h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h2>
 <p>This page contains instructions on how to build U-Boot  for Stratix® 10 SX SOC Development kit H-Tile (DK-SOC-1SSX-H-D). </p>
 <h2 id="component-versions">Component Versions<a class="headerlink" href="#component-versions" title="Permanent link">&para;</a></h2>
@@ -4230,8 +4231,9 @@ Note the following:</p>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>quartus_pgm -m jtag -o &quot;pvi;./ghrd.hps.jic&quot;
 </code></pre></div>
 <strong>Note</strong>:If there was no previous design running, or if the previous design has been running fine, the MSEL does not need to be set to JTAG. It can remain set to QSPI, and you can still program QSPI flash succesfully. In case there was a previous design running, run "jtagconfig" to determine if the Stratix® 10 (SDM) is first or second in the JTAG scan chain. If it is second, change the above command to:</p>
-<p><code>cd $TOP_FOLDER/
-  quartus_pgm -m jtag -o "pvi;ghrd.hps.jic@2"</code>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cd $TOP_FOLDER/
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>quartus_pgm -m jtag -o &quot;pvi;ghrd.hps.jic@2&quot;  
+</code></pre></div>
 Set MSEL back to QSPI:</p>
 <ul>
 <li>SW2: 1:ON 2:OFF 3:OFF 4: OFF</li>
@@ -4248,110 +4250,110 @@ Set MSEL back to QSPI:</p>
 <h2 id="running-u-boot-with-the-debugger-from-command-line">Running U-Boot with the Debugger from Command Line<a class="headerlink" href="#running-u-boot-with-the-debugger-from-command-line" title="Permanent link">&para;</a></h2>
 <p>This section presents examples of how to run U-Boot with the Arm Development Studio from command line. This offers a simple and convenient way to run U-Boot and use it for example to program onboard flash.</p>
 <p>1.- Use the binaries built for the <a href="#boot-from-sd-card-example">Boot From SDCard Example</a>:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>cd s10_example.sdmmc
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>cd s10_example.sdmmc
 </code></pre></div></p>
 <p>2.-  Run <strong>jtagconfig</strong> command to determine if the HPS is currently in the JTAG scanchain:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>jtagconfig
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>1) Stratix 10L SoC Dev Kit [3-3.4.4]
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>  6BA00477   S10HPS/AGILEX_HPS
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>  C321D0DD   1SX280LH(2|3)/1SX280LN2(|AS)/..
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>jtagconfig
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>1) Stratix 10L SoC Dev Kit [3-3.4.4]
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>  6BA00477   S10HPS/AGILEX_HPS
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>  C321D0DD   1SX280LH(2|3)/1SX280LN2(|AS)/..
 </code></pre></div>
   If HPS is not present, the line with S10HPS/AGILEX_HPS above will not appear.</p>
 <p>3.- Configure the FPGA with the debug SOF:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>quartus_pgm -c 1 -m jtag -o &quot;p;s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas_hps_debug.sof@2&quot;
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>quartus_pgm -c 1 -m jtag -o &quot;p;s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas_hps_debug.sof@2&quot;
 </code></pre></div>
   If the HPS is not present in the jtagconfig output above, please remove the "@2" from the command line above.</p>
 <p>4.-  Create debugger script:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>cat &lt;&lt;EOT &gt; run-u-boot.ds
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>interrupt
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>restore &quot;u-boot-socfpga/spl/u-boot-spl-dtb.bin&quot; binary 0xFFE00000
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>loadfile &quot;u-boot-socfpga/spl/u-boot-spl&quot;
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>core 1
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>set \$PC = \$ENTRYPOINT
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>core 2
-<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>set \$PC = \$ENTRYPOINT
-<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>core 3
-<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>set \$PC = \$ENTRYPOINT
-<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>core 0
-<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>set \$PC = \$ENTRYPOINT
-<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>thbreak board_boot_order
-<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>continue
-<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>wait
-<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>set spl_boot_list[0]=0
-<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>set \$PC=\$LR
-<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>restore &quot;u-boot-socfpga/u-boot.itb&quot; binary 0x2000000
-<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>continue
-<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>EOT
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>cat &lt;&lt;EOT &gt; run-u-boot.ds
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>interrupt
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>restore &quot;u-boot-socfpga/spl/u-boot-spl-dtb.bin&quot; binary 0xFFE00000
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>loadfile &quot;u-boot-socfpga/spl/u-boot-spl&quot;
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>core 1
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>set \$PC = \$ENTRYPOINT
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>core 2
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>set \$PC = \$ENTRYPOINT
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>core 3
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>set \$PC = \$ENTRYPOINT
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>core 0
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>set \$PC = \$ENTRYPOINT
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>thbreak board_boot_order
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>continue
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>wait
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>set spl_boot_list[0]=0
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>set \$PC=\$LR
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>restore &quot;u-boot-socfpga/u-boot.itb&quot; binary 0x2000000
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>continue
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>EOT
 </code></pre></div></p>
 <p>5.- Run the debugger from command line, using the connection parameters reported above by jtagconfig, shown in red below:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>/opt/arm/developmentstudio-2022.2/bin/armdbg  \
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>--cdb-entry=&quot;Intel SoC FPGA::Stratix 10::Bare Metal Debug::Bare Metal Debug::Debug Cortex-A53x4 SMP::Intel FPGA Download Cable&quot; \
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>--cdb-entry-param=&quot;rvi_address=Stratix 10L SoC Dev Kit on localhost [3-3.4.4]:Stratix 10L SoC Dev Kit 3-3.4.4&quot; \
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>--continue_on_error=true \
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>--stop_on_connect=false \
-<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>-s run-u-boot.ds
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>/opt/arm/developmentstudio-2022.2/bin/armdbg  \
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>--cdb-entry=&quot;Intel SoC FPGA::Stratix 10::Bare Metal Debug::Bare Metal Debug::Debug Cortex-A53x4 SMP::Intel FPGA Download Cable&quot; \
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>--cdb-entry-param=&quot;rvi_address=Stratix 10L SoC Dev Kit on localhost [3-3.4.4]:Stratix 10L SoC Dev Kit 3-3.4.4&quot; \
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>--continue_on_error=true \
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>--stop_on_connect=false \
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>-s run-u-boot.ds
 </code></pre></div>
   6.- The serial console will show SPL then U-Boot being run:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>U-Boot SPL 2024.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>Reset state: Cold
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>MPU         1000000 kHz
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>L3 main     400000 kHz
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>Main VCO    2000000 kHz
-<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>Per VCO     2000000 kHz
-<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>EOSC1       25000 kHz
-<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>HPS MMC     50000 kHz
-<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>UART        100000 kHz
-<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>DDR: 4096 MiB
-<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>SDRAM-ECC: Initialized success with 1175 ms
-<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>QSPI: Reference clock at 400000 kHz
-<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>WDT:   Started watchdog@ffd00200 with servicing every 1000ms (10s timeout)
-<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>Trying to boot from MMC1
-<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>## Checking hash(es) for config board-0 … OK
-<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>## Checking hash(es) for Image atf … crc32+ OK
-<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>## Checking hash(es) for Image uboot … crc32+ OK
-<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>## Checking hash(es) for Image fdt-0 … crc32+ OK
-<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
-<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a>NOTICE:  BL31: Built : 11:03:24, Jan 29 2025
-<a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>
-<a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>U-Boot 2024.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_stratix10
-<a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>
-<a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a>CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
-<a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a>Model: SoCFPGA Stratix 10 SoCDK
-<a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a>DRAM:  2 GiB (effective 4 GiB)
-<a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a>Core:  26 devices, 21 uclasses, devicetree: separate
-<a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a>WDT:   Started watchdog@ffd00200 with servicing every 1000ms (10s timeout)
-<a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a>MMC:   dwmmc0@ff808000: 0
-<a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a>Loading Environment from FAT... Unable to read &quot;uboot.env&quot; from mmc0:1...
-<a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a>In:    serial0@ffc02000
-<a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a>Out:   serial0@ffc02000
-<a id="__codelineno-18-33" name="__codelineno-18-33" href="#__codelineno-18-33"></a>Err:   serial0@ffc02000
-<a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a>Net:   
-<a id="__codelineno-18-35" name="__codelineno-18-35" href="#__codelineno-18-35"></a>Warning: ethernet@ff800000 (eth0) using random MAC address - d2:31:2d:41:7e:a8
-<a id="__codelineno-18-36" name="__codelineno-18-36" href="#__codelineno-18-36"></a>eth0: ethernet@ff800000
-<a id="__codelineno-18-37" name="__codelineno-18-37" href="#__codelineno-18-37"></a>Hit any key to stop autoboot:  0 
-<a id="__codelineno-18-38" name="__codelineno-18-38" href="#__codelineno-18-38"></a>SOCFPGA_STRATIX10#
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>U-Boot SPL 2024.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Reset state: Cold
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>MPU         1000000 kHz
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>L3 main     400000 kHz
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>Main VCO    2000000 kHz
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>Per VCO     2000000 kHz
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>EOSC1       25000 kHz
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>HPS MMC     50000 kHz
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>UART        100000 kHz
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>DDR: 4096 MiB
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>SDRAM-ECC: Initialized success with 1175 ms
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>QSPI: Reference clock at 400000 kHz
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>WDT:   Started watchdog@ffd00200 with servicing every 1000ms (10s timeout)
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>Trying to boot from MMC1
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>## Checking hash(es) for config board-0 … OK
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>## Checking hash(es) for Image atf … crc32+ OK
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>## Checking hash(es) for Image uboot … crc32+ OK
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>## Checking hash(es) for Image fdt-0 … crc32+ OK
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
+<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>NOTICE:  BL31: Built : 11:03:24, Jan 29 2025
+<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>
+<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>U-Boot 2024.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_stratix10
+<a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>
+<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
+<a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>Model: SoCFPGA Stratix 10 SoCDK
+<a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>DRAM:  2 GiB (effective 4 GiB)
+<a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a>Core:  26 devices, 21 uclasses, devicetree: separate
+<a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a>WDT:   Started watchdog@ffd00200 with servicing every 1000ms (10s timeout)
+<a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a>MMC:   dwmmc0@ff808000: 0
+<a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a>Loading Environment from FAT... Unable to read &quot;uboot.env&quot; from mmc0:1...
+<a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a>In:    serial0@ffc02000
+<a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a>Out:   serial0@ffc02000
+<a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a>Err:   serial0@ffc02000
+<a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a>Net:   
+<a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a>Warning: ethernet@ff800000 (eth0) using random MAC address - d2:31:2d:41:7e:a8
+<a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a>eth0: ethernet@ff800000
+<a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a>Hit any key to stop autoboot:  0 
+<a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a>SOCFPGA_STRATIX10#
 </code></pre></div></p>
 <h2 id="debugging-u-boot-with-arm-ds-eclipse">Debugging U-Boot with Arm DS Eclipse<a class="headerlink" href="#debugging-u-boot-with-arm-ds-eclipse" title="Permanent link">&para;</a></h2>
 <p>This section presents examples of how to debug U-Boot with from the Arm Development Studio Eclipse-based GUI.</p>
 <p>### Prerequisites
  1.- Use the binaries built for the <a href="#boot-from-sd-card-example">Boot From SDCard Example</a>:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>cd s10_example.sdmmc
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>cd s10_example.sdmmc
 </code></pre></div></p>
 <p>2.- Run jtagconfig to determine if the HPS is currently in the JTAG scanchain:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>jtagconfig
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>1) Stratix 10L SoC Dev Kit [3-4.3.1]
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>  6BA00477   S10HPS/AGILEX_HPS
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>  C321D0DD   1SX280LH(2|3)/1SX280LN2(|AS)/..
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>jtagconfig
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>1) Stratix 10L SoC Dev Kit [3-4.3.1]
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>  6BA00477   S10HPS/AGILEX_HPS
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>  C321D0DD   1SX280LH(2|3)/1SX280LN2(|AS)/..
 </code></pre></div></p>
 <p>If HPS is not present, the line with S10HPS/AGILEX_HPS above will not appear.</p>
 <p>3.- Configure the FPGA with the debug SOF:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>quartus_pgm -c 1 -m jtag -o &quot;p;s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas_hps_debug.sof@2&quot;  
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>quartus_pgm -c 1 -m jtag -o &quot;p;s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas_hps_debug.sof@2&quot;  
 </code></pre></div></p>
 <p>If the HPS is not present in the jtagconfig output above, please remove the "@2" from the command line above.</p>
 <h3 id="debugging-spl">Debugging SPL<a class="headerlink" href="#debugging-spl" title="Permanent link">&para;</a></h3>
 <p>1.- Run the steps from <strong>Prerequisites section</strong><br>
   2.- Start the Arm Development Studio Eclipse-based GUI:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>/opt/arm/developmentstudio-2022.2/bin/armds_ide -data workspace &amp;
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>/opt/arm/developmentstudio-2022.2/bin/armds_ide -data workspace &amp;
 </code></pre></div></p>
 <p>Note the above creates a new workspace in the <strong>s10_example.sdmmc</strong> folder.<br></p>
 <p>3.- In <strong>Eclipse</strong>, Go to <strong>Run &gt; Debug Configurations</strong> to open the <strong>Debug Configurations</strong> window. <br></p>
@@ -4384,27 +4386,27 @@ set $PC = $ENTRYPOINT
 <p>1.- Run the steps from <strong>Prerequisites</strong> section<br>
   2.- Create the <strong>Debug S10 Bootloader</strong> debug configuration as described in <a href="#debugging-spl">Debugging SPL</a> section.<br>
   3.- Change the <strong>Execute debugger commands</strong> box to contain the following commands:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>interrupt
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>restore &quot;u-boot-socfpga/spl/u-boot-spl-dtb.bin&quot; binary 0xFFE00000
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>loadfile &quot;u-boot-socfpga/spl/u-boot-spl&quot;
-<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>thb board_boot_order
-<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>set $PC = $ENTRYPOINT
-<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>continue
-<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>wait 60s
-<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>set spl_boot_list[0]=0
-<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>set $PC=$LR
-<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>restore &quot;u-boot-socfpga/u-boot.itb&quot; binary 0x2000000
-<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>thb el3:0x1000
-<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>continue
-<a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>wait 60s
-<a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a>symbol-file &quot;u-boot-socfpga/u-boot&quot;
-<a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a>thb el2:relocate_code
-<a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a>continue
-<a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a>wait 60s
-<a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a>symbol-file &quot;u-boot-socfpga/u-boot&quot; ((gd_t*)$x18)-&gt;reloc_off
-<a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a>thb board_init_r
-<a id="__codelineno-24-20" name="__codelineno-24-20" href="#__codelineno-24-20"></a>continue
-<a id="__codelineno-24-21" name="__codelineno-24-21" href="#__codelineno-24-21"></a>wait 60s
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>interrupt
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>restore &quot;u-boot-socfpga/spl/u-boot-spl-dtb.bin&quot; binary 0xFFE00000
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>loadfile &quot;u-boot-socfpga/spl/u-boot-spl&quot;
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>thb board_boot_order
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>set $PC = $ENTRYPOINT
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>continue
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>wait 60s
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>set spl_boot_list[0]=0
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>set $PC=$LR
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>restore &quot;u-boot-socfpga/u-boot.itb&quot; binary 0x2000000
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>thb el3:0x1000
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>continue
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>wait 60s
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>symbol-file &quot;u-boot-socfpga/u-boot&quot;
+<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a>thb el2:relocate_code
+<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a>continue
+<a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a>wait 60s
+<a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a>symbol-file &quot;u-boot-socfpga/u-boot&quot; ((gd_t*)$x18)-&gt;reloc_off
+<a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a>thb board_init_r
+<a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a>continue
+<a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a>wait 60s
 </code></pre></div>
   What the above does is:<br>
   a) Load and run SPL<br>
@@ -4433,29 +4435,29 @@ set $PC = $ENTRYPOINT
 <h3 id="setting-initial-values-of-secure-l3-registers">Setting Initial Values of Secure L3 Registers<a class="headerlink" href="#setting-initial-values-of-secure-l3-registers" title="Permanent link">&para;</a></h3>
 <p>The initial values for the Secure L3 registes are set from U-Boot SPL. The register values are specified in secreg entries in the U-Boot device tree file.</p>
 <p>Refer to <a href="https://github.com/altera-opensource/u-boot-socfpga/blob/HEAD/doc/device-tree-bindings/misc/socfpga_secreg.txt">u-boot-socfpga/blob/HEAD/doc/device-tree-bindings/misc/socfpga_secreg.txt</a> for documentation the <strong>secreg</strong>. The  socfpga_v2021.04 version shows the following:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>* Firewall and privilege register settings in device tree
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>Required properties:
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>--------------------
-<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>- compatible: should contain &quot;intel,socfpga-secreg&quot;
-<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>- intel,offset-settings: 32-bit offset address of block register, and then
-<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>                       followed by 32-bit value settings.
-<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>Example:
-<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>--------
-<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>      socfpga_secreg: socfpga-secreg {
-<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>          compatible = &quot;intel,socfpga-secreg&quot;;
-<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>          #address-cells = &lt;1&gt;;
-<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>          #size-cells = &lt;1&gt;;
-<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>          u-boot,dm-pre-reloc;
-<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a>
-<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a>          i_sys_mgr@ffd12000 {
-<a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a>              reg = &lt;0xffd12000 0x00000228&gt;;
-<a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a>              intel,offset-settings =
-<a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a>                  &lt;0x00000020 0xff010000&gt;,
-<a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a>                  &lt;0x00000024 0xffffffff&gt;;
-<a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a>              u-boot,dm-pre-reloc;
-<a id="__codelineno-25-22" name="__codelineno-25-22" href="#__codelineno-25-22"></a>          };
-<a id="__codelineno-25-23" name="__codelineno-25-23" href="#__codelineno-25-23"></a>      };
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>* Firewall and privilege register settings in device tree
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>Required properties:
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>--------------------
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>- compatible: should contain &quot;intel,socfpga-secreg&quot;
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>- intel,offset-settings: 32-bit offset address of block register, and then
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>                       followed by 32-bit value settings.
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>Example:
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>--------
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>      socfpga_secreg: socfpga-secreg {
+<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>          compatible = &quot;intel,socfpga-secreg&quot;;
+<a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>          #address-cells = &lt;1&gt;;
+<a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a>          #size-cells = &lt;1&gt;;
+<a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a>          u-boot,dm-pre-reloc;
+<a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a>
+<a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a>          i_sys_mgr@ffd12000 {
+<a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a>              reg = &lt;0xffd12000 0x00000228&gt;;
+<a id="__codelineno-26-18" name="__codelineno-26-18" href="#__codelineno-26-18"></a>              intel,offset-settings =
+<a id="__codelineno-26-19" name="__codelineno-26-19" href="#__codelineno-26-19"></a>                  &lt;0x00000020 0xff010000&gt;,
+<a id="__codelineno-26-20" name="__codelineno-26-20" href="#__codelineno-26-20"></a>                  &lt;0x00000024 0xffffffff&gt;;
+<a id="__codelineno-26-21" name="__codelineno-26-21" href="#__codelineno-26-21"></a>              u-boot,dm-pre-reloc;
+<a id="__codelineno-26-22" name="__codelineno-26-22" href="#__codelineno-26-22"></a>          };
+<a id="__codelineno-26-23" name="__codelineno-26-23" href="#__codelineno-26-23"></a>      };
 </code></pre></div>
 Notes about the example:</p>
 <ul>
@@ -4476,29 +4478,29 @@ Notes about the example:</p>
 <p>A small subset of critical EL3 restricted access registers are made visible through the ATF SMC handler. The current list of registers is defined in <a href="https://github.com/altera-opensource/arm-trusted-firmware/blob/HEAD/plat/intel/soc/common/socfpga_sip_svc.c">arm-trusted-firmware/blob/HEAD/plat/intel/soc/common/socfpga_sip_svc.c.</a>.</p>
 <p>The secure L3 registers accessible through the ATF SMC handler can also optionally be accessed from U-Boot command line for debug purposes. The feature can be enabled by setting <strong>CONFIG_CMD_SMC=y</strong> in the U-Boot configuration file.</p>
 <p>Once the feature is enabled, the following command will be avaible from U-Boot command line interface:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>SOCFPGA # smc
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>smc - Issue a Secure Monitor Call
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>
-<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>Usage:
-<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>smc  [arg1 … arg6] [id]
-<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>  - fid Function ID
-<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>  - arg SMC arguments, passed to X1-X6 (default to zero)
-<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>  - id  Secure OS ID / Session ID, passed to W7 (defaults to zero)
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>SOCFPGA # smc
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>smc - Issue a Secure Monitor Call
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>Usage:
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>smc  [arg1 … arg6] [id]
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>  - fid Function ID
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>  - arg SMC arguments, passed to X1-X6 (default to zero)
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>  - id  Secure OS ID / Session ID, passed to W7 (defaults to zero)
 </code></pre></div>
 The U-Boot environment already includes predefined ids to facilitate the usage of the command:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>smc_fid_rd=0xC2000007
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>smc_fid_upd=0xC2000009
-<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>smc_fid_wr=0xC2000008
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>smc_fid_rd=0xC2000007
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>smc_fid_upd=0xC2000009
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>smc_fid_wr=0xC2000008
 </code></pre></div>
 The command can be used as follows:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>smc ${smc_fid_rd} &lt;address&gt;
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>smc ${smc_fid_wr} &lt;address&gt; &lt;value&gt;
-<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>smc ${smc_fid_upd} &lt;address&gt; &lt;mask&gt; &lt;value&gt;
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>smc ${smc_fid_rd} &lt;address&gt;
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>smc ${smc_fid_wr} &lt;address&gt; &lt;value&gt;
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>smc ${smc_fid_upd} &lt;address&gt; &lt;mask&gt; &lt;value&gt;
 </code></pre></div>
 See below using the new command to access the BOOT_SCRATCH_COLD0 register (note there is no need to access that register, this is just an example):</p>
 <p>1.- Read the register:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>SOCFPGA_STRATIX10 # smc ${smc_fid_rd} 0xffd12200
-<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>Res:  0 400000 4291895808 0
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>SOCFPGA_STRATIX10 # smc ${smc_fid_rd} 0xffd12200
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>Res:  0 400000 4291895808 0
 </code></pre></div>
 Note:</p>
 <ul>
@@ -4507,27 +4509,27 @@ Note:</p>
 <li>Third value is the address in decimal 4291895808=0xffd12200.</li>
 </ul>
 <p>2.- Write the register with a new value:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>SOCFPGA_STRATIX10 # smc ${smc_fid_wr} 0xffd12200 0x00061a81
-<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>Res:  0 400001 4291895808 0
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>SOCFPGA_STRATIX10 # smc ${smc_fid_wr} 0xffd12200 0x00061a81
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>Res:  0 400001 4291895808 0
 </code></pre></div></p>
 <p>3.-  Read back the register to confirm it has been updated:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>SOCFPGA_STRATIX10 # smc ${smc_fid_rd} 0xffd12200
-<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>Res:  0 400001 4291895808 0
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>SOCFPGA_STRATIX10 # smc ${smc_fid_rd} 0xffd12200
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>Res:  0 400001 4291895808 0
 </code></pre></div></p>
 <h3 id="enabling-access-to-more-secure-l3-registers-for-debug-purposes">Enabling Access to more Secure L3 Registers for Debug Purposes<a class="headerlink" href="#enabling-access-to-more-secure-l3-registers-for-debug-purposes" title="Permanent link">&para;</a></h3>
 <p>By default, only a small subset of critical EL3 restricted access registers are made visible through the ATF SMC handler. The current list of registers is defined in <a href="https://github.com/altera-opensource/arm-trusted-firmware/blob/HEAD/plat/intel/soc/common/socfpga_sip_svc.c">arm-trusted-firmware/blob/HEAD/plat/intel/soc/common/socfpga_sip_svc.c</a>. For debug purposes, you can add more registers to the restricted register list that can be accessed through the ATF SMC handler.</p>
 <p><strong>Warning: Changing the list of EL3 restricted access registers in ATF is risky, and must be done only for debug purposes only! Do not forget to remove the code once debugging has completed!</strong></p>
 <p>When trying to access a register which is not made visible by the ATF SMC handler, an error will be reported. See below example trying to read the noc_fw_soc2fpga_soc2fpga_scr register:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>SOCFPGA_STRATIX10 # smc ${smc_fid_rd} 0xffd21200
-<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>Res:  4 0 4291957248 0
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>SOCFPGA_STRATIX10 # smc ${smc_fid_rd} 0xffd21200
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>Res:  4 0 4291957248 0
 </code></pre></div>
 Note:</p>
 <ul>
 <li>The non-zero (4) return code means the operation was not succesfull.</li>
 </ul>
 <p>After editing the file <a href="https://github.com/altera-opensource/arm-trusted-firmware/blob/HEAD/plat/intel/soc/common/socfpga_sip_svc.c">arm-trusted-firmware/blob/HEAD/plat/intel/soc/common/socfpga_sip_svc.c</a> to add this register to the list, and recompiling ATF, the operation is succesfull:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>SOCFPGA_STRATIX10 # smc ${smc_fid_rd} 0xffd21200
-<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>Res:  0 268304641 4291957248
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>SOCFPGA_STRATIX10 # smc ${smc_fid_rd} 0xffd21200
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>Res:  0 268304641 4291957248
 </code></pre></div>
 Note:</p>
 <ul>
@@ -4730,13 +4732,13 @@ Note:</p>
 <p>U-Boot offers the <strong>bridge</strong> command for controlling the bridges.</p>
 <p>The <strong>bridge</strong> command can be used with either <strong>'enable'</strong> or <strong>'disable'</strong> parameter, followed by an optional <strong>'mask'</strong> parameter indicating which of the bridges needs to be enabled or disabled. When the <strong>'mask'</strong> parameter is omitted, all bridges are either enabled or disabled.</p>
 <p>See bellow the help message for the command:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a># bridge
-<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>bridge - SoCFPGA HPS FPGA bridge control
-<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
-<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>Usage:
-<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>bridge enable [mask] - Enable HPS-to-FPGA (Bit 0), LWHPS-to-FPGA (Bit 1), FPGA-to-HPS (Bit 2), F2SDRAM0 (Bit 3), F2SDRAM1 (Bit 4), F2SDRAM2 (Bit 5) bridges 
-<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>bridge disable [mask] - Disable HPS-to-FPGA (Bit 0), LWHPS-to-FPGA (Bit 1), FPGA-to-HPS (Bit 2), F2SDRAM0 (Bit 3), F2SDRAM1 (Bit 4), F2SDRAM2 (Bit 5) bridges
-<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>Bit 3, Bit 4 and Bit 5 bridges only available in Stratix 10
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a># bridge
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>bridge - SoCFPGA HPS FPGA bridge control
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>Usage:
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>bridge enable [mask] - Enable HPS-to-FPGA (Bit 0), LWHPS-to-FPGA (Bit 1), FPGA-to-HPS (Bit 2), F2SDRAM0 (Bit 3), F2SDRAM1 (Bit 4), F2SDRAM2 (Bit 5) bridges 
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>bridge disable [mask] - Disable HPS-to-FPGA (Bit 0), LWHPS-to-FPGA (Bit 1), FPGA-to-HPS (Bit 2), F2SDRAM0 (Bit 3), F2SDRAM1 (Bit 4), F2SDRAM2 (Bit 5) bridges
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a>Bit 3, Bit 4 and Bit 5 bridges only available in Stratix 10
 </code></pre></div>
 The** 'mask'** is a hexadecimal number, with 3 bits available for Agilex™ 7, and 6 bits for Stratix® 10, as indicated above.</p>
 <p>The following table shows examples of enabling and disabling various bridges:</p>
@@ -4800,7 +4802,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 11, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 11, 2025</span>
       
         <br>
         Created:

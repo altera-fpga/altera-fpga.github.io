@@ -3587,7 +3587,7 @@
 </tr>
 <tr>
 <td align="left">Arm Trusted Firmware</td>
-<td align="left"><a href="https://github.com/arm-trusted-firmware">https://github.com/arm-trusted-firmware</a></td>
+<td align="left"><a href="https://github.com/altera-opensource/arm-trusted-firmware">https://github.com/altera-opensource/arm-trusted-firmware</a></td>
 <td align="left">socfpga_v2.11.1</td>
 <td align="left">QPDS24.3.1_REL_GSRD_PR</td>
 </tr>
@@ -3792,8 +3792,15 @@
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga
 <a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nb">cd</span><span class="w"> </span>linux-socfpga
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>make<span class="w"> </span>defconfig<span class="w"> </span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">64</span><span class="w"> </span>Image<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>intel/socfpga_agilex5_socdk.dtb<span class="w"> </span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; config-fragment-agilex5</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="s"># Enable Ethernet connectivity so we can get an IP address</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="s">CONFIG_MARVELL_PHY=y</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="s">EOF</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>make<span class="w"> </span>defconfig
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="c1"># Apply custom Configs in file</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>./scripts/kconfig/merge_config.sh<span class="w"> </span>-O<span class="w"> </span>./<span class="w"> </span>./.config<span class="w"> </span>./config-fragment-agilex5
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>make<span class="w"> </span>oldconfig
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">64</span><span class="w"> </span>Image<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>intel/socfpga_agilex5_socdk.dtb
 </code></pre></div>
 <p>The following files are created:</p>
 <ul>
@@ -3870,7 +3877,8 @@
 <p>3. Power up the board</p>
 <p>4. Write JIC image to QSPI:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;ghrd.hps.jic&quot;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>jtagconfig<span class="w"> </span>--setparam<span class="w"> </span><span class="m">1</span><span class="w"> </span>JtagClock<span class="w"> </span>16M
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;ghrd.hps.jic&quot;</span>
 </code></pre></div>
 <h3>Boot Linux</h3>
 
@@ -3880,6 +3888,7 @@
 <p>4. Wait for Linux to boot, use <code>root</code> as user name, and no password wil be requested.</p>
 <h2 id="boot-from-qspi">Boot from QSPI<a class="headerlink" href="#boot-from-qspi" title="Permanent link">&para;</a></h2>
 <p>This section demonstrates how to build Linux system from separate components, which boots from QSPI.</p>
+<p><strong>NOTE:</strong>  This section assumes that the <a href="#boot-from-sd-card">Boot from SD Card</a> section has been already built and the environment setup in that section is still available.</p>
 <p>This section presents how to build the binaries and boot from QSPI with the HPS Enablement Board.
 While the example is based on the GSRD, it contains the following differences:</p>
 <ul>
@@ -4161,7 +4170,8 @@ While the example is based on the GSRD, it contains the following differences:</
 <p>3. Power up the board</p>
 <p>4. Write JIC image to QSPI:</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;qspi-boot/flash_image.hps.jic&quot;</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>jtagconfig<span class="w"> </span>--setparam<span class="w"> </span><span class="m">1</span><span class="w"> </span>JtagClock<span class="w"> </span>16M
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;qspi-boot/flash_image.hps.jic&quot;</span>
 </code></pre></div>
 Note: You need to wipe the micro SD card or remove it from the board before start running.</p>
 <h4>Boot Linux</h4>
@@ -4188,7 +4198,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 11, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 11, 2025</span>
       
         <br>
         Created:
