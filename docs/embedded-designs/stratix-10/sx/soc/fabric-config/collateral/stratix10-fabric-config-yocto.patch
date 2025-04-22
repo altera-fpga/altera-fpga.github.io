@@ -1,5 +1,5 @@
 diff --git a/recipes-bsp/device-tree/device-tree.bb b/recipes-bsp/device-tree/device-tree.bb
-index 94e5a17..d9387d0 100644
+index 6516834..a283d16 100644
 --- a/recipes-bsp/device-tree/device-tree.bb
 +++ b/recipes-bsp/device-tree/device-tree.bb
 @@ -66,6 +66,7 @@ SRC_URI:append:stratix10 = " \
@@ -20,7 +20,7 @@ index 94e5a17..d9387d0 100644
  SRC_URI:append:agilex5_dk_a5e065bb32aes1 = " \
 diff --git a/recipes-bsp/device-tree/files/fabric_config_overlay.dts b/recipes-bsp/device-tree/files/fabric_config_overlay.dts
 new file mode 100644
-index 0000000..4ca15eb
+index 0000000..98fdf14
 --- /dev/null
 +++ b/recipes-bsp/device-tree/files/fabric_config_overlay.dts
 @@ -0,0 +1,23 @@
@@ -28,13 +28,13 @@ index 0000000..4ca15eb
 +/plugin/;
 +/ {
 +                fragment@0 {
-+                                target-path = "/soc/base_fpga_region";
++                                target-path = "/fpga-region";
 +                                #address-cells = <0x2>;
 +                                #size-cells = <0x2>;
 +                                __overlay__ {
 +                                                #address-cells = <0x2>;
 +                                                #size-cells = <0x2>;
-+                                                ranges = <0x00000000 0x0 0xF9000000 0x0 0x00200000>;
++                                                ranges = <0x0 0x0 0x0 0xF9000000 0x0 0x00200000>;
 +                                                firmware-name = "ghrd.core.rbf";
 +                                                config-complete-timeout-us = <30000000>;
 +
@@ -48,35 +48,33 @@ index 0000000..4ca15eb
 +                };
 +};
 diff --git a/recipes-bsp/ghrd/hw-ref-design.bb b/recipes-bsp/ghrd/hw-ref-design.bb
-index 36cb532..1120f9d 100644
+index eccd99d..0b3c639 100644
 --- a/recipes-bsp/ghrd/hw-ref-design.bb
 +++ b/recipes-bsp/ghrd/hw-ref-design.bb
-@@ -205,6 +205,7 @@ do_install () {
- 		install -D -m 0644 ${WORKDIR}/${MACHINE}_nand_${ARM64_GHRD_CORE_RBF} ${D}/boot/nand.core.rbf
- 		install -D -m 0644 ${WORKDIR}/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
- 		install -D -m 0644 ${WORKDIR}/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
-+		install -D -m 0644 ${WORKDIR}/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}${base_libdir}/firmware/${ARM64_GHRD_CORE_RBF}
+@@ -233,6 +233,7 @@ do_install () {
+ 		install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_${ARM64_GHRD_CORE_RBF} ${D}/boot/ghrd_pr.core.rbf
+ 		install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
+ 		install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
++		install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}${base_libdir}/firmware/${ARM64_GHRD_CORE_RBF}
  	fi
  
  	if ${@bb.utils.contains("MACHINE", "stratix10_htile", "true", "false", d)}; then
-@@ -212,6 +213,7 @@ do_install () {
- 		install -D -m 0644 ${WORKDIR}/${MACHINE}_nand_${ARM64_GHRD_CORE_RBF} ${D}/boot/nand.core.rbf
- 		install -D -m 0644 ${WORKDIR}/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
- 		install -D -m 0644 ${WORKDIR}/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
-+		install -D -m 0644 ${WORKDIR}/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}${base_libdir}/firmware/${ARM64_GHRD_CORE_RBF}
+@@ -241,6 +242,7 @@ do_install () {
+ 		install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_${ARM64_GHRD_CORE_RBF} ${D}/boot/ghrd_pr.core.rbf
+ 		install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
+ 		install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
++		install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}${base_libdir}/firmware/${ARM64_GHRD_CORE_RBF}
  	fi
  
  	if ${@bb.utils.contains("MACHINE", "cyclone5", "true", "false", d)}; then
 diff --git a/recipes-bsp/u-boot/files/uboot.txt b/recipes-bsp/u-boot/files/uboot.txt
-index 8577186..3a0288f 100644
+index 8577186..370695b 100644
 --- a/recipes-bsp/u-boot/files/uboot.txt
 +++ b/recipes-bsp/u-boot/files/uboot.txt
-@@ -6,7 +6,7 @@ if test ${target} = "mmc0"; then
- 		mmc rescan;
- 		fatload ${devtype} ${devnum}:${distro_bootpart} ${loadaddr} ${bootfile};
- 		setenv bootargs "earlycon panic=-1 root=${mmcroot} rw rootwait";		
--		bootm ${loadaddr}#board-${board_id};
-+		bootm ${loadaddr}#board-0;
- 		exit;
- 	fi
+@@ -30,5 +30,5 @@ if test ${target} = "nand"; then
+ 	ubi readvol ${loadaddr} kernel;
+ 	ubi detach;
+ 	setenv bootargs "earlycon panic=-1 root=${nandroot} rw rootwait rootfstype=ubifs ubi.mtd=1";
+-	bootm ${loadaddr}#board-${board_id};
++	bootm ${loadaddr}#board-0;
  fi

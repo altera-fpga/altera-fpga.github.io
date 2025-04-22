@@ -65,7 +65,7 @@ The following are required:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1
+  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -102,7 +102,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -117,29 +117,31 @@ The hardware design is based on the GSRD, just that the JOP component is added, 
 
 ```bash
 cd $TOP_FOLDER
-rm -rf ghrd-socfpga agilex_soc_devkit_ghrd
-git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
-mv ghrd-socfpga/agilex_soc_devkit_ghrd .
-rm -rf ghrd-socfpga
+rm -rf agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.1_REL_GSRD_PR.zip
+unzip QPDS25.1_REL_GSRD_PR.zip
+rm QPDS25.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS25.1_REL_GSRD_PR agilex7f-ed-gsrd
+cd agilex7f-ed-gsrd
+make agf014eb-si-devkit-oobe-baseline-generate-design
 cd agilex_soc_devkit_ghrd
-export BOARD_PWRMGT=linear
-export ENABLE_JOP=1
-make scrub_clean_all
-make generate_from_tcl
-make all
-unset ENABLE_JOP 
-unset BOARD_PWRMGT
+wget https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-7/f-series/soc/remote-debug/collateral/agilex7-ghrd-add-jop.tcl
+qsys-script --qpf=ghrd_agfb014r24b2e2v.qpf --script=agilex7-ghrd-add-jop.tcl --system-file=qsys_top.qsys
+cd ..
+make agf014eb-si-devkit-oobe-baseline-package-design
+make agf014eb-si-devkit-oobe-baseline-prep
+make agf014eb-si-devkit-oobe-baseline-build
+make agf014eb-si-devkit-oobe-baseline-sw-build
+make agf014eb-si-devkit-oobe-baseline-test
+make agf014eb-si-devkit-oobe-baseline-install-sof
 cd ..
 ```
 
 
-
 The following files are created:
 
- * `$TOP_FOLDER/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof` - FPGA configuration file, without HPS FSBL
- * `$TOP_FOLDER/agilex_soc_devkit_ghrd/software/hps_debug/hps_debug.ihex` - HPS Debug FSBL
- * `$TOP_FOLDER/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps_debug.sof` - FPGA configuration file, with HPS Debug FSBL
-
+- `$TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof` - FPGA configuration file, without HPS FSBL
+- `$TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline_hps_debug.sof` - FPGA configuration file, with HPS Debug FSBL
 
 For reference, the JOP component can be added manually to a Platform Designer system as follows:
 
@@ -166,7 +168,7 @@ This section shows how to create the core RBF file, which is needed by the Yocto
 ```bash
 cd $TOP_FOLDER
 rm -f *jic* *rbf*
-quartus_pfg -c agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps_debug.sof \
+quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline_hps_debug.sof \
   ghrd_agfb014r24b2e2v.jic \
   -o device=MT25QU02G \
   -o flash_loader=AGFB014R24B2E2V \
@@ -187,28 +189,7 @@ The following file is created:
 
 Perform the following steps to build Yocto:
 
-1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
 
-The command to install the required packages on Ubuntu 22.04 is:
-
-```bash
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \
-build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
-python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit mesa-common-dev zstd \
-liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \
-tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
-device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
-```
-
-On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:
-
-```bash
- sudo ln -sf /bin/bash /bin/sh
-```
-
-**Note**: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.
 
 2\. Clone the Yocto script and prepare the build:
 
@@ -216,7 +197,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
+git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
 cd gsrd-socfpga
 . agilex7_dk_si_agf014eb-gsrd-build.sh
 build_setup
@@ -250,7 +231,7 @@ This can be done with the provided patch file:
 
 ```bash
 rm -f agilex7-dts-add-jop.patch
-wget https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/remote-debug/collateral/agilex7-dts-add-jop.patch
+wget https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-7/f-series/soc/remote-debug/collateral/agilex7-dts-add-jop.patch
 pushd meta-intel-fpga-refdes
 patch -p1 < ../agilex7-dts-add-jop.patch
 popd
@@ -303,7 +284,7 @@ Run the following commands to build the QSPI image:
 ```bash
 cd $TOP_FOLDER
 rm -f *jic* *rbf*
-quartus_pfg -c agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof \
+quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
   ghrd_agfb014r24b2e2v.jic \
   -o hps_path=gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex \
   -o device=MT25QU02G \

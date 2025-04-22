@@ -32,4 +32,5 @@ target_link_libraries(hello_world.elf PRIVATE
 # specify linker script
 target_link_options(hello_world.elf PRIVATE
     -T${ALTERAMETAL_LINKER_SCRIPT}
+    --specs=nosys.specs -mstrict-align
 )

@@ -1,5 +1,5 @@
 
-package require -exact qsys 24.2
+package require -exact qsys 25.1
 
 add_component intel_jop_blaster_0 ip/qsys_top/qsys_top_intel_jop_blaster_0.ip intel_jop_blaster intel_jop_blaster_0 1.2.0
 load_component intel_jop_blaster_0

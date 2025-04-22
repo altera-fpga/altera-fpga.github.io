@@ -14,19 +14,19 @@ The following are needed:
   - 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   - Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   - Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  - Altera® Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1
+  - Altera® Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1
   - Arm* Development Studio 2024.1
 
 ## Build Linux
 
-For this example you need to build the Agilex™ 5 GHRD Linux Boot Example targeting the HPS Enablement board, as described [here](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/#boot-from-sd-card). 
+For this example you need to build the Agilex™ 5 GHRD Linux Boot Example targeting the HPS Enablement board, as described [here](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/#boot-from-sd-card). 
 
 The kernel compilation part of the boot example needs to be modified as follows:
 
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga
+git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga
 cd linux-socfpga
 make clean
 make defconfig
@@ -79,7 +79,7 @@ sudo python3 make_sdimage_p3.py -f \
 
 ```bash
 cd $TOP_FOLDER
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3.1/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/25.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 
 ```

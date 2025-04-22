@@ -25,15 +25,15 @@ Refer to [Agilex™ 7 Hard Processor System Remote System Update User Guide](htt
 
 ## Component Versions 
 
-This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1 and the following component versions.
+This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1 and the following component versions.
 
 | Repository | Branch/Tag |
 | :-- | :-- |
-| [ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | QPDS24.3.1_REL_GSRD_PR |
-| [linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.51-lts/QPDS24.3.1_REL_GSRD_PR |
-| [arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.11.1/QPDS24.3.1_REL_GSRD_PR |
-| [u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.07/QPDS24.3.1_REL_GSRD_PR |
-| [intel-rsu](https://github.com/altera-opensource/intel-rsu) | master |
+| [agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | QPDS25.1_REL_GSRD_PR |
+| [linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.11-lts/QPDS25.1_REL_GSRD_PR |
+| [arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.0/QPDS25.1_REL_GSRD_PR |
+| [u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.01/QPDS25.1_REL_GSRD_PR |
+| [intel-rsu](https://github.com/altera-fpga/intel-rsu) | master |
 
 For RSU example previous 24.2 version, please refer to [Agilex 7 SoC HPS Remote System Update](https://www.rocketboards.org/foswiki/Projects/AgilexHPSRemoteSystemUpdate).
 
@@ -43,7 +43,7 @@ The following items are required to run the RSU example.
 
 - Host PC running Ubuntu 22.04 LTS (other Linux versions may work too) 
  - Minimum 48 GB of RAM, required for compiling the hardware designs 
- - Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1  for compiling the hardware projects, generating the flash images and writing to flash 
+ - Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1  for compiling the hardware projects, generating the flash images and writing to flash 
 - Access to Internet to download the hardware project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. 
 - [Agilex 7 Transceiver-SoC Development kit P-Tile E-Tile Production Linear power solution(DK-SI-AGF014EB)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agf014.html)  for running the example. 
 
@@ -65,6 +65,7 @@ The end results of the build flow are these.
 
 
 Create a top folder to store the example files.
+
 
 
 ```bash 
@@ -93,7 +94,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -115,50 +116,43 @@ The commands to create and compile the projects are listed below.
 
 ```bash 
 cd $TOP_FOLDER 
-# compile hardware designs: 0-factory, 1,2-applications, 3-factory update 
-rm -rf hw && mkdir hw && cd hw 
-git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
-mv ghrd-socfpga/agilex_soc_devkit_ghrd . 
-rm -rf ghrd-socfpga 
+# Build 4 versions of the hardware design
+rm -rf hw && mkdir hw && cd hw
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.1_REL_GSRD_PR.zip
+unzip QPDS25.1_REL_GSRD_PR.zip
+rm QPDS25.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS25.1_REL_GSRD_PR agilex7f-ed-gsrd
 # boot from FPGA 
 export BOOTS_FIRST=fpga 
 # enable watchdog 
 export ENABLE_WATCHDOG_RST=1 
 # treat watchdog timeout as configuration failure to trigger RSU 
 export WATCHDOG_RST_ACTION=remote_update
-# Select Linear regulator
-export BOARD_PWRMGT=linear
-# disable SGMII to build faster 
-export HPS_ENABLE_SGMII=0 
-# disable PR to build faster 
-export ENABLE_PARTIAL_RECONFIGURATION=0 
-for version in {0..3} 
-do 
-rm -rf ghrd.$version 
-cp -r agilex_soc_devkit_ghrd ghrd.$version 
-cd ghrd.$version 
+# Customize parms in tcl
+sed -i '/STRATIX_JTAG_USER_CODE 4/i set_global_assignment -name RSU_MAX_RETRY_COUNT 3' agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/create_ghrd_quartus.tcl
+for version in {0..3}
+do
+rm -rf ghrd.$version
+cp -r agilex7f-ed-gsrd ghrd.$version
+cd ghrd.$version
 # update sysid to make binaries slightly different 
-sed -i 's/0xACD5CAFE/0xABAB000'$version'/g' create_ghrd_qsys.tcl 
-make scrub_clean_all
-make generate_from_tcl 
-echo "set_global_assignment -name RSU_MAX_RETRY_COUNT 3" >> ghrd_agfb014r24b2e2v.qsf 
-# Change the board id to be zero - the one used when booting from SD card 
-sed -i 's/set_global_assignment -name STRATIX_JTAG_USER_CODE .*/set_global_assignment -name STRATIX_JTAG_USER_CODE 4/g' ghrd_agfb014r24b2e2v.qsf 
-make all
+sed -i 's/0xACD5CAFE/0xABAB000'$version'/g' agilex_soc_devkit_ghrd/create_ghrd_qsys.tcl
+# Finsish customization and now building the hardware design
+make agf014eb-si-devkit-oobe-baseline-all
+cd ..
+done
+rm -rf agilex7f-ed-gsrd 
 cd .. 
-done 
- 
-rm -rf agilex_soc_devkit_ghrd 
-cd .. 
+
 ```
 
 
 After completing the above steps, the following SOF files are created.
 
-- $TOP_FOLDER/hw/ghrd.0/output_files/ghrd_agfb014r24b2e2v.sof 
-- $TOP_FOLDER/hw/ghrd.1/output_files/ghrd_agfb014r24b2e2v.sof 
-- $TOP_FOLDER/hw/ghrd.2/output_files/ghrd_agfb014r24b2e2v.sof 
-- $TOP_FOLDER/hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof 
+- $TOP_FOLDER/hw/ghrd.0/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
+- $TOP_FOLDER/hw/ghrd.1/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
+- $TOP_FOLDER/hw/ghrd.2/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
+- $TOP_FOLDER/hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
 
 
 ### Building Arm Trusted Firmware 
@@ -170,10 +164,10 @@ The following commands are used to retrieve the Arm Trusted Firmware (ATF) and c
 ```bash 
 cd $TOP_FOLDER 
 rm -rf arm-trusted-firmware 
-git clone https://github.com/altera-opensource/arm-trusted-firmware 
+git clone https://github.com/altera-fpga/arm-trusted-firmware 
 cd arm-trusted-firmware 
 # checkout the branch used for this document, comment out to use default 
-git checkout -b test -t origin/socfpga_v2.11.1 
+git checkout -b test -t origin/socfpga_v2.12.0 
 make bl31 PLAT=agilex DEPRECATED=1 
 cd .. 
 ```
@@ -193,10 +187,10 @@ The following commands can be used to get the U-Boot source code and compile it.
 ```bash 
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga
-git clone https://github.com/altera-opensource/u-boot-socfpga
+git clone https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga
 # comment out next line to use the latest default branch 
-git checkout -b test -t origin/socfpga_v2024.07 
+git checkout -b test -t origin/socfpga_v2025.01 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
 # only boot from SD, do not try QSPI and NAND 
@@ -268,10 +262,10 @@ The following commands can be used to obtain the Linux source code and build Lin
 ```bash 
 cd $TOP_FOLDER 
 rm -rf linux-socfpga
-git clone https://github.com/altera-opensource/linux-socfpga
+git clone https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
 # checkout the branch used for this document, comment out to use default
-git checkout -b test -t origin/socfpga-6.6.51-lts 
+git checkout -b test -t origin/socfpga-6.12.11-lts 
 # configure the RSU driver to be built into the kernel
 make clean && make mrproper
 make defconfig
@@ -316,10 +310,10 @@ cat << EOF > initial_image.pfg
     </output_files>
     <bitstreams>
         <bitstream id="Bitstream_1">
-            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">hw/ghrd.0/output_files/ghrd_agfb014r24b2e2v.sof</path>
+            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">hw/ghrd.0/install/designs/agf014eb_si_devkit_oobe_baseline.sof</path>
         </bitstream>
         <bitstream id="Bitstream_2">
-            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">hw/ghrd.1/output_files/ghrd_agfb014r24b2e2v.sof</path>
+            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">hw/ghrd.1/install/designs/agf014eb_si_devkit_oobe_baseline.sof</path>
         </bitstream>
     </bitstreams>
     <flash_devices>
@@ -349,7 +343,7 @@ cat << EOF > initial_image.pfg
 EOF
 
 # Create Initial Image for previous release (in case needed to test  combined application)
-~/intelFPGA_pro/24.3/quartus/bin/quartus_pfg -c initial_image.pfg
+~/intelFPGA_pro/24.3.1/quartus/bin/quartus_pfg -c initial_image.pfg
 mv initial_image.jic initial_image_prev.jic
 mv initial_image_jic.rpd initial_image_jic_prev.rpd
 mv initial_image_jic.map initial_image_jic_prev.map
@@ -386,7 +380,7 @@ Here are the complete instructions on how to manually create the initial flash i
 
 8. Once the output type was selected, click the **Input Files** tab. 
 
-9. In the **Input Files** tab click the **Add Bitstream** button, then browse to **$TOP_FOLDER/hw/ghrd.0/output_files**, select the file **ghrd_agfb014r24b2e2v.sof**, and then click **Open**. This is the initial factory image. Do the same for the **$TOP_FOLDER/hw/ghrd.1/output_files/ghrd_agfb014r24b2e2v.sof** image. This is the initial application image. The tab now looks like below.
+9. In the **Input Files** tab click the **Add Bitstream** button, then browse to **$TOP_FOLDER/hw/ghrd.0/output_files**, select the file **ghrd_agfb014r24b2e2v.sof**, and then click **Open**. This is the initial factory image. Do the same for the **$TOP_FOLDER/hw/ghrd.1/install/designs/agf014eb_si_devkit_oobe_baseline.sof** image. This is the initial application image. The tab now looks like below.
 
     ![](images/jic-2.png) 
 
@@ -408,7 +402,7 @@ Here are the complete instructions on how to manually create the initial flash i
 
      ![](images/jic-5.png) 
 
-16. Select the **FACTORY_IMAGE** entry, and click the **Edit** button. The **Edit Partition** window pops up. Select the **Input file** as **Bitstream_1 (ghrd_agfb014r24b2e2v.sof)**. Change **Address Mode** to **Block** because you want to make sure you are leaving enough space for the biggest factory image you anticipate using. Set the **End Address** to **0x0090FFFF** in order to reserve 7MB for the factory image. This end address was calculated by adding 8MB to the end of the **BOOT_INFO** partition. Click **OK**. 
+16. Select the **FACTORY_IMAGE** entry, and click the **Edit** button. The **Edit Partition** window pops up. Select the **Input file** as **Bitstream_1 (agf014eb_si_devkit_oobe_baseline.sof)**. Change **Address Mode** to **Block** because you want to make sure you are leaving enough space for the biggest factory image you anticipate using. Set the **End Address** to **0x0090FFFF** in order to reserve 7MB for the factory image. This end address was calculated by adding 8MB to the end of the **BOOT_INFO** partition. Click **OK**. 
 
      **Note:** There is a requirement that the starting address of the **SPT0** partition is aligned to 64KB. In order to warranty this, the **End Address** of the **FACTORY_IMAGE** must finish at an address ending with **0xXXXXFFFF**.
 
@@ -416,7 +410,7 @@ Here are the complete instructions on how to manually create the initial flash i
 
      **Note**: The Page property for **FACTORY_IMAGE** partition must always be set to 0. This means that the **FACTORY_IMAGE** will be trieed after all the application images failed. 
 
-17. Select the **MT25QU02G** flash device in the Configuration Device tab by clicking it, then click the **Add Partition** button to open the **Add Partition** window. Leave the **Name** as **P1** and select the **Input file** as **Bitstream_2(ghrd_agfb014r24b2e2v.sof)**. This becomes the initial application image. Select the **Page** as **1**. Select the **Address Mode** as **Block** and allocate 16MB of data by setting **Start Address** = **0x01000000** and **End Address** = **0x01FFFFFF**. Since this is the first partition defined, this becomes the initial application image to be loaded and has the highest priority of all application images that may be defined later.
+17. Select the **MT25QU02G** flash device in the Configuration Device tab by clicking it, then click the **Add Partition** button to open the **Add Partition** window. Leave the **Name** as **P1** and select the **Input file** as **Bitstream_2(agf014eb_si_devkit_oobe_baseline.sof)**. This becomes the initial application image. Select the **Page** as **1**. Select the **Address Mode** as **Block** and allocate 16MB of data by setting **Start Address** = **0x01000000** and **End Address** = **0x01FFFFFF**. Since this is the first partition defined, this becomes the initial application image to be loaded and has the highest priority of all application images that may be defined later.
 
      The actual priority in which an application in a partition is loaded is defined based on the order in which the partition is defined when creating the initial flash image as shown above in this step.
      The Programming File Generator issues an error if there are multiple partitions with the same page number, or if there are any “gaps” as in having a Page=1 then a Page=3, without a Page=2 for example.
@@ -454,6 +448,7 @@ Here are the complete instructions on how to manually create the initial flash i
 22. Click the **Generate** button to generate the initial flash image as **$TOP_FOLDER/initial_image.jic** and the map file as **$TOP_FOLDER/initial_image_jic.map**. A dialog box opens indicating the files were generated successfully. 
 
 
+
 ### Creating the Application Image 
 
 
@@ -464,7 +459,7 @@ The following commands are used to create the application image used in this exa
 cd $TOP_FOLDER
 mkdir -p images
 rm -rf images/application2.rpd
-quartus_pfg -c hw/ghrd.2/output_files/ghrd_agfb014r24b2e2v.sof \
+quartus_pfg -c hw/ghrd.2/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/application2.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -487,7 +482,7 @@ The following commands are used to create the factory update image used in this 
 cd $TOP_FOLDER
 mkdir -p images
 rm -f images/factory_update.rpd
-quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof \
+quartus_pfg -c hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/factory_update.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -511,7 +506,7 @@ The following commands are used to create the decision firmware update image use
 cd $TOP_FOLDER 
 mkdir -p images
 rm -f images/decision_firmware_update.rpd
-quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof \
+quartus_pfg -c hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/decision_firmware_update.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -538,9 +533,9 @@ The following commands are used to create the combined application image used in
 cd $TOP_FOLDER 
 mkdir -p images
 rm -f images/combined_application.rpd
-quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof \
+quartus_pfg -c hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/combined_application.rpd \
--o app_image=hw/ghrd.2/output_files/ghrd_agfb014r24b2e2v.sof \
+-o app_image=hw/ghrd.2/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o app_image_hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -659,7 +654,7 @@ The following commands can be used to build the LIBRSU and the example client ap
 ```bash 
 cd $TOP_FOLDER 
 rm -rf intel-rsu
-git clone https://github.com/altera-opensource/intel-rsu
+git clone https://github.com/altera-fpga/intel-rsu
 cd intel-rsu
 # checkout the branch used for this document, comment out to use default 
 # git checkout -b test -t origin/master
@@ -916,10 +911,10 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 
     ```bash 
     SOCFPGA # rsu display_dcmf_version 
-    DCMF0 version = 24.3.1.0 
-    DCMF1 version = 24.3.1.0  
-    DCMF2 version = 24.3.1.0  
-    DCMF3 version = 24.3.1.0  
+    DCMF0 version = 25.1.0 
+    DCMF1 version = 25.1.0  
+    DCMF2 version = 25.1.0  
+    DCMF3 version = 25.1.0  
     SOCFPGA # rsu slot_count 
     Number of slots = 3. 
     SOCFPGA # rsu slot_get_info 0 
@@ -1765,10 +1760,10 @@ information from U-Boot, this should be a previous version.
 
     ```bash 
     SOCFPGA # rsu display_dcmf_version
-    DCMF0 version = 24.3.0 
-    DCMF1 version = 24.3.0 
-    DCMF2 version = 24.3.0 
-    DCMF3 version = 24.3.0 
+    DCMF0 version = 24.3.1.0 
+    DCMF1 version = 24.3.1.0 
+    DCMF2 version = 24.3.1.0 
+    DCMF3 version = 24.3.1.0 
     ```
 
 3. Find an unused slot (slot 1, P2), erase it, write the combined application image to it, verify that it was programmed successfully  and check it is now the highest priority.
@@ -1810,10 +1805,10 @@ application image is running fine.
     Error details : 0x00000000
     Retry counter : 0x00000000
     SOCFPGA # rsu display_dcmf_version
-    DCMF0 version = 24.3.1.0 
-    DCMF1 version = 24.3.1.0 
-    DCMF2 version = 24.3.1.0 
-    DCMF3 version = 24.3.1.0
+    DCMF0 version = 25.1.0 
+    DCMF1 version = 25.1.0 
+    DCMF2 version = 25.1.0 
+    DCMF3 version = 25.1.0
     ```
 
 7. Power cycle the board, the same combined application image is loaded, as it is the highest priority. But it takes a couple of seconds less, as the decision firmware does not need to be updated.
@@ -1919,10 +1914,10 @@ This section demonstrates how to use the RSU client to perform the following bas
 
     ```bash 
     root@linux:~# ./rsu_client --display-dcmf-version 
-    DCMF0 version = 24.3.1.0
-    DCMF1 version = 24.3.1.0
-    DCMF2 version = 24.3.1.0
-    DCMF3 version = 24.3.1.0
+    DCMF0 version = 25.1.0
+    DCMF1 version = 25.1.0
+    DCMF2 version = 25.1.0
+    DCMF3 version = 25.1.0
     Operation completed 
     ```
 
@@ -3043,4 +3038,4 @@ Altera disclaims all express and implied warranties, including without limitatio
 You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
 <sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
 
-OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 
+OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™.   

@@ -1,6 +1,6 @@
 ## Intro 
 
-This page is an extension of the  [Agilex 7 SoC HPS Remote System Update Example](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/) and will show you how to build RSU images with multi QSPI support. This feature allows you to extend the flash space available to store the RSU applications so the size of these could be increased. This feature allows you to support up to 4 QSPI flash devices of the same model (i.e. same size). 
+This page is an extension of the  [Agilex 7 SoC HPS Remote System Update Example](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/) and will show you how to build RSU images with multi QSPI support. This feature allows you to extend the flash space available to store the RSU applications so the size of these could be increased. This feature allows you to support up to 4 QSPI flash devices of the same model (i.e. same size). 
 
 **Note**: This feature is first enabled in 24.3 release.
 
@@ -13,6 +13,8 @@ When exercising multi-QSPI feature, there are few conditions that need to be sat
 * An application could be located in the cross boundary of 2 chips (i.e. located in more than one chip), but the previous condition still must be satisfied.
 
 ![](images/multiqspi-layout.png) 
+
+<span style="color: red;">**Note:** The RSU functionality in Linux is broken in 25.1 release due to an issue in Linux(HSD: 14024915012). Please refer to [24.3.1 RSU MutliQSPI Build instructions](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc/). This does not affect RSU from U-Boot.</span>
 
 ## Build Instructions
 
@@ -64,6 +66,14 @@ export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
 
+Enable Quartus tools to be called from command line:
+
+
+```bash
+export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+```
+
 
 
 
@@ -83,53 +93,44 @@ The commands to create and compile the projects are listed below.
 
 ```bash 
 cd $TOP_FOLDER
-# compile hardware designs: 0-factory, 1,2-applications, 3-factory update
+# Build 4 versions of the hardware design
 rm -rf hw && mkdir hw && cd hw
-git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
-mv ghrd-socfpga/agilex_soc_devkit_ghrd .
-rm -rf ghrd-socfpga
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.1_REL_GSRD_PR.zip
+unzip QPDS25.1_REL_GSRD_PR.zip
+rm QPDS25.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS25.1_REL_GSRD_PR agilex7f-ed-gsrd
 # boot from FPGA
 export BOOTS_FIRST=fpga
 # enable watchdog
 export ENABLE_WATCHDOG_RST=1
 # treat watchdog timeout as configuration failure to trigger RSU
 export WATCHDOG_RST_ACTION=remote_update
-# Select Linal regulator
-export BOARD_PWRMGT=linear
-# disable SGMII to build faster
-export HPS_ENABLE_SGMII=0
-# disable PR to build faster
-export ENABLE_PARTIAL_RECONFIGURATION=0
+# Customize parms in tcl
+sed -i '/STRATIX_JTAG_USER_CODE 4/i set_global_assignment -name RSU_MAX_RETRY_COUNT 3' agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/create_ghrd_quartus.tcl
+# Set QSPI clock to 25 Mhz (needed for multi-qspi support)
+sed -i '/STRATIX_JTAG_USER_CODE 4/i set_global_assignment -name ACTIVE_SERIAL_CLOCK AS_FREQ_25MHZ' agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/create_ghrd_quartus.tcl
 for version in {0..3}
 do
 rm -rf ghrd.$version
-cp -r agilex_soc_devkit_ghrd ghrd.$version
+cp -r agilex7f-ed-gsrd ghrd.$version
 cd ghrd.$version
-# update sysid to make binaries slightly different
-sed -i 's/0xACD5CAFE/0xABAB000'$version'/g' create_ghrd_qsys.tcl
-make scrub_clean_all
-make generate_from_tcl
-# Set retry count to 3
-echo "set_global_assignment -name RSU_MAX_RETRY_COUNT 3" >> ghrd_agfb014r24b2e2v.qsf
-# Set QSPI clock to 25 Mhz (needed for multi-qspi support)
-echo "set_global_assignment -name ACTIVE_SERIAL_CLOCK AS_FREQ_25MHZ" >> ghrd_agfb014r24b2e2v.qsf
-# Change the board id to be 4 - the one used when booting from SD card (OOB)
-sed -i 's/set_global_assignment -name STRATIX_JTAG_USER_CODE .*/set_global_assignment -name STRATIX_JTAG_USER_CODE 4/g' ghrd_agfb014r24b2e2v.qsf
-make all
+# update sysid to make binaries slightly different 
+sed -i 's/0xACD5CAFE/0xABAB000'$version'/g' agilex_soc_devkit_ghrd/create_ghrd_qsys.tcl
+# Finsish customization and now building the hardware design
+make agf014eb-si-devkit-oobe-baseline-all
 cd ..
 done
-
-unset BOARD_PWRMGT
-unset HPS_ENABLE_SGMII
+rm -rf agilex7f-ed-gsrd 
+cd .. 
 ```
 
 
 After completing the above steps, the following SOF files are created.
 
-- $TOP_FOLDER/hw/ghrd.0/output_files/ghrd_agfb014r24b2e2v.sof 
-- $TOP_FOLDER/hw/ghrd.1/output_files/ghrd_agfb014r24b2e2v.sof 
-- $TOP_FOLDER/hw/ghrd.2/output_files/ghrd_agfb014r24b2e2v.sof 
-- $TOP_FOLDER/hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof 
+- $TOP_FOLDER/hw/ghrd.0/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
+- $TOP_FOLDER/hw/ghrd.1/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
+- $TOP_FOLDER/hw/ghrd.2/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
+- $TOP_FOLDER/hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
 
 
 
@@ -142,10 +143,10 @@ The following commands are used to retrieve the Arm Trusted Firmware (ATF) and c
 ```bash 
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone https://github.com/altera-opensource/arm-trusted-firmware
+git clone https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 # checkout the branch used for this document, comment out to use default
-# git checkout -b test -t origin/socfpga_v2.11.1
+git checkout -b test -t origin/socfpga_v2.12.0
 make bl31 PLAT=agilex DEPRECATED=1
 cd ..
 ```
@@ -170,10 +171,10 @@ The following commands can be used to get the U-Boot source code and compile it.
 ```bash 
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga
-git clone https://github.com/altera-opensource/u-boot-socfpga
+git clone https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga
 # comment out next line to use the latest default branch 
-# git checkout -b test -t origin/socfpga_v2024.07
+git checkout -b test -t origin/socfpga_v2025.01
 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -297,10 +298,10 @@ The following commands can be used to obtain the Linux source code and build Lin
 ```bash 
 cd $TOP_FOLDER 
 rm -rf linux-socfpga 
-git clone https://github.com/altera-opensource/linux-socfpga 
+git clone https://github.com/altera-fpga/linux-socfpga 
 cd linux-socfpga 
 # checkout the branch used for this document, comment out to use default 
-# git checkout -b test -t origin/socfpga-6.6.51-lts 
+git checkout -b test -t origin/socfpga-6.12.11-lts 
 
 # configure the RSU driver to be built into the kernel 
 make clean && make mrproper 
@@ -350,10 +351,10 @@ cat << EOF > initial_image_multiQSPI.pfg
     </output_files>
     <bitstreams>
         <bitstream id="Bitstream_1">
-            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">hw/ghrd.0/output_files/ghrd_agfb014r24b2e2v.sof</path>
+            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">hw/ghrd.0/install/designs/agf014eb_si_devkit_oobe_baseline.sof</path>
         </bitstream>
         <bitstream id="Bitstream_2">
-            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">hw/ghrd.1/output_files/ghrd_agfb014r24b2e2v.sof</path>
+            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">hw/ghrd.1/install/designs/agf014eb_si_devkit_oobe_baseline.sof</path>
         </bitstream>
     </bitstreams>
     <flash_devices>
@@ -382,7 +383,7 @@ cat << EOF > initial_image_multiQSPI.pfg
 EOF
 
 # MultiQSPI is supported starting in 24.3
-~/intelFPGA_pro/24.3/quartus/bin/quartus_pfg -c initial_image_multiQSPI.pfg
+~/intelFPGA_pro/24.3.1/quartus/bin/quartus_pfg -c initial_image_multiQSPI.pfg
 mv initial_image_multiQSPI.jic initial_image_multiQSPI_prev.jic
 mv initial_image_multiQSPI_jic_2Gb_cs0.rpd #initial_image_multiQSPI_jic_2Gb_cs0_prev.rpd
 mv initial_image_multiQSPI_jic_2Gb_cs1.rpd initial_image_multiQSPI_jic_2Gb_cs1_prev.rpd
@@ -399,7 +400,7 @@ After completion of this stage you should see the following files created. These
 * $TOP_FOLDER/initial_image_multiQSPI.jic - Initial QSPI image used for regular RSU use cases.
 * $TOP_FOLDER/initial_image_multiQSPI_prev.jic - Initial QSPI image used to exercise combined application use case. - Not available in 24.3 release.
 
-For detailed instructions on how to create the .pfg, please refer to the [Creating the initial flash-image](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/#creating-the-initial-flash-image) in main RSU page. For a multi-QSPI initial image there are some variations that need to be obserrved and these are described next.
+For detailed instructions on how to create the .pfg, please refer to the [Creating the initial flash-image](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/#creating-the-initial-flash-image) in main RSU page. For a multi-QSPI initial image there are some variations that need to be obserrved and these are described next.
 
 * When selecting the flash device in Configuration Device tab and clicking Add Device you need to select as device any of the QSPI0xG devices depending on the total size of the multi-QSPI system (in bits). In the figure below are shown the possible options. These options gets available when building an RSU image. In this figure, the QSPI04G is being selected for a 4 Gbit system (512 MB) integrated by 2 flash devices of 2Gbit each one.
 
@@ -420,7 +421,7 @@ The following commands are used to create the application image used in this exa
 cd $TOP_FOLDER
 mkdir -p images
 rm -rf images/application2.rpd
-quartus_pfg -c hw/ghrd.2/output_files/ghrd_agfb014r24b2e2v.sof \
+quartus_pfg -c hw/ghrd.2/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/application2.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -444,7 +445,7 @@ The following commands are used to create the factory update image used in this 
 cd $TOP_FOLDER
 mkdir -p images
 rm -f images/factory_update.rpd
-quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof \
+quartus_pfg -c hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/factory_update.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -469,7 +470,7 @@ The following commands are used to create the decision firmware update image use
 cd $TOP_FOLDER 
 mkdir -p images 
 rm -f images/decision_firmware_update.rpd
-quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof \
+quartus_pfg -c hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/decision_firmware_update.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -498,9 +499,9 @@ The following commands are used to create the combined application image used in
 cd $TOP_FOLDER
 mkdir -p images
 rm -f images/combined_application.rpd
-quartus_pfg -c hw/ghrd.3/output_files/ghrd_agfb014r24b2e2v.sof \
+quartus_pfg -c hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/combined_application.rpd \
--o app_image=hw/ghrd.2/output_files/ghrd_agfb014r24b2e2v.sof \
+-o app_image=hw/ghrd.2/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o app_image_hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -612,10 +613,10 @@ The following commands can be used to build the LIBRSU and the example client ap
 ```bash 
 cd $TOP_FOLDER 
 rm -rf intel-rsu 
-git clone https://github.com/altera-opensource/intel-rsu 
+git clone https://github.com/altera-fpga/intel-rsu 
 cd intel-rsu 
 # checkout the branch used for this document, comment out to use default 
-# git checkout -b test -t origin/master 
+git checkout -b test -t origin/master 
 # Replace single mtd device with the the mtd devices created 
 # from each one of the QSPI partitions
 sed  -i 's/root qspi \/dev\/mtd0/root qspi \/dev\/mtd0,\/dev\/mtd1/g'  etc/qspi.rc 
@@ -731,7 +732,7 @@ The following items are included in the rootfs on the SD card.
 
 ### Exercise RSU Binaries
 
-The same RSU exercises for U-Boot and Linux described at [Agilex 7 SoC HPS Remote System Update Example](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/) are supported for multi-QSPI. You can exercise all of them, but in the command responses just consider the new layout used in here (i.e. the location of the partitions will be different ). 
+The same RSU exercises for U-Boot and Linux described at [Agilex 7 SoC HPS Remote System Update Example](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/) are supported for multi-QSPI. You can exercise all of them, but in the command responses just consider the new layout used in here (i.e. the location of the partitions will be different ). 
 
 In the scenario in which an application is being corrupted using a U-Boot command, you also will need to use the correct location of the application. Also remember that in multi-QSPI the **sf probe** U-Boot command is used to select the appropriate flash device before performing any read, write or erase operation. The **sf erase**, **sf write** and **sd read** U-Boot commands use as memory address the relative address in the chip selected.
 
@@ -758,4 +759,4 @@ Altera disclaims all express and implied warranties, including without limitatio
 You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
 <sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
 
-OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 
+OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™.   

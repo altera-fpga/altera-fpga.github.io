@@ -11,7 +11,7 @@ Two different examples are provided:
  - Manages overlays directly. 
 - Example building everything with Yocto 
  - Based on the [GSRD for Agilex&trade; 7 F-Series Transceiver-SoC DevKit (P-Tile and E-Tile)](https://www.rocketboards.org/foswiki/Documentation/AgilexSoCGSRD). 
- - Manages overlays with the [dtbt](https://github.com/altera-opensource/dtbt) utility 
+ - Manages overlays with the [dtbt](https://github.com/altera-fpga/dtbt) utility 
 
 ### Prerequisites 
  
@@ -24,7 +24,7 @@ Two different examples are provided:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1
+  * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -71,7 +71,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -85,20 +85,13 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
 ```bash 
 cd $TOP_FOLDER 
-rm -rf ghrd-socfpga agilex_soc_devkit_ghrd 
-git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
-mv ghrd-socfpga/agilex_soc_devkit_ghrd . 
-rm -rf ghrd-socfpga 
-cd agilex_soc_devkit_ghrd 
-# target the DK-SI-AGF014EB board
-export BOARD_PWRMGT=linear
-# disable SGMII to build faster 
-export HPS_ENABLE_SGMII=0 
-make scrub_clean_all 
-make generate_from_tcl 
-make all 
-unset BOARD_PWRMGT 
-unset HPS_ENABLE_SGMII
+rm -rf agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.1_REL_GSRD_PR.zip
+unzip QPDS25.1_REL_GSRD_PR.zip
+rm QPDS25.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS25.1_REL_GSRD_PR agilex7f-ed-gsrd
+cd agilex7f-ed-gsrd
+make agf014eb-si-devkit-oobe-baseline-all
 cd ..
 ``` 
 
@@ -111,7 +104,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf arm-trusted-firmware 
-git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware 
+git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
 cd arm-trusted-firmware 
 make bl31 PLAT=agilex DEPRECATED=1 
 cd .. 
@@ -126,7 +119,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf u-boot-socfpga 
-git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga 
+git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk 
@@ -201,7 +194,7 @@ cd ..
 cd $TOP_FOLDER 
 rm -f ghrd.hps.jic ghrd.core.rbf 
 quartus_pfg -c \ 
- agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof \ 
+ agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \ 
  ghrd.jic \ 
  -o device=MT25QU128 \ 
  -o flash_loader=AGFB014R24B2E2V \ 
@@ -219,10 +212,8 @@ quartus_pfg -c \
 ```bash 
 cd $TOP_FOLDER 
 rm -rf linux-socfpga 
-git clone https://github.com/altera-opensource/linux-socfpga linux-socfpga 
-cd linux-socfpga 
-# comment out next line to use the latest Linux kernel branch 
-git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga linux-socfpga 
+git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
+cd linux-socfpga
 make clean && make mrproper 
 make defconfig 
 # enable device tree overlays and fpga bridges 
@@ -254,28 +245,25 @@ cat << EOF > overlay.dts
 /plugin/; 
 / { 
  fragment@0 { 
-   target-path = "/soc/base_fpga_region"; 
-   #address-cells = <0x1>; 
-   #size-cells = <0x1>; 
-   __overlay__ { 
-     
-     #address-cells = <0x2>; 
-     #size-cells = <0x2>; 
-     ranges = < 0x0 0x0 0xF9000000 0x0 0x00200000>; 
-     
-     firmware-name = "overlay.rbf"; 
-     config-complete-timeout-us = <30000000>; 
-     
-     sysid_qsys_0: sysid@0 { 
-       compatible = "altr,sysid-24.2", "altr,sysid-1.0"; 
-       reg = < 0x0 0x0 0x0 0x00000010>; 
-       id = <3405707982>; 
-       timestamp = <0>; 
-     }; 
-   }; 
- }; 
-}; 
+ target-path = "/fpga-region"; 
+ #address-cells = <0x2>; 
+ #size-cells = <0x2>; 
+ __overlay__ { 
+ #address-cells = <0x2>; 
+ #size-cells = <0x2>; 
+ ranges = <0x0 0x0 0x0 0xF9000000 0x0 0x00200000>; 
+ firmware-name = "overlay.rbf"; 
+ config-complete-timeout-us = <30000000>; 
  
+ sysid_qsys_0: sysid@0 { 
+ compatible = "altr,sysid-23.4", "altr,sysid-1.0";
+ reg = <0x0 0x0 0x0 0x00000010>; 
+ id = <3405707982>;
+ timestamp = <0>; 
+ }; 
+ }; 
+ }; 
+};
 EOF
 dtc -I dts -O dtb -o overlay.dtb overlay.dts 
 ``` 
@@ -309,8 +297,6 @@ rm -rf yocto && mkdir yocto && cd yocto
 git clone -b styhead https://git.yoctoproject.org/poky 
 git clone -b styhead https://git.yoctoproject.org/meta-intel-fpga 
 git clone -b styhead https://github.com/openembedded/meta-openembedded 
-# work around issue
-echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
 source poky/oe-init-build-env ./build 
 echo 'MACHINE = "agilex7_dk_si_agf014eb"' >> conf/local.conf 
 echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 
@@ -445,7 +431,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -458,21 +444,14 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
 
 ```bash 
-cd $TOP_FOLDER 
-rm -rf ghrd-socfpga agilex_soc_devkit_ghrd 
-git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
-mv ghrd-socfpga/agilex_soc_devkit_ghrd . 
-rm -rf ghrd-socfpga 
-cd agilex_soc_devkit_ghrd 
-# target the DK-SI-AGF014EB board
-export BOARD_PWRMGT=linear
-# disable SGMII to build faster 
-export HPS_ENABLE_SGMII=0 
-make scrub_clean_all 
-make generate_from_tcl 
-make all 
-unset BOARD_PWRMGT 
-unset HPS_ENABLE_SGMII
+cd $TOP_FOLDER
+rm -rf agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.1_REL_GSRD_PR.zip
+unzip QPDS25.1_REL_GSRD_PR.zip
+rm QPDS25.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS25.1_REL_GSRD_PR agilex7f-ed-gsrd
+cd agilex7f-ed-gsrd
+make agf014eb-si-devkit-oobe-baseline-all
 cd ..
 ``` 
 
@@ -486,7 +465,7 @@ cd ..
 cd $TOP_FOLDER 
 rm -f ghrd.hps.jic ghrd.core.rbf 
 quartus_pfg -c \ 
- agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps_debug.sof \ 
+ agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline_hps_debug.sof \ 
  ghrd.jic \ 
  -o device=MT25QU128 \ 
  -o flash_loader=AGFB014R24B2E2V \ 
@@ -504,7 +483,7 @@ quartus_pfg -c \
 ```bash 
 cd $TOP_FOLDER 
 rm -rf gsrd-socfpga 
-git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga 
+git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
 cd gsrd-socfpga 
 . agilex7_dk_si_agf014eb-gsrd-build.sh 
 build_setup 
@@ -520,7 +499,7 @@ build_setup
 
 ```bash 
 rm -f agilex7-fabric-config-yocto.patch
-wget https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/fabric-config/collateral/agilex7-fabric-config-yocto.patch 
+wget https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-7/f-series/soc/fabric-config/collateral/agilex7-fabric-config-yocto.patch 
 patch -d meta-intel-fpga-refdes -p1 < agilex7-fabric-config-yocto.patch
 ``` 
 
@@ -529,7 +508,7 @@ For reference, the patch looks like this:
 
 ```diff
 diff --git a/recipes-bsp/device-tree/device-tree.bb b/recipes-bsp/device-tree/device-tree.bb
-index fcd665a..bb45c17 100644
+index 6516834..3382020 100644
 --- a/recipes-bsp/device-tree/device-tree.bb
 +++ b/recipes-bsp/device-tree/device-tree.bb
 @@ -24,6 +24,7 @@ SRC_URI:append:agilex7_dk_si_agf014ea = " \
@@ -540,17 +519,17 @@ index fcd665a..bb45c17 100644
  					"
  
  SRC_URI:append:agilex7_dk_si_agf014eb = " \
-@@ -31,6 +32,7 @@ SRC_URI:append:agilex7_dk_si_agf014eb = " \
- 					file://agilex7_pr_fpga_static_region.dts \
+@@ -32,6 +33,7 @@ SRC_URI:append:agilex7_dk_si_agf014eb = " \
  					file://agilex7_pr_persona0.dts \
  					file://agilex7_pr_persona1.dts \
-+					file://fabric_config_overlay.dts \
  					file://socfpga_ilc.dtsi \
++					file://fabric_config_overlay.dts \
  					"
  
+ SRC_URI:append:agilex7_dk_si_agi027fb = " \
 diff --git a/recipes-bsp/device-tree/files/fabric_config_overlay.dts b/recipes-bsp/device-tree/files/fabric_config_overlay.dts
 new file mode 100644
-index 0000000..75ea080
+index 0000000..cd5b0df
 --- /dev/null
 +++ b/recipes-bsp/device-tree/files/fabric_config_overlay.dts
 @@ -0,0 +1,23 @@
@@ -558,13 +537,13 @@ index 0000000..75ea080
 +/plugin/;
 +/ {
 +                fragment@0 {
-+                                target-path = "/soc/base_fpga_region";
-+                                #address-cells = <0x1>;
-+                                #size-cells = <0x1>;
++                                target-path = "/fpga-region";
++                                #address-cells = <0x2>;
++                                #size-cells = <0x2>;
 +                                __overlay__ {
 +                                                #address-cells = <0x2>;
 +                                                #size-cells = <0x2>;
-+                                                ranges =<0x0 0x0 0xF9000000 0x0 0x00200000>;
++                                                ranges =<0x0 0x0 0x0 0xF9000000 0x0 0x00200000>;
 +                                                firmware-name = "ghrd.core.rbf";
 +                                                config-complete-timeout-us = <30000000>;
 +
@@ -577,12 +556,11 @@ index 0000000..75ea080
 +                                };
 +                };
 +};
-\ No newline at end of file
 diff --git a/recipes-bsp/ghrd/hw-ref-design.bb b/recipes-bsp/ghrd/hw-ref-design.bb
-index 971bedd..669c63d 100644
+index eccd99d..dbd6f34 100644
 --- a/recipes-bsp/ghrd/hw-ref-design.bb
 +++ b/recipes-bsp/ghrd/hw-ref-design.bb
-@@ -218,6 +218,7 @@ do_install () {
+@@ -222,6 +222,7 @@ do_install () {
  			install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_${ARM64_GHRD_CORE_RBF} ${D}/boot/ghrd_pr.core.rbf
  			install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
  			install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
@@ -637,7 +615,7 @@ package
 ```bash 
 cd $TOP_FOLDER 
 rm -f *jic* *rbf* 
- quartus_pfg -c agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof \ 
+ quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \ 
  ghrd.jic \ 
  -o hps_path=gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex \ 
  -o device=MT25QU128 \ 
@@ -720,4 +698,4 @@ Altera disclaims all express and implied warranties, including without limitatio
 You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
 <sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
 
-OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 
+OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™.  
