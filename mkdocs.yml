@@ -251,7 +251,10 @@ nav:
     - Arria® 10:
       - SX SoC Development Kit:
         - GSRD User Guide: embedded-designs/arria-10/sx/soc/gsrd/ug-gsrd-a10sx-soc.md
-
+    - Cyclone® V:
+      - SX SoC Development Kit:
+        - GSRD User Guide: embedded-designs/cyclone-v/sx/soc/gsrd/ug-gsrd-cve-soc.md
+        
   - Demos:
     - Summary: ed-demo-list/demo-list.md
     - Agilex™ 5:
