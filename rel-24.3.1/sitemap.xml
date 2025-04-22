@@ -241,6 +241,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://altera-fpga.github.io/rel-24.3.1/embedded-designs/cyclone-v/sx/soc/gsrd/ug-gsrd-cve-soc/</loc>
+         <lastmod>2025-04-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://altera-fpga.github.io/rel-24.3.1/embedded-designs/doc_modules/links/</loc>
          <lastmod>2025-04-22</lastmod>
          <changefreq>daily</changefreq>
