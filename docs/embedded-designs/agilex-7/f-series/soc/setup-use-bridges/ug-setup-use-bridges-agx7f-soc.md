@@ -144,7 +144,7 @@ The following table describes the configuration that is being performed in the C
 * Host PC with
 
   * Linux distribution with kernel-headers/ kernel-devel and Binutils packages properly installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1.
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.
   * Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows).
 
 ## Building the Example
@@ -183,7 +183,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -204,7 +204,7 @@ Get the GHRD and build it as it comes by default:
 ```bash
 cd $TOP_FOLDER
 rm -rf ghrd-socfpga agilex_soc_devkit_ghrd
-git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
 mv ghrd-socfpga/agilex_soc_devkit_ghrd .
 rm -rf ghrd-socfpga
 cd agilex_soc_devkit_ghrd
@@ -410,7 +410,7 @@ Clone the Yocto script and prepare the build:
   ```bash
   cd $TOP_FOLDER
   rm -rf gsrd-socfpga
-  git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
+  git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
   cd gsrd-socfpga
   . agilex7_dk_si_agf014eb-gsrd-build.sh
   build_setup
@@ -569,7 +569,7 @@ as shown next.
   
   # Create a Linux repository in the $TOP_FOLDER
   rm -rf linux-socfpga-for-patch
-  git clone -b QPDS24.3.1_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga linux-socfpga-for-patch
+  git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga linux-socfpga-for-patch
   # Add the content of dmaBufNodes.txt  after 4 lines of finding memory@
   awk '
       /memory@/ {found=NR}  # Store the line number where "memory@" is found
@@ -681,7 +681,7 @@ In order to excercise this example you will need to program the binaries that yo
 * SD Card: `$TOP_FOLDER/gsrd_socfpga/agilex7_dk_si_agf014ea-gsrd-images/gsrd-console-image-agilex7.wic`
 * QSPI: `$TOP_FOLDER/ghrd_agfb014r24b2e2v.hps.jic`
 
-You also need to download the sample test script that will be used to excercise this example [dmaTest_cache_v2.0.run ](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run). This is a bash script that should be executed for Linux running in the development kit. 
+You also need to download the sample test script that will be used to excercise this example [dmaTest_cache_v2.0.run ](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run). This is a bash script that should be executed for Linux running in the development kit. 
 In the script make sure that the variables used to define the addresses for the configuration registers for the Cache Coherency Translator and Modular Scatter-Gather DMA components match the ones set automatically in the GHRD.
 
 The addresses set in the GHRD are defined at the **lwsoc2fpga** bridge with a base address of 0xF9000000:
@@ -701,7 +701,7 @@ These variables are defined in the script as:
 To execute the sample test script:
 
 1. Power cycle the board to boot to Linux.
-2. Transfer the [dmaTest_cache_v2.0.run](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) test script to your `/home/root` directory. For this you can use TFTP application.
+2. Transfer the [dmaTest_cache_v2.0.run](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) test script to your `/home/root` directory. For this you can use TFTP application.
 3. You can see how to exercise the script by using the **-h** switch:
   ```
   root@agilex:~# bash dmaTest_cache_v2.0.run -h
@@ -871,4 +871,4 @@ Altera disclaims all express and implied warranties, including without limitatio
 You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
 <sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
 
-OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 
+OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™.  

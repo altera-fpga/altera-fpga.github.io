@@ -54,27 +54,27 @@ To exercise the instructions presented on this page (build your binaries and exe
 
 
 
-**Version: 24.3.1**
+**Version: 25.1**
 
-| SW Component             | Repository                                                   | Branch/TAG/Version                                           |
-| :----------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| U-Boot                   | https://github.com/altera-opensource/u-boot-socfpga          | socfpga_v2024.07/QPDS24.3.1_REL_GSRD_PR |
-| ATF                      | https://github.com/altera-opensource/arm-trusted-firmware    | socfpga_v2.11.1/QPDS24.3.1_REL_GSRD_PR |
-| Linux                    | https://github.com/altera-opensource/linux-socfpga           | socfpga-6.6.51-lts/QPDS24.3.1_REL_GSRD_PR  |
-| Reference Design Sources | https://github.com/altera-opensource/meta-intel-fpga-refdes  | styhead/QPDS24.3.1_REL_GSRD_PR |
-| GSRD                     | https://github.com/altera-opensource/gsrd-socfpga            | styhead |
-| Yocto Project            | https://git.yoctoproject.org/poky                            |  styhead/latest     |
-| Reference Design Recipes | https://git.yoctoproject.org/meta-intel-fpga                 | styhead/latest |
-| Arm Debugger             | http://fpgasoftware.intel.com/armds                          | ARM DS 2022.2 |
-| Ashling RiscFree         | https://www.intel.com/content/www/us/en/software-kit/826843/ Additional Software/Stand-Alone Software tab | 24.3.1 |
+| SW Component             | Repository                                                   | Branch/TAG/Version                             |
+| :----------------------- | :----------------------------------------------------------- | :--------------------------------------------- |
+| U-Boot                   | https://github.com/altera-fpga/u-boot-socfpga                | socfpga_v2025.01/QPDS25.1_REL_GSRD_PR   |
+| ATF                      | https://github.com/altera-fpga/arm-trusted-firmware          | socfpga_v2.12.0/QPDS25.1_REL_GSRD_PR     |
+| Linux                    | https://github.com/altera-fpga/linux-socfpga                 | socfpga-6.12.11-lts/QPDS25.1_REL_GSRD_PR   |
+| Reference Design Sources | https://github.com/altera-fpga/meta-intel-fpga-refdes        | styhead/QPDS25.1_REL_GSRD_PR |
+| GSRD                     | https://github.com/altera-fpga/gsrd-socfpga                  | styhead                   |
+| Yocto Project            | https://git.yoctoproject.org/poky                            | styhead/latest            |
+| Reference Design Recipes | https://git.yoctoproject.org/meta-intel-fpga                 | styhead/latest            |
+| Arm Debugger             | http://fpgasoftware.intel.com/armds                          | ARM DS 2024.1                                  |
+| Ashling RiscFree         | https://www.intel.com/content/www/us/en/software-kit/826843/ Additional Software/Stand-Alone Software tab | 25.1                  |
 
 **Note:** For information prior 24.2 release, please refer to [Linux GSRD Intel Simics Virtual Platform for Intel Agilex® 5 E-Series](https://www.rocketboards.org/foswiki/Documentation/Agilex5SoCSimicsVirtualPlatformsReferenceGuide). 
 
 ### Prebuilt Binaries
 
-You can find the prebuilt binaries from the GSRD prebuilt at the following URL: [https://releases.rocketboards.org/2025.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/](https://releases.rocketboards.org/2025.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/). The files in this folder allow you to boot directly from SDCard. It also contains some of the files that are used to generate the final images used to boot from QSPI and from NAND. The following folders contain the remaining files used by the recipes to create the binaries to boot from QSPI and NAND.
+You can find the prebuilt binaries from the GSRD prebuilt at the following URL: [https://releases.rocketboards.org/2025.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/](https://releases.rocketboards.org/2025.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/). The files in this folder allow you to boot directly from SDCard. It also contains some of the files that are used to generate the final images used to boot from QSPI and from NAND. The following folders contain the remaining files used by the recipes to create the binaries to boot from QSPI and NAND.
 
-- QSPI: [QSPI boot complement files](https://releases.rocketboards.org/2025.01/qspi/agilex5_dk_a5e065bb32aes1_qspi/). Here is the link to obtain the [uboot_script.its](https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/styhead/recipes-bsp/u-boot/files/uboot_script.its) file which is also needed.
+- QSPI: [QSPI boot complement files](https://releases.rocketboards.org/2025.04/qspi/agilex5_dk_a5e065bb32aes1_qspi/). Here is the link to obtain the [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/styhead/recipes-bsp/u-boot/files/uboot_script.its) file which is also needed.
 - NAND: No available since NAND is not supported in silicon yet.
 
 
@@ -120,7 +120,7 @@ You can find the prebuilt binaries from the GSRD prebuilt at the following URL: 
 
 ### Build Instructions
 
-The following diagram illustrates the full-build flow for the binaries used with the Intel Simics simulator. The build flow utilizes the source code placed in [GitHub](https://github.com/altera-opensource) in repositories and uses a flow based on Yocto.
+The following diagram illustrates the full-build flow for the binaries used with the Intel Simics simulator. The build flow utilizes the source code placed in [GitHub](https://github.com/altera-fpga) in repositories and uses a flow based on Yocto.
 
 
 ![](images/BuildBinariesFlow.jpg)
@@ -160,7 +160,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -179,14 +179,14 @@ In Simics, the SOF file generated as result of the build of the hardware design 
 
 ```bash
 cd $TOP_FOLDER
-rm ghrd_a5ed065bb32ae6sr0_hps.sof
-wget https://releases.rocketboards.org/2025.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0_hps.sof 
+rm ghrd_a5ed065bb32ae6sr0.sof
+wget https://releases.rocketboards.org/2025.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.sof 
 ```
 
 
 The following file is created:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps.sof
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof
 
 
 
@@ -221,7 +221,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
   ```bash
   cd $TOP_FOLDER
   rm -rf gsrd-socfpga
-  git clone -b styhead https://github.com/altera-opensource/gsrd-socfpga
+  git clone -b styhead https://github.com/altera-fpga/gsrd-socfpga
   cd gsrd-socfpga
   . agilex5_dk_a5e065bb32aes1-gsrd-build.sh
   build_setup
@@ -239,11 +239,11 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 #### Customize the Yocto Build
 
 1. (Optional) Change the following files in **gsrd-socfpga/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/**:
-   * distroboot script:[uboot.txt](https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/master/recipes-bsp/u-boot/files/uboot.txt)
-   * **its** file for creating FIT image fromthe above script: [uboot_script.its](https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/master/recipes-bsp/u-boot/files/uboot_script.its) 
+   * distroboot script:[uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/master/recipes-bsp/u-boot/files/uboot.txt)
+   * **its** file for creating FIT image fromthe above script: [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/master/recipes-bsp/u-boot/files/uboot_script.its) 
 
 2. (Optional) Change the following file in **gsrd-socfpga/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts**:
-   * **its** file for creating the **kernel.itb** image: [fit_kernel_agilex5.its](https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/master/recipes-kernel/linux/linux-socfpga-lts/fit_kernel_agilex5.its) , which by default contains the following:<br>
+   * **its** file for creating the **kernel.itb** image: [fit_kernel_agilex5.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/master/recipes-kernel/linux/linux-socfpga-lts/fit_kernel_agilex5.its) , which by default contains the following:<br>
     * Kernel <br>
     * Distroboot boot script<br>
     * Device tree configurations<br>
@@ -278,7 +278,7 @@ After the build is completed successfully, the following two folders are created
 
 
 
-**Note**: If you want to build binaries creating each one of the binaries independently, you could refer to [Agilex™ 5 E-Series GHRD Linux Boot Examples](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/).
+**Note**: If you want to build binaries creating each one of the binaries independently, you could refer to [Agilex™ 5 E-Series GHRD Linux Boot Examples](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/).
 
 
 
@@ -288,7 +288,7 @@ The most relevant files created in the `$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-
 
 |                          File                           |                        Description                        | SD Card Boot | QSPI Boot | NAND Boot |
 | :-----------------------------------------------------: | :-------------------------------------------------------: | ------------ | --------- | --------- |
-| ghrd_a5ed065bb32ae6sr0_hps.sof | SOF file from the hardware design |  | * | | 
+| ghrd_a5ed065bb32ae6sr0.sof | SOF file from the hardware design |  | * | |
 | u-boot-spl-dtb.bin |                  U-Boot SPL binary file                   | * | * | * |
 |                       u-boot.itb                        |                       U-Boot (SSBL)                       | * | * | * |
 |                      boot.scr.uimg                      |                  Distroboot boot script                   | * |  | * |
@@ -325,7 +325,7 @@ The layout of the QSPI image is shown in the following table:
   # Gattering files
   cd $TOP_FOLDER
   rm -rf qspi-bin && mkdir qspi-bin && cd qspi-bin 
-  mv $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0_hps.sof agilex5_factory.sof
+  mv $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.sof agilex5_factory.sof
   ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb u-boot-itb.bin
   ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex u-boot-spl.hex
   ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/kernel.itb kernel-image
@@ -811,6 +811,9 @@ during the project deployment remains being A0. You can override the default
 stepping using the stepping parameter from the target script. In this case, the B0
 features are enabled in the Agilex 5 E-Series model.
 
+#### UART1/UART2 Serial Console Selection
+
+The Agilex 5 Universal virtual platform supports creating a serial console that could be connected to UART0 (default one) or UART1. This feature provides more flexibility to the virtual platform allowing you to match your board. The selection of the serial console to be displayed is controlled by the **$create_hps_serial0_console** and **$create_hps_serial1_console** configuration parameters. These 2 parameters allow you to enable creating the corresponding serial console. A serial console object is created and connected when the corresponding parameter is set to TRUE. Note that is possible to have both serial consoles enabled or both disabled.
 
 ### Configurable Parameters in the Intel Agilex™ 5 E-Series Universal Virtual Platform
 
@@ -835,7 +838,8 @@ The parameters that you can configure are shown in the following table:
 | **usb3_hs_image_filename**     | Name of the USB disk image corresponding to the high-speed disk in the board component connected to the USB 3.1 controller. | Filename string      | ""            |
 | **usb_otg_image_filename**     | Name of the USB disk image corresponding to the high-speed disk in the board component connected to the USB 2.0 OTG controller. | Filename string      | ""            |
 | **hps_cpu_freq_mhz**           | ARM cores frequency in Megahertz (MHz).                      | Integer [400 - 1500] | 400           |
-| **stepping**     | Select the silicon features that the Agilex 5 Simics model supports. | A0 or B0. D-Series corresponds to B0 device.      | A0  | 
+| **stepping**     | Select the silicon features that the Agilex 5 Simics model supports. | A0 or B0. D-Series corresponds to B0 device.      | A0  |
+| **create_hps_serial0_console<br>create_hps_serial1_console** | Create a console component (serial console) and connect it to the corresponding UART controller peripheral in the Hard Processor System Agilex 5 FPGA IP.<br/>**create_hps_serial0_console** is for UART0 <br/>**create_hps_serial1_console** is for UART1. | Boolean |serial0: True<br>serial1: False|
 
 ### Use Cases Supported by the Agilex™ 5 E-Series Universal Virtual Platform
 
@@ -1890,7 +1894,7 @@ Note: You can perform the build of this application by updating the Yocto recipe
 
 ```bash
 cd $TOP_FOLDER
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga u-boot-socfpga-patch
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga-patch
 cd u-boot-socfpga-patch/
  - Create cmd/socFPGATrainingExamples.c file with the source code provided of the example application.
  - Edit cmd/Makefile to include the build of socFPGATrainingExamples.c

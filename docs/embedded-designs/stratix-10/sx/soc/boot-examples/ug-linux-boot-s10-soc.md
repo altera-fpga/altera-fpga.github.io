@@ -1,22 +1,20 @@
-**NOTE:** This page is not available in this release. The current version of this page applies to release 24.3, but keeping the content here because it was ported from RocketBoards in 24.3.1 release. 
-
 ## Intro
 
 This page contains instructions on how to build U-Boot  for Stratix® 10 SX SOC Development kit H-Tile (DK-SOC-1SSX-H-D). 
 
 ## Component Versions
 
-This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 and the following component versions.
+This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1 and the following component versions.
 
 | Repository | Branch/Tag |
 | :-- | :-- |
-| [ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | QPDS24.3_REL_GSRD_PR |
-| [linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.37-lts/QPDS24.3_REL_GSRD_PR |
-| [arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.11.0/QPDS24.3_REL_GSRD_PR |
-| [u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.04/QPDS24.3_REL_GSRD_PR |
+| [ghrd-socfpga](https://github.com/altera-fpga/ghrd-socfpga) | QPDS25.1_REL_GSRD_PR |
+| [linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.11-lts/QPDS25.1_REL_GSRD_PR |
+| [arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.0/QPDS25.1_REL_GSRD_PR |
+| [u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.01/QPDS25.1_REL_GSRD_PR |
 
 Starting with SoC EDS Pro version 19.3, the following changes were made:
-The bootloader source code was removed from SoC EDS. Instead, the user needs to clone the git trees from https://github.com/altera-opensource/u-boot-socfpga.
+The bootloader source code was removed from SoC EDS. Instead, the user needs to clone the git trees from https://github.com/altera-fpga/u-boot-socfpga.
 
 The same U-Boot branch is used for all SoC FPGA devices: Cyclone® V SoC, Arria® V SoC, Arria® 10 SoC, Stratix® 10 SoC, Agilex™ 7 and Agilex™ 5.
 
@@ -46,13 +44,13 @@ The Stratix® 10 GSRDs are also updated to use this feature. See the GSRD docume
 
 ## U-Boot Branches
 
-The official Intel SOCFPGA U-Boot repository is located at https://github.com/altera-opensource/u-boot-socfpga.
+The official Intel SOCFPGA U-Boot repository is located at https://github.com/altera-fpga/u-boot-socfpga.
 
 **Notes:**
 
 * A "RC" labeled branch is for internal active development use and customer early access without official customer support.
 * Latest stable branch (no RC labeled) is strongly recommended for development and production use outside of Intel.
-* See [doc/README.socfpga](https://github.com/altera-opensource/u-boot-socfpga/blob/HEAD/doc/README.socfpga) for Quartus® Pro and Device support.
+* See [doc/README.socfpga](https://github.com/altera-fpga/u-boot-socfpga/blob/HEAD/doc/README.socfpga) for Quartus® Pro and Device support.
 
 ## Boot From SD Card Example
 
@@ -87,7 +85,7 @@ The following are required:
 * Host machine running Linux. Ubuntu 22.04 was used, but other versions may work too.
 * Internet connection to download the tools and clone the U-Boot git tree from github. If you are behind a firewall you will need your system administrator to enable you to get to the git trees.
 * Intel Stratix® 10 H-Tile SoC FPGA Development Kit (DK-SOC-1SSX-H-D).
-* Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3
+* Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1
 
 Note that the examples presented on this page boot to Linux and they require Linux kernel, device tree and rootfilesystem to boot. However, you can omit the Linux binaries and just boot to U-Boot prompt if you want to.
 
@@ -106,7 +104,7 @@ Note that the examples presented on this page boot to Linux and they require Lin
   ```
 
 
-Download and setup the the toolchain as follows:
+Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
 
 Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
 
@@ -122,13 +120,17 @@ export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
 
+
+Enable Quartus tools to be called from command line:
+
 Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
 
 
 
@@ -140,25 +142,19 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
   ```bash 
   cd $TOP_FOLDER
-  rm -rf ghrd-socfpga s10_soc_devkit_ghrd 
-  git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
-  mv ghrd-socfpga/s10_soc_devkit_ghrd .
-  rm -rf ghrd-socfpga
-  cd s10_soc_devkit_ghrd
-  # disable sgmii and partial reconfiguration - to decrease build time
-  export HPS_ENABLE_SGMII=0
-  export ENABLE_PARTIAL_RECONFIGURATION=0
-  export QUARTUS_DEVICE=1SX280HU2F50E1VGAS
-  make scrub_clean_all
-  make generate_from_tcl
-  make all
+  wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.1_REL_GSRD_PR.zip
+  unzip QPDS25.1_REL_GSRD_PR.zip
+  rm QPDS25.1_REL_GSRD_PR.zip
+  mv stratix10-ed-gsrd-QPDS25.1_REL_GSRD_PR stratix10-ed-gsrd
+  cd stratix10-ed-gsrd
+  make s10-htile-soc-devkit-oobe-baseline-all
   cd ..
   ```
 
 
 After building the hardware design the following binary is created:
 
-- $TOP_FOLDER/s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas.sof
+- $TOP_FOLDER/stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline.sof
 
 ### Build Arm Trusted Firmware
 
@@ -166,7 +162,7 @@ After building the hardware design the following binary is created:
   ```bash
   cd $TOP_FOLDER
   rm -rf arm-trusted-firmware
-  git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/arm-trusted-firmware
+  git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
   cd arm-trusted-firmware
   make -j 64 bl31 PLAT=stratix10
   cd ..
@@ -184,7 +180,7 @@ After completing the above steps, the Arm Trusted Firmware binary file is create
   ```bash
   cd $TOP_FOLDER
   rm -rf u-boot-socfpga
-  git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga
+  git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
   cd u-boot-socfpga
   # enable dwarf4 debug info, for compatibility with arm ds
   sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -267,7 +263,7 @@ After completing the above steps, the following files are created.
 
   ```bash
   cd $TOP_FOLDER
-  quartus_pfg -c s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas.sof ghrd.jic \
+  quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline.sof ghrd.jic \
   -o device=MT25QU128 \
   -o flash_loader=1SX280HU2F50E1VGAS \
   -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
@@ -277,9 +273,10 @@ After completing the above steps, the following files are created.
 
 
 
-The following files are created in $TOP_FOLDER/s10_soc_devkit_ghrd/output_files:
+The following files are created:
 
-* ghrd_1sx280hu2f50e1vgas.sof - FPGA SOF file, without HPS FSBL
+* $TOP_FOLDER/ghrd.hps.jic
+* $TOP_FOLDER/ghrd.core.rbf
 
 ### Building Linux Kernel
 
@@ -290,7 +287,7 @@ Download and compile Linux:
   ```bash
   cd $TOP_FOLDER
   rm -rf linux-socfpga
-  git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga
+  git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
   cd linux-socfpga
   make clean && make mrproper
   # enable kernel debugging with RiscFree
@@ -344,9 +341,9 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
   ```bash 
   cd $TOP_FOLDER 
   rm -rf yocto && mkdir yocto && cd yocto
-  git clone -b scarthgap https://git.yoctoproject.org/poky
-  git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga
-  git clone -b scarthgap   https://github.com/openembedded/meta-openembedded
+  git clone -b styhead https://git.yoctoproject.org/poky
+  git clone -b styhead https://git.yoctoproject.org/meta-intel-fpga
+  git clone -b styhead   https://github.com/openembedded/meta-openembedded
   # work around issue
   echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
   source poky/oe-init-build-env ./build
@@ -461,7 +458,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
 
   3.- Configure the FPGA with the debug SOF:
   ```
-  quartus_pgm -c 1 -m jtag -o "p;s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas_hps_debug.sof@2"
+  quartus_pgm -c 1 -m jtag -o "p;stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline_hps_debug.sof@2"
   ```
   If the HPS is not present in the jtagconfig output above, please remove the "@2" from the command line above.
 
@@ -501,7 +498,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ```
   6.- The serial console will show SPL then U-Boot being run:
   ```
-  U-Boot SPL 2024.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
+  U-Boot SPL 2025.01-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
   Reset state: Cold
   MPU         1000000 kHz
   L3 main     400000 kHz
@@ -519,10 +516,10 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ## Checking hash(es) for Image atf … crc32+ OK
   ## Checking hash(es) for Image uboot … crc32+ OK
   ## Checking hash(es) for Image fdt-0 … crc32+ OK
-  NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
+  NOTICE:  BL31: v2.12.0(release):QPDS25.1_REL_GSRD_PR
   NOTICE:  BL31: Built : 11:03:24, Jan 29 2025
 
-  U-Boot 2024.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_stratix10
+  U-Boot 2025.01-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_stratix10
 
   CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
   Model: SoCFPGA Stratix 10 SoCDK
@@ -563,7 +560,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
 
   3.- Configure the FPGA with the debug SOF:
   ```
-  quartus_pgm -c 1 -m jtag -o "p;s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas_hps_debug.sof@2"  
+  quartus_pgm -c 1 -m jtag -o "p;stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline_hps_debug.sof@2"  
   ```
 
   If the HPS is not present in the jtagconfig output above, please remove the "@2" from the command line above.
@@ -895,4 +892,4 @@ Altera disclaims all express and implied warranties, including without limitatio
 You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
 <sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
 
-OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 
+OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™.   

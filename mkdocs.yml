@@ -248,6 +248,10 @@ nav:
         - HPS eMMC Boot Example: embedded-designs/stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc.md
         - SoC Fabric Configuration from Linux Example: embedded-designs/stratix-10/sx/soc/fabric-config/ug-linux-fabric-config-s10sx-soc.md
         - GHRD Linux Boot Examples: embedded-designs/stratix-10/sx/soc/boot-examples/ug-linux-boot-s10-soc.md
+    - Arria® 10:
+      - SX SoC Development Kit:
+        - GSRD User Guide: embedded-designs/arria-10/sx/soc/gsrd/ug-gsrd-a10sx-soc.md
+
   - Demos:
     - Summary: ed-demo-list/demo-list.md
     - Agilex™ 5:
@@ -304,44 +308,18 @@ ignorefiles:
 env: 
 # Devices         
   AGILEX: Intel® Agilex® 7 FPGA
-  ALTERA_RELEASE: rel-24.3.1
 
 # Variables for content supported by current release  
-  COMMON_QUARTUS_VER_L: Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1
-  COMMON_QUARTUS_VER_S: 24.3.1
-  PREV_COMMON_QUARTUS_VER_S: 24.3
-  GSRD_LINUX_BRANCH_S: 6.6.51-lts
-  GSRD_UBOOT_BRANCH_S: 2024.07
-  GSRD_ATF_BRANCH_S: 2.11.1
-  GSRD_LINUX_BRANCH: socfpga-6.6.51-lts
-  GSRD_UBOOT_BRANCH: socfpga_v2024.07
-  GSRD_ATF_BRANCH: socfpga_v2.11.1
-  GSRD_DATE: 2025.01
-  GSRD_TAG: QPDS24.3.1_REL_GSRD_PR
-  GSRD_YOCTO_BRANCH: styhead
-  GSRD_CMAKE_VER: 3.21.1
-  GSRD_ZEPHYR_LAST_RELEASE_S: 24.3
-  GSRD_ZEPHYR_BRANCH: socfpga_rel_24.3 
-  GSRD_ZEPHYR_PRJ_BRANCH: v3.6-branch
-  GSRD_ZEPHYR_PRJ_BRANCH_S: 3.6
-
-# Variables for content not supported by current release
-  MINOR_COMMON_QUARTUS_VER_L: Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3
-  MINOR_COMMON_QUARTUS_VER_S: 24.3
-  MINOR_PREV_COMMON_QUARTUS_VER_S: 24.2
-  MINOR_GSRD_LINUX_BRANCH_S: 6.6.37-lts
-  MINOR_GSRD_UBOOT_BRANCH_S: 2024.04
-  MINOR_GSRD_ATF_BRANCH_S: 2.11.0
-  MINOR_GSRD_LINUX_BRANCH: socfpga-6.6.37-lts
-  MINOR_GSRD_UBOOT_BRANCH: socfpga_v2024.04
-  MINOR_GSRD_ATF_BRANCH: socfpga_v2.11.0
-  MINOR_GSRD_DATE: 2024.11
-  MINOR_GSRD_TAG: QPDS24.3_REL_GSRD_PR
-  MINOR_GSRD_YOCTO_BRANCH: scarthgap
-  MINOR_GSRD_CMAKE_VER: 3.21.1
-  MINOR_GSRD_ZEPHYR_BRANCH: socfpga_rel_24.3
-  MINOR_GSRD_ZEPHYR_PRJ_BRANCH: v3.6-branch
-  MINOR_GSRD_ZEPHYR_PRJ_BRANCH_S: 3.6
-
-
-
+  ALTERA_RELEASE: rel-25.1
+  COMMON_QUARTUS_VER_L: Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1
+  COMMON_QUARTUS_VER_S: 25.1
+  PREV_COMMON_QUARTUS_VER_S: 24.3.1
+  GSRD_LINUX_BRANCH_S: 6.12.11-lts
+  GSRD_UBOOT_BRANCH_S: 2025.01
+  GSRD_ATF_BRANCH_S: 2.12.0
+  GSRD_LINUX_BRANCH: socfpga-6.12.11-lts
+  GSRD_UBOOT_BRANCH: socfpga_v2025.01
+  GSRD_ATF_BRANCH: socfpga_v2.12.0
+  GSRD_DATE: 2025.04
+  GSRD_TAG: QPDS25.1_REL_GSRD_PR
+  GSRD_YOCTO_BRANCH: styhead 

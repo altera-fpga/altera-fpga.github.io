@@ -124,18 +124,18 @@ Quartus Prime Pro v24.3 and the following software component versions were used 
 
 | Component | Location | Branch | Commit ID/Tag |
 | --- | --- | --- | --- |
-| GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | [QPDS24.3.1_REL_GSRD_PR](https://github.com/altera-opensource/ghrd-socfpga/tree/QPDS24.3.1_REL_GSRD_PR) |
-| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.37-lts | [QPDS24.3.1_REL_GSRD_PR](https://github.com/altera-opensource/linux-socfpga/tree/QPDS24.3.1_REL_GSRD_PR) |
-| Arm Trusted Firmware | [https://github.com/altera-opensource/arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.11.0 | [QPDS24.3.1_REL_GSRD_PR](https://github.com/altera-opensource/arm-trusted-firmware/tree/QPDS24.3.1_REL_GSRD_PR) |
-| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.04 | [QPDS24.3.1_REL_GSRD_PR](https://github.com/altera-opensource/u-boot-socfpga/tree/QPDS24.3.1_REL_GSRD_PR) |
+| GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | [QPDS25.1_REL_GSRD_PR](https://github.com/altera-opensource/ghrd-socfpga/tree/QPDS25.1_REL_GSRD_PR) |
+| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.37-lts | [QPDS25.1_REL_GSRD_PR](https://github.com/altera-opensource/linux-socfpga/tree/QPDS25.1_REL_GSRD_PR) |
+| Arm Trusted Firmware | [https://github.com/altera-opensource/arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.11.0 | [QPDS25.1_REL_GSRD_PR](https://github.com/altera-opensource/arm-trusted-firmware/tree/QPDS25.1_REL_GSRD_PR) |
+| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.04 | [QPDS25.1_REL_GSRD_PR](https://github.com/altera-opensource/u-boot-socfpga/tree/QPDS25.1_REL_GSRD_PR) |
 | Yocto Project: poky | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest |
 | Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | scarthgap | [QPDS24.3.1_REL_GSRD_PR](https://github.com/altera-opensource/meta-intel-fpga-refdes/tree/QPDS24.3.1_REL_GSRD_PR) |
-| GSRD Build Script: gsrd-socfpga | [https://github.com/altera-opensource/gsrd-socfpga](https://github.com/altera-opensource/gsrd-socfpga) | scarthgap | [QPDS24.3.1_REL_GSRD_PR](https://github.com/altera-opensource/gsrd-socfpga/tree/QPDS24.3.1_REL_GSRD_PR) |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | scarthgap | [QPDS25.1_REL_GSRD_PR](https://github.com/altera-opensource/meta-intel-fpga-refdes/tree/QPDS25.1_REL_GSRD_PR) |
+| GSRD Build Script: gsrd-socfpga | [https://github.com/altera-opensource/gsrd-socfpga](https://github.com/altera-opensource/gsrd-socfpga) | scarthgap | [QPDS25.1_REL_GSRD_PR](https://github.com/altera-opensource/gsrd-socfpga/tree/QPDS25.1_REL_GSRD_PR) |
 
 ### Release Notes
 
-See [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS24.3.1_REL_GSRD_PR](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS24.3.1_REL_GSRD_PR)
+See [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.1_REL_GSRD_PR](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.1_REL_GSRD_PR)
 
 
 
@@ -598,11 +598,11 @@ Once the test is completed, copy the following files from Board B (listener) to 
 
 Import 'afpkt-rxtstamps.txt' and 'afxdp-rxtstamps.txt' to excel in 2 seperate sheets.
 
-<img src="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
+<img src="https://altera-fpga.github.io/rel-25.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
 
 Plot Column 1 for each sheets using Scatter chart,
 
-<img src="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
+<img src="https://altera-fpga.github.io/rel-25.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
 
 
 This will generate plot for AFPKT and AFXDP with latency(on Y-axis) against packet count (on X-axis).

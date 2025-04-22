@@ -1,2 +1,1 @@
-**NOTE:** This page is not available in this release. The latest release for Stratix10 device  supported corresponds to 24.3. Please refer to the following page to access the latest documentation: [Stratix 10 HPS eMMC Boot Example](https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc/).
-
+<b style="color: red;">Note</b>: This example is not availble in this release. Refer to [https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc/](https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc/) for the latest available version.

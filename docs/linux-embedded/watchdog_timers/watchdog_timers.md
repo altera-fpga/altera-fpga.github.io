@@ -1,6 +1,6 @@
 # **Watchdog Timers Driver for Hard Processor System**
 
-Last updated: **April 11, 2025** 
+Last updated: **April 22, 2025** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/watchdog/dw_wdt.c)
 
