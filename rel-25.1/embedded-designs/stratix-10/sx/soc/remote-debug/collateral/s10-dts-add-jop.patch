@@ -1,0 +1,17 @@
+diff --git a/recipes-bsp/device-tree/files/socfpga_stratix10_qse_sgmii_ghrd.dtsi b/recipes-bsp/device-tree/files/socfpga_stratix10_qse_sgmii_ghrd.dtsi
+index 106efe6..b7de107 100644
+--- a/recipes-bsp/device-tree/files/socfpga_stratix10_qse_sgmii_ghrd.dtsi
++++ b/recipes-bsp/device-tree/files/socfpga_stratix10_qse_sgmii_ghrd.dtsi
+@@ -46,6 +46,12 @@
+ 				resetvalue = <0>;
+ 		};
+ 
++		jop@f9008000 {
++				compatible = "generic-uio";
++				reg = <0xf9008000 0x5000>;
++				reg-names = "jop";
++		};
++
+ 		soc_leds: leds {
+ 			compatible = "gpio-leds";
+ 
