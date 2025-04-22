@@ -2079,6 +2079,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -3188,6 +3190,96 @@
 
             
           
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+          Arria® 10
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_5">
+          <span class="md-nav__icon md-icon"></span>
+          Arria® 10
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5_1" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_5_1" id="__nav_7_5_1_label" tabindex="0">
+          SX SoC Development Kit
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_5_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          SX SoC Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../arria-10/sx/soc/gsrd/ug-gsrd-a10sx-soc/" class="md-nav__link">
+        GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -3540,7 +3632,7 @@
 <li>Boot from SD Card</li>
 <li>Boot from QSPI</li>
 </ul>
-<p>The instructions on this page are based on the <a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/">GSRD</a>.</p>
+<p>The instructions on this page are based on the <a href="https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/">GSRD</a>.</p>
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
 <p>The following are required to be able to fully exercise the Agilex 5 Modular Development Kit GSRD:</p>
 <ul>
@@ -3555,14 +3647,14 @@
 <li>64 GB of RAM or more</li>
 <li>Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too</li>
 <li>Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
-<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1 </li>
+<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1 </li>
 </ul>
 </li>
 <li>Local Ethernet network, with DHCP server</li>
 <li>Internet connection. For downloading the files, especially when rebuilding the GSRD.</li>
 </ul>
 <h3 id="component-versions">Component Versions<a class="headerlink" href="#component-versions" title="Permanent link">&para;</a></h3>
-<p>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1 and the following software component versions are used by the instructions on this page: </p>
+<p>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1 and the following software component versions are used by the instructions on this page: </p>
 <table>
 <thead>
 <tr>
@@ -3575,27 +3667,27 @@
 <tbody>
 <tr>
 <td align="left">GHRD</td>
-<td align="left"><a href="https://github.com/altera-opensource/ghrd-socfpga">https://github.com/altera-opensource/ghrd-socfpga</a></td>
+<td align="left"><a href="https://github.com/altera-fpga/ghrd-socfpga">https://github.com/altera-fpga/ghrd-socfpga</a></td>
 <td align="left">master</td>
-<td align="left">QPDS24.3.1_REL_GSRD_PR</td>
+<td align="left">QPDS25.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Linux</td>
-<td align="left"><a href="https://github.com/altera-opensource/linux-socfpga">https://github.com/altera-opensource/linux-socfpga</a></td>
-<td align="left">socfpga-6.6.51-lts</td>
-<td align="left">QPDS24.3.1_REL_GSRD_PR</td>
+<td align="left"><a href="https://github.com/altera-fpga/linux-socfpga">https://github.com/altera-fpga/linux-socfpga</a></td>
+<td align="left">socfpga-6.12.11-lts</td>
+<td align="left">QPDS25.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Arm Trusted Firmware</td>
-<td align="left"><a href="https://github.com/altera-opensource/arm-trusted-firmware">https://github.com/altera-opensource/arm-trusted-firmware</a></td>
-<td align="left">socfpga_v2.11.1</td>
-<td align="left">QPDS24.3.1_REL_GSRD_PR</td>
+<td align="left"><a href="https://github.com/altera-fpga/arm-trusted-firmware">https://github.com/altera-fpga/arm-trusted-firmware</a></td>
+<td align="left">socfpga_v2.12.0</td>
+<td align="left">QPDS25.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">U-Boot</td>
-<td align="left"><a href="https://github.com/altera-opensource/u-boot-socfpga">https://github.com/altera-opensource/u-boot-socfpga</a></td>
-<td align="left">socfpga_v2024.07</td>
-<td align="left">QPDS24.3.1_REL_GSRD_PR</td>
+<td align="left"><a href="https://github.com/altera-fpga/u-boot-socfpga">https://github.com/altera-fpga/u-boot-socfpga</a></td>
+<td align="left">socfpga_v2025.01</td>
+<td align="left">QPDS25.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Yocto Project</td>
@@ -3611,16 +3703,16 @@
 </tr>
 <tr>
 <td align="left">Yocto Project: meta-intel-fpga-refdes</td>
-<td align="left"><a href="https://github.com/altera-opensource/meta-intel-fpga-refdes">https://github.com/altera-opensource/meta-intel-fpga-refdes</a></td>
+<td align="left"><a href="https://github.com/altera-fpga/meta-intel-fpga-refdes">https://github.com/altera-fpga/meta-intel-fpga-refdes</a></td>
 <td align="left">styhead</td>
-<td align="left">QPDS24.3.1_REL_GSRD_PR</td>
+<td align="left">QPDS25.1_REL_GSRD_PR</td>
 </tr>
 </tbody>
 </table>
 <h3 id="development-kit">Development Kit<a class="headerlink" href="#development-kit" title="Permanent link">&para;</a></h3>
-<p>Refer to <a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular//#development-kit">Development Kit</a> for details about the board, including how to install the HPS Boards, and how to set MSEL dispswitches.</p>
+<p>Refer to <a href="https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular//#development-kit">Development Kit</a> for details about the board, including how to install the HPS Boards, and how to set MSEL dispswitches.</p>
 <h3 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h3>
-<p>Refer to <a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular//#release-notes">Release Notes</a> for release information.</p>
+<p>Refer to <a href="https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular//#release-notes">Release Notes</a> for release information.</p>
 <h2 id="boot-from-sd-card">Boot from SD Card<a class="headerlink" href="#boot-from-sd-card" title="Permanent link">&para;</a></h2>
 <p>This section demonstrates how to build Linux system from separate components, which boots from SD card.</p>
 <h3>Setup Environment</h3>
@@ -3642,7 +3734,7 @@
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3.1/quartus/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/altera_pro/25.1/quartus/
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
 </code></pre></div>
 <h3>Install Yocto Dependencies</h3>
@@ -3665,26 +3757,27 @@
 <h3>Build Hardware Design</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga<span class="w"> </span>agilex5_soc_devkit_ghrd
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/ghrd-socfpga
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>mv<span class="w"> </span>ghrd-socfpga/agilex5_soc_devkit_ghrd<span class="w"> </span>.
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>make<span class="w"> </span>config
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>make<span class="w"> </span><span class="nv">BOARD_TYPE</span><span class="o">=</span>MK-A5E065BB32AES1<span class="w"> </span><span class="nv">DEVICE</span><span class="o">=</span>A5ED065BB32AE6SR0<span class="w"> </span><span class="nv">DAUGHTER_CARD</span><span class="o">=</span>mod_som<span class="w"> </span><span class="nv">HPS_EMIF_EN</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">HPS_EMIF_MEM_CLK_FREQ_MHZ</span><span class="o">=</span><span class="m">800</span><span class="w"> </span><span class="nv">HPS_EMIF_REF_CLK_FREQ_MHZ</span><span class="o">=</span><span class="m">150</span><span class="w"> </span><span class="nv">INITIALIZATION_FIRST</span><span class="o">=</span>hps<span class="w"> </span>generate_from_tcl
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>make<span class="w"> </span>sof
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="nb">cd</span><span class="w"> </span>..
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1_REL_GSRD_PR/a5ed065es-modular-devkit-som-legacy-baseline.zip
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>unzip<span class="w"> </span>a5ed065es-modular-devkit-som-legacy-baseline.zip
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>a5ed065es-modular-devkit-som-legacy-baseline.zip
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>make<span class="w"> </span>legacy_baseline-build
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>make<span class="w"> </span>legacy_baseline-sw-build
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>output_files/legacy_baseline.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span>output_files/legacy_baseline_hps_debug.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>software/hps_debug/hps_wipe.ihex
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
 <p>The following files are created:</p>
 <ul>
-<li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof</code></li>
-<li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof</code></li>
+<li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof</code></li>
+<li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof</code></li>
 </ul>
 <h3>Build Arm Trusted Firmware</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>arm-trusted-firmware
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/arm-trusted-firmware
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/arm-trusted-firmware
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">cd</span><span class="w"> </span>arm-trusted-firmware
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">48</span><span class="w"> </span><span class="nv">PLAT</span><span class="o">=</span>agilex5<span class="w"> </span>bl31<span class="w"> </span>
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="nb">cd</span><span class="w"> </span>..
@@ -3697,7 +3790,7 @@
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>u-boot-socfpga
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/u-boot-socfpga
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/u-boot-socfpga
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nb">cd</span><span class="w"> </span>u-boot-socfpga<span class="w"> </span>
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># enable dwarf4 debug info, for compatibility with arm ds</span>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g&#39;</span><span class="w"> </span>arch/arm/config.mk
@@ -3763,7 +3856,7 @@
 <h3>Build QSPI Image</h3>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof<span class="w"> </span>ghrd.jic<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof<span class="w"> </span>ghrd.jic<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU128<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A5ED065BB32AE6SR0<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span><span class="nv">$TOP_FOLDER</span>/u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
@@ -3778,7 +3871,7 @@
 
 <p>This is an optional step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof<span class="w"> </span>ghrd.rbf<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof<span class="w"> </span>ghrd.rbf<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span><span class="nv">$TOP_FOLDER</span>/u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
@@ -3790,7 +3883,7 @@
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/linux-socfpga
 <a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nb">cd</span><span class="w"> </span>linux-socfpga
 <a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; config-fragment-agilex5</span>
 <a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="s"># Enable Ethernet connectivity so we can get an IP address</span>
@@ -3814,14 +3907,12 @@
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://git.yoctoproject.org/poky
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://git.yoctoproject.org/meta-intel-fpga
 <a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://github.com/openembedded/meta-openembedded
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="c1"># work around issue</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;do_package_qa[noexec] = &quot;1&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>meta-intel-fpga<span class="w"> </span>-name<span class="w"> </span>linux-socfpga_6.6.bb<span class="k">)</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>./build
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;MACHINE = &quot;agilex5_dk_a5e065bb32aes1&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-intel-fpga &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-openembedded/meta-oe &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
-<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;CORE_IMAGE_EXTRA_INSTALL += &quot;openssh gdbserver&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
-<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>bitbake<span class="w"> </span>core-image-minimal
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>./build
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;MACHINE = &quot;agilex5_dk_a5e065bb32aes1&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-intel-fpga &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-openembedded/meta-oe &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;CORE_IMAGE_EXTRA_INSTALL += &quot;openssh gdbserver&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>bitbake<span class="w"> </span>core-image-minimal
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
@@ -3903,7 +3994,7 @@ While the example is based on the GSRD, it contains the following differences:</
 <p>2. Build U-Boot:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/qspi-boot
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>u-boot-socfpga
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/u-boot-socfpga
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/u-boot-socfpga
 <a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="nb">cd</span><span class="w"> </span>u-boot-socfpga<span class="w"> </span>
 <a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="c1"># enable dwarf4 debug info, for compatibility with arm ds</span>
 <a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g&#39;</span><span class="w"> </span>arch/arm/config.mk
@@ -4111,7 +4202,7 @@ While the example is based on the GSRD, it contains the following differences:</
 <li><code>$TOP_FOLDER/qspi-boot/root.ubi</code></li>
 </ul>
 <p>7. Build the QSPI flash image:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof<span class="w"> </span>fpga.sof
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof<span class="w"> </span>fpga.sof
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>ln<span class="w"> </span>-s<span class="w"> </span>u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span>spl.hex
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>ln<span class="w"> </span>-s<span class="w"> </span>root.ubi<span class="w"> </span>hps.bin
 <a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; flash_image.pfg</span>
@@ -4198,7 +4289,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 11, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 22, 2025</span>
       
         <br>
         Created:

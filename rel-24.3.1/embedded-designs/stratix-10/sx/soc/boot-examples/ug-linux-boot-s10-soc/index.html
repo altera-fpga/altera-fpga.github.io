@@ -14,7 +14,7 @@
         <link rel="prev" href="../../fabric-config/ug-linux-fabric-config-s10sx-soc/">
       
       
-        <link rel="next" href="../../../../../../ed-demo-list/demo-list/">
+        <link rel="next" href="../../../../../arria-10/sx/soc/gsrd/ug-gsrd-a10sx-soc/">
       
       <link rel="icon" href="../../../../../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
@@ -2079,6 +2079,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -3374,6 +3376,96 @@
 
             
           
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+          Arria® 10
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_5">
+          <span class="md-nav__icon md-icon"></span>
+          Arria® 10
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5_1" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_5_1" id="__nav_7_5_1_label" tabindex="0">
+          SX SoC Development Kit
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_5_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          SX SoC Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../arria-10/sx/soc/gsrd/ug-gsrd-a10sx-soc/" class="md-nav__link">
+        GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -3904,11 +3996,10 @@
 
   <h1>GHRD Linux Boot Examples</h1>
 
-<p><strong>NOTE:</strong> This page is not available in this release. The current version of this page applies to release 24.3, but keeping the content here because it was ported from RocketBoards in 24.3.1 release. </p>
 <h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h2>
 <p>This page contains instructions on how to build U-Boot  for Stratix® 10 SX SOC Development kit H-Tile (DK-SOC-1SSX-H-D). </p>
 <h2 id="component-versions">Component Versions<a class="headerlink" href="#component-versions" title="Permanent link">&para;</a></h2>
-<p>This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3 and the following component versions.</p>
+<p>This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1 and the following component versions.</p>
 <table>
 <thead>
 <tr>
@@ -3918,25 +4009,25 @@
 </thead>
 <tbody>
 <tr>
-<td align="left"><a href="https://github.com/altera-opensource/ghrd-socfpga">ghrd-socfpga</a></td>
-<td align="left">QPDS24.3_REL_GSRD_PR</td>
+<td align="left"><a href="https://github.com/altera-fpga/ghrd-socfpga">ghrd-socfpga</a></td>
+<td align="left">QPDS25.1_REL_GSRD_PR</td>
 </tr>
 <tr>
-<td align="left"><a href="https://github.com/altera-opensource/linux-socfpga">linux-socfpga</a></td>
-<td align="left">socfpga-6.6.37-lts/QPDS24.3_REL_GSRD_PR</td>
+<td align="left"><a href="https://github.com/altera-fpga/linux-socfpga">linux-socfpga</a></td>
+<td align="left">socfpga-6.12.11-lts/QPDS25.1_REL_GSRD_PR</td>
 </tr>
 <tr>
-<td align="left"><a href="https://github.com/altera-opensource/arm-trusted-firmware">arm-trusted-firmware</a></td>
-<td align="left">socfpga_v2.11.0/QPDS24.3_REL_GSRD_PR</td>
+<td align="left"><a href="https://github.com/altera-fpga/arm-trusted-firmware">arm-trusted-firmware</a></td>
+<td align="left">socfpga_v2.12.0/QPDS25.1_REL_GSRD_PR</td>
 </tr>
 <tr>
-<td align="left"><a href="https://github.com/altera-opensource/u-boot-socfpga">u-boot-socfpga</a></td>
-<td align="left">socfpga_v2024.04/QPDS24.3_REL_GSRD_PR</td>
+<td align="left"><a href="https://github.com/altera-fpga/u-boot-socfpga">u-boot-socfpga</a></td>
+<td align="left">socfpga_v2025.01/QPDS25.1_REL_GSRD_PR</td>
 </tr>
 </tbody>
 </table>
 <p>Starting with SoC EDS Pro version 19.3, the following changes were made:
-The bootloader source code was removed from SoC EDS. Instead, the user needs to clone the git trees from https://github.com/altera-opensource/u-boot-socfpga.</p>
+The bootloader source code was removed from SoC EDS. Instead, the user needs to clone the git trees from https://github.com/altera-fpga/u-boot-socfpga.</p>
 <p>The same U-Boot branch is used for all SoC FPGA devices: Cyclone® V SoC, Arria® V SoC, Arria® 10 SoC, Stratix® 10 SoC, Agilex™ 7 and Agilex™ 5.</p>
 <p>Starting with Quartus® Pro 20.3, the SoC EDS was discontinued, and the functionality of the tools which were previously part of SoC EDS are provided separately.</p>
 <h2 id="u-boot-build-flow">U-Boot Build Flow<a class="headerlink" href="#u-boot-build-flow" title="Permanent link">&para;</a></h2>
@@ -3956,12 +4047,12 @@ The bootloader source code was removed from SoC EDS. Instead, the user needs to 
 <li><a href="https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc/">Stratix® 10 GSRD User Guide</a></li>
 </ul>
 <h2 id="u-boot-branches">U-Boot Branches<a class="headerlink" href="#u-boot-branches" title="Permanent link">&para;</a></h2>
-<p>The official Intel SOCFPGA U-Boot repository is located at https://github.com/altera-opensource/u-boot-socfpga.</p>
+<p>The official Intel SOCFPGA U-Boot repository is located at https://github.com/altera-fpga/u-boot-socfpga.</p>
 <p><strong>Notes:</strong></p>
 <ul>
 <li>A "RC" labeled branch is for internal active development use and customer early access without official customer support.</li>
 <li>Latest stable branch (no RC labeled) is strongly recommended for development and production use outside of Intel.</li>
-<li>See <a href="https://github.com/altera-opensource/u-boot-socfpga/blob/HEAD/doc/README.socfpga">doc/README.socfpga</a> for Quartus® Pro and Device support.</li>
+<li>See <a href="https://github.com/altera-fpga/u-boot-socfpga/blob/HEAD/doc/README.socfpga">doc/README.socfpga</a> for Quartus® Pro and Device support.</li>
 </ul>
 <h2 id="boot-from-sd-card-example">Boot From SD Card Example<a class="headerlink" href="#boot-from-sd-card-example" title="Permanent link">&para;</a></h2>
 <p>This example shows a simple example booting Stratix® 10 from SD card.
@@ -3989,7 +4080,7 @@ Note the following:</p>
 <li>Host machine running Linux. Ubuntu 22.04 was used, but other versions may work too.</li>
 <li>Internet connection to download the tools and clone the U-Boot git tree from github. If you are behind a firewall you will need your system administrator to enable you to get to the git trees.</li>
 <li>Intel Stratix® 10 H-Tile SoC FPGA Development Kit (DK-SOC-1SSX-H-D).</li>
-<li>Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3</li>
+<li>Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1</li>
 </ul>
 <p>Note that the examples presented on this page boot to Linux and they require Linux kernel, device tree and rootfilesystem to boot. However, you can omit the Linux binaries and just boot to U-Boot prompt if you want to.</p>
 <h3 id="setting-up-environment">Setting Up Environment<a class="headerlink" href="#setting-up-environment" title="Permanent link">&para;</a></h3>
@@ -3998,7 +4089,7 @@ Note the following:</p>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">cd</span><span class="w"> </span>s10_example.sdmmc
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
 </code></pre></div>
-<p>Download and setup the the toolchain as follows:</p>
+<p>Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:</p>
 <p>Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>wget<span class="w"> </span>https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/<span class="se">\</span>
@@ -4010,33 +4101,28 @@ Note the following:</p>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3/quartus/
+<p>Enable Quartus tools to be called from command line:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/altera_pro/25.1/quartus/
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
 </code></pre></div>
 <h3 id="build-hardware-design">Build Hardware Design<a class="headerlink" href="#build-hardware-design" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga<span class="w"> </span>s10_soc_devkit_ghrd<span class="w"> </span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/ghrd-socfpga
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>mv<span class="w"> </span>ghrd-socfpga/s10_soc_devkit_ghrd<span class="w"> </span>.
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">cd</span><span class="w"> </span>s10_soc_devkit_ghrd
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># disable sgmii and partial reconfiguration - to decrease build time</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">HPS_ENABLE_SGMII</span><span class="o">=</span><span class="m">0</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ENABLE_PARTIAL_RECONFIGURATION</span><span class="o">=</span><span class="m">0</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_DEVICE</span><span class="o">=</span>1SX280HU2F50E1VGAS
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>make<span class="w"> </span>scrub_clean_all
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>make<span class="w"> </span>generate_from_tcl
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>make<span class="w"> </span>all
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="nb">cd</span><span class="w"> </span>..
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>wget<span class="w"> </span>https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.1_REL_GSRD_PR.zip
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>unzip<span class="w"> </span>QPDS25.1_REL_GSRD_PR.zip
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>rm<span class="w"> </span>QPDS25.1_REL_GSRD_PR.zip
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>mv<span class="w"> </span>stratix10-ed-gsrd-QPDS25.1_REL_GSRD_PR<span class="w"> </span>stratix10-ed-gsrd
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">cd</span><span class="w"> </span>stratix10-ed-gsrd
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>make<span class="w"> </span>s10-htile-soc-devkit-oobe-baseline-all
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
 <p>After building the hardware design the following binary is created:</p>
 <ul>
-<li>$TOP_FOLDER/s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas.sof</li>
+<li>$TOP_FOLDER/stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline.sof</li>
 </ul>
 <h3 id="build-arm-trusted-firmware">Build Arm Trusted Firmware<a class="headerlink" href="#build-arm-trusted-firmware" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>arm-trusted-firmware
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/arm-trusted-firmware
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/arm-trusted-firmware
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nb">cd</span><span class="w"> </span>arm-trusted-firmware
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">64</span><span class="w"> </span>bl31<span class="w"> </span><span class="nv">PLAT</span><span class="o">=</span>stratix10
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">cd</span><span class="w"> </span>..
@@ -4048,7 +4134,7 @@ Note the following:</p>
 <h3 id="build-u-boot">Build U-Boot<a class="headerlink" href="#build-u-boot" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>u-boot-socfpga
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/u-boot-socfpga
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/u-boot-socfpga
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">cd</span><span class="w"> </span>u-boot-socfpga
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># enable dwarf4 debug info, for compatibility with arm ds</span>
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g&#39;</span><span class="w"> </span>arch/arm/config.mk
@@ -4123,22 +4209,23 @@ Note the following:</p>
 <p><strong>Important</strong>:  Before running the <strong>fpga load</strong> command, you must first run the <strong>bridge disable</strong> command as shown in the above example.</p>
 <h3 id="prepare-qspi-image">Prepare QSPI Image<a class="headerlink" href="#prepare-qspi-image" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas.sof<span class="w"> </span>ghrd.jic<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline.sof<span class="w"> </span>ghrd.jic<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU128<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>1SX280HU2F50E1VGAS<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
-<p>The following files are created in $TOP_FOLDER/s10_soc_devkit_ghrd/output_files:</p>
+<p>The following files are created:</p>
 <ul>
-<li>ghrd_1sx280hu2f50e1vgas.sof - FPGA SOF file, without HPS FSBL</li>
+<li>$TOP_FOLDER/ghrd.hps.jic</li>
+<li>$TOP_FOLDER/ghrd.core.rbf</li>
 </ul>
 <h3 id="building-linux-kernel">Building Linux Kernel<a class="headerlink" href="#building-linux-kernel" title="Permanent link">&para;</a></h3>
 <p>Download and compile Linux:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/linux-socfpga
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nb">cd</span><span class="w"> </span>linux-socfpga
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>mrproper
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1"># enable kernel debugging with RiscFree</span>
@@ -4173,9 +4260,9 @@ Note the following:</p>
 <p><strong>Note:</strong> You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>yocto<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>yocto<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>yocto
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>scarthgap<span class="w"> </span>https://git.yoctoproject.org/poky
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>scarthgap<span class="w"> </span>https://git.yoctoproject.org/meta-intel-fpga
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>scarthgap<span class="w">   </span>https://github.com/openembedded/meta-openembedded
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://git.yoctoproject.org/poky
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://git.yoctoproject.org/meta-intel-fpga
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w">   </span>https://github.com/openembedded/meta-openembedded
 <a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="c1"># work around issue</span>
 <a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;do_package_qa[noexec] = &quot;1&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>meta-intel-fpga<span class="w"> </span>-name<span class="w"> </span>linux-socfpga_6.6.bb<span class="k">)</span>
 <a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>./build
@@ -4260,7 +4347,7 @@ Set MSEL back to QSPI:</p>
 </code></pre></div>
   If HPS is not present, the line with S10HPS/AGILEX_HPS above will not appear.</p>
 <p>3.- Configure the FPGA with the debug SOF:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>quartus_pgm -c 1 -m jtag -o &quot;p;s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas_hps_debug.sof@2&quot;
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>quartus_pgm -c 1 -m jtag -o &quot;p;stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline_hps_debug.sof@2&quot;
 </code></pre></div>
   If the HPS is not present in the jtagconfig output above, please remove the "@2" from the command line above.</p>
 <p>4.-  Create debugger script:
@@ -4294,7 +4381,7 @@ Set MSEL back to QSPI:</p>
 <a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>-s run-u-boot.ds
 </code></pre></div>
   6.- The serial console will show SPL then U-Boot being run:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>U-Boot SPL 2024.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>U-Boot SPL 2025.01-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Reset state: Cold
 <a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>MPU         1000000 kHz
 <a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>L3 main     400000 kHz
@@ -4312,10 +4399,10 @@ Set MSEL back to QSPI:</p>
 <a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>## Checking hash(es) for Image atf … crc32+ OK
 <a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>## Checking hash(es) for Image uboot … crc32+ OK
 <a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>## Checking hash(es) for Image fdt-0 … crc32+ OK
-<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>NOTICE:  BL31: v2.12.0(release):QPDS25.1_REL_GSRD_PR
 <a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>NOTICE:  BL31: Built : 11:03:24, Jan 29 2025
 <a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>
-<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>U-Boot 2024.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_stratix10
+<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>U-Boot 2025.01-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_stratix10
 <a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>
 <a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
 <a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>Model: SoCFPGA Stratix 10 SoCDK
@@ -4347,7 +4434,7 @@ Set MSEL back to QSPI:</p>
 </code></pre></div></p>
 <p>If HPS is not present, the line with S10HPS/AGILEX_HPS above will not appear.</p>
 <p>3.- Configure the FPGA with the debug SOF:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>quartus_pgm -c 1 -m jtag -o &quot;p;s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas_hps_debug.sof@2&quot;  
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>quartus_pgm -c 1 -m jtag -o &quot;p;stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline_hps_debug.sof@2&quot;  
 </code></pre></div></p>
 <p>If the HPS is not present in the jtagconfig output above, please remove the "@2" from the command line above.</p>
 <h3 id="debugging-spl">Debugging SPL<a class="headerlink" href="#debugging-spl" title="Permanent link">&para;</a></h3>
@@ -4795,14 +4882,14 @@ The products described may contain design defects or errors known as errata whic
 Altera disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade.
 You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
 <sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. </p>
-<p>OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. </p>
+<p>OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™.   </p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 11, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 22, 2025</span>
       
         <br>
         Created:
@@ -4853,13 +4940,13 @@ You are responsible for safety of the overall system, including compliance with 
         
         
           
-          <a href="../../../../../../ed-demo-list/demo-list/" class="md-footer__link md-footer__link--next" aria-label="Next: Summary" rel="next">
+          <a href="../../../../../arria-10/sx/soc/gsrd/ug-gsrd-a10sx-soc/" class="md-footer__link md-footer__link--next" aria-label="Next: GSRD User Guide" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Summary
+                GSRD User Guide
               </div>
             </div>
             <div class="md-footer__button md-icon">

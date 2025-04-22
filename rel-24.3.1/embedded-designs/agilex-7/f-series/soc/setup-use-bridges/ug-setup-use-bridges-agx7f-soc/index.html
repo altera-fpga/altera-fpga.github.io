@@ -2079,6 +2079,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -3277,6 +3279,96 @@
 
             
           
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+          Arria® 10
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_5">
+          <span class="md-nav__icon md-icon"></span>
+          Arria® 10
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5_1" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_5_1" id="__nav_7_5_1_label" tabindex="0">
+          SX SoC Development Kit
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_5_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          SX SoC Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../arria-10/sx/soc/gsrd/ug-gsrd-a10sx-soc/" class="md-nav__link">
+        GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -3934,7 +4026,7 @@ For further reading:</p>
 <p>Host PC with</p>
 <ul>
 <li>Linux distribution with kernel-headers/ kernel-devel and Binutils packages properly installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.</li>
-<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3.1.</li>
+<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.</li>
 <li>Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows).</li>
 </ul>
 </li>
@@ -3958,7 +4050,7 @@ For further reading:</p>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/24.3.1/quartus/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/altera_pro/25.1/quartus/
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
 </code></pre></div>
 <h3 id="build-hardware-design">Build Hardware Design<a class="headerlink" href="#build-hardware-design" title="Permanent link">&para;</a></h3>
@@ -3970,7 +4062,7 @@ For further reading:</p>
 <p>Get the GHRD and build it as it comes by default:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga<span class="w"> </span>agilex_soc_devkit_ghrd
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/ghrd-socfpga
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/ghrd-socfpga
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>mv<span class="w"> </span>ghrd-socfpga/agilex_soc_devkit_ghrd<span class="w"> </span>.
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">cd</span><span class="w"> </span>agilex_soc_devkit_ghrd
@@ -4138,7 +4230,7 @@ For further reading:</p>
 <p>Clone the Yocto script and prepare the build:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/gsrd-socfpga
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/gsrd-socfpga
 <a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga
 <a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>.<span class="w"> </span>agilex7_dk_si_agf014eb-gsrd-build.sh
 <a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>build_setup
@@ -4266,7 +4358,7 @@ as shown next.</p>
 <a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a>
 <a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a><span class="c1"># Create a Linux repository in the $TOP_FOLDER</span>
 <a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga-for-patch
-<a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga<span class="w"> </span>linux-socfpga-for-patch
+<a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga<span class="w"> </span>linux-socfpga-for-patch
 <a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a><span class="c1"># Add the content of dmaBufNodes.txt  after 4 lines of finding memory@</span>
 <a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a>awk<span class="w"> </span><span class="s1">&#39;</span>
 <a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a><span class="s1">    /memory@/ {found=NR}  # Store the line number where &quot;memory@&quot; is found</span>
@@ -4348,7 +4440,7 @@ as shown next.</p>
 <li>SD Card: <code>$TOP_FOLDER/gsrd_socfpga/agilex7_dk_si_agf014ea-gsrd-images/gsrd-console-image-agilex7.wic</code></li>
 <li>QSPI: <code>$TOP_FOLDER/ghrd_agfb014r24b2e2v.hps.jic</code></li>
 </ul>
-<p>You also need to download the sample test script that will be used to excercise this example <a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run">dmaTest_cache_v2.0.run </a>. This is a bash script that should be executed for Linux running in the development kit. 
+<p>You also need to download the sample test script that will be used to excercise this example <a href="https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run">dmaTest_cache_v2.0.run </a>. This is a bash script that should be executed for Linux running in the development kit. 
 In the script make sure that the variables used to define the addresses for the configuration registers for the Cache Coherency Translator and Modular Scatter-Gather DMA components match the ones set automatically in the GHRD.</p>
 <p>The addresses set in the GHRD are defined at the <strong>lwsoc2fpga</strong> bridge with a base address of 0xF9000000:</p>
 <p><a class="glightbox" href="../images/baseAddress.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/baseAddress.png" /></a></p>
@@ -4362,7 +4454,7 @@ In the script make sure that the variables used to define the addresses for the 
 <p>To execute the sample test script:</p>
 <ol>
 <li>Power cycle the board to boot to Linux.</li>
-<li>Transfer the <a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run">dmaTest_cache_v2.0.run</a> test script to your <code>/home/root</code> directory. For this you can use TFTP application.</li>
+<li>Transfer the <a href="https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run">dmaTest_cache_v2.0.run</a> test script to your <code>/home/root</code> directory. For this you can use TFTP application.</li>
 <li>
 <p>You can see how to exercise the script by using the <strong>-h</strong> switch:
   <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>root@agilex:~# bash dmaTest_cache_v2.0.run -h
@@ -4552,14 +4644,14 @@ The products described may contain design defects or errors known as errata whic
 Altera disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade.
 You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
 <sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. </p>
-<p>OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. </p>
+<p>OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™.  </p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 11, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 22, 2025</span>
       
         <br>
         Created:
