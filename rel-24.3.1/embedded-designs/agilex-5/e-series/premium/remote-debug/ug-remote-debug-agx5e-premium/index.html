@@ -3780,53 +3780,68 @@
 </ul>
 <h3 id="build-yocto">Build Yocto<a class="headerlink" href="#build-yocto" title="Permanent link">&para;</a></h3>
 <p>Perform the following steps to build Yocto:</p>
+<p>1. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.</p>
+<p>The command to install the required packages on Ubuntu 22.04 is:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>openssh-server<span class="w"> </span>mc<span class="w"> </span>libgmp3-dev<span class="w"> </span>libmpc-dev<span class="w"> </span>gawk<span class="w"> </span>wget<span class="w"> </span>git<span class="w"> </span>diffstat<span class="w"> </span>unzip<span class="w"> </span>texinfo<span class="w"> </span>gcc<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>build-essential<span class="w"> </span>chrpath<span class="w"> </span>socat<span class="w"> </span>cpio<span class="w"> </span>python3<span class="w"> </span>python3-pip<span class="w"> </span>python3-pexpect<span class="w"> </span>xz-utils<span class="w"> </span>debianutils<span class="w"> </span>iputils-ping<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>python3-git<span class="w"> </span>python3-jinja2<span class="w"> </span>libegl1-mesa<span class="w"> </span>libsdl1.2-dev<span class="w"> </span>pylint<span class="w"> </span>xterm<span class="w"> </span>python3-subunit<span class="w"> </span>mesa-common-dev<span class="w"> </span>zstd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>liblz4-tool<span class="w"> </span>git<span class="w"> </span>fakeroot<span class="w"> </span>build-essential<span class="w"> </span>ncurses-dev<span class="w"> </span>xz-utils<span class="w"> </span>libssl-dev<span class="w"> </span>bc<span class="w"> </span>flex<span class="w"> </span>libelf-dev<span class="w"> </span>bison<span class="w"> </span>xinetd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>tftpd<span class="w"> </span>tftp<span class="w"> </span>nfs-kernel-server<span class="w"> </span>libncurses5<span class="w"> </span>libc6-i386<span class="w"> </span>libstdc++6:i386<span class="w"> </span>libgcc++1:i386<span class="w"> </span>lib32z1<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>device-tree-compiler<span class="w"> </span>curl<span class="w"> </span>mtd-utils<span class="w"> </span>u-boot-tools<span class="w"> </span>net-tools<span class="w"> </span>swig<span class="w"> </span>-y
+</code></pre></div>
+<p>On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="w"> </span>sudo<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span>/bin/bash<span class="w"> </span>/bin/sh
+</code></pre></div>
+<p><strong>Note</strong>: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.</p>
 <p>2. Clone the Yocto script and prepare the build:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/gsrd-socfpga
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>.<span class="w"> </span>agilex5_dk_a5e065bb32aes1-gsrd-build.sh
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>build_setup
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/gsrd-socfpga
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>.<span class="w"> </span>agilex5_dk_a5e065bb32aes1-gsrd-build.sh
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>build_setup
 </code></pre></div>
 <p>3. Enable the JOP UIO driver in the Linux device tree, by editing the file <code>meta-intel-fpga-refdes</code> to inlcude the changes shown below:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>diff --git a/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi b/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>index 9e043ef..ceac3aa 100644
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>--- a/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>+++ b/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>@@ -49,6 +49,11 @@
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>                                resetvalue = &lt;0&gt;;
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>                };
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a> */
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>+               jop@20020000 {
-<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>+                       compatible = &quot;generic-uio&quot;;
-<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>+                       reg = &lt;0x20020000 0x4000&gt;;
-<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>+                       reg-names = &quot;jop&quot;;
-<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>+               };
-<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>                soc_leds: leds {
-<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>                        compatible = &quot;gpio-leds&quot;;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>diff --git a/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi b/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>index 9e043ef..ceac3aa 100644
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>--- a/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>+++ b/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>@@ -49,6 +49,11 @@
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>                                resetvalue = &lt;0&gt;;
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>                };
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a> */
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>+               jop@20020000 {
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>+                       compatible = &quot;generic-uio&quot;;
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>+                       reg = &lt;0x20020000 0x4000&gt;;
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>+                       reg-names = &quot;jop&quot;;
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>+               };
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>                soc_leds: leds {
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>                        compatible = &quot;gpio-leds&quot;;
 </code></pre></div>
 <p>Note that the range of memory where the JOP is located is <code>0x20020000</code> .. <code>0x20023fff</code>.</p>
 <p>This can be done with the provided patch file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>rm<span class="w"> </span>-f<span class="w"> </span>agilex5-dts-add-jop.patch
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>wget<span class="w"> </span>https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/remote-debug/collateral/agilex5-dts-add-jop.patch
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nb">pushd</span><span class="w"> </span>meta-intel-fpga-refdes
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>patch<span class="w"> </span>-p1<span class="w"> </span>&lt;<span class="w"> </span>../agilex5-dts-add-jop.patch
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nb">popd</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>rm<span class="w"> </span>-f<span class="w"> </span>agilex5-dts-add-jop.patch
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>wget<span class="w"> </span>https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/remote-debug/collateral/agilex5-dts-add-jop.patch
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">pushd</span><span class="w"> </span>meta-intel-fpga-refdes
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>patch<span class="w"> </span>-p1<span class="w"> </span>&lt;<span class="w"> </span>../agilex5-dts-add-jop.patch
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nb">popd</span>
 </code></pre></div>
 <p>4. Update your Yocto recipes to use the core RBF file you have built, similar to how the GSRD does it:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">CORE_RBF</span><span class="o">=</span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/ghrd_a5ed065bb32ae6sr0.core.rbf<span class="w"> </span><span class="nv">$CORE_RBF</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nv">OLD_URI</span><span class="o">=</span><span class="s2">&quot;\${GHRD_REPO}\/agilex5_dk_a5e065bb32aes1_gsrd_\${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_gsrd_core&quot;</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nv">CORE_SHA</span><span class="o">=</span><span class="k">$(</span>sha256sum<span class="w"> </span><span class="nv">$CORE_RBF</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f1<span class="w"> </span>-d<span class="s2">&quot; &quot;</span><span class="k">)</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nv">NEW_URI</span><span class="o">=</span><span class="s2">&quot;file:\/\/agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf;sha256sum=</span><span class="nv">$CORE_SHA</span><span class="s2">&quot;</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/</span><span class="nv">$OLD_URI</span><span class="s2">/</span><span class="nv">$NEW_URI</span><span class="s2">/g&quot;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;/agilex5_dk_a5e065bb32aes1_gsrd_core\.sha256sum/d&quot;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nv">CORE_RBF</span><span class="o">=</span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/ghrd_a5ed065bb32ae6sr0.core.rbf<span class="w"> </span><span class="nv">$CORE_RBF</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nv">OLD_URI</span><span class="o">=</span><span class="s2">&quot;\${GHRD_REPO}\/agilex5_dk_a5e065bb32aes1_gsrd_\${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_gsrd_core&quot;</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nv">CORE_SHA</span><span class="o">=</span><span class="k">$(</span>sha256sum<span class="w"> </span><span class="nv">$CORE_RBF</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f1<span class="w"> </span>-d<span class="s2">&quot; &quot;</span><span class="k">)</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="nv">NEW_URI</span><span class="o">=</span><span class="s2">&quot;file:\/\/agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf;sha256sum=</span><span class="nv">$CORE_SHA</span><span class="s2">&quot;</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/</span><span class="nv">$OLD_URI</span><span class="s2">/</span><span class="nv">$NEW_URI</span><span class="s2">/g&quot;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;/agilex5_dk_a5e065bb32aes1_gsrd_core\.sha256sum/d&quot;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
 </code></pre></div>
 <p>5. Build the Yocto recipes:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>bitbake_image
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>bitbake_image
 </code></pre></div>
 <p>6. Gather the Yocto binaries:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>package
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>package
 </code></pre></div>
 <p>The following relevant files are created:</p>
 <ul>
@@ -3835,15 +3850,15 @@
 </ul>
 <h3 id="build-qspi-image">Build QSPI Image<a class="headerlink" href="#build-qspi-image" title="Permanent link">&para;</a></h3>
 <p>Run the following commands to build the QSPI image:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.jic<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.core.rbf
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.jic<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU128<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A5ED065BB32AE6SR0<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.jic<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.core.rbf
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.jic<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU128<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A5ED065BB32AE6SR0<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
@@ -3855,40 +3870,40 @@
 <p>2. Extract and write the SD card image <code>$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz</code> to the SD card</p>
 <p>3. Boot board and log into Linux.</p>
 <p>4. Determine board IP address by running the <code>ifconfig</code> command:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>root@agilex5dka5e065bb32aes1:~#<span class="w"> </span>ifconfig
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>eth0:<span class="w"> </span><span class="nv">flags</span><span class="o">=</span>-28605&lt;UP,BROADCAST,RUNNING,MULTICAST,DYNAMIC&gt;<span class="w">  </span>mtu<span class="w"> </span><span class="m">1500</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">        </span>inet<span class="w"> </span><span class="m">10</span>.122.105.175<span class="w">  </span>netmask<span class="w"> </span><span class="m">255</span>.255.255.0<span class="w">  </span>broadcast<span class="w"> </span><span class="m">10</span>.122.105.255
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">        </span>inet6<span class="w"> </span>fe80::7097:4bff:fe41:b7c2<span class="w">  </span>prefixlen<span class="w"> </span><span class="m">64</span><span class="w">  </span>scopeid<span class="w"> </span>0x20&lt;link&gt;
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">        </span>ether<span class="w"> </span><span class="m">72</span>:97:4b:41:b7:c2<span class="w">  </span>txqueuelen<span class="w"> </span><span class="m">1000</span><span class="w">  </span><span class="o">(</span>Ethernet<span class="o">)</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">        </span>RX<span class="w"> </span>packets<span class="w"> </span><span class="m">218</span><span class="w">  </span>bytes<span class="w"> </span><span class="m">23619</span><span class="w"> </span><span class="o">(</span><span class="m">23</span>.0<span class="w"> </span>KiB<span class="o">)</span>
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">        </span>RX<span class="w"> </span>errors<span class="w"> </span><span class="m">0</span><span class="w">  </span>dropped<span class="w"> </span><span class="m">0</span><span class="w">  </span>overruns<span class="w"> </span><span class="m">0</span><span class="w">  </span>frame<span class="w"> </span><span class="m">0</span>
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">        </span>TX<span class="w"> </span>packets<span class="w"> </span><span class="m">78</span><span class="w">  </span>bytes<span class="w"> </span><span class="m">11072</span><span class="w"> </span><span class="o">(</span><span class="m">10</span>.8<span class="w"> </span>KiB<span class="o">)</span>
-<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">        </span>TX<span class="w"> </span>errors<span class="w"> </span><span class="m">0</span><span class="w">  </span>dropped<span class="w"> </span><span class="m">0</span><span class="w"> </span>overruns<span class="w"> </span><span class="m">0</span><span class="w">  </span>carrier<span class="w"> </span><span class="m">0</span><span class="w">  </span>collisions<span class="w"> </span><span class="m">0</span>
-<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">        </span>device<span class="w"> </span>interrupt<span class="w"> </span><span class="m">22</span><span class="w">  </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>root@agilex5dka5e065bb32aes1:~#<span class="w"> </span>ifconfig
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>eth0:<span class="w"> </span><span class="nv">flags</span><span class="o">=</span>-28605&lt;UP,BROADCAST,RUNNING,MULTICAST,DYNAMIC&gt;<span class="w">  </span>mtu<span class="w"> </span><span class="m">1500</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">        </span>inet<span class="w"> </span><span class="m">10</span>.122.105.175<span class="w">  </span>netmask<span class="w"> </span><span class="m">255</span>.255.255.0<span class="w">  </span>broadcast<span class="w"> </span><span class="m">10</span>.122.105.255
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">        </span>inet6<span class="w"> </span>fe80::7097:4bff:fe41:b7c2<span class="w">  </span>prefixlen<span class="w"> </span><span class="m">64</span><span class="w">  </span>scopeid<span class="w"> </span>0x20&lt;link&gt;
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">        </span>ether<span class="w"> </span><span class="m">72</span>:97:4b:41:b7:c2<span class="w">  </span>txqueuelen<span class="w"> </span><span class="m">1000</span><span class="w">  </span><span class="o">(</span>Ethernet<span class="o">)</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">        </span>RX<span class="w"> </span>packets<span class="w"> </span><span class="m">218</span><span class="w">  </span>bytes<span class="w"> </span><span class="m">23619</span><span class="w"> </span><span class="o">(</span><span class="m">23</span>.0<span class="w"> </span>KiB<span class="o">)</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">        </span>RX<span class="w"> </span>errors<span class="w"> </span><span class="m">0</span><span class="w">  </span>dropped<span class="w"> </span><span class="m">0</span><span class="w">  </span>overruns<span class="w"> </span><span class="m">0</span><span class="w">  </span>frame<span class="w"> </span><span class="m">0</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">        </span>TX<span class="w"> </span>packets<span class="w"> </span><span class="m">78</span><span class="w">  </span>bytes<span class="w"> </span><span class="m">11072</span><span class="w"> </span><span class="o">(</span><span class="m">10</span>.8<span class="w"> </span>KiB<span class="o">)</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">        </span>TX<span class="w"> </span>errors<span class="w"> </span><span class="m">0</span><span class="w">  </span>dropped<span class="w"> </span><span class="m">0</span><span class="w"> </span>overruns<span class="w"> </span><span class="m">0</span><span class="w">  </span>carrier<span class="w"> </span><span class="m">0</span><span class="w">  </span>collisions<span class="w"> </span><span class="m">0</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">        </span>device<span class="w"> </span>interrupt<span class="w"> </span><span class="m">22</span><span class="w">  </span>
 </code></pre></div>
 <p>5. Remove pre-existing instances of the driver, and load it again:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>root@agilex5dka5e065bb32aes1:~#<span class="w"> </span>rmmod<span class="w"> </span>uio_pdrv_genirq
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>root@agilex5dka5e065bb32aes1:~#<span class="w"> </span>modprobe<span class="w"> </span>uio_pdrv_genirq<span class="w"> </span><span class="nv">of_id</span><span class="o">=</span><span class="s2">&quot;generic-uio&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>root@agilex5dka5e065bb32aes1:~#<span class="w"> </span>rmmod<span class="w"> </span>uio_pdrv_genirq
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>root@agilex5dka5e065bb32aes1:~#<span class="w"> </span>modprobe<span class="w"> </span>uio_pdrv_genirq<span class="w"> </span><span class="nv">of_id</span><span class="o">=</span><span class="s2">&quot;generic-uio&quot;</span>
 </code></pre></div>
 <p>6. Start the etherlink application, specifying which port to accept connections on as shown below:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>root@agilex5dka5e065bb32aes1:~#<span class="w"> </span>etherlink<span class="w"> </span>--port<span class="o">=</span><span class="m">33301</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>INFO:<span class="w"> </span>Etherlink<span class="w"> </span>Server<span class="w"> </span>Configuration:
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>INFO:<span class="w">    </span>H2T/T2H<span class="w"> </span>Memory<span class="w"> </span>Size<span class="w">  </span>:<span class="w"> </span><span class="m">4096</span>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>INFO:<span class="w">    </span>Listening<span class="w"> </span>Port<span class="w">       </span>:<span class="w"> </span><span class="m">33301</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>INFO:<span class="w">    </span>IP<span class="w"> </span>Address<span class="w">           </span>:<span class="w"> </span><span class="m">0</span>.0.0.0
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>INFO:<span class="w"> </span>UIO<span class="w"> </span>Platform<span class="w"> </span>Configuration:
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>INFO:<span class="w">    </span>Driver<span class="w"> </span>Path:<span class="w"> </span>/dev/uio0
-<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>INFO:<span class="w">    </span>Address<span class="w"> </span>Span:<span class="w"> </span><span class="m">16384</span>
-<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>INFO:<span class="w">    </span>Start<span class="w"> </span>Address:<span class="w"> </span>0x0
-<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>INFO:<span class="w"> </span>Server<span class="w"> </span>socket<span class="w"> </span>is<span class="w"> </span>listening<span class="w"> </span>on<span class="w"> </span>port:<span class="w"> </span><span class="m">33301</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>root@agilex5dka5e065bb32aes1:~#<span class="w"> </span>etherlink<span class="w"> </span>--port<span class="o">=</span><span class="m">33301</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>INFO:<span class="w"> </span>Etherlink<span class="w"> </span>Server<span class="w"> </span>Configuration:
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>INFO:<span class="w">    </span>H2T/T2H<span class="w"> </span>Memory<span class="w"> </span>Size<span class="w">  </span>:<span class="w"> </span><span class="m">4096</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>INFO:<span class="w">    </span>Listening<span class="w"> </span>Port<span class="w">       </span>:<span class="w"> </span><span class="m">33301</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>INFO:<span class="w">    </span>IP<span class="w"> </span>Address<span class="w">           </span>:<span class="w"> </span><span class="m">0</span>.0.0.0
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>INFO:<span class="w"> </span>UIO<span class="w"> </span>Platform<span class="w"> </span>Configuration:
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>INFO:<span class="w">    </span>Driver<span class="w"> </span>Path:<span class="w"> </span>/dev/uio0
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>INFO:<span class="w">    </span>Address<span class="w"> </span>Span:<span class="w"> </span><span class="m">16384</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>INFO:<span class="w">    </span>Start<span class="w"> </span>Address:<span class="w"> </span>0x0
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>INFO:<span class="w"> </span>Server<span class="w"> </span>socket<span class="w"> </span>is<span class="w"> </span>listening<span class="w"> </span>on<span class="w"> </span>port:<span class="w"> </span><span class="m">33301</span>
 </code></pre></div>
 <p>7. On the host, establish the JTAG communication to the board through Ethernet, using the board IP and the selected port number:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>$<span class="w"> </span>jtagconfig<span class="w"> </span>--add<span class="w"> </span>JTAG-over-protocol<span class="w"> </span>sti://localhost:0/intel/remote-debug/10.122.105.175:33301/0
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>$<span class="w"> </span>jtagconfig<span class="w"> </span>--add<span class="w"> </span>JTAG-over-protocol<span class="w"> </span>sti://localhost:0/intel/remote-debug/10.122.105.175:33301/0
 </code></pre></div>
 <p>8. Also on the host, run the 'jtagconfig' command to show the newly added connection:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>$<span class="w"> </span>jtagconfig
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="m">1</span><span class="o">)</span><span class="w"> </span>JTAG-over-protocol<span class="w"> </span><span class="o">[</span>sti://localhost:0/intel/remote-debug/10.122.105.175:33301/0<span class="o">]</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span>020D10DD<span class="w">   </span>VTAP10
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>$<span class="w"> </span>jtagconfig
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="m">1</span><span class="o">)</span><span class="w"> </span>JTAG-over-protocol<span class="w"> </span><span class="o">[</span>sti://localhost:0/intel/remote-debug/10.122.105.175:33301/0<span class="o">]</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">  </span>020D10DD<span class="w">   </span>VTAP10
 </code></pre></div>
 <p>At this point, the connection can be used by the tools which need a JTAG connection, like SignalTap.</p>
 <h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
