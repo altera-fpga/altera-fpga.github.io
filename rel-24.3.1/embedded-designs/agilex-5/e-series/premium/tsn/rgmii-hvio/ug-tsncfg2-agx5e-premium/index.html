@@ -2079,10 +2079,6 @@
         
           
         
-          
-        
-          
-        
       
       
         <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -3497,186 +3493,6 @@
 
             
           
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
-      
-      
-        
-          
-        
-      
-      
-        <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
-          Arria® 10
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_7_5">
-          <span class="md-nav__icon md-icon"></span>
-          Arria® 10
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5_1" >
-      
-      
-        
-          
-        
-      
-      
-        <label class="md-nav__link" for="__nav_7_5_1" id="__nav_7_5_1_label" tabindex="0">
-          SX SoC Development Kit
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_5_1_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_7_5_1">
-          <span class="md-nav__icon md-icon"></span>
-          SX SoC Development Kit
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../../../arria-10/sx/soc/gsrd/ug-gsrd-a10sx-soc/" class="md-nav__link">
-        GSRD User Guide
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_6" >
-      
-      
-        
-          
-        
-      
-      
-        <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
-          Cyclone® V
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_7_6">
-          <span class="md-nav__icon md-icon"></span>
-          Cyclone® V
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_6_1" >
-      
-      
-        
-          
-        
-      
-      
-        <label class="md-nav__link" for="__nav_7_6_1" id="__nav_7_6_1_label" tabindex="0">
-          SX SoC Development Kit
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_6_1_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_7_6_1">
-          <span class="md-nav__icon md-icon"></span>
-          SX SoC Development Kit
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../../../cyclone-v/sx/soc/gsrd/ug-gsrd-cve-soc/" class="md-nav__link">
-        GSRD User Guide
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -4906,111 +4722,63 @@ There is no register map access needed as the hps_gmii conduit interface will co
 </li>
 </ol>
 <h4 id="run-tsn-application">Run TSN Application<a class="headerlink" href="#run-tsn-application" title="Permanent link">&para;</a></h4>
-<p>The following examples are demonstrated using 2 units of the Agilex 5 platform.  Please take note of the notation "[Board A or B]". The following steps assumes both platforms are connected to each other via an Ethernet connection.</p>
-<p>1. Boot to Linux</p>
-<p>2. Navigate to the <code>tsn</code> directory</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">cd</span><span class="w"> </span>tsn
-</code></pre></div>
-<h5>Configuration for Both Boards</h5>
-
-<h6>Step I: Setup Environment Path on Both Boards</h6>
-
-<p>3. Board A</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LIBXDP_OBJECT_PATH</span><span class="o">=</span>/usr/lib/bpf
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/lib/custom_bpf/lib<span class="w"> </span>
-</code></pre></div>
-<p>4. Board B</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LIBXDP_OBJECT_PATH</span><span class="o">=</span>/usr/lib/bpf
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/lib/custom_bpf/lib<span class="w"> </span>
-</code></pre></div>
-<h5>TXRX-TSN App</h5>
-
-<h6>Step II: Run Configuration Script</h6>
-
-<p>5. Board A: Run the configuration script and wait for it to configure the IP and MAC address, start clock synchronization, and set up TAPRIO qdisc.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>./run.sh<span class="w"> </span>agilex5<span class="w"> </span>eth0<span class="w"> </span>vs1a<span class="w"> </span>setup
-</code></pre></div>
-<p>6. Board B: Run the configuration script and wait for it to configure the IP and MAC address, start clock synchronization, and set up ingress qdiscs.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>./run.sh<span class="w"> </span>agilex5<span class="w"> </span>eth0<span class="w"> </span>vs1b<span class="w"> </span>setup
-</code></pre></div>
-<h6>Step III: Start the Application</h6>
-
-<p>7. Board B: Run the application.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>./run.sh<span class="w"> </span>agilex5<span class="w"> </span>eth0<span class="w"> </span>vs1b<span class="w"> </span>run
-</code></pre></div>
-<p>8. Board A: Immediately after starting the application on Board B, run the application on Board A.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>./run.sh<span class="w"> </span>agilex5<span class="w"> </span>eth0<span class="w"> </span>vs1a<span class="w"> </span>run
-</code></pre></div>
-<h5>Post-Test Procedure</h5>
-<p>Once the test is completed, copy the following files from Board B (listener) to the host machine:</p>
-<ul>
-<li>afpkt-rxtstamps.txt</li>
-<li>afxdp-rxtstamps.txt</li>
-</ul>
-<h5>Generating Latency Plot Using Excel</h5>
-
-<p>Import 'afpkt-rxtstamps.txt' and 'afxdp-rxtstamps.txt' to excel in 2 seperate sheets.</p>
-<p><a class="glightbox" href="https://altera-fpga.github.io/rel-25.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img src="https://altera-fpga.github.io/rel-25.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800"></a></p>
-<p>Plot Column 1 for each sheets using Scatter chart,</p>
-<p><a class="glightbox" href="https://altera-fpga.github.io/rel-25.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img src="https://altera-fpga.github.io/rel-25.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800"></a></p>
-<p>This will generate plot for AFPKT and AFXDP with latency(on Y-axis) against packet count (on X-axis).</p>
 <p>The latency for this design example can be seen as below:
 <a class="glightbox" href="../images/cfg1_ag5-pdk_af_latency.jpg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/cfg1_ag5-pdk_af_latency.jpg" /></a></p>
 <h4 id="run-time-synchronization-commands">Run Time Synchronization commands<a class="headerlink" href="#run-time-synchronization-commands" title="Permanent link">&para;</a></h4>
 <p>You may use the following command guide to perform time synchronization on the Agilex&trade; 5 system using PTP4L and PHC2SYS, and to obtain delay values</p>
 <p><strong>End-to-End PTP master and slave synchronization</strong></p>
 <ul>
-<li>Board B (as slave):<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-s<span class="w"> </span>-H<span class="w"> </span>-E<span class="w"> </span>-2<span class="w"> </span>-m
+<li>Board B (as slave):<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-s<span class="w"> </span>-H<span class="w"> </span>-E<span class="w"> </span>-2<span class="w"> </span>-m
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>-i  eth0: This option specifies the `eth0` as the network interface to use for PTP.
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>-s  This option enables the slave-only mode. 
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>-H  This option enables hardware time stamping. 
-<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>-E  This option selects the end-to-end (E2E) delay measurement mechanism. This is the default.The E2E mechanism is also referred to as the delay “request-response” mechanism.
-<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>-2  Use Ethernet Layer (L2)
-<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>-m  This option enables printing of messages to the standard output.
-</code></pre></div>
-</li>
-</ul>
-<ul>
-<li>Boards A (as master):<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-H<span class="w"> </span>-E<span class="w"> </span>-2<span class="w"> </span>-m
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>-i  eth0: This option specifies the `eth0` as the network interface to use for PTP.
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>-s  This option enables the slave-only mode. 
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>-H  This option enables hardware time stamping. 
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>-E  This option selects the end-to-end (E2E) delay measurement mechanism. This is the default.The E2E mechanism is also referred to as the delay “request-response” mechanism.
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>-2  Use Ethernet Layer (L2)
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>-m  This option enables printing of messages to the standard output.
 </code></pre></div>
 </li>
 </ul>
 <ul>
-<li>At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>phc2sys<span class="w"> </span>-s<span class="w"> </span>eth0<span class="w"> </span>-w<span class="w"> </span>-m<span class="w"> </span>-c<span class="w"> </span>CLOCK_REALTIME<span class="w"> </span>-O<span class="w"> </span><span class="m">0</span><span class="w"> </span>-n<span class="w"> </span><span class="m">0</span>
+<li>Boards A (as master):<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-H<span class="w"> </span>-E<span class="w"> </span>-2<span class="w"> </span>-m
+</code></pre></div>
+</li>
+</ul>
+<ul>
+<li>At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>phc2sys<span class="w"> </span>-s<span class="w"> </span>eth0<span class="w"> </span>-w<span class="w"> </span>-m<span class="w"> </span>-c<span class="w"> </span>CLOCK_REALTIME<span class="w"> </span>-O<span class="w"> </span><span class="m">0</span><span class="w"> </span>-n<span class="w"> </span><span class="m">0</span>
 </code></pre></div>
 </li>
 </ul>
 <p><strong>Peer-to-Peer PTP synchronization</strong>:</p>
 <ul>
 <li>Board B (as slave):
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>slave:<span class="w"> </span>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-s<span class="w"> </span>-H<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-m
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>slave:<span class="w"> </span>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-s<span class="w"> </span>-H<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-m
 </code></pre></div><p>-P: This option enables the use of the Peer Delay Mechanism.</p>
 </li>
 </ul>
 <ul>
 <li>Board A (as master):
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>master:<span class="w"> </span>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-H<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-m
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>master:<span class="w"> </span>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-H<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-m
 </code></pre></div></li>
 </ul>
 <ul>
-<li>At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>phc2sys<span class="w"> </span>-s<span class="w"> </span>eth0<span class="w"> </span>-w<span class="w"> </span>-m<span class="w"> </span>-c<span class="w"> </span>CLOCK_REALTIME<span class="w"> </span>-O<span class="w"> </span><span class="m">0</span><span class="w"> </span>-n<span class="w"> </span><span class="m">0</span>
+<li>At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>phc2sys<span class="w"> </span>-s<span class="w"> </span>eth0<span class="w"> </span>-w<span class="w"> </span>-m<span class="w"> </span>-c<span class="w"> </span>CLOCK_REALTIME<span class="w"> </span>-O<span class="w"> </span><span class="m">0</span><span class="w"> </span>-n<span class="w"> </span><span class="m">0</span>
 </code></pre></div>
 </li>
 </ul>
 <p><strong>gPTP synchronization</strong>:</p>
 <ul>
-<li>Board B (as slave):<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-s<span class="w"> </span>-H<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-m<span class="w"> </span>--transportSpecific<span class="o">=</span><span class="m">1</span>
+<li>Board B (as slave):<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-s<span class="w"> </span>-H<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-m<span class="w"> </span>--transportSpecific<span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 </li>
 </ul>
 <ul>
-<li>Board A (as master): <div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-H<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-m<span class="w"> </span>--transportSpecific<span class="o">=</span><span class="m">1</span>
+<li>Board A (as master): <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-H<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-m<span class="w"> </span>--transportSpecific<span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 </li>
 </ul>
 <ul>
-<li>At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>phc2sys<span class="w"> </span>-s<span class="w"> </span>eth0<span class="w"> </span>-w<span class="w"> </span>-m<span class="w"> </span>--transportSpecific<span class="w"> </span><span class="m">1</span><span class="w"> </span>-c<span class="w"> </span>CLOCK_REALTIME<span class="w"> </span>-O<span class="w"> </span><span class="m">0</span><span class="w"> </span>-n<span class="w"> </span><span class="m">0</span>
+<li>At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>phc2sys<span class="w"> </span>-s<span class="w"> </span>eth0<span class="w"> </span>-w<span class="w"> </span>-m<span class="w"> </span>--transportSpecific<span class="w"> </span><span class="m">1</span><span class="w"> </span>-c<span class="w"> </span>CLOCK_REALTIME<span class="w"> </span>-O<span class="w"> </span><span class="m">0</span><span class="w"> </span>-n<span class="w"> </span><span class="m">0</span>
 </code></pre></div>
 </li>
 </ul>

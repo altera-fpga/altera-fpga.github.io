@@ -14,10 +14,10 @@
     </output_files>
     <bitstreams>
         <bitstream id="Bitstream_1">
-            <path signing="OFF" finalize_encryption="0" hps_path="./u-boot-socfpga/spl/u-boot-spl-dtb.hex">./hw/ghrd.0/output_files/legacy_baseline.sof</path>
+            <path signing="OFF" finalize_encryption="0" hps_path="./u-boot-socfpga/spl/u-boot-spl-dtb.hex">./hw/ghrd.0/output_files/ghrd_a5ed065bb32ae6sr0.sof</path>
         </bitstream>
         <bitstream id="Bitstream_2">
-            <path signing="OFF" finalize_encryption="0" hps_path="./u-boot-socfpga/spl/u-boot-spl-dtb.hex">./hw/ghrd.1/output_files/legacy_baseline.sof</path>
+            <path signing="OFF" finalize_encryption="0" hps_path="./u-boot-socfpga/spl/u-boot-spl-dtb.hex">./hw/ghrd.1/output_files/ghrd_a5ed065bb32ae6sr0.sof</path>
         </bitstream>
     </bitstreams>
     <flash_devices>

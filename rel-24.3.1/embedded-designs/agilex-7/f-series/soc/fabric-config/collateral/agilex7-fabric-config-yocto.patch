@@ -1,5 +1,5 @@
 diff --git a/recipes-bsp/device-tree/device-tree.bb b/recipes-bsp/device-tree/device-tree.bb
-index 6516834..3382020 100644
+index fcd665a..bb45c17 100644
 --- a/recipes-bsp/device-tree/device-tree.bb
 +++ b/recipes-bsp/device-tree/device-tree.bb
 @@ -24,6 +24,7 @@ SRC_URI:append:agilex7_dk_si_agf014ea = " \
@@ -10,17 +10,17 @@ index 6516834..3382020 100644
  					"
  
  SRC_URI:append:agilex7_dk_si_agf014eb = " \
-@@ -32,6 +33,7 @@ SRC_URI:append:agilex7_dk_si_agf014eb = " \
+@@ -31,6 +32,7 @@ SRC_URI:append:agilex7_dk_si_agf014eb = " \
+ 					file://agilex7_pr_fpga_static_region.dts \
  					file://agilex7_pr_persona0.dts \
  					file://agilex7_pr_persona1.dts \
- 					file://socfpga_ilc.dtsi \
 +					file://fabric_config_overlay.dts \
+ 					file://socfpga_ilc.dtsi \
  					"
  
- SRC_URI:append:agilex7_dk_si_agi027fb = " \
 diff --git a/recipes-bsp/device-tree/files/fabric_config_overlay.dts b/recipes-bsp/device-tree/files/fabric_config_overlay.dts
 new file mode 100644
-index 0000000..cd5b0df
+index 0000000..75ea080
 --- /dev/null
 +++ b/recipes-bsp/device-tree/files/fabric_config_overlay.dts
 @@ -0,0 +1,23 @@
@@ -28,13 +28,13 @@ index 0000000..cd5b0df
 +/plugin/;
 +/ {
 +                fragment@0 {
-+                                target-path = "/fpga-region";
-+                                #address-cells = <0x2>;
-+                                #size-cells = <0x2>;
++                                target-path = "/soc/base_fpga_region";
++                                #address-cells = <0x1>;
++                                #size-cells = <0x1>;
 +                                __overlay__ {
 +                                                #address-cells = <0x2>;
 +                                                #size-cells = <0x2>;
-+                                                ranges =<0x0 0x0 0x0 0xF9000000 0x0 0x00200000>;
++                                                ranges =<0x0 0x0 0xF9000000 0x0 0x00200000>;
 +                                                firmware-name = "ghrd.core.rbf";
 +                                                config-complete-timeout-us = <30000000>;
 +
@@ -47,11 +47,12 @@ index 0000000..cd5b0df
 +                                };
 +                };
 +};
+\ No newline at end of file
 diff --git a/recipes-bsp/ghrd/hw-ref-design.bb b/recipes-bsp/ghrd/hw-ref-design.bb
-index eccd99d..dbd6f34 100644
+index 971bedd..669c63d 100644
 --- a/recipes-bsp/ghrd/hw-ref-design.bb
 +++ b/recipes-bsp/ghrd/hw-ref-design.bb
-@@ -222,6 +222,7 @@ do_install () {
+@@ -218,6 +218,7 @@ do_install () {
  			install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_${ARM64_GHRD_CORE_RBF} ${D}/boot/ghrd_pr.core.rbf
  			install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
  			install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
