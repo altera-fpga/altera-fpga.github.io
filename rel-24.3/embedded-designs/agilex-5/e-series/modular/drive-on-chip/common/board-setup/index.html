@@ -2096,6 +2096,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_6_2_2" id="__nav_6_2_2_label" tabindex="0">
@@ -2146,6 +2148,20 @@
     <li class="md-nav__item">
       <a href="../../doc-funct-safety/" class="md-nav__link">
         Drive-On-Chip with Functional Safety Design Example for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../doc-plc/" class="md-nav__link">
+        Drive-On-Chip with PLC Design Example for Agilex™ 5 Devices
       </a>
     </li>
   
@@ -2920,27 +2936,33 @@ ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
 <ul>
 <li>Connect micro USB cable from bottom left of the carrier board to PC (<code>J35</code>).
   This will be used for JTAG communication. Look at what ports are enumerated
-  on your host computer, there should be a series of four. (See the figure bellow).</li>
+  on your host computer, there should be a series of four. (See the figure below).</li>
 <li>Connect micro USB cable from bottom right of the SOM board to PC
   (<code>J2</code>, HSP_UART). This will be used for HPS UART communication. Look at what
   ports are enumerated on your host computer, there should be a series of
-  four. Use the 3<sup>rd</sup> one in the list as the HPS serial port.(See the figure bellow).</li>
+  four. Use the 3<sup>rd</sup> one in the list as the HPS serial port.(See the figure below).</li>
+<li>If ethernet capabilities or remote connection via <code>ssh</code> is required connect a
+  RJ45 cable to the ethernet port in the SOM board (<code>J6</code>, ETH 1G HPS)and make
+  sure your device is in the same networks as your intended host device. After
+  Linux boot, check the IP address of the <code>end2</code> ethernet interface using
+  <code>ifconfig</code> or <code>ip a</code> Linux commands.</li>
 </ul>
 <p><a class="glightbox" href="./common/images/Agx5-MDK-Conn.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Agx-MDK-Conn" src="./common/images/Agx5-MDK-Conn.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
 <center></p>
 <p><strong>USB connections to the board.</strong>
-</center></p>
+</center>
+<br></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 6, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 1, 2025</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 6, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 1, 2025</span>
       
     
   </small>

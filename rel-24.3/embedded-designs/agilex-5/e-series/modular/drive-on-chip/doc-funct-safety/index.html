@@ -14,7 +14,7 @@
         <link rel="prev" href="../../boot-examples/ug-linux-boot-agx5e-modular/">
       
       
-        <link rel="next" href="../../../../common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms/">
+        <link rel="next" href="../doc-plc/">
       
       <link rel="icon" href="../../../../../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
@@ -2108,6 +2108,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_6_2_2" id="__nav_6_2_2_label" tabindex="0">
@@ -2364,6 +2366,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../doc-plc/" class="md-nav__link">
+        Drive-On-Chip with PLC Design Example for Agilex™ 5 Devices
+      </a>
     </li>
   
 
@@ -3330,7 +3346,7 @@ with Functional Safety Design Example.</strong>
 Development Kit:</p>
 <ul>
 <li>Host PC with<ul>
-<li>64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding.</li>
+<li>8 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding.</li>
 <li>Linux/Windows OS installed.</li>
 <li>Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or
   PuTTY on Windows)</li>
@@ -3349,6 +3365,7 @@ Development Kit:</p>
 </ul>
 <h3 id="software-requirements-to-build">Software Requirements to build<a class="headerlink" href="#software-requirements-to-build" title="Permanent link">&para;</a></h3>
 <ul>
+<li>Linux OS installed.</li>
 <li>62 GB free storage (~2GB for Quartus® Build and ~60GB for YOCTO/KAS build)</li>
 <li>Python/PIP/KAS for Yocto Build (or a suitable container).</li>
 <li>FPGA NiosV/g Open-Source Tools 24.3 (installed with Quartus® Prime).</li>
@@ -3404,12 +3421,12 @@ ready for production or end-production.</p>
 <tr>
 <td>Drive-On-Chip Variants</td>
 <td><a href="https://github.com/altera-fpga/agilex-ed-drive-on-chip">https://github.com/altera-fpga/agilex-ed-drive-on-chip</a></td>
-<td>rel/24.1</td>
+<td>rel/24.3</td>
 </tr>
 <tr>
 <td>Modular Design Toolkit</td>
 <td><a href="https://github.com/altera-fpga/modular-design-toolkit">https://github.com/altera-fpga/modular-design-toolkit</a></td>
-<td>re/24.1</td>
+<td>re/24.3</td>
 </tr>
 <tr>
 <td>Linux</td>
@@ -3491,16 +3508,22 @@ ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
 <ul>
 <li>Connect micro USB cable from bottom left of the carrier board to PC (<code>J35</code>).
   This will be used for JTAG communication. Look at what ports are enumerated
-  on your host computer, there should be a series of four. (See the figure bellow).</li>
+  on your host computer, there should be a series of four. (See the figure below).</li>
 <li>Connect micro USB cable from bottom right of the SOM board to PC
   (<code>J2</code>, HSP_UART). This will be used for HPS UART communication. Look at what
   ports are enumerated on your host computer, there should be a series of
-  four. Use the 3<sup>rd</sup> one in the list as the HPS serial port.(See the figure bellow).</li>
+  four. Use the 3<sup>rd</sup> one in the list as the HPS serial port.(See the figure below).</li>
+<li>If ethernet capabilities or remote connection via <code>ssh</code> is required connect a
+  RJ45 cable to the ethernet port in the SOM board (<code>J6</code>, ETH 1G HPS)and make
+  sure your device is in the same networks as your intended host device. After
+  Linux boot, check the IP address of the <code>end2</code> ethernet interface using
+  <code>ifconfig</code> or <code>ip a</code> Linux commands.</li>
 </ul>
 <p><a class="glightbox" href="../common/images/Agx5-MDK-Conn.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Agx-MDK-Conn" src="../common/images/Agx5-MDK-Conn.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
 <center></p>
 <p><strong>USB connections to the board.</strong>
-</center></p>
+</center>
+<br></p>
 <h3 id="burn-the-sd-card-image"><strong>Burn the SD card image.</strong><a class="headerlink" href="#burn-the-sd-card-image" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Download SD card image from the "prebuilt binaries" (<code>&lt;name&gt;.wic</code>).</li>
@@ -3510,7 +3533,7 @@ ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
 <ul>
 <li>On Linux, use the <code>dd</code> utility as shown next:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Determine the device asociated with the SD card on the host computer. </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Determine the device associated with the SD card on the host computer.</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cat<span class="w"> </span>/proc/partitions
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># This will return for example /dev/sd&lt;x&gt;</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Use dd to write the image in the corresponding device</span>
@@ -3519,8 +3542,8 @@ ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>sync
 </code></pre></div>
 <ul>
-<li>On Windows, use the Win32DiskImager program, available at
-https://sourceforge.net/projects/win32diskimager. For this, first rename the
+<li>On Windows, use the Win32DiskImager program (or similar), available at
+<a href="https://sourceforge.net/projects/win32diskimager">Disk Imager</a>. For this, first rename the
 <name>.wic to an .img file (sdcard.img for example)
 and write the image as shown in the next figure:</li>
 </ul>
@@ -3656,7 +3679,7 @@ the output from the drive-on-chip application that runs in the Nios V/g processo
 <li>Connect a micro-USB cable to the integrated USB blaster II in the board.</li>
 <li>Run (source the Nios V command shell if required):</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">  </span>juart-terminal<span class="w"> </span>-d<span class="w"> </span><span class="m">2</span><span class="w"> </span>-i<span class="w"> </span><span class="m">0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">    </span>juart-terminal<span class="w"> </span>-d<span class="w"> </span><span class="m">2</span><span class="w"> </span>-i<span class="w"> </span><span class="m">0</span>
 </code></pre></div>
 <p><br></p>
 <p><a class="glightbox" href="../common/images/nios-1.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="nios-1" src="../common/images/nios-1.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
@@ -3665,8 +3688,8 @@ the output from the drive-on-chip application that runs in the Nios V/g processo
 </center>
 <br></p>
 <h2 id="recommended-user-flows">Recommended User Flows<a class="headerlink" href="#recommended-user-flows" title="Permanent link">&para;</a></h2>
-<p>Using resources available you can build, compile, modify and run this design
-example. There are 2 additional user flows that can be exercised</p>
+<p>With the available resources, you can build, compile, modify, and execute this
+design example. Additionally, there are two extra user flows that you can explore.</p>
 <ul>
 <li>User Flow 1: <a href="#getting-started-run-with-pre-build-binaries">Getting Started - Running with pre-build binaries.</a></li>
 <li>User Flow 2: Running the example design using the QAR and KAS</li>
@@ -3855,6 +3878,7 @@ g { color: Green; font-weight: bold; }
 <h2 id="other-drive-on-chip-documentation-and-references">Other Drive-On-Chip Documentation and References<a class="headerlink" href="#other-drive-on-chip-documentation-and-references" title="Permanent link">&para;</a></h2>
 <h3 id="example-designs">Example Designs<a class="headerlink" href="#example-designs" title="Permanent link">&para;</a></h3>
 <ul>
+<li><a href="https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-plc">Drive-On-Chip with PLC System Example Design for Agilex™ 5 Devices</a></li>
 <li><a href="https://www.intel.com/content/www/us/en/design-example/825930/agilex-5-fpga-drive-on-chip-design-example.html">Agilex™ 5 FPGA - Drive-On-Chip Design Example</a></li>
 <li><a href="https://www.intel.com/content/www/us/en/design-example/780360/intel-agilex-7-fpga-drive-on-chip-for-intel-agilex-7-devices-design-example.html">Intel® Agilex™ 7 FPGA – Drive-On-Chip for Intel® Agilex™ 7 Devices Design Example</a></li>
 <li><a href="https://www.intel.com/content/www/us/en/design-example/825944/agilex-7-fpga-safe-drive-on-chip-design-example.html">Agilex™ 7 FPGA – Safe Drive-On-Chip Design Example</a></li>
@@ -3911,11 +3935,11 @@ the Khronos Group™.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 6, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 1, 2025</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 6, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 1, 2025</span>
       
     
   </small>
@@ -3962,13 +3986,13 @@ the Khronos Group™.</p>
         
         
           
-          <a href="../../../../common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms/" class="md-footer__link md-footer__link--next" aria-label="Next: Linux GSRD" rel="next">
+          <a href="../doc-plc/" class="md-footer__link md-footer__link--next" aria-label="Next: Drive-On-Chip with PLC Design Example for Agilex™ 5 Devices" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Linux GSRD
+                Drive-On-Chip with PLC Design Example for Agilex™ 5 Devices
               </div>
             </div>
             <div class="md-footer__button md-icon">
