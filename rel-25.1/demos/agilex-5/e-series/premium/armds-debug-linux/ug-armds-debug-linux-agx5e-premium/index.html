@@ -3646,7 +3646,7 @@
 <li>Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too</li>
 <li>Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
 <li>Altera® Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1</li>
-<li>Arm* Development Studio 2024.1</li>
+<li>Arm* Development Studio 2024.1 or 2024.1-1</li>
 </ul>
 </li>
 </ul>
@@ -3664,8 +3664,10 @@
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>./scripts/config<span class="w"> </span>--set-val<span class="w"> </span>CONFIG_GDB_SCRIPTS<span class="w"> </span>y
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>./scripts/config<span class="w"> </span>--disable<span class="w"> </span>CONFIG_DEBUG_INFO_REDUCED
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>./scripts/config<span class="w"> </span>--disable<span class="w"> </span>CONFIG_DEBUG_INFO_BTF
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>make<span class="w"> </span>oldconfig
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">48</span><span class="w"> </span>Image<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>intel/socfpga_agilex5_socdk.dtb
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>./scripts/config<span class="w"> </span>--set-val<span class="w"> </span>CONFIG_BLK_DEV_NULL_BLK<span class="w"> </span>m
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>make<span class="w"> </span>oldconfig
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">48</span><span class="w"> </span>Image<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>intel/socfpga_agilex5_socdk.dtb
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">64</span><span class="w"> </span>modules
 </code></pre></div>
 <p>The changes achieve the following:</p>
 <ul>
@@ -3699,7 +3701,7 @@
 <p>2. Write the SD card and QSPI flash images and boot to Linux prompt</p>
 <p>3. Go to the folder where the example was built, add the Quartus® tools in the path:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/intelFPGA_pro/25.1/quartus/
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/altera_pro/25.1/quartus/
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
 </code></pre></div>
 <p>4. Start Arm* DS Eclipse using a new workspace in the current folder:</p>
@@ -3731,7 +3733,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 22, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 7, 2025</span>
       
         <br>
         Created:

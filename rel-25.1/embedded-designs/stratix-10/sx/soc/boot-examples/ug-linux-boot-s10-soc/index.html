@@ -4089,7 +4089,14 @@
   <h1>GHRD Linux Boot Examples</h1>
 
 <h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h2>
-<p>This page contains instructions on how to build U-Boot  for Stratix® 10 SX SOC Development kit H-Tile (DK-SOC-1SSX-H-D). </p>
+<p>This page contains instructions on how to build Linux systems from separate components: Hardware Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the Golden System Reference Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.</p>
+<p>The key differences versus the GSRD are:</p>
+<ul>
+<li>Fabric is configured from U-Boot directly with the rbf file, with <code>fpga load</code> command, instead of using the <code>bootm</code> command with the core.rbf part of the kernel.itb file</li>
+<li>Single image boot is disabled in U-Boot, and it boots directly with the slected boot source, not trying them all</li>
+<li>The applications and drivers form <code>meta-intel-fpga-refdes</code> are not included. That includes acessing GPIOs in the fabric for LEDs, pushbuttons, dip switches, the webserver running on the board, etc.</li>
+</ul>
+<p>This instructions from this page target the Stratix® 10 SX SOC Development kit H-Tile (DK-SOC-1SSX-H-D). </p>
 <h2 id="component-versions">Component Versions<a class="headerlink" href="#component-versions" title="Permanent link">&para;</a></h2>
 <p>This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1 and the following component versions.</p>
 <table>
@@ -4981,7 +4988,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 22, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 7, 2025</span>
       
         <br>
         Created:

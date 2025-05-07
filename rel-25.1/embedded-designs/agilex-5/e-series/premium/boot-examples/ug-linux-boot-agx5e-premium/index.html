@@ -3879,6 +3879,12 @@
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h3>
 <p>This page contains instructions on how to build Linux systems from separate components: Hardware Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the Golden System Reference Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.</p>
+<p>The key differences versus the GSRD are:</p>
+<ul>
+<li>Fabric is configured from U-Boot directly with the rbf file, with <code>fpga load</code> command, instead of using the <code>bootm</code> command with the core.rbf part of the kernel.itb file</li>
+<li>Single image boot is disabled in U-Boot, and it boots directly with the slected boot source, not trying them all</li>
+<li>The applications and drivers form <code>meta-intel-fpga-refdes</code> are not included. That includes acessing GPIOs in the fabric for LEDs, pushbuttons, dip switches, the webserver running on the board, etc.</li>
+</ul>
 <p>The following scenarios are covered:</p>
 <ul>
 <li>HPS Enablement Board: boot from SD card, and boot from QSPI</li>
@@ -5204,7 +5210,6 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <p><a class="glightbox" href="../images/ATF_Linux_Image_SDCard.jpg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/ATF_Linux_Image_SDCard.jpg" /></a> </p>
 </li>
 </ul>
-<p><span style="color: red;">NOTE: In 25.1 release there is an issue that prevents booting from SDCard in this flow(14024688400). As a workaround you can use <a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/#atf-to-linux-from-sd-card">24.3.1 build instructions</a>. This does not affect QSPI boot.</span></p>
 <h4>Toolchain Setup (ATF-To-Linux)</h4>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_boot.atf2linux
@@ -5232,12 +5237,15 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 <a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a>unzip<span class="w"> </span>a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 <a id="__codelineno-56-5" name="__codelineno-56-5" href="#__codelineno-56-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>a5ed065es-premium-devkit-oobe-legacy-baseline.zip
-<a id="__codelineno-56-6" name="__codelineno-56-6" href="#__codelineno-56-6"></a>make<span class="w"> </span>legacy_baseline-build
-<a id="__codelineno-56-7" name="__codelineno-56-7" href="#__codelineno-56-7"></a>make<span class="w"> </span>legacy_baseline-sw-build
-<a id="__codelineno-56-8" name="__codelineno-56-8" href="#__codelineno-56-8"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>output_files/legacy_baseline.sof<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-56-9" name="__codelineno-56-9" href="#__codelineno-56-9"></a><span class="w">  </span>output_files/legacy_baseline_hps_debug.sof<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-56-10" name="__codelineno-56-10" href="#__codelineno-56-10"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>software/hps_debug/hps_wipe.ihex
-<a id="__codelineno-56-11" name="__codelineno-56-11" href="#__codelineno-56-11"></a><span class="nb">cd</span><span class="w"> </span>..
+<a id="__codelineno-56-6" name="__codelineno-56-6" href="#__codelineno-56-6"></a><span class="c1"># Workaround for 14024688400 in which handoff indicates to ATF tp powerdown the SDMMC controller. Will be fix in 25.1.1</span>
+<a id="__codelineno-56-7" name="__codelineno-56-7" href="#__codelineno-56-7"></a>sed<span class="w"> </span>-zi<span class="w"> </span><span class="s1">&#39;s|\(&lt;ipxact:name&gt;SDMMC_PinMuxing&lt;/ipxact:name&gt;\n[^\n]*\n[[:space:]]*&lt;ipxact:value&gt;\)Unused\(&lt;\/ipxact:value&gt;\)|\1IO\2|&#39;</span><span class="w"> </span>./hps_subsys/ip/hps_subsys/agilex_hps.ip<span class="w"> </span>
+<a id="__codelineno-56-8" name="__codelineno-56-8" href="#__codelineno-56-8"></a>sed<span class="w"> </span>-zi<span class="w"> </span><span class="s1">&#39;s|\(&lt;ipxact:name&gt;SDMMC_Mode&lt;/ipxact:name&gt;\n[^\n]*\n[[:space:]]*&lt;ipxact:value&gt;\)N/A\(&lt;\/ipxact:value&gt;\)|\14-bit\2|&#39;</span><span class="w"> </span>./hps_subsys/ip/hps_subsys/agilex_hps.ip
+<a id="__codelineno-56-9" name="__codelineno-56-9" href="#__codelineno-56-9"></a>make<span class="w"> </span>legacy_baseline-build
+<a id="__codelineno-56-10" name="__codelineno-56-10" href="#__codelineno-56-10"></a>make<span class="w"> </span>legacy_baseline-sw-build
+<a id="__codelineno-56-11" name="__codelineno-56-11" href="#__codelineno-56-11"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>output_files/legacy_baseline.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-56-12" name="__codelineno-56-12" href="#__codelineno-56-12"></a><span class="w">  </span>output_files/legacy_baseline_hps_debug.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-56-13" name="__codelineno-56-13" href="#__codelineno-56-13"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>software/hps_debug/hps_wipe.ihex
+<a id="__codelineno-56-14" name="__codelineno-56-14" href="#__codelineno-56-14"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
@@ -5310,8 +5318,8 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <a id="__codelineno-58-44" name="__codelineno-58-44" href="#__codelineno-58-44"></a><span class="s">CONFIG_OVERLAY_FS=y</span>
 <a id="__codelineno-58-45" name="__codelineno-58-45" href="#__codelineno-58-45"></a><span class="s">CONFIG_ALTERA_SYSID=y</span>
 <a id="__codelineno-58-46" name="__codelineno-58-46" href="#__codelineno-58-46"></a>
-<a id="__codelineno-58-47" name="__codelineno-58-47" href="#__codelineno-58-47"></a><span class="s"># Needed for netwrok connectivity, but disabled for now after HSD: 14024748396</span>
-<a id="__codelineno-58-48" name="__codelineno-58-48" href="#__codelineno-58-48"></a><span class="s">#CONFIG_MARVELL_PHY=y</span>
+<a id="__codelineno-58-47" name="__codelineno-58-47" href="#__codelineno-58-47"></a><span class="s"># Needed for netwrok connectivity</span>
+<a id="__codelineno-58-48" name="__codelineno-58-48" href="#__codelineno-58-48"></a><span class="s">CONFIG_MARVELL_PHY=y</span>
 <a id="__codelineno-58-49" name="__codelineno-58-49" href="#__codelineno-58-49"></a><span class="s">EOF</span>
 <a id="__codelineno-58-50" name="__codelineno-58-50" href="#__codelineno-58-50"></a>
 <a id="__codelineno-58-51" name="__codelineno-58-51" href="#__codelineno-58-51"></a>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>mrproper
@@ -5513,8 +5521,8 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <a id="__codelineno-64-25" name="__codelineno-64-25" href="#__codelineno-64-25"></a>
 <a id="__codelineno-64-26" name="__codelineno-64-26" href="#__codelineno-64-26"></a><span class="c1">## Adjust the partitions so the commponents in QSPI can fit</span>
 <a id="__codelineno-64-27" name="__codelineno-64-27" href="#__codelineno-64-27"></a>sed<span class="w"> </span>-i<span class="w">  </span><span class="s1">&#39;s/reg = &lt;0x0 0x04200000&gt;;/reg = &lt;0x0 0x0700000&gt;;/g&#39;</span><span class="w"> </span>arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-<a id="__codelineno-64-28" name="__codelineno-64-28" href="#__codelineno-64-28"></a>sed<span class="w"> </span>-i<span class="w">  </span><span class="s1">&#39;s/root: partition@4200000/root: partition@7000000/g&#39;</span><span class="w"> </span>arch/arm64/boot/dts/intel/socfpga_agilex_socdk5.dts
-<a id="__codelineno-64-29" name="__codelineno-64-29" href="#__codelineno-64-29"></a>sed<span class="w"> </span>-i<span class="w">  </span><span class="s1">&#39;s/reg = &lt;0x04200000 0x0BE00000&gt;/reg = &lt;0x07000000 0x09000000&gt;/g&#39;</span><span class="w"> </span>arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+<a id="__codelineno-64-28" name="__codelineno-64-28" href="#__codelineno-64-28"></a>sed<span class="w"> </span>-i<span class="w">  </span><span class="s1">&#39;s/root: partition@4200000/root: partition@7000000/g&#39;</span><span class="w"> </span>arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+<a id="__codelineno-64-29" name="__codelineno-64-29" href="#__codelineno-64-29"></a>sed<span class="w"> </span>-i<span class="w">  </span><span class="s1">&#39;s/reg = &lt;0x04200000 0x0be00000&gt;/reg = &lt;0x07000000 0x09000000&gt;/g&#39;</span><span class="w"> </span>arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
 <a id="__codelineno-64-30" name="__codelineno-64-30" href="#__codelineno-64-30"></a>
 <a id="__codelineno-64-31" name="__codelineno-64-31" href="#__codelineno-64-31"></a><span class="c1"># Include the build socfpga_agilex5_socdk_atfboot.dtb in the Makefile</span>
 <a id="__codelineno-64-32" name="__codelineno-64-32" href="#__codelineno-64-32"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/socfpga_agilex5_socdk.dtb \\/a socfpga_agilex5_socdk_atfboot.dtb \\&#39;</span><span class="w"> </span>arch/arm64/boot/dts/intel/Makefile
@@ -5543,8 +5551,8 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <a id="__codelineno-64-55" name="__codelineno-64-55" href="#__codelineno-64-55"></a><span class="s"># Enabling JFFS2 File system</span>
 <a id="__codelineno-64-56" name="__codelineno-64-56" href="#__codelineno-64-56"></a><span class="s">CONFIG_JFFS2_FS=y</span>
 <a id="__codelineno-64-57" name="__codelineno-64-57" href="#__codelineno-64-57"></a>
-<a id="__codelineno-64-58" name="__codelineno-64-58" href="#__codelineno-64-58"></a><span class="s"># Needed for netwrok connectivity, but disabled for now after HSD: 14024748396</span>
-<a id="__codelineno-64-59" name="__codelineno-64-59" href="#__codelineno-64-59"></a><span class="s">#CONFIG_MARVELL_PHY=y</span>
+<a id="__codelineno-64-58" name="__codelineno-64-58" href="#__codelineno-64-58"></a><span class="s"># Needed for netwrok connectivity</span>
+<a id="__codelineno-64-59" name="__codelineno-64-59" href="#__codelineno-64-59"></a><span class="s">CONFIG_MARVELL_PHY=y</span>
 <a id="__codelineno-64-60" name="__codelineno-64-60" href="#__codelineno-64-60"></a><span class="s">EOF</span>
 <a id="__codelineno-64-61" name="__codelineno-64-61" href="#__codelineno-64-61"></a>
 <a id="__codelineno-64-62" name="__codelineno-64-62" href="#__codelineno-64-62"></a>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>mrproper
@@ -5694,7 +5702,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 22, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 7, 2025</span>
       
         <br>
         Created:
