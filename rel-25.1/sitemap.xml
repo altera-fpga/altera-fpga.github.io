@@ -531,137 +531,137 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/apb_timers/apb_timers/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/apb_timers/apb_timers/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/clock_manager/clock_manager/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/clock_manager/clock_manager/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/dma/dma/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/dma/dma/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/edac/edac/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/edac/edac/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/emac/emac/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/emac/emac/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/gpio/gpio/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/gpio/gpio/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/hssi/hssi/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/hssi/hssi/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/hssi_xtile/hssi_xtile/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/hssi_xtile/hssi_xtile/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/hwmon/hwmon/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/hwmon/hwmon/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/i2c/i2c/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/i2c/i2c/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/i3c/i3c/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/i3c/i3c/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/interrupt_controller_GICv3/irq_gic_v3/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/interrupt_controller_GICv3/irq_gic_v3/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/msgdma/msgdma/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/msgdma/msgdma/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/nand/nand/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/nand/nand/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/ptp_tod/ptp_emb_tod/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/ptp_tod/ptp_emb_tod/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/qsfp/qsfp/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/qsfp/qsfp/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/qspi/qspi/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/qspi/qspi/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/reset_manager/reset_manager/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/reset_manager/reset_manager/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/sd-emmc/sd-emmc/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/sd-emmc/sd-emmc/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/smmu/smmu/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/smmu/smmu/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/spi/spi/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/spi/spi/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/system_manager/system_manager/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/system_manager/system_manager/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/uart/uart/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/uart/uart/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/usb2_0_otg/usb_2_0_otg/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/usb2_0_otg/usb_2_0_otg/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/usb3_1/usb3_1/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/usb3_1/usb3_1/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/watchdog_timers/watchdog_timers/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/watchdog_timers/watchdog_timers/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/zarlink_clock_synchronizer/zarlink_clock_synchronizer/</loc>
+         <loc>https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/zarlink_clock_synchronizer/zarlink_clock_synchronizer/</loc>
          <lastmod>2025-05-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
