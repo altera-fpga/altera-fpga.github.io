@@ -860,7 +860,7 @@ Consider that the Intel Simics Simulator for Intel FPGAs Simulator has been inst
 2. Under the new project directory created, deploy the **agilex5e-universal** virtual platform:
 
   ```bash
-  $<Simics installation dir>/simics/bin/simics_intelfpga_cli –-deploy agilex5e-universal
+  $<Simics installation dir>/simics/bin/simics_intelfpga_cli --deploy agilex5e-universal
   Simics(R) Simulator for Intel(R) FPGA CLI:
   INFO: Preparing to initialize /home/simicsUser/SimicsInstallDir/project-1 as a
   Simics workspace

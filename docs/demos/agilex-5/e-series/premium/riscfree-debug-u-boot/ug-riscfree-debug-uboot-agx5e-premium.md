@@ -32,13 +32,13 @@ You will also need to compile the Agilex 5 GHRD Linux Boot Example targeting the
 
 ```bash
 cd $TOP_FOLDER
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$QUARTUS_ROOTDIR/../riscfree/RiscFree:$PATH
 ```
 5\. Configure the device with the 'debug' SOF, which contains an empty loop HPS FSBL, designed specifically for a debugger to connect afterwards:
 
 ```bash
-quartus_pgm -c 1 -m jtag -o "p;agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof"
+quartus_pgm -c 1 -m jtag -o "p;agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof"
 ```
 
 6\. Start RiscFree* Eclipse using a new workspace in the current folder:

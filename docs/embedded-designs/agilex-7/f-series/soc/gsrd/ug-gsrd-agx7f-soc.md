@@ -1714,8 +1714,8 @@ The two most relevant files created in the `$TOP_FOLDER/gsrd-socfpga/agilex7_dk_
 | File                                            | Description              |
 | :---------------------------------------------- | :----------------------- |
 | gsrd-console-image-agilex7_nand.ubifs           | UBI root partition image |
-| u-boot-agilex-socdk-gsrd-atf/u-boot.itb         | U-Boot FIT image         |
-| u-boot-agilex-socdk-gsrd-atf/u-boot-spl-dtb.hex | U-Boot SPL Hex file      |
+| u-boot-agilex7-socdk-gsrd-atf/u-boot.itb         | U-Boot FIT image         |
+| u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex | U-Boot SPL Hex file      |
 
 
 

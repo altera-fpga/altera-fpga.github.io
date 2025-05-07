@@ -14,7 +14,7 @@ The following are needed:
   - Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   - Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
   - Altera® Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1
-  - Arm Development Studio 2024.1
+  - Arm Development Studio 2024.1 or 2024.1-1
 
 You will also need to compile the Agilex 5 GHRD Linux Boot Example targeting the HPS Enablement board, as described [here](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/#boot-from-sd-card). 
 
@@ -30,13 +30,13 @@ You will also need to compile the Agilex 5 GHRD Linux Boot Example targeting the
 
 ```bash
 cd $TOP_FOLDER
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin
 ```
 5\. Configure the device with the 'debug' SOF, which contains an empty loop HPS FSBL, designed specifically for a debugger to connect afterwards:
 
 ```bash
-quartus_pgm -c 1 -m jtag -o "p;agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof"
+quartus_pgm -c 1 -m jtag -o "p;agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof"
 ```
 
 6\. Start Arm* DS Eclipse using a new workspace in the current folder:
