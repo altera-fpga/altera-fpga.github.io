@@ -2909,13 +2909,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#notices-disclaimers" class="md-nav__link">
-    Notices &amp; Disclaimers
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -3867,13 +3860,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#notices-disclaimers" class="md-nav__link">
-    Notices &amp; Disclaimers
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -4153,29 +4139,19 @@ For further reading:</p>
 </ul>
 <p>Get the GHRD and build it as it comes by default:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga<span class="w"> </span>agilex_soc_devkit_ghrd
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/ghrd-socfpga
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>mv<span class="w"> </span>ghrd-socfpga/agilex_soc_devkit_ghrd<span class="w"> </span>.
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>rm<span class="w"> </span>-rf<span class="w"> </span>ghrd-socfpga
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">cd</span><span class="w"> </span>agilex_soc_devkit_ghrd
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># disable SGMII to build faster </span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">HPS_ENABLE_SGMII</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># disable PR to build faster </span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ENABLE_PARTIAL_RECONFIGURATION</span><span class="o">=</span><span class="m">0</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>make<span class="w"> </span>scrub_clean_all
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>make<span class="w"> </span><span class="nv">BOARD_TYPE</span><span class="o">=</span>DK-SI-AGF014E<span class="w"> </span><span class="nv">BOARD_PWRMGT</span><span class="o">=</span>linear<span class="w"> </span>generate_from_tcl
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="nb">cd</span><span class="w"> </span>software/hps_debug/
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>make
-<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="nb">cd</span><span class="w"> </span>../..
-<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>make<span class="w"> </span>all
-<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="nb">unset</span><span class="w"> </span>HPS_ENABLE_SGMII
-<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="nb">unset</span><span class="w"> </span>ENABLE_PARTIAL_RECONFIGURATION
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex7f-ed-gsrd
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.1_REL_GSRD_PR.zip
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>unzip<span class="w"> </span>QPDS25.1_REL_GSRD_PR.zip
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>rm<span class="w"> </span>QPDS25.1_REL_GSRD_PR.zip
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>mv<span class="w"> </span>agilex7f-ed-gsrd-QPDS25.1_REL_GSRD_PR<span class="w"> </span>agilex7f-ed-gsrd
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nb">cd</span><span class="w"> </span>agilex7f-ed-gsrd
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>make<span class="w"> </span>agf014eb-si-devkit-oobe-baseline-generate-design
 </code></pre></div>
 <p>This should had created and build the hardware project. Now it's time to modify it to include what is needed in this project.</p>
 <ol>
 <li>
 <p>Open the Quartus project with the following command and then open <strong>qsys_top.qsys</strong> from Plaform Designer:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>quartus ghrd_agfb014r24b2e2v.qpf &amp;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>quartus ./agilex_soc_devkit_ghrd/ghrd_agfb014r24b2e2v.qpf &amp;
 </code></pre></div>
 <p><a class="glightbox" href="../images/ghrd_images_1.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/ghrd_images_1.png" /></a></p>
 </li>
@@ -4207,7 +4183,7 @@ For further reading:</p>
 <p><strong>ACE-Lite Transaction Control for Write Channel</strong></p>
 <ul>
 <li>AWDOMAIN_OVERRIDE → 0x2<br></li>
-<li>ARCACHE_OVERRIDE_EN → Enable<br></li>
+<li>AWCACHE_OVERRIDE_EN → Enable<br></li>
 <li>AWCACHE_OVERRIDE → 0xf<br></li>
 </ul>
 <p><strong>User Selection</strong></p>
@@ -4275,23 +4251,28 @@ For further reading:</p>
 <p>Finally close <strong>Platform Designer</strong> and start building the updated hardware design on <strong>Quartus Pro</strong> by either clicking <a class="glightbox" href="../images/startbuilding.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/startbuilding.png" /></a> or pressing <strong>CTL-L</strong>.</p>
 </li>
 </ol>
+<p>The output of this stage will be:</p>
+<ul>
+<li>$TOP_FOLDER/agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof</li>
+</ul>
 <h3 id="rebuild-the-hps_debugsof-from-updated-sof">Rebuild the hps_debug.sof from Updated .sof<a class="headerlink" href="#rebuild-the-hps_debugsof-from-updated-sof" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex_soc_devkit_ghrd
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span>ghrd_agfb014r24b2e2v_hps_debug.sof<span class="w"> </span>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>software/hps_debug/hps_debug.ihex
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>mv<span class="w"> </span>ghrd_agfb014r24b2e2v_hps_debug.sof<span class="w"> </span>output_files/
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex7f-ed-gsrd
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># Generate hps_debug.ihex</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>make<span class="w"> </span>agf014eb-si-devkit-oobe-baseline-sw-build
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>./agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span>ghrd_agfb014r24b2e2v_hps_debug.sof<span class="w"> </span>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>./agilex_soc_devkit_ghrd/software/hps_debug/hps_debug.ihex
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>mv<span class="w"> </span>ghrd_agfb014r24b2e2v_hps_debug.sof<span class="w"> </span>agilex_soc_devkit_ghrd/output_files/
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 </code></pre></div>
 <p>The following files are created:</p>
 <ul>
-<li>$TOP_FOLDER/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof - FPGA configuration file, without HPS FSBL</li>
-<li>$TOP_FOLDER/agilex_soc_devkit_ghrd/software/hps_debug/hps_debug.ihex - HPS Debug FSBL</li>
-<li>$TOP_FOLDER/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps_debug.sof - FPGA configuration file, with HPS Debug FSBL</li>
+<li>$TOP_FOLDER/agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/software/hps_debug/hps_debug.ihex - HPS Debug FSBL</li>
+<li>$TOP_FOLDER/agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps_debug.sof - FPGA configuration file, with HPS Debug FSBL</li>
 </ul>
 <h3 id="build-core-rbf">Build Core RBF<a class="headerlink" href="#build-core-rbf" title="Permanent link">&para;</a></h3>
 <p>Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the GHRD makefile:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>*jic*<span class="w"> </span>*rbf*
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps_debug.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps_debug.sof<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w"> </span>ghrd_agfb014r24b2e2v.jic<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU02G<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>AGFB014R24B2E2V<span class="w"> </span><span class="se">\</span>
@@ -4421,64 +4402,63 @@ as shown next.</p>
 <a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="s">    reserved-memory {</span>
 <a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="s">        #address-cells = &lt;2&gt;;</span>
 <a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="s">        #size-cells = &lt;2&gt;;</span>
-<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>
-<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="s">        dma0_mem:dma0@0x10000000 {</span>
-<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="s">        compatible= &quot;shared-dma-pool&quot;;</span>
-<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="s">        reusable;</span>
-<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="s">        reg=&lt;0x0  0x10000000 0x0 0x10000000&gt;;</span>
-<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="s">        label=&quot;dma0_mem&quot;;</span>
-<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="s">        };</span>
-<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="s">    };</span>
-<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>
-<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="s">    soc {</span>
-<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="s">        clocks {</span>
-<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="s">            osc1 {</span>
-<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="s">            clock-frequency = &lt;25000000&gt;;</span>
-<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a><span class="s">            };</span>
-<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a><span class="s">        };</span>
-<a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>
-<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a><span class="s">        udmabuf0: udmabuf@0x10000000 {</span>
-<a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a><span class="s">            compatible = &quot;ikwzm,u-dma-buf&quot;;</span>
-<a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a><span class="s">            device-name = &quot;udmabuf0&quot;;</span>
-<a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a><span class="s">            minor-number = &lt;0&gt;;</span>
-<a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a><span class="s">            size = &lt;0x10000000&gt;;</span>
-<a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a><span class="s">            memory-region = &lt;&amp;dma0_mem&gt;;</span>
-<a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a><span class="s">            dma-coherent = &lt;1&gt;;</span>
-<a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a><span class="s">        };</span>
-<a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a><span class="s">    };</span>
-<a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a><span class="s">EOF</span>
-<a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a>
-<a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a><span class="c1"># Create a Linux repository in the $TOP_FOLDER</span>
-<a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga-for-patch
-<a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga<span class="w"> </span>linux-socfpga-for-patch
-<a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a><span class="c1"># Add the content of dmaBufNodes.txt  after 4 lines of finding memory@</span>
-<a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a>awk<span class="w"> </span><span class="s1">&#39;</span>
-<a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a><span class="s1">    /memory@/ {found=NR}  # Store the line number where &quot;memory@&quot; is found</span>
-<a id="__codelineno-19-41" name="__codelineno-19-41" href="#__codelineno-19-41"></a><span class="s1">    {print}  # Print each line as it is</span>
-<a id="__codelineno-19-42" name="__codelineno-19-42" href="#__codelineno-19-42"></a><span class="s1">    found &amp;&amp; NR == found + 4 {while ((getline line &lt; &quot;dmaBufNodes.txt&quot;) &gt; 0) print line; found=0}  # Insert after 4 lines</span>
-<a id="__codelineno-19-43" name="__codelineno-19-43" href="#__codelineno-19-43"></a><span class="s1">&#39;</span><span class="w"> </span>linux-socfpga-for-patch/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts<span class="w"> </span>&gt;<span class="w"> </span>temp.dts<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>temp.dts<span class="w"> </span>linux-socfpga-for-patch/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-<a id="__codelineno-19-44" name="__codelineno-19-44" href="#__codelineno-19-44"></a>
-<a id="__codelineno-19-45" name="__codelineno-19-45" href="#__codelineno-19-45"></a><span class="c1">## Create now the patch using the differences</span>
-<a id="__codelineno-19-46" name="__codelineno-19-46" href="#__codelineno-19-46"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/linux-socfpga-for-patch
-<a id="__codelineno-19-47" name="__codelineno-19-47" href="#__codelineno-19-47"></a>git<span class="w"> </span>add<span class="w">  </span>arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-<a id="__codelineno-19-48" name="__codelineno-19-48" href="#__codelineno-19-48"></a><span class="c1"># Create the patch and add the Uptream status header to prevent QA errors</span>
-<a id="__codelineno-19-49" name="__codelineno-19-49" href="#__codelineno-19-49"></a>git<span class="w"> </span>diff<span class="w"> </span>--patch<span class="w"> </span>--staged<span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts/socfpga_agilex_socdk.dts.patch
-<a id="__codelineno-19-50" name="__codelineno-19-50" href="#__codelineno-19-50"></a><span class="c1"># Add the Upstream-status label to prevent issues</span>
-<a id="__codelineno-19-51" name="__codelineno-19-51" href="#__codelineno-19-51"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;1i Upstream-Status: Pending\n&#39;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts/socfpga_agilex_socdk.dts.patch
-<a id="__codelineno-19-52" name="__codelineno-19-52" href="#__codelineno-19-52"></a>
-<a id="__codelineno-19-53" name="__codelineno-19-53" href="#__codelineno-19-53"></a><span class="c1"># Include the Patch created in to the recipe</span>
-<a id="__codelineno-19-54" name="__codelineno-19-54" href="#__codelineno-19-54"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/
-<a id="__codelineno-19-55" name="__codelineno-19-55" href="#__codelineno-19-55"></a><span class="nv">FILENAME</span><span class="o">=</span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts_%.bbappend
-<a id="__codelineno-19-56" name="__codelineno-19-56" href="#__codelineno-19-56"></a>awk<span class="w"> </span><span class="s1">&#39;/file:\/\/fit_kernel_agilex7_dk_si_agf014eb.its/ {sub(/&quot;$/, &quot; file://socfpga_agilex_socdk.dts.patch\&quot;&quot;)} 1&#39;</span><span class="w"> </span><span class="nv">$FILENAME</span><span class="w"> </span>&gt;<span class="w"> </span>temp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>temp<span class="w"> </span><span class="nv">$FILENAME</span>
-<a id="__codelineno-19-57" name="__codelineno-19-57" href="#__codelineno-19-57"></a>
-<a id="__codelineno-19-58" name="__codelineno-19-58" href="#__codelineno-19-58"></a><span class="c1">#Installing u-dma-buf driver</span>
-<a id="__codelineno-19-59" name="__codelineno-19-59" href="#__codelineno-19-59"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/
-<a id="__codelineno-19-60" name="__codelineno-19-60" href="#__codelineno-19-60"></a>devtool<span class="w"> </span>create-workspace<span class="w"> </span>buff
-<a id="__codelineno-19-61" name="__codelineno-19-61" href="#__codelineno-19-61"></a>devtool<span class="w"> </span>add<span class="w"> </span>https://github.com/ikwzm/udmabuf
-<a id="__codelineno-19-62" name="__codelineno-19-62" href="#__codelineno-19-62"></a>bitbake-layers<span class="w"> </span>create-layer<span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-bridges
-<a id="__codelineno-19-63" name="__codelineno-19-63" href="#__codelineno-19-63"></a>bitbake-layers<span class="w"> </span>add-layer<span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-bridges
-<a id="__codelineno-19-64" name="__codelineno-19-64" href="#__codelineno-19-64"></a>devtool<span class="w"> </span>finish<span class="w"> </span>udmabuf<span class="w">  </span><span class="nv">$WORKSPACE</span>/meta-bridges
-<a id="__codelineno-19-65" name="__codelineno-19-65" href="#__codelineno-19-65"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;CORE_IMAGE_EXTRA_INSTALL+=&quot;udmabuf&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$WORKSPACE</span>/agilex7_dk_si_agf014eb-gsrd-rootfs/conf/local.conf
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="s">        dma0_mem:dma0@0x10000000 {</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="s">        compatible= &quot;shared-dma-pool&quot;;</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="s">        reusable;</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="s">        reg=&lt;0x0  0x10000000 0x0 0x10000000&gt;;</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="s">        label=&quot;dma0_mem&quot;;</span>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="s">        };</span>
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="s">    };</span>
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="s">    soc {</span>
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="s">        clocks {</span>
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="s">            osc1 {</span>
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="s">            clock-frequency = &lt;25000000&gt;;</span>
+<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="s">            };</span>
+<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a><span class="s">        };</span>
+<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>
+<a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a><span class="s">        udmabuf0: udmabuf@0x10000000 {</span>
+<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a><span class="s">            compatible = &quot;ikwzm,u-dma-buf&quot;;</span>
+<a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a><span class="s">            device-name = &quot;udmabuf0&quot;;</span>
+<a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a><span class="s">            minor-number = &lt;0&gt;;</span>
+<a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a><span class="s">            size = &lt;0x10000000&gt;;</span>
+<a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a><span class="s">            memory-region = &lt;&amp;dma0_mem&gt;;</span>
+<a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a><span class="s">            dma-coherent = &lt;1&gt;;</span>
+<a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a><span class="s">        };</span>
+<a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a><span class="s">    };</span>
+<a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a><span class="s">EOF</span>
+<a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a>
+<a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a><span class="c1"># Create a Linux repository in the $TOP_FOLDER</span>
+<a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga-for-patch
+<a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga<span class="w"> </span>linux-socfpga-for-patch
+<a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a><span class="c1"># Add the content of dmaBufNodes.txt  after 4 lines of finding memory@</span>
+<a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a>awk<span class="w"> </span><span class="s1">&#39;</span>
+<a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a><span class="s1">    /memory@/ {found=NR}  # Store the line number where &quot;memory@&quot; is found</span>
+<a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a><span class="s1">    {print}  # Print each line as it is</span>
+<a id="__codelineno-19-41" name="__codelineno-19-41" href="#__codelineno-19-41"></a><span class="s1">    found &amp;&amp; NR == found + 4 {while ((getline line &lt; &quot;dmaBufNodes.txt&quot;) &gt; 0) print line; found=0}  # Insert after 4 lines</span>
+<a id="__codelineno-19-42" name="__codelineno-19-42" href="#__codelineno-19-42"></a><span class="s1">&#39;</span><span class="w"> </span>linux-socfpga-for-patch/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts<span class="w"> </span>&gt;<span class="w"> </span>temp.dts<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>temp.dts<span class="w"> </span>linux-socfpga-for-patch/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
+<a id="__codelineno-19-43" name="__codelineno-19-43" href="#__codelineno-19-43"></a>
+<a id="__codelineno-19-44" name="__codelineno-19-44" href="#__codelineno-19-44"></a><span class="c1">## Create now the patch using the differences</span>
+<a id="__codelineno-19-45" name="__codelineno-19-45" href="#__codelineno-19-45"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/linux-socfpga-for-patch
+<a id="__codelineno-19-46" name="__codelineno-19-46" href="#__codelineno-19-46"></a>git<span class="w"> </span>add<span class="w">  </span>arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
+<a id="__codelineno-19-47" name="__codelineno-19-47" href="#__codelineno-19-47"></a><span class="c1"># Create the patch and add the Uptream status header to prevent QA errors</span>
+<a id="__codelineno-19-48" name="__codelineno-19-48" href="#__codelineno-19-48"></a>git<span class="w"> </span>diff<span class="w"> </span>--patch<span class="w"> </span>--staged<span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts/socfpga_agilex_socdk.dts.patch
+<a id="__codelineno-19-49" name="__codelineno-19-49" href="#__codelineno-19-49"></a><span class="c1"># Add the Upstream-status label to prevent issues</span>
+<a id="__codelineno-19-50" name="__codelineno-19-50" href="#__codelineno-19-50"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;1i Upstream-Status: Pending\n&#39;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts/socfpga_agilex_socdk.dts.patch
+<a id="__codelineno-19-51" name="__codelineno-19-51" href="#__codelineno-19-51"></a>
+<a id="__codelineno-19-52" name="__codelineno-19-52" href="#__codelineno-19-52"></a><span class="c1"># Include the Patch created in to the recipe</span>
+<a id="__codelineno-19-53" name="__codelineno-19-53" href="#__codelineno-19-53"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/
+<a id="__codelineno-19-54" name="__codelineno-19-54" href="#__codelineno-19-54"></a><span class="nv">FILENAME</span><span class="o">=</span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts_%.bbappend
+<a id="__codelineno-19-55" name="__codelineno-19-55" href="#__codelineno-19-55"></a>awk<span class="w"> </span><span class="s1">&#39;/file:\/\/fit_kernel_agilex7_dk_si_agf014eb.its/ {sub(/&quot;$/, &quot; file://socfpga_agilex_socdk.dts.patch\&quot;&quot;)} 1&#39;</span><span class="w"> </span><span class="nv">$FILENAME</span><span class="w"> </span>&gt;<span class="w"> </span>temp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mv<span class="w"> </span>temp<span class="w"> </span><span class="nv">$FILENAME</span>
+<a id="__codelineno-19-56" name="__codelineno-19-56" href="#__codelineno-19-56"></a>
+<a id="__codelineno-19-57" name="__codelineno-19-57" href="#__codelineno-19-57"></a><span class="c1">#Installing u-dma-buf driver</span>
+<a id="__codelineno-19-58" name="__codelineno-19-58" href="#__codelineno-19-58"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/
+<a id="__codelineno-19-59" name="__codelineno-19-59" href="#__codelineno-19-59"></a>devtool<span class="w"> </span>create-workspace<span class="w"> </span>buff
+<a id="__codelineno-19-60" name="__codelineno-19-60" href="#__codelineno-19-60"></a>devtool<span class="w"> </span>add<span class="w"> </span>https://github.com/ikwzm/udmabuf
+<a id="__codelineno-19-61" name="__codelineno-19-61" href="#__codelineno-19-61"></a>bitbake-layers<span class="w"> </span>create-layer<span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-bridges
+<a id="__codelineno-19-62" name="__codelineno-19-62" href="#__codelineno-19-62"></a>bitbake-layers<span class="w"> </span>add-layer<span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-bridges
+<a id="__codelineno-19-63" name="__codelineno-19-63" href="#__codelineno-19-63"></a>devtool<span class="w"> </span>finish<span class="w"> </span>udmabuf<span class="w">  </span><span class="nv">$WORKSPACE</span>/meta-bridges
+<a id="__codelineno-19-64" name="__codelineno-19-64" href="#__codelineno-19-64"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;CORE_IMAGE_EXTRA_INSTALL+=&quot;udmabuf&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$WORKSPACE</span>/agilex7_dk_si_agf014eb-gsrd-rootfs/conf/local.conf
 </code></pre></div>
 <h4 id="setting-propper-fpga2soc-permissions-in-u-boot">Setting propper fpga2soc permissions in U-Boot<a class="headerlink" href="#setting-propper-fpga2soc-permissions-in-u-boot" title="Permanent link">&para;</a></h4>
 <p>For this exercise it is required to allow only secure transactions through the <strong>fpga-to-hps</strong> bridge. This is done by default because U-Boot doesn't modifies the <strong>soc_noc_fw_mpfe_csr_inst_0_mpfe_scr</strong> register (0xF8020018) in the <strong>SDRAML3Interconnect</strong> firewall. U-Boot performs some firewall configuration using the settings defined in the soc_noc_fw_mpfe_csr_inst_0_mpfe_scr node in the arch/arm/dts/socfpga_agilex-u-boot.dtsi device tree. Please note that there is not any configuration defined for the offset 0x18, so it means that this register keeps the default configuration having the <strong>fpga2soc</strong> bit with a value of 0 indicating that only secure transactions are allowed).</p>
@@ -4514,7 +4494,7 @@ as shown next.</p>
 <p>The QSPI image will contain the SDM firmware, the 1<sup>st</sup> phase of FPGA configuration data and the HPS FSBL. This is built using the following command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>*jic*<span class="w"> </span>*rbf*
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>ghrd_agfb014r24b2e2v.jic<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU02G<span class="w"> </span><span class="se">\</span>
@@ -4725,25 +4705,13 @@ In the script make sure that the variables used to define the addresses for the 
 <a id="__codelineno-25-129" name="__codelineno-25-129" href="#__codelineno-25-129"></a>    TEST DONE    
 <a id="__codelineno-25-130" name="__codelineno-25-130" href="#__codelineno-25-130"></a>=================
 </code></pre></div>
-<h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
-<p>Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
-No product or component can be absolutely secure. 
-Performance varies by use, configuration and other factors.
-Your costs and results may vary. 
-You may not use or facilitate the use of this document in connection with any infringement or other legal analysis concerning Altera or Intel products described herein. You agree to grant Altera Corporation a non-exclusive, royalty-free license to any patent claim thereafter drafted which includes subject matter disclosed herein.
-No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document, with the sole exception that you may publish an unmodified copy. You may create software implementations based on this document and in compliance with the foregoing that are intended to execute on the Altera or Intel product(s) referenced in this document. No rights are granted to create modifications or derivatives of this document.
-The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications.  Current characterized errata are available on request.
-Altera disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade.
-You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
-<sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. </p>
-<p>OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™.  </p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 22, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 16, 2025</span>
       
         <br>
         Created:
