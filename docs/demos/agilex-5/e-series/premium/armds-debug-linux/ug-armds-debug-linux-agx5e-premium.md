@@ -15,7 +15,7 @@ The following are needed:
   - Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   - Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
   - Altera® Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1
-  - Arm* Development Studio 2024.1
+  - Arm* Development Studio 2024.1 or 2024.1-1
 
 ## Build Linux
 
@@ -35,8 +35,10 @@ make defconfig
 ./scripts/config --set-val CONFIG_GDB_SCRIPTS y
 ./scripts/config --disable CONFIG_DEBUG_INFO_REDUCED
 ./scripts/config --disable CONFIG_DEBUG_INFO_BTF
+./scripts/config --set-val CONFIG_BLK_DEV_NULL_BLK m
 make oldconfig
 make -j 48 Image && make intel/socfpga_agilex5_socdk.dtb
+make -j 64 modules
 ```
 
 The changes achieve the following:
@@ -79,7 +81,7 @@ sudo python3 make_sdimage_p3.py -f \
 
 ```bash
 cd $TOP_FOLDER
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 
 ```

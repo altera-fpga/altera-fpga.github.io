@@ -75,24 +75,14 @@ This section shows presents downloading and flashing the SD card image and JIC f
 
 3\. Set MSEL to QSPI, and power cycle the board to boot to Linux.
 
-4\. Once logged into Linux, run the following command to remove the source code archives, to make some room on the rootfs:
-
-```bash
-rm -rf *src*
-
-```
-**Note**: In future releases the rootfs partition will be In Xen's architecture, there are two domains. Dom0 is the privileged management domain that runs the hypervisor and has full access to physical hardware, acting as the bridge between the hypervisor and other virtual machines. DomUs are unprivileged guest domains that run operating systems or applications, relying on Dom0 for resource allocation. Dom0 and DomUs operate independently, ensuring isolation and security.
-
-larger, and this step would not be necessary.
-
-5\. On the host computer, download the xen rootf cpio archive:
+4\. On the host computer, download the xen rootf cpio archive:
 
 ```bash
 wget https://releases.rocketboards.org/2025.04/xen/agilex5_mk_a5e065bb32aes1_xen/xen-image-minimal-agilex5_modular.cpio.gz
 mv xen-image-minimal-agilex5_modular.cpio.gz xen-image-minimal-agilex5.cpio.gz
 ```
 
-6\. On the Linux on target board, copy over the above downloaded file in 'xen' folder:
+5\. On the Linux on target board, copy over the above downloaded file in 'xen' folder:
 
 ```bash
 cd xen

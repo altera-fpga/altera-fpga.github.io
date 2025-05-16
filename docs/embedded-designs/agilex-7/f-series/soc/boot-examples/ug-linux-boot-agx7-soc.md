@@ -1,6 +1,14 @@
 ## Intro
 
-This page contains instructions on how to build U-Boot and ATF to boot Linux. The examples provided in this page are focus on the Agilex™ 7 Transceiver-SoC Development kit P-Tile/E-Tile production (DK-SI-AGF014EB) which uses a Linear power regulators. 
+This page contains instructions on how to build Linux systems from separate components: Hardware Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the Golden System Reference Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
+
+The key differences versus the GSRD are:
+
+ * Fabric is configured from U-Boot directly with the rbf file, with `fpga load` command, instead of using the `bootm` command with the core.rbf part of the kernel.itb file
+ * Single image boot is disabled in U-Boot, and it boots directly with the slected boot source, not trying them all
+ * The applications and drivers form `meta-intel-fpga-refdes` are not included. That includes acessing GPIOs in the fabric for LEDs, pushbuttons, dip switches, the webserver running on the board, etc.
+
+The examples provided in this page are focus on the Agilex™ 7 Transceiver-SoC Development kit P-Tile/E-Tile production (DK-SI-AGF014EB) which uses a Linear power regulators. 
 
 ## Component Versions
 
@@ -110,6 +118,19 @@ Create a top folder to store the example files.
 
 Download and setup the the toolchain as follows:
 
+Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
+
+
+```bash
+cd $TOP_FOLDER
+wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
+gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-none-linux-gnu-
+```
 
 Enable Quartus tools to be called from command line:
 
@@ -696,6 +717,19 @@ The following recipe provides all the steps needed to create the binaries that a
   export TOP_FOLDER=`pwd`
   ```
 
+Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
+
+
+```bash
+cd $TOP_FOLDER
+wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
+gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-none-linux-gnu-
+```
 
 Enable Quartus tools to be called from command line:
 

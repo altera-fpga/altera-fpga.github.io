@@ -4,6 +4,12 @@
 
 This page contains instructions on how to build Linux systems from separate components: Hardware Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the Golden System Reference Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
 
+The key differences versus the GSRD are:
+
+ * Fabric is configured from U-Boot directly with the rbf file, with `fpga load` command, instead of using the `bootm` command with the core.rbf part of the kernel.itb file
+ * Single image boot is disabled in U-Boot, and it boots directly with the slected boot source, not trying them all
+ * The applications and drivers form `meta-intel-fpga-refdes` are not included. That includes acessing GPIOs in the fabric for LEDs, pushbuttons, dip switches, the webserver running on the board, etc.
+
 The following scenarios are covered:
 
 * HPS Enablement Board: boot from SD card, and boot from QSPI
@@ -1598,8 +1604,6 @@ Here we provide all the steps needed to create the binaries that allow you to ex
 
    ![](images/ATF_Linux_Image_SDCard.jpg) 
 
-<span style="color: red;">NOTE: In 25.1 release there is an issue that prevents booting from SDCard in this flow(14024688400). As a workaround you can use [24.3.1 build instructions](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/#atf-to-linux-from-sd-card). This does not affect QSPI boot.</span>
-
 <h4>Toolchain Setup (ATF-To-Linux)</h4>
 
 
@@ -1646,6 +1650,9 @@ rm -rf agilex5_soc_devkit_ghrd_sdqspi && mkdir agilex5_soc_devkit_ghrd_sdqspi &&
 wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 unzip a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 rm -f a5ed065es-premium-devkit-oobe-legacy-baseline.zip
+# Workaround for 14024688400 in which handoff indicates to ATF tp powerdown the SDMMC controller. Will be fix in 25.1.1
+sed -zi 's|\(<ipxact:name>SDMMC_PinMuxing</ipxact:name>\n[^\n]*\n[[:space:]]*<ipxact:value>\)Unused\(<\/ipxact:value>\)|\1IO\2|' ./hps_subsys/ip/hps_subsys/agilex_hps.ip 
+sed -zi 's|\(<ipxact:name>SDMMC_Mode</ipxact:name>\n[^\n]*\n[[:space:]]*<ipxact:value>\)N/A\(<\/ipxact:value>\)|\14-bit\2|' ./hps_subsys/ip/hps_subsys/agilex_hps.ip
 make legacy_baseline-build
 make legacy_baseline-sw-build
 quartus_pfg -c output_files/legacy_baseline.sof \
@@ -1737,8 +1744,8 @@ CONFIG_OF_FPGA_REGION=y
 CONFIG_OVERLAY_FS=y
 CONFIG_ALTERA_SYSID=y
 
-# Needed for netwrok connectivity, but disabled for now after HSD: 14024748396
-#CONFIG_MARVELL_PHY=y
+# Needed for netwrok connectivity
+CONFIG_MARVELL_PHY=y
 EOF
 
 make clean && make mrproper
@@ -1986,8 +1993,8 @@ sed -i  's/spi-max-frequency = <100000000>;/spi-max-frequency = <50000000>;/g' a
 
 ## Adjust the partitions so the commponents in QSPI can fit
 sed -i  's/reg = <0x0 0x04200000>;/reg = <0x0 0x0700000>;/g' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-sed -i  's/root: partition@4200000/root: partition@7000000/g' arch/arm64/boot/dts/intel/socfpga_agilex_socdk5.dts
-sed -i  's/reg = <0x04200000 0x0BE00000>/reg = <0x07000000 0x09000000>/g' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+sed -i  's/root: partition@4200000/root: partition@7000000/g' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+sed -i  's/reg = <0x04200000 0x0be00000>/reg = <0x07000000 0x09000000>/g' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
 
 # Include the build socfpga_agilex5_socdk_atfboot.dtb in the Makefile
 sed -i '/socfpga_agilex5_socdk.dtb \\/a socfpga_agilex5_socdk_atfboot.dtb \\' arch/arm64/boot/dts/intel/Makefile
@@ -2016,8 +2023,8 @@ CONFIG_ALTERA_SYSID=y
 # Enabling JFFS2 File system
 CONFIG_JFFS2_FS=y
 
-# Needed for netwrok connectivity, but disabled for now after HSD: 14024748396
-#CONFIG_MARVELL_PHY=y
+# Needed for netwrok connectivity
+CONFIG_MARVELL_PHY=y
 EOF
 
 make clean && make mrproper

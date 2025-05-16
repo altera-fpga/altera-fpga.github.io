@@ -1,10 +1,10 @@
 # **I2C Driver for Hard Processor System**
 
-Last updated: **April 22, 2025** 
+Last updated: **May 07, 2025** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/i2c?h=master)
 
-**Devices supported**: Agilex 7, Agilex 5
+**Devices supported**: Agilex 5, Agilex 7
 
 ## **Introduction**
 
