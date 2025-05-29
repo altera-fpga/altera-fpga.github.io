@@ -203,23 +203,13 @@ Get the GHRD and build it as it comes by default:
 
 ```bash
 cd $TOP_FOLDER
-rm -rf ghrd-socfpga agilex_soc_devkit_ghrd
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
-mv ghrd-socfpga/agilex_soc_devkit_ghrd .
-rm -rf ghrd-socfpga
-cd agilex_soc_devkit_ghrd
-# disable SGMII to build faster 
-export HPS_ENABLE_SGMII=0 
-# disable PR to build faster 
-export ENABLE_PARTIAL_RECONFIGURATION=0
-make scrub_clean_all
-make BOARD_TYPE=DK-SI-AGF014E BOARD_PWRMGT=linear generate_from_tcl
-cd software/hps_debug/
-make
-cd ../..
-make all
-unset HPS_ENABLE_SGMII
-unset ENABLE_PARTIAL_RECONFIGURATION
+rm -rf agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.1_REL_GSRD_PR.zip
+unzip QPDS25.1_REL_GSRD_PR.zip
+rm QPDS25.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS25.1_REL_GSRD_PR agilex7f-ed-gsrd
+cd agilex7f-ed-gsrd
+make agf014eb-si-devkit-oobe-baseline-generate-design
 ```
 
 
@@ -230,7 +220,7 @@ This should had created and build the hardware project. Now it's time to modify 
 1. Open the Quartus project with the following command and then open **qsys_top.qsys** from Plaform Designer:
 
   ```
-  quartus ghrd_agfb014r24b2e2v.qpf &
+  quartus ./agilex_soc_devkit_ghrd/ghrd_agfb014r24b2e2v.qpf &
   ```
 
   ![](images/ghrd_images_1.png)
@@ -266,7 +256,7 @@ This should had created and build the hardware project. Now it's time to modify 
   **ACE-Lite Transaction Control for Write Channel**
 
   - AWDOMAIN_OVERRIDE → 0x2<br>
-  - ARCACHE_OVERRIDE_EN → Enable<br>
+  - AWCACHE_OVERRIDE_EN → Enable<br>
   - AWCACHE_OVERRIDE → 0xf<br>
 
   **User Selection**
@@ -331,15 +321,21 @@ This should had created and build the hardware project. Now it's time to modify 
 
 10. Finally close **Platform Designer** and start building the updated hardware design on **Quartus Pro** by either clicking ![](images/startbuilding.png) or pressing **CTL-L**.
 
+The output of this stage will be:
+
+* $TOP_FOLDER/agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof
+
 ### Rebuild the hps_debug.sof from Updated .sof
 
 
 
 
 ```bash
-cd $TOP_FOLDER/agilex_soc_devkit_ghrd
-quartus_pfg -c output_files/ghrd_agfb014r24b2e2v.sof ghrd_agfb014r24b2e2v_hps_debug.sof -o hps_path=software/hps_debug/hps_debug.ihex
-mv ghrd_agfb014r24b2e2v_hps_debug.sof output_files/
+cd $TOP_FOLDER/agilex7f-ed-gsrd
+# Generate hps_debug.ihex
+make agf014eb-si-devkit-oobe-baseline-sw-build
+quartus_pfg -c ./agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof ghrd_agfb014r24b2e2v_hps_debug.sof -o hps_path=./agilex_soc_devkit_ghrd/software/hps_debug/hps_debug.ihex
+mv ghrd_agfb014r24b2e2v_hps_debug.sof agilex_soc_devkit_ghrd/output_files/
 cd $TOP_FOLDER
 ```
 
@@ -348,9 +344,8 @@ cd $TOP_FOLDER
 
 The following files are created:
 
-- $TOP_FOLDER/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof - FPGA configuration file, without HPS FSBL
-- $TOP_FOLDER/agilex_soc_devkit_ghrd/software/hps_debug/hps_debug.ihex - HPS Debug FSBL
-- $TOP_FOLDER/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps_debug.sof - FPGA configuration file, with HPS Debug FSBL
+- $TOP_FOLDER/agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/software/hps_debug/hps_debug.ihex - HPS Debug FSBL
+- $TOP_FOLDER/agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps_debug.sof - FPGA configuration file, with HPS Debug FSBL
 
 
 ### Build Core RBF
@@ -362,7 +357,7 @@ Create the Core RBF file to be used in the rootfs created by Yocto by using the 
 ```bash
 cd $TOP_FOLDER
 rm -f *jic* *rbf*
-quartus_pfg -c agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps_debug.sof \
+quartus_pfg -c agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps_debug.sof \
  ghrd_agfb014r24b2e2v.jic \
  -o device=MT25QU02G \
  -o flash_loader=AGFB014R24B2E2V \
@@ -540,7 +535,6 @@ as shown next.
 	  reserved-memory {
 		  #address-cells = <2>;
 		  #size-cells = <2>;
-
 		  dma0_mem:dma0@0x10000000 {
 		  compatible= "shared-dma-pool";
 		  reusable;
@@ -657,7 +651,7 @@ The QSPI image will contain the SDM firmware, the 1st phase of FPGA configuratio
   ```bash
   cd $TOP_FOLDER
   rm -f *jic* *rbf*
-  quartus_pfg -c agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof \
+  quartus_pfg -c agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof \
   ghrd_agfb014r24b2e2v.jic \
   -o hps_path=gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex \
   -o device=MT25QU02G \

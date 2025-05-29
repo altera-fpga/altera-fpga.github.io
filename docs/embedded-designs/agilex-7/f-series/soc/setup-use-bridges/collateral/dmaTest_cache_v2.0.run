@@ -533,6 +533,12 @@ echo "###################################################"
 echo "Reading back data from write buffer.    "
 if [ $select == "po" ]; then 
   echo "   Note: When executing Priveleged Only Non-Secure test, data read should not match data written. "
+elif [ $select == "ps" ]; then
+  echo "You should read back a pattern with the format 0xFEADxxxx"
+elif [ $select == "cu" ]; then
+	echo "You should read back a pattern with the format 0xAAAAxxxx"
+elif [ $select == "cc" ]; then
+	echo "You should read back a pattern with the format 0xDDDDxxxx"
 fi
 
 echo "ReadBack from 0x$dma_write_pointer_high$dma_write_pointer_low"

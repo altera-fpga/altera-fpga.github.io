@@ -310,11 +310,12 @@ The next step consists of creating the QSPI image with UBIFS format that will be
 The layout of the QSPI image is shown in the following table:
 
 
-| MTD Partition     | UBI Volume | Volume Name | Type         | Image/Individual File               | Group File | Start Addr | Size |
-| :---------------- | :--------- | :---------- | :----------- | :----------------------------------- | :--------- | :-------- | ----------- |
-| 0 (qspi_bootinfo) | N/A        | N/A         | RAW          | Bootinfo (Empty)                     | N/A | 0x0    | 2MB |
-| 1 (qspi_uboot)    | N/A<br>N/A    | N/A<br>N/A     | RAW<br>RAW      | bitstream (FPGA image, SDM firmware)<br>u-boot.itb | N/A | 0x00200000<br>0x04000000 |~1 MB<br>AUTO|
-| 2 (qspi_root)     | 0<br>1<br>2<br>3<br>4 | env<br>script<br>kernel<br>dtb<br>rootfs | UBI<br>UBI<br>UBI<br>UBI<br>UBIFS | u-boot.env<br>u-boot.scr<br>kernel.itb<br>kernel.dtb<br>rootfs.ubifs | <br><br>root.ubi | 0x4200000<br>Auto<br>Auto<br>Auto<br>Auto | 256KB<br>128KB<br>24MB<br>256KB<br>160MB |
+| Partition    | MTD Partition | UBI Volume | Volume Name | Type         | Image/Individual File               | Group File | Start Addr | Size |
+| :---------------- | :--------- | :--------- | :---------- | :----------- | :----------------------------------- | :--------- | :-------- | ----------- |
+| BOOT_INFO | 0 <br>(u-boot) | N/A        | N/A         | RAW          | Bootinfo (Empty)                     | N/A | 0x0    | 2MB |
+|   P1 | 0<br> (u-boot) | N/A | N/A | RAW | bitstream (FPGA image, SDM firmware) | N/A | 0x00200000 | ~1 MB |
+| U_BOOT | 0 <br>(u-boot) | N/A    | N/A     | RAW      | u-boot.itb | N/A | 0x04000000 |AUTO|
+| HPS | 1 <br>(root) | 0<br>1<br>2<br>3<br>4 | env<br>script<br>kernel<br>dtb<br>rootfs | UBI<br>UBI<br>UBI<br>UBI<br>UBIFS | u-boot.env<br>u-boot.scr<br>kernel.itb<br>kernel.dtb<br>rootfs.ubifs | <br><br>root.ubi | 0x04200000<br>Auto<br>Auto<br>Auto<br>Auto | 256KB<br>128KB<br>24MB<br>256KB<br>160MB |
 
 
 

@@ -73,7 +73,7 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1 and the follo
 
 | **Component** | **Location** | **Branch** | **Commit ID/Tag** |
 | :-- | :-- | :-- | :-- |
-| GHRD | [https://github.com/altera-fpga/ghrd-socfpga](https://github.com/altera-fpga/ghrd-socfpga) | master | QPDS25.1_REL_GSRD_PR |
+| GHRD | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | master | QPDS25.1_REL_GSRD_PR |
 | Linux | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.11-lts | QPDS25.1_REL_GSRD_PR |
 | Arm Trusted Firmware | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.0 | QPDS25.1_REL_GSRD_PR |
 | U-Boot | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.01 | QPDS25.1_REL_GSRD_PR |
@@ -852,14 +852,6 @@ export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
 
-Enable Quartus tools to be called from command line:
-
-
-```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
-export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
-```
-
 
 
 
@@ -1397,14 +1389,6 @@ rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
 export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
-```
-
-Enable Quartus tools to be called from command line:
-
-
-```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
-export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
 
