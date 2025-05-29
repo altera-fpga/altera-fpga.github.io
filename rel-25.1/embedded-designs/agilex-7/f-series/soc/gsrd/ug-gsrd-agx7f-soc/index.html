@@ -3032,8 +3032,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#create-fpg-file" class="md-nav__link">
-    Create FPG File
+  <a href="#create-pfg-file" class="md-nav__link">
+    Create PFG File
   </a>
   
 </li>
@@ -4491,8 +4491,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#create-fpg-file" class="md-nav__link">
-    Create FPG File
+  <a href="#create-pfg-file" class="md-nav__link">
+    Create PFG File
   </a>
   
 </li>
@@ -5822,74 +5822,29 @@
 <th align="left">UBI Volume</th>
 <th align="left">Volume Name</th>
 <th align="left">Type</th>
-<th align="left">Image/File</th>
-<th align="left">Size</th>
-<th></th>
+<th align="left">Image/Individual File</th>
+<th align="left">Group File</th>
+<th>Size</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td align="left">0 (qspi_uboot)</td>
-<td align="left">N/A</td>
-<td align="left">N/A</td>
-<td align="left">RAW</td>
-<td align="left">bitstream (FPGA image, SDM firmware)</td>
-<td align="left">64MB</td>
-<td></td>
-</tr>
-<tr>
-<td align="left">N/A</td>
-<td align="left">N/A</td>
-<td align="left">RAW</td>
-<td align="left">u-boot.itb</td>
-<td align="left">2MB</td>
-<td align="left"></td>
-<td></td>
+<td align="left">N/A<br>N/A</td>
+<td align="left">N/A<br>N/A</td>
+<td align="left">RAW<br>RAW</td>
+<td align="left">bitstream (FPGA image, SDM firmware)<br>u-boot.itb</td>
+<td align="left">N/A<br>N/A</td>
+<td>64MB<br>2MB</td>
 </tr>
 <tr>
 <td align="left">1 (qspi_root)</td>
-<td align="left">0</td>
-<td align="left">env</td>
-<td align="left">UBI</td>
-<td align="left">u-boot.env</td>
-<td align="left">root.ubi</td>
-<td>256KB</td>
-</tr>
-<tr>
-<td align="left">1</td>
-<td align="left">script</td>
-<td align="left">UBI</td>
-<td align="left">u-boot.scr</td>
-<td align="left">128KB</td>
-<td align="left"></td>
-<td></td>
-</tr>
-<tr>
-<td align="left">2</td>
-<td align="left">kernel</td>
-<td align="left">UBI</td>
-<td align="left">kernel.itb</td>
-<td align="left">24MB</td>
-<td align="left"></td>
-<td></td>
-</tr>
-<tr>
-<td align="left">3</td>
-<td align="left">dtb</td>
-<td align="left">UBI</td>
-<td align="left">kernel.dtb</td>
-<td align="left">256KB</td>
-<td align="left"></td>
-<td></td>
-</tr>
-<tr>
-<td align="left">4</td>
-<td align="left">rootfs</td>
-<td align="left">UBIFS</td>
-<td align="left">rootfs.ubifs</td>
-<td align="left">160MB</td>
-<td align="left"></td>
-<td></td>
+<td align="left">0<br>1<br>2<br>3<br>4</td>
+<td align="left">env<br>script<br>kernel<br>dtb<br>rootfs</td>
+<td align="left">UBI<br>UBI<br>UBI<br>UBI<br>UBIFS</td>
+<td align="left">u-boot.env<br>u-boot.scr<br>kernel.itb<br>kernel.dtb<br>rootfs.ubifs</td>
+<td align="left"><br><br>root.ubi</td>
+<td>256KB<br>128KB<br>24MB<br>256KB<br>160MB</td>
 </tr>
 </tbody>
 </table>
@@ -5957,7 +5912,7 @@
 <a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>wget<span class="w"> </span>https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-7/f-series/soc/gsrd/collateral/agilex7f_gsrd.pfg
 <a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex7f_gsrd.pfg
 </code></pre></div>
-<h4 id="create-fpg-file">Create FPG File<a class="headerlink" href="#create-fpg-file" title="Permanent link">&para;</a></h4>
+<h4 id="create-pfg-file">Create PFG File<a class="headerlink" href="#create-pfg-file" title="Permanent link">&para;</a></h4>
 <p>This section presents how to manually re-create the Programming File Generator file provided at <a href="https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-7/f-series/soc/gsrd/collateral/agilex7f_gsrd.pfg">https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-7/f-series/soc/gsrd/collateral/agilex7f_gsrd.pfg</a></p>
 <p>1. Start Quartus Programming File Generator GUI:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/qspi-boot
@@ -6629,7 +6584,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 16, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 29, 2025</span>
       
         <br>
         Created:

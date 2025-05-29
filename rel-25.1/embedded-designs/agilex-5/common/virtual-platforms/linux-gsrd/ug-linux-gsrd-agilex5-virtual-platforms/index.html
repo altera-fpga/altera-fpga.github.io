@@ -4626,6 +4626,7 @@
 <table>
 <thead>
 <tr>
+<th align="left">Partition</th>
 <th align="left">MTD Partition</th>
 <th align="left">UBI Volume</th>
 <th align="left">Volume Name</th>
@@ -4638,7 +4639,8 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">0 (qspi_bootinfo)</td>
+<td align="left">BOOT_INFO</td>
+<td align="left">0 <br>(u-boot)</td>
 <td align="left">N/A</td>
 <td align="left">N/A</td>
 <td align="left">RAW</td>
@@ -4648,23 +4650,36 @@
 <td>2MB</td>
 </tr>
 <tr>
-<td align="left">1 (qspi_uboot)</td>
-<td align="left">N/A<br>N/A</td>
-<td align="left">N/A<br>N/A</td>
-<td align="left">RAW<br>RAW</td>
-<td align="left">bitstream (FPGA image, SDM firmware)<br>u-boot.itb</td>
+<td align="left">P1</td>
+<td align="left">0<br> (u-boot)</td>
 <td align="left">N/A</td>
-<td align="left">0x00200000<br>0x04000000</td>
-<td>~1 MB<br>AUTO</td>
+<td align="left">N/A</td>
+<td align="left">RAW</td>
+<td align="left">bitstream (FPGA image, SDM firmware)</td>
+<td align="left">N/A</td>
+<td align="left">0x00200000</td>
+<td>~1 MB</td>
 </tr>
 <tr>
-<td align="left">2 (qspi_root)</td>
+<td align="left">U_BOOT</td>
+<td align="left">0 <br>(u-boot)</td>
+<td align="left">N/A</td>
+<td align="left">N/A</td>
+<td align="left">RAW</td>
+<td align="left">u-boot.itb</td>
+<td align="left">N/A</td>
+<td align="left">0x04000000</td>
+<td>AUTO</td>
+</tr>
+<tr>
+<td align="left">HPS</td>
+<td align="left">1 <br>(root)</td>
 <td align="left">0<br>1<br>2<br>3<br>4</td>
 <td align="left">env<br>script<br>kernel<br>dtb<br>rootfs</td>
 <td align="left">UBI<br>UBI<br>UBI<br>UBI<br>UBIFS</td>
 <td align="left">u-boot.env<br>u-boot.scr<br>kernel.itb<br>kernel.dtb<br>rootfs.ubifs</td>
 <td align="left"><br><br>root.ubi</td>
-<td align="left">0x4200000<br>Auto<br>Auto<br>Auto<br>Auto</td>
+<td align="left">0x04200000<br>Auto<br>Auto<br>Auto<br>Auto</td>
 <td>256KB<br>128KB<br>24MB<br>256KB<br>160MB</td>
 </tr>
 </tbody>
@@ -6662,7 +6677,7 @@ In Linux shell:</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 16, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 29, 2025</span>
       
         <br>
         Created:

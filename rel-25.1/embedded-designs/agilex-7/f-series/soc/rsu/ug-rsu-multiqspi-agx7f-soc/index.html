@@ -3908,7 +3908,6 @@
 <li>An application could be located in the cross boundary of 2 chips (i.e. located in more than one chip), but the previous condition still must be satisfied.</li>
 </ul>
 <p><a class="glightbox" href="../images/multiqspi-layout.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/multiqspi-layout.png" /></a> </p>
-<p><span style="color: red;"><strong>Note:</strong> The RSU functionality in Linux is broken in 25.1 release due to an issue in Linux(HSD: 14024915012). Please refer to <a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc/">24.3.1 RSU MutliQSPI Build instructions</a>. This does not affect RSU from U-Boot.</span></p>
 <h2 id="build-instructions">Build Instructions<a class="headerlink" href="#build-instructions" title="Permanent link">&para;</a></h2>
 <p>The binaries build instructions presented here are targeted for the Agilex™ 7 Transceiver-SoC Development kit P-Tile E-Tile production Linear power solution (DK-SI-AGF014EB). This provides the full recipes to build the binaries that you will need to exercise RSU functionality. The example provided here used only 2 flash devices (MT25QU02G) so the total memory size available is 512 MB. In the flash device layout, there is 1 partition defined in chip 0 and 2 partitions in chip 1. This QSPI layout can be seen in the following table:</p>
 <table>
@@ -4197,16 +4196,21 @@
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># checkout the branch used for this document, comment out to use default </span>
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-t<span class="w"> </span>origin/socfpga-6.12.11-lts<span class="w"> </span>
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># configure the RSU driver to be built into the kernel </span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>mrproper<span class="w"> </span>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>make<span class="w"> </span>defconfig<span class="w"> </span>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>./scripts/config<span class="w"> </span>--set-val<span class="w"> </span>CONFIG_INTEL_STRATIX10_RSU<span class="w"> </span>y
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="c1"># enable kernel debugging with RiscFree</span>
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>./scripts/config<span class="w"> </span>--set-val<span class="w"> </span>CONFIG_DEBUG_INFO<span class="w">  </span>y
-<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>./scripts/config<span class="w"> </span>--set-val<span class="w"> </span>CONFIG_GDB_SCRIPTS<span class="w"> </span>y
-<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>make<span class="w"> </span>oldconfig<span class="w"> </span>
-<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">48</span><span class="w"> </span>Image<span class="w"> </span>dtbs<span class="w"> </span>
-<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># Workaround to the 14024915012 issue in whcih the number of QSPI devices was incorrecltly determined from the device tree.</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1"># This is a temporal hack to update cqspi_setup_flash(). This Will be fixed in 25.1.1.</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/max_cs = cqspi-&gt;num_chipselect - 1;/max_cs = 0;/g&#39;</span><span class="w"> </span>drivers/spi/spi-cadence-quadspi.c
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/else if (cs &lt; max_cs)/else if (cs &gt; max_cs)/g&#39;</span><span class="w"> </span>drivers/spi/spi-cadence-quadspi.c
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="c1"># configure the RSU driver to be built into the kernel </span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>mrproper<span class="w"> </span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>make<span class="w"> </span>defconfig<span class="w"> </span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>./scripts/config<span class="w"> </span>--set-val<span class="w"> </span>CONFIG_INTEL_STRATIX10_RSU<span class="w"> </span>y
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="c1"># enable kernel debugging with RiscFree</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>./scripts/config<span class="w"> </span>--set-val<span class="w"> </span>CONFIG_DEBUG_INFO<span class="w">  </span>y
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>./scripts/config<span class="w"> </span>--set-val<span class="w"> </span>CONFIG_GDB_SCRIPTS<span class="w"> </span>y
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>make<span class="w"> </span>oldconfig<span class="w"> </span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">48</span><span class="w"> </span>Image<span class="w"> </span>dtbs<span class="w"> </span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
 </code></pre></div>
 <p>After completing the above steps, the following files are created.</p>
 <ul>
@@ -4582,7 +4586,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 16, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 29, 2025</span>
       
         <br>
         Created:
