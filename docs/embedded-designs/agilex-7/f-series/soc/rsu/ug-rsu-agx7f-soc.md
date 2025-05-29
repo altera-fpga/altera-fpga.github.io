@@ -168,7 +168,7 @@ git clone https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware 
 # checkout the branch used for this document, comment out to use default 
 git checkout -b test -t origin/socfpga_v2.12.0 
-make bl31 PLAT=agilex DEPRECATED=1 
+make bl31 PLAT=agilex 
 cd .. 
 ```
 

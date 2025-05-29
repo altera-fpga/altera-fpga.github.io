@@ -17,7 +17,7 @@ This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 
 
 | Repository | Branch/Tag |
 | :-- | :-- |
-| [ghrd-socfpga](https://github.com/altera-fpga/ghrd-socfpga) | QPDS25.1_REL_GSRD_PR |
+| [ghrd-socfpga](https://github.com/altera-fpga/stratix10-ed-gsrd) | QPDS25.1_REL_GSRD_PR |
 | [linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.11-lts/QPDS25.1_REL_GSRD_PR |
 | [arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.0/QPDS25.1_REL_GSRD_PR |
 | [u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.01/QPDS25.1_REL_GSRD_PR |

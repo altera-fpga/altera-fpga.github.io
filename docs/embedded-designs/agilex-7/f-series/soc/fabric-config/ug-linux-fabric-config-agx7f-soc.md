@@ -106,7 +106,7 @@ cd $TOP_FOLDER
 rm -rf arm-trusted-firmware 
 git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
 cd arm-trusted-firmware 
-make bl31 PLAT=agilex DEPRECATED=1 
+make bl31 PLAT=agilex 
 cd .. 
 ``` 
 

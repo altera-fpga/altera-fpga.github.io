@@ -46,7 +46,7 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1 and the follo
 
 | Component | Location | Branch | Commit ID/Tag |
 | :-- | :-- | :-- | :-- |
-| GHRD | [https://github.com/altera-fpga/ghrd-socfpga](https://github.com/altera-fpga/ghrd-socfpga) | master | QPDS25.1_REL_GSRD_PR |
+| GHRD | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | master | QPDS25.1_REL_GSRD_PR |
 | Linux | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.11-lts | QPDS25.1_REL_GSRD_PR |
 | Arm Trusted Firmware | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.0 | QPDS25.1_REL_GSRD_PR |
 | U-Boot | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.01 | QPDS25.1_REL_GSRD_PR |

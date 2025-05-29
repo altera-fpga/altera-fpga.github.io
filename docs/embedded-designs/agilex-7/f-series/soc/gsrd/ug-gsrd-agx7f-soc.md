@@ -80,7 +80,7 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1 and the follo
 
 | Component | Location | Branch | Commit ID/Tag |
 | :-- | :-- | :-- | :-- |
-| GHRD | [https://github.com/altera-fpga/ghrd-socfpga](https://github.com/altera-fpga/ghrd-socfpga) | master | QPDS25.1_REL_GSRD_PR |
+| GHRD | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | master | QPDS25.1_REL_GSRD_PR |
 | Linux | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.11-lts | QPDS25.1_REL_GSRD_PR |
 | Arm Trusted Firmware | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.0 | QPDS25.1_REL_GSRD_PR |
 | U-Boot | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.01 | QPDS25.1_REL_GSRD_PR |
@@ -1216,15 +1216,11 @@ As the QSPI has a much smaller size than the SD card (256MB vs 2GB) the rootfs i
 
 #### QSPI Flash Layout
 
-| MTD Partition | UBI Volume | Volume Name | Type | Image/File | Size | |
+| MTD Partition | UBI Volume | Volume Name | Type | Image/Individual File | Group File | Size |
 | :-- | :-- | :-- | :-- | :-- | :-- | -- |
-| 0 (qspi_uboot) | N/A | N/A | RAW | bitstream (FPGA image, SDM firmware) | 64MB | |
-| N/A | N/A | RAW | u-boot.itb | 2MB | | |
-| 1 (qspi_root) | 0 | env | UBI | u-boot.env | root.ubi | 256KB |
-| 1 | script | UBI | u-boot.scr | 128KB | | |
-| 2 | kernel | UBI | kernel.itb | 24MB | | |
-| 3 | dtb | UBI | kernel.dtb | 256KB | | |
-| 4 | rootfs | UBIFS | rootfs.ubifs | 160MB | | |
+| 0 (qspi_uboot) | N/A<br>N/A | N/A<br>N/A | RAW<br>RAW | bitstream (FPGA image, SDM firmware)<br>u-boot.itb | N/A<br>N/A | 64MB<br>2MB |
+| 1 (qspi_root) | 0<br>1<br>2<br>3<br>4 | env<br>script<br>kernel<br>dtb<br>rootfs | UBI<br>UBI<br>UBI<br>UBI<br>UBIFS | u-boot.env<br>u-boot.scr<br>kernel.itb<br>kernel.dtb<br>rootfs.ubifs | <br><br>root.ubi | 256KB<br>128KB<br>24MB<br>256KB<br>160MB |
+
 
 #### Create QSPI Image
 
@@ -1311,7 +1307,7 @@ quartus_pfg -c agilex7f_gsrd.pfg
 ```
 
 
-#### Create FPG File
+#### Create PFG File
 
 This section presents how to manually re-create the Programming File Generator file provided at [https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-7/f-series/soc/gsrd/collateral/agilex7f_gsrd.pfg](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-7/f-series/soc/gsrd/collateral/agilex7f_gsrd.pfg)
 

@@ -14,8 +14,6 @@ When exercising multi-QSPI feature, there are few conditions that need to be sat
 
 ![](images/multiqspi-layout.png) 
 
-<span style="color: red;">**Note:** The RSU functionality in Linux is broken in 25.1 release due to an issue in Linux(HSD: 14024915012). Please refer to [24.3.1 RSU MutliQSPI Build instructions](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc/). This does not affect RSU from U-Boot.</span>
-
 ## Build Instructions
 
 
@@ -147,7 +145,7 @@ git clone https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 # checkout the branch used for this document, comment out to use default
 git checkout -b test -t origin/socfpga_v2.12.0
-make bl31 PLAT=agilex DEPRECATED=1
+make bl31 PLAT=agilex
 cd ..
 ```
 
@@ -302,6 +300,11 @@ git clone https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga 
 # checkout the branch used for this document, comment out to use default 
 git checkout -b test -t origin/socfpga-6.12.11-lts 
+
+# Workaround to the 14024915012 issue in whcih the number of QSPI devices was incorrecltly determined from the device tree.
+# This is a temporal hack to update cqspi_setup_flash(). This Will be fixed in 25.1.1.
+sed -i 's/max_cs = cqspi->num_chipselect - 1;/max_cs = 0;/g' drivers/spi/spi-cadence-quadspi.c
+sed -i 's/else if (cs < max_cs)/else if (cs > max_cs)/g' drivers/spi/spi-cadence-quadspi.c
 
 # configure the RSU driver to be built into the kernel 
 make clean && make mrproper 

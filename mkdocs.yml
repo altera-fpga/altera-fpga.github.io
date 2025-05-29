@@ -114,32 +114,32 @@ nav:
   - Linux Drivers: 
     - 'driver-list_linux/index.md'          
     - HPS Host Drivers:
-      - Altera Hardware Monitor: linux-embedded/hwmon/hwmon.md
-      - Clock Manager: linux-embedded/clock_manager/clock_manager.md
-      - DMA Controller: linux-embedded/dma/dma.md
-      - Error Detection & Correction (EDAC): linux-embedded/edac/edac.md
-      - Ethernet 1588 PTP Time of Day Clock: linux-embedded/ptp_tod/ptp_emb_tod.md
-      - Ethernet Media Access Controller: linux-embedded/emac/emac.md
-      - Ethernet Subsystem FPGA IP MAC Specific Ctrl: linux-embedded/hssi/hssi.md
-      - Ethernet Subsystem FPGA IP Tile Specific Ctrl: linux-embedded/hssi_xtile/hssi_xtile.md
-      - General Purpose Timers: linux-embedded/apb_timers/apb_timers.md
-      - General Purpose I/O (GPIO): linux-embedded/gpio/gpio.md 
-      - I2C: linux-embedded/i2c/i2c.md
-      - I3C: linux-embedded/i3c/i3c.md
-      - Interrupt Controller (GICv3): linux-embedded/interrupt_controller_GICv3/irq_gic_v3.md
-      - MSGDMA: linux-embedded/msgdma/msgdma.md 
-      - NAND Controller: linux-embedded/nand/nand.md 
-      - QSFP Controller: linux-embedded/qsfp/qsfp.md
-      - QSPI: linux-embedded/qspi/qspi.md
-      - Reset Manager: linux-embedded/reset_manager/reset_manager.md
-      - SD/eMMC Controller: linux-embedded/sd-emmc/sd-emmc.md
-      - SPI: linux-embedded/spi/spi.md
-      - System Manager: linux-embedded/system_manager/system_manager.md
-      - System Memory Management Unit: linux-embedded/smmu/smmu.md
-      - UART: linux-embedded/uart/uart.md
-      - USB 2.0 OTG: linux-embedded/usb2_0_otg/usb_2_0_otg.md
-      - Watchdog Timers : linux-embedded/watchdog_timers/watchdog_timers.md
-      - Zarlink Clock Synchronizer: linux-embedded/zarlink_clock_synchronizer/zarlink_clock_synchronizer.md
+      - Altera Hardware Monitor: linux-embedded/drivers/hwmon/hwmon.md
+      - Clock Manager: linux-embedded/drivers/clock_manager/clock_manager.md
+      - DMA Controller: linux-embedded/drivers/dma/dma.md
+      - Error Detection & Correction (EDAC): linux-embedded/drivers/edac/edac.md
+      - Ethernet 1588 PTP Time of Day Clock: linux-embedded/drivers/ptp_tod/ptp_emb_tod.md
+      - Ethernet Media Access Controller: linux-embedded/drivers/emac/emac.md
+      - Ethernet Subsystem FPGA IP MAC Specific Ctrl: linux-embedded/drivers/hssi/hssi.md
+      - Ethernet Subsystem FPGA IP Tile Specific Ctrl: linux-embedded/drivers/hssi_xtile/hssi_xtile.md
+      - General Purpose Timers: linux-embedded/drivers/apb_timers/apb_timers.md
+      - General Purpose I/O (GPIO): linux-embedded/drivers/gpio/gpio.md 
+      - I2C: linux-embedded/drivers/i2c/i2c.md
+      - I3C: linux-embedded/drivers/i3c/i3c.md
+      - Interrupt Controller (GICv3): linux-embedded/drivers/interrupt_controller_GICv3/irq_gic_v3.md
+      - MSGDMA: linux-embedded/drivers/msgdma/msgdma.md 
+      - NAND Controller: linux-embedded/drivers/nand/nand.md 
+      - QSFP Controller: linux-embedded/drivers/qsfp/qsfp.md
+      - QSPI: linux-embedded/drivers/qspi/qspi.md
+      - Reset Manager: linux-embedded/drivers/reset_manager/reset_manager.md
+      - SD/eMMC Controller: linux-embedded/drivers/sd-emmc/sd-emmc.md
+      - SPI: linux-embedded/drivers/spi/spi.md
+      - System Manager: linux-embedded/drivers/system_manager/system_manager.md
+      - System Memory Management Unit: linux-embedded/drivers/smmu/smmu.md
+      - UART: linux-embedded/drivers/uart/uart.md
+      - USB 2.0 OTG: linux-embedded/drivers/usb2_0_otg/usb_2_0_otg.md
+      - Watchdog Timers : linux-embedded/drivers/watchdog_timers/watchdog_timers.md
+      - Zarlink Clock Synchronizer: linux-embedded/drivers/zarlink_clock_synchronizer/zarlink_clock_synchronizer.md
     - PCIe Host Drivers: 
       - Altera 16550 Compatible UART: linux-dfl/uart_16550/uart_16550.md
       - Accelerator Functional Unit: linux-dfl/dfl_afu/dfl_afu.md
