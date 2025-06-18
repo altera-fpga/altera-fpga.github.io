@@ -2601,6 +2601,12 @@
         
           
         
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_2_2" id="__nav_7_2_2_label" tabindex="0">
@@ -2651,6 +2657,48 @@
     <li class="md-nav__item">
       <a href="../../../../../agilex-5/e-series/modular/xen/ug-xen-agx5e-modular/" class="md-nav__link">
         Xen Hypervisor GSRD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/e-series/modular/drive-on-chip/doc-funct-safety/" class="md-nav__link">
+        Drive-On-Chip with Functional Safety Design Example for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/e-series/modular/drive-on-chip/doc-plc/" class="md-nav__link">
+        Drive-On-Chip with PLC Design Example for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/e-series/modular/drive-on-chip/doc-crc/" class="md-nav__link">
+        ROS Consolidated Robot Controller Example Design for Agilex® 5 Devices
       </a>
     </li>
   
@@ -3735,6 +3783,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#reconfiguring-core-fabric-from-u-boot" class="md-nav__link">
+    Reconfiguring Core Fabric from U-Boot
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#enabling-bridges-from-u-boot" class="md-nav__link">
     Enabling Bridges from U-Boot
   </a>
@@ -4436,6 +4491,13 @@
         <li class="md-nav__item">
   <a href="#qspi-reference-clock" class="md-nav__link">
     QSPI Reference Clock
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reconfiguring-core-fabric-from-u-boot" class="md-nav__link">
+    Reconfiguring Core Fabric from U-Boot
   </a>
   
 </li>
@@ -5293,6 +5355,13 @@ Note:</p>
 <p>The QSPI peripheral clocks are provided by the SDM, based on the SDM input clocks and configuration clock settings defined in the Quartus® Pro project. However, the HPS needs to know the QSPI reference clock, so that it can properly set the dividers in the QSPI controller to create the desired external QSPI clock frequency.</p>
 <p>The HPS obtains the QSPI controller reference clock frequency when it obtains exclusive access to the QSPI from the SDM. The frequency reported by the SDM is stored in the U-Boot environment variable called <strong>${qspi_clock}</strong>.</p>
 <p>Before booting Linux, U-Boot loads the Linux device tree in memory, then runs the command <strong>linux_qspi_enable</strong> which sets the QSPI controller reference clock appropriately using the value from the <strong>${qspi_clock}</strong> environment variable.</p>
+<h2 id="reconfiguring-core-fabric-from-u-boot">Reconfiguring Core Fabric from U-Boot<a class="headerlink" href="#reconfiguring-core-fabric-from-u-boot" title="Permanent link">&para;</a></h2>
+<p>The GSRD configures the FPGA core fabric only once, from U-Boot, by using the <strong>bootm</strong> command. The example in this page configures the fabric only once, from U-Boot, using <strong>fpga load</strong> command.</p>
+<p><strong>Important</strong>: If the FPGA fabric is already configured and bridges are enabled, you must call the <strong>bridge disable</strong> command from U-Boot before issuing the <strong>bootm</strong> or <strong>fppga load</strong> commands to reconfigure the fabric. Only do this if you are using an <strong>arm-trusted-firmware</strong> version more recent than the following:</p>
+<ul>
+<li>v2.7.1 = https://github.com/altera-opensource/arm-trusted-firmware/commit/0a5edaed853e0dc1e687706ccace8e844b2a8db7</li>
+<li>v2.8.0 = https://github.com/altera-opensource/arm-trusted-firmware/commit/bf933536d4582d63d0e29434e807a641941f3937</li>
+</ul>
 <h2 id="enabling-bridges-from-u-boot">Enabling Bridges from U-Boot<a class="headerlink" href="#enabling-bridges-from-u-boot" title="Permanent link">&para;</a></h2>
 <p>U-Boot offers the <strong>bridge</strong> command for controlling the bridges.</p>
 <p>The <strong>bridge</strong> command can be used with either <strong>'enable'</strong> or <strong>'disable'</strong> parameter, followed by an optional <strong>'mask'</strong> parameter indicating which of the bridges needs to be enabled or disabled. When the <strong>'mask'</strong> parameter is omitted, all bridges are either enabled or disabled.</p>
@@ -5367,7 +5436,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 16, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 29, 2025</span>
       
         <br>
         Created:
