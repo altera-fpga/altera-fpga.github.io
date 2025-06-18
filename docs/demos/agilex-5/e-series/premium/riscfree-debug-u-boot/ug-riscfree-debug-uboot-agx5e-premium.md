@@ -94,7 +94,26 @@ set $pc=0x0
 step
 ```
 
-If  want to run U-Boot SPL up to where it decides which image to load next, add the following lines to the previous step:
+If you have watchdog(s) enabled, you also need to add the following instructions in the above sequence, between 'interrupt' and 'delete breakpoints' commands, in order to disable watchdog while debugging:
+
+```bash
+monitor memwrite APB:0x15c20140 0x03
+monitor memwrite APB:0x15c20020 0x01
+monitor memwrite APB:0x1580d000 0x01
+monitor memwrite APB:0x1580d0b8 0x01
+monitor memwrite APB:0x1580d0bc 0x01
+monitor memwrite APB:0x1580d0c0 0x01
+monitor memwrite APB:0x1580d0c4 0x01
+monitor memwrite APB:0x1580d0c8 0x02
+monitor memwrite APB:0x1580d0cc 0x02
+monitor memwrite APB:0x1580d0d0 0x02
+monitor memwrite APB:0x1580d0d4 0x02
+monitor memwrite APB:0x1580d140 0x03
+```
+
+*Note*: The above commands will be performed automatically in a future version of RiscFree.
+
+If you want to run U-Boot SPL up to where it decides which image to load next, add the following lines to the previous step:
 
 ```bash
 thb board_boot_order

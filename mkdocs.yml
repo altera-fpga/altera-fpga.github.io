@@ -215,6 +215,14 @@ nav:
         - FPGA Remote Debug Example: embedded-designs/agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium.md
         - SoC HPS Remote System Update Example: embedded-designs/agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc.md
         - Xen Hypervisor GSRD: embedded-designs/agilex-5/e-series/premium/xen/ug-xen-agx5e-premium.md
+        - PCIe Root Port: embedded-designs/agilex-5/e-series/premium/pcie_rp/ug-pcie_rp-agx5e-premium.md
+        - Nios V Processor Examples:
+          - Nios V/c:
+            - Helloworld and OCM memory test design on Nios® V/c Processor: embedded-designs/agilex-5/e-series/premium/niosv/niosv_c/niosv_c_helloworld_ocm_mem_test/ug-helloworld-ocm-mem-test-agx5e-premium.md
+          - Nios V/m:
+            - Nios® V/m Processor Baseline GHRD Design: embedded-designs/agilex-5/e-series/premium/niosv/niosv_m/niosv_m_baseline_ghrd/ug-baseline-ghrd-agx5e-premium.md
+          - Nios V/g:
+            - Nios® V/g TinyML LiteRT for Microcontroller Design: embedded-designs/agilex-5/e-series/premium/niosv/niosv_g/tinyml_liteRT/ug-tinyml-liteRT-agx5e-premium.md 
       - E-Series Modular Development Kit:
         - GSRD User Guide: embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular.md
         - GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular.md
@@ -233,8 +241,14 @@ nav:
         - GHRD Linux Boot Examples: embedded-designs/agilex-7/f-series/soc/boot-examples/ug-linux-boot-agx7-soc.md
         - Xen Hypervisor GSRD: embedded-designs/agilex-7/f-series/soc/xen/ug-xen-agx7f-soc.md
         - Setting up and Using Bridges Linux Example: embedded-designs/agilex-7/f-series/soc/setup-use-bridges/ug-setup-use-bridges-agx7f-soc.md
+        - Nios V Processor Examples:
+          - Nios V/g:
+            - Nios® V/g Processor Floating Point Unit (FPU) Design: embedded-designs/agilex-7/f-series/soc/niosv/niosv_g/fpu_test/ug-fpu-agx7f-fpga.md
       - F-Series FPGA Development Kit:
-        - GSRD User Guide: embedded-designs/agilex-7/f-series/fpga/gsrd/ug-gsrd-agx7f-fpga.md       
+        - GSRD User Guide: embedded-designs/agilex-7/f-series/fpga/gsrd/ug-gsrd-agx7f-fpga.md
+        - Nios V Processor Examples:
+          - Nios V/g:
+            - Nios® V/g TinyML LiteRT for Microcontroller Design: embedded-designs/agilex-7/f-series/fpga/niosv/niosv_g/tinyml_liteRT/ug-tinyml-litert-agx7f-fpga.md       
       - I-Series FPGA Development Kit:
         - GSRD User Guide: embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc.md
       - M-Series HBM2e Development Kit:
