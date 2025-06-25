@@ -631,8 +631,140 @@ The following file is created:
 
 
 
+#### How to Manually Update the kernel.itb file
 
-### Known Issues with the Release
+
+
+
+The **kernel.itb** file is a Flattattened Image Tree (FIT) file that includes the following components:
+
+* Linux kernel.
+* Several board configurations that indicate what components from the **kernel.itb** (Linux kernel, device tree and 2nd Phase fabric design) should be used for a specific board.
+* Linux device tree*.
+* 2nd Phase Fabric Design*.
+
+ \* One or more of these components to support the different board configurations.
+
+The **kernel.itb** is created from a **.its** (Image Tree Source file) that describes its structure. In the GSRD, the  **kernel.itb** file is located in the following directory, where you can find also all the components needed to create it, including the .its file:
+
+* **$TOP_FOLDER/gsrd-socfpga/<*device-devkit*>-gsrd-rootfs/tmp/work/<*device-devkit*>-poky-linux/linux-socfpga-lts/<*linux branch*>+git/linux-<*device devkit*>-standard-build/**
+
+If you want to modify the kernel.itb by replacing one of the component or modifying any board configuration, you can do the following:
+
+1. Install **mtools** package in your Linux machine.
+   ```bash
+   $ sudo apt update
+   $ sudo apt install mtools
+   ```
+   
+2. Go to the in which the **kernel.itb** is being created under the GSRD.
+   ```bash
+   $ cd $TOP_FOLDER/gsrd-socfpga/<device-devkit>-gsrd-rootfs/tmp/work/<device-devkit>-poky-linux/linux-socfpga-lts/<linux branch>+git/linux-<device-devkit>-standard-build/
+   $ ls *.its
+   fit_kernel_<device-devkit>.its
+   ```
+   
+3. In the .its file, observe the components that integrates the kernel.itb identifying the nodes as indicated next:
+
+   **images** node:<br>
+   - **kernel** node - Linux kernel defined with the **data** parameter in the node.<br>
+   - **fdt-X** node    - Device tree X defined with the **data** parameter in the node.<br>
+   - **fpga-X** node -  2nd Phase FPGA Configuration .rbf defined with the **data** parameter in the node.
+   
+   **configurations** node:<br>
+   - **board-X** node - Board configuration with the name defined with the **description** parameter. The components for a specific board configuration are defined with the **kernel**, **fdt** and **fpga** parameters.   
+
+4. In this directory, you can replace any of the files corresponding to any of the components that integrate the **kernel.itb**, or you can also modify the **.its** to change the name/location of any of the components or change the board configuration.
+
+5. Finally, you need to re-generate the new **kernel.itb** as indicated next.
+   ```bash
+   $ rm kernel.itb
+   $ mkimage -f fit_kernel_<device-devkit>.its kernel.itb
+   ```
+
+At this point you can use the new **kernel.itb** as needed. Some options could be:
+
+* Use U-Boot to bring it to your SDRAM board through TFTP to boot Linux or to write it to a SD Card device
+* Update the flash image (QSPI, SD Card, eMMC or NAND) from your working machine.
+ 
+
+#### How to Manually Update the Content of the SD Card Image
+
+
+As part of the Yocto GSRD build flow, the SD Card image is built for the SD Card boot flow. This image includes a couple of partitions. One of these partition (a FAT32) includes the U-Boot proper, a Distroboot boot script and the Linux.itb - which includes the Linux kernel image, , the Linux device tree, the 2nd phase fabric design and board configuration (actually several versions of these last 3 components). The 2nd partition (an EXT3 or EXT4 ) includes the Linux file system. 
+
+![](images/sdcard_img.png){: style="height:500px"}
+
+If you want to replace any the components or add a new item in any of these partitions, without having to run again the Yocto build flow. 
+
+This can be done through the **wic** application available on the **Poky** repository that is included as part of the GSRD build directory: **$TOP_FOLDER/gsrd-socfpga/poky/scripts/wic** 
+
+This command allows you to inspect the content of a SD Card image, delete, add or replace any component inside of the image. This command is also provided with help support:
+
+   ```bash
+   $ $TOP_FOLDER/gsrd-socfpga/poky/scripts/wic help
+   
+   Creates a customized OpenEmbedded image.
+
+   Usage:  wic [--version]
+           wic help [COMMAND or TOPIC]
+           wic COMMAND [ARGS]
+
+       usage 1: Returns the current version of Wic
+       usage 2: Returns detailed help for a COMMAND or TOPIC
+       usage 3: Executes COMMAND
+
+   COMMAND:
+
+    list   -   List available canned images and source plugins
+    ls     -   List contents of partitioned image or partition
+    rm     -   Remove files or directories from the vfat or ext* partitions
+    help   -   Show help for a wic COMMAND or TOPIC
+    write  -   Write an image to a device
+    cp     -   Copy files and directories to the vfat or ext* partitions
+    create -   Create a new OpenEmbedded image
+    :
+    :
+   ```
+   The following steps show you how to replace the **kernel.itb** file inside of the fat32 partition in a .wic image.
+
+1. The **wic ls** command allows you to inspect or navigate over the directory structure inside of the SD Card image. For example you can observe the partitions  in the SD Card image in this way:
+
+   ```bash
+   # Here you can inspect the content a wic image see the 2 partitions inside of the SD Card image
+   $ $TOP_FOLDER/gsrd-socfpga/poky/scripts/wic ls my_image.wic
+   Num     Start        End          Size      Fstype
+   1       1048576    525336575    524288000  fat32    
+   2     525336576   2098200575   1572864000  ext4   
+   
+   # Here you can naviagate inside of the partition 1
+   $ $TOP_FOLDER/gsrd-socfpga/poky/scripts/wic ls my_image.wic:1
+   Volume in drive : is boot       
+   Volume Serial Number is 9D2B-6341
+   Directory for ::/
+   
+   BOOTSC~1 UIM      2431 2011-04-05  23:00  boot.scr.uimg
+   kernel   itb  15160867 2011-04-05  23:00 
+   u-boot   itb   1052180 2011-04-05  23:00 
+        3 files          16 215 478 bytes
+                        506 990 592 bytes free
+   ```
+   
+2. The **wic rm** command allows you to delete any of the components in the selected partition. For example, you can delete the **kernel.itb** image from the partition 1(fat32 partition).
+
+   ```bash
+   $ $TOP_FOLDER/gsrd-socfpga/poky/scripts/wic rm my_image.wic:1/kernel.itb
+   ```
+
+3. The **wic cp** command allows you to copy any new item or file from your Linux machine to a specific partition and location inside of the SD Card image. For example, you can copy a new **kernel.itb** to the partition 1.
+
+   ```bash
+   $ $TOP_FOLDER/gsrd-socfpga/poky/scripts/wic cp <path_new_kernel.itb> my_image.wic:1/kernel.itb
+   ```
+
+**NOTE**: The **wic** application also allows you to modify any image with compatible vfat and ext* type partitions which also covers images used for **eMMC** boot flow. 
+
+#### Known Issues with the Release
 
 For known issues in this release please refer to the [Intel Simics Simulator for FPGA Release page](https://www.rocketboards.org/foswiki/Documentation/SimicsSimulatorForIntelFPGAReleasePage#Known_Issues).
 
@@ -897,7 +1029,7 @@ Consider that the Intel Simics Simulator for Intel FPGAs Simulator has been inst
 
 5. Customize the configuration of the Agilex™ 5 E-Series Universal virtual platform, according to the setup required to exercise any specific use case. Set up the **fsbl_image_filename** parameter with the first-stage bootloader. If the boot implies booting from an SD Card device, configure **sd_image_filename** and **create_hps_sd_card** parameters (this image should include the main bootloader and the OS and/or application images). As part of the configuration, select the core used to boot using the **hps_boot_core** parameter, which could be core 0 (A55) or core 2 (A76).
 
-  You can configure the virtual platform either by updating the **agilex5e-universal.simics**target script or creating a separate top-level target script (named based on the simulation purpose) that is expected to be run with this (example: **uboot-linux_sdcard.simics** used to boot from U-Boot to Linux from an SD Card device). You become the owner of this new target script, in which, you can set the required parameters and call the original virtual platform target script (**targets/agilex5e-universal/agilex5e-universal.simics** path). An example of the setup required to run a simulation that exercises the boot flow going from U-Boot to Linux, booting from an SD Card is shown in the following:
+  You can configure the virtual platform either by updating the **agilex5e-universal.simics** target script or creating a separate top-level target script (named based on the simulation purpose) that is expected to be run with this (example: **uboot-linux_sdcard.simics** used to boot from U-Boot to Linux from an SD Card device). You become the owner of this new target script, in which, you can set the required parameters and call the original virtual platform target script (**targets/agilex5e-universal/agilex5e-universal.simics** path). An example of the setup required to run a simulation that exercises the boot flow going from U-Boot to Linux, booting from an SD Card is shown in the following:
 
   ```bash
   #uboot-linux_sdcard.simics
@@ -1176,7 +1308,7 @@ The port forwarding created allows you to access the webpage from the host PC. I
   **connect-real-network-port-in ethernet-link = ethernet_switch0 target-ip=10.10.0.100 target-port = 22 host-port = 4022 -tcp**
 
 
-  Then, connect to the target system using **ssh -p 4022 root@localhost** from the host PC or **ssh -p 4022 root@<host PC IP address>** from any other PC in the same network.
+  Then, connect to the target system using **ssh -p 4022 root@localhost** from the host PC or **ssh -p 4022 root@<*host PC IP address*>** from any other PC in the same network.
 
 A variation of this use case consists of accessing the web page from another PC under the same network that the host PC (both PCs in a real network). For this, use the IP address of the host PC instead of **localhost** and continue using the same port: **http://<*host PC address*>:4080**.
 
@@ -2065,7 +2197,7 @@ This section requires the **simics-riscfree** script. It is included in your Int
   $  ./simics-riscfree 
   ```
 
-2. Following the command, you must set up a **RiscFree**  workspace. You should use a new directory as a **RiscFree** workspace different from the Simics project directory.
+2. Following the command, you must set up a **RiscFree**  workspace. You should use a new directory as a **RiscFree** workspace which must be different and outside from the Simics project directory.
     ![riscfreeworkspace.png](images/riscfreeworkspace.png)
 
 3. In the **RiscFree** IDE GUI launched, you should see the current Simics project you selected shown in the Project Explorer window. If this is not shown, you can open it from **"Window > Show View > Project Explorer"** menu.
@@ -2121,6 +2253,8 @@ This section requires the **simics-riscfree** script. It is included in your Int
 #### Use Case: Remote Debugging of a Linux User Mode Program Using ARM DS Debugger
 
 This use case is an extension of the **Use Case: Exercise SDCard Boot Flow from FSBL to Linux** and consists of performing a debug session in a Linux user mode application using ARM Development Studio. For this, the debugging is done using the GDB server running in the target system. Also, set up the Simics network connectivity with the host PC, which is the one that runs ARM DS through TCP protocol. The application to be debugged is listed next **myArmDSDebugExample.c**. This application determines the core in which this run started and then enters into a loop counting the number of times the loop is executed and continue observing the execution core. It also counts the number of times the application is executed in each one of the four cores. The application exits from the loop when the iterator reaches a limit or the **exitVar** variable has a value of '1', which normally never should occur. After the loop, the application assigns the value in **x** variable to the **a** and **b** variables and then adds these variables and assigns the result value in **c** variable. In the end, the application prints the result of the addition, the number of times the loop was iterated and the final value of **exitVar**, and the number of times each core executed the application.
+
+<span style="color: red;"> **NOTE:** At this time, this use case can only be exercised with the Gold license for ARM DS Debugger. In the next release of Arm DS (2025.0) the Altera FPGA Edition license will support this case.</span>
 
   ```bash
   #define _GNU_SOURCE
