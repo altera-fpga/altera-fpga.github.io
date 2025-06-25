@@ -2470,6 +2470,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#how-to-manually-update-the-kernelitb-file" class="md-nav__link">
+    How to Manually Update the kernel.itb file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-manually-update-the-content-of-the-sd-card-image" class="md-nav__link">
+    How to Manually Update the Content of the SD Card Image
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4494,6 +4508,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#how-to-manually-update-the-kernelitb-file" class="md-nav__link">
+    How to Manually Update the kernel.itb file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-manually-update-the-content-of-the-sd-card-image" class="md-nav__link">
+    How to Manually Update the Content of the SD Card Image
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5568,6 +5596,123 @@ The following diagram illustrates how the helper JIC is built, base on the GHRD 
 <ul>
 <li><code>$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf</code></li>
 </ul>
+<h3 id="how-to-manually-update-the-kernelitb-file">How to Manually Update the kernel.itb file<a class="headerlink" href="#how-to-manually-update-the-kernelitb-file" title="Permanent link">&para;</a></h3>
+<p>The <strong>kernel.itb</strong> file is a Flattattened Image Tree (FIT) file that includes the following components:</p>
+<ul>
+<li>Linux kernel.</li>
+<li>Several board configurations that indicate what components from the <strong>kernel.itb</strong> (Linux kernel, device tree and 2<sup>nd</sup> Phase fabric design) should be used for a specific board.</li>
+<li>Linux device tree*.</li>
+<li>2<sup>nd</sup> Phase Fabric Design*.</li>
+</ul>
+<p>* One or more of these components to support the different board configurations.</p>
+<p>The <strong>kernel.itb</strong> is created from a <strong>.its</strong> (Image Tree Source file) that describes its structure. In the GSRD, the  <strong>kernel.itb</strong> file is located in the following directory, where you can find also all the components needed to create it, including the .its file:</p>
+<ul>
+<li><strong>$TOP_FOLDER/gsrd-socfpga/&lt;<em>device-devkit</em>&gt;-gsrd-rootfs/tmp/work/&lt;<em>device-devkit</em>&gt;-poky-linux/linux-socfpga-lts/&lt;<em>linux branch</em>&gt;+git/linux-&lt;<em>device devkit</em>&gt;-standard-build/</strong></li>
+</ul>
+<p>If you want to modify the kernel.itb by replacing one of the component or modifying any board configuration, you can do the following:</p>
+<ol>
+<li>
+<p>Install <strong>mtools</strong> package in your Linux machine.
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>mtools
+</code></pre></div></p>
+</li>
+<li>
+<p>Go to the in which the <strong>kernel.itb</strong> is being created under the GSRD.
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/&lt;device-devkit&gt;-gsrd-rootfs/tmp/work/&lt;device-devkit&gt;-poky-linux/linux-socfpga-lts/&lt;linux<span class="w"> </span>branch&gt;+git/linux-&lt;device-devkit&gt;-standard-build/
+<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>$<span class="w"> </span>ls<span class="w"> </span>*.its
+<a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a>fit_kernel_&lt;device-devkit&gt;.its
+</code></pre></div></p>
+</li>
+<li>
+<p>In the .its file, observe the components that integrates the kernel.itb identifying the nodes as indicated next:</p>
+<p><strong>images</strong> node:<br>
+ - <strong>kernel</strong> node - Linux kernel defined with the <strong>data</strong> parameter in the node.<br>
+ - <strong>fdt-X</strong> node    - Device tree X defined with the <strong>data</strong> parameter in the node.<br>
+ - <strong>fpga-X</strong> node -  2<sup>nd</sup> Phase FPGA Configuration .rbf defined with the <strong>data</strong> parameter in the node.</p>
+<p><strong>configurations</strong> node:<br>
+ - <strong>board-X</strong> node - Board configuration with the name defined with the <strong>description</strong> parameter. The components for a specific board configuration are defined with the <strong>kernel</strong>, <strong>fdt</strong> and <strong>fpga</strong> parameters.   </p>
+</li>
+<li>
+<p>In this directory, you can replace any of the files corresponding to any of the components that integrate the <strong>kernel.itb</strong>, or you can also modify the <strong>.its</strong> to change the name/location of any of the components or change the board configuration.</p>
+</li>
+<li>
+<p>Finally, you need to re-generate the new <strong>kernel.itb</strong> as indicated next.
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>$<span class="w"> </span>rm<span class="w"> </span>kernel.itb
+<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a>$<span class="w"> </span>mkimage<span class="w"> </span>-f<span class="w"> </span>fit_kernel_&lt;device-devkit&gt;.its<span class="w"> </span>kernel.itb
+</code></pre></div></p>
+</li>
+</ol>
+<p>At this point you can use the new <strong>kernel.itb</strong> as needed. Some options could be:</p>
+<ul>
+<li>Use U-Boot to bring it to your SDRAM board through TFTP to boot Linux or to write it to a SD Card device</li>
+<li>Update the flash image (QSPI, SD Card, eMMC or NAND) from your working machine.</li>
+</ul>
+<h3 id="how-to-manually-update-the-content-of-the-sd-card-image">How to Manually Update the Content of the SD Card Image<a class="headerlink" href="#how-to-manually-update-the-content-of-the-sd-card-image" title="Permanent link">&para;</a></h3>
+<p>As part of the Yocto GSRD build flow, the SD Card image is built for the SD Card boot flow. This image includes a couple of partitions. One of these partition (a FAT32) includes the U-Boot proper, a Distroboot boot script and the Linux.itb - which includes the Linux kernel image, , the Linux device tree, the 2<sup>nd</sup> phase fabric design and board configuration (actually several versions of these last 3 components). The 2<sup>nd</sup> partition (an EXT3 or EXT4 ) includes the Linux file system. </p>
+<p><a class="glightbox" href="images/sdcard_img.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="images/sdcard_img.png" style="height:500px" /></a></p>
+<p>If you want to replace any the components or add a new item in any of these partitions, without having to run again the Yocto build flow. </p>
+<p>This can be done through the <strong>wic</strong> application available on the <strong>Poky</strong> repository that is included as part of the GSRD build directory: <strong>$TOP_FOLDER/gsrd-socfpga/poky/scripts/wic</strong> </p>
+<p>This command allows you to inspect the content of a SD Card image, delete, add or replace any component inside of the image. This command is also provided with help support:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span><span class="nb">help</span>
+<a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a>
+<a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a>Creates<span class="w"> </span>a<span class="w"> </span>customized<span class="w"> </span>OpenEmbedded<span class="w"> </span>image.
+<a id="__codelineno-65-4" name="__codelineno-65-4" href="#__codelineno-65-4"></a>
+<a id="__codelineno-65-5" name="__codelineno-65-5" href="#__codelineno-65-5"></a>Usage:<span class="w">  </span>wic<span class="w"> </span><span class="o">[</span>--version<span class="o">]</span>
+<a id="__codelineno-65-6" name="__codelineno-65-6" href="#__codelineno-65-6"></a><span class="w">        </span>wic<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="o">[</span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC<span class="o">]</span>
+<a id="__codelineno-65-7" name="__codelineno-65-7" href="#__codelineno-65-7"></a><span class="w">        </span>wic<span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>
+<a id="__codelineno-65-8" name="__codelineno-65-8" href="#__codelineno-65-8"></a>
+<a id="__codelineno-65-9" name="__codelineno-65-9" href="#__codelineno-65-9"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>Returns<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>version<span class="w"> </span>of<span class="w"> </span>Wic
+<a id="__codelineno-65-10" name="__codelineno-65-10" href="#__codelineno-65-10"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">2</span>:<span class="w"> </span>Returns<span class="w"> </span>detailed<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC
+<a id="__codelineno-65-11" name="__codelineno-65-11" href="#__codelineno-65-11"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">3</span>:<span class="w"> </span>Executes<span class="w"> </span>COMMAND
+<a id="__codelineno-65-12" name="__codelineno-65-12" href="#__codelineno-65-12"></a>
+<a id="__codelineno-65-13" name="__codelineno-65-13" href="#__codelineno-65-13"></a>COMMAND:
+<a id="__codelineno-65-14" name="__codelineno-65-14" href="#__codelineno-65-14"></a>
+<a id="__codelineno-65-15" name="__codelineno-65-15" href="#__codelineno-65-15"></a><span class="w"> </span>list<span class="w">   </span>-<span class="w">   </span>List<span class="w"> </span>available<span class="w"> </span>canned<span class="w"> </span>images<span class="w"> </span>and<span class="w"> </span><span class="nb">source</span><span class="w"> </span>plugins
+<a id="__codelineno-65-16" name="__codelineno-65-16" href="#__codelineno-65-16"></a><span class="w"> </span>ls<span class="w">     </span>-<span class="w">   </span>List<span class="w"> </span>contents<span class="w"> </span>of<span class="w"> </span>partitioned<span class="w"> </span>image<span class="w"> </span>or<span class="w"> </span>partition
+<a id="__codelineno-65-17" name="__codelineno-65-17" href="#__codelineno-65-17"></a><span class="w"> </span>rm<span class="w">     </span>-<span class="w">   </span>Remove<span class="w"> </span>files<span class="w"> </span>or<span class="w"> </span>directories<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>vfat<span class="w"> </span>or<span class="w"> </span>ext*<span class="w"> </span>partitions
+<a id="__codelineno-65-18" name="__codelineno-65-18" href="#__codelineno-65-18"></a><span class="w"> </span><span class="nb">help</span><span class="w">   </span>-<span class="w">   </span>Show<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>wic<span class="w"> </span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC
+<a id="__codelineno-65-19" name="__codelineno-65-19" href="#__codelineno-65-19"></a><span class="w"> </span>write<span class="w">  </span>-<span class="w">   </span>Write<span class="w"> </span>an<span class="w"> </span>image<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>device
+<a id="__codelineno-65-20" name="__codelineno-65-20" href="#__codelineno-65-20"></a><span class="w"> </span>cp<span class="w">     </span>-<span class="w">   </span>Copy<span class="w"> </span>files<span class="w"> </span>and<span class="w"> </span>directories<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>vfat<span class="w"> </span>or<span class="w"> </span>ext*<span class="w"> </span>partitions
+<a id="__codelineno-65-21" name="__codelineno-65-21" href="#__codelineno-65-21"></a><span class="w"> </span>create<span class="w"> </span>-<span class="w">   </span>Create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>OpenEmbedded<span class="w"> </span>image
+<a id="__codelineno-65-22" name="__codelineno-65-22" href="#__codelineno-65-22"></a><span class="w"> </span>:
+<a id="__codelineno-65-23" name="__codelineno-65-23" href="#__codelineno-65-23"></a><span class="w"> </span>:
+</code></pre></div>
+   The following steps show you how to replace the <strong>kernel.itb</strong> file inside of the fat32 partition in a .wic image.</p>
+<ol>
+<li>
+<p>The <strong>wic ls</strong> command allows you to inspect or navigate over the directory structure inside of the SD Card image. For example you can observe the partitions  in the SD Card image in this way:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="c1"># Here you can inspect the content a wic image see the 2 partitions inside of the SD Card image</span>
+<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>ls<span class="w"> </span>my_image.wic
+<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a>Num<span class="w">     </span>Start<span class="w">        </span>End<span class="w">          </span>Size<span class="w">      </span>Fstype
+<a id="__codelineno-66-4" name="__codelineno-66-4" href="#__codelineno-66-4"></a><span class="m">1</span><span class="w">       </span><span class="m">1048576</span><span class="w">    </span><span class="m">525336575</span><span class="w">    </span><span class="m">524288000</span><span class="w">  </span>fat32<span class="w">    </span>
+<a id="__codelineno-66-5" name="__codelineno-66-5" href="#__codelineno-66-5"></a><span class="m">2</span><span class="w">     </span><span class="m">525336576</span><span class="w">   </span><span class="m">2098200575</span><span class="w">   </span><span class="m">1572864000</span><span class="w">  </span>ext4<span class="w">   </span>
+<a id="__codelineno-66-6" name="__codelineno-66-6" href="#__codelineno-66-6"></a>
+<a id="__codelineno-66-7" name="__codelineno-66-7" href="#__codelineno-66-7"></a><span class="c1"># Here you can naviagate inside of the partition 1</span>
+<a id="__codelineno-66-8" name="__codelineno-66-8" href="#__codelineno-66-8"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>ls<span class="w"> </span>my_image.wic:1
+<a id="__codelineno-66-9" name="__codelineno-66-9" href="#__codelineno-66-9"></a>Volume<span class="w"> </span><span class="k">in</span><span class="w"> </span>drive<span class="w"> </span>:<span class="w"> </span>is<span class="w"> </span>boot<span class="w">       </span>
+<a id="__codelineno-66-10" name="__codelineno-66-10" href="#__codelineno-66-10"></a>Volume<span class="w"> </span>Serial<span class="w"> </span>Number<span class="w"> </span>is<span class="w"> </span>9D2B-6341
+<a id="__codelineno-66-11" name="__codelineno-66-11" href="#__codelineno-66-11"></a>Directory<span class="w"> </span><span class="k">for</span><span class="w"> </span>::/
+<a id="__codelineno-66-12" name="__codelineno-66-12" href="#__codelineno-66-12"></a>
+<a id="__codelineno-66-13" name="__codelineno-66-13" href="#__codelineno-66-13"></a>BOOTSC~1<span class="w"> </span>UIM<span class="w">      </span><span class="m">2431</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w">  </span>boot.scr.uimg
+<a id="__codelineno-66-14" name="__codelineno-66-14" href="#__codelineno-66-14"></a>kernel<span class="w">   </span>itb<span class="w">  </span><span class="m">15160867</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w"> </span>
+<a id="__codelineno-66-15" name="__codelineno-66-15" href="#__codelineno-66-15"></a>u-boot<span class="w">   </span>itb<span class="w">   </span><span class="m">1052180</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w"> </span>
+<a id="__codelineno-66-16" name="__codelineno-66-16" href="#__codelineno-66-16"></a><span class="w">     </span><span class="m">3</span><span class="w"> </span>files<span class="w">          </span><span class="m">16</span><span class="w"> </span><span class="m">215</span><span class="w"> </span><span class="m">478</span><span class="w"> </span>bytes
+<a id="__codelineno-66-17" name="__codelineno-66-17" href="#__codelineno-66-17"></a><span class="w">                     </span><span class="m">506</span><span class="w"> </span><span class="m">990</span><span class="w"> </span><span class="m">592</span><span class="w"> </span>bytes<span class="w"> </span>free
+</code></pre></div>
+</li>
+<li>
+<p>The <strong>wic rm</strong> command allows you to delete any of the components in the selected partition. For example, you can delete the <strong>kernel.itb</strong> image from the partition 1(fat32 partition).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>rm<span class="w"> </span>my_image.wic:1/kernel.itb
+</code></pre></div>
+</li>
+<li>
+<p>The <strong>wic cp</strong> command allows you to copy any new item or file from your Linux machine to a specific partition and location inside of the SD Card image. For example, you can copy a new <strong>kernel.itb</strong> to the partition 1.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>cp<span class="w"> </span>&lt;path_new_kernel.itb&gt;<span class="w"> </span>my_image.wic:1/kernel.itb
+</code></pre></div>
+</li>
+</ol>
+<p><strong>NOTE</strong>: The <strong>wic</strong> application also allows you to modify any image with compatible vfat and ext* type partitions which also covers images used for <strong>eMMC</strong> boot flow. </p>
 <h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
 <p>Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
 No product or component can be absolutely secure. 
@@ -5586,7 +5731,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 29, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 25, 2025</span>
       
         <br>
         Created:
