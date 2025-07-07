@@ -822,6 +822,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#test-procedure" class="md-nav__link">
+    Test Procedure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#known-issues" class="md-nav__link">
     Known Issues
   </a>
@@ -4095,6 +4102,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#test-procedure" class="md-nav__link">
+    Test Procedure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#known-issues" class="md-nav__link">
     Known Issues
   </a>
@@ -4127,7 +4141,7 @@
 
 
 <h1 id="qspi-driver-for-hard-processor-system-hps"><strong>QSPI Driver for Hard Processor System (HPS)</strong><a class="headerlink" href="#qspi-driver-for-hard-processor-system-hps" title="Permanent link">&para;</a></h1>
-<p>Last updated: <strong>June 25, 2025</strong> </p>
+<p>Last updated: <strong>July 07, 2025</strong> </p>
 <p><strong>Upstream Status</strong>: Not Upstreamed</p>
 <p><strong>Devices supported</strong>: Agilex 5</p>
 <h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
@@ -4153,12 +4167,107 @@
 <h2 id="kernel-configurations"><strong>Kernel Configurations</strong><a class="headerlink" href="#kernel-configurations" title="Permanent link">&para;</a></h2>
 <p>CONFIG_SPI_CADENCE_QUADSPI</p>
 <p><a class="glightbox" href="../images/qspi_config_path.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="qspi_config_path" src="../images/qspi_config_path.png" /></a></p>
-<h2 id="device-tree"><strong>Device Tree</strong><a class="headerlink" href="#device-tree" title="Permanent link">&para;</a></h2>
+<p>In Linux you can select the QSPI erase sector size to be 4 KB or 64 KB using <strong>CONFIG_MTD_SPI_NOR_USE_4K_SECTORS</strong> config:</p>
+<ul>
+<li><strong>CONFIG_MTD_SPI_NOR_USE_4K_SECTORS=Y</strong>  indicates a Erase sector size of 4 KB.</li>
+<li><strong>CONFIG_MTD_SPI_NOR_USE_4K_SECTORS=N</strong>  indicates a Erase sector size of 64 KB.</li>
+</ul>
+<h2 id="device-tree">Device Tree<a class="headerlink" href="#device-tree" title="Permanent link">&para;</a></h2>
 <p>Example Device tree location:</p>
 <p><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi">https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi</a></p>
 <p><a class="glightbox" href="../images/qspi_device_tree.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="qspi_device_tree" src="../images/qspi_device_tree.png" /></a></p>
+<h2 id="test-procedure"><strong>Test Procedure</strong><a class="headerlink" href="#test-procedure" title="Permanent link">&para;</a></h2>
+<p>The following test procedure consist on performing erase, write and read operations into the QSPI flash device using the <strong>mtd_debug</strong> Linux application, which is included as part of the GSRD.</p>
+<p><strong>Note:</strong> In the Bootloaders build flow (building the software components independently),  the <strong>mtd_debug</strong> application is supported by including the <strong>mtd-utils</strong> package in <strong>CORE_IMAGE_EXTRA_INSTALL</strong> when building the file system. In this build flow, you also need to configure the Linux QSPI reference clock from U-Boot by running "<strong>run  linux_qspi_enable</strong>" after that the Linux device tree has been loaded.</p>
+<p>As additional pre-requisites  to exercise this test procedure, you need to get enabled the QSPI controller enabled, Linux has booted  and this has loaded the QSPI driver. </p>
+<p>You can verify that the driver has been loaded by looking for messages from the QSPI driver in the boot log:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>root@testsocfpga:~# dmesg | grep spi
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>[    1.540541] cadence-qspi 108d2000.spi: detected FIFO depth (1024) different from config (128)
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>[    1.550670] 2 fixed-partitions partitions found on MTD device 108d2000.spi.0
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>[    1.557731] Creating 2 MTD partitions on &quot;108d2000.spi.0&quot;:
+</code></pre></div>
+<p>Observe that the 0x108d2000 address corresponds to the address of the QSPI controller in Agilex 5 device.</p>
+<ol>
+<li>List the MTD partitions and verify these exist in the Linux file system:
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>root@testsocfpga:~# cat /proc/mtd
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>dev:    size   erasesize  name
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>mtd0: 04200000 00010000 &quot;u-boot&quot;
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>mtd1: 0be00000 00010000 &quot;root&quot;
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>root@testsocfpga:~# ls /dev/mtd**
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>/dev/mtd0  /dev/mtd0ro   /dev/mtd1  /dev/mtd1ro  /dev/mtdblock0   /dev/mtdblock1
+</code></pre></div>
+   Here you can see that 2 mtd partitions exists (these are defined in the device tree) and they have a 64KB erase sector size. The following table describes the memory regions of these partitions and the location of the last sector in these partitions. This test procedure will operate on the last sector of the <strong>mtd1</strong> partition.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>MTD Partition</th>
+<th>Regions in Chip</th>
+<th>Limits in Region</th>
+<th>Last Sector Location <br>in the partition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mtd0</td>
+<td>0x0000_0000 - 0x041F_FFFF</td>
+<td>0x0000_0000 - 0x041F_FFFF</td>
+<td>0x041f_0000</td>
+</tr>
+<tr>
+<td>mtd1</td>
+<td>0x0420_0000 - 0x0FFE_FFFF</td>
+<td>0x0000_0000 - 0x0BDF_FFFF</td>
+<td><strong>0x0BDF_0000</strong></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+<p>Back up the sector that will be erased and written, so it does not loose its original content. The sector size is 64 KB (0x10000). The original content is stored in the <strong>readBackup.img</strong> file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>root@testsocfpga:~# mtd_debug read /dev/mtd1 0x0BDF0000 0x10000 readBackup.img
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Copied 65536 bytes from address 0x0bdf0000 in flash to readBackup.img
+</code></pre></div>
+</li>
+<li>
+<p><strong>Erase Test</strong>. Erase the sector, so it can be written later:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>root@testsocfpga:~# mtd_debug erase /dev/mtd1 0x0BDF0000 0x10000
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Erased 65536 bytes from address 0x0bdf0000 in flash
+</code></pre></div>
+</li>
+<li>
+<p>Create one image with random content that later will be used to write in the QSPI sector selected. The image is stored in the <strong>empty.img</strong> file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>root@testsocfpga:~# dd if=/dev/urandom of=empty.img bs=1k count=64
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>64+0 records in
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>64+0 records out
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>65536 bytes (66 kB, 64 KiB) copied, 0.00205477 s, 31.9 MB/s
+</code></pre></div>
+</li>
+<li>
+<p><strong>Write Test</strong>. Write the image with random data in the <strong>empty.img</strong> file to the sector selected.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>root@testsocfpga:~# mtd_debug write /dev/mtd1 0x0BDF0000 0x10000 empty.img
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Copied 65536 bytes from empty.img to address 0x0bdf0000 in flash
+</code></pre></div>
+6. <strong>Read Test</strong>. Read back the data in the sector so it can later be compared against the original data. The data read is stored in the read.img file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>root@testsocfpga:~# mtd_debug read /dev/mtd1 0x0BDF0000 0x10000 read.img
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Copied 65536 bytes from address 0x0bdf0000 in flash to read.img
+</code></pre></div>
+</li>
+<li>
+<p>Compare the data read in <strong>read.img</strong> file against the random data writen stored in the <strong>empty.img</strong> file. Observed that no output indicates that the files match.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>root@testsocfpga:~# diff -q empty.img read.img
+</code></pre></div>
+8. Restore the original data in the QSPI sector selected so this could be unaffected by the testing. For that you need to erase and then write the content in the <strong>readBackup.img</strong> file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>root@testsocfpga:~# mtd_debug erase /dev/mtd1 0x0BDF0000 0x10000
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>Erased 65536 bytes from address 0x0bdf0000 in flash
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>root@testsocfpga:~# mtd_debug write /dev/mtd1 0x0BDF0000 0x10000 readBackup.img
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>Copied 65536 bytes from readBackup.img to address 0x0bdf0000 in flash 
+</code></pre></div>
+</li>
+</ol>
+<p>At this point, you can power cycle the board and observe that the system is able to boot to Linux again.</p>
 <h2 id="known-issues"><strong>Known Issues</strong><a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
-<p>None kKnown</p>
+<p>None Known</p>
 <h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
 <p>Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
 No product or component can be absolutely secure. 
@@ -4177,7 +4286,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 25, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 7, 2025</span>
       
         <br>
         Created:
