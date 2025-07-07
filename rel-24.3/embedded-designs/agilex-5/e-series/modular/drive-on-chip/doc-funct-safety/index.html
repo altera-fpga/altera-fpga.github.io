@@ -2110,6 +2110,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_6_2_2" id="__nav_6_2_2_label" tabindex="0">
@@ -2268,15 +2270,35 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#burn-the-sd-card-image" class="md-nav__link">
-    Burn the SD card image.
+  <a href="#sd-card-image-flashing" class="md-nav__link">
+    SD Card Image Flashing
+  </a>
+  
+    <nav class="md-nav" aria-label="SD Card Image Flashing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usbimager-windows-linux-mac-os" class="md-nav__link">
+    USBImager (Windows, Linux, Mac OS)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#program-the-qspi-flash-memory" class="md-nav__link">
-    Program the QSPI Flash Memory.
+  <a href="#bmaptool-linux" class="md-nav__link">
+    bmaptool (Linux)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flash-the-qspi" class="md-nav__link">
+    Flash The QSPI
   </a>
   
 </li>
@@ -2379,6 +2401,20 @@
     <li class="md-nav__item">
       <a href="../doc-plc/" class="md-nav__link">
         Drive-On-Chip with PLC Design Example for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../doc-crc/" class="md-nav__link">
+        ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices
       </a>
     </li>
   
@@ -3185,15 +3221,35 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#burn-the-sd-card-image" class="md-nav__link">
-    Burn the SD card image.
+  <a href="#sd-card-image-flashing" class="md-nav__link">
+    SD Card Image Flashing
+  </a>
+  
+    <nav class="md-nav" aria-label="SD Card Image Flashing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usbimager-windows-linux-mac-os" class="md-nav__link">
+    USBImager (Windows, Linux, Mac OS)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#program-the-qspi-flash-memory" class="md-nav__link">
-    Program the QSPI Flash Memory.
+  <a href="#bmaptool-linux" class="md-nav__link">
+    bmaptool (Linux)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flash-the-qspi" class="md-nav__link">
+    Flash The QSPI
   </a>
   
 </li>
@@ -3488,7 +3544,7 @@ Agilex™ 5 FPGA E-Series 065B Modular Development Kit.</p>
 </tbody>
 </table>
 <p></center></p>
-<h3 id="setting-up-your-development-board"><strong>Setting Up your Development Board</strong><a class="headerlink" href="#setting-up-your-development-board" title="Permanent link">&para;</a></h3>
+<h3 id="setting-up-your-development-board">Setting Up your Development Board<a class="headerlink" href="#setting-up-your-development-board" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Configure the board switches:
   The following provides the default configuration for all the switches in the
@@ -3496,7 +3552,7 @@ Agilex™ 5 FPGA E-Series 065B Modular Development Kit.</p>
 </ul>
 <p><a class="glightbox" href="../common/images/board-1.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="board-1" src="../common/images/board-1.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
 <center></p>
-<p><strong>Development Board switch position.</strong>
+<p><strong>Development Board switch position</strong>
 </center>
 <br></p>
 <div class="admonition note">
@@ -3507,102 +3563,90 @@ ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
 <p><br></p>
 <ul>
 <li>Connect micro USB cable from bottom left of the carrier board to PC (<code>J35</code>).
-  This will be used for JTAG communication. Look at what ports are enumerated
-  on your host computer, there should be a series of four. (See the figure below).</li>
+  This will be used for JTAG communication (see figure below).</li>
 <li>Connect micro USB cable from bottom right of the SOM board to PC
   (<code>J2</code>, HSP_UART). This will be used for HPS UART communication. Look at what
   ports are enumerated on your host computer, there should be a series of
-  four. Use the 3<sup>rd</sup> one in the list as the HPS serial port.(See the figure below).</li>
-<li>If ethernet capabilities or remote connection via <code>ssh</code> is required connect a
-  RJ45 cable to the ethernet port in the SOM board (<code>J6</code>, ETH 1G HPS)and make
-  sure your device is in the same networks as your intended host device. After
-  Linux boot, check the IP address of the <code>end2</code> ethernet interface using
-  <code>ifconfig</code> or <code>ip a</code> Linux commands.</li>
+  four. Use the 3<sup>rd</sup> one in the list as the HPS serial port (see figure below).</li>
+<li>If ethernet capabilities or remote connection via <code>ssh</code> is required connect an
+  ethernet cable to the ethernet port on the SOM board (<code>J6</code>, ETH 1G HPS) and make
+  sure your device is in the same network as your intended host device. After
+  Linux boots, check the IP address of the <code>end2</code> ethernet interface using the
+  <code>ip addr</code> command.</li>
 </ul>
 <p><a class="glightbox" href="../common/images/Agx5-MDK-Conn.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Agx-MDK-Conn" src="../common/images/Agx5-MDK-Conn.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
 <center></p>
-<p><strong>USB connections to the board.</strong>
+<p><strong>USB connections to the board</strong>
 </center>
 <br></p>
-<h3 id="burn-the-sd-card-image"><strong>Burn the SD card image.</strong><a class="headerlink" href="#burn-the-sd-card-image" title="Permanent link">&para;</a></h3>
+<h3 id="sd-card-image-flashing">SD Card Image Flashing<a class="headerlink" href="#sd-card-image-flashing" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Download SD card image from the "prebuilt binaries" (<code>&lt;name&gt;.wic</code>).</li>
-<li>
-<p>Write the <code>&lt;name&gt;.wic</code>. SD card image to the micro SD card using the included
-  USB writer in the host computer:</p>
-<ul>
-<li>On Linux, use the <code>dd</code> utility as shown next:</li>
+<li>Download SD card image (<code>.wic</code> or <code>.wic.gz</code>) from the prebuilt binary links above.</li>
+<li>Write the <code>.wic</code> or <code>.wic.gz</code> SD card image to the micro SD card using one of the options below.</li>
+<li>Turn off the board and insert the SD card in the micro SD card slot on the SOM board.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Determine the device associated with the SD card on the host computer.</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cat<span class="w"> </span>/proc/partitions
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># This will return for example /dev/sd&lt;x&gt;</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Use dd to write the image in the corresponding device</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>&lt;name&gt;.wic<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/sd&lt;x&gt;<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># Flush the changes to the SD card</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>sync
+<h4 id="usbimager-windows-linux-mac-os"><a href="https://bztsrc.gitlab.io/usbimager/">USBImager</a> (Windows, Linux, Mac OS)<a class="headerlink" href="#usbimager-windows-linux-mac-os" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Open <a href="https://bztsrc.gitlab.io/usbimager/">USBImager</a> and click the <code>...</code> button in the top right.</li>
+<li>Select the image you downloaded earlier and click <code>Open</code>.</li>
+<li>Next select the device associated with your SD card reader from the drop-down list.</li>
+<li>Click <code>Write</code> to start flashing.</li>
+</ul>
+<h4 id="bmaptool-linux"><a href="https://github.com/yoctoproject/bmaptool">bmaptool</a> (Linux)<a class="headerlink" href="#bmaptool-linux" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You will require a <code>.wic.bmap</code> file in addition to the <code>.wic</code> or <code>.wic.gz</code> in order to use <code>bmaptool</code>. If this is not available use <code>USBImager</code>.</p>
+</div>
+<p>On many distributions <code>bmap-tools</code> can be installed using your distros package manager (e.g. <code>sudo apt install bmap-tools</code>).</p>
+<p>For more information see the <a href="https://docs.yoctoproject.org/dev-manual/bmaptool.html">Yocto documentation</a> for <code>bmaptool</code>.</p>
+<p>First of all determine the device <code>logical name</code> associated with the SD card on your host:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo lshw -class disk
 </code></pre></div>
+<p>Use <code>bmaptool</code> to copy the image to the SD card. Make sure the <code>wic</code> image file and <code>bmap</code> file are in the same directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo bmaptool copy ${IMAGE} ${DEVICE}
+</code></pre></div>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aes1.wic.gz /dev/sda
+</code></pre></div>
+<h3 id="flash-the-qspi">Flash The QSPI<a class="headerlink" href="#flash-the-qspi" title="Permanent link">&para;</a></h3>
 <ul>
-<li>On Windows, use the Win32DiskImager program (or similar), available at
-<a href="https://sourceforge.net/projects/win32diskimager">Disk Imager</a>. For this, first rename the
-<name>.wic to an .img file (sdcard.img for example)
-and write the image as shown in the next figure:</li>
-</ul>
-<p><a class="glightbox" href="../common/images/disk-imager.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="disk-imager" src="../common/images/disk-imager.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
-<center></p>
-<p><strong>Write an SD card using "Disk Imager" tool.</strong>
-</center></p>
+<li>Download the <code>.jic</code> image from the prebuilt binary links above.</li>
+<li>Power down the board.</li>
+<li>Set <strong>MSEL</strong> dipswitch <strong>S4</strong> on SOM to <strong>JTAG: OFF-OFF</strong></li>
+<li>Power up the board.</li>
+<li>Program the QSPI with the following command.<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;top.hps.jic&quot;</span><span class="w"> </span>
+</code></pre></div>
 </li>
 </ul>
-<p><br></p>
-<ul>
-<li>Turn off the board and insert the SD card in the micro SD card slot in the SOM board.
-<br></li>
-</ul>
-<h3 id="program-the-qspi-flash-memory"><strong>Program the QSPI Flash Memory.</strong><a class="headerlink" href="#program-the-qspi-flash-memory" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
-<p>To Write/Program QSPI Flash</p>
-<p>a. Power down board. Set <strong>MSEL</strong> dipswitch <strong>S4</strong> on SOM to <strong>JTAG: OFF-OFF</strong></p>
-<p>b. Power up the board.</p>
-<p>c. Download the <code>JIC</code> image, then write it to QSPI with the command.
-  (Optional: Use the Quartus® Programmer GUI)</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;top.hps.jic&quot;</span><span class="w"> </span>
-</code></pre></div>
-<p>d. (Optional) Use the Quartus® Programmer GUI:</p>
+<p><strong>(Optional)</strong> Use the Quartus® Programmer GUI</p>
 <ul>
 <li>Launch the Quartus® Programmer and Configure the <strong>"Hardware Setup..."</strong>
-  settings as following:
+  settings as follows:
 <br></li>
 </ul>
-<p><a class="glightbox" href="../common/images/hw-setup-set.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="hw-setup-set" src="../common/images/hw-setup-set.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
-<center></p>
-<p><strong>Programmer GUI Hardware Settings.</strong>
-</center>
-<br></p>
+<p><a class="glightbox" href="../common/images/hw-setup-set.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="hw-setup-set" src="../common/images/hw-setup-set.png" style="display:block; margin-left:auto; margin-right:auto" /></a></p>
+<p><br></p>
 <ul>
 <li>Click "Auto Detect", select the device <code>A5EC065BB32AR0</code> and press
   <strong>"Change File.."</strong>
 <br></li>
 </ul>
-<p><a class="glightbox" href="../common/images/programmer-agx5.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="programmer-agx5" src="../common/images/programmer-agx5.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
-<center></p>
-<p><strong>Programmer after "Auto Detect".</strong>
-</center>
-<br></p>
+<p><a class="glightbox" href="../common/images/programmer-agx5.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="programmer-agx5" src="../common/images/programmer-agx5.png" style="display:block; margin-left:auto; margin-right:auto" /></a></p>
+<p><br></p>
 <ul>
-<li>Select your <code>top.hps.jic</code> (or equivalent). The <code>MT25QU02G</code> device
-  should show. Select the <strong>"Program/Configure"</strong> box, and press <strong>"Start"</strong>
-  button.
-  Wait until completed (It could take several minutes.)
+<li>Select the <code>.jic</code> file you downloaded earlier. The <code>MT25QU02G</code> device
+  should now show. Select the <strong>"Program/Configure"</strong> box, and press <strong>"Start"</strong>.
+  Wait until completed (It could take several minutes).
 <br></li>
 </ul>
-<p><a class="glightbox" href="../common/images/programmer-agx5-2.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="programmer-agx5-2" src="../common/images/programmer-agx5-2.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
-<center></p>
-<p><strong>Programming the QSPI Flash with JIC file.</strong>
-</center>
-<br></p>
-<p>Power down the board. Set <strong>MSEL</strong> dip switch <strong>S4</strong> on SOM to <strong>ASX4 (QSPI): ON-ON</strong></p>
+<p><a class="glightbox" href="../common/images/programmer-agx5-2.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="programmer-agx5-2" src="../common/images/programmer-agx5-2.png" style="display:block; margin-left:auto; margin-right:auto" /></a></p>
+<p><br></p>
 </li>
+</ul>
+<ul>
+<li>Power down the board. Set <strong>MSEL</strong> dip switch <strong>S4</strong> on SOM to <strong>ASX4 (QSPI): ON-ON</strong></li>
 </ul>
 <p><br></p>
 <h3 id="run-the-design-example"><strong>Run the design example</strong><a class="headerlink" href="#run-the-design-example" title="Permanent link">&para;</a></h3>
@@ -3640,13 +3684,13 @@ port (out of four). </li>
 <ul>
 <li>Unzip the GUI source code:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">    </span>unzip<span class="w"> </span>doc-gui_1.0.0.zip
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="nb">cd</span><span class="w"> </span>&lt;download&gt;/doc-gui_1.0.0
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">    </span>unzip<span class="w"> </span>doc-gui_1.0.0.zip
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nb">cd</span><span class="w"> </span>&lt;download&gt;/doc-gui_1.0.0
 </code></pre></div>
 <ul>
 <li>Open a terminal and run:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span>python<span class="w"> </span>__main__.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">    </span>python<span class="w"> </span>__main__.py
 </code></pre></div>
 <ul>
 <li>Select the right JTAG master from the menu (if it is not selected automatically).
@@ -3679,7 +3723,7 @@ the output from the drive-on-chip application that runs in the Nios V/g processo
 <li>Connect a micro-USB cable to the integrated USB blaster II in the board.</li>
 <li>Run (source the Nios V command shell if required):</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">    </span>juart-terminal<span class="w"> </span>-d<span class="w"> </span><span class="m">2</span><span class="w"> </span>-i<span class="w"> </span><span class="m">0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">    </span>juart-terminal<span class="w"> </span>-d<span class="w"> </span><span class="m">2</span><span class="w"> </span>-i<span class="w"> </span><span class="m">0</span>
 </code></pre></div>
 <p><br></p>
 <p><a class="glightbox" href="../common/images/nios-1.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="nios-1" src="../common/images/nios-1.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
@@ -3935,11 +3979,11 @@ the Khronos Group™.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 1, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 7, 2025</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 1, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 21, 2025</span>
       
     
   </small>

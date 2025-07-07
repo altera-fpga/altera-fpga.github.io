@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#burn-the-sd-card-image" class="md-skip">
+        <a href="#sd-card-image-flashing" class="md-skip">
           Skip to content
         </a>
       
@@ -2098,6 +2098,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_6_2_2" id="__nav_6_2_2_label" tabindex="0">
@@ -2162,6 +2164,20 @@
     <li class="md-nav__item">
       <a href="../../doc-plc/" class="md-nav__link">
         Drive-On-Chip with PLC Design Example for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../doc-crc/" class="md-nav__link">
+        ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices
       </a>
     </li>
   
@@ -2890,9 +2906,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#burn-the-sd-card-image" class="md-nav__link">
-    Burn the SD card image.
+  <a href="#sd-card-image-flashing" class="md-nav__link">
+    SD Card Image Flashing
   </a>
+  
+    <nav class="md-nav" aria-label="SD Card Image Flashing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usbimager-windows-linux-mac-os" class="md-nav__link">
+    USBImager (Windows, Linux, Mac OS)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmaptool-linux" class="md-nav__link">
+    bmaptool (Linux)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2916,51 +2952,46 @@
 
   <h1>Burn sd card</h1>
 
-<h3 id="burn-the-sd-card-image"><strong>Burn the SD card image.</strong><a class="headerlink" href="#burn-the-sd-card-image" title="Permanent link">&para;</a></h3>
+<h3 id="sd-card-image-flashing">SD Card Image Flashing<a class="headerlink" href="#sd-card-image-flashing" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Download SD card image from the "prebuilt binaries" (<code>&lt;name&gt;.wic</code>).</li>
-<li>
-<p>Write the <code>&lt;name&gt;.wic</code>. SD card image to the micro SD card using the included
-  USB writer in the host computer:</p>
-<ul>
-<li>On Linux, use the <code>dd</code> utility as shown next:</li>
+<li>Download SD card image (<code>.wic</code> or <code>.wic.gz</code>) from the prebuilt binary links above.</li>
+<li>Write the <code>.wic</code> or <code>.wic.gz</code> SD card image to the micro SD card using one of the options below.</li>
+<li>Turn off the board and insert the SD card in the micro SD card slot on the SOM board.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Determine the device associated with the SD card on the host computer.</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cat<span class="w"> </span>/proc/partitions
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># This will return for example /dev/sd&lt;x&gt;</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Use dd to write the image in the corresponding device</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>&lt;name&gt;.wic<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/sd&lt;x&gt;<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># Flush the changes to the SD card</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>sync
+<h4 id="usbimager-windows-linux-mac-os"><a href="https://bztsrc.gitlab.io/usbimager/">USBImager</a> (Windows, Linux, Mac OS)<a class="headerlink" href="#usbimager-windows-linux-mac-os" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Open <a href="https://bztsrc.gitlab.io/usbimager/">USBImager</a> and click the <code>...</code> button in the top right.</li>
+<li>Select the image you downloaded earlier and click <code>Open</code>.</li>
+<li>Next select the device associated with your SD card reader from the drop-down list.</li>
+<li>Click <code>Write</code> to start flashing.</li>
+</ul>
+<h4 id="bmaptool-linux"><a href="https://github.com/yoctoproject/bmaptool">bmaptool</a> (Linux)<a class="headerlink" href="#bmaptool-linux" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You will require a <code>.wic.bmap</code> file in addition to the <code>.wic</code> or <code>.wic.gz</code> in order to use <code>bmaptool</code>. If this is not available use <code>USBImager</code>.</p>
+</div>
+<p>On many distributions <code>bmap-tools</code> can be installed using your distros package manager (e.g. <code>sudo apt install bmap-tools</code>).</p>
+<p>For more information see the <a href="https://docs.yoctoproject.org/dev-manual/bmaptool.html">Yocto documentation</a> for <code>bmaptool</code>.</p>
+<p>First of all determine the device <code>logical name</code> associated with the SD card on your host:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo lshw -class disk
 </code></pre></div>
-<ul>
-<li>On Windows, use the Win32DiskImager program (or similar), available at
-<a href="https://sourceforge.net/projects/win32diskimager">Disk Imager</a>. For this, first rename the
-<name>.wic to an .img file (sdcard.img for example)
-and write the image as shown in the next figure:</li>
-</ul>
-<p><a class="glightbox" href="./common/images/disk-imager.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="disk-imager" src="./common/images/disk-imager.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
-<center></p>
-<p><strong>Write an SD card using "Disk Imager" tool.</strong>
-</center></p>
-</li>
-</ul>
-<p><br></p>
-<ul>
-<li>Turn off the board and insert the SD card in the micro SD card slot in the SOM board.
-<br></li>
-</ul>
+<p>Use <code>bmaptool</code> to copy the image to the SD card. Make sure the <code>wic</code> image file and <code>bmap</code> file are in the same directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo bmaptool copy ${IMAGE} ${DEVICE}
+</code></pre></div>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aes1.wic.gz /dev/sda
+</code></pre></div>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 1, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 21, 2025</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 1, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 21, 2025</span>
       
     
   </small>

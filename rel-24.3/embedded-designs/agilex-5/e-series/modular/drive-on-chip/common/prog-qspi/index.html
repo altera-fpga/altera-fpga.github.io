@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#program-the-qspi-flash-memory" class="md-skip">
+        <a href="#flash-the-qspi" class="md-skip">
           Skip to content
         </a>
       
@@ -2098,6 +2098,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_6_2_2" id="__nav_6_2_2_label" tabindex="0">
@@ -2162,6 +2164,20 @@
     <li class="md-nav__item">
       <a href="../../doc-plc/" class="md-nav__link">
         Drive-On-Chip with PLC Design Example for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../doc-crc/" class="md-nav__link">
+        ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices
       </a>
     </li>
   
@@ -2890,8 +2906,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#program-the-qspi-flash-memory" class="md-nav__link">
-    Program the QSPI Flash Memory.
+  <a href="#flash-the-qspi" class="md-nav__link">
+    Flash The QSPI
   </a>
   
 </li>
@@ -2916,51 +2932,45 @@
 
   <h1>Prog qspi</h1>
 
-<h3 id="program-the-qspi-flash-memory"><strong>Program the QSPI Flash Memory.</strong><a class="headerlink" href="#program-the-qspi-flash-memory" title="Permanent link">&para;</a></h3>
+<h3 id="flash-the-qspi">Flash The QSPI<a class="headerlink" href="#flash-the-qspi" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Download the <code>.jic</code> image from the prebuilt binary links above.</li>
+<li>Power down the board.</li>
+<li>Set <strong>MSEL</strong> dipswitch <strong>S4</strong> on SOM to <strong>JTAG: OFF-OFF</strong></li>
+<li>Power up the board.</li>
+<li>Program the QSPI with the following command.<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;top.hps.jic&quot;</span><span class="w"> </span>
+</code></pre></div>
+</li>
+</ul>
 <ul>
 <li>
-<p>To Write/Program QSPI Flash</p>
-<p>a. Power down board. Set <strong>MSEL</strong> dipswitch <strong>S4</strong> on SOM to <strong>JTAG: OFF-OFF</strong></p>
-<p>b. Power up the board.</p>
-<p>c. Download the <code>JIC</code> image, then write it to QSPI with the command.
-  (Optional: Use the Quartus® Programmer GUI)</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;top.hps.jic&quot;</span><span class="w"> </span>
-</code></pre></div>
-<p>d. (Optional) Use the Quartus® Programmer GUI:</p>
+<p><strong>(Optional)</strong> Use the Quartus® Programmer GUI</p>
 <ul>
 <li>Launch the Quartus® Programmer and Configure the <strong>"Hardware Setup..."</strong>
-  settings as following:
+  settings as follows:
 <br></li>
 </ul>
-<p><a class="glightbox" href="./common/images/hw-setup-set.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="hw-setup-set" src="./common/images/hw-setup-set.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
-<center></p>
-<p><strong>Programmer GUI Hardware Settings.</strong>
-</center>
-<br></p>
+<p><a class="glightbox" href="./common/images/hw-setup-set.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="hw-setup-set" src="./common/images/hw-setup-set.png" style="display:block; margin-left:auto; margin-right:auto" /></a></p>
+<p><br></p>
 <ul>
 <li>Click "Auto Detect", select the device <code>A5EC065BB32AR0</code> and press
   <strong>"Change File.."</strong>
 <br></li>
 </ul>
-<p><a class="glightbox" href="./common/images/programmer-agx5.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="programmer-agx5" src="./common/images/programmer-agx5.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
-<center></p>
-<p><strong>Programmer after "Auto Detect".</strong>
-</center>
-<br></p>
+<p><a class="glightbox" href="./common/images/programmer-agx5.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="programmer-agx5" src="./common/images/programmer-agx5.png" style="display:block; margin-left:auto; margin-right:auto" /></a></p>
+<p><br></p>
 <ul>
-<li>Select your <code>top.hps.jic</code> (or equivalent). The <code>MT25QU02G</code> device
-  should show. Select the <strong>"Program/Configure"</strong> box, and press <strong>"Start"</strong>
-  button.
-  Wait until completed (It could take several minutes.)
+<li>Select the <code>.jic</code> file you downloaded earlier. The <code>MT25QU02G</code> device
+  should now show. Select the <strong>"Program/Configure"</strong> box, and press <strong>"Start"</strong>.
+  Wait until completed (It could take several minutes).
 <br></li>
 </ul>
-<p><a class="glightbox" href="./common/images/programmer-agx5-2.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="programmer-agx5-2" src="./common/images/programmer-agx5-2.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
-<center></p>
-<p><strong>Programming the QSPI Flash with JIC file.</strong>
-</center>
-<br></p>
-<p>Power down the board. Set <strong>MSEL</strong> dip switch <strong>S4</strong> on SOM to <strong>ASX4 (QSPI): ON-ON</strong></p>
+<p><a class="glightbox" href="./common/images/programmer-agx5-2.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="programmer-agx5-2" src="./common/images/programmer-agx5-2.png" style="display:block; margin-left:auto; margin-right:auto" /></a></p>
+<p><br></p>
 </li>
+</ul>
+<ul>
+<li>Power down the board. Set <strong>MSEL</strong> dip switch <strong>S4</strong> on SOM to <strong>ASX4 (QSPI): ON-ON</strong></li>
 </ul>
 <p><br></p>
 
@@ -2969,11 +2979,11 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 1, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 21, 2025</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 1, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 21, 2025</span>
       
     
   </small>
