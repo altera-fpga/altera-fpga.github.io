@@ -152,20 +152,19 @@ There are two ways to test the design based on the use case.
 #### Tools Download and Installation
 
 1\. Quartus Prime Pro
-    - Please download Quartus 25.1 version of the software from below website and install.
-    [_Quartus 25.1_](https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html)
-    - Please follow below website, _Download and install instructions_ section.
-    [_Download and install instructions_](https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html)
-    - Set up the Quartus tools in the PATH, so they are accessible without full path.
 
-      ```bash
-      export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
-      export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
-      ```
+* Download the Quartus® Prime Pro Edition software version 25.1 from the FPGA Software Download Center [webpage](https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html) of the Intel website. Follow the on-screen instructions to complete the installation process. Choose an installation directory that is relative to the Quartus® Prime Pro Edition software installation directory.
+
+* Set up the Quartus tools in the PATH, so they are accessible without full path.
+
+```bash
+   export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+   export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+```
 
 2\. Win32 Disk Imager
-    - Please download and install the latest [Win32 Disk Imager](https://win32diskimager.org/).
-    
+
+* Please download and install the latest [Win32 Disk Imager](https://win32diskimager.org/).
 3\. Create the top folder to store all the build artifacts:
 
 ```bash
