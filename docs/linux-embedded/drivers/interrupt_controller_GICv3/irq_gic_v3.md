@@ -1,6 +1,6 @@
 # **Interrupt controller (GICv3) Driver for Hard Processor System**
 
-Last updated: **July 07, 2025** 
+Last updated: **July 15, 2025** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/irqchip/irq-gic-v3.c)
 
