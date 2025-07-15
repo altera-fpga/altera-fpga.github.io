@@ -4897,20 +4897,21 @@ Internet connection. For downloading the files, especially when rebuilding the G
 </table>
 <h3 id="environment-setup">Environment Setup<a class="headerlink" href="#environment-setup" title="Permanent link">&para;</a></h3>
 <h4 id="tools-download-and-installation">Tools Download and Installation<a class="headerlink" href="#tools-download-and-installation" title="Permanent link">&para;</a></h4>
-<p>1. Quartus Prime Pro
-    - Please download Quartus 25.1 version of the software from below website and install.
-    <a href="https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html"><em>Quartus 25.1</em></a>
-    - Please follow below website, <em>Download and install instructions</em> section.
-    <a href="https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html"><em>Download and install instructions</em></a>
-    - Set up the Quartus tools in the PATH, so they are accessible without full path.</p>
-<div class="highlight"><pre><span></span><code>  ```bash
-  export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
-  export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
-  ```
+<p>1. Quartus Prime Pro</p>
+<ul>
+<li>Download the Quartus® Prime Pro Edition software version 25.1 from the FPGA Software Download Center <a href="https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html">webpage</a> of the Intel website. Follow the on-screen instructions to complete the installation process. Choose an installation directory that is relative to the Quartus® Prime Pro Edition software installation directory.</li>
+</ul>
+<ul>
+<li>Set up the Quartus tools in the PATH, so they are accessible without full path.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">   </span><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/altera_pro/25.1/quartus/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">   </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
 </code></pre></div>
-<p>2. Win32 Disk Imager
-    - Please download and install the latest <a href="https://win32diskimager.org/">Win32 Disk Imager</a>.</p>
-<p>3. Create the top folder to store all the build artifacts:</p>
+<p>2. Win32 Disk Imager</p>
+<ul>
+<li>Please download and install the latest <a href="https://win32diskimager.org/">Win32 Disk Imager</a>.
+3. Create the top folder to store all the build artifacts:</li>
+</ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">  </span><span class="c1"># Create the top folder to store all the build artifacts</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>artifacts.enablement
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span>mkdir<span class="w"> </span>artifacts.enablement
