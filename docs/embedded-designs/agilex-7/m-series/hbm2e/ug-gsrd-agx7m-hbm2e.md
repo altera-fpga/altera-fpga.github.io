@@ -197,14 +197,6 @@ export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
 
-Enable Quartus tools to be called from command line:
-
-
-```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
-export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
-```
-
 
 
 
