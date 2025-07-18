@@ -1,3 +1,7 @@
+
+
+# HPS GSRD User Guide for the Agilex™ 7 FPGA F-Series Development Kit (2x F-Tile)
+
 ## Overview 
 
 This page presents the Golden System Reference Design for the [Altera&reg; Agilex&trade; F-Series FPGA Development Kit (2x F-Tile)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/f-series/dev-agf027-and-agf023.html) ordering code DK-DEV-AGF027F1ES. The GSRD demonstrates the following: 
@@ -699,7 +703,7 @@ At this point you can use the new **kernel.itb** as needed. Some options could b
 
 As part of the Yocto GSRD build flow, the SD Card image is built for the SD Card boot flow. This image includes a couple of partitions. One of these partition (a FAT32) includes the U-Boot proper, a Distroboot boot script and the Linux.itb - which includes the Linux kernel image, , the Linux device tree, the 2nd phase fabric design and board configuration (actually several versions of these last 3 components). The 2nd partition (an EXT3 or EXT4 ) includes the Linux file system. 
 
-![](images/sdcard_img.png){: style="height:500px"}
+![](/rel-25.1/embedded-designs/doc_modules/gsrd/images/sdcard_img.png){: style="height:500px"}
 
 If you want to replace any the components or add a new item in any of these partitions, without having to run again the Yocto build flow. 
 

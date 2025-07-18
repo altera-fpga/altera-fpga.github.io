@@ -1,3 +1,7 @@
+
+
+# SoC FPGA Remote Debug Example for the Agilex™ 5 E-Series Premium Dev Kit
+
 ##  Introduction
 
 Intel offers an integrated set of System Level Debug (SLD) tools, including:
