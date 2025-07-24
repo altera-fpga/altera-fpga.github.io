@@ -1,6 +1,6 @@
 # **System Manager Driver for Hard Processor System**
 
-Last updated: **July 15, 2025** 
+Last updated: **July 24, 2025** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/mfd/altera-sysmgr.c)
 

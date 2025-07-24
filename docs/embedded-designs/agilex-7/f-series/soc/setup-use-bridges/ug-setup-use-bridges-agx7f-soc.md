@@ -1,3 +1,7 @@
+
+
+# Setting up and Using Bridges HPS Linux Example for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile)
+
 ## Overview
 
 This project demonstrates how to access HPS Memory via the FPGA to HPS bridges when the HPS is running Linux, but is also applicable to other OS’s or BareMetal inclusive.  This project is created for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile, DK-SI-AGF014EB). It includes the effect of:

@@ -1,3 +1,7 @@
+
+
+# HPS Multi-QSPI Remote System Update Example for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile)
+
 ## Intro 
 
 This page is an extension of the  [Agilex 7 SoC HPS Remote System Update Example](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/) and will show you how to build RSU images with multi QSPI support. This feature allows you to extend the flash space available to store the RSU applications so the size of these could be increased. This feature allows you to support up to 4 QSPI flash devices of the same model (i.e. same size). 
@@ -388,7 +392,7 @@ EOF
 # MultiQSPI is supported starting in 24.3
 ~/intelFPGA_pro/24.3.1/quartus/bin/quartus_pfg -c initial_image_multiQSPI.pfg
 mv initial_image_multiQSPI.jic initial_image_multiQSPI_prev.jic
-mv initial_image_multiQSPI_jic_2Gb_cs0.rpd #initial_image_multiQSPI_jic_2Gb_cs0_prev.rpd
+mv initial_image_multiQSPI_jic_2Gb_cs0.rpd initial_image_multiQSPI_jic_2Gb_cs0_prev.rpd
 mv initial_image_multiQSPI_jic_2Gb_cs1.rpd initial_image_multiQSPI_jic_2Gb_cs1_prev.rpd
 mv initial_image_multiQSPI_jic.map initial_image_multiQSPI_jic_prev.map
 

@@ -93,7 +93,7 @@ subsystems allow the system to work appropriately.
 * The subsystems `dniosv_subsystem*`, `motor_model_subsystem*`, `drive_subsystem*`
   and `control_subsystem*` are blocks related to motor control and motor modeling.
   For more information on these blocks, refer to
-  [AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices](https://www.intel.com/content/www/us/en/docs/programmable/826207/24-1/about-the-drive-on-chip-design-example.html).
+  [AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices].
 <br>
 
 The following block diagram shows the main components and subsystems of the
@@ -125,8 +125,8 @@ correlates the block diagram, the XML file and the Platform Designer view:
 ## Hardware Subsystems and Components
 
 This project variant is based on the "Drive-On-Chip Example Design for Agilex
-Devices" see [AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices](https://www.intel.com/content/www/us/en/docs/programmable/826207/24-1/about-the-drive-on-chip-design-example.html) and
-[AN 994: Drive-on-Chip Design Example for Intel® Agilex™ 7 Devices](https://www.intel.com/content/www/us/en/docs/programmable/780361/23-1/about-the-drive-on-chip-design-example.html). Enhancing
+Devices" see [AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices] and
+[AN 994: Drive-on-Chip Design Example for Intel® Agilex™ 7 Devices]. Enhancing
 it with an instance of the HPS Subsystem (Hard Processor System) to provide a
 higher level of abstraction for motion control.
 The subsystems instantiated in the XML file are described below.
@@ -208,8 +208,8 @@ Field-Oriented Control Algorithm IP generated with DSP Builder
 (doc_foc_fixp), resolver SPI interface IP (doc_rslvr_spi*), and Parallel
 IO IP (hall pio) for hall interface. More details about these blocks
 can be found in Application Notes
-[AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices](https://www.intel.com/content/www/us/en/docs/programmable/826207/24-1/about-the-drive-on-chip-design-example.html)
-and [AN 999: Drive-on-Chip with Functional Safety Design Example: Agilex™ 7 Devices](https://www.intel.com/content/www/us/en/docs/programmable/823627/current/about-the-drive-on-chip-with-functional.html)
+[AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices]
+and [AN 999: Drive-on-Chip with Functional Safety Design Example: Agilex™ 7 Devices]
 
 <br>
 

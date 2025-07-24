@@ -1,3 +1,7 @@
+
+
+# Simics Linux GSRD for Agilex™ 5 E-Series Devices
+
 ## Overview
 
 Agilex™ 5 E-Series and D-Series devices provide the next-generation hard processor system (HPS) after those provided with the Agilex™ 7 and  Stratix® 10 SoC FPGA devices. Agilex™ 5 E-Series devices support new features, such as TSN, USB 3.1 Gen 1, and I3C, SPI.
@@ -693,7 +697,7 @@ At this point you can use the new **kernel.itb** as needed. Some options could b
 
 As part of the Yocto GSRD build flow, the SD Card image is built for the SD Card boot flow. This image includes a couple of partitions. One of these partition (a FAT32) includes the U-Boot proper, a Distroboot boot script and the Linux.itb - which includes the Linux kernel image, , the Linux device tree, the 2nd phase fabric design and board configuration (actually several versions of these last 3 components). The 2nd partition (an EXT3 or EXT4 ) includes the Linux file system. 
 
-![](images/sdcard_img.png){: style="height:500px"}
+![](/rel-25.1/embedded-designs/doc_modules/gsrd/images/sdcard_img.png){: style="height:500px"}
 
 If you want to replace any the components or add a new item in any of these partitions, without having to run again the Yocto build flow. 
 

@@ -1,3 +1,7 @@
+
+
+# SoC Fabric Configuration from Linux Example for the Stratix® 10 SX SoC Development Kit
+
 ## Introduction 
 
 When using HPS Boot First method, the FPGA device is first configured with a small Phase 1 bitstream, which configures the periphery, and brings up HPS. Then, at a later time, HPS configures the FPGA fabric using a larger Phase 2 bitstream. 
@@ -487,7 +491,7 @@ build_setup
 - Overlay file **agilex_fabric_config_overlay.dts** was added, pointing to **core.rbf** file for fabric configuration, and adding the sysid driver 
 - **core.rbf** file is also copied into the **/lib/firmware** folder where the Linux device tree framwork expects it 
  =
- 
+  
 ```bash
 rm -f stratix10-fabric-config-yocto.patch
 wget https://altera-fpga.github.io/rel-25.1/embedded-designs/stratix-10/sx/soc/fabric-config/collateral/stratix10-fabric-config-yocto.patch 

@@ -1,5 +1,7 @@
 
 
+# HPS Remote System Update Example for the Stratix® 10 SX SoC Development Kit
+
 ## Intro 
 
 This page presents a complete Remote System Update example, running on Stratix 10 SX SoC Development Kit H-Tile (DK-SOC-1SSX-H-D), including the following.

@@ -1,5 +1,8 @@
-## Intro
 
+
+# HPS GHRD Linux Boot Examples for the Stratix® 10 SX SoC Development Kit
+
+## Intro
 
 This page contains instructions on how to build Linux systems from separate components: Hardware Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the Golden System Reference Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
 
@@ -115,8 +118,6 @@ Note that the examples presented on this page boot to Linux and they require Lin
 
 Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
 
-Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
-
 
 ```bash
 cd $TOP_FOLDER
@@ -128,9 +129,6 @@ export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
-
-
-Enable Quartus tools to be called from command line:
 
 Enable Quartus tools to be called from command line:
 
