@@ -694,6 +694,8 @@ When creating the flash image, it's necessary to provide the location in where A
 | QSPI | PLAT_QSPI_DATA_BASE | 0x3C00000 |
 | SDCard | PLAT_SDMMC_DATA_BASE | 0x0 |
 
+<b style="color: red;">NOTE: Direct ATF to Linux boot flow from NAND/eMMC is not supported for Agilex 7 devices.</b>
+
 The following sections provide instructions about how to generate the binaries to exercise this boot flow booting from an SDcard and QSPI devices. The instructions provided to build the binaries to boot form SD Card and boot from QSPI are expected to be executed togheter, so you need to build these starting from the steps to generate the SD Card binaries.
 
 ### ATF to Linux from SD Card
@@ -765,7 +767,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
 The following file is created:
 
-* $TOP_FOLDER/agilex7f-ed-gsrd/output_files/ghrd_agfb014r24b2e2vagilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof
+* $TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof
 
 #### Build Arm Trusted Firmware for SDCard (ATF-To-Linux)
 
@@ -817,9 +819,10 @@ The following files are created:
 
 
 
-The following file is created:
+The following files are created:
 
-* $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex7_dk_si_agf014eb/core-image-minimal-agilex7_dk_si_agf014eb.rootfs.cpio
+* $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex7_dk_si_agf014eb/core-image-minimal-agilex7_dk_si_agf014eb.rootfs.tar.gz
+* $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex7_dk_si_agf014eb/core-image-minimal-agilex7_dk_si_agf014eb.rootfs.jffs2
 
 #### Build Linux for SDCard (ATF-To-Linux)
 
@@ -920,7 +923,7 @@ The following file is created:
   # Convert fsbl
   aarch64-none-linux-gnu-objcopy -v -I binary -O ihex --change-addresses 0xffe00000 arm-trusted-firmware-sdcard/build/agilex/release/bl2.bin fsbl.hex
   # Create .jic file
-  quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+  quartus_pfg -c agilex7f-ed-gsrd/install/designs/ \
   design_atf.jic \
   -o hps_path=fsbl.hex \
   -o device=MT25QU128 \

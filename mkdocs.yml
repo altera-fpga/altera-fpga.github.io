@@ -292,6 +292,8 @@ nav:
     - Cyclone® V:
       - SX SoC Development Kit:
         - GSRD User Guide: embedded-designs/cyclone-v/sx/soc/gsrd/ug-gsrd-cve-soc.md
+        - HPS GHRD Linux Boot Examples: embedded-designs/cyclone-v/sx/soc/boot-examples/ug-linux-boot-cve-soc.md
+
 # - FPGA AI Suite: 
 #    - Summary: ed-ai-suite/common/index.md
 #    - Using Model Zoo: ed-ai-suite/common/using-model-zoo.md
@@ -302,7 +304,7 @@ nav:
 #        - Agilex 7 PCIe-Attached Example Design (DE10): ed-ai-suite/agilex7/de10_pcie/de10_pcie.md 
 #        - Agilex 7 PCIe-Attached Example Design with OFS (I-Series, 2x R-Tile and 1x F-Tile): ed-ai-suite/agilex7/iseries_ofs_pcie/iseries_ofs_pcie.md
 #        - Agilex 7 PCIe-Attached Example Design with OFS (N6001): ed-ai-suite/agilex7/n6001_ofs_pcie/n6001_ofs_pcie.md
-        
+
 markdown_extensions:
   - pymdownx.snippets
   - abbr

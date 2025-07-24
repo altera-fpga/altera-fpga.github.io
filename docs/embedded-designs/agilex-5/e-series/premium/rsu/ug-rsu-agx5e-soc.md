@@ -23,7 +23,7 @@ This page presents a complete Remote System Update example, running on the Agile
 - Exercising the Linux RSU client application. 
 - Exercising the U-Boot RSU commands. 
 
-At the moment, the Agilex™ 5 Hard Processor System Remote System Update User Guide is not availabe but you can refer to the  [Agilex™ 7 Hard Processor System Remote System Update User Guide](https://www.intel.com/content/www/us/en/docs/programmable/683184/current/overview-s10-fm.html ) for details about the Remote System Update. 
+Refer to the  [Hard Processor System Remote System Update User Guide: Agilex™ 5 SoCs](https://www.intel.com/content/www/us/en/docs/programmable/852610/) document for details about the Remote System Update.
 
 ## Component Versions 
 
@@ -297,6 +297,8 @@ After completing the above steps, the following files are created.
 - $TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex - FSBL (U-boot SPL) hex file 
 - $TOP_FOLDER/u-boot-socfpga/u-boot.itb - FIT image file containing SSBL (U-Boot) and ATF (Arm Trusted Firmware) binaries 
 
+**Note:** You can control the U-Boot erase granularity to be 4 KB or 64 KB with the **CONFIG_SPI_FLASH_USE_4K_SECTORS** configuration. A value of **y** implies an erase granularity of 4 KB otherwise the erase granularity will be 64 KB.
+
 
 
 ### Building Linux 
@@ -326,6 +328,8 @@ After completing the above steps, the following files are created.
 
 - $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image - kernel image 
 - $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dtb - kernel device tree 
+
+**Note:** You can control the Linux erase granularity to be 4 KB or 64 KB with the **CONFIG_MTD_SPI_NOR_USE_4K_SECTORS** configuration. A value of **y** implies an erase granularity of 4 KB otherwise the erase granularity will be 64 KB.
 
 
 ### Creating the Initial Flash Image 

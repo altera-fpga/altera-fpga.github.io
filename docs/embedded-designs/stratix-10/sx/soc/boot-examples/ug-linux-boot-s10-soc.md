@@ -118,8 +118,6 @@ Note that the examples presented on this page boot to Linux and they require Lin
 
 Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
 
-Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
-
 
 ```bash
 cd $TOP_FOLDER
@@ -132,8 +130,13 @@ export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
 
-
 Enable Quartus tools to be called from command line:
+
+
+```bash
+export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+```
 
 
 
