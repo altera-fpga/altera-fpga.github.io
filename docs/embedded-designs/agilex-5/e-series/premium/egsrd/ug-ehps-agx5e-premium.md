@@ -208,7 +208,7 @@ cd $TOP_FOLDER/agilex5e-ed-hps-enhanced/src/hw
 
 make legacy_baseline-build
 make legacy_baseline-sw-build
-quartus_pfg -c output_files/legacy_baseline.sof\ output_files/legacy_baseline_hps_debug.sof\ -o hps_path=software/hps_debug/hps_wipe.ihex
+quartus_pfg -c output_files/legacy_baseline.sof output_files/legacy_baseline_hps_debug.sof -o hps_path=software/hps_debug/hps_wipe.ihex
 ```
 The following file will be generated:
 

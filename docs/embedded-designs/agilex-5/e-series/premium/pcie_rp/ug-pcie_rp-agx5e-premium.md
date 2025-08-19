@@ -2,13 +2,33 @@
 
 ## Introduction
 
-This design demonstrates a PCIe root port running on Agilex&trade; 5 E-Series Premium  Development Kit connected to end point. A Gen4x4 link is shown.
+This page contain PCIe Gen 4 and Gen 3 root port design example. Both designs demonstrate PCIe root port running on Agilex&trade; 5 E-Series Premium  Development Kit connected to end point.
 
-**Note:** This is design is running on internal board with **-4S speed grade** silicon.
+**Note:** Gen4 root port design is running on internal board with **-4S speed grade** silicon.
 
 ## Release Content
 
 Release note and pre-build binaries can be found in the [GitHub repository](https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/tag/25.1-1)
+
+### PCIe Gen4 Root Port Design Example
+
+| File           |  Link        |
+|----------------|--------------|
+| Quartus Project| https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/25.1-1/a5ed065es-premium-devkit-pcie-rp-gen4x4.zip |
+| SD Image | https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/25.1-1/sdimage.tar.gz |
+| hps.rbf | https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/25.1-1/agilex5_dk_a5e065bb32aes1_rped_ghrd.hps.rbf |
+| core.rbf | https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/25.1-1/agilex5_dk_a5e065bb32aes1_rped_ghrd.core.rbf |
+| sof |  https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/25.1-1/agilex5_dk_a5e065bb32aes1_rped_ghrd.sof |
+
+### PCIe Gen3 Root Port Design Example
+
+| File           |  Link        |
+|----------------|--------------|
+| Quartus Project| https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/25.1-1/a5ed065es-premium-devkit-pcie-rp-gen3x4.zip |
+| SD Image | https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/25.1-1/sdimage_gen3x4.tar.gz |
+| hps.rbf | https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/25.1-1/agilex5_dk_a5e065bb32aes1_rped_ghrd_gen3x4.hps.rbf |
+| core.rbf | https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/25.1-1/agilex5_dk_a5e065bb32aes1_rped_ghrd_gen3x4.core.rbf |
+| sof | https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/25.1-1/agilex5_dk_a5e065bb32aes1_rped_ghrd_gen3x4.sof |
 
 ## System Example Design Overview
 
@@ -72,7 +92,7 @@ BAM to HPS F2H have multiple path with different Address Expander range as shown
 
 * [Agilex™ 5 E-Series Premium Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html) (DK-A5E065BB32AES1) for running the example
   * Current Agilex™ 5 development kit is a **-6S speed grade**, can support up to **Gen3x4**. Agilex™ 5 **-4S speed grade** is required to demonstrate **PCIe Gen4x4**.
-  * **Note:** This is design is running on internal board with **-4S speed grade** silicon (A5ED065BB32AE4SR0).
+  * **Note:** PCIe Gen4 design is running on internal board with **-4S speed grade** silicon (A5ED065BB32AE4SR0).
 * [PCIe FMC+ Hitech Daughter Card](https://www.hitechglobal.com/FMCModules/FMC+_X16PCIExpress.htm) 
 
 * Tested End Point:
@@ -94,11 +114,23 @@ Here are the steps to build either HW and SW files:
 Both links show how to build the files needed for the project, according with the [Altera SoC FPGA Golden Software Reference Design (GSRD)](https://github.com/altera-opensource/gsrd-socfpga)
 
 Setting up the environment: 
+
+For PCIe Gen4 design,
 ```bash
-git clone https://github.com/altera-fpga/agilex5-ed-pcie-rp
-cd agilex5-ed-pcie-rp/src
+wget https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/25.1-1/a5ed065es-premium-devkit-pcie-rp-gen4x4.zip
+unzip a5ed065es-premium-devkit-pcie-rp-gen4x4.zip
+cd a5ed065es-premium-devkit-pcie-rp-gen4x4/agilex5-ed-pcie-rp/src
 export TOP_FOLDER=`pwd`
 ```
+
+For PCIe Gen3 design,
+```bash
+wget https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/25.1-1/a5ed065es-premium-devkit-pcie-rp-gen3x4.zip 
+unzip a5ed065es-premium-devkit-pcie-rp-gen3x4.zip
+cd a5ed065es-premium-devkit-pcie-rp-gen3x4/agilex5-ed-pcie-rp/src
+export TOP_FOLDER=`pwd`
+```
+
 Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
 ```bash
 cd $TOP_FOLDER
@@ -148,18 +180,36 @@ Manually add the PCIe Root Port bindings to your custom DTS by applying a patch 
 
 ## Running the System Example Design
 
-Program the development kit with [hps.rbf](https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/25.1-1/agilex5_dk_a5e065bb32aes1_rped_ghrd.hps.rbf) file.
+1\. Download SD card image from the prebuilt binaries https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/25.1-1/sdimage_gen3x4.tar.gz and extract the archive, obtaining the file `gsrd-console-image-agilex5.wic`.
+
+2\. Write the srd-console-image-agilex5.wic. SD card image to the micro SD card using the included USB writer in the host computer:
+
+- On Linux, use the `dd` utility as shown next:
 ```bash
-        quartus_pgm -c 1 -m jtag -o p;agilex5_dk_a5e065bb32aes1_rped_ghrd.hps.rbf@1
+# Determine the device asociated with the SD card on the host computer.	
+cat /proc/partitions
+# This will return for example /dev/sdx
+# Use dd to write the image in the corresponding device
+sudo dd if=gsrd-console-image-agilex5_devkit.wic of=/dev/sdx bs=1M
+# Flush the changes to the SD card
+sync
+```
+- On Windows, use the Win32DiskImager program, available at [https://sourceforge.net/projects/win32diskimager](https://sourceforge.net/projects/win32diskimager). For this, first rename the srd-console-image-agilex5.wic to an .img file (sdcard.img for example) and write the image as shown in the next figure:
+
+![](images/win32diskimager.png) 
+
+Program the development kit with [hps.rbf](https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/25.1-1/agilex5_dk_a5e065bb32aes1_rped_ghrd_gen3x4.hps.rbf) file.
+```bash
+quartus_pgm -c 1 -m jtag -o p;agilex5_dk_a5e065bb32aes1_rped_ghrd.hps.rbf@1
 ```
 
 Open the Putty serial terminal, it will show the board boot-up process.
   
 Execute the `lspci` command to display information about all PCI devices on the system
 ```bash
-root@agilex5dka5e065bb32aes1:~# lspci
-00:00.0 PCI bridge: Altera Corporation Device 0000 (rev 01)
-01:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd NVMe SSD Controller PM9A1/PM9A3/980PRO
+        root@agilex5dka5e065bb32aes1:~# lspci
+        00:00.0 PCI bridge: Altera Corporation Device 0000 (rev 01)
+        01:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd NVMe SSD Controller PM9A1/PM9A3/980PRO
 
 ```
 
