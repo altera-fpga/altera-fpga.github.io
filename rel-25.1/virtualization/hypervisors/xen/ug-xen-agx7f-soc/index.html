@@ -4937,18 +4937,33 @@
 </ul>
 <p>Note we are also creating an HPS JIC file, but we are discarding it, as it has the HPS Debug FSBL, while the final image needs to have the U-Boot SPL created by the Yocto recipes.</p>
 <h4 id="set-up-yocto">Set Up Yocto<a class="headerlink" href="#set-up-yocto" title="Permanent link">&para;</a></h4>
+<p>1. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.</p>
+<p>The command to install the required packages on Ubuntu 22.04 is:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>openssh-server<span class="w"> </span>mc<span class="w"> </span>libgmp3-dev<span class="w"> </span>libmpc-dev<span class="w"> </span>gawk<span class="w"> </span>wget<span class="w"> </span>git<span class="w"> </span>diffstat<span class="w"> </span>unzip<span class="w"> </span>texinfo<span class="w"> </span>gcc<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>build-essential<span class="w"> </span>chrpath<span class="w"> </span>socat<span class="w"> </span>cpio<span class="w"> </span>python3<span class="w"> </span>python3-pip<span class="w"> </span>python3-pexpect<span class="w"> </span>xz-utils<span class="w"> </span>debianutils<span class="w"> </span>iputils-ping<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>python3-git<span class="w"> </span>python3-jinja2<span class="w"> </span>libegl1-mesa<span class="w"> </span>libsdl1.2-dev<span class="w"> </span>pylint<span class="w"> </span>xterm<span class="w"> </span>python3-subunit<span class="w"> </span>mesa-common-dev<span class="w"> </span>zstd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>liblz4-tool<span class="w"> </span>git<span class="w"> </span>fakeroot<span class="w"> </span>build-essential<span class="w"> </span>ncurses-dev<span class="w"> </span>xz-utils<span class="w"> </span>libssl-dev<span class="w"> </span>bc<span class="w"> </span>flex<span class="w"> </span>libelf-dev<span class="w"> </span>bison<span class="w"> </span>xinetd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>tftpd<span class="w"> </span>tftp<span class="w"> </span>nfs-kernel-server<span class="w"> </span>libncurses5<span class="w"> </span>libc6-i386<span class="w"> </span>libstdc++6:i386<span class="w"> </span>libgcc++1:i386<span class="w"> </span>lib32z1<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>device-tree-compiler<span class="w"> </span>curl<span class="w"> </span>mtd-utils<span class="w"> </span>u-boot-tools<span class="w"> </span>net-tools<span class="w"> </span>swig<span class="w"> </span>-y
+</code></pre></div>
+<p>On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="w"> </span>sudo<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span>/bin/bash<span class="w"> </span>/bin/sh
+</code></pre></div>
+<p><strong>Note</strong>: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.</p>
 <p>2. Clone the Yocto script and prepare the build:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://github.com/altera-fpga/gsrd-socfpga
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga
-<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">HYP_BUILD</span><span class="o">=</span><span class="m">1</span>
-<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>.<span class="w"> </span>agilex7_dk_si_agf014eb-gsrd-build.sh
-<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>build_setup
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>styhead<span class="w"> </span>https://github.com/altera-fpga/gsrd-socfpga
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">HYP_BUILD</span><span class="o">=</span><span class="m">1</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>.<span class="w"> </span>agilex7_dk_si_agf014eb-gsrd-build.sh
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>build_setup
 </code></pre></div>
 <p><strong>Note</strong>: Run the following commands to set up again the yocto build environments, if you closed the current window (for example when rebooting the Linux host) and want to resume the next steps:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>.<span class="w"> </span>./poky/oe-init-build-env<span class="w"> </span>agilex-gsrd-rootfs/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>.<span class="w"> </span>./poky/oe-init-build-env<span class="w"> </span>agilex-gsrd-rootfs/
 </code></pre></div>
 <h4 id="customize-yocto">Customize Yocto<a class="headerlink" href="#customize-yocto" title="Permanent link">&para;</a></h4>
 <p>1. Copy the rebuilt files to <code>$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files</code> using the following names, as expected by the yocto recipes:</p>
@@ -4960,38 +4975,38 @@
 <li>agilex7_dk_si_agf014eb_pr_persona1.rbf: not applicable</li>
 </ul>
 <p>In our case we just copy the core.ghrd file in the Yocto recipe location:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nv">CORE_RBF</span><span class="o">=</span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex7_dk_si_agf014eb_gsrd_ghrd.core.rbf
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/ghrd_agfb014r24b2e2v.core.rbf<span class="w"> </span><span class="nv">$CORE_RBF</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nv">CORE_RBF</span><span class="o">=</span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex7_dk_si_agf014eb_gsrd_ghrd.core.rbf
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/ghrd_agfb014r24b2e2v.core.rbf<span class="w"> </span><span class="nv">$CORE_RBF</span>
 </code></pre></div>
 <p>2. In the Yocto recipe <code>$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb</code> modify the agilex_gsrd_code file location:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>SRC_URI:agilex7_dk_si_agf014eb<span class="w"> </span>?<span class="o">=</span><span class="w"> </span><span class="s2">&quot;\</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_gsrd_</span><span class="si">${</span><span class="nv">ARM64_GHRD_CORE_RBF</span><span class="si">}</span><span class="s2">;name=agilex7_dk_si_agf014eb_gsrd_core \</span>
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_nand_</span><span class="si">${</span><span class="nv">ARM64_GHRD_CORE_RBF</span><span class="si">}</span><span class="s2">;name=agilex7_dk_si_agf014eb_nand_core \</span>
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_</span><span class="si">${</span><span class="nv">ARM64_GHRD_CORE_RBF</span><span class="si">}</span><span class="s2">;name=agilex7_dk_si_agf014eb_pr_core \</span>
-<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_persona0.rbf;name=agilex7_dk_si_agf014eb_pr_persona0 \</span>
-<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_persona1.rbf;name=agilex7_dk_si_agf014eb_pr_persona1 \</span>
-<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="s2"> &quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>SRC_URI:agilex7_dk_si_agf014eb<span class="w"> </span>?<span class="o">=</span><span class="w"> </span><span class="s2">&quot;\</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_gsrd_</span><span class="si">${</span><span class="nv">ARM64_GHRD_CORE_RBF</span><span class="si">}</span><span class="s2">;name=agilex7_dk_si_agf014eb_gsrd_core \</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_nand_</span><span class="si">${</span><span class="nv">ARM64_GHRD_CORE_RBF</span><span class="si">}</span><span class="s2">;name=agilex7_dk_si_agf014eb_nand_core \</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_</span><span class="si">${</span><span class="nv">ARM64_GHRD_CORE_RBF</span><span class="si">}</span><span class="s2">;name=agilex7_dk_si_agf014eb_pr_core \</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_persona0.rbf;name=agilex7_dk_si_agf014eb_pr_persona0 \</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_persona1.rbf;name=agilex7_dk_si_agf014eb_pr_persona1 \</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="s2"> &quot;</span>
 </code></pre></div>
 <p>to look like this:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>SRC_URI:agilex7_dk_si_agf014eb<span class="w"> </span>?<span class="o">=</span><span class="w"> </span><span class="s2">&quot;\</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="s2"> file://agilex7_dk_si_agf014eb_gsrd_ghrd.core.rbf;sha256sum=xxxxxxxxx \</span>
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_nand_</span><span class="si">${</span><span class="nv">ARM64_GHRD_CORE_RBF</span><span class="si">}</span><span class="s2">;name=agilex7_dk_si_agf014eb_nand_core \</span>
-<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_</span><span class="si">${</span><span class="nv">ARM64_GHRD_CORE_RBF</span><span class="si">}</span><span class="s2">;name=agilex7_dk_si_agf014eb_pr_core \</span>
-<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_persona0.rbf;name=agilex7_dk_si_agf014eb_pr_persona0 \</span>
-<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_persona1.rbf;name=agilex7_dk_si_agf014eb_pr_persona1 \</span>
-<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="s2"> &quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>SRC_URI:agilex7_dk_si_agf014eb<span class="w"> </span>?<span class="o">=</span><span class="w"> </span><span class="s2">&quot;\</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="s2"> file://agilex7_dk_si_agf014eb_gsrd_ghrd.core.rbf;sha256sum=xxxxxxxxx \</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_nand_</span><span class="si">${</span><span class="nv">ARM64_GHRD_CORE_RBF</span><span class="si">}</span><span class="s2">;name=agilex7_dk_si_agf014eb_nand_core \</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_</span><span class="si">${</span><span class="nv">ARM64_GHRD_CORE_RBF</span><span class="si">}</span><span class="s2">;name=agilex7_dk_si_agf014eb_pr_core \</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_persona0.rbf;name=agilex7_dk_si_agf014eb_pr_persona0 \</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="s2"> </span><span class="si">${</span><span class="nv">GHRD_REPO</span><span class="si">}</span><span class="s2">/agilex7_dk_si_agf014eb_pr_persona1.rbf;name=agilex7_dk_si_agf014eb_pr_persona1 \</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="s2"> &quot;</span>
 </code></pre></div>
 <p>using the following commands:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nv">OLD_URI</span><span class="o">=</span><span class="s2">&quot;\${GHRD_REPO}\/agilex7_dk_si_agf014eb_gsrd_\${ARM64_GHRD_CORE_RBF};name=agilex7_dk_si_agf014eb_gsrd_core&quot;</span>
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="nv">CORE_SHA</span><span class="o">=</span><span class="k">$(</span>sha256sum<span class="w"> </span><span class="nv">$CORE_RBF</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f1<span class="w"> </span>-d<span class="s2">&quot; &quot;</span><span class="k">)</span>
-<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="nv">NEW_URI</span><span class="o">=</span><span class="s2">&quot;file:\/\/agilex7_dk_si_agf014eb_gsrd_ghrd.core.rbf;sha256sum=</span><span class="nv">$CORE_SHA</span><span class="s2">&quot;</span>
-<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/</span><span class="nv">$OLD_URI</span><span class="s2">/</span><span class="nv">$NEW_URI</span><span class="s2">/g&quot;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nv">OLD_URI</span><span class="o">=</span><span class="s2">&quot;\${GHRD_REPO}\/agilex7_dk_si_agf014eb_gsrd_\${ARM64_GHRD_CORE_RBF};name=agilex7_dk_si_agf014eb_gsrd_core&quot;</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="nv">CORE_SHA</span><span class="o">=</span><span class="k">$(</span>sha256sum<span class="w"> </span><span class="nv">$CORE_RBF</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f1<span class="w"> </span>-d<span class="s2">&quot; &quot;</span><span class="k">)</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="nv">NEW_URI</span><span class="o">=</span><span class="s2">&quot;file:\/\/agilex7_dk_si_agf014eb_gsrd_ghrd.core.rbf;sha256sum=</span><span class="nv">$CORE_SHA</span><span class="s2">&quot;</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/</span><span class="nv">$OLD_URI</span><span class="s2">/</span><span class="nv">$NEW_URI</span><span class="s2">/g&quot;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
 </code></pre></div>
 <p>3. In the same Yocto recipe delete the old SHA256 checksum for the file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>SRC_URI<span class="o">[</span>agilex7_dk_si_agf014eb_gsrd_core.sha256sum<span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;5d633ee561d5cc8c22b51211a144654fdc0be47ee14b07ac134074cbff84eb8b&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>SRC_URI<span class="o">[</span>agilex7_dk_si_agf014eb_gsrd_core.sha256sum<span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;5d633ee561d5cc8c22b51211a144654fdc0be47ee14b07ac134074cbff84eb8b&quot;</span>
 </code></pre></div>
 <p>by using the following commands:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;/agilex7_dk_si_agf014eb_gsrd_core\.sha256sum/d&quot;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;/agilex7_dk_si_agf014eb_gsrd_core\.sha256sum/d&quot;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
 </code></pre></div>
 <p>4. Optionally change the following files in <code>$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/</code>:</p>
 <ul>
@@ -5011,10 +5026,10 @@
 </ul>
 <h4 id="build-yocto">Build Yocto<a class="headerlink" href="#build-yocto" title="Permanent link">&para;</a></h4>
 <p>Build Yocto:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>bitbake_image
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>bitbake_image
 </code></pre></div>
 <p>Gather files:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>package
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>package
 </code></pre></div>
 <p>Once the build is completed successfully, you will see the following two folders are created:</p>
 <ul>
@@ -5042,15 +5057,15 @@
 </table>
 <h4 id="create-qspi-image">Create QSPI Image<a class="headerlink" href="#create-qspi-image" title="Permanent link">&para;</a></h4>
 <p>The QSPI image will contain the FPGA configuration data and the HPS FSBL and it can be built using the following command:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>*jic*<span class="w"> </span>*rbf*
-<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w"> </span>ghrd_agfb014r24b2e2v.jic<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU02G<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>AGFB014R24B2E2V<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>*jic*<span class="w"> </span>*rbf*
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="w"> </span>ghrd_agfb014r24b2e2v.jic<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU02G<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>AGFB014R24B2E2V<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a><span class="w"> </span>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 <p>The following files will be created:</p>
 <ul>
@@ -5075,7 +5090,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 24, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 19, 2025</span>
       
         <br>
         Created:
