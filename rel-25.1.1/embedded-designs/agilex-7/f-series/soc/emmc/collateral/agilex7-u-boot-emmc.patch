@@ -1,0 +1,44 @@
+diff --git a/arch/arm/dts/socfpga_agilex_socdk.dts b/arch/arm/dts/socfpga_agilex_socdk.dts
+index de1cf93..c1fe773 100644
+--- a/arch/arm/dts/socfpga_agilex_socdk.dts
++++ b/arch/arm/dts/socfpga_agilex_socdk.dts
+@@ -9,7 +9,7 @@
+ 
+ 	aliases {
+ 		serial0 = &uart0;
+-		ethernet0 = &gmac0;
++		ethernet0 = &gmac2;
+ 		ethernet1 = &gmac1;
+ 		ethernet2 = &gmac2;
+ 	};
+@@ -56,7 +56,7 @@
+ 	status = "okay";
+ };
+ 
+-&gmac0 {
++&gmac2 {
+ 	status = "okay";
+ 	phy-mode = "rgmii";
+ 	phy-handle = <&phy0>;
+@@ -89,19 +89,15 @@
+ &mmc {
+ 	status = "okay";
+ 	cap-sd-highspeed;
++	cap-mmc-highspeed;
+ 	broken-cd;
+-	bus-width = <4>;
++	bus-width = <8>;
+ };
+ 
+ &uart0 {
+ 	status = "okay";
+ };
+ 
+-&usb0 {
+-	status = "okay";
+-	disable-over-current;
+-};
+-
+ &watchdog0 {
+ 	status = "okay";
+ };
