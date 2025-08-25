@@ -16,14 +16,22 @@ This instructions from this page target the Stratix® 10 SX SOC Development kit 
 
 ## Component Versions
 
-This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1 and the following component versions.
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1 and the following software component versions are used to build the binaries presented in this page:
 
-| Repository | Branch/Tag |
-| :-- | :-- |
-| [ghrd-socfpga](https://github.com/altera-fpga/stratix10-ed-gsrd) | QPDS25.1_REL_GSRD_PR |
-| [linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.11-lts/QPDS25.1_REL_GSRD_PR |
-| [arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.0/QPDS25.1_REL_GSRD_PR |
-| [u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.01/QPDS25.1_REL_GSRD_PR |
+| Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
+| :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
+| Agilex 3 GHRD                         | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.1.1_REL_GSRD_PR   |
+| Agilex 5 GHRD                                  | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.1.1_REL_GSRD_PR |
+| Agilex 7 GHRD | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.1.1_REL_GSRD_PR |
+| Stratix 10 GHRD | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.1.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.19-lts | QPDS25.1.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.1   | QPDS25.1.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.04 | QPDS25.1.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
+| Yocto Project: meta-intel-fpga        | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest              |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.1.1_REL_GSRD_PR |
+
+**Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 Starting with SoC EDS Pro version 19.3, the following changes were made:
 The bootloader source code was removed from SoC EDS. Instead, the user needs to clone the git trees from https://github.com/altera-fpga/u-boot-socfpga.
@@ -97,7 +105,7 @@ The following are required:
 * Host machine running Linux. Ubuntu 22.04 was used, but other versions may work too.
 * Internet connection to download the tools and clone the U-Boot git tree from github. If you are behind a firewall you will need your system administrator to enable you to get to the git trees.
 * Intel Stratix® 10 H-Tile SoC FPGA Development Kit (DK-SOC-1SSX-H-D).
-* Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1
+* Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1
 
 Note that the examples presented on this page boot to Linux and they require Linux kernel, device tree and rootfilesystem to boot. However, you can omit the Linux binaries and just boot to U-Boot prompt if you want to.
 
@@ -121,11 +129,11 @@ Download the compiler toolchain, add it to the PATH variable, to be used by the 
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
-gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
@@ -134,7 +142,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -149,10 +157,10 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
   ```bash 
   cd $TOP_FOLDER
-  wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.1_REL_GSRD_PR.zip
-  unzip QPDS25.1_REL_GSRD_PR.zip
-  rm QPDS25.1_REL_GSRD_PR.zip
-  mv stratix10-ed-gsrd-QPDS25.1_REL_GSRD_PR stratix10-ed-gsrd
+  wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.1.1_REL_GSRD_PR.zip
+  unzip QPDS25.1.1_REL_GSRD_PR.zip
+  rm QPDS25.1.1_REL_GSRD_PR.zip
+  mv stratix10-ed-gsrd-QPDS25.1.1_REL_GSRD_PR stratix10-ed-gsrd
   cd stratix10-ed-gsrd
   make s10-htile-soc-devkit-oobe-baseline-all
   cd ..
@@ -169,7 +177,7 @@ After building the hardware design the following binary is created:
   ```bash
   cd $TOP_FOLDER
   rm -rf arm-trusted-firmware
-  git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
+  git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
   cd arm-trusted-firmware
   make -j 64 bl31 PLAT=stratix10
   cd ..
@@ -187,7 +195,7 @@ After completing the above steps, the Arm Trusted Firmware binary file is create
   ```bash
   cd $TOP_FOLDER
   rm -rf u-boot-socfpga
-  git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+  git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
   cd u-boot-socfpga
   # enable dwarf4 debug info, for compatibility with arm ds
   sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -294,7 +302,7 @@ Download and compile Linux:
   ```bash
   cd $TOP_FOLDER
   rm -rf linux-socfpga
-  git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
+  git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
   cd linux-socfpga
   make clean && make mrproper
   # enable kernel debugging with RiscFree
@@ -348,9 +356,9 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
   ```bash 
   cd $TOP_FOLDER 
   rm -rf yocto && mkdir yocto && cd yocto
-  git clone -b styhead https://git.yoctoproject.org/poky
-  git clone -b styhead https://git.yoctoproject.org/meta-intel-fpga
-  git clone -b styhead   https://github.com/openembedded/meta-openembedded
+  git clone -b walnascar https://git.yoctoproject.org/poky
+  git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga
+  git clone -b walnascar   https://github.com/openembedded/meta-openembedded
   # work around issue
   echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
   source poky/oe-init-build-env ./build
@@ -505,7 +513,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ```
   6.- The serial console will show SPL then U-Boot being run:
   ```
-  U-Boot SPL 2025.01-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
+  U-Boot SPL 2025.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
   Reset state: Cold
   MPU         1000000 kHz
   L3 main     400000 kHz
@@ -523,10 +531,10 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ## Checking hash(es) for Image atf … crc32+ OK
   ## Checking hash(es) for Image uboot … crc32+ OK
   ## Checking hash(es) for Image fdt-0 … crc32+ OK
-  NOTICE:  BL31: v2.12.0(release):QPDS25.1_REL_GSRD_PR
+  NOTICE:  BL31: v2.12.1(release):QPDS25.1.1_REL_GSRD_PR
   NOTICE:  BL31: Built : 11:03:24, Jan 29 2025
 
-  U-Boot 2025.01-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_stratix10
+  U-Boot 2025.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_stratix10
 
   CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
   Model: SoCFPGA Stratix 10 SoCDK

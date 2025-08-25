@@ -1,6 +1,6 @@
-package require qsys 25.1
+package require qsys
 
-add_component intel_jop_blaster_0 ip/qsys_top/qsys_top_intel_jop_blaster_0.ip intel_jop_blaster intel_jop_blaster_0 1.2.2
+add_component intel_jop_blaster_0 ip/qsys_top/qsys_top_intel_jop_blaster_0.ip intel_jop_blaster intel_jop_blaster_0
 load_component intel_jop_blaster_0
 set_component_parameter_value EXPORT_SLD_ED {0}
 set_component_parameter_value MEM_SIZE {4096}

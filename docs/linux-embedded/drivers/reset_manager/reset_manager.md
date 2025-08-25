@@ -1,10 +1,10 @@
 # **Reset Manager Driver for Hard Processor System**
 
-Last updated: **August 19, 2025** 
+Last updated: **August 25, 2025** 
 
 **Upstream Status**: Not Upstreamed
 
-**Devices supported**: Agilex 5
+**Devices supported**: Agilex3, Agilex 5
 
 ## **Introduction**
 

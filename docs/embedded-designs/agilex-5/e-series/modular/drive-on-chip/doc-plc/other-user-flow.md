@@ -1,4 +1,4 @@
-# Drive-On-Chip with PLC Design Example for Agilex™ 5 Devices
+# Drive-On-Chip with PLC Design Example for Agilex™ Devices
 
 ## Compiling the project using a MDT QAR file
 
@@ -17,7 +17,7 @@
 
     <br>
 
-    ![qar-content](/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/images/qar-content.png){:style="display:block; margin-left:auto; margin-right:auto"}
+    ![qar-content](/rel-25.1.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/images/qar-content.png){:style="display:block; margin-left:auto; margin-right:auto"}
     <center>
 
     **QAR file content.**
@@ -58,7 +58,7 @@
 
 <br>
 
-![quartus-comp](/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/images/quartus-comp.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![quartus-comp](/rel-25.1.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/images/quartus-comp.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center>
 
 **Quartus® Prime Pro compilation flow.**
@@ -110,6 +110,8 @@ contains the new binaries (`.hex`) for memory initialization (`<project>/softwar
 
 [Back to User Flows](../doc-plc.md#recommended-user-flows){ .md-button }
 
+
+
 ## Creating the QSPI Flash and SD card configuration bitstreams for the board
 
 ### Create phase 1 and phase 2 configuration bitstreams for "HPS First" Flow
@@ -126,7 +128,7 @@ In the log, look for the property `"HPS/FPGA configuration order"` SET TO `"HPS_
 
 <br>
 
-![hps-first](/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/images/hps-first.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![hps-first](/rel-25.1.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/images/hps-first.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center>
 
 **HPS First SOF file.**
@@ -135,17 +137,28 @@ In the log, look for the property `"HPS/FPGA configuration order"` SET TO `"HPS_
 
 **Important!** The following step depends on the output of u-boot compilation
 specifically the file `u-boot-spl-dtb.hex`. To generate the pair `top.core.rbf`
-and `top.hps.jic` for [Agilex™ 5 FPGA E-Series 065B Modular Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html)
-execute:
+and `top.hps.jic` execute:
 
-```bash
-quartus_pfg -c top.sof top.jic \
-  -o device=MT25QU02G \
-  -o flash_loader=A5ED065BB32AE6SR0 \
-  -o hps_path=u-boot-spl-dtb.hex \
-  -o mode=ASX4 \
-  -o hps=1
-```
+=== "Agilex™ 5"
+    For [Agilex™ 5 FPGA E-Series 065B Modular Development Kit]
+    ```bash
+    quartus_pfg -c top.sof top.jic \
+    -o device=MT25QU02G \
+    -o flash_loader=A5ED065BB32AE6SR0 \
+    -o hps_path=u-boot-spl-dtb.hex \
+    -o mode=ASX4 \
+    -o hps=1
+    ```
+=== "Agilex™ 3"
+    For [Agilex™ 3 FPGA C-Series Development Kit]
+    ```bash
+    quartus_pfg -c top.sof top.jic \
+    -o device=MT25QU512 \
+    -o flash_loader=A3CW135BM16AE6S \
+    -o hps_path=u-boot-spl-dtb.hex \
+    -o mode=ASX4 \
+    -o hps=1
+    ```
 
 ### Create phase 1 and phase 2 configuration bitstream for "FPGA First" Flow
 
@@ -161,7 +174,7 @@ In the log, look for the property `"HPS/FPGA configuration order"` SET TO `"AFTE
 
 <br>
 
-![fpga-first](/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/images/fpga-first.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![fpga-first](/rel-25.1.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/images/fpga-first.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center>
 
 **FPGA First SOF file.**
@@ -169,17 +182,26 @@ In the log, look for the property `"HPS/FPGA configuration order"` SET TO `"AFTE
 <br>
 
 **Important!** The following step depends on the output of u-boot compilation
-specifically the file `u-boot-spl-dtb.hex`. To generate the `top.jic` for
-[Agilex™ 5 FPGA E-Series 065B Modular Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html)
-execute:
+specifically the file `u-boot-spl-dtb.hex`. To generate the `top.jic` execute:
 
-```bash
-quartus_pfg -c top.sof top.jic \
-  -o device=MT25QU02G \
-  -o flash_loader=A5ED065BB32AE6SR0 
-  -o hps_path=u-boot-spl-dtb.hex \
-  -o mode=ASX4 \
-```
+=== "Agilex™ 5"
+    For [Agilex™ 5 FPGA E-Series 065B Modular Development Kit]
+    ```bash
+    quartus_pfg -c top.sof top.jic \
+    -o device=MT25QU02G \
+    -o flash_loader=A5ED065BB32AE6SR0 
+    -o hps_path=u-boot-spl-dtb.hex \
+    -o mode=ASX4 \
+    ```
+=== "Agilex™ 3"
+    For [Agilex™ 3 FPGA C-Series Development Kit]
+    ```bash
+    quartus_pfg -c top.sof top.jic \
+    -o device=MT25QU512 \
+    -o flash_loader=A3CW135BM16AE6S 
+    -o hps_path=u-boot-spl-dtb.hex \
+    -o mode=ASX4 \
+    ```
 
 
 <br>

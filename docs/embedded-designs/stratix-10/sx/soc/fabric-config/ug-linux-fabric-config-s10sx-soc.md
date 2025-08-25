@@ -27,7 +27,7 @@ You will need the following items:
 - Linux host PC (Ubuntu 22.04LTS was used for developing this project, but other versions may work too) 
 - Internet access (for downloading files attached to this page, and cloning git trees from github) 
 - TFTP server running on host computer (or other accessible computer on the local network) 
-- Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1
+- Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1
 
 Refer to [board documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/stratix/10-sx.html) for more details about the development kit.
 
@@ -59,11 +59,11 @@ Download the compiler toolchain, add it to the PATH variable, to be used by the 
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
-gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
@@ -72,7 +72,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -86,10 +86,10 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
 ```bash 
 rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.1_REL_GSRD_PR.zip
-unzip QPDS25.1_REL_GSRD_PR.zip
-rm -f QPDS25.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS25.1_REL_GSRD_PR stratix10-ed-gsrd
+wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.1.1_REL_GSRD_PR.zip
+unzip QPDS25.1.1_REL_GSRD_PR.zip
+rm -f QPDS25.1.1_REL_GSRD_PR.zip
+mv stratix10-ed-gsrd-QPDS25.1.1_REL_GSRD_PR stratix10-ed-gsrd
 cd stratix10-ed-gsrd
 make s10-htile-soc-devkit-oobe-baseline-all
 cd ..
@@ -104,7 +104,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf arm-trusted-firmware 
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
 cd arm-trusted-firmware 
 make -j 48 bl31 PLAT=stratix10 
 cd .. 
@@ -119,7 +119,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf u-boot-socfpga 
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk 
@@ -208,7 +208,7 @@ quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_basel
 ```bash 
 cd $TOP_FOLDER 
 rm -rf linux-socfpga 
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga 
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga 
 cd linux-socfpga 
 make clean && make mrproper 
 make defconfig 
@@ -290,9 +290,9 @@ Explanation:
 ```bash 
 cd $TOP_FOLDER 
 rm -rf yocto && mkdir yocto && cd yocto 
-git clone -b styhead https://git.yoctoproject.org/poky 
-git clone -b styhead https://git.yoctoproject.org/meta-intel-fpga 
-git clone -b styhead https://github.com/openembedded/meta-openembedded 
+git clone -b walnascar https://git.yoctoproject.org/poky 
+git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga 
+git clone -b walnascar https://github.com/openembedded/meta-openembedded 
 source poky/oe-init-build-env ./build 
 echo 'MACHINE = "stratix10"' >> conf/local.conf 
 echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 
@@ -414,11 +414,11 @@ Download the compiler toolchain, add it to the PATH variable, to be used by the 
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
-gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
@@ -427,7 +427,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -441,10 +441,10 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
 ```bash 
 rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.1_REL_GSRD_PR.zip
-unzip QPDS25.1_REL_GSRD_PR.zip
-rm -f QPDS25.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS25.1_REL_GSRD_PR stratix10-ed-gsrd
+wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.1.1_REL_GSRD_PR.zip
+unzip QPDS25.1.1_REL_GSRD_PR.zip
+rm -f QPDS25.1.1_REL_GSRD_PR.zip
+mv stratix10-ed-gsrd-QPDS25.1.1_REL_GSRD_PR stratix10-ed-gsrd
 cd stratix10-ed-gsrd
 make s10-htile-soc-devkit-oobe-baseline-all
 cd ..
@@ -478,7 +478,7 @@ rm ghrd.hps.jic
 ```bash 
 cd $TOP_FOLDER 
 rm -rf gsrd-socfpga 
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
 cd gsrd-socfpga 
 . stratix10_htile-gsrd-build.sh 
 build_setup 
@@ -494,7 +494,7 @@ build_setup
   
 ```bash
 rm -f stratix10-fabric-config-yocto.patch
-wget https://altera-fpga.github.io/rel-25.1/embedded-designs/stratix-10/sx/soc/fabric-config/collateral/stratix10-fabric-config-yocto.patch 
+wget https://altera-fpga.github.io/rel-25.1.1/embedded-designs/stratix-10/sx/soc/fabric-config/collateral/stratix10-fabric-config-yocto.patch 
 patch -d meta-intel-fpga-refdes -p1 < stratix10-fabric-config-yocto.patch 
 ```
 

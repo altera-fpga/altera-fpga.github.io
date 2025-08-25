@@ -4,7 +4,7 @@
 
 
 [Drive-On-Chip with Functional Safety System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-funct-safety
-[Drive-On-Chip with PLC System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-plc
+[Drive-On-Chip with PLC System Example Design for Agilex™ Devices]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-plc
 [ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-crc
 [Agilex™ 5 FPGA - Drive-On-Chip Design Example]: https://www.intel.com/content/www/us/en/design-example/825930/agilex-5-fpga-drive-on-chip-design-example.html
 [Intel® Agilex™ 7 FPGA – Drive-On-Chip for Intel® Agilex™ 7 Devices Design Example]: https://www.intel.com/content/www/us/en/design-example/780360/intel-agilex-7-fpga-drive-on-chip-for-intel-agilex-7-devices-design-example.html
@@ -27,6 +27,7 @@
 [NiosV Processor for Altera® FPGA]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/processors-peripherals/niosv.html
 [Tandem Motion-Power 48 V Board Reference Manual]: https://www.intel.com/content/www/us/en/docs/programmable/683164/current/about-the-tandem-motion-power-48-v-board.html
 [Agilex™ 5 FPGA E-Series 065B Modular Development Kit]: https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html
+[Agilex™ 3 FPGA C-Series Development Kit]: https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a3y135b.html
 [Motor Control Designs with an Integrated FPGA Design Flow]: https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/wp/wp-01162-motor-control-toolflow.pdf
 [Install Docker Engine]: https://docs.docker.com/engine/install/
 [Docker Build: Multi-Platform Builds]: https://docs.docker.com/build/building/multi-platform/
@@ -47,6 +48,7 @@
 
 
 
+
 [Release Tag]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-plc-25.1
 [wic.gz]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.gz
 [wic.bmap]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.bmap
@@ -58,10 +60,21 @@
 [agilex_doc.st]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/agilex_doc.st
 
 
+[AGX3 Release Tag]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-plc-25.1
+[agx3-wic.gz]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/core-image-minimal-agilex3.rootfs.wic.gz
+[agx3-wic.bmap]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/core-image-minimal-agilex3.rootfs.wic.bmap
+[agx3-top.hps.jic]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/agx3-top.hps.jic
+[agx3-doc-gui.zip]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/doc-gui_1.0.0.zip
+[DOC_PLC_TANDEM_MOTORSIM_AGILEX3.qar]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/DOC_PLC_TANDEM_MOTORSIM_AGILEX3.qar
+[agx3-top.core.rbf]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/agx3-top.core.rbf
+[agx3-u-boot-spl-dtb.hex]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/agx3-u-boot-spl-dtb.hex
+[agx3-agilex_doc.st]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/agilex_doc.st
 
-[Creating and Building the Design based on Modular Design Toolkit (MDT).]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/25.1/HPS_NIOSVg_DoC_dual_axis/Readme.md
-[AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_dual_axis.xml]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/25.1/HPS_NIOSVg_DoC_dual_axis/AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_dual_axis.xml
-[Create SD card image (.wic) using YOCTO/KAS]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/25.1/sw/README.md
+
+
+[Creating and Building the Design based on Modular Design Toolkit (MDT).]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/main/HPS_NIOSVg_DoC_dual_axis/Readme.md
+[AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_dual_axis.xml]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/main/HPS_NIOSVg_DoC_dual_axis/AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_dual_axis.xml
+[Create SD card image (.wic) using YOCTO/KAS]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/main/sw/README.md
 [Altera OpenPLC Docker Container Image Cross-compilation.]: https://github.com/altera-fpga/altera-openplc#build-a-docker-image
 
 
@@ -72,8 +85,83 @@
 [PLCopen Motion Control Specification]: https://plcopen.org/technical-activities/motion-control
 [docker-bullseye-20240722]: https://hub.docker.com/layers/library/debian/bullseye-20240722/images/sha256-315c507d52a055dc8143d48e81666575ce34f1bb0538d189edff09dfc2314260
 
+<style>
+  #tab-sync-controls {
+    margin-bottom: 1.5em;
+    display: flex;
+    gap: 1rem;
+  }
+  #tab-sync-controls button {
+    background-color: #0078d4; /* nice blue */
+    color: white;
+    border: none;
+    padding: 0.5em 1.25em;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #tab-sync-controls button:hover {
+    background-color: #005a9e;
+  }
+  #tab-sync-controls button:focus {
+    outline: 2px solid #004578;
+    outline-offset: 2px;
+  }
+  #tab-sync-controls button.active {
+  background-color: #004578; /* darker blue for active */
+  }
+</style>
 
-# Drive-On-Chip with PLC Design Example for Agilex™ 5 Devices
+<script>
+function setAllTabsTo(labelText) {
+  // Remember scroll position
+  const scrollY = window.scrollY;
+
+  // Click matching labels in tab sets
+  document.querySelectorAll('.tabbed-set').forEach(set => {
+    const labels = set.querySelectorAll('label');
+    labels.forEach(label => {
+      if (label.textContent.trim() === labelText) {
+        label.click();
+      }
+    });
+  });
+
+  // Update button active state
+  document.querySelectorAll('#tab-sync-controls button').forEach(btn => {
+    if (btn.textContent.trim() === labelText) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  //update the indicator text
+  const indicator = document.getElementById('current-selection');
+  if (indicator) {
+    indicator.textContent = `Currently selected: ${labelText}`;
+  }
+
+  window.scrollTo(0, scrollY);
+}
+</script>
+
+# Drive-On-Chip with PLC Design Example for Agilex™ Devices
+
+<center>
+Select your device:
+</center>
+
+<div id="tab-sync-controls" style="display: flex; justify-content: center; gap: 1em; margin-bottom: 1em;">
+  <button onclick="setAllTabsTo('Agilex™ 5')">Agilex™ 5</button>
+  <button onclick="setAllTabsTo('Agilex™ 3')">Agilex™ 3</button>
+</div>
+
+<center>
+<p id="current-selection">Currently selected: None</p>
+</center>
 
 ## Overview
 
@@ -93,7 +181,7 @@ programming languages of these devices provides compatibility across different
 manufacturers and a familiar programming environment for the technicians who
 install and configure them.
 
-The Drive-on-Chip with PLC Design Example for Agilex™ 5 Devices shows how the
+The Drive-on-Chip with PLC Design Example for Agilex™ Devices shows how the
 PLC programming environment can be used to interface to Motor Control
 Soft IP in the FPGA fabric.
 The design example combines a PLC Runtime, webserver and multi-axis simulated
@@ -106,7 +194,7 @@ The following diagrams provide an overview of the interaction of software
 running on ARM CPUs inside the Hard Processor Subsystem (HPS) and hardware
 components running in the programmable logic (FPGA) parts of the device.
 
-For more information of ARM HPS in Altera® Agilex Devices refer to
+For more information of ARM HPS in Altera® Agilex™ Devices refer to
 [User Manuals](#user-manuals) section.
 
 <br>
@@ -136,7 +224,7 @@ of the motor axes independent of the software on the HPS.
 
 ### Software Requirements to run
 
-The following are required to be able to fully exercise the Agilex™ 5 Modular
+The following are required to be able to fully exercise the Agilex™
 Development Kit:
 
 * Host PC with
@@ -145,7 +233,7 @@ Development Kit:
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or
     PuTTY on Windows).
   * Tool to write images for USB sticks or SD cards such as "DiskImager" or "Rufus".
-  * Altera® Quartus® Prime Pro Edition Version 25.1 Programmer and Tools.
+  * Altera® Quartus® Prime Pro Edition Version 25.1/25.1.1 Programmer and Tools.
   * To run the GUI:
     * Python 3.10.5
     * Pip 22.2.2
@@ -155,44 +243,82 @@ Development Kit:
 
 ### Software Requirements to build
 
-* Linux OS installed.
-* 62 GB free storage (~2GB for Quartus® Build and ~60GB for YOCTO/KAS build).
-* 350 MB for Docker Container Cross-Compilation.
-* Python/PIP/KAS for Yocto Build (or a suitable container).
-* Docker Engine Version 26.0 or later with Buildx support for ARM64.
-* Full Altera® Quartus® Prime Pro Edition Version 25.1
-* FPGA NiosV/g Open-Source Tools 25.1 (installed with Quartus® Prime).
-* Altera® Quartus® Agilex™ 5 Support.
-* MATLAB 2021b with Simulink (Optional).
-* DSP Builder for Altera® FPGAs Pro Edition v25.1 (Optional).
+=== "Agilex™ 5"
+
+    * Linux OS installed.
+    * 62 GB free storage (~2GB for Quartus® Build and ~60GB for YOCTO/KAS build).
+    * 350 MB for Docker Container Cross-Compilation.
+    * Python/PIP/KAS for Yocto Build (or a suitable container).
+    * Docker Engine Version 26.0 or later with Buildx support for ARM64.
+    * Full Altera® Quartus® Prime Pro Edition Version 25.1 
+    * FPGA NiosV/g Open-Source Tools 25.1 (installed with Quartus® Prime).
+    * Altera® Quartus® Agilex™ 5 Support.
+    * MATLAB 2021b with Simulink (Optional).
+    * DSP Builder for Altera® FPGAs Pro Edition v25.1 (Optional).
+
+=== "Agilex™ 3"
+
+    * Linux OS installed.
+    * 62 GB free storage (~2GB for Quartus® Build and ~60GB for YOCTO/KAS build).
+    * 350 MB for Docker Container Cross-Compilation.
+    * Python/PIP/KAS for Yocto Build (or a suitable container).
+    * Docker Engine Version 26.0 or later with Buildx support for ARM64.
+    * Full Altera® Quartus® Prime Pro Edition Version 25.1.1
+    * FPGA NiosV/g Open-Source Tools 25.1.1 (installed with Quartus® Prime).
+    * Altera® Quartus® Agilex™ 3 Support.
+    * MATLAB 2021b with Simulink (Optional).
+    * DSP Builder for Altera® FPGAs Pro Edition v25.1.1 (Optional).
 
 ### Hardware Requirements
 
-* Altera® Agilex™; 5 FPGA E-Series 065B Modular Development Kit,
-  ordering code MK-A5E065BB32AES1. Refer to
-  [Agilex™ 5 FPGA E-Series 065B Modular Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html)
-  for more information about the development kit.
-* Power supply.
-* 2 x Micro USB Cable.
-  * USB cable (USB A to micro USB) – JTAG connector.
-  * USB cable (USB A to micro USB) – Serial console.
-* Network cables.
-* Router (including power supply).
-* Micro SD card and USB card writer.
+=== "Agilex™ 5"
+
+    * Altera® Agilex™; 5 FPGA E-Series 065B Modular Development Kit,
+    ordering code MK-A5E065BB32AES1. Refer to
+    [Agilex™ 5 FPGA E-Series 065B Modular Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html)
+    for more information about the development kit.
+    * Power supply.
+    * 2 x Micro USB Cable.
+    * USB cable (USB A to micro USB) – JTAG connector.
+    * USB cable (USB A to micro USB) – Serial console.
+    * Network cables.
+    * Router (including power supply).
+    * Micro SD card and USB card writer.
+
+=== "Agilex™ 3"
+
+    * Agilex™ 3 FPGA C-Series Development Kit,
+    ordering code DK-A3Y135BM16AEA Refer to
+    [Agilex™ 3 FPGA C-Series Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a3y135b.html)
+    for more information about the development kit.
+    * USB-C Power supply (27E to 54W).
+    * USB cable (USB A to USB C) – JTAG connector.
+    * USB cable (USB A to micro USB) – Serial console.
+    * Network cables.
+    * Router (including power supply).
+    * Micro SD card and USB card writer.
 
 <br>
 
-![Agx5-MDK](./common/images/Agx5-MDK.png){:style="display:block; margin-left:auto; margin-right:auto"}
-<center>
+=== "Agilex™ 5"
+    ![Agx5-MDK](./common/images/Agx5-MDK.png){:style="display:block; margin-left:auto; margin-right:auto"}
+    <center>
 
-**Agilex™ 5 FPGA E-Series 065B Modular Development Kit.**
-</center>
+    **Agilex™ 5 FPGA E-Series 065B Modular Development Kit.**
+    </center>
+=== "Agilex™ 3"
+    ![Agx3-MDK](./common/images/Agx3-MDK.png){:style="display:block; margin-left:auto; margin-right:auto"}
+    <center>
+
+    **Agilex™ 3 FPGA C-Series Development Kit.**
+    </center>
+
 <br>
 
 #### Sources
 
 The sources listed in this table are the most current and highly recommended
-for Quartus® 25.1 builds. Users are advised to utilize the updated versions
+for Quartus® builds. Users are advised to utilize the updated versions
 of these building blocks in production environments. Please note that this
 is a sample design and is not suitable for production or final deployment.
 
@@ -202,81 +328,73 @@ is a sample design and is not suitable for production or final deployment.
 
 **Example Design Source Repositories.**
 
-|Component |Location |Branch |
-|-|-|-|
-|Assets Release Tag|[https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-plc-25.1](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-plc-25.1)| rel-plc-25.1|
-|Drive-On-Chip Variants|[https://github.com/altera-fpga/agilex-ed-drive-on-chip](https://github.com/altera-fpga/agilex-ed-drive-on-chip)|rel/25.1|
-|Modular Design Toolkit|[https://github.com/altera-fpga/modular-design-toolkit](https://github.com/altera-fpga/modular-design-toolkit)|rel/25.1|
-|Altera FPGA PLCopen and RTMotion|[https://github.com/altera-fpga/altera-openplc](https://github.com/altera-fpga/altera-openplc)|main|
-|Linux|[https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga)|socfpga-6.12.11-lts|
-|Arm Trusted Firmware|[https://github.com/ARM-software/arm-trusted-firmware](https://github.com/ARM-software/arm-trusted-firmware)|socfpga_v2.12.0|
-|U-Boot|[https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga)|v2025.01|
-|Yocto Project: poky|[https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky)|scarthgap|
-|Yocto Project: meta-intel-fpga|[https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga)|scarthgap|
+=== "Agilex™ 5"
+    |Component |Location |Branch |
+    |-|-|-|
+    |Assets Release Tag|[https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-plc-25.1](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-plc-25.1)| rel-plc-25.1|
+    |Drive-On-Chip Variants|[https://github.com/altera-fpga/agilex-ed-drive-on-chip](https://github.com/altera-fpga/agilex-ed-drive-on-chip)|rel/25.1|
+    |Modular Design Toolkit|[https://github.com/altera-fpga/modular-design-toolkit](https://github.com/altera-fpga/modular-design-toolkit)|rel/25.1|
+    |Altera FPGA PLCopen and RTMotion|[https://github.com/altera-fpga/altera-openplc](https://github.com/altera-fpga/altera-openplc)|main|
+    |Linux|[https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga)|socfpga-6.12.11-lts|
+    |Arm Trusted Firmware|[https://github.com/ARM-software/arm-trusted-firmware](https://github.com/ARM-software/arm-trusted-firmware)|socfpga_v2.12.0|
+    |U-Boot|[https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga)|v2025.01|
+    |Yocto Project: poky|[https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky)|scarthgap|
+    |Yocto Project: meta-intel-fpga|[https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga)|scarthgap|
+
+=== "Agilex™ 3"
+    |Component |Location |Branch |
+    |-|-|-|
+    |Assets Release Tag|[https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-plc-25.1.1](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-plc-25.1.1)| rel-plc-25.1.1|
+    |Drive-On-Chip Variants|[https://github.com/altera-fpga/agilex-ed-drive-on-chip](https://github.com/altera-fpga/agilex-ed-drive-on-chip)|main|
+    |Modular Design Toolkit|[https://github.com/altera-fpga/modular-design-toolkit](https://github.com/altera-fpga/modular-design-toolkit)|main|
+    |Altera FPGA PLCopen and RTMotion|[https://github.com/altera-fpga/altera-openplc](https://github.com/altera-fpga/altera-openplc)|main|
+    |Linux|[https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga)|socfpga-6.12.19-lts|
+    |Arm Trusted Firmware|[https://github.com/ARM-software/arm-trusted-firmware](https://github.com/ARM-software/arm-trusted-firmware)|socfpga_v2.12.1|
+    |U-Boot|[https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga)|v2025.04|
+    |Yocto Project: poky|[https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky)|scarthgap|
+    |Yocto Project: meta-intel-fpga|[https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga)|scarthgap|
 
 </center>
 
 ## Getting Started - run with pre-build binaries
 
 Follow the instructions provided in this section to run this example design in
-Agilex™ 5 FPGA E-Series 065B Modular Development Kit.
+Agilex™ Development Kit.
 
 ### **Download the minimum Pre-built Binaries**
-
-* Download the Agilex™ 5 Modular Development Kit binaries that are located at:
 
 <center>
 
 **Binaries**
 
-| Boot Source            | Link |
-| ---------------------- | ---- |
-| SD Card Image          | [wic.gz](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.gz), [wic.bmap](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.bmap) |
-| QSPI                   | [top.hps.jic](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/top.hps.jic) |
-| Structured Language (ST) program | [agilex_doc.st](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/agilex_doc.st) |
-| GUI                    | [doc-gui.zip](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/doc-gui_1.0.0.zip) |
+=== "Agilex™ 5"
+    Download the Agilex™ 5 Modular Development Kit binaries that are located at:
+
+    | Boot Source            | Link |
+    | ---------------------- | ---- |
+    | SD Card Image          | [wic.gz](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.gz), [wic.bmap](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.bmap) |
+    | QSPI                   | [top.hps.jic](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/top.hps.jic) |
+    | Structured Language (ST) program | [agilex_doc.st](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/agilex_doc.st) |
+    | GUI                    | [doc-gui.zip](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/doc-gui_1.0.0.zip) |
+
+=== "Agilex™ 3"
+    Download the Agilex™ 3 Development Kit binaries that are located at:
+
+    | Boot Source            | Link |
+    | ---------------------- | ---- |
+    | SD Card Image          | [agx3-wic.gz](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/core-image-minimal-agilex3.rootfs.wic.gz), [agx3-wic.bmap](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/core-image-minimal-agilex3.rootfs.wic.bmap) |
+    | QSPI                   | [agx3-top.hps.jic](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/agx3-top.hps.jic) |
+    | Structured Language (ST) program | [agx3-agilex_doc.st](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/agilex_doc.st) |
+    | GUI                    | [agx3-doc-gui.zip](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/doc-gui_1.0.0.zip) |
 
 </center>
 
 ### Setting Up your Development Board
 
-* Configure the board switches:
-  The following provides the default configuration for all the switches in the
-  board.
-
-![board-1](./common/images/board-1.png){:style="display:block; margin-left:auto; margin-right:auto"}
-<center>
-
-**Development Board switch position**
-</center>
-<br>
-
-!!! note "Main configurations used in this example design"
-
-    JTAG:     SOM SW4[2:1]=OFF:OFF <br>
-    ASx4 (QSPI):  SOM SW4[2:1]=ON:ON
-
-<br>
-
-* Connect micro USB cable from bottom left of the carrier board to PC (`J35`).
-  This will be used for JTAG communication (see figure below).
-* Connect micro USB cable from bottom right of the SOM board to PC
-  (`J2`, HSP_UART). This will be used for HPS UART communication. Look at what
-  ports are enumerated on your host computer, there should be a series of
-  four. Use the 3rd one in the list as the HPS serial port (see figure below).
-* If ethernet capabilities or remote connection via `ssh` is required connect an
-  ethernet cable to the ethernet port on the SOM board (`J6`, ETH 1G HPS) and make
-  sure your device is in the same network as your intended host device. After
-  Linux boots, check the IP address of the `end2` ethernet interface using the
-  `ip addr` command.
-
-![Agx-MDK-Conn](./common/images/Agx5-MDK-Conn.png){:style="display:block; margin-left:auto; margin-right:auto"}
-<center>
-
-**USB connections to the board**
-</center>
-<br>
-
+=== "Agilex™ 5"
+    --8<--  "./docs/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/board-setup.md"
+=== "Agilex™ 3"
+    --8<-- "./docs/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/board-setup-agx3.md"
 
 
 
@@ -354,48 +472,10 @@ provide instructions using the `Disks` utility (based on `e2fsprogs`):
 
 ### Flash The QSPI
 
-* Download the `.jic` image from the prebuilt binary links above.
-* Power down the board.
-* Set **MSEL** dipswitch **S4** on SOM to **JTAG: OFF-OFF**
-* Power up the board.
-* Program the QSPI with the following command.
-
-    ```bash
-    quartus_pgm -c 1 -m jtag -o "pvi;top.hps.jic" 
-    ```
-
-
-* **(Optional)** Use the Quartus® Programmer GUI
-
-  * Launch the Quartus® Programmer and Configure the **"Hardware Setup..."**
-    settings as follows:
-  <br>
-
-  ![hw-setup-set](./common/images/hw-setup-set.png){:style="display:block; margin-left:auto; margin-right:auto"}
-
-  <br>
-
-  * Click "Auto Detect", select the device `A5EC065BB32AR0` and press
-    **"Change File.."**
-  <br>
-
-  ![programmer-agx5](./common/images/programmer-agx5.png){:style="display:block; margin-left:auto; margin-right:auto"}
-
-  <br>
-
-  * Select the `.jic` file you downloaded earlier. The `MT25QU02G` device
-    should now show. Select the **"Program/Configure"** box, and press **"Start"**.
-    Wait until completed (It could take several minutes).
-  <br>
-
-  ![programmer-agx5-2](./common/images/programmer-agx5-2.png){:style="display:block; margin-left:auto; margin-right:auto"}
-
-  <br>
-
-* Power down the board. Set **MSEL** dip switch **S4** on SOM to **ASX4 (QSPI): ON-ON**
-
-<br>
-
+=== "Agilex™ 5"
+    --8<--  "./docs/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/prog-qspi.md"
+=== "Agilex™ 3"
+    --8<-- "./docs/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/prog-qspi-agx3.md"
 
 ### **Run the OpenPLC Docker Container.**
 
@@ -405,21 +485,38 @@ Use the following diagram to connect the required equipment to run this example
 design.
 
 <br>
+=== "Agilex™ 5"
+    ![plc-ed-conn](./doc-plc/images/plc-ed-conn.png){:style="display:block; margin-left:auto; margin-right:auto;"}
 
-![plc-ed-conn](./doc-plc/images/plc-ed-conn.png){:style="display:block; margin-left:auto; margin-right:auto;"}
-<center>
+    <center>
 
-**Development Kit and PC connection diagram**
-</center>
-<br>
+    **Development Kit and PC connection diagram**
+    </center>
+    <br>
 
-* Power up the board and setup the serial terminal emulator (minicom, putty, etc):
-  * Select the correct `COMx` port. From the HPS serial UART, select the third
-   COM port (out of four).
-  * **Serial Port configuration**:
-    * Baud rate: 115200, Data bits: 8,
-      Stop bits: 1, CRC: disabled, Hardware flow control: disabled
-  * Connect your terminal emulator.
+    * Power up the board and setup the serial terminal emulator (minicom, putty, etc):
+    * Select the correct `COMx` port. From the HPS serial UART, select the third
+    COM port (out of four).
+    * **Serial Port configuration**:
+        * Baud rate: 115200, Data bits: 8,
+        Stop bits: 1, CRC: disabled, Hardware flow control: disabled
+    * Connect your terminal emulator.
+
+=== "Agilex™ 3"
+    ![plc-ed-conn-agx3](./doc-plc/images/plc-ed-conn-agx3.png){:style="display:block; margin-left:auto; margin-right:auto;"}
+
+    <center>
+
+    **Development Kit and PC connection diagram**
+    </center>
+    <br>
+
+    * Power up the board and setup the serial terminal emulator (minicom, putty, etc):
+    * Select the correct `COMx` port. From the HPS serial UART.
+    * **Serial Port configuration**:
+        * Baud rate: 115200, Data bits: 8,
+        Stop bits: 1, CRC: disabled, Hardware flow control: disabled
+    * Connect your terminal emulator.
 
 <r> To continue, select method a) or method b) to deploy a Docker container image </r>
 
@@ -454,11 +551,19 @@ design.
 
 <br>
 
-![eth-interface](./common/images/eth-interface.png){:style="display:block; margin-left:auto; margin-right:auto;"}
-<center>
+=== "Agilex™ 5"
+    ![eth-interface](./common/images/eth-interface.png){:style="display:block; margin-left:auto; margin-right:auto;"}
+    <center>
 
-**Agilex™ 5 Modular Development Kit IP Address.**
-</center>
+    **Agilex™ 5 Modular Development Kit IP Address.**
+    </center>
+
+=== "Agilex™ 3"
+    ![eth-interface](./common/images/eth-interface-agx3.png){:style="display:block; margin-left:auto; margin-right:auto;"}
+    <center>
+
+    **Agilex™ 3 C-series Development Kit IP Address.**
+    </center>
 <br>
 
 * Take a note of the board's IP address or `<dk-ip-address>`
@@ -605,7 +710,7 @@ python __main__.py
 ```
 
 * Select the right JTAG master from the menu (if it is not selected automatically).
-  Usually AE5(C0…0)...
+  Usually AE5(C0…0)... (or similar)
 
 <br>
 
@@ -651,11 +756,19 @@ design example. Additionally, there are two extra user flows that you can explor
 
 **More resources.**
 
-| Source | Link |
-| ---------------------------------- | ---- |
-| Pre-created QAR file               | [DOC_PLC_TANDEM_MOTORSIM_AGILEX5.qar](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/DOC_PLC_TANDEM_MOTORSIM_AGILEX5.qar) |
-| JIC/RBF files                      | [top.hps.jic](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/top.hps.jic) <br> [top.core.rbf](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/top.core.rbf) |
-| u-boot-spl-dtb.hex                 | [u-boot-spl-dtb.hex](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/u-boot-spl-dtb.hex) |
+=== "Agilex™ 5"
+    | Source | Link |
+    | ---------------------------------- | ---- |
+    | Pre-created QAR file               | [DOC_PLC_TANDEM_MOTORSIM_AGILEX5.qar](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/DOC_PLC_TANDEM_MOTORSIM_AGILEX5.qar) |
+    | JIC/RBF files                      | [top.hps.jic](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/top.hps.jic) <br> [top.core.rbf](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/top.core.rbf) |
+    | u-boot-spl-dtb.hex                 | [u-boot-spl-dtb.hex](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/u-boot-spl-dtb.hex) |
+
+=== "Agilex™ 3"
+    | Source | Link |
+    | ---------------------------------- | ---- |
+    | Pre-created QAR file               | [DOC_PLC_TANDEM_MOTORSIM_AGILEX3.qar](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/DOC_PLC_TANDEM_MOTORSIM_AGILEX3.qar) |
+    | JIC/RBF files                      | [agx3-top.hps.jic](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/agx3-top.hps.jic) <br> [agx3-top.core.rbf](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/agx3-top.core.rbf) |
+    | u-boot-spl-dtb.hex                 | [agx3-u-boot-spl-dtb.hex](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/agx3-u-boot-spl-dtb.hex) |
 
 </center>
 
@@ -678,9 +791,9 @@ y { color: #CCCC00; font-weight: bold;}
  |              | [Download the minimum Pre-built Binaries.](#download-the-minimum-pre-built-binaries)                      |<g>&check;</g>|<r>&cross;</r>|<r>&cross;</r>|
  |HW-Compilation| [Compile pre-created QAR with Quartus®.](./doc-plc/other-user-flow.md#compiling-the-project-using-a-mdt-qar-file)     |<r>&cross;</r>|<g>&check;</g>|<r>&cross;</r>|
  |              | [Generating and Building the NiosV/g BSP for the Drive-On-Chip Application.](./doc-plc/other-user-flow.md#compiling-and-building-the-niosv-application-and-bsp)     |<r>&cross;</r>|<g>&check;</g>|<r>&cross;</r>|
- |              | [Creating and Building the Design based on Modular Design Toolkit (MDT).](https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/25.1/HPS_NIOSVg_DoC_dual_axis/Readme.md)                                 |<r>&cross;</r>|<r>&cross;</r>|<g>&check;</g>|
+ |              | [Creating and Building the Design based on Modular Design Toolkit (MDT).](https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/main/HPS_NIOSVg_DoC_dual_axis/Readme.md)                                 |<r>&cross;</r>|<r>&cross;</r>|<g>&check;</g>|
  |              | [Creating the QSPI Flash and SD card configuration bitstreams for the board (JIC/RBF).](./doc-plc/other-user-flow.md#creating-the-qspi-flash-and-sd-card-configuration-bitstreams-for-the-board)        |<r>&cross;</r>|<g>&check;</g>|<g>&check;</g>|
- |SW-Compilation| [Create SD card image (.wic) using YOCTO/KAS](https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/25.1/sw/README.md) <br> <r>NOTE</r>: use <g>**KAS_MACHINE=agilex5_modular**</g> and <g>**kas_dual_axis.yml**</g> configuration                                                                                                              |<r>&cross;</r>|<g>&check;</g>|<g>&check;</g>|
+ |SW-Compilation| [Create SD card image (.wic) using YOCTO/KAS](https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/main/sw/README.md) <br> <r>NOTE</r>: use <g>**KAS_MACHINE=agilex5_modular**</g> or <g>**KAS_MACHINE=agilex3**</g> <br> and <g>**kas_dual_axis.yml**</g> configuration                                                                                                              |<r>&cross;</r>|<g>&check;</g>|<g>&check;</g>|
  |              | [Altera OpenPLC Docker Container Image Cross-compilation.](https://github.com/altera-fpga/altera-openplc#build-a-docker-image) <y> Optional </y>                              |<r>&cross;</r>|<y>&#42;</y>  |<y>&#42;</y>|
  |Programming   | [Setting Up your Development Board.](#setting-up-your-development-board)                                  |<g>&check;</g>|<g>&check;</g>|<g>&check;</g>|
  |              | [Burn the SD card image.](#burn-the-sd-card-image)                                                        |<g>&check;</g>|<g>&check;</g>|<g>&check;</g>|
@@ -694,7 +807,7 @@ y { color: #CCCC00; font-weight: bold;}
 
 ## Example Design Documentation
 
-Drive-On-Chip with PLC Design Example for Agilex™ 5 Devices
+Drive-On-Chip with PLC Design Example for Agilex™ Devices
 
 * [Design Example Features.](./doc-plc/features-plc.md)
 * [FPGA Hardware Functional Description.](./doc-plc/hw-funct-descr.md)
@@ -728,6 +841,7 @@ Drive-On-Chip with PLC Design Example for Agilex™ 5 Devices
 * [NiosV Processor for Altera® FPGA](https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/processors-peripherals/niosv.html).
 * [Tandem Motion-Power 48 V Board Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/683164/current/about-the-tandem-motion-power-48-v-board.html).
 * [Agilex™ 5 FPGA E-Series 065B Modular Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html).
+* [Agilex™ 3 FPGA C-Series Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a3y135b.html).
 * [Motor Control Designs with an Integrated FPGA Design Flow](https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/wp/wp-01162-motor-control-toolflow.pdf).
 * [Install Docker Engine](https://docs.docker.com/engine/install/).
 * [Docker Build: Multi-Platform Builds](https://docs.docker.com/build/building/multi-platform/).
@@ -746,14 +860,14 @@ Altera® Corporation technologies may require enabled hardware, software or serv
 activation. No product or component can be absolutely secure. Performance varies
 by use, configuration and other factors. Your costs and results may vary. You may
 not use or facilitate the use of this document in connection with any infringement
-or other legal analysis concerning Altera® or Intel® products described herein. You
+or other legal analysis concerning Altera® products described herein. You
 agree to grant Altera® Corporation a non-exclusive, royalty-free license to any
 patent claim thereafter drafted which includes subject matter disclosed herein.
 No license (express or implied, by estoppel or otherwise) to any intellectual
 property rights is granted by this document, with the sole exception that you
 may publish an unmodified copy. You may create software implementations based on
 this document and in compliance with the foregoing that are intended to execute
-on the Altera® or Intel® product(s) referenced in this document. No rights are granted
+on the Altera® or product(s) referenced in this document. No rights are granted
 to create modifications or derivatives of this document. The products described
 may contain design defects or errors known as errata which may cause the product
 to deviate from published specifications. Current characterized errata are available

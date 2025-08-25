@@ -1,5 +1,6 @@
 
 
+
 # HPS Remote System Update Example for the Agilex™ 5 FPGA E-Series 065B Premium Development Kit
 
 ## Intro 
@@ -27,17 +28,26 @@ Refer to the  [Hard Processor System Remote System Update User Guide: Agilex™ 
 
 ## Component Versions 
 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1 and the following software component versions are used to build the binaries presented in this page:
+
+| Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
+| :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
+| Agilex 3 GHRD                         | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.1.1_REL_GSRD_PR   |
+| Agilex 5 GHRD                                  | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.1.1_REL_GSRD_PR |
+| Agilex 7 GHRD | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.1.1_REL_GSRD_PR |
+| Stratix 10 GHRD | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.1.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.19-lts | QPDS25.1.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.1   | QPDS25.1.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.04 | QPDS25.1.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
+| Yocto Project: meta-intel-fpga        | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest              |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.1.1_REL_GSRD_PR |
+
+**Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
+
+**Note:** [librsu](https://github.com/altera-fpga/librsu/) uses **main** branch.
+
 **Note:** RSU functionality is first fully enabled in U-Boot in 24.3 release, while Linux functionality is enabled starting on 24.2 release.
-
-This example was created with Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1 and the following component versions.
-
-| Repository | Branch/Tag |
-| :-- | :-- |
-| [agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | QPDS25.1_REL_GSRD_PR |
-| [linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.11-lts/QPDS25.1_REL_GSRD_PR |
-| [arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.0/QPDS25.1_REL_GSRD_PR |
-| [u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.01/QPDS25.1_REL_GSRD_PR |
-| [librsu](https://github.com/altera-fpga/librsu/) | main |
 
 ## Prerequisites 
 
@@ -45,7 +55,7 @@ The following items are required to run the RSU example.
 
 - Host PC running Ubuntu 22.04 LTS (other Linux versions may work too) 
 - Minimum 48 GB of RAM, required for compiling the hardware designs 
-- Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1  for compiling the hardware projects, generating the flash images and writing to flash 
+- Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1  for compiling the hardware projects, generating the flash images and writing to flash 
 - cmake/3.24.0  (build configuration tool) or or above to build LibRSU library.
 - Access to Internet to download the hardware project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. 
 - [Agilex™ 5 E-Series Premium Development Kit (DK-A5E065BB32AES1)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html)  for running the example. 
@@ -95,11 +105,11 @@ Download the compiler toolchain, add it to the PATH variable, to be used by the 
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
-gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
@@ -108,7 +118,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -133,7 +143,7 @@ cd $TOP_FOLDER
 # Build 4 versions of the hardware design
 rm -rf hw && mkdir hw && cd hw 
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 unzip a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 rm -f a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 cd ..
@@ -147,7 +157,7 @@ EOT
 
 # Create script to update wdog configuration
 cat <<EOT > update-wdog.tcl
-package require -exact qsys 25.1
+package require -exact qsys 25.1.1
 load_component agilex_hps
 set_component_parameter_value Rst_sdm_wd_config {2}
 set_component_parameter_value Rst_watchdog_en {1}
@@ -163,16 +173,16 @@ cd ghrd.$version
 # Customizing to the current copy of the GHRD
 quartus_sh -t ../update-qsf.tcl
 # Customize WDT 
-pushd hps_subsys; qsys-script --qpf=../top.qpf --script=../../update-wdog.tcl --system-file=hps_subsys.qsys;popd
+qsys-script --qpf=top.qpf --script=../update-wdog.tcl --system-file=hps_subsys.qsys
 # update sysid with the loop iterator 'value'
 cat <<EOT > update-sysid.tcl
-package require -exact qsys 25.1
+package require -exact qsys 25.1.1
 load_component sysid
 set_component_parameter_value id {0xABAB000$version}
 save_component
 save_system peripheral_subsys.qsys
 EOT
-pushd peripheral_subsys; qsys-script --qpf=../top.qpf --script=../update-sysid.tcl --system-file=peripheral_subsys.qsys;popd
+qsys-script --qpf=top.qpf --script=update-sysid.tcl --system-file=peripheral_subsys.qsys
 # Finsish customization and now building the hardware design
 make legacy_baseline-build
 cd ..
@@ -202,7 +212,7 @@ rm -rf arm-trusted-firmware
 git clone https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 # checkout the branch used for this document, comment out to use default
-git checkout -b test -t origin/socfpga_v2.12.0
+git checkout -b test -t origin/socfpga_v2.12.1
 make -j 48 PLAT=agilex5 bl31
 cd ..
 ```
@@ -225,17 +235,13 @@ rm -rf u-boot-socfpga
 git clone https://github.com/altera-fpga/u-boot-socfpga 
 cd u-boot-socfpga 
 # comment out next line to use the latest default branch 
-git checkout -b test -t origin/socfpga_v2025.01 
+git checkout -b test -t origin/socfpga_v2025.04 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
 # only boot from SD, do not try QSPI and NAND
 sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&mmc;/g' arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi
 # disable NAND in the device tree
 sed -i '/&nand {/!b;n;c\\tstatus = "disabled";' arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi
-
-## Fix to report FSBL state to SDM HSD: 14023897270
-sed -i '/mbox_init();/d' arch/arm/mach-socfpga/spl_agilex5.c
-sed -i '/timer_init();/a\\tmbox_init();\n\tmbox_hps_stage_notify(HPS_EXECUTION_STATE_FSBL);' arch/arm/mach-socfpga/spl_agilex5.c
 
 # link to atf
 ln -s ../arm-trusted-firmware/build/agilex5/release/bl31.bin 
@@ -313,7 +319,7 @@ rm -rf linux-socfpga
 git clone https://github.com/altera-fpga/linux-socfpga 
 cd linux-socfpga 
 # checkout the branch used for this document, comment out to use default 
-git checkout -b test -t origin/socfpga-6.12.11-lts 
+git checkout -b test -t origin/socfpga-6.12.19-lts 
 # configure the RSU driver to be built into the kernel 
 make clean && make mrproper 
 make defconfig 
@@ -395,8 +401,13 @@ For reference, an example of the  Programming File Generator configuration file 
 ```bash 
 cd $TOP_FOLDER 
 # Get the .pfg file
-wget https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/rsu/collateral/initial_image.pfg
+wget https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/rsu/collateral/initial_image.pfg
 
+# Create Initial Image for previous release (in case needed to test  combined application)
+~/altera_pro/25.1/quartus/bin/quartus_pfg -c initial_image.pfg
+mv initial_image.jic initial_image_prev.jic
+mv initial_image_jic.rpd initial_image_jic_prev.rpd
+mv initial_image_jic.map initial_image_jic_prev.map
 
 # Create Initial Image for this release
 quartus_pfg -c initial_image.pfg 
@@ -576,7 +587,42 @@ The following decision firmware update image is created.
 
 ### Creating the Combined Application Image 
 
-<span style="color: red;">NOTE: In this release the Combined Application is not supported hence 25.1 release is considered the first release in which RSU is supported, so it is not recomendded to combine images from 25.1 with images created with previous releases.  This is derived from the implementation of QSPI ownership selection from Quartus in 25.1 release.</span>
+The first official version in which RSU is supported is 25.1 release. Because of this the Combined Application is supported starting on 25.1.1 release.
+
+
+
+The following commands are used to create the combined application image used in this example.
+
+
+```bash 
+cd $TOP_FOLDER 
+mkdir -p images
+rm -f images/combined_application.rpd
+quartus_pfg -c hw/ghrd.3/output_files/legacy_baseline.sof \
+images/combined_application.rpd \
+-o app_image=hw/ghrd.2/output_files/legacy_baseline.sof \
+-o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o app_image_hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o bitswap=ON \
+-o rsu_upgrade=ON \
+-o app_image_only=ON
+```
+
+
+The following file is created.
+
+- $TOP_FOLDER/images/combined_application.rpd 
+
+**Notes:**
+
+* The first SOF file contains the factory image, from which data is taken to fill out the new decision firmware data structure. This includes QSPI clock and pin settings, the value of max_retry parameter, and the selected behavior of the HPS watchdog. The actual configuration data from this SOF file is not used.
+* The **app_image** parameter contains the SOF that is used for the application image section of the combined image.
+* The **hps_path** parameter is unused, and may be removed in the future.
+* The **app_image_hps_path** parameter contains the HPS FSBL hex file to be used for the application imge section of the combined image.
+* When using HPS first, the additional parameter **"-o hps=1"** needs to be added, and
+the following files are created **combined_application.hps.rpd** (combined application image)  and **combined_application.core.rbf** (corresponding fabric configuration file).
+
 
 
 
@@ -615,9 +661,9 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
   ```bash 
   cd $TOP_FOLDER 
   rm -rf yocto && mkdir yocto && cd yocto 
-  git clone -b styhead https://git.yoctoproject.org/poky 
-  git clone -b styhead https://git.yoctoproject.org/meta-intel-fpga 
-  git clone -b styhead   https://github.com/openembedded/meta-openembedded 
+  git clone -b walnascar https://git.yoctoproject.org/poky 
+  git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga 
+  git clone -b walnascar   https://github.com/openembedded/meta-openembedded 
   # work around issue
   echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
   source poky/oe-init-build-env ./build 
@@ -815,7 +861,7 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 1. Power up the board and press any key when prompted, to get to the U-Boot command prompt.
 
     ```
-    U-Boot SPL 2025.01-35102-g135e53726d-dirty (Jan 28 2025 - 13:23:54 -0600)
+    U-Boot SPL 2025.04-35102-g135e53726d-dirty (Jan 28 2025 - 13:23:54 -0600)
     Reset state: Cold
     MPU           800000 kHz
     L4 Main	      400000 kHz
@@ -835,11 +881,11 @@ This section demonstrates how to use U-Boot to perform the following basic opera
     WARNING: Data cache not enabled
     NOTICE:  BL31: Boot Core = 0
     NOTICE:  BL31: CPU ID = 0
-    NOTICE:  BL31: v2.12.0(release): QPDS25.1_REL_GSRD_PR
+    NOTICE:  BL31: v2.12.1(release): QPDS25.1.1_REL_GSRD_PR
     NOTICE:  BL31: Built : 13:23:25, Nov 23 2024
     
     
-    U-Boot 2025.01-35102-g135e53726d-dirty (Jan 28 2025 - 13:23:54 -0600)socfpga_agilex5
+    U-Boot 2025.04-35102-g135e53726d-dirty (Jan 28 2025 - 13:23:54 -0600)socfpga_agilex5
     
     CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
     Model: SoCFPGA Agilex5 SoCDK
@@ -953,10 +999,10 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 
     ```bash
     SOCFPGA # rsu display_dcmf_version 
-    DCMF0 version = 25.1.0 
-    DCMF1 version = 25.1.0  
-    DCMF2 version = 25.1.0  
-    DCMF3 version = 25.1.0  
+    DCMF0 version = 25.1.1
+    DCMF1 version = 25.1.1
+    DCMF2 version = 25.1.1
+    DCMF3 version = 25.1.1
     SOCFPGA # rsu slot_count 
     Number of slots = 3. 
     SOCFPGA # rsu slot_get_info 0 
@@ -1781,9 +1827,81 @@ This example uses U-Boot commands to demonstrate how sub-partition table corrupt
 
 ### Using the Combined Application Image
 
-<span style="color: red;">NOTE: In this release the Combined Application is not supported hence 25.1 release is considered the first release in which RSU is supported, so it is not recomendded to combine images from 25.1 with images created with previous releases.  This is derived from the implementation of QSPI ownership selection from Quartus in 25.1 release.</span>
 
+This section shows an example of using a combined application image, from U-Boot.
+Similar commands can be used from Linux.
 
+The combined application images are used the exact same way as regular application
+images, just that they first update the decision firmware and decision firmware data if
+necessary, before the device is configured with the functionality from the application
+SOF.
+
+**Note:** The combined application images do not have absolute pointers inside like the regular application images, the factory update images, or the decision firmware update images. Because of this, they can be written to flash with any of the U-Boot and LibRSU APIs that write to slots.
+
+1. Program the RSU initial image created with the previous version (**$TOP_FOLDER/initial_image_prev.jic**).
+
+    ```bash
+    cd $TOP_FOLDER
+    quartus_pgm -c 1 -m jtag -o "pvi;./initial_image_prev.jic"
+    ```
+
+2. Power cyle the board, stop to U-Boot prompt and query the decision firmware
+information from U-Boot, this should be a previous version.
+
+    ```bash
+    SOCFPGA # rsu display_dcmf_version
+    DCMF0 version = 25.1.0
+    DCMF1 version = 25.1.0
+    DCMF2 version = 25.1.0
+    DCMF3 version = 25.1.0
+    ```
+
+3. Find an unused slot (slot 1, P2), erase it, write the combined application image to it, verify that it was programmed successfully  and check it is now the highest priority.
+
+    ```bash 
+    SOCFPGA # rsu slot_erase 1
+    Slot 1 erased.
+    SOCFPGA # fatload mmc 0:1 ${loadaddr} combined_application.rpd
+    151552 bytes read in 9 ms (16.1 MiB/s)
+    SOCFPGA # rsu slot_program_buf 1 ${loadaddr} ${filesize}
+    Slot 1 was programmed with buffer=0x0000000002000000 size=3510272.
+    SOCFPGA # rsu slot_verify_buf 1 ${loadaddr} ${filesize}
+    Slot 1 was verified with buffer=0x0000000002000000 size=3510272.
+    SOCFPGA # rsu slot_get_info 1
+    NAME: P2
+    OFFSET: 0x0000000002000000
+    SIZE: 0x01000000
+    PRIORITY: 1
+    ```
+
+4. Pass control to the combined application update image.
+
+    ```bash
+    SOCFPGA # rsu slot_load 1
+    ```
+
+5. The combined application image checks the currently used decision firmware copy, it sees that it is older, then it updates the decision firmware and decision firmware data, then it loads the actual application image section. Everything takes a few seconds.
+
+6. Stop at U-Boot prompt and confirm the decision firmware is updated, and the
+application image is running fine.
+
+    ```bash
+    SOCFPGA # rsu status_log
+    Current Image : 0x02000000
+    Last Fail Image : 0x00000000
+    State : 0x00000000
+    Version : 0x00000202
+    Error location : 0x00000000
+    Error details : 0x00000000
+    Retry counter : 0x00000000
+    SOCFPGA # rsu display_dcmf_version
+    DCMF0 version = 25.1.1
+    DCMF1 version = 25.1.1
+    DCMF2 version = 25.1.1
+    DCMF3 version = 25.1.1
+    ```
+
+7. Power cycle the board, the same combined application image is loaded, as it is the highest priority. But it takes a couple of seconds less, as the decision firmware does not need to be updated.
 
 ## Exercising RSU Client 
 
@@ -1887,10 +2005,10 @@ This section demonstrates how to use the RSU client to perform the following bas
 
     ```bash 
     root@linux:~# ./rsu_client --display-dcmf-version 
-    DCMF0 version = 25.1.0 
-    DCMF1 version = 25.1.0
-    DCMF2 version = 25.1.0
-    DCMF3 version = 25.1.0
+    DCMF0 version = 25.1.1
+    DCMF1 version = 25.1.1
+    DCMF2 version = 25.1.1
+    DCMF3 version = 25.1.1
     Operation completed 
     ```
 

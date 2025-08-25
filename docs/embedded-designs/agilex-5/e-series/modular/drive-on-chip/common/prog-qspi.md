@@ -1,4 +1,3 @@
-### Flash The QSPI
 
 * Download the `.jic` image from the prebuilt binary links above.
 * Power down the board.
@@ -39,5 +38,4 @@
   <br>
 
 * Power down the board. Set **MSEL** dip switch **S4** on SOM to **ASX4 (QSPI): ON-ON**
-
 <br>

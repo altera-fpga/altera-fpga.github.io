@@ -1,6 +1,6 @@
 # All Drivers, Altera Driver
 
-This table comprehensively lists all Altera drivers available for Agilex 5 and Agilex 7. 
+This table comprehensively lists all Altera drivers available for Agilex 3, Agilex 5 and Agilex 7. 
 
 You can filter your search by entering your query into any number of available columns.
 

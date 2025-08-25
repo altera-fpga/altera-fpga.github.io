@@ -36,54 +36,59 @@ The following are required in order to be able to fully exercise the S10 GSRD:
   - Linux - Ubuntu 22.04 was used to create this page, other versions and distributions may work too
   - Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows)
   - Micro SD card slot or Micro SD card writer/reader
-  - Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1
+  - Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1
   - Local Ethernet network, with DHCP server (will be used to provide IP address to the board)
 
 ### Release Contents
 
 #### Release Notes
 
-The Intel FPGA HPS Embedded Software release notes can be accessed from the following link: [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.1_REL_GSRD_PR](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.1_REL_GSRD_PR)
+The Intel FPGA HPS Embedded Software release notes can be accessed from the following link: [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.1.1_REL_GSRD_PR](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.1.1_REL_GSRD_PR)
 
 #### Prebuilt Binaries
 
 <h5>Binaries for SD Card Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2025.04/gsrd/s10_htile_gsrd/](https://releases.rocketboards.org/2025.04/gsrd/s10_htile_gsrd/)
+The release files are accessible at [https://releases.rocketboards.org/2025.08/gsrd/s10_htile_gsrd/](https://releases.rocketboards.org/2025.08/gsrd/s10_htile_gsrd/)
 
 The source code is also included on the SD card in the Linux rootfs path `/home/root`:
 
 | **File** | **Description** | 
 | :-- | :-- | 
-| linux-socfpga-v6.12.11-lts-src.tar.gz | Source code for Linux kernel | 
-| u-boot-socfpga-v2025.01-src.tar.gz | Source code for U-Boot | 
-| arm-trusted-firmware-v2.12.0-src.tar.gz | Source code for Arm Trusted Firmware | 
+| linux-socfpga-v6.12.19-lts-src.tar.gz | Source code for Linux kernel | 
+| u-boot-socfpga-v2025.04-src.tar.gz | Source code for U-Boot | 
+| arm-trusted-firmware-v2.12.1-src.tar.gz | Source code for Arm Trusted Firmware | 
 
 Before downloading the hardware design please read the agreement in the link [https://www.intel.com/content/www/us/en/programmable/downloads/software/license/lic-prog_lic.html](https://www.intel.com/content/www/us/en/programmable/downloads/software/license/lic-prog_lic.html)
 
 <h5>Binaries for NAND Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2025.04/nand/s10_htile_nand/](https://releases.rocketboards.org/2025.04/nand/s10_htile_nand/)
+The release files are accessible at [https://releases.rocketboards.org/2025.08/nand/s10_htile_nand/](https://releases.rocketboards.org/2025.08/nand/s10_htile_nand/)
 
 <h5>Binaries for QSPI Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2025.04/qspi/s10_htile_qspi/](https://releases.rocketboards.org/2025.04/qspi/s10_htile_qspi/)
+The release files are accessible at [https://releases.rocketboards.org/2025.08/qspi/s10_htile_qspi/](https://releases.rocketboards.org/2025.08/qspi/s10_htile_qspi/)
 
 **Note**: To boot from QSPI is needed to remove SD card memory as SD Card memory has higher precedence in the boot order.
 
 #### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1 and the following software component versions are used to build the GSRD: 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1 and the following software component versions are used to build the binaries presented in this page:
 
-| **Component** | **Location** | **Branch** | **Commit ID/Tag** |
-| :-- | :-- | :-- | :-- |
-| GHRD | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | master | QPDS25.1_REL_GSRD_PR |
-| Linux | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.11-lts | QPDS25.1_REL_GSRD_PR |
-| Arm Trusted Firmware | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.0 | QPDS25.1_REL_GSRD_PR |
-| U-Boot | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.01 | QPDS25.1_REL_GSRD_PR |
-| Yocto Project | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | styhead | latest |
-| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | styhead | latest |
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | styhead | QPDS25.1_REL_GSRD_PR |
+| Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
+| :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
+| Agilex 3 GHRD                         | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.1.1_REL_GSRD_PR   |
+| Agilex 5 GHRD                                  | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.1.1_REL_GSRD_PR |
+| Agilex 7 GHRD | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.1.1_REL_GSRD_PR |
+| Stratix 10 GHRD | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.1.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.19-lts | QPDS25.1.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.1   | QPDS25.1.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.04 | QPDS25.1.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
+| Yocto Project: meta-intel-fpga        | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest              |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.1.1_REL_GSRD_PR |
+
+**Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 ### GHRD Overview
 
@@ -283,7 +288,7 @@ The QSPI JIC image contains the FPGA configuration bitstream, and the U-Boot SPL
 1\. Download and extract the image file:
 
 ```bash
-wget https://releases.rocketboards.org/2025.04/gsrd/s10_htile_gsrd/ghrd_1sx280hu2f50e1vgas.jic.tar.gz
+wget https://releases.rocketboards.org/2025.08/gsrd/s10_htile_gsrd/ghrd_1sx280hu2f50e1vgas.jic.tar.gz
 
 tar xf ghrd_1sx280hu2f50e1vgas.jic.tar.gz
 ```
@@ -310,7 +315,7 @@ This section explains how to create the SD card necessary to boot Linux, using t
 
 <h5>Write SD Card on Linux</h5>
 
-1\. Download the SD card image from [https://releases.rocketboards.org/2025.04/gsrd/s10_htile_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2025.04/gsrd/s10_htile_gsrd/sdimage.tar.gz) and extract it.
+1\. Download the SD card image from [https://releases.rocketboards.org/2025.08/gsrd/s10_htile_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2025.08/gsrd/s10_htile_gsrd/sdimage.tar.gz) and extract it.
 
 The extacted file is named `gsrd-console-image-stratix10.wic`.
 
@@ -338,7 +343,7 @@ $ sudo sync
 
 <h5>Write SD Card on Windows</h5>
 
-1\. Download the SD card image from [https://releases.rocketboards.org/2025.04/gsrd/s10_htile_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2025.04/gsrd/s10_htile_gsrd/sdimage.tar.gz) and extract it.
+1\. Download the SD card image from [https://releases.rocketboards.org/2025.08/gsrd/s10_htile_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2025.08/gsrd/s10_htile_gsrd/sdimage.tar.gz) and extract it.
 
 The extacted file is named `gsrd-console-image-stratix10.wic`.
 
@@ -531,7 +536,7 @@ The following are exercised:
 
 In order to register an interrupt handler to a specific GPIO, you will first need to determine the GPIO number used.
 
-1\. Open the Linux Device Tree [socfpga_stratix10_qse_pcie_sgmii_ghrd.dtsi](https://raw.githubusercontent.com/altera-fpga/meta-intel-fpga-refdes/styhead/recipes-bsp/device-tree/files/socfpga_stratix10_qse_sgmii_ghrd.dtsi) file and look up the labels for the DIP switches and Push button GPIOs:
+1\. Open the Linux Device Tree [socfpga_stratix10_qse_pcie_sgmii_ghrd.dtsi](https://raw.githubusercontent.com/altera-fpga/meta-intel-fpga-refdes/walnascar/recipes-bsp/device-tree/files/socfpga_stratix10_qse_sgmii_ghrd.dtsi) file and look up the labels for the DIP switches and Push button GPIOs:
 
 ```bash
  button_pio: gpio@f9001060 {
@@ -847,11 +852,11 @@ Download the compiler toolchain, add it to the PATH variable, to be used by the 
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
-gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
@@ -860,7 +865,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -875,10 +880,10 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.1_REL_GSRD_PR.zip
-unzip QPDS25.1_REL_GSRD_PR.zip
-rm -f QPDS25.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS25.1_REL_GSRD_PR stratix10-ed-gsrd
+wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.1.1_REL_GSRD_PR.zip
+unzip QPDS25.1.1_REL_GSRD_PR.zip
+rm -f QPDS25.1.1_REL_GSRD_PR.zip
+mv stratix10-ed-gsrd-QPDS25.1.1_REL_GSRD_PR stratix10-ed-gsrd
 cd stratix10-ed-gsrd
 make s10-htile-soc-devkit-oobe-baseline-all
 cd ..
@@ -950,7 +955,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
 cd gsrd-socfpga
 . stratix10_htile-gsrd-build.sh
 build_setup
@@ -1223,7 +1228,7 @@ ln -s root.ubi hps.bin
 
 ```bash
 cd $TOP_FOLDER/qspi-boot
-wget https://altera-fpga.github.io/rel-25.1/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg
+wget https://altera-fpga.github.io/rel-25.1.1/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg
 quartus_pfg -c stratix10_gsrd.pfg
 ```
 
@@ -1236,7 +1241,7 @@ The following files will be generated:
 
 #### Create Programming File Generator File
 
-This section presents how to manually re-create the PFG file provided at [https://altera-fpga.github.io/rel-25.1/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg](https://altera-fpga.github.io/rel-25.1/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg)
+This section presents how to manually re-create the PFG file provided at [https://altera-fpga.github.io/rel-25.1.1/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/stratix-10/sx/soc/gsrd/collateral/stratix10_gsrd.pfg)
 
 1\. Start Quartus Programming File Generator GUI:
 
@@ -1394,11 +1399,11 @@ Download the compiler toolchain, add it to the PATH variable, to be used by the 
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
-gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
@@ -1407,7 +1412,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -1424,10 +1429,10 @@ Build the GHRD targeting the NAND HPS daughtercard, by passing the correct param
 ```bash
 cd $TOP_FOLDER
 rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.1_REL_GSRD_PR.zip
-unzip QPDS25.1_REL_GSRD_PR.zip
-rm -f QPDS25.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS25.1_REL_GSRD_PR stratix10-ed-gsrd
+wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.1.1_REL_GSRD_PR.zip
+unzip QPDS25.1.1_REL_GSRD_PR.zip
+rm -f QPDS25.1.1_REL_GSRD_PR.zip
+mv stratix10-ed-gsrd-QPDS25.1.1_REL_GSRD_PR stratix10-ed-gsrd
 cd stratix10-ed-gsrd
 make s10-htile-soc-devkit-nand-baseline-all  
 cd ..
@@ -1498,7 +1503,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
 cd gsrd-socfpga
 . stratix10_htile-gsrd-build.sh
 build_setup
@@ -1808,7 +1813,7 @@ At this point you can use the new **kernel.itb** as needed. Some options could b
 
 As part of the Yocto GSRD build flow, the SD Card image is built for the SD Card boot flow. This image includes a couple of partitions. One of these partition (a FAT32) includes the U-Boot proper, a Distroboot boot script and the Linux.itb - which includes the Linux kernel image, , the Linux device tree, the 2nd phase fabric design and board configuration (actually several versions of these last 3 components). The 2nd partition (an EXT3 or EXT4 ) includes the Linux file system. 
 
-![](/rel-25.1/embedded-designs/doc_modules/gsrd/images/sdcard_img.png){: style="height:500px"}
+![](/rel-25.1.1/embedded-designs/doc_modules/gsrd/images/sdcard_img.png){: style="height:500px"}
 
 If you want to replace any the components or add a new item in any of these partitions, without having to run again the Yocto build flow. 
 
