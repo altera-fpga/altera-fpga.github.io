@@ -26,7 +26,7 @@ The following are required in order to be able to fully exercise the A10 GSRD:
   - Linux - Ubuntu 20.04 was used to create this page, other versions and distributions may work too 
   - Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows) 
   - Micro SD card slot or Micro SD card writer/reader 
-  - Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1
+  - Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1
 - Local Ethernet network, with DHCP server (will be used to provide IP address to the board) 
  
 Note that the U-Boot and Linux compilation, Yocto compilation and creating the SD card image require a Linux host PC. The rest of the operations can be performed on either a Windows or Linux host PC. 
@@ -39,7 +39,7 @@ The Intel FPGA HPS Embedded Software release notes can be accessed from the foll
  
 #### Latest Binaries Release Content 
  
-The release files are accessible at [https://releases.rocketboards.org/2025.04/gsrd/a10_gsrd/](https://releases.rocketboards.org/2025.04/gsrd/a10_gsrd/) and contain the following: 
+The release files are accessible at [https://releases.rocketboards.org/2025.08/gsrd/a10_gsrd/](https://releases.rocketboards.org/2025.08/gsrd/a10_gsrd/) and contain the following: 
  
 | File | Description | 
 | :-- | :-- | 
@@ -79,13 +79,13 @@ The source code is also included on the SD card in the Linux rootfs path `/home/
  
 | Component | Location | Branch | Tag/Commit ID | 
 | :-- | :-- | :-- | :-- | 
-| GHRD | [https://github.com/altera-opensource/ghrd-socfpga/tree/master/a10_soc_devkit_ghrd_pro](https://github.com/altera-opensource/ghrd-socfpga/tree/master/a10_soc_devkit_ghrd_pro) | master | QPDS25.1_REL_GSRD_PR | 
-| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.12.11-lts | QPDS25.1_REL_GSRD_PR | 
-| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2025.01 | QPDS25.1_REL_GSRD_PR | 
-| Arm Trusted Firmware | [https://github.com/arm-trusted-firmware](https://github.com/arm-trusted-firmware) | socfpga_v2.12.0 | QPDS25.1_REL_GSRD_PR | 
-| Yocto Project: poky | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | styhead | - | 
-| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | styhead | QPDS25.1_REL_GSRD_PR | 
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | styhead | QPDS25.1_REL_GSRD_PR | 
+| GHRD | [https://github.com/altera-opensource/ghrd-socfpga/tree/master/a10_soc_devkit_ghrd_pro](https://github.com/altera-opensource/ghrd-socfpga/tree/master/a10_soc_devkit_ghrd_pro) | master | QPDS25.1.1_REL_GSRD_PR | 
+| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.12.11-lts | QPDS25.1.1_REL_GSRD_PR | 
+| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2025.01 | QPDS25.1.1_REL_GSRD_PR | 
+| Arm Trusted Firmware | [https://github.com/arm-trusted-firmware](https://github.com/arm-trusted-firmware) | socfpga_v2.12.0 | QPDS25.1.1_REL_GSRD_PR | 
+| Yocto Project: poky | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | - | 
+| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | QPDS25.1.1_REL_GSRD_PR | 
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | walnascar | QPDS25.1.1_REL_GSRD_PR | 
  
 ### GHRD Overview 
  
@@ -192,7 +192,7 @@ This section explains how to create the SD card necessary to boot Linux, using t
 1. Download and extract the SD card image: 
  
 ```bash 
-wget https://releases.rocketboards.org/2025.04/gsrd/a10_gsrd/sdimage.tar.gz 
+wget https://releases.rocketboards.org/2025.08/gsrd/a10_gsrd/sdimage.tar.gz 
 tar xf sdimage.tar.gz 
 ``` 
  
@@ -222,7 +222,7 @@ $ sudo sync
  
 ##### Creating SD Card on Windows 
  
-1. Download and uncompress the SD card image from [https://releases.rocketboards.org/2025.04/gsrd/a10_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2025.04/gsrd/a10_gsrd/sdimage.tar.gz) The extacted file is named `gsrd-console-image-arria10.wic`. 
+1. Download and uncompress the SD card image from [https://releases.rocketboards.org/2025.08/gsrd/a10_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2025.08/gsrd/a10_gsrd/sdimage.tar.gz) The extacted file is named `gsrd-console-image-arria10.wic`. 
  
 2. Rename the wic file as `sdimage.img` 
  
@@ -708,13 +708,13 @@ The current release tags are:
  
 | Component | Location | Branch | Tag/Commit ID | 
 | :-- | :-- | :-- | :-- | 
-| GHRD | [https://github.com/altera-opensource/ghrd-socfpga/tree/master/a10_soc_devkit_ghrd_pro](https://github.com/altera-opensource/ghrd-socfpga/tree/master/a10_soc_devkit_ghrd_pro) | master | QPDS25.1_REL_GSRD_PR  | 
-| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.12.11-lts | QPDS25.1_REL_GSRD_PR  | 
-| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2025.01 | QPDS25.1_REL_GSRD_PR  | 
-| Arm Trusted Firmware | [https://github.com/arm-trusted-firmware](https://github.com/arm-trusted-firmware) | socfpga_v2.12.0 | QPDS25.1_REL_GSRD_PR  | 
-| Yocto Project: poky | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | styhead | - | 
-| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | styhead | QPDS25.1_REL_GSRD_PR  | 
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | styhead | QPDS25.1_REL_GSRD_PR  | 
+| GHRD | [https://github.com/altera-opensource/ghrd-socfpga/tree/master/a10_soc_devkit_ghrd_pro](https://github.com/altera-opensource/ghrd-socfpga/tree/master/a10_soc_devkit_ghrd_pro) | master | QPDS25.1.1_REL_GSRD_PR  | 
+| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.12.11-lts | QPDS25.1.1_REL_GSRD_PR  | 
+| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2025.01 | QPDS25.1.1_REL_GSRD_PR  | 
+| Arm Trusted Firmware | [https://github.com/arm-trusted-firmware](https://github.com/arm-trusted-firmware) | socfpga_v2.12.0 | QPDS25.1.1_REL_GSRD_PR  | 
+| Yocto Project: poky | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | - | 
+| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | QPDS25.1.1_REL_GSRD_PR  | 
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | walnascar | QPDS25.1.1_REL_GSRD_PR  | 
  
 ### Build Flow 
  
@@ -746,7 +746,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -755,7 +755,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash 
 cd $TOP_FOLDER 
 rm -rf ghrd-socfpga a10_soc_devkit_ghrd 
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga 
 mv ghrd-socfpga/a10_soc_devkit_ghrd_pro . 
 rm -rf ghrd-socfpga 
 cd a10_soc_devkit_ghrd_pro 
@@ -799,7 +799,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash 
 cd $TOP_FOLDER 
 rm -rf gsrd-socfpga 
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga 
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga 
 cd gsrd_socfpga 
 . arria10-gsrd-build.sh 
 build_setup 

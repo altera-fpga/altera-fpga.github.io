@@ -1,8 +1,8 @@
-# Drive-On-Chip with PLC Design Example for Agilex™ 5 Devices
+# Drive-On-Chip with PLC Design Example for Agilex™ Devices
 
 ## Recommendations and Disclaimers
 
-The Drive-on-Chip with PLC Design Example for Agilex™ 5 devices
+The Drive-on-Chip with PLC Design Example for Agilex™ devices
 implements the a combination of hardware compiled using Quartus®, Altera®
 Platform designer and high-level software from OpenSource resources
 deployed with Docker to demonstrate a basic PLC (Programmable Logic Controller)
@@ -22,7 +22,7 @@ systems. You must put in place all mechanisms, validation, verification, checks,
 and extension of your production application.
 
 The design provides meta-layers for custom Yocto build based on KAS with the
-same underlying components recommended in the Agilex™ 5 GSRD 25.1 documented on
+same underlying components recommended in the Agilex™ GSRD documented on
 the [**Altera® FPGA Developer Site**](https://altera-fpga.github.io/) website.
 The meta layer provides the application and the modifications to the SD card
 collaterals to enable the HPS software stack and the communication with devices

@@ -56,37 +56,37 @@ To exercise the instructions presented on this page (build your binaries and exe
 
 ## Release Content
 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1 and the following software component versions are used to build the binaries presented in this page: 
+
+| Component | Location | Branch | Commit ID/Tag |
+| :-------- | :------- | :----- | :------------ |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.19-lts | QPDS25.1.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.1   | QPDS25.1.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.04 | QPDS25.1.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
+| Yocto Project: meta-intel-fpga        | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest              |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.1.1_REL_GSRD_PR |
+
+**Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 
-**Version: 25.1**
-
-| SW Component             | Repository                                                   | Branch/TAG/Version                             |
-| :----------------------- | :----------------------------------------------------------- | :--------------------------------------------- |
-| U-Boot                   | https://github.com/altera-fpga/u-boot-socfpga                | socfpga_v2025.01/QPDS25.1_REL_GSRD_PR   |
-| ATF                      | https://github.com/altera-fpga/arm-trusted-firmware          | socfpga_v2.12.0/QPDS25.1_REL_GSRD_PR     |
-| Linux                    | https://github.com/altera-fpga/linux-socfpga                 | socfpga-6.12.11-lts/QPDS25.1_REL_GSRD_PR   |
-| Reference Design Sources | https://github.com/altera-fpga/meta-intel-fpga-refdes        | styhead/QPDS25.1_REL_GSRD_PR |
-| GSRD                     | https://github.com/altera-fpga/gsrd-socfpga                  | styhead                   |
-| Yocto Project            | https://git.yoctoproject.org/poky                            | styhead/latest            |
-| Reference Design Recipes | https://git.yoctoproject.org/meta-intel-fpga                 | styhead/latest            |
-| Arm Debugger             | http://fpgasoftware.intel.com/armds                          | ARM DS 2024.1                                  |
-| Ashling RiscFree         | https://www.intel.com/content/www/us/en/software-kit/826843/ Additional Software/Stand-Alone Software tab | 25.1                  |
 
 **Note:** For information prior 24.2 release, please refer to [Linux GSRD Intel Simics Virtual Platform for Intel Agilex® 5 E-Series](https://www.rocketboards.org/foswiki/Documentation/Agilex5SoCSimicsVirtualPlatformsReferenceGuide). 
 
 ### Prebuilt Binaries
 
-You can find the prebuilt binaries from the GSRD prebuilt at the following URL: [https://releases.rocketboards.org/2025.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/](https://releases.rocketboards.org/2025.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/). The files in this folder allow you to boot directly from SDCard. It also contains some of the files that are used to generate the final images used to boot from QSPI and from NAND. The following folders contain the remaining files used by the recipes to create the binaries to boot from QSPI and NAND.
-
-- QSPI: [QSPI boot complement files](https://releases.rocketboards.org/2025.04/qspi/agilex5_dk_a5e065bb32aes1_qspi/). Here is the link to obtain the [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/styhead/recipes-bsp/u-boot/files/uboot_script.its) file which is also needed.
-- NAND: No available since NAND is not supported in silicon yet.
 
 
+You can find the prebuilt binaries from the GSRD prebuilt at the following URL: [https://releases.rocketboards.org/2025.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/](https://releases.rocketboards.org/2025.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/). The files in this folder allow you to boot directly from SDCard. It also contains some of the files that are used to generate the final images used to boot from QSPI. The following folder contains the remaining files used by the recipes to create the binaries to boot from QSPI.
 
-**Note:** The final images used to boot from QSPI and NAND are not provided, but the binaries used to generate these are provided, so you can generate the final images following the instructions in [Build QSPI Boot Image](#build-qspi-boot-image) and [Build NAND Boot Image](#build-nand-boot-image) sections.
+- QSPI: [QSPI boot complement files](https://releases.rocketboards.org/2025.08/qspi/agilex5_dk_a5e065bb32aes1_qspi/). Here is the link to obtain the [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/walnascar/recipes-bsp/u-boot/files/uboot_script.its) file which is also needed.
+
+
+**Note:** The final images used to boot from QSPI  are not provided, but the binaries used to generate these are provided, so you can generate the final images following the instructions in [Build QSPI Boot Image](#build-qspi-boot-image) section.
 
 **Note:**  Starting from 24.2 release, the binaries targeted for silicon can also be used with Simics simulator.
 
+**Note:** In  25.1.1 release the GSRD scripts used to  build  NAND Boot binaries were removed, so at this time it is not possible to generate these binaries and therefore the use case related to NAND Boot  were removed. If you need to generate NAND binaries to be used in the Simics model,  you can do it with the build instructions provided in the 25.1 version of this page. The NAND Boot will be supported in a future release.
 
 
 | HPS Peripheral                         | Supported |
@@ -151,11 +151,11 @@ Download the compiler toolchain, add it to the PATH variable, to be used by the 
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
-gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
@@ -164,7 +164,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -183,8 +183,8 @@ In Simics, the SOF file generated as result of the build of the hardware design 
 
 ```bash
 cd $TOP_FOLDER
-rm ghrd_a5ed065bb32ae6sr0.sof
-wget https://releases.rocketboards.org/2025.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.sof 
+rm -rf ghrd_a5ed065bb32ae6sr0.sof
+wget https://releases.rocketboards.org/2025.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.sof 
 ```
 
 
@@ -225,7 +225,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
   ```bash
   cd $TOP_FOLDER
   rm -rf gsrd-socfpga
-  git clone -b styhead https://github.com/altera-fpga/gsrd-socfpga
+  git clone -b walnascar https://github.com/altera-fpga/gsrd-socfpga
   cd gsrd-socfpga
   . agilex5_dk_a5e065bb32aes1-gsrd-build.sh
   build_setup
@@ -282,7 +282,7 @@ After the build is completed successfully, the following two folders are created
 
 
 
-**Note**: If you want to build binaries creating each one of the binaries independently, you could refer to [Agilex™ 5 E-Series GHRD Linux Boot Examples](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/).
+**Note**: If you want to build binaries creating each one of the binaries independently, you could refer to [Agilex™ 5 E-Series GHRD Linux Boot Examples](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/).
 
 
 
@@ -290,18 +290,18 @@ The most relevant files created in the `$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-
 
 
 
-|                          File                           |                        Description                        | SD Card Boot | QSPI Boot | NAND Boot |
-| :-----------------------------------------------------: | :-------------------------------------------------------: | ------------ | --------- | --------- |
-| ghrd_a5ed065bb32ae6sr0.sof | SOF file from the hardware design |  | * | |
-| u-boot-spl-dtb.bin |                  U-Boot SPL binary file                   | * | * | * |
-|                       u-boot.itb                        |                       U-Boot (SSBL)                       | * | * | * |
-|                      boot.scr.uimg                      |                  Distroboot boot script                   | * |  | * |
-|                       kernel.itb                        |                  Linux kernel fit image                   | *            | *         | *         |
-|     console-image-minimal-agilex5_nand.ubifs     |                 File system for NAND boot                 |              |           | *         |
-|     console-image-minimal-agilex5_nor.ubifs      |                 File system for QSPI boot                 |              | *         |           |
-|          gsrd-console-image-agilex5.wic          |                       SD Card Image                       | *            |           |           |
-|                        uboot.txt                        |                 U-Boot Distroboot script                  |              | *         |           |
-|                    uboot_script.its                     | ITS file to create FIT binary of U-Boot Distroboot script |              | *         |           |
+|                          File                           |                        Description                        | SD Card Boot | QSPI Boot |
+| :-----------------------------------------------------: | :-------------------------------------------------------: | ------------ | --------- |
+| ghrd_a5ed065bb32ae6sr0.sof | SOF file from the hardware design |  | * |
+| u-boot-spl-dtb.bin |                  U-Boot SPL binary file                   | * | * |
+|                       u-boot.itb                        |                       U-Boot (SSBL)                       | * | * |
+|                      boot.scr.uimg                      |                  Distroboot boot script                   | * |  |
+|                       kernel.itb                        |                  Linux kernel fit image                   | *            | *         |          |
+|     console-image-minimal-agilex5_nor.ubifs      |                 File system for QSPI boot                 |              | *         |
+|          gsrd-console-image-agilex5.wic          |                       SD Card Image                       | *            |           |
+|                        uboot.txt                        |                 U-Boot Distroboot script                  |              | *         |
+|                    uboot_script.its                     | ITS file to create FIT binary of U-Boot Distroboot script |              | *         |
+
 
 #### Build QSPI Boot Image
 
@@ -493,144 +493,6 @@ The following file is created:
 
 * $TOP_FOLDER/qspi-bin/flash_image_jic.rpd
 
-#### Build NAND Boot Image
-
-
-
-The next step consists of creating the NAND image that will be used by in the simulation that exercises this use case. For this, the NAND image will have the layout shown in the following figure:
-
-| MTD Partition | UBI Volume | Volume Name | Type  | Image/Individual File | Group File | Flash Offset       | Size  | Size in Hex |
-| :------------ | :--------- | :---------- | :---- | :----------- | :--------- | :----------------- | :---- | ----------- |
-| 0 (u-boot)    | N/A        | N/A         | RAW   | u-boot.itb   | N/A | 0x00000000         | 2 MB  | 0x200000    |
-| 1 (root)      | 0<br>1<br>2<br>3<br>4 | env<br>script<br>kernel<br>dtb<br>rootfs| UBI<br>UBI<br>UBI<br>UBI<br>UBIFS   | u-boot.env<br>u-boot.scr<br>kernel.itb<br>kernel.dtb<br>rootfs.ubifs | <br><br>root.ubi | <br><br>0x00200000<br> onwards | 256KB<br>128KB<br>24MB<br>256KB<br>272MB | 0x40000<br>0x20000<br>0xA00000<br>0x40000<br>0x11000000 |
-
-
-Based on the table above, we have 2 partitions. One contains just the U-Boot fit image located at address 0x0 and the other contains the rest of the software components in a ubi file (with UBIFS format) located at address 0x200000. Continue with the following steps to create the NAND boot image.
-
-
-
-
-1. Bring the required files from the GSRD build directory to a NAND boot directory:
-    
-
-  ```bash
-  # Gathering the required files
-  cd $TOP_FOLDER
-  rm -rf nand-bin && mkdir nand-bin && cd nand-bin
-  ln -s $TOP_FOLDER/gsrd-socfpga/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/uboot_script.its uboot_script.its 
-  cp $TOP_FOLDER/gsrd-socfpga/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/uboot.txt .
-  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb u-boot.itb
-  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/kernel.itb kernel-image
-  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/socfpga_agilex5_socdk_nand_vanilla.dtb kernel-dtb
-  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/console-image-minimal-agilex5_nand.ubifs rootfs.ubifs
-  ```
-  
-
-2. The Agilex 5 E-Series Universal virtual virtual returns by default a board_id = 0 when U-Boot reads the **STRATIX_JTAG_USER_CODE** parameter. The board_id is used to select the desired configuration (linux kernel image + device tree + fpga fabric design) as described in [Single  Image Boot flow](https://www.rocketboards.org/foswiki/Documentation/SingleImageBoot). Starting from 24.2 release, the configuration for board_id = 0 defines the device tree for the OOB board in the premium dev kit (SD card daughter card). Since we want to load the configuratio that works for NAND boot, we require to use the device tree specific for the NAND daughter card. In order to address this problem, one solution is to force having a board_id that defines the configuration for NAND (and also without defining a FPGA core fabric since in Simics programming the fabric is not supported). For this, we require to set in U-Boot the  **board_id** environment variable to 7 for which the **socfpga_agilex5_socdk_nand_vanilla.dtb** device tree is used (as can be seen in **fit_kernel_agilex5_devkit.its**). This is achieved with the following code:
-
-  
-
-  ```bash
-  # Update boot script to modify board_id so we can boot from nand_vanila device tree
-  cd $TOP_FOLDER/nand-bin
-  sed -i '/Trying to boot Linux from device/a setenv board_id 7 ' uboot.txt
-  mkimage -f uboot_script.its boot.scr.uimg
-  ```
-  
-
-3. Create UBI configuration file for the root partition:
-
-  
-
-  ```bash
-  # Create the UBI Configuration file
-  cd $TOP_FOLDER/nand-bin
-  cat <<EOT >ubinize_nand.cfg 
-  [env]
-  mode=ubi
-  vol_id=0
-  vol_name=env
-  vol_size=256KiB
-  vol_type=dynamic
-
-  [script]
-  mode=ubi
-  image=boot.scr.uimg
-  vol_id=1
-  vol_name=script
-  vol_size=128KiB
-  vol_type=dynamic
-
-  [kernel]
-  mode=ubi
-  image=kernel-image     
-  vol_id=2
-  vol_name=kernel
-  vol_size=24MiB
-  vol_type=dynamic
-
-  [dtb]
-  mode=ubi
-  image=kernel-dtb
-  vol_id=3
-  vol_name=dtb
-  vol_size=256KiB
-  vol_type=dynamic
-
-  [rootfs]
-  mode=ubi
-  image=rootfs.ubifs
-  vol_id=4
-  vol_name=rootfs
-  vol_type=dynamic
-  vol_size=400MiB
-  vol_flag=autoresize
-
-  EOT
-  ```
-  
-
-  **Note:** **kernel-dtb** is not really used since the dtb used is inside the **kernel-image** file.
-
-4. Generate root.ubi file for root partition, using the **ubinize_nand.cfg** file generated in previous step. This file defines the components to be included in the root.ubi file as indicated in the table above. The command used to generate the file is **ubinize** which is available as part of the mtd-tools package. The parameters that **ubinize** command received are listed next:
-
-  -p: physical erase block size of the flash<br>
-  -m: minimum input/output unit size of the flash<br>
-  -s: sub-pages and sub-page size, ubinize will take into account and put the VID header to same NAND page as the EC header
-
-  
-
-  ```bash
-  # Create the UBI file with root partition
-  cd $TOP_FOLDER/nand-bin
-  ubinize -o root.ubi -p 1024KiB -m 8192 -s 8192 ubinize_nand.cfg
-  ```
-  
-
-  The following file is created:
-
-  * $TOP_FOLDER/nand-bin/root.ubi
-
-5. Generate final NAND image (nand.img) using **dd** command. This file includes the U-Boot built from the GSRD and the root.ubi file generated in the step before. The location in the NAND image is indicated in the table above.
-
-  
-
-  ```bash
-  # Creating the NAND image
-  export COMBINEDFILE=nand.img
-  dd if=/dev/zero bs=1024M count=1 | tr '\0' $'\xFF' > $COMBINEDFILE
-  # Adding u-boot.itb
-  dd conv=notrunc bs=1 if='u-boot.itb' of=$COMBINEDFILE seek=$((0x00000000))
-  # Adding root.ubi
-  dd conv=notrunc bs=1 if='root.ubi' of=$COMBINEDFILE seek=$((0x00200000))
-  ```
-  
-
-
-
-The following file is created:
-
-* $TOP_FOLDER/nand-bin/nand.img 
 
 
 
@@ -697,7 +559,7 @@ At this point you can use the new **kernel.itb** as needed. Some options could b
 
 As part of the Yocto GSRD build flow, the SD Card image is built for the SD Card boot flow. This image includes a couple of partitions. One of these partition (a FAT32) includes the U-Boot proper, a Distroboot boot script and the Linux.itb - which includes the Linux kernel image, , the Linux device tree, the 2nd phase fabric design and board configuration (actually several versions of these last 3 components). The 2nd partition (an EXT3 or EXT4 ) includes the Linux file system. 
 
-![](/rel-25.1/embedded-designs/doc_modules/gsrd/images/sdcard_img.png){: style="height:500px"}
+![](/rel-25.1.1/embedded-designs/doc_modules/gsrd/images/sdcard_img.png){: style="height:500px"}
 
 If you want to replace any the components or add a new item in any of these partitions, without having to run again the Yocto build flow. 
 
@@ -1027,9 +889,12 @@ Consider that the Intel Simics Simulator for Intel FPGAs Simulator has been inst
 4. Copy the following binaries created in [Build Instructions](#build-instructions) section to the Simics project directory:
 
   - gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/gsrd-console-image-agilex5.wic
+
   - gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.bin
+
   - qspi-bin/flash_image_jic.rpd
-  - nand-bin/nand.img
+
+
 
 5. Customize the configuration of the Agilex™ 5 E-Series Universal virtual platform, according to the setup required to exercise any specific use case. Set up the **fsbl_image_filename** parameter with the first-stage bootloader. If the boot implies booting from an SD Card device, configure **sd_image_filename** and **create_hps_sd_card** parameters (this image should include the main bootloader and the OS and/or application images). As part of the configuration, select the core used to boot using the **hps_boot_core** parameter, which could be core 0 (A55) or core 2 (A76).
 
@@ -1796,176 +1661,7 @@ To exercise this use case, follow the steps below once the Simulation setup is c
      root@dhcp0:~#
    ```
 
-   
 
-####Use Case: Exercise NAND Boot Flow from FSBL to Linux
-
-This use case consists of booting from a NAND flash device going from U-Boot to Linux prompt passing through **U-Boot SPL → ATF → U-Boot → Linux**.
-
-<h5>Setup</h5>
-
-Perform steps 1 to 4 described in the [Simulation Setup](#simulation-setup) section.
-
-5. In the Intel Simics environment at the project directory, create a customized target script to exercise the FSBL to Linux boot flow from NAND device. The file to create is called **uboot-linux_nand.simics**. This file will look like this:
-
-  ```bash
-  #uboot-linux_nand.simics
-  $fsbl_image_filename = "u-boot-spl-dtb.bin"
-  $nand_data_image_filename = "nand.img"
-  $hps_boot_core = 0 
-  $create_hps_sd_card = FALSE
-  run-command-file "targets/agilex5e-universal/agilex5e-universal.simics"
-  ```
-
-  Also, in order to have ethernet connectivity, you need to connect the ethernet interface defined in the NAND device tree (eth0). For this,  update the following line in the **targets/agilex5e-universal/agilex5e-universal.simics** file:
-
-  ```bash
-  if $create_hps_eth0_network {    
-      :
-      # Connect HPS eth0 instead of eth2 to Ethernet Switch
-      connect ($eth_switch.get-free-connector) $system.board.eth0
-	  :    
-  }
-  ```
-
-<h5>Procedure</h5>
-
-To exercise this use case, follow the below steps once the Simulation setup is complete:
-
-1. From the project directory, launch the simulation using the `uboot-linux_nand.simics` target script. This script launches the simulator and the current terminal becomes the Simics CLI:
-
-  ```bash
-  $ ./simics uboot-linux_nand.simics 
-  ```
-
-2. From the Simics CLI, start running the simulation with the `run` command.
-
-  ```bash
-  simics>  run
-  ```
-
-3. Wait for the simulation to get to the Linux prompt in the target serial console.
-
-4. Login into the Linux prompt using the **root** user without a password.  
-
-   ```bash
-     U-Boot SPL 2024.04 (Oct 16 2024 - 02:54:45 +0000)  
-     Reset state: Cold
-     MPU           875000 kHz
-     L4 Main       400000 kHz
-     L4 sys free   100000 kHz
-     L4 MP         200000 kHz
-     L4 SP         100000 kHz
-     SDMMC          50000 kHz
-     io96b_cal_status: Calibration for IO96B instance 0x18400400 done at 0 msec!
-     init_mem_cal: Initial DDR calibration IO96B_0 succeed
-     :
-     ecc_enable_status: ECC enable status: 0
-     DDR: size check success
-     DDR: firewall init success
-     DDR: init success
-     QSPI: Reference clock at 400000 kHz
-     Trying to boot from MMC1
-     MMC: no card present
-     spl: mmc init failed with error: -123
-     Trying to boot from SPI
-     Trying to boot from NAND
-     ## Checking hash(es) for config board-0 ... OK
-     ## Checking hash(es) for Image atf ... crc32+ OK
-     ## Checking hash(es) for Image uboot ... crc32+ OK
-     ## Checking hash(es) for Image fdt-0 ... crc32+ OK
-     WARNING: Data cache not enabled
-     NOTICE:  BL31: Boot Core = 0
-     NOTICE:  BL31: CPU ID = 0
-     NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
-     NOTICE:  BL31: Built : 07:09:49, Oct 15 2024
-   
-     U-Boot 2024.04 (Oct 16 2024 - 02:54:45 +0000)socfpga_agilex5
-   
-     CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
-     Model: SoCFPGA Agilex5 SoCDK
-     DRAM:  2 GiB (effective 8 GiB)
-     Core:  51 devices, 26 uclasses, devicetree: separate
-     WDT:   Not starting watchdog@10d00200
-     WDT:   Not starting watchdog@10d00300
-     WDT:   Not starting watchdog@10d00400
-     WDT:   Not starting watchdog@10d00500
-     WDT:   Not starting watchdog@10d00600
-     NAND:  4096 MiB
-     MMC:   mmc0@10808000: 0
-     Loading Environment from FAT... MMC: no card present
-     :
-     ** Cannot find mtd partition "root"
-     In:    serial0@10c02000
-     Out:   serial0@10c02000
-     Err:   serial0@10c02000
-     Net:   
-     Warning: ethernet@10810000 (eth0) using random MAC address - 9a:4a:35:36:eb:71
-     eth0: ethernet@10810000
-     Warning: ethernet@10830000 (eth2) using random MAC address - 8e:87:b0:0c:94:09, eth2: ethernet@10830000
-     Hit any key to stop autoboot:  0 
-     MMC: no card present
-     SF: Detected mt25qu02g with page size 256 Bytes, erase size 64 KiB, total 256 MiB
-     Select Environment on UBI: OK
-   NAND: Trying to boot script at 0x81000000
-   
-     ## Executing script at 81000000
-     crc32+ Trying to boot Linux from device nand
-     Select Environment on UBI: OK
-     Saving Environment to UBI... UBI partition 'root' already selected
-     done
-     OK
-     :
-     device nor0 <nor0>, # parts = 2
-      #: name                size            offset          mask_flags
-      0: u-boot              0x04200000      0x00000000      0
-      1: qspi_root           0x0be00000      0x04200000      0
-   
-     device nand0 <ffb90000.nand.0>, # parts = 2
-      #: name                size            offset          mask_flags
-      0: u-boot              0x00200000      0x00000000      0
-      1: root                0xffe00000      0x00200000      0
-   
-     active partition: nor0,0 - (u-boot) 0x04200000 @ 0x00000000
-   
-     defaults:
-     mtdids  : nand0=10b80000.nand.0
-     mtdparts: mtdparts=10b80000.nand.0:2m(u-boot),-(root)
-     :
-     Starting kernel ...
-   
-     Deasserting all peripheral resets
-     [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x412fd050]
-     [    0.000000] Linux version 6.6.37-altera-g978b3d90f408 (oe-user@oe-host) (aarch64-poky-linux-gcc (GCC) 13.3.0, GNU ld (GNU Binutils) 2.42.0.20240723) #1 SMP PREEMPT Mon Oct 14 01:56:39 UTC 2024
-   
-     [    0.000000] KASLR disabled due to lack of seed
-     [    0.000000] Machine model: SoCFPGA Agilex5 SoCDK
-     [    0.000000] efi: UEFI not found.
-     [    0.000000] Reserved memory: created DMA memory pool at 0x0000000080000000, size 32 MiB
-     [    0.000000] OF: reserved mem: initialized node svcbuffer@0, compatible id shared-dma-pool
-     [    0.000000] OF: reserved mem: 0x0000000080000000..0x0000000081ffffff (32768 KiB) nomap non-reusable svcbuffer@0
-     [    0.000000] earlycon: uart0 at MMIO32 0x0000000010c02000 (options '115200n8')
-     :
-     Poky (Yocto Project Reference Distro) 5.0.2 dhcp0 ttyS0
-   
-     [   15.586539] soc64-hwmon soc@0:firmware:svc:hwmon: Initialized 4 temperature and 6 voltage channels
-     [   15.587715] soc64-hwmon soc@0:firmware:svc:hwmon: couldn't get service channel rsu
-     [   15.594272] Stratix10 SoC FPGA manager soc@0:firmware:svc:fpga-mgr: couldn't get service channel (fpga)
-     [   15.595272] platform soc@0:firmware:svc:hwmon: deferred probe pending
-     [   15.595948] platform soc@0:base_fpga_region: deferred probe pending
-     [   15.596631] platform soc@0:firmware:svc:fpga-mgr: deferred probe pending
-     [   36.588749] audit: type=1334 audit(1709054799.316:15): prog-id=18 op=UNLOAD
-     [   36.589487] audit: type=1334 audit(1709054799.316:16): prog-id=17 op=UNLOAD
-     [   36.590224] audit: type=1334 audit(1709054799.316:17): prog-id=16 op=UNLOAD
-   
-     WARNING: Poky is a reference Yocto Project distribution that should be used for testing and development purposes only. It is recommended that you create your own distribution for production use.
-   
-     root@dhcp0:~#
-   ```
-
-   
-
-  **Note:** Most of the same use cases that are exercised from the **Exercise SDCard Boot Flow from FSBL to Linux** use case can also be exercised from this use case. There are some exceptions due to the limitation in the size of the file system which does not support the required commands.
 
 #### Use Case: Debug Bare-Metal Code Using Intel Simics Simulator
 

@@ -20,7 +20,7 @@ The following scenarios are covered:
 * HPS NAND Board: boot from eMMC flash
 * HPS Test Board: boot from SD card
 
-The instructions on this page are based on the [GSRD](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/).
+The instructions on this page are based on the [GSRD](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/).
 
 ### Prerequisites
 
@@ -38,32 +38,37 @@ The following are required to be able to fully exercise the guides from this pag
   * 64 GB of RAM or more
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1 
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1 
   * TFTP server. This used to download the eMMC binaries to board to be flashed by U-Boot
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files.
 
 ### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1 and the following software component versions are used to build the GSRD: 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1 and the following software component versions are used to build the binaries presented in this page:
 
-| Component | Location | Branch | Commit ID/Tag |
-| :-- | :-- | :-- | :-- |
-| GHRD | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | master | QPDS25.1_REL_GSRD_PR |
-| Linux | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.11-lts | QPDS25.1_REL_GSRD_PR |
-| Arm Trusted Firmware | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.0 | QPDS25.1_REL_GSRD_PR |
-| U-Boot | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.01 | QPDS25.1_REL_GSRD_PR |
-| Yocto Project | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | styhead | latest | 
-| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | styhead | latest |
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | styhead | QPDS25.1_REL_GSRD_PR |
+| Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
+| :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
+| Agilex 3 GHRD                         | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.1.1_REL_GSRD_PR   |
+| Agilex 5 GHRD                                  | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.1.1_REL_GSRD_PR |
+| Agilex 7 GHRD | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.1.1_REL_GSRD_PR |
+| Stratix 10 GHRD | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.1.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.19-lts | QPDS25.1.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.1   | QPDS25.1.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.04 | QPDS25.1.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
+| Yocto Project: meta-intel-fpga        | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest              |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.1.1_REL_GSRD_PR |
+
+**Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 ### Development Kit
 
-Refer to [Development Kit](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#development-kit) for details about the board, including how to install the HPS Boards, and how to set MSEL dispswitches.
+Refer to [Development Kit](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#development-kit) for details about the board, including how to install the HPS Boards, and how to set MSEL dispswitches.
 
 ### Release Notes
 
-Refer to [Release Notes](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#release-contents) for release readiness information and known issues.
+Refer to [Release Notes](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#release-contents) for release readiness information and known issues.
 
 
 ## HPS Enablement Board
@@ -93,11 +98,11 @@ Download the compiler toolchain, add it to the PATH variable, to be used by the 
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
-gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
@@ -106,7 +111,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -121,7 +126,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 unzip a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 rm -f a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 make legacy_baseline-build
@@ -145,7 +150,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 make -j 48 PLAT=agilex5 bl31 
 cd ..
@@ -164,7 +169,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -274,7 +279,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
 cat << EOF > config-fragment-agilex5
 # Enable Ethernet connectivity so we can get an IP address
@@ -325,9 +330,9 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf yocto && mkdir yocto && cd yocto
-git clone -b styhead https://git.yoctoproject.org/poky
-git clone -b styhead https://git.yoctoproject.org/meta-intel-fpga
-git clone -b styhead https://github.com/openembedded/meta-openembedded
+git clone -b walnascar https://git.yoctoproject.org/poky
+git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga
+git clone -b walnascar https://github.com/openembedded/meta-openembedded
 source poky/oe-init-build-env ./build
 echo 'MACHINE = "agilex5_dk_a5e065bb32aes1"' >> conf/local.conf
 echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
@@ -447,7 +452,7 @@ mkdir $TOP_FOLDER/qspi-boot
 ```bash
 cd $TOP_FOLDER/qspi-boot
 rm -rf u-boot-socfpga
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -786,11 +791,11 @@ Download the compiler toolchain, add it to the PATH variable, to be used by the 
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
-gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
@@ -799,7 +804,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -814,7 +819,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1_REL_GSRD_PR/a5ed065es-premium-devkit-emmc-legacy-baseline.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-emmc-legacy-baseline.zip
 unzip a5ed065es-premium-devkit-emmc-legacy-baseline.zip
 rm -f a5ed065es-premium-devkit-emmc-legacy-baseline.zip
 make legacy_baseline-build
@@ -838,7 +843,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 make -j 48 PLAT=agilex5 bl31 
 cd ..
@@ -857,7 +862,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -968,7 +973,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
 make defconfig 
 make -j 64 Image && make intel/socfpga_agilex5_socdk_emmc.dtb 
@@ -987,9 +992,9 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf yocto && mkdir yocto && cd yocto
-git clone -b styhead https://git.yoctoproject.org/poky
-git clone -b styhead https://git.yoctoproject.org/meta-intel-fpga
-git clone -b styhead https://github.com/openembedded/meta-openembedded
+git clone -b walnascar https://git.yoctoproject.org/poky
+git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga
+git clone -b walnascar https://github.com/openembedded/meta-openembedded
 # work around issue
 echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
 source poky/oe-init-build-env ./build
@@ -1058,7 +1063,7 @@ mkdir $TOP_FOLDER/helper-jic
 ```bash
 cd $TOP_FOLDER/helper-jic
 rm -rf u-boot-socfpga
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -1278,11 +1283,11 @@ Download the compiler toolchain, add it to the PATH variable, to be used by the 
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
-gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
@@ -1291,7 +1296,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -1306,7 +1311,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1_REL_GSRD_PR/a5ed065es-premium-devkit-debug2-legacy-baseline.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-debug2-legacy-baseline.zip
 unzip a5ed065es-premium-devkit-debug2-legacy-baseline.zip
 rm -f a5ed065es-premium-devkit-debug2-legacy-baseline.zip
 make legacy_baseline-build
@@ -1330,7 +1335,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 make -j 48 PLAT=agilex5 bl31 
 cd ..
@@ -1349,7 +1354,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -1462,7 +1467,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
 make defconfig 
 make -j 64 Image && make intel/socfpga_agilex5_socdk_debug.dtb 
@@ -1481,9 +1486,9 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf yocto && mkdir yocto && cd yocto
-git clone -b styhead https://git.yoctoproject.org/poky
-git clone -b styhead https://git.yoctoproject.org/meta-intel-fpga
-git clone -b styhead https://github.com/openembedded/meta-openembedded
+git clone -b walnascar https://git.yoctoproject.org/poky
+git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga
+git clone -b walnascar https://github.com/openembedded/meta-openembedded
 # work around issue
 echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
 source poky/oe-init-build-env ./build
@@ -1591,6 +1596,7 @@ When creating the flash image, it's necessary to provide the location in where A
 | :-- | :-- | :-- | 
 | QSPI | PLAT_QSPI_DATA_BASE | 0x3C00000 |
 | SDCard | PLAT_SDMMC_DATA_BASE | 0x0 |
+| eMMC | PLAT_SDMMC_DATA_BASE | 0x0 |
 
 The following sections provide instructions about how to generate the binaries to exercise this boot flow booting from different boot sources.  The instructions provided to build the binaries to boot form any flash device are expected to be executed togheter becuase therre are some dependencies among them. In all the cases the environment set up is needed. For dependencies, check at the beggining of each one of the sections.
 
@@ -1614,8 +1620,8 @@ Here we provide all the steps needed to create the binaries that allow you to ex
 
 
 ```bash
-sudo rm -rf agilex5_boot.atf2linux
-mkdir agilex5_boot.atf2linux && cd agilex5_boot.atf2linux
+sudo rm -rf agilex5_boot.atf2linux_sd_qspi
+mkdir agilex5_boot.atf2linux_sd_qspi && cd agilex5_boot.atf2linux_sd_qspi
 export TOP_FOLDER=`pwd`
 ```
 
@@ -1624,11 +1630,11 @@ Download the compiler toolchain, add it to the PATH variable, to be used by the 
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
-gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
@@ -1637,7 +1643,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -1651,12 +1657,9 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd_sdqspi && mkdir agilex5_soc_devkit_ghrd_sdqspi && cd agilex5_soc_devkit_ghrd_sdqspi
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 unzip a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 rm -f a5ed065es-premium-devkit-oobe-legacy-baseline.zip
-# Workaround for 14024688400 in which handoff indicates to ATF tp powerdown the SDMMC controller. Will be fix in 25.1.1
-sed -zi 's|\(<ipxact:name>SDMMC_PinMuxing</ipxact:name>\n[^\n]*\n[[:space:]]*<ipxact:value>\)Unused\(<\/ipxact:value>\)|\1IO\2|' ./hps_subsys/ip/hps_subsys/agilex_hps.ip 
-sed -zi 's|\(<ipxact:name>SDMMC_Mode</ipxact:name>\n[^\n]*\n[[:space:]]*<ipxact:value>\)N/A\(<\/ipxact:value>\)|\14-bit\2|' ./hps_subsys/ip/hps_subsys/agilex_hps.ip
 make legacy_baseline-build
 make legacy_baseline-sw-build
 quartus_pfg -c output_files/legacy_baseline.sof \
@@ -1678,8 +1681,10 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware-sdcard
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-sdcard
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-sdcard
 cd arm-trusted-firmware-sdcard
+# Workaround for HSD: 15018072763. Will be fixed in 25.3
+sed -i  's/struct cdns_idmac_desc cdns_desc\[CONFIG_CDNS_DESC_COUNT\];/struct cdns_idmac_desc cdns_desc\[CONFIG_CDNS_DESC_COUNT\]  __aligned(8);/g' drivers/cadence/emmc/cdns_sdmmc.c
 make realclean
 # Setting Bootsource as SDMMC
 make bl2 bl31 PLAT=agilex5 ARM_LINUX_KERNEL_AS_BL33=1  PRELOADED_BL33_BASE=0x82000000 ARM_PRELOADED_DTB_BASE=0x90000000 SOCFPGA_BOOT_SOURCE_SDMMC=1
@@ -1704,7 +1709,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga-sdcard
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-sdcard
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-sdcard
 cd linux-socfpga-sdcard
 # Create a device tree for this flow
 cat << EOF > arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_atfboot.dts
@@ -1778,9 +1783,9 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf yocto && mkdir yocto && cd yocto
-git clone -b styhead https://git.yoctoproject.org/poky
-git clone -b styhead https://git.yoctoproject.org/meta-intel-fpga
-git clone -b styhead https://github.com/openembedded/meta-openembedded
+git clone -b walnascar https://git.yoctoproject.org/poky
+git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga
+git clone -b walnascar https://github.com/openembedded/meta-openembedded
 # work around issue
 echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
 source poky/oe-init-build-env ./build
@@ -1870,7 +1875,7 @@ You can exercise ATF to Linux boot flow from SD Card using the following binarie
 * $TOP_FOLDER/sd_card/sdimage_atf.img
 * $TOP_FOLDER/jic_sdcard/design_atf.hps.jic
 
-When booting with the binaries generated, this is the log that you will see:
+When booting with the binaries generated, this is the log that you will see. This is the log is just a refenrece and captured by the time the page was created and in the future the versions in the components may change.
 
 ```
 NOTICE:  DDR: Reset type is 'Power-On'
@@ -1929,7 +1934,7 @@ This section provides instructions to build binaries to exercise ATF to Linux di
 * [Build Hardware Design SD_QSPI (ATF-To-Linux)](#build-hardware-design-sd_qspi-atf-to-linux)
 * [Build Linux File System  (ATF-To-Linux)](#build-linux-file-system-atf-to-linux)
 
-ATF requires to be rebuilt to enable booting from QSPI updating BOOT_SOURCE to BOOT_SOURCE_QSPI. Linux also need to be rebuild since this time we are including a JFFS2 file system and since booting from QSPI we need to change some parameters in the device tree. The FIP image is created in the same way but this time the FIP image is put into the QSPI image using a specific .pfg file. In this .pfg file, we are indicating that the fip file will be located at **0x3C00000** location in the QSPI since this is also indicated by the **PLAT_QSPI_DATA_BASE** definition in the ATF.
+ATF requires to be rebuilt to enable booting from QSPI by setting SOCFPGA_BOOT_SOURCE_QSPI to '1'. Linux also need to be rebuild since this time we are including a JFFS2 file system and since booting from QSPI we need to change some parameters in the device tree. The FIP image is created in the same way but this time the FIP image is put into the QSPI image using a specific .pfg file. In this .pfg file, we are indicating that the fip file will be located at **0x3C00000** location in the QSPI since this is also indicated by the **PLAT_QSPI_DATA_BASE** definition in the ATF.
 
    ![](images/ATF_Linux_Image_QSPI.jpg) 
 
@@ -1942,11 +1947,11 @@ ATF requires to be rebuilt to enable booting from QSPI updating BOOT_SOURCE to B
 cd $TOP_FOLDER
 # Building ATF
 rm -rf arm-trusted-firmware-qspi
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-qspi
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-qspi
 cd arm-trusted-firmware-qspi
 
 make realclean
-# Setting Bootsource as SDMMC
+# Setting Bootsource as QSPI
 make bl2 bl31 PLAT=agilex5 ARM_LINUX_KERNEL_AS_BL33=1  PRELOADED_BL33_BASE=0x82000000 ARM_PRELOADED_DTB_BASE=0x90000000 SOCFPGA_BOOT_SOURCE_QSPI=1
 
 # Create Fiptool tool
@@ -1972,7 +1977,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga-qspi
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-qspi
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-qspi
 cd linux-socfpga-qspi
 
 # Create a device tree for this flow in which we create the command line to get the file system from QSPI
@@ -2127,7 +2132,9 @@ After building, you can use the following binary to exercise the ATF to Linux bo
 
 * $TOP_FOLDER/jic_qspi/flash_image_atf_qspi.jic
 
-When booting with the binaries generated, this is the log that you will see. This is the log observed by the time the page was created and in the future the versions in the components may change.
+
+
+When booting with the binaries generated, this is the log that you will see. This is the log is just a refenrece and captured by the time the page was created and in the future the versions in the components may change.
 
 ```
 NOTICE:  DDR: Reset type is 'Power-On'
@@ -2172,6 +2179,373 @@ agilex5_dk_a5e065bb32aes1 login: root
 WARNING: Poky is a reference Yocto Project distribution that should be used for testing and development purposes only. It is recommended that you create your own distribution for production use.
 
 root@agilex5_dk_a5e065bb32aes1:~# 
+
+```
+
+
+
+### Boot from eMMC
+
+This section provides instructions to build binaries to exercise ATF to Linux direct boot flow booting from a eMMC card.
+
+The GHRD must be re-built as this time it's required a hardware design specific to boot from eMMC.  ATF also requires to be rebuilt to enable booting from eMMC by setting SOCFPGA_BOOT_SOURCE_SDMMC to '1' and setting MMC_DEVICE_TYPE to '0' (eMMC used instead of SD Card). Linux also need to be re-built because we need to addapt the device tree to use the correct configuration to boot from eMMC. The FIP image and the eMMC image are created in the same way than for the SD Card use case.
+
+   ![](images/ATF_Linux_Image_eMMC.jpg) 
+
+<h4>Toolchain Setup (ATF-To-Linux)</h4>
+
+
+
+
+```bash
+sudo rm -rf agilex5_boot.atf2linux_emmc
+mkdir agilex5_boot.atf2linux_emmc && cd agilex5_boot.atf2linux_emmc
+export TOP_FOLDER=`pwd`
+```
+
+Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
+
+
+```bash
+cd $TOP_FOLDER
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-none-linux-gnu-
+```
+
+Enable Quartus tools to be called from command line:
+
+
+```bash
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+```
+
+
+
+
+
+<h4>Build Hardware Design</h4>
+
+
+
+```bash
+cd $TOP_FOLDER
+rm -rf agilex5_soc_devkit_ghrd_emmc && mkdir agilex5_soc_devkit_ghrd_emmc && cd agilex5_soc_devkit_ghrd_emmc
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-emmc-legacy-baseline.zip
+unzip a5ed065es-premium-devkit-emmc-legacy-baseline.zip
+rm -f a5ed065es-premium-devkit-emmc-legacy-baseline.zip
+make legacy_baseline-build
+make legacy_baseline-sw-build
+cd ..
+```
+
+
+
+The following file is created:
+
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_emmc/output_files/legacy_baseline.sof
+
+
+<h4>Build Arm Trusted Firmware</h4>
+
+
+
+
+```bash
+cd $TOP_FOLDER
+# Building ATF
+rm -rf arm-trusted-firmware-emmc
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-emmc
+cd arm-trusted-firmware-emmc
+# Indicate that we will boot from eMMC instead of SDCard
+sed -i 's/\#define MMC_DEVICE_TYPE.*/\#define MMC_DEVICE_TYPE						0  \/\* MMC = 0, SD = 1 \*\//g' plat/intel/soc/agilex5/include/socfpga_plat_def.h
+# Workaround for HSD: 15018072763. Will be fixed in 25.3
+sed -i  's/struct cdns_idmac_desc cdns_desc\[CONFIG_CDNS_DESC_COUNT\];/struct cdns_idmac_desc cdns_desc\[CONFIG_CDNS_DESC_COUNT\]  __aligned(8);/g' drivers/cadence/emmc/cdns_sdmmc.c
+
+make realclean
+# Setting Bootsource as SDMMC
+make bl2 bl31 PLAT=agilex5 ARM_LINUX_KERNEL_AS_BL33=1  PRELOADED_BL33_BASE=0x82000000 ARM_PRELOADED_DTB_BASE=0x90000000 SOCFPGA_BOOT_SOURCE_SDMMC=1
+
+# Create Fiptool tool
+make -C tools/fiptool clean
+make fiptool
+cd ..
+
+```
+
+
+
+The following files are created:
+
+* $TOP_FOLDER/arm-trusted-firmware-emmc/build/agilex5/release/bl2.bin 
+* $TOP_FOLDER/arm-trusted-firmware-emmc/build/agilex5/release/bl31.bin
+* $TOP_FOLDER/arm-trusted-firmware-emmc/tools/fiptool/fiptool
+
+<h4>Build Linux</h4>
+
+
+
+
+```bash
+cd $TOP_FOLDER
+rm -rf linux-socfpga-emmc
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-emmc
+cd linux-socfpga-emmc
+
+# Create a device tree for this flow in which we create the command line to get the file system from QSPI
+cat << EOF > arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_atfboot.dts
+#include "socfpga_agilex5_socdk_emmc.dts"
+
+/ {
+
+    model = "SoCFPGA Agilex5 SoCDK";
+    compatible = "intel,socfpga-agilex5-socdk", "intel,socfpga-agilex5";
+
+    chosen {
+       stdout-path = "serial0:115200n8";
+       bootargs = "console=ttys0,115200 earlycon panic=-1 root=/dev/mmcblk0p2 rw rootwait";
+
+    };
+
+};
+EOF
+
+# Build socfpga_agilex5_socdk_atfboot.dtb
+sed -i '/socfpga_agilex5_socdk.dtb \\/a socfpga_agilex5_socdk_atfboot.dtb \\' arch/arm64/boot/dts/intel/Makefile
+
+cat << EOF > config-fragment-agilex5
+# Enable DHCP 
+CONFIG_IP_PNP_DHCP=y
+# enable kernel debugging with RiscFree
+CONFIG_DEBUG_INFO=y
+CONFIG_GDB_SCRIPTS=y
+CONFIG_INITRAMFS_ROOT_UID=0
+CONFIG_INITRAMFS_ROOT_GID=0
+CONFIG_INITRAMFS_COMPRESSION_GZIP=y
+
+# Include these configs if wanted to perform fpga reconfiguration using overlays (enable device tree overlays and fpga bridges)
+# Taken from https://altera-fpga.github.io/latest/embedded-designs/agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc/
+CONFIG_OF_RESOLVE=y
+CONFIG_OF_OVERLAY=y
+CONFIG_OF_CONFIGFS=y
+CONFIG_FPGA_MGR_STRATIX10_SOC=y
+CONFIG_FPGA_BRIDGE=y
+CONFIG_FPGA_REGION=y
+CONFIG_OF_FPGA_REGION=y
+CONFIG_OVERLAY_FS=y
+CONFIG_ALTERA_SYSID=y
+
+# Needed for netwrok connectivity
+CONFIG_MARVELL_PHY=y
+EOF
+
+make clean && make mrproper
+make defconfig
+# Apply custom Configs in file
+./scripts/kconfig/merge_config.sh -O ./ ./.config ./config-fragment-agilex5
+
+make oldconfig
+make -j 64 Image dtbs
+```
+
+
+
+
+The output files from this stage are:
+
+* $TOP_FOLDER/linux-socfpga-emmc/arch/arm64/boot/Image
+* $TOP_FOLDER/linux-socfpga-emmc/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_atfboot.dtb
+
+<h4>Build QSPI Image</h4>
+
+
+
+```bash
+cd $TOP_FOLDER
+rm -rf jic_emmc
+mkdir jic_emmc && cd jic_emmc
+# Convert fsbl
+aarch64-none-linux-gnu-objcopy -v -I binary -O ihex --change-addresses 0x00000000 $TOP_FOLDER/arm-trusted-firmware-emmc/build/agilex5/release/bl2.bin fsbl.hex
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_emmc/output_files/legacy_baseline.sof legacy_baseline.sof
+# Create .jic file
+quartus_pfg -c legacy_baseline.sof \
+emmc_atf.jic \
+-o hps_path=fsbl.hex \
+-o device=MT25QU128 \
+-o flash_loader=A5ED065BB32AE6SR0  \
+-o mode=ASX4 \
+-o hps=1
+```
+
+
+
+The following files are created:
+
+* $TOP_FOLDER/jic_emmc/emmc_atf.hps.jic
+* $TOP_FOLDER/jic_emmc/emmc_atf.core.rbf
+
+<h4>Build Rootfs</h4>
+
+
+
+
+
+```bash
+cd $TOP_FOLDER
+rm -rf yocto && mkdir yocto && cd yocto
+git clone -b walnascar https://git.yoctoproject.org/poky
+git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga
+git clone -b walnascar https://github.com/openembedded/meta-openembedded
+# work around issue
+echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
+source poky/oe-init-build-env ./build
+echo 'MACHINE = "agilex5_dk_a5e065bb32aes1"' >> conf/local.conf
+echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
+echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf
+echo 'IMAGE_FSTYPES = "tar.gz cpio jffs2"' >> conf/local.conf
+echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver devmem2"' >> conf/local.conf
+bitbake core-image-minimal
+```
+
+
+
+The following file is created:
+
+* $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz
+
+<h4>Build eMMC Image</h4>
+
+
+
+
+```bash
+cd $TOP_FOLDER
+sudo rm -rf emmc_image
+mkdir emmc_image && cd emmc_image
+## Create FIP image
+$TOP_FOLDER/arm-trusted-firmware-emmc/tools/fiptool/fiptool create \
+--soc-fw $TOP_FOLDER/arm-trusted-firmware-emmc/build/agilex5/release/bl31.bin \
+--nt-fw $TOP_FOLDER/linux-socfpga-emmc/arch/arm64/boot/Image \
+--nt-fw-config $TOP_FOLDER/linux-socfpga-emmc/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_atfboot.dtb fip.bin
+
+# Build now the SDCard
+wget https://releases.rocketboards.org/release/2020.11/gsrd/tools/make_sdimage_p3.py
+# remove mkfs.fat parameter which has some issues on Ubuntu 22.04
+sed -i 's/\"\-F 32\",//g' make_sdimage_p3.py
+chmod +x make_sdimage_p3.py
+mkdir rootfs && cd rootfs
+sudo tar -xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz
+sudo cp $TOP_FOLDER/jic_emmc/emmc_atf.core.rbf home/root/
+sudo rm -rf lib/modules/*
+cd ..
+sudo python3 make_sdimage_p3.py -f \
+-P fip.bin,num=1,format=raw,size=64M,type=a2 \
+-P rootfs/*,num=2,format=ext3,size=64M \
+-s 128M -n emmc_atf.img
+```
+
+
+
+The following file is created:
+
+* $TOP_FOLDER/emmc_image/emmc_atf.img
+
+
+
+You can exercise ATF to Linux boot flow from SD Card using the following binaries generated:
+
+* $TOP_FOLDER/emmc_image/emmc_atf.img
+* $TOP_FOLDER/jic_emmc/emmc_atf.hps.jic
+
+When booting with the binaries generated, this is the log that you will see. This is the log is just a refenrece and captured by the time the page was created and in the future the versions in the components may change.
+
+```
+NOTICE:  DDR: Reset type is 'Power-On'
+NOTICE:  IOSSM: Calibration success status check...
+NOTICE:  IOSSM: All EMIF instances within the IO96 have calibrated successfully!
+NOTICE:  DDR: Calibration success
+NOTICE:  DDR: ECC is enabled
+NOTICE:  IOSSM: Memory initialized successfully on IO96B
+NOTICE:  ###DDR:init success###
+NOTICE:  DFI interface selected successfully to SDEMMC
+NOTICE:  SOCFPGA: SDMMC boot
+NOTICE:  BL2: v2.12.1(release):410b93702-dirty
+NOTICE:  BL2: Built : 20:10:16, Jul 31 2025
+NOTICE:  BL2: Booting BL31
+NOTICE:  SOCFPGA: Boot Core = 0
+NOTICE:  SOCFPGA: CPU ID = 0
+NOTICE:  SOCFPGA: Setting CLUSTERECTRL_EL1
+NOTICE:  BL31: v2.12.1(release):410b93702-dirty
+NOTICE:  BL31: Built : 20:10:21, Jul 31 2025
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x412fd050]
+[    0.000000] Linux version 6.12.19-g7b497655d942-dirty (rolando@rolando3-linux-lab) (aarch64-none-linux-gnu-gcc (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 11.2.1 20220111, GNU ld (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 2.37.20220122) #1 SMP PREEMPT Thu Jul 31 19:25:32 CDT 2025
+[    0.000000] KASLR disabled due to lack of seed
+[    0.000000] Machine model: SoCFPGA Agilex5 SoCDK
+[    0.000000] efi: UEFI not found.
+[    0.000000] earlycon: uart0 at MMIO32 0x0000000010c02000 (options '115200n8')
+[    0.000000] printk: legacy bootconsole [uart0] enabled
+[    0.000000] Reserved memory: created DMA memory pool at 0x0000000080000000, size 32 MiB
+[    0.000000] OF: reserved mem: initialized node svcbuffer@0, compatible id shared-dma-pool
+[    0.000000] OF: reserved mem: 0x0000000080000000..0x0000000081ffffff (32768 KiB) nomap non-reusable svcbuffer@0
+[    0.000000] NUMA: Faking a node at [mem 0x0000000080000000-0x00000000ffffffff]
+[    0.000000] NODE_DATA(0) allocated [mem 0xffbf1bc0-0xffbf41ff]
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000080000000-0x00000000ffffffff]
+[    0.000000]   DMA32    empty
+[    0.000000]   Normal   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000080000000-0x0000000081ffffff]
+[    0.000000]   node   0: [mem 0x0000000082000000-0x00000000ffffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000080000000-0x00000000ffffffff]
+[    0.000000] cma: Reserved 32 MiB at 0x00000000fba00000 on node -1
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: MIGRATE_INFO_TYPE not supported.
+[    0.000000] psci: SMC Calling Convention v1.5
+[    0.000000] percpu: Embedded 25 pages/cpu s61720 r8192 d32488 u102400
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: detected: GIC system register CPU interface
+[    0.000000] CPU features: detected: Virtualization Host Extensions
+[    0.000000] CPU features: detected: ARM errata 1165522, 1319367, or 1530923
+[    0.000000] alternatives: applying boot alternatives
+[    0.000000] Kernel command line: console=ttys0,115200 earlycon panic=-1 root=/dev/mmcblk0p2 rw rootwait
+:
+[    1.666798] EXT4-fs (mmcblk0p2): mounting ext3 file system using the ext4 subsystem
+[    1.682241] EXT4-fs (mmcblk0p2): mounted filesystem c3b5fe0a-760b-4d2d-89dc-022dc29cde2f r/w with ordered data mode. Quota mode: none.
+[    1.694467] VFS: Mounted root (ext3 filesystem) on device 179:2.
+[    1.703706] devtmpfs: mounted
+[    1.718302] Freeing unused kernel memory: 10496K
+[    1.723362] Run /sbin/init as init process
+[    2.063314] udevd[108]: starting version 3.2.14
+[    3.807993] random: crng init done
+[    3.849113] udevd[109]: starting eudev-3.2.14
+[    4.124172] EXT4-fs (mmcblk0p2): re-mounted c3b5fe0a-760b-4d2d-89dc-022dc29cde2f r/w. Quota mode: none.
+[    4.785687] socfpga-dwmac 10810000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+[    4.796266] socfpga-dwmac 10810000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-1
+[    4.807002] socfpga-dwmac 10810000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-2
+[    4.818280] socfpga-dwmac 10810000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-3
+[    4.829721] socfpga-dwmac 10810000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-4
+[    4.840131] socfpga-dwmac 10810000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-5
+[    4.851595] socfpga-dwmac 10810000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-6
+[    4.862012] socfpga-dwmac 10810000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-7
+[    5.044042] socfpga-dwmac 10810000.ethernet eth0: PHY [stmmac-0:00] driver [Marvell 88E1510] (irq=POLL)
+[    5.054381] socfpga-dwmac 10810000.ethernet eth0: No Safety Features support found
+[    5.062117] socfpga-dwmac 10810000.ethernet eth0: IEEE 1588-2008 Advanced Timestamp supported
+[    5.071233] socfpga-dwmac 10810000.ethernet eth0: registered PTP clock
+[    5.077845] socfpga-dwmac 10810000.ethernet eth0: configuring for phy/rgmii link mode
+[    9.345961] socfpga-dwmac 10810000.ethernet eth0: Link is Up - 1Gbps/Full - flow control rx/tx
+[   15.171626] dw-apb-uart 10c02000.serial: failed to request DMA
+
+Poky (Yocto Project Reference Distro) 5.1.4 agilex5_dk_a5e065bb32aes1 /dev/ttyS0
+
+agilex5_dk_a5e065bb32aes1 login: 
 
 ```
 

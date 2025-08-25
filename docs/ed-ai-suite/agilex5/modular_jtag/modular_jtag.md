@@ -16,7 +16,6 @@ commands can be sent to the AI Suite IP.
 
 The example design uses the `AGX5_Generic.arch` architecture.
 
-
 ## Requirements
 
 > [!NOTE]

@@ -4,7 +4,7 @@
 
 ##  Introduction
 
-This page presents the Xen GSRD, which is based on the [Linux GSRD for the Agilex&trade; 5 E-Series Premium Development Kit](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/). The Xen GSRD uses the HPS Enablement Board, and SD card for storing the root filesystem.
+This page presents the Xen GSRD, which is based on the [Linux GSRD for the Agilex&trade; 5 E-Series Premium Development Kit](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/). The Xen GSRD uses the HPS Enablement Board, and SD card for storing the root filesystem.
 
 ### Xen Overview
 
@@ -32,7 +32,7 @@ The following are required to be able to fully exercise the Agilex 5 Premium Dev
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
   * SSH server installer, to enable using 'scp' command from target board to host PC
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1 
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1 
   
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
@@ -42,26 +42,30 @@ Refer to [board documentation](https://www.intel.com/content/www/us/en/products/
 
 ### Prebuilt Binaries
 
-The Agilex&trade; 5 Premium Development Kit Xen binaries are located at [https://releases.rocketboards.org/2025.04/xen/agilex5_dk_a5e065bb32aes1_xen/](https://releases.rocketboards.org/2025.04/xen/agilex5_dk_a5e065bb32aes1_xen/).
+The Agilex&trade; 5 Premium Development Kit Xen binaries are located at [https://releases.rocketboards.org/2025.08/xen/agilex5_dk_a5e065bb32aes1_xen/](https://releases.rocketboards.org/2025.08/xen/agilex5_dk_a5e065bb32aes1_xen/).
 
 ### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1 and the following software component versions are used to build the GSRD: 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1 and the following software component versions are used to build the binaries presented in this page:
 
-| Component | Location | Branch | Commit ID/Tag |
-| :-- | :-- | :-- | :-- |
-| GHRD | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | master | QPDS25.1_REL_GSRD_PR |
-| Linux | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.11-lts | QPDS25.1_REL_GSRD_PR |
-| Arm Trusted Firmware | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.0 | QPDS25.1_REL_GSRD_PR |
-| U-Boot | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.01 | QPDS25.1_REL_GSRD_PR |
-| Yocto Project | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | styhead | latest | 
-| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | styhead | latest |
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | styhead | QPDS25.1_REL_GSRD_PR |
-| Yocto Build Script: gsrd-socfpga | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | styhead | - |
+| Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
+| :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
+| Agilex 3 GHRD                         | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.1.1_REL_GSRD_PR   |
+| Agilex 5 GHRD                                  | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.1.1_REL_GSRD_PR |
+| Agilex 7 GHRD | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.1.1_REL_GSRD_PR |
+| Stratix 10 GHRD | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.1.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.19-lts | QPDS25.1.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.1   | QPDS25.1.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.04 | QPDS25.1.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
+| Yocto Project: meta-intel-fpga        | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest              |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.1.1_REL_GSRD_PR |
+
+**Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 ### Release Notes
 
-See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.1_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.1_REL_GSRD_PR).
+See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.1.1_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.1.1_REL_GSRD_PR).
 
 ## Exercise Prebuilt Binaries
 
@@ -72,25 +76,25 @@ Running the boot from SD card section of the GSRD is a prerequisite step for run
 | Link | Description |
 | :- | :- |
 | [Board Documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html) | Board user guide, schematics, etc |
-| [GSRD Development Kit Section](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#development-kit) | Details about the development kit |
-| [GSRD Board Setup Section](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#configure-board) | Setting up the development kit |
-| [GSRD Serial Console Section](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#configure-serial-console) | Setting up serial console |
-| [GSRD Write SD Card Section](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium//#write-sd-card-image)  | Writing SD card image |
+| [GSRD Development Kit Section](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#development-kit) | Details about the development kit |
+| [GSRD Board Setup Section](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#configure-board) | Setting up the development kit |
+| [GSRD Serial Console Section](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#configure-serial-console) | Setting up serial console |
+| [GSRD Write SD Card Section](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium//#write-sd-card-image)  | Writing SD card image |
 
 ### Write Binaries
 
 This section shows presents downloading and flashing the SD card image and JIC files, and downloading the xen rootfs cpio archive to be used by DomUs VMs.
 
-1\. Download and write to SD card the image [https://releases.rocketboards.org/2025.04/xen/agilex5_dk_a5e065bb32aes1_xen/sdimage.tar.gz](https://releases.rocketboards.org/2025.04/xen/agilex5_dk_a5e065bb32aes1_xen/sdimage.tar.gz)
+1\. Download and write to SD card the image [https://releases.rocketboards.org/2025.08/xen/agilex5_dk_a5e065bb32aes1_xen/sdimage.tar.gz](https://releases.rocketboards.org/2025.08/xen/agilex5_dk_a5e065bb32aes1_xen/sdimage.tar.gz)
 
-2\. Download and write to QSPI flash the JIC file [https://releases.rocketboards.org/2025.04/xen/agilex5_dk_a5e065bb32aes1_xen/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz](https://releases.rocketboards.org/2025.04/xen/agilex5_dk_a5e065bb32aes1_xen/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz)
+2\. Download and write to QSPI flash the JIC file [https://releases.rocketboards.org/2025.08/xen/agilex5_dk_a5e065bb32aes1_xen/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz](https://releases.rocketboards.org/2025.08/xen/agilex5_dk_a5e065bb32aes1_xen/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz)
 
 3\. Set MSEL to QSPI, and power cycle the board to boot to Linux.
 
 4\. On the host computer, download the xen rootf cpio archive:
 
 ```bash
-wget https://releases.rocketboards.org/2025.04/xen/agilex5_dk_a5e065bb32aes1_xen/xen-image-minimal-agilex5.cpio.gz
+wget https://releases.rocketboards.org/2025.08/xen/agilex5_dk_a5e065bb32aes1_xen/xen-image-minimal-agilex5.cpio.gz
 ```
 
 5\. On the Linux on target board, copy over the above downloaded file in 'xen' folder:
@@ -413,6 +417,226 @@ mtd0: 04200000 00010000 "u-boot"
 mtd1: 0be00000 00010000 "root"
 ```
 
+### Physical Core Assignment to Virtual Machines
+
+When Xen creates a new virtual machine, the Xen scheduler will assign a physical core to be used by this VM depending on load and configuration. However, you can assign specific cores through CPU pinning. Here is described how you can assign a specific core to any of the VM created.
+
+In order to exercise this, you can use any of the test procedures described previously, but the following example will show you how to do it using the procedure described in [Manage VMs](#manage-vms) (booting without passthrough).
+
+1\.  Boot to Linux and create DomU1 and DomU2 VMs keeping both alive. You can check that both of them exist using the following command:
+
+```bash
+root@agilex5dka5e065bb32aes1:~/xen# xl list
+Name                 ID   Mem VCPUs      State   Time(s)
+Domain-0              0  2048     2     r-----      45.0
+DomU1                 1  1024     1     -b----      23.7
+DomU2                 2  1024     1     r-----      15.7
+```
+
+2\. Check the current core assignment for each one of the VMs created using the **xl vcpu-list** command:
+
+```bash
+root@agilex5dka5e065bb32aes1:~/xen# xl vcpu-list
+Name             ID  VCPU   CPU State   Time(s) Affinity (Hard / Soft)
+Domain-0         0     0    0   r--      27.5    0 / all
+Domain-0         0     1    1   -b-      21.3    1 / all
+DomU1            1     0    3   -b-      30.6    all / all
+DomU2            2     0    2   -b-      30.6    all / all
+```
+
+The output of this command indicates in the **CPU** column whcih is the current physical core assigned to each one of the VM. In this case we can see that **DomU1** is running in the physical core 3 while **DomU2** is runninng in the physical core 2.  Also observe the **Affinity** column, in whcih for the **DomU1** and **Dom2**, the Hard Affinity is not restricted to any specific core as it is indicated with **all**.
+
+3\. You can change the core assigned to the VMs using the **xl vcpu-pin** command. The syntax of this command is as follow:
+
+   **xl vcpu-pin**  <VM Domain ID>  <VCPU>  <Physical core>
+
+The parameters of this command can been retrieved from the information provided by the **xl vcpu-list** command.
+
+4\. In this exercise, let's restrict the physical core that can be assinged to the **DomU1** and **DomU2** inverting the core observed in the step 2. In this case we will assign the physical core 2 to **DomU1** and the physical core 3 to **DomU2**.
+
+```bash
+root@agilex5dka5e065bb32aes1:~/xen# xl vcpu-pin 1 0 2
+root@agilex5dka5e065bb32aes1:~/xen# xl vcpu-pin 2 0 3
+root@agilex5dka5e065bb32aes1:~/xen#  xl vcpu-list
+Name             ID  VCPU   CPU State   Time(s) Affinity (Hard / Soft)
+Domain-0         0     0    0   r--      36.1    0 / all
+Domain-0         0     1    1   -b-      30.6    1 / all
+DomU1            1     0    2   -b-      64.2    2 / all
+DomU2            2     0    3   -b-      64.2    3 / all
+```
+
+From the previous campture you can verify that now the core 2 is being assigned to **DOMU1**  and the core 3 is being assigned to **DomU2**. Also observe that in the **Affinity** column these cores are the only ones that can be used by these VMs.
+
+If you want to go beyond, you can compile the following **getCore** application and take it to any created VM. The output of this application tells you in which physical core this is being executed. The easier way to transfer this to a VM is by using the [Ethernet Passthrough](#ethernet-passthrough) example.  You can build the application in your development computer,  and then take it to your VM created in your board through TFTP or SCP applications.
+
+```bash
+/* getCore.c app to get the physical core used to execute it.
+   This can be compiled with the following command after the appropiate setup of ARM Tool chain
+   gcc -g -o getCore getCore.c 
+*/
+#define _GNU_SOURCE
+#include <stdio.h>
+
+unsigned long int read_mpidr(void)
+{
+    unsigned long int value;
+    asm volatile("mrs %[result], mpidr_el1" : [result] "=r" (value));
+    return value;
+}
+
+unsigned int getCore(){  
+   unsigned long mpidr;
+   unsigned int core;
+
+   mpidr = read_mpidr();
+   core = (mpidr >> 8) & 0xFF;    
+   
+   return core;
+}
+
+int main()
+{
+
+  unsigned int core;    
+  core = getCore();
+  printf("=== My Debug example started on Core %d ===\n", core); 
+  
+  return 0;
+}
+```
+In any of the VMs created, you can execute  this application before and after calling the **xl vcpu-pin** command to assign an exclusive core and observe that the physical core in which the application is running is changed as expected. This is shown in the following capture. In this capture only one VM is being created. You can see that initially the core 2 was assigned to the **DomU1** VM and when the **getCore** application was run in this VM, it indicates that  this was run in that core. Then in **Domain-0** , the **xl vcpu-pin 1 0 3** is used to assign the core 3 to the **DomU1** VM and when the **getCore** application is run there we can confirm that this is being executed in the core 3.
+
+```bash
+#In Domain-0
+root@agilex5dka5e065bb32aes1:~/xen# xl vcpu-list
+Name           ID  VCPU   CPU State   Time(s) Affinity (Hard / Soft)
+Domain-0       0     0    0   r--      20.5     0 / all
+Domain-0       0     1    1   -b-      16.7     1 / all
+DomU1          1     0    2   -b-      36.5     all / all
+
+root@agilex5dka5e065bb32aes1:~/xen# xl console DomU1 
+<Now in DomU1>
+root@agilex5dka5e065bb32aes1:~/# tftp -gr getCore 10.10.0.1
+root@agilex5dka5e065bb32aes1:~/# chmod +x ./getCore
+root@agilex5dka5e065bb32aes1:~/# ./getCore
+=== My Debug example started on Core 2 ===
+# Exit from DomU1 with Ctrl+] and return to Domain-0
+root@agilex5dka5e065bb32aes1:~/xen# xl vcpu-pin 1 0 3
+root@agilex5dka5e065bb32aes1:~/xen# xl vcpu-list
+Name          ID  VCPU   CPU State   Time(s) Affinity (Hard / Soft)
+Domain-0      0     0    0   -b-      34.1  0 / all
+Domain-0      0     1    1   r--      32.7  1 / all
+DomU1         1     0    3   -b-      60.6  3 / all
+# Return to DomU1
+root@agilex5dka5e065bb32aes1:~/# xl console DomU1
+root@agilex5dka5e065bb32aes1:~/# ./getCore        
+=== My Debug example started on Core 3 ===
+```
+
+### Memory Isolation in VMs
+
+When creating a secondary virtual machine (i.e. **DomUx**), this runs as a guest and is given access only to the resources given by Xen. Typically, only the RAM is assigned to a VM, like in the VMs created at [Manage VMs](#manage-vms). When Xen creates this VM, it creates a virtualized memory map based on the  resources assigned to this and Xen keeps the mapping in internal tables. These resources could be RAM memory or peripheral that could be configured as passthrough. The main VM (i.e. **Dom0**) will show the full memory map as defined in the device Technical Refernece Manual unless any peripheral is transfer to a secondary VM also using PassThrough mechanism. Xen Hypervisor provide complete isolation between different VMs. Xen uses Guest Physical Addresses **(GPAs)** to represent the physical address space inside a guest OS. Each **DomU** is given its own **GPA** (Guest Physical Addresses ) space, which Xen maps to different  **MFN** (Machine Frame Numbers) in the host’s actual memory. Even though  the VM memory map observed through **/proc/iomem** inside multiple DomUs may look identical, the GPAs are backed by different host memory pages, ensuring isolation between VMs (unless a shared memory region is explicitly defined as part of the VMs configuration).
+
+The following example demonstrates the memory isolation feature in the VMs. This is based on the [Manage VMs](#manage-vms) using only **Dom0** and **DomU1**. This example, demonstrates the memory layout for each one of these VMs using **cat /proc/iomem**. The exercise also access one memory location that is included in the local memory layout, using **devmem2**, to confirm that this is accessible from the same VM. Finally, the exercise tries to access a memory location that belongs to the other VM, verifying that this is not possible as they are isolated from each other.
+
+In **Dom0** read the memory layout and read the 1st  memory location in **GICD**:
+```bash
+root@agilex5dka5e065bb32aes1:~/xen/# cat /proc/iomem 
+00000000-0007ffff : 0.sram sram@0
+10808000-10808fff : 10808000.mmc0 mmc0@10808000
+10830000-108334ff : 10830000.ethernet ethernet@10830000
+108d2000-108d20ff : 108d2000.spi spi@108d2000
+10900000-109fffff : 108d2000.spi spi@108d2000
+10b00000-10b3ffff : 10b00000.usb usb@10b00000
+10c03200-10c032ff : 10c03200.gpio gpio@10c03200
+10c03300-10c033ff : 10c03300.gpio gpio@10C03300
+10d00200-10d002ff : 10d00200.watchdog watchdog@10d00200
+10d00300-10d003ff : 10d00300.watchdog watchdog@10d00300
+10d00400-10d004ff : 10d00400.watchdog watchdog@10d00400
+10d00500-10d005ff : 10d00500.watchdog watchdog@10d00500
+10d00600-10d006ff : 10d00600.watchdog watchdog@10d00600
+10d10000-10d10fff : 10d10000.clock-controller clock-controller@10d10000
+10d11000-10d11fff : 10d11000.rstmgr rstmgr@10d11000
+10da0000-10da0fff : 10da0000.i3c i3c@10da0000
+10da1000-10da1fff : 10da1000.i3c i3c@10da1000
+10db0000-10db04ff : 10db0000.dma-controller dma-controller@10db0000
+10dc0000-10dc04ff : 10dc0000.dma-controller dma-controller@10dc0000
+11000000-11007fff : usb1@11000000
+  11000000-11007fff : xhci-hcd.0.auto usb1@11000000
+1100c100-110fffff : 11000000.usb1 usb1@11000000
+16002000-16002fff : 16002000.pmu-tcu pmu-tcu@16002000
+16042000-16042fff : 16042000.pmu-tbu pmu-tbu@16042000
+16062000-16062fff : 16062000.pmu-tbu pmu-tbu@16062000
+16082000-16082fff : 16082000.pmu-tbu pmu-tbu@16082000
+160a2000-160a2fff : 160a2000.pmu-tbu pmu-tbu@160A2000
+160c2000-160c2fff : 160c2000.pmu-tbu pmu-tbu@160C2000
+160e2000-160e2fff : 160e2000.pmu-tbu pmu-tbu@160E2000
+1d000000-1d00ffff : GICD
+1d060000-1d15ffff : GICR
+20000000-2fffffff : System RAM
+80000000-81ffffff : reserved
+98000000-f7ffffff : System RAM
+  98010000-99e9ffff : Kernel code
+  99ea0000-9a17ffff : reserved
+  9a180000-9a71ffff : Kernel data
+  a0000000-a0006fff : reserved
+  a0200000-a81fffff : reserved
+  f2000000-f7ffffff : reserved
+9c0000000-9dfffffff : System RAM
+  9dd440000-9df9fffff : reserved
+  9dfaa8000-9dfaa8fff : reserved
+  9dfaa9000-9dfadafff : reserved
+  9dfadd000-9dfadefff : reserved
+  9dfadf000-9dfadffff : reserved
+  9dfae0000-9dfae0fff : reserved
+  9dfae1000-9dfbe4fff : reserved
+  9dfbe5000-9dfc09fff : reserved
+  9dfc0a000-9dfffffff : reserved
+  
+root@agilex5dka5e065bb32aes1:~/xen/# devmem2 0x1d000000
+/dev/mem opened.
+Memory mapped at address 0xffffa178b000.
+Read at address  0x1D000000 (0xffffa178b000): 0x00000012
+```
+
+In **DomU1** read the memory layout and read the 1st  memory location in **GICD**:
+```bash
+root@agilex5dka5e065bb32aes1:~# cat /proc/iomem 
+03001000-03010fff : GICD
+03020000-0401ffff : GICR
+40000000-7fffffff : System RAM
+  40010000-41e9ffff : Kernel code
+  41ea0000-4217ffff : reserved
+  42180000-4271ffff : Kernel data
+  48000000-4e3e4fff : reserved
+  7ca00000-7fbfffff : reserved
+  7fc65000-7fc67fff : reserved
+  7fc68000-7fce8fff : reserved
+  7fce9000-7fd01fff : reserved
+  7fd04000-7fd06fff : reserved
+  7fd07000-7fe0afff : reserved
+  7fe0b000-7fffffff : reserved
+root@agilex5dka5e065bb32aes1:~# devmem2 0x03001000
+/dev/mem opened.
+Memory mapped at address 0xffffb8980000.
+Read at address  0x03001000 (0xffffb8980000): 0x00000012
+```
+
+In **DomU1** read the read the 1st  memory location in **GICD** using the memory address indicated in **Dom0**  to confirm that this is not accessible:
+```bash
+root@agilex5dka5e065bb32aes1:~# devmem2 0x1d000000
+/dev/mem opened.
+Memory mapped at address 0xffff87bfe000.
+Killed
+```
+In **Dom0** read the read the 1st  memory location in **GICD** using the memory address indicated in **DomU1** to confirm that this is not accessible:
+```bash
+root@agilex5dka5e065bb32aes1:~/xen/# devmem2 0x03001000
+/dev/mem opened.
+Memory mapped at address 0xffffb738b000.
+Killed
+```
+
 ## Rebuild Xen GSRD
 
 This section presents how to build the Xen GSRD binaries. The instructions are the same as for the GSRD, except that the environment variable BUILD_HYP=1 needs to be set for building the Xen enabled GSRD version. This environment variable is only used by the Yocto GSRD script.
@@ -466,11 +690,11 @@ Download the compiler toolchain, add it to the PATH variable, to be used by the 
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
-gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
@@ -479,7 +703,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -493,7 +717,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 unzip a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 rm -f a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 make legacy_baseline-build
@@ -532,7 +756,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b styhead https://github.com/altera-fpga/gsrd-socfpga
+git clone -b walnascar https://github.com/altera-fpga/gsrd-socfpga
 cd gsrd-socfpga
 export HYP_BUILD=1
 . agilex5_dk_a5e065bb32aes1-gsrd-build.sh

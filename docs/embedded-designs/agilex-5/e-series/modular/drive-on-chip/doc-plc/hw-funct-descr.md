@@ -1,7 +1,7 @@
 
 
 [Drive-On-Chip with Functional Safety System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-funct-safety
-[Drive-On-Chip with PLC System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-plc
+[Drive-On-Chip with PLC System Example Design for Agilex™ Devices]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-plc
 [ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-crc
 [Agilex™ 5 FPGA - Drive-On-Chip Design Example]: https://www.intel.com/content/www/us/en/design-example/825930/agilex-5-fpga-drive-on-chip-design-example.html
 [Intel® Agilex™ 7 FPGA – Drive-On-Chip for Intel® Agilex™ 7 Devices Design Example]: https://www.intel.com/content/www/us/en/design-example/780360/intel-agilex-7-fpga-drive-on-chip-for-intel-agilex-7-devices-design-example.html
@@ -24,6 +24,7 @@
 [NiosV Processor for Altera® FPGA]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/processors-peripherals/niosv.html
 [Tandem Motion-Power 48 V Board Reference Manual]: https://www.intel.com/content/www/us/en/docs/programmable/683164/current/about-the-tandem-motion-power-48-v-board.html
 [Agilex™ 5 FPGA E-Series 065B Modular Development Kit]: https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html
+[Agilex™ 3 FPGA C-Series Development Kit]: https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a3y135b.html
 [Motor Control Designs with an Integrated FPGA Design Flow]: https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/wp/wp-01162-motor-control-toolflow.pdf
 [Install Docker Engine]: https://docs.docker.com/engine/install/
 [Docker Build: Multi-Platform Builds]: https://docs.docker.com/build/building/multi-platform/
@@ -44,6 +45,7 @@
 
 
 
+
 [Release Tag]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-plc-25.1
 [wic.gz]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.gz
 [wic.bmap]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.bmap
@@ -55,10 +57,21 @@
 [agilex_doc.st]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1/agilex_doc.st
 
 
+[AGX3 Release Tag]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-plc-25.1
+[agx3-wic.gz]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/core-image-minimal-agilex3.rootfs.wic.gz
+[agx3-wic.bmap]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/core-image-minimal-agilex3.rootfs.wic.bmap
+[agx3-top.hps.jic]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/agx3-top.hps.jic
+[agx3-doc-gui.zip]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/doc-gui_1.0.0.zip
+[DOC_PLC_TANDEM_MOTORSIM_AGILEX3.qar]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/DOC_PLC_TANDEM_MOTORSIM_AGILEX3.qar
+[agx3-top.core.rbf]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/agx3-top.core.rbf
+[agx3-u-boot-spl-dtb.hex]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/agx3-u-boot-spl-dtb.hex
+[agx3-agilex_doc.st]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-25.1.1/agilex_doc.st
 
-[Creating and Building the Design based on Modular Design Toolkit (MDT).]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/25.1/HPS_NIOSVg_DoC_dual_axis/Readme.md
-[AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_dual_axis.xml]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/25.1/HPS_NIOSVg_DoC_dual_axis/AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_dual_axis.xml
-[Create SD card image (.wic) using YOCTO/KAS]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/25.1/sw/README.md
+
+
+[Creating and Building the Design based on Modular Design Toolkit (MDT).]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/main/HPS_NIOSVg_DoC_dual_axis/Readme.md
+[AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_dual_axis.xml]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/main/HPS_NIOSVg_DoC_dual_axis/AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_dual_axis.xml
+[Create SD card image (.wic) using YOCTO/KAS]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/main/sw/README.md
 [Altera OpenPLC Docker Container Image Cross-compilation.]: https://github.com/altera-fpga/altera-openplc#build-a-docker-image
 
 
@@ -70,7 +83,7 @@
 [docker-bullseye-20240722]: https://hub.docker.com/layers/library/debian/bullseye-20240722/images/sha256-315c507d52a055dc8143d48e81666575ce34f1bb0538d189edff09dfc2314260
 
 
-# Drive-On-Chip with PLC Design Example for Agilex™ 5 Devices
+# Drive-On-Chip with PLC Design Example for Agilex™ Devices
 
 This document provides insights about the functionality of the design example
 using the hardware blocks as a reference. The user must account for the
@@ -84,7 +97,7 @@ subsystems allow the system to work appropriately.
 * The `clock_subsystem` and `board_subsystem` contain blocks related to the board
   resources such buttons, switches, LEDs, reference clocks, resets. They provide
   the clocks and resets for the other subsystems.
-* The `hps_subsystem` is an instance of the Agilex™ 5 HPS, which operates the
+* The `hps_subsystem` is an instance of the Agilex™ HPS, which operates the
   higher-level software stack in Linux. It includes an EMIF to the on-board DDR4
   chip, featuring presets and connections for the HPS2FPGA bridges to other
   subsystems. Additionally, the subsystem incorporates a DDR4 EMIF instance to
@@ -110,7 +123,7 @@ The following block diagram shows the main components and subsystems of the
 
 The diagram is color-coded to match the Platform Designer view and the XML file
 (Modular Design Toolkit methodology) for this design
-(see: [AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_dual_axis.xml](https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/25.1/HPS_NIOSVg_DoC_dual_axis/AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_dual_axis.xml)). The following figure
+(see: [AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_dual_axis.xml](https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/main/HPS_NIOSVg_DoC_dual_axis/AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_dual_axis.xml)). The following figure
 correlates the block diagram, the XML file and the Platform Designer view:
 
 <br>
@@ -296,7 +309,7 @@ For other values, refer to the source code of the Drive-On-Chip app running on N
 
 The resulting addressing formula is as the following:  `Target = HPS_bridge_base + Debug_Memory_Base + (Axis_Number * Axis_Mem_Space_Span) + Offset_from_Axis_Base_Reg`. Where `Axis_Mem_Space_Span` is `0x108`.
 
-For example: to change the speed in RPM of axis1 (second axis) in an Agilex™ 5 device using the FULL HPS-to-FPGA bridge:
+For example: to change the speed in RPM of axis1 (second axis) in an Agilex™ device using the FULL HPS-to-FPGA bridge:
 
 * **DOC_DBG_SPEED_SETP0_add_from_HPS** = HPS_bridge_base + Debug_Memory_Bas + (Axis_Number * Axis_Mem_Space_Span) + Offset_from_Axis_Base_Reg
 * **DOC_DBG_SPEED_SETP0_add_from_HPS** = 0x4000_0000 + 0x0008_0000 + (0x1 * 0x108) + DOC_DBG_POS_SETP0; where **DOC_DBG_POS_SETP0** is 0x58

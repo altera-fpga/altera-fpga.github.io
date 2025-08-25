@@ -4,7 +4,7 @@
 
 ## Overview
 
-This page demonstrates how to use the [baremetal drivers](https://altera-fpga.github.io/rel-25.1/driver-list_baremetal/) for a simple hello world program, booting from QSPI, on the [Agilex 5 E-Series Premium Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html)
+This page demonstrates how to use the [baremetal drivers](https://altera-fpga.github.io/rel-25.1.1/driver-list_baremetal/) for a simple hello world program, booting from QSPI, on the [Agilex 5 E-Series Premium Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html)
 
 Two different scenarios are covered:
 
@@ -27,9 +27,9 @@ The following inputs are used:
 
 | Item | Link |
 | -- | -- |
-| Baremetal Drivers Source | [baremetal-drivers](https://github.com/altera-fpga/baremetal-drivers/tree/QPDS25.1_REL_GSRD_PR) |
-| OCRAM Baremetal CMake Project File | [CMakeLists_ocram.txt](https://altera-fpga.github.io/rel-25.1/baremetal-embedded/agilex-5/e-series/premium/collateral/CMakeLists_ocram.txt)|
-| Precompiled GHRD SOF | [ghrd_a5ed065bb32ae6sr0.sof](https://releases.rocketboards.org/2025.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.sof) |
+| Baremetal Drivers Source | [baremetal-drivers](https://github.com/altera-fpga/baremetal-drivers/tree/QPDS25.1.1_REL_GSRD_PR) |
+| OCRAM Baremetal CMake Project File | [CMakeLists_ocram.txt](https://altera-fpga.github.io/rel-25.1.1/baremetal-embedded/agilex-5/e-series/premium/collateral/CMakeLists_ocram.txt)|
+| Precompiled GHRD SOF | [ghrd_a5ed065bb32ae6sr0.sof](https://releases.rocketboards.org/2025.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.sof) |
 
 ### Build Example
 
@@ -64,7 +64,7 @@ export CROSS_COMPILE=aarch64-none-elf-
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -77,7 +77,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf baremetal-drivers*
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/baremetal-drivers
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/baremetal-drivers
 ```
 
 
@@ -106,7 +106,7 @@ cp $TOP_FOLDER/baremetal-drivers/test/simics/hello-world/printf_hello_world.c he
 
 
 ```bash
-wget -O CMakeLists.txt https://altera-fpga.github.io/rel-25.1/baremetal-embedded/agilex-5/e-series/premium/collateral/CMakeLists_ocram.txt
+wget -O CMakeLists.txt https://altera-fpga.github.io/rel-25.1.1/baremetal-embedded/agilex-5/e-series/premium/collateral/CMakeLists_ocram.txt
 ```
 
 
@@ -178,7 +178,7 @@ ${CROSS_COMPILE}objcopy -v -I binary -O ihex --change-addresses 0x0 hello_world.
 
 ```bash
 rm -f design.sof flash_image.hps.jic flash_image.core.rbf
-wget -O design.sof https://releases.rocketboards.org/2025.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.sof 
+wget -O design.sof https://releases.rocketboards.org/2025.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.sof 
 quartus_pfg \
 -c design.sof flash_image.jic \
 -o device=MT25QU128 \
@@ -193,7 +193,7 @@ quartus_pfg \
 
 ### Run Example
 
-1\. Set up the board as described in the GSRD [Configure Board](https://altera-fpga.github.io/rel-25.1embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#configure-board).
+1\. Set up the board as described in the GSRD [Configure Board](https://altera-fpga.github.io/rel-25.1.1embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#configure-board).
 
 2\. Power down board
 
@@ -243,11 +243,11 @@ The following inputs are used:
 
 | Item | Link |
 | -- | -- |
-| Baremetal Drivers Source | [baremetal-drivers](https://github.com/altera-fpga/baremetal-drivers/tree/QPDS25.1_REL_GSRD_PR) |
-| DDR Baremetal CMake Project File | [CMakeLists_ddram.txt](https://altera-fpga.github.io/rel-25.1/baremetal-embedded/agilex-5/e-series/premium/collateral/CMakeLists_ddram.txt)|
-| Programming File Generator File | [flash_image.pfg](https://altera-fpga.github.io/rel-25.1/baremetal-embedded/agilex-5/e-series/premium/collateral/flash_image.pfg) |
-| Arm Trusted Firmware Source | [arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware/tree/QPDS25.1_REL_GSRD_PR) |
-| Precompiled GHRD SOF | [ghrd_a5ed065bb32ae6sr0.sof](https://releases.rocketboards.org/2025.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.sof) |
+| Baremetal Drivers Source | [baremetal-drivers](https://github.com/altera-fpga/baremetal-drivers/tree/QPDS25.1.1_REL_GSRD_PR) |
+| DDR Baremetal CMake Project File | [CMakeLists_ddram.txt](https://altera-fpga.github.io/rel-25.1.1/baremetal-embedded/agilex-5/e-series/premium/collateral/CMakeLists_ddram.txt)|
+| Programming File Generator File | [flash_image.pfg](https://altera-fpga.github.io/rel-25.1.1/baremetal-embedded/agilex-5/e-series/premium/collateral/flash_image.pfg) |
+| Arm Trusted Firmware Source | [arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware/tree/QPDS25.1.1_REL_GSRD_PR) |
+| Precompiled GHRD SOF | [ghrd_a5ed065bb32ae6sr0.sof](https://releases.rocketboards.org/2025.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.sof) |
 
 ### Build Example
 
@@ -281,7 +281,7 @@ export CROSS_COMPILE=aarch64-none-elf-
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -292,7 +292,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
 ```bash
 cd $TOP_FOLDER
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware atf
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware atf
 make -C atf fiptool
 make -C atf bl2 bl31 PLAT=agilex5 DEBUG=1 SOCFPGA_BOOT_SOURCE_QSPI=1 LOG_LEVEL=50
 ```
@@ -306,7 +306,7 @@ make -C atf bl2 bl31 PLAT=agilex5 DEBUG=1 SOCFPGA_BOOT_SOURCE_QSPI=1 LOG_LEVEL=5
 ```bash
 cd $TOP_FOLDER
 rm -rf baremetal-drivers*
-git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-fpga/baremetal-drivers
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/baremetal-drivers
 ```
 
 
@@ -335,7 +335,7 @@ cp $TOP_FOLDER/baremetal-drivers/test/simics/hello-world/printf_hello_world.c he
 
 
 ```bash
-wget -O CMakeLists.txt https://altera-fpga.github.io/rel-25.1/baremetal-embedded/agilex-5/e-series/premium/collateral/CMakeLists_ddram.txt
+wget -O CMakeLists.txt https://altera-fpga.github.io/rel-25.1.1/baremetal-embedded/agilex-5/e-series/premium/collateral/CMakeLists_ddram.txt
 ```
 
 
@@ -406,7 +406,7 @@ $TOP_FOLDER/atf/tools/fiptool/fiptool create --soc-fw $TOP_FOLDER/atf/build/agil
 11\. Bring the Programming File Generator file, used to instruct Quartus Programmer how to create the flash image:
 
 ```bash
-wget https://altera-fpga.github.io/rel-25.1/baremetal-embedded/agilex-5/e-series/premium/collateral/flash_image.pfg
+wget https://altera-fpga.github.io/rel-25.1.1/baremetal-embedded/agilex-5/e-series/premium/collateral/flash_image.pfg
 ```
 
 
@@ -465,7 +465,7 @@ ${CROSS_COMPILE}objcopy -v -I binary -O ihex --change-addresses 0x0 $TOP_FOLDER/
 
 
 ```bash
-wget -O design.sof https://releases.rocketboards.org/2025.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.sof 
+wget -O design.sof https://releases.rocketboards.org/2025.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.sof 
 quartus_pfg -c flash_image.pfg
 ```
 
@@ -474,7 +474,7 @@ quartus_pfg -c flash_image.pfg
 
 ### Run Example
 
-1\. Set up the board as described in the GSRD [Configure Board](https://altera-fpga.github.io/rel-25.1embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#configure-board).
+1\. Set up the board as described in the GSRD [Configure Board](https://altera-fpga.github.io/rel-25.1.1embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#configure-board).
 
 2\. Power down board
 

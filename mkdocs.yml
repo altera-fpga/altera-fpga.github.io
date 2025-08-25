@@ -203,6 +203,10 @@ nav:
     - vabtool: host-attach-util/vabtool/vabtool.md
   - Example Designs:
     - Summary: ed-demo-list/ed-list.md
+    - Agilex™ 3:
+      - C-Series SoC and FPGA Development Kit:
+        - Drive-On-Chip with PLC Design Example for Agilex™ Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-plc.md
+        - HPS GSRD User Guide: embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3.md
     - Agilex™ 5:
       - E-Series Premium Development Kit:
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium.md
@@ -243,7 +247,7 @@ nav:
         - HPS GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular.md
         - HPS Xen Hypervisor GSRD: embedded-designs/agilex-5/e-series/modular/xen/ug-xen-agx5e-modular.md
         - Drive-On-Chip with Functional Safety Design Example for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-funct-safety.md
-        - Drive-On-Chip with PLC Design Example for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-plc.md
+        - Drive-On-Chip with PLC Design Example for Agilex™ Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-plc.md
         - ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-crc.md
       - Intel Simics Virtual Platform Examples:
         - Simics Linux GSRD: embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms.md
@@ -268,9 +272,9 @@ nav:
           - Nios V/g:
             - Nios® V/g TinyML LiteRT for Microcontroller Design: embedded-designs/agilex-7/f-series/fpga/niosv/niosv_g/tinyml_liteRT/ug-tinyml-litert-agx7f-fpga.md
       - I-Series FPGA Development Kit:
-        - GSRD User Guide: embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc.md
         - Agilex 7 PCIe-Attached Example Design with OFS (I-Series, 2x R-Tile and 1x F-Tile): ed-ai-suite/agilex7/iseries_ofs_pcie/iseries_ofs_pcie.md
         - HPS GSRD User Guide: embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc.md
+        - CII Example Design: embedded-designs/agilex7/i-series/avst-cii/agilex7-ed-pcie-cii.md
       - M-Series HBM2e Development Kit (3x F-Tile & 1x R-Tile):
         - HPS GSRD User Guide: embedded-designs/agilex-7/m-series/hbm2e/ug-gsrd-agx7m-hbm2e.md
         - PCIe Root Port User Guide: embedded-designs/agilex-7/m-series/pcie_rp/ug-pcie_rp-agx7m-hbm2e.md
@@ -352,16 +356,19 @@ env:
   AGILEX: Intel® Agilex® 7 FPGA
 
 # Variables for content supported by current release  
-  ALTERA_RELEASE: rel-25.1
-  COMMON_QUARTUS_VER_L: Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1
-  COMMON_QUARTUS_VER_S: 25.1
-  PREV_COMMON_QUARTUS_VER_S: 24.3.1
-  GSRD_LINUX_BRANCH_S: 6.12.11-lts
-  GSRD_UBOOT_BRANCH_S: 2025.01
-  GSRD_ATF_BRANCH_S: 2.12.0
-  GSRD_LINUX_BRANCH: socfpga-6.12.11-lts
-  GSRD_UBOOT_BRANCH: socfpga_v2025.01
-  GSRD_ATF_BRANCH: socfpga_v2.12.0
-  GSRD_DATE: 2025.04
-  GSRD_TAG: QPDS25.1_REL_GSRD_PR
-  GSRD_YOCTO_BRANCH: styhead 
+  ALTERA_RELEASE: rel-25.1.1
+  COMMON_QUARTUS_VER_L: Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1
+  COMMON_QUARTUS_VER_S: 25.1.1
+  PREV_COMMON_QUARTUS_VER_S: 25.1
+  GSRD_LINUX_BRANCH_S: 6.12.19-lts
+  GSRD_UBOOT_BRANCH_S: 2025.04
+  GSRD_ATF_BRANCH_S: 2.12.1
+  GSRD_LINUX_BRANCH: socfpga-6.12.19-lts
+  GSRD_UBOOT_BRANCH: socfpga_v2025.04
+  GSRD_ATF_BRANCH: socfpga_v2.12.1
+  GSRD_DATE: 2025.08
+  GSRD_TAG: QPDS25.1.1_REL_GSRD_PR
+  GSRD_YOCTO_BRANCH: walnascar
+  DCMF_VER: 25.1.1
+  DCMF_PREV_VER: 25.1.0
+

@@ -4,7 +4,7 @@
 
 
 [Drive-On-Chip with Functional Safety System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-funct-safety
-[Drive-On-Chip with PLC System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-plc
+[Drive-On-Chip with PLC System Example Design for Agilex™ Devices]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-plc
 [ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-crc
 [Agilex™ 5 FPGA - Drive-On-Chip Design Example]: https://www.intel.com/content/www/us/en/design-example/825930/agilex-5-fpga-drive-on-chip-design-example.html
 [Intel® Agilex™ 7 FPGA – Drive-On-Chip for Intel® Agilex™ 7 Devices Design Example]: https://www.intel.com/content/www/us/en/design-example/780360/intel-agilex-7-fpga-drive-on-chip-for-intel-agilex-7-devices-design-example.html
@@ -27,6 +27,7 @@
 [NiosV Processor for Altera® FPGA]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/processors-peripherals/niosv.html
 [Tandem Motion-Power 48 V Board Reference Manual]: https://www.intel.com/content/www/us/en/docs/programmable/683164/current/about-the-tandem-motion-power-48-v-board.html
 [Agilex™ 5 FPGA E-Series 065B Modular Development Kit]: https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html
+[Agilex™ 3 FPGA C-Series Development Kit]: https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a3y135b.html
 [Motor Control Designs with an Integrated FPGA Design Flow]: https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/wp/wp-01162-motor-control-toolflow.pdf
 [Install Docker Engine]: https://docs.docker.com/engine/install/
 [Docker Build: Multi-Platform Builds]: https://docs.docker.com/build/building/multi-platform/
@@ -123,6 +124,7 @@ Prebuilt binaries are provided to help get the example design running quickly. Y
 
 ### Setting Up your Development Board
 
+
 * Configure the board switches:
   The following provides the default configuration for all the switches in the
   board.
@@ -206,6 +208,7 @@ sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aes1.wic.gz /dev/sda
 
 ### Flash The QSPI
 
+
 * Download the `.jic` image from the prebuilt binary links above.
 * Power down the board.
 * Set **MSEL** dipswitch **S4** on SOM to **JTAG: OFF-OFF**
@@ -245,7 +248,6 @@ sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aes1.wic.gz /dev/sda
   <br>
 
 * Power down the board. Set **MSEL** dip switch **S4** on SOM to **ASX4 (QSPI): ON-ON**
-
 <br>
 
 
@@ -354,14 +356,14 @@ Altera® Corporation technologies may require enabled hardware, software or serv
 activation. No product or component can be absolutely secure. Performance varies
 by use, configuration and other factors. Your costs and results may vary. You may
 not use or facilitate the use of this document in connection with any infringement
-or other legal analysis concerning Altera® or Intel® products described herein. You
+or other legal analysis concerning Altera® products described herein. You
 agree to grant Altera® Corporation a non-exclusive, royalty-free license to any
 patent claim thereafter drafted which includes subject matter disclosed herein.
 No license (express or implied, by estoppel or otherwise) to any intellectual
 property rights is granted by this document, with the sole exception that you
 may publish an unmodified copy. You may create software implementations based on
 this document and in compliance with the foregoing that are intended to execute
-on the Altera® or Intel® product(s) referenced in this document. No rights are granted
+on the Altera® or product(s) referenced in this document. No rights are granted
 to create modifications or derivatives of this document. The products described
 may contain design defects or errors known as errata which may cause the product
 to deviate from published specifications. Current characterized errata are available

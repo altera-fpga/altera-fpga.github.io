@@ -1,10 +1,10 @@
 # **General Purpose I/O Driver for Hard Processor System**
 
-Last updated: **August 19, 2025** 
+Last updated: **August 25, 2025** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpio/gpio-dwapb.c)
 
-**Devices supported**: Agilex 5, Agilex 7
+**Devices supported**: Agilex3, Agilex 5, Agilex 7
 
 ## **Introduction**
 

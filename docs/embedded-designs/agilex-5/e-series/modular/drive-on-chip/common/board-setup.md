@@ -1,4 +1,3 @@
-### Setting Up your Development Board
 
 * Configure the board switches:
   The following provides the default configuration for all the switches in the
