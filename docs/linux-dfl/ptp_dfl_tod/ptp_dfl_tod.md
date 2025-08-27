@@ -1,6 +1,6 @@
 # **Ethernet IEEE 1588 Time of Day Clock FPGA IP Driver for Host Attach**
 
-Last updated: **August 25, 2025** 
+Last updated: **August 27, 2025** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/ptp/ptp_dfl_tod.c?h=master)
 

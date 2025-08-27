@@ -478,6 +478,7 @@ The following file is created:
 * `$TOP_FOLDER/ghrd_a3cw135bm16ae6s.core.rbf`
 
 
+
 <h5>Set Up Yocto</h5>
 
 1\. Clone the Yocto script and prepare the build:
@@ -517,6 +518,7 @@ sed -i "/agilex3_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel-fpga-refdes/recip
 
 Build Yocto:
 
+
 ```bash
 bitbake_image
 ```
@@ -531,11 +533,11 @@ package
 The following files are created:
 
 * `$TOP_FOLDER/gsrd-socfpga/agilex3-gsrd-images/u-boot-agilex3-socdk-gsrd-atf/u-boot-spl-dtb.hex`
-* `$TOP_FOLDER/gsrd-socfpga/agilex3-gsrd-images/u-boot.itb`
 * `$TOP_FOLDER/gsrd-socfpga/agilex3-gsrd-images/sdimage.tar.gz`
 
 
 <h5>Build QSPI Image</h5>
+
 
 
 ```bash
@@ -559,6 +561,7 @@ The following file is created:
 This is an optional step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.
 
 
+
 ```bash
 cd $TOP_FOLDER
 rm -f ghrd_a3cw135bm16ae6s.hps.rbf
@@ -573,11 +576,238 @@ The following file is created:
 
 * `$TOP_FOLDER/ghrd_a3cw135bm16ae6s.hps.rbf`
 
+
+
+
+
 #### Build QSPI Boot Binaries
 
-<span style="color: red;">**NOTE:** At this time the instructions to build the binaries to boot from QSPI is not supported. The instructions will be provided later. </span>
 
 
+In the Agilex 3 C-Series Development Kit, the size of the QSPI memory device is very small (64 MB), so it is required to create a UBI file system with a reduced size. This file system does not include the regular GSRD applications and the functionality demonstrated only allow you to boot to Linux. To create this reduced size file system, it is needed to rebuild Yocto using **agilex3-qspi-build.sh** setup script. 
+
+The diagram below shows how booting from QSPI JIC is built. The hardware project compilation and Yocto build remain the same, and the QSPI JIC is built based on the resulted files:
+
+![](images/agilex3-build-qspi-flow.svg)
+
+
+
+<h5>Setup Environment</h5>
+
+
+1\. Create the top folder to store all the build artifacts:
+
+
+```bash
+sudo rm -rf agilex3_gsrd-qspi
+mkdir agilex3_gsrd-qspi
+cd agilex3_gsrd-qspi
+export TOP_FOLDER=`pwd`
+```
+
+
+
+Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
+
+
+```bash
+cd $TOP_FOLDER
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-none-linux-gnu-
+```
+
+Enable Quartus tools to be called from command line:
+
+
+```bash
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+```
+
+
+
+
+
+<h5>Build Hardware Design</h5>
+
+
+
+
+```bash
+cd $TOP_FOLDER
+rm -rf agilex3_soc_devkit_ghrd && mkdir agilex3_soc_devkit_ghrd && cd agilex3_soc_devkit_ghrd
+wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS25.1.1_REL_GSRD_PR/a3cw135-devkit-oobe-legacy-baseline.zip
+unzip a3cw135-devkit-oobe-legacy-baseline.zip
+rm -f a3cw135-devkit-oobe-legacy-baseline.zip
+make legacy_baseline-build
+make legacy_baseline-sw-build
+quartus_pfg -c output_files/legacy_baseline.sof \
+  output_files/legacy_baseline_hps_debug.sof \
+  -o hps_path=software/hps_debug/hps_wipe.ihex
+cd ..
+```
+
+
+
+The following files are created:
+
+* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/legacy_baseline.sof`
+* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof`
+
+<h5>Build Core RBF</h5>
+
+
+
+
+```bash
+cd $TOP_FOLDER
+rm -f ghrd_a3cw135bm16ae6s.rbf
+quartus_pfg -c agilex3_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof ghrd_a3cw135bm16ae6s.rbf -o hps=1
+```
+
+
+
+The following file is created:
+
+* `$TOP_FOLDER/ghrd_a3cw135bm16ae6s.core.rbf`
+
+
+
+<h5>Set Up Yocto</h5>
+
+
+
+1\. Clone the Yocto script and prepare the build:
+
+
+```bash
+cd $TOP_FOLDER
+rm -rf gsrd-socfpga
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+cd gsrd-socfpga
+ . agilex3-qspi-build.sh
+build_setup
+```
+
+
+
+<h5>Customize Yocto</h5>
+
+1\. Save the `core.rbf` as `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex3_gsrd_ghrd.core.rbf`
+
+2\. Update the recipe `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb` as follows:  
+
+* Replace the entry `${GHRD_REPO}/agilex3_gsrd_${ARM64_GHRD_CORE_RBF};name=agilex3_gsrd_core` with `file://agilex3_gsrd_ghrd.core.rbf;sha256sum=<CORE_SHA>` where `CORE_SHA` is the sha256 checksum of the file
+* Delete the line `SRC_URI[agilex3_gsrd_core.sha256sum] = "bf11c8cb3b6d9487f93ce0e055b1e5256998a25b25ac4690bef3fcd6225ee1ae"`
+  The above are achieved by the following instructions:
+  
+
+```bash
+CORE_RBF=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex3_gsrd_ghrd.core.rbf
+ln -s $TOP_FOLDER/ghrd_a3cw135bm16ae6s.core.rbf $CORE_RBF
+OLD_URI="\${GHRD_REPO}\/agilex3_gsrd_\${ARM64_GHRD_CORE_RBF};name=agilex3_gsrd_core"
+CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ")
+NEW_URI="file:\/\/agilex3_gsrd_ghrd.core.rbf;sha256sum=$CORE_SHA"
+sed -i "s/$OLD_URI/$NEW_URI/g" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+sed -i "/agilex3_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+```
+
+
+
+<h5>Build Yocto</h5>
+
+Build Yocto:
+
+
+```bash
+bitbake_image
+```
+
+
+Gather files:
+
+
+```bash
+package
+```
+
+
+
+The following files are created:
+
+* `$TOP_FOLDER/gsrd-socfpga/agilex3-qspi-images/u-boot-agilex3-socdk-qspi-atf/u-boot-spl-dtb.hex`
+* `$TOP_FOLDER/gsrd-socfpga/agilex3-qspi-images/core-image-minimal-agilex3_nor.ubifs`
+* `$TOP_FOLDER/gsrd-socfpga/agilex3-qspi-images/u-boot-agilex3-socdk-qspi-atf/u-boot.itb`
+* `$TOP_FOLDER/gsrd-socfpga/agilex3-qspi-images/u-boot-agilex3-socdk-qspi-atf/u-boot-spl-dtb.hex`
+* `$TOP_FOLDER/gsrd-socfpga/agilex3-qspi-images/kernel.itb`
+* `$TOP_FOLDER/gsrd-socfpga/agilex3-qspi-images/u-boot-agilex3-socdk-qspi-atf/boot.scr.uimg`
+  
+
+<h5>Create QSPI Image</h5>
+
+1\. Get the `ubinize.cfg` file which contains the details on how to build the `root.ubi` volume, and `agilex3_devkit_flash_image_hps.pfg` which contains the instructions for Programming File Generator on how to create the .jic file:
+
+
+
+
+
+```bash
+cd $TOP_FOLDER
+wget https://releases.rocketboards.org/2025.08/qspi/agilex3_qspi/ubinize.cfg
+wget https://releases.rocketboards.org/2025.08/qspi/agilex3_qspi/agilex3_flash_image_hps.pfg 
+sed -i 's/ghrd_a3cw135bm16ae6s\.sof/legacy_baseline.sof/g' agilex3_flash_image_hps.pfg    
+```
+
+
+2\. Link to the files that are needed from building the hardware design, and yocto:
+
+
+```bash
+cd $TOP_FOLDER
+ln -s $TOP_FOLDER/gsrd-socfpga/agilex3-qspi-images/core-image-minimal-agilex3_nor.ubifs rootfs.ubifs
+ln -s $TOP_FOLDER/gsrd-socfpga/agilex3-qspi-images/kernel.itb .
+ln -s $TOP_FOLDER/gsrd-socfpga/agilex3-qspi-images/u-boot-agilex3-socdk-qspi-atf/boot.scr.uimg .
+ln -s $TOP_FOLDER/gsrd-socfpga/agilex3-qspi-images/u-boot-agilex3-socdk-qspi-atf/u-boot-spl-dtb.hex .
+ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/legacy_baseline.sof .
+```
+
+3\. Process the u-boot.itb file to be exactly 2MB in size:
+
+
+```bash
+cp $TOP_FOLDER/gsrd-socfpga/agilex3-qspi-images/u-boot-agilex3-socdk-qspi-atf/u-boot.itb .
+uboot_part_size=2*1024*1024
+uboot_size=`wc -c < u-boot.itb`
+uboot_pad="$((uboot_part_size-uboot_size))"
+truncate -s +$uboot_pad u-boot.itb
+mv u-boot.itb u-boot.bin
+```
+
+4\. Create the `root.ubi` file and rename it to `hps.bin` as Programming File Generator needs the `.bin` extension:
+
+
+```bash
+ubinize -o root.ubi -p 65536 -m 1 -s 1 ubinize.cfg
+ln -s root.ubi hps.bin
+```
+
+5\. Create the JIC file:
+
+
+```bash
+quartus_pfg -c agilex3_flash_image_hps.pfg    
+```
+
+
+
+The following file is generated:
+
+* `$TOP_FOLDER/agilex_flash_image.hps.jic`
 
 
 
