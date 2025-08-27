@@ -287,8 +287,8 @@ Development Kit:
 
 === "Agilex™ 3"
 
-    * Agilex™ 3 FPGA C-Series Development Kit,
-    ordering code DK-A3Y135BM16AEA Refer to
+    * Agilex™ 3 FPGA and SoC C-Series Development Kit,
+    ordering code DK-A3W135BM16AEA Refer to
     [Agilex™ 3 FPGA C-Series Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a3y135b.html)
     for more information about the development kit.
     * USB-C Power supply (27E to 54W).
@@ -310,7 +310,7 @@ Development Kit:
     ![Agx3-MDK](./common/images/Agx3-MDK.png){:style="display:block; margin-left:auto; margin-right:auto"}
     <center>
 
-    **Agilex™ 3 FPGA C-Series Development Kit.**
+    **Agilex™ 3 FPGA and SoC C-Series Development Kit.**
     </center>
 
 <br>

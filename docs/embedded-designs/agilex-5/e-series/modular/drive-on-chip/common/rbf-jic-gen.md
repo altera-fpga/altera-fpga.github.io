@@ -71,7 +71,7 @@ and `top.hps.jic` execute:
     -o hps=1
     ```
 === "Agilex™ 3"
-    For [Agilex™ 3 FPGA C-Series Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a3y135b.html)
+    For [Agilex™ 3 FPGA and SoC C-Series Development Kit]
     ```bash
     quartus_pfg -c top.sof top.jic \
     -o device=MT25QU512 \
@@ -115,7 +115,7 @@ specifically the file `u-boot-spl-dtb.hex`. To generate the `top.jic` execute:
     -o mode=ASX4 \
     ```
 === "Agilex™ 3"
-    For [Agilex™ 3 FPGA C-Series Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a3y135b.html)
+    For [Agilex™ 3 FPGA and SoC C-Series Development Kit]
     ```bash
     quartus_pfg -c top.sof top.jic \
     -o device=MT25QU512 \
