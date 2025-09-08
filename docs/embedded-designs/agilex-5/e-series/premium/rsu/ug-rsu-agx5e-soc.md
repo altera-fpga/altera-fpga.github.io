@@ -28,7 +28,9 @@ Refer to the  [Hard Processor System Remote System Update User Guide: Agilex™ 
 
 ## Component Versions 
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1 and the following software component versions are used to build the binaries presented in this page:
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1 and the following software component versions integrate the 25.1.1 release. 
+
+**Note:** Regarding the GHRD components in the following table, only the device-specific GHRD is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
