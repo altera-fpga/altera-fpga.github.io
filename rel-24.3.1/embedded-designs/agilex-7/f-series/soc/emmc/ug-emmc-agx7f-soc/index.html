@@ -3843,7 +3843,7 @@
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/u-boot-socfpga<span class="w"> </span>
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nb">cd</span><span class="w"> </span>u-boot-socfpga<span class="w"> </span>
 <a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># change device tree to account for board differences </span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>patch<span class="w"> </span>-p<span class="w"> </span><span class="m">1</span><span class="w"> </span>&lt;<span class="w"> </span>../u-boot-socfpga-emmc.patch<span class="w"> </span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>patch<span class="w"> </span>-p<span class="w"> </span><span class="m">1</span><span class="w"> </span>&lt;<span class="w"> </span>../agilex7-u-boot-emmc.patch
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="c1"># use &#39;Image&#39; for kernel image instead of &#39;kernel.itb&#39; </span>
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/kernel\.itb/Image/g&#39;</span><span class="w"> </span>arch/arm/Kconfig
 <a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="c1"># enable dwarf4 debug info, for compatibility with arm ds </span>
@@ -3911,11 +3911,11 @@
 </ul>
 <h3 id="build-qspi-image">Build QSPI Image<a class="headerlink" href="#build-qspi-image" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span><span class="se">\ </span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>flash_image.jic<span class="w"> </span><span class="se">\ </span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU128<span class="w"> </span><span class="se">\ </span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>AGFB014R24B2E2V<span class="w"> </span><span class="se">\ </span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\ </span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>flash_image.jic<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU128<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>AGFB014R24B2E2V<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span>
 </code></pre></div>
 <p>The following file will be created: </p>
@@ -3925,15 +3925,16 @@
 <h3 id="build-linux">Build Linux<a class="headerlink" href="#build-linux" title="Permanent link">&para;</a></h3>
 <p>The following instructions are used to build Linux: </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>wget<span class="w"> </span>https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/emmc/collateral/agilex7-linux-emmc.patch
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga<span class="w"> </span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga<span class="w"> </span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nb">cd</span><span class="w"> </span>linux-socfpga<span class="w"> </span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>patch<span class="w"> </span>-p<span class="w"> </span><span class="m">1</span><span class="w"> </span>&lt;<span class="w"> </span>../agilex7-linux-emmc.patch
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>mrproper<span class="w"> </span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>make<span class="w"> </span>defconfig<span class="w"> </span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">64</span><span class="w"> </span>Image<span class="w"> </span>dtbs<span class="w"> </span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>agilex7-linux-emmc.patch
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>wget<span class="w"> </span>https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/f-series/soc/emmc/collateral/agilex7-linux-emmc.patch
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga<span class="w"> </span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS24.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga<span class="w"> </span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nb">cd</span><span class="w"> </span>linux-socfpga<span class="w"> </span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>patch<span class="w"> </span>-p<span class="w"> </span><span class="m">1</span><span class="w"> </span>&lt;<span class="w"> </span>../agilex7-linux-emmc.patch
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>mrproper<span class="w"> </span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>make<span class="w"> </span>defconfig<span class="w"> </span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">64</span><span class="w"> </span>Image<span class="w"> </span>dtbs<span class="w"> </span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
 </code></pre></div>
 <p>The following relevant files are created: </p>
 <ul>
@@ -4063,7 +4064,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 22, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 18, 2025</span>
       
         <br>
         Created:
