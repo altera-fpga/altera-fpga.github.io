@@ -207,6 +207,7 @@ nav:
       - C-Series SoC and FPGA Development Kit:
         - Drive-On-Chip with PLC Design Example for Agilex™ Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-plc.md
         - HPS GSRD User Guide: embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3.md
+        - HPS GHRD Linux Boot Examples: embedded-designs/agilex-3/c-series/boot-examples/ug-linux-boot-agx3.md
     - Agilex™ 5:
       - E-Series Premium Development Kit:
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium.md

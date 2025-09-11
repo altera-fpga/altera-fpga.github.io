@@ -1,6 +1,6 @@
 # **SD-EMMC Driver for Hard Processor System**
 
-Last updated: **September 08, 2025** 
+Last updated: **September 11, 2025** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/mmc/host/sdhci-cadence.c)
 
