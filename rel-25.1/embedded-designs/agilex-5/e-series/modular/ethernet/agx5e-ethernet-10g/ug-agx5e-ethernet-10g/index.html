@@ -5965,7 +5965,7 @@ In this design example as there is only one single DMA to the HPS all the packet
 <p>The following file will be generated:</p>
 <p><code>$TOP_FOLDER/src/hw/output_files/top.sof</code></p>
 <h3 id="build-hps-and-core-rbf-file">Build HPS and CORE RBF file<a class="headerlink" href="#build-hps-and-core-rbf-file" title="Permanent link">&para;</a></h3>
-<p>The configuration bitstream generated after an Altera® Quartus® Prime compilation contains both the FPGA core and I/O sections, as well as the HPS First-Stage Bootloader (FSBL). Once the system example design is recompiled, you must integrate the <code>.hex</code> file containing the U-Boot FSBL into the new bitstream <a href="https://github.com/altera-fpga/agilex5-ed-ethernet/a5e065b-mod-devkit-exp-es/src/sw/artifacts/u-boot-spl-dtb.hex"><code>u-boot-spl-dtb.hex</code></a></p>
+<p>The configuration bitstream generated after an Altera® Quartus® Prime compilation contains both the FPGA core and I/O sections, as well as the HPS First-Stage Bootloader (FSBL). Once the system example design is recompiled, you must integrate the <code>.hex</code> file containing the U-Boot FSBL into the new bitstream <a href="https://github.com/altera-fpga/agilex5-ed-ethernet/tree/rel/25.1/a5e065b-mod-devkit-exp-es/src/sw/artifacts/u-boot-spl-dtb.hex"><code>u-boot-spl-dtb.hex</code></a></p>
 <p>To integrate the <code>.hex</code> file into the new bitstream execute the following command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span>on<span class="w"> </span>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>src/sw/artifacts/u-boot-spl-dtb.hex<span class="w"> </span>src/hw/synth/output_files/top.sof<span class="w"> </span>bin/top.rbf
@@ -7063,11 +7063,11 @@ Please execute the following commands to both the development kits.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 11, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 15, 2025</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 11, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 15, 2025</span>
       
     
   </small>
