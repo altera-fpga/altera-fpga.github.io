@@ -2149,6 +2149,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_2_1" id="__nav_7_2_1_label" tabindex="0">
@@ -2199,6 +2201,20 @@
     <li class="md-nav__item">
       <a href="../../../../../agilex-3/c-series/boot-examples/ug-linux-boot-agx3/" class="md-nav__link">
         HPS GHRD Linux Boot Examples
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-3/c-series/rsu/ug-rsu-agx3c-fpga/" class="md-nav__link">
+        HPS Remote System Update Example
       </a>
     </li>
   
@@ -5281,19 +5297,20 @@
 <p><strong>Note:</strong> You can control the U-Boot erase granularity to be 4 KB or 64 KB with the <strong>CONFIG_SPI_FLASH_USE_4K_SECTORS</strong> configuration. A value of <strong>y</strong> implies an erase granularity of 4 KB otherwise the erase granularity will be 64 KB.</p>
 <h3 id="building-linux">Building Linux<a class="headerlink" href="#building-linux" title="Permanent link">&para;</a></h3>
 <p>The following commands can be used to obtain the Linux source code and build Linux.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga<span class="w"> </span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/altera-fpga/linux-socfpga<span class="w"> </span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nb">cd</span><span class="w"> </span>linux-socfpga<span class="w"> </span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># checkout the branch used for this document, comment out to use default </span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-t<span class="w"> </span>origin/socfpga-6.12.19-lts<span class="w"> </span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># configure the RSU driver to be built into the kernel </span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>mrproper<span class="w"> </span>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>make<span class="w"> </span>defconfig<span class="w"> </span>
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>./scripts/config<span class="w"> </span>--set-val<span class="w"> </span>CONFIG_INTEL_STRATIX10_RSU<span class="w"> </span>y<span class="w"> </span>
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>make<span class="w"> </span>oldconfig<span class="w"> </span>
-<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">64</span><span class="w"> </span>Image<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>intel/socfpga_agilex5_socdk.dtb<span class="w"> </span>
-<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/altera-fpga/linux-socfpga
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nb">cd</span><span class="w"> </span>linux-socfpga
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># checkout the branch used for this document, comment out to use default</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-t<span class="w"> </span>origin/socfpga-6.12.19-lts
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="c1"># configure the RSU driver to be built into the kernel</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>mrproper
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>make<span class="w"> </span>defconfig
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>./scripts/config<span class="w"> </span>--set-val<span class="w"> </span>CONFIG_INTEL_STRATIX10_RSU<span class="w"> </span>y
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>./scripts/config<span class="w"> </span>--set-val<span class="w"> </span>CONFIG_MARVELL_PHY<span class="w"> </span>y
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>make<span class="w"> </span>oldconfig
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">64</span><span class="w"> </span>Image<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>intel/socfpga_agilex5_socdk.dtb
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
 </code></pre></div>
 <p>After completing the above steps, the following files are created.</p>
 <ul>
@@ -5313,7 +5330,7 @@
 <a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">                </span><span class="nt">&lt;file_options/&gt;</span>
 <a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">            </span><span class="nt">&lt;/secondary_file&gt;</span>
 <a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">            </span><span class="nt">&lt;secondary_file</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;SEC_RPD&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;initial_image_jic&quot;</span><span class="nt">&gt;</span>
-<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">                </span><span class="nt">&lt;file_options/&gt;</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">                </span><span class="nt">&lt;file_options</span><span class="w"> </span><span class="na">bitswap=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
 <a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">            </span><span class="nt">&lt;/secondary_file&gt;</span>
 <a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">            </span><span class="nt">&lt;flash_device_id&gt;</span>Flash_Device_1<span class="nt">&lt;/flash_device_id&gt;</span>
 <a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">        </span><span class="nt">&lt;/output_file&gt;</span>
@@ -7649,7 +7666,7 @@ application image is running fine.</p>
 </li>
 </ol>
 <h2 id="using-separate-ssbl-per-bitstream">Using Separate SSBL Per Bitstream<a class="headerlink" href="#using-separate-ssbl-per-bitstream" title="Permanent link">&para;</a></h2>
-<p>When using Remote System Update on Stratix® 10, Agilex™ 7, Agilex™ 5 and N5X™ devices, each configuration bitstream from QSPI contains the HPS FSBL (First Stage Bootloader), specifically U-Boot SPL. In order to allow the most flexibility and compatibility, you must design your system so that each bitstream loads its own copy of the HPS SSBL, specifically U-Boot image.</p>
+<p>When using Remote System Update on Stratix® 10, Agilex™ 7, Agilex™ 5, Agilex™ 3 and N5X™ devices, each configuration bitstream from QSPI contains the HPS FSBL (First Stage Bootloader), specifically U-Boot SPL. In order to allow the most flexibility and compatibility, you must design your system so that each bitstream loads its own copy of the HPS SSBL, specifically U-Boot image.</p>
 <p>This page presents details on how to achieve this for both the cases when U-Boot images are stored in QSPI flash, and when they are stored in SD card. </p>
 <p>Refer to the following documents for details about the Remote System Update.</p>
 <ul>
@@ -7658,6 +7675,7 @@ application image is running fine.</p>
 <li><a href="">Agilex™ 5 Hard Processor System Remote System Update User Guide</a> </li>
 </ul>
 <p><strong>Note:</strong> In the scenario in which both SPTs tables are corrupted, U-Boot will fail to be launched because the FSBL won't be able to identify which SSBL needs to be launched since the partition information is kept in SPT tables.</p>
+<p><strong>Note:</strong>  Agilex™ 3 HPS Remote System Update User Guide will be released soon.</p>
 <h3 id="configuring-u-boot-for-separate-u-boot-images">Configuring U-Boot for Separate U-Boot Images<a class="headerlink" href="#configuring-u-boot-for-separate-u-boot-images" title="Permanent link">&para;</a></h3>
 <p>In order to configure U-Boot to support one U-Boot image per bitstream, the following configuration option must be enabled.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-160-1" name="__codelineno-160-1" href="#__codelineno-160-1"></a><span class="nv">CONFIG_SOCFPGA_RSU_MULTIBOOT</span><span class="o">=</span>y
@@ -7802,7 +7820,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 8, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 16, 2025</span>
       
         <br>
         Created:

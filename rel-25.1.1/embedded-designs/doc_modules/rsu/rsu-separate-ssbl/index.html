@@ -2141,6 +2141,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_2_1" id="__nav_7_2_1_label" tabindex="0">
@@ -2191,6 +2193,20 @@
     <li class="md-nav__item">
       <a href="../../../agilex-3/c-series/boot-examples/ug-linux-boot-agx3/" class="md-nav__link">
         HPS GHRD Linux Boot Examples
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agilex-3/c-series/rsu/ug-rsu-agx3c-fpga/" class="md-nav__link">
+        HPS Remote System Update Example
       </a>
     </li>
   
@@ -4202,7 +4218,7 @@
   <h1>Rsu separate ssbl</h1>
 
 <h2 id="using-separate-ssbl-per-bitstream">Using Separate SSBL Per Bitstream<a class="headerlink" href="#using-separate-ssbl-per-bitstream" title="Permanent link">&para;</a></h2>
-<p>When using Remote System Update on Stratix® 10, Agilex™ 7, Agilex™ 5 and N5X™ devices, each configuration bitstream from QSPI contains the HPS FSBL (First Stage Bootloader), specifically U-Boot SPL. In order to allow the most flexibility and compatibility, you must design your system so that each bitstream loads its own copy of the HPS SSBL, specifically U-Boot image.</p>
+<p>When using Remote System Update on Stratix® 10, Agilex™ 7, Agilex™ 5, Agilex™ 3 and N5X™ devices, each configuration bitstream from QSPI contains the HPS FSBL (First Stage Bootloader), specifically U-Boot SPL. In order to allow the most flexibility and compatibility, you must design your system so that each bitstream loads its own copy of the HPS SSBL, specifically U-Boot image.</p>
 <p>This page presents details on how to achieve this for both the cases when U-Boot images are stored in QSPI flash, and when they are stored in SD card. </p>
 <p>Refer to the following documents for details about the Remote System Update.</p>
 <ul>
@@ -4211,6 +4227,7 @@
 <li><a href="">Agilex™ 5 Hard Processor System Remote System Update User Guide</a> </li>
 </ul>
 <p><strong>Note:</strong> In the scenario in which both SPTs tables are corrupted, U-Boot will fail to be launched because the FSBL won't be able to identify which SSBL needs to be launched since the partition information is kept in SPT tables.</p>
+<p><strong>Note:</strong>  Agilex™ 3 HPS Remote System Update User Guide will be released soon.</p>
 <h3 id="configuring-u-boot-for-separate-u-boot-images">Configuring U-Boot for Separate U-Boot Images<a class="headerlink" href="#configuring-u-boot-for-separate-u-boot-images" title="Permanent link">&para;</a></h3>
 <p>In order to configure U-Boot to support one U-Boot image per bitstream, the following configuration option must be enabled.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">CONFIG_SOCFPGA_RSU_MULTIBOOT</span><span class="o">=</span>y
@@ -4343,7 +4360,7 @@ For each application, a specific U-Boot is required to be built. Name correspond
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 13, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 16, 2025</span>
       
         <br>
         Created:
