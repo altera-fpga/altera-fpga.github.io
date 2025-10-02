@@ -11,13 +11,17 @@
         <link rel="canonical" href="https://altera-fpga.github.io/rel-25.1.1/linux-embedded/drivers/usb3_1/usb3_1/">
       
       
+        <link rel="prev" href="../../usb2_0_otg/usb_2_0_otg/">
+      
+      
+        <link rel="next" href="../../watchdog_timers/watchdog_timers/">
       
       <link rel="icon" href="../../../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
     
     
       
-        <title>**USB 3.1 Driver for Hard Processor System** - Altera FPGA Developer Site</title>
+        <title>USB 3.1 Gen-1 - Altera FPGA Developer Site</title>
       
     
     
@@ -116,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              **USB 3.1 Driver for Hard Processor System**
+              USB 3.1 Gen-1
             
           </span>
         </div>
@@ -198,13 +202,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../../../driver-list_linux/" class="md-tabs__link">
+      <a href="../../../../driver-list_linux/" class="md-tabs__link md-tabs__link--active">
         Linux Drivers
       </a>
     </li>
@@ -375,14 +381,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
       
       
         
@@ -407,7 +415,7 @@
           
         </div>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Linux Drivers
@@ -420,16 +428,20 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
       
       
+        
+          
         
           
         
@@ -490,7 +502,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2_2">
           <span class="md-nav__icon md-icon"></span>
           HPS Host Drivers
@@ -828,6 +840,123 @@
       <a href="../../usb2_0_otg/usb_2_0_otg/" class="md-nav__link">
         USB 2.0 OTG
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          USB 3.1 Gen-1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        USB 3.1 Gen-1
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usb-31-glue-driver" class="md-nav__link">
+    USB 3.1 Glue Driver
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driver-sources" class="md-nav__link">
+    Driver Sources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driver-capabilities" class="md-nav__link">
+    Driver Capabilities
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-configurations" class="md-nav__link">
+    Kernel Configurations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#device-tree" class="md-nav__link">
+    Device Tree
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-procedure" class="md-nav__link">
+    Test Procedure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    Known Issues
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notices-disclaimers" class="md-nav__link">
+    Notices &amp; Disclaimers
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2933,6 +3062,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3_2" id="__nav_7_3_2_label" tabindex="0">
@@ -3039,6 +3170,20 @@
     <li class="md-nav__item">
       <a href="../../../../embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-crc/" class="md-nav__link">
         ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../embedded-designs/agilex-5/e-series/modular/camera/camera_4k/camera_4k/" class="md-nav__link">
+        4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices
       </a>
     </li>
   
@@ -4413,7 +4558,7 @@
 
 
 <h1 id="usb-31-driver-for-hard-processor-system"><strong>USB 3.1 Driver for Hard Processor System</strong><a class="headerlink" href="#usb-31-driver-for-hard-processor-system" title="Permanent link">&para;</a></h1>
-<p>Last updated: <strong>September 30, 2025</strong> </p>
+<p>Last updated: <strong>October 02, 2025</strong> </p>
 <p><strong>Upstream Status</strong>: <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/usb/dwc3">Upstreamed</a></p>
 <p><strong>Devices supported</strong>: Agilex3, Agilex 5</p>
 <h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
@@ -4565,7 +4710,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 30, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 2, 2025</span>
       
         <br>
         Created:
@@ -4595,6 +4740,42 @@ You are responsible for safety of the overall system, including compliance with 
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../usb2_0_otg/usb_2_0_otg/" class="md-footer__link md-footer__link--prev" aria-label="Previous: USB 2.0 OTG" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                USB 2.0 OTG
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../watchdog_timers/watchdog_timers/" class="md-footer__link md-footer__link--next" aria-label="Next: Watchdog Timers" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Watchdog Timers
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
