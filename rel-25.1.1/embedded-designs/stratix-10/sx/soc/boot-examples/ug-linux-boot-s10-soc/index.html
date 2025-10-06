@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hps-ghrd-linux-boot-examples-for-the-stratix-10-sx-soc-development-kit" class="md-skip">
+        <a href="#hps-ghrd-linux-boot-tutorial-example-design-stratix-10-sx-soc-development-kit" class="md-skip">
           Skip to content
         </a>
       
@@ -2240,7 +2240,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../../agilex-3/c-series/rsu/ug-rsu-agx3c-fpga/" class="md-nav__link">
-        HPS Remote System Update Example
+        HPS Remote System Update
       </a>
     </li>
   
@@ -2604,7 +2604,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../../agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc/" class="md-nav__link">
-        HPS Remote System Update Example
+        HPS Remote System Update
       </a>
     </li>
   
@@ -3286,7 +3286,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../../agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/" class="md-nav__link">
-        HPS Remote System Update Example
+        HPS Remote System Update
       </a>
     </li>
   
@@ -3300,7 +3300,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../../agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc/" class="md-nav__link">
-        HPS Multi-QSPI Remote System Update Example
+        HPS Multi-QSPI Remote System Update
       </a>
     </li>
   
@@ -3328,7 +3328,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../../agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc/" class="md-nav__link">
-        HPS eMMC Boot Example
+        HPS eMMC Boot
       </a>
     </li>
   
@@ -4050,7 +4050,7 @@
   
     <li class="md-nav__item">
       <a href="../../rsu/ug-rsu-s10sx-soc/" class="md-nav__link">
-        HPS Remote System Update Example
+        HPS Remote System Update
       </a>
     </li>
   
@@ -4078,7 +4078,7 @@
   
     <li class="md-nav__item">
       <a href="../../emmc/ug-emmc-s10sx-soc/" class="md-nav__link">
-        HPS eMMC Boot Example
+        HPS eMMC Boot
       </a>
     </li>
   
@@ -4092,7 +4092,7 @@
   
     <li class="md-nav__item">
       <a href="../../fabric-config/ug-linux-fabric-config-s10sx-soc/" class="md-nav__link">
-        SoC Fabric Configuration from Linux Example
+        SoC Fabric Configuration from Linux
       </a>
     </li>
   
@@ -4478,6 +4478,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_6_1" id="__nav_7_6_1_label" tabindex="0">
@@ -4500,6 +4502,20 @@
     <li class="md-nav__item">
       <a href="../../../../../arria-10/sx/soc/gsrd/ug-gsrd-a10sx-soc/" class="md-nav__link">
         GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../arria-10/sx/soc/boot-examples/ug-linux-boot-a10-soc/" class="md-nav__link">
+        HPS GHRD Linux Boot Examples
       </a>
     </li>
   
@@ -4931,7 +4947,7 @@
   
 
 
-<h1 id="hps-ghrd-linux-boot-examples-for-the-stratix-10-sx-soc-development-kit">HPS GHRD Linux Boot Examples for the Stratix® 10 SX SoC Development Kit<a class="headerlink" href="#hps-ghrd-linux-boot-examples-for-the-stratix-10-sx-soc-development-kit" title="Permanent link">&para;</a></h1>
+<h1 id="hps-ghrd-linux-boot-tutorial-example-design-stratix-10-sx-soc-development-kit">HPS GHRD Linux Boot Tutorial Example Design: Stratix® 10 SX SoC Development Kit<a class="headerlink" href="#hps-ghrd-linux-boot-tutorial-example-design-stratix-10-sx-soc-development-kit" title="Permanent link">&para;</a></h1>
 <h2 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h2>
 <p>This page contains instructions on how to build Linux systems from separate components: Hardware Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the Golden System Reference Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.</p>
 <p>The key differences versus the GSRD are:</p>
@@ -4975,6 +4991,12 @@
 <tr>
 <td align="left">Stratix 10 GHRD</td>
 <td align="left"><a href="https://github.com/altera-fpga/stratix10-ed-gsrd">https://github.com/altera-fpga/stratix10-ed-gsrd</a></td>
+<td align="left">main</td>
+<td align="left">QPDS25.1.1_REL_GSRD_PR</td>
+</tr>
+<tr>
+<td align="left">Arria 10 GHRD</td>
+<td align="left"><a href="https://github.com/altera-fpga/arria10-ed-gsrd">https://github.com/altera-fpga/arria10-ed-gsrd</a></td>
 <td align="left">main</td>
 <td align="left">QPDS25.1.1_REL_GSRD_PR</td>
 </tr>
@@ -5878,7 +5900,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 8, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 6, 2025</span>
       
         <br>
         Created:
