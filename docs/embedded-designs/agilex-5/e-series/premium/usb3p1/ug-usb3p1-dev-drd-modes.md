@@ -1,4 +1,3 @@
-True
 
 
 # USB 3.1 Gen-1 Controller in Host Mode, Device Mode, and Dual Role Device Mode
@@ -625,3 +624,4 @@ ls /mnt/mp2/devtest.txt
 umount –l /mnt/mp1
 umount –l /mnt/mp2
 ```
+

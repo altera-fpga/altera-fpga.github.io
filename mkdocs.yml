@@ -138,6 +138,7 @@ nav:
       - System Memory Management Unit: linux-embedded/drivers/smmu/smmu.md
       - UART: linux-embedded/drivers/uart/uart.md
       - USB 2.0 OTG: linux-embedded/drivers/usb2_0_otg/usb_2_0_otg.md
+      - USB 3.1 Gen-1: linux-embedded/drivers/usb3_1/usb3_1.md
       - Watchdog Timers : linux-embedded/drivers/watchdog_timers/watchdog_timers.md
       - Zarlink Clock Synchronizer: linux-embedded/drivers/zarlink_clock_synchronizer/zarlink_clock_synchronizer.md
     - PCIe Host Drivers: 
@@ -208,6 +209,12 @@ nav:
         - Drive-On-Chip with PLC Design Example for Agilex™ Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-plc.md
         - HPS GSRD User Guide: embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3.md
         - HPS GHRD Linux Boot Examples: embedded-designs/agilex-3/c-series/boot-examples/ug-linux-boot-agx3.md
+        - HPS Remote System Update: embedded-designs/agilex-3/c-series/rsu/ug-rsu-agx3c-fpga.md
+        - SoC FPGA Remote Debug: embedded-designs/agilex-3/c-series/remote-debug/ug-remote-debug-agx3.md        
+        - Debugging U-Boot with Arm Development Studio: demos/agilex-3/c-series/armds-debug-u-boot/ug-armds-debug-uboot-agx3.md
+        - Debugging U-Boot with Ashling RiscFree: demos/agilex-3/c-series/riscfree-debug-u-boot/ug-riscfree-debug-uboot-agx3.md
+        - Debugging Linux with Ashling RiscFree: demos/agilex-3/c-series/riscfree-debug-linux/ug-riscfree-debug-linux-agx3.md
+        - Debugging Linux with Arm Development Studio: demos/agilex-3/c-series/armds-debug-linux/ug-armds-debug-linux-agx3.md        
     - Agilex™ 5:
       - E-Series Premium Development Kit:
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium.md
@@ -215,12 +222,12 @@ nav:
         - HPS Zephyr GSRD User Guide: embedded-designs/agilex-5/e-series/premium/gsrd_zephyr/ug-zgsrd-agx5e-premium.md
         - HPS GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium.md
         - TSN Examples:
-          - TSN - HPS RGMII System: embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hps/ug-tsncfg1-agx5e-premium.md
-          - TSN - RGMII HVIO System: embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hvio/ug-tsncfg2-agx5e-premium.md
-          - TSN - SGMII XCVR System: embedded-designs/agilex-5/e-series/premium/tsn/sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5.md
+          - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hps/ug-tsncfg1-agx5e-premium.md
+          - HPS TSN RGMII HVIO System Example Design User Guide: embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hvio/ug-tsncfg2-agx5e-premium.md
+          - HPS TSN SGMII XCVR System Example Design User Guide: embedded-designs/agilex-5/e-series/premium/tsn/sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5.md
         - USB 3.1 Example: 'embedded-designs/agilex-5/e-series/premium/usb3p1/ug-usb3p1-dev-drd-modes.md'
-        - SoC FPGA Remote Debug Example: embedded-designs/agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium.md
-        - HPS Remote System Update Example: embedded-designs/agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc.md
+        - SoC FPGA Remote Debug: embedded-designs/agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium.md
+        - HPS Remote System Update: embedded-designs/agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc.md
         - HPS Xen Hypervisor GSRD: embedded-designs/agilex-5/e-series/premium/xen/ug-xen-agx5e-premium.md
         - PCIe Root Port: embedded-designs/agilex-5/e-series/premium/pcie_rp/ug-pcie_rp-agx5e-premium.md
         - Nios V Processor Examples:
@@ -244,20 +251,25 @@ nav:
         - Drive-On-Chip with Functional Safety Design Example for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-funct-safety.md
         - Drive-On-Chip with PLC Design Example for Agilex™ Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-plc.md
         - ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-crc.md
+        - 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k/camera_4k.md
       - Intel Simics Virtual Platform Examples:
         - Simics Linux GSRD: embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms.md
         - Simics Zephyr GSRD: embedded-designs/agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms.md
     - Agilex™ 7:
       - F-Series SoC Development Kit (P-Tiles & E-Tile):
         - HPS GSRD User Guide: embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc.md
-        - HPS Remote System Update Example: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc.md
-        - HPS Multi-QSPI Remote System Update Example: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc.md
-        - SoC FPGA Remote Debug Example: embedded-designs/agilex-7/f-series/soc/remote-debug/ug-remote-debug-agx7f-soc.md
-        - HPS eMMC Boot Example: embedded-designs/agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc.md
+        - HPS Remote System Update: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc.md
+        - HPS Multi-QSPI Remote System Update: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc.md
+        - SoC FPGA Remote Debug: embedded-designs/agilex-7/f-series/soc/remote-debug/ug-remote-debug-agx7f-soc.md
+        - HPS eMMC Boot: embedded-designs/agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc.md
         - SoC Fabric Configuration from Linux Example: embedded-designs/agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc.md
         - HPS GHRD Linux Boot Examples: embedded-designs/agilex-7/f-series/soc/boot-examples/ug-linux-boot-agx7-soc.md
         - HPS Xen Hypervisor GSRD: embedded-designs/agilex-7/f-series/soc/xen/ug-xen-agx7f-soc.md
         - Setting up and Using Bridges HPS Linux Example: embedded-designs/agilex-7/f-series/soc/setup-use-bridges/ug-setup-use-bridges-agx7f-soc.md
+        - FPGA Crypto Services (FCS) Tutorial Example Design User Guide: embedded-designs/agilex-7/f-series/soc/security/crypto/cryptoservices/ug-fpga-cryptoservice-agx7-soc.md
+        - Secure Data Object Storage (SDOS) Tutorial Example User Guide: embedded-designs/agilex-7/f-series/soc/security/crypto/sdos/ug-sdos-agx7f-soc.md
+        - Vendor Authorized Boot (HPS-First) Tutorial Example Design User Guide: embedded-designs/agilex-7/f-series/soc/security/vab/hps-first/ug-vab-hps-first-agx7f-soc.md
+        - Vendor Authorized Boot (FPGA-First) Tutorial Example Design User Guide: embedded-designs/agilex-7/f-series/soc/security/vab/fpga-first/ug-vab-fpga-first-agx7f-soc.md
         - Nios V Processor Examples:
           - Nios V/g:
             - Nios® V/g Processor Floating Point Unit (FPU) Design: embedded-designs/agilex-7/f-series/soc/niosv/niosv_g/fpu_test/ug-fpu-agx7f-fpga.md
@@ -280,14 +292,16 @@ nav:
     - Stratix® 10:
       - SX SoC Development Kit:
         - HPS GSRD User Guide: embedded-designs/stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc.md
-        - HPS Remote System Update Example: embedded-designs/stratix-10/sx/soc/rsu/ug-rsu-s10sx-soc.md
-        - SoC FPGA Remote Debug Example: embedded-designs/stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc.md
-        - HPS eMMC Boot Example: embedded-designs/stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc.md
-        - SoC Fabric Configuration from Linux Example: embedded-designs/stratix-10/sx/soc/fabric-config/ug-linux-fabric-config-s10sx-soc.md
+        - HPS Remote System Update: embedded-designs/stratix-10/sx/soc/rsu/ug-rsu-s10sx-soc.md
+        - SoC FPGA Remote Debug: embedded-designs/stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc.md
+        - HPS eMMC Boot: embedded-designs/stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc.md
+        - SoC Fabric Configuration from Linux: embedded-designs/stratix-10/sx/soc/fabric-config/ug-linux-fabric-config-s10sx-soc.md
+        - Secure Boot Tutorial Example Design User Guide: embedded-designs/stratix-10/sx/soc/security/secure-boot/hps-first/ug-secure-boot-hps-first-s10sx-soc.md
         - HPS GHRD Linux Boot Examples: embedded-designs/stratix-10/sx/soc/boot-examples/ug-linux-boot-s10-soc.md
     - Arria® 10:
-      - SX SoC Development Kit:
+      - SX SoC Development Kit: 
         - GSRD User Guide: embedded-designs/arria-10/sx/soc/gsrd/ug-gsrd-a10sx-soc.md
+        - HPS GHRD Linux Boot Examples: embedded-designs/arria-10/sx/soc/boot-examples/ug-linux-boot-a10-soc.md
     - Cyclone® V:
       - SX SoC Development Kit:
         - GSRD User Guide: embedded-designs/cyclone-v/sx/soc/gsrd/ug-gsrd-cve-soc.md

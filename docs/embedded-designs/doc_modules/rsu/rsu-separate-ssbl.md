@@ -1,6 +1,6 @@
 ## Using Separate SSBL Per Bitstream
 
-When using Remote System Update on Stratix® 10, Agilex™ 7, Agilex™ 5 and N5X™ devices, each configuration bitstream from QSPI contains the HPS FSBL (First Stage Bootloader), specifically U-Boot SPL. In order to allow the most flexibility and compatibility, you must design your system so that each bitstream loads its own copy of the HPS SSBL, specifically U-Boot image.
+When using Remote System Update on Stratix® 10, Agilex™ 7, Agilex™ 5, Agilex™ 3 and N5X™ devices, each configuration bitstream from QSPI contains the HPS FSBL (First Stage Bootloader), specifically U-Boot SPL. In order to allow the most flexibility and compatibility, you must design your system so that each bitstream loads its own copy of the HPS SSBL, specifically U-Boot image.
 
 This page presents details on how to achieve this for both the cases when U-Boot images are stored in QSPI flash, and when they are stored in SD card. 
 
@@ -11,6 +11,8 @@ Refer to the following documents for details about the Remote System Update.
 *  [Agilex™ 5 Hard Processor System Remote System Update User Guide]() 
 
 **Note:** In the scenario in which both SPTs tables are corrupted, U-Boot will fail to be launched because the FSBL won't be able to identify which SSBL needs to be launched since the partition information is kept in SPT tables.
+
+**Note:**  Agilex™ 3 HPS Remote System Update User Guide will be released soon.
 
 ### Configuring U-Boot for Separate U-Boot Images
 

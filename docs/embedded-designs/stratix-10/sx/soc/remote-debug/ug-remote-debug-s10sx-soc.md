@@ -1,10 +1,10 @@
 
 
-# SoC FPGA Remote Debug Example for the Stratix® 10 SX SoC Development Kit
+# SoC FPGA Remote Debug Tutorial Example Design User Guide: Stratix® 10 SX SoC Development Kit
 
 ##  Introduction
 
-Intel offers an integrated set of System Level Debug (SLD) tools, including:
+Altera offers an integrated set of System Level Debug (SLD) tools, including:
 
 * SignalTap II Logic Analyzer
 * In-System Sources and Probes (ISSP),
