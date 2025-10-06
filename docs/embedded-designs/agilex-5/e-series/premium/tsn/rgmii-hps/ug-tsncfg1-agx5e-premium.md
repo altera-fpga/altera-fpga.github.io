@@ -1,3 +1,5 @@
+
+
 ## Introduction
 
 IEEE Ethernet is a core technology which is a backbone for IT operations and was designed to provide best effort communication suitable for IT operations. Operational Technology vendors have innovatively used Core IEEE Ethernet technology with proprietary solutions for enabling time-bounded communication. To address the need for precision timing, traffic shaping, and time-bounded communication over networks, IEEE introduced a suite of standards known as Time Sensitive Networking (TSN).
@@ -63,13 +65,13 @@ TSN Solution Architecture for this SED is illustrated as:
 
 ### Prerequisites
 
-This system example design is based on the [Agilex 5 E-Series Premium Development Kit GSRD](https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/). It is recommended that you familiarize yourself with the GSRD development flow before proceeding with this design.
+This system example design is based on the [Agilex 5 E-Series Premium Development Kit GSRD](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/). It is recommended that you familiarize yourself with the GSRD development flow before proceeding with this design.
 The TSN through HPS IO System Example Design will be implemented on the HPS Enablement Expansion Board (also referred as HPS Daughter Card), which is included with the development kit.
 
 #### Development Kit
 
 This Example Design targets the Agilex 5 FPGA E-Series 065B Premium Development Kit, utilizing the HPS. 
-Refer to [GSRD\#Development Kit](https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium#development-kit) for details about the board, including how to install the HPS Daughter Card.
+Refer to [GSRD\#Development Kit](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium#development-kit) for details about the board, including how to install the HPS Daughter Card.
 
 * Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit
 * HPS Enablement Expansion Board. Included with the development kit.
@@ -95,8 +97,8 @@ Host PC with:
 *   Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.
 *   Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
 *   Altera&reg; Quartus&reg; Prime Pro Edition version. Used to recompile the hardware design. If only writing binaries is required, then the smaller Altera&reg; Quartus&reg; Prime Pro Edition Programmer is sufficient.
-*   The prebuilt binaries were built using Quartus version 24.3
-*   The instructions for rebuilding the binaries use Quartus version 24.3
+*   The prebuilt binaries were built using Quartus version 25.1.1
+*   The instructions for rebuilding the binaries use Quartus version 25.1.1
 *   Local Ethernet network, with DHCP server
 *   Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -110,28 +112,32 @@ This page documents the following:
 
 #### Prebuilt Binaries
 
-The Agilex 5 Premium Development Kit 24.3 Example Design binaries are located at https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/.
+The Agilex 5 Premium Development Kit 25.1.1 Example Design binaries are located at
+[https://releases.rocketboards.org/2025.08/](https://releases.rocketboards.org/2025.08/)
 
 | HPS Daughter Card | Boot Source | Link |
 | --- | --- | --- |
-| Enablement Board | SD Card | [https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/](https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/) |
+| Enablement Board | SD Card | [https://releases.rocketboards.org/2025.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd](https://releases.rocketboards.org/2025.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd) |
 
 #### Sources
 
-Quartus Prime Pro v24.3 and the following software component versions were used to build the provided prebuilt binaries:
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1 and the following software component versions integrate the 25.1.1 release. 
+
+**Note:** Regarding the GHRD components in the following table, only the device-specific GHRD is used in this page.
+
+| Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
+| :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
+| Agilex 5 GHRD                                  | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.1.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.19-lts | QPDS25.1.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.1   | QPDS25.1.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.04 | QPDS25.1.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
+| Yocto Project: meta-intel-fpga        | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest              |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.1.1_REL_GSRD_PR |
+
+**Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 
-
-| Component | Location | Branch | Commit ID/Tag |
-| --- | --- | --- | --- |
-| GHRD | [https://github.com/altera-opensource/ghrd-socfpga](https://github.com/altera-opensource/ghrd-socfpga) | master | [QPDS25.1.1_REL_GSRD_PR](https://github.com/altera-opensource/ghrd-socfpga/tree/QPDS25.1.1_REL_GSRD_PR) |
-| Linux | [https://github.com/altera-opensource/linux-socfpga](https://github.com/altera-opensource/linux-socfpga) | socfpga-6.6.37-lts | [QPDS25.1.1_REL_GSRD_PR](https://github.com/altera-opensource/linux-socfpga/tree/QPDS25.1.1_REL_GSRD_PR) |
-| Arm Trusted Firmware | [https://github.com/altera-opensource/arm-trusted-firmware](https://github.com/altera-opensource/arm-trusted-firmware) | socfpga_v2.11.0 | [QPDS25.1.1_REL_GSRD_PR](https://github.com/altera-opensource/arm-trusted-firmware/tree/QPDS25.1.1_REL_GSRD_PR) |
-| U-Boot | [https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga) | socfpga_v2024.04 | [QPDS25.1.1_REL_GSRD_PR](https://github.com/altera-opensource/u-boot-socfpga/tree/QPDS25.1.1_REL_GSRD_PR) |
-| Yocto Project: poky | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest |
-| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-opensource/meta-intel-fpga-refdes](https://github.com/altera-opensource/meta-intel-fpga-refdes) | scarthgap | [QPDS25.1.1_REL_GSRD_PR](https://github.com/altera-opensource/meta-intel-fpga-refdes/tree/QPDS25.1.1_REL_GSRD_PR) |
-| GSRD Build Script: gsrd-socfpga | [https://github.com/altera-opensource/gsrd-socfpga](https://github.com/altera-opensource/gsrd-socfpga) | scarthgap | [QPDS25.1.1_REL_GSRD_PR](https://github.com/altera-opensource/gsrd-socfpga/tree/QPDS25.1.1_REL_GSRD_PR) |
 
 ### Release Notes
 
@@ -183,7 +189,7 @@ There are two ways to test the design based on use case.
 #### Tools Download and Installation
 
 1. Quartus Prime Pro
-     - Please download and install the Quartus&reg; Prime Pro Edition version 24.3 version software. 
+     - Please download and install the Quartus&reg; Prime Pro Edition version 25.1.1 version software. 
 
 2. Win32 Disk Imager
     - Please download and install the latest Win32 Disk Imager, available at [https://win32diskimager.org/](https://win32diskimager.org/)
@@ -219,7 +225,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 Note: The following must be re-done for fresh terminal session
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/25.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -252,28 +258,29 @@ sudo ln -sf /bin/bash /bin/sh
 
 ```bash
 cd $TOP_FOLDER
-rm -rf ghrd-socfpga agilex5_soc_devkit_ghrd
-git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
-mv ghrd-socfpga/agilex5_soc_devkit_ghrd .
-rm -rf ghrd-socfpga
-cd agilex5_soc_devkit_ghrd
-make config
-make DEVICE=A5ED065BB32AE6SR0 HPS_EMIF_MEM_CLK_FREQ_MHZ=800 HPS_EMIF_REF_CLK_FREQ_MHZ=100 generate_from_tcl
-make sof
+rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
+unzip a5ed065es-premium-devkit-oobe-legacy-baseline.zip
+rm -f a5ed065es-premium-devkit-oobe-legacy-baseline.zip
+make legacy_baseline-build
+make legacy_baseline-sw-build
+quartus_pfg -c output_files/legacy_baseline.sof \
+  output_files/legacy_baseline_hps_debug.sof \
+  -o hps_path=software/hps_debug/hps_wipe.ihex
 cd ..
 ```
 
 The following files are created:
 
-*   `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof`
-*   `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof`
 
 ##### Build Core RBF
 
 ```bash
 cd $TOP_FOLDER
 rm -f ghrd_a5ed065bb32ae6sr0.rbf
-quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps_debug.sof ghrd_a5ed065bb32ae6sr0.rbf -o hps=1
+quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof ghrd_a5ed065bb32ae6sr0.rbf -o hps=1
 ```
 
 The following file is created:
@@ -293,7 +300,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
+git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
 cd gsrd-socfpga
 . agilex5_dk_a5e065bb32aes1-gsrd-build.sh
 build_setup
@@ -351,7 +358,7 @@ Ensure you have completed the [Hardware Compilation Flow](#hardware-compilation-
 cd $TOP_FOLDER
 rm -f ghrd_a5ed065bb32ae6sr0.hps.jic ghrd_a5ed065bb32ae6sr0.core.rbf
 quartus_pfg \
--c agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof ghrd_a5ed065bb32ae6sr0.jic \
+-c agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof ghrd_a5ed065bb32ae6sr0.jic \
 -o device=MT25QU128 \
 -o flash_loader=A5ED065BB32AE6SR0 \
 -o hps_path=gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
@@ -371,7 +378,7 @@ This is an *optional* step, in which you can build an HPS RBF file, which can be
 cd $TOP_FOLDER
 rm -f ghrd_a5ed065bb32ae6sr0.hps.rbf
 quartus_pfg \
--c agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof  ghrd_a5ed065bb32ae6sr0.rbf \
+-c agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof  ghrd_a5ed065bb32ae6sr0.rbf \
 -o hps_path=gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
 -o hps=1
 ```
@@ -444,9 +451,9 @@ All the scenarios included in this release require a serial connection. This sec
 
 ```bash
 cd $TOP_FOLDER
-wget https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+wget https://releases.rocketboards.org/2025.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+
 tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
-quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 ```
 
 <h5> Using compiled image </h5>
@@ -463,7 +470,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 
 <h5>For Prebuilt:</h5>
 
-- Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
+- Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2025.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2025.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
 
 <h5>For compiled image:</h5>
 
@@ -547,14 +554,14 @@ cd tsn
 3\. Board A
 
    ```bash
-   export LIBXDP_OBJECT_PATH=/usr/lib/bpf
+   export LIBXDP_OBJECT_PATH=/usr/lib64/bpf
    export LD_LIBRARY_PATH=/usr/lib/custom_bpf/lib 
    ```
 
 4\. Board B
 
    ```bash
-   export LIBXDP_OBJECT_PATH=/usr/lib/bpf
+   export LIBXDP_OBJECT_PATH=/usr/lib64/bpf
    export LD_LIBRARY_PATH=/usr/lib/custom_bpf/lib 
    ```
 

@@ -7,7 +7,7 @@
                 <file_options/>
             </secondary_file>
             <secondary_file type="SEC_RPD" name="initial_image_jic">
-                <file_options/>
+                <file_options bitswap="1"/>
             </secondary_file>
             <flash_device_id>Flash_Device_1</flash_device_id>
         </output_file>

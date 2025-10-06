@@ -1,6 +1,6 @@
 
 
-# Debugging U-Boot with Arm Development Studio on Agilex™ 5 Premium Development Kit
+# Debugging U-Boot with Arm Development Studio Tutorial Example Design: Agilex™ 5 Premium Development Kit
 
 ## Introduction
 

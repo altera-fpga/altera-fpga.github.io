@@ -1,10 +1,10 @@
 
 
-# SoC FPGA Remote Debug Example for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile)
+# SoC FPGA Remote Debug Tutorial Example Design User Guide: Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile)
 
 ##  Introduction
 
-Intel offers an integrated set of System Level Debug (SLD) tools, including:
+Altera offers an integrated set of System Level Debug (SLD) tools, including:
 
 * SignalTap II Logic Analyzer
 * In-System Sources and Probes (ISSP),

@@ -15,14 +15,14 @@ cd tsn
 3\. Board A
 
    ```bash
-   export LIBXDP_OBJECT_PATH=/usr/lib/bpf
+   export LIBXDP_OBJECT_PATH=/usr/lib64/bpf
    export LD_LIBRARY_PATH=/usr/lib/custom_bpf/lib 
    ```
 
 4\. Board B
 
    ```bash
-   export LIBXDP_OBJECT_PATH=/usr/lib/bpf
+   export LIBXDP_OBJECT_PATH=/usr/lib64/bpf
    export LD_LIBRARY_PATH=/usr/lib/custom_bpf/lib 
    ```
 

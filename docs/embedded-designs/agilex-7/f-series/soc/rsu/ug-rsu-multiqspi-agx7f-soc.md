@@ -1,6 +1,6 @@
 
 
-# HPS Multi-QSPI Remote System Update Example for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile)
+# HPS Multi-QSPI Remote System Update Tutorial Example Design: Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile)
 
 ## Intro 
 

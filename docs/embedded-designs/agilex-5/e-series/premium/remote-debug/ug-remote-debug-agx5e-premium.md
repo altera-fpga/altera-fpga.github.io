@@ -1,6 +1,6 @@
 
 
-# SoC FPGA Remote Debug Example for the Agilex™ 5 E-Series Premium Dev Kit
+# SoC FPGA Remote Debug Tutorial Example Design: Agilex™ 5 E-Series Premium Dev Kit
 
 ##  Introduction
 

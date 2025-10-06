@@ -35,9 +35,10 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1 and the fol
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
 | Agilex 3 GHRD                         | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.1.1_REL_GSRD_PR   |
-| Agilex 5 GHRD                                  | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.1.1_REL_GSRD_PR |
-| Agilex 7 GHRD | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.1.1_REL_GSRD_PR |
-| Stratix 10 GHRD | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.1.1_REL_GSRD_PR |
+| Agilex 5 GHRD                         | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.1.1_REL_GSRD_PR |
+| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.1.1_REL_GSRD_PR |
+| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.1.1_REL_GSRD_PR |
+| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS25.1.1_REL_GSRD_PR |
 | Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.19-lts | QPDS25.1.1_REL_GSRD_PR |
 | Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.1   | QPDS25.1.1_REL_GSRD_PR |
 | U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.04 | QPDS25.1.1_REL_GSRD_PR |
@@ -316,18 +317,19 @@ The following commands can be used to obtain the Linux source code and build Lin
 
 
 ```bash 
-cd $TOP_FOLDER 
-rm -rf linux-socfpga 
-git clone https://github.com/altera-fpga/linux-socfpga 
-cd linux-socfpga 
-# checkout the branch used for this document, comment out to use default 
-git checkout -b test -t origin/socfpga-6.12.19-lts 
-# configure the RSU driver to be built into the kernel 
-make clean && make mrproper 
-make defconfig 
-./scripts/config --set-val CONFIG_INTEL_STRATIX10_RSU y 
-make oldconfig 
-make -j 64 Image && make intel/socfpga_agilex5_socdk.dtb 
+cd $TOP_FOLDER
+rm -rf linux-socfpga
+git clone https://github.com/altera-fpga/linux-socfpga
+cd linux-socfpga
+# checkout the branch used for this document, comment out to use default
+git checkout -b test -t origin/socfpga-6.12.19-lts
+# configure the RSU driver to be built into the kernel
+make clean && make mrproper
+make defconfig
+./scripts/config --set-val CONFIG_INTEL_STRATIX10_RSU y
+./scripts/config --set-val CONFIG_MARVELL_PHY y
+make oldconfig
+make -j 64 Image && make intel/socfpga_agilex5_socdk.dtb
 cd .. 
 ```
 
@@ -357,7 +359,7 @@ For reference, an example of the  Programming File Generator configuration file 
                 <file_options/>
             </secondary_file>
             <secondary_file type="SEC_RPD" name="initial_image_jic">
-                <file_options/>
+                <file_options bitswap="1"/>
             </secondary_file>
             <flash_device_id>Flash_Device_1</flash_device_id>
         </output_file>
@@ -2971,7 +2973,7 @@ The decision firmware loads the higest priority image, and it does not look at t
 
 ## Using Separate SSBL Per Bitstream
 
-When using Remote System Update on Stratix® 10, Agilex™ 7, Agilex™ 5 and N5X™ devices, each configuration bitstream from QSPI contains the HPS FSBL (First Stage Bootloader), specifically U-Boot SPL. In order to allow the most flexibility and compatibility, you must design your system so that each bitstream loads its own copy of the HPS SSBL, specifically U-Boot image.
+When using Remote System Update on Stratix® 10, Agilex™ 7, Agilex™ 5, Agilex™ 3 and N5X™ devices, each configuration bitstream from QSPI contains the HPS FSBL (First Stage Bootloader), specifically U-Boot SPL. In order to allow the most flexibility and compatibility, you must design your system so that each bitstream loads its own copy of the HPS SSBL, specifically U-Boot image.
 
 This page presents details on how to achieve this for both the cases when U-Boot images are stored in QSPI flash, and when they are stored in SD card. 
 
@@ -2982,6 +2984,8 @@ Refer to the following documents for details about the Remote System Update.
 *  [Agilex™ 5 Hard Processor System Remote System Update User Guide]() 
 
 **Note:** In the scenario in which both SPTs tables are corrupted, U-Boot will fail to be launched because the FSBL won't be able to identify which SSBL needs to be launched since the partition information is kept in SPT tables.
+
+**Note:**  Agilex™ 3 HPS Remote System Update User Guide will be released soon.
 
 ### Configuring U-Boot for Separate U-Boot Images
 

@@ -1,6 +1,6 @@
 
 
-# Debugging Linux with Arm Development Studio on Agilex™ 5 Premium Development Kit
+# Debugging Linux with Arm Development Studio Tutorial Example Design: Agilex™ 5 Premium Development Kit
 
 ## Introduction
 
@@ -133,3 +133,5 @@ armds_ide -data workspace &
 ![](images/09-view-functions.png)
 
 14\. The above were only examples of what you can do with the debugger. The tool offers a lot of other powerful capabilities to enable you to debug the Linux kernel. For more information refer to [Arm* Development Studio](https://developer.arm.com/Tools%20and%20Software/Arm%20Development%20Studio).
+
+**Important Note**: The list of kernel versions fully validated with Arm DS can be found at this address: [https://developer.arm.com/AboutOSAwareness](https://developer.arm.com/AboutOSAwareness). Using a kernel version which has not been validated with Arm DS may lead to reduced functionality, such as not being able to switch from core viewing mode to thread list.

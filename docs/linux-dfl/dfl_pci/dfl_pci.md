@@ -1,6 +1,6 @@
 # **DFL PCI Express Subsystem IP Driver**
 
-Last updated: **September 11, 2025** 
+Last updated: **October 06, 2025** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/fpga/dfl-pci.c?h=master)
 
