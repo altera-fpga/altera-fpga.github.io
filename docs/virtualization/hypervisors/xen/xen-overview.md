@@ -1,6 +1,6 @@
 ## Introduction
 
-Xen is a free open-source hypervisor originally developed by the University of Cambridge, and now part of [Linux Foundation](https://www.linuxfoundation.org/)'s [Xen Project](https://xenproject.org/). This page presents and overview of Xen, and details about the Altera&reg; support for Xen on the Agilex™ 7 and Agilex™ 5 devices.
+Xen is a free open-source hypervisor originally developed by the University of Cambridge, and now part of [Linux Foundation](https://www.linuxfoundation.org/)'s [Xen Project](https://xenproject.org/). This page presents and overview of Xen, and details about the Altera&reg; support for Xen on the Agilex™ 7, Agilex™ 5, and Agilex™ 3 devices.
 
 Xen enables efficient and secure virtualization of hardware resources to run multiple operating systems on a single physical machine. As a Type-1 hypervisor, Xen operates directly on the hardware, providing high performance and low overhead by managing CPU, memory, and I/O resources for guest virtual machines. It is widely used in cloud computing, server virtualization, and embedded systems due to its scalability, robustness, and support for a variety of guest operating systems. Xen's architecture emphasizes security through isolation, making it a popular choice for environments requiring strong separation between virtual machines.
 
@@ -18,6 +18,7 @@ On Altera&reg; SoC FPGAs, the following OSes are currently supported:
 | :--: | :--: |  :--: |
 | Agilex™ 7 |  Linux | Linux |
 | Agilex™ 5 | Linux| Linux, Zephyr |
+| Agilex™ 3 | Linux| Linux |
 
 Dom0 runs Linux OS and supports xen tools(xl) to create, configure, and manage Xen VMs. Linux guest OS on the Dom0 has by default native access to IO subsystem (peripheral devices).
 
@@ -30,7 +31,8 @@ On Altera&reg; SoC FPGAs, only passthrough mode is supported, as shown in the ta
 | Device | Passthrough Support |
 | :-: | :-: |
 | Agilex™ 7  | Ethernet, QSPI, USB, SD |
-| Agilex™ 5 | Ethernet, QSPI |
+| Agilex™ 5 | Ethernet, QSPI, USB |
+| Agilex™ 3 | QSPI, USB |
 
 Peripherals that are assigned as passthrough are not managed by Dom0, instead they are available to be allocated to DomUs.
 
@@ -44,7 +46,7 @@ For embedded use case when the system memory is in few Gigabytes(<1TB), Xen Hype
 
 Agilex™ 7 HPS uses ARM SMMUv2, and the Xen driver (*xen/drivers/passthrough/arm/smmu.c*) is responsible for managing Stage 2 translation. In this context, Stage 2 translation refers to the translation of IPA (Intermediate Physical Address) to PA (Physical Address), which is crucial for memory management in guest virtual machines. The SMMUv2 in Xen supports both stages of translation. Stage 1 handles IOVA (Input/Output Virtual Address) to IPA conversion, while Stage 2 converts IPA to PA. 
 
-Agilex™ 5 HPS, however, uses ARM SMMUv3, and the corresponding Xen driver (*xen/drivers/passthrough/arm/smmu-v3.c*) is responsible for Stage 2 translation only. The current Xen SMMUv3 driver is in technical preview mode and only supports Stage 2 translation (IPA to PA), as opposed to the Linux SMMUv3 driver, which supports both Stage 1 and Stage 2. This limitation implies that while guest virtual machines can access memory through Stage 2 (IPA to PA) translation, Stage 1 translations (IOVA to IPA) are not supported by Xen for SMMUv3. Therefore Partial Reconfiguration (PR), and Remote System Update (RSU),  is not functional yet on Agilex™ 5 since Linux stratix10-svc driver is using stage 1 translation. 
+Agilex™ 5 and AgilexAgilex™ 3 HPS, however, uses ARM SMMUv3, and the corresponding Xen driver (*xen/drivers/passthrough/arm/smmu-v3.c*) is responsible for Stage 2 translation only. The current Xen SMMUv3 driver is in technical preview mode and only supports Stage 2 translation (IPA to PA), as opposed to the Linux SMMUv3 driver, which supports both Stage 1 and Stage 2. This limitation implies that while guest virtual machines can access memory through Stage 2 (IPA to PA) translation, Stage 1 translations (IOVA to IPA) are not supported by Xen for SMMUv3. Therefore Partial Reconfiguration (PR), and Remote System Update (RSU),  is not functional yet on Agilex™ 5 since Linux stratix10-svc driver is using stage 1 translation. 
 
 ## Boot Flow
 

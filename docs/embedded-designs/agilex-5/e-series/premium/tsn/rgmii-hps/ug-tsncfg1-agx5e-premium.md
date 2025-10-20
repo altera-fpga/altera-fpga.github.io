@@ -113,27 +113,27 @@ This page documents the following:
 #### Prebuilt Binaries
 
 The Agilex 5 Premium Development Kit 25.1.1 Example Design binaries are located at
-[https://releases.rocketboards.org/2025.08/](https://releases.rocketboards.org/2025.08/)
+[https://releases.rocketboards.org/2025.10/](https://releases.rocketboards.org/2025.10/)
 
 | HPS Daughter Card | Boot Source | Link |
 | --- | --- | --- |
-| Enablement Board | SD Card | [https://releases.rocketboards.org/2025.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd](https://releases.rocketboards.org/2025.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd) |
+| Enablement Board | SD Card | [https://releases.rocketboards.org/2025.10/gsrd/agilex5_dk_a5e065bb32aes1_gsrd](https://releases.rocketboards.org/2025.10/gsrd/agilex5_dk_a5e065bb32aes1_gsrd) |
 
 #### Sources
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1 and the following software component versions integrate the 25.1.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 and the following software component versions integrate the 25.3 release. 
 
 **Note:** Regarding the GHRD components in the following table, only the device-specific GHRD is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 5 GHRD                                  | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.1.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.19-lts | QPDS25.1.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.1   | QPDS25.1.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.04 | QPDS25.1.1_REL_GSRD_PR |
+| Agilex 5 GHRD                                  | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.33-lts | QPDS25.3_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.0   | QPDS25.3_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.07 | QPDS25.3_REL_GSRD_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
 | Yocto Project: meta-intel-fpga        | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest              |
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.1.1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3_REL_GSRD_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -141,7 +141,7 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1 and the fol
 
 ### Release Notes
 
-See [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.1.1_REL_GSRD_PR](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.1.1_REL_GSRD_PR)
+See [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR)
 
 
 
@@ -198,10 +198,10 @@ There are two ways to test the design based on use case.
 1\. Create the top folder to store all the build artifacts:
 
 ```bash
-sudo rm -rf gsrd.enablement
-mkdir gsrd.enablement
-cd gsrd.enablement
-export TOP_FOLDER=`pwd` # The $TOP_FOLDER must be defined for every fresh terminal session.
+sudo rm -rf agilex5_gsrd.enablement
+mkdir agilex5_gsrd.enablement
+cd agilex5_gsrd.enablement
+export TOP_FOLDER=`pwd`
 ```
 
 2\. Download and setup the build toolchain. It will be used only by the GHRD makefile to build the debug HPS FSBL, to build the \_hps\_debug.sof file:
@@ -210,22 +210,23 @@ Note that this is installed in the `TOP_FOLDER`. You may installed this is in ot
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel\
-/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
 ```
+
 ```bash
-export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
 export ARCH=arm64
-export CROSS_COMPILE=aarch64-none-linux-gnu- 
+export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
 
 3\. Set up the Quartus tools in the PATH, so they are accessible without full path
 Note: The following must be re-done for fresh terminal session
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/25.1.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -259,7 +260,7 @@ sudo ln -sf /bin/bash /bin/sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 unzip a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 rm -f a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 make legacy_baseline-build
@@ -300,7 +301,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
 cd gsrd-socfpga
 . agilex5_dk_a5e065bb32aes1-gsrd-build.sh
 build_setup
@@ -451,7 +452,7 @@ All the scenarios included in this release require a serial connection. This sec
 
 ```bash
 cd $TOP_FOLDER
-wget https://releases.rocketboards.org/2025.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+wget https://releases.rocketboards.org/2025.10/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
 
 tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
 ```
@@ -605,11 +606,11 @@ Once the test is completed, copy the following files from Board B (listener) to 
 
 Import 'afpkt-rxtstamps.txt' and 'afxdp-rxtstamps.txt' to excel in 2 seperate sheets.
 
-<img src="https://altera-fpga.github.io/rel-25.1.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
+<img src="https://altera-fpga.github.io/rel-25.3/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
 
 Plot Column 1 for each sheets using Scatter chart,
 
-<img src="https://altera-fpga.github.io/rel-25.1.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
+<img src="https://altera-fpga.github.io/rel-25.3/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
 
 
 This will generate plot for AFPKT and AFXDP with latency(on Y-axis) against packet count (on X-axis).

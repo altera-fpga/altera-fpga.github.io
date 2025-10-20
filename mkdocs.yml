@@ -53,6 +53,9 @@ extra:
     - src: 'driver-list/driver-list-all.md'
       dests:
         - 'driver-list_all/index.md'
+    - src: 'embedded-designs/agilex-3/c-series/xen/ug-xen-agx3.md'
+      dests:
+        - 'virtualization/hypervisors/xen/ug-xen-agx3.md'
     - src: 'embedded-designs/agilex-5/e-series/premium/xen/ug-xen-agx5e-premium.md'
       dests:
         - 'virtualization/hypervisors/xen/ug-xen-agx5e-premium.md'
@@ -173,6 +176,7 @@ nav:
         - Xen:
           - Overview: virtualization/hypervisors/xen/xen-overview.md
           - Examples:
+            - Agilex™ 3 C-Series FPGA and SoC Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx3.md
             - Agilex™ 5 E-Series Premium Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx5e-premium.md
             - Agilex™ 5 E-Series Modular Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx5e-modular.md
             - Agilex™ 7 F-Series SoC Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx7f-soc.md
@@ -214,7 +218,10 @@ nav:
         - Debugging U-Boot with Arm Development Studio: demos/agilex-3/c-series/armds-debug-u-boot/ug-armds-debug-uboot-agx3.md
         - Debugging U-Boot with Ashling RiscFree: demos/agilex-3/c-series/riscfree-debug-u-boot/ug-riscfree-debug-uboot-agx3.md
         - Debugging Linux with Ashling RiscFree: demos/agilex-3/c-series/riscfree-debug-linux/ug-riscfree-debug-linux-agx3.md
-        - Debugging Linux with Arm Development Studio: demos/agilex-3/c-series/armds-debug-linux/ug-armds-debug-linux-agx3.md        
+        - Debugging Linux with Arm Development Studio: demos/agilex-3/c-series/armds-debug-linux/ug-armds-debug-linux-agx3.md
+        - HPS Xen Hypervisor GSRD: embedded-designs/agilex-3/c-series/xen/ug-xen-agx3.md
+      - Intel Simics Virtual Platform Examples:
+        - HPS Simics Linux GSRD: embedded-designs/agilex-3/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex3-virtual-platforms.md       
     - Agilex™ 5:
       - E-Series Premium Development Kit:
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium.md
@@ -252,6 +259,9 @@ nav:
         - Drive-On-Chip with PLC Design Example for Agilex™ Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-plc.md
         - ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-crc.md
         - 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k/camera_4k.md
+        - Agilex™ 5 FPGA E-Series Modular Development Kit 1x10G Ethernet System Example Design: embedded-designs/agilex-5/e-series/modular/ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g.md
+        - TSN Examples:
+          - HPS TSN SGMII XCVR System 3x2.5G Example Design User Guide: embedded-designs/agilex-5/e-series/modular/tsn/sgmii_xcvr_3x2.5G/ug-tsn-sgmii-xcvr-3x2.5G-agilex5.md
       - Intel Simics Virtual Platform Examples:
         - Simics Linux GSRD: embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms.md
         - Simics Zephyr GSRD: embedded-designs/agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms.md
@@ -365,19 +375,19 @@ env:
   AGILEX: Intel® Agilex® 7 FPGA
 
 # Variables for content supported by current release  
-  ALTERA_RELEASE: rel-25.1.1
-  COMMON_QUARTUS_VER_L: Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1
-  COMMON_QUARTUS_VER_S: 25.1.1
-  PREV_COMMON_QUARTUS_VER_S: 25.1
-  GSRD_LINUX_BRANCH_S: 6.12.19-lts
-  GSRD_UBOOT_BRANCH_S: 2025.04
-  GSRD_ATF_BRANCH_S: 2.12.1
-  GSRD_LINUX_BRANCH: socfpga-6.12.19-lts
-  GSRD_UBOOT_BRANCH: socfpga_v2025.04
-  GSRD_ATF_BRANCH: socfpga_v2.12.1
-  GSRD_DATE: 2025.08
-  GSRD_TAG: QPDS25.1.1_REL_GSRD_PR
+  ALTERA_RELEASE: rel-25.3
+  COMMON_QUARTUS_VER_L: Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
+  COMMON_QUARTUS_VER_S: 25.3
+  PREV_COMMON_QUARTUS_VER_S: 25.1.1
+  GSRD_LINUX_BRANCH_S: 6.12.33-lts
+  GSRD_UBOOT_BRANCH_S: 2025.07
+  GSRD_ATF_BRANCH_S: 2.13.0
+  GSRD_LINUX_BRANCH: socfpga-6.12.33-lts
+  GSRD_UBOOT_BRANCH: socfpga_v2025.07
+  GSRD_ATF_BRANCH: socfpga_v2.13.0
+  GSRD_DATE: "2025.10"
+  GSRD_TAG: QPDS25.3_REL_GSRD_PR
   GSRD_YOCTO_BRANCH: walnascar
-  DCMF_VER: 25.1.1
-  DCMF_PREV_VER: 25.1.0
+  DCMF_VER: 25.3.0
+  DCMF_PREV_VER: 25.1.1
 

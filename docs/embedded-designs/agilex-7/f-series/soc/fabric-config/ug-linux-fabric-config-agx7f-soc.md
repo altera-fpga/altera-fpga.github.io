@@ -28,7 +28,7 @@ Two different examples are provided:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1
+  * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -75,7 +75,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -90,10 +90,10 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash 
 cd $TOP_FOLDER 
 rm -rf agilex7f-ed-gsrd
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.1.1_REL_GSRD_PR.zip
-unzip QPDS25.1.1_REL_GSRD_PR.zip
-rm QPDS25.1.1_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS25.1.1_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
+unzip QPDS25.3_REL_GSRD_PR.zip
+rm QPDS25.3_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
 cd agilex7f-ed-gsrd
 make agf014eb-si-devkit-oobe-baseline-all
 cd ..
@@ -108,7 +108,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf arm-trusted-firmware 
-git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
 cd arm-trusted-firmware 
 make bl31 PLAT=agilex 
 cd .. 
@@ -123,7 +123,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf u-boot-socfpga 
-git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk 
@@ -216,7 +216,7 @@ quartus_pfg -c \
 ```bash 
 cd $TOP_FOLDER 
 rm -rf linux-socfpga 
-git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
 make clean && make mrproper 
 make defconfig 
@@ -435,7 +435,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -450,10 +450,10 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash 
 cd $TOP_FOLDER
 rm -rf agilex7f-ed-gsrd
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.1.1_REL_GSRD_PR.zip
-unzip QPDS25.1.1_REL_GSRD_PR.zip
-rm QPDS25.1.1_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS25.1.1_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
+unzip QPDS25.3_REL_GSRD_PR.zip
+rm QPDS25.3_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
 cd agilex7f-ed-gsrd
 make agf014eb-si-devkit-oobe-baseline-all
 cd ..
@@ -487,7 +487,7 @@ quartus_pfg -c \
 ```bash 
 cd $TOP_FOLDER 
 rm -rf gsrd-socfpga 
-git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
 cd gsrd-socfpga 
 . agilex7_dk_si_agf014eb-gsrd-build.sh 
 build_setup 
@@ -503,7 +503,7 @@ build_setup
 
 ```bash 
 rm -f agilex7-fabric-config-yocto.patch
-wget https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-7/f-series/soc/fabric-config/collateral/agilex7-fabric-config-yocto.patch 
+wget https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/fabric-config/collateral/agilex7-fabric-config-yocto.patch 
 patch -d meta-intel-fpga-refdes -p1 < agilex7-fabric-config-yocto.patch
 ```
 

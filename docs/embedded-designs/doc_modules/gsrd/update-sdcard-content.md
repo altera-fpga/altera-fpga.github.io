@@ -2,7 +2,7 @@
 
 As part of the Yocto GSRD build flow, the SD Card image is built for the SD Card boot flow. This image includes a couple of partitions. One of these partition (a FAT32) includes the U-Boot proper, a Distroboot boot script and the Linux.itb - which includes the Linux kernel image, , the Linux device tree, the 2nd phase fabric design and board configuration (actually several versions of these last 3 components). The 2nd partition (an EXT3 or EXT4 ) includes the Linux file system. 
 
-![](/rel-25.1.1/embedded-designs/doc_modules/gsrd/images/sdcard_img.png){: style="height:500px"}
+![](/rel-25.3/embedded-designs/doc_modules/gsrd/images/sdcard_img.png){: style="height:500px"}
 
 If you want to replace any the components or add a new item in any of these partitions, without having to run again the Yocto build flow. 
 
