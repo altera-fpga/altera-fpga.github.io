@@ -1,0 +1,5318 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-funct-safety/hw-funct-descr/">
+      
+      
+      
+      <link rel="icon" href="../../../../../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
+    
+    
+      
+        <title>Hw funct descr - Altera FPGA Developer Site</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../../../assets/stylesheets/main.85bb2934.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../../../assets/stylesheets/palette.a6bdf11c.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../../../../../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#drive-on-chip-with-functional-safety-design-example-for-agilextm-5-devices" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../../../.." title="Altera FPGA Developer Site" class="md-header__button md-logo" aria-label="Altera FPGA Developer Site" data-md-component="logo">
+      
+  <img src="../../../../../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Altera FPGA Developer Site
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Hw funct descr
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/altera-fpga" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    altera-fpga
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../../../../.." class="md-tabs__link">
+      Welcome
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../../../driver-list_linux/" class="md-tabs__link">
+        Linux Drivers
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../../../driver-list_zephyr/" class="md-tabs__link">
+        Zephyr Drivers
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../../../virtualization/hypervisors/xen/xen-overview/" class="md-tabs__link">
+        Virtualization
+      </a>
+    </li>
+  
+
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../../../driver-list_baremetal/" class="md-tabs__link">
+        Baremetal Drivers
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../../../sw-tools-list/host-attach-tools/" class="md-tabs__link">
+        Host Attach Utilities
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../../../ed-demo-list/ed-list/" class="md-tabs__link">
+        Example Designs
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../../../.." title="Altera FPGA Developer Site" class="md-nav__button md-logo" aria-label="Altera FPGA Developer Site" data-md-component="logo">
+      
+  <img src="../../../../../../../assets/logo.png" alt="logo">
+
+    </a>
+    Altera FPGA Developer Site
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/altera-fpga" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    altera-fpga
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../.." class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../../../../../driver-list_linux/">Linux Drivers</a>
+          
+            <label for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linux Drivers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+          HPS Host Drivers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          HPS Host Drivers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/hwmon/hwmon/" class="md-nav__link">
+        Altera Hardware Monitor
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/clock_manager/clock_manager/" class="md-nav__link">
+        Clock Manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/dma/dma/" class="md-nav__link">
+        DMA Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/edac/edac/" class="md-nav__link">
+        Error Detection & Correction (EDAC)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/ptp_tod/ptp_emb_tod/" class="md-nav__link">
+        Ethernet 1588 PTP Time of Day Clock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/emac/emac/" class="md-nav__link">
+        Ethernet Media Access Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/hssi/hssi/" class="md-nav__link">
+        Ethernet Subsystem FPGA IP MAC Specific Ctrl
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/hssi_xtile/hssi_xtile/" class="md-nav__link">
+        Ethernet Subsystem FPGA IP Tile Specific Ctrl
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/apb_timers/apb_timers/" class="md-nav__link">
+        General Purpose Timers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/gpio/gpio/" class="md-nav__link">
+        General Purpose I/O (GPIO)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/i2c/i2c/" class="md-nav__link">
+        I2C
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/i3c/i3c/" class="md-nav__link">
+        I3C
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/interrupt_controller_GICv3/irq_gic_v3/" class="md-nav__link">
+        Interrupt Controller (GICv3)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/msgdma/msgdma/" class="md-nav__link">
+        MSGDMA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/nand/nand/" class="md-nav__link">
+        NAND Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/qsfp/qsfp/" class="md-nav__link">
+        QSFP Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/qspi/qspi/" class="md-nav__link">
+        QSPI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/reset_manager/reset_manager/" class="md-nav__link">
+        Reset Manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/sd-emmc/sd-emmc/" class="md-nav__link">
+        SD/eMMC Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/spi/spi/" class="md-nav__link">
+        SPI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/system_manager/system_manager/" class="md-nav__link">
+        System Manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/smmu/smmu/" class="md-nav__link">
+        System Memory Management Unit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/uart/uart/" class="md-nav__link">
+        UART
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/usb2_0_otg/usb_2_0_otg/" class="md-nav__link">
+        USB 2.0 OTG
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/usb3_1/usb3_1/" class="md-nav__link">
+        USB 3.1 Gen-1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/watchdog_timers/watchdog_timers/" class="md-nav__link">
+        Watchdog Timers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-embedded/drivers/zarlink_clock_synchronizer/zarlink_clock_synchronizer/" class="md-nav__link">
+        Zarlink Clock Synchronizer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+          PCIe Host Drivers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          PCIe Host Drivers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-dfl/uart_16550/uart_16550/" class="md-nav__link">
+        Altera 16550 Compatible UART
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-dfl/dfl_afu/dfl_afu/" class="md-nav__link">
+        Accelerator Functional Unit
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-dfl/intel_m10_bmc_core/intel_m10_bmc_core/" class="md-nav__link">
+        Board Management Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-dfl/dfl/dfl/" class="md-nav__link">
+        Device Feature List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-dfl/s10hssi/s10hssi/" class="md-nav__link">
+        Ethernet
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-dfl/ptp_dfl_tod/ptp_dfl_tod/" class="md-nav__link">
+        Ethernet 1588 PTP Time of Day Clock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-dfl/dfl_fme/dfl_fme/" class="md-nav__link">
+        FPGA Management Engine
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-dfl/dfl_pci/dfl_pci/" class="md-nav__link">
+        PCIe Subsystem
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-dfl/dfl_emif/dfl_emif/" class="md-nav__link">
+        Memory Interface
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-dfl/intel_m10_bmc_core/intel_m10_bmc_core/" class="md-nav__link">
+        MAX 10 Board Management Controller
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-dfl/spi_altera_dfl/spi_altera_dfl/" class="md-nav__link">
+        SPI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../linux-dfl/uio_dfl/uio_dfl/" class="md-nav__link">
+        User space I/O (UIO)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../../../../../driver-list_zephyr/">Zephyr Drivers</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Zephyr Drivers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          HPS Zephyr Drivers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          HPS Zephyr Drivers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../zephyr-embedded/clock_manager/clock_manager/" class="md-nav__link">
+        Clock Manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../zephyr-embedded/psci/psci/" class="md-nav__link">
+        Cold & Warm Reset -Power State Coordination Interface (PSCI)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../zephyr-embedded/dma/dma/" class="md-nav__link">
+        DMA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../zephyr-embedded/timer/timer/" class="md-nav__link">
+        General Purpose Timer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../zephyr-embedded/gpio/gpio/" class="md-nav__link">
+        GPIO
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../zephyr-embedded/qspi/qspi/" class="md-nav__link">
+        Quad SPI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../zephyr-embedded/reset_manager/reset_manager/" class="md-nav__link">
+        Reset Manager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../zephyr-embedded/seu/seu/" class="md-nav__link">
+        Single Event Upset (SEU)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../zephyr-embedded/smp/smp/" class="md-nav__link">
+        SMP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../zephyr-embedded/uart/uart/" class="md-nav__link">
+        UART
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../zephyr-embedded/watchdog/watchdog/" class="md-nav__link">
+        Watchdog Timer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Virtualization
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Virtualization
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+          Hypervisors
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Hypervisors
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_1" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_1_1" id="__nav_4_1_1_label" tabindex="0">
+          Xen
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          Xen
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../virtualization/hypervisors/xen/xen-overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_1_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4_1_1_2" id="__nav_4_1_1_2_label" tabindex="0">
+          Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_1_1_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4_1_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../virtualization/hypervisors/xen/ug-xen-agx3/" class="md-nav__link">
+        Agilex™ 3 C-Series FPGA and SoC Development Kit Xen Hypervisor GSRD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../virtualization/hypervisors/xen/ug-xen-agx5e-premium/" class="md-nav__link">
+        Agilex™ 5 E-Series Premium Development Kit Xen Hypervisor GSRD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../virtualization/hypervisors/xen/ug-xen-agx5e-modular/" class="md-nav__link">
+        Agilex™ 5 E-Series Modular Development Kit Xen Hypervisor GSRD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../virtualization/hypervisors/xen/ug-xen-agx7f-soc/" class="md-nav__link">
+        Agilex™ 7 F-Series SoC Development Kit Xen Hypervisor GSRD
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+        
+          
+            
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../../../../../driver-list_baremetal/">Baremetal Drivers</a>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Baremetal Drivers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          Host Attach Utilities
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Host Attach Utilities
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../sw-tools-list/host-attach-tools/" class="md-nav__link">
+        Host Attach Utilities Summary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/fpgaconf/fpgaconf/" class="md-nav__link">
+        fpgaconf
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/fpgad/fpgad/" class="md-nav__link">
+        fpgad
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/fpgainfo/fpgainfo/" class="md-nav__link">
+        fpgainfo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/fpgaport/fpgaport/" class="md-nav__link">
+        fpgaport
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/fpgasupdate/fpgasupdate/" class="md-nav__link">
+        fpgasupdate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/hssi/hssi/" class="md-nav__link">
+        hssi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/host_exerciser/host_exerciser/" class="md-nav__link">
+        host_exerciser
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/hssi_ethernet/hssimac/" class="md-nav__link">
+        HSSI ethernet loopback
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/hssi_ethernet/hssistats/" class="md-nav__link">
+        HSSI ethernet statistics
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/hssi_ethernet/hssimac/" class="md-nav__link">
+        HSSI ethernet mac
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/mem_tg/mem_tg/" class="md-nav__link">
+        mem_tg
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/mmlink/mmlink/" class="md-nav__link">
+        mmlink
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/ofs_uio/ofs_uio/" class="md-nav__link">
+        ofs.uio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/opae_io/opae_io/" class="md-nav__link">
+        opae.io
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/opaeuio/opaeuio/" class="md-nav__link">
+        opaeuio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/opaevfio/opaevfio/" class="md-nav__link">
+        opaevfio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/pac_hssi_config/pac_hssi_config/" class="md-nav__link">
+        pac_hssi_config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/packager/packager/" class="md-nav__link">
+        packager
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/pci_device/pci_device/" class="md-nav__link">
+        pci_device
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/rsu/rsu/" class="md-nav__link">
+        rsu
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/userclk/userclk/" class="md-nav__link">
+        userclk
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../host-attach-util/vabtool/vabtool/" class="md-nav__link">
+        vabtool
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          Example Designs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          Example Designs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../ed-demo-list/ed-list/" class="md-nav__link">
+        Summary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+          Agilex™ 3
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          Agilex™ 3
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_1" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_2_1" id="__nav_7_2_1_label" tabindex="0">
+          C-Series SoC and FPGA Development Kit
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_2_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          C-Series SoC and FPGA Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../doc-plc/" class="md-nav__link">
+        Drive-On-Chip with PLC Design Example for Agilex™ Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-3/c-series/gsrd/ug-gsrd-agx3/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-3/c-series/boot-examples/ug-linux-boot-agx3/" class="md-nav__link">
+        HPS GHRD Linux Boot Examples
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-3/c-series/rsu/ug-rsu-agx3c-fpga/" class="md-nav__link">
+        HPS Remote System Update
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-3/c-series/remote-debug/ug-remote-debug-agx3/" class="md-nav__link">
+        SoC FPGA Remote Debug
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../demos/agilex-3/c-series/armds-debug-u-boot/ug-armds-debug-uboot-agx3/" class="md-nav__link">
+        Debugging U-Boot with Arm Development Studio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../demos/agilex-3/c-series/riscfree-debug-u-boot/ug-riscfree-debug-uboot-agx3/" class="md-nav__link">
+        Debugging U-Boot with Ashling RiscFree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../demos/agilex-3/c-series/riscfree-debug-linux/ug-riscfree-debug-linux-agx3/" class="md-nav__link">
+        Debugging Linux with Ashling RiscFree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../demos/agilex-3/c-series/armds-debug-linux/ug-armds-debug-linux-agx3/" class="md-nav__link">
+        Debugging Linux with Arm Development Studio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-3/c-series/xen/ug-xen-agx3/" class="md-nav__link">
+        HPS Xen Hypervisor GSRD
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_2_2" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_2_2" id="__nav_7_2_2_label" tabindex="0">
+          Intel Simics Virtual Platform Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Intel Simics Virtual Platform Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-3/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex3-virtual-platforms/" class="md-nav__link">
+        HPS Simics Linux GSRD
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+          Agilex™ 5
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3">
+          <span class="md-nav__icon md-icon"></span>
+          Agilex™ 5
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_1" id="__nav_7_3_1_label" tabindex="0">
+          E-Series Premium Development Kit
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          E-Series Premium Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../premium/gsrd/ug-gsrd-agx5e-premium/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../premium/egsrd/ug-ehps-agx5e-premium/" class="md-nav__link">
+        Enhanced HPS User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../premium/gsrd_zephyr/ug-zgsrd-agx5e-premium/" class="md-nav__link">
+        HPS Zephyr GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../premium/boot-examples/ug-linux-boot-agx5e-premium/" class="md-nav__link">
+        HPS GHRD Linux Boot Examples
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_5" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_1_5" id="__nav_7_3_1_5_label" tabindex="0">
+          TSN Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_1_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_1_5">
+          <span class="md-nav__icon md-icon"></span>
+          TSN Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../premium/tsn/rgmii-hps/ug-tsncfg1-agx5e-premium/" class="md-nav__link">
+        HPS TSN RGMII System Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../premium/tsn/rgmii-hvio/ug-tsncfg2-agx5e-premium/" class="md-nav__link">
+        HPS TSN RGMII HVIO System Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../premium/tsn/sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5/" class="md-nav__link">
+        HPS TSN SGMII XCVR System Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../premium/usb3p1/ug-usb3p1-dev-drd-modes/" class="md-nav__link">
+        USB 3.1 Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../premium/remote-debug/ug-remote-debug-agx5e-premium/" class="md-nav__link">
+        SoC FPGA Remote Debug
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../premium/rsu/ug-rsu-agx5e-soc/" class="md-nav__link">
+        HPS Remote System Update
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../premium/xen/ug-xen-agx5e-premium/" class="md-nav__link">
+        HPS Xen Hypervisor GSRD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../premium/pcie_rp/ug-pcie_rp-agx5e-premium/" class="md-nav__link">
+        PCIe Root Port
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_11" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_1_11" id="__nav_7_3_1_11_label" tabindex="0">
+          Nios V Processor Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_1_11_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_1_11">
+          <span class="md-nav__icon md-icon"></span>
+          Nios V Processor Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_11_1" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_1_11_1" id="__nav_7_3_1_11_1_label" tabindex="0">
+          Nios V/c
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_7_3_1_11_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_1_11_1">
+          <span class="md-nav__icon md-icon"></span>
+          Nios V/c
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../premium/niosv/niosv_c/niosv_c_helloworld_ocm_mem_test/ug-helloworld-ocm-mem-test-agx5e-premium/" class="md-nav__link">
+        Helloworld and OCM memory test design on Nios® V/c Processor
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_11_2" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_1_11_2" id="__nav_7_3_1_11_2_label" tabindex="0">
+          Nios V/m
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_7_3_1_11_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_1_11_2">
+          <span class="md-nav__icon md-icon"></span>
+          Nios V/m
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../premium/niosv/niosv_m/niosv_m_baseline_ghrd/ug-baseline-ghrd-agx5e-premium/" class="md-nav__link">
+        Nios® V/m Processor Baseline GHRD Design
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_11_3" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_1_11_3" id="__nav_7_3_1_11_3_label" tabindex="0">
+          Nios V/g
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_7_3_1_11_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_1_11_3">
+          <span class="md-nav__icon md-icon"></span>
+          Nios V/g
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../premium/niosv/niosv_g/tinyml_liteRT/ug-tinyml-liteRT-agx5e-premium/" class="md-nav__link">
+        Nios® V/g TinyML LiteRT for Microcontroller Design
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../baremetal-embedded/agilex-5/e-series/premium/ug-baremetal-agx5e-premium/" class="md-nav__link">
+        Baremetal Hello World Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/altera-fpga/agilex5-demo-hps2fpga-interfaces/blob/main/documentation/01_index.md" class="md-nav__link">
+        Third Party Boards - HPS-FPGA Interfaces Demos User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../demos/agilex-5/e-series/premium/armds-debug-uboot/ug-armds-debug-uboot-agx5e-premium/" class="md-nav__link">
+        Debugging U-Boot with Arm Development Studio
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../demos/agilex-5/e-series/premium/riscfree-debug-u-boot/ug-riscfree-debug-uboot-agx5e-premium/" class="md-nav__link">
+        Debugging U-Boot with Ashling RiscFree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../demos/agilex-5/e-series/premium/riscfree-debug-linux/ug-riscfree-debug-linux-agx5e-premium/" class="md-nav__link">
+        Debugging Linux with Ashling RiscFree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../demos/agilex-5/e-series/premium/armds-debug-linux/ug-armds-debug-linux-agx5e-premium/" class="md-nav__link">
+        Debugging Linux with Arm Development Studio
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_2" id="__nav_7_3_2_label" tabindex="0">
+          E-Series Modular Development Kit
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          E-Series Modular Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../ed-ai-suite/agilex5/modular_jtag/modular_jtag/" class="md-nav__link">
+        Hostless JTAG Example Design
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../gsrd/ug-gsrd-agx5e-modular/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../boot-examples/ug-linux-boot-agx5e-modular/" class="md-nav__link">
+        HPS GHRD Linux Boot Examples
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../xen/ug-xen-agx5e-modular/" class="md-nav__link">
+        HPS Xen Hypervisor GSRD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Drive-On-Chip with Functional Safety Design Example for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../doc-plc/" class="md-nav__link">
+        Drive-On-Chip with PLC Design Example for Agilex™ Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../doc-crc/" class="md-nav__link">
+        ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../camera/camera_4k/camera_4k/" class="md-nav__link">
+        4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g/" class="md-nav__link">
+        Agilex™ 5 FPGA E-Series Modular Development Kit 1x10G Ethernet System Example Design
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_2_10" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_2_10" id="__nav_7_3_2_10_label" tabindex="0">
+          TSN Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_2_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          TSN Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tsn/sgmii_xcvr_3x2.5G/ug-tsn-sgmii-xcvr-3x2.5G-agilex5/" class="md-nav__link">
+        HPS TSN SGMII XCVR System 3x2.5G Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_3" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_3" id="__nav_7_3_3_label" tabindex="0">
+          Intel Simics Virtual Platform Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Intel Simics Virtual Platform Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms/" class="md-nav__link">
+        Simics Linux GSRD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms/" class="md-nav__link">
+        Simics Zephyr GSRD
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+          Agilex™ 7
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_4">
+          <span class="md-nav__icon md-icon"></span>
+          Agilex™ 7
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_1" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_4_1" id="__nav_7_4_1_label" tabindex="0">
+          F-Series SoC Development Kit (P-Tiles & E-Tile)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_4_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          F-Series SoC Development Kit (P-Tiles & E-Tile)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/" class="md-nav__link">
+        HPS Remote System Update
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc/" class="md-nav__link">
+        HPS Multi-QSPI Remote System Update
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/soc/remote-debug/ug-remote-debug-agx7f-soc/" class="md-nav__link">
+        SoC FPGA Remote Debug
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc/" class="md-nav__link">
+        HPS eMMC Boot
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc/" class="md-nav__link">
+        SoC Fabric Configuration from Linux Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/soc/boot-examples/ug-linux-boot-agx7-soc/" class="md-nav__link">
+        HPS GHRD Linux Boot Examples
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/soc/xen/ug-xen-agx7f-soc/" class="md-nav__link">
+        HPS Xen Hypervisor GSRD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/soc/setup-use-bridges/ug-setup-use-bridges-agx7f-soc/" class="md-nav__link">
+        Setting up and Using Bridges HPS Linux Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/soc/security/crypto/cryptoservices/ug-fpga-cryptoservice-agx7-soc/" class="md-nav__link">
+        FPGA Crypto Services (FCS) Tutorial Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/soc/security/crypto/sdos/ug-sdos-agx7f-soc/" class="md-nav__link">
+        Secure Data Object Storage (SDOS) Tutorial Example User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/soc/security/vab/hps-first/ug-vab-hps-first-agx7f-soc/" class="md-nav__link">
+        Vendor Authorized Boot (HPS-First) Tutorial Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/soc/security/vab/fpga-first/ug-vab-fpga-first-agx7f-soc/" class="md-nav__link">
+        Vendor Authorized Boot (FPGA-First) Tutorial Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_1_14" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_4_1_14" id="__nav_7_4_1_14_label" tabindex="0">
+          Nios V Processor Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_4_1_14_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_4_1_14">
+          <span class="md-nav__icon md-icon"></span>
+          Nios V Processor Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_1_14_1" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_4_1_14_1" id="__nav_7_4_1_14_1_label" tabindex="0">
+          Nios V/g
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_7_4_1_14_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_4_1_14_1">
+          <span class="md-nav__icon md-icon"></span>
+          Nios V/g
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/soc/niosv/niosv_g/fpu_test/ug-fpu-agx7f-fpga/" class="md-nav__link">
+        Nios® V/g Processor Floating Point Unit (FPU) Design
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_4_2" id="__nav_7_4_2_label" tabindex="0">
+          F-Series FPGA Development Kit (2x F-Tile)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_4_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          F-Series FPGA Development Kit (2x F-Tile)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/fpga/gsrd/ug-gsrd-agx7f-fpga/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_2_2" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_4_2_2" id="__nav_7_4_2_2_label" tabindex="0">
+          Nios V Processor Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_4_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_4_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Nios V Processor Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_2_2_1" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_4_2_2_1" id="__nav_7_4_2_2_1_label" tabindex="0">
+          Nios V/g
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_7_4_2_2_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_4_2_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Nios V/g
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/fpga/niosv/niosv_g/tinyml_liteRT/ug-tinyml-litert-agx7f-fpga/" class="md-nav__link">
+        Nios® V/g TinyML LiteRT for Microcontroller Design
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_4_3" id="__nav_7_4_3_label" tabindex="0">
+          I-Series FPGA Development Kit
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_4_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          I-Series FPGA Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../ed-ai-suite/agilex7/iseries_ofs_pcie/iseries_ofs_pcie/" class="md-nav__link">
+        Agilex 7 PCIe-Attached Example Design with OFS (I-Series, 2x R-Tile and 1x F-Tile)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/i-series/avst_cii/agilex7-ed-pcie-cii/" class="md-nav__link">
+        CII Example Design
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_4" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_4_4" id="__nav_7_4_4_label" tabindex="0">
+          M-Series HBM2e Development Kit (3x F-Tile & 1x R-Tile)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_4_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          M-Series HBM2e Development Kit (3x F-Tile & 1x R-Tile)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/m-series/hbm2e/ug-gsrd-agx7m-hbm2e/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/m-series/pcie_rp/ug-pcie_rp-agx7m-hbm2e/" class="md-nav__link">
+        PCIe Root Port User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_5" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_4_5" id="__nav_7_4_5_label" tabindex="0">
+          DE10-Agilex Terasic
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_4_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          DE10-Agilex Terasic
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../ed-ai-suite/agilex7/de10_pcie/de10_pcie/" class="md-nav__link">
+        Agilex 7 PCIe-Attached Example Design (DE10)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_6" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_4_6" id="__nav_7_4_6_label" tabindex="0">
+          FPGA SmartNIC N6001-PL Platform
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_4_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_4_6">
+          <span class="md-nav__icon md-icon"></span>
+          FPGA SmartNIC N6001-PL Platform
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../ed-ai-suite/agilex7/n6001_ofs_pcie/n6001_ofs_pcie/" class="md-nav__link">
+        Agilex 7 PCIe-Attached Example Design with OFS (N6001)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+          Stratix® 10
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_5">
+          <span class="md-nav__icon md-icon"></span>
+          Stratix® 10
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5_1" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_5_1" id="__nav_7_5_1_label" tabindex="0">
+          SX SoC Development Kit
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_5_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          SX SoC Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../stratix-10/sx/soc/rsu/ug-rsu-s10sx-soc/" class="md-nav__link">
+        HPS Remote System Update
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc/" class="md-nav__link">
+        SoC FPGA Remote Debug
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc/" class="md-nav__link">
+        HPS eMMC Boot
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../stratix-10/sx/soc/fabric-config/ug-linux-fabric-config-s10sx-soc/" class="md-nav__link">
+        SoC Fabric Configuration from Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../stratix-10/sx/soc/security/secure-boot/hps-first/ug-secure-boot-hps-first-s10sx-soc/" class="md-nav__link">
+        Secure Boot Tutorial Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../stratix-10/sx/soc/boot-examples/ug-linux-boot-s10-soc/" class="md-nav__link">
+        HPS GHRD Linux Boot Examples
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_6" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+          Arria® 10
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_6">
+          <span class="md-nav__icon md-icon"></span>
+          Arria® 10
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_6_1" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_6_1" id="__nav_7_6_1_label" tabindex="0">
+          SX SoC Development Kit
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_6_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_6_1">
+          <span class="md-nav__icon md-icon"></span>
+          SX SoC Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../arria-10/sx/soc/gsrd/ug-gsrd-a10sx-soc/" class="md-nav__link">
+        GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../arria-10/sx/soc/boot-examples/ug-linux-boot-a10-soc/" class="md-nav__link">
+        HPS GHRD Linux Boot Examples
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_7" id="__nav_7_7_label" tabindex="0">
+          Cyclone® V
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_7">
+          <span class="md-nav__icon md-icon"></span>
+          Cyclone® V
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_7_1" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_7_1" id="__nav_7_7_1_label" tabindex="0">
+          SX SoC Development Kit
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_7_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          SX SoC Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../cyclone-v/sx/soc/gsrd/ug-gsrd-cve-soc/" class="md-nav__link">
+        GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../cyclone-v/sx/soc/boot-examples/ug-linux-boot-cve-soc/" class="md-nav__link">
+        HPS GHRD Linux Boot Examples
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-description-and-functionality" class="md-nav__link">
+    Hardware Description and Functionality
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#safety-specific-hardware-subsystems-and-components" class="md-nav__link">
+    Safety-specific Hardware Subsystems and Components
+  </a>
+  
+    <nav class="md-nav" aria-label="Safety-specific Hardware Subsystems and Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-safety-subsystem" class="md-nav__link">
+    a. Safety Subsystem
+  </a>
+  
+    <nav class="md-nav" aria-label="a. Safety Subsystem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a1-safety-block" class="md-nav__link">
+    a.1. Safety Block
+  </a>
+  
+    <nav class="md-nav" aria-label="a.1. Safety Block">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a11-safety-function-block" class="md-nav__link">
+    a.1.1 Safety Function Block
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a12-cross-comparison-block" class="md-nav__link">
+    a.1.2 Cross-Comparison Block
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a2-quadrature-encoder-pulse" class="md-nav__link">
+    a.2. Quadrature Encoder Pulse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a3-interval-timer" class="md-nav__link">
+    a.3. Interval Timer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-shared-memory-subsystem" class="md-nav__link">
+    b. Shared Memory Subsystem
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-external-safety-logic-subsystem" class="md-nav__link">
+    c. External Safety Logic Subsystem
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-hardware-subsystem" class="md-nav__link">
+    d. Hardware Subsystem
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-voltage-thresholds" class="md-nav__link">
+    e. Voltage Thresholds
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drive-on-chip-related-hardware-subsystems-and-components" class="md-nav__link">
+    Drive-On-Chip-related Hardware Subsystems and Components
+  </a>
+  
+    <nav class="md-nav" aria-label="Drive-On-Chip-related Hardware Subsystems and Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-hps-subsystem" class="md-nav__link">
+    a. HPS Subsystem
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-cpu-dnios_-subsystem" class="md-nav__link">
+    b. CPU (dnios_) Subsystem
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-drive-subsystem" class="md-nav__link">
+    c. Drive Subsystem
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-control-subsystem" class="md-nav__link">
+    d. Control Subsystem
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-motor-model-subsystem" class="md-nav__link">
+    e. Motor Model Subsystem
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-use-hardware-subsystems-and-components" class="md-nav__link">
+    General Use Hardware Subsystems and Components
+  </a>
+  
+    <nav class="md-nav" aria-label="General Use Hardware Subsystems and Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-clock-and-board-subsystems" class="md-nav__link">
+    a. Clock and Board Subsystems
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="drive-on-chip-with-functional-safety-design-example-for-agilextm-5-devices">Drive-On-Chip with Functional Safety Design Example for Agilex™ 5 Devices<a class="headerlink" href="#drive-on-chip-with-functional-safety-design-example-for-agilextm-5-devices" title="Permanent link">&para;</a></h1>
+<h2 id="hardware-description-and-functionality">Hardware Description and Functionality<a class="headerlink" href="#hardware-description-and-functionality" title="Permanent link">&para;</a></h2>
+<p>This document provides insights about the functionality of the design example
+using the hardware blocks as a reference. The user must account for the
+interaction of the hardware described in this section and the software that
+executes in the Hard Processor System to gain full understanding of the
+implementation of the Safety Concept for Speed Monitoring.</p>
+<p>The Platform Designer high-level system includes many subsystems. These
+subsystems allow the system to work appropriately.</p>
+<ul>
+<li>The <code>clock_subsystem</code> and <code>board_subsystem</code> contain blocks related to the board
+  resources such buttons, switches, LEDs, reference clocks, resets. They provide
+  the clocks and resets for the other subsystems.</li>
+<li>The <code>hps_subsystem</code> is an instance of the Agilex™ 5 HPS that runs the HPS safe
+  channel application in Linux. EMIF to on-board DDR4 chip includes presets
+  and connections of the HPS2FPGA bridges to other subsystems. The subsystem
+  includes an instance of DDR4 EMIF to interface with on-board memory chip with
+  all presets and connections to the HPS2FPGA bridges to other subsystems.</li>
+<li>The <code>shared_mem_subsystem</code> enables cross comparison data to pass between the
+  FPGA and HPS as part of the safety concept. A memory location where the FPGA
+  channel and the HPS channel read and write the necessary safety payloads.</li>
+<li>The <code>esl_subsystem</code> is an internal (FPGA fabric) implementation of the external
+  safety logic. In a production functional safety application, you remove this
+  block and you implement it in a separate device from the Agilex™ device.</li>
+<li>The <code>hardware_subsystem</code> collects information off the device that you can use
+  to implement safety features such as voltage and temperature monitoring and validation.</li>
+<li>The <code>safety_subsystem</code> implements one channel of the the safety concept in the
+  FPGA. This safety channel is currently attached to the speed monitoring of Axis0</li>
+<li>The subsystems <code>dniosv_subsystem*</code>, <code>motor_model_subsystem*</code>, <code>drive_subsystem*</code>
+  and <code>control_subsystem*</code> are blocks related to motor control and motor modeling.
+  For more information on these blocks, refer to AN1000: Drive-On-Chip Design
+  Example for Agilex™ 5 Devices.
+<br></li>
+</ul>
+<p>The following block diagram shows the main components and subsystems of the
+"Drive-On-Chip with Functional Example Design".</p>
+<p><br></p>
+<p><a class="glightbox" href="../images/HW/top-block-diagram.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="top-block-diagram." src="../images/HW/top-block-diagram.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<center></p>
+<p><strong>Hardware Top Block Diagram.</strong>
+</center>
+<br></p>
+<p>The diagram is color-coded to match the Platform Designer view and the XML file
+(Modular Design Toolkit methodology) for this design
+(see: <a href="https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/25.1/HPS_NIOSVg_DoC_Safety_dual_axis/AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_safe_dual_axis.xml">AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_safe_dual_axis.xml</a>). The following figure
+correlates the block diagram, the XML file and the Platform Designer view:</p>
+<p><br></p>
+<p><a class="glightbox" href="../images/HW/mdt-top.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="mdt-top" src="../images/HW/mdt-top.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<center></p>
+<p><strong>Modular Design Tool Kit PD project vs XML file.</strong>
+</center>
+<br></p>
+<h2 id="safety-specific-hardware-subsystems-and-components">Safety-specific Hardware Subsystems and Components<a class="headerlink" href="#safety-specific-hardware-subsystems-and-components" title="Permanent link">&para;</a></h2>
+<h3 id="a-safety-subsystem">a. Safety Subsystem<a class="headerlink" href="#a-safety-subsystem" title="Permanent link">&para;</a></h3>
+<p>The safety subsystem consists of various submodules that collect appropriate
+information to indicate the status and actions of the whole system, which passes
+into the external safety logic.</p>
+<p>The safety subsystem comprises the following blocks:</p>
+<ul>
+<li>Safety block (FPGA implementation of the safety channel)</li>
+<li>Quadrature encoder pulse</li>
+<li>Interval timer</li>
+<li>Push button debounce (for reset)</li>
+<li>Bridges for control and device access.</li>
+</ul>
+<p><br></p>
+<p><a class="glightbox" href="../images/HW/safety-subsystem-top.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="safety-subsystem-top" src="../images/HW/safety-subsystem-top.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<center></p>
+<p><strong>Safety Subsystem Platform Designer View.</strong>
+</center>
+<br></p>
+<h4 id="a1-safety-block">a.1. Safety Block<a class="headerlink" href="#a1-safety-block" title="Permanent link">&para;</a></h4>
+<p>This block implements the FPGA safety channel. It has two main functional blocks:
+FPGA safety function block and the FPGA cross-comparison function for HPS-FPGA payloads.
+<br>
+<br></p>
+<h5 id="a11-safety-function-block">a.1.1 Safety Function Block<a class="headerlink" href="#a11-safety-function-block" title="Permanent link">&para;</a></h5>
+<p>Contains the FUSA and timer heartbeat generator, speed estimator, and payload generator.
+<br></p>
+<ul>
+<li><strong>FUSA and Timer Heartbeat Generator:</strong> The heartbeat generator monitors the
+  condition of all the other IPs in the FPGA and HPS channels. The generate bit
+  is a control signal that toggles the heartbeat. For the FPGA, the generate input
+  is derived from the FPGA Comparison Function state machine's start output,
+  which in turn triggers from the timeout. Therefore, the FPGA heartbeat signal
+  indicates correct restarting controlled by the software and operating comparison
+  function state machine.</li>
+<li><strong>Speed Estimator:</strong> The speed estimator estimates the speeds of the motor model
+  based off quadrature encoder pulse count. Using this calculated value, the
+  module determines respective safety bits, which pass into the external safety
+  logic. The main algorithm of the estimator is similar to the one in drive on
+  chip, with additional safety diagnostics. The speed estimator module controls
+  local parameters and modifies sampling frequencies.</li>
+<li><strong>Payload Generator:</strong> The payload generator takes in many different signals
+  from around the overall safety block and generates a payload with all the
+  relevant information. The FPGA-side payload is passed into the cross-comparison
+  block for relevant and respective checks.
+<br></li>
+</ul>
+<p>The following table shows the format for the payload data.</p>
+<p><br></p>
+<p><center></p>
+<p><strong>32-bit Safety Payload format.</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">Bit range</th>
+<th align="left">Length</th>
+<th align="left">Intended Data</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">[0]</td>
+<td align="left">1 bit</td>
+<td align="left">Over-speed indication</td>
+<td align="left">1 for Over-speed</td>
+</tr>
+<tr>
+<td align="left">[25:1]</td>
+<td align="left">25 bits</td>
+<td align="left">Estimated speed</td>
+<td align="left">Measured in rpm</td>
+</tr>
+<tr>
+<td align="left">[31:26]</td>
+<td align="left">6 bits</td>
+<td align="left">Sequence</td>
+<td align="left">Implemented an internal counter to<br> register the sequence of measurements.<br>(0-128) always looping around.</td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p><br></p>
+<h5 id="a12-cross-comparison-block">a.1.2 Cross-Comparison Block<a class="headerlink" href="#a12-cross-comparison-block" title="Permanent link">&para;</a></h5>
+<p>The cross-comparison block consists mainly of a state machine which, when
+triggered by the timer, writes to and reads from the shared memory to compare
+the FPGA payload with the HPS payload. The following diagram specifies the
+in-built states of the state machine.</p>
+<p><br></p>
+<p><a class="glightbox" href="../images/HW/cross-comp-sm.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="cross-comp-sm" src="../images/HW/cross-comp-sm.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<center></p>
+<p><strong>State Machine Diagram to execute the Speed
+<br> Monitoring Safety Function.</strong>
+</center>
+<br></p>
+<p>When triggered in the initial <code>init</code> state by the timer, the state machine waits
+a clock cycle for the payload to be generated before writing it to the shared
+memory. The FPGA status location is then updated in the shared memory to
+indicate that the FPGA payload is valid. The state machine then waits, checking
+the shared memory location for the HPS status to determine when the HPS writes
+its payload data to the shared memory. The design performs cross comparison
+that verifies that the payload sequence number in the two payloads matches and
+also that the two speeds match to within the allowed tolerance. Various factors
+determine the acceptable tolerance between the two speed estimations:
+The maximum acceleration of the motor</p>
+<ul>
+<li>The interrupt response time in the HPS software</li>
+<li>The alignment of the 4 kHz speed estimation sampling between the HPS and FPGA</li>
+<li>Clock cycle tolerance in the sampling of the encoder quadrature. One decoder
+  can sample a change in the quadrature signals one clock cycle after the other.</li>
+</ul>
+<p>Although the over-speed flag is in the payload data, the design does not cross
+compare flags because tolerances in the speed estimation means that one speed
+estimation can be just over the threshold and one just under. Hence the <code>over_speed</code>
+flags not matching is a valid condition.</p>
+<p>The state machine then updates the FPGA status in the shared memory to indicate
+when the FPGA completes its cross comparison. The state machine then waits,
+monitoring the HPS status for its cross comparison to be complete. The FPGA
+state machine then clears the HPS status in the shared memory and the HPS
+reciprocally clears the FPGA status in the shared memory. This handshaking
+ensures that state machines in the FPGA and HPS remain synchronized with each
+other. The FPGA state machine then returns to the initial state and the process repeats.</p>
+<p>Between the <code>generate</code> state and returning to the <code>init</code> state, the design
+enables a watchdog timer. This watchdog prevents the FPGA state machine from waiting
+indefinitely for the HPS. If the watchdog expires, the state machine transitions
+to the error state and the <code>compare_good_p/n</code> output pair is asserted. The
+design only exits the error state when the <code>reset_safety_n</code> input is asserted (active-low).
+<br></p>
+<h4 id="a2-quadrature-encoder-pulse">a.2. Quadrature Encoder Pulse<a class="headerlink" href="#a2-quadrature-encoder-pulse" title="Permanent link">&para;</a></h4>
+<p>The quadrature encoder pulse IP decodes the quadrature inputs from the position
+encoder, signals <code>A</code>, <code>B</code> and <code>I</code>. The Drive-on-Chip with Functional Safety
+Design Example design reuses the IP from the Drive-on-Chip Design Example.
+However, it now exposes the count value to pass it for further analysis. The
+IP also monitors any errors due to over-speed.where both <code>A</code> and <code>B</code> phases
+of the quadrature change in the same sampling period. The IP may monitor the
+encoder’s error output.</p>
+<h4 id="a3-interval-timer">a.3. Interval Timer<a class="headerlink" href="#a3-interval-timer" title="Permanent link">&para;</a></h4>
+<p>The interval timer from the Quartus® or Platform Designer IP catalog is the source
+of synchronization of the FPGA channel and the HPS channel. Calculating the
+speed in both the channels, the cross comparison, and evaluating the safety
+function must occur in the interval between the timer timeout and interrupt signals.</p>
+<p>The interval timer provides the safety response time. In this design, the safety
+response time is 1 ms. During that time, the FPGA channel generates a payload,
+writes the payload to shared memory, retrieves the payload from the HPS, and
+runs the comparison. Similar for the HPS safety channel. The HPS uses the
+interrupt line from Linux to start the safety function.</p>
+<p>In this design, the timer is set to 1 ms interval by writing a count value
+according by the clock frequency of the timer (in this case 100 MHz). This IP
+writes to the registers <code>periodl</code> and <code>periodh</code>. Then, the timer runs in free
+running mode by writing a <code>0x7</code> in the control register. When the count reach <code>0x0</code>,
+the timer issues an Interrupt for the Linux system (the timer is registered as a
+UIO device in the Linux DTS with its corresponding interrupt number) and the
+design assert the timeout output. These signals trigger the safety function in
+the FPGA and HPS channel respectively. When the interrupt occurs, the systems
+clears the interrupt and the timeout signal and sets the timer to free running
+mode again.</p>
+<h3 id="b-shared-memory-subsystem">b. Shared Memory Subsystem<a class="headerlink" href="#b-shared-memory-subsystem" title="Permanent link">&para;</a></h3>
+<p>The shared memory is a 4x32 bit dual-port block RAM. One side connects via AXI
+to the HPS. The other side connects via APB interface to the FPGA cross comparison
+block. The design implements error correction codes (ECC) on both ports,
+allowing single-bit errors to be automatically corrected and multi-bit errors
+to be detected. The correction of single-bit errors allows the safety function
+to continue despite a single fault. If uncorrectable multi-bit errors are
+detected, the <code>memory_fault_p/n</code> complementary-pair output is asserted. You can
+only de-assert this output by the active-low <code>reset_safety_n</code> input.</p>
+<p><br></p>
+<p><center></p>
+<p><strong>Intended Shared Memory Address Map.</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">Address</th>
+<th align="left">Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0x0</td>
+<td align="left">FPGA payload</td>
+</tr>
+<tr>
+<td align="center">0x4</td>
+<td align="left">FPGA status</td>
+</tr>
+<tr>
+<td align="center">0x8</td>
+<td align="left">HPS payload</td>
+</tr>
+<tr>
+<td align="center">0xC</td>
+<td align="left">HPS status</td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p><br></p>
+<p><center></p>
+<p><strong>Intended definition of Status Bit.</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">FPGA status <br>/ HPS status bit</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0</td>
+<td>Valid data from the channel is ready <br> to be compared. Comparison pending.</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td>Comparison done in the corresponding channel</td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p><br></p>
+<h3 id="c-external-safety-logic-subsystem">c. External Safety Logic Subsystem<a class="headerlink" href="#c-external-safety-logic-subsystem" title="Permanent link">&para;</a></h3>
+<p>The external safety logic identifies common causes of failures and disparities
+in the overall system. You can model the external safety logic via internal
+logic when no external device is present. The following descriptions state each
+of the diagnostics external safety logic Implements.
+<br></p>
+<ul>
+<li><strong>Results of payload comparison:</strong> Both the FPGA and HPS process their own
+  comparisons to ensure both values of payload agree. The design passes these
+  outputs into the external safety logic to ensure that both comparison checks agree.<br><br></li>
+<li><strong>Clock Checker:</strong> The external safety logic actively takes in respective FPGA
+  and HPS clocks as inputs of different frequencies. The design processes these
+  signals through the clock checker to ensure frequencies are in a tolerable range.
+  The clock checker takes a fixed reference clock and its respective reset, and
+  compares it to a clock under comparison. Using fixed parameterizable thresholds,
+  the clock checker determines whether the clock under test falls into appropriate
+  and safe frequencies. The external safety logic uses the clock checker to ensure
+  that HPS and PGA clocks operate at appropriate frequencies, and the design has
+  no instances of skewing or jitter when passing through various blocks.<br><br></li>
+<li><strong>Channel Operation:</strong> Refers to the two heartbeat signals present in FPGA and
+  HPS operations. These signals help to identify that everything is functional
+  within a process safety time. The external safety logic receives these signals
+  as inputs, which the design then delays using two flip-flops to prevent any
+  metastable values that might fluctuate through. The design applies a window
+  check to allow for the heartbeat to arrive within a determinable time span.<br><br></li>
+<li><strong>CRAM Configuration Check:</strong> Ensures that no soft errors or transient faults occur.<br><br></li>
+<li><strong>Power Supply Check:</strong> Ensures no failures because of loss of power or unsafe
+  operating voltage conditions. The design checks the power supply by using the
+  Mailbox Client with Avalon Streaming Interface IP. The design compares the
+  voltages to optimal operating voltage conditions. Refer to Agilex™ User Guide.<br><br></li>
+<li><strong>Temperature Check:</strong> Ensures no failures because of unsafe temperatures. The
+  design checks the temperature by using the Mailbox Client with Avalon Streaming
+  Interface IP. The design compares the temperature values against parameterizable
+  temperature limits to ensure they are in a safe range. For more details on
+  power supply and temperature check, refer to Agilex™ Power Management User Guide.<br><br></li>
+<li><strong>Complementary Bit Package</strong>: The complementary bit package contains a typedef
+  for a definition of type called <code>compli</code> which allows effective storage of
+  complementary bit pairs. The complementary bit check also contains fault checking
+  functions to ensure that received complementary pairs are organized into the
+  correct format. The design processes external safety logic's I/O in a
+  complementary manner to detect any stuck bits during transmissions. To
+  accommodate any timing delays, complementary pairs can arrive within a preset
+  and adjustable window.
+<br></li>
+</ul>
+<h3 id="d-hardware-subsystem">d. Hardware Subsystem<a class="headerlink" href="#d-hardware-subsystem" title="Permanent link">&para;</a></h3>
+<p>The hardware subsystem collects information about the system, which the external
+safety logic can use. Agilex™ devices contain on-chip voltage and temperature sensors.
+<br></p>
+<p>The secure device manager stores sampled data, which you can access by using the
+Mailbox Client with Avalon Streaming Interface Altera® FPGA IP. Using the relevant
+information, external safety logic can determine unsafe temperatures and inoperable
+voltage conditions.
+<br></p>
+<p>The subsystem comprises command, response, a set of command addresses, and a
+mailbox client. During the command stage, the mailbox receives preprogrammed
+addresses. The response stage receives results from the mailbox and sorts into
+corresponding arrays.
+<br></p>
+<p>The following table contains command address information.</p>
+<p><br></p>
+<p><a class="glightbox" href="../images/HW/temp-cmd-add.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="temp-cmd-add" src="../images/HW/temp-cmd-add.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<center></p>
+<p><strong>Hardware Subsystem Command and Address Information.</strong>
+</center>
+<br></p>
+<h3 id="e-voltage-thresholds">e. Voltage Thresholds<a class="headerlink" href="#e-voltage-thresholds" title="Permanent link">&para;</a></h3>
+<p>The design tests the voltage measurements received from the secure device
+manager (SDM) against the thresholds (hex digital value).</p>
+<p><br></p>
+<p><a class="glightbox" href="../images/HW/voltage-threshold.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="voltage-threshold" src="../images/HW/voltage-threshold.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<center></p>
+<p><strong>Derivation of Voltage Rail Thresholds.</strong>
+</center>
+<br></p>
+<p>The design divides some of the voltages rails by a factor of two before the
+on-board ADC samples them. The SDM multiplies up those samples by two again.
+The ADC measures to ±3.5% accuracy. The final digital output from the SDM
+mailbox is represented as an unsigned fixed point number with 16 bits below
+the binary point (e.g. <code>0x0000C000 = 0.75 V</code>, <code>0x00010000 = 1.0 V</code>).</p>
+<h2 id="drive-on-chip-related-hardware-subsystems-and-components">Drive-On-Chip-related Hardware Subsystems and Components<a class="headerlink" href="#drive-on-chip-related-hardware-subsystems-and-components" title="Permanent link">&para;</a></h2>
+<p>This project variant is based on the "Drive-On-Chip Example Design for Agilex™
+Devices" see <a href="https://www.intel.com/content/www/us/en/docs/programmable/823627/current/about-the-drive-on-chip-with-functional.html">AN 999: Drive-on-Chip with Functional Safety Design Example: Agilex™ 7 Devices</a>
+and <a href="https://www.intel.com/content/www/us/en/docs/programmable/826207/24-1/about-the-drive-on-chip-design-example.html">AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices</a>.
+Enhancing it with an instance of the HPS Subsystem (Hard Processor System) to
+provide a higher level of abstraction for motion control. The subsystems
+instantiated in the XML file are described below.
+<br></p>
+<h3 id="a-hps-subsystem">a. HPS Subsystem<a class="headerlink" href="#a-hps-subsystem" title="Permanent link">&para;</a></h3>
+<p>The HPS Subsystem is mainly an instance of the “Hard Processor System Agilex™
+(or other) FPGA IP” and is configured consistently with the GSRD.
+The HPS in this design should run all the necessary SW components to implement
+the HPS safety channel( e.g., OS, RTOS, containers, drivers, user application, etc).
+Internally, the subsystem comprises the HPS, EMIF for external DDR4 on the
+development kit, and lightweight and full HPS-to-FPGA bridges.
+The lightweight bridge accesses blocks related to the Drive-On-Chip application
+(drives, motor models, encoders, control memory, GUI memories). The full HPS-to-FPGA
+bridge connects safety-related blocks (shared safety memory, FPGA safety blocks).
+The HPS controls the timer that controls the safety function, reads and writes
+safety payloads, and cleans the FPGA channel control registers if necessary.
+<br></p>
+<p>The connection from the HPS2FPGA LW bridge to all drive-on-chip subsystem blocks.
+This connection allows the HPS to change parameters of the motor control. The
+connection allows the HPS to run speed estimation using the drive0 encoder.</p>
+<p>This design connects the HPS to the block <code>hps_fpga_gpio</code> for the inputs for the
+external safety logic if any of the safe state conditions in the HPS safety
+channel is asserted.</p>
+<p>This design subsystem connects the HPS to the <code>hps_fpga_gpio</code> block. The outputs
+from <code>hps_fpga_gpio</code> are inputs the external safety logic. Asserting the signals
+from <code>hps_fpga_gpio</code> triggers the safe state condition from the HPS safety channel.</p>
+<p><br></p>
+<p><a class="glightbox" href="../images/HW/hps-sub-pd.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="hps-sub-pd" src="../images/HW/hps-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<center></p>
+<p><strong>HPS Subsystem PD sub-Blocks.</strong>
+</center>
+<br></p>
+<h3 id="b-cpu-dnios_-subsystem">b. CPU (dnios_) Subsystem<a class="headerlink" href="#b-cpu-dnios_-subsystem" title="Permanent link">&para;</a></h3>
+<p>The Drive-On-Chip Design Example NiosV/g processor subsystem offers a fully
+functional processor system with debugging capabilities. The NiosV/g processor
+subsystem comprises the following Platform Designer components: NiosV/g soft
+processor, on-chip RAM, JTAG master, IRQ management, JTAG UART, timers and,
+performance counters.</p>
+<p><br></p>
+<p><a class="glightbox" href="../images/HW/dniosv-sub-pd.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="dniosv-sub-pd" src="../images/HW/dniosv-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<center></p>
+<p><strong>NIOSV/g Subsystem PD sub-Blocks.</strong>
+</center>
+<br></p>
+<p>The ISR uses the memory blocks for code and data to ensure fast, predictable
+execution time for the motor control algorithm. The NiosV/g subsystem uses the
+JTAG master and debug memories to allow real-time interactions between the GUI
+and the processor.
+<br></p>
+<h3 id="c-drive-subsystem">c. Drive Subsystem<a class="headerlink" href="#c-drive-subsystem" title="Permanent link">&para;</a></h3>
+<p>There are two instances of the <code>drive_subsystem</code> in this variant. This subsystem
+is a collection of IPs to enable interfaces, signals and ports for motor control
+using FPGA. The main components of this subsystem are Six-channel PWM Interface
+IP (<code>doc_pwm</code>), a Drive System Monitor IP (<code>doc_sm</code>), Quadrature Encoder
+Interface IP (<code>doc_qep</code>),  Sigma-Delta ADC interfaces for Drive Axes
+(<code>doc_adc</code> and <code>doc_adc_pow</code>), an instance of Field-Oriented Control Algorithm
+IP generated with DSP Builder (<code>doc_foc_fixp</code>), resolver SPI interface IP
+(<code>doc_rslvr_spi*</code>), and Parallel IO IP (<code>hall pio</code>) for hall interface.
+More details about these blocks can be found in Application Notes <a href="https://www.intel.com/content/www/us/en/docs/programmable/823627/current/about-the-drive-on-chip-with-functional.html">AN 999: Drive-on-Chip with Functional Safety Design Example: Agilex™ 7 Devices</a> and <a href="https://www.intel.com/content/www/us/en/docs/programmable/826207/24-1/about-the-drive-on-chip-design-example.html">AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices</a></p>
+<p><br></p>
+<p><a class="glightbox" href="../images/HW/drive-sub-pd.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="drive-sub-pd" src="../images/HW/drive-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<center></p>
+<p><strong>Drive Subsystem PD sub-Blocks.</strong>
+</center>
+<br></p>
+<h3 id="d-control-subsystem">d. Control Subsystem<a class="headerlink" href="#d-control-subsystem" title="Permanent link">&para;</a></h3>
+<p>The Drive-On-Chip Design uses the debugging RAM to send commands and receive
+status information. The debugging dump memory stores trace data that you can
+display as time graphs in the GUI (<code>doc_svm_dump</code>). The  debug memory
+(<code>doc_sys__debug_ram</code>) is used to interact and provide commands to the
+Drive-On-Chip control application. The memories contained in the control
+subsystem are fundamental to interacting with the DoC capabilities and getting
+feedback signals for debugging and external control.
+<br>
+In this safety-oriented variant an additional <code>doc_safety_dump</code> memory in the
+<code>control_subsystem</code> to show safety-related values in another interface e.g. a GUI.</p>
+<p><br></p>
+<p><a class="glightbox" href="../images/HW/ctrl-sub-pd.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="ctrl-sub-pd" src="../images/HW/ctrl-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<center></p>
+<p><strong>Control Subsystem PD sub-Blocks.</strong>
+</center>
+<br></p>
+<h3 id="e-motor-model-subsystem">e. Motor Model Subsystem<a class="headerlink" href="#e-motor-model-subsystem" title="Permanent link">&para;</a></h3>
+<p>The Drive-On-Chip Design Example for Agilex™ Devices implements a motor
+and power board model instead of a real motor kit. The motor and power board
+model is a DSP Builder model, which generates the RTL for the motor and power
+board model. By integrating the Avalon interface, motor parameters are accurately
+configured to represent a tandem motor kit. You can experiment with the design
+without investing in an expensive motor kit. You can explore and optimize your
+designs. The motor model included in this design example is based on the Tandem
+Motion 48V power board parameter specifications with a <code>Tamagawa TS4747N3200E600</code>
+motor. There are two instances of the motor_model_subsystem in this design.
+<br>
+To expand safety capabilities, the connection between the motor_model subsystem
+and the <code>esl_subsystem</code> allows you to disconnect the motor from power supply if the
+system goes into "safe state" whenever the design detects an unsafe condition. The
+external safety logic asserts the signal to disconnect the motor.</p>
+<p><br></p>
+<p><a class="glightbox" href="../images/HW/mmodel-sub-pd.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="mmodel-sub-pd" src="../images/HW/mmodel-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<center></p>
+<p><strong>Motor Model Subsystem PD sub-Blocks.</strong>
+</center>
+<br></p>
+<h2 id="general-use-hardware-subsystems-and-components">General Use Hardware Subsystems and Components<a class="headerlink" href="#general-use-hardware-subsystems-and-components" title="Permanent link">&para;</a></h2>
+<h3 id="a-clock-and-board-subsystems">a. Clock and Board Subsystems<a class="headerlink" href="#a-clock-and-board-subsystems" title="Permanent link">&para;</a></h3>
+<p>The clock Subsystem alongside the board subsystem contains blocks related to the
+board resources such as buttons, switches, LEDs, reference clocks, and resets.
+They provide the clocks and resets for the other subsystems.</p>
+<p><br></p>
+<p><a class="glightbox" href="../images/HW/board-clk-sub-pd.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="board-clk-sub-p" src="../images/HW/board-clk-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<center></p>
+<p><strong>Board and Clock Subsystems PD sub-Blocks.</strong>
+</center>
+<br></p>
+<p><a class="md-button" href="../#example-design-documentation">Back to Documentation</a></p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      Last update:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 25, 2025</span>
+      
+        <br>
+        Created:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 21, 2025</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.altera.com" target="_blank" rel="noopener" title="www.altera.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2 0-.68.06-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.923 7.923 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8.008 8.008 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.65 15.65 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/altera-fpga" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/company/altera-fpga/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://community.intel.com/t5/FPGA/ct-p/fpga" target="_blank" rel="noopener" title="Need Help" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 18h2v-2h-2v2m1-16A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-14a4 4 0 0 0-4 4h2a2 2 0 0 1 2-2 2 2 0 0 1 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5a4 4 0 0 0-4-4Z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../../../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.indexes", "navigation.footer", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "search.suggest", "search.highlight", "content.code.copy", "navigation.indexes", "toc.follow"], "search": "../../../../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="95a45ca2-f7f4-47e3-ab82-76a7057c6f0f"></script>
+  
+      <script src="../../../../../../../assets/javascripts/bundle.fac441b0.min.js"></script>
+      
+        <script src="https://unpkg.com/tablefilter@0.7.3/dist/tablefilter/tablefilter.js"></script>
+      
+        <script src="../../../../../../../assets/tables.js"></script>
+      
+        <script src="../../../../../../../assets/extra.js"></script>
+      
+    
+  <!-- Floating Need Help Button -->
+  <a href="https://community.intel.com/t5/FPGA/ct-p/fpga" class="floating-help-button" target="_blank" aria-label="Ask a question in the FPGA Forum">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"></circle>
+      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+    </svg>
+    <span>Ask in the Forum</span>
+  </a>
+
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
