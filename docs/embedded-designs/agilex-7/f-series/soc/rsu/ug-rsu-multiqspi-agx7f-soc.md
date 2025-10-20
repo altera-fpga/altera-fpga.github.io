@@ -4,7 +4,7 @@
 
 ## Intro 
 
-This page is an extension of the  [Agilex 7 SoC HPS Remote System Update Example](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/) and will show you how to build RSU images with multi QSPI support. This feature allows you to extend the flash space available to store the RSU applications so the size of these could be increased. This feature allows you to support up to 4 QSPI flash devices of the same model (i.e. same size). 
+This page is an extension of the  [Agilex 7 SoC HPS Remote System Update Example](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/) and will show you how to build RSU images with multi QSPI support. This feature allows you to extend the flash space available to store the RSU applications so the size of these could be increased. This feature allows you to support up to 4 QSPI flash devices of the same model (i.e. same size). 
 
 **Note**: This feature is first enabled in 24.3 release.
 
@@ -72,7 +72,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -97,10 +97,10 @@ The commands to create and compile the projects are listed below.
 cd $TOP_FOLDER
 # Build 4 versions of the hardware design
 rm -rf hw && mkdir hw && cd hw
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.1.1_REL_GSRD_PR.zip
-unzip QPDS25.1.1_REL_GSRD_PR.zip
-rm QPDS25.1.1_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS25.1.1_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
+unzip QPDS25.3_REL_GSRD_PR.zip
+rm QPDS25.3_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
 # boot from FPGA
 export BOOTS_FIRST=fpga
 # enable watchdog
@@ -148,7 +148,7 @@ rm -rf arm-trusted-firmware
 git clone https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 # checkout the branch used for this document, comment out to use default
-git checkout -b test -t origin/socfpga_v2.12.1
+git checkout -b test -t origin/socfpga_v2.13.0
 make bl31 PLAT=agilex
 cd ..
 ```
@@ -176,7 +176,7 @@ rm -rf u-boot-socfpga
 git clone https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga
 # comment out next line to use the latest default branch 
-git checkout -b test -t origin/socfpga_v2025.04
+git checkout -b test -t origin/socfpga_v2025.07
 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -303,12 +303,7 @@ rm -rf linux-socfpga
 git clone https://github.com/altera-fpga/linux-socfpga 
 cd linux-socfpga 
 # checkout the branch used for this document, comment out to use default 
-git checkout -b test -t origin/socfpga-6.12.19-lts 
-
-# Workaround to the 14024915012 issue in whcih the number of QSPI devices was incorrecltly determined from the device tree.
-# This is a temporal hack to update cqspi_setup_flash(). This Will be fixed in 25.1.1.
-sed -i 's/max_cs = cqspi->num_chipselect - 1;/max_cs = 0;/g' drivers/spi/spi-cadence-quadspi.c
-sed -i 's/else if (cs < max_cs)/else if (cs > max_cs)/g' drivers/spi/spi-cadence-quadspi.c
+git checkout -b test -t origin/socfpga-6.12.33-lts 
 
 # configure the RSU driver to be built into the kernel 
 make clean && make mrproper 
@@ -390,7 +385,7 @@ cat << EOF > initial_image_multiQSPI.pfg
 EOF
 
 # MultiQSPI is supported starting in 24.3
-~/altera_pro/25.1/quartus/bin/quartus_pfg -c initial_image_multiQSPI.pfg
+~/altera_pro/25.1.1/quartus/bin/quartus_pfg -c initial_image_multiQSPI.pfg
 mv initial_image_multiQSPI.jic initial_image_multiQSPI_prev.jic
 mv initial_image_multiQSPI_jic_2Gb_cs0.rpd initial_image_multiQSPI_jic_2Gb_cs0_prev.rpd
 mv initial_image_multiQSPI_jic_2Gb_cs1.rpd initial_image_multiQSPI_jic_2Gb_cs1_prev.rpd
@@ -407,7 +402,7 @@ After completion of this stage you should see the following files created. These
 * $TOP_FOLDER/initial_image_multiQSPI.jic - Initial QSPI image used for regular RSU use cases.
 * $TOP_FOLDER/initial_image_multiQSPI_prev.jic - Initial QSPI image used to exercise combined application use case. - Not available in 24.3 release.
 
-For detailed instructions on how to create the .pfg, please refer to the [Creating the initial flash-image](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/#creating-the-initial-flash-image) in main RSU page. For a multi-QSPI initial image there are some variations that need to be obserrved and these are described next.
+For detailed instructions on how to create the .pfg, please refer to the [Creating the initial flash-image](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/#creating-the-initial-flash-image) in main RSU page. For a multi-QSPI initial image there are some variations that need to be obserrved and these are described next.
 
 * When selecting the flash device in Configuration Device tab and clicking Add Device you need to select as device any of the QSPI0xG devices depending on the total size of the multi-QSPI system (in bits). In the figure below are shown the possible options. These options gets available when building an RSU image. In this figure, the QSPI04G is being selected for a 4 Gbit system (512 MB) integrated by 2 flash devices of 2Gbit each one.
 
@@ -739,7 +734,7 @@ The following items are included in the rootfs on the SD card.
 
 ### Exercise RSU Binaries
 
-The same RSU exercises for U-Boot and Linux described at [Agilex 7 SoC HPS Remote System Update Example](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/) are supported for multi-QSPI. You can exercise all of them, but in the command responses just consider the new layout used in here (i.e. the location of the partitions will be different ). 
+The same RSU exercises for U-Boot and Linux described at [Agilex 7 SoC HPS Remote System Update Example](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/) are supported for multi-QSPI. You can exercise all of them, but in the command responses just consider the new layout used in here (i.e. the location of the partitions will be different ). 
 
 In the scenario in which an application is being corrupted using a U-Boot command, you also will need to use the correct location of the application. Also remember that in multi-QSPI the **sf probe** U-Boot command is used to select the appropriate flash device before performing any read, write or erase operation. The **sf erase**, **sf write** and **sd read** U-Boot commands use as memory address the relative address in the chip selected.
 

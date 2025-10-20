@@ -91,7 +91,7 @@ This tutorial example design is based on the Agilex 5 E-Series Premium Developme
   * Ethernet Cable. Included with the development kit
   * Micro SD card and USB card writer. Included with the development kit
   
-Refer to [Development Kit](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#development-kit) for details about the board, including how to install the HPS Boards, and how to set MSEL dispswitches.
+Refer to [Development Kit](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#development-kit) for details about the board, including how to install the HPS Boards, and how to set MSEL dispswitches.
 
 ### Development Environment
 
@@ -99,7 +99,7 @@ Refer to [Development Kit](https://altera-fpga.github.io/rel-25.1.1/embedded-des
   * 64 GB of RAM or more
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1 
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 
   * TFTP server. This used to download the eMMC binaries to board to be flashed by U-Boot
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files.
@@ -114,7 +114,7 @@ Refer to [Development Kit](https://altera-fpga.github.io/rel-25.1.1/embedded-des
 
 ### Release Notes
 
-Refer to [Release Notes](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#release-contents) for release readiness information and known issues.
+Refer to [Release Notes](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#release-contents) for release readiness information and known issues.
 
 
 ## 1. The Enablement of USB 3.1 in Host Mode
@@ -125,7 +125,7 @@ Refer to [Release Notes](https://altera-fpga.github.io/rel-25.1.1/embedded-desig
 
 ### 1.1 GHRD and Yocto
 
-1\. Refer to [HPS GSRD User Guide for the Agilex™ 5 E-Series Premium Dev Kit](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/) for the instructions to create the GSRD reference design.
+1\. Refer to [HPS GSRD User Guide for the Agilex™ 5 E-Series Premium Dev Kit](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/) for the instructions to create the GSRD reference design.
 
 2\. To boot the premium dev kit from SD Card, follow the instructions in [Build SD Card Boot Binaries](https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-sd-card-boot-binaries) to create the SD Image, the premium dev kit will boot in Host mode.
 
@@ -193,7 +193,7 @@ For modification of Yocto Build, follow the instructions below:
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
 cd gsrd-socfpga
 . agilex5_dk_a5e065bb32aes1-gsrd-build.sh
 build_setup
@@ -306,7 +306,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -488,7 +488,7 @@ For modification of Yocto Build, follow the instructions below:
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
 cd gsrd-socfpga
 . agilex5_dk_a5e065bb32aes1-gsrd-build.sh
 build_setup

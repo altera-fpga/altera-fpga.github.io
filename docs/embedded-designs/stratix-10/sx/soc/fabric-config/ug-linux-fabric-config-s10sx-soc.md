@@ -27,7 +27,7 @@ You will need the following items:
 - Linux host PC (Ubuntu 22.04LTS was used for developing this project, but other versions may work too) 
 - Internet access (for downloading files attached to this page, and cloning git trees from github) 
 - TFTP server running on host computer (or other accessible computer on the local network) 
-- Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1
+- Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
 
 Refer to [board documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/stratix/10-sx.html) for more details about the development kit.
 
@@ -72,7 +72,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -86,10 +86,10 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
 ```bash 
 rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.1.1_REL_GSRD_PR.zip
-unzip QPDS25.1.1_REL_GSRD_PR.zip
-rm -f QPDS25.1.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS25.1.1_REL_GSRD_PR stratix10-ed-gsrd
+wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
+unzip QPDS25.3_REL_GSRD_PR.zip
+rm -f QPDS25.3_REL_GSRD_PR.zip
+mv stratix10-ed-gsrd-QPDS25.3_REL_GSRD_PR stratix10-ed-gsrd
 cd stratix10-ed-gsrd
 make s10-htile-soc-devkit-oobe-baseline-all
 cd ..
@@ -104,7 +104,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf arm-trusted-firmware 
-git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
 cd arm-trusted-firmware 
 make -j 48 bl31 PLAT=stratix10 
 cd .. 
@@ -119,7 +119,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf u-boot-socfpga 
-git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk 
@@ -191,11 +191,11 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -f ghrd.hps.jic ghrd.core.rbf 
-quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline.sof ghrd.jic \ 
- -o device=MT25QU128 \ 
- -o flash_loader=1SX280HU2 \ 
- -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \ 
- -o mode=ASX4 \ 
+quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline.sof ghrd.jic \
+ -o device=MT25QU128 \
+ -o flash_loader=1SX280HU2 \
+ -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+ -o mode=ASX4 \
  -o hps=1 
 ```
 
@@ -208,7 +208,7 @@ quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_basel
 ```bash 
 cd $TOP_FOLDER 
 rm -rf linux-socfpga 
-git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga 
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga 
 cd linux-socfpga 
 make clean && make mrproper 
 make defconfig 
@@ -294,7 +294,7 @@ git clone -b walnascar https://git.yoctoproject.org/poky
 git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga 
 git clone -b walnascar https://github.com/openembedded/meta-openembedded 
 source poky/oe-init-build-env ./build 
-echo 'MACHINE = "stratix10"' >> conf/local.conf 
+echo 'MACHINE = "stratix10_htile"' >> conf/local.conf 
 echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 
 echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf 
 echo 'IMAGE_FSTYPES = "tar.gz"' >> conf/local.conf 
@@ -319,16 +319,16 @@ cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image .
 cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtb . 
 cd .. 
 mkdir rootfs && cd rootfs 
-sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/stratix10/core-image-minimal-stratix10.rootfs.tar.gz 
+sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/stratix10_htile/core-image-minimal-stratix10_htile.rootfs.tar.gz
 sudo rm -rf lib/modules/* 
 sudo mkdir -p lib/firmware 
 sudo cp $TOP_FOLDER/ghrd.core.rbf lib/firmware/overlay.rbf 
 sudo cp $TOP_FOLDER/overlay.dtb lib/firmware/overlay.dtb 
 cd .. 
-sudo python3 make_sdimage_p3.py -f \ 
--P fat/*,num=1,format=fat32,size=48M \ 
--P rootfs/*,num=2,format=ext3,size=32M \ 
--s 100M \ 
+sudo python3 make_sdimage_p3.py -f \
+-P fat/*,num=1,format=fat32,size=48M \
+-P rootfs/*,num=2,format=ext3,size=32M \
+-s 100M \
 -n sdcard.img 
 cd .. 
 ```
@@ -427,7 +427,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -441,10 +441,10 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
 ```bash 
 rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.1.1_REL_GSRD_PR.zip
-unzip QPDS25.1.1_REL_GSRD_PR.zip
-rm -f QPDS25.1.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS25.1.1_REL_GSRD_PR stratix10-ed-gsrd
+wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
+unzip QPDS25.3_REL_GSRD_PR.zip
+rm -f QPDS25.3_REL_GSRD_PR.zip
+mv stratix10-ed-gsrd-QPDS25.3_REL_GSRD_PR stratix10-ed-gsrd
 cd stratix10-ed-gsrd
 make s10-htile-soc-devkit-oobe-baseline-all
 cd ..
@@ -459,11 +459,11 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -f ghrd.hps.jic ghrd.core.rbf 
- quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline_hps_debug.sof \ 
- ghrd.jic \ 
- -o device=MT25QU128 \ 
- -o flash_loader=1SX280HU2 \ 
- -o mode=ASX4 \ 
+ quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline_hps_debug.sof \
+ ghrd.jic \
+ -o device=MT25QU128 \
+ -o flash_loader=1SX280HU2 \
+ -o mode=ASX4 \
  -o hps=1 
 rm ghrd.hps.jic 
 ```
@@ -478,7 +478,7 @@ rm ghrd.hps.jic
 ```bash 
 cd $TOP_FOLDER 
 rm -rf gsrd-socfpga 
-git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
 cd gsrd-socfpga 
 . stratix10_htile-gsrd-build.sh 
 build_setup 
@@ -494,7 +494,7 @@ build_setup
   
 ```bash
 rm -f stratix10-fabric-config-yocto.patch
-wget https://altera-fpga.github.io/rel-25.1.1/embedded-designs/stratix-10/sx/soc/fabric-config/collateral/stratix10-fabric-config-yocto.patch 
+wget https://altera-fpga.github.io/rel-25.3/embedded-designs/stratix-10/sx/soc/fabric-config/collateral/stratix10-fabric-config-yocto.patch 
 patch -d meta-intel-fpga-refdes -p1 < stratix10-fabric-config-yocto.patch 
 ```
 
@@ -620,12 +620,12 @@ package
 ```bash 
 cd $TOP_FOLDER 
 rm -f *jic* *rbf* 
- quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline.sof \ 
- ghrd.jic \ 
- -o hps_path=gsrd-socfpga/stratix10_htile-gsrd-images/u-boot-stratix10-socdk-gsrd-atf/u-boot-spl-dtb.hex \ 
- -o device=MT25QU128 \ 
- -o flash_loader=1SX280HU2 \ 
- -o mode=ASX4 \ 
+ quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline.sof \
+ ghrd.jic \
+ -o hps_path=gsrd-socfpga/stratix10_htile-gsrd-images/u-boot-stratix10-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+ -o device=MT25QU128 \
+ -o flash_loader=1SX280HU2 \
+ -o mode=ASX4 \
  -o hps=1 
 ```
 

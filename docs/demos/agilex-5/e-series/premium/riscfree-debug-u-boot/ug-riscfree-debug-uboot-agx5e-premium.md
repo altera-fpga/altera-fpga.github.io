@@ -20,9 +20,9 @@ The following are needed:
   - 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   - Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   - Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  - Altera® Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1
+  - Altera® Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
 
-You will also need to compile the Agilex 5 GHRD Linux Boot Example targeting the HPS Enablement board, as described [here](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/#boot-from-sd-card). 
+You will also need to compile the Agilex 5 GHRD Linux Boot Example targeting the HPS Enablement board, as described [here](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/#boot-from-sd-card). 
 
 ## Debug U-Boot
 
@@ -36,7 +36,7 @@ You will also need to compile the Agilex 5 GHRD Linux Boot Example targeting the
 
 ```bash
 cd $TOP_FOLDER
-export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$QUARTUS_ROOTDIR/../riscfree/RiscFree:$PATH
 ```
 5\. Configure the device with the 'debug' SOF, which contains an empty loop HPS FSBL, designed specifically for a debugger to connect afterwards:

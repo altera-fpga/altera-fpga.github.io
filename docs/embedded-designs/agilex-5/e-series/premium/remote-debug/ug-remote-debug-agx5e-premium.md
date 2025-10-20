@@ -47,7 +47,7 @@ The etherlink works with the standard UIO Linux kernel driver.
 
 This section shows an example of how to use the Remote Debug feature. Communication is established from the board to the host PC through Ethernet, so that the board appears as another JTAG device, listed by jtagconfig utility.
 
-The example is based on the [GSRD](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/), with the following changes:
+The example is based on the [GSRD](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/), with the following changes:
 
  * Adding JOP component to the GHRD
  * Adding JOP to the Linux device tree
@@ -70,7 +70,7 @@ The following are required:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1
+  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -107,7 +107,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -123,7 +123,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 unzip a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 rm -f a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 ```
@@ -149,7 +149,7 @@ rm -f a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 ```bash
 cd $TOP_FOLDER
 rm -f agilex5-ghrd-add-jop.tcl
-wget https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/remote-debug/collateral/agilex5-ghrd-add-jop.tcl
+wget https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/remote-debug/collateral/agilex5-ghrd-add-jop.tcl
 cd agilex5_soc_devkit_ghrd
 qsys-script --qpf=top.qpf --script=../agilex5-ghrd-add-jop.tcl --system-file=qsys_top.qsys
 cd agilex5_soc_devkit_ghrd
@@ -164,7 +164,7 @@ cd agilex5_soc_devkit_ghrd
 ```bash
 cd $TOP_FOLDER/agilex5_soc_devkit_ghrd
 make legacy_baseline-build
-make legacy_baseline-sw-build
+pushd software/hps_debug && ./build.sh && popd
 quartus_pfg -c output_files/legacy_baseline.sof \
   output_files/legacy_baseline_hps_debug.sof \
   -o hps_path=software/hps_debug/hps_wipe.ihex
@@ -232,7 +232,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
 cd gsrd-socfpga
 . agilex5_dk_a5e065bb32aes1-gsrd-build.sh
 build_setup
@@ -266,7 +266,7 @@ This can be done with the provided patch file:
 
 ```bash
 rm -f agilex5-dts-add-jop.patch
-wget https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/remote-debug/collateral/agilex5-dts-add-jop.patch
+wget https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/remote-debug/collateral/agilex5-dts-add-jop.patch
 pushd meta-intel-fpga-refdes
 patch -p1 < ../agilex5-dts-add-jop.patch
 popd
@@ -346,7 +346,7 @@ The following file is created:
 
 ### Run Example
 
-The instructions from this section present how to run the remote debug example. Refer to the [GSRD](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/) for more detailed instructions on how to set up the board, serial port, and write the binaries.
+The instructions from this section present how to run the remote debug example. Refer to the [GSRD](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/) for more detailed instructions on how to set up the board, serial port, and write the binaries.
 
 1\. Write the QSPI image `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic` to flash.
 

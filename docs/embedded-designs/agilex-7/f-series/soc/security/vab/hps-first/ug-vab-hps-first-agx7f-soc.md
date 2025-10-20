@@ -319,7 +319,7 @@ make clean && make all
 cd ..
 ```
 ### Create Rootfs
-Refer to [Building Yocto Rootfs](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-7/f-series/soc/boot-examples/ug-linux-boot-agx7-soc/#building-yocto-rootfs )
+Refer to [Building Yocto Rootfs](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/boot-examples/ug-linux-boot-agx7-soc/#building-yocto-rootfs )
 ```bash
 cd $TOP_DIR
 mkdir rootfs && cd rootfs

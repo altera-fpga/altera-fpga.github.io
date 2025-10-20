@@ -6,11 +6,11 @@
 
 Altera® Agilex™ 7 SoC devices support Secure Data Object Storage (SDOS) services. The Secure Device Manager (SDM) provides security services to HPS or logic runs on fabric. SDOS provides interfaces for secure data encryption and decryption along with signature generation and verification. 
 
-The purpose of this tutorial is to demonstrate how to access SDOS services from SPL and U-Boot levels. The tests below are based on the Secure Boot Demo Design presented in this [Vendor Authorized Boot (HPS-First) Tutorial Example Design User Guide](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-7/f-series/soc/security/vab/hps-first/ug-vab-hps-first-agx7f-soc/)
+The purpose of this tutorial is to demonstrate how to access SDOS services from SPL and U-Boot levels. The tests below are based on the Secure Boot Demo Design presented in this [Vendor Authorized Boot (HPS-First) Tutorial Example Design User Guide](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/security/vab/hps-first/ug-vab-hps-first-agx7f-soc/)
 
 ## Running SDOS Services from SPL 
 
-After completing Step 12 in the Secure Boot Demo [here](https://altera-fpga.github.io/rel-25.1.1/security/demos/agilex7/vab/hps-first/ug-vab-hps-first-agx7f-soc/), you need to modify some of the SPL source codes to add the SDOS functions. The current SPL source code provides secure VAB for image authentication only. We can add the modifications below to enable SDOS tests for: 
+After completing Step 12 in the Secure Boot Demo [here](https://altera-fpga.github.io/rel-25.3/security/demos/agilex7/vab/hps-first/ug-vab-hps-first-agx7f-soc/), you need to modify some of the SPL source codes to add the SDOS functions. The current SPL source code provides secure VAB for image authentication only. We can add the modifications below to enable SDOS tests for: 
 
 1. Open / Close SDOS session. 
 2. Create a dummy data buffer. 

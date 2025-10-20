@@ -16,23 +16,25 @@ This instructions from this page target the Stratix® 10 SX SOC Development kit 
 
 ## Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1 and the following software component versions integrate the 25.1.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 and the following software component versions integrate the 25.3 release. 
 
 **Note:** Regarding the GHRD components in the following table, only the device-specific GHRD is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 GHRD                         | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.1.1_REL_GSRD_PR   |
-| Agilex 5 GHRD                         | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.1.1_REL_GSRD_PR |
-| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.1.1_REL_GSRD_PR |
-| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.1.1_REL_GSRD_PR |
-| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS25.1.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.19-lts | QPDS25.1.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.12.1   | QPDS25.1.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.04 | QPDS25.1.1_REL_GSRD_PR |
+| Agilex 3 GHRD | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.3_REL_GSRD_PR   |
+| Agilex 5 GHRD - Include GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3_REL_GSRD_PR |
+| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
+| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
+| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS25.3_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.33-lts | QPDS25.3_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.0   | QPDS25.3_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.07 | QPDS25.3_REL_GSRD_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
-| Yocto Project: meta-intel-fpga        | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest              |
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.1.1_REL_GSRD_PR |
+| Yocto Project: meta-altera-fpga (for GSRD 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga (for Legacy GSRD) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest |
+| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3_REL_GSRD_PR |
+| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3_REL_GSRD_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -108,7 +110,7 @@ The following are required:
 * Host machine running Linux. Ubuntu 22.04 was used, but other versions may work too.
 * Internet connection to download the tools and clone the U-Boot git tree from github. If you are behind a firewall you will need your system administrator to enable you to get to the git trees.
 * Intel Stratix® 10 H-Tile SoC FPGA Development Kit (DK-SOC-1SSX-H-D).
-* Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1
+* Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
 
 Note that the examples presented on this page boot to Linux and they require Linux kernel, device tree and rootfilesystem to boot. However, you can omit the Linux binaries and just boot to U-Boot prompt if you want to.
 
@@ -145,7 +147,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -160,10 +162,10 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
   ```bash 
   cd $TOP_FOLDER
-  wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.1.1_REL_GSRD_PR.zip
-  unzip QPDS25.1.1_REL_GSRD_PR.zip
-  rm QPDS25.1.1_REL_GSRD_PR.zip
-  mv stratix10-ed-gsrd-QPDS25.1.1_REL_GSRD_PR stratix10-ed-gsrd
+  wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
+  unzip QPDS25.3_REL_GSRD_PR.zip
+  rm QPDS25.3_REL_GSRD_PR.zip
+  mv stratix10-ed-gsrd-QPDS25.3_REL_GSRD_PR stratix10-ed-gsrd
   cd stratix10-ed-gsrd
   make s10-htile-soc-devkit-oobe-baseline-all
   cd ..
@@ -180,7 +182,7 @@ After building the hardware design the following binary is created:
   ```bash
   cd $TOP_FOLDER
   rm -rf arm-trusted-firmware
-  git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
+  git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
   cd arm-trusted-firmware
   make -j 64 bl31 PLAT=stratix10
   cd ..
@@ -198,7 +200,7 @@ After completing the above steps, the Arm Trusted Firmware binary file is create
   ```bash
   cd $TOP_FOLDER
   rm -rf u-boot-socfpga
-  git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+  git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
   cd u-boot-socfpga
   # enable dwarf4 debug info, for compatibility with arm ds
   sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -305,7 +307,7 @@ Download and compile Linux:
   ```bash
   cd $TOP_FOLDER
   rm -rf linux-socfpga
-  git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
+  git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
   cd linux-socfpga
   make clean && make mrproper
   # enable kernel debugging with RiscFree
@@ -365,7 +367,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
   # work around issue
   echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
   source poky/oe-init-build-env ./build
-  echo 'MACHINE = "stratix10"' >> conf/local.conf
+  echo 'MACHINE = "stratix10_htile"' >> conf/local.conf
   echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
   echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf  
   echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver devmem2"' >> conf/local.conf
@@ -376,7 +378,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 
 The following file is created:
 
-* $TOP_FOLDER/yocto/build/tmp/deploy/images/stratix10/core-image-minimal-stratix10.rootfs.tar.gz
+* $TOP_FOLDER/yocto/build/tmp/deploy/images/stratix10_htile/core-image-minimal-stratix10_htile.rootfs.tar.gz
 
 ### Prepare SD Card Image
 
@@ -395,7 +397,7 @@ The following file is created:
   cp $TOP_FOLDER/ghrd.core.rbf .
   cd ..
   mkdir rootfs && cd rootfs
-  sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/stratix10/core-image-minimal-stratix10.rootfs.tar.gz
+  sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/stratix10_htile/core-image-minimal-stratix10_htile.rootfs.tar.gz
   sudo rm -rf lib/modules/*
   cd ..
   sudo python3 make_sdimage_p3.py -f \
@@ -516,7 +518,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ```
   6.- The serial console will show SPL then U-Boot being run:
   ```
-  U-Boot SPL 2025.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
+  U-Boot SPL 2025.07-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
   Reset state: Cold
   MPU         1000000 kHz
   L3 main     400000 kHz
@@ -534,10 +536,10 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ## Checking hash(es) for Image atf … crc32+ OK
   ## Checking hash(es) for Image uboot … crc32+ OK
   ## Checking hash(es) for Image fdt-0 … crc32+ OK
-  NOTICE:  BL31: v2.12.1(release):QPDS25.1.1_REL_GSRD_PR
+  NOTICE:  BL31: v2.13.0(release):QPDS25.3_REL_GSRD_PR
   NOTICE:  BL31: Built : 11:03:24, Jan 29 2025
 
-  U-Boot 2025.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_stratix10
+  U-Boot 2025.07-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_stratix10
 
   CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
   Model: SoCFPGA Stratix 10 SoCDK
@@ -859,7 +861,7 @@ Before booting Linux, U-Boot loads the Linux device tree in memory, then runs th
 ## Reconfiguring Core Fabric from U-Boot
 The GSRD configures the FPGA core fabric only once, from U-Boot, by using the **bootm** command. The example in this page configures the fabric only once, from U-Boot, using **fpga load** command.
 
-**Important**: If the FPGA fabric is already configured and bridges are enabled, you must call the **bridge disable** command from U-Boot before issuing the **bootm** or **fppga load** commands to reconfigure the fabric. Only do this if you are using an **arm-trusted-firmware** version more recent than the following:
+**Important**: If the FPGA fabric is already configured and bridges are enabled, you must call the **bridge disable** command from U-Boot before issuing the **bootm** or **fpga load** commands to reconfigure the fabric. Only do this if you are using an **arm-trusted-firmware** version more recent than the following:
 
 * v2.7.1 = https://github.com/altera-opensource/arm-trusted-firmware/commit/0a5edaed853e0dc1e687706ccace8e844b2a8db7
 * v2.8.0 = https://github.com/altera-opensource/arm-trusted-firmware/commit/bf933536d4582d63d0e29434e807a641941f3937

@@ -70,7 +70,7 @@ The following are required:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1
+  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -94,7 +94,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -113,10 +113,10 @@ The hardware design is based on the GSRD, with the JOP component added.
 ```bash
 cd $TOP_FOLDER
 rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.1.1_REL_GSRD_PR.zip
-unzip QPDS25.1.1_REL_GSRD_PR.zip
-rm -f QPDS25.1.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS25.1.1_REL_GSRD_PR stratix10-ed-gsrd
+wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
+unzip QPDS25.3_REL_GSRD_PR.zip
+rm -f QPDS25.3_REL_GSRD_PR.zip
+mv stratix10-ed-gsrd-QPDS25.3_REL_GSRD_PR stratix10-ed-gsrd
 cd stratix10-ed-gsrd
 make s10-htile-soc-devkit-oobe-baseline-generate-design
 cd ..
@@ -143,7 +143,7 @@ cd ..
 ```bash
 cd $TOP_FOLDER/stratix10-ed-gsrd
 cd s10_soc_devkit_ghrd
-wget https://altera-fpga.github.io/rel-25.1.1/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-ghrd-add-jop.tcl
+wget https://altera-fpga.github.io/rel-25.3/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-ghrd-add-jop.tcl
 qsys-script --qpf=ghrd_1sx280hu2f50e1vgas.qpf --script=s10-ghrd-add-jop.tcl --system-file=qsys_top.qsys
 cd ..
 make s10-htile-soc-devkit-oobe-baseline-package-design
@@ -222,7 +222,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd_socfpga
-git clone -b QPDS25.1.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd_socfpga
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-opensource/gsrd_socfpga
 cd gsrd_socfpga
 . stratix10_htile-gsrd-build.sh
 build_setup
@@ -256,7 +256,7 @@ This can be done with the provided patch file:
 
 ```bash
 rm -f s10-dts-add-jop.patch
-wget https://altera-fpga.github.io/rel-25.1.1/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-dts-add-jop.patch
+wget https://altera-fpga.github.io/rel-25.3/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-dts-add-jop.patch
 pushd meta-intel-fpga-refdes
 patch -p1 < ../s10-dts-add-jop.patch
 popd
