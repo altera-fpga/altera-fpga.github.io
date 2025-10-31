@@ -2953,6 +2953,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3_2" id="__nav_7_3_2_label" tabindex="0">
@@ -3088,6 +3090,58 @@
       <a href="../../../../embedded-designs/agilex-5/e-series/modular/ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g/" class="md-nav__link">
         Agilex™ 5 FPGA E-Series Modular Development Kit 1x10G Ethernet System Example Design
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_2_10" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_2_10" id="__nav_7_3_2_10_label" tabindex="0">
+          TSN Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_2_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          TSN Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../embedded-designs/agilex-5/e-series/modular/tsn/sgmii_xcvr_3x2.5G/ug-tsn-sgmii-xcvr-3x2.5G-agilex5/" class="md-nav__link">
+        HPS TSN SGMII XCVR System 3x2.5G Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -4494,27 +4548,23 @@
 </thead>
 <tbody>
 <tr>
-<td>SW2</td>
-<td>POS-3</td>
-<td>POS-3 - Enable ATX 12V input for system power \n POS-1 - for PCIe EF 12V input for system power</td>
+<td>S2 (carrier board)</td>
+<td>POS-1</td>
+<td>POS-1 - for PCIe EF 12V input for system power, POS-3 - Enable ATX 12V input for system power</td>
 </tr>
 <tr>
-<td>SW4</td>
-<td>OFF</td>
-<td>ON - Enables PCIe JTAG mode \n OFF - Enables onboard UBII mode</td>
+<td>S4.1 &amp; S4.2 (modular board)</td>
+<td>OFF / OFF</td>
+<td>ON — MSEL 1 Low, OFF — MSEL 1 High, <em>Note: If you want to control the configuration over BTS, set this switch to OFF state</em></td>
 </tr>
 <tr>
-<td>SW4.1</td>
+<td>S13.1 (carrier board)</td>
 <td>ON</td>
-<td>ON - MSEL 1 Low \n OFF - MSEL 1 High \n\n <strong>Note:</strong> If you want to control the configuration over BTS, set this switch to OFF</td>
-</tr>
-<tr>
-<td>SW4.2</td>
-<td>ON</td>
-<td>ON - MSEL 2 Low \n OFF - MSEL 2 High \n\n <strong>Note:</strong> If you want to control the configuration over BTS, set this switch to OFF</td>
+<td>ON — PCIe edge clock, OFF — Clock from onboard Si52202</td>
 </tr>
 </tbody>
 </table>
+<p>Every other switch should be in its default position, as per the <a href="https://cdrdv2-public.intel.com/820978/ug-820977-820978.pdf">Agilex 5 FPGA E-Series 065B Modular Development Kit User Guide</a>, section <strong>3.1 Default Settings</strong>.</p>
 </li>
 <li>
 <p>Connect the devkit to host machine via PCIe Gen3 (or higher) slot.</p>
@@ -4525,8 +4575,14 @@
 </ol>
 <h2 id="30-software-requirements">3.0 Software Requirements<a class="headerlink" href="#30-software-requirements" title="Permanent link">&para;</a></h2>
 <ul>
-<li>RHEL 9.4 (Supports OFS 2025.1 and FPGA AI Suite 2025.1.1) </li>
-<li>A valid Quartus Prime Pro 25.1 installation </li>
+<li>RHEL 9.4 (Supports OFS 2025.1 and FPGA AI Suite 2025.1.1) <ul>
+<li>Can also use RHEL 8.10 if preferred</li>
+</ul>
+</li>
+<li>A valid Quartus Prime Pro 25.1 installation<ul>
+<li>If just programming the card, only the Quartus Programmer is required</li>
+</ul>
+</li>
 <li>Install the OFS (Open FPGA Stack) SDK and relevant DFL drivers</li>
 </ul>
 <h2 id="40-how-to-program-the-fim">4.0 How to Program the FIM<a class="headerlink" href="#40-how-to-program-the-fim" title="Permanent link">&para;</a></h2>
@@ -4540,7 +4596,7 @@
 <li>
 <p>List FPGA connected via JTAG. </p>
 <p><code>bash session
-  jtagconfig</code></p>
+  jtagconfig -D</code></p>
 <p><a class="glightbox" href="../images/Picture6.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/Picture6.png" /></a></p>
 </li>
 <li>
@@ -4549,7 +4605,7 @@
   quartus_pgm -c 1 -m jtag -o "p;/&lt;path_to_image&gt;/eseries-mdk-images_ofs-2025-1-1/ofs_top.sof@1"</code></p>
 </li>
 <li>
-<p>Reboot. </p>
+<p>Warm reboot the server. </p>
 <p><code>bash session
   sudo reboot</code></p>
 </li>

@@ -3214,6 +3214,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3_2" id="__nav_7_3_2_label" tabindex="0">
@@ -3349,6 +3351,58 @@
       <a href="../../../../../modular/ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g/" class="md-nav__link">
         Agilex™ 5 FPGA E-Series Modular Development Kit 1x10G Ethernet System Example Design
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_2_10" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_2_10" id="__nav_7_3_2_10_label" tabindex="0">
+          TSN Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_2_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          TSN Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../modular/tsn/sgmii_xcvr_3x2.5G/ug-tsn-sgmii-xcvr-3x2.5G-agilex5/" class="md-nav__link">
+        HPS TSN SGMII XCVR System 3x2.5G Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -5090,7 +5144,7 @@
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="go">niosv-shell</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="go">cmake -S ./sw/app -B sw/app/build</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="go">make -C sw/app/build</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="go">elf2hex sw/app/build/app.elf -b 0x0 -w 32 -e 0xfffff hw/onchip_mem.hex -r4</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="go">elf2hex sw/app/build/app.elf -b 0x0 -w 32 -e 0xfffff sw/app/build/onchip_mem.hex -r4</span>
 </code></pre></div>
 Note:The software can be compiled using the Ashling Visual Studio Code Extension for Altera FPGAs</p>
 <p>For information on the build process, please refer to the following document- <a href="https://www.intel.com/content/www/us/en/docs/programmable/730783/current/ashling-visual-studio-code-extension.html">Ashling VSCode Extension</a></p>
