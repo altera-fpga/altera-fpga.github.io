@@ -75,7 +75,7 @@ The diagram below illustrates the build flow used for this example.
 The end results of the build flow are these.
 
 - Initial flash image: contains the factory image, an application image and two empty application image partitions aka slots. 
-- SD card image: contains SSBL (U-Boot), ATF (Arm Trusted Firmware), Linux device tree, Linux kernel, Linux rootfs with the Intel RSU driver, LIBRSU, RSU Client, an application image, a factory update image and a decision firmware update image. 
+- SD card image: contains SSBL (U-Boot), ATF (Arm Trusted Firmware), Linux device tree, Linux kernel, Linux rootfs with the Altera RSU driver, LIBRSU, RSU Client, an application image, a factory update image and a decision firmware update image. 
 
 ### Installing cmake 
 In case that you have installed a cmake version earlier than 3.24.0, you need to unistall this and install a new version. Here are the steps to achieve that. Note that this only need to performed once in your PC:

@@ -15,7 +15,7 @@ The ```hssi_loopback``` utility works in conjunction with a packet generator acc
 to test high-speed serial interface (HSSI) cards. The ```hssi_loopback``` utility tests both external and internal loopbacks.
 ```hssi_loopback``` runs an external loopback test when the command line arguments include both source and destination ports.
 ```hssi_loopback``` runs an internal loopback test when command line arguments include a single port. ```hssi_loopback```
-only runs on the Intel Xeon with Arria 10 FPGA. You cannot run it on the Intel PAC (programmable accelerator card).
+only runs on the Intel Xeon with Arria 10 FPGA. You cannot run it on the Altera® PAC (programmable accelerator card).
 
 
 _NOTE_: The following limitations apply to the current version of hssi_loopback:

@@ -43,7 +43,7 @@ To exercise the instructions presented on this page (build your binaries and exe
   - GNU make 4.1 or higher
 - Local Ethernet network with DHCP server (provides IP address to the board).
 - Intel Simics Simulator for Altera FPGAs installed.
-- Intel Agilex™ 3 Virtual Platform components available to be deployed.
+- Altera Agilex™ 3 Virtual Platform components available to be deployed.
 
 
 
@@ -52,7 +52,7 @@ To exercise the instructions presented on this page (build your binaries and exe
 - For binaries building instructions, see [Build Instructions](#build-instructions).
 - For installation instructions for the Intel Simics Simulator for Altera FPGAs and the Agilex™ 3 E-Series virtual platforms, refer to the following documents:
   - [Intel® Simics® Simulator Landing Page](https://www.intel.com/content/www/us/en/products/details/fpga/development-tools/simics-virtual-platform.html) 
-  - [Intel® Simics® Simulator for Intel® FPGAs User Guide](https://www.intel.com/content/www/us/en/docs/programmable/784383/)
+  - [Intel® Simics® Simulator for Altera® FPGAs User Guide](https://www.intel.com/content/www/us/en/docs/programmable/784383/)
   - [Agilex™ 5 and Agilex 3 Virtual Platforms User Guide](https://www.intel.com/content/www/us/en/docs/programmable/786901/)
 - U-Boot, Linux compilation, Yocto compilation, and the creation of an SD card image require a Linux host PC.
   To create these binaries, the toolchain and other software required need to be downloaded. This is described as part of the instructions in each section.
@@ -601,7 +601,7 @@ The preconditions required to execute them are listed in the following section:
 
 #### Simulation Setup
 
-Consider that the Intel Simics Simulator for Intel FPGAs Simulator has been installed on a Linux System and the output binaries generated from [Build Instructions](#build-instructions) section are already available.
+Consider that the Intel Simics Simulator for Altera® FPGAs Simulator has been installed on a Linux System and the output binaries generated from [Build Instructions](#build-instructions) section are already available.
 
 
 1. Create a project directory under the Intel Simics Simulator installation directory (Assuming it is **SimicsInstallDir**):
@@ -832,7 +832,7 @@ To exercise this use case, follow the below steps once the Simulation setup is c
   ```bash
   U-Boot 2025.07 (Jul 28 2025 - 09:28:56 +0000)socfpga_agilex5
 
-  CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
+  CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
   Model: SoCFPGA Agilex5 SoCDK
 
   :

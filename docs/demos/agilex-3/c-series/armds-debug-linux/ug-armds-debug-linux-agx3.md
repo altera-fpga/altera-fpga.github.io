@@ -101,7 +101,7 @@ armds_ide -data workspace &
 
 ![](images/01-create-config.png)
 
-7\. Select the target as **Intel SoC FPGA** > **Agilex 3** > **Linux Kernel Debug** > **Cortext-A76\Cortex-A55 Multi-Cluster SMP**. Select **Target Connection** as **Intel FPGA Download Cable**.
+7\. Select the target as **Altera® SoC FPGA** > **Agilex 3** > **Linux Kernel Debug** > **Cortext-A76\Cortex-A55 Multi-Cluster SMP**. Select **Target Connection** as **Altera® FPGA Download Cable**.
 
 ![](images/02-debug-config.png)
 

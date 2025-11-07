@@ -72,12 +72,12 @@ The Agilex™ 7 GSRDs are also updated to use this feature. See the GSRD documen
 
 ## U-Boot Branches
 
-The official Intel SOCFPGA U-Boot repository is located at https://github.com/altera-fpga/u-boot-socfpga.
+The official Altera® SOCFPGA U-Boot repository is located at https://github.com/altera-fpga/u-boot-socfpga.
 
 **Notes:**
 
 * A "RC" labeled branch is for internal active development use and customer early access without official customer support.
-* Latest stable branch (no RC labeled) is strongly recommended for development and production use outside of Intel.
+* Latest stable branch (no RC labeled) is strongly recommended for development and production use outside of Altera.
 * See doc/README.socfpga for Quartus® Pro and Device support.
 
 ## U-Boot to Linux Boot - Booting From SDCard Example
@@ -104,7 +104,7 @@ The following build instructions produce a QSPI(.jic) and an SDCard Image (.img)
 
 This example uses building U-Boot manually. See [Agilex™ 7 F-Series SoC Development Kit GSRD User Guide (P-Tiles & E-Tiles)](https://altera-fpga.github.io/latest/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/) for the full fledged booting from SD card example, where U-Boot is built through Yocto recipes.
 
-This example, and the current GSRD release target the production version of the Intel Agilex™ 7 F-Series Transceiver-SoC Development Kit. You can confirm you have a production version of the board by checking that it's serial number, on a sticker on the back of the board, is greater than AGF61SI0000576. Refer to https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/f-series-transceiver.html for more details about the board.
+This example, and the current GSRD release target the production version of the Altera® Agilex™ 7 F-Series Transceiver-SoC Development Kit. You can confirm you have a production version of the board by checking that it's serial number, on a sticker on the back of the board, is greater than AGF61SI0000576. Refer to https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/f-series-transceiver.html for more details about the board.
 
 ### Prerequisites
 
@@ -522,9 +522,9 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ```
   5.- Run the debugger from command line, using the connection parameters reported above by jtagconfig, shown in red below:
   ```
-  /opt/arm/developmentstudio-2022.2/bin/armdbg  \
-  --cdb-entry="Intel SoC FPGA::Agilex 7 SoC::Bare Metal Debug::Bare Metal Debug::Cortex-A53x4 SMP::Intel FPGA Download Cable"  \
-  --cdb-entry-param="rvi_address=Agilex SI/SoC Dev Kit on localhost [3-4.3.4]:Agilex SI/SoC Dev Kit 3-4.3.4"  \
+  /opt/arm/developmentstudio-2025.0-1/bin/armdbg  \
+  --cdb-entry="Altera SoC FPGA::Agilex 7 SoC::Bare Metal Debug::Bare Metal Debug::Cortex-A53x4 SMP::Altera FPGA Download Cable"  \
+  --cdb-entry-param="rvi_address=Agilex 7 SI/SoC Dev Kit on localhost [3-4.3.4]:Agilex SI/SoC Dev Kit 3-4.3.4"  \
   --continue_on_error=true \
   --stop_on_connect=false \
   -s run-u-boot.ds
@@ -553,7 +553,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
 
   U-Boot 2025.07-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_agilex
 
-  CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
+  CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
   Model: SoCFPGA Agilex SoCDK
   DRAM:  2 GiB (effective 8 GiB)
   Core:  28 devices, 23 uclasses, devicetree: separate
@@ -601,7 +601,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   1.- Run the steps from **Prerequisites section**<br>
   2.- Start the Arm Development Studio Eclipse-based GUI:
   ```
-  /opt/arm/developmentstudio-2022.2/bin/armds_ide -data workspace &
+  /opt/arm/developmentstudio-2025.0-1/bin/armds_ide -data workspace &
   ```
 
   Note the above creates a new workspace in the **agilex7UbootToLinux.sdmmc** folder.<br>
@@ -611,8 +611,8 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   b) Edit the **Name** field from **New_configuration** to something more descriptive, such as **Debug Agilex 7 Bootloader**.<br>
     
   5.- In the **Connection** tab:<br>
-  a) Go to **Select target** section and select **Intel SoC FPGA > Agilex > Bare Metal Debug > Cortex-A53x4 SMP**<br>
-  b) Select the **Target Connection** to be **Intel FPGA Download Cable**<br>
+  a) Go to **Select target** section and select **Altera® SoC FPGA > Agilex > Bare Metal Debug > Cortex-A53x4 SMP**<br>
+  b) Select the **Target Connection** to be **Altera® FPGA Download Cable**<br>
   c) Click the **Bare Metal Debug > Connection Browse** button and select your cable.
 
   The **Debug Configurations** window should now look like this:
@@ -1015,7 +1015,7 @@ ATF requires to be rebuilt to enable booting from QSPI updating BOOT_SOURCE to B
 
 The following files are created:
 
-* $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex/release/bl2.bin 
+* $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex/release/bl2.bin
 * $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex/release/bl31.bin
 * $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex/release/tools/fiptool/fiptool
 
@@ -1384,12 +1384,242 @@ The HPS obtains the QSPI controller reference clock frequency when it obtains ex
 Before booting Linux, U-Boot loads the Linux device tree in memory, then runs the command **linux_qspi_enable** which sets the QSPI controller reference clock appropriately using the value from the **${qspi_clock}** environment variable.
 
 ## Reconfiguring Core Fabric from U-Boot
-The GSRD configures the FPGA core fabric only once, from U-Boot, by using the **bootm** command. The example in this page configures the fabric only once, from U-Boot, using **fpga load** command.
+The GSRD configures the FPGA core fabric only once by U-boot during the Linux launch using the **bootm** command. In the bootloaders build flow, the reconfiguration is done in the U-Boot Shell through the **fpga load** command.
 
 **Important**: If the FPGA fabric is already configured and bridges are enabled, you must call the **bridge disable** command from U-Boot before issuing the **bootm** or **fpga load** commands to reconfigure the fabric. Only do this if you are using an **arm-trusted-firmware** version more recent than the following:
 
-* v2.7.1 = https://github.com/altera-opensource/arm-trusted-firmware/commit/0a5edaed853e0dc1e687706ccace8e844b2a8db7
-* v2.8.0 = https://github.com/altera-opensource/arm-trusted-firmware/commit/bf933536d4582d63d0e29434e807a641941f3937
+* v2.7.1 = [https://github.com/altera-fpga/arm-trusted-firmware/commit/0a5edaed853e0dc1e687706ccace8e844b2a8db7](https://github.com/altera-fpga/arm-trusted-firmware/commit/0a5edaed853e0dc1e687706ccace8e844b2a8db7)
+* v2.8.0 = [https://github.com/altera-fpga/arm-trusted-firmware/commit/bf933536d4582d63d0e29434e807a641941f3937](https://github.com/altera-fpga/arm-trusted-firmware/commit/bf933536d4582d63d0e29434e807a641941f3937)
+
+
+The example below shows the steps to perform FPGA configuration from the U-boot.
+
+1\. First, write the sdcard.img into an SD card. (Rename the wic file to 'sdcard.img')<br>
+2\. Copy the configuration bitstream, ghrd.core.rbf, into the same SD Card.<br>
+3\. Insert the SD Card to the board, boot the board up, and enter the U-boot shell when prompted.<br>
+4\. In U-boot shell, run the following commands in sequence to perform FPGA configuration:<br>
+
+* fatload mmc 0:1 [address] [ghrd.core.rbf]<br>
+* fpga load [device] [address] [file_size]<br>
+
+5\. The message "FPGA reconfiguration OK!" will be printed out upon successful transaction.<br>
+
+
+Here is an example for Agilex® 5 device, but the same steps apply for Stratix® 10, Agilex® 7, and Agilex® 3 SoC FPGA devices.
+
+```bash
+Hit any key to stop autoboot:  0 /// Hit any key at this point to enter the U-boot Shell ///
+
+SOCFPGA_AGILEX #
+SOCFPGA_AGILEX # fatload mmc 0:1 0x90000000 ghrd.core.rbf
+2404352 bytes read in 116 ms (19.8 MiB/s)
+SOCFPGA_AGILEX # fpga load 0 0x90000000 ${filesize}
+…FPGA reconfiguration OK!
+```
+
+## Reconfiguring Core Fabric from Linux
+
+Reconfiguration of FPGA Core Fabric can be implemented by using the Linux device tree overlay mechanism, it is a powerful and flexible mechanism to enable the customization of the device tree during in run-time.
+
+**Note**:
+
+* This feature is supported with Linux* kernel v4.9 LTSI and onwards. 
+* The Linux* kernel for Stratix® and Agilex® SoC FPGA devices allow you to enable the programming of FPGA from within the OS.
+* Refer to *Build Linux* for the prerequisite work.
+
+To implement the FPGA reconfiguration at kernel level, the following changes must be made to the kernel source code:
+
+1\. Create a new overlay file, use filename "overlay.dts" as example, and add the overlay information of the RBF file:
+
+```bash
+cd $TOP_FOLDER
+vi linux-socfpga/arch/arm64/boot/dts/intel/overlay.dts
+
+# Add the DTS file content:
+==============================================================
+/dts-v1/;
+/plugin/;
+/ {
+	fragment@0 {
+		target-path = "/soc/base_fpga_region";
+		#address-cells = <2>;
+		#size-cells = <2>;
+		__overlay__ {
+			#address-cells = <2>;
+			#size-cells = <2>;
+
+			firmware-name = "overlay.rbf";
+			config-complete-timeout-us = <30000000>;
+		};
+	};
+};
+==============================================================
+```
+
+The explanation of the keywords:
+
+| Keyword | Meaning |
+| :-- | :-- |
+| fragment@0 | Node Name of the Overlay |
+| target-path | Refers to base_fpga_region located in arch/arm64/boot/dts/intel/socfpga_agilex.dtsi. This will invoke the driver: drivers/fpga/of-fpga-region.c |
+| fragment@0 <br>#address-cells<br>#size-cells | This specifies the number of cells (32-bit size) to be used for the child's address map. For overlays, this value must be set to avoid "default_addr_size" errors |
+| \_\_overlay__ <br>#address-cells<br>#size-cells | These fields should match those in arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |
+| firmware-name = "overlay.rbf" | The fabric's file name |
+|||
+
+
+2\. Add the newly created overlay file **overlay.dtb** into the Makefile:
+
+```bash
+cd $TOP_FOLDER
+vi linux-socfpga/arch/arm64/boot/dts/intel/Makefile
+
+# Append to existing Makefile content, continue with ONE Device Tree Blob according to your device:
+==============================================================
+# Stratix® 10 SoC FPGA device:
+dtb-$(CONFIG_ARCH_AGILEX) += socfpga_stratix10_socdk.dtb
+dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += overlay.dtb
+
+# Agilex® 7 SoC FPGA device:
+dtb-$(CONFIG_ARCH_AGILEX) += socfpga_agilex_socdk.dtb
+dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += overlay.dtb
+
+# Agilex® 5 SoC FPGA device:
+dtb-$(CONFIG_ARCH_AGILEX) += socfpga_agilex5_socdk.dtb
+dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += overlay.dtb
+
+# Agilex® 3 SoC FPGA device:
+dtb-$(CONFIG_ARCH_AGILEX) += socfpga_agilex3_socdk.dtb
+dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += overlay.dtb
+
+==============================================================
+```
+
+3\. The commands to configure and build the Linux kernel are:
+
+```bash
+cd $TOP_FOLDER 
+cd linux-socfpga
+make clean && make mrproper
+make defconfig
+# enable device tree overlays and fpga bridges
+./scripts/config --set-val CONFIG_INTEL_STRATIX10_SERVICE y
+./scripts/config --set-val CONFIG_FPGA y
+./scripts/config --set-val CONFIG_FPGA_BRIDGE y
+./scripts/config --set-val CONFIG_FPGA_MGR_STRATIX10_SOC y
+./scripts/config --set-val CONFIG_FPGA_REGION y
+./scripts/config --set-val CONFIG_OF_FPGA_REGION y
+./scripts/config --set-val CONFIG_FW_LOADER y
+./scripts/config --set-val CONFIG_FW_LOADER_PAGED_BUF y
+./scripts/config --set-val CONFIG_FW_LOADER_SYSFS y
+./scripts/config --set-val CONFIG_FW_LOADER_USER_HELPER y
+
+# Build the Linux kernel image, continue with ONE command according to your device:
+# Stratix® 10 SoC FPGA device:
+make -j 48 Image && make intel/socfpga_stratix10_socdk.dtb && make intel/overlay.dtb
+
+# Agilex® 7 SoC FPGA device:
+make -j 48 Image && make intel/socfpga_agilex_socdk.dtb && make intel/overlay.dtb
+
+# Agilex® 5 SoC FPGA device:
+make -j 48 Image && make intel/socfpga_agilex5_socdk.dtb && make intel/overlay.dtb
+
+# Agilex® 3 SoC FPGA device:
+make -j 48 Image && make intel/socfpga_agilex3_socdk.dtb && make intel/overlay.dtb
+```
+
+When you build the Linux* kernel for this feature, two <*.dtb> files are generated under $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/:
+
+* socfpga_*DEVICE*_socdk.dtb --- The default *.dtb file used with the kernel image to boot the system.
+* overlay.dtb --- The *.dtb file used to trigger FPGA configuration in OS.
+
+
+4\. In your hardware (GHRD) compilation output folder, rename the FPGA configuration file (.rbf) to "overlay.rbf". Then, copy both the **overlay.rbf** and the **overlay.dtb** files to the Root File System:
+
+```bash
+$ mkdir -p $TOP_FOLDER/sd_card/rootfs/lib/firmware
+
+$ cd $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/
+$ cp overlay.dtb $TOP_FOLDER/sd_card/rootfs/lib/firmware/
+
+$ cd [GHRD_OUTPUT_DIR i.e. ghrd/output_files/]
+$ mv <DEVICE_GHRD>.core.rbf overlay.rbf
+# e.g. mv ghrd_a5ed065bb32ae5s.core.rbf overlay.rbf
+$ cp overlay.rbf $TOP_FOLDER/sd_card/rootfs/lib/firmware/
+
+# To create the SD Card Image:
+cd $TOP_FOLDER/sd_card/
+
+# Get the make_sdimage_p3.py
+wget https://releases.rocketboards.org/release/2020.11/gsrd/tools/make_sdimage_p3.py
+
+# remove mkfs.fat parameter which has some issues on Ubuntu 22.04
+sed -i 's/\"\-F 32\",//g' make_sdimage_p3.py
+chmod +x make_sdimage_p3.py
+
+sudo python3 make_sdimage_p3.py -f \
+-P fatfs/*,num=1,format=fat32,size=512M \
+-P rootfs/*,num=2,format=ext3,size=512M \
+-s 1024M \
+-n sdcard.img
+```
+
+**Note**: Refer to *Create SD Card Image* for the full instructions.
+
+
+5\. The changes above allow you to program the FPGA in Linux* by applying an overlay on the system. Next, you may boot your device to Linux.
+
+```bash
+# In the U-boot Shell, run the following commands to load the kernel image and boot to Linux. 
+# This step is not required if your device boots to Linux automatically.
+Hit any key to stop autoboot:  0 /// Hit any key at this point to enter the U-boot Shell ///
+
+# Stratix® 10 SoC FPGA device:
+mmc rescan
+fatload mmc 0:1 82000000 Image
+fatload mmc 0:1 86000000 socfpga_stratix10_socdk.dtb
+setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;
+booti 0x82000000 - 0x86000000
+
+# Agilex® 7 SoC FPGA device:
+mmc rescan
+fatload mmc 0:1 82000000 Image
+fatload mmc 0:1 86000000 socfpga_agilex_socdk.dtb
+setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;
+booti 0x82000000 - 0x86000000
+
+# Agilex® 5 SoC FPGA device:
+mmc rescan
+fatload mmc 0:1 82000000 Image
+fatload mmc 0:1 86000000 socfpga_agilex5_socdk.dtb
+setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;
+booti 0x82000000 - 0x86000000
+
+# Agilex® 3 SoC FPGA device:
+mmc rescan
+fatload mmc 0:1 82000000 Image
+fatload mmc 0:1 86000000 socfpga_agilex3_socdk.dtb
+setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;
+booti 0x82000000 - 0x86000000
+
+```
+
+6\. After you boot to Linux and log in with root privilege, use the following command to begin FPGA configuration:
+
+```bash
+mkdir /sys/kernel/config/device-tree/overlays/0
+cd /lib/firmware/
+echo overlay.dtb > /sys/kernel/config/device-tree/overlays/0/path
+```
+
+7\. If you want to re-apply the overlay, you have to first remove the existing overlay, and then re-run the previous steps:
+
+```bash
+rmdir /sys/kernel/config/device-tree/overlays/0
+mkdir /sys/kernel/config/device-tree/overlays/0
+cd /lib/firmware/
+echo overlay.dtb >/sys/kernel/config/device-tree/overlays/0/path
+```
 
 ## Enabling Bridges from U-Boot
 

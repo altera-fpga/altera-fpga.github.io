@@ -1,4 +1,4 @@
-# **Generic Serial Flash Interface Intel FPGA IP Driver**
+# **Generic Serial Flash Interface Altera® FPGA IP Driver**
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/spi/spi-altera-dfl.c?h=master)
 
@@ -6,7 +6,7 @@
 
 ## **Introduction**
 
-This driver is the DFL specific implementation of the Generic Serial Flash Interface Intel FPGA IP driver, which provides access to Serial Peripheral Interface (SPI) flash devices. This is a DFL bus driver for the Altera SPI master controller, which is connected to a SPI slave to Avalon bridge in an Intel Max10 BMC. It handles the probing for available DFL-enabled SPI devices, will initialize any discovered SPI devices, and allows you to read and write over an available interface. The driver supports writing both Configuration memory (configuration data for Active Serial configuration schemes) and General purpose memory. [Generic Serial Flash Interface Intel® FPGA IP User Guide](https://www.intel.com/content/www/us/en/docs/programmable/683419/23-1-20-2-3/user-guide.html). This driver also depends on the generic DFL driver.
+This driver is the DFL specific implementation of the Generic Serial Flash Interface Altera® FPGA IP driver, which provides access to Serial Peripheral Interface (SPI) flash devices. This is a DFL bus driver for the Altera SPI master controller, which is connected to a SPI slave to Avalon bridge in an Altera® Max10 BMC. It handles the probing for available DFL-enabled SPI devices, will initialize any discovered SPI devices, and allows you to read and write over an available interface. The driver supports writing both Configuration memory (configuration data for Active Serial configuration schemes) and General purpose memory. [Generic Serial Flash Interface Altera® FPGA IP User Guide](https://www.intel.com/content/www/us/en/docs/programmable/683419/23-1-20-2-3/user-guide.html). This driver also depends on the generic DFL driver.
 
 |Driver|Mapping|Source(s)|Required for DFL|
 |---|---|---|---|

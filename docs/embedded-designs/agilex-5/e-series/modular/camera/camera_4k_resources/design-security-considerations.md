@@ -86,7 +86,7 @@ is not desired.
 
 ## Related Information
 
-* [AN 556: Using the Design Security Features in Intel FPGAs](https://www.intel.com/content/www/us/en/docs/programmable/683269/current/using-the-design-security-features-in-fpgas.html)
+* [AN 556: Using the Design Security Features in Altera® FPGAs](https://www.intel.com/content/www/us/en/docs/programmable/683269/current/using-the-design-security-features-in-fpgas.html)
 
 <br>
 

@@ -4,7 +4,7 @@
 
 ## Overview
 
-The Golden System Reference Design (GSRD) is a reference design running on the [Intel Stratix 10 SX SoC Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/stratix/10-sx.html).
+The Golden System Reference Design (GSRD) is a reference design running on the [Altera® Stratix 10 SX SoC Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/stratix/10-sx.html).
 
 The GSRD is comprised of the following components:
 
@@ -29,7 +29,7 @@ The following are required in order to be able to fully exercise the S10 GSRD:
   - SD/MMC HPS Daughtercard
   - SDM QSPI Bootcard(MT25QU02G)
   - Mini USB cable for serial output
-  - Micro USB cable for on-board Intel FPGA Download Cable II
+  - Micro USB cable for on-board Altera® FPGA Download Cable II
   - Micro SD card (4GB or greater)
 
 - Host PC with
@@ -43,7 +43,7 @@ The following are required in order to be able to fully exercise the S10 GSRD:
 
 #### Release Notes
 
-The Intel FPGA HPS Embedded Software release notes can be accessed from the following link: [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR)
+The Altera® FPGA HPS Embedded Software release notes can be accessed from the following link: [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR)
 
 #### Prebuilt Binaries
 
@@ -210,7 +210,7 @@ The following table presents a short description of the different boot stages:
 | Linux | Operating system |
 | Application | User application |
 
-For more information, please refer to [Intel Stratix 10 SoC Boot User Guide](https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/ug/ug-s10-soc-boot.pdf) and [Intel Stratix 10 Hard Processor System Technical Reference Manual](https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/hb/stratix-10/s10_5v4.pdf) (Booting and Configuration chapter).
+For more information, please refer to [Altera® Stratix 10 SoC Boot User Guide](https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/ug/ug-s10-soc-boot.pdf) and [Altera® Stratix 10 Hard Processor System Technical Reference Manual](https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/hb/stratix-10/s10_5v4.pdf) (Booting and Configuration chapter).
 
 ## Exercise Prebuilt GSRD
 
@@ -227,7 +227,7 @@ Most of the applications and features presented in the Boot from SD Card scenari
 
 ### Configure Board
 
-This section presents the necessary board settings in order to run the GSRD on the Intel FPGA Stratix 10 SoC development board.
+This section presents the necessary board settings in order to run the GSRD on the Altera® FPGA Stratix 10 SoC development board.
 
 ![](images/s10-soc-board.png)
 
@@ -647,7 +647,7 @@ The GSRD includes a web server running on the target board that can be used to e
 - Scrolling LEDs in a sequence
 - Displaying the current status of the LEDs
 
-The web page served by the web server also contains links to some relevant information on the Intel website.
+The web page served by the web server also contains links to some relevant information on the Altera® Website.
 
 Perform the following steps to connect to the board web server:
 

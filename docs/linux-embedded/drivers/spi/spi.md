@@ -1,6 +1,6 @@
 # **SPI Driver for Hard Processor System**
 
-Last updated: **October 20, 2025** 
+Last updated: **November 07, 2025** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/spi)
 
@@ -96,10 +96,10 @@ spi0: spi@10da4000 {
 ## **Test Procedure**
 The **spidev_test** tool can be used to demonstrate the SPI capabilities on Linux. This application can be made available for Linux in any of the following ways:
 
-- **From GSRD build flow:** Include this application during **Customize Yocto** stage by adding **spidev-test** to the list of tools in the [packagegroup-dev-tools-essential.bb](https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/master/recipes-images/packagegroups/packagegroup-dev-tools-essential.bb) Yocto recipe.
-- **From the Linux Boot example build flow:** Include this application during the **Build Rootfs** stage by adding  **spidev-test** to the list of applications to be included in the file system defined with the **CORE_IMAGE_EXTRA_INSTALL** configuration.
+- **From GSRD build flow:** Include this application during **Customize Yocto** stage by adding **spidev_test** to the list of tools in the [packagegroup-dev-tools-essential.bb](https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/master/recipes-images/packagegroups/packagegroup-dev-tools-essential.bb) Yocto recipe.
+- **From the Linux Boot example build flow:** Include this application during the **Build Rootfs** stage by adding  **spidev_test** to the list of applications to be included in the file system defined with the **CORE_IMAGE_EXTRA_INSTALL** configuration.
 
-The **spidev-test** application depends on the **drivers/spi/spidev.c** driver to access the SPI devices throught regular userspace I/O calls. This driver is built through the **CONFIG_SPI_SPIDEV** kernel configuration. This driver also must be enabled in the device tree through the **spidev** node  as shown next. This is already done in the **arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_debug.dts** file.
+The **spidev_test** application depends on the **drivers/spi/spidev.c** driver to access the SPI devices throught regular userspace I/O calls. This driver is built through the **CONFIG_SPI_SPIDEV** kernel configuration. This driver also must be enabled in the device tree through the **spidev** node  as shown next. This is already done in the **arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_debug.dts** file.
 
 ```
 &spi0 {
@@ -114,7 +114,7 @@ The **spidev-test** application depends on the **drivers/spi/spidev.c** driver t
 
 **Note:** When building binaries to exercise this test procedure using the Linux Boot example build flow, it is necessary to enable the drivers and their dependencies as indicated in [Kernel Configurations](#kernel-configurations) section. In the case of the GSRB build flow, all the required drivers are already included either as part of the kernel image (included through kernel configuration) or including and loading the **.ko** driver file from the file system. 
 
-The following test procedure can be exercised using the Agilex 5 E-Series device using the DEBUG2 daughter card for the Premium development kit, in which the **spidev-test** application targets the built-in Microchip 25AA128 EEPROM device. The **spidev** driver is compatible with this device.
+The following test procedure can be exercised using the Agilex 5 E-Series device using the DEBUG2 daughter card for the Premium development kit, in which the **spidev_test** application targets the built-in Microchip 25AA128 EEPROM device. The **spidev** driver is compatible with this device.
 
 The test procedure consist on enabling the writing in the EEPROM device, then writing a byte (0xC6) to a memory location (0x68D) and then reading this back.
 

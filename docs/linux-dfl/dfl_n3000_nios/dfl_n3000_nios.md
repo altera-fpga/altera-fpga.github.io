@@ -1,4 +1,4 @@
-# **FPGA DFL NIOS Driver for Intel PAC N3000**
+# **FPGA DFL NIOS Driver for Altera PAC N3000**
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/fpga/dfl-n3000-nios.c)
 
@@ -6,11 +6,11 @@
 
 ## **Introduction**
 
-This is the driver for the N3000 Nios private feature on Intel PAC (Programmable Acceleration Card) N3000. It communicates with the embedded Nios processor to configure the retimers on the card. It also instantiates the SPI master (spi-altera) for the card's BMC (Board Management Controller). It matches and probes based on the Nios private feature node on a DFL from an Intel N3000 device. This driver also depends on the generic DFL driver.
+This is the driver for the N3000 Nios private feature on Altera PAC (Programmable Acceleration Card) N3000. It communicates with the embedded Nios processor to configure the retimers on the card. It also instantiates the SPI master (spi-altera) for the card's BMC (Board Management Controller). It matches and probes based on the Nios private feature node on a DFL from an Altera N3000 device. This driver also depends on the generic DFL driver.
 
 |Driver|Mapping|Source(s)|Required for DFL|
 |---|---|---|---|
-|dfl-n3000-nios.ko|FPGA DFL NIOS Driver for Intel PAC N3000|drivers/fpga/dfl-n3000-nios.c|N|
+|dfl-n3000-nios.ko|FPGA DFL NIOS Driver for Altera PAC N3000|drivers/fpga/dfl-n3000-nios.c|N|
 
 ## **Driver Sources**
 

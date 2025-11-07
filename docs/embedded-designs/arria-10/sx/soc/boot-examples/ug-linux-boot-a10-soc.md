@@ -30,7 +30,7 @@ The following are required to be able to fully exercise the guides from this pag
   * DDR4 HILO memory card
   * Micro SD boot flash card
   * Mini USB cable for serial output
-  * Micro USB cable for on-board Intel FPGA Download Cable II
+  * Micro USB cable for on-board Altera® FPGA Download Cable II
   * Micro SD card (4GB or greater)
 * Host PC with
   * 64 GB of RAM or more

@@ -1,6 +1,6 @@
 # **NAND Flash Controller Driver for Hard Processor System**
 
-Last updated: **October 20, 2025** 
+Last updated: **November 07, 2025** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/mtd/nand/raw/cadence-nand-controller.c)
 
@@ -8,7 +8,7 @@ Last updated: **October 20, 2025**
 
 ## **Introduction**
 
-The Hard Processor System (HPS) provides a NAND Flash controller to interface with external NAND Flash memory in Intel system-on-a-chip (SoC) systems. External Flash memory can be used to store software, or as extra storage capacity for large applications or user data. For more information please refer to the [Intel Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
+The Hard Processor System (HPS) provides a NAND Flash controller to interface with external NAND Flash memory in Altera® system-on-a-chip (SoC) systems. External Flash memory can be used to store software, or as extra storage capacity for large applications or user data. For more information please refer to the [Altera® Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
 
 ## **Features**
 

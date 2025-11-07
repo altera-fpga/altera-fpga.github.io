@@ -1,6 +1,6 @@
 
 
-# BKMs for AGX5 Modular Devkit Setup with OFS 2025.1 
+# BKMs for AGX5 Modular Development Kit Setup with OFS 2025.1 
 
 The following instructions are intended to enable users in using an Agilex 5 Modular Development Kit with the OFS 2025.1 release. 
 
@@ -21,7 +21,7 @@ The following BIOS settings will need to be changed to support the Agilex 5 Modu
 
  
 
-## 2.0 AGX5 E-Series Modular Devkit Installation
+## 2.0 AGX5 E-Series Modular Development Kit Installation
 
 ![](./images/Picture3.png)
 
@@ -33,19 +33,23 @@ The following BIOS settings will need to be changed to support the Agilex 5 Modu
 
     |Switch|Position|Description|
     |----|----|----|
-    |SW2|POS-3|POS-3 - Enable ATX 12V input for system power \n POS-1 - for PCIe EF 12V input for system power|
-    |SW4|OFF|ON - Enables PCIe JTAG mode \n OFF - Enables onboard UBII mode|
-    |SW4.1|ON|ON - MSEL 1 Low \n OFF - MSEL 1 High \n\n **Note:** If you want to control the configuration over BTS, set this switch to OFF|
-    |SW4.2|ON|ON - MSEL 2 Low \n OFF - MSEL 2 High \n\n **Note:** If you want to control the configuration over BTS, set this switch to OFF|
+    |S2 (carrier board)|POS-1|POS-1 - for PCIe EF 12V input for system power, POS-3 - Enable ATX 12V input for system power|
+    |S4.1 & S4.2 (modular board)| OFF / OFF|ON — MSEL 1 Low, OFF — MSEL 1 High, *Note: If you want to control the configuration over BTS, set this switch to OFF state*|
+    |S13.1 (carrier board)|ON|ON — PCIe edge clock, OFF — Clock from onboard Si52202|
 
-2. Connect the devkit to host machine via PCIe Gen3 (or higher) slot.
+    Every other switch should be in its default position, as per the [Agilex 5 FPGA E-Series 065B Modular Development Kit User Guide](https://cdrdv2-public.intel.com/820978/ug-820977-820978.pdf), section **3.1 Default Settings**.
 
-3. Connect the devkit to ATX power supply between it and the host.
+
+2. Connect the development kit to host machine via PCIe Gen3 (or higher) slot.
+
+3. Connect the development kit to ATX power supply between it and the host.
 
 ## 3.0 Software Requirements 
 
 * RHEL 9.4 (Supports OFS 2025.1 and FPGA AI Suite 2025.1.1) 
-* A valid Quartus Prime Pro 25.1 installation 
+  * Can also use RHEL 8.10 if preferred
+* A valid Quartus Prime Pro 25.1 installation
+  * If just programming the card, only the Quartus Programmer is required
 * Install the OFS (Open FPGA Stack) SDK and relevant DFL drivers
 
 ## 4.0 How to Program the FIM 
@@ -60,7 +64,7 @@ The following BIOS settings will need to be changed to support the Agilex 5 Modu
 3. List FPGA connected via JTAG. 
 
     ```bash session
-    jtagconfig 
+    jtagconfig -D
     ```
     
     ![](./images/Picture6.png)
@@ -71,7 +75,7 @@ The following BIOS settings will need to be changed to support the Agilex 5 Modu
     quartus_pgm -c 1 -m jtag -o "p;/<path_to_image>/eseries-mdk-images_ofs-2025-1-1/ofs_top.sof@1" 
     ```
 
-5. Reboot. 
+5. Warm reboot the server. 
 
     ```bash session
     sudo reboot 
@@ -85,4 +89,4 @@ The following BIOS settings will need to be changed to support the Agilex 5 Modu
 
     ![](./images/Picture7.png)
 
-    In this case, the PCI-address of AGX5E Modular Devkit is 5e:00.0 
+    In this case, the PCI-address of AGX5E Modular Development Kit is 5e:00.0 

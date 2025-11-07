@@ -9,7 +9,7 @@ Agilex™ 5 E-Series and D-Series devices provide the next-generation hard proce
 
 The Agilex™ 5 HPS application processors can run Linux or an RTOS, such as Zephyr*, with a scalable performance using one to four Arm* Cortex*-A cores with variable frequencies that allow for a wide range of applications.
 
-The Agilex™ 5 Simics virtual platform models the HPS processor with two Arm Cortex-A55 cores, two Arm Cortex-A76 cores, and HPS peripherals. The Agilex™ 5 E-Series HPS virtual platform is released as part of the Simics® Simulator for Intel® FPGAs software, which also includes a virtual platforms where the Agilex™ 5 device is instantiated, emulating the concept of having different versions of a development kit or daughter cards.
+The Agilex™ 5 Simics virtual platform models the HPS processor with two Arm Cortex-A55 cores, two Arm Cortex-A76 cores, and HPS peripherals. The Agilex™ 5 E-Series HPS virtual platform is released as part of the Simics® Simulator for Altera® FPGAs software, which also includes a virtual platforms where the Agilex™ 5 device is instantiated, emulating the concept of having different versions of a development kit or daughter cards.
 
 
 
@@ -19,7 +19,7 @@ The Agilex™ 5 E-Series device has the following supported virtual platforms:
 
 
 
-The following sections describe the prerequisites for the Intel Simics Simulator for Intel® FPGA and the available virtual platforms, including prebuilt binaries, and instructions for building these binaries. It also covers some common use cases that you can exercise on the virtual platforms.
+The following sections describe the prerequisites for the Intel Simics Simulator for Altera® FPGA and the available virtual platforms, including prebuilt binaries, and instructions for building these binaries. It also covers some common use cases that you can exercise on the virtual platforms.
 
 
 
@@ -35,21 +35,21 @@ To exercise the instructions presented on this page (build your binaries and exe
   - g++ 9.4 or higher
   - GNU make 4.1 or higher
 - Local Ethernet network with DHCP server (provides IP address to the board).
-- Intel Simics Simulator for Intel FPGAs installed.
-- Intel Agilex™ 5 Virtual Platform components available to be deployed.
+- Intel Simics Simulator for Altera® FPGAs installed.
+- Altera® Agilex™ 5 Virtual Platform components available to be deployed.
 
 
 
 **Notes:**
 
 - For binaries building instructions, see [Build Instructions](#build-instructions).
-- For installation instructions for the Intel Simics Simulator for Intel FPGAs and the Agilex™ 5 E-Series virtual platforms, refer to the following documents:
+- For installation instructions for the Intel Simics Simulator for Altera® FPGAs and the Agilex™ 5 E-Series virtual platforms, refer to the following documents:
   - [Intel® Simics® Simulator Landing Page](https://www.intel.com/content/www/us/en/products/details/fpga/development-tools/simics-virtual-platform.html) 
-  - [Intel® Simics® Simulator for Intel® FPGAs User Guide](https://www.intel.com/content/www/us/en/docs/programmable/784383/)
+  - [Intel® Simics® Simulator for Altera® FPGAs User Guide](https://www.intel.com/content/www/us/en/docs/programmable/784383/)
   - [Agilex™ 5 E-Series Virtual Platform User Guide](https://www.intel.com/content/www/us/en/docs/programmable/786901/)
 - U-Boot, Linux compilation, Yocto compilation, and the creation of an SD card image require a Linux host PC.
   To create these binaries, the toolchain and other software required need to be downloaded. This is described as part of the instructions in each section.
-- The Intel Simics Simulator for Intel® FPGAs is available only for Linux systems.
+- The Intel Simics Simulator for Altera® FPGAs is available only for Linux systems.
 - In case any use case requires additional prerequisites, these are listed as part of the use case description.
 
 
@@ -75,7 +75,7 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 and the follo
 
 
 
-**Note:** For information prior 24.2 release, please refer to [Linux GSRD Intel Simics Virtual Platform for Intel Agilex® 5 E-Series](https://www.rocketboards.org/foswiki/Documentation/Agilex5SoCSimicsVirtualPlatformsReferenceGuide). 
+**Note:** For information prior 24.2 release, please refer to [Linux GSRD Intel Simics Virtual Platform for Altera® Agilex® 5 E-Series](https://www.rocketboards.org/foswiki/Documentation/Agilex5SoCSimicsVirtualPlatformsReferenceGuide). 
 
 ### Prebuilt Binaries
 
@@ -805,7 +805,7 @@ In this block diagram:
 - The **Agilex™ 5 HPS component** in the virtual platform is an Intel Simics model that corresponds to the Hard Processor System Agilex™ 5 FPGA IP in the  Quartus Prime software.
 - The embedded software running in the HPS component is expected to be the same that can be run in the real silicon. Exercising the HPS-embedded software in this virtual platform allows you to debug the software using the Simics debug capabilities.
 
-### Main Features Supported by the Intel Agilex™ 5 E-Series Universal Virtual Platform
+### Main Features Supported by the Altera® Agilex™ 5 E-Series Universal Virtual Platform
 
 #### Boot an Operative System
 
@@ -953,7 +953,7 @@ silicon features that the Agilex 5 Simics model supports by stepping the target 
 parameter accepting the value of A0 or B0. The B0 stepping corresponds to the HPS model of the Agilex 5 D-Series.
 
 **Note:** Agilex 5 E-Series Universal Virtual Platform stepping features support is released in
-the 24.1 Intel Simics Simulator for Intel FPGAs release although the default stepping
+the 24.1 Intel Simics Simulator for Altera® FPGAs release although the default stepping
 during the project deployment remains being A0. You can override the default
 stepping using the stepping parameter from the target script. In this case, the B0
 features are enabled in the Agilex 5 E-Series model.
@@ -962,7 +962,7 @@ features are enabled in the Agilex 5 E-Series model.
 
 The Agilex 5 Universal virtual platform supports creating a serial console that could be connected to UART0 (default one) or UART1. This feature provides more flexibility to the virtual platform allowing you to match your board. The selection of the serial console to be displayed is controlled by the **$create_hps_serial0_console** and **$create_hps_serial1_console** configuration parameters. These 2 parameters allow you to enable creating the corresponding serial console. A serial console object is created and connected when the corresponding parameter is set to TRUE. Note that is possible to have both serial consoles enabled or both disabled.
 
-### Configurable Parameters in the Intel Agilex™ 5 E-Series Universal Virtual Platform
+### Configurable Parameters in the Altera® Agilex™ 5 E-Series Universal Virtual Platform
 
 The parameters that you can configure are shown in the following table:
 
@@ -1060,7 +1060,7 @@ The following sections explain some supported use cases using the **Agilex™ 5 
 
 #### Simulation Setup 
 
-Consider that the Intel Simics Simulator for Intel FPGAs Simulator has been installed on a Linux System and the output binaries generated from [Build Instructions](#build-instructions) section are already available.
+Consider that the Intel Simics Simulator for Altera® FPGAs Simulator has been installed on a Linux System and the output binaries generated from [Build Instructions](#build-instructions) section are already available.
 
 
 1. Create a project directory under the Intel Simics Simulator installation directory (Assuming it is **SimicsInstallDir**):
@@ -1187,7 +1187,7 @@ To exercise this use case, follow the below steps once the Simulation setup is c
 
   U-Boot 2024.04 (Oct 16 2024 - 02:54:45 +0000)socfpga_agilex5
 
-  CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
+  CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
   Model: SoCFPGA Agilex5 SoCDK
   DRAM:  2 GiB (effective 8 GiB)
   Core:  51 devices, 26 uclasses, devicetree: separate
@@ -1253,7 +1253,7 @@ To exercise this use case, follow the below steps once the Simulation setup is c
   ```bash
   U-Boot 2024.01 (Jun 25 2024 - 09:28:56 +0000)socfpga_agilex5
 
-  CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
+  CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
   Model: SoCFPGA Agilex5 SoCDK
 
   :
@@ -1788,7 +1788,7 @@ To exercise this use case, follow the steps below once the Simulation setup is c
      
      U-Boot 2024.04 (Oct 16 2024 - 02:54:45 +0000)socfpga_agilex5
      
-     CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
+     CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
      Model: SoCFPGA Agilex5 SoCDK
      DRAM:  2 GiB (effective 8 GiB)
      Core:  51 devices, 26 uclasses, devicetree: separate
@@ -1879,7 +1879,7 @@ To exercise this use case, follow the steps below once the Simulation setup is c
 
 #### Use Case: Debug Bare-Metal Code Using Intel Simics Simulator
 
-This use case consists of performing a debug session in a bare-metal environment, which in this case corresponds to a U-Boot application example. In this use case, debugging is performed using only the Simics CLI commands allowing us to navigate on the source code of the application, advance in the execution of this, and observe and modify values of variables. The application is created in the form of a U-Boot command (**helloTestApp**) that should be executed from the U-Boot shell. The application starts by printing a hello message (**Hello Intel SoC FPGA!**) and printing the number of times the command has been executed since the last power-up. After this, the application enters into a loop in which it waits for 100 sec and increases an iteration counter by one. The content on the loop is executed as long as the iterator counter is lower than 100000 and also the value of the **exitVar** variable remains in 0, otherwise, it leaves the loop and continues printing the number of times the content of the loop was executed. After this, the code performs some mathematical operations involving the iterator value and other variables and finally prints the result of the final operation.
+This use case consists of performing a debug session in a bare-metal environment, which in this case corresponds to a U-Boot application example. In this use case, debugging is performed using only the Simics CLI commands allowing us to navigate on the source code of the application, advance in the execution of this, and observe and modify values of variables. The application is created in the form of a U-Boot command (**helloTestApp**) that should be executed from the U-Boot shell. The application starts by printing a hello message (**Hello Altera® SoC FPGA!**) and printing the number of times the command has been executed since the last power-up. After this, the application enters into a loop in which it waits for 100 sec and increases an iteration counter by one. The content on the loop is executed as long as the iterator counter is lower than 100000 and also the value of the **exitVar** variable remains in 0, otherwise, it leaves the loop and continues printing the number of times the content of the loop was executed. After this, the code performs some mathematical operations involving the iterator value and other variables and finally prints the result of the final operation.
 
 
 The source code of the application is shown next. This is included in the **do_helloTestApp()** function, which then is referenced in the **U_BOOT_CMD** macro, which converts this into a U-Boot command. This source code must be included in a new file under the U-Boot repository as **cmd/socFPGATrainingExamples.c**. Also, to be built as part of the U-Boot binaries, update the **cmd/Makefile** file by adding **obj-y += socFPGATrainingExamples.o**.
@@ -1911,7 +1911,7 @@ static int do_helloTestApp(struct cmd_tbl *cmdtp, int flag, int argc, char *cons
       return CMD_RET_USAGE;
    }
 
-   printf("Hello Intel SoC FPGA! \r\n");
+   printf("Hello Altera® SoC FPGA! \r\n");
    execCount++;
    printf("Executed %d times \r\n", execCount);
    printf("Relocated address of do_helloTestApp: %p and execCount: %p \r\n", &do_helloTestApp, &execCount);
@@ -2045,7 +2045,7 @@ bp.source_location.break do_helloTestApp
   Next, enter **run** and see the program ends immediately due to **exitVar=1**.
   ```bash
   SOCFPGA_AGILEX5 # helloTestApp
-      Hello Intel SoC FPGA!
+      Hello Altera® SoC FPGA!
       Executed 1 times
       Relocated address of do_helloTestApp: 00000000fff1a7a8 and execCount: 00000000fffddba0
       Exit from loop at iteration: 9691
@@ -2064,7 +2064,7 @@ bp.source_location.break do_helloTestApp
 
   ```bash
   SOCFPGA_AGILEX5 # helloTestApp
-      Hello Intel SoC FPGA!
+      Hello Altera® SoC FPGA!
       Executed 1 times
       Relocated address of do_helloTestApp: 00000000fff1a7a8 and execCount: 00000000fffddba0
       Exit from loop at iteration: 2
@@ -2076,7 +2076,7 @@ bp.source_location.break do_helloTestApp
 
   ```bash
    SOCFPGA_AGILEX5 # helloTestApp
-      Hello Intel SoC FPGA!
+      Hello Altera® SoC FPGA!
       Executed 2 times
       Relocated address of do_helloTestApp: 00000000fff1a7a8 and execCount: 00000000fffddba0
       Exit from loop at iteration: 100,000
@@ -2088,7 +2088,7 @@ bp.source_location.break do_helloTestApp
 
   ```bash
   SOCFPGA_AGILEX5 # helloTestApp
-      Hello Intel SoC FPGA!
+      Hello Altera® SoC FPGA!
       Executed 1 times
       Relocated address of do_helloTestApp: 00000000fff1a7a8 and execCount: 00000000fffddba0
       Exit from loop at iteration: 100,000
@@ -2144,7 +2144,7 @@ This section requires the **simics-riscfree** script. It is included in your Int
   ![helloTestApp1.png](images/helloTestApp1.png)
 
 
-5. At this point, if you click on the **Run** button, the test program prints **“Hello Intel SoC FPGA!”** and finishes looping after some time.
+5. At this point, if you click on the **Run** button, the test program prints **“Hello Altera® SoC FPGA!”** and finishes looping after some time.
 
   ![test1.png](images/test1.png)
 

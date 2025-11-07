@@ -4,7 +4,7 @@
 
 ##  Introduction
 
-Intel offers an integrated set of System Level Debug (SLD) tools, including:
+Altera® offers an integrated set of System Level Debug (SLD) tools, including:
 
 * SignalTap II Logic Analyzer
 * In-System Sources and Probes (ISSP),
@@ -65,7 +65,7 @@ The following are required:
   * HPS Enablement Expansion Board. Included with the development kit.
   * SD/MMC HPS Daughtercard
   * Mini USB cable for serial output
-  * Micro USB cable for on-board Intell&reg; FPGA Download Cable II
+  * Micro USB cable for on-board Altera® FPGA Download Cable II
 * Host PC with:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too

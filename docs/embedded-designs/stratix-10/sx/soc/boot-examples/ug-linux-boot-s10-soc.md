@@ -69,12 +69,12 @@ The Stratix® 10 GSRDs are also updated to use this feature. See the GSRD docume
 
 ## U-Boot Branches
 
-The official Intel SOCFPGA U-Boot repository is located at https://github.com/altera-fpga/u-boot-socfpga.
+The official Altera® SOCFPGA U-Boot repository is located at https://github.com/altera-fpga/u-boot-socfpga.
 
 **Notes:**
 
 * A "RC" labeled branch is for internal active development use and customer early access without official customer support.
-* Latest stable branch (no RC labeled) is strongly recommended for development and production use outside of Intel.
+* Latest stable branch (no RC labeled) is strongly recommended for development and production use outside of Altera®.
 * See [doc/README.socfpga](https://github.com/altera-fpga/u-boot-socfpga/blob/HEAD/doc/README.socfpga) for Quartus® Pro and Device support.
 
 ## Boot From SD Card Example
@@ -109,7 +109,7 @@ The following are required:
 
 * Host machine running Linux. Ubuntu 22.04 was used, but other versions may work too.
 * Internet connection to download the tools and clone the U-Boot git tree from github. If you are behind a firewall you will need your system administrator to enable you to get to the git trees.
-* Intel Stratix® 10 H-Tile SoC FPGA Development Kit (DK-SOC-1SSX-H-D).
+* Altera® Stratix® 10 H-Tile SoC FPGA Development Kit (DK-SOC-1SSX-H-D).
 * Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
 
 Note that the examples presented on this page boot to Linux and they require Linux kernel, device tree and rootfilesystem to boot. However, you can omit the Linux binaries and just boot to U-Boot prompt if you want to.
@@ -509,8 +509,8 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   5.- Run the debugger from command line, using the connection parameters reported above by jtagconfig, shown in red below:
 
   ```
-  /opt/arm/developmentstudio-2022.2/bin/armdbg  \
-  --cdb-entry="Intel SoC FPGA::Stratix 10::Bare Metal Debug::Bare Metal Debug::Debug Cortex-A53x4 SMP::Intel FPGA Download Cable" \
+  /opt/arm/developmentstudio-2025.0-1/bin/armdbg  \
+  --cdb-entry="Altera SoC FPGA::Stratix 10::Bare Metal Debug::Bare Metal Debug::Debug Cortex-A53x4 SMP::Altera FPGA Download Cable" \
   --cdb-entry-param="rvi_address=Stratix 10L SoC Dev Kit on localhost [3-3.4.4]:Stratix 10L SoC Dev Kit 3-3.4.4" \
   --continue_on_error=true \
   --stop_on_connect=false \
@@ -541,7 +541,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
 
   U-Boot 2025.07-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_stratix10
 
-  CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
+  CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
   Model: SoCFPGA Stratix 10 SoCDK
   DRAM:  2 GiB (effective 4 GiB)
   Core:  26 devices, 21 uclasses, devicetree: separate
@@ -589,7 +589,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   1.- Run the steps from **Prerequisites section**<br>
   2.- Start the Arm Development Studio Eclipse-based GUI:
   ```
-  /opt/arm/developmentstudio-2022.2/bin/armds_ide -data workspace &
+  /opt/arm/developmentstudio-2025.0-1/bin/armds_ide -data workspace &
   ```
 
   Note the above creates a new workspace in the **s10_example.sdmmc** folder.<br>
@@ -601,8 +601,8 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   b) Edit the **Name** field from **New_configuration** to something more descriptive, such as **Debug S10 Bootloader**.<br>
     
   5.- In the **Connection** tab:<br>
-  a) Go to **Select target** section and select **Intel SoC FPGA > Stratix 10 > Bare Metal Debug > Debug Cortex-A53_0**<br>
-  b) Select the **Target Connection** to be **Intel FPGA Download Cable**<br>
+  a) Go to **Select target** section and select **Altera® SoC FPGA > Stratix 10 > Bare Metal Debug > Debug Cortex-A53_0**<br>
+  b) Select the **Target Connection** to be **Altera® FPGA Download Cable**<br>
   c) Click the **Bare Metal Debug > Connection Browse** button and select your cable.
 
   The **Debug Configurations** window should now look like this:
@@ -859,12 +859,38 @@ The HPS obtains the QSPI controller reference clock frequency when it obtains ex
 Before booting Linux, U-Boot loads the Linux device tree in memory, then runs the command **linux_qspi_enable** which sets the QSPI controller reference clock appropriately using the value from the **${qspi_clock}** environment variable.
 
 ## Reconfiguring Core Fabric from U-Boot
-The GSRD configures the FPGA core fabric only once, from U-Boot, by using the **bootm** command. The example in this page configures the fabric only once, from U-Boot, using **fpga load** command.
+The GSRD configures the FPGA core fabric only once by U-boot during the Linux launch using the **bootm** command. In the bootloaders build flow, the reconfiguration is done in the U-Boot Shell through the **fpga load** command.
 
 **Important**: If the FPGA fabric is already configured and bridges are enabled, you must call the **bridge disable** command from U-Boot before issuing the **bootm** or **fpga load** commands to reconfigure the fabric. Only do this if you are using an **arm-trusted-firmware** version more recent than the following:
 
-* v2.7.1 = https://github.com/altera-opensource/arm-trusted-firmware/commit/0a5edaed853e0dc1e687706ccace8e844b2a8db7
-* v2.8.0 = https://github.com/altera-opensource/arm-trusted-firmware/commit/bf933536d4582d63d0e29434e807a641941f3937
+* v2.7.1 = [https://github.com/altera-fpga/arm-trusted-firmware/commit/0a5edaed853e0dc1e687706ccace8e844b2a8db7](https://github.com/altera-fpga/arm-trusted-firmware/commit/0a5edaed853e0dc1e687706ccace8e844b2a8db7)
+* v2.8.0 = [https://github.com/altera-fpga/arm-trusted-firmware/commit/bf933536d4582d63d0e29434e807a641941f3937](https://github.com/altera-fpga/arm-trusted-firmware/commit/bf933536d4582d63d0e29434e807a641941f3937)
+
+
+The example below shows the steps to perform FPGA configuration from the U-boot.
+
+1\. First, write the sdcard.img into an SD card. (Rename the wic file to 'sdcard.img')<br>
+2\. Copy the configuration bitstream, ghrd.core.rbf, into the same SD Card.<br>
+3\. Insert the SD Card to the board, boot the board up, and enter the U-boot shell when prompted.<br>
+4\. In U-boot shell, run the following commands in sequence to perform FPGA configuration:<br>
+
+* fatload mmc 0:1 [address] [ghrd.core.rbf]<br>
+* fpga load [device] [address] [file_size]<br>
+
+5\. The message "FPGA reconfiguration OK!" will be printed out upon successful transaction.<br>
+
+
+Here is an example for Agilex® 5 device, but the same steps apply for Stratix® 10, Agilex® 7, and Agilex® 3 SoC FPGA devices.
+
+```bash
+Hit any key to stop autoboot:  0 /// Hit any key at this point to enter the U-boot Shell ///
+
+SOCFPGA_AGILEX #
+SOCFPGA_AGILEX # fatload mmc 0:1 0x90000000 ghrd.core.rbf
+2404352 bytes read in 116 ms (19.8 MiB/s)
+SOCFPGA_AGILEX # fpga load 0 0x90000000 ${filesize}
+…FPGA reconfiguration OK!
+```
 
 ## Enabling Bridges from U-Boot
 

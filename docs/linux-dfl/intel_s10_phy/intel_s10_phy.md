@@ -1,4 +1,4 @@
-# **Intel HSSI configurable ethernet phy driver**
+# **Altera HSSI configurable ethernet phy driver**
 
 **Upstream Status**: Not Upstreamed
 
@@ -6,11 +6,11 @@
 
 ## **Introduction**
 
-This is the Intel HSSI configurable ethernet phy driver. It provides the ability to view and change some of the transceiver tuner parameters for a QSFP interface on legacy D5005 designs.
+This is the Altera® HSSI configurable ethernet phy driver. It provides the ability to view and change some of the transceiver tuner parameters for a QSFP interface on legacy D5005 designs.
 
 |Driver|Mapping|Source(s)|Required for DFL|
 |---|---|---|---|
-|intel-s10-phy.ko|Intel HSSI configurable ethernet phy driver|drivers/net/phy/intel-s10-phy.c|N|
+|intel-s10-phy.ko|Altera® HSSI configurable ethernet phy driver|drivers/net/phy/intel-s10-phy.c|N|
 
 ## **Driver Sources**
 

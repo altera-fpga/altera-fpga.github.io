@@ -19,7 +19,7 @@ The following are needed:
   - Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   - Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
   - Altera® Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
-  - Arm* Development Studio 2024.1 or 2024.1-1
+  - Arm* Development Studio 2025.0-1
 
 ## Build Linux
 
@@ -94,7 +94,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
 ```bash
 cd $TOP_FOLDER
-/opt/arm/developmentstudio-2024.1/bin/suite_exec -t "Arm Compiler for Embedded 6" bash
+/opt/arm/developmentstudio-2025.0-1/bin/suite_exec -t "Arm Compiler for Embedded 6" bash
 armds_ide -data workspace &
 ```
 
@@ -104,7 +104,7 @@ armds_ide -data workspace &
 
 ![](images/01-create-config.png)
 
-7\. Select the target as **Intel SoC FPGA** > **Agilex 5** > **Linux Kernel Debug** > **Cortext-A76\Cortex-A55 Multi-Cluster SMP**. Select **Target Connection** as **Intel FPGA Download Cable**.
+7\. Select the target as **Altera® SoC FPGA** > **Agilex 5** > **Linux Kernel Debug** > **Cortext-A76\Cortex-A55 Multi-Cluster SMP**. Select **Target Connection** as **Altera® FPGA Download Cable**.
 
 ![](images/02-debug-config.png)
 

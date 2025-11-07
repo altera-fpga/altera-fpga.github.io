@@ -1,7 +1,7 @@
 # **DMA Driver for Hard Processor System**
 
 
-Last updated: **October 20, 2025** 
+Last updated: **November 07, 2025** 
 
 **Upstream Status**: No
 
@@ -13,7 +13,7 @@ DMA Controller controls the transfer of data between I/O devices and memory with
 
 The hard processor system (HPS) provides two DMA Controllers based on the Synopsis-Designware IP.
 
-For more information please refer to the [Intel Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
+For more information please refer to the [Altera® Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
 
 ## **Driver Sources**
 The source code for this driver can be found at [https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/drivers/dma/dma_dw_axi.c](https://github.com/altera-opensource/zephyr-socfpga/blob/socfpga_rel_23.4/drivers/dma/dma_dw_axi.c).
@@ -136,7 +136,7 @@ NOTICE:  BL31: Boot Core = 0
 NOTICE:  BL31: CPU ID = 81000000
 NOTICE:  BL31: v2.9.1(release):QPDS23.4_REL_GSRD_PR
 NOTICE:  BL31: Built : 18:22:43, Jul  2 2024
-[00:00:00.125,000] <inf> clock_control_agilex5: Intel Agilex5 clock driver initialized!
+[00:00:00.125,000] <inf> clock_control_agilex5: Altera® Agilex5 clock driver initialized!
 *** Booting Zephyr OS build 33d4a115fbed ***
 Secondary CPU core 1 (MPID:0x100) is up
 Secondary CPU core 2 (MPID:0x200) is up

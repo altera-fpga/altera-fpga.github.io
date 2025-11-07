@@ -61,7 +61,7 @@ Suite to offload AI workloads onto an FPGA via PCIe.
 | ------ | ----------------- |
 | Agilex 7 | [Terasic DE10-Agilex Development Board](https://github.com/altera-fpga/agilex-ed-ai-suite/tree/main/agilex7/de10_pcie) |
 | Agilex 7 | [Agilex 7 FPGA I-Series Development Kit (2x R-Tile and 1x F-Tile)](https://github.com/altera-fpga/agilex-ed-ai-suite/tree/main/agilex7/iseries_ofs_pcie) |
-| Agilex 7 | [Intel FPGA SmartNIC N6001-PL Platform (without an Ethernet controller)](https://github.com/altera-fpga/agilex-ed-ai-suite/tree/main/agilex7/n6001_ofs_pcie) |
+| Agilex 7 | [Altera® FPGA SmartNIC N6001-PL Platform (without an Ethernet controller)](https://github.com/altera-fpga/agilex-ed-ai-suite/tree/main/agilex7/n6001_ofs_pcie) |
 
 ## Documentation
 

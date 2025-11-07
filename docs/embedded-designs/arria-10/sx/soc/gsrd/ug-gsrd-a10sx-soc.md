@@ -16,7 +16,7 @@ The following are required in order to be able to fully exercise the A10 GSRD:
   * DDR4 HILO memory card
   * Micro SD boot flash card
   * Mini USB cable for serial output
-  * Micro USB cable for on-board Intel FPGA Download Cable II
+  * Micro USB cable for on-board Altera® FPGA Download Cable II
 * Micro SD card (4GB or greater)
 * Host PC with
   * Linux - Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
@@ -147,7 +147,7 @@ The following table presents a short description of the different boot stages:
 | Linux       | Operating system |
 | Application | User application |
 
-For more information, please refer to [Arria 10 SoC Boot User Guide](https://www.intel.com/content/www/us/en/docs/programmable/683735/current/arria-10-soc-boot-user-guide.html) and [Intel Arria 10 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/683711/22-3/hard-processor-system-technical-reference.html) (Booting and Configuration chapter). 
+For more information, please refer to [Arria 10 SoC Boot User Guide](https://www.intel.com/content/www/us/en/docs/programmable/683735/current/arria-10-soc-boot-user-guide.html) and [Altera® Arria 10 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/683711/22-3/hard-processor-system-technical-reference.html) (Booting and Configuration chapter). 
 
 ## Running GSRD with Pre-Built Binaries
 
@@ -596,7 +596,7 @@ The GSRD includes a web server running on the target board that can be used to e
 * Scrolling LEDs in a sequence
 * Displaying the current status of the LEDs
 
-The web page served by the web server also contains links to some relevant information on the Intel website.
+The web page served by the web server also contains links to some relevant information on the Altera® Website.
 
 <h4>Connect to Web Server</h4>
 

@@ -6,8 +6,8 @@
 
 ## Description ##
 The packager provides tools that Accelerator Functional Unit (AFU) developers use to create Accelerator Function (AF) 
-files. The AF file is the programming file for an AFU on Intel&reg; FPGA platforms. The packager tool concatenates
-the metadata from the JSON file to a raw binary file `(.rbf)` that the Intel Quartus&reg; Prime software generates. 
+files. The AF file is the programming file for an AFU on Altera® FPGA platforms. The packager tool concatenates
+the metadata from the JSON file to a raw binary file `(.rbf)` that the Altera® Quartus&reg; Prime software generates. 
 
 The packager's only function is to create an AF file. Refer to [Packager Command Syntax](#packager-command-syntax) for more information
 about invoking the packager. The packager depends on a JSON file to describe AFU metadata. Refer to 
@@ -92,16 +92,16 @@ CATEGORY | NAME | TYPE | DESCRIPTION | MANDATORY
 ---------|------|------|-------------|:----------:|
 Per-AFU  | version | Integer | Version of the metadata format. | Yes
 Per-AFU  | magic-no (to be deprecated)| Integer | Magic no. Associated with the FPGA Interface Manager. | No
-Per-AFU  | platform-name | String | Name of the platform for which the metadata is intended. The field value is “DCP” for Intel  Acceleration Stack for FPGAs. | No
+Per-AFU  | platform-name | String | Name of the platform for which the metadata is intended. The field value is “DCP” for Altera®  Acceleration Stack for FPGAs. | No
 Per-AFU  | interface-uuid | UUID | Interface id associated with the FPGA Interface Manager. | Yes
-Per-AFU  | power | Integer | Accelerator Function power consumption, in watts. Set to 0 for Intel Acceleration Stack for FPGAs platforms. | Yes
+Per-AFU  | power | Integer | Accelerator Function power consumption, in watts. Set to 0 for Altera Acceleration Stack for FPGAs platforms. | Yes
 Per-AFU  | clock-frequency-low | Float | Clock frequency for 1st PLL (Clock network)1 in MHz. | No
 Per-AFU  | clock-frequency-high | Float | Clock frequency for 2nd PLL (0 if absent) in MHz. | No
 Per-AFC Cluster | total-contexts | Integer | Number of AFCs in this cluster. Always be 1 in current architectures. | Yes
 Per-AFC Cluster | afc-type-uuid |  UUID | AFC type = AFU ID in current architectures. | Yes
 Per-AFC Cluster | name | string | AFC name = AFU name in current architectures. | Yes
 
-| Date | Intel Acceleration Stack Version | Changes Made |
+| Date | Altera Acceleration Stack Version | Changes Made |
 |:------|----------------------------|:--------------|
 |2018.05.21| DCP 1.1 Beta (works with Quartus Prime Pro 17.1.1) |  Fixed typos. |
 

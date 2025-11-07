@@ -1,6 +1,6 @@
-# **Ethernet Subsystem Intel FPGA IP Tile Specific Ethernet MAC Driver for Hard Processor System**
+# **Ethernet Subsystem Altera® FPGA IP Tile Specific Ethernet MAC Driver for Hard Processor System**
 
-Last updated: **October 20, 2025** 
+Last updated: **November 07, 2025** 
 
 **Upstream Status**: Not Upstreamed
 
@@ -8,7 +8,7 @@ Last updated: **October 20, 2025**
 
 ## **Introduction**
 
-The Ethernet MAC driver is used to manage the configuration parameters of the particular tile. It currently supports F-tile and E-tile of the Ethernet Subsystem Intel FPGA IP
+The Ethernet MAC driver is used to manage the configuration parameters of the particular tile. It currently supports F-tile and E-tile of the Ethernet Subsystem Altera® FPGA IP
 
 ## **F-tile and E-tile FPGA IP**
 

@@ -18,7 +18,7 @@ The following are needed:
   - Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   - Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
   - Altera® Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
-  - Arm Development Studio 2024.1 or 2024.1-1
+  - Arm Development Studio 2025.0-1
 
 You will also need to compile the Agilex 5 GHRD Linux Boot Example targeting the HPS Enablement board, as described [here](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/#boot-from-sd-card). 
 
@@ -47,7 +47,7 @@ quartus_pgm -c 1 -m jtag -o "p;agilex5_soc_devkit_ghrd/output_files/legacy_basel
 
 ```bash
 cd $TOP_FOLDER
-/opt/arm/developmentstudio-2024.1/bin/suite_exec -t "Arm Compiler for Embedded 6" bash
+/opt/arm/developmentstudio-2025.0-1/bin/suite_exec -t "Arm Compiler for Embedded 6" bash
 armds_ide -data workspace &
 ```
 
@@ -55,7 +55,7 @@ armds_ide -data workspace &
 
 ![](images/01-new-lauch-config.png)
 
-8\. Change the **Name** of the configuration as **Debug U-Boot**. Select target as **Intel SoC FPGA** > **Agilex 5** > **Bare Metal Debug** > **Cortex-A55_0**. Select target connection as **Intel FPGA Download Cable**:
+8\. Change the **Name** of the configuration as **Debug U-Boot**. Select target as **Altera® SoC FPGA** > **Agilex 5** > **Bare Metal Debug** > **Cortex-A55_0**. Select target connection as **Altera® FPGA Download Cable**:
 
 ![](images/02-connection.png)
 

@@ -8,7 +8,7 @@ pac_hssi_config.py [-h] subcommand [subarg] [bdf]
 
 ## DESCRIPTION ##
 The `pac_hssi_config.py` tool exercises the Ethernet 10 Gbps (10GbE) and 40GbE transceivers for designs using the
-Intel&reg; Programmable Acceleration Card (PAC) with Intel Arria&reg; 10 GX FPGA. This tool does not support the 
+Altera® Programmable Acceleration Card (PAC) with Altera® Arria&reg; 10 GX FPGA. This tool does not support the 
 Intel Xeon&reg; Processor with Integrated FPGA. 
 
 ![PAC Ethernet Block Diagram](./dcp_hssi_arch.PNG "PAC Ethernet Block Diagram")
@@ -67,4 +67,4 @@ Use the following form for the `eqread`command:
 
 For more information about reconfiguring transceiver analog parameter settings In Arria&reg; 10 devices, refer to "Changing PMA Analog
 Parameters" in the 
-[Intel&reg; Arria&reg; 10 Transceiver PHY User Guide](https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/arria-10/ug_arria10_xcvr_phy.pdf).
+[Altera® Arria&reg; 10 Transceiver PHY User Guide](https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/arria-10/ug_arria10_xcvr_phy.pdf).

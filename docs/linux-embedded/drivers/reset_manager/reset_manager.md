@@ -1,6 +1,6 @@
 # **Reset Manager Driver for Hard Processor System**
 
-Last updated: **October 20, 2025** 
+Last updated: **November 07, 2025** 
 
 **Upstream Status**: Not Upstreamed
 
@@ -11,7 +11,7 @@ Last updated: **October 20, 2025**
 The reset manager generates module reset signals based on reset requests from various sources in the HPS, and performs software writing to the module-reset control registers.
 
 The HPS contains multiple reset domains. Each reset domain can be reset
-independently. A reset can be initiated externally, internally, or through software.  For more information about the reset manager, please refer to the [Intel Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
+independently. A reset can be initiated externally, internally, or through software.  For more information about the reset manager, please refer to the [Altera® Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
 
 ![reset_manager_diagram](images/A5_RSTMGR_block_diagram.png){: style="height:450px;width:450px"}
 

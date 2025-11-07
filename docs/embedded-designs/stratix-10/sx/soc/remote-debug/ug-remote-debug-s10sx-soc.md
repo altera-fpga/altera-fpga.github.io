@@ -65,7 +65,7 @@ The following are required:
   * SD/MMC HPS Daughtercard
   * SDM QSPI Bootcard(MT25QU02G)
   * Mini USB cable for serial output
-  * Micro USB cable for on-board Intel&reg; FPGA Download Cable II
+  * Micro USB cable for on-board Altera® FPGA Download Cable II
 * Host PC with:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too

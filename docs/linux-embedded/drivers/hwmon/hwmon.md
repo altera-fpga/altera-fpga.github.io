@@ -1,6 +1,6 @@
 # **Altera® Hardware Monitor Driver for Hard Processor System**
 
-Last updated: **October 20, 2025** 
+Last updated: **November 07, 2025** 
 
 **Upstream Status**:  Not Upstreamed
 
@@ -10,7 +10,7 @@ Last updated: **October 20, 2025**
 
 The devices in which this driver is supported provide you with on-chip voltage and temperature sensors. You can use these sensors to monitor on-chip operation conditions such as the internal power rail and on-chip junction temperature. Some of the sensors also allow you the measure external voltages.
 
-The sensor monitoring system in the secure device manager (SDM) is in charge of sampling signals and keeping the latest digital value for each sensor available,  so this data can be provided under request. You can read the voltage and temperature values in the SDM by using the Mailbox Client FPGA IP or the Mailbox Client with Avalon® Streaming Interface Intel® FPGA IP.
+The sensor monitoring system in the secure device manager (SDM) is in charge of sampling signals and keeping the latest digital value for each sensor available,  so this data can be provided under request. You can read the voltage and temperature values in the SDM by using the Mailbox Client FPGA IP or the Mailbox Client with Avalon® Streaming Interface Altera® FPGA IP.
 
 The Hard Processor System (HPS) is also capable of retrieve the voltage and temperature levels from the HPS-to-SDM mailbox. The Linux driver performs all the operations needed to facilitate the access to the sampled values from the sensors from the user space.
 

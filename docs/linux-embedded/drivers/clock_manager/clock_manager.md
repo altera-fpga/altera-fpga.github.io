@@ -1,6 +1,6 @@
 # **Clock Manager Driver for Hard Processor System**
 
-Last updated: **October 20, 2025** 
+Last updated: **November 07, 2025** 
 
 **Upstream Status**: No
 
@@ -12,7 +12,7 @@ Hard Processor System (HPS) clock generation is centralized in the clock manager
 
 A clock group is a set of clock signals that originate from the same clock source which may be synchronous to each other. The Clock Manager has a two Phase-Locked Loop (PLL) clock group where the clock source is a common PLL voltage-controlled oscillator (VCO). A clock group which is independent and asynchronous to other clocks may only have a single clock, also known as clock slice. Peripheral clocks are a group of independent clock slices.
 
-For more information please refer to the [Intel Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
+For more information please refer to the [Altera® Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
 
 ![clock_manager_block_diagram](images/TRM_A5_CLKMGR_block_diagram.png){: style="height:650px"}
 
@@ -41,14 +41,14 @@ CONFIG_CLK_INTEL_SOCFPGA64
 Symbol: CLK_INTEL_SOCFPGA64 [=n]
 Type  : bool
 Defined at drivers/clk/socfpga/Kconfig:15
-  Prompt: Intel Stratix / Agilex / N5X clock / Agilex5 controller support
+  Prompt: Altera® Stratix / Agilex / N5X clock / Agilex5 controller support
   Depends on: COMMON_CLK [=y] && CLK_INTEL_SOCFPGA [=n]
   Visible if: COMMON_CLK [=y] && CLK_INTEL_SOCFPGA [=n] && COMPILE_TEST [=n] && (!ARM64 || !ARCH_INTEL_SOCFPGA)
   Location:
     → Device Drivers
 (1)     → Common Clock Framework (COMMON_CLK [=y])
-        → Intel SoCFPGA family clock support (CLK_INTEL_SOCFPGA [=n])
-          → Intel Stratix / Agilex / N5X clock / Agilex5 controller support (CLK_INTEL_SOCFPGA64 [=n])
+        → Altera SoCFPGA family clock support (CLK_INTEL_SOCFPGA [=n])
+          → Altera® Stratix / Agilex / N5X clock / Agilex5 controller support (CLK_INTEL_SOCFPGA64 [=n])
 ```
 
 ## **Device Tree**

@@ -3,13 +3,13 @@
 
 # Agilex 7 PCIe-Attached Example Design with OFS
 
-Demonstrates ML inference using the Intel FPGA SmartNIC N6001-PL Platform (without an Ethernet controller)
+Demonstrates ML inference using the Altera® FPGA SmartNIC N6001-PL Platform (without an Ethernet controller)
 
 ## Description
 
 This example design has its own repository [n6001_ofs_pcie](https://github.com/altera-fpga/agilex-ed-ai-suite/tree/main/agilex7/n6001_ofs_pcie).
 
-This example design demonstrates how to run the AI Suite on an Intel FPGA
+This example design demonstrates how to run the AI Suite on an Altera® FPGA
 SmartNIC N6001-PL connected to a host via PCIe. The example design uses the
 `AGX7_Generic.arch` architecture.
 
