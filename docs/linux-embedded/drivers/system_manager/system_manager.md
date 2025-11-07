@@ -1,6 +1,6 @@
 # **System Manager Driver for Hard Processor System**
 
-Last updated: **October 20, 2025** 
+Last updated: **November 07, 2025** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/mfd/altera-sysmgr.c)
 
@@ -12,7 +12,7 @@ The system manager contains the memory-mapped control and status registers (CSRs
 
 The system manager connects to different modules in the HPS such as a Direct memory access (DMA) controller, Microprocessor unit (MPU) system complex, NAND flash controller, Secure Digital/Embedded Multimedia Card (SD/eMMC) controller, or GPIO interface between HPS and other modules.
 
-For more information please refer to the [Intel Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
+For more information please refer to the [Altera® Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
 
 ![system_manager_block_diagram](images/system_manager_block_diagram.png)
 

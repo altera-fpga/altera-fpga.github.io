@@ -4,7 +4,7 @@
 
 ## Overview 
 
-This page presents the Golden System Reference Design for the [Intel Agilex™ 7 FPGA M-Series Development Kit - HBM2e Edition (3x F-Tile & 1x R-Tile)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/agm039.html). The GSRD demonstrates the following: 
+This page presents the Golden System Reference Design for the [Intel Agilex™ 7 FPGA M-Series Development Kit - HBM2e Edition (3x F-Tile & 1x R-Tile)](https://www.altera.com/products/devkit/a1jui0000049utqmam/agilex-7-fpga-m-series-development-kit-hbm2e-edition-3x-f-tile-1x-r-tile-es). The GSRD demonstrates the following: 
 
 - HPS side 
   - Linux, booted by U-Boot and ATF 
@@ -32,13 +32,14 @@ The following are required in order to be able to fully exercise the GSRD:
 This page covers both versions of the board. You can identify your board type by looking at the serial number identifier, as shown below:
 
 | Development Kit Version | Ordering Code | Device Part Number | Serial Number Identifier |
-| :-- | :-- | 
+| :-- | :-- |  :-- |  :-- |
 | Agilex™ 7 FPGA M-Series Development Kit - HBM2e Edition (3x F-Tile and 1x R-Tile) | DK-DEV-AGM039EA | AGMF039R47A1E1VC | AGM82DK0001001 |
 | Agilex™ 7 FPGA M-Series Development Kit - HBM2e Edition (3x F-Tile and 1x R-Tile) ES1 | DK-DEV-AGM039FES | AGMF039R47A1E2VR0 | AGM82DK0000001 |
 
 The main difference between the boards, in addition to the FPGA part number, is that they use different memory type for HPS:
- * DK-DEV-AGM039EA uses HBM memory for HPS
- * DK-DEV-AGM039FES uses DDR5 memory for HPS
+
+* DK-DEV-AGM039EA uses HBM memory for HPS
+* DK-DEV-AGM039FES uses DDR5 memory for HPS
 
 The U-Boot and Linux compilation, Yocto compilation and creating the SD card image require a Linux host PC. The rest of the operations can be performed on either a Windows or Linux host PC. 
 

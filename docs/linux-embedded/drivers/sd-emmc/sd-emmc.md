@@ -1,6 +1,6 @@
 # **SD-EMMC Driver for Hard Processor System**
 
-Last updated: **October 20, 2025** 
+Last updated: **November 07, 2025** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/mmc/host/sdhci-cadence.c)
 
@@ -11,7 +11,7 @@ Last updated: **October 20, 2025**
 The Secure Digital/Embedded Multimedia Card (SD/eMMC) driver supports the SD/eMMC controller in the Hard Processor System (HPS) which interfaces with external SD Flash cards, secure digital I/O (SDIO) devices, and eMMC storage devices.
 
 
-For More information please refer to the [Intel Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
+For More information please refer to the [Altera® Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
 
 ![sdmmc_diagram](images/A5_SD_eMMC_block_diagram.png)
 

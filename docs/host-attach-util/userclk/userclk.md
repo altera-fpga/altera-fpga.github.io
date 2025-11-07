@@ -45,7 +45,7 @@ User clock high frequency.
 
 User clock low frequency. 
 
-| Date | Intel Acceleration Stack Version | Changes Made |
+| Date | Altera® Acceleration Stack Version | Changes Made |
 |:------|----------------------------|:--------------|
 |2018.05.21| DCP 1.1 Beta (works with Quartus Prime Pro 17.1.1) |  Fixed typos. |
 

@@ -262,6 +262,8 @@ nav:
         - Agilex™ 5 FPGA E-Series Modular Development Kit 1x10G Ethernet System Example Design: embedded-designs/agilex-5/e-series/modular/ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g.md
         - TSN Examples:
           - HPS TSN SGMII XCVR System 3x2.5G Example Design User Guide: embedded-designs/agilex-5/e-series/modular/tsn/sgmii_xcvr_3x2.5G/ug-tsn-sgmii-xcvr-3x2.5G-agilex5.md
+      - E-Series 013B Development Kit:
+          - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/013B/ug-gsrd-agx5e-013b.md
       - Intel Simics Virtual Platform Examples:
         - Simics Linux GSRD: embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms.md
         - Simics Zephyr GSRD: embedded-designs/agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms.md
@@ -372,7 +374,7 @@ ignorefiles:
 
 env: 
 # Devices         
-  AGILEX: Intel® Agilex® 7 FPGA
+  AGILEX: Altera® Agilex® 7 FPGA
 
 # Variables for content supported by current release  
   ALTERA_RELEASE: rel-25.3

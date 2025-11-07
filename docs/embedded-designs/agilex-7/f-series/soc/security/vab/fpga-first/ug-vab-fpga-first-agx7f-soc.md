@@ -67,7 +67,7 @@ make socfpga_agilex_vab_defconfig
 make -j 24 u-boot u-boot.img u-boot.dtb spl/u-boot-spl-dtb.hex 
 cd .. 
 ```
-### Build Linux Kernel with Intel FGPA Crypto Service Support
+### Build Linux Kernel with Altera® FGPA Crypto Service Support
 ```bash 
 cd $TOP_DIR
 git clone -b QPDS25.1_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga 
@@ -76,7 +76,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-; export ARCH=arm64
 make clean 
 make defconfig 
 make menuconfig 
-#(Browse and enable Cryptographic API > Hardware crypto devices > (*)Intel FPGA Crypto Service support) 
+#(Browse and enable Cryptographic API > Hardware crypto devices > (*)Altera® FPGA Crypto Service support) 
 make -j 16 all && make dtbs && make -j 16 modules 
 cd .. 
 ```
@@ -259,7 +259,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-; export ARCH=arm64
 ./tools/binman/binman build -u -d u-boot.dtb -O . -i kernel 
 ```
 ### Create fcs_client (optional)
-The FCS_Client is an application that will allow validation of firmware images from the linux kernel. This application interfaces the Intel FPGA Crypto Services drivers included with the linux build. 
+The FCS_Client is an application that will allow validation of firmware images from the linux kernel. This application interfaces the Altera® FPGA Crypto Services drivers included with the linux build. 
 ```bash 
 cd $TOP_DIR
 git clone https://github.com/altera-opensource/fcs_apps 
@@ -363,7 +363,7 @@ NOTICE: BL31: v2.5.0(release):QPDS21.1STD_REL_GSRD_PR
 NOTICE: BL31: Built : 17:05:32, Jan 13 2022 
  
 U-Boot 2021.04-14501-gbdc9a4409d (Jan 13 2022 - 17:20:53 -0600)socfpga_agilex 
-CPU: Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53) 
+CPU: Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53) 
 Model: SoCFPGA Agilex SoCDK 
 DRAM: 8 GiB 
 WDT: Started with servicing (10s timeout) 

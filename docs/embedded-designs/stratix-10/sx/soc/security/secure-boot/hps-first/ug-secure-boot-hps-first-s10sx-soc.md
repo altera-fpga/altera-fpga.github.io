@@ -2,20 +2,20 @@
 
 ## Introduction 
 
-The secure boot demo design demonstrates an end-to-end authenticated boot flow, from device power on until the Linux kernel is loaded. There are two main components of this design - the Secure Device Manager (SDM) which authenticates the configuration bitstream, and U-boot with the Verified Boot feature. This design is demonstrated on the  [Intel Stratix® 10 H-Tile SoC FPGA Development Kit (DK-SOC-1SSX-H-D)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/stratix/10-sx.html)  but can be easily ported to other boards as well. 
+The secure boot demo design demonstrates an end-to-end authenticated boot flow, from device power on until the Linux kernel is loaded. There are two main components of this design - the Secure Device Manager (SDM) which authenticates the configuration bitstream, and U-boot with the Verified Boot feature. This design is demonstrated on the  [Altera® Stratix® 10 H-Tile SoC FPGA Development Kit (DK-SOC-1SSX-H-D)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/stratix/10-sx.html)  but can be easily ported to other boards as well. 
 
 This demo design requires: 
 
 - QKY file to program virtual key for SDM authentication 
-- Signed RBF file (configuration bitstream) that consists of Intel Stratix 10 GHRD and U-boot FSBL 
+- Signed RBF file (configuration bitstream) that consists of Altera® Stratix 10 GHRD and U-boot FSBL 
 - U-boot FSBL and SSBL with Verified Boot features 
 - Linux LTSI 
 
 ## Overview 
 
-The main purpose of a secure boot system is to ensure that the software running in the Hard Processor System (HPS) is trusted. Upon power-up, a trusted first stage of the boot will be executed - subsequent stages are only loaded and executed if it is authenticated by the current boot stage. In the Intel Stratix® 10 SoC  device, the Secure Device Manager (SDM) is the entry point for all configuration and booting scenarios. As such, the SDM is the root of trust and will be authenticating the configuration bitstream before any HPS software is loaded. 
+The main purpose of a secure boot system is to ensure that the software running in the Hard Processor System (HPS) is trusted. Upon power-up, a trusted first stage of the boot will be executed - subsequent stages are only loaded and executed if it is authenticated by the current boot stage. In the Altera® Stratix® 10 SoC  device, the Secure Device Manager (SDM) is the entry point for all configuration and booting scenarios. As such, the SDM is the root of trust and will be authenticating the configuration bitstream before any HPS software is loaded. 
 
-**Note:** In this demo design, only the authentication feature of the SDM is being demonstrated. The SDM supports other security features such as bitstream encryption, Physically Unclonable Function (PUF), and many more. For more information regarding the SDM or Intel Stratix® 10 security features, refer to the [Intel Stratix 10 Device Security User Guide](https://cdrdv2.intel.com/v1/dl/getContent/774240?fileName=ug-s10-security-683642-774240.pdf). 
+**Note:** In this demo design, only the authentication feature of the SDM is being demonstrated. The SDM supports other security features such as bitstream encryption, Physically Unclonable Function (PUF), and many more. For more information regarding the SDM or Altera® Stratix® 10 security features, refer to the [Altera® Stratix 10 Device Security User Guide](https://cdrdv2.intel.com/v1/dl/getContent/774240?fileName=ug-s10-security-683642-774240.pdf). 
 
 A detailed diagram of the authenticated boot flow is shown below: 
 
@@ -25,7 +25,7 @@ Detailed explanation of each Boot Stage
 
 1. Power on reset
 
-- Upon power up, the SDM will read the security state of the eFuses and obtain the configuration bitstream from the boot source (as determined by the MSEL pins). By default, all SDM firmware authentication is enforced when user creates the configuration bitstream in Intel Quartus Prime Pro. 
+- Upon power up, the SDM will read the security state of the eFuses and obtain the configuration bitstream from the boot source (as determined by the MSEL pins). By default, all SDM firmware authentication is enforced when user creates the configuration bitstream in Altera® Quartus Prime Pro. 
 
 2. SDM
 
@@ -129,7 +129,7 @@ CONFIG_SPL_HASH_SUPPORT=y
 CONFIG_RSA=y 
 CONFIG_SPL_RSA=y 
 CONFIG_SHA256=y 
-EOF 
+EOF
 make clean && make mrproper 
 make socfpga_stratix10_defconfig 
 ./scripts/kconfig/merge_config.sh -O ./ ./.config ./config-fragment-stratix10 
@@ -452,7 +452,7 @@ Trying to boot from MMC1
 NOTICE: BL31: bl31_setup 
 NOTICE: BL31: bl31_plat_arch_setup 
 NOTICE: BL31: v2.8.1(release):QPDS23.2_REL_GSRD_PR 
-NOTICE: BL31: Built : 14:09:49, Dec 8 2023 U-Boot 2023.07-rc6-30089-gdab86d36f1-dirty (Jan 08 2024 - 21:05:44 -0600)socfpga_stratix10 CPU: Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53) 
+NOTICE: BL31: Built : 14:09:49, Dec 8 2023 U-Boot 2023.07-rc6-30089-gdab86d36f1-dirty (Jan 08 2024 - 21:05:44 -0600)socfpga_stratix10 CPU: Altera® FPGA SoC FPGA Platform (ARMv8 64bit Cortex-A53) 
 Model: SoCFPGA Stratix 10 SoCDK 
 DRAM: 2 GiB (effective 4 GiB) 
 Core: 27 devices, 22 uclasses, devicetree: separate 

@@ -1,6 +1,6 @@
 # **General-Purpose Timers Driver for Hard Processor System**
 
-Last updated: **October 20, 2025** 
+Last updated: **November 07, 2025** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clocksource/dw_apb_timer.c)
 
@@ -10,7 +10,7 @@ Last updated: **October 20, 2025**
 
 The Hard Processor System (HPS) provides four 32-bit general-purpose timers connected to the level 4 (L4) peripheral bus. The timers optionally generate an interrupt when the 32-bit binary count-down timer reaches zero.
 
-For more information please refer to the [Intel Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
+For more information please refer to the [Altera® Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
 
 ![apb_timer_block_diagram](images/HPS_Timer_block_diagram.png){: style="height:450px"}
 

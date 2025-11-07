@@ -75,7 +75,7 @@ The diagram below illustrates the build flow used for this example.
 The end results of the build flow are these.
 
 - Initial flash image: contains the factory image, an application image and two empty application image partitions aka slots. 
-- SD card image: contains SSBL (U-Boot), ATF (Arm Trusted Firmware), Linux device tree, Linux kernel, Linux rootfs with the Intel RSU driver, LIBRSU, RSU Client, an application image, a factory update image and a decision firmware update image. 
+- SD card image: contains SSBL (U-Boot), ATF (Arm Trusted Firmware), Linux device tree, Linux kernel, Linux rootfs with the Altera® RSU driver, LIBRSU, RSU Client, an application image, a factory update image and a decision firmware update image. 
 
 **Note:** To build binaries for a different development kit than the one used in this page, please refer to the [Building the Hardware Projects](#building-the-hardware-projects) section in the corresponding  GSRD page for that development kit, which is the section that may differ from the instructions presented here.
 
@@ -819,7 +819,7 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 
     U-Boot 2024.01-33547-g098abd8f13-dirty (Aug 19 2024 - 12:15:42 -0500)socfpga_agilex
     
-    CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
+    CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
     Model: SoCFPGA Agilex SoCDK
     DRAM:  2 GiB (effective 8 GiB)
     Core:  28 devices, 23 uclasses, devicetree: separate

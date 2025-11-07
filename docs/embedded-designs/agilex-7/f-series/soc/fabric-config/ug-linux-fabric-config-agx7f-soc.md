@@ -22,7 +22,7 @@ Two different examples are provided:
 * Altera&trade; Agilex&trade; 7 FPGA F-Series Transceiver-SoC Development Kit P-Tile E-Tile ordering code DK-SI-AGF014EB:  
   * OOBE/SD HPS Daughtercard
   * Mini USB cable for serial output
-  * Micro USB cable for on-board Intel&reg; FPGA Download Cable II
+  * Micro USB cable for on-board Altera® FPGA Download Cable II
   * SDM QSPI Bootcard with MT25QU02G flash device 
 * Host PC with:  
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.

@@ -11,7 +11,7 @@
 
 PCIe root port is the downstream port of Root Complex which establish the PCIe link with any PCIe Endpoint or PCIe Bridge.
 
-This reference design demonstrates a PCIe root port running on Intel Agilex™ 7 FPGA M-Series FPGA Transceiver-SoC Development Kit connected to end point. A Gen5x4 link is shown.
+This reference design demonstrates a PCIe root port running on Altera® Agilex™ 7 FPGA M-Series FPGA Transceiver-SoC Development Kit connected to end point. A Gen5x4 link is shown.
 
 Refer to the [GitHub repository](https://github.com/altera-fpga/agilex7-ed-pcie-rp) for the Quartus Project and Yocto Project files.
 
@@ -28,7 +28,7 @@ Refer to the [GitHub repository](https://github.com/altera-fpga/agilex7-ed-pcie-
 
 - Tools and software.
   * System with supported Linux distribution with Ubuntu 22.04 (LTS)
-  * Intel ® Quartus ®Prime Design Suite software 24.3 version 
+  * Altera® Quartus® Prime Design Suite software 24.3 version 
   * Serial terminal application such as Putty
 
 
@@ -44,11 +44,11 @@ Refer to the [GitHub repository](https://github.com/altera-fpga/agilex7-ed-pcie-
 
 ## Helpful Reference Documentation 
 
-* [Intel Agilex ® 7 FPGA M-Series Development Kit – HBM2e](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/agm039.html)
+* [Altera® Agilex ® 7 FPGA M-Series Development Kit – HBM2e](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/agm039.html)
 
-* [Multi Channel DMA Intel ® FPGA IP for PCI Express User Guide](https://www.intel.com/content/www/us/en/docs/programmable/683821/24-2/before-you-begin.html)
+* [Multi Channel DMA Altera® FPGA IP for PCI Express User Guide](https://www.intel.com/content/www/us/en/docs/programmable/683821/24-2/before-you-begin.html)
 
-* [R-Tile Avalon ® Intel ® FPGA IP for PCI Express](https://www.intel.com/content/www/us/en/docs/programmable/683501/24-3/about-the-r-tile-streaming-fpga-ip-for.html)
+* [R-Tile Avalon® Altera® FPGA IP for PCI Express](https://www.intel.com/content/www/us/en/docs/programmable/683501/24-3/about-the-r-tile-streaming-fpga-ip-for.html)
 
  
 
@@ -59,7 +59,7 @@ Here are the steps to build either SW and HW files:
 - [SW_Readme](https://github.com/altera-fpga/agilex7-ed-pcie-rp/blob/main/src/sw/README.md)
 - [HW_Readme](https://github.com/altera-fpga/agilex7-ed-pcie-rp/tree/main/src/hw)
 
-Both links show how to build the files needed for the project, acording with the [Intel® SoC FPGA Golden Software Reference Design (GSRD)](https://github.com/altera-opensource/gsrd-socfpga)
+Both links show how to build the files needed for the project, acording with the [Altera® SoC FPGA Golden Software Reference Design (GSRD)](https://github.com/altera-opensource/gsrd-socfpga)
 
 ## Hardware Description
 
@@ -111,7 +111,7 @@ The instructions from this section present how to get the boot up process of the
 	```bash
 	quartus_pgm -c 1 -m jtag -o p;MY_DESIGN.hps.rbf@1
 	```
-	Using the Intel ® Quartus ®Prime Programer 24.3 version GUI:
+	Using the Altera® Quartus ®Prime Programer 24.3 version GUI:
 	
 	
 	
@@ -198,7 +198,7 @@ The instructions from this section present how to get the boot up process of the
     NOTICE: BL31: Built : 01:18:01, Jan 26 2024
       
     U-Boot 2023.10 (Feb 02 2024 - 07:15:25 +0000)socfpga_agilex7
-    CPU:  Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
+    CPU:  Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
     Model: SoCFPGA Agilex7-M SoCDK
     DRAM: 2 GiB
     Core: 27 devices, 22 uclasses, devicetree: separate
@@ -865,7 +865,7 @@ dcache flush; fpga load 0 $loadaddr $filesize; bridge enable;
             Starting Telephony service...
     [  OK  ] Started Serial Getty on ttyS0.
     [  OK  ] Reached target Login Prompts.
-             Starting Intel SoCFPGA GSRD initialization...
+             Starting Altera SoCFPGA GSRD initialization...
     [    6.350702] audit: type=1334 audit(1706434961.744:6): prog-id=9 op=LOAD
     [    6.357503] audit: type=1334 audit(1706434961.752:7): prog-id=10 op=LOAD
             Starting User Login Management...

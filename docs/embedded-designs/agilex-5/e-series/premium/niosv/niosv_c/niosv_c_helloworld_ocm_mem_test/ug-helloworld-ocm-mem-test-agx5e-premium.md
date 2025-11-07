@@ -1,152 +1,285 @@
 
 
+
+![Nios V Processor Header](../../devkit-img/niosv-header.png?raw=true)
+
 ## Introduction
 
-### Nios V/c Helloworld OCM Memory test Design Overview
+### Nios® V/c Helloworld On-Chip Memory Memory Test Design Overview
 
- This design prints a simple Hello World message and performs a simple OCM memory test for the Agilex™ 5 FPGA E-Series 065B Premium Development Kit.
+ This design demonstrates a simple Hello World message and performs a simple On-Chip Memory test with Nios® V/c processor in Agilex™ 5 FPGA E-Series 065B Premium Development Kit. </br>
+ The design is built with basic peripherals required for simple application execution:
+ - JTAG UART for serial output.
 
 ### Prerequisites
 
- - Agilex™ 5 FPGA E-Series 065B Premium Development Kit, ordering code DK- A5E065BB32AES1. Refer to the board documentation for more information about the development kit.
+ - Agilex™ 5 FPGA E-Series 065B Premium Development Kit, ordering code DK- A5E065BB32AES1. </br> Refer to the board documentation for more information about the development kit.
  - Mini and Micro USB Cable. Included with the development kit.
- - Host PC with 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the design.
+ - Host PC with 64 GB of RAM. Less will be fine for only exercising the prebuilt binaries, and not rebuilding the design.
+ - Quartus® Prime Pro Edition Software version 25.3
+ - Ashling* RiscFree* IDE for Altera® FPGAs
  
 ### Release Contents  
 
-#### Binaries
- - Prebuilt binaries are located [here](https://github.com/altera-fpga/agilex5e-nios-ed/blob/rel/25.1.0/niosv_c/niosv_c_helloworld_ocm_mem_test/ready_to_test).
- - The sof and elf files required to run the design can be found in "ready_to_test" folder 
- - Program the sof and download the elf file on board
+Every Nios V processor design example is maintained based on this folder structure. </br>
+Here is the Github link to root directory of this design example: [Nios® V/c Helloworld On-Chip Memory Memory Test Design Github link](https://github.com/altera-fpga/agilex5e-nios-ed/tree/rel/25.3.0/niosv_c/niosv_c_helloworld_ocm_mem_test)
 
-### Nios® V/c Helloworld OCM Memory test Design Archiecture
- This example design includes a Nios® V/c processor connected to the On Chip RAM-II, JTAG UART IP, Parallel-IO and System ID peripheral core. The objective of the design is to accomplish data transfer between the processor and soft IP peripherals.
+```mermaid 
+---
+title: Release Contents File Structure
+config:
+  flowchart:
+    curve: linear
+---
+
+graph LR
+    A[niosv_c_helloworld_ocm_mem_test] --> B[docs]
+    A --> C[img]
+    A --> D[ready_to_test]
+    A --> E[sources]
+    B -->|contains| F{{Design Example MD file}}
+    C -->|contains| G{{Figures or Illustrations}}
+    D -->|contains| H{{Prebuilt Binary Files}}
+    E --> I[hw]
+    E --> J[scripts]
+    E --> K[sw]
+    I -->|contains| M{{Custom Hardware Design Files}}
+    J -->|contains| N{{Scripts to Generate Hardware Design}}
+    K -->|contains| P{{Custom Software Source Code}}
+
+```
+
+## Nios® V/c Helloworld On-Chip Memory Memory Test
+ This example design includes a Nios® V/c processor connected to the On-Chip RAM II, JTAG UART IP and System ID peripheral core. </br>
+ The objective of the design is to accomplish data transfer between the processor and soft IP peripherals:
+ - Prints a Hello World message and memory test result thru JTAG UART IP.
+
+```mermaid 
+---
+title: Design Block Diagram
+config:
+  flowchart:
+    curve: linear
+---
+
+flowchart LR
+subgraph top-level-subsystem
+    Z[Clock Source]
+    Y[Reset Source]
+subgraph processor-subsystem
+    A[Nios V/c Processor]
+    A <--> B(Bus Interface : AXI / AvMM Interface)
+    B <--> C[On-Chip RAM II]
+    B <--> D[JTAG UART]
+    B ---> F[System ID]
+end
+end
+Z --> processor-subsystem
+Y --> processor-subsystem
+```
+
+### Nios® V/c Processor IP
+- 32-bit Compact microcontroller focus on minimal logic area utilization.
+- Implements RV32I instruction set instruction set.
+- Supports non-pipelined datapath.
+- It is a customizable soft-core processor, that can be tailored to meet specific application requirements, providing flexibility and scalability in embedded system designs.
  
- ![Block Diagram](https://github.com/altera-fpga/agilex5e-nios-ed/blob/rel/25.1.0/niosv_c/niosv_c_helloworld_ocm_mem_test/img/hello_world_ocm.png?raw=true)
+### Embedded Peripheral IP Cores
+The following embedded peripheral IPs are used in this design:
+- On-Chip RAM II IP
+- JTAG UART IP
+- System ID IP
 
-#### Nios® V/c Processor
-- Microcontroller- Balanced (For interrupt driven baremetal and RTOS code)
-- Nios® V/c processor is highly customizable and can be tailored to meet specific application requirements, providing flexibility and scalability in embedded system designs.
- 
-#### IP Cores
- The following IPs are used in this Platform Designer component of the design:
-- Nios® V/c soft processor core
+### System Components
+The following components are used in this design:
+- Clock Source (Clock Bridge with IO PLL)
+- Reset Source (Reset Release IP)
 
-- On Chip RAM-II
-
-- JTAG UART
-
-- Parallel-IO
-
-- System ID
-
-- Clock Bridge, Reset Controller
-
-
-### Hardware Setup
-
-Refer to [Agilex™ 5 FPGA Premium Development Kit User Guide](https://www.intel.com/content/www/us/en/docs/programmable/814550.html) to setup the hardware connection.
-
-
-### Address Map Details
-
-#### Nios V Address Map
+### Nios® V Processor Address Map Details
  |Address Offset	|Size (Bytes)	|Peripheral	| Description|
   |-|-|-|-|
   |0x0000_0000|1MB|On-Chip RAM|To store application|
   |0x0010_0008|8|JTAG UART|Communication between a host PC and the Nios V processor system|
-  |0x0010_0000|8|System ID|Hardware configuration system ID (0x000000a5)|
+  |0x0010_0000|8|System ID|Hardware configuration system ID (0xa5)|
   ||||
 
+## Development Kit Setup
 
-## User Flow 
+Refer to [Agilex™ 5 FPGA Premium Development Kit User Guide](https://www.intel.com/content/www/us/en/docs/programmable/814550.html) to setup the development kit.
 
- There are two ways to test the design based on use case. 
+![Development Kit](../../devkit-img/devkit.png?raw=true)
 
-   <h5> User Flow 1: Testing with Prebuild Binaries.</h5>
-   
-   <h5> User Flow 2: Testing Complete Flow.</h5>
+## Exercising Prebuilt Binaries
 
- |User Flow|Description|Required for [User flow 1](#user-flow-1-testing-with-prebuild-binaries)|Required for [User flow 2](#user-flow-2-testing-complete-flow)|
- |-|-|-|-|
- |Environment Setup|[Tools Download and Installation](#tools-download)|Yes|Yes|
- |Compilation|Hardware compilation|No|Yes|
- ||Software compilation|No|Yes|    
- |Programing|Program Hardware Binary SOF|Yes|Yes|
- ||Program Software Image ELF|Yes|Yes|
- |Testing|Open JTAG UART Terminal|Yes|Yes|
- ||Run simulation|Yes|Yes|
- ||||
+### Program Hardware Binary SOF
+1. Connect the development kit to the host PC using USB Blaster II.
+2. Change the JTAG clock frequency to 6 MHz, and probe the JTAGServer to get the JTAG scan chain.
 
-### Environment Setup
-
-#### Tools Download and Installation
-1. Quartus Prime Pro
-
- - Download the Quartus® Prime Pro Edition software version 25.1 from the FPGA Software Download Center webpage of the Intel website. Follow the on-screen instructions to complete the installation process. Choose an installation directory that is relative to the Quartus® Prime Pro Edition software installation directory.
- - Set up the Quartus tools in the PATH, so they are accessible without full path.
 ```console
-	export QUARTUS_ROOTDIR=~/intelFPGA_pro/25.1/quartus/
-	export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+jtagconfig --setparam 1 JtagClock 6M
+jtagconfig -d
 ```
 
-### Compilation 
+For example:
+```console
+ 1) Agilex 5E065B Premium DK
+  4BA06477   ARM_CORESIGHT_SOC_600 (IR=4)
+  0364F0DD   A5E(C065BB32AR0|D065BB32AR0) (IR=10)
+  020D10DD   VTAP10 (IR=10)
+    Design hash    2696B57EB10A539DFB3F
+    + Node 08586E00  (110:11) #0
+    + Node 0C006E00  JTAG UART #0
+    + Node 0C206E00  JTAG PHY #0
+    + Node 19104600  Nios II #0
+    + Node 30006E00  Signal Tap #0
+ 
+  Captured DR after reset = (4BA064770364F0DD020D10DD) [96]
+  Captured IR after reset = (100555) [24]
+  Captured Bypass after reset = (0) [3]
+  Captured Bypass chain = (0) [3]
+  JTAG clock speed auto-adjustment is enabled. To disable, set JtagClockAutoAdjust parameter to 0
+  JTAG clock speed 6 MHz
+```
 
-#### Hardware Compilation 
-- Invoke the `quartus_py` shell in the terminal
-- Run the following command in the terminal from top level project directory:
+3. Execute the following command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain earlier, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example. 
+
+```console
+quartus_pgm --cable=1 -m jtag -o 'p;ready_to_test/top.sof@2'
+```
+
+Note: The Nios V/c processor does not support RISC-V Debug Module. </br> Thus, the software application ELF file is converted into a HEX file, and memory initialized into the SOF file during Quartus project compilation. 
+
+### Run Serial Console
+You may proceed to to display the application printouts, and verify the design.
+
+```console
+juart-terminal -d 1 -c 1 -i 0 
+```
+
+For example, you should see similar display at the end of the application.
+
+![JTAG UART Display](./img/juart-terminal.png?raw=true)
+
+## Rebuilding the Design 
+
+### Generate Hardware Binary SOF, Software Image HEX and Memory Initialize the On-Chip RAM
+Run the following command in the terminal from the *source* directory. </br> 
+The script performs the following tasks, which generates the hardware binary SOF file of this design.
+
+1. Create a new project
+2. Create a new Platform Designer system
+3. Configure assignments and constraints
+4. Create a board support package (BSP) project.
+5. Create a Nios® V processor application project with Hello World source code.
+6. Build the Hello World application.
+7. Generate a software image HEX file.
+8. Compile the project to memory initialize the On-Chip RAM.
+9. Generate a hardware binary SOF file
  
 ```console
 quartus_py ./scripts/build_sof.py
 ```
 
- - The quartus tool will compile the design and generate the output files
+Note: The Nios V/c processor does not support RISC-V Debug Module. </br> Thus, the software application ELF file is converted into a HEX file, and memory initialized into the On-Chip RAM during Quartus project compilation. 
 
-#### Software Compilation 
-Note: Clean the app build project before regenerating elf
-- To create software app, run the following commands in the terminal:
-```console
-niosv-bsp -c --quartus-project=hw/top.qpf --qsys=hw/qsys_top.qsys --type=hal --script=sw/bsp-update-small-driver.tcl sw/bsp/settings.bsp
-niosv-app --bsp-dir=sw/bsp --app-dir=sw/app --srcs=sw/app/main.c
-niosv-shell
-cmake -S ./sw/app -B sw/app/build -G "Unix Makefiles"
-make -C sw/app/build
-elf2hex sw/app/build/app.elf -b 0x0 -w 32 -e 0xfffff hw/onchip_mem.hex -r4
-```
-Note:The software can be compiled using the Ashling Visual Studio Code Extension for Altera FPGAs
+### Program Hardware Binary SOF
+1. Connect the development kit to the host PC using USB Blaster II.
+2. Change the JTAG clock frequency to 6 MHz, and probe the JTAGServer to get the JTAG scan chain.
 
-For information on the build process, please refer to the following document- [Ashling VSCode Extension](https://www.intel.com/content/www/us/en/docs/programmable/730783/current/ashling-visual-studio-code-extension.html)
-
-
-### Programing 
-Note: Reduce the JTAG clock frequency to 6MHz using the following command, before programming the sof file
 ```console
 jtagconfig --setparam 1 JtagClock 6M
+jtagconfig -d
 ```
 
-#### Program Hardware Binary SOF
-- Program the generated sof and then download the elf file on the board
-	
+For example:
 ```console
-quartus_pgm --cable=1 -m jtag -o 'p;ready_to_test/top.sof'
+ 1) Agilex 5E065B Premium DK
+  4BA06477   ARM_CORESIGHT_SOC_600 (IR=4)
+  0364F0DD   A5E(C065BB32AR0|D065BB32AR0) (IR=10)
+  020D10DD   VTAP10 (IR=10)
+    Design hash    2696B57EB10A539DFB3F
+    + Node 08586E00  (110:11) #0
+    + Node 0C006E00  JTAG UART #0
+    + Node 0C206E00  JTAG PHY #0
+    + Node 19104600  Nios II #0
+    + Node 30006E00  Signal Tap #0
+ 
+  Captured DR after reset = (4BA064770364F0DD020D10DD) [96]
+  Captured IR after reset = (100555) [24]
+  Captured Bypass after reset = (0) [3]
+  Captured Bypass chain = (0) [3]
+  JTAG clock speed auto-adjustment is enabled. To disable, set JtagClockAutoAdjust parameter to 0
+  JTAG clock speed 6 MHz
 ```
 
-### Testing
+3. Execute the following command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain earlier, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.
 
-#### Open JTAG UART Terminal
-- Verify the output on the terminal by using the following command in the terminal:
-	
+```console
+quartus_pgm --cable=1 -m jtag -o 'p;hw/output_files/top.sof@2'
+```
+
+### Run Serial Console
+You may proceed to to display the application printouts, and verify the design.
+
 ```console
 juart-terminal -d 1 -c 1 -i 0 
 ```
 
-#### Running simulation
-Simulation is enabled for this design where the memory is initialized with the application hex. Use the following commands to run the simulation:
+For example, you should see similar display at the end of the application.
+
+![JTAG UART Display](./img/juart-terminal.png?raw=true)
+
+## Simulating the Design
+
+### Generate Hardware Design-Under-Test (DUT) and Testbench System
+Run the following command in the terminal from the *source* directory. </br> 
+The commands below perform the following tasks, which generates the hardware DUT and testbench system.
+
+1. Create a new project
+2. Create a new Platform Designer system
+3. Create a board support package (BSP) project.
+4. Create a Nios® V processor application project with Hello World source code.
+5. Build the Hello World application.
+6. Generate a software image HEX file.
+7. Generate testbench system.
+ 
 ```console
-cp ./sw/app/build/onchip_mem.hex ./qsys_top_tb/qsys_top_tb/sim/mentor 
+quartus_py ./scripts/build_sof.py
+qsys-generate hw/qsys_top.qsys --testbench=STANDARD --testbench-simulation=VERILOG
+```
+
+### Check Simulation Files 
+You have generated your system and created all the files necessary for simulation.
+| File | Description |
+| - | - |
+| Working Directory/hw/qsys_top_tb | Generated testbench system |
+| Working Directory/hw/qsys_top_tb/qsys_top_tb/sim/mentor/msim_setup.tcl | Questa simulation setup script |
+| Working Directory/hw/onchip_mem.hex | On-Chip RAM II memory initialization file |
+
+### Run Simulation
+With all the necessary simulation files, you can start the simulation.
+1. Copy the memory initialization file into *mentor* folder.
+2. Change directory to the same *mentor* folder.
+3. Open the **Questa for Altera FPGA** simulator using the command *vsim*.
+
+```console
+cp hw/onchip_mem.hex hw/qsys_top_tb/qsys_top_tb/sim/mentor 
 cd hw/qsys_top_tb/qsys_top_tb/sim/mentor/
-vsim &
+vsim
+```
+
+4. In the **Questa for Altera FPGA** software, run the following commands in the **Transcript**.
+
+```console
 source msim_setup.tcl
 ld_debug
-run -all
 ```
+
+5. Run the simulation with *run -all* command. <br/>
+For example, you should see similar display at the start of the simulation.
+
+![Simulation](./img/simulation.png?raw=true)
+
+
+![Nios V Processor Header](../../devkit-img/niosv-header.png?raw=true)
+

@@ -4,7 +4,7 @@
 
 ## Overview 
 
-This page presents the Golden System Reference Design for the [Intel® Agilex™ I-Series Transceiver-SoC Development Kit (4x F-Tile)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agi027.html) ordering code DK-SI-AGI027FC. The GSRD demonstrates the following: 
+This page presents the Golden System Reference Design for the [Altera® Agilex™ 7 I-Series Transceiver-SoC Development Kit (4x F-Tile)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agi027.html) ordering code DK-SI-AGI027FC. The GSRD demonstrates the following: 
 
 - FPGA side 
   - LEDs connected to GPIO soft IP modules 
@@ -23,27 +23,27 @@ This page presents the Golden System Reference Design for the [Intel® Agilex™
 
 The following are required in order to be able to fully exercise the GSRD:
 
-- Intel&reg; Agilex&trade; I-Series Transceiver-SoC Development Kit (4x F-Tile).
+- Altera&reg; Agilex&trade; 7 I-Series Transceiver-SoC Development Kit (4x F-Tile).
   - SD/MMC HPS Daughtercard 
   - Mini USB cable for serial output 
-  - USB Type B cable for on-board Intel FPGA Download Cable II 
+  - USB Type B cable for on-board Altera® FPGA Download Cable II 
   - Micro SD card (4GB or greater)  
 - Host PC with:
   - Linux - Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too 
   - Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows) 
   - Micro SD card slot or Micro SD card writer/reader 
-  - Intel Quartus Prime Pro Edition 
+  - Altera Quartus Prime Pro Edition 
   - Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 
 - Local Ethernet network, with DHCP server (will be used to provide IP address to the board) 
 
-This page applies to the latest version of the Development Kit, with ordering code DK-SI-AGI027FC. You can identify your board by reviewing the the table in [Intel Agilex™ I-Series Transceiver-SoC Development Kit User Guide](https://www.intel.com/content/www/us/en/docs/programmable/721605/current/overview.html): 
+This page applies to the latest version of the Development Kit, with ordering code DK-SI-AGI027FC. You can identify your board by reviewing the the table in [Altera Agilex™ 7 I-Series Transceiver-SoC Development Kit User Guide](https://www.intel.com/content/www/us/en/docs/programmable/721605/current/overview.html): 
 
 | Development Kit Version | Ordering Code | Device Part Number | Serial Number Identifier | Suppported by GSRD |
 | :-- | :-- | :-- | :-- | :-- | 
-| Intel Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (Production 1 4x F-Tile) | DK-SI-AGI027FA (Power Solution 2) | AGIB027R31B1E1V | 2000001 | Yes 
-| Intel Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (Production 2) | DK-SI-AGI027FC (Power Solution 2) | AGIB027R31B1E1VB | 3000001 | Yes |
-| Intel Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (ES1 4x F-Tile) | DK-SI-AGI027FB (Power Solution 1) | AGIB027R31B1E1VAA | 0001001 | Yes |
-| Intel Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (ES) | DK-SI-AGI027FES (Power Solution 1) | AGIB027R31B1E2VR0 | 0000001 | No | 
+| Altera Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (Production 1 4x F-Tile) | DK-SI-AGI027FA (Power Solution 2) | AGIB027R31B1E1V | 2000001 | Yes 
+| Altera Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (Production 2) | DK-SI-AGI027FC (Power Solution 2) | AGIB027R31B1E1VB | 3000001 | Yes |
+| Altera Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (ES1 4x F-Tile) | DK-SI-AGI027FB (Power Solution 1) | AGIB027R31B1E1VAA | 0001001 | Yes |
+| Altera Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (ES) | DK-SI-AGI027FES (Power Solution 1) | AGIB027R31B1E2VR0 | 0000001 | No | 
 
 For ordering codes DK-SI-AGI027FA, and DK-SI-AGI027FB, refer to a previous version of this page: [https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/](https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/)
 
@@ -51,7 +51,7 @@ The U-Boot and Linux compilation, Yocto compilation and creating the SD card ima
 
 ### Release Notes 
 
-The Intel FPGA HPS Embedded Software release notes can be accessed from the following link: [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR)
+The Altera® FPGA HPS Embedded Software release notes can be accessed from the following link: [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR)
 
 ### Binaries
 
@@ -105,7 +105,7 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 and the follo
 
 ![](images/fm87-devkit.jpg) 
 
-Set up the board default settings, as listed by the the [Intel Agilex™ I-Series Transceiver-SoC Development Kit User Guide](https://www.intel.com/content/www/us/en/docs/programmable/721605/current/overview.html), "Default Settings" section: 
+Set up the board default settings, as listed by the the [Altera Agilex™ 7 I-Series Transceiver-SoC Development Kit User Guide](https://www.intel.com/content/www/us/en/docs/programmable/721605/current/overview.html), "Default Settings" section: 
 
 | Switch | Default Position | 
 | :-- | :-- | 

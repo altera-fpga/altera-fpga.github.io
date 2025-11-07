@@ -138,7 +138,7 @@ NOTICE:  BL31: Boot Core = 0
 NOTICE:  BL31: CPU ID = 81000000
 NOTICE:  BL31: v2.9.1(release):QPDS23.4_REL_GSRD_PR
 NOTICE:  BL31: Built : 18:22:43, Jul  2 2024
-[00:00:00.219,000] <inf> clock_control_agilex5: Intel Agilex5 clock driver initialized!
+[00:00:00.219,000] <inf> clock_control_agilex5: Altera® Agilex5 clock driver initialized!
 [00:00:00.000,000] <inf> flash_cadence_ll: Initializing Qspi
 [00:00:00.000,000] <inf> flash_cadence_ll: QSPI Capacity: 10000000
 [00:00:00.000,000] <inf> flash_cadence_ll: Flash size: 268435456 Bytes

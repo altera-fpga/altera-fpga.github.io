@@ -22,10 +22,10 @@ This page presents the Golden System Reference Design for the [Altera&reg; Agile
 
 The following are required in order to be able to fully exercise the GSRD: 
 
-- Intel® Agilex&trade; F-Series FPGA Development Kit (2x F-Tile), ordering code DK-DEV-AGF023FA
+- Altera® Agilex&trade 7; F-Series FPGA Development Kit (2x F-Tile), ordering code DK-DEV-AGF023FA
   - SD/MMC HPS Daughtercard 
   - Mini USB cable for serial output 
-  - Micro USB cable for on-board Intel FPGA Download Cable II 
+  - Micro USB cable for on-board Altera® FPGA Download Cable II 
   - Micro SD card (4GB or greater) 
 - Host PC with 
   - Linux - Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too 
@@ -38,7 +38,7 @@ The U-Boot and Linux compilation, Yocto compilation and creating the SD card ima
 
 ### Release Notes 
 
-The Intel FPGA HPS Embedded Software release notes can be accessed from the following link: [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR )
+The Altera® FPGA HPS Embedded Software release notes can be accessed from the following link: [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR )
 
 ### Prebuilt Binaries for DK-DEV-AGF023FA
 
@@ -97,7 +97,7 @@ Set up the board switches:
 | SW5 | OFF | 
 | SW6 | OFF | 
 
-For more details about the settings, consult the [Intel® Agilex&trade; F-Series FPGA (Two F-Tiles) Development Kit User Guide](https://www.intel.com/content/www/us/en/docs/programmable/739942/current/overview.html). 
+For more details about the settings, consult the [Altera® Agilex&trade; 7 F-Series FPGA (Two F-Tiles) Development Kit User Guide](https://www.intel.com/content/www/us/en/docs/programmable/739942/current/overview.html). 
 
 #### Write QSPI Image 
 

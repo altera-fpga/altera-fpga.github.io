@@ -24,7 +24,7 @@ The following are required in order to be able to fully exercise the GSRD:
 - SD/MMC HPS Daughtercard
   - SDM QSPI Bootcard
   - Mini USB cable for serial output
-  - Micro USB cable for on-board Intel FPGA Download Cable II
+  - Micro USB cable for on-board Altera® FPGA Download Cable II
   - Micro SD card (4GB or greater)
 - Host PC with
   - Linux - Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
@@ -37,9 +37,9 @@ You can determine your board version by referring to the following table from [h
 
 | Development Kit Version | Ordering Code | Device Part Number | Starting Serial Number |
 | :-- | :-- | :-- | --: |
-| Intel Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (Production 2 P-Tiles & E-Tiles) | DK-SI-AGF014EB | AGFB014R24B2E2V (Power Solution 2) | 00205001 |
-| Intel Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (Production 1 P-Tiles & E-Tiles) | DK-SI-AGF014EA | AGFB014R24B2E2V (Power Solution 1) | 0001101 |
-| Intel Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (ES P-Tiles & E-Tiles) | DK-SI-AGF014E3ES | AGFB014E3ES (Power Solution 1) | 0001001 |
+| Altera® Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (Production 2 P-Tiles & E-Tiles) | DK-SI-AGF014EB | AGFB014R24B2E2V (Power Solution 2) | 00205001 |
+| Altera® Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (Production 1 P-Tiles & E-Tiles) | DK-SI-AGF014EA | AGFB014R24B2E2V (Power Solution 1) | 0001101 |
+| Altera® Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (ES P-Tiles & E-Tiles) | DK-SI-AGF014E3ES | AGFB014E3ES (Power Solution 1) | 0001001 |
 
 The DK-SI-AGF014E3ES and DK-SI-AGF014EA are deprecated, and not supported anymore. Refer to previous versions of this page for more information about them.
 
@@ -49,7 +49,7 @@ The U-Boot and Linux compilation, Yocto compilation and creating the SD card ima
 
 #### Release Notes
 
-The Intel FPGA HPS Embedded Software release notes can be accessed from the following link: [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR)
+The Altera® FPGA HPS Embedded Software release notes can be accessed from the following link: [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR)
 
 #### Prebuilt Binaries
 
@@ -212,7 +212,7 @@ The following table presents a short description of the different boot stages:
 | Linux | Operating system |
 | Application | User application |
 
-For more information, please refer to [Intel Agilex™ Hard Processor System Technical Reference Manual](https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/hb/agilex/mnl-1100.pdf) (Booting and Configuration chapter).
+For more information, please refer to [Altera® Agilex™ Hard Processor System Technical Reference Manual](https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/hb/agilex/mnl-1100.pdf) (Booting and Configuration chapter).
 
 ## Exercise Prebuilt GSRD
 
@@ -639,7 +639,7 @@ The GSRD includes a web server running on the target board that can be used to e
 - Scrolling LEDs in a sequence
 - Displaying the current status of the LEDs
 
-The web page served by the web server also contains links to some relevant information on the Intel website.
+The web page served by the web server also contains links to some relevant information on the Altera® Website.
 
 Perform the following steps to connect to the web server running on the board:
 
@@ -780,8 +780,8 @@ Partial reconfiguration (PR) allows you to reconfigure a portion of the FPGA dyn
 Refer to the following fore more details about Partial Reconfiguration
 
 - User Guide
-  - [Intel Quartus Prime Pro Edition User Guide: Partial Reconfiguration](https://www.intel.com/content/dam/altera-www/global/en_US/pdfs/literature/ug/ug-qpp-pr.pdf)
-- Partial Reconfiguration for Intel FPGA Devices YouTube videos:
+  - [Altera® Quartus Prime Pro Edition User Guide: Partial Reconfiguration](https://www.intel.com/content/dam/altera-www/global/en_US/pdfs/literature/ug/ug-qpp-pr.pdf)
+- Partial Reconfiguration for Altera® FPGA Devices YouTube videos:
   - [Part1: Introduction & Project Assignments](https://www.youtube.com/watch?v=NAdn39EKWA0)
   - [Part2: Design Guidelines & Host Requirements](https://www.youtube.com/watch?v=drb0cB_TZ3Y)
   - [Part3: PR Host IP & Implementations](https://www.youtube.com/watch?v=DS4_xeLNG1c)

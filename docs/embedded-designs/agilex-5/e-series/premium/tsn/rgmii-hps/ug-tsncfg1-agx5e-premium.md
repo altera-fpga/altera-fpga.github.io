@@ -97,8 +97,8 @@ Host PC with:
 *   Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.
 *   Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
 *   Altera&reg; Quartus&reg; Prime Pro Edition version. Used to recompile the hardware design. If only writing binaries is required, then the smaller Altera&reg; Quartus&reg; Prime Pro Edition Programmer is sufficient.
-*   The prebuilt binaries were built using Quartus version 25.1.1
-*   The instructions for rebuilding the binaries use Quartus version 25.1.1
+*   The prebuilt binaries were built using Altera&reg; Quartus&reg; 25.3
+*   The instructions for rebuilding the binaries use Altera&reg; Quartus&reg; 25.3
 *   Local Ethernet network, with DHCP server
 *   Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -112,7 +112,7 @@ This page documents the following:
 
 #### Prebuilt Binaries
 
-The Agilex 5 Premium Development Kit 25.1.1 Example Design binaries are located at
+The Agilex 5 Premium Development Kit 25.3 Example Design binaries are located at
 [https://releases.rocketboards.org/2025.10/](https://releases.rocketboards.org/2025.10/)
 
 | HPS Daughter Card | Boot Source | Link |
@@ -189,7 +189,7 @@ There are two ways to test the design based on use case.
 #### Tools Download and Installation
 
 1. Quartus Prime Pro
-     - Please download and install the Quartus&reg; Prime Pro Edition version 25.1.1 version software. 
+     - Please download and install the Quartus&reg; Pro 25.3 version software. 
 
 2. Win32 Disk Imager
     - Please download and install the latest Win32 Disk Imager, available at [https://win32diskimager.org/](https://win32diskimager.org/)
@@ -226,7 +226,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 Note: The following must be re-done for fresh terminal session
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.1.1/quartus/
+export export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -264,7 +264,7 @@ wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3_
 unzip a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 rm -f a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 make legacy_baseline-build
-make legacy_baseline-sw-build
+pushd software/hps_debug && ./build.sh && popd
 quartus_pfg -c output_files/legacy_baseline.sof \
   output_files/legacy_baseline_hps_debug.sof \
   -o hps_path=software/hps_debug/hps_wipe.ihex
@@ -471,7 +471,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 
 <h5>For Prebuilt:</h5>
 
-- Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2025.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2025.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
+- Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2025.10/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2025.10/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
 
 <h5>For compiled image:</h5>
 

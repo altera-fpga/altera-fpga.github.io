@@ -63,7 +63,7 @@ The following are required:
 * Altera Agilex&trade; 7 FPGA F-Series Transceiver-SoC Development Kit (Production 1 P-Tiles & E-Tiles) ordering code DK-SI-AGF014EB.
   * SD/MMC HPS Daughtercard
   * Mini USB cable for serial output
-  * Micro USB cable for on-board Intel&reg; FPGA Download Cable II
+  * Micro USB cable for on-board Altera®; FPGA Download Cable II
   * Micro SD card
 * Host PC with:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.

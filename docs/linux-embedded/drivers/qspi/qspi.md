@@ -1,6 +1,6 @@
 # **QSPI Driver for Hard Processor System (HPS)**
 
-Last updated: **October 20, 2025** 
+Last updated: **November 07, 2025** 
 
 **Upstream Status**: Not Upstreamed
 
@@ -19,7 +19,7 @@ The Quad Serial Peripheral Interface (QSPI) driver manages the QSPI controller i
 * Programmable write-protected regions
 * Programmable delays between transactions
 
-To find out more about the QSPI controller within the HPS please refer to the [Intel Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346). 
+To find out more about the QSPI controller within the HPS please refer to the [Altera® Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346). 
 
 ## **Driver Capabilities**
 

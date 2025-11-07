@@ -16,7 +16,7 @@ The following are required in order to be able to fully exercise the Xen GSRD:
 - SD/MMC HPS Daughtercard
   - SDM QSPI Bootcard
   - Mini USB cable for serial output
-  - Micro USB cable for on-board Intel FPGA Download Cable II
+  - Micro USB cable for on-board Altera® FPGA Download Cable II
   - Micro SD card (4GB or greater)
 - Host PC with
   - Linux - Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
@@ -29,9 +29,9 @@ You can determine your board version by referring to the following table from [h
 
 | Development Kit Version | Ordering Code | Device Part Number | Starting Serial Number |
 | :-- | :-- | :-- | --: |
-| Intel Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (Production 2 P-Tiles & E-Tiles) | DK-SI-AGF014EB | AGFB014R24B2E2V (Power Solution 2) | 00205001 |
-| Intel Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (Production 1 P-Tiles & E-Tiles) | DK-SI-AGF014EA | AGFB014R24B2E2V (Power Solution 1) | 0001101 |
-| Intel Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (ES P-Tiles & E-Tiles) | DK-SI-AGF014E3ES | AGFB014E3ES (Power Solution 1) | 0001001 |
+| Altera® Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (Production 2 P-Tiles & E-Tiles) | DK-SI-AGF014EB | AGFB014R24B2E2V (Power Solution 2) | 00205001 |
+| Altera® Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (Production 1 P-Tiles & E-Tiles) | DK-SI-AGF014EA | AGFB014R24B2E2V (Power Solution 1) | 0001101 |
+| Altera® Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (ES P-Tiles & E-Tiles) | DK-SI-AGF014E3ES | AGFB014E3ES (Power Solution 1) | 0001001 |
 
 The DK-SI-AGF014E3ES and DK-SI-AGF014EA are deprecated, and not supported anymore.
 
