@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#generic-serial-flash-interface-intel-fpga-ip-driver" class="md-skip">
+        <a href="#generic-serial-flash-interface-altera-fpga-ip-driver" class="md-skip">
           Skip to content
         </a>
       
@@ -2523,6 +2523,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
@@ -3350,17 +3352,69 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_7_3_3" id="__nav_7_3_3_label" tabindex="0">
-          Intel Simics Virtual Platform Examples
+          E-Series 013B Development Kit
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_7_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          E-Series 013B Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../embedded-designs/agilex-5/e-series/013B/ug-gsrd-agx5e-013b/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_4" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_4" id="__nav_7_3_4_label" tabindex="0">
+          Intel Simics Virtual Platform Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_4">
           <span class="md-nav__icon md-icon"></span>
           Intel Simics Virtual Platform Examples
         </label>
@@ -4689,11 +4743,11 @@
   
 
 
-<h1 id="generic-serial-flash-interface-intel-fpga-ip-driver"><strong>Generic Serial Flash Interface Intel FPGA IP Driver</strong><a class="headerlink" href="#generic-serial-flash-interface-intel-fpga-ip-driver" title="Permanent link">&para;</a></h1>
+<h1 id="generic-serial-flash-interface-altera-fpga-ip-driver"><strong>Generic Serial Flash Interface Altera® FPGA IP Driver</strong><a class="headerlink" href="#generic-serial-flash-interface-altera-fpga-ip-driver" title="Permanent link">&para;</a></h1>
 <p><strong>Upstream Status</strong>: <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/spi/spi-altera-dfl.c?h=master">Upstreamed</a></p>
 <p><strong>Devices supported</strong>: Stratix 10, Agilex 7</p>
 <h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>This driver is the DFL specific implementation of the Generic Serial Flash Interface Intel FPGA IP driver, which provides access to Serial Peripheral Interface (SPI) flash devices. This is a DFL bus driver for the Altera SPI master controller, which is connected to a SPI slave to Avalon bridge in an Intel Max10 BMC. It handles the probing for available DFL-enabled SPI devices, will initialize any discovered SPI devices, and allows you to read and write over an available interface. The driver supports writing both Configuration memory (configuration data for Active Serial configuration schemes) and General purpose memory. <a href="https://www.intel.com/content/www/us/en/docs/programmable/683419/23-1-20-2-3/user-guide.html">Generic Serial Flash Interface Intel® FPGA IP User Guide</a>. This driver also depends on the generic DFL driver.</p>
+<p>This driver is the DFL specific implementation of the Generic Serial Flash Interface Altera® FPGA IP driver, which provides access to Serial Peripheral Interface (SPI) flash devices. This is a DFL bus driver for the Altera SPI master controller, which is connected to a SPI slave to Avalon bridge in an Altera® Max10 BMC. It handles the probing for available DFL-enabled SPI devices, will initialize any discovered SPI devices, and allows you to read and write over an available interface. The driver supports writing both Configuration memory (configuration data for Active Serial configuration schemes) and General purpose memory. <a href="https://www.intel.com/content/www/us/en/docs/programmable/683419/23-1-20-2-3/user-guide.html">Generic Serial Flash Interface Altera® FPGA IP User Guide</a>. This driver also depends on the generic DFL driver.</p>
 <table>
 <thead>
 <tr>
@@ -4765,7 +4819,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 25, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 7, 2025</span>
       
         <br>
         Created:

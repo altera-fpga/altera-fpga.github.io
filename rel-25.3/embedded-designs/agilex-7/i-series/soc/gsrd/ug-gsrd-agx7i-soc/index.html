@@ -2438,6 +2438,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
@@ -3265,17 +3267,69 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_7_3_3" id="__nav_7_3_3_label" tabindex="0">
-          Intel Simics Virtual Platform Examples
+          E-Series 013B Development Kit
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_7_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          E-Series 013B Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/e-series/013B/ug-gsrd-agx5e-013b/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_4" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_4" id="__nav_7_3_4_label" tabindex="0">
+          Intel Simics Virtual Platform Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_4">
           <span class="md-nav__icon md-icon"></span>
           Intel Simics Virtual Platform Examples
         </label>
@@ -5129,7 +5183,7 @@
 
 <h1 id="hps-gsrd-user-guide-for-the-agilextm-7-fpga-i-series-transceiver-soc-development-kit-4x-f-tile">HPS GSRD User Guide for the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (4x F-Tile)<a class="headerlink" href="#hps-gsrd-user-guide-for-the-agilextm-7-fpga-i-series-transceiver-soc-development-kit-4x-f-tile" title="Permanent link">&para;</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>This page presents the Golden System Reference Design for the <a href="https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agi027.html">Intel® Agilex™ I-Series Transceiver-SoC Development Kit (4x F-Tile)</a> ordering code DK-SI-AGI027FC. The GSRD demonstrates the following: </p>
+<p>This page presents the Golden System Reference Design for the <a href="https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agi027.html">Altera® Agilex™ 7 I-Series Transceiver-SoC Development Kit (4x F-Tile)</a> ordering code DK-SI-AGI027FC. The GSRD demonstrates the following: </p>
 <ul>
 <li>FPGA side <ul>
 <li>LEDs connected to GPIO soft IP modules </li>
@@ -5151,10 +5205,10 @@
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
 <p>The following are required in order to be able to fully exercise the GSRD:</p>
 <ul>
-<li>Intel&reg; Agilex&trade; I-Series Transceiver-SoC Development Kit (4x F-Tile).<ul>
+<li>Altera&reg; Agilex&trade; 7 I-Series Transceiver-SoC Development Kit (4x F-Tile).<ul>
 <li>SD/MMC HPS Daughtercard </li>
 <li>Mini USB cable for serial output </li>
-<li>USB Type B cable for on-board Intel FPGA Download Cable II </li>
+<li>USB Type B cable for on-board Altera® FPGA Download Cable II </li>
 <li>Micro SD card (4GB or greater)  </li>
 </ul>
 </li>
@@ -5162,13 +5216,13 @@
 <li>Linux - Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too </li>
 <li>Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows) </li>
 <li>Micro SD card slot or Micro SD card writer/reader </li>
-<li>Intel Quartus Prime Pro Edition </li>
+<li>Altera Quartus Prime Pro Edition </li>
 <li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 </li>
 </ul>
 </li>
 <li>Local Ethernet network, with DHCP server (will be used to provide IP address to the board) </li>
 </ul>
-<p>This page applies to the latest version of the Development Kit, with ordering code DK-SI-AGI027FC. You can identify your board by reviewing the the table in <a href="https://www.intel.com/content/www/us/en/docs/programmable/721605/current/overview.html">Intel Agilex™ I-Series Transceiver-SoC Development Kit User Guide</a>: </p>
+<p>This page applies to the latest version of the Development Kit, with ordering code DK-SI-AGI027FC. You can identify your board by reviewing the the table in <a href="https://www.intel.com/content/www/us/en/docs/programmable/721605/current/overview.html">Altera Agilex™ 7 I-Series Transceiver-SoC Development Kit User Guide</a>: </p>
 <table>
 <thead>
 <tr>
@@ -5181,28 +5235,28 @@
 </thead>
 <tbody>
 <tr>
-<td align="left">Intel Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (Production 1 4x F-Tile)</td>
+<td align="left">Altera Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (Production 1 4x F-Tile)</td>
 <td align="left">DK-SI-AGI027FA (Power Solution 2)</td>
 <td align="left">AGIB027R31B1E1V</td>
 <td align="left">2000001</td>
 <td align="left">Yes</td>
 </tr>
 <tr>
-<td align="left">Intel Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (Production 2)</td>
+<td align="left">Altera Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (Production 2)</td>
 <td align="left">DK-SI-AGI027FC (Power Solution 2)</td>
 <td align="left">AGIB027R31B1E1VB</td>
 <td align="left">3000001</td>
 <td align="left">Yes</td>
 </tr>
 <tr>
-<td align="left">Intel Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (ES1 4x F-Tile)</td>
+<td align="left">Altera Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (ES1 4x F-Tile)</td>
 <td align="left">DK-SI-AGI027FB (Power Solution 1)</td>
 <td align="left">AGIB027R31B1E1VAA</td>
 <td align="left">0001001</td>
 <td align="left">Yes</td>
 </tr>
 <tr>
-<td align="left">Intel Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (ES)</td>
+<td align="left">Altera Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (ES)</td>
 <td align="left">DK-SI-AGI027FES (Power Solution 1)</td>
 <td align="left">AGIB027R31B1E2VR0</td>
 <td align="left">0000001</td>
@@ -5213,7 +5267,7 @@
 <p>For ordering codes DK-SI-AGI027FA, and DK-SI-AGI027FB, refer to a previous version of this page: <a href="https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/">https://altera-fpga.github.io/rel-24.3.1/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/</a></p>
 <p>The U-Boot and Linux compilation, Yocto compilation and creating the SD card image require a Linux host PC. The rest of the operations can be performed on either a Windows or Linux host PC. </p>
 <h3 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h3>
-<p>The Intel FPGA HPS Embedded Software release notes can be accessed from the following link: <a href="https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR">https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR</a></p>
+<p>The Altera® FPGA HPS Embedded Software release notes can be accessed from the following link: <a href="https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR">https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR</a></p>
 <h3 id="binaries">Binaries<a class="headerlink" href="#binaries" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -5360,7 +5414,7 @@
 <h3 id="boot-linux">Boot Linux<a class="headerlink" href="#boot-linux" title="Permanent link">&para;</a></h3>
 <h4 id="configure-board">Configure Board<a class="headerlink" href="#configure-board" title="Permanent link">&para;</a></h4>
 <p><a class="glightbox" href="../images/fm87-devkit.jpg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/fm87-devkit.jpg" /></a> </p>
-<p>Set up the board default settings, as listed by the the <a href="https://www.intel.com/content/www/us/en/docs/programmable/721605/current/overview.html">Intel Agilex™ I-Series Transceiver-SoC Development Kit User Guide</a>, "Default Settings" section: </p>
+<p>Set up the board default settings, as listed by the the <a href="https://www.intel.com/content/www/us/en/docs/programmable/721605/current/overview.html">Altera Agilex™ 7 I-Series Transceiver-SoC Development Kit User Guide</a>, "Default Settings" section: </p>
 <table>
 <thead>
 <tr>
@@ -6037,7 +6091,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 20, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 7, 2025</span>
       
         <br>
         Created:

@@ -2438,6 +2438,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
@@ -3265,17 +3267,69 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_7_3_3" id="__nav_7_3_3_label" tabindex="0">
-          Intel Simics Virtual Platform Examples
+          E-Series 013B Development Kit
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_7_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          E-Series 013B Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/e-series/013B/ug-gsrd-agx5e-013b/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_4" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_4" id="__nav_7_3_4_label" tabindex="0">
+          Intel Simics Virtual Platform Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_4">
           <span class="md-nav__icon md-icon"></span>
           Intel Simics Virtual Platform Examples
         </label>
@@ -5135,10 +5189,10 @@
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
 <p>The following are required in order to be able to fully exercise the GSRD: </p>
 <ul>
-<li>Intel® Agilex&trade; F-Series FPGA Development Kit (2x F-Tile), ordering code DK-DEV-AGF023FA<ul>
+<li>Altera® Agilex&amp;trade 7; F-Series FPGA Development Kit (2x F-Tile), ordering code DK-DEV-AGF023FA<ul>
 <li>SD/MMC HPS Daughtercard </li>
 <li>Mini USB cable for serial output </li>
-<li>Micro USB cable for on-board Intel FPGA Download Cable II </li>
+<li>Micro USB cable for on-board Altera® FPGA Download Cable II </li>
 <li>Micro SD card (4GB or greater) </li>
 </ul>
 </li>
@@ -5153,7 +5207,7 @@
 </ul>
 <p>The U-Boot and Linux compilation, Yocto compilation and creating the SD card image require a Linux host PC. The rest of the operations can be performed on either a Windows or Linux host PC. </p>
 <h3 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h3>
-<p>The Intel FPGA HPS Embedded Software release notes can be accessed from the following link: <a href="https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR">https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR</a></p>
+<p>The Altera® FPGA HPS Embedded Software release notes can be accessed from the following link: <a href="https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR">https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR</a></p>
 <h3 id="prebuilt-binaries-for-dk-dev-agf023fa">Prebuilt Binaries for DK-DEV-AGF023FA<a class="headerlink" href="#prebuilt-binaries-for-dk-dev-agf023fa" title="Permanent link">&para;</a></h3>
 <p>The GSRD binaries are located at <a href="https://releases.rocketboards.org/2025.10/gsrd/agilex7_dk_dev_agf023fa_gsrd">https://releases.rocketboards.org/2025.10/gsrd/agilex7_dk_dev_agf023fa_gsrd/</a></p>
 <p>The source code is also included on the SD card in the Linux rootfs path <code>/home/root</code>: </p>
@@ -5313,7 +5367,7 @@
 </tr>
 </tbody>
 </table>
-<p>For more details about the settings, consult the <a href="https://www.intel.com/content/www/us/en/docs/programmable/739942/current/overview.html">Intel® Agilex&trade; F-Series FPGA (Two F-Tiles) Development Kit User Guide</a>. </p>
+<p>For more details about the settings, consult the <a href="https://www.intel.com/content/www/us/en/docs/programmable/739942/current/overview.html">Altera® Agilex&trade; 7 F-Series FPGA (Two F-Tiles) Development Kit User Guide</a>. </p>
 <h4 id="write-qspi-image">Write QSPI Image<a class="headerlink" href="#write-qspi-image" title="Permanent link">&para;</a></h4>
 <p>1. Download and extract the jic file: </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
@@ -5816,7 +5870,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 20, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 7, 2025</span>
       
         <br>
         Created:

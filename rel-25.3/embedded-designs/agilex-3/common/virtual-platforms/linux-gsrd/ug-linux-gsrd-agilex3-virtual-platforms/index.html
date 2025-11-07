@@ -2639,6 +2639,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
@@ -3466,17 +3468,69 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_7_3_3" id="__nav_7_3_3_label" tabindex="0">
-          Intel Simics Virtual Platform Examples
+          E-Series 013B Development Kit
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_7_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          E-Series 013B Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/e-series/013B/ug-gsrd-agx5e-013b/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_4" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_4" id="__nav_7_3_4_label" tabindex="0">
+          Intel Simics Virtual Platform Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_4">
           <span class="md-nav__icon md-icon"></span>
           Intel Simics Virtual Platform Examples
         </label>
@@ -4958,14 +5012,14 @@
 </li>
 <li>Local Ethernet network with DHCP server (provides IP address to the board).</li>
 <li>Intel Simics Simulator for Altera FPGAs installed.</li>
-<li>Intel Agilex™ 3 Virtual Platform components available to be deployed.</li>
+<li>Altera Agilex™ 3 Virtual Platform components available to be deployed.</li>
 </ul>
 <p><strong>Notes:</strong></p>
 <ul>
 <li>For binaries building instructions, see <a href="#build-instructions">Build Instructions</a>.</li>
 <li>For installation instructions for the Intel Simics Simulator for Altera FPGAs and the Agilex™ 3 E-Series virtual platforms, refer to the following documents:<ul>
 <li><a href="https://www.intel.com/content/www/us/en/products/details/fpga/development-tools/simics-virtual-platform.html">Intel® Simics® Simulator Landing Page</a> </li>
-<li><a href="https://www.intel.com/content/www/us/en/docs/programmable/784383/">Intel® Simics® Simulator for Intel® FPGAs User Guide</a></li>
+<li><a href="https://www.intel.com/content/www/us/en/docs/programmable/784383/">Intel® Simics® Simulator for Altera® FPGAs User Guide</a></li>
 <li><a href="https://www.intel.com/content/www/us/en/docs/programmable/786901/">Agilex™ 5 and Agilex 3 Virtual Platforms User Guide</a></li>
 </ul>
 </li>
@@ -5555,7 +5609,7 @@
 <p>The following sections explain some basic use cases using the <strong>Agilex™ 3 C-Series Universal</strong> virtual platform. The features and use cases supported by the Agilex™ 5 Universal Virtual platform described in  <a href="https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms/#use-case-exercise-sdcard-boot-flow-from-fsbl-to-linux">Agilex™ 5 Universal Virtual Platform Use Cases</a> also are supported by this virtual platform, so you can refer to those instructions to exercise them.</p>
 <p>The preconditions required to execute them are listed in the following section:</p>
 <h4 id="simulation-setup">Simulation Setup<a class="headerlink" href="#simulation-setup" title="Permanent link">&para;</a></h4>
-<p>Consider that the Intel Simics Simulator for Intel FPGAs Simulator has been installed on a Linux System and the output binaries generated from <a href="#build-instructions">Build Instructions</a> section are already available.</p>
+<p>Consider that the Intel Simics Simulator for Altera® FPGAs Simulator has been installed on a Linux System and the output binaries generated from <a href="#build-instructions">Build Instructions</a> section are already available.</p>
 <ol>
 <li>
 <p>Create a project directory under the Intel Simics Simulator installation directory (Assuming it is <strong>SimicsInstallDir</strong>):</p>
@@ -5775,7 +5829,7 @@ This finishes the main scenario of this use case. This scenario can be extended 
 <p><strong>Note</strong>: You can speed-up the boot process by skipping the U-Boot autoboot countdown by pressing any key and then typing the <strong>boot</strong> command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>U-Boot<span class="w"> </span><span class="m">2025</span>.07<span class="w"> </span><span class="o">(</span>Jul<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">2025</span><span class="w"> </span>-<span class="w"> </span><span class="m">09</span>:28:56<span class="w"> </span>+0000<span class="o">)</span>socfpga_agilex5
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
-<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>CPU:<span class="w">   </span>Intel<span class="w"> </span>FPGA<span class="w"> </span>SoCFPGA<span class="w"> </span>Platform<span class="w"> </span><span class="o">(</span>ARMv8<span class="w"> </span>64bit<span class="w"> </span>Cortex-A55/A76<span class="o">)</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>CPU:<span class="w">   </span>Altera®<span class="w"> </span>FPGA<span class="w"> </span>SoCFPGA<span class="w"> </span>Platform<span class="w"> </span><span class="o">(</span>ARMv8<span class="w"> </span>64bit<span class="w"> </span>Cortex-A55/A76<span class="o">)</span>
 <a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>Model:<span class="w"> </span>SoCFPGA<span class="w"> </span>Agilex5<span class="w"> </span>SoCDK
 <a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>
 <a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>:
@@ -6025,7 +6079,7 @@ This finishes the main scenario of this use case. This scenario can be extended 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 20, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 7, 2025</span>
       
         <br>
         Created:

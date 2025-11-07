@@ -2438,6 +2438,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
@@ -3265,17 +3267,69 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_7_3_3" id="__nav_7_3_3_label" tabindex="0">
-          Intel Simics Virtual Platform Examples
+          E-Series 013B Development Kit
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_7_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          E-Series 013B Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../../agilex-5/e-series/013B/ug-gsrd-agx5e-013b/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_4" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_4" id="__nav_7_3_4_label" tabindex="0">
+          Intel Simics Virtual Platform Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_4">
           <span class="md-nav__icon md-icon"></span>
           Intel Simics Virtual Platform Examples
         </label>
@@ -4897,17 +4951,17 @@
 
 <h1 id="secure-boot-tutorial-example-design-user-guide">Secure Boot Tutorial Example Design User Guide<a class="headerlink" href="#secure-boot-tutorial-example-design-user-guide" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>The secure boot demo design demonstrates an end-to-end authenticated boot flow, from device power on until the Linux kernel is loaded. There are two main components of this design - the Secure Device Manager (SDM) which authenticates the configuration bitstream, and U-boot with the Verified Boot feature. This design is demonstrated on the  <a href="https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/stratix/10-sx.html">Intel Stratix® 10 H-Tile SoC FPGA Development Kit (DK-SOC-1SSX-H-D)</a>  but can be easily ported to other boards as well. </p>
+<p>The secure boot demo design demonstrates an end-to-end authenticated boot flow, from device power on until the Linux kernel is loaded. There are two main components of this design - the Secure Device Manager (SDM) which authenticates the configuration bitstream, and U-boot with the Verified Boot feature. This design is demonstrated on the  <a href="https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/stratix/10-sx.html">Altera® Stratix® 10 H-Tile SoC FPGA Development Kit (DK-SOC-1SSX-H-D)</a>  but can be easily ported to other boards as well. </p>
 <p>This demo design requires: </p>
 <ul>
 <li>QKY file to program virtual key for SDM authentication </li>
-<li>Signed RBF file (configuration bitstream) that consists of Intel Stratix 10 GHRD and U-boot FSBL </li>
+<li>Signed RBF file (configuration bitstream) that consists of Altera® Stratix 10 GHRD and U-boot FSBL </li>
 <li>U-boot FSBL and SSBL with Verified Boot features </li>
 <li>Linux LTSI </li>
 </ul>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The main purpose of a secure boot system is to ensure that the software running in the Hard Processor System (HPS) is trusted. Upon power-up, a trusted first stage of the boot will be executed - subsequent stages are only loaded and executed if it is authenticated by the current boot stage. In the Intel Stratix® 10 SoC  device, the Secure Device Manager (SDM) is the entry point for all configuration and booting scenarios. As such, the SDM is the root of trust and will be authenticating the configuration bitstream before any HPS software is loaded. </p>
-<p><strong>Note:</strong> In this demo design, only the authentication feature of the SDM is being demonstrated. The SDM supports other security features such as bitstream encryption, Physically Unclonable Function (PUF), and many more. For more information regarding the SDM or Intel Stratix® 10 security features, refer to the <a href="https://cdrdv2.intel.com/v1/dl/getContent/774240?fileName=ug-s10-security-683642-774240.pdf">Intel Stratix 10 Device Security User Guide</a>. </p>
+<p>The main purpose of a secure boot system is to ensure that the software running in the Hard Processor System (HPS) is trusted. Upon power-up, a trusted first stage of the boot will be executed - subsequent stages are only loaded and executed if it is authenticated by the current boot stage. In the Altera® Stratix® 10 SoC  device, the Secure Device Manager (SDM) is the entry point for all configuration and booting scenarios. As such, the SDM is the root of trust and will be authenticating the configuration bitstream before any HPS software is loaded. </p>
+<p><strong>Note:</strong> In this demo design, only the authentication feature of the SDM is being demonstrated. The SDM supports other security features such as bitstream encryption, Physically Unclonable Function (PUF), and many more. For more information regarding the SDM or Altera® Stratix® 10 security features, refer to the <a href="https://cdrdv2.intel.com/v1/dl/getContent/774240?fileName=ug-s10-security-683642-774240.pdf">Altera® Stratix 10 Device Security User Guide</a>. </p>
 <p>A detailed diagram of the authenticated boot flow is shown below: </p>
 <p><a class="glightbox" href="../images/BootFlow.jpg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/BootFlow.jpg" /></a> </p>
 <p>Detailed explanation of each Boot Stage </p>
@@ -4915,7 +4969,7 @@
 <li>Power on reset</li>
 </ol>
 <ul>
-<li>Upon power up, the SDM will read the security state of the eFuses and obtain the configuration bitstream from the boot source (as determined by the MSEL pins). By default, all SDM firmware authentication is enforced when user creates the configuration bitstream in Intel Quartus Prime Pro. </li>
+<li>Upon power up, the SDM will read the security state of the eFuses and obtain the configuration bitstream from the boot source (as determined by the MSEL pins). By default, all SDM firmware authentication is enforced when user creates the configuration bitstream in Altera® Quartus Prime Pro. </li>
 </ul>
 <ol>
 <li>SDM</li>
@@ -5020,7 +5074,7 @@
 <a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="s">CONFIG_RSA=y </span>
 <a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="s">CONFIG_SPL_RSA=y </span>
 <a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="s">CONFIG_SHA256=y </span>
-<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="s">EOF</span><span class="w"> </span>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="s">EOF</span>
 <a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>mrproper<span class="w"> </span>
 <a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>make<span class="w"> </span>socfpga_stratix10_defconfig<span class="w"> </span>
 <a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>./scripts/kconfig/merge_config.sh<span class="w"> </span>-O<span class="w"> </span>./<span class="w"> </span>./.config<span class="w"> </span>./config-fragment-stratix10<span class="w"> </span>
@@ -5280,7 +5334,7 @@
 <a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a>NOTICE:<span class="w"> </span>BL31:<span class="w"> </span>bl31_setup<span class="w"> </span>
 <a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a>NOTICE:<span class="w"> </span>BL31:<span class="w"> </span>bl31_plat_arch_setup<span class="w"> </span>
 <a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a>NOTICE:<span class="w"> </span>BL31:<span class="w"> </span>v2.8.1<span class="o">(</span>release<span class="o">)</span>:QPDS23.2_REL_GSRD_PR<span class="w"> </span>
-<a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a>NOTICE:<span class="w"> </span>BL31:<span class="w"> </span>Built<span class="w"> </span>:<span class="w"> </span><span class="m">14</span>:09:49,<span class="w"> </span>Dec<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">2023</span><span class="w"> </span>U-Boot<span class="w"> </span><span class="m">2023</span>.07-rc6-30089-gdab86d36f1-dirty<span class="w"> </span><span class="o">(</span>Jan<span class="w"> </span><span class="m">08</span><span class="w"> </span><span class="m">2024</span><span class="w"> </span>-<span class="w"> </span><span class="m">21</span>:05:44<span class="w"> </span>-0600<span class="o">)</span>socfpga_stratix10<span class="w"> </span>CPU:<span class="w"> </span>Intel<span class="w"> </span>FPGA<span class="w"> </span>SoCFPGA<span class="w"> </span>Platform<span class="w"> </span><span class="o">(</span>ARMv8<span class="w"> </span>64bit<span class="w"> </span>Cortex-A53<span class="o">)</span><span class="w"> </span>
+<a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a>NOTICE:<span class="w"> </span>BL31:<span class="w"> </span>Built<span class="w"> </span>:<span class="w"> </span><span class="m">14</span>:09:49,<span class="w"> </span>Dec<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">2023</span><span class="w"> </span>U-Boot<span class="w"> </span><span class="m">2023</span>.07-rc6-30089-gdab86d36f1-dirty<span class="w"> </span><span class="o">(</span>Jan<span class="w"> </span><span class="m">08</span><span class="w"> </span><span class="m">2024</span><span class="w"> </span>-<span class="w"> </span><span class="m">21</span>:05:44<span class="w"> </span>-0600<span class="o">)</span>socfpga_stratix10<span class="w"> </span>CPU:<span class="w"> </span>Altera®<span class="w"> </span>FPGA<span class="w"> </span>SoC<span class="w"> </span>FPGA<span class="w"> </span>Platform<span class="w"> </span><span class="o">(</span>ARMv8<span class="w"> </span>64bit<span class="w"> </span>Cortex-A53<span class="o">)</span><span class="w"> </span>
 <a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a>Model:<span class="w"> </span>SoCFPGA<span class="w"> </span>Stratix<span class="w"> </span><span class="m">10</span><span class="w"> </span>SoCDK<span class="w"> </span>
 <a id="__codelineno-22-25" name="__codelineno-22-25" href="#__codelineno-22-25"></a>DRAM:<span class="w"> </span><span class="m">2</span><span class="w"> </span>GiB<span class="w"> </span><span class="o">(</span>effective<span class="w"> </span><span class="m">4</span><span class="w"> </span>GiB<span class="o">)</span><span class="w"> </span>
 <a id="__codelineno-22-26" name="__codelineno-22-26" href="#__codelineno-22-26"></a>Core:<span class="w"> </span><span class="m">27</span><span class="w"> </span>devices,<span class="w"> </span><span class="m">22</span><span class="w"> </span>uclasses,<span class="w"> </span>devicetree:<span class="w"> </span>separate<span class="w"> </span>
@@ -5347,7 +5401,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 6, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 7, 2025</span>
       
         <br>
         Created:

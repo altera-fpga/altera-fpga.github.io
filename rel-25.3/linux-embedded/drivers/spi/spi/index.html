@@ -2530,6 +2530,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
@@ -3357,17 +3359,69 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_7_3_3" id="__nav_7_3_3_label" tabindex="0">
-          Intel Simics Virtual Platform Examples
+          E-Series 013B Development Kit
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_7_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          E-Series 013B Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../embedded-designs/agilex-5/e-series/013B/ug-gsrd-agx5e-013b/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_4" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_4" id="__nav_7_3_4_label" tabindex="0">
+          Intel Simics Virtual Platform Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_4">
           <span class="md-nav__icon md-icon"></span>
           Intel Simics Virtual Platform Examples
         </label>
@@ -4704,7 +4758,7 @@
 
 
 <h1 id="spi-driver-for-hard-processor-system"><strong>SPI Driver for Hard Processor System</strong><a class="headerlink" href="#spi-driver-for-hard-processor-system" title="Permanent link">&para;</a></h1>
-<p>Last updated: <strong>October 20, 2025</strong> </p>
+<p>Last updated: <strong>November 07, 2025</strong> </p>
 <p><strong>Upstream Status</strong>: <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/spi">Upstreamed</a></p>
 <p><strong>Devices supported</strong>: Agilex3, Agilex 5, Agilex 7</p>
 <h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
@@ -4772,10 +4826,10 @@ The DMA controller interface is integrated with the HPS DMA controller.</p>
 <h2 id="test-procedure"><strong>Test Procedure</strong><a class="headerlink" href="#test-procedure" title="Permanent link">&para;</a></h2>
 <p>The <strong>spidev_test</strong> tool can be used to demonstrate the SPI capabilities on Linux. This application can be made available for Linux in any of the following ways:</p>
 <ul>
-<li><strong>From GSRD build flow:</strong> Include this application during <strong>Customize Yocto</strong> stage by adding <strong>spidev-test</strong> to the list of tools in the <a href="https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/master/recipes-images/packagegroups/packagegroup-dev-tools-essential.bb">packagegroup-dev-tools-essential.bb</a> Yocto recipe.</li>
-<li><strong>From the Linux Boot example build flow:</strong> Include this application during the <strong>Build Rootfs</strong> stage by adding  <strong>spidev-test</strong> to the list of applications to be included in the file system defined with the <strong>CORE_IMAGE_EXTRA_INSTALL</strong> configuration.</li>
+<li><strong>From GSRD build flow:</strong> Include this application during <strong>Customize Yocto</strong> stage by adding <strong>spidev_test</strong> to the list of tools in the <a href="https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/master/recipes-images/packagegroups/packagegroup-dev-tools-essential.bb">packagegroup-dev-tools-essential.bb</a> Yocto recipe.</li>
+<li><strong>From the Linux Boot example build flow:</strong> Include this application during the <strong>Build Rootfs</strong> stage by adding  <strong>spidev_test</strong> to the list of applications to be included in the file system defined with the <strong>CORE_IMAGE_EXTRA_INSTALL</strong> configuration.</li>
 </ul>
-<p>The <strong>spidev-test</strong> application depends on the <strong>drivers/spi/spidev.c</strong> driver to access the SPI devices throught regular userspace I/O calls. This driver is built through the <strong>CONFIG_SPI_SPIDEV</strong> kernel configuration. This driver also must be enabled in the device tree through the <strong>spidev</strong> node  as shown next. This is already done in the <strong>arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_debug.dts</strong> file.</p>
+<p>The <strong>spidev_test</strong> application depends on the <strong>drivers/spi/spidev.c</strong> driver to access the SPI devices throught regular userspace I/O calls. This driver is built through the <strong>CONFIG_SPI_SPIDEV</strong> kernel configuration. This driver also must be enabled in the device tree through the <strong>spidev</strong> node  as shown next. This is already done in the <strong>arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_debug.dts</strong> file.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>&amp;spi0 {
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    status= &quot;okay&quot;;
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    spidev@0{
@@ -4786,7 +4840,7 @@ The DMA controller interface is integrated with the HPS DMA controller.</p>
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>};
 </code></pre></div>
 <p><strong>Note:</strong> When building binaries to exercise this test procedure using the Linux Boot example build flow, it is necessary to enable the drivers and their dependencies as indicated in <a href="#kernel-configurations">Kernel Configurations</a> section. In the case of the GSRB build flow, all the required drivers are already included either as part of the kernel image (included through kernel configuration) or including and loading the <strong>.ko</strong> driver file from the file system. </p>
-<p>The following test procedure can be exercised using the Agilex 5 E-Series device using the DEBUG2 daughter card for the Premium development kit, in which the <strong>spidev-test</strong> application targets the built-in Microchip 25AA128 EEPROM device. The <strong>spidev</strong> driver is compatible with this device.</p>
+<p>The following test procedure can be exercised using the Agilex 5 E-Series device using the DEBUG2 daughter card for the Premium development kit, in which the <strong>spidev_test</strong> application targets the built-in Microchip 25AA128 EEPROM device. The <strong>spidev</strong> driver is compatible with this device.</p>
 <p>The test procedure consist on enabling the writing in the EEPROM device, then writing a byte (0xC6) to a memory location (0x68D) and then reading this back.</p>
 <ol>
 <li>
@@ -4840,7 +4894,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 20, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 7, 2025</span>
       
         <br>
         Created:

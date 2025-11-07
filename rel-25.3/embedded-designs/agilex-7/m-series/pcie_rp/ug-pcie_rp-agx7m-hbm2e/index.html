@@ -2438,6 +2438,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
@@ -3265,17 +3267,69 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_7_3_3" id="__nav_7_3_3_label" tabindex="0">
-          Intel Simics Virtual Platform Examples
+          E-Series 013B Development Kit
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_7_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          E-Series 013B Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../agilex-5/e-series/013B/ug-gsrd-agx5e-013b/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_4" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_4" id="__nav_7_3_4_label" tabindex="0">
+          Intel Simics Virtual Platform Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_4">
           <span class="md-nav__icon md-icon"></span>
           Intel Simics Virtual Platform Examples
         </label>
@@ -4809,7 +4863,7 @@
 
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <p>PCIe root port is the downstream port of Root Complex which establish the PCIe link with any PCIe Endpoint or PCIe Bridge.</p>
-<p>This reference design demonstrates a PCIe root port running on Intel Agilex™ 7 FPGA M-Series FPGA Transceiver-SoC Development Kit connected to end point. A Gen5x4 link is shown.</p>
+<p>This reference design demonstrates a PCIe root port running on Altera® Agilex™ 7 FPGA M-Series FPGA Transceiver-SoC Development Kit connected to end point. A Gen5x4 link is shown.</p>
 <p>Refer to the <a href="https://github.com/altera-fpga/agilex7-ed-pcie-rp">GitHub repository</a> for the Quartus Project and Yocto Project files.</p>
 <h2 id="required-components">Required Components<a class="headerlink" href="#required-components" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4830,7 +4884,7 @@
 <ul>
 <li>Tools and software.<ul>
 <li>System with supported Linux distribution with Ubuntu 22.04 (LTS)</li>
-<li>Intel ® Quartus ®Prime Design Suite software 24.3 version </li>
+<li>Altera® Quartus® Prime Design Suite software 24.3 version </li>
 <li>Serial terminal application such as Putty</li>
 </ul>
 </li>
@@ -4841,13 +4895,13 @@
 <p>*NVMe connected to the U.2 to M.2 adapter.</p>
 <h2 id="helpful-reference-documentation">Helpful Reference Documentation<a class="headerlink" href="#helpful-reference-documentation" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/agm039.html">Intel Agilex ® 7 FPGA M-Series Development Kit – HBM2e</a></li>
+<li><a href="https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/agm039.html">Altera® Agilex ® 7 FPGA M-Series Development Kit – HBM2e</a></li>
 </ul>
 <ul>
-<li><a href="https://www.intel.com/content/www/us/en/docs/programmable/683821/24-2/before-you-begin.html">Multi Channel DMA Intel ® FPGA IP for PCI Express User Guide</a></li>
+<li><a href="https://www.intel.com/content/www/us/en/docs/programmable/683821/24-2/before-you-begin.html">Multi Channel DMA Altera® FPGA IP for PCI Express User Guide</a></li>
 </ul>
 <ul>
-<li><a href="https://www.intel.com/content/www/us/en/docs/programmable/683501/24-3/about-the-r-tile-streaming-fpga-ip-for.html">R-Tile Avalon ® Intel ® FPGA IP for PCI Express</a></li>
+<li><a href="https://www.intel.com/content/www/us/en/docs/programmable/683501/24-3/about-the-r-tile-streaming-fpga-ip-for.html">R-Tile Avalon® Altera® FPGA IP for PCI Express</a></li>
 </ul>
 <h2 id="build-agilex-pcie-root-port">Build Agilex PCIe Root Port<a class="headerlink" href="#build-agilex-pcie-root-port" title="Permanent link">&para;</a></h2>
 <p>Here are the steps to build either SW and HW files:</p>
@@ -4855,7 +4909,7 @@
 <li><a href="https://github.com/altera-fpga/agilex7-ed-pcie-rp/blob/main/src/sw/README.md">SW_Readme</a></li>
 <li><a href="https://github.com/altera-fpga/agilex7-ed-pcie-rp/tree/main/src/hw">HW_Readme</a></li>
 </ul>
-<p>Both links show how to build the files needed for the project, acording with the <a href="https://github.com/altera-opensource/gsrd-socfpga">Intel® SoC FPGA Golden Software Reference Design (GSRD)</a></p>
+<p>Both links show how to build the files needed for the project, acording with the <a href="https://github.com/altera-opensource/gsrd-socfpga">Altera® SoC FPGA Golden Software Reference Design (GSRD)</a></p>
 <h2 id="hardware-description">Hardware Description<a class="headerlink" href="#hardware-description" title="Permanent link">&para;</a></h2>
 <p><a class="glightbox" href="../images/RPDiagram.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="image-20241214093228785" src="../images/RPDiagram.png" /></a></p>
 <h3 id="memory-map">Memory Map<a class="headerlink" href="#memory-map" title="Permanent link">&para;</a></h3>
@@ -5018,7 +5072,7 @@
 <li>Load the <a href="https://github.com/altera-fpga/agilex7-ed-pcie-rp/releases/download/24.3-1/agilex7_dk_dev_agm039fes_rped_ghrd.hps.rbf">hps.rbf</a> file<p>Using command line: </p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span>p<span class="p">;</span>MY_DESIGN.hps.rbf@1
 </code></pre></div>
-  Using the Intel ® Quartus ®Prime Programer 24.3 version GUI:</p>
+  Using the Altera® Quartus ®Prime Programer 24.3 version GUI:</p>
 <p><a class="glightbox" href="../images/programer.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="image-20241214093054080" src="../images/programer.png" /></a></p>
 </li>
 </ul>
@@ -5100,7 +5154,7 @@
 <a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>NOTICE:<span class="w"> </span>BL31:<span class="w"> </span>Built<span class="w"> </span>:<span class="w"> </span><span class="m">01</span>:18:01,<span class="w"> </span>Jan<span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">2024</span>
 <a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>
 <a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>U-Boot<span class="w"> </span><span class="m">2023</span>.10<span class="w"> </span><span class="o">(</span>Feb<span class="w"> </span><span class="m">02</span><span class="w"> </span><span class="m">2024</span><span class="w"> </span>-<span class="w"> </span><span class="m">07</span>:15:25<span class="w"> </span>+0000<span class="o">)</span>socfpga_agilex7
-<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>CPU:<span class="w">  </span>Intel<span class="w"> </span>FPGA<span class="w"> </span>SoCFPGA<span class="w"> </span>Platform<span class="w"> </span><span class="o">(</span>ARMv8<span class="w"> </span>64bit<span class="w"> </span>Cortex-A53<span class="o">)</span>
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>CPU:<span class="w">  </span>Altera®<span class="w"> </span>FPGA<span class="w"> </span>SoCFPGA<span class="w"> </span>Platform<span class="w"> </span><span class="o">(</span>ARMv8<span class="w"> </span>64bit<span class="w"> </span>Cortex-A53<span class="o">)</span>
 <a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>Model:<span class="w"> </span>SoCFPGA<span class="w"> </span>Agilex7-M<span class="w"> </span>SoCDK
 <a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>DRAM:<span class="w"> </span><span class="m">2</span><span class="w"> </span>GiB
 <a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>Core:<span class="w"> </span><span class="m">27</span><span class="w"> </span>devices,<span class="w"> </span><span class="m">22</span><span class="w"> </span>uclasses,<span class="w"> </span>devicetree:<span class="w"> </span>separate
@@ -5752,7 +5806,7 @@
 <a id="__codelineno-10-540" name="__codelineno-10-540" href="#__codelineno-10-540"></a><span class="w">        </span>Starting<span class="w"> </span>Telephony<span class="w"> </span>service...
 <a id="__codelineno-10-541" name="__codelineno-10-541" href="#__codelineno-10-541"></a><span class="o">[</span><span class="w">  </span>OK<span class="w">  </span><span class="o">]</span><span class="w"> </span>Started<span class="w"> </span>Serial<span class="w"> </span>Getty<span class="w"> </span>on<span class="w"> </span>ttyS0.
 <a id="__codelineno-10-542" name="__codelineno-10-542" href="#__codelineno-10-542"></a><span class="o">[</span><span class="w">  </span>OK<span class="w">  </span><span class="o">]</span><span class="w"> </span>Reached<span class="w"> </span>target<span class="w"> </span>Login<span class="w"> </span>Prompts.
-<a id="__codelineno-10-543" name="__codelineno-10-543" href="#__codelineno-10-543"></a><span class="w">         </span>Starting<span class="w"> </span>Intel<span class="w"> </span>SoCFPGA<span class="w"> </span>GSRD<span class="w"> </span>initialization...
+<a id="__codelineno-10-543" name="__codelineno-10-543" href="#__codelineno-10-543"></a><span class="w">         </span>Starting<span class="w"> </span>Altera<span class="w"> </span>SoCFPGA<span class="w"> </span>GSRD<span class="w"> </span>initialization...
 <a id="__codelineno-10-544" name="__codelineno-10-544" href="#__codelineno-10-544"></a><span class="o">[</span><span class="w">    </span><span class="m">6</span>.350702<span class="o">]</span><span class="w"> </span>audit:<span class="w"> </span><span class="nv">type</span><span class="o">=</span><span class="m">1334</span><span class="w"> </span>audit<span class="o">(</span><span class="m">1706434961</span>.744:6<span class="o">)</span>:<span class="w"> </span>prog-id<span class="o">=</span><span class="m">9</span><span class="w"> </span><span class="nv">op</span><span class="o">=</span>LOAD
 <a id="__codelineno-10-545" name="__codelineno-10-545" href="#__codelineno-10-545"></a><span class="o">[</span><span class="w">    </span><span class="m">6</span>.357503<span class="o">]</span><span class="w"> </span>audit:<span class="w"> </span><span class="nv">type</span><span class="o">=</span><span class="m">1334</span><span class="w"> </span>audit<span class="o">(</span><span class="m">1706434961</span>.752:7<span class="o">)</span>:<span class="w"> </span>prog-id<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="nv">op</span><span class="o">=</span>LOAD
 <a id="__codelineno-10-546" name="__codelineno-10-546" href="#__codelineno-10-546"></a><span class="w">        </span>Starting<span class="w"> </span>User<span class="w"> </span>Login<span class="w"> </span>Management...
@@ -6093,7 +6147,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 18, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 7, 2025</span>
       
         <br>
         Created:

@@ -2507,6 +2507,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
@@ -3334,17 +3336,69 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_7_3_3" id="__nav_7_3_3_label" tabindex="0">
-          Intel Simics Virtual Platform Examples
+          E-Series 013B Development Kit
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_7_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          E-Series 013B Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../embedded-designs/agilex-5/e-series/013B/ug-gsrd-agx5e-013b/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_4" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_4" id="__nav_7_3_4_label" tabindex="0">
+          Intel Simics Virtual Platform Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_4">
           <span class="md-nav__icon md-icon"></span>
           Intel Simics Virtual Platform Examples
         </label>
@@ -4664,8 +4718,8 @@
 <p><code>packager &lt;cmd&gt; [arguments]</code></p>
 <h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
 <p>The packager provides tools that Accelerator Functional Unit (AFU) developers use to create Accelerator Function (AF) 
-files. The AF file is the programming file for an AFU on Intel&reg; FPGA platforms. The packager tool concatenates
-the metadata from the JSON file to a raw binary file <code>(.rbf)</code> that the Intel Quartus&reg; Prime software generates. </p>
+files. The AF file is the programming file for an AFU on Altera® FPGA platforms. The packager tool concatenates
+the metadata from the JSON file to a raw binary file <code>(.rbf)</code> that the Altera® Quartus&reg; Prime software generates. </p>
 <p>The packager's only function is to create an AF file. Refer to <a href="#packager-command-syntax">Packager Command Syntax</a> for more information
 about invoking the packager. The packager depends on a JSON file to describe AFU metadata. Refer to 
 <a href="#accelerator-description-file">Accelerator Description File</a> for more information about the JSON file.</p>
@@ -4753,9 +4807,9 @@ PCIe&reg; and CCI interfaces. </p>
 ---------|------|------|-------------|:----------:|
 Per-AFU  | version | Integer | Version of the metadata format. | Yes
 Per-AFU  | magic-no (to be deprecated)| Integer | Magic no. Associated with the FPGA Interface Manager. | No
-Per-AFU  | platform-name | String | Name of the platform for which the metadata is intended. The field value is “DCP” for Intel  Acceleration Stack for FPGAs. | No
+Per-AFU  | platform-name | String | Name of the platform for which the metadata is intended. The field value is “DCP” for Altera®  Acceleration Stack for FPGAs. | No
 Per-AFU  | interface-uuid | UUID | Interface id associated with the FPGA Interface Manager. | Yes
-Per-AFU  | power | Integer | Accelerator Function power consumption, in watts. Set to 0 for Intel Acceleration Stack for FPGAs platforms. | Yes
+Per-AFU  | power | Integer | Accelerator Function power consumption, in watts. Set to 0 for Altera Acceleration Stack for FPGAs platforms. | Yes
 Per-AFU  | clock-frequency-low | Float | Clock frequency for 1<sup>st</sup> PLL (Clock network)1 in MHz. | No
 Per-AFU  | clock-frequency-high | Float | Clock frequency for 2<sup>nd</sup> PLL (0 if absent) in MHz. | No
 Per-AFC Cluster | total-contexts | Integer | Number of AFCs in this cluster. Always be 1 in current architectures. | Yes
@@ -4765,7 +4819,7 @@ Per-AFC Cluster | name | string | AFC name = AFU name in current architectures. 
 <thead>
 <tr>
 <th align="left">Date</th>
-<th>Intel Acceleration Stack Version</th>
+<th>Altera Acceleration Stack Version</th>
 <th align="left">Changes Made</th>
 </tr>
 </thead>
@@ -4783,7 +4837,7 @@ Per-AFC Cluster | name | string | AFC name = AFU name in current architectures. 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 25, 2024</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 7, 2025</span>
       
         <br>
         Created:

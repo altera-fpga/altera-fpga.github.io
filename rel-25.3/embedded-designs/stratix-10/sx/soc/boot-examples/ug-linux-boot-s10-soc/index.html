@@ -2438,6 +2438,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
@@ -3265,17 +3267,69 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_7_3_3" id="__nav_7_3_3_label" tabindex="0">
-          Intel Simics Virtual Platform Examples
+          E-Series 013B Development Kit
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_7_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          E-Series 013B Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/e-series/013B/ug-gsrd-agx5e-013b/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_4" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_4" id="__nav_7_3_4_label" tabindex="0">
+          Intel Simics Virtual Platform Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_4">
           <span class="md-nav__icon md-icon"></span>
           Intel Simics Virtual Platform Examples
         </label>
@@ -5228,11 +5282,11 @@ The bootloader source code was removed from SoC EDS. Instead, the user needs to 
 <li><a href="https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc/">Stratix® 10 GSRD User Guide</a></li>
 </ul>
 <h2 id="u-boot-branches">U-Boot Branches<a class="headerlink" href="#u-boot-branches" title="Permanent link">&para;</a></h2>
-<p>The official Intel SOCFPGA U-Boot repository is located at https://github.com/altera-fpga/u-boot-socfpga.</p>
+<p>The official Altera® SOCFPGA U-Boot repository is located at https://github.com/altera-fpga/u-boot-socfpga.</p>
 <p><strong>Notes:</strong></p>
 <ul>
 <li>A "RC" labeled branch is for internal active development use and customer early access without official customer support.</li>
-<li>Latest stable branch (no RC labeled) is strongly recommended for development and production use outside of Intel.</li>
+<li>Latest stable branch (no RC labeled) is strongly recommended for development and production use outside of Altera®.</li>
 <li>See <a href="https://github.com/altera-fpga/u-boot-socfpga/blob/HEAD/doc/README.socfpga">doc/README.socfpga</a> for Quartus® Pro and Device support.</li>
 </ul>
 <h2 id="boot-from-sd-card-example">Boot From SD Card Example<a class="headerlink" href="#boot-from-sd-card-example" title="Permanent link">&para;</a></h2>
@@ -5260,7 +5314,7 @@ Note the following:</p>
 <ul>
 <li>Host machine running Linux. Ubuntu 22.04 was used, but other versions may work too.</li>
 <li>Internet connection to download the tools and clone the U-Boot git tree from github. If you are behind a firewall you will need your system administrator to enable you to get to the git trees.</li>
-<li>Intel Stratix® 10 H-Tile SoC FPGA Development Kit (DK-SOC-1SSX-H-D).</li>
+<li>Altera® Stratix® 10 H-Tile SoC FPGA Development Kit (DK-SOC-1SSX-H-D).</li>
 <li>Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3</li>
 </ul>
 <p>Note that the examples presented on this page boot to Linux and they require Linux kernel, device tree and rootfilesystem to boot. However, you can omit the Linux binaries and just boot to U-Boot prompt if you want to.</p>
@@ -5552,8 +5606,8 @@ Set MSEL back to QSPI:</p>
 <a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>EOT
 </code></pre></div></p>
 <p>5.- Run the debugger from command line, using the connection parameters reported above by jtagconfig, shown in red below:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>/opt/arm/developmentstudio-2022.2/bin/armdbg  \
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>--cdb-entry=&quot;Intel SoC FPGA::Stratix 10::Bare Metal Debug::Bare Metal Debug::Debug Cortex-A53x4 SMP::Intel FPGA Download Cable&quot; \
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>/opt/arm/developmentstudio-2025.0-1/bin/armdbg  \
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>--cdb-entry=&quot;Altera SoC FPGA::Stratix 10::Bare Metal Debug::Bare Metal Debug::Debug Cortex-A53x4 SMP::Altera FPGA Download Cable&quot; \
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>--cdb-entry-param=&quot;rvi_address=Stratix 10L SoC Dev Kit on localhost [3-3.4.4]:Stratix 10L SoC Dev Kit 3-3.4.4&quot; \
 <a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>--continue_on_error=true \
 <a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>--stop_on_connect=false \
@@ -5583,7 +5637,7 @@ Set MSEL back to QSPI:</p>
 <a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>
 <a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>U-Boot 2025.07-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_stratix10
 <a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>
-<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
+<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
 <a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>Model: SoCFPGA Stratix 10 SoCDK
 <a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>DRAM:  2 GiB (effective 4 GiB)
 <a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a>Core:  26 devices, 21 uclasses, devicetree: separate
@@ -5619,7 +5673,7 @@ Set MSEL back to QSPI:</p>
 <h3 id="debugging-spl">Debugging SPL<a class="headerlink" href="#debugging-spl" title="Permanent link">&para;</a></h3>
 <p>1.- Run the steps from <strong>Prerequisites section</strong><br>
   2.- Start the Arm Development Studio Eclipse-based GUI:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>/opt/arm/developmentstudio-2022.2/bin/armds_ide -data workspace &amp;
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>/opt/arm/developmentstudio-2025.0-1/bin/armds_ide -data workspace &amp;
 </code></pre></div></p>
 <p>Note the above creates a new workspace in the <strong>s10_example.sdmmc</strong> folder.<br></p>
 <p>3.- In <strong>Eclipse</strong>, Go to <strong>Run &gt; Debug Configurations</strong> to open the <strong>Debug Configurations</strong> window. <br></p>
@@ -5627,8 +5681,8 @@ Set MSEL back to QSPI:</p>
   a) Select the <strong>Generic Arm C/C++ Application</strong> on the left panel and right-click it. From the menu that appears, select <strong>New Configuration</strong>.<br>
   b) Edit the <strong>Name</strong> field from <strong>New_configuration</strong> to something more descriptive, such as <strong>Debug S10 Bootloader</strong>.<br></p>
 <p>5.- In the <strong>Connection</strong> tab:<br>
-  a) Go to <strong>Select target</strong> section and select <strong>Intel SoC FPGA &gt; Stratix 10 &gt; Bare Metal Debug &gt; Debug Cortex-A53_0</strong><br>
-  b) Select the <strong>Target Connection</strong> to be <strong>Intel FPGA Download Cable</strong><br>
+  a) Go to <strong>Select target</strong> section and select <strong>Altera® SoC FPGA &gt; Stratix 10 &gt; Bare Metal Debug &gt; Debug Cortex-A53_0</strong><br>
+  b) Select the <strong>Target Connection</strong> to be <strong>Altera® FPGA Download Cable</strong><br>
   c) Click the <strong>Bare Metal Debug &gt; Connection Browse</strong> button and select your cable.</p>
 <p>The <strong>Debug Configurations</strong> window should now look like this:
   <a class="glightbox" href="../images/s10-ds-boot-config.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/s10-ds-boot-config.png" /></a> </p>
@@ -5988,23 +6042,42 @@ Note:</p>
 <p>The HPS obtains the QSPI controller reference clock frequency when it obtains exclusive access to the QSPI from the SDM. The frequency reported by the SDM is stored in the U-Boot environment variable called <strong>${qspi_clock}</strong>.</p>
 <p>Before booting Linux, U-Boot loads the Linux device tree in memory, then runs the command <strong>linux_qspi_enable</strong> which sets the QSPI controller reference clock appropriately using the value from the <strong>${qspi_clock}</strong> environment variable.</p>
 <h2 id="reconfiguring-core-fabric-from-u-boot">Reconfiguring Core Fabric from U-Boot<a class="headerlink" href="#reconfiguring-core-fabric-from-u-boot" title="Permanent link">&para;</a></h2>
-<p>The GSRD configures the FPGA core fabric only once, from U-Boot, by using the <strong>bootm</strong> command. The example in this page configures the fabric only once, from U-Boot, using <strong>fpga load</strong> command.</p>
+<p>The GSRD configures the FPGA core fabric only once by U-boot during the Linux launch using the <strong>bootm</strong> command. In the bootloaders build flow, the reconfiguration is done in the U-Boot Shell through the <strong>fpga load</strong> command.</p>
 <p><strong>Important</strong>: If the FPGA fabric is already configured and bridges are enabled, you must call the <strong>bridge disable</strong> command from U-Boot before issuing the <strong>bootm</strong> or <strong>fpga load</strong> commands to reconfigure the fabric. Only do this if you are using an <strong>arm-trusted-firmware</strong> version more recent than the following:</p>
 <ul>
-<li>v2.7.1 = https://github.com/altera-opensource/arm-trusted-firmware/commit/0a5edaed853e0dc1e687706ccace8e844b2a8db7</li>
-<li>v2.8.0 = https://github.com/altera-opensource/arm-trusted-firmware/commit/bf933536d4582d63d0e29434e807a641941f3937</li>
+<li>v2.7.1 = <a href="https://github.com/altera-fpga/arm-trusted-firmware/commit/0a5edaed853e0dc1e687706ccace8e844b2a8db7">https://github.com/altera-fpga/arm-trusted-firmware/commit/0a5edaed853e0dc1e687706ccace8e844b2a8db7</a></li>
+<li>v2.8.0 = <a href="https://github.com/altera-fpga/arm-trusted-firmware/commit/bf933536d4582d63d0e29434e807a641941f3937">https://github.com/altera-fpga/arm-trusted-firmware/commit/bf933536d4582d63d0e29434e807a641941f3937</a></li>
 </ul>
+<p>The example below shows the steps to perform FPGA configuration from the U-boot.</p>
+<p>1. First, write the sdcard.img into an SD card. (Rename the wic file to 'sdcard.img')<br>
+2. Copy the configuration bitstream, ghrd.core.rbf, into the same SD Card.<br>
+3. Insert the SD Card to the board, boot the board up, and enter the U-boot shell when prompted.<br>
+4. In U-boot shell, run the following commands in sequence to perform FPGA configuration:<br></p>
+<ul>
+<li>fatload mmc 0:1 [address] [ghrd.core.rbf]<br></li>
+<li>fpga load [device] [address] [file_size]<br></li>
+</ul>
+<p>5. The message "FPGA reconfiguration OK!" will be printed out upon successful transaction.<br></p>
+<p>Here is an example for Agilex® 5 device, but the same steps apply for Stratix® 10, Agilex® 7, and Agilex® 3 SoC FPGA devices.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>Hit<span class="w"> </span>any<span class="w"> </span>key<span class="w"> </span>to<span class="w"> </span>stop<span class="w"> </span>autoboot:<span class="w">  </span><span class="m">0</span><span class="w"> </span>///<span class="w"> </span>Hit<span class="w"> </span>any<span class="w"> </span>key<span class="w"> </span>at<span class="w"> </span>this<span class="w"> </span>point<span class="w"> </span>to<span class="w"> </span>enter<span class="w"> </span>the<span class="w"> </span>U-boot<span class="w"> </span>Shell<span class="w"> </span>///
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>SOCFPGA_AGILEX<span class="w"> </span><span class="c1">#</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>SOCFPGA_AGILEX<span class="w"> </span><span class="c1"># fatload mmc 0:1 0x90000000 ghrd.core.rbf</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="m">2404352</span><span class="w"> </span>bytes<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">116</span><span class="w"> </span>ms<span class="w"> </span><span class="o">(</span><span class="m">19</span>.8<span class="w"> </span>MiB/s<span class="o">)</span>
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>SOCFPGA_AGILEX<span class="w"> </span><span class="c1"># fpga load 0 0x90000000 ${filesize}</span>
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a>…FPGA<span class="w"> </span>reconfiguration<span class="w"> </span>OK!
+</code></pre></div>
 <h2 id="enabling-bridges-from-u-boot">Enabling Bridges from U-Boot<a class="headerlink" href="#enabling-bridges-from-u-boot" title="Permanent link">&para;</a></h2>
 <p>U-Boot offers the <strong>bridge</strong> command for controlling the bridges.</p>
 <p>The <strong>bridge</strong> command can be used with either <strong>'enable'</strong> or <strong>'disable'</strong> parameter, followed by an optional <strong>'mask'</strong> parameter indicating which of the bridges needs to be enabled or disabled. When the <strong>'mask'</strong> parameter is omitted, all bridges are either enabled or disabled.</p>
 <p>See bellow the help message for the command:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a># bridge
-<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>bridge - SoCFPGA HPS FPGA bridge control
-<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
-<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>Usage:
-<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>bridge enable [mask] - Enable HPS-to-FPGA (Bit 0), LWHPS-to-FPGA (Bit 1), FPGA-to-HPS (Bit 2), F2SDRAM0 (Bit 3), F2SDRAM1 (Bit 4), F2SDRAM2 (Bit 5) bridges 
-<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>bridge disable [mask] - Disable HPS-to-FPGA (Bit 0), LWHPS-to-FPGA (Bit 1), FPGA-to-HPS (Bit 2), F2SDRAM0 (Bit 3), F2SDRAM1 (Bit 4), F2SDRAM2 (Bit 5) bridges
-<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a>Bit 3, Bit 4 and Bit 5 bridges only available in Stratix 10
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a># bridge
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>bridge - SoCFPGA HPS FPGA bridge control
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>Usage:
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>bridge enable [mask] - Enable HPS-to-FPGA (Bit 0), LWHPS-to-FPGA (Bit 1), FPGA-to-HPS (Bit 2), F2SDRAM0 (Bit 3), F2SDRAM1 (Bit 4), F2SDRAM2 (Bit 5) bridges 
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>bridge disable [mask] - Disable HPS-to-FPGA (Bit 0), LWHPS-to-FPGA (Bit 1), FPGA-to-HPS (Bit 2), F2SDRAM0 (Bit 3), F2SDRAM1 (Bit 4), F2SDRAM2 (Bit 5) bridges
+<a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a>Bit 3, Bit 4 and Bit 5 bridges only available in Stratix 10
 </code></pre></div>
 The** 'mask'** is a hexadecimal number, with 3 bits available for Agilex™ 7, and 6 bits for Stratix® 10, as indicated above.</p>
 <p>The following table shows examples of enabling and disabling various bridges:</p>
@@ -6068,7 +6141,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 20, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 7, 2025</span>
       
         <br>
         Created:

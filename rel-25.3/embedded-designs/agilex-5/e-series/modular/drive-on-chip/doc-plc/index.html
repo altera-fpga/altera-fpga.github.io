@@ -2724,6 +2724,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
@@ -3839,17 +3841,69 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_7_3_3" id="__nav_7_3_3_label" tabindex="0">
-          Intel Simics Virtual Platform Examples
+          E-Series 013B Development Kit
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_7_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          E-Series 013B Development Kit
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../013B/ug-gsrd-agx5e-013b/" class="md-nav__link">
+        HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_4" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_4" id="__nav_7_3_4_label" tabindex="0">
+          Intel Simics Virtual Platform Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_3_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_4">
           <span class="md-nav__icon md-icon"></span>
           Intel Simics Virtual Platform Examples
         </label>
@@ -5946,7 +6000,7 @@ provide instructions using the <code>Disks</code> utility (based on <code>e2fspr
 <li>Set <strong>MSEL</strong> dipswitch <strong>S4</strong> on SOM to <strong>JTAG: OFF-OFF</strong></li>
 <li>Power up the board.</li>
 <li>
-<p>Program the QSPI with the following command.</p>
+<p>Program the QSPI with the following command. See: <a href="https://www.intel.com/content/www/us/en/docs/programmable/813773/25-1/understanding-configuration-status-using.html">quartus_pgm command</a></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;top.hps.jic&quot;</span><span class="w"> </span>
 </code></pre></div>
 </li>
@@ -5988,7 +6042,7 @@ provide instructions using the <code>Disks</code> utility (based on <code>e2fspr
 <li>Download the <code>.jic</code> image from the prebuilt binary links above.</li>
 <li>Power up the board.</li>
 <li>
-<p>Program the QSPI with the following command.</p>
+<p>Program the QSPI with the following command. See: <a href="https://www.intel.com/content/www/us/en/docs/programmable/813773/25-1/understanding-configuration-status-using.html">quartus_pgm command</a></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;top.hps.jic&quot;</span><span class="w"> </span>
 </code></pre></div>
 </li>
@@ -6399,14 +6453,14 @@ y { color: #CCCC00; font-weight: bold;}
 </tr>
 <tr>
 <td></td>
-<td><a href="other-user-flow/#creating-the-qspi-flash-and-sd-card-configuration-bitstreams-for-the-board">Creating the QSPI Flash and SD card configuration bitstreams for the board (JIC/RBF).</a></td>
+<td><a href="other-user-flow/#creating-the-qspi-flash-and-sd-card-configuration-bitstreams-for-the-board">Creating the QSPI Flash and SD card configuration bitstreams for the board (JIC/RBF).</a> <br> <r>Warning!</r>: this procedure requires a <code>u-boot-spl-dtb.hex</code> file, which is generated in the step below.</td>
 <td align="center"><r>&cross;</r></td>
 <td align="center"><g>&check;</g></td>
 <td align="center"><g>&check;</g></td>
 </tr>
 <tr>
 <td>SW-Compilation</td>
-<td><a href="https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/main/sw/README.md">Create SD card image (.wic) using YOCTO/KAS</a> <br> <r>NOTE</r>: use <g><strong>KAS_MACHINE=agilex5_modular</strong></g> or <g><strong>KAS_MACHINE=agilex3</strong></g> <br> and <g><strong>kas_dual_axis.yml</strong></g> configuration</td>
+<td><a href="https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/main/sw/README.md">Create SD card image (.wic) using YOCTO/KAS</a> <br> <r>NOTE</r>: use <g><strong>KAS_MACHINE=agilex5_mk_a5e065bb32aes1</strong></g> or <g><strong>KAS_MACHINE=agilex3</strong></g> <br> and <g><strong>kas_dual_axis.yml</strong></g> configuration</td>
 <td align="center"><r>&cross;</r></td>
 <td align="center"><g>&check;</g></td>
 <td align="center"><g>&check;</g></td>
@@ -6485,7 +6539,7 @@ y { color: #CCCC00; font-weight: bold;}
 <li><a href="https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-funct-safety">Drive-On-Chip with Functional Safety System Example Design for Agilex™ 5 Devices</a>.</li>
 <li><a href="https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-crc">ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices</a>.</li>
 <li><a href="https://www.intel.com/content/www/us/en/design-example/825930/agilex-5-fpga-drive-on-chip-design-example.html">Agilex™ 5 FPGA - Drive-On-Chip Design Example</a>.</li>
-<li><a href="https://www.intel.com/content/www/us/en/design-example/780360/intel-agilex-7-fpga-drive-on-chip-for-intel-agilex-7-devices-design-example.html">Intel® Agilex™ 7 FPGA – Drive-On-Chip for Intel® Agilex™ 7 Devices Design Example</a>.</li>
+<li><a href="https://www.intel.com/content/www/us/en/design-example/780360/intel-agilex-7-fpga-drive-on-chip-for-intel-agilex-7-devices-design-example.html">Altera® Agilex™ 7 FPGA – Drive-On-Chip for Altera® Agilex™ 7 Devices Design Example</a>.</li>
 <li><a href="https://www.intel.com/content/www/us/en/design-example/825944/agilex-7-fpga-safe-drive-on-chip-design-example.html">Agilex™ 7 FPGA – Safe Drive-On-Chip Design Example</a>.</li>
 <li><a href="https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/">Agilex™ 5 E-Series Modular Development Kit GSRD User Guide (25.1)</a>.</li>
 <li><a href="https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular/">Agilex™ 5 E-Series Modular Development Kit GHRD Linux Boot Examples</a>.</li>
@@ -6494,8 +6548,8 @@ y { color: #CCCC00; font-weight: bold;}
 <ul>
 <li><a href="https://www.intel.com/content/www/us/en/docs/programmable/826207/24-1/about-the-drive-on-chip-design-example.html">AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices</a>.</li>
 <li><a href="https://www.intel.com/content/www/us/en/docs/programmable/823627/current/about-the-drive-on-chip-with-functional.html">AN 999: Drive-on-Chip with Functional Safety Design Example: Agilex™ 7 Devices</a>.</li>
-<li><a href="https://www.intel.com/content/www/us/en/docs/programmable/780361/23-1/about-the-drive-on-chip-design-example.html">AN 994: Drive-on-Chip Design Example for Intel® Agilex™ 7 Devices</a>.</li>
-<li><a href="https://www.intel.com/content/www/us/en/docs/programmable/683072/current/about-the-drive-on-chip-design-example.html">AN 773: Drive-On-Chip Design Example for Intel® MAX® 10 Devices</a>.</li>
+<li><a href="https://www.intel.com/content/www/us/en/docs/programmable/780361/23-1/about-the-drive-on-chip-design-example.html">AN 994: Drive-on-Chip Design Example for Altera® Agilex™ 7 Devices</a>.</li>
+<li><a href="https://www.intel.com/content/www/us/en/docs/programmable/683072/current/about-the-drive-on-chip-design-example.html">AN 773: Drive-On-Chip Design Example for Altera® MAX® 10 Devices</a>.</li>
 <li><a href="https://www.intel.com/content/www/us/en/docs/programmable/683466/current/about-the-drive-on-chip-design-example.html">AN 669: Drive-On-Chip Design Example for Cyclone V Devices</a>.</li>
 </ul>
 <h3 id="user-manuals">User Manuals<a class="headerlink" href="#user-manuals" title="Permanent link">&para;</a></h3>
@@ -6549,7 +6603,7 @@ the Khronos Group™.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 20, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 7, 2025</span>
       
         <br>
         Created:
