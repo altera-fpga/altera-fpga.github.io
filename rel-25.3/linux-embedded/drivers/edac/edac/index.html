@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#error-detection-and-correction-edac-driver-for-hard-processor-system" class="md-skip">
+        <a href="#altera-error-detection-and-correction-edac-driver-for-hard-processor-system" class="md-skip">
           Skip to content
         </a>
       
@@ -612,9 +612,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kernel-configurations" class="md-nav__link">
-    Kernel Configurations
+  <a href="#kernel-and-device-tree-configurations" class="md-nav__link">
+    Kernel and Device Tree Configurations
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-procedure" class="md-nav__link">
+    Test Procedure
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-injection" class="md-nav__link">
+    Error Injection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-count" class="md-nav__link">
+    Error Count
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4691,9 +4718,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kernel-configurations" class="md-nav__link">
-    Kernel Configurations
+  <a href="#kernel-and-device-tree-configurations" class="md-nav__link">
+    Kernel and Device Tree Configurations
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-procedure" class="md-nav__link">
+    Test Procedure
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#error-injection" class="md-nav__link">
+    Error Injection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-count" class="md-nav__link">
+    Error Count
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4729,25 +4783,223 @@
   
 
 
-<h1 id="error-detection-and-correction-edac-driver-for-hard-processor-system"><strong>Error Detection and Correction (EDAC) Driver for Hard Processor System</strong><a class="headerlink" href="#error-detection-and-correction-edac-driver-for-hard-processor-system" title="Permanent link">&para;</a></h1>
-<p>Last updated: <strong>November 07, 2025</strong> </p>
+<h1 id="altera-error-detection-and-correction-edac-driver-for-hard-processor-system"><strong>Altera Error Detection and Correction (EDAC) Driver for Hard Processor System</strong><a class="headerlink" href="#altera-error-detection-and-correction-edac-driver-for-hard-processor-system" title="Permanent link">&para;</a></h1>
+<p>Last updated: <strong>December 02, 2025</strong> </p>
 <p><strong>Upstream Status</strong>: <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/edac/altera_edac.c">Upstreamed</a></p>
-<p><strong>Devices supported</strong>: Agilex3, Agilex 5</p>
+<p><strong>Devices supported</strong>: Agilex™ 3, Agilex™ 5, Agilex™ 7 and Stratix® 10</p>
 <h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>The Error Detection and Correction (EDAC) driver supports use of the Error Checking and Correction (ECC) Controller in the HPS.  The ECC controllers are implemented in the on-chip RAM, USB OTG 2.0 and 3.1 and Ethernet MACs in the HPS.  To find out more about the ECC controller please refer to the <a href="https://www.intel.com/content/www/us/en/docs/programmable/814346">Hard Processor Technical Reference Manual</a>.</p>
+<p>The Altera Error Detection and Correction (EDAC) driver supports use of the Error Checking and Correction (ECC) Controller in the HPS.  The ECC controllers are implemented in different components in the HPS including on-chip RAM, USB OTG 2.0 and 3.1, SDM QSPI, SDRAM, IO96B, SDMMC and Ethernet MACs in the HPS.  To find out more about the ECC controller please refer to the device specific Hard Processor Technical Reference Manual.</p>
+<ul>
+<li><a href="https://www.intel.com/content/www/us/en/docs/programmable/848530">Agilex™ 3 Hard Processor Technical Reference Manual</a></li>
+<li><a href="https://www.intel.com/content/www/us/en/docs/programmable/814346">Agilex™ 5 Hard Processor Technical Reference Manual</a>.</li>
+<li><a href="https://www.intel.com/content/www/us/en/docs/programmable/683567/">Agilex™ 7 Hard Processor Technical Reference Manual</a></li>
+<li><a href="https://www.intel.com/content/www/us/en/docs/programmable/683222">Stratix® 10 Hard Processor Technical Reference Manual</a></li>
+</ul>
 <p><a class="glightbox" href="../images/Agilex5_ECC_Ctrl_Diagram.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="ecc_ctlr" src="../images/Agilex5_ECC_Ctrl_Diagram.png" style="height:500px" /></a></p>
 <h2 id="driver-sources"><strong>Driver Sources</strong><a class="headerlink" href="#driver-sources" title="Permanent link">&para;</a></h2>
-<p>The source code for the driver can be found at <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/edac/altera_edac.c">https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/edac/altera_edac.c</a>.</p>
+<p>The source code for the Altera EDAC driver can be found at <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/edac/altera_edac.c">https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/edac/altera_edac.c</a>.</p>
 <h2 id="driver-capabilities"><strong>Driver Capabilities</strong><a class="headerlink" href="#driver-capabilities" title="Permanent link">&para;</a></h2>
-<p>The Error Detection and Correction (EDAC) driver comprises the ECC manager main component and sub-components of the supported EDAC SoC components.</p>
+<p>The Altera Error Detection and Correction (EDAC) driver comprises the ECC manager main component and sub-components of the supported EDAC SoC components.</p>
 <p>The driver's main functions are to register the EDAC platform drivers in Linux, initialize the EDAC sub-components by performing initial setup of the IRQ interrupt handlers and soft-error handling for uncorrected error events, and to support debugging features like soft-error injections and reads of the error counters.</p>
 <p>The data flow diagram of EDAC is shown below:</p>
 <p><a class="glightbox" href="../images/edac_data_flow.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="edac_data_flow" src="../images/edac_data_flow.png" /></a></p>
-<h2 id="kernel-configurations"><strong>Kernel Configurations</strong><a class="headerlink" href="#kernel-configurations" title="Permanent link">&para;</a></h2>
+<h2 id="kernel-and-device-tree-configurations"><strong>Kernel and Device Tree Configurations</strong><a class="headerlink" href="#kernel-and-device-tree-configurations" title="Permanent link">&para;</a></h2>
 <p>CONFIG_EDAC_ALTERA</p>
 <p><a class="glightbox" href="../images/edac_config_path.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="edac_config_path" src="../images/edac_config_path.png" /></a></p>
+<p>For debug purposes, the <strong>CONFIG_EDAC_DEBUG Kernel</strong> configuration can be used.</p>
+<p>There are independent Kernel configuration for each of the components in whcih the ECC controller can operate. Also there are some 'compatibles' that are related to these Kernel configuration that need to be used in the ECC Manager node in the device tree. The following table indicates what are the Kernel configs and 'compatibles' needed for each hardware component and if this is available in each one of the devices.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Component</strong></th>
+<th><strong>Kernel Config</strong></th>
+<th><strong>Compatible</strong></th>
+<th><strong>Agilex™ 5/Agilex™ 3</strong></th>
+<th><strong>Agilex™ 7</strong></th>
+<th><strong>Stratix® 10</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ECC Manager(1)</td>
+<td>CONFIG_EDAC_ALTERA</td>
+<td>altr,socfpga-a10-ecc-manager<br>altr,socfpga-s10-ecc-manager</td>
+<td>Yes<br>No</td>
+<td>Yes<br>Yes</td>
+<td>Yes<br>Yes</td>
+</tr>
+<tr>
+<td>OCRAM</td>
+<td>CONFIG_EDAC_ALTERA_OCRAM</td>
+<td>altr,socfpga-a10-ocram-ecc</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>ETHERNET</td>
+<td>CONFIG_EDAC_ALTERA_ETHERNET</td>
+<td>altr,socfpga-eth-mac-ecc</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>USB</td>
+<td>CONFIG_EDAC_ALTERA_USB</td>
+<td>altr,socfpga-usb-ecc<br>altr,socfpga-agilex5-usb3-ecc</td>
+<td>Yes<br>Yes</td>
+<td>Yes<br>No</td>
+<td>Yes<br>No</td>
+</tr>
+<tr>
+<td>SDM QSPI</td>
+<td>CONFIG_EDAC_ALTERA_SDM_QSPI</td>
+<td>altr,socfpga-sdm-qspi-ecc</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>SDMMC</td>
+<td>CONFIG_EDAC_ALTERA_SDMMC</td>
+<td>altr,socfpga-sdmmc-ecc</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>SDRAM</td>
+<td>CONFIG_EDAC_ALTERA_SDRAM</td>
+<td>altr,sdram-edac-s10</td>
+<td>No</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>IO96B</td>
+<td>CONFIG_EDAC_ALTERA_IO96B</td>
+<td>altr,socfpga-io96b0-ecc<br>altr,socfpga-io96b1-ecc</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>CRAM SEU(2)(3)</td>
+<td>CONFIG_EDAC_ALTERA_CRAM_SEU</td>
+<td>altr,socfpga-cram-seu</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>(1) Note:</strong> The ECC manager is always needed as this is part of the Altera EDAC driver.</p>
+<p><strong>(2) Note:</strong> The CRAM SEU component requires a specific hardware design configuration as shown in the following capture from Quartus Device Configuration:</p>
+<p><a class="glightbox" href="../images/edac_cram_seu_hw_cfg.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="CRAM SEU Hardware configuration" src="../images/edac_cram_seu_hw_cfg.png" /></a></p>
+<p><strong>(3) Note:</strong> For Agilex™ 7 CRAM SEU Data Injection, please refer to <a href="https://www.intel.com/content/www/us/en/docs/programmable/683128/25-3/fault-injection-and-read-emq-via-hps.html">4.7. Fault Injection and Read EMQ via HPS</a>. For Agilex™ 5 and Agilex™ 3 the similar documentation will be available soon.</p>
+<p>The reference device tree for each one of the devices includes the configuration for the ECC manager and the supported components. This configuration is under the <strong>eccmgr</strong> node. </p>
+<ul>
+<li>Agilex™ 5/Agilex™ 3: <a href="https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.12.33-lts/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi">socfpga_agilex5.dtsi</a></li>
+<li>Agilex™ 7: <a href="https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.12.33-lts/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi">socfpga_agilex.dtsi</a></li>
+<li>Stratix® 10: <a href="https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.12.33-lts/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi">socfpga_stratix10.dtsi</a></li>
+</ul>
+<h2 id="test-procedure"><strong>Test Procedure</strong><a class="headerlink" href="#test-procedure" title="Permanent link">&para;</a></h2>
+<p><strong>Note:</strong> The examples shown in this section correspond to exercise the the Altera EDAC driver in Agilex™ 5 device, but the same applies for other devices.</p>
+<h3 id="error-injection">Error Injection<a class="headerlink" href="#error-injection" title="Permanent link">&para;</a></h3>
+<p>When the Kernel and Device tree are built with the configuration described in the table above, you can interact with the Altera EDAC driver to inject errors from the User Space using the devices created under <strong>/sys/kernel/debug/edac/</strong> directory:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:~#<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/sys/kernel/debug/edac/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/kernel/debug/edac#<span class="w"> </span>ls
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>cram-seu<span class="w">        </span>emac2-tx-ecc<span class="w">    </span>sdm-qspi-ecc<span class="w">    </span>usb1-rx-ecc
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>emac2-rx-ecc<span class="w">    </span>io96b0-ecc<span class="w">      </span>usb1-cache-ecc<span class="w">  </span>usb1-tx-ecc
+</code></pre></div>
+<p>Each one of these includes a <strong>altr_trigger</strong> file. When writng  <strong>U</strong> or <strong>C</strong> to this file, an Uncorrectable(U) or Correctable(C) error is triggered as shown next. By the time an error is injected into a component, a message is shown as consequence of the error detection. Next are shown some examples of the exercise of Error injection:</p>
+<p><strong>CRAM SEU</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/kernel/debug/edac#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>C<span class="w"> </span>&gt;<span class="w"> </span>./cram-seu/altr_trigger
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="o">[</span><span class="w">   </span><span class="m">66</span>.287002<span class="o">]</span><span class="w"> </span>EDAC<span class="w"> </span>Altera:<span class="w"> </span>SEU<span class="w"> </span>CE:<span class="w"> </span><span class="nv">Count</span><span class="o">=</span>0x1,<span class="w"> </span><span class="nv">SecAddr</span><span class="o">=</span>0x30000,<span class="w"> </span><span class="nv">ErrData</span><span class="o">=</span>0x300700C8
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/kernel/debug/edac#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>U<span class="w"> </span>&gt;<span class="w"> </span>./cram-seu/altr_trigger<span class="w"> </span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">326</span>.288594<span class="o">]</span><span class="w"> </span>EDAC<span class="w"> </span>Altera:<span class="w"> </span>SEU<span class="w"> </span>UE:<span class="w"> </span><span class="nv">Count</span><span class="o">=</span>0x1,<span class="w"> </span><span class="nv">SecAddr</span><span class="o">=</span>0x30000,<span class="w"> </span><span class="nv">ErrData</span><span class="o">=</span>0x60000000
+</code></pre></div>
+  For this component, it takes few seconds to show the errors detected.</p>
+<p><strong>ETHERNET</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/kernel/debug/edac#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>C<span class="w"> </span>&gt;<span class="w"> </span>./emac2-rx-ecc/altr_trigger<span class="w"> </span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">137</span>.450919<span class="o">]</span><span class="w"> </span>EDAC<span class="w"> </span>DEVICE1:<span class="w"> </span>CE:<span class="w"> </span>Altera<span class="w"> </span>ECC<span class="w"> </span>Manager<span class="w"> </span>instance:<span class="w"> </span>emac2-rx-ecc0<span class="w"> </span>block:<span class="w"> </span>emac2-rx-ecc0<span class="w"> </span>count:<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="s1">&#39;emac2-rx-ecc&#39;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/kernel/debug/edac#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>C<span class="w"> </span>&gt;<span class="w"> </span>./emac2-tx-ecc/altr_trigger<span class="w"> </span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">147</span>.089533<span class="o">]</span><span class="w"> </span>EDAC<span class="w"> </span>DEVICE2:<span class="w"> </span>CE:<span class="w"> </span>Altera<span class="w"> </span>ECC<span class="w"> </span>Manager<span class="w"> </span>instance:<span class="w"> </span>emac2-tx-ecc0<span class="w"> </span>block:<span class="w"> </span>emac2-tx-ecc0<span class="w"> </span>count:<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="s1">&#39;emac2-tx-ecc&#39;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/kernel/debug/edac#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>U<span class="w"> </span>&gt;<span class="w"> </span>./emac2-rx-ecc/altr_trigger<span class="w"> </span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">158</span>.906016<span class="o">]</span><span class="w"> </span>EDAC<span class="w"> </span>DEVICE1:<span class="w"> </span>UE:<span class="w"> </span>Altera<span class="w"> </span>ECC<span class="w"> </span>Manager<span class="w"> </span>instance:<span class="w"> </span>emac2-rx-ecc0<span class="w"> </span>block:<span class="w"> </span>emac2-rx-ecc0<span class="w"> </span>count:<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="s1">&#39;emac2-rx-ecc&#39;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/kernel/debug/edac#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>U<span class="w"> </span>&gt;<span class="w"> </span>./emac2-tx-ecc/altr_trigger<span class="w"> </span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">165</span>.538481<span class="o">]</span><span class="w"> </span>EDAC<span class="w"> </span>DEVICE2:<span class="w"> </span>UE:<span class="w"> </span>Altera<span class="w"> </span>ECC<span class="w"> </span>Manager<span class="w"> </span>instance:<span class="w"> </span>emac2-tx-ecc0<span class="w"> </span>block:<span class="w"> </span>emac2-tx-ecc0<span class="w"> </span>count:<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="s1">&#39;emac2-tx-ecc&#39;</span>
+</code></pre></div>
+<p><strong>IO96B0:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/kernel/debug/edac#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>C<span class="w"> </span>&gt;<span class="w"> </span>./io96b0-ecc/altr_trigger<span class="w"> </span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">261</span>.437610<span class="o">]</span><span class="w"> </span>EDAC<span class="w"> </span>Altera:<span class="w"> </span>io96b0-ecc:<span class="w"> </span>SBE:<span class="w"> </span>word0:0x00400200,<span class="w"> </span>word1:0x00000000
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/kernel/debug/edac#<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">261</span>.444686<span class="o">]</span><span class="w"> </span>EDAC<span class="w"> </span>DEVICE6:<span class="w"> </span>CE:<span class="w"> </span>Altera<span class="w"> </span>ECC<span class="w"> </span>Manager<span class="w"> </span>instance:<span class="w"> </span>io96b0-ecc0<span class="w"> </span>block:<span class="w"> </span>io96b0-ecc0<span class="w"> </span>count:<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="s1">&#39;io96b0-ecc&#39;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/kernel/debug/edac#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>U<span class="w"> </span>&gt;<span class="w"> </span>./io96b0-ecc/altr_trigger<span class="w"> </span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/kernel/debug/edac#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>U<span class="w"> </span>&gt;<span class="w"> </span>./io96b0-ecc/altr_trigger<span class="w"> </span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.514052<span class="o">]</span><span class="w"> </span>EDAC<span class="w"> </span>Altera:<span class="w"> </span>io96b0-ecc:<span class="w"> </span>DBE:<span class="w"> </span>word0:0x00406080,<span class="w"> </span>word1:0x00012FC0
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.521119<span class="o">]</span><span class="w"> </span>Kernel<span class="w"> </span>panic<span class="w"> </span>-<span class="w"> </span>not<span class="w"> </span>syncing:<span class="w"> </span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.521119<span class="o">]</span><span class="w"> </span>EDAC:IO96B<span class="o">[</span>Uncorrectable<span class="w"> </span>errors<span class="o">]</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.529274<span class="o">]</span><span class="w"> </span>CPU:<span class="w"> </span><span class="m">0</span><span class="w"> </span>UID:<span class="w"> </span><span class="m">0</span><span class="w"> </span>PID:<span class="w"> </span><span class="m">71</span><span class="w"> </span>Comm:<span class="w"> </span>irq/47-io96b0-e<span class="w"> </span>Not<span class="w"> </span>tainted<span class="w"> </span><span class="m">6</span>.12.33-g3234b1ed8956-dirty<span class="w"> </span><span class="c1">#12</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.538289<span class="o">]</span><span class="w"> </span>Hardware<span class="w"> </span>name:<span class="w"> </span>SoCFPGA<span class="w"> </span>Agilex5<span class="w"> </span>SoCDK<span class="w"> </span><span class="o">(</span>DT<span class="o">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.543323<span class="o">]</span><span class="w"> </span>Call<span class="w"> </span>trace:
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.545763<span class="o">]</span><span class="w">  </span>dump_backtrace.part.0+0xd4/0xe0
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.550064<span class="o">]</span><span class="w">  </span>show_stack+0x18/0x30
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.553376<span class="o">]</span><span class="w">  </span>dump_stack_lvl+0x60/0x80
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.557049<span class="o">]</span><span class="w">  </span>dump_stack+0x18/0x24
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.560358<span class="o">]</span><span class="w">  </span>panic+0x168/0x360
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.563418<span class="o">]</span><span class="w">  </span>altr_edac_io96b_device_trig+0x0/0x234
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.568207<span class="o">]</span><span class="w">  </span>irq_thread_fn+0x2c/0xa8
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.571793<span class="o">]</span><span class="w">  </span>irq_thread+0x170/0x300
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.575276<span class="o">]</span><span class="w">  </span>kthread+0x110/0x120
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.578514<span class="o">]</span><span class="w">  </span>ret_from_fork+0x10/0x20
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.582089<span class="o">]</span><span class="w"> </span>SMP:<span class="w"> </span>stopping<span class="w"> </span>secondary<span class="w"> </span>CPUs
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.586011<span class="o">]</span><span class="w"> </span>Kernel<span class="w"> </span>Offset:<span class="w"> </span>disabled
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.589486<span class="o">]</span><span class="w"> </span>CPU<span class="w"> </span>features:<span class="w"> </span>0x18,00000007,00280928,4200720b
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.594867<span class="o">]</span><span class="w"> </span>Memory<span class="w"> </span>Limit:<span class="w"> </span>none
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.597985<span class="o">]</span><span class="w"> </span>---<span class="o">[</span><span class="w"> </span>end<span class="w"> </span>Kernel<span class="w"> </span>panic<span class="w"> </span>-<span class="w"> </span>not<span class="w"> </span>syncing:<span class="w"> </span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">  </span><span class="o">[</span><span class="w">  </span><span class="m">294</span>.597985<span class="o">]</span><span class="w"> </span>EDAC:IO96B<span class="o">[</span>Uncorrectable<span class="w"> </span>errors<span class="o">]</span><span class="w"> </span><span class="o">]</span>---
+</code></pre></div>
+In the error messages displayed, there are 2 fields referred as <strong>word0</strong> and <strong>word1</strong> whose meaning is this:</p>
+<ul>
+<li><strong>word0:</strong> ECC error information</li>
+<li><strong>word1:</strong> Lower 32 bits of the ECC error address</li>
+</ul>
+<p>In the case of Uncorrectable errors in IO96B component, it is needed to trigger 2 errors to observe the error detection. After this, the system crashes as this is considered a catastrophic error.  </p>
+<h3 id="error-count">Error Count<a class="headerlink" href="#error-count" title="Permanent link">&para;</a></h3>
+<p>You can retrieve the number of Correctable or Uncorrectable ECC errors detected in each of the components using the <strong>ce_count</strong>(Correctable) and <strong>ue_count</strong>(Uncorrectable) files located at <strong>/sys/devices/system/edac/&lt;component&gt;/&lt;component#&gt;/</strong> path.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:<span class="w"> </span>/home/root/#<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/sys/devices/system/edac
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/devices/system/edac#<span class="w"> </span>ls
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>cram-seu<span class="w">        </span>emac2-tx-ecc<span class="w">    </span>mc<span class="w">              </span>sdm-qspi-ecc<span class="w">    </span>usb1-cache-ecc<span class="w">  </span>usb1-tx-ecc
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span>emac2-rx-ecc<span class="w">    </span>io96b0-ecc<span class="w">      </span>power<span class="w">           </span>uevent<span class="w">          </span>usb1-rx-ecc
+</code></pre></div>
+<p>The following captures demonstrate an example of retreiven the error count.</p>
+<p><strong>CRAM SEU</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/devices/system/edac#<span class="w"> </span>cat<span class="w"> </span>./cram-seu/cram-seu0/ce_count<span class="w"> </span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="m">2</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/devices/system/edac#<span class="w"> </span>cat<span class="w"> </span>./cram-seu/cram-seu0/ue_count
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="m">17</span>
+</code></pre></div></p>
+<p><strong>ETHERNET</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/devices/system/edac#<span class="w"> </span>cat<span class="w"> </span>emac2-rx-ecc/emac2-rx-ecc0/ce_count
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="m">2</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/devices/system/edac#<span class="w"> </span>cat<span class="w"> </span>emac2-rx-ecc/emac2-rx-ecc0/ue_count
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="m">3</span><span class="w">  </span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/devices/system/edac#<span class="w"> </span>cat<span class="w"> </span>emac2-tx-ecc/emac2-tx-ecc0/ce_count
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="m">3</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/devices/system/edac#<span class="w"> </span>cat<span class="w"> </span>emac2-tx-ecc/emac2-tx-ecc0/ue_count
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="m">4</span>
+</code></pre></div></p>
+<p><strong>IO96B0:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/devices/system/edac#<span class="w"> </span>cat<span class="w"> </span>./io96b0-ecc/io96b0-ecc0/ce_count<span class="w"> </span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="m">3</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>root@agilex5_dk_a5e065bb32aes1:/sys/devices/system/edac#<span class="w"> </span>cat<span class="w"> </span>./io96b0-ecc/io96b0-ecc0/ue_count<span class="w"> </span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="m">0</span>
+</code></pre></div></p>
 <h2 id="known-issues"><strong>Known Issues</strong><a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
-<p>None known</p>
+<ul>
+<li>The ECC error injection for OCRAM component in Agilex™ 5 is only supported in production devices. For Engineering samples ECC error injection is not suppoered. This is documented as an Errata in <a href="https://www.intel.com/content/www/us/en/docs/programmable/825514/current/the-on-chip-ram-error-check-and-correction.html">2.1.9. The On-Chip RAM Error Check and Correction (ECC) error injection will not work when using the Linux Altera EDAC driver</a>.</li>
+</ul>
 <h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
 <p>Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
 No product or component can be absolutely secure. 
@@ -4766,7 +5018,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 7, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 2, 2025</span>
       
         <br>
         Created:

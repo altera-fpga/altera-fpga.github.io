@@ -3082,6 +3082,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#start-simulator" class="md-nav__link">
+    Start Simulator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-simulator" class="md-nav__link">
+    Setup Simulator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#run-simulation" class="md-nav__link">
     Run Simulation
   </a>
@@ -5026,6 +5040,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#start-simulator" class="md-nav__link">
+    Start Simulator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-simulator" class="md-nav__link">
+    Setup Simulator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#run-simulation" class="md-nav__link">
     Run Simulation
   </a>
@@ -5061,9 +5089,11 @@
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <h3 id="nios-vm-baseline-golden-hardware-reference-design-ghrd-overview">Nios® V/m Baseline Golden Hardware Reference Design (GHRD) Overview<a class="headerlink" href="#nios-vm-baseline-golden-hardware-reference-design-ghrd-overview" title="Permanent link">&para;</a></h3>
 <p>This design demonstrates the baseline Golden Hardware Reference Design (GHRD) for a Nios® V/m processor in Agilex™ 5 FPGA E-Series 065B Premium Development Kit. </br>
- The design is built with basic peripherals required for simple application execution:
- - JTAG UART for serial output.
- - Parallel Input/Output for IO control.</p>
+ The design is built with basic peripherals required for simple application execution:</p>
+<ul>
+<li>JTAG UART for serial output.</li>
+<li>Parallel Input/Output for IO control.</li>
+</ul>
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Agilex™ 5 FPGA E-Series 065B Premium Development Kit, ordering code DK- A5E065BB32AES1. </br> Refer to the board documentation for more information about the development kit.</li>
@@ -5099,10 +5129,12 @@ graph LR
 </code></pre>
 <h2 id="nios-vm-baseline-golden-hardware-reference-design-ghrd-architecture">Nios® V/m Baseline Golden Hardware Reference Design (GHRD) Architecture<a class="headerlink" href="#nios-vm-baseline-golden-hardware-reference-design-ghrd-architecture" title="Permanent link">&para;</a></h2>
 <p>This example design includes a Nios® V/m processor connected to the On-Chip RAM II, JTAG UART IP, Parallel-IO and System ID peripheral core. </br>
- The objective of the design is to accomplish data transfer between the processor and soft IP peripherals:
- - Read and Write operation with On-Chip RAM II
- - Toggle the Parallel-IO
- - Verify design identification with System ID</p>
+ The objective of the design is to accomplish data transfer between the processor and soft IP peripherals:</p>
+<ul>
+<li>Read and Write operation with On-Chip RAM II</li>
+<li>Toggle the Parallel-IO</li>
+<li>Verify design identification with System ID</li>
+</ul>
 <pre class="mermaid"><code>---
 title: Design Block Diagram
 config:
@@ -5135,16 +5167,20 @@ E &lt;--&gt; X</code></pre>
 <li>It is a customizable soft-core processor, that can be tailored to meet specific application requirements, providing flexibility and scalability in embedded system designs.</li>
 </ul>
 <h3 id="embedded-peripheral-ip-cores">Embedded Peripheral IP Cores<a class="headerlink" href="#embedded-peripheral-ip-cores" title="Permanent link">&para;</a></h3>
-<p>The following embedded peripheral IPs are used in this design:
-- On-Chip RAM II IP
-- JTAG UART IP
-- Parallel IO IP
-- System ID IP</p>
+<p>The following embedded peripheral IPs are used in this design:</p>
+<ul>
+<li>On-Chip RAM II IP</li>
+<li>JTAG UART IP</li>
+<li>Parallel IO IP</li>
+<li>System ID IP</li>
+</ul>
 <h3 id="system-components">System Components<a class="headerlink" href="#system-components" title="Permanent link">&para;</a></h3>
-<p>The following components are used in this design:
-- Clock Source (Clock Bridge with IO PLL)
-- Reset Source (Reset Controller with Synchronizer)
-- IO Debounce Logic</p>
+<p>The following components are used in this design:</p>
+<ul>
+<li>Clock Source (Clock Bridge with IO PLL)</li>
+<li>Reset Source (Reset Controller with Synchronizer)</li>
+<li>IO Debounce Logic</li>
+</ul>
 <h3 id="nios-vm-processor-address-map-details">Nios® V/m Processor Address Map Details<a class="headerlink" href="#nios-vm-processor-address-map-details" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -5202,11 +5238,13 @@ E &lt;--&gt; X</code></pre>
 <ol>
 <li>Connect the development kit to the host PC using USB Blaster II.</li>
 <li>Change the JTAG clock frequency to 6 MHz, and probe the JTAGServer to get the JTAG scan chain.</li>
+<li>Execute the quartus_pgm command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain below, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.</li>
 </ol>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="go">jtagconfig --setparam 1 JtagClock 6M</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">jtagconfig -d</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">quartus_pgm --cable=1 -m jtag -o &#39;p;ready_to_test/top.sof@2&#39;</span>
 </code></pre></div>
-<p>For example:
+<p>Example of JTAG Scan Chain:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="go"> 1) Agilex 5E065B Premium DK</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="go">  4BA06477   ARM_CORESIGHT_SOC_600 (IR=4)</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="go">  0364F0DD   A5E(C065BB32AR0|D065BB32AR0) (IR=10)</span>
@@ -5225,23 +5263,18 @@ E &lt;--&gt; X</code></pre>
 <a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="go">  JTAG clock speed auto-adjustment is enabled. To disable, set JtagClockAutoAdjust parameter to 0</span>
 <a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="go">  JTAG clock speed 6 MHz</span>
 </code></pre></div></p>
-<ol>
-<li>Execute the following command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain earlier, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.</li>
-</ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="go">quartus_pgm --cable=1 -m jtag -o &#39;p;ready_to_test/top.sof@2&#39;</span>
-</code></pre></div>
 <h3 id="program-software-image-elf">Program Software Image ELF<a class="headerlink" href="#program-software-image-elf" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Ensure that the development kit is successfully configured with the Hardware Binary SOF file.</li>
 <li>Launch the Nios V Command Shell. You may skip this if the shell is active.</li>
 <li>Execute the following command to download the ELF file.</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="go">niosv-shell</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">niosv-download -g ready_to_test/app.elf -c 1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="go">niosv-shell</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">niosv-download -g ready_to_test/app.elf -c 1</span>
 </code></pre></div>
 <h3 id="run-serial-console">Run Serial Console<a class="headerlink" href="#run-serial-console" title="Permanent link">&para;</a></h3>
 <p>You may proceed to to display the application printouts, and verify the design.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="go">juart-terminal -d 1 -c 1 -i 0 </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="go">juart-terminal -d 1 -c 1 -i 0 </span>
 </code></pre></div>
 <p>For example, you should see similar display at the end of the application.</p>
 <p><a class="glightbox" href="../img/juart-terminal.png?raw=true" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="JTAG UART Display" src="../img/juart-terminal.png?raw=true" /></a></p>
@@ -5256,67 +5289,66 @@ The script performs the following tasks, which generates the hardware binary SOF
 <li>Compile the project</li>
 <li>Generate a hardware binary SOF file</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="go">quartus_py ./scripts/build_sof.py</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="go">quartus_py ./scripts/build_sof.py</span>
 </code></pre></div>
 <h3 id="generate-software-image-elf">Generate Software Image ELF<a class="headerlink" href="#generate-software-image-elf" title="Permanent link">&para;</a></h3>
 <p>After the hardware binary SOF file is ready, you may begin building the software design. </br>
-It consists of the following steps:
-1. Create a board support package (BSP) project.
-2. Create a Nios® V processor application project with Hello World source code.
-3. Build the Hello World application.
-4. Generate a software image ELF file.</p>
+It consists of the following steps:</p>
+<ol>
+<li>Create a board support package (BSP) project.</li>
+<li>Create a Nios® V processor application project with Hello World source code.</li>
+<li>Build the Hello World application.</li>
+<li>Generate a software image ELF file.</li>
+</ol>
 <p>Launch the Nios V Command Shell. You may skip this if the shell is active. </br>
 Run the following command in the shell from the <em>source</em> directory.
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="go">niosv-shell</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="go">niosv-bsp -c --quartus-project=hw/top.qpf --qsys=hw/qsys_top.qsys --type=hal sw/bsp/settings.bsp</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="go">niosv-app --bsp-dir=sw/bsp --app-dir=sw/app --srcs=sw/app/main.c</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="go">cmake -S ./sw/app -B sw/app/build -G &quot;Unix Makefiles&quot;</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="go">make -C sw/app/build</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="go">niosv-shell</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="go">niosv-bsp -c --quartus-project=hw/top.qpf --qsys=hw/qsys_top.qsys --type=hal sw/bsp/settings.bsp</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="go">niosv-app --bsp-dir=sw/bsp --app-dir=sw/app --srcs=sw/app/main.c</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="go">cmake -S ./sw/app -B sw/app/build -G &quot;Unix Makefiles&quot;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="go">make -C sw/app/build</span>
 </code></pre></div></p>
 <h3 id="program-hardware-binary-sof_1">Program Hardware Binary SOF<a class="headerlink" href="#program-hardware-binary-sof_1" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Connect the development kit to the host PC using USB Blaster II.</li>
 <li>Change the JTAG clock frequency to 6 MHz, and probe the JTAGServer to get the JTAG scan chain.</li>
+<li>Execute the quartus_pgm command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain below, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="go">jtagconfig --setparam 1 JtagClock 6M</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="go">jtagconfig -d</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="go">jtagconfig --setparam 1 JtagClock 6M</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="go">jtagconfig -d</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="go">quartus_pgm --cable=1 -m jtag -o &#39;p;hw/output_files/top.sof@2&#39;</span>
 </code></pre></div>
-<p>For example:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="go"> 1) Agilex 5E065B Premium DK</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="go">  4BA06477   ARM_CORESIGHT_SOC_600 (IR=4)</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="go">  0364F0DD   A5E(C065BB32AR0|D065BB32AR0) (IR=10)</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="go">  020D10DD   VTAP10 (IR=10)</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="go">    Design hash    2696B57EB10A539DFB3F</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="go">    + Node 08586E00  (110:11) #0</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="go">    + Node 0C006E00  JTAG UART #0</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="go">    + Node 0C206E00  JTAG PHY #0</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="go">    + Node 19104600  Nios II #0</span>
-<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="go">    + Node 30006E00  Signal Tap #0</span>
-<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
-<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="go">  Captured DR after reset = (4BA064770364F0DD020D10DD) [96]</span>
-<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="go">  Captured IR after reset = (100555) [24]</span>
-<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="go">  Captured Bypass after reset = (0) [3]</span>
-<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="go">  Captured Bypass chain = (0) [3]</span>
-<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="go">  JTAG clock speed auto-adjustment is enabled. To disable, set JtagClockAutoAdjust parameter to 0</span>
-<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="go">  JTAG clock speed 6 MHz</span>
+<p>Example of JTAG Scan Chain:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="go"> 1) Agilex 5E065B Premium DK</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="go">  4BA06477   ARM_CORESIGHT_SOC_600 (IR=4)</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="go">  0364F0DD   A5E(C065BB32AR0|D065BB32AR0) (IR=10)</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="go">  020D10DD   VTAP10 (IR=10)</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="go">    Design hash    2696B57EB10A539DFB3F</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="go">    + Node 08586E00  (110:11) #0</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="go">    + Node 0C006E00  JTAG UART #0</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="go">    + Node 0C206E00  JTAG PHY #0</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="go">    + Node 19104600  Nios II #0</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="go">    + Node 30006E00  Signal Tap #0</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="go">  Captured DR after reset = (4BA064770364F0DD020D10DD) [96]</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="go">  Captured IR after reset = (100555) [24]</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="go">  Captured Bypass after reset = (0) [3]</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="go">  Captured Bypass chain = (0) [3]</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="go">  JTAG clock speed auto-adjustment is enabled. To disable, set JtagClockAutoAdjust parameter to 0</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="go">  JTAG clock speed 6 MHz</span>
 </code></pre></div></p>
-<ol>
-<li>Execute the following command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain earlier, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.</li>
-</ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="go">quartus_pgm --cable=1 -m jtag -o &#39;p;hw/output_files/top.sof@2&#39;</span>
-</code></pre></div>
 <h3 id="program-software-image-elf_1">Program Software Image ELF<a class="headerlink" href="#program-software-image-elf_1" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Ensure that the development kit is successfully configured with the Hardware Binary SOF file.</li>
 <li>Launch the Nios V Command Shell. You may skip this if the shell is active.</li>
 <li>Execute the following command to download the ELF file.</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="go">niosv-shell</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="go">niosv-download -g sw/app/build/app.elf -c 1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="go">niosv-shell</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="go">niosv-download -g sw/app/build/app.elf -c 1</span>
 </code></pre></div>
 <h3 id="run-serial-console_1">Run Serial Console<a class="headerlink" href="#run-serial-console_1" title="Permanent link">&para;</a></h3>
 <p>You may proceed to to display the application printouts, and verify the design.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="go">juart-terminal -d 1 -c 1 -i 0 </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="go">juart-terminal -d 1 -c 1 -i 0 </span>
 </code></pre></div>
 <p>For example, you should see similar display at the end of the application.</p>
 <p><a class="glightbox" href="../img/juart-terminal.png?raw=true" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="JTAG UART Display" src="../img/juart-terminal.png?raw=true" /></a></p>
@@ -5329,51 +5361,70 @@ The commands below perform the following tasks, which generates the hardware DUT
 <li>Create a new Platform Designer system</li>
 <li>Generate testbench system</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="go">quartus_py ./scripts/build_sof.py</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="go">qsys-generate hw/qsys_top.qsys --testbench=STANDARD --testbench-simulation=VERILOG</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="go">quartus_py ./scripts/build_sof.py</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="go">qsys-generate hw/qsys_top.qsys --testbench=STANDARD --testbench-simulation=VERILOG</span>
 </code></pre></div>
 <h3 id="generate-software-image-hex">Generate Software Image HEX<a class="headerlink" href="#generate-software-image-hex" title="Permanent link">&para;</a></h3>
 <p>After the hardware DUT and testbench are ready, you may begin building the software design. </br>
-It consists of the following steps:
-1. Create a board support package (BSP) project.
-2. Create a Nios® V processor application project with Hello World source code.
-3. Build the Hello World application.
-4. Generate a software image HEX file.</p>
+It consists of the following steps:</p>
+<ol>
+<li>Create a board support package (BSP) project.</li>
+<li>Create a Nios® V processor application project with Hello World source code.</li>
+<li>Build the Hello World application.</li>
+<li>Generate a software image HEX file.</li>
+</ol>
 <p>Launch the Nios V Command Shell. You may skip this if the shell is active. </br>
 Run the following command in the shell from the <em>source</em> directory.
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="go">niosv-shell</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="go">niosv-bsp -c --quartus-project=hw/top.qpf --qsys=hw/qsys_top.qsys --type=hal sw/bsp/settings.bsp</span>
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="go">niosv-app --bsp-dir=sw/bsp --app-dir=sw/app --srcs=sw/app/main.c</span>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="go">cmake -S ./sw/app -B sw/app/build -G &quot;Unix Makefiles&quot;</span>
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="go">make -C sw/app/build</span>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="go">elf2hex sw/app/build/app.elf -b 0x0 -w 32 -e 0xfffff hw/onchip_mem.hex -r4</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="go">niosv-shell</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="go">niosv-bsp -c --quartus-project=hw/top.qpf --qsys=hw/qsys_top.qsys --type=hal sw/bsp/settings.bsp</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="go">niosv-app --bsp-dir=sw/bsp --app-dir=sw/app --srcs=sw/app/main.c</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="go">cmake -S ./sw/app -B sw/app/build -G &quot;Unix Makefiles&quot;</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="go">make -C sw/app/build</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="go">elf2hex sw/app/build/app.elf -b 0x0 -w 32 -e 0xfffff hw/onchip_mem.hex -r4</span>
 </code></pre></div></p>
 <h3 id="check-simulation-files">Check Simulation Files<a class="headerlink" href="#check-simulation-files" title="Permanent link">&para;</a></h3>
-<p>You have generated your system and created all the files necessary for simulation.
-| File | Description |
-| - | - |
-| Working Directory/hw/qsys_top_tb | Generated testbench system |
-| Working Directory/hw/qsys_top_tb/qsys_top_tb/sim/mentor/msim_setup.tcl | Questa simulation setup script |
-| Working Directory/hw/onchip_mem.hex | On-Chip RAM II memory initialization file |</p>
+<p>You have generated your system and created all the files necessary for simulation.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Working Directory/hw/qsys_top_tb</td>
+<td>Generated testbench system</td>
+</tr>
+<tr>
+<td>Working Directory/hw/qsys_top_tb/qsys_top_tb/sim/mentor/msim_setup.tcl</td>
+<td>Questa simulation setup script</td>
+</tr>
+<tr>
+<td>Working Directory/hw/onchip_mem.hex</td>
+<td>On-Chip RAM II memory initialization file</td>
+</tr>
+</tbody>
+</table>
+<h3 id="start-simulator">Start Simulator<a class="headerlink" href="#start-simulator" title="Permanent link">&para;</a></h3>
+<p>With all the necessary simulation files, you can start the simulation.</p>
+<ol>
+<li>Copy the memory initialization file into <em>mentor</em> folder.</li>
+<li>Change directory to the same <em>mentor</em> folder.</li>
+<li>Open the <strong>Questa for Altera FPGA</strong> simulator using the command <em>vsim</em>.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="go">cp hw/onchip_mem.hex hw/qsys_top_tb/qsys_top_tb/sim/mentor </span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="go">cd hw/qsys_top_tb/qsys_top_tb/sim/mentor/</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="go">vsim</span>
+</code></pre></div>
+<h3 id="setup-simulator">Setup Simulator<a class="headerlink" href="#setup-simulator" title="Permanent link">&para;</a></h3>
+<p>In the <strong>Questa for Altera FPGA</strong> software, run the following commands in the <strong>Transcript</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="go">source msim_setup.tcl</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="go">ld_debug</span>
+</code></pre></div>
 <h3 id="run-simulation">Run Simulation<a class="headerlink" href="#run-simulation" title="Permanent link">&para;</a></h3>
-<p>With all the necessary simulation files, you can start the simulation.
-1. Copy the memory initialization file into <em>mentor</em> folder.
-2. Change directory to the same <em>mentor</em> folder.
-3. Open the <strong>Questa for Altera FPGA</strong> simulator using the command <em>vsim</em>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="go">cp hw/onchip_mem.hex hw/qsys_top_tb/qsys_top_tb/sim/mentor </span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="go">cd hw/qsys_top_tb/qsys_top_tb/sim/mentor/</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="go">vsim</span>
-</code></pre></div>
-<ol>
-<li>In the <strong>Questa for Altera FPGA</strong> software, run the following commands in the <strong>Transcript</strong>.</li>
-</ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="go">source msim_setup.tcl</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="go">ld_debug</span>
-</code></pre></div>
-<ol>
-<li>Run the simulation with <em>run -all</em> command. <br/>
-For example, you should see similar display at the start of the simulation.</li>
-</ol>
+<p>Run the simulation with <em>run -all</em> command. <br/>
+For example, you should see similar display at the start of the simulation.</p>
 <p><a class="glightbox" href="../img/simulation.png?raw=true" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Simulation" src="../img/simulation.png?raw=true" /></a></p>
 <p><a class="glightbox" href="../../../devkit-img/niosv-header.png?raw=true" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Nios V Processor Header" src="../../../devkit-img/niosv-header.png?raw=true" /></a></p>
 
@@ -5382,7 +5433,7 @@ For example, you should see similar display at the start of the simulation.</li>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 7, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 2, 2025</span>
       
         <br>
         Created:

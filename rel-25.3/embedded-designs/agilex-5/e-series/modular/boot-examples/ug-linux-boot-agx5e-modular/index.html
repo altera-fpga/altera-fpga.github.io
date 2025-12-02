@@ -5522,13 +5522,13 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <li>fpga load [device] [address] [file_size]<br></li>
 </ul>
 <p>5. The message "FPGA reconfiguration OK!" will be printed out upon successful transaction.<br></p>
-<p>Here is an example for Agilex® 5 device, but the same steps apply for Stratix® 10, Agilex® 7, and Agilex® 3 SoC FPGA devices.</p>
+<p>Here is an example for Agilex® 7 device, but the same steps apply for Stratix® 10, Agilex® 5, and Agilex® 3 SoC FPGA devices.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>Hit<span class="w"> </span>any<span class="w"> </span>key<span class="w"> </span>to<span class="w"> </span>stop<span class="w"> </span>autoboot:<span class="w">  </span><span class="m">0</span><span class="w"> </span>///<span class="w"> </span>Hit<span class="w"> </span>any<span class="w"> </span>key<span class="w"> </span>at<span class="w"> </span>this<span class="w"> </span>point<span class="w"> </span>to<span class="w"> </span>enter<span class="w"> </span>the<span class="w"> </span>U-boot<span class="w"> </span>Shell<span class="w"> </span>///
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>SOCFPGA_AGILEX<span class="w"> </span><span class="c1">#</span>
-<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>SOCFPGA_AGILEX<span class="w"> </span><span class="c1"># fatload mmc 0:1 0x90000000 ghrd.core.rbf</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>SOCFPGA_AGILEX<span class="w"> </span><span class="c1"># fatload mmc 0:1 ${loadaddr} ghrd.core.rbf</span>
 <a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="m">2404352</span><span class="w"> </span>bytes<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">116</span><span class="w"> </span>ms<span class="w"> </span><span class="o">(</span><span class="m">19</span>.8<span class="w"> </span>MiB/s<span class="o">)</span>
-<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>SOCFPGA_AGILEX<span class="w"> </span><span class="c1"># fpga load 0 0x90000000 ${filesize}</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>SOCFPGA_AGILEX<span class="w"> </span><span class="c1"># fpga load 0 ${loadaddr} ${filesize}</span>
 <a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>…FPGA<span class="w"> </span>reconfiguration<span class="w"> </span>OK!
 </code></pre></div>
 <h2 id="reconfiguring-core-fabric-from-linux">Reconfiguring Core Fabric from Linux<a class="headerlink" href="#reconfiguring-core-fabric-from-linux" title="Permanent link">&para;</a></h2>
@@ -5693,17 +5693,17 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
 <a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="c1"># Stratix® 10 SoC FPGA device:</span>
 <a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>mmc<span class="w"> </span>rescan
-<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="m">82000000</span><span class="w"> </span>Image
-<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="m">86000000</span><span class="w"> </span>socfpga_stratix10_socdk.dtb
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="m">01000000</span><span class="w"> </span>Image
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="m">08000000</span><span class="w"> </span>socfpga_stratix10_socdk.dtb
 <a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>setenv<span class="w"> </span>bootargs<span class="w"> </span><span class="nv">console</span><span class="o">=</span>ttyS0,115200<span class="w"> </span><span class="nv">root</span><span class="o">=</span><span class="si">${</span><span class="nv">mmcroot</span><span class="si">}</span><span class="w"> </span>rw<span class="w"> </span>rootwait<span class="p">;</span>
-<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>booti<span class="w"> </span>0x82000000<span class="w"> </span>-<span class="w"> </span>0x86000000
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>booti<span class="w"> </span>0x01000000<span class="w"> </span>-<span class="w"> </span>0x08000000
 <a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>
 <a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="c1"># Agilex® 7 SoC FPGA device:</span>
 <a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>mmc<span class="w"> </span>rescan
-<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="m">82000000</span><span class="w"> </span>Image
-<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="m">86000000</span><span class="w"> </span>socfpga_agilex_socdk.dtb
+<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="m">02000000</span><span class="w"> </span>Image
+<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="m">06000000</span><span class="w"> </span>socfpga_agilex_socdk.dtb
 <a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a>setenv<span class="w"> </span>bootargs<span class="w"> </span><span class="nv">console</span><span class="o">=</span>ttyS0,115200<span class="w"> </span><span class="nv">root</span><span class="o">=</span><span class="si">${</span><span class="nv">mmcroot</span><span class="si">}</span><span class="w"> </span>rw<span class="w"> </span>rootwait<span class="p">;</span>
-<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>booti<span class="w"> </span>0x82000000<span class="w"> </span>-<span class="w"> </span>0x86000000
+<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a>booti<span class="w"> </span>0x02000000<span class="w"> </span>-<span class="w"> </span>0x06000000
 <a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a>
 <a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a><span class="c1"># Agilex® 5 SoC FPGA device:</span>
 <a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a>mmc<span class="w"> </span>rescan
@@ -5748,7 +5748,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 7, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 2, 2025</span>
       
         <br>
         Created:

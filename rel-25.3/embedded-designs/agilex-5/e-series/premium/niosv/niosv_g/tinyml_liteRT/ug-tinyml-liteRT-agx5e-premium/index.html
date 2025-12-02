@@ -4979,8 +4979,10 @@
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <h3 id="nios-vg-tinyml-litert-example-design-overview">Nios® V/g TinyML LiteRT Example Design Overview<a class="headerlink" href="#nios-vg-tinyml-litert-example-design-overview" title="Permanent link">&para;</a></h3>
 <p>This design demonstrates the TinyML application using LiteRT for microcontrollers software with Nios® V/g processor in Agilex™ 5 FPGA E-Series 065B Premium Development Kit. </br>
- The design is built with basic peripherals required for simple application execution:
- - JTAG UART for serial output.</p>
+ The design is built with basic peripherals required for simple application execution:</p>
+<ul>
+<li>JTAG UART for serial output.</li>
+</ul>
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Agilex™ 5 FPGA E-Series 065B Premium Development Kit, ordering code DK- A5E065BB32AES1. </br> Refer to the board documentation for more information about the development kit.</li>
@@ -5016,9 +5018,11 @@ graph LR
 </code></pre>
 <h2 id="nios-vg-tinyml-litert-design-architecture">Nios® V/g TinyML LiteRT Design Architecture<a class="headerlink" href="#nios-vg-tinyml-litert-design-architecture" title="Permanent link">&para;</a></h2>
 <p>This example design includes a Nios® V/g processor connected to the On-Chip RAM II, JTAG UART IP and System ID peripheral core. </br>
- The objective of the design is to accomplish data transfer between the processor and soft IP peripherals:
- - Running TinyML application that identify Modified National Institute of Standards and Technology (MNIST) data samples.
- - Prints the classification result thru JTAG UART IP.</p>
+ The objective of the design is to accomplish data transfer between the processor and soft IP peripherals:</p>
+<ul>
+<li>Running TinyML application that identify Modified National Institute of Standards and Technology (MNIST) data samples.</li>
+<li>Prints the classification result thru JTAG UART IP.</li>
+</ul>
 <pre class="mermaid"><code>---
 title: Design Block Diagram
 config:
@@ -5048,14 +5052,18 @@ Y --&gt; processor-subsystem</code></pre>
 <li>It is a customizable soft-core processor, that can be tailored to meet specific application requirements, providing flexibility and scalability in embedded system designs.</li>
 </ul>
 <h3 id="embedded-peripheral-ip-cores">Embedded Peripheral IP Cores<a class="headerlink" href="#embedded-peripheral-ip-cores" title="Permanent link">&para;</a></h3>
-<p>The following embedded peripheral IPs are used in this design:
-- On-Chip RAM II IP
-- JTAG UART IP
-- System ID IP</p>
+<p>The following embedded peripheral IPs are used in this design:</p>
+<ul>
+<li>On-Chip RAM II IP</li>
+<li>JTAG UART IP</li>
+<li>System ID IP</li>
+</ul>
 <h3 id="system-components">System Components<a class="headerlink" href="#system-components" title="Permanent link">&para;</a></h3>
-<p>The following components are used in this design:
-- Clock Source (Clock Bridge with IO PLL)
-- Reset Source (Reset Release IP)</p>
+<p>The following components are used in this design:</p>
+<ul>
+<li>Clock Source (Clock Bridge with IO PLL)</li>
+<li>Reset Source (Reset Release IP)</li>
+</ul>
 <h3 id="nios-v-processor-address-map-details">Nios® V Processor Address Map Details<a class="headerlink" href="#nios-v-processor-address-map-details" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -5101,9 +5109,11 @@ Y --&gt; processor-subsystem</code></pre>
 <ol>
 <li>Connect the development kit to the host PC using USB Blaster II.</li>
 <li>Change the JTAG clock frequency to 6 MHz, and probe the JTAGServer to get the JTAG scan chain.</li>
+<li>Execute the quartus_pgm command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain below, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.</li>
 </ol>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="go">jtagconfig --setparam 1 JtagClock 6M</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="go">jtagconfig -d</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">quartus_pgm --cable=1 -m jtag -o &#39;p;ready_to_test/top.sof@2&#39;</span>
 </code></pre></div>
 <p>For example:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="go"> 1) Agilex 5E065B Premium DK</span>
@@ -5124,23 +5134,18 @@ Y --&gt; processor-subsystem</code></pre>
 <a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="go">  JTAG clock speed auto-adjustment is enabled. To disable, set JtagClockAutoAdjust parameter to 0</span>
 <a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="go">  JTAG clock speed 6 MHz</span>
 </code></pre></div></p>
-<ol>
-<li>Execute the following command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain earlier, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.</li>
-</ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="go">quartus_pgm --cable=1 -m jtag -o &#39;p;ready_to_test/top.sof@2&#39;</span>
-</code></pre></div>
 <h3 id="program-software-image-elf">Program Software Image ELF<a class="headerlink" href="#program-software-image-elf" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Ensure that the development kit is successfully configured with the Hardware Binary SOF file.</li>
 <li>Launch the Nios V Command Shell. You may skip this if the shell is active.</li>
 <li>Execute the following command to download the ELF file.</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="go">niosv-shell</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="go">niosv-download -g ready_to_test/tflite_app.elf -c 1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="go">niosv-shell</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="go">niosv-download -g ready_to_test/tflite_app.elf -c 1</span>
 </code></pre></div>
 <h3 id="run-serial-console">Run Serial Console<a class="headerlink" href="#run-serial-console" title="Permanent link">&para;</a></h3>
 <p>You may proceed to to display the application printouts, and verify the design.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="go">juart-terminal -d 1 -c 1 -i 0 </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="go">juart-terminal -d 1 -c 1 -i 0 </span>
 </code></pre></div>
 <p>For example, you should see similar display at the start of the application.</p>
 <p><a class="glightbox" href="../img/juart-terminal.png?raw=true" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="JTAG UART Display" src="../img/juart-terminal.png?raw=true" /></a></p>
@@ -5155,71 +5160,70 @@ The script performs the following tasks, which generates the hardware binary SOF
 <li>Compile the project</li>
 <li>Generate a hardware binary SOF file</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="go">quartus_py ./scripts/build_sof.py</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="go">quartus_py ./scripts/build_sof.py</span>
 </code></pre></div>
 <h3 id="generate-software-image-elf">Generate Software Image ELF<a class="headerlink" href="#generate-software-image-elf" title="Permanent link">&para;</a></h3>
 <p>After the hardware binary SOF file is ready, you may begin building the software design. </br>
-It consists of the following steps:
-1. Create a board support package (BSP) project.
-2. Create a Nios® V processor application project with TinyML source codes.
-3. Build the TinyML application.
-4. Generate a software image ELF file.</p>
+It consists of the following steps:</p>
+<ol>
+<li>Create a board support package (BSP) project.</li>
+<li>Create a Nios® V processor application project with TinyML source codes.</li>
+<li>Build the TinyML application.</li>
+<li>Generate a software image ELF file.</li>
+</ol>
 <p>Launch the Nios V Command Shell. You may skip this if the shell is active. </br>
 Run the following command in the shell from the <em>source</em> directory.
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="go">niosv-shell</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="go">niosv-bsp -c --quartus-project=hw/top.qpf --qsys=hw/qsys_top.qsys --type=hal --script=sw/bsp_script.tcl sw/tflite_bsp/settings.bsp</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="go">niosv-app --bsp-dir=sw/tflite_bsp --app-dir=sw/tflite_app --srcs-recursive=sw/tflite_app/image_classification,sw/tflite_app/signal,sw/tflite_app/tensorflow --incs=sw/tflite_app,sw/tflite_app/image_classification/model,sw/tflite_app/image_classification/image,sw/tflite_app/tensorflow,sw/tflite_app/third_party/flatbuffers/include,sw/tflite_app/third_party/gemmlowp,sw/tflite_app/third_party/kissfft,sw/tflite_app/third_party/ruy</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="go">cmake -S ./sw/tflite_app -B sw/tflite_app/build/Release -G &quot;Unix Makefiles&quot; -DCMAKE_BUILD_TYPE=Release</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="go">make -C sw/tflite_app/build/Release</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="go">niosv-shell</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="go">niosv-bsp -c --quartus-project=hw/top.qpf --qsys=hw/qsys_top.qsys --type=hal --script=sw/bsp_script.tcl sw/tflite_bsp/settings.bsp</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="go">niosv-app --bsp-dir=sw/tflite_bsp --app-dir=sw/tflite_app --srcs-recursive=sw/tflite_app/image_classification,sw/tflite_app/signal,sw/tflite_app/tensorflow --incs=sw/tflite_app,sw/tflite_app/image_classification/model,sw/tflite_app/image_classification/image,sw/tflite_app/tensorflow,sw/tflite_app/third_party/flatbuffers/include,sw/tflite_app/third_party/gemmlowp,sw/tflite_app/third_party/kissfft,sw/tflite_app/third_party/ruy</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="go">cmake -S ./sw/tflite_app -B sw/tflite_app/build/Release -G &quot;Unix Makefiles&quot; -DCMAKE_BUILD_TYPE=Release</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="go">make -C sw/tflite_app/build/Release</span>
 </code></pre></div></p>
 <h3 id="program-hardware-binary-sof_1">Program Hardware Binary SOF<a class="headerlink" href="#program-hardware-binary-sof_1" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Connect the development kit to the host PC using USB Blaster II.</li>
 <li>Change the JTAG clock frequency to 6 MHz, and probe the JTAGServer to get the JTAG scan chain.</li>
+<li>Execute the quartus_pgm command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain below, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="go">jtagconfig --setparam 1 JtagClock 6M</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="go">jtagconfig -d</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="go">jtagconfig --setparam 1 JtagClock 6M</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="go">jtagconfig -d</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="go">quartus_pgm --cable=1 -m jtag -o &#39;p;hw/output_files/top.sof@2&#39;</span>
 </code></pre></div>
 <p>For example:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="go"> 1) Agilex 5E065B Premium DK</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="go">  4BA06477   ARM_CORESIGHT_SOC_600 (IR=4)</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="go">  0364F0DD   A5E(C065BB32AR0|D065BB32AR0) (IR=10)</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="go">  020D10DD   VTAP10 (IR=10)</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="go">    Design hash    2696B57EB10A539DFB3F</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="go">    + Node 08586E00  (110:11) #0</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="go">    + Node 0C006E00  JTAG UART #0</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="go">    + Node 0C206E00  JTAG PHY #0</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="go">    + Node 19104600  Nios II #0</span>
-<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="go">    + Node 30006E00  Signal Tap #0</span>
-<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
-<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="go">  Captured DR after reset = (4BA064770364F0DD020D10DD) [96]</span>
-<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="go">  Captured IR after reset = (100555) [24]</span>
-<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="go">  Captured Bypass after reset = (0) [3]</span>
-<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="go">  Captured Bypass chain = (0) [3]</span>
-<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="go">  JTAG clock speed auto-adjustment is enabled. To disable, set JtagClockAutoAdjust parameter to 0</span>
-<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="go">  JTAG clock speed 6 MHz</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="go"> 1) Agilex 5E065B Premium DK</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="go">  4BA06477   ARM_CORESIGHT_SOC_600 (IR=4)</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="go">  0364F0DD   A5E(C065BB32AR0|D065BB32AR0) (IR=10)</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="go">  020D10DD   VTAP10 (IR=10)</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="go">    Design hash    2696B57EB10A539DFB3F</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="go">    + Node 08586E00  (110:11) #0</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="go">    + Node 0C006E00  JTAG UART #0</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="go">    + Node 0C206E00  JTAG PHY #0</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="go">    + Node 19104600  Nios II #0</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="go">    + Node 30006E00  Signal Tap #0</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="go">  Captured DR after reset = (4BA064770364F0DD020D10DD) [96]</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="go">  Captured IR after reset = (100555) [24]</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="go">  Captured Bypass after reset = (0) [3]</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="go">  Captured Bypass chain = (0) [3]</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="go">  JTAG clock speed auto-adjustment is enabled. To disable, set JtagClockAutoAdjust parameter to 0</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="go">  JTAG clock speed 6 MHz</span>
 </code></pre></div></p>
-<ol>
-<li>Execute the following command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain earlier, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.</li>
-</ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="go">quartus_pgm --cable=1 -m jtag -o &#39;p;hw/output_files/top.sof@2&#39;</span>
-</code></pre></div>
 <h3 id="program-software-image-elf_1">Program Software Image ELF<a class="headerlink" href="#program-software-image-elf_1" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Ensure that the development kit is successfully configured with the Hardware Binary SOF file.</li>
 <li>Launch the Nios V Command Shell. You may skip this if the shell is active.</li>
 <li>Execute the following command to download the ELF file.</li>
 </ol>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="go">niosv-shell</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="go">niosv-download -g sw/tflite_app/build/Release/tflite_app.elf -c 1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="go">niosv-shell</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="go">niosv-download -g sw/tflite_app/build/Release/tflite_app.elf -c 1</span>
 </code></pre></div>
 <h3 id="run-serial-console_1">Run Serial Console<a class="headerlink" href="#run-serial-console_1" title="Permanent link">&para;</a></h3>
 <p>You may proceed to to display the application printouts, and verify the design.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="go">juart-terminal -d 1 -c 1 -i 0 </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="go">juart-terminal -d 1 -c 1 -i 0 </span>
 </code></pre></div>
 <p>For example, you should see similar display at the start of the application.</p>
 <p><a class="glightbox" href="../img/juart-terminal.png?raw=true" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="JTAG UART Display" src="../img/juart-terminal.png?raw=true" /></a></p>
@@ -5230,7 +5234,7 @@ Run the following command in the shell from the <em>source</em> directory.
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 7, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 2, 2025</span>
       
         <br>
         Created:

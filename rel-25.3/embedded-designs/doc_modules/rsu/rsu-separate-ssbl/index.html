@@ -4650,7 +4650,7 @@
 <p>In order to configure U-Boot to support one U-Boot image per bitstream, the following configuration option must be enabled.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">CONFIG_SOCFPGA_RSU_MULTIBOOT</span><span class="o">=</span>y
 </code></pre></div>
-<p>This configuration option is defined in https://github.com/altera-opensource/u-boot-socfpga/blob/socfpga_v2023.04/arch/arm/mach-socfpga/Kconfig as follows.</p>
+<p>This configuration option is defined in <a href="https://github.com/altera-opensource/u-boot-socfpga/blob/socfpga_v2023.04/arch/arm/mach-socfpga/Kconfig">https://github.com/altera-opensource/u-boot-socfpga/blob/socfpga_v2023.04/arch/arm/mach-socfpga/Kconfig</a> as follows.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>config<span class="w"> </span>SOCFPGA_RSU_MULTIBOOT
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span>bool<span class="w"> </span><span class="s2">&quot;Enable RSU Multiboot Selection Feature&quot;</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span>depends<span class="w"> </span>on<span class="w"> </span>TARGET_SOCFPGA_SOC64<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>SPI_FLASH
@@ -4727,8 +4727,8 @@
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nv">CONFIG_ENV_OFFSET</span><span class="o">=</span>0x10000
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nv">CONFIG_ENV_SECT_SIZE</span><span class="o">=</span>0x10000
 </code></pre></div>
-and updating <strong>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi</strong> file to find the U-Boot FSBL in QSPI as indicated next.
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&amp;flash0;/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+and updating <strong>arch/arm/dts/socfpga_&lt;device&gt;_socdk-u-boot.dtsi</strong> file to find the U-Boot FSBL in QSPI as indicated next.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&amp;flash0;/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_&lt;device&gt;_socdk-u-boot.dtsi
 </code></pre></div>
 For each application, a specific U-Boot is required to be built. Name corresponding <strong>u-boot.itb</strong> as <strong>u-boot_FACTORY_IMAGE.bin</strong>, <strong>u-boot_P1.bin</strong>, <strong>u-boot_P2.bin</strong> and <strong>u-boot_P3.bin</strong>.</p>
 </li>
@@ -4778,7 +4778,7 @@ For each application, a specific U-Boot is required to be built. Name correspond
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 6, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 2, 2025</span>
       
         <br>
         Created:

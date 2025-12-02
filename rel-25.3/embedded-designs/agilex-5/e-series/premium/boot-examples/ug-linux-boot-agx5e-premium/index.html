@@ -6322,9 +6322,9 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <p>3. Power up the board</p>
 <p>4. Wait for Linux to boot, use <code>root</code> as user name, and no password wil be requested.</p>
 <h2 id="direct-atf-to-linux-boot-on-hps-enablement-board">Direct ATF to Linux Boot on HPS Enablement Board<a class="headerlink" href="#direct-atf-to-linux-boot-on-hps-enablement-board" title="Permanent link">&para;</a></h2>
-<p>Starting from 24.3.1 release, the Agilex™ 5 device is provided with the support of direct booting from ATF to Linux. In this boot flow, ATF acts as a First Stage Bootloader (BL2) and also as a Second Stage Bootloader (BL31). This last one is in charge of loading and launching Linux OS, so U-Boot is not used in this boot flow.</p>
+<p>Starting from 24.3.1 release, the Agilex™ 5 device is provided with the support of direct booting from ATF to Linux. In this boot flow, ATF acts as a First Stage Bootloader (BL2) and also as a Secure Monitor (BL31). BL2 is also in charge of loading and launching Linux OS, so U-Boot is not used in this boot flow.</p>
 <p><a class="glightbox" href="../images/ATF_Linux_bootflow.svg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/ATF_Linux_bootflow.svg" /></a> </p>
-<p>In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and hardware design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (SSBL) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI, SDCard, NAND or eMMC). </p>
+<p>In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and hardware design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (Secure Monitor) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI, SDCard, NAND or eMMC). </p>
 <p>When creating the flash image, it's necessary to provide the location in where ATF expects to find the FIP image (fip.bin). This is hardcoded in the ATF code (<strong>plat/intel/soc/common/include/platform_def.h</strong>) for each one of the flash devices in which this boot flow is supported as indicated in the next table:</p>
 <table>
 <thead>
@@ -6356,12 +6356,12 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <h3 id="boot-from-sd-card_2">Boot from SD Card<a class="headerlink" href="#boot-from-sd-card_2" title="Permanent link">&para;</a></h3>
 <p>Here we provide all the steps needed to create the binaries that allow you to exercise the ATF to Linux boot flow from a SD Card device. This includes building the hardware design, ATF (BL2, BL31), Linux file system, and Linux. These are some notes about the build instructions:</p>
 <ul>
-<li>Excercise the HPS boot first flow.</li>
+<li>Exercise the HPS boot first flow.</li>
 <li>When building ATF, we indicate the device used to boot from. We also indicate the SDRAM memory locations where the Linux kernel image and device tree will be loaded and launched from. In this boot flow, Linux is referred to as BL33.</li>
 <li>The FIP image (fip.bin) is created using the ATF fiptool, indicating the binaries that integrate this image.</li>
 <li>The SD Card created will include 2 partitions. One in which the fip.bin file is located (raw format and type A2) and the other for the file system (ext3 format).</li>
 <li>
-<p>If wanted to perform FPGA configuration (2<sup>nd</sup> phase from Linux) from Linux create overlays.dtb as indicated in <a href="https://altera-fpga.github.io/latest/embedded-designs/agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc/">Agilex™ 7 SoC Fabric Configuration from Linux Example</a></p>
+<p>If wanted to perform FPGA configuration (2<sup>nd</sup> phase) from Linux create overlay.dtb as indicated in <a href="#reconfiguring-core-fabric-from-linux">Reconfiguring Core Fabric from Linux</a> section.</p>
 <p><a class="glightbox" href="../images/ATF_Linux_Image_SDCard.jpg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/ATF_Linux_Image_SDCard.jpg" /></a> </p>
 </li>
 </ul>
@@ -6622,7 +6622,7 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <li><a href="#build-hardware-design-sd_qspi-atf-to-linux">Build Hardware Design SD_QSPI (ATF-To-Linux)</a></li>
 <li><a href="#build-linux-file-system-atf-to-linux">Build Linux File System  (ATF-To-Linux)</a></li>
 </ul>
-<p>ATF requires to be rebuilt to enable booting from QSPI by setting SOCFPGA_BOOT_SOURCE_QSPI to '1'. Linux also need to be rebuild since this time we are including a JFFS2 file system and since booting from QSPI we need to change some parameters in the device tree. The FIP image is created in the same way but this time the FIP image is put into the QSPI image using a specific .pfg file. In this .pfg file, we are indicating that the fip file will be located at <strong>0x3C00000</strong> location in the QSPI since this is also indicated by the <strong>PLAT_QSPI_DATA_BASE</strong> definition in the ATF.</p>
+<p>ATF requires to be rebuilt to enable booting from QSPI by setting <strong>SOCFPGA_BOOT_SOURCE_QSPI</strong> to '1'. Linux also need to be rebuild since this time we are including a JFFS2 file system and since booting from QSPI we need to change some parameters in the device tree. The FIP image is created in the same way but this time the FIP image is put into the QSPI image using a specific .pfg file. In this .pfg file, we are indicating that the fip file will be located at <strong>0x3C00000</strong> location in the QSPI since this is also indicated by the <strong>PLAT_QSPI_DATA_BASE</strong> definition in the ATF.</p>
 <p><a class="glightbox" href="../images/ATF_Linux_Image_QSPI.jpg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/ATF_Linux_Image_QSPI.jpg" /></a> </p>
 <h4>Build Arm Trusted Firmware</h4>
 
@@ -6677,7 +6677,7 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <a id="__codelineno-64-30" name="__codelineno-64-30" href="#__codelineno-64-30"></a>sed<span class="w"> </span>-i<span class="w">  </span><span class="s1">&#39;s/spi-max-frequency = &lt;100000000&gt;;/spi-max-frequency = &lt;50000000&gt;;/g&#39;</span><span class="w"> </span>arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
 <a id="__codelineno-64-31" name="__codelineno-64-31" href="#__codelineno-64-31"></a>
 <a id="__codelineno-64-32" name="__codelineno-64-32" href="#__codelineno-64-32"></a><span class="c1">## Adjust the partitions so the commponents in QSPI can fit</span>
-<a id="__codelineno-64-33" name="__codelineno-64-33" href="#__codelineno-64-33"></a>sed<span class="w"> </span>-i<span class="w">  </span><span class="s1">&#39;s/reg = &lt;0x0 0x04200000&gt;;/reg = &lt;0x0 0x0700000&gt;;/g&#39;</span><span class="w"> </span>arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+<a id="__codelineno-64-33" name="__codelineno-64-33" href="#__codelineno-64-33"></a>sed<span class="w"> </span>-i<span class="w">  </span><span class="s1">&#39;s/reg = &lt;0x0 0x04200000&gt;;/reg = &lt;0x0 0x07000000&gt;;/g&#39;</span><span class="w"> </span>arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
 <a id="__codelineno-64-34" name="__codelineno-64-34" href="#__codelineno-64-34"></a>sed<span class="w"> </span>-i<span class="w">  </span><span class="s1">&#39;s/root: partition@4200000/root: partition@7000000/g&#39;</span><span class="w"> </span>arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
 <a id="__codelineno-64-35" name="__codelineno-64-35" href="#__codelineno-64-35"></a>sed<span class="w"> </span>-i<span class="w">  </span><span class="s1">&#39;s/reg = &lt;0x04200000 0x0be00000&gt;/reg = &lt;0x07000000 0x09000000&gt;/g&#39;</span><span class="w"> </span>arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
 <a id="__codelineno-64-36" name="__codelineno-64-36" href="#__codelineno-64-36"></a>
@@ -6723,7 +6723,7 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <p>The output files from this stage are:</p>
 <ul>
 <li>$TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/Image</li>
-<li>$TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_atfboot.dtb</li>
+<li>$TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_atfboot.dtb</li>
 </ul>
 <h4>Buid QSPI Image</h4>
 
@@ -6732,7 +6732,7 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a>mkdir<span class="w"> </span>jic_qspi<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>jic_qspi
 <a id="__codelineno-65-4" name="__codelineno-65-4" href="#__codelineno-65-4"></a>
 <a id="__codelineno-65-5" name="__codelineno-65-5" href="#__codelineno-65-5"></a><span class="c1">## Create .pfg to create the .jic</span>
-<a id="__codelineno-65-6" name="__codelineno-65-6" href="#__codelineno-65-6"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; qspi_flash_image_agilex_boot.pfg</span>
+<a id="__codelineno-65-6" name="__codelineno-65-6" href="#__codelineno-65-6"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; qspi_flash_image_agilex5_boot.pfg</span>
 <a id="__codelineno-65-7" name="__codelineno-65-7" href="#__codelineno-65-7"></a><span class="s">&lt;pfg version=&quot;1&quot;&gt;</span>
 <a id="__codelineno-65-8" name="__codelineno-65-8" href="#__codelineno-65-8"></a><span class="s">  &lt;settings custom_db_dir=&quot;./&quot; mode=&quot;ASX4&quot;/&gt;</span>
 <a id="__codelineno-65-9" name="__codelineno-65-9" href="#__codelineno-65-9"></a><span class="s">  &lt;output_files&gt;</span>
@@ -6791,7 +6791,7 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <a id="__codelineno-65-62" name="__codelineno-65-62" href="#__codelineno-65-62"></a><span class="c1"># Create the jic file</span>
 <a id="__codelineno-65-63" name="__codelineno-65-63" href="#__codelineno-65-63"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd_sdqspi/output_files/legacy_baseline.sof<span class="w"> </span>legacy_baseline.sof
 <a id="__codelineno-65-64" name="__codelineno-65-64" href="#__codelineno-65-64"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.jffs2<span class="w"> </span>rootfs.bin
-<a id="__codelineno-65-65" name="__codelineno-65-65" href="#__codelineno-65-65"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>qspi_flash_image_agilex_boot.pfg
+<a id="__codelineno-65-65" name="__codelineno-65-65" href="#__codelineno-65-65"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>qspi_flash_image_agilex5_boot.pfg
 </code></pre></div>
 <p>After building, you can use the following binary to exercise the ATF to Linux boot flow booting from QSPI:</p>
 <ul>
@@ -7146,13 +7146,13 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <li>fpga load [device] [address] [file_size]<br></li>
 </ul>
 <p>5. The message "FPGA reconfiguration OK!" will be printed out upon successful transaction.<br></p>
-<p>Here is an example for Agilex® 5 device, but the same steps apply for Stratix® 10, Agilex® 7, and Agilex® 3 SoC FPGA devices.</p>
+<p>Here is an example for Agilex® 7 device, but the same steps apply for Stratix® 10, Agilex® 5, and Agilex® 3 SoC FPGA devices.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a>Hit<span class="w"> </span>any<span class="w"> </span>key<span class="w"> </span>to<span class="w"> </span>stop<span class="w"> </span>autoboot:<span class="w">  </span><span class="m">0</span><span class="w"> </span>///<span class="w"> </span>Hit<span class="w"> </span>any<span class="w"> </span>key<span class="w"> </span>at<span class="w"> </span>this<span class="w"> </span>point<span class="w"> </span>to<span class="w"> </span>enter<span class="w"> </span>the<span class="w"> </span>U-boot<span class="w"> </span>Shell<span class="w"> </span>///
 <a id="__codelineno-77-2" name="__codelineno-77-2" href="#__codelineno-77-2"></a>
 <a id="__codelineno-77-3" name="__codelineno-77-3" href="#__codelineno-77-3"></a>SOCFPGA_AGILEX<span class="w"> </span><span class="c1">#</span>
-<a id="__codelineno-77-4" name="__codelineno-77-4" href="#__codelineno-77-4"></a>SOCFPGA_AGILEX<span class="w"> </span><span class="c1"># fatload mmc 0:1 0x90000000 ghrd.core.rbf</span>
+<a id="__codelineno-77-4" name="__codelineno-77-4" href="#__codelineno-77-4"></a>SOCFPGA_AGILEX<span class="w"> </span><span class="c1"># fatload mmc 0:1 ${loadaddr} ghrd.core.rbf</span>
 <a id="__codelineno-77-5" name="__codelineno-77-5" href="#__codelineno-77-5"></a><span class="m">2404352</span><span class="w"> </span>bytes<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">116</span><span class="w"> </span>ms<span class="w"> </span><span class="o">(</span><span class="m">19</span>.8<span class="w"> </span>MiB/s<span class="o">)</span>
-<a id="__codelineno-77-6" name="__codelineno-77-6" href="#__codelineno-77-6"></a>SOCFPGA_AGILEX<span class="w"> </span><span class="c1"># fpga load 0 0x90000000 ${filesize}</span>
+<a id="__codelineno-77-6" name="__codelineno-77-6" href="#__codelineno-77-6"></a>SOCFPGA_AGILEX<span class="w"> </span><span class="c1"># fpga load 0 ${loadaddr} ${filesize}</span>
 <a id="__codelineno-77-7" name="__codelineno-77-7" href="#__codelineno-77-7"></a>…FPGA<span class="w"> </span>reconfiguration<span class="w"> </span>OK!
 </code></pre></div>
 <h2 id="reconfiguring-core-fabric-from-linux">Reconfiguring Core Fabric from Linux<a class="headerlink" href="#reconfiguring-core-fabric-from-linux" title="Permanent link">&para;</a></h2>
@@ -7317,17 +7317,17 @@ Note: You need to wipe the micro SD card or remove it from the board before star
 <a id="__codelineno-82-4" name="__codelineno-82-4" href="#__codelineno-82-4"></a>
 <a id="__codelineno-82-5" name="__codelineno-82-5" href="#__codelineno-82-5"></a><span class="c1"># Stratix® 10 SoC FPGA device:</span>
 <a id="__codelineno-82-6" name="__codelineno-82-6" href="#__codelineno-82-6"></a>mmc<span class="w"> </span>rescan
-<a id="__codelineno-82-7" name="__codelineno-82-7" href="#__codelineno-82-7"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="m">82000000</span><span class="w"> </span>Image
-<a id="__codelineno-82-8" name="__codelineno-82-8" href="#__codelineno-82-8"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="m">86000000</span><span class="w"> </span>socfpga_stratix10_socdk.dtb
+<a id="__codelineno-82-7" name="__codelineno-82-7" href="#__codelineno-82-7"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="m">01000000</span><span class="w"> </span>Image
+<a id="__codelineno-82-8" name="__codelineno-82-8" href="#__codelineno-82-8"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="m">08000000</span><span class="w"> </span>socfpga_stratix10_socdk.dtb
 <a id="__codelineno-82-9" name="__codelineno-82-9" href="#__codelineno-82-9"></a>setenv<span class="w"> </span>bootargs<span class="w"> </span><span class="nv">console</span><span class="o">=</span>ttyS0,115200<span class="w"> </span><span class="nv">root</span><span class="o">=</span><span class="si">${</span><span class="nv">mmcroot</span><span class="si">}</span><span class="w"> </span>rw<span class="w"> </span>rootwait<span class="p">;</span>
-<a id="__codelineno-82-10" name="__codelineno-82-10" href="#__codelineno-82-10"></a>booti<span class="w"> </span>0x82000000<span class="w"> </span>-<span class="w"> </span>0x86000000
+<a id="__codelineno-82-10" name="__codelineno-82-10" href="#__codelineno-82-10"></a>booti<span class="w"> </span>0x01000000<span class="w"> </span>-<span class="w"> </span>0x08000000
 <a id="__codelineno-82-11" name="__codelineno-82-11" href="#__codelineno-82-11"></a>
 <a id="__codelineno-82-12" name="__codelineno-82-12" href="#__codelineno-82-12"></a><span class="c1"># Agilex® 7 SoC FPGA device:</span>
 <a id="__codelineno-82-13" name="__codelineno-82-13" href="#__codelineno-82-13"></a>mmc<span class="w"> </span>rescan
-<a id="__codelineno-82-14" name="__codelineno-82-14" href="#__codelineno-82-14"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="m">82000000</span><span class="w"> </span>Image
-<a id="__codelineno-82-15" name="__codelineno-82-15" href="#__codelineno-82-15"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="m">86000000</span><span class="w"> </span>socfpga_agilex_socdk.dtb
+<a id="__codelineno-82-14" name="__codelineno-82-14" href="#__codelineno-82-14"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="m">02000000</span><span class="w"> </span>Image
+<a id="__codelineno-82-15" name="__codelineno-82-15" href="#__codelineno-82-15"></a>fatload<span class="w"> </span>mmc<span class="w"> </span><span class="m">0</span>:1<span class="w"> </span><span class="m">06000000</span><span class="w"> </span>socfpga_agilex_socdk.dtb
 <a id="__codelineno-82-16" name="__codelineno-82-16" href="#__codelineno-82-16"></a>setenv<span class="w"> </span>bootargs<span class="w"> </span><span class="nv">console</span><span class="o">=</span>ttyS0,115200<span class="w"> </span><span class="nv">root</span><span class="o">=</span><span class="si">${</span><span class="nv">mmcroot</span><span class="si">}</span><span class="w"> </span>rw<span class="w"> </span>rootwait<span class="p">;</span>
-<a id="__codelineno-82-17" name="__codelineno-82-17" href="#__codelineno-82-17"></a>booti<span class="w"> </span>0x82000000<span class="w"> </span>-<span class="w"> </span>0x86000000
+<a id="__codelineno-82-17" name="__codelineno-82-17" href="#__codelineno-82-17"></a>booti<span class="w"> </span>0x02000000<span class="w"> </span>-<span class="w"> </span>0x06000000
 <a id="__codelineno-82-18" name="__codelineno-82-18" href="#__codelineno-82-18"></a>
 <a id="__codelineno-82-19" name="__codelineno-82-19" href="#__codelineno-82-19"></a><span class="c1"># Agilex® 5 SoC FPGA device:</span>
 <a id="__codelineno-82-20" name="__codelineno-82-20" href="#__codelineno-82-20"></a>mmc<span class="w"> </span>rescan
@@ -7372,7 +7372,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 7, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 2, 2025</span>
       
         <br>
         Created:
