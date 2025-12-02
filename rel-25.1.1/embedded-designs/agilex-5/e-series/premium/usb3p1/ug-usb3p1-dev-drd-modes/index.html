@@ -4882,9 +4882,9 @@
 <p>The USB 3.1, an advancement in the Universal Serial Bus (USB) standard, introduces significant improvements in data transfer speed, power delivery, and overall performance. USB 3.1 Gen 1 controller on Agilex™ 5 E-Series supports a maximum data transfer rate of 5 Gigabits per second (5 Gbps) in Super Speed. It is compatible with USB 2.0 devices and utilizes both Type-A and the versatile Type-C connectors.</p>
 <p>In addition to enhanced speed, USB 3.1 offers better power efficiency and improved data encoding, making it ideal for high-bandwidth applications such as 4K video transfer and fast external storage. The USB 3.1 is a key enabler for faster and more efficient data communication in embedded and HPS devices.</p>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The Hard Processor System (HPS) in the Agilex™ 5 E-Series Premium Dev Kit provides a USB 3.1 Gen 1 Controller that supports host, device, and dual role device (DRD) mode functions for high-speed applications. Both the USB 2.0 protocol and USB 3.1 protocol are supported. </p>
-<p>This page provide instructions on how to enable the <strong>Host Mode</strong>, <strong>Device Mode</strong>, and <strong>Dual Role Device (DRD) Mode</strong>.</p>
-<p><a class="glightbox" href="../images/00_agilex5_premium_devkit.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Agilex 5 Premium Devkit" src="../images/00_agilex5_premium_devkit.png" /></a></p>
+<p>The Hard Processor System (HPS) in the Agilex™ 5 E-Series Premium Dev Kit provides a USB 3.1 Gen 1 Controller that supports host, device, and dual role device (DRD) mode functions for high-speed applications. Both the USB 2.0 protocol and USB 3.1 protocol are supported.</p>
+<p>This page provides instructions on how to enable the <strong>Host Mode</strong>, <strong>Device Mode</strong>, and <strong>Dual Role Device (DRD) Mode</strong>.</p>
+<p><a class="glightbox" href="../images/00_agilex5_premium_devkit.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="00_agilex5_premium_devkit.png" src="../images/00_agilex5_premium_devkit.png" /></a></p>
 <p>For the enablement of the three modes, there are modifications to be made respectively on the Golden Hardware System Design (GHRD) and/or Yocto Build, please refer to the table below to understand the modification required for each mode.</p>
 <table>
 <thead>
@@ -4910,11 +4910,6 @@
 <td align="left">Quartus Design Changes Required</td>
 <td align="left">Patch on Yocto Required</td>
 </tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
 </tbody>
 </table>
 <p>These are the subsections included in this page:</p>
@@ -4937,11 +4932,10 @@
 <p>3.3 Boot-Up and Testing - Using the Dev Kit in DRD Mode</p>
 </li>
 </ol>
-<p><strong>Note</strong>: that all examples in this page are tested based on <strong>Booting the <em>Modified</em> Golden System Reference Design (GSRD) from SD Card</strong> method only.</p>
 <h2 id="binary-versions">Binary Versions<a class="headerlink" href="#binary-versions" title="Permanent link">&para;</a></h2>
-<p>Please take note that all instructions on this page is targetting <strong>ONLY</strong> the release versions listed below. The instructions <strong>MAY NOT</strong> be applicable to other versions.</p>
+<p>Please take note that all the instructions on this page are based on the release versions listed in <a href="#prebuilt-binaries"><strong>Prebuilt Binaries</strong></a> and <a href="#component-versions"><strong>Component Versions</strong></a>. The instructions <strong>MAY NOT</strong> be applicable to other Quartus release. Also, take note that all tests are based on <a href="https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-sd-card-boot-binaries"><strong>Booting the Golden System Reference Design (GSRD) from SD Card</strong></a>.</p>
 <h3 id="prebuilt-binaries">Prebuilt Binaries<a class="headerlink" href="#prebuilt-binaries" title="Permanent link">&para;</a></h3>
-<p>The Agilex&trade; 5 Premium Development Kit GSRD binaries are located at <a href="https://releases.rocketboards.org/2025.08/">https://releases.rocketboards.org/2025.08/</a></p>
+<p>The Agilex&trade; 5 Premium Development Kit GSRD binaries for 25.1.1 release are located at <a href="https://releases.rocketboards.org/2025.08/">https://releases.rocketboards.org/2025.08/</a></p>
 <h3 id="component-versions">Component Versions<a class="headerlink" href="#component-versions" title="Permanent link">&para;</a></h3>
 <p>Altera® Quartus® Prime Pro Edition Version 25.1.1 and the following software component versions are used to build the binaries presented in this page:</p>
 <table>
@@ -4957,18 +4951,6 @@
 <tr>
 <td align="left">Agilex 5 GHRD</td>
 <td align="left"><a href="https://github.com/altera-fpga/agilex5e-ed-gsrd">https://github.com/altera-fpga/agilex5e-ed-gsrd</a></td>
-<td align="left">master</td>
-<td align="left">QPDS25.1.1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left">Agilex 7 GHRD</td>
-<td align="left"><a href="https://github.com/altera-fpga/agilex7f-ed-gsrd">https://github.com/altera-fpga/agilex7f-ed-gsrd</a></td>
-<td align="left">master</td>
-<td align="left">QPDS25.1.1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left">Stratix 10 GHRD</td>
-<td align="left"><a href="https://github.com/altera-fpga/stratix10-ed-gsrd">https://github.com/altera-fpga/stratix10-ed-gsrd</a></td>
 <td align="left">master</td>
 <td align="left">QPDS25.1.1_REL_GSRD_PR</td>
 </tr>
@@ -4991,28 +4973,22 @@
 <td align="left">QPDS25.1.1_REL_GSRD_PR</td>
 </tr>
 <tr>
-<td align="left">Yocto Project</td>
+<td align="left">Yocto</td>
 <td align="left"><a href="https://git.yoctoproject.org/poky">https://git.yoctoproject.org/poky</a></td>
 <td align="left">walnascar</td>
 <td align="left">latest</td>
 </tr>
 <tr>
-<td align="left">Yocto Project: meta-intel-fpga</td>
+<td align="left">Yocto: meta-intel-fpga</td>
 <td align="left"><a href="https://git.yoctoproject.org/meta-intel-fpga">https://git.yoctoproject.org/meta-intel-fpga</a></td>
 <td align="left">walnascar</td>
 <td align="left">latest</td>
 </tr>
 <tr>
-<td align="left">Yocto Project: meta-intel-fpga-refdes</td>
+<td align="left">Yocto: meta-intel-fpga-refdes</td>
 <td align="left"><a href="https://github.com/altera-fpga/meta-intel-fpga-refdes">https://github.com/altera-fpga/meta-intel-fpga-refdes</a></td>
 <td align="left">walnascar</td>
 <td align="left">QPDS25.1.1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
 </tr>
 </tbody>
 </table>
@@ -5031,14 +5007,14 @@
 </ul>
 </li>
 </ul>
-<p>Refer to <a href="https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#development-kit">Development Kit</a> for details about the board, including how to install the HPS Boards, and how to set MSEL dispswitches.</p>
+<p>Refer to <a href="https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#development-kit">Agilex&trade; 5 E-series Premium Development Kit</a> for details about the board, including how to install the HPS Boards, and how to set MSEL dispswitches.</p>
 <h3 id="development-environment">Development Environment<a class="headerlink" href="#development-environment" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Host PC with<ul>
 <li>64 GB of RAM or more</li>
 <li>Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too</li>
 <li>Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
-<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1 </li>
+<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.1.1</li>
 <li>TFTP server. This used to download the eMMC binaries to board to be flashed by U-Boot</li>
 </ul>
 </li>
@@ -5056,18 +5032,20 @@
 <li>USB Type-C cable to connect to the dev kit and Test PC</li>
 </ul>
 <h3 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h3>
-<p>Refer to <a href="https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#release-contents">Release Notes</a> for release readiness information and known issues.</p>
+<p>Refer to <a href="https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#release-contents">Agilex 5 E-series PDK GSRD Release Notes</a> for release readiness information and known issues.</p>
 <h2 id="1-the-enablement-of-usb-31-in-host-mode">1. The Enablement of USB 3.1 in Host Mode<a class="headerlink" href="#1-the-enablement-of-usb-31-in-host-mode" title="Permanent link">&para;</a></h2>
 <p>The USB 3.1 Host Mode is enabled by default in the GSRD, thus no modification required.</p>
-<p><a class="glightbox" href="../images/01_usb3p1_host_mode_flow.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Host Mode Flow" src="../images/01_usb3p1_host_mode_flow.png" /></a></p>
+<p><a class="glightbox" href="../images/01_usb3p1_host_mode_flow.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="01_usb3p1_host_mode_flow.png" src="../images/01_usb3p1_host_mode_flow.png" /></a></p>
 <h3 id="11-ghrd-and-yocto">1.1 GHRD and Yocto<a class="headerlink" href="#11-ghrd-and-yocto" title="Permanent link">&para;</a></h3>
 <p>1. Refer to <a href="https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/">HPS GSRD User Guide for the Agilex™ 5 E-Series Premium Dev Kit</a> for the instructions to create the GSRD reference design.</p>
-<p>2. To boot the premium dev kit from SD Card, follow the instructions in <a href="https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-sd-card-boot-binaries">Build SD Card Boot Binaries</a> to create the SD Image, the premium dev kit will boot in Host mode.</p>
+<p>2. To boot the premium dev kit from SD Card, follow the instructions in <a href="https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-sd-card-boot-binaries">Build SD Card Boot Binaries</a> to create the SD Image.</p>
+<p>3. The GSRD SD Card image boots up the dev kit in Host mode.</p>
 <h3 id="12-boot-up-and-testing-transfer-a-file-to-a-removable-storage">1.2 Boot-Up and Testing - Transfer a file to a Removable Storage<a class="headerlink" href="#12-boot-up-and-testing-transfer-a-file-to-a-removable-storage" title="Permanent link">&para;</a></h3>
-<p>1. Boot up the dev kit with the SD Card and Quartus Programmer, login with “root”.</p>
+<p>1. Boot up the dev kit with the SD Card and Quartus Programmer with the ghrd.hps.rbf, login the Linux with “root”.</p>
 <p>2. Plug in the dev kit’s USB Type-C port with a USB Type-C thumbdrive.</p>
-<p><a class="glightbox" href="../images/h1_thumbdrive_plugin.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Host Mode Thumbdrive Insert" src="../images/h1_thumbdrive_plugin.png" /></a></p>
-<p>3. The thumbdrive should be appeared as <strong>/dev/sda1</strong>.</p>
+<p><a class="glightbox" href="../images/h1_thumbdrive_plugin.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="h1_thumbdrive_plugin.png" src="../images/h1_thumbdrive_plugin.png" /></a></p>
+<p><strong>Note</strong>: For certain models of thumbdrive, plug-in with one orientation would show it as "high speed USB device", flipping the thumbdrive's orientation would show it as "SuperSpeed USB device".</p>
+<p>3. The thumbdrive appears as <strong>/dev/sda1</strong>.</p>
 <p>4. Mount the thumbdrive as a new mountpoint <strong>mp1</strong>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir<span class="w"> </span>/mnt/mp1
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>mount<span class="w"> </span>-t<span class="w"> </span>auto<span class="w"> </span>/dev/sda1<span class="w"> </span>/mnt/mp1
@@ -5086,12 +5064,16 @@
 </code></pre></div>
 <h2 id="2-the-enablement-of-usb-31-in-device-mode">2. The Enablement of USB 3.1 in Device Mode<a class="headerlink" href="#2-the-enablement-of-usb-31-in-device-mode" title="Permanent link">&para;</a></h2>
 <p>To enable the USB 3.1 in Device Mode, the GHRD requires no changes, but the modification in the Yocto Build is required.</p>
-<p><a class="glightbox" href="../images/02_usb3p1_device_mode_flow.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Device Mode Flow" src="../images/02_usb3p1_device_mode_flow.png" /></a></p>
+<p><a class="glightbox" href="../images/02_usb3p1_device_mode_flow.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="02_usb3p1_device_mode_flow.png" src="../images/02_usb3p1_device_mode_flow.png" /></a></p>
 <h3 id="21-ghrd">2.1 GHRD<a class="headerlink" href="#21-ghrd" title="Permanent link">&para;</a></h3>
-<p>1. First, refer to the instructions in <a href="https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-sd-card-boot-binaries">HPS GSRD User Guide for the Agilex™ 5 E-Series Premium Dev Kit - Build SD Card Boot Binaries</a>. Follow the "<strong>Setup Environment</strong>" and "<strong>Build Hardware Design</strong>" sections to build the GHRD.</p>
-<p>2. When the GHRD is successfully built, you shall obtain the <strong>SOF, CORE.RBF, and HPS.RBF</strong> files.</p>
+<p>1. Refer to the instructions in <strong>Setup Environment</strong> and <strong>Build Hardware Design</strong> sections of <a href="https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-sd-card-boot-binaries">HPS GSRD User Guide for the Agilex™ 5 E-Series Premium Dev Kit - Build SD Card Boot Binaries</a> to build the GHRD.</p>
+<p>2. When the GHRD is successfully built, the sof file is generated:</p>
+<ul>
+<li>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof</li>
+</ul>
+<p>3. Follow the instruction in the page to convert the sof file to the ghrd.hps.rbf and ghrd.core.rbf files. The ghrs.core.rbf will be included in the SD Card image in the Yocto build section.</p>
 <h3 id="22-yocto">2.2 Yocto<a class="headerlink" href="#22-yocto" title="Permanent link">&para;</a></h3>
-<p>For modification of Yocto Build, follow the instructions below:</p>
+<p>For the modification of Yocto Build, follow the instructions below:</p>
 <p>1. Clone the Yocto script and prepare the build:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
@@ -5102,24 +5084,26 @@
 </code></pre></div>
 <p>2. Apply the Device Mode Enablement Patch</p>
 <p>a. Download the patch:  <a href="../patches/0001-update-yocto-build-for-USB3.1-Device-Mode-v1.patch">Device_Mode_Yocto_Patch</a></p>
-<p>The patch changes the value of dr_mode in the &amp;usb31 node from "host" to "peripheral"</p>
+<p>The patch changes the value of dr_mode in the <strong>&amp;usb31</strong> node from "host" to "peripheral" in device tree file <strong>socfpga_agilex5_socdk.dts</strong>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w"> </span><span class="p">&amp;</span>usb31<span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="nv">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;okay&quot;</span><span class="p">;</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nv">dr_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;peripheral&quot;</span><span class="p">;</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w"> </span><span class="o">}</span><span class="p">;</span>
 </code></pre></div>
-<p>b. Copy and apply the patch with instuctions:</p>
+<p>b. Copy and apply the patch with the instuctions:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/meta-intel-fpga-refdes/
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>cp<span class="w"> </span><span class="m">0001</span>-update-yocto-build-for-USB3.1-Device-Mode-v1.patch<span class="w"> </span>.
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>git<span class="w"> </span>am<span class="w"> </span><span class="m">0001</span>-update-yocto-build-for-USB3.1-Device-Mode-v1.patch
 </code></pre></div>
 <p><strong>Note</strong>: You may ignore the whitespace error message when applying the patch.</p>
-<p>3. Follow the "<strong>Customize Yocto</strong>" section and "<strong>Build Yocto</strong>" section in <a href="https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-sd-card-boot-binaries">Build SD Card Boot Binaries</a> for the rest of the instructions to generate the SD Card Image:</p>
-<p>* <code>$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex</code>
-   * <code>$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot.itb</code>
-   * <code>$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz</code></p>
+<p>3. Follow the "<strong>Customize Yocto</strong>" section and "<strong>Build Yocto</strong>" section in <a href="https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-sd-card-boot-binaries">Build SD Card Boot Binaries</a> for the instructions to run <strong>bitbake_image</strong> and <strong>package</strong> to generate the SD Card Image:</p>
+<ul>
+<li>$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex</li>
+<li>$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot.itb</li>
+<li>$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz</li>
+</ul>
 <h3 id="23-boot-up-and-testing-using-the-dev-kit-as-a-removable-storage">2.3 Boot-Up and Testing - Using the Dev Kit as a Removable Storage<a class="headerlink" href="#23-boot-up-and-testing-using-the-dev-kit-as-a-removable-storage" title="Permanent link">&para;</a></h3>
-<p>1. Boot up the dev kit with the SD Card and Quartus Programmer, login with “root”.</p>
+<p>1. Boot up the dev kit with the SD Card and Quartus Programmer with the ghrd.hps.rbf, login the Linux with “root”.</p>
 <p>2. Run the following commands to set up the dev kit as a Storage Device.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/random<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/tmp/test.img<span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="m">1024</span><span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">4096</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>mkfs.vfat<span class="w"> </span>/tmp/test.img
@@ -5127,10 +5111,11 @@
 <p>3. Load the kernel driver for gadget storage.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>insmod<span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>/<span class="w"> </span>-name<span class="w"> </span>g_mass_storage.ko<span class="k">)</span><span class="w"> </span><span class="nv">file</span><span class="o">=</span>/tmp/test.img<span class="w"> </span><span class="nv">removable</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
-<p><a class="glightbox" href="../images/d1_insmod.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Dev Mode Insmod" src="../images/d1_insmod.png" /></a></p>
+<p><a class="glightbox" href="../images/d1_insmod.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="d1_insmod.png" src="../images/d1_insmod.png" /></a></p>
 <p>4. Plug in the dev kit’s USB Type-C port with the USB Cable, connect the other end to the Test PC.
 Observe that the dev kit is being seen by Test PC as a storage.</p>
-<p><a class="glightbox" href="../images/16_device_mode_in_win.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Dev Drive in Host" src="../images/16_device_mode_in_win.png" /></a></p>
+<p><a class="glightbox" href="../images/16_device_mode_in_win.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="16_device_mode_in_win.png" src="../images/16_device_mode_in_win.png" /></a></p>
+<p><strong>Note</strong>: For certain models of thumbdrive, plug-in with one orientation would show it as "high speed USB device", flipping the thumbdrive's orientation would show it as "SuperSpeed USB device".</p>
 <p>5. On the Test PC, write a file “device_test.txt” in the dev kit storage.</p>
 <p>6. On the dev kit, create a new mountpoint <strong>mp2</strong>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>mkdir<span class="w"> </span>/mnt/mp2
@@ -5144,7 +5129,7 @@ Observe that the dev kit is being seen by Test PC as a storage.</p>
 </code></pre></div>
 <h2 id="3-the-enablement-of-usb-31-in-dual-role-device-drd-mode">3. The Enablement of USB 3.1 in Dual-Role Device (DRD) Mode<a class="headerlink" href="#3-the-enablement-of-usb-31-in-dual-role-device-drd-mode" title="Permanent link">&para;</a></h2>
 <p>To enable the USB 3.1 in Dual Role Device (DRD) Mode, the modifications of both the Quartus Project and the Yocto Build are required.</p>
-<p><a class="glightbox" href="../images/03_usb3p1_drd_mode_flow.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="DRD Mode Flow" src="../images/03_usb3p1_drd_mode_flow.png" /></a></p>
+<p><a class="glightbox" href="../images/03_usb3p1_drd_mode_flow.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="03_usb3p1_drd_mode_flow.png" src="../images/03_usb3p1_drd_mode_flow.png" /></a></p>
 <h3 id="31-ghrd">3.1 GHRD<a class="headerlink" href="#31-ghrd" title="Permanent link">&para;</a></h3>
 <p>1. Setup Environment</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_gsrd.enablement
@@ -5167,26 +5152,26 @@ Observe that the dev kit is being seen by Test PC as a storage.</p>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
 </code></pre></div>
 <p>2. Build Hardware Design</p>
-<p><strong>Use Quartus Prime Pro Version 25.1.1</strong></p>
+<p><strong>Note</strong>: Use Quartus Prime Pro Version 25.1.1</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
 <a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 <a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>unzip<span class="w"> </span>a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 </code></pre></div>
 <p>3. Launch GHRD Project in Quartus</p>
-<p><a class="glightbox" href="../images/04_open_ghrd_in_quartus.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img4" src="../images/04_open_ghrd_in_quartus.png" /></a></p>
+<p><a class="glightbox" href="../images/04_open_ghrd_in_quartus.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="04_open_ghrd_in_quartus.png" src="../images/04_open_ghrd_in_quartus.png" /></a></p>
 <p>4. Launch Qsys File in Platform Designer</p>
-<p><a class="glightbox" href="../images/05_open_qsys.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img5" src="../images/05_open_qsys.png" /></a></p>
+<p><a class="glightbox" href="../images/05_open_qsys.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="05_open_qsys.png" src="../images/05_open_qsys.png" /></a></p>
 <p>5. Add new Parallel IO (PIO) in the Peripheral Subsystem</p>
 <p>a. On the Filter tab, click on the <strong>subsys_periph</strong> to open the peripheral subsystem view.</p>
-<p><a class="glightbox" href="../images/06_peripheral_subsys.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img6" src="../images/06_peripheral_subsys.png" /></a></p>
+<p><a class="glightbox" href="../images/06_peripheral_subsys.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="06_peripheral_subsys.png" src="../images/06_peripheral_subsys.png" /></a></p>
 <p>b. Search for "Parallel IO", double click to add the component to the Subsystem.</p>
-<p><a class="glightbox" href="../images/07_search_pio.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img7" src="../images/07_search_pio.png" /></a></p>
+<p><a class="glightbox" href="../images/07_search_pio.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="07_search_pio.png" src="../images/07_search_pio.png" /></a></p>
 <p>c. Setting of PIO:</p>
-<p><a class="glightbox" href="../images/08_pio_setting.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img8" src="../images/08_pio_setting.png" /></a></p>
+<p><a class="glightbox" href="../images/08_pio_setting.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="08_pio_setting.png" src="../images/08_pio_setting.png" /></a></p>
 <p>d. Add the PIO to the Peripheral Subsystem.</p>
-<p><a class="glightbox" href="../images/09_pio_in_ss.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img9" src="../images/09_pio_in_ss.png" /></a></p>
-<p><a class="glightbox" href="../images/10_pio_in_ss.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img10" src="../images/10_pio_in_ss.png" /></a></p>
+<p><a class="glightbox" href="../images/09_pio_in_ss.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="09_pio_in_ss.png" src="../images/09_pio_in_ss.png" /></a></p>
+<p><a class="glightbox" href="../images/10_pio_in_ss.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="10_pio_in_ss.png" src="../images/10_pio_in_ss.png" /></a></p>
 <p>e. Rename the PIO to <strong>usb31_pio_0</strong> and make the connections:</p>
 <table>
 <thead>
@@ -5216,17 +5201,13 @@ Observe that the dev kit is being seen by Test PC as a storage.</p>
 <td align="left">irq</td>
 <td align="left"><em>exported</em> as <strong>usb31_pio_0_irq</strong></td>
 </tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
 </tbody>
 </table>
 <p>6. Setting in the Top System</p>
 <p>a. Back to the Top System View</p>
-<p><a class="glightbox" href="../images/11_top_level_view.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img11" src="../images/11_top_level_view.png" /></a></p>
+<p><a class="glightbox" href="../images/11_top_level_view.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="11_top_level_view.png" src="../images/11_top_level_view.png" /></a></p>
 <p>b. You should see the <strong>usb31_pio_0_external_connection</strong> and <strong>usb31_pio_0_irq</strong> exported in the subsys_periph block.</p>
-<p><a class="glightbox" href="../images/12_top_level_view.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img12" src="../images/12_top_level_view.png" /></a></p>
+<p><a class="glightbox" href="../images/12_top_level_view.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="12_top_level_view.png" src="../images/12_top_level_view.png" /></a></p>
 <p>c. Make the following connections:</p>
 <table>
 <thead>
@@ -5244,17 +5225,13 @@ Observe that the dev kit is being seen by Test PC as a storage.</p>
 <td align="left">usb31_pio_0_external_connection</td>
 <td align="left"><em>exported</em> as <strong>subsys_periph_usb31_pio_0_external_connection</strong></td>
 </tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
 </tbody>
 </table>
 <p>d. Take note that the usb31_pio_0_irq must be connected to IRQ [3], as this pin is defined in Yocto device tree file.</p>
-<p><a class="glightbox" href="../images/13_top_level_irq.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img13" src="../images/13_top_level_irq.png" /></a></p>
+<p><a class="glightbox" href="../images/13_top_level_irq.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="13_top_level_irq.png" src="../images/13_top_level_irq.png" /></a></p>
 <p>7. Synthesize Design in Platform Designer</p>
 <p>Platform Designer changes are completed. Click “Sync System Infos” and “Generate HDL” for design synthesis.</p>
-<p><a class="glightbox" href="../images/14_pd_generate_hdl.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img14" src="../images/14_pd_generate_hdl.png" /></a></p>
+<p><a class="glightbox" href="../images/14_pd_generate_hdl.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="14_pd_generate_hdl.png" src="../images/14_pd_generate_hdl.png" /></a></p>
 <p>8. Modify Verilog File</p>
 <p>a. In Quartus, open the <strong>legacy_baseline_top.v</strong> file.</p>
 <p>b. Add a new wire for <strong>fpga_usb31_pio</strong></p>
@@ -5284,23 +5261,19 @@ Observe that the dev kit is being seen by Test PC as a storage.</p>
 <a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">        </span><span class="p">.</span><span class="n">subsys_periph_usb31_pio_0_external_connection_export</span><span class="w">    </span><span class="p">(</span><span class="n">fpga_usb31_pio</span><span class="p">),</span>
 </code></pre></div>
 <p>9. Modify QSF File</p>
-<div class="highlight"><pre><span></span><code>a. In Quartus, open the **legacy_baseline.qsf** file.
-
-b. Search for the lines below, comment and add in the lines respectively.
-
-```bash
-# comment these lines with #
-# set_location_assignment PIN_CF118 -to usb31_io_usb31_id
-# set_instance_assignment -name IO_STANDARD &quot;3.3-V LVCMOS&quot; -to usb31_io_usb31_id
-# set_location_assignment PIN_CF121 -to usb31_io_vbus_det
-# set_instance_assignment -name IO_STANDARD &quot;3.3-V LVCMOS&quot; -to usb31_io_vbus_det
-
-# add in these lines:
-set_location_assignment PIN_CF118 -to fpga_usb31_pio[0]
-set_instance_assignment -name IO_STANDARD &quot;3.3-V LVCMOS&quot; -to fpga_usb31_pio[0]
-set_location_assignment PIN_CF121 -to fpga_usb31_pio[1]
-set_instance_assignment -name IO_STANDARD &quot;3.3-V LVCMOS&quot; -to fpga_usb31_pio[1]
-```
+<p>a. In Quartus, open the <strong>legacy_baseline.qsf</strong> file.</p>
+<p>b. Search for the lines below, comment and add in the lines respectively.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># comment these lines with #</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="c1"># set_location_assignment PIN_CF118 -to usb31_io_usb31_id</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="c1"># set_instance_assignment -name IO_STANDARD &quot;3.3-V LVCMOS&quot; -to usb31_io_usb31_id</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1"># set_location_assignment PIN_CF121 -to usb31_io_vbus_det</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="c1"># set_instance_assignment -name IO_STANDARD &quot;3.3-V LVCMOS&quot; -to usb31_io_vbus_det</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="c1"># add in these lines:</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>set_location_assignment<span class="w"> </span>PIN_CF118<span class="w"> </span>-to<span class="w"> </span>fpga_usb31_pio<span class="o">[</span><span class="m">0</span><span class="o">]</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>set_instance_assignment<span class="w"> </span>-name<span class="w"> </span>IO_STANDARD<span class="w"> </span><span class="s2">&quot;3.3-V LVCMOS&quot;</span><span class="w"> </span>-to<span class="w"> </span>fpga_usb31_pio<span class="o">[</span><span class="m">0</span><span class="o">]</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>set_location_assignment<span class="w"> </span>PIN_CF121<span class="w"> </span>-to<span class="w"> </span>fpga_usb31_pio<span class="o">[</span><span class="m">1</span><span class="o">]</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>set_instance_assignment<span class="w"> </span>-name<span class="w"> </span>IO_STANDARD<span class="w"> </span><span class="s2">&quot;3.3-V LVCMOS&quot;</span><span class="w"> </span>-to<span class="w"> </span>fpga_usb31_pio<span class="o">[</span><span class="m">1</span><span class="o">]</span>
 </code></pre></div>
 <p>10. Compilation of the Design</p>
 <p>a. After the files are update, you may proceed with Compilation of the Design.</p>
@@ -5308,17 +5281,19 @@ set_instance_assignment -name IO_STANDARD &quot;3.3-V LVCMOS&quot; -to fpga_usb3
 <li>If there are new changes in Platform Designer, you need to re-run "Analysis &amp; Synthesis".</li>
 <li>Check "Assembler (Generate Programming Files)" to generate the SOF.</li>
 </ul>
-<p><a class="glightbox" href="../images/15_quartus_compilation.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img15" src="../images/15_quartus_compilation.png" /></a></p>
+<p><a class="glightbox" href="../images/15_quartus_compilation.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="15_quartus_compilation.png" src="../images/15_quartus_compilation.png" /></a></p>
 <p>The following files are created:
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof</p>
-<p>b. To convert the SOF to RBF, run the command below
+- $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof</p>
+<p>b. To convert the SOF to RBF, run the command below</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.rbf
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.rbf<span class="w"> </span>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
-</code></pre></div></p>
-<p>The following files are created:
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd/ghrd_a5ed065bb32ae6sr0.core.rbf
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd/ghrd_a5ed065bb32ae6sr0.hps.rbf</p>
+</code></pre></div>
+<p>The following files are created:</p>
+<ul>
+<li>$TOP_FOLDER/agilex5_soc_devkit_ghrd/ghrd_a5ed065bb32ae6sr0.core.rbf</li>
+<li>$TOP_FOLDER/agilex5_soc_devkit_ghrd/ghrd_a5ed065bb32ae6sr0.hps.rbf</li>
+</ul>
 <h3 id="32-yocto">3.2 Yocto<a class="headerlink" href="#32-yocto" title="Permanent link">&para;</a></h3>
 <p>For modification of Yocto Build, follow the instructions below:</p>
 <p>1. Clone the Yocto script and prepare the build:</p>
@@ -5331,7 +5306,7 @@ set_instance_assignment -name IO_STANDARD &quot;3.3-V LVCMOS&quot; -to fpga_usb3
 </code></pre></div>
 <p>2. Apply the Device Mode Enablement Patch</p>
 <p>a. Download the patch:  <a href="../patches/0001-update-yocto-build-for-USB3.1-DRD-mode-v1.patch">DRD_Mode_Yocto_Patch</a></p>
-<p>The patch changes the value of dr_mode in the &amp;usb31 node from "host" to "otg"</p>
+<p>The patch changes the value of dr_mode in the <strong>&amp;usb31</strong> node from "host" to "otg" in the device tree file <strong>socfpga_agilex5_socdk.dts</strong>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="w"> </span><span class="p">&amp;</span>usb31<span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="nv">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;okay&quot;</span><span class="p">;</span>
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="nv">extcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>&lt;<span class="p">&amp;</span>extcon_usb&gt;<span class="p">;</span>
@@ -5346,70 +5321,72 @@ set_instance_assignment -name IO_STANDARD &quot;3.3-V LVCMOS&quot; -to fpga_usb3
 <p><strong>Note</strong>: You may ignore the whitespace error message when applying the patch.</p>
 <p>c. Edit the device tree file <strong>socfpga_agilex5_ghrd.dtsi</strong>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>vim<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga//meta-intel-fpga-refdes/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="c1">## Add in new nodes for **usb_pio** and **extcon_usb**, save the file:</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">        </span>usb_pio:<span class="w"> </span>gpio@20010090<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="w">                </span><span class="nv">compatible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;altr,pio-1.0&quot;</span><span class="p">;</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="w">                </span><span class="nv">reg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>&lt;0x20010090<span class="w"> </span>0x10&gt;<span class="p">;</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="w">                </span><span class="nv">interrupts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>&lt;GIC_SPI<span class="w"> </span><span class="m">20</span><span class="w"> </span>IRQ_TYPE_EDGE_RISING&gt;<span class="p">;</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="w">                </span>altr,gpio-bank-width<span class="w"> </span><span class="o">=</span><span class="w"> </span>&lt;<span class="m">4</span>&gt;<span class="p">;</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="w">                </span>altr,interrupt-type<span class="w"> </span><span class="o">=</span><span class="w"> </span>&lt;<span class="m">3</span>&gt;<span class="p">;</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="w">                </span><span class="c1">#gpio-cells = &lt;2&gt;;</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="w">                </span>gpio-controller<span class="p">;</span>
+<a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="w">        </span><span class="o">}</span><span class="p">;</span>
+<a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a>
+<a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="w">        </span>extcon_usb:<span class="w"> </span>extcon-usb<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a><span class="w">                </span><span class="nv">compatible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;linux,extcon-usb-gpio&quot;</span><span class="p">;</span>
+<a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a><span class="w">                </span>id-gpio<span class="w"> </span><span class="o">=</span><span class="w"> </span>&lt;<span class="p">&amp;</span>usb_pio<span class="w"> </span><span class="m">0</span><span class="w"> </span>GPIO_ACTIVE_HIGH&gt;<span class="p">;</span>
+<a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a><span class="w">                </span>vbus-gpio<span class="w"> </span><span class="o">=</span><span class="w"> </span>&lt;<span class="p">&amp;</span>usb_pio<span class="w"> </span><span class="m">1</span><span class="w"> </span>GPIO_ACTIVE_HIGH&gt;<span class="p">;</span>
+<a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a><span class="w">        </span><span class="o">}</span><span class="p">;</span>
 </code></pre></div>
-<p>d. Add in new nodes for <strong>usb_pio</strong> and <strong>extcon_usb</strong>, save the file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="w">        </span>usb_pio:<span class="w"> </span>gpio@20010090<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">                </span><span class="nv">compatible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;altr,pio-1.0&quot;</span><span class="p">;</span>
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">                </span><span class="nv">reg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>&lt;0x20010090<span class="w"> </span>0x10&gt;<span class="p">;</span>
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">                </span><span class="nv">interrupts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>&lt;GIC_SPI<span class="w"> </span><span class="m">20</span><span class="w"> </span>IRQ_TYPE_EDGE_RISING&gt;<span class="p">;</span>
-<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="w">                </span>altr,gpio-bank-width<span class="w"> </span><span class="o">=</span><span class="w"> </span>&lt;<span class="m">4</span>&gt;<span class="p">;</span>
-<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">                </span>altr,interrupt-type<span class="w"> </span><span class="o">=</span><span class="w"> </span>&lt;<span class="m">3</span>&gt;<span class="p">;</span>
-<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">                </span><span class="c1">#gpio-cells = &lt;2&gt;;</span>
-<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">                </span>gpio-controller<span class="p">;</span>
-<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="w">        </span><span class="o">}</span><span class="p">;</span>
-<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>
-<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="w">        </span>extcon_usb:<span class="w"> </span>extcon-usb<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="w">                </span><span class="nv">compatible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;linux,extcon-usb-gpio&quot;</span><span class="p">;</span>
-<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="w">                </span>id-gpio<span class="w"> </span><span class="o">=</span><span class="w"> </span>&lt;<span class="p">&amp;</span>usb_pio<span class="w"> </span><span class="m">0</span><span class="w"> </span>GPIO_ACTIVE_HIGH&gt;<span class="p">;</span>
-<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="w">                </span>vbus-gpio<span class="w"> </span><span class="o">=</span><span class="w"> </span>&lt;<span class="p">&amp;</span>usb_pio<span class="w"> </span><span class="m">1</span><span class="w"> </span>GPIO_ACTIVE_HIGH&gt;<span class="p">;</span>
-<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a><span class="w">        </span><span class="o">}</span><span class="p">;</span>
-</code></pre></div>
-<p>3. Follow the "<strong>Customize Yocto</strong>" section and "<strong>Build Yocto</strong>" section in <a href="https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-sd-card-boot-binaries">Build SD Card Boot Binaries</a> for the rest of the instructions to generate the SD Card Image:</p>
+<p>3. Follow the "<strong>Customize Yocto</strong>" section and "<strong>Build Yocto</strong>" section in <a href="https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-sd-card-boot-binaries">Build SD Card Boot Binaries</a> for the instructions to run <strong>bitbake_image</strong> and <strong>package</strong> to generate the SD Card Image:</p>
 <ul>
-<li><code>$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex</code></li>
-<li><code>$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot.itb</code></li>
-<li><code>$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz</code></li>
+<li>$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex</li>
+<li>$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot.itb</li>
+<li>$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz</li>
 </ul>
 <h3 id="33-boot-up-and-testing-using-the-dev-kit-in-drd-mode">3.3 Boot-Up and Testing - Using the Dev Kit in DRD Mode<a class="headerlink" href="#33-boot-up-and-testing-using-the-dev-kit-in-drd-mode" title="Permanent link">&para;</a></h3>
-<p>1. Boot up the dev kit with the SD Card and Quartus Programmer, login with “root”.</p>
+<p>1. Boot up the dev kit with the SD Card and Quartus Programmer with the ghrd.hps.rbf, login the Linux with “root”.</p>
 <p>2. Plug in the dev kit’s USB Type-C port with a USB Type-C thumbdrive.</p>
 <p><a class="glightbox" href="../images/h1_thumbdrive_plugin.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Host Mode Thumbdrive Insert" src="../images/h1_thumbdrive_plugin.png" /></a></p>
+<p><strong>Note</strong>: For certain models of thumbdrive, plug-in with one orientation would show it as "high speed USB device", flipping the thumbdrive's orientation would show it as "SuperSpeed USB device".</p>
 <p>3. The thumbdrive should be appeared as <strong>/dev/sda1</strong>.</p>
 <p>4. Mount the thumbdrive as a new mountpoint <strong>mp1</strong>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>mkdir<span class="w"> </span>/mnt/mp1
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>mount<span class="w"> </span>-t<span class="w"> </span>auto<span class="w"> </span>/dev/sda1<span class="w"> </span>/mnt/mp1
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/random<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/tmp/test.txt<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">200</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>mkdir<span class="w"> </span>/mnt/mp1
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>mount<span class="w"> </span>-t<span class="w"> </span>auto<span class="w"> </span>/dev/sda1<span class="w"> </span>/mnt/mp1
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/random<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/tmp/test.txt<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">200</span>
 </code></pre></div>
 <p>5. Create a sample file “test.txt” in /tmp, copy the text.txt to the mounted drive</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>touch<span class="w"> </span>/tmp/test.txt
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>cp<span class="w"> </span>/tmp/test.txt<span class="w"> </span>/mnt/mp1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>touch<span class="w"> </span>/tmp/test.txt
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>cp<span class="w"> </span>/tmp/test.txt<span class="w"> </span>/mnt/mp1
 </code></pre></div>
 <p>6. Remove the test file from the mounted drive.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>ls<span class="w"> </span>/mnt/mp1/test.txt
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>rm<span class="w"> </span>/mnt/mp1/test.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>ls<span class="w"> </span>/mnt/mp1/test.txt
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>rm<span class="w"> </span>/mnt/mp1/test.txt
 </code></pre></div>
 <p>7. Run the following commands to set up the dev kit as a Storage Device.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/random<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/tmp/test.img<span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="m">1024</span><span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">4096</span>
-<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>mkfs.vfat<span class="w"> </span>/tmp/test.img
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/random<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/tmp/test.img<span class="w"> </span><span class="nv">bs</span><span class="o">=</span><span class="m">1024</span><span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">4096</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>mkfs.vfat<span class="w"> </span>/tmp/test.img
 </code></pre></div>
 <p>8. Load the kernel driver for gadget storage.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>insmod<span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>/<span class="w"> </span>-name<span class="w"> </span>g_mass_storage.ko<span class="k">)</span><span class="w"> </span><span class="nv">file</span><span class="o">=</span>/tmp/test.img<span class="w"> </span><span class="nv">removable</span><span class="o">=</span><span class="m">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>insmod<span class="w"> </span><span class="k">$(</span>find<span class="w"> </span>/<span class="w"> </span>-name<span class="w"> </span>g_mass_storage.ko<span class="k">)</span><span class="w"> </span><span class="nv">file</span><span class="o">=</span>/tmp/test.img<span class="w"> </span><span class="nv">removable</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
-<p><a class="glightbox" href="../images/d1_insmod.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Dev Mode Insmod" src="../images/d1_insmod.png" /></a></p>
+<p><a class="glightbox" href="../images/d1_insmod.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="d1_insmod.png" src="../images/d1_insmod.png" /></a></p>
 <p>9. Plug in the dev kit’s USB Type-C port with the USB Cable, connect the other end to the Test PC.
 Observe that the dev kit is being seen by Test PC as a storage.</p>
-<p><a class="glightbox" href="../images/16_device_mode_in_win.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Dev Drive in Host" src="../images/16_device_mode_in_win.png" /></a></p>
+<p><a class="glightbox" href="../images/16_device_mode_in_win.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="16_device_mode_in_win.png" src="../images/16_device_mode_in_win.png" /></a></p>
 <p>10. On the Test PC, write a file “devtest.txt” in the dev kit storage.</p>
 <p>11. On the dev kit, create a new mountpoint <strong>mp2</strong>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>mkdir<span class="w"> </span>/mnt/mp2
-<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>mount<span class="w"> </span>/tmp/test.img<span class="w"> </span>/mnt/mp2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>mkdir<span class="w"> </span>/mnt/mp2
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>mount<span class="w"> </span>/tmp/test.img<span class="w"> </span>/mnt/mp2
 </code></pre></div>
 <p>12.  You should be able to read the file from both the dev kit and Test PC.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>ls<span class="w"> </span>/mnt/mp2/devtest.txt
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>ls<span class="w"> </span>/mnt/mp2/devtest.txt
 </code></pre></div>
 <p>13.  At the end of the tests, unmount the mounted drives.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>umount<span class="w"> </span>–l<span class="w"> </span>/mnt/mp1
-<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>umount<span class="w"> </span>–l<span class="w"> </span>/mnt/mp2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>umount<span class="w"> </span>–l<span class="w"> </span>/mnt/mp1
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>umount<span class="w"> </span>–l<span class="w"> </span>/mnt/mp2
 </code></pre></div>
 
   <hr>
@@ -5417,7 +5394,7 @@ Observe that the dev kit is being seen by Test PC as a storage.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 20, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 2, 2025</span>
       
         <br>
         Created:
