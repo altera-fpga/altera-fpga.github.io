@@ -46,7 +46,7 @@ The new FCS architecture software stack and its components can be found in the f
 
 ## Environment Setup
 
-1. Create the top folder to store all the build artifacts:
+1\. Create the top folder to store all the build artifacts:
 
 ```bash
 mkdir agilex7_fcs
@@ -54,27 +54,26 @@ cd agilex7_fcs
 export TOP_FOLDER=`pwd`
 ```
 
-2. Download the compiler toolchain, add it to the PATH variable:
+2\. Download the compiler toolchain, add it to the PATH variable:
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
-gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
 
-3. Enable Quartus tools to be called from command line:
+3\. Enable Quartus tools to be called from command line:
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/25.1.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
-4. Install Yocto Dependencies:
+4\. Install Yocto Dependencies:
 
 Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions. The commands to install the required packages on Ubuntu 22.04 are:
 
@@ -101,10 +100,9 @@ sudo ln -sf /bin/bash /bin/sh
 
 ```bash
 cd $TOP_FOLDER
-rm -rf arm-trusted-firmware
-git clone -b socfpga_v2.12.1 https://github.com/altera-opensource/arm-trusted-firmware
-cd arm-trusted-firmware
-make -j 48 PLAT=agilex bl31 
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
+cd arm-trusted-firmware 
+make bl31 PLAT=agilex 
 cd ..
 ```
 
@@ -113,14 +111,19 @@ cd ..
 ```bash
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga
-git clone -b socfpga_v2025.04 https://github.com/altera-opensource/u-boot-socfpga
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga 
-# only boot from SD, do not try QSPI and NAND
+# enable dwarf4 debug info, for compatibility with arm ds 
+sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
+# only boot from SD, do not try QSPI and NAND 
 sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&mmc;/g' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
-# disable NAND in the device tree
-sed -i '/&nand {/!b;n;c\\tstatus = "disabled";' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+# disable NAND in the device tree 
+sed -i '/&nand {/!b;n;c\\tstatus = "disabled";' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi 
+# remove the NAND configuration from device tree 
+sed -i '/images/,/binman/{/binman/!d}' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
 # link to atf
-ln -s ../arm-trusted-firmware/build/agilex/release/bl31.bin 
+ln -s $TOP_FOLDER/arm-trusted-firmware/build/agilex/release/bl31.bin .
+
 cat << EOF > config-fragment
 # Use 'Image' for kernel image instead of 'kernel.itb'
 CONFIG_BOOTFILE="Image"
@@ -179,7 +182,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b socfpga-6.12.19-lts https://github.com/altera-opensource/linux-socfpga
+git clone -b QPDS25.3_REL_GSRD_PR  https://github.com/altera-fpga/linux-socfpga linux-socfpga
 cd linux-socfpga
 make defconfig 
 ```
@@ -209,52 +212,30 @@ The following files are created:
 
 ### Compile LibFCS and FCS Client application
 
-#### Compile the FCS Client and LibFCS
+#### Compile fcs_prepare tool
 
 ```bash
 git clone https://github.com/altera-fpga/libfcs
 cd libfcs/
+export CROSS_COMPILE=; export ARCH=
+rm -rf build_prepare && cmake -S . -B build_prepare -DBUILD_FCS_PREPARE=ON && cmake --build build_prepare
+```
+
+The fcs_prepare executable file is generated here:
+
+- $TOP_FOLDER/libfcs/build_prepare/tools/fcs_prepare/fcs_prepare
+
+#### Compile the FCS Client and LibFCS
+
+```bash
 export ARCH=arm64; export CROSS_COMPILE=aarch64-none-linux-gnu-
 rm -rf build/ && rm -rf third_party/libkcapi/ && cmake -S . -B build -DARCH=linux_aarch64 -DOS=linux && cmake --build build
 ```
 
-The output files of the compilation must be copied to the target device, as below:
-
-- $TOP_FOLDER/libfcs/build/bin/fcs_client
-- $TOP_FOLDER/libfcs/build/lib/LibFCS.so
-- $TOP_FOLDER/libfcs/build/lib/LibFCS.so.1
-- $TOP_FOLDER/libfcs/include/libfcs.h
-
-#### Compile fcs_prepare tool
-
-```bash
-git clone https://github.com/altera-fpga/fcs_apps fcs_prepare
-cd fcs_prepare
-gi checkout fcs_prepare
-export ARCH=; export CROSS_COMPILE=
-make clean && make all
-```
-
-### Install Yocto Dependencies
-
-Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions. The commands to install the required packages on Ubuntu 22.04 are:
-
-```bash
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \
-build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
-python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit mesa-common-dev zstd \
-liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \
-tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
-device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
-```
-
-On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:
-
-```bash
-sudo ln -sf /bin/bash /bin/sh
-```
+- The output files of the compilation must be copied to the target device, as below:
+  - $TOP_FOLDER/libfcs/build/bin/fcs_client
+  - $TOP_FOLDER/libfcs/build/lib/LibFCS.so
+  - $TOP_FOLDER/libfcs/build/lib/LibFCS.so.2
 
 ### Build Rootfs
 
@@ -289,22 +270,22 @@ mkdir -p privatekeys; mkdir -p publickeys; mkdir -p qky
 Start a Nios V command shell to have all Quartus tools in the PATH:
 
 ```bash
-~/intelFPGA_pro/25.1.1/niosv/bin/niosv-shell
+~/altera_pro/25.3/quartus/niosv/bin/niosv-shell
 ```
 
 ### Generate Root Key
 
 ```bash
-quartus_sign --family=agilex --operation=make_private_pem --curve=secp384r1 --no_passphrase privatekeys/root0.pem
-quartus_sign --family=agilex --operation=make_public_pem privatekeys/root0.pem publickeys/root0_public.pem
-quartus_sign --family=agilex --operation=make_root publickeys/root0_public.pem qky/root0.qky
+quartus_sign --family=agilex7 --operation=make_private_pem --curve=secp384r1 --no_passphrase privatekeys/root0_private.pem
+quartus_sign --family=agilex7 --operation=make_public_pem privatekeys/root0_private.pem publickeys/root0_public.pem
+quartus_sign --family=agilex7 --operation=make_root publickeys/root0_public.pem qky/root0.qky
 ```
 
 ### Generate FPGA Signing Keys
 
 ```bash
-quartus_sign --family=agilex --operation=make_private_pem --curve=secp384r1 --no_passphrase privatekeys/sign0.pem
-quartus_sign --family=agilex --operation=make_public_pem privatekeys/sign0.pem publickeys/sign0_public.pe
+quartus_sign --family=agilex7 --operation=make_private_pem --curve=secp384r1 --no_passphrase privatekeys/sign0.pem
+quartus_sign --family=agilex7 --operation=make_public_pem privatekeys/sign0.pem publickeys/sign0_public.pem
 ```
 
 ### Generate Signature Chain
@@ -312,7 +293,7 @@ quartus_sign --family=agilex --operation=make_public_pem privatekeys/sign0.pem p
 FPGA Signing - Cancel ID 1 – Permissions: FPGA/HPS/HPS Debug
 
 ```bash
-quartus_sign --family=agilex --operation=append_key --previous_pem=privatekeys/root0.pem --previous_qky=qky/root0.qky --permission=14 --cancel=1 --input_pem=publickeys/sign0_public.pem qky/sign0_cancel1.qky
+quartus_sign --family=agilex7 --operation=append_key --previous_pem=privatekeys/root0_private.pem --previous_qky=qky/root0.qky --permission=14 --cancel=1 --input_pem=publickeys/sign0_public.pem qky/sign0_cancel1.qky
 ```
 
 ## Build Hardware Design
@@ -321,18 +302,14 @@ quartus_sign --family=agilex --operation=append_key --previous_pem=privatekeys/r
 
 ```bash
 cd $TOP_FOLDER
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.1.1_REL_GSRD_PR.zip
-unzip QPDS25.1.1_REL_GSRD_PR.zip
-rm QPDS25.1.1_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS25.1.1_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
+unzip QPDS25.3_REL_GSRD_PR.zip
+rm QPDS25.3_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
 cd agilex7f-ed-gsrd
 make agf014eb-si-devkit-oobe-baseline-all
 cd ..
 ```
-
-The following files are created:
-
-- $TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof
 
 ### Enable Security Features: Authentication
 
@@ -347,6 +324,10 @@ Regenerate the sof by running the Assembler.
 
 - From the Processing menu, select Compilation Dashboard. In the Compilation Dashboard, select Assembler to regenerate the sof.
 
+The following files are created:
+
+- $TOP_FOLDER/agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof 
+
 ### Generate and Sign FPGA and HPS RBF Files
 
 Add FSBL bootloader to configuration bitstream, and generate the core and HPS .rbf files:
@@ -354,7 +335,7 @@ Add FSBL bootloader to configuration bitstream, and generate the core and HPS .r
 ```bash
 cd $TOP_FOLDER
 mkdir bitstreams && cd bitstreams
-cp ../agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof design.sof
+cp ../agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof design.sof
 quartus_pfg -c design.sof ghrd.rbf \
 -o hps_path=$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o hps=1 \
@@ -369,9 +350,9 @@ After that, two .rbf files are created:
 Finally, sign the .rbf files:
 
 ```bash
-quartus_sign --family=agilex --operation=sign --qky=../keys/qky/sign0_cancel1.qky \
+quartus_sign --family=agilex7 --operation=sign --qky=../keys/qky/sign0_cancel1.qky \
 --pem=../keys/privatekeys/sign0.pem ghrd.core.rbf signed_bitstream_core.rbf
-quartus_sign --family=agilex --operation=sign --qky=../keys/qky/sign0_cancel1.qky \
+quartus_sign --family=agilex7 --operation=sign --qky=../keys/qky/sign0_cancel1.qky \
 --pem=../keys/privatekeys/sign0.pem ghrd.hps.rbf signed_bitstream_hps.rbf
 ```
 
@@ -388,7 +369,7 @@ quartus_pfg -ccert -o ccert_type=PROV_SERVICE_ROOT_KEY -o entropy=<32-byte hex s
 Next, create a signature chain with the correct permission bit set using the following command:
 
 ```bash
-quartus_sign --family=agilex --operation=append_key \
+quartus_sign --family=agilex7 --operation=append_key \
 --previous_pem=root0_private.pem \
 --previous_qky=root0.qky \
 --permission=0x8000 \
@@ -411,7 +392,9 @@ unsigned_prov_srk.ccert signed_prov_srk.ccert
 First, create the key data file in .txt format:
 
 ```bash
-cd $TOP_FOLDER/fcs_prepare
+cd $TOP_FOLDER
+mkdir fcs_prepare && cd fcs_prepare
+cp ../libfcs/build_prepare/tools/fcs_prepare/fcs_prepare .
 echo  111111112222222233333333444444445555555566666666777777778888888899999999aaaaAAAAbbbbBBBBccccCCCC >> key.txt
 ./fcs_prepare -G aes_key.obj -i 14 -x 256 -k 1 -u 0x3 -t key.txt
 ```
@@ -455,7 +438,6 @@ mkdir fcs_client_bins && cd fcs_client_bins
 cp ../../libfcs/build/bin/fcs_client .
 mkdir fcs_drivers && fcs_drivers
 cp ../../libfcs/build/lib/libFCS* .
-cp ../../libfcs/include/libfcs.h .
 cd ..
 ```
 
@@ -547,10 +529,6 @@ SDRAM-ECC: Initialized success with 1716 ms
 QSPI: Reference clock at 400000 kHz
 WDT:   Started watchdog@ffd00200 with servicing every 1000ms (10s timeout)
 Trying to boot from MMC1
-## Checking hash(es) for config board-0 ... OK
-## Checking hash(es) for Image atf ... crc32+ OK
-## Checking hash(es) for Image uboot ... crc32+ OK
-## Checking hash(es) for Image fdt-0 ... crc32+ OK
 ...
 ```
 

@@ -9,6 +9,7 @@
 
  This design demonstrates the TinyML application using LiteRT for microcontrollers software with Nios® V/g processor in Agilex™ 5 FPGA E-Series 065B Premium Development Kit. </br>
  The design is built with basic peripherals required for simple application execution:
+
  - JTAG UART for serial output.
 
 ### Prerequisites
@@ -52,6 +53,7 @@ graph LR
 ## Nios® V/g TinyML LiteRT Design Architecture
  This example design includes a Nios® V/g processor connected to the On-Chip RAM II, JTAG UART IP and System ID peripheral core. </br>
  The objective of the design is to accomplish data transfer between the processor and soft IP peripherals:
+
  - Running TinyML application that identify Modified National Institute of Standards and Technology (MNIST) data samples.
  - Prints the classification result thru JTAG UART IP.
 
@@ -87,12 +89,14 @@ Y --> processor-subsystem
  
 ### Embedded Peripheral IP Cores
 The following embedded peripheral IPs are used in this design:
+
 - On-Chip RAM II IP
 - JTAG UART IP
 - System ID IP
 
 ### System Components
 The following components are used in this design:
+
 - Clock Source (Clock Bridge with IO PLL)
 - Reset Source (Reset Release IP)
 
@@ -115,10 +119,12 @@ Refer to [Agilex™ 5 FPGA Premium Development Kit User Guide](https://www.intel
 ### Program Hardware Binary SOF
 1. Connect the development kit to the host PC using USB Blaster II.
 2. Change the JTAG clock frequency to 6 MHz, and probe the JTAGServer to get the JTAG scan chain.
+3. Execute the quartus_pgm command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain below, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.
 
 ```console
 jtagconfig --setparam 1 JtagClock 6M
 jtagconfig -d
+quartus_pgm --cable=1 -m jtag -o 'p;ready_to_test/top.sof@2'
 ```
 
 For example:
@@ -140,12 +146,6 @@ For example:
   Captured Bypass chain = (0) [3]
   JTAG clock speed auto-adjustment is enabled. To disable, set JtagClockAutoAdjust parameter to 0
   JTAG clock speed 6 MHz
-```
-
-3. Execute the following command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain earlier, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.
-
-```console
-quartus_pgm --cable=1 -m jtag -o 'p;ready_to_test/top.sof@2'
 ```
 
 
@@ -189,6 +189,7 @@ quartus_py ./scripts/build_sof.py
 ### Generate Software Image ELF
 After the hardware binary SOF file is ready, you may begin building the software design. </br>
 It consists of the following steps:
+
 1. Create a board support package (BSP) project.
 2. Create a Nios® V processor application project with TinyML source codes.
 3. Build the TinyML application.
@@ -211,10 +212,12 @@ make -C sw/tflite_app/build/Release
 ### Program Hardware Binary SOF
 1. Connect the development kit to the host PC using USB Blaster II.
 2. Change the JTAG clock frequency to 6 MHz, and probe the JTAGServer to get the JTAG scan chain.
+3. Execute the quartus_pgm command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain below, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.
 
 ```console
 jtagconfig --setparam 1 JtagClock 6M
 jtagconfig -d
+quartus_pgm --cable=1 -m jtag -o 'p;hw/output_files/top.sof@2'
 ```
 
 For example:
@@ -236,12 +239,6 @@ For example:
   Captured Bypass chain = (0) [3]
   JTAG clock speed auto-adjustment is enabled. To disable, set JtagClockAutoAdjust parameter to 0
   JTAG clock speed 6 MHz
-```
-
-3. Execute the following command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain earlier, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.
-
-```console
-quartus_pgm --cable=1 -m jtag -o 'p;hw/output_files/top.sof@2'
 ```
 
 

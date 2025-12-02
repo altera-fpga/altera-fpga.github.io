@@ -782,15 +782,15 @@ The example below shows the steps to perform FPGA configuration from the U-boot.
 5\. The message "FPGA reconfiguration OK!" will be printed out upon successful transaction.<br>
 
 
-Here is an example for Agilex® 5 device, but the same steps apply for Stratix® 10, Agilex® 7, and Agilex® 3 SoC FPGA devices.
+Here is an example for Agilex® 7 device, but the same steps apply for Stratix® 10, Agilex® 5, and Agilex® 3 SoC FPGA devices.
 
 ```bash
 Hit any key to stop autoboot:  0 /// Hit any key at this point to enter the U-boot Shell ///
 
 SOCFPGA_AGILEX #
-SOCFPGA_AGILEX # fatload mmc 0:1 0x90000000 ghrd.core.rbf
+SOCFPGA_AGILEX # fatload mmc 0:1 ${loadaddr} ghrd.core.rbf
 2404352 bytes read in 116 ms (19.8 MiB/s)
-SOCFPGA_AGILEX # fpga load 0 0x90000000 ${filesize}
+SOCFPGA_AGILEX # fpga load 0 ${loadaddr} ${filesize}
 …FPGA reconfiguration OK!
 ```
 
@@ -953,17 +953,17 @@ Hit any key to stop autoboot:  0 /// Hit any key at this point to enter the U-bo
 
 # Stratix® 10 SoC FPGA device:
 mmc rescan
-fatload mmc 0:1 82000000 Image
-fatload mmc 0:1 86000000 socfpga_stratix10_socdk.dtb
+fatload mmc 0:1 01000000 Image
+fatload mmc 0:1 08000000 socfpga_stratix10_socdk.dtb
 setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;
-booti 0x82000000 - 0x86000000
+booti 0x01000000 - 0x08000000
 
 # Agilex® 7 SoC FPGA device:
 mmc rescan
-fatload mmc 0:1 82000000 Image
-fatload mmc 0:1 86000000 socfpga_agilex_socdk.dtb
+fatload mmc 0:1 02000000 Image
+fatload mmc 0:1 06000000 socfpga_agilex_socdk.dtb
 setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;
-booti 0x82000000 - 0x86000000
+booti 0x02000000 - 0x06000000
 
 # Agilex® 5 SoC FPGA device:
 mmc rescan

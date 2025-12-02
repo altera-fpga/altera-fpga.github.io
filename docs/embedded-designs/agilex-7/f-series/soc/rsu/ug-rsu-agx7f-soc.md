@@ -2918,7 +2918,7 @@ In order to configure U-Boot to support one U-Boot image per bitstream, the foll
 CONFIG_SOCFPGA_RSU_MULTIBOOT=y
 ```
 
-This configuration option is defined in https://github.com/altera-opensource/u-boot-socfpga/blob/socfpga_v2023.04/arch/arm/mach-socfpga/Kconfig as follows.
+This configuration option is defined in [https://github.com/altera-opensource/u-boot-socfpga/blob/socfpga_v2023.04/arch/arm/mach-socfpga/Kconfig](https://github.com/altera-opensource/u-boot-socfpga/blob/socfpga_v2023.04/arch/arm/mach-socfpga/Kconfig) as follows.
 
 ```bash
 config SOCFPGA_RSU_MULTIBOOT
@@ -3001,9 +3001,9 @@ CONFIG_SOCFPGA_RSU_MULTIBOOT=y
 CONFIG_ENV_OFFSET=0x10000
 CONFIG_ENV_SECT_SIZE=0x10000
 ```
-and updating **arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi** file to find the U-Boot FSBL in QSPI as indicated next.
+and updating **arch/arm/dts/socfpga_&lt;device&gt;_socdk-u-boot.dtsi** file to find the U-Boot FSBL in QSPI as indicated next.
 ```bash
-sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&flash0;/g' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&flash0;/g' arch/arm/dts/socfpga_<device>_socdk-u-boot.dtsi
 ```
 For each application, a specific U-Boot is required to be built. Name corresponding **u-boot.itb** as **u-boot_FACTORY_IMAGE.bin**, **u-boot_P1.bin**, **u-boot_P2.bin** and **u-boot_P3.bin**.
 

@@ -9,6 +9,7 @@
 
  This design demonstrates the baseline Golden Hardware Reference Design (GHRD) for a Nios® V/m processor in Agilex™ 5 FPGA E-Series 065B Premium Development Kit. </br>
  The design is built with basic peripherals required for simple application execution:
+
  - JTAG UART for serial output.
  - Parallel Input/Output for IO control.
 
@@ -54,6 +55,7 @@ graph LR
 ## Nios® V/m Baseline Golden Hardware Reference Design (GHRD) Architecture
  This example design includes a Nios® V/m processor connected to the On-Chip RAM II, JTAG UART IP, Parallel-IO and System ID peripheral core. </br>
  The objective of the design is to accomplish data transfer between the processor and soft IP peripherals:
+
  - Read and Write operation with On-Chip RAM II
  - Toggle the Parallel-IO
  - Verify design identification with System ID
@@ -93,6 +95,7 @@ E <--> X
  
 ### Embedded Peripheral IP Cores
 The following embedded peripheral IPs are used in this design:
+
 - On-Chip RAM II IP
 - JTAG UART IP
 - Parallel IO IP
@@ -100,6 +103,7 @@ The following embedded peripheral IPs are used in this design:
 
 ### System Components
 The following components are used in this design:
+
 - Clock Source (Clock Bridge with IO PLL)
 - Reset Source (Reset Controller with Synchronizer)
 - IO Debounce Logic
@@ -125,13 +129,15 @@ Refer to [Agilex™ 5 FPGA Premium Development Kit User Guide](https://www.intel
 ### Program Hardware Binary SOF
 1. Connect the development kit to the host PC using USB Blaster II.
 2. Change the JTAG clock frequency to 6 MHz, and probe the JTAGServer to get the JTAG scan chain.
+3. Execute the quartus_pgm command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain below, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.
 
 ```console
 jtagconfig --setparam 1 JtagClock 6M
 jtagconfig -d
+quartus_pgm --cable=1 -m jtag -o 'p;ready_to_test/top.sof@2'
 ```
 
-For example:
+Example of JTAG Scan Chain:
 ```console
  1) Agilex 5E065B Premium DK
   4BA06477   ARM_CORESIGHT_SOC_600 (IR=4)
@@ -150,12 +156,6 @@ For example:
   Captured Bypass chain = (0) [3]
   JTAG clock speed auto-adjustment is enabled. To disable, set JtagClockAutoAdjust parameter to 0
   JTAG clock speed 6 MHz
-```
-
-3. Execute the following command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain earlier, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.
-
-```console
-quartus_pgm --cable=1 -m jtag -o 'p;ready_to_test/top.sof@2'
 ```
 
 
@@ -199,6 +199,7 @@ quartus_py ./scripts/build_sof.py
 ### Generate Software Image ELF
 After the hardware binary SOF file is ready, you may begin building the software design. </br>
 It consists of the following steps:
+
 1. Create a board support package (BSP) project.
 2. Create a Nios® V processor application project with Hello World source code.
 3. Build the Hello World application.
@@ -217,13 +218,15 @@ make -C sw/app/build
 ### Program Hardware Binary SOF
 1. Connect the development kit to the host PC using USB Blaster II.
 2. Change the JTAG clock frequency to 6 MHz, and probe the JTAGServer to get the JTAG scan chain.
+3. Execute the quartus_pgm command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain below, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.
 
 ```console
 jtagconfig --setparam 1 JtagClock 6M
 jtagconfig -d
+quartus_pgm --cable=1 -m jtag -o 'p;hw/output_files/top.sof@2'
 ```
 
-For example:
+Example of JTAG Scan Chain:
 ```console
  1) Agilex 5E065B Premium DK
   4BA06477   ARM_CORESIGHT_SOC_600 (IR=4)
@@ -242,12 +245,6 @@ For example:
   Captured Bypass chain = (0) [3]
   JTAG clock speed auto-adjustment is enabled. To disable, set JtagClockAutoAdjust parameter to 0
   JTAG clock speed 6 MHz
-```
-
-3. Execute the following command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain earlier, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.
-
-```console
-quartus_pgm --cable=1 -m jtag -o 'p;hw/output_files/top.sof@2'
 ```
 
 
@@ -290,6 +287,7 @@ qsys-generate hw/qsys_top.qsys --testbench=STANDARD --testbench-simulation=VERIL
 ### Generate Software Image HEX
 After the hardware DUT and testbench are ready, you may begin building the software design. </br>
 It consists of the following steps:
+
 1. Create a board support package (BSP) project.
 2. Create a Nios® V processor application project with Hello World source code.
 3. Build the Hello World application.
@@ -308,14 +306,16 @@ elf2hex sw/app/build/app.elf -b 0x0 -w 32 -e 0xfffff hw/onchip_mem.hex -r4
 
 ### Check Simulation Files 
 You have generated your system and created all the files necessary for simulation.
+
 | File | Description |
 | - | - |
 | Working Directory/hw/qsys_top_tb | Generated testbench system |
 | Working Directory/hw/qsys_top_tb/qsys_top_tb/sim/mentor/msim_setup.tcl | Questa simulation setup script |
 | Working Directory/hw/onchip_mem.hex | On-Chip RAM II memory initialization file |
 
-### Run Simulation
+### Start Simulator
 With all the necessary simulation files, you can start the simulation.
+
 1. Copy the memory initialization file into *mentor* folder.
 2. Change directory to the same *mentor* folder.
 3. Open the **Questa for Altera FPGA** simulator using the command *vsim*.
@@ -326,14 +326,16 @@ cd hw/qsys_top_tb/qsys_top_tb/sim/mentor/
 vsim
 ```
 
-4. In the **Questa for Altera FPGA** software, run the following commands in the **Transcript**.
+### Setup Simulator
+In the **Questa for Altera FPGA** software, run the following commands in the **Transcript**.
 
 ```console
 source msim_setup.tcl
 ld_debug
 ```
 
-5. Run the simulation with *run -all* command. <br/>
+### Run Simulation
+Run the simulation with *run -all* command. <br/>
 For example, you should see similar display at the start of the simulation.
 
 ![Simulation](./img/simulation.png?raw=true)

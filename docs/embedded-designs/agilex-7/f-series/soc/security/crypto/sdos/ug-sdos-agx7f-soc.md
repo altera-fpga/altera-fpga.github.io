@@ -10,17 +10,20 @@ The purpose of this tutorial is to demonstrate how to access SDOS services from 
 
 ## Running SDOS Services from SPL 
 
-After completing Step 12 in the Secure Boot Demo [here](https://altera-fpga.github.io/rel-25.3/security/demos/agilex7/vab/hps-first/ug-vab-hps-first-agx7f-soc/), you need to modify some of the SPL source codes to add the SDOS functions. The current SPL source code provides secure VAB for image authentication only. We can add the modifications below to enable SDOS tests for: 
+From the Secure Boot Demo [here](https://altera-fpga.github.io/rel-25.3/security/demos/agilex7/vab/hps-first/ug-vab-hps-first-agx7f-soc/), you need to modify some of the SPL source codes to add the SDOS functions. The current SPL source code provides secure VAB for image authentication only. We can add the modifications below to enable SDOS tests for: 
 
-1. Open / Close SDOS session. 
-2. Create a dummy data buffer. 
-3. Send SDOS encryption command via mailbox, and retrieve the encrypted data in another buffer. 
-4. Send back the encrypted data buffer with a decryption command via mailbox and retrieve the original data in a third buffer. 
+1\. Open / Close SDOS session. 
+
+2\. Create a dummy data buffer. 
+
+3\. Send SDOS encryption command via mailbox, and retrieve the encrypted data in another buffer.
+
+4\. Send back the encrypted data buffer with a decryption command via mailbox and retrieve the original data in a third buffer.
 
 To achieve the test scenario above, navigate to the top directory, then to u-boot-socfpga. 
 
 ```bash 
-cd $TOP_DIR/u-boot-socfpga/arch/arm/mach-socfpga 
+cd $TOP_FOLDER/u-boot-socfpga/arch/arm/mach-socfpga 
 ```
 
 In this directory, open the mailbox_s10.c in a text editor to modify it. The added code snippet can be pasted after line 108 [here ](https://github.com/altera-opensource/u-boot-socfpga/blob/socfpga_v2023.07/arch/arm/mach-socfpga/mailbox_s10.c). 
@@ -173,43 +176,52 @@ secure_test();
 After saving both files, we need to re-generate u-boot: 
 
 ```bash 
-cd $TOP_DIR/u-boot-socfpga/ 
-make -j 24 u-boot u-boot.img u-boot.dtb spl/u-boot-spl-dtb.hex 
+cd $TOP_FOLDER/u-boot-socfpga/ 
+make -j 24 u-boot u-boot.img u-boot.dtb spl/u-boot-spl-dtb.hex
+cd ..
+```
+
+Start a Nios command shell to have all Quartus tools in the PATH:
+
+```bash
+~/altera_pro/25.3/quartus/niosv/bin/niosv-shell
 ```
 
 Now, we have creared a newer version of u-boot-spl-dtb.hex, which must be included in the bitstream file. To do so, follow the steps below: 
 
 ```bash 
-cd $TOP_DIR/agilex_soc_devkit_ghrd/output_files/ 
-quartus_pfg -c ghrd_agfb014r24b2e2v.sof ghrd.rbf -o hps_path=../../u-boot-socfpga/spl/u-boot-spl-dtb.hex \
--o hps=1 -o sign_later=ON 
-cd $TOP_DIR/bitstreams/ 
-quartus_sign --family=agilex --operation=sign --qky=../qky/sign0_cancel1.qky \
---pem=../privatekeys/sign0.pem ../agilex_soc_devkit_ghrd/output_files/ghrd.hps.rbf signed_bitstream_hps.rbf 
+cd $TOP_FOLDER/bitstreams
+cp ../agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof ghrd2.sof
+quartus_pfg -c ghrd2.sof ghrd2.rbf \
+-o hps_path=../u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o hps=1 \
+-o sign_later=ON
+quartus_sign --family=agilex7 --operation=sign --qky=../keys/qky/sign0_cancel1.qky \
+--pem=../keys/privatekeys/private_sign0.pem ghrd2.hps.rbf signed_bitstream_hps2.rbf 
 ```
 
 To run the test, we need to set MSEL to JTAG, qkey, service key, and signed_bitstream_hps.rbf are downloaded via JTAG: 
 
 ```bash 
-cd $TOP_DIR/ 
-quartus_pgm -c 1 -m jtag -o "pi;qky/root0.qky" 
+cd $TOP_FOLDER/ 
+quartus_pgm -c 1 -m jtag -o "pi;keys/qky/root0.qky" 
 quartus_pgm -c 1 -m jtag --service_root_key 
-quartus_pgm -c 1 -m jtag -o "p;bitstreams/signed_bitstream_hps.rbf" 
+quartus_pgm -c 1 -m jtag -o "p;bitstreams/signed_bitstream_hps2.rbf" 
 ```
 
 Once the required files are configured on board, the HPS terminal prints out the SPL output, a sample of this output can be seen below: 
 
 ```
-U-Boot SPL 2023.07-rc6-30090-g4b66dd57fd-dirty (Feb 29 2024 - 19:39:29 -0500) 
-Reset state: Cold 
-MPU 1200000 kHz 
-L4 Main 400000 kHz 
-L4 sys free 100000 kHz 
-L4 MP 200000 kHz 
-L4 SP 100000 kHz 
-SDMMC 50000 kHz 
-DDR: 8192 MiB 
-SDRAM-ECC: Initialized success with 1730 ms 
+U-Boot SPL 2025.07-ge5f40a8ed1ec-dirty (Nov 10 2025 - 09:29:16 -0500)
+Reset state: Cold
+MPU          1200000 kHz
+L4 Main       400000 kHz
+L4 sys free   100000 kHz
+L4 MP         200000 kHz
+L4 SP         100000 kHz
+SDMMC          50000 kHz
+DDR: 8192 MiB
+SDRAM-ECC: Initialized success with 1707 ms
 
 Testing input buffer: 
 0 1 2 3 4 5 6 7 8 9 a b c d e f 10 11 12 13 14 15 16 17 18 19 1a 1b 1c 1d 1e 1f 20 21 22 23 24 25 26 27 
@@ -227,16 +239,7 @@ Testing Decryption Buffer:
 QSPI: Reference clock at 400000 kHz 
 WDT: Started watchdog@ffd00200 with servicing every 1000ms (10s timeout) 
 Trying to boot from MMC1 
-\## Checking hash(es) for config board-0 ... OK 
-\## Checking hash(es) for Image atf ... crc32+ OK 
-Image Authentication passed at address 0x0000000000001034 (45084 bytes) 
-\## Checking hash(es) for Image uboot ... crc32+ OK 
-Image Authentication passed at address 0x0000000000200000 (703096 bytes) 
-\## Checking hash(es) for Image fdt-0 ... crc32+ OK 
-Image Authentication passed at address 0x00000000002aba8c (18744 bytes) NOTICE: BL31: bl31_setup 
-NOTICE: BL31: bl31_plat_arch_setup 
-NOTICE: BL31: v2.8.1(release):QPDS23.2_REL_GSRD_PR 
-NOTICE: BL31: Built : 20:57:39, Nov 27 2023 
+...
 ```
 
 The output colored in blue is coming from the added code to the SPL source code. We can notice a print snapshot of the dummy input buffer, SDOS session open, AES encryption, print of encrypted data, AES decryption, retrieve the original data, and close the SDOS session. 
@@ -255,19 +258,19 @@ Once the randm.bin file is created, we need to modify this file to include the s
 
 Once the bin file is ready, we can store it in the sdcard. Then, boot the system, and interrupt the boot at U-Boot stage to enter U-Boot command line. The following commands can be used to run the test: 
 
-1. Load the random.bin file from the SDCARD: 
+1\. Load the random.bin file from the SDCARD: 
 
 ```bash 
 fatload mmc 0:1 0x2000000 random.bin 
 ```
 
-2. Open SDOS Session: 
+2\. Open SDOS Session: 
 
 ```bash 
 smc c200006e 
 ```
 
-3. Send encryption command: 
+3\. Send encryption command: 
 
 ```bash 
 smc c2000090 21000001 55aa 1 02000000 7fc8 03000000 7ff8 
@@ -286,7 +289,7 @@ where:
 | 03000000 | physical address of the output encrypted data | 
 | 7ff8 | size of output encrypted data | 
 
-4. Send decryption command: 
+4\. Send decryption command: 
 
 ```bash 
 smc c2000090 21000001 55aa 0 03000000 7ff8 04000000 7fc8 
@@ -305,7 +308,7 @@ where:
 | 04000000 | physical address of the output original data | 
 | 7fc8 | size of output encrypted data | 
 
-5. Close SDOS session: 
+5\. Close SDOS session: 
 
 ```bash 
 smc c200006f 21000001 

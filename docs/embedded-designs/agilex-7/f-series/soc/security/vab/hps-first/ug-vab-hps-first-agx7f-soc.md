@@ -19,146 +19,263 @@ In the Altera® Agilex™ 7 SoC FPGA devices, the Secure Device Manager (SDM) is
 ![AgilexSecureBootFlow.png](images/AgilexSecureBootFlow.png)
 
 ## Environment Setup
-1. Create the main directory of the design: 
+1\. Create the main directory of the design: 
 
 ```bash 
 cd ~ 
-mkdir agx7_vab && cd agx7_vab && export TOP_DIR=$(pwd) 
+mkdir agx7_vab && cd agx7_vab && export TOP_FOLDER=$(pwd) 
 ```
 
-2. Download and extract the Linaro toolchain. Then, configure your environment to access the Linaro cross compiler:
+2\. Download and extract the Linaro toolchain. Then, configure your environment to access the Linaro cross compiler:
 
 ```bash
-wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
-rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+cd $TOP_FOLDER
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
-3. Enable Quartus tools to be called from command line:
+3\. Enable Quartus tools to be called from command line:
 
 ```bash
-export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+```
+
+4\. Install Yocto Dependencies:
+
+Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions. The commands to install the required packages on Ubuntu 22.04 are:
+
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \
+build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
+python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit mesa-common-dev zstd \
+liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \
+tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
+device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
+```
+
+On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:
+
+```bash
+sudo ln -sf /bin/bash /bin/sh
 ```
 
 ## Building the System Image
 
 ### Build Arm Trusted Firmware
 ```bash
-cd $TOP_DIR
-git clone https://github.com/altera-opensource/arm-trusted-firmware 
-cd arm-trusted-firmware
-git checkout -b socfpga_v2.8.1_vab origin/socfpga_v2.8.1
-make realclean
-make bl31 CROSS_COMPILE=aarch64-none-linux-gnu- PLAT=agilex DEPRECATED=1 \
- HANDLE_EA_EL3_FIRST=1
+cd $TOP_FOLDER
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
+cd arm-trusted-firmware 
+make bl31 PLAT=agilex 
 cd ..
 ```
 ### Build U-Boot
 The VAB deconfig will add the Vendor Authorized Boot firmware to the FSBL and SSBL.
 ```bash
-cd $TOP_DIR
-git clone https://github.com/altera-opensource/u-boot-socfpga
+cd $TOP_FOLDER
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga
-git checkout -b socfpga_v2023.01_vab origin/socfpga_v2023.01
-export CROSS_COMPILE=aarch64-none-linux-gnu-; export ARCH=arm
+# enable dwarf4 debug info, for compatibility with arm ds 
+sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
+# only boot from SD, do not try QSPI and NAND 
+sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&mmc;/g' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+# disable NAND in the device tree 
+sed -i '/&nand {/!b;n;c\\tstatus = "disabled";' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi 
+# remove the NAND configuration from device tree 
+sed -i '/images/,/binman/{/binman/!d}' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+# link to atf
+ln -s $TOP_FOLDER/arm-trusted-firmware/build/agilex/release/bl31.bin .
+
+# Create configuration custom file.
+cat << EOF > config-fragment-agilex
+#ENABLE  VAB
+CONFIG_SOCFPGA_SECURE_VAB_AUTH=y
+CONFIG_FIT_IMAGE_POST_PROCESS=y
+CONFIG_SPL_SHA512=y
+CONFIG_SPL_SHA384=y
+CONFIG_SOCFPGA_SECURE_VAB_AUTH_ALLOW_NON_FIT_IMAGE=n
+# - Disable NAND/UBI related settings from defconfig.
+CONFIG_NAND_BOOT=n
+CONFIG_SPL_NAND_SUPPORT=n
+CONFIG_CMD_NAND_TRIMFFS=n
+CONFIG_CMD_NAND_LOCK_UNLOCK=n
+CONFIG_NAND_DENALI_DT=n
+CONFIG_SYS_NAND_U_BOOT_LOCATIONS=n
+CONFIG_SPL_NAND_FRAMEWORK=n
+CONFIG_CMD_NAND=n
+CONFIG_MTD_RAW_NAND=n
+CONFIG_CMD_UBI=n
+CONFIG_CMD_UBIFS=n
+CONFIG_MTD_UBI=n
+CONFIG_ENV_IS_IN_UBI=n
+CONFIG_UBI_SILENCE_MSG=n
+CONFIG_UBIFS_SILENCE_MSG=n
+# - Disable distroboot and use specific boot command.
+CONFIG_DISTRO_DEFAULTS=n
+CONFIG_HUSH_PARSER=y
+CONFIG_SYS_PROMPT_HUSH_PS2="> "
+CONFIG_USE_BOOTCOMMAND=y
+CONFIG_BOOTCOMMAND="load mmc 0:1 \${loadaddr} signed_bitstream_core.rbf; bridge disable;fpga load 0 \${loadaddr} \${filesize};bridge enable; run mmcfitload; run mmcfitboot"
+CONFIG_CMD_FAT=y
+CONFIG_CMD_FS_GENERIC=y
+CONFIG_DOS_PARTITION=y
+CONFIG_SPL_DOS_PARTITION=y
+CONFIG_CMD_PART=y
+CONFIG_SPL_CRC32=y
+CONFIG_LZO=y
+CONFIG_CMD_DHCP=y
+# Enable more QSPI flash manufacturers
+CONFIG_SPI_FLASH_MACRONIX=y
+CONFIG_SPI_FLASH_GIGADEVICE=y
+CONFIG_SPI_FLASH_WINBOND=y
+CONFIG_SPI_FLASH_ISSI=y
+EOF
+
+# build U-Boot 
 make clean && make mrproper
-make socfpga_agilex_vab_defconfig
-make -j 24 u-boot u-boot.img u-boot.dtb spl/u-boot-spl-dtb.hex
-cd ..
+make socfpga_agilex_defconfig
+# Use created custom configuration file to merge with the default configuration obtained in .config file.
+./scripts/kconfig/merge_config.sh -O ./ ./.config ./config-fragment-agilex
+make -j 64
+cd .. 
 ```
-### Build Linux Kernel with Altera® FGPA Crypto Service Support
+Few Errors will be seen and can be ignored for now. These errors will be resolved once the signed images are created. These errors can be seen as below:
+
 ```bash
-cd $TOP_DIR
-git clone https://github.com/altera-opensource/linux-socfpga
-cd linux-socfpga
-git checkout -b socfpga-6.1.20 origin/socfpga-6.1.20-lts
-export CROSS_COMPILE=aarch64-none-linux-gnu-; export ARCH=arm64
-make clean
-make defconfig
-make menuconfig
-   (Browse and enable Cryptographic API > Hardware crypto devices > (*)Altera® FPGA Crypto Service support)
-make -j 16 all && make dtbs && make -j 16 modules
-cd ..
+Image 'u-boot' is missing external blobs and is non-functional: blob-ext blob-ext blob-ext
+/binman/u-boot/fit/images/uboot/blob-ext (signed-u-boot-nodtb.bin):
+   Missing blob
+/binman/u-boot/fit/images/atf/blob-ext (signed-bl31.bin):
+   Missing blob
+/binman/u-boot/fit/images/fdt-0/blob-ext (signed-u-boot.dtb):
+   Missing blob
+   
+Image 'kernel' is missing external blobs and is non-functional: blob-ext blob-ext
+/binman/kernel/fit/images/kernel/blob-ext (signed-Image):
+   Missing blob
+/binman/kernel/fit/images/fdt/blob-ext (signed-linux.dtb):
+   Missing blob
+   
+Some images are invalid
+make: *** [Makefile:1126: .binman_stamp] Error 103
 ```
+
+The following files are created:
+
+- $TOP_FOLDER/u-boot-socfpga/u-boot.itb
+- $TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex
+
+### Build Linux Kernel 
+
+```bash
+cd $TOP_FOLDER
+rm -rf linux-socfpga
+git clone -b QPDS25.3_REL_GSRD_PR  https://github.com/altera-fpga/linux-socfpga linux-socfpga
+cd linux-socfpga
+make clean && make mrproper
+make defconfig
+make -j 64 Image dtbs
+```
+The following items are built in $TOP_FOLDER:
+
+- linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dtb
+- linux-socfpga/arch/arm64/boot/Image
+
+### Build Rootfs
+
+```bash
+cd $TOP_FOLDER
+rm -rf yocto && mkdir yocto && cd yocto
+git clone -b styhead https://git.yoctoproject.org/poky
+git clone -b styhead https://git.yoctoproject.org/meta-intel-fpga
+git clone -b styhead https://github.com/openembedded/meta-openembedded
+# work around issue
+echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
+source poky/oe-init-build-env ./build
+echo 'MACHINE = "agilex7_dk_si_agf014eb"' >> conf/local.conf
+echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
+echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf
+echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf
+bitbake core-image-minimal
+```
+
+The following file is created:
+
+- TOP_FOLDER/yocto/build/tmp/deploy/images/agilex7_dk_si_agf014eb/core-image-minimal-agilex7_dk_si_agf014eb.rootfs.tar.gz
+
 ### Generate Signature Chains
-Create three signature chains (FPGA, SDM FW Cosigning, and HPS software).
+
+Create two signature chains (FPGA and HPS software).
 Create directories for the keys and signature chains.
 ```bash
+mkdir keys && cd keys
 mkdir -p privatekeys
 mkdir -p publickeys
 mkdir -p qky
 ```
 Start a Nios command shell to have all Quartus tools in the PATH:
 ```
-~/intelFPGA_pro/<VERSION>/niosv/bin/niosv-shell
+~/altera_pro/25.3/quartus/niosv/bin/niosv-shell
 ```
 #### Generate Root Key
 ```bash
-quartus_sign --family=agilex --operation=make_private_pem --curve=secp384r1 --no_passphrase \
- privatekeys/root0.pem
-quartus_sign --family=agilex --operation=make_public_pem privatekeys/root0.pem \
- publickeys/root0_public.pem
-quartus_sign --family=agilex --operation=make_root publickeys/root0_public.pem qky/root0.qky
+quartus_sign --family=agilex7 --operation=make_private_pem --curve=secp384r1 --no_passphrase \
+ privatekeys/private_root0.pem
+quartus_sign --family=agilex7 --operation=make_public_pem privatekeys/private_root0.pem \
+ publickeys/public_root0.pem
+quartus_sign --family=agilex7 --operation=make_root publickeys/public_root0.pem qky/root0.qky
 ```
 #### Generate Signing Keys
 
 FPGA Signing
 
 ```bash
-quartus_sign --family=agilex --operation=make_private_pem --curve=secp384r1 --no_passphrase \
- privatekeys/sign0.pem
-quartus_sign --family=agilex --operation=make_public_pem privatekeys/sign0.pem \
- publickeys/sign0_public.pem
-```
-SDM Cosigning
-```bash
-quartus_sign --family=agilex --operation=make_private_pem --curve=secp384r1 --no_passphrase \
- privatekeys/cosign0.pem
-quartus_sign --family=agilex --operation=make_public_pem privatekeys/cosign0.pem \
- publickeys/cosign0_public.pem
+quartus_sign --family=agilex7 --operation=make_private_pem --curve=secp384r1 --no_passphrase \
+ privatekeys/private_sign0.pem
+quartus_sign --family=agilex7 --operation=make_public_pem privatekeys/private_sign0.pem \
+ publickeys/public_sign0.pem
 ```
 HPS Software
 ```bash
-quartus_sign --family=agilex --operation=make_private_pem --curve=secp384r1 --no_passphrase \
- privatekeys/software0.pem
-quartus_sign --family=agilex --operation=make_public_pem privatekeys/software0.pem \
- publickeys/software0_public.pem
+quartus_sign --family=agilex7 --operation=make_private_pem --curve=secp384r1 --no_passphrase \
+ privatekeys/private_software0.pem
+quartus_sign --family=agilex7 --operation=make_public_pem privatekeys/private_software0.pem \
+ publickeys/public_software0.pem
 ```
 Generate Signature Chains:
 FPGA Signing - Cancel ID 1 – Permissions: FPGA/HPS/HPS Debug
 ```bash
-quartus_sign --family=agilex --operation=append_key --previous_pem=privatekeys/root0.pem \
+quartus_sign --family=agilex7 --operation=append_key --previous_pem=privatekeys/private_root0.pem \
  --previous_qky=qky/root0.qky --permission=14 --cancel=1 \
- --input_pem=publickeys/sign0_public.pem qky/sign0_cancel1.qky
-```
-SDM cosigning - cancel ID 2 – Permissions: SDM Firmware
-```bash
-quartus_sign --family=agilex --operation=append_key --previous_pem=privatekeys/root0.pem \
- --previous_qky=qky/root0.qky --permission=0x1 --cancel=2 \
- --input_pem=publickeys/cosign0_public.pem qky/cosign0_cancel2.qky
+ --input_pem=publickeys/public_sign0.pem qky/sign0_cancel1.qky
 ```
 HPS Software - cancel ID 3 – Permissions: HPS Firmware
 ```bash
-quartus_sign --family=agilex --operation=append_key --previous_pem=privatekeys/root0.pem \
+quartus_sign --family=agilex7 --operation=append_key --previous_pem=privatekeys/private_root0.pem \
  --previous_qky=qky/root0.qky --permission=0x80 --cancel=3 \
- --input_pem=publickeys/software0_public.pem qky/software0_cancel3.qky
+ --input_pem=publickeys/public_software0.pem qky/software0_cancel3.qky
 ```
 ### Build the Hardware Design
 
 #### Build the GHRD
 
 Download the GHRD from Github, and build it using the commands below:
+Note: (Make sure to use the required GHRD based on your development kit)
 
 ```bash
-cd $TOP_DIR
-rm -rf ghrd-socfpga agilex_soc_devkit_ghrd
-git clone -b QPDS23.2_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
-mv ghrd-socfpga/agilex_soc_devkit_ghrd .
-cd agilex_soc_devkit_ghrd
-make scrub_clean_all
-make generate_from_tcl
-make all
+cd $TOP_FOLDER
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
+unzip QPDS25.3_REL_GSRD_PR.zip
+rm QPDS25.3_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
+cd agilex7f-ed-gsrd
+make agf014eb-si-devkit-oobe-baseline-all
 cd ..
 ```
 #### Enable Security Features: Authentication
@@ -174,38 +291,33 @@ Regenerate the sof by running the Assembler.
 
 #### Generate and Sign FPGA and HPS RBF Files
 
-Add FSBL bootloader to configuration bitstream.
+Add FSBL bootloader to configuration bitstream, and generate the Raw Binary File (rbf) files:
 
 ```bash
-cd $TOP_DIR
-mkdir bitstreams
-cd bitstreams
-quartus_pfg -c \
-../agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof \
-../agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps.sof -o hps_path=../u-boot-socfpga/spl/u-boot-spl-dtb.hex
+cd $TOP_FOLDER
+mkdir bitstreams && cd bitstreams
+cp ../agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof ghrd.sof
+quartus_pfg -c ghrd.sof ghrd.rbf \
+-o hps_path=../u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o hps=1 \
+-o sign_later=ON
 ```
-Cosign the SDM firmware.
+After that, two .rbf files are created:
+
+- $TOP_FOLDER /bitstreams/ghrd.core.rbf
+- $TOP_FOLDER /bitstreams/ghrd.hps.rbf
+
+Finally, sign the .rbf files:
+
 ```bash
-quartus_sign --family=agilex --operation=sign --qky=../qky/cosign0_cancel2.qky --pem=../privatekeys/cosign0.pem \
-$QUARTUS_ROOTDIR/../devices/programmer/firmware/agilex.zip signed_agilex.zip
+quartus_sign --family=agilex7 --operation=sign --qky=../keys/qky/sign0_cancel1.qky \
+--pem=../keys/privatekeys/private_sign0.pem ghrd.core.rbf signed_bitstream_core.rbf
+quartus_sign --family=agilex7 --operation=sign --qky=../keys/qky/sign0_cancel1.qky \
+--pem=../keys/privatekeys/private_sign0.pem ghrd.hps.rbf signed_bitstream_hps.rbf
 ```
-Create Raw Binary File (rbf) with SDM Firmware included.
+Create .jic for flash programmer. (Optional - Used only with Physical Root Key Hash Fusing)
 ```bash
-quartus_pfg -c -o fw_source=signed_agilex.zip ../agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps.sof \
--o sign_later=ON unsigned_bitstream.rbf
-```
-Sign the rbf.
-```bash
-quartus_sign --family=agilex --operation=sign --qky=../qky/sign0_cancel1.qky \
---pem=../privatekeys/sign0.pem unsigned_bitstream.rbf signed_bitstream.rbf
-```
-Create .jic for flash programmer. (Optional)
-```bash
-quartus_pfg -c signed_bitstream.rbf signed_flash.jic -o device=MT25QU128 -o flash_loader=AGFB014R24B -o mode=ASX4
-```
-Move back into the project directory.
-```bash
-cd ..
+quartus_pfg -c signed_bitstream_hps.rbf signed_flash.jic -o device=MT25QU128 -o flash_loader=AGFB014R24B -o mode=ASX4
 ```
 ### Prepare the Signed Images
 
@@ -217,14 +329,12 @@ The VAB preparation tool is used along with quartus_sign to create a signed firm
 - The VAB preparation tool will append the signed certificate and certificate length to the firmware image, creating a signed firmware image hps_image_signed.vab.
 - Create a FIT image of the individually signed firmware images.
 ```bash
-cd $TOP_DIR
-git clone https://github.com/altera-opensource/fcs_apps
-mv fcs_apps fcs_prepare
-cd fcs_prepare
-git checkout -b fcs_prepare_vab origin/fcs_prepare
+cd $TOP_FOLDER
+git clone https://github.com/altera-fpga/libfcs.git
+cd libfcs
 export CROSS_COMPILE=; export ARCH=
-make clean && make all
-cd ..
+cmake -S . -B build -DBUILD_FCS_PREPARE=ON
+cmake --build build
 ```
 #### Create Signed U-boot Image
 
@@ -233,145 +343,157 @@ A signed U-boot image will consist of three individually signed firmware images 
 Create a working directory for signing images
 
 ```bash
-cd $TOP_DIR
+cd $TOP_FOLDER
 mkdir signed_hps_images && cd signed_hps_images
+cp ../libfcs/build/tools/fcs_prepare/fcs_prepare .
 ```
 Create the certificate for bl31.bin
 ```bash
-../fcs_prepare/fcs_prepare --hps_cert ../arm-trusted-firmware/build/agilex/release/bl31.bin -v
-quartus_sign --family=agilex --operation=SIGN --qky=../qky/software0_cancel3.qky \
- --pem=../privatekeys/software0.pem ./unsigned_cert.ccert ./signed_cert_bl31.bin.ccert
-../fcs_prepare/fcs_prepare --finish ./signed_cert_bl31.bin.ccert --imagefile \
+./fcs_prepare --hps_cert ../arm-trusted-firmware/build/agilex/release/bl31.bin -v
+quartus_sign --family=agilex7 --operation=SIGN --qky=../keys/qky/software0_cancel3.qky \
+ --pem=../keys/privatekeys/private_software0.pem unsigned_cert.ccert signed_cert_bl31.bin.ccert
+./fcs_prepare --finish signed_cert_bl31.bin.ccert --imagefile \
  ../arm-trusted-firmware/build/agilex/release/bl31.bin
 mv hps_image_signed.vab ../u-boot-socfpga/signed-bl31.bin
-rm unsigned_cert.ccert 
+rm unsigned_cert*
 ```
 Create the certificate for u-boot.dtb
 ```bash
-../fcs_prepare/fcs_prepare --hps_cert ../u-boot-socfpga/u-boot.dtb -v
-quartus_sign --family=agilex --operation=SIGN --qky=../qky/software0_cancel3.qky \
- --pem=../privatekeys/software0.pem ./unsigned_cert.ccert ./signed_cert_u-boot_pad.dtb.ccert
-../fcs_prepare/fcs_prepare --finish ./signed_cert_u-boot_pad.dtb.ccert --imagefile ../u-boot-socfpga/u-boot.dtb
+./fcs_prepare --hps_cert ../u-boot-socfpga/u-boot.dtb -v
+quartus_sign --family=agilex7 --operation=SIGN --qky=../keys/qky/software0_cancel3.qky \
+ --pem=../keys/privatekeys/private_software0.pem unsigned_cert.ccert signed_cert_u-boot_pad.dtb.ccert
+./fcs_prepare --finish ./signed_cert_u-boot_pad.dtb.ccert --imagefile ../u-boot-socfpga/u-boot.dtb
 mv hps_image_signed.vab ../u-boot-socfpga/signed-u-boot.dtb
-rm unsigned_cert.ccert
+rm unsigned_cert*
 ```
 Create the certificate for u-boot-nodtb.bin
 ```bash
-../fcs_prepare/fcs_prepare --hps_cert ../u-boot-socfpga/u-boot-nodtb.bin -v
-quartus_sign --family=agilex --operation=SIGN --qky=../qky/software0_cancel3.qky \
- --pem=../privatekeys/software0.pem ./unsigned_cert.ccert ./signed_cert_u-boot-nodtb.bin.ccert
-../fcs_prepare/fcs_prepare --finish ./signed_cert_u-boot-nodtb.bin.ccert --imagefile \
+./fcs_prepare --hps_cert ../u-boot-socfpga/u-boot-nodtb.bin -v
+quartus_sign --family=agilex7 --operation=SIGN --qky=../keys/qky/software0_cancel3.qky \
+ --pem=../keys/privatekeys/private_software0.pem ./unsigned_cert.ccert ./signed_cert_u-boot-nodtb.bin.ccert
+./fcs_prepare --finish ./signed_cert_u-boot-nodtb.bin.ccert --imagefile \
  ../u-boot-socfpga/u-boot-nodtb.bin
 mv hps_image_signed.vab ../u-boot-socfpga/signed-u-boot-nodtb.bin
-rm unsigned_cert.ccert
-```
-Move into the U-Boot directory and run the FIT creation script
-```bash
-cd ../u-boot-socfpga/
-export CROSS_COMPILE=aarch64-none-linux-gnu-; export ARCH=arm64
-./tools/binman/binman build -u -d u-boot.dtb -O . -i u-boot
-cd ..
+rm unsigned_cert*
 ```
 #### Create Signed Linux Image
 A signed Linux image will consist of two individually signed firmware images (Image and linux.dtb) in a FIT image:
 ![SignedLinux.png](images/SignedLinux.png)
-Move into the signed images working directory
-```bash
-cd $TOP_DIR/signed_hps_images
-```
 Create the certificate for the Image.
+
 ```bash
-../fcs_prepare/fcs_prepare --hps_cert ../linux-socfpga/arch/arm64/boot/Image -v
-quartus_sign --family=agilex --operation=SIGN --qky=../qky/software0_cancel3.qky \
- --pem=../privatekeys/software0.pem ./unsigned_cert.ccert ./signed_cert_Image.ccert
-../fcs_prepare/fcs_prepare --finish ./signed_cert_Image.ccert --imagefile ../linux-socfpga/arch/arm64/boot/Image
+./fcs_prepare --hps_cert ../linux-socfpga/arch/arm64/boot/Image -v
+quartus_sign --family=agilex7 --operation=SIGN --qky=../keys/qky/software0_cancel3.qky \
+ --pem=../keys/privatekeys/private_software0.pem unsigned_cert.ccert signed_cert_Image.ccert
+./fcs_prepare --finish signed_cert_Image.ccert --imagefile ../linux-socfpga/arch/arm64/boot/Image
 mv hps_image_signed.vab ../u-boot-socfpga/signed-Image
-rm unsigned_cert.ccert 
+rm unsigned_cert*
 ```
 Create the certificate for linux.dtb.
 ```bash
-../fcs_prepare/fcs_prepare --hps_cert \
+./fcs_prepare --hps_cert \
  ../linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dtb -v
-quartus_sign --family=agilex --operation=SIGN --qky=../qky/software0_cancel3.qky \
- --pem=../privatekeys/software0.pem ./unsigned_cert.ccert ./signed_cert_linux.dtb.ccert
-../fcs_prepare/fcs_prepare --finish ./signed_cert_linux.dtb.ccert --imagefile \
+quartus_sign --family=agilex7 --operation=SIGN --qky=../keys/qky/software0_cancel3.qky \
+ --pem=../keys/privatekeys/private_software0.pem unsigned_cert.ccert signed_cert_linux.dtb.ccert
+./fcs_prepare --finish signed_cert_linux.dtb.ccert --imagefile \
  ../linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dtb
 mv hps_image_signed.vab ../u-boot-socfpga/signed-linux.dtb
-rm unsigned_cert.ccert
+rm unsigned_cert*
 ```
 Move into the U-Boot directory and run the FIT creation script.
 ```bash
 cd ../u-boot-socfpga/
 export CROSS_COMPILE=aarch64-none-linux-gnu-; export ARCH=arm64
-./tools/binman/binman build -u -d u-boot.dtb -O . -i kernel
+make
 cd ..
 ```
-### Create fcs_client (optional)
-The FCS_Client is an application that will allow validation of firmware images from the linux kernel. This application interfaces the Altera® FPGA Crypto Services drivers included with the linux build.
+The output of the "make" command can be seen below:
 ```bash
-cd $TOP_DIRcd $TOP_DIR
-git clone https://github.com/altera-opensource/fcs_apps
-mv fcs_apps fcs_client
-cd fcs_client
-git checkout -b fcs_client_vab origin/fcs_client
-export CROSS_COMPILE=aarch64-none-linux-gnu-; export ARCH=arm64
-make clean && make all
-cd ..
+  UPD     include/generated/timestamp_autogenerated.h
+  CC      common/version.o
+  AR      common/built-in.o
+  LD      u-boot
+  OBJCOPY u-boot.srec
+  OBJCOPY u-boot-nodtb.bin
+  RELOC   u-boot-nodtb.bin
+  CAT     u-boot-dtb.bin
+  COPY    u-boot.bin
+  SYM     u-boot.sym
+  CC      spl/common/spl/spl.o
+  AR      spl/common/spl/built-in.o
+  LD      spl/u-boot-spl
+  OBJCOPY spl/u-boot-spl-nodtb.bin
+  CAT     spl/u-boot-spl-dtb.bin
+  COPY    spl/u-boot-spl.bin
+  SYM     spl/u-boot-spl.sym
+  OBJCOPY spl/u-boot-spl-dtb.hex
+  MKIMAGE u-boot.img
+  MKIMAGE u-boot-dtb.img
+  BINMAN  .binman_stamp
+  OFCHK   .config
 ```
-### Create Rootfs
-Refer to [Building Yocto Rootfs](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/boot-examples/ug-linux-boot-agx7-soc/#building-yocto-rootfs )
-```bash
-cd $TOP_DIR
-mkdir rootfs && cd rootfs
-git clone -b honister git://git.yoctoproject.org/poky.git
-git clone -b honister git://git.yoctoproject.org/meta-intel-fpga.git
-source poky/oe-init-build-env ./build
-echo 'MACHINE = "agilex"' >> conf/local.conf
-echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
-bitbake core-image-minimal
-cd ../..
+The generated FIT files are:
+
+- u-boot.itb
+- kernel.itb 
+
+You can use dumpimage command to view the map structure of the .itb file, as below:
+
 ```
+$ dumpimage -l kernel.itb 
+FIT description: FIT with Linux kernel image and FDT blob
+Created:         Fri Nov 14 15:11:03 2025
+ Image 0 (kernel)
+  Description:  Linux Kernel
+  Created:      Fri Nov 14 15:11:03 2025
+  Type:         Kernel Image
+  Compression:  uncompressed
+  Data Size:    39300220 Bytes = 38379.12 KiB = 37.48 MiB
+  Architecture: AArch64
+  OS:           Linux
+  Load Address: 0x06000000
+  Entry Point:  0x06000000
+  Hash algo:    crc32
+  Hash value:   d245cef9
+ Image 1 (fdt)
+  Description:  Linux DTB
+  Created:      Fri Nov 14 15:11:03 2025
+  Type:         Flat Device Tree
+  Compression:  uncompressed
+  Data Size:    16356 Bytes = 15.97 KiB = 0.02 MiB
+  Architecture: AArch64
+  Hash algo:    crc32
+  Hash value:   d3eb0418
+ Default Configuration: 'conf'
+ Configuration 0 (conf)
+  Description:  Intel SoC64 FPGA
+  Kernel:       kernel
+  FDT:          fdt
+```
+
 ### Create SD Card Image
 ```bash
-cd $TOP_DIR
-mkdir sd_card && cd sd_card
-wget https://releases.rocketboards.org/2020.11/gsrd/tools/make_sdimage_p3.py
+cd $TOP_FOLDER
+sudo rm -rf sd_card && mkdir sd_card && cd sd_card
+# Download the sd-card image creator
+wget https://releases.rocketboards.org/release/2020.11/gsrd/tools/make_sdimage_p3.py
+sed -i 's/\"\-F 32\",//g' make_sdimage_p3.py
 chmod +x make_sdimage_p3.py
-```
-Copy over U-boot and Linux
-```bash
-mkdir sdfs && cd sdfs
-cp ../../u-boot-socfpga/u-boot.itb .
-cp ../../u-boot-socfpga/kernel.itb .
+# Prepare the image files
+mkdir fatfs && cd fatfs
+cp $TOP_FOLDER/bitstreams/signed_bitstream_core.rbf .
+cp $TOP_FOLDER/u-boot-socfpga/u-boot.itb .
+cp $TOP_FOLDER/u-boot-socfpga/kernel.itb .
 cd ..
-```
-Copy over rootfs
-```bash
 mkdir rootfs && cd rootfs
-sudo tar xf ../../rootfs/build/tmp/deploy/images/agilex/core-image-minimal-agilex.tar.gz
+sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex7_dk_si_agf014eb/core-image-minimal-agilex7_dk_si_agf014eb.rootfs.tar.gz
 cd ..
-```
-Copy fcs_client into rootfs (optional)
-```bash
-cd rootfs
-sudo mkdir home/root/tools
-sudo cp ../../fcs_client/fcs_client home/root/tools/fcs_client
-cd ..
-```
-Copy signed images into rootfs to test fcs_client (optional). In this example, we copied over signed-bl31.bin.
-```bash
-cd rootfs
-sudo mkdir home/root/images
-sudo cp ../../u-boot-socfpga/signed-bl31.bin home/root/images/signed-bl31.bin
-cd ..
-```
-Create the SD Card Image
-```bash
+# Create the image
 sudo python3 make_sdimage_p3.py -f \
- -P sdfs/*,num=1,format=fat32,size=50M \
- -P rootfs/*,num=2,format=ext3,size=400M \
- -s 512M \
- -n sdcard_agilex_secure_boot.img
+-P fatfs/*,num=1,format=fat,size=100M \
+-P rootfs/*,num=2,format=ext3,size=512M \
+-s 640M \
+-n agilex7_vab.img
 cd ..
 ```
 ### Program the Board and Boot
@@ -383,15 +505,16 @@ Insert the updated SD card into the slot on the OOBE HPS Daughtercard
 Connect to the board with a serial terminal with 115,200-8-N-1 settings
 Power up the board. Program and verify the virtual key using the following command. After this step, the device will no longer accept any unsigned bitstream or bitstream that has been signed with a different key until the device has received a power cycle.
 ```bash
-quartus_pgm -c 1 -m jtag -o "pi;qky/root0.qky"
+cd $TOP_FOLDER
+quartus_pgm -c 1 -m jtag -o "pi;keys/qky/root0.qky"
 ```
 Program the signed RBF file using the following command:
 ```bash
-quartus_pgm -c 1 -m jtag -o "p;bitstreams/signed_bitstream.rbf"
+quartus_pgm -c 1 -m jtag -o "p;bitstreams/signed_bitstream_hps.rbf"
 ```
 SDM will authenticate the bitstream and only allow configuration to proceed if the image is authenticated. Once RBF programming is done, you will be able to observe the U-boot boot messages at the serial terminal. The FSBL will verify the SSBL (in blue). The SSBL will then boot and verify the Linux kernel (in red).
 ```bash
-U-Boot SPL 2021.04-14501-gbdc9a4409d (Jan 13 2022 - 17:20:53 -0600)
+U-Boot SPL 2025.07-ge5f40a8ed1ec-dirty (Nov 10 2025 - 09:29:16 -0500)
 Reset state: Cold
 MPU          1200000 kHz
 L4 Main       400000 kHz
@@ -400,27 +523,38 @@ L4 MP         200000 kHz
 L4 SP         100000 kHz
 SDMMC          50000 kHz
 DDR: 8192 MiB
-SDRAM-ECC: Initialized success with 1727 ms
+SDRAM-ECC: Initialized success with 1707 ms
 QSPI: Reference clock at 400000 kHz
-WDT:   Started with servicing (10s timeout)
+WDT:   Started watchdog@ffd00200 with servicing every 1000ms (10s timeout)
 Trying to boot from MMC1
-## Checking hash(es) for config conf … OK
-## Checking hash(es) for Image atf … crc32+ OK
-Image Authentication passed at address 0x0000000000001038 (40988 bytes)
-## Checking hash(es) for Image uboot … crc32+ OK
-Image Authentication passed at address 0x0000000000200014 (627496 bytes)
-## Checking hash(es) for Image fdt … crc32+ OK
-Image Authentication passed at address 0x0000000000299350 (18184 bytes)
-NOTICE:  BL31: v2.5.0(release):QPDS21.1STD_REL_GSRD_PR
-NOTICE:  BL31: Built : 17:05:32, Jan 13 2022
+## Checking hash(es) for config board-0 ... OK
+## Checking hash(es) for Image atf ... crc32+ OK
+Image Authentication passed at address 0x000000000000102c (57360 bytes)
+## Checking hash(es) for Image uboot ... crc32+ OK
+Image Authentication passed at address 0x0000000000200000 (776944 bytes)
+## Checking hash(es) for Image fdt-0 ... crc32+ OK
+Image Authentication passed at address 0x00000000002bdb38 (18656 bytes)
+NOTICE:  BL31: v2.13.0(release):QPDS25.3_REL_GSRD_PR
+NOTICE:  BL31: Built : 09:14:02, Nov 10 2025
 
-U-Boot 2021.04-14501-gbdc9a4409d (Jan 13 2022 - 17:20:53 -0600)socfpga_agilex
 
-CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
+U-Boot 2025.07-ge5f40a8ed1ec-dirty (Nov 10 2025 - 09:29:16 -0500)socfpga_agilex
+
+CPU: Altera FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
 Model: SoCFPGA Agilex SoCDK
-DRAM:  8 GiB
-WDT:   Started with servicing (10s timeout)
+DRAM:  2 GiB (total 8 GiB)
+Core:  29 devices, 23 uclasses, devicetree: separate
+WDT:   Started watchdog@ffd00200 with servicing every 1000ms (10s timeout)
 MMC:   dwmmc0@ff808000: 0
+Loading Environment from FAT... Unable to read "uboot.env" from mmc0:1...
+In:    serial0@ffc02000
+Out:   serial0@ffc02000
+Err:   serial0@ffc02000
+Net:
+Warning: ethernet@ff800000 (eth0) using random MAC address - 56:83:a3:e4:c3:58
+eth0: ethernet@ff800000
+Hit any key to stop autoboot:  0
+
 Loading Environment from MMC... *** Warning - bad CRC, using default environment
 
 In:    serial0@ffc02000
@@ -430,81 +564,43 @@ Net:
 Warning: ethernet@ff800000 (eth0) using random MAC address - 52:ec:38:d3:48:8e
 eth0: ethernet@ff800000
 Hit any key to stop autoboot:  0
-Failed to load 'u-boot.scr'
-31856470 bytes read in 1487 ms (20.4 MiB/s)
-## Loading kernel from FIT Image at 02000000 …
+39318434 bytes read in 1831 ms (20.5 MiB/s)
+## Loading kernel (any) from FIT Image at 02000000 ...
    Using 'conf' configuration
-   Verifying Hash Integrity … OK
+   Verifying Hash Integrity ... OK
    Trying 'kernel' kernel subimage
      Description:  Linux Kernel
      Type:         Kernel Image
      Compression:  uncompressed
-     Data Start:   0x020000bc
-     Data Size:    31837308 Bytes = 30.4 MiB
+     Data Start:   0x02000148
+     Data Size:    39300220 Bytes = 37.5 MiB
      Architecture: AArch64
      OS:           Linux
-     Load Address: 0x04080000
-     Entry Point:  0x04080000
+     Load Address: 0x06000000
+     Entry Point:  0x06000000
      Hash algo:    crc32
-     Hash value:   51c0a4d2
-   Verifying Hash Integrity … crc32+ OK
-Image Authentication passed at address 0x00000000020000bc (31836672 bytes)
-## Loading fdt from FIT Image at 02000000 …
+     Hash value:   3c0b5ddf
+   Verifying Hash Integrity ... crc32+ OK
+Image Authentication passed at address 0x0000000002000148 (39299584 bytes)
+## Loading fdt (any) from FIT Image at 02000000 ...
    Using 'conf' configuration
-   Verifying Hash Integrity … OK
+   Verifying Hash Integrity ... OK
    Trying 'fdt' fdt subimage
      Description:  Linux DTB
      Type:         Flat Device Tree
      Compression:  uncompressed
-     Data Start:   0x03e5ce10
-     Data Size:    17304 Bytes = 16.9 KiB
+     Data Start:   0x0457ae64
+     Data Size:    16356 Bytes = 16 KiB
      Architecture: AArch64
      Hash algo:    crc32
-     Hash value:   57811f0f
-   Verifying Hash Integrity … crc32+ OK
-Image Authentication passed at address 0x0000000003e5ce10 (16668 bytes)
-   Booting using the fdt blob at 0x3e5ce10
-   Loading Kernel Image
-   Loading Device Tree to 000000007fa33000, end 000000007fa3a11b … OK
-SF: Detected mt25qu02g with page size 256 Bytes, erase size 4 KiB, total 256 MiB
-Enabling QSPI at Linux DTB...
-RSU: Firmware or flash content not supporting RSU
-RSU: Firmware or flash content not supporting RSU
-RSU: Firmware or flash content not supporting RSU
-RSU: Firmware or flash content not supporting RSU
+     Hash value:   f9c438a9
+   Verifying Hash Integrity ... crc32+ OK
+Image Authentication passed at address 0x000000000457ae64 (15720 bytes)
+   Booting using the fdt blob at 0x457ae64
+Working FDT set to 457ae64
+   Loading Kernel Image to 6000000
+   Loading Device Tree to 000000007eb12000, end 000000007eb18d61 ... OK
+Working FDT set to 7eb12000
 
 Starting kernel …
-```
-### Using fcs_client 
-If included in your rootfs, you can verify signed firmware images using fcs_client.
-Enter username as 'root' (no password required) once booting is complete.
-In the below example, we are validating the signed_bl31.bin which we added to the rootfs. Return status '0x0' indicates validated firmware.
-```bash
-Poky (Yocto Project Reference Distro) 3.4.1 agilex /dev/ttyS0
-
-agilex login: root
-root@agilex:~# ./tools/fcs_client -V ./images/signed-bl31.bin -t 0 -v
-fcs_validate_request[481] filesize=41624
-fcs_validate_request[503] sz=41624, filesize=41624
-fcs_validate_request[516] Parsing Normal image
-fcs_validate_hps_image_buf[349] perform Hash Calculation
-Computed Hash
-0000: 0e 20 6f af 08 9c db b9
-0008: d6 25 71 1b fe 62 df 0d
-0010: 21 d6 c8 15 1f 7d 4c 32
-0018: c3 3e 53 c0 2c 5e 83 dc
-0020: 41 71 ff f5 2a 45 1c 4e
-0028: 24 67 8e 50 00 dd 10 34
-Certificate Hash
-0000: 0e 20 6f af 08 9c db b9
-0008: d6 25 71 1b fe 62 df 0d
-0010: 21 d6 c8 15 1f 7d 4c 32
-0018: c3 3e 53 c0 2c 5e 83 dc
-0020: 41 71 ff f5 2a 45 1c 4e
-0028: 24 67 8e 50 00 dd 10 34
-Hash matches so sending to SDM...
-VAB Certificate size is 636.
-ioctl size=636, address=0x0x1950f4ac
-ioctl return status=0x0 size=636
-root@agilex:~#
 ```
