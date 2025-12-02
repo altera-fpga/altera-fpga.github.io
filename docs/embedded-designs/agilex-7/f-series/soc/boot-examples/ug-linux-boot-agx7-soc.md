@@ -694,11 +694,11 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
 
 ## Direct ATF to Linux Boot Flow
 
-Starting from 24.2 release, the Agilex™ 7 device is provided with the support of direct booting from ATF to Linux. In this boot flow, ATF acts as a First Stage Bootloader (BL2) and also as a Second Stage Bootloader (BL31). This last one is in charge of loading and launching Linux OS, so U-Boot is not used in this boot flow.
+Starting from 24.2 release, the Agilex™ 7 device is provided with the support of direct booting from ATF to Linux. In this boot flow, ATF acts as a First Stage Bootloader (BL2) and also as a Secure Monitor (BL31). BL2 is also  in charge of loading and launching Linux OS, so U-Boot is not used in this boot flow.
 
    ![](images/ATF_Linux_bootflow.jpg)
 
- In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and hardware design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (SSBL) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI or SDCard). 
+ In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and hardware design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (System Monitor) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI or SDCard). 
 
 When creating the flash image, it's necessary to provide the location in where ATF expects to find the FIP image (fip.bin). This is hardcoded in the ATF code (**plat/intel/soc/common/include/platform_def.h**) for each one of the flash devices in which this boot flow is supported as indicated in the next table:
 
@@ -1405,15 +1405,15 @@ The example below shows the steps to perform FPGA configuration from the U-boot.
 5\. The message "FPGA reconfiguration OK!" will be printed out upon successful transaction.<br>
 
 
-Here is an example for Agilex® 5 device, but the same steps apply for Stratix® 10, Agilex® 7, and Agilex® 3 SoC FPGA devices.
+Here is an example for Agilex® 7 device, but the same steps apply for Stratix® 10, Agilex® 5, and Agilex® 3 SoC FPGA devices.
 
 ```bash
 Hit any key to stop autoboot:  0 /// Hit any key at this point to enter the U-boot Shell ///
 
 SOCFPGA_AGILEX #
-SOCFPGA_AGILEX # fatload mmc 0:1 0x90000000 ghrd.core.rbf
+SOCFPGA_AGILEX # fatload mmc 0:1 ${loadaddr} ghrd.core.rbf
 2404352 bytes read in 116 ms (19.8 MiB/s)
-SOCFPGA_AGILEX # fpga load 0 0x90000000 ${filesize}
+SOCFPGA_AGILEX # fpga load 0 ${loadaddr} ${filesize}
 …FPGA reconfiguration OK!
 ```
 
@@ -1576,17 +1576,17 @@ Hit any key to stop autoboot:  0 /// Hit any key at this point to enter the U-bo
 
 # Stratix® 10 SoC FPGA device:
 mmc rescan
-fatload mmc 0:1 82000000 Image
-fatload mmc 0:1 86000000 socfpga_stratix10_socdk.dtb
+fatload mmc 0:1 01000000 Image
+fatload mmc 0:1 08000000 socfpga_stratix10_socdk.dtb
 setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;
-booti 0x82000000 - 0x86000000
+booti 0x01000000 - 0x08000000
 
 # Agilex® 7 SoC FPGA device:
 mmc rescan
-fatload mmc 0:1 82000000 Image
-fatload mmc 0:1 86000000 socfpga_agilex_socdk.dtb
+fatload mmc 0:1 02000000 Image
+fatload mmc 0:1 06000000 socfpga_agilex_socdk.dtb
 setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;
-booti 0x82000000 - 0x86000000
+booti 0x02000000 - 0x06000000
 
 # Agilex® 5 SoC FPGA device:
 mmc rescan

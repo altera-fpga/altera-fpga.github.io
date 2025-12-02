@@ -9,6 +9,7 @@
 
  This design demonstrates a simple Hello World message and performs a simple On-Chip Memory test with Nios® V/c processor in Agilex™ 5 FPGA E-Series 065B Premium Development Kit. </br>
  The design is built with basic peripherals required for simple application execution:
+
  - JTAG UART for serial output.
 
 ### Prerequisites
@@ -52,6 +53,7 @@ graph LR
 ## Nios® V/c Helloworld On-Chip Memory Memory Test
  This example design includes a Nios® V/c processor connected to the On-Chip RAM II, JTAG UART IP and System ID peripheral core. </br>
  The objective of the design is to accomplish data transfer between the processor and soft IP peripherals:
+
  - Prints a Hello World message and memory test result thru JTAG UART IP.
 
 ```mermaid 
@@ -86,12 +88,14 @@ Y --> processor-subsystem
  
 ### Embedded Peripheral IP Cores
 The following embedded peripheral IPs are used in this design:
+
 - On-Chip RAM II IP
 - JTAG UART IP
 - System ID IP
 
 ### System Components
 The following components are used in this design:
+
 - Clock Source (Clock Bridge with IO PLL)
 - Reset Source (Reset Release IP)
 
@@ -114,13 +118,15 @@ Refer to [Agilex™ 5 FPGA Premium Development Kit User Guide](https://www.intel
 ### Program Hardware Binary SOF
 1. Connect the development kit to the host PC using USB Blaster II.
 2. Change the JTAG clock frequency to 6 MHz, and probe the JTAGServer to get the JTAG scan chain.
+3. Execute the quartus_pgm command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain below, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example. 
 
 ```console
 jtagconfig --setparam 1 JtagClock 6M
 jtagconfig -d
+quartus_pgm --cable=1 -m jtag -o 'p;ready_to_test/top.sof@2'
 ```
 
-For example:
+Example of JTAG Scan Chain:
 ```console
  1) Agilex 5E065B Premium DK
   4BA06477   ARM_CORESIGHT_SOC_600 (IR=4)
@@ -139,12 +145,6 @@ For example:
   Captured Bypass chain = (0) [3]
   JTAG clock speed auto-adjustment is enabled. To disable, set JtagClockAutoAdjust parameter to 0
   JTAG clock speed 6 MHz
-```
-
-3. Execute the following command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain earlier, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example. 
-
-```console
-quartus_pgm --cable=1 -m jtag -o 'p;ready_to_test/top.sof@2'
 ```
 
 Note: The Nios V/c processor does not support RISC-V Debug Module. </br> Thus, the software application ELF file is converted into a HEX file, and memory initialized into the SOF file during Quartus project compilation. 
@@ -185,13 +185,15 @@ Note: The Nios V/c processor does not support RISC-V Debug Module. </br> Thus, t
 ### Program Hardware Binary SOF
 1. Connect the development kit to the host PC using USB Blaster II.
 2. Change the JTAG clock frequency to 6 MHz, and probe the JTAGServer to get the JTAG scan chain.
+3. Execute the quartus_pgm command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain below, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.
 
 ```console
 jtagconfig --setparam 1 JtagClock 6M
 jtagconfig -d
+quartus_pgm --cable=1 -m jtag -o 'p;hw/output_files/top.sof@2'
 ```
 
-For example:
+Example of JTAG Scan Chain:
 ```console
  1) Agilex 5E065B Premium DK
   4BA06477   ARM_CORESIGHT_SOC_600 (IR=4)
@@ -210,12 +212,6 @@ For example:
   Captured Bypass chain = (0) [3]
   JTAG clock speed auto-adjustment is enabled. To disable, set JtagClockAutoAdjust parameter to 0
   JTAG clock speed 6 MHz
-```
-
-3. Execute the following command to program the SOF file with the correct device number. </br>Based on the JTAG scan chain earlier, the FPGA is at device number 2. You may require to provide a different device number if your JTAG chain is different from the given example.
-
-```console
-quartus_pgm --cable=1 -m jtag -o 'p;hw/output_files/top.sof@2'
 ```
 
 ### Run Serial Console
@@ -250,14 +246,16 @@ qsys-generate hw/qsys_top.qsys --testbench=STANDARD --testbench-simulation=VERIL
 
 ### Check Simulation Files 
 You have generated your system and created all the files necessary for simulation.
+
 | File | Description |
 | - | - |
 | Working Directory/hw/qsys_top_tb | Generated testbench system |
 | Working Directory/hw/qsys_top_tb/qsys_top_tb/sim/mentor/msim_setup.tcl | Questa simulation setup script |
 | Working Directory/hw/onchip_mem.hex | On-Chip RAM II memory initialization file |
 
-### Run Simulation
+### Start Simulator
 With all the necessary simulation files, you can start the simulation.
+
 1. Copy the memory initialization file into *mentor* folder.
 2. Change directory to the same *mentor* folder.
 3. Open the **Questa for Altera FPGA** simulator using the command *vsim*.
@@ -268,14 +266,16 @@ cd hw/qsys_top_tb/qsys_top_tb/sim/mentor/
 vsim
 ```
 
-4. In the **Questa for Altera FPGA** software, run the following commands in the **Transcript**.
+### Setup Simulator
+In the **Questa for Altera FPGA** software, run the following commands in the **Transcript**.
 
 ```console
 source msim_setup.tcl
 ld_debug
 ```
 
-5. Run the simulation with *run -all* command. <br/>
+### Run Simulation
+Run the simulation with *run -all* command. <br/>
 For example, you should see similar display at the start of the simulation.
 
 ![Simulation](./img/simulation.png?raw=true)

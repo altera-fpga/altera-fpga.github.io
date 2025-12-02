@@ -157,17 +157,17 @@ Hit any key to stop autoboot:  0 /// Hit any key at this point to enter the U-bo
 
 # Stratix® 10 SoC FPGA device:
 mmc rescan
-fatload mmc 0:1 82000000 Image
-fatload mmc 0:1 86000000 socfpga_stratix10_socdk.dtb
+fatload mmc 0:1 01000000 Image
+fatload mmc 0:1 08000000 socfpga_stratix10_socdk.dtb
 setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;
-booti 0x82000000 - 0x86000000
+booti 0x01000000 - 0x08000000
 
 # Agilex® 7 SoC FPGA device:
 mmc rescan
-fatload mmc 0:1 82000000 Image
-fatload mmc 0:1 86000000 socfpga_agilex_socdk.dtb
+fatload mmc 0:1 02000000 Image
+fatload mmc 0:1 06000000 socfpga_agilex_socdk.dtb
 setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;
-booti 0x82000000 - 0x86000000
+booti 0x02000000 - 0x06000000
 
 # Agilex® 5 SoC FPGA device:
 mmc rescan

@@ -1589,11 +1589,11 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 
 ## Direct ATF to Linux Boot on HPS Enablement Board
 
-Starting from 24.3.1 release, the Agilex™ 5 device is provided with the support of direct booting from ATF to Linux. In this boot flow, ATF acts as a First Stage Bootloader (BL2) and also as a Second Stage Bootloader (BL31). This last one is in charge of loading and launching Linux OS, so U-Boot is not used in this boot flow.
+Starting from 24.3.1 release, the Agilex™ 5 device is provided with the support of direct booting from ATF to Linux. In this boot flow, ATF acts as a First Stage Bootloader (BL2) and also as a Secure Monitor (BL31). BL2 is also in charge of loading and launching Linux OS, so U-Boot is not used in this boot flow.
 
    ![](images/ATF_Linux_bootflow.svg) 
 
-In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and hardware design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (SSBL) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI, SDCard, NAND or eMMC). 
+In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and hardware design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (Secure Monitor) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI, SDCard, NAND or eMMC). 
 
 When creating the flash image, it's necessary to provide the location in where ATF expects to find the FIP image (fip.bin). This is hardcoded in the ATF code (**plat/intel/soc/common/include/platform_def.h**) for each one of the flash devices in which this boot flow is supported as indicated in the next table:
 
@@ -1611,11 +1611,11 @@ The following sections provide instructions about how to generate the binaries t
 
 Here we provide all the steps needed to create the binaries that allow you to exercise the ATF to Linux boot flow from a SD Card device. This includes building the hardware design, ATF (BL2, BL31), Linux file system, and Linux. These are some notes about the build instructions:
 
-* Excercise the HPS boot first flow.
+* Exercise the HPS boot first flow.
 * When building ATF, we indicate the device used to boot from. We also indicate the SDRAM memory locations where the Linux kernel image and device tree will be loaded and launched from. In this boot flow, Linux is referred to as BL33.
 * The FIP image (fip.bin) is created using the ATF fiptool, indicating the binaries that integrate this image.
 * The SD Card created will include 2 partitions. One in which the fip.bin file is located (raw format and type A2) and the other for the file system (ext3 format).
-* If wanted to perform FPGA configuration (2nd phase from Linux) from Linux create overlays.dtb as indicated in [Agilex™ 7 SoC Fabric Configuration from Linux Example](https://altera-fpga.github.io/latest/embedded-designs/agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc/)
+* If wanted to perform FPGA configuration (2nd phase) from Linux create overlay.dtb as indicated in [Reconfiguring Core Fabric from Linux](#reconfiguring-core-fabric-from-linux) section.
 
    ![](images/ATF_Linux_Image_SDCard.jpg) 
 
@@ -1941,7 +1941,7 @@ This section provides instructions to build binaries to exercise ATF to Linux di
 * [Build Hardware Design SD_QSPI (ATF-To-Linux)](#build-hardware-design-sd_qspi-atf-to-linux)
 * [Build Linux File System  (ATF-To-Linux)](#build-linux-file-system-atf-to-linux)
 
-ATF requires to be rebuilt to enable booting from QSPI by setting SOCFPGA_BOOT_SOURCE_QSPI to '1'. Linux also need to be rebuild since this time we are including a JFFS2 file system and since booting from QSPI we need to change some parameters in the device tree. The FIP image is created in the same way but this time the FIP image is put into the QSPI image using a specific .pfg file. In this .pfg file, we are indicating that the fip file will be located at **0x3C00000** location in the QSPI since this is also indicated by the **PLAT_QSPI_DATA_BASE** definition in the ATF.
+ATF requires to be rebuilt to enable booting from QSPI by setting **SOCFPGA_BOOT_SOURCE_QSPI** to '1'. Linux also need to be rebuild since this time we are including a JFFS2 file system and since booting from QSPI we need to change some parameters in the device tree. The FIP image is created in the same way but this time the FIP image is put into the QSPI image using a specific .pfg file. In this .pfg file, we are indicating that the fip file will be located at **0x3C00000** location in the QSPI since this is also indicated by the **PLAT_QSPI_DATA_BASE** definition in the ATF.
 
    ![](images/ATF_Linux_Image_QSPI.jpg) 
 
@@ -2009,7 +2009,7 @@ EOF
 sed -i  's/spi-max-frequency = <100000000>;/spi-max-frequency = <50000000>;/g' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
 
 ## Adjust the partitions so the commponents in QSPI can fit
-sed -i  's/reg = <0x0 0x04200000>;/reg = <0x0 0x0700000>;/g' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+sed -i  's/reg = <0x0 0x04200000>;/reg = <0x0 0x07000000>;/g' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
 sed -i  's/root: partition@4200000/root: partition@7000000/g' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
 sed -i  's/reg = <0x04200000 0x0be00000>/reg = <0x07000000 0x09000000>/g' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
 
@@ -2059,7 +2059,7 @@ make -j 64 Image dtbs
 The output files from this stage are:
 
 * $TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/Image
-* $TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_atfboot.dtb
+* $TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_atfboot.dtb
 
 <h4>Buid QSPI Image</h4>
 
@@ -2071,7 +2071,7 @@ rm -rf jic_qspi
 mkdir jic_qspi && cd jic_qspi
 
 ## Create .pfg to create the .jic
-cat << EOF > qspi_flash_image_agilex_boot.pfg
+cat << EOF > qspi_flash_image_agilex5_boot.pfg
 <pfg version="1">
   <settings custom_db_dir="./" mode="ASX4"/>
   <output_files>
@@ -2130,7 +2130,7 @@ $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex5/release/tools/fiptool/fiptoo
 # Create the jic file
 ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi/output_files/legacy_baseline.sof legacy_baseline.sof
 ln -s $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.jffs2 rootfs.bin
-quartus_pfg -c qspi_flash_image_agilex_boot.pfg
+quartus_pfg -c qspi_flash_image_agilex5_boot.pfg
 
 ```
 
@@ -2573,15 +2573,15 @@ The example below shows the steps to perform FPGA configuration from the U-boot.
 5\. The message "FPGA reconfiguration OK!" will be printed out upon successful transaction.<br>
 
 
-Here is an example for Agilex® 5 device, but the same steps apply for Stratix® 10, Agilex® 7, and Agilex® 3 SoC FPGA devices.
+Here is an example for Agilex® 7 device, but the same steps apply for Stratix® 10, Agilex® 5, and Agilex® 3 SoC FPGA devices.
 
 ```bash
 Hit any key to stop autoboot:  0 /// Hit any key at this point to enter the U-boot Shell ///
 
 SOCFPGA_AGILEX #
-SOCFPGA_AGILEX # fatload mmc 0:1 0x90000000 ghrd.core.rbf
+SOCFPGA_AGILEX # fatload mmc 0:1 ${loadaddr} ghrd.core.rbf
 2404352 bytes read in 116 ms (19.8 MiB/s)
-SOCFPGA_AGILEX # fpga load 0 0x90000000 ${filesize}
+SOCFPGA_AGILEX # fpga load 0 ${loadaddr} ${filesize}
 …FPGA reconfiguration OK!
 ```
 
@@ -2744,17 +2744,17 @@ Hit any key to stop autoboot:  0 /// Hit any key at this point to enter the U-bo
 
 # Stratix® 10 SoC FPGA device:
 mmc rescan
-fatload mmc 0:1 82000000 Image
-fatload mmc 0:1 86000000 socfpga_stratix10_socdk.dtb
+fatload mmc 0:1 01000000 Image
+fatload mmc 0:1 08000000 socfpga_stratix10_socdk.dtb
 setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;
-booti 0x82000000 - 0x86000000
+booti 0x01000000 - 0x08000000
 
 # Agilex® 7 SoC FPGA device:
 mmc rescan
-fatload mmc 0:1 82000000 Image
-fatload mmc 0:1 86000000 socfpga_agilex_socdk.dtb
+fatload mmc 0:1 02000000 Image
+fatload mmc 0:1 06000000 socfpga_agilex_socdk.dtb
 setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;
-booti 0x82000000 - 0x86000000
+booti 0x02000000 - 0x06000000
 
 # Agilex® 5 SoC FPGA device:
 mmc rescan

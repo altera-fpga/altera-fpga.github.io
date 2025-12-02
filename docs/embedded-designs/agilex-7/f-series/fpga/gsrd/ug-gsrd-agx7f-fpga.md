@@ -677,7 +677,7 @@ If you want to modify the kernel.itb by replacing one of the component or modify
    $ sudo apt install mtools
    ```
    
-2. Go to the in which the **kernel.itb** is being created under the GSRD.
+2. Go to the folder in which the **kernel.itb** is being created under the GSRD.
    ```bash
    $ cd $TOP_FOLDER/gsrd-socfpga/<device-devkit>-gsrd-rootfs/tmp/work/<device-devkit>-poky-linux/linux-socfpga-lts/<linux branch>+git/linux-<device-devkit>-standard-build/
    $ ls *.its

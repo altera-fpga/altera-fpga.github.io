@@ -20,14 +20,14 @@ The example below shows the steps to perform FPGA configuration from the U-boot.
 5\. The message "FPGA reconfiguration OK!" will be printed out upon successful transaction.<br>
 
 
-Here is an example for Agilex® 5 device, but the same steps apply for Stratix® 10, Agilex® 7, and Agilex® 3 SoC FPGA devices.
+Here is an example for Agilex® 7 device, but the same steps apply for Stratix® 10, Agilex® 5, and Agilex® 3 SoC FPGA devices.
 
 ```bash
 Hit any key to stop autoboot:  0 /// Hit any key at this point to enter the U-boot Shell ///
 
 SOCFPGA_AGILEX #
-SOCFPGA_AGILEX # fatload mmc 0:1 0x90000000 ghrd.core.rbf
+SOCFPGA_AGILEX # fatload mmc 0:1 ${loadaddr} ghrd.core.rbf
 2404352 bytes read in 116 ms (19.8 MiB/s)
-SOCFPGA_AGILEX # fpga load 0 0x90000000 ${filesize}
+SOCFPGA_AGILEX # fpga load 0 ${loadaddr} ${filesize}
 …FPGA reconfiguration OK!
 ```
