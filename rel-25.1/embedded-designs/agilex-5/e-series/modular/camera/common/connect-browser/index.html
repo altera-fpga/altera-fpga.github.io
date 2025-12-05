@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#connect-browser-to-ui" class="md-skip">
+        <a href="#connecting-with-a-web-browser" class="md-skip">
           Skip to content
         </a>
       
@@ -2927,6 +2927,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3_2" id="__nav_7_3_2_label" tabindex="0">
@@ -3047,6 +3049,20 @@
     <li class="md-nav__item">
       <a href="../../camera_4k/camera_4k/" class="md-nav__link">
         4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../camera_4k_ai/camera_4k_ai/" class="md-nav__link">
+        4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices
       </a>
     </li>
   
@@ -4266,8 +4282,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#connect-browser-to-ui" class="md-nav__link">
-    Connect Browser to UI
+  <a href="#connecting-with-a-web-browser" class="md-nav__link">
+    Connecting with a Web Browser
   </a>
   
 </li>
@@ -4292,11 +4308,11 @@
 
   <h1>Connect browser</h1>
 
-<h3 id="connect-browser-to-ui"><strong>Connect Browser to UI</strong><a class="headerlink" href="#connect-browser-to-ui" title="Permanent link">&para;</a></h3>
+<h3 id="connecting-with-a-web-browser"><strong>Connecting with a Web Browser</strong><a class="headerlink" href="#connecting-with-a-web-browser" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Power up the board (if not already powered) and set up the serial terminal emulator (minicom,
-  [teraterm], [putty], etc.):<ul>
-<li>Select the correct <code>COMx</code> port. (The Modular Development board presents 4
+<li>Power up the Modular Development Kit (if not already powered) and set up the
+  serial terminal emulator (minicom, [TeraTerm], [PuTTY], etc.):<ul>
+<li>Select the correct <code>COMx</code> port. (The Modular Development Kit presents 4
   serial COM ports over a single connection and the Linux system uses the 3<sup>rd</sup>
   port in order). Set the port configuration as follows:<ul>
 <li>115200 baud rate, 8 Data bits, 1 Stop bit, CRC and Hardware flow control
@@ -4305,17 +4321,17 @@
 </li>
 </ul>
 </li>
-<li>The Linux OS will boot and the 4K Multi-Sensor HDR Camera Solution System
-  Example Design Application should run automatically.</li>
-<li>A few seconds after Linux boots, the application will detect the attached
-  Monitor and the ISP processed output will be displayed using the best
-  supported format.</li>
+<li>The Linux OS will boot and the Camera Solution System Example Design Software
+  Application should run automatically.</li>
+<li>A few seconds after Linux boots, the Software Application will detect the
+  attached Monitor and the ISP processed output will be displayed using the
+  best supported format.</li>
 <li>
-<p>Take note of the board's IP address.</p>
+<p>Take note of the Modular Development Kit's IP address.</p>
 <ul>
 <li>
-<p>The board's IP address can also be found using the terminal by logging in
-  as <code>root</code> (no password required) and querying the Ethernet controller:</p>
+<p>The IP address can also be found using the terminal by logging in as <code>root</code>
+  (no password required) and querying the Ethernet controller:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>root
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ifconfig
 </code></pre></div>
@@ -4329,20 +4345,20 @@
 </ul>
 <p><a class="glightbox" href="../../camera_4k_resources/images/Setup/ifconfig-dhcp.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="ed-conn" src="../../camera_4k_resources/images/Setup/ifconfig-dhcp.png" style="display:block; margin-left:auto; margin-right:auto;" /></a>
 <center markdown="1"></p>
-<p><strong>Example ifconfig output for if network provides DHCP</strong>
+<p><strong>An Example ifconfig Output for a DHCP Network</strong>
 </center></p>
 <p><br/></p>
 <p><a class="glightbox" href="../../camera_4k_resources/images/Setup/ifconfig-direct.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="ed-conn" src="../../camera_4k_resources/images/Setup/ifconfig-direct.png" style="display:block; margin-left:auto; margin-right:auto;" /></a></p>
 <p><center markdown="1"></p>
-<p><strong>Example ifconfig output for if no DHCP support, or direct connection</strong>
+<p><strong>An Example ifconfig Output for a Network with no DHCP support or is using a direct connection</strong>
 </center></p>
 <p><br/></p>
 <ul>
 <li>Connect your web browser to the boards IP address so you can interact with
-  the 4K Multi-Sensor HDR Camera Solution System Example Design using the GUI.<ul>
-<li>To connect using IPv6 for the examples above you would use
+  the Camera Solution System Example Design using the GUI.<ul>
+<li>To connect using IPv6 in the example address shown above, you would use
   <code>http://[fe80::a8bb:ccff:fe55:6688]</code> (note the square brackets)</li>
-<li>To connect using IPv4 for the DHCP example above you would use
+<li>To connect using IPv4 for the DHCP example shown above, you would use
   <code>http://192.168.0.1</code></li>
 </ul>
 </li>
@@ -4350,23 +4366,22 @@
 <p><br/></p>
 <p><a class="glightbox" href="../../camera_4k_resources/images/Setup/Browser-IPv6.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="ed-conn" src="../../camera_4k_resources/images/Setup/Browser-IPv6.png" style="display:block; margin-left:auto; margin-right:auto;" /></a>
 <center markdown="1"></p>
-<p><strong>Example web browser URL for IPv6 address</strong>
+<p><strong>An Example Web Browser URL for an IPv6 Address</strong>
 </center></p>
 <p><br/></p>
 <p><a class="glightbox" href="../../camera_4k_resources/images/Setup/Browser-IPv4.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="ed-conn" src="../../camera_4k_resources/images/Setup/Browser-IPv4.png" style="display:block; margin-left:auto; margin-right:auto;" /></a>
 <center markdown="1"></p>
-<p><strong>Example web browser URL for IPv4 address</strong>
+<p><strong>An Example Web Browser URL for an IPv4 address</strong>
 </center></p>
 <p><br/></p>
 <ul>
 <li>During connection, you will see the Altera® splash screen, after which you
-  will be presented with the 
-  <a href="../../camera_4k_resources/ui-funct-descr/">Web GUI:</a></li>
+  will be presented with the Web GUI.</li>
 </ul>
 <p><br/></p>
 <p><a class="glightbox" href="../../camera_4k_resources/images/Setup/UI-screen.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="ed-conn" src="../../camera_4k_resources/images/Setup/UI-screen.png" style="display:block; margin-left:auto; margin-right:auto;" /></a>
 <center markdown="1"></p>
-<p><strong>Example Camera Solution GUI</strong>
+<p><strong>An Example Camera Solution System Example Design GUI</strong>
 </center></p>
 <p><br/></p>
 

@@ -1,0 +1,22 @@
+--- variables -- start --
+CAMERA_4K_TITLE: 4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices
+CAMERA_4K_TOP: ../camera_4k_ai
+CAMERA_4K_TOP_MD: ../camera_4k_ai/camera_4k_ai.md
+CAMERA_4K_DESIGN_DIR: ../camera_4k_ai
+CAMERA_4K_DESIGN_IMAGES: ../camera_4k_ai/images
+CAMERA_4K_AI: <!--- --->
+CAMERA_4K_END_AI: <!--- --->
+CAMERA_4K_NO_AI: <!---
+CAMERA_4K_END_NO_AI: --->
+CAMERA_4K_EXPOSURE_FUSION: <!---
+CAMERA_4K_END_EXPOSURE_FUSION: --->
+CAMERA_4K_EARLY_1DLUT: <!---
+CAMERA_4K_END_EARLY_1DLUT: --->
+CAMERA_4K_WARP: <!---
+CAMERA_4K_END_WARP: --->
+CAMERA_4K_LATE_1DLUT: <!--- --->
+CAMERA_4K_END_LATE_1DLUT: <!--- --->
+CAMERA_4K_PIP: 1
+CAMERA_4K_DP_PIP: 2
+VIDEO_SINK_REQUIREMENT: 4Kp30 capable required
+--- variables -- end --

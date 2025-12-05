@@ -2927,6 +2927,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3_2" id="__nav_7_3_2_label" tabindex="0">
@@ -3047,6 +3049,20 @@
     <li class="md-nav__item">
       <a href="../../camera_4k/camera_4k/" class="md-nav__link">
         4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../camera_4k_ai/camera_4k_ai/" class="md-nav__link">
+        4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices
       </a>
     </li>
   
@@ -4295,15 +4311,15 @@
 <h3 id="program-the-qspi-flash-memory"><strong>Program the QSPI Flash Memory</strong><a class="headerlink" href="#program-the-qspi-flash-memory" title="Permanent link">&para;</a></h3>
 <p>This should only need to be done once. To program the QSPI flash memory:</p>
 <ul>
-<li>Power down the board. Set MSEL=JTAG by setting the <strong>S4</strong> dip switch
-  on the SOM to <strong>OFF-OFF</strong>.<ul>
+<li>Ensure the Modular Development Kit is powered off. Set MSEL=JTAG by setting
+  the <strong>S4</strong> dip switch on the Modular Development SOM Board to <strong>OFF-OFF</strong>.<ul>
 <li>This prevents any bootloader from starting and leaves the JTAG chain in a
   default state.</li>
 </ul>
 </li>
 </ul>
 <ul>
-<li>Power up the board.</li>
+<li>Power up the Modular Development Kit.</li>
 </ul>
 <ul>
 <li>Either use your own or download the pre-built <code>JIC</code> image, and write it to
@@ -4345,8 +4361,8 @@ Wait until the programming has been completed (which can take several minutes).
 </center>
 <br></p>
 <ul>
-<li>Power down the board. Set MSEL=ASX4 (QSPI) by setting the <strong>S4</strong> dip switch
-  on the SOM to <strong>ON-ON</strong>.<ul>
+<li>Power down the Modular Development Kit. Set MSEL=ASX4 (QSPI) by setting the
+  <strong>S4</strong> dip switch on the Modular Development SOM Board to <strong>ON-ON</strong>.<ul>
 <li>This starts the HPS bootloader and FPGA configuration from the microSD Card
   after power up.
 <br></li>

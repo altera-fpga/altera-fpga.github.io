@@ -17,7 +17,7 @@
     
     
       
-        <title>4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices - Web Graphical User Interface Functional Description - Altera FPGA Developer Site</title>
+        <title>${{ env_local.CAMERA_4K_TITLE }} - Web Graphical User Interface Functional Description - Altera FPGA Developer Site</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#4kp60-multi-sensor-hdr-camera-solution-system-example-design-for-agilextm-5-devices-web-graphical-user-interface-functional-description" class="md-skip">
+        <a href="#env_localcamera_4k_title-web-graphical-user-interface-functional-description" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices - Web Graphical User Interface Functional Description
+              ${{ env_local.CAMERA_4K_TITLE }} - Web Graphical User Interface Functional Description
             
           </span>
         </div>
@@ -2927,6 +2927,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3_2" id="__nav_7_3_2_label" tabindex="0">
@@ -3047,6 +3049,20 @@
     <li class="md-nav__item">
       <a href="../../camera_4k/camera_4k/" class="md-nav__link">
         4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../camera_4k_ai/camera_4k_ai/" class="md-nav__link">
+        4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices
       </a>
     </li>
   
@@ -4275,8 +4291,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#connecting-to-isp-demo-application-web-gui" class="md-nav__link">
-    Connecting to ISP Demo Application Web GUI
+  <a href="#connecting-to-the-demo-application-web-gui" class="md-nav__link">
+    Connecting to the Demo Application Web GUI
   </a>
   
 </li>
@@ -4441,6 +4457,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#3d-lut" class="md-nav__link">
+    3D LUT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#tone-mapping-operator" class="md-nav__link">
     Tone Mapping Operator
   </a>
@@ -4521,6 +4544,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ai-runtime-tab" class="md-nav__link">
+    AI Runtime Tab
+  </a>
+  
+    <nav class="md-nav" aria-label="AI Runtime Tab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ai-runtime" class="md-nav__link">
+    AI Runtime
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4539,46 +4582,49 @@
   
 
 
-<h1 id="4kp60-multi-sensor-hdr-camera-solution-system-example-design-for-agilextm-5-devices-web-graphical-user-interface-functional-description">4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices - Web Graphical User Interface Functional Description<a class="headerlink" href="#4kp60-multi-sensor-hdr-camera-solution-system-example-design-for-agilextm-5-devices-web-graphical-user-interface-functional-description" title="Permanent link">&para;</a></h1>
+<h1 id="env_localcamera_4k_title-web-graphical-user-interface-functional-description">${{ env_local.CAMERA_4K_TITLE }} - Web Graphical User Interface Functional Description<a class="headerlink" href="#env_localcamera_4k_title-web-graphical-user-interface-functional-description" title="Permanent link">&para;</a></h1>
 <h2 id="running-the-graphical-user-interface-gui">Running the Graphical User Interface (GUI)<a class="headerlink" href="#running-the-graphical-user-interface-gui" title="Permanent link">&para;</a></h2>
 <p>The application software of the design has a web-server GUI that is used to
-control and demonstrate various hardware and software features of the 4Kp60
-Multi-Sensor HDR Camera Solution System Example Design. Follow the
-<a href="../../camera_4k/camera_4k/#board-and-host-pc-setup"><strong>instructions</strong></a> to run the GUI on a web
-browser. The GUI is optimized for displaying the full screen on a 1920x1080
-resolution screen. Press F11 on your browser to go full screen.
+control and demonstrate various hardware and software features of the Camera
+Solution System Example Design. Follow the
+<a href="${{ env_local.CAMERA_4K_TOP_MD }}#setting-up-the-camera-solution"><strong>instructions</strong></a> to
+run the GUI on a web browser. The GUI is optimized for displaying the full
+screen on a 1920x1080 resolution screen. Press F11 in your browser to go full
+screen.
 <br/></p>
-<p>The application software is flexible in discovering available hardware
+<p>The Software Application is flexible in discovering available hardware
 components and only drawing the components present in the design on the GUI.
 Therefore, some parts of the GUI elements can be missing or different across
 different camera solution designs. Also note that there may be slight
 variations in the GUI compared to the example images shown in this section.
 <br/></p>
-<h2 id="connecting-to-isp-demo-application-web-gui">Connecting to ISP Demo Application Web GUI<a class="headerlink" href="#connecting-to-isp-demo-application-web-gui" title="Permanent link">&para;</a></h2>
-<p>Take note of the Modular Development board IP address. This will be displayed
-on the HPS console serial port when the demo application starts. Alternatively,
+<h2 id="connecting-to-the-demo-application-web-gui">Connecting to the Demo Application Web GUI<a class="headerlink" href="#connecting-to-the-demo-application-web-gui" title="Permanent link">&para;</a></h2>
+<p>Take note of the Modular Development Kit IP address. This will be displayed on
+the HPS console serial port when the demo application starts. Alternatively,
 use the following command to list IP addresses:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ip a
 </code></pre></div>
 <p>Use a web browser of your choice (such as Chrome) on any device connected to
-the same network as the Modular Development board. If connecting directly
-without a switch or router, the self-assigned IPv6 address can be used, or
-assign a
+the same network as the Modular Development Kit. If connecting directly without
+a switch or router, the self-assigned IPv6 address can be used, or assign a
 <a href="../sw-funct-descr/#using-a-static-ip-address"><strong>static IPv4 Address</strong></a>.
 <br/></p>
 <h2 id="descriptions-of-the-tabs">Descriptions of the Tabs<a class="headerlink" href="#descriptions-of-the-tabs" title="Permanent link">&para;</a></h2>
-<p>This section summarizes the GUI tabs in the 4Kp60 Multi-Sensor HDR Camera
-Solution System Example Design.</p>
+<p>This section summarizes the GUI tabs in the Camera Solution System Example
+Design.</p>
 <ul>
 <li><a href="#input-config-tab">Input Config Tab</a></li>
 <li><a href="#isp-pipeline-tab">ISP Pipeline Tab</a></li>
 <li><a href="#output-config-tab">Output Config Tab</a></li>
-<li><a href="#pipeline-statistics-tab">Pipeline Statistics Tab</a></li>
+<li><a href="#pipeline-statistics-tab">Pipeline Statistics Tab</a>
+${{ env_local.CAMERA_4K_AI }}</li>
+<li><a href="#ai-runtime-tab">AI Runtime Tab</a>
+${{ env_local.CAMERA_4K_END_AI }}</li>
 </ul>
 <p><br/></p>
 <h3 id="input-config-tab">Input Config Tab<a class="headerlink" href="#input-config-tab" title="Permanent link">&para;</a></h3>
 <p><br/></p>
-<p><a class="glightbox" href="../images/SW/InputConfigTab.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="InputConfigTab." src="../images/SW/InputConfigTab.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<p><a class="glightbox" href="${{ env_local.CAMERA_4K_DESIGN_IMAGES }}/SW/InputConfigTab.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="InputConfigTab." src="${{ env_local.CAMERA_4K_DESIGN_IMAGES }}/SW/InputConfigTab.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
 <center markdown="1"></p>
 <p><strong>Input Config Tab</strong>
 </center>
@@ -4698,12 +4744,12 @@ without changing responsiveness.</li>
 <p>The Import Camera Profile button loads a sensor profile (a JSON format
 pre-calibrated sensor settings file) into the application. The application
 comes with a default calibration profile preloaded on the microSD card image
-for the IMX678 as featured in the 4Kp60 Multi-Sensor HDR Camera Solution
-System Example Design. Therefore, is not necessary to load a new profile in
-normal operation. The IMX678 profile was produced using the Calibration Tab in
-the UI, as well as some offline processes for best-in-class color reproduction.
-Note that using the calibration tab requires expert knowledge and is therefore
-hidden in the UI by default.</p>
+for the IMX678 as featured in the Camera Solution System Example Design.
+Therefore, is not necessary to load a new profile in normal operation. The
+IMX678 profile was produced using the Calibration Tab in the UI, as well as
+some offline processes for best-in-class color reproduction. Note that using
+the calibration tab requires expert knowledge and is therefore hidden in the UI
+by default.</p>
 <p><br/></p>
 <h4 id="histogram">Histogram<a class="headerlink" href="#histogram" title="Permanent link">&para;</a></h4>
 <p><br/></p>
@@ -4712,7 +4758,7 @@ hidden in the UI by default.</p>
 <p><strong>Histogram Statistics</strong>
 </center>
 <br/></p>
-<p>The Histogram Statistics displays the real time output of the Histogram
+<p>The Histogram Statistics displays the real-time output of the Histogram
 Statistics IP. It is intended to be used as a visual aid while adjusting
 exposure controls.</p>
 <p><br/></p>
@@ -4802,7 +4848,7 @@ values.</p>
 <p><br/></p>
 <h2 id="isp-pipeline-tab">ISP Pipeline Tab<a class="headerlink" href="#isp-pipeline-tab" title="Permanent link">&para;</a></h2>
 <p><br/></p>
-<p><a class="glightbox" href="../images/SW/IspPipelineTab.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="ISPPipeline." src="../images/SW/IspPipelineTab.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<p><a class="glightbox" href="${{ env_local.CAMERA_4K_DESIGN_IMAGES }}/SW/IspPipelineTab.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="ISPPipeline." src="${{ env_local.CAMERA_4K_DESIGN_IMAGES }}/SW/IspPipelineTab.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
 <center markdown="1"></p>
 <p><strong>ISP Pipeline Tab</strong>
 </center>
@@ -4942,8 +4988,8 @@ to its default values.</p>
 </center>
 <br/></p>
 <p>The Color Correction Matrix (CCM) UI is an artistic control interface for
-tuning the CCM (which is implemented by the Color Space Converter (CSC) IP). The
-white balance function of the application software calculates a base CCM
+tuning the CCM (which is implemented by the Color Space Converter (CSC) IP).
+The white balance function of the application software calculates a base CCM
 targeting an accurate representation of the scene. The application software
 calculates the final CCM based on the control settings on the Color Correction
 Matrix UI:</p>
@@ -4963,7 +5009,7 @@ these controls to their default values.</p>
 <p><br/></p>
 <h2 id="output-config-tab">Output Config Tab<a class="headerlink" href="#output-config-tab" title="Permanent link">&para;</a></h2>
 <p><br/></p>
-<p><a class="glightbox" href="../images/SW/OutputConfigTab.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="OutputConfigTab." src="../images/SW/OutputConfigTab.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<p><a class="glightbox" href="${{ env_local.CAMERA_4K_DESIGN_IMAGES }}/SW/OutputConfigTab.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="OutputConfigTab." src="${{ env_local.CAMERA_4K_DESIGN_IMAGES }}/SW/OutputConfigTab.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
 <center markdown="1"></p>
 <p><strong>Output Config Tab</strong>
 </center>
@@ -4973,16 +5019,22 @@ the ISP core pipeline, right up to and including the output.
 <br/>
 <br/></p>
 <p>This section summarizes the GUI controls in the Output Config Tab:</p>
-<ul>
-<li><a href="#1d-lut-and-color-volume-manipulation-controls">1D LUT and Color Volume Manipulations Controls</a></li>
-<li><a href="#tone-mapping-operator">Tone Mapping Operator</a></li>
-<li><a href="#warp">Warp Engine</a></li>
-<li><a href="#1d-lut">1D LUT</a></li>
-<li><a href="#logo">Logo</a></li>
-<li><a href="#frame-writer">Frame Writer</a></li>
-<li><a href="#output-source">Output Source</a></li>
-</ul>
+<p>${{ env_local.CAMERA_4K_NO_AI }}
+* <a href="#1d-lut-and-color-volume-manipulation-controls">1D LUT and Color Volume Manipulations Controls</a>
+${{ env_local.CAMERA_4K_END_NO_AI }}
+${{ env_local.CAMERA_4K_AI }}
+* <a href="#3d-lut">3D LUT</a>
+${{ env_local.CAMERA_4K_END_AI }}
+* <a href="#tone-mapping-operator">Tone Mapping Operator</a>
+${{ env_local.CAMERA_4K_WARP }}
+* <a href="#warp">Warp Engine</a>
+${{ env_local.CAMERA_4K_END_WARP }}
+* <a href="#1d-lut">1D LUT</a>
+* <a href="#logo">Logo</a>
+* <a href="#frame-writer">Frame Writer</a>
+* <a href="#output-source">Output Source</a></p>
 <p><br/></p>
+<p>${{ env_local.CAMERA_4K_NO_AI }}</p>
 <h3 id="1d-lut-and-color-volume-manipulation-controls">1D LUT and Color Volume Manipulation Controls<a class="headerlink" href="#1d-lut-and-color-volume-manipulation-controls" title="Permanent link">&para;</a></h3>
 <p><br/></p>
 <p><a class="glightbox" href="../images/SW/1DLUT-3DLUT-3DLUT.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="1DLUT-3DLUT-3DLUT." src="../images/SW/1DLUT-3DLUT-3DLUT.png" style="display:block; margin-left:auto; margin-right:auto; width: 50%" /></a>
@@ -5004,14 +5056,36 @@ transformation.
 <br/></p>
 <p>If a complex color transformation is not necessary, then you may use one of the
 3D LUTs and keep the other 3D LUT and the 1D LUT in bypass. By default, all IPs
-in the chain are in bypass mode. 3D LUT files are not supplied with the 4Kp60
-Multi-Sensor HDR Camera Solution System Example Design.
+in the chain are in bypass mode. 3D LUT files are not supplied with the Camera
+Solution System Example Design.
 <br/></p>
 <p>3D LUT IPs can support dual buffer mode to allow 2 LUT tables to be loaded and
-switched between. However, for resource utilization reasons, the 4Kp60
-Multi-Sensor HDR Camera Solution System Example Designs only supports single
-buffer mode and so the LUT 2 section of the UI is grayed out.</p>
+switched between. However, for resource utilization reasons, the Camera
+Solution System Example Designs only single buffer mode is supported and so the
+LUT 2 section of the UI is grayed out.</p>
+<p>Note that 3D LUT files are not supplied with the Camera Solution System Example
+Design.</p>
 <p><br/></p>
+<p>${{ env_local.CAMERA_4K_END_NO_AI }}
+${{ env_local.CAMERA_4K_AI }}</p>
+<h3 id="3d-lut">3D LUT<a class="headerlink" href="#3d-lut" title="Permanent link">&para;</a></h3>
+<p><br/></p>
+<p><a class="glightbox" href="../images/SW/3DLUT.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="3DLUT." src="../images/SW/3DLUT.png" style="display:block; margin-left:auto; margin-right:auto; width: 50%" /></a>
+<center markdown="1"></p>
+<p><strong>3D LUT Control</strong>
+</center>
+<br/></p>
+<p>The 3D LUT IP can be used for color space conversion, chroma keying, dynamic
+range conversion (standard to high and high to standard), and artistic effects
+(sepia, hue rotation, color volume adjustment, etc.).</p>
+<p>The 3D LUT IP can support dual buffer mode to allow 2 LUT tables to be loaded
+and switched between. However, for resource utilization reasons, the Camera
+Solution System Example Designs only single buffer mode is supported and so 
+the LUT 2 section of the UI is grayed out.</p>
+<p>Note that 3D LUT files are not supplied with the Camera Solution System Example
+Design.</p>
+<p><br/></p>
+<p>${{ env_local.CAMERA_4K_END_AI }}</p>
 <h3 id="tone-mapping-operator">Tone Mapping Operator<a class="headerlink" href="#tone-mapping-operator" title="Permanent link">&para;</a></h3>
 <p>The Tone Mapping Operator (TMO) UI has controls to bypass the tone mapping and
 sliders to adjust the threshold and level. The threshold slider controls the
@@ -5030,6 +5104,7 @@ mapping feature can use an ROI which can be adjusted from a pop-up panel.</p>
 <br/></p>
 <p></center>
 <br/></p>
+<p>${{ env_local.CAMERA_4K_WARP }}</p>
 <h3 id="warp">Warp<a class="headerlink" href="#warp" title="Permanent link">&para;</a></h3>
 <p>The main Warp UI is a popup interface you open by clicking the Show Controls
 button in the Warp tile.</p>
@@ -5078,6 +5153,7 @@ by dragging any control points. The number of control points can be changed
 with the slider. The interface also allows you to export and import mesh files
 to and from your host device.</p>
 <p><br/></p>
+<p>${{ env_local.CAMERA_4K_END_WARP }}</p>
 <h3 id="1d-lut">1D LUT<a class="headerlink" href="#1d-lut" title="Permanent link">&para;</a></h3>
 <p><br/></p>
 <p><a class="glightbox" href="../images/SW/1DLUT.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="1DLUT." src="../images/SW/1DLUT.png" style="display:block; margin-left:auto; margin-right:auto; width: 50%" /></a>
@@ -5162,7 +5238,7 @@ This option allows you to test the video connection to the video sink.</li>
 <p><br/></p>
 <h2 id="pipeline-statistics-tab">Pipeline Statistics Tab<a class="headerlink" href="#pipeline-statistics-tab" title="Permanent link">&para;</a></h2>
 <p><br/></p>
-<p><a class="glightbox" href="../images/SW/PipelineStatisticsTab.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="PipelineStatisticsTab." src="../images/SW/PipelineStatisticsTab.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<p><a class="glightbox" href="${{ env_local.CAMERA_4K_DESIGN_IMAGES }}/SW/PipelineStatisticsTab.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="PipelineStatisticsTab." src="${{ env_local.CAMERA_4K_DESIGN_IMAGES }}/SW/PipelineStatisticsTab.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
 <center markdown="1"></p>
 <p><strong>Pipeline Statistics Tab</strong>
 </center>
@@ -5228,10 +5304,70 @@ update of the histogram.
 and the other for an ROI. The display mode dropdown box allows you to display
 either histogram statistics separately, or overlays them on the UI.
 <br/></p>
-<p>Finally, the "Edit ROI" button opens a popup window for adjusting the ROI.
+<p>Finally, the "Edit ROI" button opens a popup window for adjusting the ROI.</p>
+<p><br/></p>
+<p>${{ env_local.CAMERA_4K_AI }}</p>
+<h2 id="ai-runtime-tab">AI Runtime Tab<a class="headerlink" href="#ai-runtime-tab" title="Permanent link">&para;</a></h2>
+<p><br/></p>
+<p><a class="glightbox" href="${{ env_local.CAMERA_4K_DESIGN_IMAGES }}/SW/AIRuntimeTab.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="AIRuntimeTab." src="${{ env_local.CAMERA_4K_DESIGN_IMAGES }}/SW/AIRuntimeTab.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<center markdown="1"></p>
+<p><strong>AI Runtime Tab</strong>
+</center>
 <br/></p>
-<p><br/>
-<a class="md-button" href="../../camera_4k/camera_4k/#camera-solution-system-example-design-documentation">Back</a>
+<p>The AI Runtime Tab contains UI controls to select AI network and results processing parameters.
+<br/>
+<br/></p>
+<p>This section summarizes the GUI controls in the AI Runtime Tab:</p>
+<ul>
+<li><a href="#ai-runtime">AI Runtime</a></li>
+</ul>
+<p><br/></p>
+<h3 id="ai-runtime">AI Runtime<a class="headerlink" href="#ai-runtime" title="Permanent link">&para;</a></h3>
+<p><br/></p>
+<p><a class="glightbox" href="../images/SW/AIRuntime.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="AIRuntime." src="../images/SW/AIRuntime.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<center markdown="1"></p>
+<p><strong>AI Runtime</strong>
+</center>
+<br/></p>
+<p>The AI Runtime UI allows you to select the active AI network and modify its
+parameters.</p>
+<p>The Network drop box allows selection between the AI networks on the microSD card:</p>
+<ul>
+<li>YOLO 8n Detect. This network is the YOLO v8 nano detection model with an
+  input image size of 640x384. This option performs bounding box estimation and
+  classification from the eighty items in the COCO dataset. This model has an
+  inference rate of 30 FPS.</li>
+<li>YOLO 8n Pose. This network is the YOLO v8 nano pose estimation model with an
+  input image size of 640x384. This option performs bounding box estimation for
+  the ‘person’ category with seventeen skeletal key-point estimations. This
+  model has an inference rate of 30 FPS.</li>
+</ul>
+<p>The Detection Threshold slider controls the confidence threshold, where a valid
+detection requires the candidate’s confidence value to be greater than the
+threshold. The confidence level ranges from 0.0 for no confidence to 1.0 for
+extremely high confidence.</p>
+<p>The Intersection Over Union (IOU) Threshold slider allows the filtering of
+overlapping results. The application software calculates an IOU value for each
+pair of overlapping result candidates. The IOU is the area of intersection of
+the bounding boxes divided by the area of union of the bounding boxes. An IOU
+value of 1.0 means the bounding boxes are identical in size and position while
+a value of 0.0 means the boxes do not overlap. Values between zero and one
+provide a measure of similarity. The application software discards the result
+candidate with the lowest confidence when a pair of result candidates have an
+IOU value exceeding the IOU threshold. This algorithm is known as non-maximal
+suppression and allows decluttering of the results.</p>
+<p>The Keypoint Threshold slider is only applicable to pose networks and is
+disabled for detection networks. The keypoint threshold uses confidence values
+of each of the skeletal keypoints and the application software only draws the
+pose-lines (bones) between linked keypoints when both keypoint confidence
+values are above the keypoint threshold.</p>
+<p>The Display Results checkbox controls whether the application software renders
+the results over the video output. Disabling rendering is useful for
+decluttering the image during scene setup and fine-tuning the ISP components.</p>
+<p><br/></p>
+<p>${{ env_local.CAMERA_4K_END_AI }}
+<br/>
+<a class="md-button" href="${{ env_local.CAMERA_4K_TOP_MD }}#documentation">Back</a>
 <br/></p>
 
   <hr>
