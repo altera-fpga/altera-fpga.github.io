@@ -1,10 +1,11 @@
-# 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices - Acronyms and Terminology
+# ${{ env_local.CAMERA_4K_TITLE }} - Acronyms and Terminology
 
 <center markdown="1">
 
 | **Term**  | **Description**                                           |
 | :------:  | :-------------------------------------------------------- |
-| AE        | Auto Exposure                                             |
+| AE        | Auto Exposure                                             |${{ env_local.CAMERA_4K_AI }}
+| AI        | Artificial Intelligence                                   |${{ env_local.CAMERA_4K_END_AI }}
 | ANR       | Adaptive Noise Reduction                                  |
 | API       | Application Programming Interface                         |
 | AWB       | Auto White Balance                                        |
@@ -14,7 +15,8 @@
 | BPS       | Bits Per-Symbol                                           |
 | BSP       | Board Support Package                                     |
 | CCM       | Color Correction Matrix                                   |
-| CFA       | Color Filter Array                                        |
+| CFA       | Color Filter Array                                        |${{ env_local.CAMERA_4K_AI }}
+| CNN       | Convolutional Neural Network                              |${{ env_local.CAMERA_4K_END_AI }}
 | CPU       | Central processing unit                                   |
 | CSC       | Color Space Converter                                     |
 | CSR       | Control/Status Registers                                  |
@@ -63,9 +65,11 @@
 | MIPI      | Mobile Industry Processor Interface                       |
 | MP        | Mega Pixel                                                |
 | MSB       | Most Significant Bit                                      |
+| MSGDMA    | Modular Scatter-Gather DMA                                |
 | NGPD      | Next Generation Platform Designer                         |
 | OBR       | Optical Black Region                                      |
-| OETF      | Opto-Electrical Transfer Function                         |
+| OETF      | Opto-Electrical Transfer Function                         |${{ env_local.CAMERA_4K_AI }}
+| ONNX      | Open Neural Network Exchange                              |${{ env_local.CAMERA_4K_END_AI }}
 | OOTF      | Opto-Optical Transfer Function                            |
 | PD        | Usually used to refer to "Platform Designer"              |
 | PIP       | Pixels In Parallel                                        |
@@ -95,7 +99,8 @@
 | UIO       | User Space I/O System                                     |
 | USM       | Unsharp Mask                                              |
 | VC        | Vignette Correction                                       |
-| VVP       | Video and Vision Processing                               |
+| VVP       | Video and Vision Processing                               |${{ env_local.CAMERA_4K_AI }}
+| YOLO      | You Only Look Once                                        |${{ env_local.CAMERA_4K_END_AI }}
 
 **Acronyms and Terminology**
 
@@ -105,5 +110,5 @@
 <br>
 
 <br>
-[Back](../camera_4k/camera_4k.md#camera-solution-system-example-design-documentation){ .md-button }
+[Back](${{ env_local.CAMERA_4K_TOP_MD }}#documentation){ .md-button }
 <br>

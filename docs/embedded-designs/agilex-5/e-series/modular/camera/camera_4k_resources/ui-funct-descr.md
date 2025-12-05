@@ -1,16 +1,17 @@
-# 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices - Web Graphical User Interface Functional Description
+# ${{ env_local.CAMERA_4K_TITLE }} - Web Graphical User Interface Functional Description
 
 ## Running the Graphical User Interface (GUI)
 
 The application software of the design has a web-server GUI that is used to
-control and demonstrate various hardware and software features of the 4Kp60
-Multi-Sensor HDR Camera Solution System Example Design. Follow the
-[**instructions**](../camera_4k/camera_4k.md#board-and-host-pc-setup) to run the GUI on a web
-browser. The GUI is optimized for displaying the full screen on a 1920x1080
-resolution screen. Press F11 on your browser to go full screen.
+control and demonstrate various hardware and software features of the Camera
+Solution System Example Design. Follow the
+[**instructions**](${{ env_local.CAMERA_4K_TOP_MD }}#setting-up-the-camera-solution) to
+run the GUI on a web browser. The GUI is optimized for displaying the full
+screen on a 1920x1080 resolution screen. Press F11 in your browser to go full
+screen.
 <br/>
 
-The application software is flexible in discovering available hardware
+The Software Application is flexible in discovering available hardware
 components and only drawing the components present in the design on the GUI.
 Therefore, some parts of the GUI elements can be missing or different across
 different camera solution designs. Also note that there may be slight
@@ -18,10 +19,10 @@ variations in the GUI compared to the example images shown in this section.
 <br/>
 
 
-## Connecting to ISP Demo Application Web GUI
+## Connecting to the Demo Application Web GUI
 
-Take note of the Modular Development board IP address. This will be displayed
-on the HPS console serial port when the demo application starts. Alternatively,
+Take note of the Modular Development Kit IP address. This will be displayed on
+the HPS console serial port when the demo application starts. Alternatively,
 use the following command to list IP addresses:
 
 ```
@@ -29,22 +30,24 @@ ip a
 ```
 
 Use a web browser of your choice (such as Chrome) on any device connected to
-the same network as the Modular Development board. If connecting directly
-without a switch or router, the self-assigned IPv6 address can be used, or
-assign a
+the same network as the Modular Development Kit. If connecting directly without
+a switch or router, the self-assigned IPv6 address can be used, or assign a
 [**static IPv4 Address**](./sw-funct-descr.md#using-a-static-ip-address).
 <br/>
 
 
 ## Descriptions of the Tabs
 
-This section summarizes the GUI tabs in the 4Kp60 Multi-Sensor HDR Camera
-Solution System Example Design.
+This section summarizes the GUI tabs in the Camera Solution System Example
+Design.
 
 * [Input Config Tab](#input-config-tab)
 * [ISP Pipeline Tab](#isp-pipeline-tab)
 * [Output Config Tab](#output-config-tab)
 * [Pipeline Statistics Tab](#pipeline-statistics-tab)
+${{ env_local.CAMERA_4K_AI }}
+* [AI Runtime Tab](#ai-runtime-tab)
+${{ env_local.CAMERA_4K_END_AI }}
 
 <br/>
 
@@ -52,7 +55,7 @@ Solution System Example Design.
 ### Input Config Tab
 <br/>
 
-![InputConfigTab.](./images/SW/InputConfigTab.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![InputConfigTab.](${{ env_local.CAMERA_4K_DESIGN_IMAGES }}/SW/InputConfigTab.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Input Config Tab**
@@ -84,7 +87,7 @@ This section summarizes the GUI controls in the Input Config Tab:
 #### Input Select
 <br/>
 
-![InputSelect.](./images/SW/InputSelect.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![InputSelect.](../camera_4k_resources/images/SW/InputSelect.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Input Select**
@@ -109,7 +112,7 @@ connected to the development board.
 #### Test Pattern Generator
 <br/>
 
-![TestPatternGenerator.](./images/SW/TestPatternGenerator.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![TestPatternGenerator.](../camera_4k_resources/images/SW/TestPatternGenerator.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Test Pattern Generator**
@@ -131,7 +134,7 @@ mode.
 #### Camera Control
 <br/>
 
-![CameraControl.](./images/SW/CameraControl.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![CameraControl.](../camera_4k_resources/images/SW/CameraControl.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Camera Control - FSM-IMX678 Sensor**
@@ -186,7 +189,7 @@ scene:
 #### Sensor Profile
 <br/>
 
-![SensorProfile.](./images/SW/SensorProfile.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![SensorProfile.](../camera_4k_resources/images/SW/SensorProfile.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Sensor Profile**
@@ -196,12 +199,12 @@ scene:
 The Import Camera Profile button loads a sensor profile (a JSON format
 pre-calibrated sensor settings file) into the application. The application
 comes with a default calibration profile preloaded on the microSD card image
-for the IMX678 as featured in the 4Kp60 Multi-Sensor HDR Camera Solution
-System Example Design. Therefore, is not necessary to load a new profile in
-normal operation. The IMX678 profile was produced using the Calibration Tab in
-the UI, as well as some offline processes for best-in-class color reproduction.
-Note that using the calibration tab requires expert knowledge and is therefore
-hidden in the UI by default.
+for the IMX678 as featured in the Camera Solution System Example Design.
+Therefore, is not necessary to load a new profile in normal operation. The
+IMX678 profile was produced using the Calibration Tab in the UI, as well as
+some offline processes for best-in-class color reproduction. Note that using
+the calibration tab requires expert knowledge and is therefore hidden in the UI
+by default.
 
 <br/>
 
@@ -209,14 +212,14 @@ hidden in the UI by default.
 #### Histogram
 <br/>
 
-![HistogramStatistics.](./images/SW/HistogramStatistics.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![HistogramStatistics.](../camera_4k_resources/images/SW/HistogramStatistics.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Histogram Statistics**
 </center>
 <br/>
 
-The Histogram Statistics displays the real time output of the Histogram
+The Histogram Statistics displays the real-time output of the Histogram
 Statistics IP. It is intended to be used as a visual aid while adjusting
 exposure controls.
 
@@ -226,7 +229,7 @@ exposure controls.
 #### Auto Exposure
 <br/>
 
-![AutoexposureControls.](./images/SW/AutoexposureControls.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![AutoexposureControls.](../camera_4k_resources/images/SW/AutoexposureControls.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Auto Exposure Controls**
@@ -239,7 +242,7 @@ shutter speed. When using the ROI, the algorithm will prioritize the region
 specified when calculating the exposure.
 <br/>
 
-![AutoexposureROI.](./images/SW/AutoexposureROI.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![AutoexposureROI.](../camera_4k_resources/images/SW/AutoexposureROI.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Auto Exposure - Region of Interest Editor**
@@ -264,7 +267,7 @@ settings loaded via the Sensor Profile UI.
 
 <br/>
 
-![AutoWhiteBalanceControls.](./images/SW/AutoWhiteBalanceControls.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![AutoWhiteBalanceControls.](../camera_4k_resources/images/SW/AutoWhiteBalanceControls.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Auto White Balance Controls**
@@ -330,7 +333,7 @@ values.
 ## ISP Pipeline Tab
 <br/>
 
-![ISPPipeline.](./images/SW/IspPipelineTab.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![ISPPipeline.](${{ env_local.CAMERA_4K_DESIGN_IMAGES }}/SW/IspPipelineTab.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **ISP Pipeline Tab**
@@ -355,7 +358,7 @@ functions and are summarized as follows:
 ### Defective Pixel Correction
 <br/>
 
-![DefectivePixelCorrection.](./images/SW/DefectivePixelCorrection.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![DefectivePixelCorrection.](../camera_4k_resources/images/SW/DefectivePixelCorrection.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Defective Pixel Correction**
@@ -375,7 +378,7 @@ tradeoff of softening the image.
 ### Adaptive Noise Reduction
 <br/>
 
-![AdaptiveNoiseReduction.](./images/SW/AdaptiveNoiseReduction.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![AdaptiveNoiseReduction.](../camera_4k_resources/images/SW/AdaptiveNoiseReduction.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Adaptive Noise Reduction**
@@ -396,7 +399,7 @@ default values.
 ### Black Level Correction
 <br/>
 
-![BlackLevelCorrection.](./images/SW/BlackLevelCorrection.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![BlackLevelCorrection.](../camera_4k_resources/images/SW/BlackLevelCorrection.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Black Level Correction**
@@ -419,7 +422,7 @@ statistics in real time. Instead, it uses offline calibrated values.
 ### Vignette Correction
 <br/>
 
-![VignetteCorrection.](./images/SW/VignetteCorrection.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![VignetteCorrection.](../camera_4k_resources/images/SW/VignetteCorrection.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Vignette Correction Controls**
@@ -453,7 +456,7 @@ values.
 ### White Balance Correction
 <br/>
 
-![WhiteBalanceCorrection.](./images/SW/WhiteBalanceCorrection.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![WhiteBalanceCorrection.](../camera_4k_resources/images/SW/WhiteBalanceCorrection.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **White Balance Correction Controls**
@@ -477,7 +480,7 @@ values.
 ### Demosaic
 <br/>
 
-![Demosaic.](./images/SW/Demosaic.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![Demosaic.](../camera_4k_resources/images/SW/Demosaic.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Demosaic Controls**
@@ -495,7 +498,7 @@ to generate the given output RGB pixel.
 ### Unsharp Mask Filter
 <br/>
 
-![UnsharpMaskFilter.](./images/SW/UnsharpMaskFilter.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![UnsharpMaskFilter.](../camera_4k_resources/images/SW/UnsharpMaskFilter.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Unsharp Mask Filter Controls**
@@ -516,7 +519,7 @@ to its default values.
 ### Color Correction Matrix
 <br/>
 
-![ColorCorrectionMatrix.](./images/SW/ColorCorrectionMatrix.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![ColorCorrectionMatrix.](../camera_4k_resources/images/SW/ColorCorrectionMatrix.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Color Correction Matrix Control**
@@ -524,8 +527,8 @@ to its default values.
 <br/>
 
 The Color Correction Matrix (CCM) UI is an artistic control interface for
-tuning the CCM (which is implemented by the Color Space Converter (CSC) IP). The
-white balance function of the application software calculates a base CCM
+tuning the CCM (which is implemented by the Color Space Converter (CSC) IP).
+The white balance function of the application software calculates a base CCM
 targeting an accurate representation of the scene. The application software
 calculates the final CCM based on the control settings on the Color Correction
 Matrix UI:
@@ -549,7 +552,7 @@ these controls to their default values.
 ## Output Config Tab
 <br/>
 
-![OutputConfigTab.](./images/SW/OutputConfigTab.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![OutputConfigTab.](${{ env_local.CAMERA_4K_DESIGN_IMAGES }}/SW/OutputConfigTab.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Output Config Tab**
@@ -563,9 +566,16 @@ the ISP core pipeline, right up to and including the output.
 
 This section summarizes the GUI controls in the Output Config Tab:
 
+${{ env_local.CAMERA_4K_NO_AI }}
 * [1D LUT and Color Volume Manipulations Controls](#1d-lut-and-color-volume-manipulation-controls)
+${{ env_local.CAMERA_4K_END_NO_AI }}
+${{ env_local.CAMERA_4K_AI }}
+* [3D LUT](#3d-lut)
+${{ env_local.CAMERA_4K_END_AI }}
 * [Tone Mapping Operator](#tone-mapping-operator)
+${{ env_local.CAMERA_4K_WARP }}
 * [Warp Engine](#warp)
+${{ env_local.CAMERA_4K_END_WARP }}
 * [1D LUT](#1d-lut)
 * [Logo](#logo)
 * [Frame Writer](#frame-writer)
@@ -574,10 +584,11 @@ This section summarizes the GUI controls in the Output Config Tab:
 <br/>
 
 
+${{ env_local.CAMERA_4K_NO_AI }}
 ### 1D LUT and Color Volume Manipulation Controls
 <br/>
 
-![1DLUT-3DLUT-3DLUT.](./images/SW/1DLUT-3DLUT-3DLUT.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![1DLUT-3DLUT-3DLUT.](../camera_4k_resources/images/SW/1DLUT-3DLUT-3DLUT.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **1D LUT – 3D LUT – 3D LUT Control Chain**
@@ -600,18 +611,49 @@ transformation.
 
 If a complex color transformation is not necessary, then you may use one of the
 3D LUTs and keep the other 3D LUT and the 1D LUT in bypass. By default, all IPs
-in the chain are in bypass mode. 3D LUT files are not supplied with the 4Kp60
-Multi-Sensor HDR Camera Solution System Example Design.
+in the chain are in bypass mode. 3D LUT files are not supplied with the Camera
+Solution System Example Design.
 <br/>
 
 3D LUT IPs can support dual buffer mode to allow 2 LUT tables to be loaded and
-switched between. However, for resource utilization reasons, the 4Kp60
-Multi-Sensor HDR Camera Solution System Example Designs only supports single
-buffer mode and so the LUT 2 section of the UI is grayed out.
+switched between. However, for resource utilization reasons, the Camera
+Solution System Example Designs only single buffer mode is supported and so the
+LUT 2 section of the UI is grayed out.
+
+Note that 3D LUT files are not supplied with the Camera Solution System Example
+Design.
 
 <br/>
 
 
+${{ env_local.CAMERA_4K_END_NO_AI }}
+${{ env_local.CAMERA_4K_AI }}
+### 3D LUT
+<br/>
+
+![3DLUT.](../camera_4k_resources/images/SW/3DLUT.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+<center markdown="1">
+
+**3D LUT Control**
+</center>
+<br/>
+
+The 3D LUT IP can be used for color space conversion, chroma keying, dynamic
+range conversion (standard to high and high to standard), and artistic effects
+(sepia, hue rotation, color volume adjustment, etc.).
+
+The 3D LUT IP can support dual buffer mode to allow 2 LUT tables to be loaded
+and switched between. However, for resource utilization reasons, the Camera
+Solution System Example Designs only single buffer mode is supported and so 
+the LUT 2 section of the UI is grayed out.
+
+Note that 3D LUT files are not supplied with the Camera Solution System Example
+Design.
+
+<br/>
+
+
+${{ env_local.CAMERA_4K_END_AI }}
 ### Tone Mapping Operator
 
 The Tone Mapping Operator (TMO) UI has controls to bypass the tone mapping and
@@ -622,14 +664,14 @@ mapping feature can use an ROI which can be adjusted from a pop-up panel.
 
 <br/>
 
-![TMOControls.](./images/SW/TMOControls.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![TMOControls.](../camera_4k_resources/images/SW/TMOControls.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **TMO Controls**
 
 <br/>
 
-![TMOControls-ROI.](./images/SW/TMOControls-ROI.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![TMOControls-ROI.](../camera_4k_resources/images/SW/TMOControls-ROI.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **TMO ROI Editor**
@@ -640,6 +682,7 @@ mapping feature can use an ROI which can be adjusted from a pop-up panel.
 <br/>
 
 
+${{ env_local.CAMERA_4K_WARP }}
 ### Warp
 
 The main Warp UI is a popup interface you open by clicking the Show Controls
@@ -647,7 +690,7 @@ button in the Warp tile.
 
 <br/>
 
-![WarpControls.](./images/SW/Warp.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![WarpControls.](../camera_4k_resources/images/SW/Warp.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Warp Controls**
@@ -667,7 +710,7 @@ alignment guide box lets you turn the 16x9 grid of squares on and off.
 
 <br/>
 
-![WarpFullFixedControls.](./images/SW/WarpFullFixed.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![WarpFullFixedControls.](../camera_4k_resources/images/SW/WarpFullFixed.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Fixed Warp Controls**
@@ -682,7 +725,7 @@ to it resets the functionality of these controls to their default values.
 
 <br/>
 
-![WarpFullCorners.](./images/SW/WarpFullCorners.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![WarpFullCorners.](../camera_4k_resources/images/SW/WarpFullCorners.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Corner Warp Controls**
@@ -694,7 +737,7 @@ rectangle. There is also a control to apply additional radial distortion.
 
 <br/>
 
-![WarpFullArbitrary.](./images/SW/WarpFullArbitrary.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![WarpFullArbitrary.](../camera_4k_resources/images/SW/WarpFullArbitrary.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Arbitrary Warp Controls**
@@ -709,10 +752,11 @@ to and from your host device.
 <br/>
 
 
+${{ env_local.CAMERA_4K_END_WARP }}
 ### 1D LUT
 <br/>
 
-![1DLUT.](./images/SW/1DLUT.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![1DLUT.](../camera_4k_resources/images/SW/1DLUT.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **1D LUT Control**
@@ -739,7 +783,7 @@ these controls to their default values.
 
 <br/>
 
-![CustomCurveEditor.](./images/SW/CustomCurveEditor.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![CustomCurveEditor.](../camera_4k_resources/images/SW/CustomCurveEditor.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Custom Curve Editor**
@@ -751,7 +795,7 @@ these controls to their default values.
 ### Logo
 <br/>
 
-![Logo.](./images/SW/Logo.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![Logo.](../camera_4k_resources/images/SW/Logo.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Logo Control**
@@ -774,7 +818,7 @@ out of the screensaver.
 ### Frame Writer
 <br/>
 
-![FrameWriter.](./images/SW/FrameWriter.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![FrameWriter.](../camera_4k_resources/images/SW/FrameWriter.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Frame Writer Controls**
@@ -801,7 +845,7 @@ ready for download.
 ### Output Source
 <br/>
 
-![OutputSource.](./images/SW/OutputSource.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
+![OutputSource.](../camera_4k_resources/images/SW/OutputSource.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Output Source Control**
@@ -820,7 +864,7 @@ This option allows you to test the video connection to the video sink.
 ## Pipeline Statistics Tab
 <br/>
 
-![PipelineStatisticsTab.](./images/SW/PipelineStatisticsTab.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![PipelineStatisticsTab.](${{ env_local.CAMERA_4K_DESIGN_IMAGES }}/SW/PipelineStatisticsTab.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Pipeline Statistics Tab**
@@ -844,7 +888,7 @@ This section summarizes the GUI controls in the Pipeline Statistics Tab:
 ### Black Level Statistics
 <br/>
 
-![BlacklevelStatistics.](./images/SW/BlackLevelStatistics.png){:style="display:block; margin-left:auto; margin-right:auto; width: 25%"}
+![BlacklevelStatistics.](../camera_4k_resources/images/SW/BlackLevelStatistics.png){:style="display:block; margin-left:auto; margin-right:auto; width: 25%"}
 <center markdown="1">
 
 **Black level Statistics**
@@ -863,7 +907,7 @@ calibrated statistics used by the white balance algorithm.
 ### White Balance Statistics
 <br/>
 
-![WhiteBalanceStatistics.](./images/SW/WhiteBalanceStatistics.png){:style="display:block; margin-left:auto; margin-right:auto; width: 40%"}
+![WhiteBalanceStatistics.](../camera_4k_resources/images/SW/WhiteBalanceStatistics.png){:style="display:block; margin-left:auto; margin-right:auto; width: 40%"}
 <center markdown="1">
 
 **White Balance Statistics**
@@ -889,7 +933,7 @@ scene capture update.
 ### Histogram Statistics
 <br/>
 
-![HistogramStatisticsFull.](./images/SW/HistogramStatisticsFull.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![HistogramStatisticsFull.](../camera_4k_resources/images/SW/HistogramStatisticsFull.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Histogram Statistics**
@@ -912,29 +956,107 @@ either histogram statistics separately, or overlays them on the UI.
 <br/>
 
 Finally, the "Edit ROI" button opens a popup window for adjusting the ROI.
-<br/>
 
 <br/>
-[Back](../camera_4k/camera_4k.md#camera-solution-system-example-design-documentation){ .md-button }
+
+${{ env_local.CAMERA_4K_AI }}
+
+## AI Runtime Tab
+<br/>
+
+![AIRuntimeTab.](${{ env_local.CAMERA_4K_DESIGN_IMAGES }}/SW/AIRuntimeTab.png){:style="display:block; margin-left:auto; margin-right:auto"}
+<center markdown="1">
+
+**AI Runtime Tab**
+</center>
+<br/>
+
+The AI Runtime Tab contains UI controls to select AI network and results processing parameters.
+<br/>
+<br/>
+
+This section summarizes the GUI controls in the AI Runtime Tab:
+
+* [AI Runtime](#ai-runtime)
+
+<br/>
+
+
+### AI Runtime
+<br/>
+
+![AIRuntime.](../camera_4k_resources/images/SW/AIRuntime.png){:style="display:block; margin-left:auto; margin-right:auto"}
+<center markdown="1">
+
+**AI Runtime**
+</center>
+<br/>
+
+The AI Runtime UI allows you to select the active AI network and modify its
+parameters.
+
+The Network drop box allows selection between the AI networks on the microSD card:
+
+* YOLO 8n Detect. This network is the YOLO v8 nano detection model with an
+  input image size of 640x384. This option performs bounding box estimation and
+  classification from the eighty items in the COCO dataset. This model has an
+  inference rate of 30 FPS.
+* YOLO 8n Pose. This network is the YOLO v8 nano pose estimation model with an
+  input image size of 640x384. This option performs bounding box estimation for
+  the ‘person’ category with seventeen skeletal key-point estimations. This
+  model has an inference rate of 30 FPS.
+
+The Detection Threshold slider controls the confidence threshold, where a valid
+detection requires the candidate’s confidence value to be greater than the
+threshold. The confidence level ranges from 0.0 for no confidence to 1.0 for
+extremely high confidence.
+
+The Intersection Over Union (IOU) Threshold slider allows the filtering of
+overlapping results. The application software calculates an IOU value for each
+pair of overlapping result candidates. The IOU is the area of intersection of
+the bounding boxes divided by the area of union of the bounding boxes. An IOU
+value of 1.0 means the bounding boxes are identical in size and position while
+a value of 0.0 means the boxes do not overlap. Values between zero and one
+provide a measure of similarity. The application software discards the result
+candidate with the lowest confidence when a pair of result candidates have an
+IOU value exceeding the IOU threshold. This algorithm is known as non-maximal
+suppression and allows decluttering of the results.
+
+The Keypoint Threshold slider is only applicable to pose networks and is
+disabled for detection networks. The keypoint threshold uses confidence values
+of each of the skeletal keypoints and the application software only draws the
+pose-lines (bones) between linked keypoints when both keypoint confidence
+values are above the keypoint threshold.
+
+The Display Results checkbox controls whether the application software renders
+the results over the video output. Disabling rendering is useful for
+decluttering the image during scene setup and fine-tuning the ISP components.
+
+<br/>
+
+
+${{ env_local.CAMERA_4K_END_AI }}
+<br/>
+[Back](${{ env_local.CAMERA_4K_TOP_MD }}#documentation){ .md-button }
 <br/>
 
 
 
-[4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/camera/camera_4k
 [Agilex™ 5 E-Series Modular Development Board GSRD User Guide (25.1)]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/
 
 
 
 [Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs (25.1)]: https://www.intel.com/content/www/us/en/docs/programmable/814346/25-1/hard-processor-system-technical-reference.html
-[NiosV Processor for Altera® FPGA]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/processors-peripherals/niosv.html
-[Agilex™ 5 FPGA E-Series 065B Modular Development Kit]: https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html
+[NiosV Processor for Altera® FPGA]: https://www.altera.com/design/guidance/nios-v-developer
+[Agilex™ 5 FPGA E-Series 065B Modular Development Kit]: https://www.altera.com/products/devkit/a1jui0000061qabmaa/agilex-5-fpga-and-soc-e-series-modular-development-kit-es
 [Agilex™ 5 FPGA E-Series 065B Modular Development Kit Product Brief]: https://www.intel.com/content/www/us/en/content-details/815178/agilex-5-fpga-e-series-065b-modular-development-kit-product-brief.html
+[Altera® FPGA AI Suite]: https://www.altera.com/products/development-tools/fpga-ai-suite
 
 
 [Win32DiskImager]: https://sourceforge.net/projects/win32diskimager
 [7-Zip]: https://www.7-zip.org
-[teraterm]: https://github.com/TeraTermProject/teraterm/releases
-[putty]: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+[TeraTerm]: https://github.com/TeraTermProject/teraterm/releases
+[PuTTY]: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
 
 
 [Framos FSM:GO IMX678C Camera Modules]: https://www.framos.com/en/fsmgo
@@ -945,54 +1067,25 @@ Finally, the "Edit ROI" button opens a popup window for adjusting the ROI.
 [Tripod]: https://thepihut.com/products/small-tripod-for-raspberry-pi-hq-camera
 [150mm flex-cable]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FMA-FC-150-60-V1A?qs=GedFDFLaBXGCmWApKt5QIQ%3D%3D&_gl=1*d93qim*_ga*MTkyOTE4MjMxNy4xNzQxMTcwMzQy*_ga_15W4STQT4T*MTc0MTE3MDM0Mi4xLjEuMTc0MTE3MDQ5OS40NS4wLjA
 [300mm micro-coax cable]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FFA-MC50-Kit-0.3m?qs=%252BHhoWzUJg4K3LtaE207mhw%3D%3D
-[4Kp60 Converter Dongle]: https://www.amazon.co.uk/gp/product/B01M6WK3KU/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
+[DP to HDMI Adapter]: https://www.amazon.co.uk/gp/product/B01M6WK3KU/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
+[Framos GMSL3 5m]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FFA-GMSL3-Kit-5m?qs=%252BHhoWzUJg4IkLHv%2F6fzsXQ%3D%3D
+[Framos FFA-GMSL-SER-V2A Serializer]: https://www.framos.com/en/products/ffa-gmsl-ser-v2a-27617
+[Framos FFA-GMSL-DES-V2A Deserializer]: https://www.framos.com/en/products/ffa-gmsl-des-v2a-27240
 
 
-[VVP IP Suite, VVP Tone Mapping Operator (TMO) IP, VVP Warp IP, and 3D LUT IP]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/dsp/video-vision-processing-suite.html
-[MIPI DPHY IP and MIPI CSI-2 IP]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/interface-protocols/mipi-d-phy.html#tab-blade-1-3
-[Nios® V Processor]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/processors-peripherals/niosv/glossy.html
+[VVP IP Suite]: https://www.altera.com/products/ip/a1jui000004qxfpmak/video-and-vision-processing-suite
+[MIPI DPHY IP and MIPI CSI-2 IP]: https://www.altera.com/products/ip/a1jui0000049uuamam/mipi-d-phy-ip#tab-blade-1-3
+[Nios® V Processor]: https://www.altera.com/products/ip/a1jui0000049uvama2/nios-v-processors
 
 
 [Altera® Quartus® Prime Pro Edition version 25.1 Linux]: https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html
 [Altera® Quartus® Prime Pro Edition version 25.1 Windows]: https://www.intel.com/content/www/us/en/software-kit/851653/intel-quartus-prime-pro-edition-design-software-version-25-1-for-windows.html
+[Altera® Quartus® Prime Pro Edition version 25.1 Programmer and Tools]: https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html
 
 
-
-
-[User flow 1]: ../camera_4k/camera_4k.md#pre-requisites
-[User flow 2]: ../camera_4k_resources/flow2-sof-mdt.md
-[User flow 3]: ../camera_4k_resources/flow3-rbf-mdt.md
-
-
-
-[https://github.com/altera-fpga/agilex-ed-camera]: https://github.com/altera-fpga/agilex-ed-camera
-[https://github.com/altera-fpga/modular-design-toolkit]: https://github.com/altera-fpga/modular-design-toolkit
-[meta-altera-fpga]: https://github.com/altera-fpga/agilex-ed-camera/tree/rel-25.1/sw/meta-altera-fpga
-[meta-altera-fpga-ocs]: https://github.com/altera-fpga/agilex-ed-camera/tree/rel-25.1/sw/meta-altera-fpga-ocs
-[meta-vvp-isp-demo]: https://github.com/altera-fpga/agilex-ed-camera/tree/rel-25.1/sw/meta-vvp-isp-demo
-[agilex-ed-camera/sw]: https://github.com/altera-fpga/agilex-ed-camera/tree/rel-25.1/sw
-
-
-
-[Release Tag]: https://github.com/altera-fpga/agilex-ed-camera/releases/tag/rel-25.1
-[https://github.com/altera-fpga/agilex-ed-camera/releases/tag/rel-25.1]: https://github.com/altera-fpga/agilex-ed-camera/releases/tag/rel-25.1
-[hps-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz]: https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/hps-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz
-[fpga-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz]: https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/fpga-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz
-[fsbl_agilex5_modkit_vvpisp_time_limited.sof]: https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/fsbl_agilex5_modkit_vvpisp_time_limited.sof
-[top.core.jic]: https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/top.core.jic
-[top.core.rbf]: https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/top.core.rbf
-
-
-
-[AGX_5E_Modular_Devkit_ISP_FF_RD.xml]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/AGX_5E_Altera_Modular_Dk_ISP_designs/AGX_5E_Modular_Devkit_ISP_FF_RD.xml
-[AGX_5E_Modular_Devkit_ISP_RD.xml]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/AGX_5E_Altera_Modular_Dk_ISP_designs/AGX_5E_Modular_Devkit_ISP_RD.xml
-[Create microSD card image (.wic.gz) using YOCTO/KAS]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/sw/README.md
-[<g>&check;</g><span hidden="true"> YOCTO/KAS </span>]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/sw/README.md
-
-[SOF Modular Design Toolkit (MDT) Flow]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt
-[RBF Modular Design Toolkit (MDT) Flow]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt
-[<g>&check;</g><span hidden="true"> SOF MDT Flow </span>]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt
-[<g>&check;</g><span hidden="true"> RBF MDT Flow </span>]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt
+[ultralytics YOLO]: https://docs.ultralytics.com
+[ONNX]: https://onnx.ai/
+[OpenVINO Toolkit]: https://storage.openvinotoolkit.org/repositories/openvino/packages/2024.6/linux
 
 
 
@@ -1009,17 +1102,19 @@ Finally, the "Edit ROI" button opens a popup window for adjusting the ROI.
 [Demosaic IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/demosaic.html
 [Histogram Statistics IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/histogram-statistics.html
 [Color Space Converter IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/color-space-converter.html
+[1D LUT]: https://www.altera.com/products/ip/a1jui000004r4gnmas/1d-lut-altera-fpga-ip
 [1D LUT IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/1d-lut.html
-[3D LUT]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/dsp/3d-lut.html
+[3D LUT]: https://www.altera.com/products/ip/a1jui000004r4gnmas/3d-lut-altera-fpga-ip
 [3D LUT IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/3d-lut.html
 [LUTCalc GitHub page]: https://github.com/cameramanben/LUTCalc
-[Tone Mapping Operator]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/dsp/tone-mapping-operator.html
+[Tone Mapping Operator]: https://www.altera.com/products/ip/a1jui000004r0hlmak/tone-mapping-operator-fpga-ip
 [Tone Mapping Operator IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/tone-mapping-operator.html
 [Unsharp Mask IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/unsharp-mask.html
-[Warp]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/dsp/video-warp.html
+[Warp]: https://www.altera.com/products/ip/a1jui000004rhk1mag/warp-fpga-ip
 [Warp IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/warp.html
 [Mixer IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/mixer.html
 [Video Frame Writer IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/video-frame-writer-intel-fpga-ip.html
+[Video Frame Reader IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/video-frame-reader-intel-fpga-ip.html
 [Color Plane Manager IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/color-plane-manager.html
 [Bits per Color Sample Adapter IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/bits-per-color-sample-adapter.html
 [Protocol Converter IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/protocol-converter.html
@@ -1029,4 +1124,7 @@ Finally, the "Edit ROI" button opens a popup window for adjusting the ROI.
 [AMBA 4 AXI4-Stream Protocol Specification]: https://developer.arm.com/documentation/ihi0051/a/
 [Avalon® Interface Specifications – Avalon® Streaming Interfaces]: https://www.intel.com/content/www/us/en/docs/programmable/683091/20-1/streaming-interfaces.html
 [KAS]: https://kas.readthedocs.io/en/latest/
+[EMIF]: https://www.altera.com/design/guidance/emif-support
+[Scaler IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/scaler.html
+[MSGDMA IP]: https://www.intel.com/content/www/us/en/docs/programmable/683130/25-1-1/modular-scatter-gather-dma-core.html
 

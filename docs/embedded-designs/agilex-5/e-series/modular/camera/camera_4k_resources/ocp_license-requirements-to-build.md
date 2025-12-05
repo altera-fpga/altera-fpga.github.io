@@ -1,6 +1,8 @@
-### License Requirements to build
-* OpenCore Plus (OCP) IP evaluation license.
-* Free licenses (must be downloaded and installed):
-  * [Nios® V Processor].
+### **License Requirements to build**
 
-<br/>
+Note licenses must be downloaded and installed where needed.
+
+* OpenCore Plus (OCP) IP evaluation license.
+
+* Free licenses:
+  * [Nios® V Processor].
