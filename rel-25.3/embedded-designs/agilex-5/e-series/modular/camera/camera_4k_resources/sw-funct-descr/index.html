@@ -17,7 +17,7 @@
     
     
       
-        <title>4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices - Software Functional Description - Altera FPGA Developer Site</title>
+        <title>${{ env_local.CAMERA_4K_TITLE }} - Software Functional Description - Altera FPGA Developer Site</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#4kp60-multi-sensor-hdr-camera-solution-system-example-design-for-agilextm-5-devices-software-functional-description" class="md-skip">
+        <a href="#env_localcamera_4k_title-software-functional-description" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices - Software Functional Description
+              ${{ env_local.CAMERA_4K_TITLE }} - Software Functional Description
             
           </span>
         </div>
@@ -2823,6 +2823,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3_1_11_2" id="__nav_7_3_1_11_2_label" tabindex="0">
@@ -2845,6 +2847,20 @@
     <li class="md-nav__item">
       <a href="../../../../premium/niosv/niosv_m/niosv_m_baseline_ghrd/ug-baseline-ghrd-agx5e-premium/" class="md-nav__link">
         Nios® V/m Processor Baseline GHRD Design
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../premium/niosv/niosv_m/niosv_m_full_feature_ghrd/ug-full-feature-ghrd-agx5e-premium/" class="md-nav__link">
+        Nios® V/m Full Feature Golden Hardware Reference Design
       </a>
     </li>
   
@@ -2875,6 +2891,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3_1_11_3" id="__nav_7_3_1_11_3_label" tabindex="0">
@@ -2897,6 +2915,20 @@
     <li class="md-nav__item">
       <a href="../../../../premium/niosv/niosv_g/tinyml_liteRT/ug-tinyml-liteRT-agx5e-premium/" class="md-nav__link">
         Nios® V/g TinyML LiteRT for Microcontroller Design
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../premium/niosv/niosv_g/webserver_ping/ug-webserver-ping-agx5e-premium/" class="md-nav__link">
+        Nios® V/g Processor Ping Application
       </a>
     </li>
   
@@ -3022,6 +3054,8 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_2" >
       
       
+        
+          
         
           
         
@@ -3175,6 +3209,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../camera_4k_ai/camera_4k_ai/" class="md-nav__link">
+        4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g/" class="md-nav__link">
         Agilex™ 5 FPGA E-Series Modular Development Kit 1x10G Ethernet System Example Design
       </a>
@@ -3194,7 +3242,7 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_2_10" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_2_11" >
       
       
         
@@ -3202,13 +3250,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_7_3_2_10" id="__nav_7_3_2_10_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_7_3_2_11" id="__nav_7_3_2_11_label" tabindex="0">
           TSN Examples
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_2_10_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_7_3_2_10">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_2_11_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_2_11">
           <span class="md-nav__icon md-icon"></span>
           TSN Examples
         </label>
@@ -4662,7 +4710,7 @@
   
 
 
-<h1 id="4kp60-multi-sensor-hdr-camera-solution-system-example-design-for-agilextm-5-devices-software-functional-description">4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices - Software Functional Description<a class="headerlink" href="#4kp60-multi-sensor-hdr-camera-solution-system-example-design-for-agilextm-5-devices-software-functional-description" title="Permanent link">&para;</a></h1>
+<h1 id="env_localcamera_4k_title-software-functional-description">${{ env_local.CAMERA_4K_TITLE }} - Software Functional Description<a class="headerlink" href="#env_localcamera_4k_title-software-functional-description" title="Permanent link">&para;</a></h1>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>The primary software components are summarized in the following diagram and
 described below:
@@ -4677,31 +4725,43 @@ described below:
 <ul>
 <li>A Software application running on an embedded Linux system.</li>
 <li>The application provides Web based UI to control the video pipeline and
-individual ISP IP.</li>
+${{ env_local.CAMERA_4K_NO_AI }}
+  individual ISP IP.
+${{ env_local.CAMERA_4K_END_NO_AI }}
+${{ env_local.CAMERA_4K_AI }}
+  individual ISP IP, and the AI Inference.
+${{ env_local.CAMERA_4K_END_AI }}</li>
 <li>User accesses Web UI from a remote PC or tablet over the network with a Web
 browser e.g. Chrome.</li>
 <li>Linux system includes necessary drivers allowing the software application to
 access and control FPGA using register read/write interface.</li>
 </ul>
 <h2 id="custom-linux-distribution-based-on-kas">Custom Linux distribution based on KAS<a class="headerlink" href="#custom-linux-distribution-based-on-kas" title="Permanent link">&para;</a></h2>
-<p>For the 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for
-Agilex™ 5 Devices, Altera® provides the files to build the Linux system to run
-the ISP demo application. A custom version of Linux is built based on <a href="https://kas.readthedocs.io/en/latest/">KAS</a>
-(setup tool for Yocto projects, see <a href="https://kas.readthedocs.io/en/latest/">KAS</a>) and is composed of the following
-meta-layers:</p>
+<p>For the Camera Solution System Example Design, Altera® provides the files to
+build the Linux system to run the demo application. A custom version of Linux
+is built based on <a href="https://kas.readthedocs.io/en/latest/">KAS</a> (setup tool for Yocto projects, see <a href="https://kas.readthedocs.io/en/latest/">KAS</a>) and is
+composed of the following meta-layers:</p>
 <ul>
-<li>Altera® FPGA Layer - <strong><a href="https://github.com/altera-fpga/agilex-ed-camera/tree/rel-25.1/sw/meta-altera-fpga">meta-altera-fpga</a></strong></li>
-<li>Altera® FPGA OCS (Offset Capability Structure) Layer - <strong><a href="https://github.com/altera-fpga/agilex-ed-camera/tree/rel-25.1/sw/meta-altera-fpga-ocs">meta-altera-fpga-ocs</a></strong></li>
-<li>Camera Layer - <strong><a href="https://github.com/altera-fpga/agilex-ed-camera/tree/rel-25.1/sw/meta-vvp-isp-demo">meta-vvp-isp-demo</a></strong></li>
+<li>Altera® FPGA Layer - <strong>[meta-altera-fpga]</strong></li>
+<li>Altera® FPGA OCS (Offset Capability Structure) Layer - <strong>[meta-altera-fpga-ocs]</strong></li>
+<li>Camera Layer - <strong>[meta-vvp-isp-demo]</strong></li>
 </ul>
+<p>${{ env_local.CAMERA_4K_NO_AI }}</p>
 <div class="admonition note">
 <p class="admonition-title">KAS Reference</p>
-<p><a href="https://github.com/altera-fpga/agilex-ed-camera/tree/rel-25.1/sw">agilex-ed-camera/sw</a></p>
+<p>[agilex-ed-camera/sw]</p>
 </div>
+<p>${{ env_local.CAMERA_4K_END_NO_AI }}
+${{ env_local.CAMERA_4K_AI }}</p>
+<div class="admonition note">
+<p class="admonition-title">KAS Reference</p>
+<p>[agilex-ed-camera-ai/sw]</p>
+</div>
+<p>${{ env_local.CAMERA_4K_END_AI }}</p>
 <h3 id="necessary-elements-in-the-meta-layers-to-bind-software-and-hardware">Necessary elements in the meta-layers to bind Software and Hardware<a class="headerlink" href="#necessary-elements-in-the-meta-layers-to-bind-software-and-hardware" title="Permanent link">&para;</a></h3>
 <p>This section details the various elements included in the meta-layers that
 facilitate running the camera application. These elements assist in "binding"
-the FPGA Soft IP with the Linus software running on the HPS. The following
+the FPGA Soft IP with the Linux software running on the HPS. The following
 sections explain these elements to clarify the interaction between the HPS
 software stack and the FPGA soft IP. This interaction between the HPS and
 Camera IP serves as an example of how to interface any soft IP in the FPGA
@@ -4742,7 +4802,7 @@ configures the FPGA at initialization using u-boot <code>load</code> command in
 <p><strong>FPGA configuration during HPS booting process</strong>
 </center>
 <br/></p>
-<p>Look for the print <strong>"..... FPGA reconfiguration OK "</strong> during the device booting
+<p>Look for the message <strong>"..... FPGA reconfiguration OK "</strong> during the device booting
 process, as shown in the previous figure to ensure the FPGA bitstream (<code>top.core.rbf</code>)
 has been properly loaded.</p>
 <h4 id="additional-u-boot-configuration">Additional u-boot configuration<a class="headerlink" href="#additional-u-boot-configuration" title="Permanent link">&para;</a></h4>
@@ -4772,7 +4832,7 @@ interface:
 the file and reboot the board.
 <br/></p>
 <p><br/>
-<a class="md-button" href="../../camera_4k/camera_4k/#camera-solution-system-example-design-documentation">Back</a>
+<a class="md-button" href="${{ env_local.CAMERA_4K_TOP_MD }}#documentation">Back</a>
 <br/></p>
 
   <hr>
@@ -4780,7 +4840,7 @@ the file and reboot the board.
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 6, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 5, 2025</span>
       
         <br>
         Created:
