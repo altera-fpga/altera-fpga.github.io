@@ -17,7 +17,7 @@
     
     
       
-        <title>Design security considerations - Altera FPGA Developer Site</title>
+        <title>4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices - Design Security Considerations - Altera FPGA Developer Site</title>
       
     
     
@@ -77,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#4kp60-multi-sensor-hdr-camera-solution-system-example-design-for-agilextm-5-devices-design-security-considerations" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -111,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Design security considerations
+              4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices - Design Security Considerations
             
           </span>
         </div>
@@ -2924,6 +2929,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_3_2" id="__nav_7_3_2_label" tabindex="0">
@@ -3058,6 +3065,20 @@
     <li class="md-nav__item">
       <a href="../../camera_4k_ai/camera_4k_ai/" class="md-nav__link">
         4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../holoscan-sensor-bridge/mipi/hsb-mipi-1-10GbE/" class="md-nav__link">
+        Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices
       </a>
     </li>
   
@@ -4269,6 +4290,86 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#jtagserial-port-connections" class="md-nav__link">
+    JTAG/serial port connections
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debug-capability" class="md-nav__link">
+    Debug capability
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frame-buffers" class="md-nav__link">
+    Frame buffers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory-management" class="md-nav__link">
+    Memory management
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-of-encryptedprotected-video-feeds" class="md-nav__link">
+    Use of encrypted/protected video feeds
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fpga-bitstream-encryption" class="md-nav__link">
+    FPGA bitstream encryption
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secure-booting-and-os-restrictions" class="md-nav__link">
+    Secure booting and OS restrictions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#safe-booting-and-remote-updates" class="md-nav__link">
+    Safe booting and remote updates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secure-network-connection" class="md-nav__link">
+    Secure network connection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-information" class="md-nav__link">
+    Related Information
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -4286,20 +4387,89 @@
   
 
 
-  <h1>Design security considerations</h1>
-
-
+<h1 id="4kp60-multi-sensor-hdr-camera-solution-system-example-design-for-agilextm-5-devices-design-security-considerations">4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices - Design Security Considerations<a class="headerlink" href="#4kp60-multi-sensor-hdr-camera-solution-system-example-design-for-agilextm-5-devices-design-security-considerations" title="Permanent link">&para;</a></h1>
+<p>This system example design is provided as a demonstration specifically for the
+IP components of the ISP and is not intended for a final product or deployment.
+As such, there are several features of the design that may not meet customer
+safety and security requirements. It is important for you to conduct a safety
+and security review of your final design to ensure you meet your safety and
+security goals. Some of the areas of further consideration are listed below.
+Please note that this is not an exhaustive list, and you should perform a full
+security review of your own system, considering hardware, FPGA design and
+software aspects, depending on the market requirements of the final product.</p>
+<h2 id="jtagserial-port-connections">JTAG/serial port connections<a class="headerlink" href="#jtagserial-port-connections" title="Permanent link">&para;</a></h2>
+<p>The development kit hardware includes access to various parts of the design
+using industry standard interfaces. In this design, these ports are freely
+available to use to allow visibility into the design and for debug purposes. You
+should consider whether these access points are to be made available on your
+own hardware. If so, they should be protected as per your own security
+requirements and policies.</p>
+<h2 id="debug-capability">Debug capability<a class="headerlink" href="#debug-capability" title="Permanent link">&para;</a></h2>
+<p>This design includes multiple debug paths, for example, the use of technologies
+such as Signal Tap, in-system memory editors, access to debuggers, etc. This
+level of debug access may not be desirable in a final product, and you should
+consider removing or restricting these capabilities.</p>
+<h2 id="frame-buffers">Frame buffers<a class="headerlink" href="#frame-buffers" title="Permanent link">&para;</a></h2>
+<p>This design stores video data in various frame buffers held in both external
+DDR4 SDRAM memory and on-chip memory blocks. This video information is not
+encrypted or protected in any way. You should consider if you wish to apply
+security features to the way the video data is stored.</p>
+<h2 id="memory-management">Memory management<a class="headerlink" href="#memory-management" title="Permanent link">&para;</a></h2>
+<p>You may implement fine-grained memory access management and put restrictions in
+place to prevent unauthorized access and protect memory corruption by other
+IPs.</p>
+<h2 id="use-of-encryptedprotected-video-feeds">Use of encrypted/protected video feeds<a class="headerlink" href="#use-of-encryptedprotected-video-feeds" title="Permanent link">&para;</a></h2>
+<p>This design uses an industry standard DisplayPort video output interface.
+Within the design, these video streams are not protected against security
+attacks. You should consider the use of encryption techniques to meet your own
+security requirements. An example could be the use of the HDCP encryption
+scheme that is part of the feature set of the video standard.</p>
+<h2 id="fpga-bitstream-encryption">FPGA bitstream encryption<a class="headerlink" href="#fpga-bitstream-encryption" title="Permanent link">&para;</a></h2>
+<p>This design does not use Altera®’s FPGA bitstream encryption technology. You
+may use this feature to further protect the FPGA design content of your
+products. Refer to Using the Design Security Features in Altera® FPGAs for
+information on FPGA bitstream encryption technology.</p>
+<h2 id="secure-booting-and-os-restrictions">Secure booting and OS restrictions<a class="headerlink" href="#secure-booting-and-os-restrictions" title="Permanent link">&para;</a></h2>
+<p>This design does not employ a secure booting scheme, which should be considered
+in production-grade designs. The microSD card is not encrypted and therefore
+can be mounted on another device and accessed freely. Furthermore, the embedded
+OS does not include predefined user accounts and access policies, instead, a
+root account with no password carries out all operations. In a final product
+you should restrict access according to the intended use cases.</p>
+<h2 id="safe-booting-and-remote-updates">Safe booting and remote updates<a class="headerlink" href="#safe-booting-and-remote-updates" title="Permanent link">&para;</a></h2>
+<p>Adding remote update capability to a design is important for a final product,
+which is not part of this system example design. It enables patching
+vulnerabilities and making improvements on the product in the field, especially
+when it is not feasible to gain physical access to the product. Various stages
+of the bootloader, embedded Linux, drivers, application software, HPS
+configurations and FPGA bitstream files may be updated remotely with
+appropriate recovery mechanisms in place. You may also consider adding remote
+reset and power cycling features depending on the application.</p>
+<h2 id="secure-network-connection">Secure network connection<a class="headerlink" href="#secure-network-connection" title="Permanent link">&para;</a></h2>
+<p>In this design the web server of the application uses unencrypted HTTP
+protocol. In a final product it is necessary to consider the safety
+implications and use encryption on all types of network connections. It is also
+imperative to have a firewall suitable for the end user product with proper
+restrictions and other security considerations in place. In extreme cases you
+may disable network connectivity at OS kernel level when network connectivity
+is not desired. </p>
+<h2 id="related-information">Related Information<a class="headerlink" href="#related-information" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://www.intel.com/content/www/us/en/docs/programmable/683269/current/using-the-design-security-features-in-fpgas.html">AN 556: Using the Design Security Features in Altera FPGAs</a></li>
+</ul>
+<p><br></p>
+<p><a class="md-button" href="../camera_4k/#documentation">Back</a></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 5, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 10, 2025</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 5, 2025</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 10, 2025</span>
       
     
   </small>
