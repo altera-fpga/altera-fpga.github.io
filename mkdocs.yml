@@ -242,8 +242,10 @@ nav:
             - Helloworld and OCM memory test design on Nios® V/c Processor: embedded-designs/agilex-5/e-series/premium/niosv/niosv_c/niosv_c_helloworld_ocm_mem_test/ug-helloworld-ocm-mem-test-agx5e-premium.md
           - Nios V/m:
             - Nios® V/m Processor Baseline GHRD Design: embedded-designs/agilex-5/e-series/premium/niosv/niosv_m/niosv_m_baseline_ghrd/ug-baseline-ghrd-agx5e-premium.md
+            - Nios® V/m Full Feature Golden Hardware Reference Design: embedded-designs/agilex-5/e-series/premium/niosv/niosv_m/niosv_m_full_feature_ghrd/ug-full-feature-ghrd-agx5e-premium.md
           - Nios V/g:
-            - Nios® V/g TinyML LiteRT for Microcontroller Design: embedded-designs/agilex-5/e-series/premium/niosv/niosv_g/tinyml_liteRT/ug-tinyml-liteRT-agx5e-premium.md 
+            - Nios® V/g TinyML LiteRT for Microcontroller Design: embedded-designs/agilex-5/e-series/premium/niosv/niosv_g/tinyml_liteRT/ug-tinyml-liteRT-agx5e-premium.md
+            - Nios® V/g Processor Ping Application: embedded-designs/agilex-5/e-series/premium/niosv/niosv_g/webserver_ping/ug-webserver-ping-agx5e-premium.md 
         - Baremetal Hello World Example: baremetal-embedded/agilex-5/e-series/premium/ug-baremetal-agx5e-premium.md
         - Third Party Boards - HPS-FPGA Interfaces Demos User Guide: https://github.com/altera-fpga/agilex5-demo-hps2fpga-interfaces/blob/main/documentation/01_index.md
         - Debugging U-Boot with Arm Development Studio: demos/agilex-5/e-series/premium/armds-debug-uboot/ug-armds-debug-uboot-agx5e-premium.md
@@ -259,6 +261,8 @@ nav:
         - Drive-On-Chip with PLC Design Example for Agilex™ Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-plc.md
         - ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-crc.md
         - 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k/camera_4k.md
+        - 4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k_ai/camera_4k_ai.md
+        - Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/holoscan-sensor-bridge/mipi/hsb-mipi-1-10GbE.md
         - Agilex™ 5 FPGA E-Series Modular Development Kit 1x10G Ethernet System Example Design: embedded-designs/agilex-5/e-series/modular/ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g.md
         - TSN Examples:
           - HPS TSN SGMII XCVR System 3x2.5G Example Design User Guide: embedded-designs/agilex-5/e-series/modular/tsn/sgmii_xcvr_3x2.5G/ug-tsn-sgmii-xcvr-3x2.5G-agilex5.md

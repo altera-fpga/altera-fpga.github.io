@@ -1,4 +1,5 @@
-### Software Requirements to build
+### **Software Requirements to build**
+
 * Linux OS installed.
 * 72 GB free storage (~2GB for Quartus® Build and ~70GB for YOCTO/KAS build).
 * Python/PIP/KAS for Yocto Build (or a suitable container) see [KAS].
@@ -7,4 +8,3 @@
 * FPGA NiosV Open-Source Tools 25.1 (installed with Quartus® Prime).
 
 <br/>
-

@@ -2,6 +2,8 @@
 
 
 
+
+
 # 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices
 
 The design is compatible with
@@ -9,15 +11,16 @@ The design is compatible with
 
 ## Overview
 
-The 4K Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5
-Devices demonstrates a practical glass-to-glass camera solution. The exclusive
-support for industry-standard Mobile Industry Processor Interface (MIPI) D-PHY
-and MIPI CSI-2 interface on Agilex™ 5 FPGAs provides a powerful tool for camera
-product development. The MIPI interface supports up to 2.5Gbps per lane and up
-to 8x lanes per MIPI interface enables seamless data reception from multiple 4K
-image sensors to the FPGA fabric for further processing. Each MIPI CSI-2 IP
-instance converts pixel data to AXI4-Streaming outputs, enabling connectivity
-to other IP cores within Altera®'s Video and Vision Processing (VVP) Suite.
+The 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices demonstrates a practical glass-to-glass
+camera solution. The exclusive support for industry-standard Mobile Industry
+Processor Interface (MIPI) D-PHY and MIPI CSI-2 interface on Agilex™ 5 FPGAs
+provides a powerful tool for camera product development.
+
+The MIPI interface supports up to 2.5Gbps per lane and up to 8x lanes per MIPI
+interface, enabling seamless data reception from multiple 4K image sensors to
+the FPGA fabric for further processing. Each MIPI CSI-2 IP instance converts
+pixel data to AXI4-Streaming outputs, enabling connectivity to other IP cores
+within Altera®'s Video and Vision Processing (VVP) Suite.
 
 The design is a hardware-software co-design, whose hardware component comprises
 an Image Signal Processor (ISP), various VVP IPs, Hard Processor Subsystem
@@ -45,24 +48,25 @@ various coefficients and Look Up Tables (LUTs) in real time. The frontend of
 the software creates a web based Graphical User Interface (GUI) and runs it
 over a web server.
 
-The following diagrams provide an overview of the interaction of software
+The following diagram provides an overview of the interaction of software
 running on ARM CPUs inside the Hard Processor Subsystem (HPS) and hardware
 components running in the programmable logic parts of the device. (For more
 information of ARM HPS in Altera® Agilex™ Devices refer to the
-[User Manuals](#useful-user-manuals-and-reference-materials) section.)
+[Other Documentation and References](#other-documentation-and-references) section.)
 
 <br/>
 
-![VVP_ISP_ED_Top_level](../camera_4k_resources/images/VVP_ISP_ED_Top_level.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![VVP_ISP_ED_Top_level](../camera_4k_resources/images/VVP_ISP_ED_Top_level.png){:style="display:block; margin-left:auto; margin-right:auto; width: 80%"}
 <center markdown="1">
 
-**High-Level Block Diagram of the 4Kp60 Multi-Sensor HDR Camera Solution System Example Design**
+**High-Level Block Diagram of the Camera Solution System Example Design**
 </center>
 <br/>
 
 ## Pre-requisites
 
-### Hardware Requirements
+### **Hardware Requirements**
+
 * [Agilex™ 5 FPGA E-Series 065B Modular Development Kit].
 
 <br/>
@@ -77,32 +81,34 @@ information of ARM HPS in Altera® Agilex™ Devices refer to the
   * [Wide 110deg HFOV Lens], or
   * [Medium 100deg HFOV Lens], or
   * [Narrow 54deg HFOV Lens].
-* Mount/Tripod
+* (Optional) Mount/Tripod
   * [Framos Tripod Mount Adapter].
   * [Tripod].
 * A Framos cable for PixelMate MIPI-CSI-2 for each Camera Module:
   * [150mm flex-cable], or
   * [300mm micro-coax cable].
-* Minimum 8GB U3 microSD Card.
-* DP Cable or HDMI Cable (with [4Kp60 Converter Dongle]).
-* USB Micro B JTAG Cable (for JTAG programming).
-* USB Micro B Serial Cable (for HPS terminal connection).
-* RJ45 Ethernet Cable (HPS network connection).
-* Monitor/TV (recommend 4Kp60 capable).
+* (Optional) [Framos GMSL3 5m] (if the Camera Solution System Example Design
+  supports this feature).
+* MicroSD card (minimum 8Gb).
+* DP cable or HDMI cable with [DP to HDMI Adapter] (recommend 4Kp60 capable).
+* USB Micro B cable x2 (for QSPI programming and HPS serial console access).
+* Ethernet cable (for HPS network connection).
+* PC monitor or TV: 4Kp60 recommended.
 
 <br/>
 
 
-### Software Requirements to run
+### **Software Requirements to run**
+
 * Host PC with:
   * 8 GB of RAM (less if not rebuilding binaries).
   * Linux/Windows OS installed.
   * Serial terminal (such as GtkTerm or Minicom on Linux, and [TeraTerm] or
-    PuTTY on Windows).
+    [PuTTY] on Windows).
     * FTDI FT232R USB UART drivers (for a Windows host).
   * Tool to write images for removable USB drives or microSD cards such as
   [Win32DiskImager] on Windows or "dd" command on Linux.
-  * Altera® Quartus® Prime Pro Edition version 25.1 Programmer and Tools.
+  * [Altera® Quartus® Prime Pro Edition version 25.1 Programmer and Tools].
   * Ethernet connection (either direct from Host PC to development board, or
     via a switch or router).
     * Note, you may need to disconnected/disabled VPN if it is installed on the
@@ -112,9 +118,16 @@ information of ARM HPS in Altera® Agilex™ Devices refer to the
 <br/>
 
 
+## Getting Started - run with pre-built binaries
+
+Follow the instructions provided in this section to run the Camera Solution
+System Example Design on the Agilex™ 5 FPGA E-Series 065B Modular Development
+Kit.
+
 ### **Download the pre-built Binaries**
 
-* Download the Agilex™ 5 Modular Development board binaries:
+* Download the pre-built Camera Solution System Example Design binaries for the
+  Modular Development Kit:
 
 <br/>
 <center markdown="1">
@@ -123,62 +136,77 @@ information of ARM HPS in Altera® Agilex™ Devices refer to the
 
 | Source | Link | Description |
 | ---- | ---- | ---- |
-| QSPI | [top.core.jic] | Allows the development board to be booted from the microSD card |
-| microSD Card Image | [hps-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz] | The complete Camera Solution System Example Design |
+| QSPI | [top.core.jic] | Allows the Camera Solution System Example Design to be booted from the microSD card |
+| microSD Card Image | [hps-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz] | The Camera Solution System Example Design |
 
 <br/>
 
 </center>
 
 
-## Getting Started - run with pre-built binaries
-
-Follow the instructions provided in this section to run the 4K Multi-Sensor HDR
-Camera Solution System Example Design on the Agilex™ 5 FPGA E-Series 065B
-Modular Development Kit.
-
 ## Programming
 
-### **Setting Up your Modular Development Board**
+### **Setting Up the Development Kit**
 
 !!! NOTE "Warning"
-    Handle ESD-sensitive equipment (boards, microSD Cards, Camera sensors, etc.) only when properly grounded and at an ESD-safe workstation
+    Handle ESD-sensitive equipment (boards, microSD cards, camera sensors, etc.) only when properly grounded and at an ESD-safe workstation
 
-* Configure the board switches as shown:
+* Configure the Agilex™ 5 FPGA E-Series 065B Modular Development Kit switches
+  as shown:
 
 <br>
 
 ![board-1](../common/images/board-1.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
-**Modular Development Board - Default Switch Positions**
+**Modular Development Kit - Default Switch Positions**
 </center>
 <br>
 
-!!! note "Main switch configurations used by the Camera Solution System Example Design"
+!!! note "FPGA configuration modes used by the Camera Solution System Example Design"
 
-    JTAG Mode:         SOM S4=OFF:OFF, or<br>
-    ASx4 (QSPI) Mode:  SOM S4=ON:ON
+    The Camera Solution System Example Design can use one of the following FPGA configuration modes: JTAG or ASx4(QSPI).<br>
+    The MSEL switch (S4) on the SOM board instructs the FPGA device on which configuration mode to use.
+
+    JTAG mode:         Modular Development Kit SOM Board S4=OFF:OFF, or<br>
+    ASx4 (QSPI) mode:  Modular Development Kit SOM Board S4=ON:ON
+
+    The pre-built version of the design uses ASx4 (QSPI) mode, S4=ON:ON.
 
 <br>
 
-* Connect micro USB cable between the carrier board (`J35`) and the Host PC.
-  This will be used for JTAG communication. Look at what ports are enumerated
-  on your Host computer. There should be a series of four.
-* Connect micro USB cable between the SOM board (`J2`, HSP_UART) and the Host
-  PC. This will be used for HPS UART communication. Look at what ports are
-  enumerated on your Host computer. There should be a series of four. Use the
-  3rd one in the list as the HPS serial port.
-* Connect an RJ45 cable between the ethernet port on the SOM board (`J6`, ETH
-  1G HPS) and make sure it is on the same network as your Host PC. You can
-  check the `eth0` IP address after boot using the Linux `ip a` command.
+* Make the required connections between the Host PC and the Modular Development
+  Kit as shown in the following diagram:
+
+<br/>
+
+![ed-conn](../camera_4k_resources/images/ed-conn.png){:style="display:block; margin-left:auto; margin-right:auto;"}
+<center markdown="1">
+
+**Host PC and Modular Development Kit Connections diagram**
+</center>
+<br/>
+
+* Connect micro USB cable between the Modular Development Kit Carrier Board
+  (`J35`) and the Host PC. This will be used for QSPI programming / FGPA
+  configuration over JTAG.
+  Look at what serial ports are enumerated on your Host computer. There should be a
+  series of four.
+* Connect micro USB cable between the Modular Development Kit SOM Board (`J2`,
+  HSP_UART) and the Host PC. This will be used to access HPS serial console. Look
+  at what ports are enumerated on your Host computer. There should be a series
+  of four. Use the 3rd one in the list as the HPS serial port.
+* Connect an RJ45 cable between the ethernet port on the Modular Development
+  Kit SOM Board (`J6`, ETH 1G HPS) and make sure it is on the same network as
+  your Host PC. You can check the `eth0` IP address after boot using the Linux
+  `ip a` command.
 
 <br>
 
 ![Agx-MDK-Conn](../common/images/Agx5-MDK-Conn.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
-**Board Connections**
+**Modular Development Kit Connector Locations**
 </center>
 <br>
 
@@ -186,7 +214,7 @@ Modular Development Kit.
 ### **Burn the microSD Card Image**
 
 * Either use your own or download the pre-built `<name>.wic.gz` image.
-* Extract `<name>.wic` image from the zip file
+* If required, extract `<name>.wic` image from the compressed download file.
   * On Linux, use the `dd` utility:
 
   ```bash
@@ -227,28 +255,28 @@ Modular Development Kit.
     **Write the microSD Card using the "Disk Imager" tool**
     </center>
 
-* Turn off the board and insert the microSD card in the microSD card slot
-  located on the SOM board.
+* Turn off the Modular Development Kit and insert the microSD card in the
+  microSD card slot located on the Modular Development Kit SOM Board.
 
 <br>
 
 
 
-[4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/camera/camera_4k
 [Agilex™ 5 E-Series Modular Development Board GSRD User Guide (25.1)]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/
 
 
 
 [Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs (25.1)]: https://www.intel.com/content/www/us/en/docs/programmable/814346/25-1/hard-processor-system-technical-reference.html
-[NiosV Processor for Altera® FPGA]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/processors-peripherals/niosv.html
-[Agilex™ 5 FPGA E-Series 065B Modular Development Kit]: https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html
+[NiosV Processor for Altera® FPGA]: https://www.altera.com/design/guidance/nios-v-developer
+[Agilex™ 5 FPGA E-Series 065B Modular Development Kit]: https://www.altera.com/products/devkit/a1jui0000061qabmaa/agilex-5-fpga-and-soc-e-series-modular-development-kit-es
 [Agilex™ 5 FPGA E-Series 065B Modular Development Kit Product Brief]: https://www.intel.com/content/www/us/en/content-details/815178/agilex-5-fpga-e-series-065b-modular-development-kit-product-brief.html
+[Altera® FPGA AI Suite]: https://www.altera.com/products/development-tools/fpga-ai-suite
 
 
 [Win32DiskImager]: https://sourceforge.net/projects/win32diskimager
 [7-Zip]: https://www.7-zip.org
-[teraterm]: https://github.com/TeraTermProject/teraterm/releases
-[putty]: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+[TeraTerm]: https://github.com/TeraTermProject/teraterm/releases
+[PuTTY]: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
 
 
 [Framos FSM:GO IMX678C Camera Modules]: https://www.framos.com/en/fsmgo
@@ -259,16 +287,25 @@ Modular Development Kit.
 [Tripod]: https://thepihut.com/products/small-tripod-for-raspberry-pi-hq-camera
 [150mm flex-cable]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FMA-FC-150-60-V1A?qs=GedFDFLaBXGCmWApKt5QIQ%3D%3D&_gl=1*d93qim*_ga*MTkyOTE4MjMxNy4xNzQxMTcwMzQy*_ga_15W4STQT4T*MTc0MTE3MDM0Mi4xLjEuMTc0MTE3MDQ5OS40NS4wLjA
 [300mm micro-coax cable]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FFA-MC50-Kit-0.3m?qs=%252BHhoWzUJg4K3LtaE207mhw%3D%3D
-[4Kp60 Converter Dongle]: https://www.amazon.co.uk/gp/product/B01M6WK3KU/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
+[DP to HDMI Adapter]: https://www.amazon.co.uk/gp/product/B01M6WK3KU/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
+[Framos GMSL3 5m]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FFA-GMSL3-Kit-5m?qs=%252BHhoWzUJg4IkLHv%2F6fzsXQ%3D%3D
+[Framos FFA-GMSL-SER-V2A Serializer]: https://www.framos.com/en/products/ffa-gmsl-ser-v2a-27617
+[Framos FFA-GMSL-DES-V2A Deserializer]: https://www.framos.com/en/products/ffa-gmsl-des-v2a-27240
 
 
-[VVP IP Suite, VVP Tone Mapping Operator (TMO) IP, VVP Warp IP, and 3D LUT IP]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/dsp/video-vision-processing-suite.html
-[MIPI DPHY IP and MIPI CSI-2 IP]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/interface-protocols/mipi-d-phy.html#tab-blade-1-3
-[Nios® V Processor]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/processors-peripherals/niosv/glossy.html
+[VVP IP Suite]: https://www.altera.com/products/ip/a1jui000004qxfpmak/video-and-vision-processing-suite
+[MIPI DPHY IP and MIPI CSI-2 IP]: https://www.altera.com/products/ip/a1jui0000049uuamam/mipi-d-phy-ip#tab-blade-1-3
+[Nios® V Processor]: https://www.altera.com/products/ip/a1jui0000049uvama2/nios-v-processors
 
 
 [Altera® Quartus® Prime Pro Edition version 25.1 Linux]: https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html
 [Altera® Quartus® Prime Pro Edition version 25.1 Windows]: https://www.intel.com/content/www/us/en/software-kit/851653/intel-quartus-prime-pro-edition-design-software-version-25-1-for-windows.html
+[Altera® Quartus® Prime Pro Edition version 25.1 Programmer and Tools]: https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html
+
+
+[ultralytics YOLO]: https://docs.ultralytics.com
+[ONNX]: https://onnx.ai/
+[OpenVINO Toolkit]: https://storage.openvinotoolkit.org/repositories/openvino/packages/2024.6/linux
 
 
 
@@ -276,12 +313,12 @@ Modular Development Kit.
 
 This should only need to be done once. To program the QSPI flash memory:
 
-* Power down the board. Set MSEL=JTAG by setting the **S4** dip switch
-  on the SOM to **OFF-OFF**.
+* Ensure the Modular Development Kit is powered off. Set MSEL=JTAG by setting
+  the **S4** dip switch on the Modular Development SOM Board to **OFF-OFF**.
   * This prevents any bootloader from starting and leaves the JTAG chain in a
     default state.
 
-* Power up the board.
+* Power up the Modular Development Kit.
 
 * Either use your own or download the pre-built `JIC` image, and write it to
   the QSPI Flash memory using either the command:
@@ -325,8 +362,8 @@ Wait until the programming has been completed (which can take several minutes).
 </center>
 <br>
 
-* Power down the board. Set MSEL=ASX4 (QSPI) by setting the **S4** dip switch
-  on the SOM to **ON-ON**.
+* Power down the Modular Development Kit. Set MSEL=ASX4 (QSPI) by setting the
+  **S4** dip switch on the Modular Development SOM Board to **ON-ON**.
   * This starts the HPS bootloader and FPGA configuration from the microSD Card
     after power up.
 <br>
@@ -334,75 +371,100 @@ Wait until the programming has been completed (which can take several minutes).
 
 ## Running
 
-### **Board and Host PC Setup**
+### **Setting Up the Camera Solution**
 
 !!! NOTE "Warning"
     Handle ESD-sensitive equipment (boards, microSD Cards, Camera sensors, etc.) only when properly grounded and at an ESD-safe workstation
 
-Make the required connections between the Host PC and the Modular Development
-board as shown in the following diagram:
+* Make the required connections between the Host PC and the
+[Agilex™ 5 FPGA E-Series 065B Modular Development Kit] as detailed in the
+  **Setting Up the Modular Development Kit** section.
+* Connect the Framos cable(s) between the Framos Camera Module(s) and the MIPI
+  connector(s) on the Modular Development Kit Carrier Board taking care to
+  align the cable(s) correctly with the connector(s) (pin 1 to pin 1). When
+  using a single camera module, either MIPI connector can be used.
 
 <br/>
-
-![ed-conn](../camera_4k_resources/images/ed-conn.png){:style="display:block; margin-left:auto; margin-right:auto;"}
-<center markdown="1">
-
-**Development Kit and Host PC Connection diagram**
-</center>
-<br/>
-
-* Connect the Framos cable(s) between the Framos Camera Module(s) and the Modular
-  Development board taking care to align the cable(s) correctly with the
-  connectors (pin 1 to pin 1). For a single camera module, either MIPI connector can be used.
 
 ![board-mipi](../common/images/Agx5-MDK-MIPI.png){:style="display:block; margin-left:auto; margin-right:auto;"}
 <center markdown="1">
 
-**Board MIPI connections**
+**Modular Development Kit Carrier Board MIPI Connector Locations**
 </center>
 <br/>
 
 ![mipi-ribbon](../common/images/mipi-ribbon-connection.png){:style="display:block; margin-left:auto; margin-right:auto;"}
 <center markdown="1">
 
-**Board MIPI and Ribbon Cable**
+**Modular Development Kit Carrier Board with MIPI Framos Flex Cable Connected**
 </center>
 <br/>
 
 ![camera-ribbon](../common/images/camera-ribbon-connection.png){:style="display:block; margin-left:auto; margin-right:auto;"}
 <center markdown="1">
 
-**Camera and Ribbon Cable**
+**Framos Camera with Flex Cable Connected**
 </center>
+<br/>
+
+* If using the optional Framos GMSL3 solution (and the Camera Solution System
+  Example Design supports it):
+  * Connect the [Framos FFA-GMSL-SER-V2A Serializer] module back-to-back to the
+    Framos Camera module.
+  * Using the Framos [150mm flex-cable] connect the
+    [Framos FFA-GMSL-DES-V2A Deserializer] module to the MIPI0 connector on the
+    Modular Development Kit Carrier Board taking care to align the cable
+    correctly with the connector (pin 1 to pin 1).
+    * Note the System Example Design only supports one GMSL3 link on the MIPI0
+      port. However, a second Framos Camera module can be connected directly to
+      the MIPI1 port using a Framos [150mm flex-cable].
+  * Connect the serializer module to the deserializer module using the GMSL3 5m
+    coax cable. 
+  * Connect the power supply to the deserializer module.
+    * Note the GMSL3 deserializer module must be powered up before the Modular
+      Development Kit.
+  * Power up the Modular Development Kit and ensure the deserializer
+    modules Lock LED is illuminated green.
+
+<br/>
+
+![GMSL](../common/images/GMSL.png){:style="display:block; margin-left:auto; margin-right:auto; width: 85%"}
+<center markdown="1">
+
+**GMSL Connections**
+</center>
+<br/>
+
+* Connect the Modular Development Kit Carrier Board DisplayPort Tx connector to
+  the Monitor using a suitable cable (and the adapter if you are using an HDMI cable).
+
 <br/>
 
 ![full-system](../common/images/full-system.png){:style="display:block; margin-left:auto; margin-right:auto;"}
 <center markdown="1">
 
-**Board with Connections**
+**Modular Development Kit with Connections**
 </center>
 <br/>
 
-* Connect the Modular Development carrier board DisplayPort Tx connector to the
-  Monitor using a suitable cable (and dongle if you are using HDMI).
 
+### **Connecting with a Web Browser**
 
-### **Connect Browser to UI**
-* Power up the board (if not already powered) and set up the serial terminal emulator (minicom,
-  [teraterm], [putty], etc.):
-  * Select the correct `COMx` port. (The Modular Development board presents 4
+* Power up the Modular Development Kit (if not already powered) and set up the
+  serial terminal emulator (minicom, [TeraTerm], [PuTTY], etc.):
+  * Select the correct `COMx` port. (The Modular Development Kit presents 4
     serial COM ports over a single connection and the Linux system uses the 3rd
     port in order). Set the port configuration as follows:
     * 115200 baud rate, 8 Data bits, 1 Stop bit, CRC and Hardware flow control
       disabled.
-* The Linux OS will boot and the 4K Multi-Sensor HDR Camera Solution System
-  Example Design Application should run automatically.
-* A few seconds after Linux boots, the application will detect the attached
-  Monitor and the ISP processed output will be displayed using the best
-  supported format.
-* Take note of the board's IP address.
-  * The board's IP address can also be found using the terminal by logging in
-    as `root` (no password required) and querying the Ethernet controller:
+* The Linux OS will boot and the Camera Solution System Example Design Software
+  Application should run automatically.
+* A few seconds after Linux boots, the Software Application will detect the
+  attached Monitor and the ISP processed output will be displayed using the
+  best supported format.
+* Take note of the Modular Development Kit's IP address.
+  * The IP address can also be found using the terminal by logging in as `root`
+    (no password required) and querying the Ethernet controller:
 
     ```bash
     root
@@ -415,7 +477,7 @@ board as shown in the following diagram:
 ![ed-conn](../camera_4k_resources/images/Setup/ifconfig-dhcp.png){:style="display:block; margin-left:auto; margin-right:auto;"}
 <center markdown="1">
 
-**Example ifconfig output for if network provides DHCP**
+**An Example ifconfig Output for a DHCP Network**
 </center>
 
 <br/>
@@ -424,16 +486,16 @@ board as shown in the following diagram:
 
 <center markdown="1">
 
-**Example ifconfig output for if no DHCP support, or direct connection**
+**An Example ifconfig Output for a Network with no DHCP support or is using a direct connection**
 </center>
 
 <br/>
 
 * Connect your web browser to the boards IP address so you can interact with
-  the 4K Multi-Sensor HDR Camera Solution System Example Design using the GUI.
-  * To connect using IPv6 for the examples above you would use
+  the Camera Solution System Example Design using the GUI.
+  * To connect using IPv6 in the example address shown above, you would use
     `http://[fe80::a8bb:ccff:fe55:6688]` (note the square brackets)
-  * To connect using IPv4 for the DHCP example above you would use
+  * To connect using IPv4 for the DHCP example shown above, you would use
     `http://192.168.0.1`
 
 <br/>
@@ -441,7 +503,7 @@ board as shown in the following diagram:
 ![ed-conn](../camera_4k_resources/images/Setup/Browser-IPv6.png){:style="display:block; margin-left:auto; margin-right:auto;"}
 <center markdown="1">
 
-**Example web browser URL for IPv6 address**
+**An Example Web Browser URL for an IPv6 Address**
 </center>
 
 <br/>
@@ -449,21 +511,20 @@ board as shown in the following diagram:
 ![ed-conn](../camera_4k_resources/images/Setup/Browser-IPv4.png){:style="display:block; margin-left:auto; margin-right:auto;"}
 <center markdown="1">
 
-**Example web browser URL for IPv4 address**
+**An Example Web Browser URL for an IPv4 address**
 </center>
 
 <br/>
 
 * During connection, you will see the Altera® splash screen, after which you
-  will be presented with the 
-  [Web GUI:](../camera_4k_resources/ui-funct-descr.md)
+  will be presented with the Web GUI.
 
 <br/>
 
 ![ed-conn](../camera_4k_resources/images/Setup/UI-screen.png){:style="display:block; margin-left:auto; margin-right:auto;"}
 <center markdown="1">
 
-**Example Camera Solution GUI**
+**An Example Camera Solution System Example Design GUI**
 </center>
 
 <br/>
@@ -471,17 +532,17 @@ board as shown in the following diagram:
 
 ## Recommended User Flows
 
-### Sources
+### **Sources**
 
 The sources listed in this table are the most current and highly recommended
-for Quartus® 25.1 builds. Users are advised to utilize the updated versions
-of these building blocks in production environments. Please note that this
-is a demonstration design and is not suitable for production or final
-deployment.
+for [Altera® Quartus® Prime Pro Edition version 25.1 Linux](https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html) builds. Users are
+advised to utilize the updated versions of these building blocks in production
+environments. Please note that this is a demonstration design and is not
+suitable for production or final deployment.
 
 <center markdown="1">
 
-**System Example Design Source Repository**
+**Camera Solution System Example Design Source Repository**
 
 |Component |Location |Branch |
 |-|-|-|
@@ -492,14 +553,14 @@ deployment.
 
 <br/>
 
-With the available resources, you can create and modify, build and compile, and
-execute the 4K Multi-Sensor HDR Camera Solution System Example Design. There
-are 3 recommended flows that you can explore:
+With the available source, you can create and modify, build and compile, and
+execute the Camera Solution System Example Design. There are 3 recommended
+flows that you can explore:
 
 * [User Flow 1]: [Getting Started - Running with pre-built binaries.](#getting-started-run-with-pre-built-binaries)
 * [User Flow 2]: Use the [SOF Modular Design Toolkit (MDT) Flow](https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt) - typically
-  used for Quartus® with OpenCore Plus IP Evaluation License for time limited and tethered
-  camera solutions.
+  used for Quartus® with OpenCore Plus IP Evaluation License for time limited
+  and tethered camera solutions.
 * [User Flow 3]: Use the [RBF Modular Design Toolkit (MDT) Flow](https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt) - typically
   used for Quartus® with full IP License for turnkey microSD card camera
   solutions.
@@ -510,11 +571,11 @@ are 3 recommended flows that you can explore:
     the following two operation modes: <br/>
     Untethered — run the design containing the licensed IP for a limited time. <br/>
     Tethered — run the design containing the licensed IP for a longer time or
-    indefinitely. This operation requires a JTAG connection between your board
-    and the Host computer. <br/>
-    Note: All IP cores that use OpenCore Plus time out simultaneously when any
-    IP core in the design times out.
-
+    indefinitely. This operation requires a JTAG connection between your
+    Development Kit and the Host computer. <br/>
+    Note: All video IP cores that use OpenCore Plus time out simultaneously
+    when any one video IP core in the design times out.
+    
 <br/>
 
 <style>
@@ -531,44 +592,51 @@ y { color: #CCCC00; font-weight: bold;}
 
  |User Flow                        |Description                                                                                                                                                                         | [User Flow 1]                                                                       | [User Flow 2]                                                                                     | [User Flow 3]                                                                                     |
  |---------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------:|
- |[Pre-requisites](#pre-requisites)| [Hardware Requirements.](#hardware-requirements)                                                                                                                                   |[<g>&check;</g>](../camera_4k/camera_4k.md#hardware-requirements)                    |[<g>&check;</g>](../camera_4k_resources/flow2-sof-mdt.md#hardware-requirements)                    |[<g>&check;</g>](../camera_4k_resources/flow3-rbf-mdt.md#hardware-requirements)                    |
- |                                 | Software Requirements to build.                                                                                                                                                    |<r>&cross;</r>                                                                       |[<g>&check;</g>](../camera_4k_resources/flow2-sof-mdt.md#software-requirements-to-build)           |[<g>&check;</g>](../camera_4k_resources/flow3-rbf-mdt.md#software-requirements-to-build)           |
- |                                 | License Requirements to build.                                                                                                                                                     |<r>&cross;</r>                                                                       |[<g>&check;</g>](../camera_4k_resources/flow2-sof-mdt.md#license-requirements-to-build)            |[<g>&check;</g>](../camera_4k_resources/flow3-rbf-mdt.md#license-requirements-to-build)            |
- |                                 | [Software Requirements to run.](#software-requirements-to-run)                                                                                                                     |[<g>&check;</g>](../camera_4k/camera_4k.md#software-requirements-to-run)             |[<g>&check;</g>](../camera_4k_resources/flow2-sof-mdt.md#software-requirements-to-run)             |[<g>&check;</g>](../camera_4k_resources/flow3-rbf-mdt.md#software-requirements-to-run)             |
- |                                 | [Download the Pre-built Binaries.](#download-the-pre-built-binaries)                                                                                                               |[<g>&check;</g>](../camera_4k/camera_4k.md#download-the-pre-built-binaries)          |<r>&cross;</r>                                                                                     |<r>&cross;</r>                                                                                     |
+ |[Pre-requisites](#pre-requisites)| [Hardware Requirements.](#hardware-requirements)                                                                                                                                   |[<g>&check;</g>](../camera_4k/camera_4k.md#hardware-requirements)            |[<g>&check;</g>](../camera_4k/flow2-sof-mdt.md#hardware-requirements)            |[<g>&check;</g>](../camera_4k/flow3-rbf-mdt.md#hardware-requirements)            |
+ |                                 | Software Requirements to build.                                                                                                                                                    |<r>&cross;</r>                                                                       |[<g>&check;</g>](../camera_4k/flow2-sof-mdt.md#software-requirements-to-build)   |[<g>&check;</g>](../camera_4k/flow3-rbf-mdt.md#software-requirements-to-build)   |
+ |                                 | License Requirements to build.                                                                                                                                                     |<r>&cross;</r>                                                                       |[<g>&check;</g>](../camera_4k/flow2-sof-mdt.md#license-requirements-to-build)    |[<g>&check;</g>](../camera_4k/flow3-rbf-mdt.md#license-requirements-to-build)    |
+ |                                 | [Software Requirements to run.](#software-requirements-to-run)                                                                                                                     |[<g>&check;</g>](../camera_4k/camera_4k.md#software-requirements-to-run)     |[<g>&check;</g>](../camera_4k/flow2-sof-mdt.md#software-requirements-to-run)     |[<g>&check;</g>](../camera_4k/flow3-rbf-mdt.md#software-requirements-to-run)     |
+ |                                 | [Download the Pre-built Binaries.](#download-the-pre-built-binaries)                                                                                                               |[<g>&check;</g>](../camera_4k/camera_4k.md#download-the-pre-built-binaries)  |<r>&cross;</r>                                                                                     |<r>&cross;</r>                                                                                     |
  |HW-Compilation                   | Creating and Building the Design based on the [SOF Modular Design Toolkit (MDT) Flow](https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt)                                                                                              |<r>&cross;</r>                                                                       |[<g>&check;</g><span hidden="true"> SOF MDT Flow </span>](https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt)                                          |<r>&cross;</r>                                                                                     |
  |                                 | Creating and Building the Design based on the [RBF Modular Design Toolkit (MDT) Flow](https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt)                                                                                              |<r>&cross;</r>                                                                       |<r>&cross;</r>                                                                                     |[<g>&check;</g><span hidden="true"> RBF MDT Flow </span>](https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt)                                          |
  |SW-Compilation                   | [Create microSD card image (.wic.gz) using YOCTO/KAS](https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/sw/README.md) <br/> <r>NOTE</r>: use <g>**KAS_MACHINE=agilex5_mk_a5e065bb32aes1**</g> and <g>**kas/agilex_camera_ff.yml**</g> configuration|<r>&cross;</r>                                                                       |[<g>&check;</g><span hidden="true"> YOCTO/KAS </span>](https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/sw/README.md)                                             |<r>&cross;</r>                                                                                     |
  |                                 | [Create microSD card image (.wic.gz) using YOCTO/KAS](https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/sw/README.md) <br/> <r>NOTE</r>: use <g>**KAS_MACHINE=agilex5_mk_a5e065bb32aes1**</g> and <g>**kas/agilex_camera.yml**</g> configuration   |<r>&cross;</r>                                                                       |<r>&cross;</r>                                                                                     |[<g>&check;</g><span hidden="true"> YOCTO/KAS </span>](https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/sw/README.md)                                             |
- |[Programming](#programming)      | [Setting Up your Modular Development Board.](#setting-up-your-modular-development-board)                                                                                           |[<g>&check;</g>](../camera_4k/camera_4k.md#setting-up-your-modular-development-board)|[<g>&check;</g>](../camera_4k_resources/flow2-sof-mdt.md#setting-up-your-modular-development-board)|[<g>&check;</g>](../camera_4k_resources/flow3-rbf-mdt.md#setting-up-your-modular-development-board)|
- |                                 | [Burn the microSD card image.](#burn-the-microsd-card-image)                                                                                                                       |[<g>&check;</g>](../camera_4k/camera_4k.md#burn-the-microsd-card-image)              |[<g>&check;</g>](../camera_4k_resources/flow2-sof-mdt.md#burn-the-microsd-card-image)              |[<g>&check;</g>](../camera_4k_resources/flow3-rbf-mdt.md#burn-the-microsd-card-image)              |
- |                                 | [Program the QSPI Flash Memory.](#program-the-qspi-flash-memory)                                                                                                                   |[<g>&check;</g>](../camera_4k/camera_4k.md#program-the-qspi-flash-memory)            |<r>&cross;</r>                                                                                     |[<g>&check;</g>](../camera_4k_resources/flow3-rbf-mdt.md#program-the-qspi-flash-memory)            |
- |[Running](#running)              | [Board and Host PC Setup.](#board-and-host-pc-setup)                                                                                                                               |[<g>&check;</g>](../camera_4k/camera_4k.md#board-and-host-pc-setup)                  |[<g>&check;</g>](../camera_4k_resources/flow2-sof-mdt.md#board-and-host-pc-setup)                  |[<g>&check;</g>](../camera_4k_resources/flow3-rbf-mdt.md#board-and-host-pc-setup)                  |
- |                                 | Program the FPGA SOF.                                                                                                                                                              |<r>&cross;</r>                                                                       |[<g>&check;</g>](../camera_4k_resources/flow2-sof-mdt.md#program-the-fpga-sof)                     |<r>&cross;</r>                                                                                     |
- |                                 | [Connect Browser to UI.](#connect-browser-to-ui)                                                                                                                                   |[<g>&check;</g>](../camera_4k/camera_4k.md#connect-browser-to-ui)                    |[<g>&check;</g>](../camera_4k_resources/flow2-sof-mdt.md#connect-browser-to-ui)                    |[<g>&check;</g>](../camera_4k_resources/flow3-rbf-mdt.md#connect-browser-to-ui)                    |
+ |[Programming](#programming)      | [Setting Up the Development Kit.](#setting-up-the-development-kit)                                                                                                                 |[<g>&check;</g>](../camera_4k/camera_4k.md#setting-up-the-development-kit)   |[<g>&check;</g>](../camera_4k/flow2-sof-mdt.md#setting-up-the-development-kit)   |[<g>&check;</g>](../camera_4k/flow3-rbf-mdt.md#setting-up-the-development-kit)   |
+ |                                 | [Burn the microSD card image.](#burn-the-microsd-card-image)                                                                                                                       |[<g>&check;</g>](../camera_4k/camera_4k.md#burn-the-microsd-card-image)      |[<g>&check;</g>](../camera_4k/flow2-sof-mdt.md#burn-the-microsd-card-image)      |[<g>&check;</g>](../camera_4k/flow3-rbf-mdt.md#burn-the-microsd-card-image)      |
+ |                                 | [Program the QSPI Flash Memory.](#program-the-qspi-flash-memory)                                                                                                                   |[<g>&check;</g>](../camera_4k/camera_4k.md#program-the-qspi-flash-memory)    |<r>&cross;</r>                                                                                     |[<g>&check;</g>](../camera_4k/flow3-rbf-mdt.md#program-the-qspi-flash-memory)    |
+ |[Running](#running)              | [Setting Up the Camera Solution.](#setting-up-the-camera-solution)                                                                                                                 |[<g>&check;</g>](../camera_4k/camera_4k.md#setting-up-the-camera-solution)   |[<g>&check;</g>](../camera_4k/flow2-sof-mdt.md#setting-up-the-camera-solution)   |[<g>&check;</g>](../camera_4k/flow3-rbf-mdt.md#setting-up-the-camera-solution)   |
+ |                                 | [Connecting with a Web Browser.](#connecting-with-a-web-browser)                                                                                                                   |[<g>&check;</g>](../camera_4k/camera_4k.md#connecting-with-a-web-browser)    |[<g>&check;</g>](../camera_4k/flow2-sof-mdt.md#connecting-with-a-web-browser)    |[<g>&check;</g>](../camera_4k/flow3-rbf-mdt.md#connecting-with-a-web-browser)    |
+ |                                 | Program the FPGA SOF.                                                                                                                                                              |<r>&cross;</r>                                                                       |[<g>&check;</g>](../camera_4k/flow2-sof-mdt.md#program-the-fpga-sof)             |<r>&cross;</r>                                                                                     |
 
 </center>
 <br/>
 
-## Camera Solution System Example Design - Documentation
-* [Features.](../camera_4k_resources/features.md)
-* [ISP Functional Description.](../camera_4k_resources/isp-funct-descr.md)
-* [FPGA Hardware Functional Description.](../camera_4k_resources/hw-funct-descr.md)
-* [Software Functional Description.](../camera_4k_resources/sw-funct-descr.md)
-* [Web GUI Functional Description.](../camera_4k_resources/ui-funct-descr.md)
-* [Design Security Considerations.](../camera_4k_resources/design-security-considerations.md)
-* [Acronyms and Terminology.](../camera_4k_resources/glossary.md)
+## Resources
 
-## Camera Solution System Example Design - References
+### **Documentation**
+* [Features.](./features.md)
+* [ISP IP Design Functional Description.](./isp-funct-descr.md)
+* [Hardware Design Functional Description.](./hw-funct-descr.md)
+* [Software Functional Description.](./sw-funct-descr.md)
+* [Web GUI Functional Description.](./ui-funct-descr.md)
+* [Design Security Considerations.](./design-security-considerations.md)
+* [Acronyms and Terminology.](./glossary.md)
+
+### **References**
 * [Agilex™ 5 FPGA E-Series 065B Modular Development Kit Product Brief](https://www.intel.com/content/www/us/en/content-details/815178/agilex-5-fpga-e-series-065b-modular-development-kit-product-brief.html).
 * [Framos FSM:GO IMX678C Camera Modules](https://www.framos.com/en/fsmgo).
+* [Framos FFA-GMSL-SER-V2A Serializer](https://www.framos.com/en/products/ffa-gmsl-ser-v2a-27617).
+* [Framos FFA-GMSL-DES-V2A Deserializer](https://www.framos.com/en/products/ffa-gmsl-des-v2a-27240).
 * [Video and Vision Processing Suite Altera® FPGA IP User Guide](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/about-the-video-and-vision-processing-suite.html).
-* [VVP IP Suite, VVP Tone Mapping Operator (TMO) IP, VVP Warp IP, and 3D LUT IP](https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/dsp/video-vision-processing-suite.html).
-* [MIPI DPHY IP and MIPI CSI-2 IP](https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/interface-protocols/mipi-d-phy.html#tab-blade-1-3).
-* [Nios® V Processor](https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/processors-peripherals/niosv/glossy.html).
+* [VVP IP Suite](https://www.altera.com/products/ip/a1jui000004qxfpmak/video-and-vision-processing-suite).
+* [Warp](https://www.altera.com/products/ip/a1jui000004rhk1mag/warp-fpga-ip).
+* [Tone Mapping Operator](https://www.altera.com/products/ip/a1jui000004r0hlmak/tone-mapping-operator-fpga-ip).
+* [3D LUT](https://www.altera.com/products/ip/a1jui000004r4gnmas/3d-lut-altera-fpga-ip).
+* [MIPI DPHY IP and MIPI CSI-2 IP](https://www.altera.com/products/ip/a1jui0000049uuamam/mipi-d-phy-ip#tab-blade-1-3).
+* [Nios® V Processor](https://www.altera.com/products/ip/a1jui0000049uvama2/nios-v-processors).
 
 
-## Other Repositories Used
+### **Other Repositories Used**
 |Component |Location |Branch |
 |-|-|-|
 |Modular Design Toolkit|[https://github.com/altera-fpga/modular-design-toolkit](https://github.com/altera-fpga/modular-design-toolkit)|rel-25.1|
@@ -577,10 +645,10 @@ y { color: #CCCC00; font-weight: bold;}
 |U-Boot|[https://github.com/altera-opensource/u-boot-socfpga](https://github.com/altera-opensource/u-boot-socfpga)|v2024.01|
 |Yocto Project: poky|[https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky)|scarthgap|
 
-## Useful User Manuals and Reference Materials
+### **Other Documentation and References**
 * [Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs (25.1)](https://www.intel.com/content/www/us/en/docs/programmable/814346/25-1/hard-processor-system-technical-reference.html).
-* [NiosV Processor for Altera® FPGA](https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/processors-peripherals/niosv.html).
-* [Agilex™ 5 FPGA E-Series 065B Modular Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html).
+* [NiosV Processor for Altera® FPGA](https://www.altera.com/design/guidance/nios-v-developer).
+* [Agilex™ 5 FPGA E-Series 065B Modular Development Kit](https://www.altera.com/products/devkit/a1jui0000061qabmaa/agilex-5-fpga-and-soc-e-series-modular-development-kit-es).
 
 <br/>
 
@@ -600,48 +668,10 @@ You are responsible for safety of the overall system, including compliance with 
 OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 
 
 
-[4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/camera/camera_4k
-[Agilex™ 5 E-Series Modular Development Board GSRD User Guide (25.1)]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/
-
-
-
-[Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs (25.1)]: https://www.intel.com/content/www/us/en/docs/programmable/814346/25-1/hard-processor-system-technical-reference.html
-[NiosV Processor for Altera® FPGA]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/processors-peripherals/niosv.html
-[Agilex™ 5 FPGA E-Series 065B Modular Development Kit]: https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html
-[Agilex™ 5 FPGA E-Series 065B Modular Development Kit Product Brief]: https://www.intel.com/content/www/us/en/content-details/815178/agilex-5-fpga-e-series-065b-modular-development-kit-product-brief.html
-
-
-[Win32DiskImager]: https://sourceforge.net/projects/win32diskimager
-[7-Zip]: https://www.7-zip.org
-[teraterm]: https://github.com/TeraTermProject/teraterm/releases
-[putty]: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
-
-
-[Framos FSM:GO IMX678C Camera Modules]: https://www.framos.com/en/fsmgo
-[Wide 110deg HFOV Lens]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L110A-PM-A1Q1?qs=%252BHhoWzUJg4KQkNyKsCEDHw%3D%3D
-[Medium 100deg HFOV Lens]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L100A-PM-A1Q1?qs=%252BHhoWzUJg4IesSwD2ACIBQ%3D%3D
-[Narrow 54deg HFOV Lens]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L54A-PM-A1Q1?qs=%252BHhoWzUJg4L5yHZulKgVGA%3D%3D
-[Framos Tripod Mount Adapter]: https://www.framos.com/en/products/fma-mnt-trp1-4-v1c-26333
-[Tripod]: https://thepihut.com/products/small-tripod-for-raspberry-pi-hq-camera
-[150mm flex-cable]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FMA-FC-150-60-V1A?qs=GedFDFLaBXGCmWApKt5QIQ%3D%3D&_gl=1*d93qim*_ga*MTkyOTE4MjMxNy4xNzQxMTcwMzQy*_ga_15W4STQT4T*MTc0MTE3MDM0Mi4xLjEuMTc0MTE3MDQ5OS40NS4wLjA
-[300mm micro-coax cable]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FFA-MC50-Kit-0.3m?qs=%252BHhoWzUJg4K3LtaE207mhw%3D%3D
-[4Kp60 Converter Dongle]: https://www.amazon.co.uk/gp/product/B01M6WK3KU/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
-
-
-[VVP IP Suite, VVP Tone Mapping Operator (TMO) IP, VVP Warp IP, and 3D LUT IP]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/dsp/video-vision-processing-suite.html
-[MIPI DPHY IP and MIPI CSI-2 IP]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/interface-protocols/mipi-d-phy.html#tab-blade-1-3
-[Nios® V Processor]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/processors-peripherals/niosv/glossy.html
-
-
-[Altera® Quartus® Prime Pro Edition version 25.1 Linux]: https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html
-[Altera® Quartus® Prime Pro Edition version 25.1 Windows]: https://www.intel.com/content/www/us/en/software-kit/851653/intel-quartus-prime-pro-edition-design-software-version-25-1-for-windows.html
-
-
-
 
 [User flow 1]: ../camera_4k/camera_4k.md#pre-requisites
-[User flow 2]: ../camera_4k_resources/flow2-sof-mdt.md
-[User flow 3]: ../camera_4k_resources/flow3-rbf-mdt.md
+[User flow 2]: ../camera_4k/flow2-sof-mdt.md
+[User flow 3]: ../camera_4k/flow3-rbf-mdt.md
 
 
 
@@ -661,6 +691,7 @@ OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of 
 [fsbl_agilex5_modkit_vvpisp_time_limited.sof]: https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/fsbl_agilex5_modkit_vvpisp_time_limited.sof
 [top.core.jic]: https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/top.core.jic
 [top.core.rbf]: https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/top.core.rbf
+[model_compiler]: https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/compile_model.exe
 
 
 
@@ -673,6 +704,53 @@ OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of 
 [RBF Modular Design Toolkit (MDT) Flow]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt
 [<g>&check;</g><span hidden="true"> SOF MDT Flow </span>]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt
 [<g>&check;</g><span hidden="true"> RBF MDT Flow </span>]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt
+
+
+
+[Agilex™ 5 E-Series Modular Development Board GSRD User Guide (25.1)]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/
+
+
+
+[Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs (25.1)]: https://www.intel.com/content/www/us/en/docs/programmable/814346/25-1/hard-processor-system-technical-reference.html
+[NiosV Processor for Altera® FPGA]: https://www.altera.com/design/guidance/nios-v-developer
+[Agilex™ 5 FPGA E-Series 065B Modular Development Kit]: https://www.altera.com/products/devkit/a1jui0000061qabmaa/agilex-5-fpga-and-soc-e-series-modular-development-kit-es
+[Agilex™ 5 FPGA E-Series 065B Modular Development Kit Product Brief]: https://www.intel.com/content/www/us/en/content-details/815178/agilex-5-fpga-e-series-065b-modular-development-kit-product-brief.html
+[Altera® FPGA AI Suite]: https://www.altera.com/products/development-tools/fpga-ai-suite
+
+
+[Win32DiskImager]: https://sourceforge.net/projects/win32diskimager
+[7-Zip]: https://www.7-zip.org
+[TeraTerm]: https://github.com/TeraTermProject/teraterm/releases
+[PuTTY]: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+
+
+[Framos FSM:GO IMX678C Camera Modules]: https://www.framos.com/en/fsmgo
+[Wide 110deg HFOV Lens]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L110A-PM-A1Q1?qs=%252BHhoWzUJg4KQkNyKsCEDHw%3D%3D
+[Medium 100deg HFOV Lens]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L100A-PM-A1Q1?qs=%252BHhoWzUJg4IesSwD2ACIBQ%3D%3D
+[Narrow 54deg HFOV Lens]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L54A-PM-A1Q1?qs=%252BHhoWzUJg4L5yHZulKgVGA%3D%3D
+[Framos Tripod Mount Adapter]: https://www.framos.com/en/products/fma-mnt-trp1-4-v1c-26333
+[Tripod]: https://thepihut.com/products/small-tripod-for-raspberry-pi-hq-camera
+[150mm flex-cable]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FMA-FC-150-60-V1A?qs=GedFDFLaBXGCmWApKt5QIQ%3D%3D&_gl=1*d93qim*_ga*MTkyOTE4MjMxNy4xNzQxMTcwMzQy*_ga_15W4STQT4T*MTc0MTE3MDM0Mi4xLjEuMTc0MTE3MDQ5OS40NS4wLjA
+[300mm micro-coax cable]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FFA-MC50-Kit-0.3m?qs=%252BHhoWzUJg4K3LtaE207mhw%3D%3D
+[DP to HDMI Adapter]: https://www.amazon.co.uk/gp/product/B01M6WK3KU/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
+[Framos GMSL3 5m]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FFA-GMSL3-Kit-5m?qs=%252BHhoWzUJg4IkLHv%2F6fzsXQ%3D%3D
+[Framos FFA-GMSL-SER-V2A Serializer]: https://www.framos.com/en/products/ffa-gmsl-ser-v2a-27617
+[Framos FFA-GMSL-DES-V2A Deserializer]: https://www.framos.com/en/products/ffa-gmsl-des-v2a-27240
+
+
+[VVP IP Suite]: https://www.altera.com/products/ip/a1jui000004qxfpmak/video-and-vision-processing-suite
+[MIPI DPHY IP and MIPI CSI-2 IP]: https://www.altera.com/products/ip/a1jui0000049uuamam/mipi-d-phy-ip#tab-blade-1-3
+[Nios® V Processor]: https://www.altera.com/products/ip/a1jui0000049uvama2/nios-v-processors
+
+
+[Altera® Quartus® Prime Pro Edition version 25.1 Linux]: https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html
+[Altera® Quartus® Prime Pro Edition version 25.1 Windows]: https://www.intel.com/content/www/us/en/software-kit/851653/intel-quartus-prime-pro-edition-design-software-version-25-1-for-windows.html
+[Altera® Quartus® Prime Pro Edition version 25.1 Programmer and Tools]: https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html
+
+
+[ultralytics YOLO]: https://docs.ultralytics.com
+[ONNX]: https://onnx.ai/
+[OpenVINO Toolkit]: https://storage.openvinotoolkit.org/repositories/openvino/packages/2024.6/linux
 
 
 
@@ -689,17 +767,19 @@ OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of 
 [Demosaic IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/demosaic.html
 [Histogram Statistics IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/histogram-statistics.html
 [Color Space Converter IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/color-space-converter.html
+[1D LUT]: https://www.altera.com/products/ip/a1jui000004r4gnmas/1d-lut-altera-fpga-ip
 [1D LUT IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/1d-lut.html
-[3D LUT]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/dsp/3d-lut.html
+[3D LUT]: https://www.altera.com/products/ip/a1jui000004r4gnmas/3d-lut-altera-fpga-ip
 [3D LUT IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/3d-lut.html
 [LUTCalc GitHub page]: https://github.com/cameramanben/LUTCalc
-[Tone Mapping Operator]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/dsp/tone-mapping-operator.html
+[Tone Mapping Operator]: https://www.altera.com/products/ip/a1jui000004r0hlmak/tone-mapping-operator-fpga-ip
 [Tone Mapping Operator IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/tone-mapping-operator.html
 [Unsharp Mask IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/unsharp-mask.html
-[Warp]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/dsp/video-warp.html
+[Warp]: https://www.altera.com/products/ip/a1jui000004rhk1mag/warp-fpga-ip
 [Warp IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/warp.html
 [Mixer IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/mixer.html
 [Video Frame Writer IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/video-frame-writer-intel-fpga-ip.html
+[Video Frame Reader IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/video-frame-reader-intel-fpga-ip.html
 [Color Plane Manager IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/color-plane-manager.html
 [Bits per Color Sample Adapter IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/bits-per-color-sample-adapter.html
 [Protocol Converter IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/protocol-converter.html
@@ -709,6 +789,9 @@ OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of 
 [AMBA 4 AXI4-Stream Protocol Specification]: https://developer.arm.com/documentation/ihi0051/a/
 [Avalon® Interface Specifications – Avalon® Streaming Interfaces]: https://www.intel.com/content/www/us/en/docs/programmable/683091/20-1/streaming-interfaces.html
 [KAS]: https://kas.readthedocs.io/en/latest/
+[EMIF]: https://www.altera.com/design/guidance/emif-support
+[Scaler IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/scaler.html
+[MSGDMA IP]: https://www.intel.com/content/www/us/en/docs/programmable/683130/25-1-1/modular-scatter-gather-dma-core.html
 
 
 <br/>

@@ -2,12 +2,12 @@
 
 This should only need to be done once. To program the QSPI flash memory:
 
-* Power down the board. Set MSEL=JTAG by setting the **S4** dip switch
-  on the SOM to **OFF-OFF**.
+* Ensure the Modular Development Kit is powered off. Set MSEL=JTAG by setting
+  the **S4** dip switch on the Modular Development SOM Board to **OFF-OFF**.
   * This prevents any bootloader from starting and leaves the JTAG chain in a
     default state.
 
-* Power up the board.
+* Power up the Modular Development Kit.
 
 * Either use your own or download the pre-built `JIC` image, and write it to
   the QSPI Flash memory using either the command:
@@ -51,8 +51,8 @@ Wait until the programming has been completed (which can take several minutes).
 </center>
 <br>
 
-* Power down the board. Set MSEL=ASX4 (QSPI) by setting the **S4** dip switch
-  on the SOM to **ON-ON**.
+* Power down the Modular Development Kit. Set MSEL=ASX4 (QSPI) by setting the
+  **S4** dip switch on the Modular Development SOM Board to **ON-ON**.
   * This starts the HPS bootloader and FPGA configuration from the microSD Card
     after power up.
 <br>

@@ -1,35 +1,22 @@
-# 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices - ISP Functional Description
-
-The 4Kp60 Multi-Sensor HDR Camera Solution System Example Design demonstrates a
-practical glass-to-glass camera solution using standard Altera® Connectivity
-and Video and Vision Processing (VVP) Suite IP Cores available through the
-Quartus® Prime Design Software (QPDS).
-
-The design ingests the video input through industry-standard MIPI directly
-connected to each sensor. The selected sensor video is then processed through
-the Image Signal Processing (ISP) pipeline before output through DisplayPort
-(DP). The pipeline also utilizes additional non-ISP IP Cores from the VVP
-Suite, such as Test Pattern Generators (TPG) and VVP AXI4-S Switches.
-Furthermore, the design runs an embedded Linux Software Application (SW App) on
-the Hard Processor System (HPS) to provide real-time auto white balance (AWB)
-and auto exposure (AE) functions.
 
 <br/>
 
 The following block diagram shows the main components and subsystems of the
-4Kp60 Multi-Sensor HDR Camera Solution System Example Design. Note that where
-an IP has been used multiple times, its instance number is shown (bottom right
-corner of the IP) and can be used for identification in the detail that
-follows.
+Camera Solution System Example Design. Note that where an IP has been used
+multiple times, its instance number is shown (bottom right corner of the IP)
+and can be used for identification in the detail that follows.
 
 <br/>
 
-![top-block-diagram.](./images/ISP/top-block-diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![top-block-diagram.](${{ env_local.CAMERA_4K_DESIGN_IMAGES }}/ISP/top-block-diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
-**4Kp60 Multi-Sensor HDR Camera Solution System Example Design Top Block Diagram**
+**${{ env_local.CAMERA_4K_TITLE }} Top Block Diagram**
 </center>
 <br/>
+
+
+## MIPI Ingest
 
 The Framos FSM:GO IMX678 optical sensor module with PixelMate MIPI-CSI-2
 connection uses a 4-lane MIPI interface. The sensor is a Sony Starvis2 8MP
@@ -49,19 +36,21 @@ lines, and so on.
 
 <br/>
 
-![bayer_diagram.](./images/bayer_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![bayer_diagram.](../camera_4k_resources/images/bayer_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **8x8 RGGB Color Filter Array (Bayer) Image Example**
 </center>
 <br/>
 
-Using a single color pixels reduces the overall bandwidth requirements of the
+Using single color pixels reduces the overall bandwidth requirements of the
 sensor. A demosaic algorithm can be used to rebuild the full color image.
-Note that in the CFA domain, 4 color channels actually exist (Red,
-Green1, Green2, and Blue - using our example from above). Therefore, any given
-pixel belongs to one of these color channels when processing.
+Note that in the CFA domain, 4 color channels actually exist (in our example
+they are Red, Green1, Green2, and Blue). Therefore, it can be seen that any
+given pixel belongs to just one of these color channels when processing. Each
+color channel is sometimes referred to as a CFA phase.
 
+${{ env_local.CAMERA_4K_EXPOSURE_FUSION }}
 The sensor also contains a Clear HDR feature that when enabled allows the
 sensor to capture two images simultaneously, one with a low gain level set to
 the bright region and the other with a high gain level set to the dark region.
@@ -70,28 +59,31 @@ Post sensor processing can be used to combine the two images to produce a
 chromatic aberrations or other artifacts. However, this mode reduces the frame
 rate to 25 FPS.
 
+${{ env_local.CAMERA_4K_END_EXPOSURE_FUSION }}
 The Altera® MIPI D-PHY IP interfaces the FPGA directly to 2 Framos optical
-sensor modules via Framos connectors on the Modular Development board and
-PixelMate CSI-2 Flex-Cables. The design showcases a 3840x2160 sensor resolution
-up to 60 FPS using 12-bit Bayer pixel samples using MIPI lane rates of 1782
-Mbps to provide sufficient bandwidth. The MIPI D-PHY is configured for 2 links
-(one per sensor) of x4 lanes at 1782 Mbps with no skew calibration and
+sensor modules via Framos connectors on the Modular Development Kit Carrier
+Board and PixelMate CSI-2 Flex-Cables. The design showcases a 4K (3840x2160)
+sensor that can process images up to 60 FPS using 12-bit Bayer pixel samples.
+The MIPI D-PHY is configured for 2 links (one per sensor) of x4 lanes at 1782
+Mbps (which provides sufficient bandwidth) with no skew calibration and
 non-continuous clock mode. Each sensor module has additional pins, including
 Power on Reset, Master/Slave mode, as well as sync signals and a slave I2C
 interface for control and status. The MAX10 device on the Modular Development
-board drives some of these signals which can be controlled via the FPGA using
-another, separate I2C interface. All the I2C interfaces are connected via HPS
-I2C controllers. The SW App auto-detects and sets up all detected cameras for
-1782 Mbps lane speed, 3840x2160 resolution, RAW12 pixel samples, no skew
-calibration, and blanking for 60 FPS.
+Kit Carrier Board drives some of these signals which can be controlled via the
+FPGA using an additional I2C interface. All the I2C interfaces are connected
+to the HPS I2C controllers. The SW App auto-detects and configures all of the
+detected sensor modules, including a GMSL3 link in MIPI0 if being used.
+The FPGA AI Suite IP resource has been limited to achieve a maximum inference
+rate of 30 FPS. Therefore, the sensor module output is configured to limit it to
+30 FPS.
 
 The design connects an Altera® MIPI CSI-2 IP to each of the MIPI D-PHY IP Rx
-links from each optical sensor module using a 4-lane 16-bit PHY Protocol
-Interface (PPI) bus. The bus effectively runs at 93.312 MHz (calculated as
-3840x2160x60FPSx12b/(4x16b)). The design configures each CSI-2 IP output at 4
-PIP (Pixels In Parallel) using a 297MHz clock. A VVP Protocol Converter IP
-converts each CSI-2 IP VVP AXI4-S protocol from Full to Lite.
+links using a 4-lane 16-bit PHY Protocol Interface (PPI) bus. The design
+configures each CSI-2 IP output at 4 Pixels In Parallel (PiP) using a 297MHz
+clock and minimal internal buffering. Since all ISP IP only support VVP AXI4-S
+Lite protocol, A VVP Protocol Converter IP is used on each CSI-2 IP output.
 
+${{ env_local.CAMERA_4K_EXPOSURE_FUSION }}
 In Clear HDR configuration, the two simultaneous captured sensor images are
 sent over the single MIPI interface and output as 2 separate image streams by
 the MIPI CSI-2 IP. The non-QPDS Exposure Fusion IP (supplied with the source
@@ -100,17 +92,52 @@ them into a single HDR image stream. By default, the example design does not
 enable Clear HDR and the IP operates in bypass. Regardless of the mode of
 operation, the output is always 16-bits, MSB aligned.
 
-To reduce FPGA resources, a VVP PIP Converter IP follows to reduce the PIP from
-4 to 2. The PIP Converter contains 2 lines of video buffer for accommodating
-back-pressuring from downstream IPs.
+${{ env_local.CAMERA_4K_END_EXPOSURE_FUSION }}
+To reduce FPGA resources, a VVP PIP Converter IP is then used to reduce the PIP
+from 4 to ${{ env_local.CAMERA_4K_PIP }} (which still provides sufficient bandwidth to process the video
+image). The sensor modules cannot be stalled. So the PIP Converter contains 2
+lines of video buffer to accommodate small amounts of back-pressure from
+downstream IPs.
 
 <br/>
 
-## Descriptions of the IPs
-This section summarizes notable IPs instanced in the 4Kp60 Multi-Sensor HDR
+
+## ISP Ingest
+
+<br/>
+
+![isp_ingest.](../camera_4k_resources/images/ISP/isp_ingest.png){:style="display:block; margin-left:auto; margin-right:auto"}
+<center markdown="1">
+
+**ISP Ingest**
+</center>
+<br/>
+
+The Input TPG IP (Instance 0) allows you to test the ISP parts of the design
+without a sensor module input. It uses the VVP Test Pattern Generator IP and a
+non-QPDS IP called Remosaic (RMS) (supplied with the source project). The TPG
+has an RGB output which cannot be processed by the ISP IP as they only support
+CFA images. The RMS is used to convert the RGB image into a CFA image by
+discarding color information for pixels based on the CFA pattern supported by
+the sensor. The TPG features several modes, including SMPTE color bars and
+solid colors. The Bayer Switch - VVP Switch IP (Instance 1), is used to select
+the Input source.
+
+!!! note "Related Information"
+
+    [Test Pattern Generator IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/test-pattern-generator.html) <br/>
+    [Switch IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/switch.html)
+
+<br/>
+
+<br/>
+
+
+## ISP Processing
+
+This section summarizes notable ISP processing functions and IPs used in the
 Camera Solution System Example Design:
 
-* [Input Test Pattern Generator](#input-test-pattern-generator)
 * [Black Level Statistics](#black-level-statistics)
 * [Clipper](#clipper)
 * [Defective Pixel Correction](#defective-pixel-correction)
@@ -122,39 +149,22 @@ Camera Solution System Example Design:
 * [Demosaic](#demosaic)
 * [Histogram Statistics](#histogram-statistics)
 * [Color Correction Matrix](#color-correction-matrix)
+  ${{ env_local.CAMERA_4K_EARLY_1DLUT }}
 * [1D LUT](#1d-lut)
+  ${{ env_local.CAMERA_4K_END_EARLY_1DLUT }}
 * [3D LUT](#3d-lut)
 * [Tone Mapping Operator](#tone-mapping-operator)
 * [Unsharp Mask Filter](#unsharp-mask-filter)
+${{ env_local.CAMERA_4K_WARP }}
 * [Warp](#warp)
-* [Logo Overlay](#logo-overlay)
-* [Frame Writer](#frame-writer)
-
-<br/>
-
-
-### Input Test Pattern Generator
-
-The Input TPG IP (Instance 0) allows you to test the design without a sensor
-module input. It uses the VVP Test Pattern Generator IP and a non-QPDS IP
-called Remosaic (RMS) (supplied with the source project). The TPG has an RGB
-output which cannot be processed by the ISP as it supports a CFA image. The RMS
-is used to convert the RGB image into a CFA image by discarding color
-information for pixels based on the CFA pattern supported by the sensor. The
-TPG features several modes, including SMPTE color bars and solid colors. The
-Bayer Switch - VVP Switch IP (Instance 1), is used to select the Input source.
-
-!!! note "Related Information"
-
-    [Test Pattern Generator IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/test-pattern-generator.html) <br/>
-    [Switch IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/switch.html)
+${{ env_local.CAMERA_4K_END_WARP }}
 
 <br/>
 
 
 ### Black Level Statistics
 
-![BLS_diagram.](./images/ISP/BLS_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![BLS_diagram.](../camera_4k_resources/images/ISP/BLS_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Black Level Statistics Block Diagram**
@@ -214,7 +224,7 @@ then corrects them.
 
 <br/>
 
-![DPC_diagram.](./images/ISP/DPC_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![DPC_diagram.](../camera_4k_resources/images/ISP/DPC_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Defective Pixel Correction Block Diagram**
@@ -230,7 +240,7 @@ depending on the sensitivity setting.
 
 <br/>
 
-![DPC_Bayer_CFA_diagram.](./images/ISP/DPC_Bayer_CFA_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![DPC_Bayer_CFA_diagram.](../camera_4k_resources/images/ISP/DPC_Bayer_CFA_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **A Bayer CFA for a 6x6 section of an image and an example pixel neighborhood for green, red, and blue pixels**
@@ -260,7 +270,7 @@ that mainly reduces the independent pixel noise of an image. The IP operates on
 
 <br/>
 
-![ANR_diagram.](./images/ISP/ANR_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![ANR_diagram.](../camera_4k_resources/images/ISP/ANR_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Adaptive Noise Reduction Block Diagram**
@@ -310,7 +320,7 @@ as desired.
 
 <br/>
 
-![BLC_diagram.](./images/ISP/BLC_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![BLC_diagram.](../camera_4k_resources/images/ISP/BLC_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Black Level Correction Block Diagram**
@@ -325,7 +335,7 @@ output pixel value should the calculation overflow.
 
 <br/>
 
-![BLC_Function_diagram.](./images/ISP/BLC_Function_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![BLC_Function_diagram.](../camera_4k_resources/images/ISP/BLC_Function_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **BLC Function**
@@ -341,7 +351,7 @@ or clip them to zero.
 
 <br/>
 
-![BLC_RAZ_diagram.](./images/ISP/BLC_RAZ_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![BLC_RAZ_diagram.](../camera_4k_resources/images/ISP/BLC_RAZ_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Effects of Reflection Around Zero**
@@ -371,7 +381,7 @@ mesh of coefficients and interpolating coefficients for any given pixel.
 
 <br/>
 
-![Vignette_diagram.](./images/ISP/Vignette_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![Vignette_diagram.](../camera_4k_resources/images/ISP/Vignette_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Vignette Correction Block Diagram**
@@ -398,7 +408,7 @@ coefficients.
 
 <br/>
 
-![Vignette_Mesh_Zone_diagram.](./images/ISP/Vignette_Mesh_Zone_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![Vignette_Mesh_Zone_diagram.](../camera_4k_resources/images/ISP/Vignette_Mesh_Zone_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **A Mesh Zone with a Pixel of Interest**
@@ -415,7 +425,7 @@ coefficients.
 
 ### White Balance Statistics
 
-![WBS_diagram.](./images/ISP/WBS_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![WBS_diagram.](../camera_4k_resources/images/ISP/WBS_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **White Balance Statistics Block Diagram**
@@ -431,7 +441,7 @@ Correction IP.
 
 <br/>
 
-![WBS-packing-order-diagram.](./images/ISP/WBS-packing-order-diagram.png){:style="display:block; margin-left:auto; margin-right:auto; width: 60%"}
+![WBS-packing-order-diagram.](../camera_4k_resources/images/ISP/WBS-packing-order-diagram.png){:style="display:block; margin-left:auto; margin-right:auto; width: 50%"}
 <center markdown="1">
 
 **Packing Order of the Zones within a Region of Interest**
@@ -445,7 +455,7 @@ within the ROI.
 
 <br/>
 
-![WBS_example_diagram.](./images/ISP/WBS_example_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![WBS_example_diagram.](../camera_4k_resources/images/ISP/WBS_example_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Example of ratio calculation for 2x2 virtual pixels for a 6x6 Section of Image**
@@ -489,7 +499,7 @@ tinting.
 
 <br/>
 
-![WBC_diagram.](./images/ISP/WBC_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![WBC_diagram.](../camera_4k_resources/images/ISP/WBC_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **White Balance Correction Block Diagram**
@@ -517,7 +527,7 @@ mode. The SW App also supports many fixed color temperature options.
 
 ### Demosaic
 
-![Demosaic_diagram.](./images/ISP/Demosaic_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![Demosaic_diagram.](../camera_4k_resources/images/ISP/Demosaic_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Demosaic Block Diagram**
@@ -531,7 +541,7 @@ for each pixel based on its neighboring pixels.
 
 <br/>
 
-![Demosaic-example-diagram.](./images/ISP/Demosaic-example-diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![Demosaic-example-diagram.](../camera_4k_resources/images/ISP/Demosaic-example-diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **An example of a 2x2 RGGB Bayer Color Filter Array (for an 8x8 pixel section of the image)**
@@ -559,7 +569,7 @@ values for every frame to collects data to form a histogram of light intensity.
 
 <br/>
 
-![HS_diagram.](./images/ISP/HS_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![HS_diagram.](../camera_4k_resources/images/ISP/HS_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Histogram Statistics Block Diagram**
@@ -614,6 +624,7 @@ accurate representation of the scene.
 <br/>
 
 
+${{ env_local.CAMERA_4K_EARLY_1DLUT }}
 ### 1D LUT
 
 The 1D LUT IP uses a runtime configurable LUT to apply an input output transfer
@@ -624,7 +635,7 @@ transfer functions or to apply an artistic effect to the image.
 
 <br/>
 
-![1DLUT_diagram.](./images/ISP/1DLUT_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![1DLUT_diagram.](../camera_4k_resources/images/ISP/1DLUT_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **1D LUT Block Diagram**
@@ -655,6 +666,7 @@ LUT is configured as a 12-bit LUT and the output is reduced to 14-bits.
 <br/>
 
 
+${{ env_local.CAMERA_4K_END_EARLY_1DLUT }}
 ### 3D LUT
 
 The 3D LUT IP maps an image's color space to another using interpolated values
@@ -669,7 +681,7 @@ Typical applications include:
 
 <br/>
 
-![3DLUT_colour_transform_examples_diagram.](./images/ISP/3DLUT_colour_transform_examples_diagram.png){:style="display:block; margin-left:auto; margin-right:auto; width: 80%"}
+![3DLUT_colour_transform_examples_diagram.](../camera_4k_resources/images/ISP/3DLUT_colour_transform_examples_diagram.png){:style="display:block; margin-left:auto; margin-right:auto; width: 80%"}
 <center markdown="1">
 
 **3D LUT Color Transform Examples**
@@ -678,7 +690,7 @@ Typical applications include:
 
 <br/>
 
-![3DLUT_diagram.](./images/ISP/3DLUT_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![3DLUT_diagram.](../camera_4k_resources/images/ISP/3DLUT_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **3D LUT Block Diagram**
@@ -711,7 +723,7 @@ it to generate LUTs for the 3D LUT IP, ensure that:
 
 <br/>
 
-![3DLUT-LUTCalc-format-settings-diagram.](./images/ISP/3DLUT-LUTCalc-format-settings-diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![3DLUT-LUTCalc-format-settings-diagram.](../camera_4k_resources/images/ISP/3DLUT-LUTCalc-format-settings-diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **LUTCalc Format Settings**
@@ -731,7 +743,7 @@ formatting conventions:
 
 !!! note "Related Information"
 
-    [3D LUT](https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/dsp/3d-lut.html) <br/>
+    [3D LUT](https://www.altera.com/products/ip/a1jui000004r4gnmas/3d-lut-altera-fpga-ip) <br/>
     [3D LUT IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/3d-lut.html) <br/>
     [LUTCalc GitHub page](https://github.com/cameramanben/LUTCalc)
 
@@ -746,7 +758,7 @@ overall viewing experience.
 
 <br/>
 
-![TMO_example_diagram.](./images/ISP/TMO_example_diagram.png){:style="display:block; margin-left:auto; margin-right:auto; width: 80%"}
+![TMO_example_diagram.](../camera_4k_resources/images/ISP/TMO_example_diagram.png){:style="display:block; margin-left:auto; margin-right:auto; width: 80%"}
 <center markdown="1">
 
 **Before (left) and after (right) TMO is applied to an example image**
@@ -754,7 +766,7 @@ overall viewing experience.
 
 <br/>
 
-![TMO_diagram.](./images/ISP/TMO_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![TMO_diagram.](../camera_4k_resources/images/ISP/TMO_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **TMO Block Diagram**
@@ -770,7 +782,8 @@ generates a set of mapping transfer functions, and converts them to LUTs. The
 contrast enhancement engine applies mapping transfer functions locally for
 better granularity. The image enhancer combines the information and calculates
 a set of weights that are applied to the input to generate the contrast-enhanced
-output. The output is reduced down to 10-bits for the USM IP that follows.
+output. Since the following VVP USM IP only support 10-bits color, the output
+of the TMO is reduced down to 10-bits using a VVP Pixel Adapter IP.
 
 The TMO does not use image buffers and therefore the statistics collected from
 the previous image are used to enhance the current image.
@@ -779,8 +792,9 @@ The SW App configures the TMO IP over the Avalon® memory-mapped interface.
 
 !!! note "Related Information"
 
-    [Tone Mapping Operator](https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/dsp/tone-mapping-operator.html) <br/>
-    [Tone Mapping Operator IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/tone-mapping-operator.html)
+    [Tone Mapping Operator](https://www.altera.com/products/ip/a1jui000004r0hlmak/tone-mapping-operator-fpga-ip) <br/>
+    [Tone Mapping Operator IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/tone-mapping-operator.html) <br/>
+    [Bits per Color Sample Adapter IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/bits-per-color-sample-adapter.html) <br/>
 
 <br/>
 
@@ -809,6 +823,7 @@ unmodified.
 <br/>
 
 
+${{ env_local.CAMERA_4K_WARP }}
 ### Warp
 
 The Warp IP applies an arbitrary warp (or image transform) to an input image.
@@ -817,7 +832,7 @@ ability to scale, rotate, and mirror the image.
 
 <br/>
 
-![Warp_transform_examples_diagram.](./images/ISP/Warp_transform_examples_diagram.png){:style="display:block; margin-left:auto; margin-right:auto; width: 80%"}
+![Warp_transform_examples_diagram.](../camera_4k_resources/images/ISP/Warp_transform_examples_diagram.png){:style="display:block; margin-left:auto; margin-right:auto; width: 80%"}
 <center markdown="1">
 
 **Warp Transform Examples**
@@ -826,7 +841,7 @@ ability to scale, rotate, and mirror the image.
 
 <br/>
 
-![Warp_rotation_examples_diagram.](./images/ISP/Warp_rotation_examples_diagram.png){:style="display:block; margin-left:auto; margin-right:auto; width: 80%"}
+![Warp_rotation_examples_diagram.](../camera_4k_resources/images/ISP/Warp_rotation_examples_diagram.png){:style="display:block; margin-left:auto; margin-right:auto; width: 80%"}
 <center markdown="1">
 
 **Warp Mirror and Rotation Examples**
@@ -835,7 +850,7 @@ ability to scale, rotate, and mirror the image.
 
 <br/>
 
-![Warp_diagram.](./images/ISP/Warp_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![Warp_diagram.](../camera_4k_resources/images/ISP/Warp_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center markdown="1">
 
 **Warp Block Diagram**
@@ -855,20 +870,349 @@ arbitrary transformation at 4K resolution.
 
 !!! note "Related Information"
 
-    [Warp](https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/dsp/video-warp.html) <br/>
+    [Warp](https://www.altera.com/products/ip/a1jui000004rhk1mag/warp-fpga-ip) <br/>
     [Warp IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/warp.html)
+
+<br/>
+${{ env_local.CAMERA_4K_END_WARP }}
+
+${{ env_local.CAMERA_4K_AI }}
+## AI Processing
+
+This section summarizes notable AI processing functions and IPs used in the
+Camera Solution System Example Design:
+
+* [AI Main Frame Buffer](#ai-main-frame-buffer)
+* [AI Input](#ai-input)
+* [AI](#ai)
+* [AI Stream Controller](#ai-stream-controller)
+* [AI Output](#ai-output)
+
+
+### AI Main Frame Buffer
+
+The AI Main Frame Buffer is required to buffer the 4K ISP output image while
+the AI inference occurs using a copy. The delay in the buffer is equal to the
+time taken to perform the inference and generate an inference result overlay
+image.
+
+<br/>
+
+![ai_main_frame_buffer.](../camera_4k_resources/images/ISP/ai_main_frame_buffer.png){:style="display:block; margin-left:auto; margin-right:auto; width: 90%"}
+<center markdown="1">
+
+**AI Main Frame Buffer**
+</center>
+
+<br/>
+
+The buffer is generated using a VVP Frame Writer IP, a VVP Frame Reader IP, and
+an external DDR4 SDRAM (via an EMIF). Note that the Main Frame Buffer uses the
+second FPGA DDR4 SDRAM which increases the amount of bandwidth available in the
+first FPGA DDR4 SDRAM used by the FPGA AI Suite IP and AI related functions.
+
+The main buffer is also used to rate match the output to input frame rates,
+such that an output frame can be repeated if the input frame rate is too slow,
+or an input frame can be dropped (deleted) if the output frame rate is too
+slow. Note that the sensor ingest cannot accept any sufficient back-pressure.
+All rate matching must be done using complete frames and on frame boundaries.
+The [AI Stream Controller](#ai-stream-controller) is used to control the Main
+Frame Buffer.
+
+!!! note "Related Information"
+
+    [Video Frame Writer IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/video-frame-writer-intel-fpga-ip.html) <br/>
+    [Video Frame Reader IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/video-frame-reader-intel-fpga-ip.html) <br/>
+    [EMIF](https://www.altera.com/design/guidance/emif-support)
 
 <br/>
 
 
-### Logo Overlay
+### AI Input
 
-The Altera® logo overlay feature uses a VVP Test Pattern Generator IP, a VVP
-Mixer IP, and a non-QPDS Icon IP (supplied with the source project). The TPG
-(Instance 1) is used for the screensaver function and is configured as a 4K
-solid black image. It is also the base layer for the Mixer IP and is mixed with
-the ISP pipeline video layer and the Icon IP layer. The opacity of the Icon
-layer can be changed on the fly using the Avalon® Memory-Mapped interface.
+The AI Input is used to format the 4K ISP output image into a suitable format
+and store it away for the FPGA AI Suite IP to read.
+
+<br/>
+
+![ai_input.](../camera_4k_resources/images/ISP/ai_input.png){:style="display:block; margin-left:auto; margin-right:auto"}
+<center markdown="1">
+
+**AI Input**
+</center>
+
+<br/>
+
+A VVP Pixel Adapter is first used to drop the 10-bit color depth input image
+down to 8-bit color depth. A VVP Scaler IP is then used to down scale the 4K
+image to a 640x384 image suitable for the inference models supported.
+
+The Scaler output feeds into the non-QPDS Layout Transform (LT) IP (supplied
+with the source project). This IP, along with a 2 line store FIFO, is used to
+convert the raster scan video input format to the vectorized data format
+required by the FPGA AI Suite IP (complete with required pixel and line
+padding). In addition, the LT IP folds multiple input pixels into the
+vectorized data to increase the compute efficiency of the first convolution
+layer in the FPGA AI Suite IP. The LT IP function is summarized in the
+following diagrams.
+
+The first diagram illustrates an example 8-bit color depth input image received
+as 24-bit pixel values in Raster Scan format (left to right, top to bottom):
+
+<br/>
+
+![LT_input.](../camera_4k_resources/images/ISP/LT_input.png){:style="display:block; margin-left:auto; margin-right:auto"}
+<center markdown="1">
+
+**Example 6x6 resolution 8-bit RGB input image**
+</center>
+
+<br/>
+
+The next diagram illustrates the same example image framed with 1 mid-gray line
+above and below and 1 black pixel before and after, and the 2x2 convolution
+stride that will be applied:
+
+<br/>
+
+![LT_input_padding.](../camera_4k_resources/images/ISP/LT_input_padding.png){:style="display:block; margin-left:auto; margin-right:auto"}
+<center markdown="1">
+
+**Example 6x6 resolution 8-bit RGB input image with padding and 2x2 convolution stride highlighted**
+</center>
+
+<br/>
+
+The unsigned 8-bit integer (uint-8) RGB values are each converted to 11-bit
+floating point (FP11) format and each packed into 16-bits. The final diagram
+illustrates the 2x2 convolution stride applied to the padded input image along
+with a CVEC = 16 line length to form the 256-bit output words (16 values *
+16-bits). Note that the last 4 16-bit values of each output word are unused as
+the input image only contains 3 color planes. However, even with this wastage,
+folding 4 pixels into each output word gives a good performance boost for the
+first convolution.
+
+<br/>
+
+![LT_output.](../camera_4k_resources/images/ISP/LT_output.png){:style="display:block; margin-left:auto; margin-right:auto"}
+<center markdown="1">
+
+**Example 6x6 resolution padded FP11 RGB input image vectorized using 2x2 convolution stride and CVEC = 16**
+</center>
+
+<br/>
+
+A VVP Frame Writer IP is then used to store the vectorized output data words
+into buffers in external DDR4 SDRAM (via an EMIF). Buffers are used to support
+rate matching of AI inference rates vs input and output frame rates. For
+instance if the AI inference is too slow, then input images can be dropped.
+Note that the sensor ingest cannot accept any sufficient back-pressure. All
+rate matching must be done using complete frames and on frame boundaries.
+
+The inference models actually support a square input image and not the 16:9
+widescreen image format supported by the input sensor and output Monitor i.e.
+the image read into the FPGA AI Suite IP needs to be square. Different
+approaches can be taken to address the aspect ratio mismatch. One approach is
+to distort the widescreen images into square images, but this would require the
+models to be retrained. An alternative solution is to crop a square image from
+the widescreen image. But where to crop from - left, right, center? There will
+always be an area missing in the inference results. The solution used in this
+design is to letterbox the widescreen image after the down scale to effectively
+make it square and therefore introduce no distortion. This is easily achieved
+by adding extra padding lines above and below the image (in order to keep it
+centralized). The downside to the letterbox approach is lower accuracy results,
+which is simply due to the smaller size of the actual real image (as padding
+makes up a proportion of the square image). The inference models expect a
+square 640x640 input image, and so the down scaled 640x384 widescreen image is
+stored into the DDR4 SDRAM buffer with an extra 256 padding lines - 128 lines
+above and below the image. Since the padding never changes, the SW App
+pre-fills the FPGA AI Suite IP buffers in external DDR4 SDRAM with padding
+lines at initialization. The Frame Writer IP then writes the down scaled images
+to the same buffers but offset by 128 lines. In reality, the output of the LT
+IP already has 1 padding line above and below the down scaled image as part of
+the input requirements into the FPGA AI Suite IP, and so the offset is actually
+127 lines and the overall image size is 2 lines larger.
+
+The [AI Stream Controller](#ai-stream-controller) is used to control the AI
+Input.
+
+!!! note "Related Information"
+
+    [Scaler IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/scaler.html) <br/>
+    [Video Frame Writer IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/video-frame-writer-intel-fpga-ip.html) <br/>
+    [EMIF](https://www.altera.com/design/guidance/emif-support)
+
+<br/>
+
+
+### AI
+
+The AI performs the actual inference and uses the FPGA AI Suite IP - a
+configurable AI engine IP. It has Avalon® memory-mapped interfaces for both
+control and status, and external DDR4 SDRAM access (via EMIF). The IP is
+configured using parameters defined in an Architecture Description File
+(`.arch` file). The main parameters define:
+
+* Processing Element (PE) Array Vectorization
+* Scratch Pad Sizing
+* External memory bus bandwidth
+* Types/vectorization of auxiliary layer blocks
+
+<br/>
+
+Defining the architecture depends on the model, desired performance, and
+resource utilization.
+
+In the case of the Camera with AI Inference Solution System Example Design,
+the Ultralytics YOLOv8 nano PyTorch models are firstly manipulated using ONNX
+to ensure compatibility with the FPGA AI Suite IP. This involves converting to
+ONNX oppset 11 and chopping the network head off using
+`onnx.utils.extract_model`. ONNX is converted to OpenVINO IR (intermediate
+representation) .xml and .bin files using the OpenVINO Converter (OVC). The
+FPGA AI Suite Compiler takes the OpenVINO IR files, along with the `.arch` file
+and produces a compiled `.bin` file which represents the instructions required
+by the IP. The SW APP uses the `.bin` file to generate the runtime Config for
+the IP.
+
+<br/>
+
+![fpga_ai_suite_ip.](../camera_4k_resources/images/ISP/fpga_ai_suite_ip.png){:style="display:block; margin-left:auto; margin-right:auto; width: 55%"}
+<center markdown="1">
+
+**FPGA AI Suite IP**
+</center>
+
+<br/>
+
+The generic `.arch` file supplied with the AI Suite install
+(`\opt\altera\fpga_ai_suite_2025.1\dla\example_architectures\AGX5_Generic.arch`)
+is used initially. The `.arch` file is then optimized using knowledge of the
+model (like removing unused activation functions), and using the FPGA AI Suite
+Compiler's area and performance estimator tools.
+
+The FPGA AI Suite IP reads the vectorized data image from the buffers in
+external DDR4 SDRAM (via an EMIF). It performs the inference and writes back
+the inference results to the external DDR SDRAM. The HPS reads the inference
+results for further processing.
+
+<br/>
+
+![ai.](../camera_4k_resources/images/ISP/ai.png){:style="display:block; margin-left:auto; margin-right:auto; width: 80%"}
+<center markdown="1">
+
+**AI**
+</center>
+
+<br/>
+
+
+
+!!! note "Related Information"
+
+    [Altera® FPGA AI Suite](https://www.altera.com/products/development-tools/fpga-ai-suite) <br/>
+    [Ultralytics YOLO] <br/>
+    [ONNX](https://onnx.ai/) <br/>
+    [OpenVINO Toolkit](https://storage.openvinotoolkit.org/repositories/openvino/packages/2024.6/linux)
+
+<br/>
+
+
+### AI Output
+
+The AI Output is used to read the 960x540 (quarter HD) sized ARGB2222 (4 2-bit
+color channels - Alpha, Red, Green, and Blue) inference result overlay image
+and scale it up to 4K ARGB10101010 ready to be mixed with the AI Main Frame
+Buffer output (the delayed 4K ISP output).
+
+<br/>
+
+![ai_output.](../camera_4k_resources/images/ISP/ai_output.png){:style="display:block; margin-left:auto; margin-right:auto"}
+<center markdown="1">
+
+**AI Output**
+</center>
+
+<br/>
+
+The AI Output is generated using an external DDR4 SDRAM (via an EMIF), a VVP
+Frame Reader IP, and a VVP Scaler IP. For every input image with inference
+results, the [AI Stream Controller](#ai-stream-controller) generates a 960x540
+(quarter HD) sized ARGB2222 inference result overlay image and stores it in the
+Overlay Output Buffer in external DDR4 SDRAM. When instructed by the AI Stream
+Controller, the VVP Frame Reader IP reads an inference result overlay image
+from the Overlay Output Buffer. It is passed on to a VVP Scaler IP which up
+scales it to 4K. This 4K ARGB2222 inference result overlay image is then
+converted to ARGB10101010 (4 10-bit color channels - Alpha, Red, Green, and
+Blue) before being passed on to be video mixed with the 4K ISP output image -
+which has been delayed through the AI Main Frame Buffer to align correctly.
+
+!!! note "Related Information"
+
+    [Video Frame Reader IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/video-frame-reader-intel-fpga-ip.html) <br/>
+    [Scaler IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/scaler.html) <br/>
+    [EMIF](https://www.altera.com/design/guidance/emif-support)
+
+<br/>
+
+
+### AI Stream Controller
+
+The AI Stream Controller is used to synchronize the Main Frame, AI Frame, and
+Overlay Output Buffers to the FPGA AI Suite IP inference and results. The AI
+Stream Controller is a software based design consisting of two parts, the
+Stream Controller Application that runs on a Nios® V soft CPU, and the Stream
+Controller Comms, which is a library within the runtime of the HPS SW App.
+
+Communication between the CPUs is achieved using interrupts (driven via PIO
+registers) and a shared Message Queue which is constructed using an on-chip
+DPRAM accessible to both CPUs. Using the interrupts from the FPGA AI Suite IP
+and all of the VVP Frame Writer and Frame Reader IPs, the Stream Controller can
+orchestrate inferences, read inference results, build inference result
+overlays, and track images through the different buffers.
+
+!!! note "Related Information"
+
+    [Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs (25.1)](https://www.intel.com/content/www/us/en/docs/programmable/814346/25-1/hard-processor-system-technical-reference.html) <br/>
+    [NiosV Processor for Altera® FPGA](https://www.altera.com/design/guidance/nios-v-developer)
+
+<br/>
+${{ env_local.CAMERA_4K_END_AI }}
+
+## Output Processing
+
+This section summarizes notable output processing functions and IPs used in the
+Camera Solution System Example Design:
+
+* [Video Mixer](#video-mixer)
+* [1D LUT](#1d-lut)
+* [Frame Capture](#frame-capture)
+* [DP Egress](#dp-egress)
+
+
+### Video Mixer
+
+The Video Mixer is used to combine the different input images into a single
+output image. It uses a VVP Test Pattern Generator IP, a VVP Mixer IP, and a
+non-QPDS Icon IP (supplied with the source project).
+
+The TPG (Instance 1) is the base layer for the Mixer IP. It is configured by
+default as a 4K solid black image which also serves as the screensaver
+function. The TPG also supports color bars, which can be used to test the DP
+output.
+
+${{ env_local.CAMERA_4K_NO_AI }}
+The base layer is mixed with the ISP output image and the Altera® logo overlay
+image. The opacity of the Icon overlay is globally controlled and can be
+changed during runtime by the SW App.
+${{ env_local.CAMERA_4K_END_NO_AI }}
+${{ env_local.CAMERA_4K_AI }}
+The base layer is mixed with the AI Main Frame Buffer output image (ISP output
+image), the inference result overlay image, and the Altera® logo overlay image.
+The opacity of the inference result overlay image is controlled on a per-pixel
+basis and is set by the AI Stream Controller when it constructs the image. The
+opacity of the Icon overlay is globally controlled and can be changed during
+runtime by the SW App.
+${{ env_local.CAMERA_4K_END_AI }}
 
 !!! note "Related Information"
 
@@ -878,49 +1222,177 @@ layer can be changed on the fly using the Avalon® Memory-Mapped interface.
 <br/>
 
 
-### Frame Writer
+${{ env_local.CAMERA_4K_LATE_1DLUT }}
+### 1D LUT
 
-The Frame Writer function uses a Video Frame Writer IP which receives and
-stores frames in external DDR memory connected to the FPGA. The IP has a host
-Avalon® memory-mapped interface to allow connection to the external memory and
-an agent Avalon® memory-mapped interface connected to the HPS to allow runtime
-control.
+The 1D LUT IP uses a runtime configurable LUT to apply an input output transfer
+function to the image. You may use it to implement OOTF, OETF, and EOTF
+transfer functions defined for video standards and legacy gamma compression or
+decompression. You may also change the LUT content arbitrarily for other
+transfer functions or to apply an artistic effect to the image.
 
-The Video Frame Writer IP operates in a single shot mode on RGB 16-bit images.
-The Capture Switch (VVP Switch IP - Instance 5) is used to feed the Video Frame
-Writer with the raw sensor input via either the Raw Capture Switch (VVP Switch
-IP - Instance 4) or the ISP output via the 1D LUT IP (Instance 0). The raw
-sensor input image uses a single color for each pixel and so a Color Plane
-Manager IP is used to copy the single color into all 3 color planes to generate
-a grayscale RGB raw sensor image.
+<br/>
 
-The HPS has a host Avalon® memory-mapped interface to the FPGA external DDR,
-allowing it to read out captured images.
+![1DLUT_diagram.](../camera_4k_resources/images/ISP/1DLUT_diagram.png){:style="display:block; margin-left:auto; margin-right:auto"}
+<center markdown="1">
 
-The output of the Capture Switch when not feeding the Video Frame Writer IP,
-feeds the 16-bit ISP output image into a Pixel Adapter IP to reduce it back
-down to 10-bit ready for the Display Port output.
+**1D LUT Block Diagram**
+</center>
+
+<br/>
+
+The 1D LUT IP calculates LUT addresses from the input pixels. It interpolates
+fractional differences between LUT values to generate output pixel values. The
+IP uses an independent LUT for each color plane. The SW App uses the Avalon®
+memory-mapped interface to configure the LUTs.
+
+In this instance, the 1D LUT is used for traditional Gamma, High Dynamic Range
+Perceptual Quantizer (HDR PQ) and Hybrid Log-Gamma (HDR HLG) correction. The 1D
+LUT is configured as a 9-bit LUT and the output is increased to 12-bits to
+support the Capture Switch that follows.
 
 !!! note "Related Information"
 
+    [1D LUT IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/1d-lut.html)
+
+<br/>
+
+
+${{ env_local.CAMERA_4K_END_LATE_1DLUT }}
+### Frame Capture
+
+The Frame Capture function uses a two VVP Switch IPs and a VVP Video Frame
+Writer IP which is connected to an external FPGA DDR4 SDRAM memory (via an
+EMIF).
+
+${{ env_local.CAMERA_4K_EXPOSURE_FUSION }}
+The Video Frame Writer IP operates in a single shot mode on RGB 16-bit images.
+${{ env_local.CAMERA_4K_END_EXPOSURE_FUSION }}
+${{ env_local.CAMERA_4K_AI }}
+The Video Frame Writer IP operates in a single shot mode on RGB 12-bit images.
+${{ env_local.CAMERA_4K_END_AI }}
+The Capture Switch (VVP Switch IP - Instance 5) is used to feed the Video Frame
+Writer with either the raw sensor image via the Raw Capture Switch (VVP Switch
+IP - Instance 4) or the ISP output image via the 1D LUT IP (Instance 0). The
+raw sensor image uses a single color for each pixel and so a VVP Color Plane
+Manager IP is used to copy the single color into all 3 color planes to generate
+a grayscale RGB raw sensor image for capture.
+
+The HPS has a host Avalon® memory-mapped interface to the FPGA external DDR4
+SDRAM, allowing it to read out the captured image.
+
+The output of the Capture Switch when not feeding the Video Frame Writer IP,
+feeds the output image to the DP output via a VVP Pixel Adapter IP to reduce
+the color bit depth back down to 10-bits.
+
+!!! note "Related Information"
+
+    [Switch IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/switch.html) <br/>
     [Video Frame Writer IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/video-frame-writer-intel-fpga-ip.html) <br/>
     [Color Plane Manager IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/color-plane-manager.html) <br/>
     [Bits per Color Sample Adapter IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/bits-per-color-sample-adapter.html) <br/>
-    [Protocol Converter IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/protocol-converter.html) <br/>
-    [Pixels in Parallel Converter IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/pixels-in-parallel-converter.html)
+
+<br/>
+
+
+### ISP Egress
+
+${{ env_local.CAMERA_4K_NO_AI }}
+The ISP Egress is used to interface the final ISP 4K output to the multi-rate
+DP IP. The following output resolutions and color bit depths are supported by
+the Camera Solution System Example Design:
+
+* 4Kp60 @ 10-bit RGB Color
+* 4Kp30 @ 8/10-bit RGB color
+* 1080p60 @ 8/10-bit RGB color
+* 720p60 @ 8/10-bit RGB color
+
+${{ env_local.CAMERA_4K_END_NO_AI }}
+${{ env_local.CAMERA_4K_AI }}
+The ISP Egress is used to interface the final AI ISP 4K output to the multi-rate
+DP IP. The following output resolutions and color bit depths are supported
+by the Camera Solution System Example Design:
+
+* 4Kp30 @ 8/10-bit RGB color
+* 1080p30 @ 8/10-bit RGB color
+* 720p30 @ 8/10-bit RGB color
+
+<br/>
+
+![dp_output.](../camera_4k_resources/images/ISP/dp_output.png){:style="display:block; margin-left:auto; margin-right:auto"}
+<center markdown="1">
+
+**ISP Egress**
+</center>
+
+<br/>
+
+For 4K output, the VVP Switch IP bypasses the VVP Scaler IP and simply passes
+the input to the output. To support 1080 and 720 resolutions, the 4K input is
+down scaled using the Scaler. Although not explicitly shown, two Scalers are
+used back-to-back. The first (instance 2) down scales the horizontal resolution
+while the second (instance 3) down scales the vertical resolution. Using two
+Scalers in this way reduces the Scaler on-chip memory resource by half.
+
+${{ env_local.CAMERA_4K_END_AI }}
+Since the DP IP does not support ${{ env_local.CAMERA_4K_PIP }} PiP or the VVP AXI4-S Lite protocol, the
+output from the switch is passed through a VVP PiP Converter IP followed by a
+VVP Protocol Converter IP.
+
+!!! note "Related Information"
+
+${{ env_local.CAMERA_4K_AI }}
+    [Switch IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/switch.html) <br/>
+    [Scaler IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/scaler.html) <br/>
+${{ env_local.CAMERA_4K_END_AI }}
+    [Pixels in Parallel Converter IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/pixels-in-parallel-converter.html) <br/>
+    [Protocol Converter IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/protocol-converter.html)
+
+<br/>
+
+
+## DP Egress
+
+The DP Tx function is provided by the Altera® DisplayPort connectivity IP.
+${{ env_local.CAMERA_4K_NO_AI }}
+It is configured to support DisplayPort 1.4 (x4 lanes of 8.1 Gbps, sufficient for
+4Kp60 8-bit RGB and 4Kp30 8/10-bit RGB). The DP IP also supports
+the VVP AXI4-S Full protocol interface.
+${{ env_local.CAMERA_4K_END_NO_AI }}
+${{ env_local.CAMERA_4K_AI }}
+It is configured to support DisplayPort 1.4 (x4 lanes of 8.1 Gbps, sufficient for
+4Kp30 10-bit RGB). The DP IP also supports the VVP AXI4-S Full
+protocol interface.
+${{ env_local.CAMERA_4K_END_AI }}
 
 <br/>
 
 
 ## Hard Processor System 
 
-Hard Processor System (HPS) runs the application software that configures the
-external optical sensor module and the internal IPs, and provides various
-control loops like AWB and AE. In addition, it runs a web server that allows
-you to interact with the demo via an Ethernet connection. The HPS has its own
-external DDR that is used exclusively by the software stack. Additionally, the
-HPS is connected to the external FPGA fabric DDR to process the data of the
-Warp and Frame Writer IPs.
+Hard Processor System (HPS) runs the Software Application that configures the
+external optical sensor module and the internal IPs, and provides the AI
+functionality and various camera control loops such as AWB and AE. In addition,
+it runs a web server that allows you to interact with the design demonstration
+via an Ethernet connection. The HPS has its own external DDR4 SDRAM that is
+used exclusively by the software stack.
+${{ env_local.CAMERA_4K_NO_AI }}
+The HPS is also connected to the
+external FPGA fabric DDR4 SDRAM/s to process data for the Warp and frame
+capture functions.
+${{ env_local.CAMERA_4K_END_NO_AI }}
+${{ env_local.CAMERA_4K_AI }}
+The HPS is also connected to the
+external FPGA fabric DDR4 SDRAM/s to process data for the AI and frame capture
+functions. In addition, the HPS has access to the Modular Scatter-Gather Direct
+Memory Access IP (mSGDMA). This IP can be programmed by the HPS to offload
+memory copy functions between HPS and FPGA external DDR4 SDRAM/s.
+
+!!! note "Related Information"
+
+    [mSGDMA IP]
+${{ env_local.CAMERA_4K_END_AI }}
+
 <br/>
 
 
@@ -933,26 +1405,26 @@ Warp and Frame Writer IPs.
 <br/>
 
 <br/>
-[Back](../camera_4k/camera_4k.md#camera-solution-system-example-design-documentation){ .md-button }
+[Back](${{ env_local.CAMERA_4K_TOP_MD }}#documentation){ .md-button }
 <br/>
 
 
 
-[4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/camera/camera_4k
 [Agilex™ 5 E-Series Modular Development Board GSRD User Guide (25.1)]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/
 
 
 
 [Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs (25.1)]: https://www.intel.com/content/www/us/en/docs/programmable/814346/25-1/hard-processor-system-technical-reference.html
-[NiosV Processor for Altera® FPGA]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/processors-peripherals/niosv.html
-[Agilex™ 5 FPGA E-Series 065B Modular Development Kit]: https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html
+[NiosV Processor for Altera® FPGA]: https://www.altera.com/design/guidance/nios-v-developer
+[Agilex™ 5 FPGA E-Series 065B Modular Development Kit]: https://www.altera.com/products/devkit/a1jui0000061qabmaa/agilex-5-fpga-and-soc-e-series-modular-development-kit-es
 [Agilex™ 5 FPGA E-Series 065B Modular Development Kit Product Brief]: https://www.intel.com/content/www/us/en/content-details/815178/agilex-5-fpga-e-series-065b-modular-development-kit-product-brief.html
+[Altera® FPGA AI Suite]: https://www.altera.com/products/development-tools/fpga-ai-suite
 
 
 [Win32DiskImager]: https://sourceforge.net/projects/win32diskimager
 [7-Zip]: https://www.7-zip.org
-[teraterm]: https://github.com/TeraTermProject/teraterm/releases
-[putty]: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+[TeraTerm]: https://github.com/TeraTermProject/teraterm/releases
+[PuTTY]: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
 
 
 [Framos FSM:GO IMX678C Camera Modules]: https://www.framos.com/en/fsmgo
@@ -963,54 +1435,25 @@ Warp and Frame Writer IPs.
 [Tripod]: https://thepihut.com/products/small-tripod-for-raspberry-pi-hq-camera
 [150mm flex-cable]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FMA-FC-150-60-V1A?qs=GedFDFLaBXGCmWApKt5QIQ%3D%3D&_gl=1*d93qim*_ga*MTkyOTE4MjMxNy4xNzQxMTcwMzQy*_ga_15W4STQT4T*MTc0MTE3MDM0Mi4xLjEuMTc0MTE3MDQ5OS40NS4wLjA
 [300mm micro-coax cable]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FFA-MC50-Kit-0.3m?qs=%252BHhoWzUJg4K3LtaE207mhw%3D%3D
-[4Kp60 Converter Dongle]: https://www.amazon.co.uk/gp/product/B01M6WK3KU/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
+[DP to HDMI Adapter]: https://www.amazon.co.uk/gp/product/B01M6WK3KU/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
+[Framos GMSL3 5m]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FFA-GMSL3-Kit-5m?qs=%252BHhoWzUJg4IkLHv%2F6fzsXQ%3D%3D
+[Framos FFA-GMSL-SER-V2A Serializer]: https://www.framos.com/en/products/ffa-gmsl-ser-v2a-27617
+[Framos FFA-GMSL-DES-V2A Deserializer]: https://www.framos.com/en/products/ffa-gmsl-des-v2a-27240
 
 
-[VVP IP Suite, VVP Tone Mapping Operator (TMO) IP, VVP Warp IP, and 3D LUT IP]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/dsp/video-vision-processing-suite.html
-[MIPI DPHY IP and MIPI CSI-2 IP]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/interface-protocols/mipi-d-phy.html#tab-blade-1-3
-[Nios® V Processor]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/processors-peripherals/niosv/glossy.html
+[VVP IP Suite]: https://www.altera.com/products/ip/a1jui000004qxfpmak/video-and-vision-processing-suite
+[MIPI DPHY IP and MIPI CSI-2 IP]: https://www.altera.com/products/ip/a1jui0000049uuamam/mipi-d-phy-ip#tab-blade-1-3
+[Nios® V Processor]: https://www.altera.com/products/ip/a1jui0000049uvama2/nios-v-processors
 
 
 [Altera® Quartus® Prime Pro Edition version 25.1 Linux]: https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html
 [Altera® Quartus® Prime Pro Edition version 25.1 Windows]: https://www.intel.com/content/www/us/en/software-kit/851653/intel-quartus-prime-pro-edition-design-software-version-25-1-for-windows.html
+[Altera® Quartus® Prime Pro Edition version 25.1 Programmer and Tools]: https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html
 
 
-
-
-[User flow 1]: ../camera_4k/camera_4k.md#pre-requisites
-[User flow 2]: ../camera_4k_resources/flow2-sof-mdt.md
-[User flow 3]: ../camera_4k_resources/flow3-rbf-mdt.md
-
-
-
-[https://github.com/altera-fpga/agilex-ed-camera]: https://github.com/altera-fpga/agilex-ed-camera
-[https://github.com/altera-fpga/modular-design-toolkit]: https://github.com/altera-fpga/modular-design-toolkit
-[meta-altera-fpga]: https://github.com/altera-fpga/agilex-ed-camera/tree/rel-25.1/sw/meta-altera-fpga
-[meta-altera-fpga-ocs]: https://github.com/altera-fpga/agilex-ed-camera/tree/rel-25.1/sw/meta-altera-fpga-ocs
-[meta-vvp-isp-demo]: https://github.com/altera-fpga/agilex-ed-camera/tree/rel-25.1/sw/meta-vvp-isp-demo
-[agilex-ed-camera/sw]: https://github.com/altera-fpga/agilex-ed-camera/tree/rel-25.1/sw
-
-
-
-[Release Tag]: https://github.com/altera-fpga/agilex-ed-camera/releases/tag/rel-25.1
-[https://github.com/altera-fpga/agilex-ed-camera/releases/tag/rel-25.1]: https://github.com/altera-fpga/agilex-ed-camera/releases/tag/rel-25.1
-[hps-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz]: https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/hps-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz
-[fpga-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz]: https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/fpga-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz
-[fsbl_agilex5_modkit_vvpisp_time_limited.sof]: https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/fsbl_agilex5_modkit_vvpisp_time_limited.sof
-[top.core.jic]: https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/top.core.jic
-[top.core.rbf]: https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/top.core.rbf
-
-
-
-[AGX_5E_Modular_Devkit_ISP_FF_RD.xml]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/AGX_5E_Altera_Modular_Dk_ISP_designs/AGX_5E_Modular_Devkit_ISP_FF_RD.xml
-[AGX_5E_Modular_Devkit_ISP_RD.xml]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/AGX_5E_Altera_Modular_Dk_ISP_designs/AGX_5E_Modular_Devkit_ISP_RD.xml
-[Create microSD card image (.wic.gz) using YOCTO/KAS]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/sw/README.md
-[<g>&check;</g><span hidden="true"> YOCTO/KAS </span>]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/sw/README.md
-
-[SOF Modular Design Toolkit (MDT) Flow]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt
-[RBF Modular Design Toolkit (MDT) Flow]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt
-[<g>&check;</g><span hidden="true"> SOF MDT Flow </span>]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt
-[<g>&check;</g><span hidden="true"> RBF MDT Flow </span>]: https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt
+[ultralytics YOLO]: https://docs.ultralytics.com
+[ONNX]: https://onnx.ai/
+[OpenVINO Toolkit]: https://storage.openvinotoolkit.org/repositories/openvino/packages/2024.6/linux
 
 
 
@@ -1027,17 +1470,19 @@ Warp and Frame Writer IPs.
 [Demosaic IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/demosaic.html
 [Histogram Statistics IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/histogram-statistics.html
 [Color Space Converter IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/color-space-converter.html
+[1D LUT]: https://www.altera.com/products/ip/a1jui000004r4gnmas/1d-lut-altera-fpga-ip
 [1D LUT IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/1d-lut.html
-[3D LUT]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/dsp/3d-lut.html
+[3D LUT]: https://www.altera.com/products/ip/a1jui000004r4gnmas/3d-lut-altera-fpga-ip
 [3D LUT IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/3d-lut.html
 [LUTCalc GitHub page]: https://github.com/cameramanben/LUTCalc
-[Tone Mapping Operator]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/dsp/tone-mapping-operator.html
+[Tone Mapping Operator]: https://www.altera.com/products/ip/a1jui000004r0hlmak/tone-mapping-operator-fpga-ip
 [Tone Mapping Operator IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/tone-mapping-operator.html
 [Unsharp Mask IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/unsharp-mask.html
-[Warp]: https://www.intel.com/content/www/us/en/products/details/fpga/intellectual-property/dsp/video-warp.html
+[Warp]: https://www.altera.com/products/ip/a1jui000004rhk1mag/warp-fpga-ip
 [Warp IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/warp.html
 [Mixer IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/mixer.html
 [Video Frame Writer IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/video-frame-writer-intel-fpga-ip.html
+[Video Frame Reader IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/video-frame-reader-intel-fpga-ip.html
 [Color Plane Manager IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/color-plane-manager.html
 [Bits per Color Sample Adapter IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/bits-per-color-sample-adapter.html
 [Protocol Converter IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/protocol-converter.html
@@ -1047,7 +1492,8 @@ Warp and Frame Writer IPs.
 [AMBA 4 AXI4-Stream Protocol Specification]: https://developer.arm.com/documentation/ihi0051/a/
 [Avalon® Interface Specifications – Avalon® Streaming Interfaces]: https://www.intel.com/content/www/us/en/docs/programmable/683091/20-1/streaming-interfaces.html
 [KAS]: https://kas.readthedocs.io/en/latest/
+[EMIF]: https://www.altera.com/design/guidance/emif-support
+[Scaler IP]: https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/scaler.html
+[MSGDMA IP]: https://www.intel.com/content/www/us/en/docs/programmable/683130/25-1-1/modular-scatter-gather-dma-core.html
 
 
-
-[def]: #4kp60-multi-sensor-hdr-camera-solution-system-example-design-for-agilex-5-devices---isp-functional-description

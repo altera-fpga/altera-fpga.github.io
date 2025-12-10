@@ -69,48 +69,10 @@ graph LR
 Note: The Nios V/g processor controls all embedded peripheral IP in the processor-subsystem. </br>
 To simplify the block diagram, this relationship is omitted.
 
-```mermaid 
----
-title: Design Block Diagram
-config:
-  flowchart:
----
+ 
 
-flowchart TD
-    V[LED Output]
-subgraph top-level-subsystem
-    Z[Clock Source]
-    Y[Reset Source]
-    X[ISSP]
-subgraph processor-subsystem
-    A[Nios V/g Processor]
-    B[Parallel IO]
-    C[On-Chip RAM II]
-    D[JTAG UART]
-    E[System ID]
-    F[Triple Speed Ethernet]
-    G[TX mSGDMA] --> F
-    F --> H[RX mSGDMA]
-    I[Descriptor Memory]
-    C --> G
-    H --> C
+![Block Diagram](./img/block-diagram.png?raw=true)
 
-    A ~~~ D
-    D ~~~ E
-    E ~~~ I
-end
-end
-subgraph rgmii-phy
-    J(RX Data)
-    K(TX Data)
-end
-Z --> processor-subsystem
-Y --> processor-subsystem
-X --> rgmii-phy
-F --> K
-J --> F
-B --> V
-```
 
 ### Nios® V/g Processor IP
 - General-purpose 32-bit CPU for high performance applications with larger logic area utilization.
