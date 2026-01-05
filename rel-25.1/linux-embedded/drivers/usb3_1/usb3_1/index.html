@@ -11,13 +11,17 @@
         <link rel="canonical" href="https://altera-fpga.github.io/rel-25.1/linux-embedded/drivers/usb3_1/usb3_1/">
       
       
+        <link rel="prev" href="../../usb2_0_otg/usb_2_0_otg/">
+      
+      
+        <link rel="next" href="../../watchdog_timers/watchdog_timers/">
       
       <link rel="icon" href="../../../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
     
     
       
-        <title>**USB 3.1 Driver for Hard Processor System** - Altera FPGA Developer Site</title>
+        <title>USB 3.1 Gen-1 - Altera FPGA Developer Site</title>
       
     
     
@@ -116,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              **USB 3.1 Driver for Hard Processor System**
+              USB 3.1 Gen-1
             
           </span>
         </div>
@@ -198,13 +202,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../../../driver-list_linux/" class="md-tabs__link">
+      <a href="../../../../driver-list_linux/" class="md-tabs__link md-tabs__link--active">
         Linux Drivers
       </a>
     </li>
@@ -375,14 +381,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
       
       
         
@@ -407,7 +415,7 @@
           
         </div>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2">
           <span class="md-nav__icon md-icon"></span>
           Linux Drivers
@@ -420,16 +428,20 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
       
       
+        
+          
         
           
         
@@ -490,7 +502,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_2_2">
           <span class="md-nav__icon md-icon"></span>
           HPS Host Drivers
@@ -828,6 +840,123 @@
       <a href="../../usb2_0_otg/usb_2_0_otg/" class="md-nav__link">
         USB 2.0 OTG
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          USB 3.1 Gen-1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        USB 3.1 Gen-1
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usb-31-glue-driver" class="md-nav__link">
+    USB 3.1 Glue Driver
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driver-sources" class="md-nav__link">
+    Driver Sources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#driver-capabilities" class="md-nav__link">
+    Driver Capabilities
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-configurations" class="md-nav__link">
+    Kernel Configurations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#device-tree" class="md-nav__link">
+    Device Tree
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-procedure" class="md-nav__link">
+    Test Procedure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    Known Issues
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notices-disclaimers" class="md-nav__link">
+    Notices &amp; Disclaimers
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2423,8 +2552,22 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../embedded-designs/agilex-5/e-series/premium/usb3p1/ug-usb3p1-dev-drd-modes/" class="md-nav__link">
+        USB 3.1 Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../embedded-designs/agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium/" class="md-nav__link">
-        SoC FPGA Remote Debug Example
+        SoC FPGA Remote Debug
       </a>
     </li>
   
@@ -2438,7 +2581,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../embedded-designs/agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc/" class="md-nav__link">
-        HPS Remote System Update Example
+        HPS Remote System Update
       </a>
     </li>
   
@@ -2484,7 +2627,7 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_10" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_11" >
       
       
         
@@ -2496,13 +2639,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_7_3_1_10" id="__nav_7_3_1_10_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_7_3_1_11" id="__nav_7_3_1_11_label" tabindex="0">
           Nios V Processor Examples
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_1_10_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_7_3_1_10">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_1_11_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_1_11">
           <span class="md-nav__icon md-icon"></span>
           Nios V Processor Examples
         </label>
@@ -2519,7 +2662,7 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_10_1" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_11_1" >
       
       
         
@@ -2527,13 +2670,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_7_3_1_10_1" id="__nav_7_3_1_10_1_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_7_3_1_11_1" id="__nav_7_3_1_11_1_label" tabindex="0">
           Nios V/c
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_7_3_1_10_1_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_7_3_1_10_1">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_7_3_1_11_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_1_11_1">
           <span class="md-nav__icon md-icon"></span>
           Nios V/c
         </label>
@@ -2571,7 +2714,7 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_10_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_11_2" >
       
       
         
@@ -2579,13 +2722,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_7_3_1_10_2" id="__nav_7_3_1_10_2_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_7_3_1_11_2" id="__nav_7_3_1_11_2_label" tabindex="0">
           Nios V/m
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_7_3_1_10_2_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_7_3_1_10_2">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_7_3_1_11_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_1_11_2">
           <span class="md-nav__icon md-icon"></span>
           Nios V/m
         </label>
@@ -2623,7 +2766,7 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_10_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_11_3" >
       
       
         
@@ -2631,13 +2774,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_7_3_1_10_3" id="__nav_7_3_1_10_3_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_7_3_1_11_3" id="__nav_7_3_1_11_3_label" tabindex="0">
           Nios V/g
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_7_3_1_10_3_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_7_3_1_10_3">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_7_3_1_11_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_1_11_3">
           <span class="md-nav__icon md-icon"></span>
           Nios V/g
         </label>
@@ -2659,138 +2802,6 @@
           
         </ul>
       </nav>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_1_11" >
-      
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-      
-        <label class="md-nav__link" for="__nav_7_3_1_11" id="__nav_7_3_1_11_label" tabindex="0">
-          Demos
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_1_11_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_7_3_1_11">
-          <span class="md-nav__icon md-icon"></span>
-          Demos
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../baremetal-embedded/agilex-5/e-series/premium/ug-baremetal-agx5e-premium/" class="md-nav__link">
-        Baremetal Hello World Example
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="https://github.com/altera-fpga/agilex5-demo-hps2fpga-interfaces/blob/main/documentation/01_index.md" class="md-nav__link">
-        Third Party Boards - HPS-FPGA Interfaces Demos User Guide
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../demos/agilex-5/e-series/premium/armds-debug-uboot/ug-armds-debug-uboot-agx5e-premium/" class="md-nav__link">
-        Debugging U-Boot with Arm Development Studio
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../demos/agilex-5/e-series/premium/riscfree-debug-u-boot/ug-riscfree-debug-uboot-agx5e-premium/" class="md-nav__link">
-        Debugging U-Boot with Ashling RiscFree
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../demos/agilex-5/e-series/premium/riscfree-debug-linux/ug-riscfree-debug-linux-agx5e-premium/" class="md-nav__link">
-        Debugging Linux with Ashling RiscFree
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../demos/agilex-5/e-series/premium/armds-debug-linux/ug-armds-debug-linux-agx5e-premium/" class="md-nav__link">
-        Debugging Linux with Arm Development Studio
-      </a>
     </li>
   
 
@@ -2908,6 +2919,8 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_2" >
       
       
+        
+          
         
           
         
@@ -3099,6 +3112,58 @@
 
             
           
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3_2_12" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_3_2_12" id="__nav_7_3_2_12_label" tabindex="0">
+          TSN Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_3_2_12_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_3_2_12">
+          <span class="md-nav__icon md-icon"></span>
+          TSN Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../embedded-designs/agilex-5/e-series/modular/tsn/sgmii_xcvr_3x2.5G/ug-tsn-sgmii-xcvr-3x2.5G-agilex5/" class="md-nav__link">
+        HPS TSN SGMII XCVR System 3x2.5G Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -3257,6 +3322,14 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_4_1" id="__nav_7_4_1_label" tabindex="0">
@@ -3292,7 +3365,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/" class="md-nav__link">
-        HPS Remote System Update Example
+        HPS Remote System Update
       </a>
     </li>
   
@@ -3306,7 +3379,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc/" class="md-nav__link">
-        HPS Multi-QSPI Remote System Update Example
+        HPS Multi-QSPI Remote System Update
       </a>
     </li>
   
@@ -3320,7 +3393,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../embedded-designs/agilex-7/f-series/soc/remote-debug/ug-remote-debug-agx7f-soc/" class="md-nav__link">
-        SoC FPGA Remote Debug Example
+        SoC FPGA Remote Debug
       </a>
     </li>
   
@@ -3334,7 +3407,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../embedded-designs/agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc/" class="md-nav__link">
-        HPS eMMC Boot Example
+        HPS eMMC Boot
       </a>
     </li>
   
@@ -3402,13 +3475,69 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../../../embedded-designs/agilex-7/f-series/soc/security/crypto/cryptoservices/ug-fpga-cryptoservice-agx7-soc/" class="md-nav__link">
+        FPGA Crypto Services (FCS) Tutorial Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../embedded-designs/agilex-7/f-series/soc/security/crypto/sdos/ug-sdos-agx7f-soc/" class="md-nav__link">
+        Secure Data Object Storage (SDOS) Tutorial Example User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../embedded-designs/agilex-7/f-series/soc/security/vab/hps-first/ug-vab-hps-first-agx7f-soc/" class="md-nav__link">
+        Vendor Authorized Boot (HPS-First) Tutorial Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../embedded-designs/agilex-7/f-series/soc/security/vab/fpga-first/ug-vab-fpga-first-agx7f-soc/" class="md-nav__link">
+        Vendor Authorized Boot (FPGA-First) Tutorial Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_1_10" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_1_14" >
       
       
         
@@ -3416,13 +3545,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_7_4_1_10" id="__nav_7_4_1_10_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_7_4_1_14" id="__nav_7_4_1_14_label" tabindex="0">
           Nios V Processor Examples
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_4_1_10_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_7_4_1_10">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_7_4_1_14_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_4_1_14">
           <span class="md-nav__icon md-icon"></span>
           Nios V Processor Examples
         </label>
@@ -3439,7 +3568,7 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_1_10_1" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_1_14_1" >
       
       
         
@@ -3447,13 +3576,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_7_4_1_10_1" id="__nav_7_4_1_10_1_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_7_4_1_14_1" id="__nav_7_4_1_14_1_label" tabindex="0">
           Nios V/g
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_7_4_1_10_1_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_7_4_1_10_1">
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_7_4_1_14_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7_4_1_14_1">
           <span class="md-nav__icon md-icon"></span>
           Nios V/g
         </label>
@@ -3659,6 +3788,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_4_3" id="__nav_7_4_3_label" tabindex="0">
@@ -3672,20 +3803,6 @@
           I-Series FPGA Development Kit
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/" class="md-nav__link">
-        GSRD User Guide
-      </a>
-    </li>
-  
-
-            
           
             
               
@@ -3707,8 +3824,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../embedded-designs/agilex-7/i-series/ptp/agx7i-ptp-mcqos-25g/agx7i-ptp-mcqos-25g/" class="md-nav__link">
+        Agilex 7 Multi-Channel 25GbE Time Precision Protocol System Example Design (I-Series, 4x F-Tile)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/" class="md-nav__link">
         HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../embedded-designs/agilex-7/i-series/avst_cii/agilex7-ed-pcie-cii/" class="md-nav__link">
+        CII Example Design
       </a>
     </li>
   
@@ -3959,6 +4104,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_5_1" id="__nav_7_5_1_label" tabindex="0">
@@ -3994,7 +4141,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../embedded-designs/stratix-10/sx/soc/rsu/ug-rsu-s10sx-soc/" class="md-nav__link">
-        HPS Remote System Update Example
+        HPS Remote System Update
       </a>
     </li>
   
@@ -4008,7 +4155,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../embedded-designs/stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc/" class="md-nav__link">
-        SoC FPGA Remote Debug Example
+        SoC FPGA Remote Debug
       </a>
     </li>
   
@@ -4022,7 +4169,7 @@
   
     <li class="md-nav__item">
       <a href="../../../../embedded-designs/stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc/" class="md-nav__link">
-        HPS eMMC Boot Example
+        HPS eMMC Boot
       </a>
     </li>
   
@@ -4036,7 +4183,21 @@
   
     <li class="md-nav__item">
       <a href="../../../../embedded-designs/stratix-10/sx/soc/fabric-config/ug-linux-fabric-config-s10sx-soc/" class="md-nav__link">
-        SoC Fabric Configuration from Linux Example
+        SoC Fabric Configuration from Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../embedded-designs/stratix-10/sx/soc/security/secure-boot/hps-first/ug-secure-boot-hps-first-s10sx-soc/" class="md-nav__link">
+        Secure Boot Tutorial Example Design User Guide
       </a>
     </li>
   
@@ -4119,6 +4280,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_6_1" id="__nav_7_6_1_label" tabindex="0">
@@ -4141,6 +4304,20 @@
     <li class="md-nav__item">
       <a href="../../../../embedded-designs/arria-10/sx/soc/gsrd/ug-gsrd-a10sx-soc/" class="md-nav__link">
         GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../embedded-designs/arria-10/sx/soc/boot-examples/ug-linux-boot-a10-soc/" class="md-nav__link">
+        HPS GHRD Linux Boot Examples
       </a>
     </li>
   
@@ -4348,6 +4525,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#test-procedure" class="md-nav__link">
+    Test Procedure
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#known-issues" class="md-nav__link">
     Known Issues
   </a>
@@ -4380,9 +4564,9 @@
 
 
 <h1 id="usb-31-driver-for-hard-processor-system"><strong>USB 3.1 Driver for Hard Processor System</strong><a class="headerlink" href="#usb-31-driver-for-hard-processor-system" title="Permanent link">&para;</a></h1>
-<p>Last updated: <strong>December 10, 2025</strong> </p>
-<p><strong>Upstream Status</strong>: Not Upstreamed</p>
-<p><strong>Devices supported</strong>: Agilex 5</p>
+<p>Last updated: <strong>January 05, 2026</strong> </p>
+<p><strong>Upstream Status</strong>: <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/usb/dwc3">Upstreamed</a></p>
+<p><strong>Devices supported</strong>: Agilex3, Agilex 5</p>
 <h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>The HPS provides a single instance of a USB 3.1 Gen 1 controller that supports both device and host functions for high-speed applications. The general use cases of USB 3.1 are for the HPS system to support all USB devices such as:</p>
 <ul>
@@ -4398,7 +4582,7 @@
 <p><a class="glightbox" href="../images/usb3_1_driver.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="usb3_1_driver" src="../images/usb3_1_driver.png" /></a></p>
 <h2 id="driver-sources"><strong>Driver Sources</strong><a class="headerlink" href="#driver-sources" title="Permanent link">&para;</a></h2>
 <p>The source code for this driver can be found at:</p>
-<p><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/usb/dwc3/dwc3-of-simple.c">https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/usb/dwc3/dwc3-of-simple.c</a></p>
+<p><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/usb/dwc3">https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/usb/dwc3</a></p>
 <h2 id="driver-capabilities"><strong>Driver Capabilities</strong><a class="headerlink" href="#driver-capabilities" title="Permanent link">&para;</a></h2>
 <ul>
 <li>It provides a reference to the Clock which is required by the rest of the interfaces.</li>
@@ -4406,15 +4590,114 @@
 <h2 id="kernel-configurations"><strong>Kernel Configurations</strong><a class="headerlink" href="#kernel-configurations" title="Permanent link">&para;</a></h2>
 <p>CONFIG_USB_DWC3</p>
 <p><a class="glightbox" href="../images/usb_3_config_path.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="usb_3_config_path" src="../images/usb_3_config_path.png" /></a></p>
+<p><strong>Note</strong>: 
+CONFIG_USB_DWC3_HOST or CONFIG_USB_DWC3_GADGET should be enabled only if the user wants to explicitly turn on Host or Device mode.
+If CONFIG_USB_DWC3_DUAL_ROLE is enabled, both Host mode and Device mode drivers will be built.</p>
 <h2 id="device-tree"><strong>Device Tree</strong><a class="headerlink" href="#device-tree" title="Permanent link">&para;</a></h2>
 <p>Example Device tree location to configure the usb3_1:</p>
+<p>1. The default Device Tree configures the USB3_1 in Host Mode: (dr_mode = "host";)</p>
 <p><a href="https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi">https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi</a></p>
-<p><a class="glightbox" href="../images/usb3_1_device_tree_1.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="usb3_1_device_tree_1" src="../images/usb3_1_device_tree_1.png" /></a></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>        usb31: usb1@11000000 {
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>            compatible = &quot;intel,agilex5-dwc3&quot;;
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>            reg = &lt;0x11000000 0x100000&gt;;
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>            ranges;
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>            #address-cells = &lt;1&gt;;
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>            #size-cells = &lt;1&gt;;
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>            clocks = &lt;&amp;clkmgr AGILEX5_USB31_SUSPEND_CLK&gt;,
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>                 &lt;&amp;clkmgr AGILEX5_USB31_BUS_CLK_EARLY&gt;;
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>            resets = &lt;&amp;rst USB1_RESET&gt;, &lt;&amp;rst USB1_OCP_RESET&gt;;
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>            reset-names = &quot;dwc3&quot;, &quot;dwc3-ecc&quot;;
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>            status = &quot;disabled&quot;;
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>            usb@11000000{
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>                compatible = &quot;snps,dwc3&quot;;
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>                reg = &lt;0x11000000 0x100000&gt;;
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>                interrupts = &lt;GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH&gt;;
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>                phys = &lt;&amp;usbphy0&gt;, &lt;&amp;usbphy0&gt;;
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>                phy-names = &quot;usb2-phy&quot;, &quot;usb3-phy&quot;;
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>                dr_mode = &quot;host&quot;;
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>                maximum-speed = &quot;super-speed-plus&quot;;
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>                snps,dis_u2_sysphy-quirk;
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>                snps,dma_set_40_bit_mask_quirk;
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>            };
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>        };
+</code></pre></div>
+<p>2. To enable the USB3_1 in Device Mode, the "dr_mode" must be changed to "peripheral" in the Device Tree File:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>        usb31: usb1@11000000 {
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>            compatible = &quot;intel,agilex5-dwc3&quot;;
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>            reg = &lt;0x11000000 0x100000&gt;;
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>            ranges;
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>            #address-cells = &lt;1&gt;;
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>            #size-cells = &lt;1&gt;;
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>            clocks = &lt;&amp;clkmgr AGILEX5_USB31_SUSPEND_CLK&gt;,
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>                 &lt;&amp;clkmgr AGILEX5_USB31_BUS_CLK_EARLY&gt;;
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>            resets = &lt;&amp;rst USB1_RESET&gt;, &lt;&amp;rst USB1_OCP_RESET&gt;;
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>            reset-names = &quot;dwc3&quot;, &quot;dwc3-ecc&quot;;
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>            status = &quot;disabled&quot;;
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>            usb@11000000{
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>                compatible = &quot;snps,dwc3&quot;;
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>                reg = &lt;0x11000000 0x100000&gt;;
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>                interrupts = &lt;GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH&gt;;
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>                phys = &lt;&amp;usbphy0&gt;, &lt;&amp;usbphy0&gt;;
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>                phy-names = &quot;usb2-phy&quot;, &quot;usb3-phy&quot;;
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>                dr_mode = &quot;peripheral&quot;;
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>                maximum-speed = &quot;super-speed-plus&quot;;
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>                snps,dis_u2_sysphy-quirk;
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>                snps,dma_set_40_bit_mask_quirk;
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>            };
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>        };
+</code></pre></div>
+<p>3. To enable the USB3_1 in Dual-Role Device (DRD) Mode.</p>
+<p>a. The "dr_mode" must be changed to "otg" in the Device Tree File</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>        usb31: usb1@11000000 {
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>            compatible = &quot;intel,agilex5-dwc3&quot;;
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>            reg = &lt;0x11000000 0x100000&gt;;
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>            ranges;
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>            #address-cells = &lt;1&gt;;
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>            #size-cells = &lt;1&gt;;
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>            clocks = &lt;&amp;clkmgr AGILEX5_USB31_SUSPEND_CLK&gt;,
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>                 &lt;&amp;clkmgr AGILEX5_USB31_BUS_CLK_EARLY&gt;;
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            resets = &lt;&amp;rst USB1_RESET&gt;, &lt;&amp;rst USB1_OCP_RESET&gt;;
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>            reset-names = &quot;dwc3&quot;, &quot;dwc3-ecc&quot;;
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>            status = &quot;disabled&quot;;
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>            usb@11000000{
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>                compatible = &quot;snps,dwc3&quot;;
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>                reg = &lt;0x11000000 0x100000&gt;;
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>                interrupts = &lt;GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH&gt;;
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>                phys = &lt;&amp;usbphy0&gt;, &lt;&amp;usbphy0&gt;;
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>                phy-names = &quot;usb2-phy&quot;, &quot;usb3-phy&quot;;
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>                dr_mode = &quot;otg&quot;;
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>                maximum-speed = &quot;super-speed-plus&quot;;
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>                snps,dis_u2_sysphy-quirk;
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>                snps,dma_set_40_bit_mask_quirk;
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>            };
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>        };
+</code></pre></div>
+<p>b. Two extra nodes are to be added to the Device Tree File:</p>
+<p>(User may add to gsrd-socfpga//meta-intel-fpga-refdes/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>        usb_pio: gpio@20010090 {
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>                compatible = &quot;altr,pio-1.0&quot;;
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>                reg = &lt;0x20010090 0x10&gt;;
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>                interrupts = &lt;GIC_SPI 20 IRQ_TYPE_EDGE_RISING&gt;;
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>                altr,gpio-bank-width = &lt;4&gt;;
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>                altr,interrupt-type = &lt;3&gt;;
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>                #gpio-cells = &lt;2&gt;;
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>                gpio-controller;
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        };
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        extcon_usb: extcon-usb {
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>                compatible = &quot;linux,extcon-usb-gpio&quot;;
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>                id-gpio = &lt;&amp;usb_pio 0 GPIO_ACTIVE_HIGH&gt;;
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>                vbus-gpio = &lt;&amp;usb_pio 1 GPIO_ACTIVE_HIGH&gt;;
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>        };
+</code></pre></div>
+<p><strong>Important Note</strong>: For the full instructions to enable USB3.1 in Device mode and Dual-Role Device mode, please refer to the Example Design tutorial <a href="https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/premium/usb3p1/ug-usb3p1-dev-drd-modes/">https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/premium/usb3p1/ug-usb3p1-dev-drd-modes/</a></p>
+<h2 id="test-procedure"><strong>Test Procedure</strong><a class="headerlink" href="#test-procedure" title="Permanent link">&para;</a></h2>
+<p>The procedure to test USB3.1 in Host mode, Device mode and Dual-Role Device mode are included in the Example Design tutorial <a href="https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/premium/usb3p1/ug-usb3p1-dev-drd-modes/">https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/premium/usb3p1/ug-usb3p1-dev-drd-modes/</a></p>
 <h2 id="known-issues"><strong>Known Issues</strong><a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Currently dynamic mode switching is not supported</li>
-<li>Real-time detection of USB-C slave devices not supported</li>
-</ul>
+<p>None Known</p>
 <h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
 <p>Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
 No product or component can be absolutely secure. 
@@ -4463,6 +4746,42 @@ You are responsible for safety of the overall system, including compliance with 
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../usb2_0_otg/usb_2_0_otg/" class="md-footer__link md-footer__link--prev" aria-label="Previous: USB 2.0 OTG" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                USB 2.0 OTG
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../watchdog_timers/watchdog_timers/" class="md-footer__link md-footer__link--next" aria-label="Next: Watchdog Timers" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Watchdog Timers
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">

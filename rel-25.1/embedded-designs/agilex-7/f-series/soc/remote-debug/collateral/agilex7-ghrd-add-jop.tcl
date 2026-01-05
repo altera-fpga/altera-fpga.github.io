@@ -1,7 +1,7 @@
 
-package require -exact qsys 25.1
+package require qsys
 
-add_component intel_jop_blaster_0 ip/qsys_top/qsys_top_intel_jop_blaster_0.ip intel_jop_blaster intel_jop_blaster_0 1.2.2
+add_component intel_jop_blaster_0 ip/qsys_top/qsys_top_intel_jop_blaster_0.ip intel_jop_blaster intel_jop_blaster_0
 load_component intel_jop_blaster_0
 set_component_parameter_value EXPORT_SLD_ED {0}
 set_component_parameter_value MEM_SIZE {4096}
@@ -23,7 +23,7 @@ set_connection_parameter_value rst_in.out_reset/intel_jop_blaster_0.reset resetD
 
 add_connection agilex_hps.h2f_lw_axi_master/intel_jop_blaster_0.avmm_s
 
-set_connection_parameter_value agilex_hps.h2f_lw_axi_master/intel_jop_blaster_0.avmm_s baseAddress {0x00020000}
+set_connection_parameter_value agilex_hps.h2f_lw_axi_master/intel_jop_blaster_0.avmm_s baseAddress {0x00008000}
 
 save_system qsys_top.qsys
 
