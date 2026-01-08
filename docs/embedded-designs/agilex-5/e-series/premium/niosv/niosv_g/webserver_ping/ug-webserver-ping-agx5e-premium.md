@@ -289,12 +289,13 @@ Alternatively, host PC (192.168.1.50) can ping the FPGA (192.168.1.40) from the 
 
 ![Host PC Display](./img/successful_ping_from_pc.png?raw=true)
 
-## Known Issue
+## Example Design Bugs
 You might experience packet loss when bidirectional ping operation is carried out. </br>
 In other words, both host PC and FPGA are pinging each other simulateneously. </br>
 
 ![Packet Loss from Host PC](./img/packet_loss.png?raw=true)
 
-This issue is not replicated when the ping operation is unidirectional.
+This issue is not replicated when the ping operation is unidirectional.</br>
+It is scheduled to be fixed in future example release.
 
 ![Nios V Processor Header](../../devkit-img/niosv-header.png?raw=true)
