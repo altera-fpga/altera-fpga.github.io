@@ -221,7 +221,7 @@ Kit.
   tar -xzf `<name>.wic.gz`
   ```
 
-  * On Windows, use the [7-Zip](https://www.7-zip.org) program (or similar):
+  * On Windows, use the [7-Zip] program (or similar):
     * Right click `<name>.wic.gz` file, and select "Extract All..."
 
 * Write the `<name>.wic` image to the microSD card using a USB writer:
@@ -237,7 +237,7 @@ Kit.
   sync
   ```
 
-  * On Windows, use the [Win32DiskImager](https://sourceforge.net/projects/win32diskimager) program (or similar):
+  * On Windows, use the [Win32DiskImager] program (or similar):
     * Click browse icon and select "\*.\*" filter:
 
     ![disk-imager-browse](../common/images/disk-imager-browse.png){:style="display:block; margin-left:auto; margin-right:auto"}
