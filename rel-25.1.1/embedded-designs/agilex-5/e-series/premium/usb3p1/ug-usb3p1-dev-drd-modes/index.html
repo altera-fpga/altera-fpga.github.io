@@ -3996,6 +3996,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_4_3" id="__nav_7_4_3_label" tabindex="0">
@@ -4060,6 +4062,20 @@
     <li class="md-nav__item">
       <a href="../../../../../agilex-7/i-series/avst_cii/agilex7-ed-pcie-cii/" class="md-nav__link">
         CII Example Design
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-7/i-series/pcie-rp/ug-pcie_rp-agx7-i-premium/" class="md-nav__link">
+        HPS PCIe Root Port Example Design
       </a>
     </li>
   
@@ -5083,7 +5099,7 @@
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>build_setup
 </code></pre></div>
 <p>2. Apply the Device Mode Enablement Patch</p>
-<p>a. Download the patch:  <a href="../patches/0001-update-yocto-build-for-USB3.1-Device-Mode-v1.patch">Device_Mode_Yocto_Patch</a></p>
+<p>a. Download the patch:  <a href="../patches/0001-update-yocto-build-for-USB3.1-Device-Mode-25.1.1.patch">Device_Mode_Yocto_Patch</a></p>
 <p>The patch changes the value of dr_mode in the <strong>&amp;usb31</strong> node from "host" to "peripheral" in device tree file <strong>socfpga_agilex5_socdk.dts</strong>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w"> </span><span class="p">&amp;</span>usb31<span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="nv">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;okay&quot;</span><span class="p">;</span>
@@ -5305,7 +5321,7 @@ Observe that the dev kit is being seen by Test PC as a storage.</p>
 <a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>build_setup
 </code></pre></div>
 <p>2. Apply the Device Mode Enablement Patch</p>
-<p>a. Download the patch:  <a href="../patches/0001-update-yocto-build-for-USB3.1-DRD-mode-v1.patch">DRD_Mode_Yocto_Patch</a></p>
+<p>a. Download the patch:  <a href="../patches/0001-update-yocto-build-for-USB3.1-DRD-Mode-25.1.1.patch">DRD_Mode_Yocto_Patch</a></p>
 <p>The patch changes the value of dr_mode in the <strong>&amp;usb31</strong> node from "host" to "otg" in the device tree file <strong>socfpga_agilex5_socdk.dts</strong>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="w"> </span><span class="p">&amp;</span>usb31<span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="nv">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;okay&quot;</span><span class="p">;</span>
