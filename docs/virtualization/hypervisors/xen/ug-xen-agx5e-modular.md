@@ -4,7 +4,7 @@
 
 ##  Introduction
 
-This page presents the Xen GSRD, which is based on the [Linux GSRD for the Agilex&trade; 5 E-Series Modular Development Kit](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/). The Xen GSRD uses the SD card for storing the root filesystem.
+This page presents the Xen GSRD, which is based on the [Linux GSRD for the Agilex&trade; 5 E-Series Modular Development Kit](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/). The Xen GSRD uses the SD card for storing the root filesystem.
 
 ### Xen Overview
 
@@ -28,41 +28,41 @@ The following are required to be able to fully exercise the Agilex&trade; 5 Modu
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1 
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
 ### Prebuilt Binaries
 
-The Agilex&trade; 5 Modular Development Kit GSRD binaries are located at [https://releases.rocketboards.org/2025.10/xen/agilex5_mk_a5e065bb32aes1_xen/](https://releases.rocketboards.org/2025.10/xen/agilex5_mk_a5e065bb32aes1_xen/).
+The Agilex&trade; 5 Modular Development Kit GSRD binaries are located at [https://releases.rocketboards.org/2026.01/xen/agilex5_mk_a5e065bb32aes1_xen/](https://releases.rocketboards.org/2026.01/xen/agilex5_mk_a5e065bb32aes1_xen/).
 
 ### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 and the following software component versions integrate the 25.3 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1 and the following software component versions integrate the 25.3.1 release. 
 
 **Note:** Regarding the GHRD components in the following table, only the device-specific GHRD is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 GHRD | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.3_REL_GSRD_PR   |
-| Agilex 5 GHRD - Include GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3_REL_GSRD_PR |
-| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
-| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
-| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS25.3_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.33-lts | QPDS25.3_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.0   | QPDS25.3_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.07 | QPDS25.3_REL_GSRD_PR |
+| Agilex 3 GHRD | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.3.1_REL_GSRD_PR   |
+| Agilex 5 GHRD - Include GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3.1_REL_GSRD_PR |
+| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.3.1_REL_GSRD_PR |
+| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.3.1_REL_GSRD_PR |
+| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS25.3.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.43-lts | QPDS25.3.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.1   | QPDS25.3.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.10 | QPDS25.3.1_REL_GSRD_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
-| Yocto Project: meta-altera-fpga (for GSRD 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3_REL_GSRD_PR |
+| Yocto Project: meta-altera-fpga (for GSRD 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3.1_REL_GSRD_PR |
 | Yocto Project: meta-intel-fpga (for Legacy GSRD) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest |
-| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3_REL_GSRD_PR |
-| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3.1_REL_GSRD_PR |
+| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3.1_REL_GSRD_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 ### Release Notes
 
-See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR).
+See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3.1_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3.1_REL_GSRD_PR).
 
 ## Exercise Xen GSRD Prebuilt Binaries
 
@@ -73,25 +73,25 @@ Running the boot from SD card section of the GSRD is a prerequisite step for run
 | Link | Description |
 | :- | :- |
 | [Board Documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html) | Board user guide, schematics, etc |
-| [GSRD Development Kit Section](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/#development-kit) | Details about the development kit |
-| [GSRD Board Setup Section](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/#configure-board) | Setting up the development kit |
-| [GSRD Serial Console Section](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/#configure-serial-console)  | Setting up serial console |
-| [GSRD Write SD Card Section](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/#write-sd-card-image)  | Writing SD card image |
+| [GSRD Development Kit Section](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/#development-kit) | Details about the development kit |
+| [GSRD Board Setup Section](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/#configure-board) | Setting up the development kit |
+| [GSRD Serial Console Section](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/#configure-serial-console)  | Setting up serial console |
+| [GSRD Write SD Card Section](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/#write-sd-card-image)  | Writing SD card image |
 
 ### Write Binaries
 
 This section shows presents downloading and flashing the SD card image and JIC files, and downloading the xen rootfs cpio archive to be used by DomUs VMs.
 
-1\. Download and write to SD card the image [https://releases.rocketboards.org/2025.10/xen/agilex5_mk_a5e065bb32aes1_xen/sdimage.tar.gz](https://releases.rocketboards.org/2025.10/xen/agilex5_mk_a5e065bb32aes1_xen/sdimage.tar.gz)
+1\. Download and write to SD card the image [https://releases.rocketboards.org/2026.01/xen/agilex5_mk_a5e065bb32aes1_xen/sdimage.tar.gz](https://releases.rocketboards.org/2026.01/xen/agilex5_mk_a5e065bb32aes1_xen/sdimage.tar.gz)
 
-2\. Download and write to QSPI flash the JIC file [https://releases.rocketboards.org/2025.10/xen/agilex5_mk_a5e065bb32aes1_xen/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz](https://releases.rocketboards.org/2025.10/xen/agilex5_mk_a5e065bb32aes1_xen/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz)
+2\. Download and write to QSPI flash the JIC file [https://releases.rocketboards.org/2026.01/xen/agilex5_mk_a5e065bb32aes1_xen/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz](https://releases.rocketboards.org/2026.01/xen/agilex5_mk_a5e065bb32aes1_xen/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz)
 
 3\. Set MSEL to QSPI, and power cycle the board to boot to Linux.
 
 4\. On the host computer, download the xen rootf cpio archive:
 
 ```bash
-wget https://releases.rocketboards.org/2025.10/xen/agilex5_mk_a5e065bb32aes1_xen/xen-image-minimal-agilex5_modular.cpio.gz
+wget https://releases.rocketboards.org/2026.01/xen/agilex5_mk_a5e065bb32aes1_xen/xen-image-minimal-agilex5_modular.cpio.gz
 mv xen-image-minimal-agilex5_modular.cpio.gz xen-image-minimal-agilex5.cpio.gz
 ```
 
@@ -452,7 +452,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 
 The following diagram shows an overview of how the build process works for this use case:
 
-![](/rel-25.3/embedded-designs/agilex-5/e-series/premium/gsrd/images/agilex5-build-sd-flow.svg)
+![](/rel-25.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/images/agilex5-build-sd-flow.svg)
 
 <h5>Setup Environment</h5>
 
@@ -485,9 +485,10 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
 
 
 
@@ -499,7 +500,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3_REL_GSRD_PR/a5ed065es-modular-devkit-som-legacy-baseline.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-modular-devkit-som-legacy-baseline.zip
 unzip a5ed065es-modular-devkit-som-legacy-baseline.zip
 rm -f a5ed065es-modular-devkit-som-legacy-baseline.zip
 make legacy_baseline-build

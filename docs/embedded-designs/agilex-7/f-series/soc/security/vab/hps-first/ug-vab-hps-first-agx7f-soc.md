@@ -214,10 +214,9 @@ The following file is created:
 Create two signature chains (FPGA and HPS software).
 Create directories for the keys and signature chains.
 ```bash
+cd $TOP_FOLDER
 mkdir keys && cd keys
-mkdir -p privatekeys
-mkdir -p publickeys
-mkdir -p qky
+mkdir -p privatekeys; mkdir -p publickeys; mkdir -p qky 
 ```
 Start a Nios command shell to have all Quartus tools in the PATH:
 ```
@@ -225,10 +224,8 @@ Start a Nios command shell to have all Quartus tools in the PATH:
 ```
 #### Generate Root Key
 ```bash
-quartus_sign --family=agilex7 --operation=make_private_pem --curve=secp384r1 --no_passphrase \
- privatekeys/private_root0.pem
-quartus_sign --family=agilex7 --operation=make_public_pem privatekeys/private_root0.pem \
- publickeys/public_root0.pem
+quartus_sign --family=agilex7 --operation=make_private_pem --curve=secp384r1 --no_passphrase privatekeys/private_root0.pem
+quartus_sign --family=agilex7 --operation=make_public_pem privatekeys/private_root0.pem publickeys/public_root0.pem
 quartus_sign --family=agilex7 --operation=make_root publickeys/public_root0.pem qky/root0.qky
 ```
 #### Generate Signing Keys
@@ -236,30 +233,24 @@ quartus_sign --family=agilex7 --operation=make_root publickeys/public_root0.pem 
 FPGA Signing
 
 ```bash
-quartus_sign --family=agilex7 --operation=make_private_pem --curve=secp384r1 --no_passphrase \
- privatekeys/private_sign0.pem
-quartus_sign --family=agilex7 --operation=make_public_pem privatekeys/private_sign0.pem \
- publickeys/public_sign0.pem
+quartus_sign --family=agilex7 --operation=make_private_pem --curve=secp384r1 --no_passphrase privatekeys/private_sign0.pem
+quartus_sign --family=agilex7 --operation=make_public_pem privatekeys/private_sign0.pem publickeys/public_sign0.pem
 ```
 HPS Software
 ```bash
-quartus_sign --family=agilex7 --operation=make_private_pem --curve=secp384r1 --no_passphrase \
- privatekeys/private_software0.pem
-quartus_sign --family=agilex7 --operation=make_public_pem privatekeys/private_software0.pem \
- publickeys/public_software0.pem
+quartus_sign --family=agilex7 --operation=make_private_pem --curve=secp384r1 --no_passphrase privatekeys/private_software0.pem
+quartus_sign --family=agilex7 --operation=make_public_pem privatekeys/private_software0.pem publickeys/public_software0.pem
 ```
 Generate Signature Chains:
 FPGA Signing - Cancel ID 1 – Permissions: FPGA/HPS/HPS Debug
 ```bash
-quartus_sign --family=agilex7 --operation=append_key --previous_pem=privatekeys/private_root0.pem \
- --previous_qky=qky/root0.qky --permission=14 --cancel=1 \
- --input_pem=publickeys/public_sign0.pem qky/sign0_cancel1.qky
+quartus_sign --family=agilex7 --operation=append_key --previous_pem=privatekeys/private_root0.pem --previous_qky=qky/root0.qky \
+--permission=14 --cancel=1 --input_pem=publickeys/public_sign0.pem qky/sign0_cancel1.qky
 ```
 HPS Software - cancel ID 3 – Permissions: HPS Firmware
 ```bash
-quartus_sign --family=agilex7 --operation=append_key --previous_pem=privatekeys/private_root0.pem \
- --previous_qky=qky/root0.qky --permission=0x80 --cancel=3 \
- --input_pem=publickeys/public_software0.pem qky/software0_cancel3.qky
+quartus_sign --family=agilex7 --operation=append_key --previous_pem=privatekeys/private_root0.pem --previous_qky=qky/root0.qky \
+--permission=0x80 --cancel=3 --input_pem=publickeys/public_software0.pem qky/software0_cancel3.qky
 ```
 ### Build the Hardware Design
 
@@ -297,10 +288,7 @@ Add FSBL bootloader to configuration bitstream, and generate the Raw Binary File
 cd $TOP_FOLDER
 mkdir bitstreams && cd bitstreams
 cp ../agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof ghrd.sof
-quartus_pfg -c ghrd.sof ghrd.rbf \
--o hps_path=../u-boot-socfpga/spl/u-boot-spl-dtb.hex \
--o hps=1 \
--o sign_later=ON
+quartus_pfg -c ghrd.sof ghrd.rbf -o hps_path=../u-boot-socfpga/spl/u-boot-spl-dtb.hex -o hps=1 -o sign_later=ON
 ```
 After that, two .rbf files are created:
 

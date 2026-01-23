@@ -140,8 +140,8 @@ the Input source.
 
 !!! note "Related Information"
 
-    [Test Pattern Generator IP] <br/>
-    [Switch IP]
+    [Test Pattern Generator IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/test-pattern-generator.html) <br/>
+    [Switch IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/switch.html)
 
 <br/>
 
@@ -207,7 +207,7 @@ calibration flow.
 
 !!! note "Related Information"
 
-    [Black Level Statistics IP]
+    [Black Level Statistics IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/black-level-statistics.html)
 
 <br/>
 
@@ -222,7 +222,7 @@ configures the Clipper IP to bypass the input image.
 
 !!! note "Related Information"
 
-    [Clipper IP]
+    [Clipper IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/clipper.html)
 
 <br/>
 
@@ -272,7 +272,7 @@ median filter.
 
 !!! note "Related Information"
 
-    [Defective Pixel Correction IP]
+    [Defective Pixel Correction IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/defective-pixel-correction.html)
 
 <br/>
 
@@ -317,7 +317,7 @@ the software configures a Gaussian distribution into the spatial distance LUT.
 
 !!! note "Related Information"
 
-    [Adaptive Noise Reduction IP]
+    [Adaptive Noise Reduction IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/adaptive-noise-reduction.html)
 
 <br/>
 
@@ -380,7 +380,7 @@ function of analog gain of the sensor.
 
 !!! note "Related Information"
 
-    [Black Level Correction IP]
+    [Black Level Correction IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/black-level-correction.html)
 
 <br/>
 
@@ -433,7 +433,7 @@ coefficients.
 
 !!! note "Related Information"
 
-    [Vignette Correction IP]
+    [Vignette Correction IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/vignette-correction.html)
 
 <br/>
 
@@ -499,7 +499,7 @@ The WBS IP passes its input image to its output unchanged.
 
 !!! note "Related Information"
 
-    [White Balance Statistics IP]
+    [White Balance Statistics IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/white-balance-statistics.html)
 
 <br/>
 
@@ -535,7 +535,7 @@ mode. The SW App also supports many fixed color temperature options.
 
 !!! note "Related Information"
 
-    [White Balance Correction IP]
+    [White Balance Correction IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/white-balance-correction.html)
 
 <br/>
 
@@ -572,7 +572,7 @@ interpolates missing colors to calculate the RGB output.
 
 !!! note "Related Information"
 
-    [Demosaic IP]
+    [Demosaic IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/demosaic.html)
 
 <br/>
 
@@ -605,7 +605,7 @@ The HS IP passes its input to its output unmodified.
 
 !!! note "Related Information"
 
-    [Histogram Statistics IP]
+    [Histogram Statistics IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/histogram-statistics.html)
 
 <br/>
 
@@ -634,7 +634,7 @@ accurate representation of the scene.
 
 !!! note "Related Information"
 
-    [Color Space Converter IP]
+    [Color Space Converter IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/color-space-converter.html)
 
 <br/>
 
@@ -676,7 +676,7 @@ LUT is configured as a 12-bit LUT and the output is reduced to 14-bits.
 
 !!! note "Related Information"
 
-    [1D LUT IP]
+    [1D LUT IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/1d-lut.html)
 
 <br/>
 
@@ -758,9 +758,9 @@ formatting conventions:
 
 !!! note "Related Information"
 
-    [3D LUT] <br/>
-    [3D LUT IP] <br/>
-    [LUTCalc GitHub page]
+    [3D LUT](https://www.altera.com/products/ip/a1jui000004r4gnmas/3d-lut-altera-fpga-ip) <br/>
+    [3D LUT IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/3d-lut.html) <br/>
+    [LUTCalc GitHub page](https://github.com/cameramanben/LUTCalc)
 
 <br/>
 
@@ -807,9 +807,9 @@ The SW App configures the TMO IP over the Avalon® memory-mapped interface.
 
 !!! note "Related Information"
 
-    [Tone Mapping Operator] <br/>
-    [Tone Mapping Operator IP] <br/>
-    [Bits per Color Sample Adapter IP] <br/>
+    [Tone Mapping Operator](https://www.altera.com/products/ip/a1jui000004r0hlmak/tone-mapping-operator-fpga-ip) <br/>
+    [Tone Mapping Operator IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/tone-mapping-operator.html) <br/>
+    [Bits per Color Sample Adapter IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/bits-per-color-sample-adapter.html) <br/>
 
 <br/>
 
@@ -833,7 +833,7 @@ unmodified.
 
 !!! note "Related Information"
 
-    [Unsharp Mask IP]
+    [Unsharp Mask IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/unsharp-mask.html)
 
 <br/>
 
@@ -885,8 +885,8 @@ arbitrary transformation at 4K resolution.
 
 !!! note "Related Information"
 
-    [Warp] <br/>
-    [Warp IP]
+    [Warp](https://www.altera.com/products/ip/a1jui000004rhk1mag/warp-fpga-ip) <br/>
+    [Warp IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/warp.html)
 
 <br/>
 
@@ -924,8 +924,8 @@ changed during runtime by the SW App.
 
 !!! note "Related Information"
 
-    [Test Pattern Generator IP] <br/>
-    [Mixer IP]
+    [Test Pattern Generator IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/test-pattern-generator.html) <br/>
+    [Mixer IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/mixer.html)
 
 <br/>
 
@@ -957,10 +957,10 @@ the color bit depth back down to 10-bits.
 
 !!! note "Related Information"
 
-    [Switch IP] <br/>
-    [Video Frame Writer IP] <br/>
-    [Color Plane Manager IP] <br/>
-    [Bits per Color Sample Adapter IP] <br/>
+    [Switch IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/switch.html) <br/>
+    [Video Frame Writer IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/video-frame-writer-intel-fpga-ip.html) <br/>
+    [Color Plane Manager IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/color-plane-manager.html) <br/>
+    [Bits per Color Sample Adapter IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/bits-per-color-sample-adapter.html) <br/>
 
 <br/>
 
@@ -986,8 +986,8 @@ VVP Protocol Converter IP.
 !!! note "Related Information"
 
 
-    [Pixels in Parallel Converter IP] <br/>
-    [Protocol Converter IP]
+    [Pixels in Parallel Converter IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/pixels-in-parallel-converter.html) <br/>
+    [Protocol Converter IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/protocol-converter.html)
 
 <br/>
 
@@ -1024,10 +1024,10 @@ capture functions.
 
 
 ## Additional Reference Information
-* [Video and Vision Processing Suite Altera® FPGA IP User Guide]
-* [Altera® FPGA Streaming Video Protocol Specification]
-* [AMBA 4 AXI4-Stream Protocol Specification]
-* [Avalon® Interface Specifications – Avalon® Streaming Interfaces]
+* [Video and Vision Processing Suite Altera® FPGA IP User Guide](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/about-the-video-and-vision-processing-suite.html)
+* [Altera® FPGA Streaming Video Protocol Specification](https://www.intel.com/content/www/us/en/docs/programmable/683397/current/about-the-intel-fpga-streaming-video.html)
+* [AMBA 4 AXI4-Stream Protocol Specification](https://developer.arm.com/documentation/ihi0051/a/)
+* [Avalon® Interface Specifications – Avalon® Streaming Interfaces](https://www.intel.com/content/www/us/en/docs/programmable/683091/20-1/streaming-interfaces.html)
 
 <br/>
 

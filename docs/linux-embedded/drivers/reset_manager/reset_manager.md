@@ -1,17 +1,21 @@
 # **Reset Manager Driver for Hard Processor System**
 
-Last updated: **January 08, 2026** 
+Last updated: **January 23, 2026** 
 
 **Upstream Status**: Not Upstreamed
 
-**Devices supported**: Agilex3, Agilex 5
+**Devices supported**: Agilex™ 3, Agilex™ 5, Agilex™ 7
 
 ## **Introduction**
 
 The reset manager generates module reset signals based on reset requests from various sources in the HPS, and performs software writing to the module-reset control registers.
 
 The HPS contains multiple reset domains. Each reset domain can be reset
-independently. A reset can be initiated externally, internally, or through software.  For more information about the reset manager, please refer to the [Altera® Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
+independently. A reset can be initiated externally, internally, or through software.  For more information about the reset manager, please refer to:
+
+* Agilex™ 3: [Altera® Agilex™ 3 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/848530).
+* Agilex™ 5: [Altera® Agilex™ 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
+* Agilex™ 7: [Altera® Agilex™ 7 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/683567).
 
 ![reset_manager_diagram](images/A5_RSTMGR_block_diagram.png){: style="height:450px;width:450px"}
 
@@ -19,13 +23,15 @@ independently. A reset can be initiated externally, internally, or through softw
 
 The source code for this driver can be found at:
 
-[https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/reset/reset-simple.c](https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/drivers/reset/reset-simple.c)
+[https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.12.43-lts/drivers/reset/reset-simple.c](https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.12.43-lts/drivers/reset/reset-simple.c)
 
 ## **Driver Capabilities**
 
 * Manage the system level reset.
 * Support Assert and De-assert of the reset signal.
 * Monitor the status of the reset signal.
+
+For reset manager capabilities in different devices, please refer to [Differences Among Altera® SoC Device Families](https://www.intel.com/content/www/us/en/docs/programmable/683648/current/hps-reset-manager-differences.html)
 
 ## **Kernel Configurations**
 
@@ -35,15 +41,44 @@ CONFIG_RESET_SIMPLE
 
 ## **Device Tree**
 
-Example Device tree location for reset signal parameter:
+Example Device tree location for reset signal parameter for Agilex™ 5 device:
 
-[https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi](https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi)
+[https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.12.43-lts/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi](https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.12.43-lts/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi)
 
-![reset_manager_device_tree](images/reset_manager_device_tree_1.png)
+```bash
+  rst: rstmgr@10d11000 {
+			compatible = "altr,stratix10-rst-mgr", "altr,rst-mgr";
+			reg = <0x10d11000 0x1000>;
+			#reset-cells = <1>;
+  };
+```
 
 Also dt-bindings can be found at:
 
-[https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/include/dt-bindings/reset/altr%2Crst-mgr-agilex5.h](https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.1.55-lts/include/dt-bindings/reset/altr%2Crst-mgr-agilex5.h)
+[https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.12.43-lts/include/dt-bindings/reset/altr%2Crst-mgr-s10.h](https://github.com/altera-opensource/linux-socfpga/blob/socfpga-6.12.43-lts/include/dt-bindings/reset/altr%2Crst-mgr-s10.h)
+
+## **Test Procedures**
+
+You can apply a cold or warm reset from U-Boot and Linux shell commands as follow:
+
+* **U-Boot**: The reset is applied using the **reset** command from the U-Boot shell. The type of reset is specified either with a environment variable or through a parameter in the **reset** command. This varies depending on the U-Boot branch and the SoC device. The default is **cold** reset if the environment variable is not assigned nor a parameter is passed to the reset command.
+* **Linux:** The reset is applied using the **reboot** command from the Linux shell. The type of reset depends on the value assigned to the **reboot** kernel command line parameter passed to Linux. The default is **cold** reset if the parameter is not defined in the kernel command line.
+
+The following table summarizes the procedure to apply a software (from U-Boot or Linux) Warm or Cold reset and the different variations of this. 
+
+| Device | Cold Reset | Warm Reset |
+| :-- | :-- | :-- |
+| Agilex™ 5 <br>Agilex™ 3 | **======= U-Boot =======**<br>Before **2025.07** branch:<br>**reset** env variable undefined<br>U-Boot shell:<br/># **reset**<br>**2025.07** branch or later(**reset** env variable NOT used):<br>U-Boot shell:<br/># **reset**<br><br>**======= Linux =======**<br>Kernel Command line: **reboot** parameter undefined.<br>Linux shell: $ **reboot** | **======= U-Boot =======**<br/>Before **2025.07** branch:<br/>**reset** env variable set to warm<br/>U-Boot shell:<br/># **setenv reset warm**<br># **reset**<br/>**2025.07** branch or later(**reset** env variable NOT used):<br/>U-Boot shell:<br/># **reset -w**<br/><br/>**======= Linux: =======**<br/>Kernel Command line: **reboot=warm** <br/>Linux shell: $ **reboot** |
+| Agilex™ 7 | **======= U-Boot =======**<br/>Before **2025.10** branch:<br/>**reset** env variable undefined<br/>U-Boot shell:<br/># **reset**<br/>**2025.10** branch or later(**reset** env variable NOT used):<br/>U-Boot shell:<br/># **reset**<br/><br/>**======= Linux: =======**<br/>Kernel Command line: **reboot** parameter undefined.<br/>Linux shell: $ **reboot** | **======= U-Boot =======**<br/>Before **2025.10** branch:<br/>**reset** env variable set to warm<br/>U-Boot shell:<br/># **setenv reset warm**<br/># **reset**<br/>**2025.10** branch or later(**reset** env variable NOT used):<br/>U-Boot shell:<br/># **reset -w**<br/><br/>**======= Linux: =======**<br/>Kernel Command line: **reboot=warm** <br/>Linux shell: $ **reboot** |
+
+
+The following table shows the software flow when the SW (U-Boot or Linux) requests a Warm or Cold reset.
+
+
+| Device | Cold Reset | Warm Reset |
+| :-- | :-- | :-- |
+| Agilex™ 5 <br>Agilex™ 3 | 1) SW performs a SMC call to ATF.<br>2) SMC handler in ATF sends a reset request to SDM using SDM mailbox.| 1) SW performs a SMC call to ATF.<br>2) SMC handler in ATF sends a reset request to SDM using SDM mailbox. |
+| Agilex™ 7 | 1) SW performs a SMC call to ATF.<br>2) SMC handler in ATF sends a reset request to SDM using SDM mailbox. | 1) SW performs a SMC call to ATF.<br>2) SMC handler applies the reset through the Reset Manager. |
 
 ## **Known Issues**
 

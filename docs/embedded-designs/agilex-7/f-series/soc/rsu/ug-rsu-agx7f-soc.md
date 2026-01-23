@@ -29,25 +29,25 @@ Refer to [Agilex™ 7 Hard Processor System Remote System Update User Guide](htt
 
 ## Component Versions 
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 and the following software component versions integrate the 25.3 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1 and the following software component versions integrate the 25.3.1 release. 
 
 **Note:** Regarding the GHRD components in the following table, only the device-specific GHRD is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 GHRD | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.3_REL_GSRD_PR   |
-| Agilex 5 GHRD - Include GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3_REL_GSRD_PR |
-| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
-| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
-| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS25.3_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.33-lts | QPDS25.3_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.0   | QPDS25.3_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.07 | QPDS25.3_REL_GSRD_PR |
+| Agilex 3 GHRD | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.3.1_REL_GSRD_PR   |
+| Agilex 5 GHRD - Include GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3.1_REL_GSRD_PR |
+| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.3.1_REL_GSRD_PR |
+| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.3.1_REL_GSRD_PR |
+| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS25.3.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.43-lts | QPDS25.3.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.1   | QPDS25.3.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.10 | QPDS25.3.1_REL_GSRD_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
-| Yocto Project: meta-altera-fpga (for GSRD 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3_REL_GSRD_PR |
+| Yocto Project: meta-altera-fpga (for GSRD 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3.1_REL_GSRD_PR |
 | Yocto Project: meta-intel-fpga (for Legacy GSRD) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest |
-| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3_REL_GSRD_PR |
-| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3.1_REL_GSRD_PR |
+| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3.1_REL_GSRD_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -61,7 +61,7 @@ The following items are required to run the RSU example.
 
 - Host PC running Ubuntu 22.04 LTS (other Linux versions may work too) 
  - Minimum 48 GB of RAM, required for compiling the hardware designs 
- - Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3  for compiling the hardware projects, generating the flash images and writing to flash 
+ - Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1  for compiling the hardware projects, generating the flash images and writing to flash 
 - Access to Internet to download the hardware project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. 
 - [Agilex 7 Transceiver-SoC Development kit P-Tile E-Tile Production Linear power solution(DK-SI-AGF014EB)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agf014.html)  for running the example. 
 
@@ -112,9 +112,10 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
 
 
 
@@ -136,10 +137,10 @@ The commands to create and compile the projects are listed below.
 cd $TOP_FOLDER 
 # Build 4 versions of the hardware design
 rm -rf hw && mkdir hw && cd hw
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
-unzip QPDS25.3_REL_GSRD_PR.zip
-rm QPDS25.3_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3.1_REL_GSRD_PR.zip
+unzip QPDS25.3.1_REL_GSRD_PR.zip
+rm QPDS25.3.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS25.3.1_REL_GSRD_PR agilex7f-ed-gsrd
 # boot from FPGA 
 export BOOTS_FIRST=fpga 
 # enable watchdog 
@@ -185,7 +186,7 @@ rm -rf arm-trusted-firmware
 git clone https://github.com/altera-fpga/arm-trusted-firmware 
 cd arm-trusted-firmware 
 # checkout the branch used for this document, comment out to use default 
-git checkout -b test -t origin/socfpga_v2.13.0 
+git checkout -b test -t origin/socfpga_v2.13.1 
 make bl31 PLAT=agilex 
 cd .. 
 ```
@@ -208,7 +209,7 @@ rm -rf u-boot-socfpga
 git clone https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga
 # comment out next line to use the latest default branch 
-git checkout -b test -t origin/socfpga_v2025.07 
+git checkout -b test -t origin/socfpga_v2025.10 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
 # only boot from SD, do not try QSPI and NAND 
@@ -244,7 +245,9 @@ CONFIG_DISTRO_DEFAULTS=n
 CONFIG_HUSH_PARSER=y
 CONFIG_SYS_PROMPT_HUSH_PS2="> "
 CONFIG_USE_BOOTCOMMAND=y
-CONFIG_BOOTCOMMAND="bridge enable; setenv bootfile Image; run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot"
+# rsu_status boot command calls rsu dtb command to update the start address of 
+# qspi_boot partition in the Linux dtb to indicate it starts at SPT0 location
+CONFIG_BOOTCOMMAND="bridge enable; setenv bootfile Image; setenv fdtimage socfpga_agilex_socdk.dtb; run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot"
 CONFIG_CMD_FAT=y
 CONFIG_CMD_FS_GENERIC=y
 CONFIG_DOS_PARTITION=y
@@ -283,7 +286,7 @@ rm -rf linux-socfpga
 git clone https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
 # checkout the branch used for this document, comment out to use default
-git checkout -b test -t origin/socfpga-6.12.33-lts 
+git checkout -b test -t origin/socfpga-6.12.43-lts 
 # configure the RSU driver to be built into the kernel
 make clean && make mrproper
 make defconfig
@@ -361,7 +364,7 @@ cat << EOF > initial_image.pfg
 EOF
 
 # Create Initial Image for previous release (in case needed to test  combined application)
-~/altera_pro/25.1.1/quartus/bin/quartus_pfg -c initial_image.pfg
+~/altera_pro/25.3/quartus/bin/quartus_pfg -c initial_image.pfg
 mv initial_image.jic initial_image_prev.jic
 mv initial_image_jic.rpd initial_image_jic_prev.rpd
 mv initial_image_jic.map initial_image_jic_prev.map
@@ -706,7 +709,9 @@ The following commands can be used to create the SD card image used in this exam
 ```bash 
 cd $TOP_FOLDER
 sudo rm -rf sd_card && mkdir sd_card && cd sd_card
-wget https://releases.rocketboards.org/release/2021.04/gsrd/tools/make_sdimage_p3.py 
+wget https://releases.rocketboards.org/release/2020.11/gsrd/tools/make_sdimage_p3.py
+# remove mkfs.fat parameter which has some issues on Ubuntu 22.04
+sed -i 's/\"\-F 32\",//g' make_sdimage_p3.py
 chmod +x make_sdimage_p3.py
 # prepare the fat contents 
 mkdir fat && cd fat
@@ -929,10 +934,10 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 
     ```bash 
     SOCFPGA # rsu display_dcmf_version 
-    DCMF0 version = 25.3.0
-    DCMF1 version = 25.3.0
-    DCMF2 version = 25.3.0
-    DCMF3 version = 25.3.0
+    DCMF0 version = 25.3.1
+    DCMF1 version = 25.3.1
+    DCMF2 version = 25.3.1
+    DCMF3 version = 25.3.1
     SOCFPGA # rsu slot_count 
     Number of slots = 3. 
     SOCFPGA # rsu slot_get_info 0 
@@ -1062,7 +1067,9 @@ This section uses U-Boot to demonstrate the following.
 3. Cause a watchdog timeout by setting the timeout value to lowest possible. This prevents U-Boot from being able to service it in time.
 
     ```bash 
-    SOCFPGA # mw.l 0xffd00204 0 
+    SOCFPGA # mw.l 0xffd00204 0
+    # Remove this once that WDT can be enabled automatically (HSD:14026809936)
+    SOCFPGA # mw.l 0xffd00200 1
     ```
 
 4. The watchdog immediately times out, and SDM reloads the same application image, since the max retry parameter is set to three. Look at the U-Boot console and check the status log.
@@ -1778,10 +1785,10 @@ information from U-Boot, this should be a previous version.
 
     ```bash 
     SOCFPGA # rsu display_dcmf_version
-    DCMF0 version = 25.1.1
-    DCMF1 version = 25.1.1
-    DCMF2 version = 25.1.1
-    DCMF3 version = 25.1.1
+    DCMF0 version = 25.3.0
+    DCMF1 version = 25.3.0
+    DCMF2 version = 25.3.0
+    DCMF3 version = 25.3.0
     ```
 
 3. Find an unused slot (slot 1, P2), erase it, write the combined application image to it, verify that it was programmed successfully  and check it is now the highest priority.
@@ -1823,10 +1830,10 @@ application image is running fine.
     Error details : 0x00000000
     Retry counter : 0x00000000
     SOCFPGA # rsu display_dcmf_version
-    DCMF0 version = 25.3.0
-    DCMF1 version = 25.3.0
-    DCMF2 version = 25.3.0
-    DCMF3 version = 25.3.0
+    DCMF0 version = 25.3.1
+    DCMF1 version = 25.3.1
+    DCMF2 version = 25.3.1
+    DCMF3 version = 25.3.1
     ```
 
 7. Power cycle the board, the same combined application image is loaded, as it is the highest priority. But it takes a couple of seconds less, as the decision firmware does not need to be updated.
@@ -1932,10 +1939,10 @@ This section demonstrates how to use the RSU client to perform the following bas
 
     ```bash 
     root@linux:~# ./rsu_client --display-dcmf-version 
-    DCMF0 version = 25.3.0
-    DCMF1 version = 25.3.0
-    DCMF2 version = 25.3.0
-    DCMF3 version = 25.3.0
+    DCMF0 version = 25.3.1
+    DCMF1 version = 25.3.1
+    DCMF2 version = 25.3.1
+    DCMF3 version = 25.3.1
     Operation completed 
     ```
 

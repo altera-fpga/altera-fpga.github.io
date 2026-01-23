@@ -267,7 +267,10 @@ nav:
         - TSN Examples:
           - HPS TSN SGMII XCVR System 3x2.5G Example Design User Guide: embedded-designs/agilex-5/e-series/modular/tsn/sgmii_xcvr_3x2.5G/ug-tsn-sgmii-xcvr-3x2.5G-agilex5.md
       - E-Series 013B Development Kit:
-          - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/013B/ug-gsrd-agx5e-013b.md
+          - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/013B/gsrd/ug-gsrd-agx5e-013b.md
+          - HPS GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/013B/boot-examples/ug-linux-boot-agx5e-013b.md
+          - FPGA Crypto Services (FCS) Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/013B/security/crypto/cryptoservices/ug-fpga-cryptoservice-agx5e-soc.md
+          - Vendor Authorized Boot (HPS-First) Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/013B/security/vab/hps-first/ug-vab-hps-first-agx5e-soc.md
       - Intel Simics Virtual Platform Examples:
         - Simics Linux GSRD: embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms.md
         - Simics Zephyr GSRD: embedded-designs/agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms.md
@@ -287,8 +290,8 @@ nav:
         - Vendor Authorized Boot (HPS-First) Tutorial Example Design User Guide: embedded-designs/agilex-7/f-series/soc/security/vab/hps-first/ug-vab-hps-first-agx7f-soc.md
         - Vendor Authorized Boot (FPGA-First) Tutorial Example Design User Guide: embedded-designs/agilex-7/f-series/soc/security/vab/fpga-first/ug-vab-fpga-first-agx7f-soc.md
         - Nios V Processor Examples:
-          #- Nios V/m:
-            #- Nios V/m Processor IPerf 2 Design: embedded-designs/agilex-7/f-series/soc/niosv/niosv_m/iperf/ug-iperf-agx7f-soc.md
+          - Nios V/m:
+            - Nios® V/m Processor IPerf Server Application: embedded-designs/agilex-7/f-series/soc/niosv/niosv_m/iperf/ug-iperf-agx7f-soc.md
             #- Nios V/m Processor Simple Socket Server: embedded-designs/agilex-7/f-series/soc/niosv/niosv_m/simple_socket_server/ug-sss-agx7f-soc.md
           - Nios V/g:
             - Nios® V/g Processor Floating Point Unit (FPU) Design: embedded-designs/agilex-7/f-series/soc/niosv/niosv_g/fpu_test/ug-fpu-agx7f-soc.md
@@ -389,19 +392,19 @@ env:
   AGILEX: Altera® Agilex® 7 FPGA
 
 # Variables for content supported by current release  
-  ALTERA_RELEASE: rel-25.3
-  COMMON_QUARTUS_VER_L: Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
-  COMMON_QUARTUS_VER_S: 25.3
-  PREV_COMMON_QUARTUS_VER_S: 25.1.1
-  GSRD_LINUX_BRANCH_S: 6.12.33-lts
-  GSRD_UBOOT_BRANCH_S: 2025.07
-  GSRD_ATF_BRANCH_S: 2.13.0
-  GSRD_LINUX_BRANCH: socfpga-6.12.33-lts
-  GSRD_UBOOT_BRANCH: socfpga_v2025.07
-  GSRD_ATF_BRANCH: socfpga_v2.13.0
-  GSRD_DATE: "2025.10"
-  GSRD_TAG: QPDS25.3_REL_GSRD_PR
+  ALTERA_RELEASE: rel-25.3.1
+  COMMON_QUARTUS_VER_L: Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1
+  COMMON_QUARTUS_VER_S: 25.3.1
+  PREV_COMMON_QUARTUS_VER_S: 25.3
+  GSRD_LINUX_BRANCH_S: 6.12.43-lts
+  GSRD_UBOOT_BRANCH_S: 2025.10
+  GSRD_ATF_BRANCH_S: 2.13.1
+  GSRD_LINUX_BRANCH: socfpga-6.12.43-lts
+  GSRD_UBOOT_BRANCH: socfpga_v2025.10
+  GSRD_ATF_BRANCH: socfpga_v2.13.1
+  GSRD_DATE: "2026.01"
+  GSRD_TAG: QPDS25.3.1_REL_GSRD_PR
   GSRD_YOCTO_BRANCH: walnascar
-  DCMF_VER: 25.3.0
-  DCMF_PREV_VER: 25.1.1
+  DCMF_VER: 25.3.1
+  DCMF_PREV_VER: 25.3.0
 

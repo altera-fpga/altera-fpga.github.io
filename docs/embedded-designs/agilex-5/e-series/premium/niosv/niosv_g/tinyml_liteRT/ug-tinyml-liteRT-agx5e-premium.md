@@ -55,7 +55,7 @@ graph LR
  The objective of the design is to accomplish data transfer between the processor and soft IP peripherals:
 
  - Running TinyML application that identify Modified National Institute of Standards and Technology (MNIST) data samples.
- - Prints the classification result thru JTAG UART IP.
+ - Prints the classification result through JTAG UART IP.
 
 ```mermaid 
 ---

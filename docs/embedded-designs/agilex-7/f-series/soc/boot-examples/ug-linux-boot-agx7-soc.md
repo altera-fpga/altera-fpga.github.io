@@ -16,25 +16,25 @@ The examples provided in this page are focus on the Agilex™ 7 Transceiver-SoC 
 
 ## Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 and the following software component versions integrate the 25.3 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1 and the following software component versions integrate the 25.3.1 release. 
 
 **Note:** Regarding the GHRD components in the following table, only the device-specific GHRD is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 GHRD | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.3_REL_GSRD_PR   |
-| Agilex 5 GHRD - Include GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3_REL_GSRD_PR |
-| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
-| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
-| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS25.3_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.33-lts | QPDS25.3_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.0   | QPDS25.3_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.07 | QPDS25.3_REL_GSRD_PR |
+| Agilex 3 GHRD | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.3.1_REL_GSRD_PR   |
+| Agilex 5 GHRD - Include GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3.1_REL_GSRD_PR |
+| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.3.1_REL_GSRD_PR |
+| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.3.1_REL_GSRD_PR |
+| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS25.3.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.43-lts | QPDS25.3.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.1   | QPDS25.3.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.10 | QPDS25.3.1_REL_GSRD_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
-| Yocto Project: meta-altera-fpga (for GSRD 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3_REL_GSRD_PR |
+| Yocto Project: meta-altera-fpga (for GSRD 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3.1_REL_GSRD_PR |
 | Yocto Project: meta-intel-fpga (for Legacy GSRD) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest |
-| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3_REL_GSRD_PR |
-| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3.1_REL_GSRD_PR |
+| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3.1_REL_GSRD_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -44,6 +44,10 @@ The bootloader source code was removed from SoC EDS. Instead, the user needs to 
 The same U-Boot branch is used for all SoC FPGA devices: Cyclone® V SoC, Arria® V SoC, Arria® 10 SoC, Stratix® 10 SoC, Agilex™ 7 and Agilex™ 5.
 
 Starting with Quartus® Pro 20.3, the SoC EDS was discontinued, and the functionality of the tools which were previously part of SoC EDS are provided separately.
+
+## Release Notes
+
+Refer to [Release Notes](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3.1_REL_GSRD_PR) for release readiness information and known issues.
 
 ## U-Boot Build Flow
 
@@ -113,7 +117,7 @@ The following are required:
 * Host machine running Linux. Ubuntu 22.04 was used, but other versions may work too.
 * Internet connection to download the tools and clone the U-Boot git tree from github. If you are behind a firewall you will need your system administrator to enable you to get to the git trees.
 * Agilex™ 7 Transceiver-SoC Development kit P-Tile E-Tile production (DK-SI-AGF014EB).
-* Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
+* Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1
 
 Note that the examples presented on this page boot to Linux and they require Linux kernel, device tree and rootfilesystem to boot. However, you can omit the Linux binaries and just boot to U-Boot prompt if you want to.
 
@@ -153,9 +157,10 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
 
 
 
@@ -168,10 +173,10 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
   ```bash 
   cd $TOP_FOLDER
-  wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
-  unzip QPDS25.3_REL_GSRD_PR.zip
-  rm QPDS25.3_REL_GSRD_PR.zip
-  mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
+  wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3.1_REL_GSRD_PR.zip
+  unzip QPDS25.3.1_REL_GSRD_PR.zip
+  rm QPDS25.3.1_REL_GSRD_PR.zip
+  mv agilex7f-ed-gsrd-QPDS25.3.1_REL_GSRD_PR agilex7f-ed-gsrd
   cd agilex7f-ed-gsrd
   make agf014eb-si-devkit-oobe-baseline-all
   cd ..
@@ -192,7 +197,7 @@ The following commands are used to retrieve the Arm Trusted Firmware (ATF) and c
   ```bash
   cd $TOP_FOLDER 
   rm -rf arm-trusted-firmware 
-  git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
+  git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
   cd arm-trusted-firmware 
   make bl31 PLAT=agilex 
   cd .. 
@@ -212,7 +217,7 @@ After completing the above steps, the Arm Trusted Firmware binary file is create
   ```bash 
   cd $TOP_FOLDER
   rm -rf u-boot-socfpga
-  git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+  git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
   cd u-boot-socfpga
   # enable dwarf4 debug info, for compatibility with arm ds 
   sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -250,7 +255,7 @@ After completing the above steps, the Arm Trusted Firmware binary file is create
   CONFIG_HUSH_PARSER=y
   CONFIG_SYS_PROMPT_HUSH_PS2="> "
   CONFIG_USE_BOOTCOMMAND=y
-  CONFIG_BOOTCOMMAND="load mmc 0:1 \${loadaddr} ghrd.core.rbf; bridge disable;fpga load 0 \${loadaddr} \${filesize};bridge enable; setenv bootfile Image; run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot"
+  CONFIG_BOOTCOMMAND="load mmc 0:1 \${loadaddr} ghrd.core.rbf; bridge disable;fpga load 0 \${loadaddr} \${filesize};bridge enable; setenv bootfile Image; setenv fdtimage socfpga_agilex_socdk.dtb; run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot"
   CONFIG_CMD_FAT=y
   CONFIG_CMD_FS_GENERIC=y
   CONFIG_DOS_PARTITION=y
@@ -321,7 +326,7 @@ The following commands can be used to obtain the Linux source code and build Lin
   ```bash 
   cd $TOP_FOLDER
   rm -rf linux-socfpga
-  git clone -b QPDS25.3_REL_GSRD_PR  https://github.com/altera-fpga/linux-socfpga linux-socfpga
+  git clone -b QPDS25.3.1_REL_GSRD_PR  https://github.com/altera-fpga/linux-socfpga linux-socfpga
   cd linux-socfpga
   make clean && make mrproper
   make defconfig
@@ -531,7 +536,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ```
   6.- The serial console will show SPL then U-Boot being run:
   ```
-  U-Boot SPL 2025.07-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
+  U-Boot SPL 2025.1-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
   Reset state: Cold
   MPU          1200000 kHz
   L4 Main	      400000 kHz
@@ -548,10 +553,10 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ## Checking hash(es) for Image atf … crc32+ OK
   ## Checking hash(es) for Image uboot … crc32+ OK
   ## Checking hash(es) for Image fdt-0 … crc32+ OK
-  NOTICE:  BL31: v2.13.0(release):QPDS25.3_REL_GSRD_PR
+  NOTICE:  BL31: v2.13.1(release):QPDS25.3.1_REL_GSRD_PR
   NOTICE:  BL31: Built : 11:03:24, Jan 29 2025
 
-  U-Boot 2025.07-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_agilex
+  U-Boot 2025.1-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_agilex
 
   CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
   Model: SoCFPGA Agilex SoCDK
@@ -754,9 +759,10 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
 
 
 
@@ -767,10 +773,10 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
   ```bash
   cd $TOP_FOLDER
-  wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
-  unzip QPDS25.3_REL_GSRD_PR.zip
-  rm QPDS25.3_REL_GSRD_PR.zip
-  mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
+  wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3.1_REL_GSRD_PR.zip
+  unzip QPDS25.3.1_REL_GSRD_PR.zip
+  rm QPDS25.3.1_REL_GSRD_PR.zip
+  mv agilex7f-ed-gsrd-QPDS25.3.1_REL_GSRD_PR agilex7f-ed-gsrd
   cd agilex7f-ed-gsrd
   make agf014eb-si-devkit-oobe-baseline-all
   cd ..
@@ -789,7 +795,7 @@ The following file is created:
   ```bash
   cd $TOP_FOLDER
   rm -rf arm-trusted-firmware-sdcard
-  git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-sdcard
+  git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-sdcard
   cd arm-trusted-firmware-sdcard 
   make realclean
   # Setting Bootsource as SDMMC
@@ -843,16 +849,12 @@ The following files are created:
   ```bash
   cd $TOP_FOLDER
   rm -rf linux-socfpga
-  git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-sdcard
+  git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-sdcard
   cd linux-socfpga-sdcard
 
-  # Replace bootargs to use file system from SDcard instead of RAMFS (New device tree will be provided later 14023675777)
-  sed -i 's/bootargs/bootargs_old/g' arch/arm64/boot/dts/intel/socfpga_agilex_socdk_atfboot.dts
-  sed -i '/bootargs_old/i \\t\tbootargs = "earlycon panic=-1 root=/dev/mmcblk0p2 rw rootwait";' arch/arm64/boot/dts/intel/socfpga_agilex_socdk_atfboot.dts
-  sed -i '/bootargs_old/,+2d' arch/arm64/boot/dts/intel/socfpga_agilex_socdk_atfboot.dts
-  ## Disabling GMAC (14023884834)
-  echo -e "&gmac0 {\n\tstatus = \"disabled\";\n};" >> arch/arm64/boot/dts/intel/socfpga_agilex_socdk_atfboot.dts
-
+  # Use socfpga_agilex_socdk_sdmmc_atfboot.dts to fix HSD:14023675777
+  # Still pending to fix HSD:14023884834 related to disable GMAC
+    
   cat << EOF > config-fragment-agilex
   # enable kernel debugging with RiscFree
   CONFIG_DEBUG_INFO=y
@@ -889,7 +891,7 @@ The following files are created:
 The following files are created:
 
 * $TOP_FOLDER/linux-socfpga-sdcard/arch/arm64/boot/Image
-* $TOP_FOLDER/linux-socfpga-sdcard/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_atfboot.dtb
+* $TOP_FOLDER/linux-socfpga-sdcard/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_sdmmc_atfboot.dtb
 
 #### Build SD Card image with FIP inside (ATF-To-Linux)
 
@@ -902,7 +904,7 @@ The following files are created:
   $TOP_FOLDER/arm-trusted-firmware-sdcard/build/agilex/release/tools/fiptool/fiptool create \
   --soc-fw $TOP_FOLDER/arm-trusted-firmware-sdcard/build/agilex/release/bl31.bin \
   --nt-fw $TOP_FOLDER/linux-socfpga-sdcard/arch/arm64/boot/Image \
-  --nt-fw-config $TOP_FOLDER/linux-socfpga-sdcard/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_atfboot.dtb fip.bin
+  --nt-fw-config $TOP_FOLDER/linux-socfpga-sdcard/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_sdmmc_atfboot.dtb fip.bin
 
   #--- Build SDCard Image
   wget https://releases.rocketboards.org/release/2020.11/gsrd/tools/make_sdimage_p3.py
@@ -954,13 +956,13 @@ You can exercise ATF to Linux boot flow from SD Card using the following binarie
 When booting with the binaries generated, this is the log that you will see:
   ```
   NOTICE:  SDMMC boot
-  NOTICE:  BL2: 2.13.0(release):QPDS25.3_REL_GSRD_PR
+  NOTICE:  BL2: 2.13.1(release):QPDS25.3.1_REL_GSRD_PR
   NOTICE:  BL2: Built : 11:48:31, Jan 29 2025
   NOTICE:  BL2: Booting BL31
-  NOTICE:  BL31: 2.13.0(release):QPDS25.3_REL_GSRD_PR
+  NOTICE:  BL31: 2.13.1(release):QPDS25.3.1_REL_GSRD_PR
   NOTICE:  BL31: Built : 11:48:36, Jan 29 2025
   [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
-  [    0.000000] Linux version 6.12.33-lts-g346486b5245f-dirty (rolando@rolando2-linux-lab) (aarch64-none-linux-gnu-gcc (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 11.2.1 20220111, GNU ld (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 2.37.20220122) #1 SMP PREEMPT Wed Jan 29 11:56:17 CST 2025
+  [    0.000000] Linux version 6.12.43-lts-g346486b5245f-dirty (rolando@rolando2-linux-lab) (aarch64-none-linux-gnu-gcc (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 11.2.1 20220111, GNU ld (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 2.37.20220122) #1 SMP PREEMPT Wed Jan 29 11:56:17 CST 2025
   [    0.000000] KASLR disabled due to lack of seed
   [    0.000000] Machine model: SoCFPGA Agilex SoCDK
   [    0.000000] efi: UEFI not found.
@@ -1002,7 +1004,7 @@ ATF requires to be rebuilt to enable booting from QSPI updating BOOT_SOURCE to B
   cd $TOP_FOLDER
   # Building ATF
   rm -rf arm-trusted-firmware-qspi
-  git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-qspi
+  git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-qspi
   cd arm-trusted-firmware-qspi
 
   # Select QSPI as boot source
@@ -1027,21 +1029,11 @@ The following files are created:
   ```bash
   cd $TOP_FOLDER
   rm -rf linux-socfpga-qspi
-  git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-qspi
+  git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-qspi
   cd linux-socfpga-qspi
   
-  ## Change QSPI CLK frequency to 50 MHZ to match ATF cfg (This may not be needed after 14023675777)
-  sed -i  's/spi-max-frequency = <100000000>;/spi-max-frequency = <50000000>;/g' arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-  sed -i  's/root: partition@4200000/root: partition@7000000/g' arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-  sed -i  's/reg = <0x04200000 0x0BE00000>/reg = <0x07000000 0x09000000>/g' arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-
-  # Replace bootargs to use file system from QSPI instead of RAMFS (New device tree will be provided later 14023675777)
-  sed -i 's/bootargs/bootargs_old/g' arch/arm64/boot/dts/intel/socfpga_agilex_socdk_atfboot.dts
-  sed -i '/bootargs_old/i \\t\tbootargs = "earlycon panic=-1 root=/dev/mtdblock1 rw rootfstype=jffs2 rootwait";' arch/arm64/boot/dts/intel/socfpga_agilex_socdk_atfboot.dts
-  sed -i '/bootargs_old/,+2d' arch/arm64/boot/dts/intel/socfpga_agilex_socdk_atfboot.dts
-
-  ## Disabling GMAC (14023884834)
-  echo -e "&gmac0 {\n\tstatus = \"disabled\";\n};" >> arch/arm64/boot/dts/intel/socfpga_agilex_socdk_atfboot.dts
+  # Using socfpga_agilex_socdk_qspi_atfboot.dts to fix HSD:14023675777
+  # GMAC is still disabled from HSD: 14023884834 
 
   cat << EOF > config-fragment-agilex
   # enable kernel debugging with RiscFree
@@ -1077,7 +1069,7 @@ The following files are created:
 The output files from this stage are:
 
 * $TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/Image
-* $TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_atfboot.dtb
+* $TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_qspi_atfboot.dtb
 
 #### Create pfg file for QSPI Boot (ATF-To-Linux)
 
@@ -1149,7 +1141,7 @@ The following file will be created:
   # Create FIP image
   ./arm-trusted-firmware-qspi/build/agilex/release/tools/fiptool/fiptool create --soc-fw arm-trusted-firmware-qspi/build/agilex/release/bl31.bin \
   --nt-fw $TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/Image \
-  --nt-fw-config $TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_atfboot.dtb fip.bin
+  --nt-fw-config $TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/dts/intel/socfpga_agilex_socdk_qspi_atfboot.dtb fip.bin
 
   # Convert bl2.bin
   aarch64-none-linux-gnu-objcopy -v -I binary -O ihex --change-addresses 0xffe00000 arm-trusted-firmware-qspi/build/agilex/release/bl2.bin fsbl.hex
@@ -1174,10 +1166,10 @@ When booting with flash_image_atf_qspi.jic, this is the log that you will see:
 
   ```
   NOTICE:  QSPI boot
-  NOTICE:  BL2: v2.13.0(release):QPDS25.3_REL_GSRD_PR
+  NOTICE:  BL2: v2.13.1(release):QPDS25.3.1_REL_GSRD_PR
   NOTICE:  BL2: Built : 11:57:29, Jan 29 2025
   NOTICE:  BL2: Booting BL31
-  NOTICE:  BL31: v2.13.0(release):QPDS24.3_REL_GSRD_PR
+  NOTICE:  BL31: v2.13.1(release):QPDS24.3_REL_GSRD_PR
   NOTICE:  BL31: Built : 11:57:34, Jan 29 2025
   [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
   [    0.000000] Linux version 6.6.37-g346486b5245f-dirty (rolando@rolando2-linux-lab) (aarch64-none-linux-gnu-gcc (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 11.2.1 20220111, GNU ld (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 2.37.20220122) #1 SMP PREEMPT Wed Jan 29 12:03:28 CST 2025

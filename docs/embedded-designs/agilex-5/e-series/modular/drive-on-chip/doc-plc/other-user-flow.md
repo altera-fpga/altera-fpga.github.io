@@ -54,7 +54,7 @@
 
     <br>
 
-    ![qar-content](/rel-25.3/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/images/qar-content.png){:style="display:block; margin-left:auto; margin-right:auto"}
+    ![qar-content](/rel-25.3.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/images/qar-content.png){:style="display:block; margin-left:auto; margin-right:auto"}
     <center>
 
     **QAR file content.**
@@ -95,7 +95,7 @@
 
 <br>
 
-![quartus-comp](/rel-25.3/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/images/quartus-comp.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![quartus-comp](/rel-25.3.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/images/quartus-comp.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center>
 
 **Quartus® Prime Pro compilation flow.**
@@ -167,7 +167,7 @@ In the log, look for the property `"HPS/FPGA configuration order"` SET TO `"HPS_
 
 <br>
 
-![hps-first](/rel-25.3/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/images/hps-first.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![hps-first](/rel-25.3.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/images/hps-first.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center>
 
 **HPS First SOF file.**
@@ -215,7 +215,7 @@ In the log, look for the property `"HPS/FPGA configuration order"` SET TO `"AFTE
 
 <br>
 
-![fpga-first](/rel-25.3/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/images/fpga-first.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![fpga-first](/rel-25.3.1/embedded-designs/agilex-5/e-series/modular/drive-on-chip/common/images/fpga-first.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center>
 
 **FPGA First SOF file.**

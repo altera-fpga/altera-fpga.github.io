@@ -54,7 +54,7 @@ graph LR
  This example design includes a Nios® V/c processor connected to the On-Chip RAM II, JTAG UART IP and System ID peripheral core. </br>
  The objective of the design is to accomplish data transfer between the processor and soft IP peripherals:
 
- - Prints a Hello World message and memory test result thru JTAG UART IP.
+ - Prints a Hello World message and memory test result through JTAG UART IP.
 
 ```mermaid 
 ---

@@ -63,19 +63,19 @@ To exercise the instructions presented on this page (build your binaries and exe
 
 ## Release Content
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 and the following software component versions are used to build the binaries presented in this page: 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1 and the following software component versions are used to build the binaries presented in this page: 
 
 | Component | Location | Branch | Commit ID/Tag |
 | :-------- | :------- | :----- | :------------ |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.33-lts | QPDS25.3_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.0   | QPDS25.3_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.07 | QPDS25.3_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.43-lts | QPDS25.3.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.1   | QPDS25.3.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.10 | QPDS25.3.1_REL_GSRD_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
-| Yocto Project: meta-altera-fpga (for GSRD 2.0)  | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3_REL_GSRD_PR |
+| Yocto Project: meta-altera-fpga (for GSRD 2.0)  | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3.1_REL_GSRD_PR |
 | Yocto Project: meta-intel-fpga (for Legacy GSRD) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest |
-| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3_REL_GSRD_PR |
-| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3_REL_GSRD_PR |
-| Agilex 5 GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3.1_REL_GSRD_PR |
+| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3.1_REL_GSRD_PR |
+| Agilex 5 GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3.1_REL_GSRD_PR |
 
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
@@ -86,9 +86,9 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 and the follo
 
 ### Prebuilt Binaries
 
-You can find the prebuilt binaries from the GSRD prebuilt at the following URL: [https://releases.rocketboards.org/2025.10/gsrd/agilex3_gsrd/](https://releases.rocketboards.org/2025.10/gsrd/agilex3_gsrd/). The files in this folder allow you to boot directly from SDCard. It also contains some of the files that are used to generate the final images used to boot from QSPI. The following folder contains the remaining files used by the recipes to create the binaries to boot from QSPI.
+You can find the prebuilt binaries from the GSRD prebuilt at the following URL: [https://releases.rocketboards.org/2026.01/gsrd/agilex3_gsrd/](https://releases.rocketboards.org/2026.01/gsrd/agilex3_gsrd/). The files in this folder allow you to boot directly from SDCard. It also contains some of the files that are used to generate the final images used to boot from QSPI. The following folder contains the remaining files used by the recipes to create the binaries to boot from QSPI.
 
-- QSPI: [QSPI boot complement files](https://releases.rocketboards.org/2025.10/qspi/agilex3_qspi/). Here is the link to obtain the [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/walnascar/recipes-bsp/u-boot/files/uboot_script.its) file which is also needed.
+- QSPI: [QSPI boot complement files](https://releases.rocketboards.org/2026.01/qspi/agilex3_qspi/). Here is the link to obtain the [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/walnascar/recipes-bsp/u-boot/files/uboot_script.its) file which is also needed.
 
 **Note:** The NAND Boot will be supported in a future release.
 
@@ -197,9 +197,10 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
 
 
 
@@ -257,7 +258,7 @@ After the build is completed successfully, the following two folders are created
 * `agilex3-gsrd-images`: the build script copies here are relevant files built by Yocto from the `agilex3-gsrd-rootfs/tmp/deploy/images/agilex3` folder. It also includes other relevant files.<br>
 
 
-**Note**: If you want to build binaries creating each one of the binaries independently, you could refer to [HPS GHRD Linux Boot Examples for the Agilex™ 3 ](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-3/c-series/boot-examples/ug-linux-boot-agx3/).
+**Note**: If you want to build binaries creating each one of the binaries independently, you could refer to [HPS GHRD Linux Boot Examples for the Agilex™ 3 ](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-3/c-series/boot-examples/ug-linux-boot-agx3/).
 
 
 
@@ -309,9 +310,10 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
 
 
 
@@ -380,7 +382,7 @@ The layout of the QSPI image is shown in the following table:
   ```bash
   cd $TOP_FOLDER
   # Get pre-build .sof
-  wget https://releases.rocketboards.org/2025.10/qspi/agilex3_qspi/fpga.sof
+  wget https://releases.rocketboards.org/2026.01/qspi/agilex3_qspi/fpga.sof
   mv fpga.sof legacy_baseline.sof
   # Link files build from Yocto flow
   ln -s $TOP_FOLDER/gsrd-socfpga/agilex3-qspi-images/core-image-minimal-agilex3_nor.ubifs rootfs.ubifs
@@ -388,10 +390,10 @@ The layout of the QSPI image is shown in the following table:
   ln -s $TOP_FOLDER/gsrd-socfpga/agilex3-qspi-images/u-boot-agilex3-socdk-qspi-atf/boot.scr.uimg .
   ln -s $TOP_FOLDER/gsrd-socfpga/agilex3-qspi-images/u-boot-agilex3-socdk-qspi-atf/u-boot-spl-dtb.hex .
   # Get .pfg
-  wget https://releases.rocketboards.org/2025.10/qspi/agilex3_qspi/agilex3_flash_image_hps.pfg 
+  wget https://releases.rocketboards.org/2026.01/qspi/agilex3_qspi/agilex3_flash_image_hps.pfg 
   sed -i 's/ghrd_a3cw135bm16ae6s\.sof/legacy_baseline.sof/g' agilex3_flash_image_hps.pfg
   # Get /ubinize.cfg
-  wget https://releases.rocketboards.org/2025.10/qspi/agilex3_qspi/ubinize.cfg
+  wget https://releases.rocketboards.org/2026.01/qspi/agilex3_qspi/ubinize.cfg
   ```
   
 
@@ -496,15 +498,22 @@ At this point you can use the new **kernel.itb** as needed. Some options could b
 #### How to Manually Update the Content of the SD Card Image
 
 
-As part of the Yocto GSRD build flow, the SD Card image is built for the SD Card boot flow. This image includes a couple of partitions. One of these partition (a FAT32) includes the U-Boot proper, a Distroboot boot script and the Linux.itb - which includes the Linux kernel image, , the Linux device tree, the 2nd phase fabric design and board configuration (actually several versions of these last 3 components). The 2nd partition (an EXT3 or EXT4 ) includes the Linux file system. 
+As part of the Yocto GSRD build flow, the SD Card image is built for the SD Card boot flow. This image includes a couple of partitions. One of these partition (a FAT32) includes the U-Boot proper, a Distroboot boot script and the Linux **.itb** - which includes the Linux kernel image, , the Linux device tree, the phase 2 FPGA configuration bitstream and board configuration (there may be several versions of these last 3 components). The 2nd partition (an EXT3 or EXT4 ) includes the Linux file system. 
 
-![](/rel-25.3/embedded-designs/doc_modules/gsrd/images/sdcard_img.png){: style="height:500px"}
+![](/rel-25.3.1/embedded-designs/doc_modules/gsrd/images/sdcard_img.png){: style="height:500px"}
 
 If you want to replace any the components or add a new item in any of these partitions, without having to run again the Yocto build flow. 
 
 This can be done through the **wic** application available on the **Poky** repository that is included as part of the GSRD build directory: **$TOP_FOLDER/gsrd-socfpga/poky/scripts/wic** 
 
-This command allows you to inspect the content of a SD Card image, delete, add or replace any component inside of the image. This command is also provided with help support:
+This command requires to be run in the Yocto build environment that can be setup as shown next in a Linux terminal:
+  ```bash
+  cd $TOP_FOLDER/gsrd-socfpga/
+  source poky/oe-init-build-env build
+  ```
+You can verify that the Yocto environment has been setup using the **which bitbake** command, which will respond with the path of the **bitbake** command located at **poky/bitbake/bin/bitbake**.
+
+The **wic** command allows you to inspect the content of a SD Card image, delete, add or replace any component inside of the image. This command is also provided with help support:
 
    ```bash
    $ $TOP_FOLDER/gsrd-socfpga/poky/scripts/wic help
@@ -580,7 +589,7 @@ The Intel Simics Simulator for Altera FPGAs supports a virtual platform specific
  In order to mimics the Agilex™ 3 device functionality, some configurable parameters in the Agilex™ 3 Universal Virtual Platform are kept fixed, so the functionality of the Agilex™ 3 device can be replicated. 
 
 
-The  Agilex™ 3 Universal Virtual Platform is associated with the **agilex3c-universal.simics** target script. For detailed information about the architecture and capabilities of this virtual platform, you can refer to the  [Agilex™ 5 Simics Virtual Platform - Universal](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms/#agilextm-5-simics-virtual-platform-universal) page. Here, we just going to describe the differences that applies for the Agilex™ 3 Universal Virtual Platform.
+The  Agilex™ 3 Universal Virtual Platform is associated with the **agilex3c-universal.simics** target script. For detailed information about the architecture and capabilities of this virtual platform, you can refer to the  [Agilex™ 5 Simics Virtual Platform - Universal](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms/#agilextm-5-simics-virtual-platform-universal) page. Here, we just going to describe the differences that applies for the Agilex™ 3 Universal Virtual Platform.
 
 #### Differences between the Agilex™ 3  Universal Virtual Platform and the Agilex™ 5  Universal Virtual Platform
 
@@ -595,7 +604,7 @@ As mentioned before, both virtual platforms instantiates the HPS model of the Ag
 
 ### Use Cases Supported by the Agilex™ 3 E-Series Universal Virtual Platform
 
-The following sections explain some basic use cases using the **Agilex™ 3 C-Series Universal** virtual platform. The features and use cases supported by the Agilex™ 5 Universal Virtual platform described in  [Agilex™ 5 Universal Virtual Platform Use Cases](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms/#use-case-exercise-sdcard-boot-flow-from-fsbl-to-linux) also are supported by this virtual platform, so you can refer to those instructions to exercise them.
+The following sections explain some basic use cases using the **Agilex™ 3 C-Series Universal** virtual platform. The features and use cases supported by the Agilex™ 5 Universal Virtual platform described in  [Agilex™ 5 Universal Virtual Platform Use Cases](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms/#use-case-exercise-sdcard-boot-flow-from-fsbl-to-linux) also are supported by this virtual platform, so you can refer to those instructions to exercise them.
 
 The preconditions required to execute them are listed in the following section:
 
@@ -824,7 +833,7 @@ To exercise this use case, follow the below steps once the Simulation setup is c
 
   root@dhcp0:~# 
   ```
-  This finishes the main scenario of this use case. This scenario can be extended in any of the Use Cases described in [Agilex™ 5 Universal Virtual Platform Use Cases](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms/#use-case-exercise-sdcard-boot-flow-from-fsbl-to-linux). Next is shown an example that demonstrates this.
+  This finishes the main scenario of this use case. This scenario can be extended in any of the Use Cases described in [Agilex™ 5 Universal Virtual Platform Use Cases](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms/#use-case-exercise-sdcard-boot-flow-from-fsbl-to-linux). Next is shown an example that demonstrates this.
 
   **Note**: You can speed-up the boot process by skipping the U-Boot autoboot countdown by pressing any key and then typing the **boot** command:
 
@@ -1091,5 +1100,5 @@ To exercise this use case, follow the steps below once the Simulation setup is c
 
     
 
-For additional Use Cases that can be exercised in Simics with **Agilex™ 3 Universal Virtual Platform**, you can refer to [Agilex™ 5 Universal Virtual Platform Use Cases](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms/#use-case-exercise-sdcard-boot-flow-from-fsbl-to-linux) since these are also supported by this virtual platform.
+For additional Use Cases that can be exercised in Simics with **Agilex™ 3 Universal Virtual Platform**, you can refer to [Agilex™ 5 Universal Virtual Platform Use Cases](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms/#use-case-exercise-sdcard-boot-flow-from-fsbl-to-linux) since these are also supported by this virtual platform.
 

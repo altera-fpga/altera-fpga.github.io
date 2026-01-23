@@ -11,8 +11,6 @@ The Agilex™ 5 HPS application processors can run Linux or an RTOS, such as Zep
 
 The Agilex™ 5 Simics virtual platform models the HPS processor with two Arm Cortex-A55 cores, two Arm Cortex-A76 cores, and HPS peripherals. The Agilex™ 5 E-Series HPS virtual platform is released as part of the Simics® Simulator for Altera® FPGAs software, which also includes a virtual platforms where the Agilex™ 5 device is instantiated, emulating the concept of having different versions of a development kit or daughter cards.
 
-
-
 The Agilex™ 5 E-Series device has the following supported virtual platforms:
 
 - Agilex™ 5  Universal Virtual Platform - Used to simulate E-Series and D-Series devices.
@@ -47,46 +45,49 @@ To exercise the instructions presented on this page (build your binaries and exe
   - [Intel® Simics® Simulator Landing Page](https://www.intel.com/content/www/us/en/products/details/fpga/development-tools/simics-virtual-platform.html) 
   - [Intel® Simics® Simulator for Altera® FPGAs User Guide](https://www.intel.com/content/www/us/en/docs/programmable/784383/)
   - [Agilex™ 5 E-Series Virtual Platform User Guide](https://www.intel.com/content/www/us/en/docs/programmable/786901/)
+  - [Intel® Simics Simulator for Altera® FPGAs Release Notes](https://www.intel.com/content/www/us/en/docs/programmable/870556)
 - U-Boot, Linux compilation, Yocto compilation, and the creation of an SD card image require a Linux host PC.
   To create these binaries, the toolchain and other software required need to be downloaded. This is described as part of the instructions in each section.
-- The Intel Simics Simulator for Altera® FPGAs is available only for Linux systems.
+- The Intel Simics Simulator for Altera® FPGAs is available only for Linux systems. In a system with Windows OS, this can be used through WSL.
 - In case any use case requires additional prerequisites, these are listed as part of the use case description.
 
 
 
 ## Release Content
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 and the following software component versions are used to build the binaries presented in this page: 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1 and the following software component versions are used to build the binaries presented in this page: 
 
 | Component | Location | Branch | Commit ID/Tag |
 | :-------- | :------- | :----- | :------------ |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.33-lts | QPDS25.3_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.0   | QPDS25.3_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.07 | QPDS25.3_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.43-lts | QPDS25.3.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.1   | QPDS25.3.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.10 | QPDS25.3.1_REL_GSRD_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
-| Yocto Project: meta-altera-fpga (for GSRD 2.0)  | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3_REL_GSRD_PR |
+| Yocto Project: meta-altera-fpga (for GSRD 2.0)  | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3.1_REL_GSRD_PR |
 | Yocto Project: meta-intel-fpga (for Legacy GSRD) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest |
-| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3_REL_GSRD_PR |
-| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3_REL_GSRD_PR |
-| Agilex 5 GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3.1_REL_GSRD_PR |
+| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3.1_REL_GSRD_PR |
+| Agilex 5 GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3.1_REL_GSRD_PR |
 
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 
 
-**Note:** For information prior 24.2 release, please refer to [Linux GSRD Intel Simics Virtual Platform for Altera® Agilex® 5 E-Series](https://www.rocketboards.org/foswiki/Documentation/Agilex5SoCSimicsVirtualPlatformsReferenceGuide). 
-
-### Prebuilt Binaries
+**Note:** For information prior 24.2 release, please refer to [Linux GSRD Intel Simics Virtual Platform for Altera® 5 E-Series](https://www.rocketboards.org/foswiki/Documentation/Agilex5SoCSimicsVirtualPlatformsReferenceGuide). 
 
 
 
-You can find the prebuilt binaries from the GSRD prebuilt at the following URL: [https://releases.rocketboards.org/2025.10/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/](https://releases.rocketboards.org/2025.10/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/). The files in this folder allow you to boot directly from SDCard. It also contains some of the files that are used to generate the final images used to boot from QSPI. The following folder contains the remaining files used by the recipes to create the binaries to boot from QSPI.
+The pre-built binaries created with GSRD 2.0 to boot from SD Card and QSPI are available at the following location. You can exercise them using the internal Simics environmet included under GSRD2.0 or also from a separate Simics environment in whcih you need to create and build the project directory manually.
 
-- QSPI: [QSPI boot complement files](https://releases.rocketboards.org/2025.10/qspi/agilex5_dk_a5e065bb32aes1_qspi/). Here is the link to obtain the [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/walnascar/recipes-bsp/u-boot/files/uboot_script.its) file which is also needed.
+| Boot Source |        Link          |
+| :---------------: | :----------------------------------------------------------------------: | 
+| SD Card | https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55 |
+| SD Card | https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76 |
+| QSPI | https://releases.rocketboards.org/2026.01/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a55 |
+| QSPI | https://releases.rocketboards.org/2026.01/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a76 |
 
-
-**Note:** The final images used to boot from QSPI  are not provided, but the binaries used to generate these are provided, so you can generate the final images following the instructions in [Build QSPI Boot Image](#build-qspi-boot-image) section.
+The files in these folder allow you to boot directly from SD Card. In the case of QSPI boot, the final \*.rpd used to run the Simics simulation is not provided, but it contains the files needed to create the final image using the instructions provided in [Build QSPI GSRD 2.0](#build-qspi-gsrd-20) section.
 
 **Note:**  Starting from 24.2 release, the binaries targeted for silicon can also be used with Simics simulator.
 
@@ -124,12 +125,16 @@ You can find the prebuilt binaries from the GSRD prebuilt at the following URL: 
 | CVP                                    | Yes       |
 | PMU                                    | Yes       |
 
+#### Known Issues with the Release
+
+For known issues in this release please refer to the [Intel Simics Simulator for FPGA Release page](https://www.intel.com/content/www/us/en/docs/programmable/870556.html).
+
 ### Build Instructions - GSRD 2.0 Baseline
 
 The GSRD 2.0 was intruduced on release 25.3. The GSRD 2.0 provides a frameweork based on **kas** and **yocto**, that allows to build be HPS binaries in a more simplified and automated methodology. In the GSRD 2.0, the  [agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) reposiotry integrates GSRD and GHRD components, which differs from the legacy GHRD/GSRD build flow in whcih the GSRD and GHRD components were in separate repositories. 
-For the  Simics simulation case specific, the GSRD 2.0 also provides some components (scripts and directories) included in the common repository that allows to run Simics simulations from the GSRD/GHRD build environment using directly the binaries produced from the build. The following steps shows how to produced the binaries that can be used in Simics simulation.
+For the  Simics simulation case specific, the GSRD 2.0 also provides a Simics simulation environment that consist of some components (scripts and directories) included in the common repository. This simulation environment allows to run Simics simulations from the GSRD/GHRD build environment using directly the binaries produced from the build. The following steps shows how to produced the required binaries that can be used in Simics simulation.
 
-For more information about the GSRD 2.0 for Agilex 5 device, please refer to [https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#gsrd-20-with-kas-build-system](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#gsrd-20-with-kas-build-system).
+For more information about the GSRD 2.0 for Agilex 5 device, please refer to [https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#gsrd-20-with-kas-build-system](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#gsrd-20-with-kas-build-system).
 
 
 
@@ -138,9 +143,9 @@ For more information about the GSRD 2.0 for Agilex 5 device, please refer to [ht
 
 
 ```bash
-sudo rm -rf agilex5_gsrd2.0
-mkdir agilex5_gsrd2.0
-cd agilex5_gsrd2.0
+sudo rm -rf agilex5_gsrd2.0_a55
+mkdir agilex5_gsrd2.0_a55
+cd agilex5_gsrd2.0_a55
 export TOP_FOLDER=$(pwd)
 export GITCONFIG_FILE="$HOME/.gitconfig"
 ```
@@ -151,9 +156,10 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
 
 
 
@@ -167,20 +173,19 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
 ```bash
 cd $TOP_FOLDER
-rm -rf agilex5_soc_devkit_ghrd
-mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline.zip
-unzip a5ed065es-premium-devkit-oobe-baseline.zip
-rm -f a5ed065es-premium-devkit-oobe-baseline.zip
-make baseline-install-core-rbf
+rm -rf agilex5_soc_devkit_ghrd_a55
+mkdir agilex5_soc_devkit_ghrd_a55 && cd agilex5_soc_devkit_ghrd_a55
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
+unzip a5ed065es-premium-devkit-oobe-baseline-a55.zip
+rm -f a5ed065es-premium-devkit-oobe-baseline-a55.zip
+make baseline_a55-install-core-rbf
 ```
 
 
 The output from this stage is:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_hps_debug.core.rbf - Phase 2 hardware design.
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux - Clean GSRD 2.0 software direcotry (not buillt yet).
-
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/output_files/baseline_a55_hps_debug.core.rbf - Phase 2 hardware design.
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux - Clean GSRD 2.0 software direcotry (not buillt yet).
 
 
 
@@ -188,7 +193,11 @@ The output from this stage is:
 
 
 
-**Note:** To Build the GSRD 2.0 you need to have the **KAS** version 4.8.2 in your Linux build machine. You also need also install `python3-newt`, and `python3.10-venv` packages. You can do this with:
+This section provides the instructions needed to build the HPS binaries needed to boot from SD Card in Simics. 
+
+**Note:** Starting on release 25.3.1, the GSRD2.0 provides separate directories based on the selection of the boot core that could be either a55 (core 0) or a76 (core 2). In the case of Simics, the selection of the boot core is done through a parameter in the target script (simics/linux/sdmmc_boot/sdmmc_gsrd.simics), so in this section we just provide instructions to build binaries using the **a55** directory, but the same instructions applies for the **a76**. In the [Exercising Simics Simulation from GSRD 2.0](#exercising-simics-simulation-from-gsrd-20) section are provided instructions about what need to be changed to run with the **a76** as the boot core.
+
+**Note:** To Build the GSRD 2.0 you need to have the **KAS** version 4.8.2 in your Linux build machine. You also need also install `python3-newt`, and `python3.10-venv` packages. You can get them with:
 
 ```bash
 $ sudo apt-get install python3-newt python3.10-venv
@@ -206,22 +215,29 @@ export DL_DIR="$HOME/tasks/yocto/downloads"
 export SSTATE_DIR="$HOME/tasks/yocto/sstate"
  
 # Build sd binaries with kas
-cp -r $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux_sd
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux_sd
-time ./build.sh ../../output_files/baseline_hps_debug.core.rbf sd
+cd $TOP_FOLDER
+cp -r $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_sd
+cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_sd
+# Add some tools used to exercise use cases
+sed -i '/MACHINE = "agilex5e"/a\\n  add-tools: |\n    CORE_IMAGE_EXTRA_INSTALL \+= \"gdbserver devmem2 openssh\"' kas.yml
+time ./build.sh ../../output_files/baseline_a55_hps_debug.core.rbf sd
 ```
 
 
 The output files that will be used to simulate with Simics are:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs.wic
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/gsrd-console-image-agilex5e.rootfs.wic
 
 
 
 #### Build QSPI GSRD 2.0
 
 
+
+This section provides the instructions needed to build the HPS binaries needed to boot from QSPI Card in Simics. 
+
+**Note:** Starting on release 25.3.1, the GSRD2.0 provides separate directories based on the selection of the boot core that could be either a55 (core 0) or a76 (core 2). In the case of Simics, the selection of the boot core is done through a parameter in the target script (simics/linux/qspi_boot/qspi_gsrd.simics), so in this section we just provide instructions to build binaries using the **a55** directory, but the same instructions applies for the **a76**. In the [Exercising Simics Simulation from GSRD 2.0](#exercising-simics-simulation-from-gsrd-20) section are provided instructions about what need to be changed to run with the **a76** as the boot core.
 
 **Note:** To Build the GSRD 2.0 you need to have the **KAS** version 4.8.2 in your Linux build machine. You also need also install `python3-newt`, and `python3.10-venv` packages. You can do this with:
 
@@ -234,6 +250,7 @@ kas 4.8.2 (configuration format version 19, earliest compatible version 1)
 The instructions to build the GSRD 2.0 to boot from QSPI are shown next:
 
 
+
 ```bash
 #Optional to Cash yocto downloads and sstate dirs
 export BB_ENV_PASSTHROUGH_ADDITIONS="DL_DIR SSTATE_DIR"
@@ -241,226 +258,30 @@ export DL_DIR="$HOME/tasks/yocto/downloads"
 export SSTATE_DIR="$HOME/tasks/yocto/sstate"
  
 # Build qspi binaries with kas
-cp -r $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux_qspi
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux_qspi
-time ./build.sh ../../output_files/baseline_hps_debug.core.rbf qspi
+cd $TOP_FOLDER
+cp -r $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi
+cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi
+# Add some tools used to exercise use cases
+sed -i '/MACHINE = "agilex5e"/a\\n  add-tools: |\n    CORE_IMAGE_EXTRA_INSTALL \+= \"gdbserver devmem2 openssh\"' kas.yml
+time ./build.sh ../../output_files/baseline_a55_hps_debug.core.rbf qspi
 ```
 
 
 The output files that will be used to simulate with Simics are:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot.itb
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nor.ubifs
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/kernel.itb
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/boot.scr.uimg
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/uboot.env
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot.itb
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nor.ubifs
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/kernel.itb
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/boot.scr.uimg
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/uboot.env
 
 
 
+At this point you can build the \*.rpd file used in Simics simulation using the Simics environment  integrated into the GSRD or building this apart from the GSRD environment (i.e. independent directory in which you manually create, deploy and build the Simics project.
 
-Once that you have build the binaries from GSRD 2.0, you can exercises the GSRD 2.0 specific use cases listed in the [Exercising Simics Simulation from GSRD 2.0](#exercising-simics-simulation-from-gsrd-20)
-
-#### GSRD 2.0 Prebuilt Binaries
-
-The pre-built binaries created with GSRD 2.0 to boot from SD Card and QSPI are also available at the following location. You can exercise them using the internal scripts under GSRD2.0 or also from a  traditional Simics project directory created by yourself.
-
-| Boot Source |        Link          |
-| :---------------: | :----------------------------------------------------------------------: | 
-| SD Card | https://releases.rocketboards.org/2025.10/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline |
-| QSPI | https://releases.rocketboards.org/2025.10/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline |
-
-### Build Instructions - Legacy
-
-The following diagram illustrates the full-build flow for the binaries used with the Intel Simics simulator. The build flow utilizes the source code placed in [GitHub](https://github.com/altera-fpga) in repositories and uses a flow based on Yocto.
-
-
-![](images/BuildBinariesFlow.jpg)
-
-
-
-#### Set Up the Environment
-
-
-
-```bash
-sudo rm -rf agilex5_gsrd
-mkdir agilex5_gsrd
-cd agilex5_gsrd
-export TOP_FOLDER=$(pwd)
-```
-
-
-
-
-
-Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
-
-
-```bash
-cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
-arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
-export ARCH=arm64
-export CROSS_COMPILE=aarch64-none-linux-gnu-
-```
-
-Enable Quartus tools to be called from command line:
-
-
-```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
-export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
-```
-
-
-
-
-
-
-
-#### Get SOF from Hardware Design
-
-In Simics, the SOF file generated as result of the build of the hardware design is not used at all in the simulation, but this is needed to create the RPD file to exercise the QSPI boot. This is the reason why we provide the steps to build the hardware desgin here.
-
-
-
-
-```bash
-cd $TOP_FOLDER
-rm -rf ghrd_a5ed065bb32ae6sr0.sof
-wget https://releases.rocketboards.org/2025.10/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.sof 
-```
-
-
-The following file is created:
-
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0.sof
-
-
-
-#### Set Up the Yocto Build System
-
-
-1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
-
-The command to install the required packages on Ubuntu 22.04 is:
-
-```bash
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \
-build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
-python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit mesa-common-dev zstd \
-liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \
-tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
-device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
-```
-
-On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:
-
-```bash
- sudo ln -sf /bin/bash /bin/sh
-```
-
-**Note**: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.
-
-2. Clone the Yocto script and prepare the build:
-    
-  ```bash
-  cd $TOP_FOLDER
-  rm -rf gsrd-socfpga
-  git clone -b walnascar https://github.com/altera-fpga/gsrd-socfpga
-  cd gsrd-socfpga
-  . agilex5_dk_a5e065bb32aes1-gsrd-build.sh
-  build_setup
-  ```
-  
-
-  **Note**: Run the following commands to set up the yocto build environments again, if you closed the current window (for example, when rebooting the Linux host) and want to resume the next steps:
-
-  ```bash
-  cd $TOP_FOLDER/gsrd-socfpga
-  . ./poky/oe-init-build-env agilex5_devkit-gsrd-rootfs/
-  ```
-
-
-#### Customize the Yocto Build
-
-1. (Optional) Change the following files in **gsrd-socfpga/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/**:
-   * distroboot script:[uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/master/recipes-bsp/u-boot/files/uboot.txt)
-   * **its** file for creating FIT image fromthe above script: [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/master/recipes-bsp/u-boot/files/uboot_script.its) 
-
-2. (Optional) Change the following file in **gsrd-socfpga/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts**:
-   * **its** file for creating the **kernel.itb** image: [fit_kernel_agilex5.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/master/recipes-kernel/linux/linux-socfpga-lts/fit_kernel_agilex5.its) , which by default contains the following:<br>
-    * Kernel <br>
-    * Distroboot boot script<br>
-    * Device tree configurations<br>
-    * Board configurations 
-   
-#### Build Yocto
-
-
-Build Yocto:
-
-
-```bash
-bitbake_image
-```
-
-
-Gather files:
-
-```bash 
-package 
-```
-
-
-
-
-
-
-After the build is completed successfully, the following two folders are created:
-
-- `agilex5_devkit-gsrd-rootfs`: area used by OpenEmbedded build system for builds. For the description of the build directory structure, refer to https://docs.yoctoproject.org/ref-manual/structure.html#the-build-directory-build.
-- `agilex5_devkit-gsrd-images`: the build script copies here are relevant files built by Yocto from the `agilex5_devkit-gsrd-rootfs/tmp/deploy/images/agilex5` folder. It also includes other relevant files.
-
-
-
-**Note**: If you want to build binaries creating each one of the binaries independently, you could refer to [Agilex™ 5 E-Series GHRD Linux Boot Examples](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/).
-
-
-
-The most relevant files created in the `$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images` folder are:
-
-
-
-|                          File                           |                        Description                        | SD Card Boot | QSPI Boot |
-| :-----------------------------------------------------: | :-------------------------------------------------------: | ------------ | --------- |
-| ghrd_a5ed065bb32ae6sr0.sof | SOF file from the hardware design |  | * |
-| u-boot-spl-dtb.bin |                  U-Boot SPL binary file                   | * | * |
-|                       u-boot.itb                        |                       U-Boot (SSBL)                       | * | * |
-|                      boot.scr.uimg                      |                  Distroboot boot script                   | * |  |
-|                       kernel.itb                        |                  Linux kernel fit image                   | *            | *         |          |
-|     console-image-minimal-agilex5_nor.ubifs      |                 File system for QSPI boot                 |              | *         |
-|          gsrd-console-image-agilex5.wic          |                       SD Card Image                       | *            |           |
-|                        uboot.txt                        |                 U-Boot Distroboot script                  |              | *         |
-|                    uboot_script.its                     | ITS file to create FIT binary of U-Boot Distroboot script |              | *         |
-
-
-#### Build QSPI Boot Image
-
-
-
-The next step consists of creating the QSPI image with UBIFS format that will be used by in the simulation that exercises this use case. To build this image the same binaries generated from the GSRD build are used.
-
-
-
-The layout of the QSPI image is shown in the following table:
-
+The following step tells you how to build the final \*.rpd to be used outside of the GSRD Simics environment. For this,  you require a \*.pfg file with the following layout:
 
 | Partition    | MTD Partition | UBI Volume | Volume Name | Type         | Image/Individual File               | Group File | Start Addr | Size |
 | :---------------- | :--------- | :--------- | :---------- | :----------- | :----------------------------------- | :--------- | :-------- | ----------- |
@@ -469,318 +290,44 @@ The layout of the QSPI image is shown in the following table:
 | U_BOOT | 0 <br>(u-boot) | N/A    | N/A     | RAW      | u-boot.itb | N/A | 0x04000000 |AUTO|
 | HPS | 1 <br>(root) | 0<br>1<br>2<br>3<br>4 | env<br>script<br>kernel<br>dtb<br>rootfs | UBI<br>UBI<br>UBI<br>UBI<br>UBIFS | u-boot.env<br>u-boot.scr<br>kernel.itb<br>kernel.dtb<br>rootfs.ubifs | <br><br>root.ubi | 0x04200000<br>Auto<br>Auto<br>Auto<br>Auto | 256KB<br>128KB<br>24MB<br>256KB<br>160MB |
 
+You also require to use the  **ubinize** command and the **ubinize.cfg** file to create the .ubi needed to create the image. These files are provided as part of the GSRD repository (the **ubinize** command is also available from the Ubuntu **mtd-tools** package).
 
 
 
-1. Gather the required files.
-    
-  ```bash
-  # Gattering files
-  cd $TOP_FOLDER
-  rm -rf qspi-bin && mkdir qspi-bin && cd qspi-bin 
-  mv $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.sof agilex5_factory.sof
-  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb u-boot-itb.bin
-  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex u-boot-spl.hex
-  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/kernel.itb kernel-image
-  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/console-image-minimal-agilex5_nor.ubifs  rootfs.ubifs
-  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/boot.scr.uimg boot.scr.uimg
-  ```
-  
-
-2. Create the PFG file that describes the format of the QSPI image: 
-
-  
-
-  ```bash
-
-  cd $TOP_FOLDER/qspi-bin
-  cat << EOF > agilex5_flash_image.pfg
-  <pfg version="1">
-      <settings custom_db_dir="./" mode="ASX4"/>
-      <output_files>
-          <output_file name="flash_image" directory="." type="JIC">
-              <file_options/>
-              <secondary_file type="MAP" name="flash_image_jic">
-                  <file_options/>
-              </secondary_file>
-              <secondary_file type="SEC_RPD" name="flash_image_jic">
-                  <file_options bitswap="1"/>
-              </secondary_file>
-              <flash_device_id>Flash_Device_1</flash_device_id>
-          </output_file>
-      </output_files>
-      <bitstreams>
-          <bitstream id="Bitstream_1">
-              <path hps_path="./u-boot-spl.hex">./agilex5_factory.sof</path>
-          </bitstream>
-      </bitstreams>
-      <raw_files>
-          <raw_file bitswap="1" type="RBF" id="Raw_File_1">u-boot-itb.bin</raw_file>
-          <raw_file bitswap="1" type="RBF" id="Raw_File_2">hps.bin</raw_file>
-      </raw_files>
-      <flash_devices>
-          <flash_device type="MT25QU02G" id="Flash_Device_1">
-              <partition reserved="1" fixed_s_addr="1" s_addr="0x00000000" e_addr="0x001FFFFF" fixed_e_addr="1" id="BOOT_INFO" size="0"/>
-              <partition reserved="0" fixed_s_addr="0" s_addr="0x00200000" e_addr="0x0030FFFF" fixed_e_addr="0" id="P1" size="0"/>
-              <partition reserved="0" fixed_s_addr="0" s_addr="0x04000000" e_addr="auto" fixed_e_addr="0" id="U-Boot" size="0"/>
-              <partition reserved="0" fixed_e_addr="1" e_addr="0xFFFFFFF" id="HPS" s_addr="0x4200000"/>
-          </flash_device>
-          <flash_loader>A5ED065BB32AE6SR0</flash_loader>
-      </flash_devices>
-      <assignments>
-          <assignment page="0" partition_id="P1">
-              <bitstream_id>Bitstream_1</bitstream_id>
-          </assignment>
-          <assignment page="0" partition_id="U-Boot">
-              <raw_file_id>Raw_File_1</raw_file_id>
-          </assignment>
-          <assignment page="0" partition_id="HPS">
-              <raw_file_id>Raw_File_2</raw_file_id>
-          </assignment>
-      </assignments>
-  </pfg>
-  EOF
-  
-  ```
-  
-
-3. Create UBI configuration file for the rootfs partition:
-
-  
-  ```bash
-  # Creating UBI Configuration file
-  cd $TOP_FOLDER/qspi-bin
-  cat << EOT >ubinize_nor.cfg 
-  [env]
-  mode=ubi
-  vol_id=0
-  vol_name=env
-  vol_size=256KiB
-  vol_type=dynamic
-
-  [script]
-  mode=ubi
-  image=boot.scr.uimg
-  vol_id=1
-  vol_name=script
-  vol_size=128KiB
-  vol_type=dynamic
-
-  [kernel]
-  mode=ubi
-  image=kernel-image     
-  vol_id=2
-  vol_name=kernel
-  vol_size=24MiB
-  vol_type=dynamic
 
-  [dtb]
-  mode=ubi
-  vol_id=3
-  vol_name=dtb
-  vol_size=256KiB
-  vol_type=dynamic
 
-  [rootfs]
-  mode=ubi
-  image=rootfs.ubifs
-  vol_id=4
-  vol_name=rootfs
-  vol_type=dynamic
-  vol_size=160MiB
-  vol_flag=autoresize
-  EOT
-  ```
-  
+```bash
+cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi
+rm -rf qspi_rpd
+mkdir qspi_rpd && cd qspi_rpd
+cp $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/simics/linux/qspi_boot/qspi_flash_image_agilex5-final.pfg .
+cp $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/simics/linux/qspi_boot/ubinize.cfg .
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/output_files/baseline_a55_hps_debug.sof agilex5_factory.sof 
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex simics-u-boot-spl-dtb.hex
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot.itb u-boot-itb.bin
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/uboot.env uboot.env
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/boot.scr.uimg boot.scr.uimg
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/kernel.itb kernel.itb
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nor.ubifs rootfs.ubifs
+$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/simics/linux/qspi_boot/ubinize -o hps.bin -p 65536 -m 1 -s 1 ubinize.cfg
+quartus_pfg -c qspi_flash_image_agilex5-final.pfg
+```
 
-  The following file is created:
 
-  * $TOP_FOLDER/qspi-bin/ubinize_nor.cfg
 
-4. Generate the *root.ubi* file for root partition. For this, the *ubinize_nor.cfg* is used with the files obtained from the previous steps. This file defines the components to be included in the root.ubi file as indicated in the table above. The ubinize executable is available as part of the *mtd-tools* package. 
-    The parameters for ubinize command are:
+The following \*.rpd is created after this step:
 
-  -p: physical erase block size of the flash<br>
-  -m: minimum input/output unit size of the flash<br>
-  -s: sub-pages and sub-page size 
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi/qspi_rpd/flash_image_jic.rpd
 
-  Once the *root.ubi* files is created this is renamed as *hps.bin*. <br>
-  *Required files for this step:* ubinize_nor.cfg,  boot.scr.uimg,  kernel-image,  rootfs.ubifs
 
 
-  
 
-  ```bash
-  # Generate hps.bin file with UBI format
-  ubinize -o root.ubi -p 65536 -m 1 -s 1 ubinize_nor.cfg
-  mv root.ubi hps.bin
-  ```
-  
 
-  The following file is created:
 
-   * $TOP_FOLDER/qspi-bin/hps.bin
 
-5. Using Quartus Programming File Generator to compile an RPD file by using the configuration specified in the PFG file.
+Once that you have build the binaries from GSRD 2.0, you can exercises the basic GSRD 2.0  use cases listed in the [Exercising Simics Simulation from GSRD 2.0](#exercising-simics-simulation-from-gsrd-20)
 
-  *Required files for this step:* u-boot-spl.hex,  agilex5_factory.sof, u-boot-itb.bin and hps.bin  <br>
-  *Note:* Make sure the filenames are specified correctly in agilex5_flash_image.pfg
 
-  Run the Quartus File Generator command below to generate an RPD file:
-  
-
-  ```bash
-  # Creating QSPI image
-  quartus_pfg -c agilex5_flash_image.pfg
-  ```
-  
-
-
-
-The following file is created:
-
-* $TOP_FOLDER/qspi-bin/flash_image_jic.rpd
-
-
-
-
-
-#### How to Manually Update the kernel.itb file
-
-
-
-
-The **kernel.itb** file is a Flattattened Image Tree (FIT) file that includes the following components:
-
-* Linux kernel.
-* Several board configurations that indicate what components from the **kernel.itb** (Linux kernel, device tree and 2nd Phase fabric design) should be used for a specific board.
-* Linux device tree*.
-* 2nd Phase Fabric Design*.
-
- \* One or more of these components to support the different board configurations.
-
-The **kernel.itb** is created from a **.its** (Image Tree Source file) that describes its structure. In the GSRD, the  **kernel.itb** file is located in the following directory, where you can find also all the components needed to create it, including the .its file:
-
-* **$TOP_FOLDER/gsrd-socfpga/<*device-devkit*>-gsrd-rootfs/tmp/work/<*device-devkit*>-poky-linux/linux-socfpga-lts/<*linux branch*>+git/linux-<*device devkit*>-standard-build/**
-
-If you want to modify the kernel.itb by replacing one of the component or modifying any board configuration, you can do the following:
-
-1. Install **mtools** package in your Linux machine.
-   ```bash
-   $ sudo apt update
-   $ sudo apt install mtools
-   ```
-   
-2. Go to the folder in which the **kernel.itb** is being created under the GSRD.
-   ```bash
-   $ cd $TOP_FOLDER/gsrd-socfpga/<device-devkit>-gsrd-rootfs/tmp/work/<device-devkit>-poky-linux/linux-socfpga-lts/<linux branch>+git/linux-<device-devkit>-standard-build/
-   $ ls *.its
-   fit_kernel_<device-devkit>.its
-   ```
-   
-3. In the .its file, observe the components that integrates the kernel.itb identifying the nodes as indicated next:
-
-   **images** node:<br>
-   - **kernel** node - Linux kernel defined with the **data** parameter in the node.<br>
-   - **fdt-X** node    - Device tree X defined with the **data** parameter in the node.<br>
-   - **fpga-X** node -  2nd Phase FPGA Configuration .rbf defined with the **data** parameter in the node.
-   
-   **configurations** node:<br>
-   - **board-X** node - Board configuration with the name defined with the **description** parameter. The components for a specific board configuration are defined with the **kernel**, **fdt** and **fpga** parameters.   
-
-4. In this directory, you can replace any of the files corresponding to any of the components that integrate the **kernel.itb**, or you can also modify the **.its** to change the name/location of any of the components or change the board configuration.
-
-5. Finally, you need to re-generate the new **kernel.itb** as indicated next.
-   ```bash
-   $ rm kernel.itb
-   $ mkimage -f fit_kernel_<device-devkit>.its kernel.itb
-   ```
-
-At this point you can use the new **kernel.itb** as needed. Some options could be:
-
-* Use U-Boot to bring it to your SDRAM board through TFTP to boot Linux or to write it to a SD Card device
-* Update the flash image (QSPI, SD Card, eMMC or NAND) from your working machine.
- 
-
-#### How to Manually Update the Content of the SD Card Image
-
-
-As part of the Yocto GSRD build flow, the SD Card image is built for the SD Card boot flow. This image includes a couple of partitions. One of these partition (a FAT32) includes the U-Boot proper, a Distroboot boot script and the Linux.itb - which includes the Linux kernel image, , the Linux device tree, the 2nd phase fabric design and board configuration (actually several versions of these last 3 components). The 2nd partition (an EXT3 or EXT4 ) includes the Linux file system. 
-
-![](/rel-25.3/embedded-designs/doc_modules/gsrd/images/sdcard_img.png){: style="height:500px"}
-
-If you want to replace any the components or add a new item in any of these partitions, without having to run again the Yocto build flow. 
-
-This can be done through the **wic** application available on the **Poky** repository that is included as part of the GSRD build directory: **$TOP_FOLDER/gsrd-socfpga/poky/scripts/wic** 
-
-This command allows you to inspect the content of a SD Card image, delete, add or replace any component inside of the image. This command is also provided with help support:
-
-   ```bash
-   $ $TOP_FOLDER/gsrd-socfpga/poky/scripts/wic help
-   
-   Creates a customized OpenEmbedded image.
-
-   Usage:  wic [--version]
-           wic help [COMMAND or TOPIC]
-           wic COMMAND [ARGS]
-
-       usage 1: Returns the current version of Wic
-       usage 2: Returns detailed help for a COMMAND or TOPIC
-       usage 3: Executes COMMAND
-
-   COMMAND:
-
-    list   -   List available canned images and source plugins
-    ls     -   List contents of partitioned image or partition
-    rm     -   Remove files or directories from the vfat or ext* partitions
-    help   -   Show help for a wic COMMAND or TOPIC
-    write  -   Write an image to a device
-    cp     -   Copy files and directories to the vfat or ext* partitions
-    create -   Create a new OpenEmbedded image
-    :
-    :
-   ```
-   The following steps show you how to replace the **kernel.itb** file inside of the fat32 partition in a .wic image.
-
-1. The **wic ls** command allows you to inspect or navigate over the directory structure inside of the SD Card image. For example you can observe the partitions  in the SD Card image in this way:
-
-   ```bash
-   # Here you can inspect the content a wic image see the 2 partitions inside of the SD Card image
-   $ $TOP_FOLDER/gsrd-socfpga/poky/scripts/wic ls my_image.wic
-   Num     Start        End          Size      Fstype
-   1       1048576    525336575    524288000  fat32    
-   2     525336576   2098200575   1572864000  ext4   
-   
-   # Here you can naviagate inside of the partition 1
-   $ $TOP_FOLDER/gsrd-socfpga/poky/scripts/wic ls my_image.wic:1
-   Volume in drive : is boot       
-   Volume Serial Number is 9D2B-6341
-   Directory for ::/
-   
-   BOOTSC~1 UIM      2431 2011-04-05  23:00  boot.scr.uimg
-   kernel   itb  15160867 2011-04-05  23:00 
-   u-boot   itb   1052180 2011-04-05  23:00 
-        3 files          16 215 478 bytes
-                        506 990 592 bytes free
-   ```
-   
-2. The **wic rm** command allows you to delete any of the components in the selected partition. For example, you can delete the **kernel.itb** image from the partition 1(fat32 partition).
-
-   ```bash
-   $ $TOP_FOLDER/gsrd-socfpga/poky/scripts/wic rm my_image.wic:1/kernel.itb
-   ```
-
-3. The **wic cp** command allows you to copy any new item or file from your Linux machine to a specific partition and location inside of the SD Card image. For example, you can copy a new **kernel.itb** to the partition 1.
-
-   ```bash
-   $ $TOP_FOLDER/gsrd-socfpga/poky/scripts/wic cp <path_new_kernel.itb> my_image.wic:1/kernel.itb
-   ```
-
-**NOTE**: The **wic** application also allows you to modify any image with compatible vfat and ext* type partitions which also covers images used for **eMMC** boot flow. 
-
-#### Known Issues with the Release
-
-For known issues in this release please refer to the [Intel Simics Simulator for FPGA Release page](https://www.rocketboards.org/foswiki/Documentation/SimicsSimulatorForIntelFPGAReleasePage#Known_Issues).
 
 ## Agilex™ 5  Simics Virtual Platform - Universal
 
@@ -789,8 +336,6 @@ Note: The Agilex 5 Simics Virtual Platform - Universal was initially developed t
 This virtual platform is associated with the **agilex5e-universal.simics** target script. The following figure shows a high-level block diagram of this virtual platform. In this diagram, you can observe the main components that can be exercised during the execution of the use cases described later on this page. The implementation of this virtual platform allows all the peripherals in the HPS to be enabled at the same time, which is not possible in physical hardware implementations. The pinmux and Combo PHY impose restrictions on the physical hardware. In the case of the pinmux in the physical hardware, you can enable only a subset of peripherals simultaneously because there are not enough pins if all pins are enabled simultaneously. This limitation does not exist in the Agilex™ 5 E-Series Universal Virtual Platform. For the Combo PHY, the physical hardware allows only one flash controller (NAND or SDMMC) to be enabled at a time. However, the virtual platform allows both to be enabled simultaneously.
 
 ![](images/agilex5e_vp_block_24p2.jpg)
-
-
 
 In this block diagram:
 
@@ -990,28 +535,26 @@ The parameters that you can configure are shown in the following table:
 
 ### Exercising Simics Simulation from GSRD 2.0
 
-The GSRD 2.0 build framework is porvided by the capability to simulate with Simics some basic use cases using the binaries built with this framework. The components included as part of the GSRD repository are listed next. These are included at $TOP_FOLDER/agilex5_soc_devkit_ghrd/simics/linux directory.
+The GSRD 2.0 build framework is provided with the capability to simulate with Simics some reference use cases using the binaries built with this framework. The components included as part of the GSRD repository are listed next. These are included at **$TOP_FOLDER/agilex5_soc_devkit_ghrd_*/simics/linux** directory.
 
-* [runsimics.sh](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065es-premium-devkit-oobe/baseline/simics/linux/runsimics.sh) : This script is in charge of deploy the Simics project (under $TOP_FOLDER/agilex5_soc_devkit_ghrd/simics/linux which becomes the Simics project directory) and build it,  similarly to what is described in the legacy [Simulation Setup section](#simulation-setup). This script also gathers the required binaries to build the simulation and copy them into the corresponding boot mode directories based on the simulation boot mode  that wants to be exercised. This mode is defined with a parameter passed to this script along with the path of the location of the binaries. <br>
-Parameters:<br>
-1\. Boot mode: **sdmmc** to boot from sdcard or **qspi** to boot from QSPI. <br>
-2\. Binaries path: Path where the binares were built. The binaries needed are the one listed as output of the [Build SD Card GSRD](#build-sd-card-gsrd) and [Build QSPI GSRD](#build-qspi-gsrd) sections. This script also calls any other required script needed to process the binaries provided which includes copy them to an specific directory or build the final set of binaries consumed by Simics.
+* [runsimics.sh](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065es-premium-devkit-oobe/baseline/simics/linux/runsimics.sh) : This script is in charge of deploy the Simics project (under $TOP_FOLDER/agilex5_soc_devkit_ghrd*/simics/linux which becomes the Simics project directory) and build it,  similarly to what is described in the [Simulation Setup section](#simulation-setup). This script also gathers the required binaries to run the simulation updating the path of these in the target script. The script receives as parameter the device used to boot  along with the path of the location of the binaries. <br>
+Parameters:<br>  1\. **Boot mode:** **sdmmc** to boot from sdcard or **qspi** to boot from QSPI. <br>  2\. **Binaries path:** Path where the binares were built. The binaries needed could be the ones listed as output of the [Build SD Card GSRD 2.0](#build-sd-card-gsrd-20) and [Build QSPI GSRD 2.0](#build-qspi-gsrd-20) sections, but the binaries could be taken from any other source. In some cases, this script also calls other required script needed to post-process the binaries provided to build the final set of binaries to be consumed by Simics.
 
-* [sdmmc_boot](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/main/a5ed065es-premium-devkit-oobe/baseline/simics/linux/sdmmc_boot) directory: This directory is used to the exercise the SD Card boot mode. This includes  [sdmmc_gsrd.simics](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065es-premium-devkit-oobe/baseline/simics/linux/sdmmc_boot/sdmmc_gsrd.simics) target script which defines the parameters needed to boot in this mode. This is the directory in which the binaries used to boot from SD Card are copied to. The .simics target script executes the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed.
-* [qspi_boot](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/main/a5ed065es-premium-devkit-oobe/baseline/simics/linux/qspi_boot) directory: This directory is used to the exercise the QSPI boot mode. This includes the [qspi_gsrd.simics](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065es-premium-devkit-oobe/baseline/simics/linux/qspi_boot/qspi_gsrd.simics) target script which defines the parameters needed to boot in this mode.  This is the directory in which the binaries used to boot from QSPI arel be copied to. Besides of the binaries copied from the build directory, there are some other files that are used to create the final .rpd file needed to boot from QSPI. The .rpd file is created with the [qspi_flash_img.sh](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065es-premium-devkit-oobe/baseline/simics/linux/qspi_boot/qspi_flash_img.sh) script which is also included in this directory. This script requires that Quartus and the ARM toolchain be included as part of the Linux $PATH. The .simics target script in this directory executes the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform loading all the components needed to run the sumulation.
+* [sdmmc_boot](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/main/a5ed065es-premium-devkit-oobe/baseline/simics/linux/sdmmc_boot) directory: This directory is used to the exercise the boot for SD Card use case. This includes  [sdmmc_gsrd.simics](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065es-premium-devkit-oobe/baseline/simics/linux/sdmmc_boot/sdmmc_gsrd.simics) target script which defines the parameters needed to boot in this mode. The .simics target script calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed.
+* [qspi_boot](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/main/a5ed065es-premium-devkit-oobe/baseline/simics/linux/qspi_boot) directory: This directory is used to the exercise the QSPI boot mode. This includes the [qspi_gsrd.simics](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065es-premium-devkit-oobe/baseline/simics/linux/qspi_boot/qspi_gsrd.simics) target script which defines the parameters needed to boot in this mode.  In this directory, there are some other files that are used to create the final .rpd file needed to boot from QSPI. The .rpd file is created with the qspi_flash_img.sh script and qspi_flash_image_agilex5-final.pfg which are also included in this directory. This script requires that Quartus and the ARM toolchain be included as part of the Linux $PATH. The .simics target script in this directory calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed to run the simulation.
 
 The boot modes supported by the GSRD 2.0 are:
 
 * Booting from U-Boot to Linux from SD Card using Agilex 5 Universal Virtual Platform
 * Booting from U-Boot to Linux from QSPI using Agilex 5 Universal Virtual Platform
 
-Most of the use cases that are listed in the [Use Cases Supported by the Agilex™ 5 E-Series Universal Virtual Platform](#use-cases-supported-by-the-agilextm-5-e-series-universal-virtual-platform) are also supported, but require manual update of the **.simics** target scripts included in the boot mode directories listed above. There are some use cases that can not be excercised due to the use of the **console-image-minimal** file system, which does not includes the GSRD applications like the **hello** or **system check** applications. Also, use cases that depends on **devmem2** application can not be exercised directly as this is not supported either, but you can bring this application to the system using transfer file commands like **scp** or **tftp**, which are supported.
+The use cases that are listed in the [Use Cases Supported by the Agilex™ 5 E-Series Universal Virtual Platform](#use-cases-supported-by-the-agilextm-5-e-series-universal-virtual-platform) are also supported, but require manual update of the **.simics** target scripts included in the boot mode directories listed above. There are some use cases that were supported with the Legacy GSRD but not supported in GSRD 2.0. Examples of these are the execution of **Hello** and **System Check** applications.
 
 ####  Simulation Setup under GSRD 2.0
 
-At this time, it is assumed that you had already built the HPS binaries as indicated in [Build Instructions - GSRD 2.0 Baseline](#build-instructions-gsrd-20-baseline) and also that you have installed the Intel Simics Simulator for Altera FPGAs in to your Linux machine.
+At this time, it is assumed that you had already built the HPS binaries as indicated in [Build Instructions - GSRD 2.0 Baseline](#build-instructions-gsrd-20-baseline) and you also have installed the Intel Simics Simulator for Altera FPGAs in to your Linux machine.
 
-You also need to add the following to yout Linux $PATH environment variable:
+You also need to add the following to yout Linux **$PATH** environment variable:
 
 * Simics Simulator installation directory. 
 * ARM Tool chain. This is already installed as part of the build instructions. Needed only for QSPI boot mode.
@@ -1020,57 +563,81 @@ You also need to add the following to yout Linux $PATH environment variable:
 This can be done with:
 
 ```bash
-cd $TOP_FOLDER
+$ cd $TOP_FOLDER
 # Simics installation dir
-export PATH=<Simics_installation_dir/simics/bin/:$PATH
+$ export PATH=<Simics_installation_dir/simics/bin/:$PATH
 # ARM toolchain, could be taken from SD or QSPI build directory
-export PATH=$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/hps_debug/gcc-arm/bin/:$PATH
+$ export PATH=$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/hps_debug/gcc-arm/bin/:$PATH
 # Quartus Pro
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
-export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+$ export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
+$ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
-
 #### Exercise SDCard Boot Mode under GSRD 2.0
 
 It is assumed that the instructions at [Simulation Setup under GSRD 2.0](#simulation-setup-under-gsrd-20) section have been already executed.
 
-The **runsimics.sh** script need to be called, providing the boot mode (**sdmmc**) and the location of the binaries used to boot from SD Card  as parameters.
+The **runsimics.sh** script need to be called, providing as parameters the **sdmmc** boot mode and the location of the binaries.
 ```bash
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd/simics/linux/
-./runsimics.sh  sdmmc $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e
+$ cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/simics/linux/
+$ ./runsimics.sh  sdmmc $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e
 ```
-To access the Simics CLI from the Linux terminal, you need to enter Ctrl+C.
+This will deploy the **agilex5e-universal** virtual platform under **$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/simics/linux/** directory, create the Simics project and build it. This will also launch the Simics simulation using **$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/simics/linux/sdmmc_boot/sdmmc_gsrd.simics** as target script. 
+
+When the simulation is launched, the current Linux terminal will become the Simics CLI and the Serial console will pop up.  To start the simulation enter **"run"** command in the Simics CLI.
+
+![](images/SimicsSimGRHD2.0.png)
+
 
 #### Exercise QSPI Boot Mode under GSRD 2.0
 
 It is assumed that the instructions at [Simulation Setup under GSRD 2.0](#simulation-setup-under-gsrd-20) section have been already executed.
 
-The **runsimics.sh** script need to be called, providing the boot mode (**qspi**) and the location of the binaries used to boot from QSPI as parameters.
+The **runsimics.sh** script need to be called, providing the (**qspi**) boot mode and the location of the binaries used to boot from QSPI as parameters.
 
 ```bash
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd/simics/linux/
-./runsimics.sh  qspi $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e
+$ cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/simics/linux/
+$ ./runsimics.sh  qspi $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e
 ```
 
-To access the Simics CLI from the Linux terminal, you need to enter Ctrl+C.
+This will deploy the **agilex5e-universal** virtual platform under **$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/simics/linux/** directory, create the Simics project and build it. This will also launch the Simics simulation using **$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/simics/linux/qspi_boot/qspi_gsrd.simics** as target script.
+
+When the simulation is launched, the current Linux terminal will become the Simics CLI and the Serial console will pop up.  To start the simulation enter **"run"** command in the Simics CLI.
+
+#### Exercise Simics Simulation with a76 as Boot Core
+
+The build flow described in [Build Instructions - GSRD 2.0 Baseline](#build-instructions-gsrd-20-baseline) section uses as starting point the **a5ed065es-premium-devkit-oobe-baseline-a55** project directory. From real hardware perspective, this directory includes a hardware project in which the **a55** core (core 0) is used as the boot core. In other hand, the **a5ed065es-premium-devkit-oobe-baseline-a76** project directory includes a hardware project in which the **a76** core (core 2) is used as the boot core. From the Simics simulation perspective, the hardware design included in any of these project directories is not relevant because the model of the hardware design is already included as part of the model of the Agilex 5 device, and the boot core is defined through the **$hps_boot_core** target script parameter. From the the Simics perspective, the only difference between using the **baseline-a55** or **baseline-a76** project directory as starting point is the value of the **$hps_boot_core** parameter in either the **sdmmc_gsrd.simics** or **qspi_gsrd.simics** target script and because of this, if you want to use the **a76** as boot core, you don't need to rebuild the binaries again, and instead you can manually change the value of the boot core to 2 (**$hps_boot_core = 2**) in the target scripts: 
+
+* **SDCard Boot:** $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/simics/linux/sdmmc_boot/sdmmc_gsrd.simics
+* **QSPI Boot**: $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/simics/linux/qspi_boot/qspi_gsrd.simics
+
+Once that you change this parameter, you can run the simulation in the same way as described earlier. You can use the **processor-status** command from the Simics CLI to confirm that your simulation is booting from core 2 (do it when the HPS is running U-Boot). You can see from the next image that the core 2 is enabled while the others are disabled.
+
+![](images/arm76_BootCore.png)
+
+
+
 
 ### Use Cases Supported by the Agilex™ 5 E-Series Universal Virtual Platform
 
-The following sections explain some supported use cases using the **Agilex™ 5 E-Series Universal** virtual platform. The preconditions required to execute them are listed in the following section:
+The following sections explain some supported use cases using the **Agilex™ 5 E-Series Universal** virtual platform. 
+
+**Note:** The instructions in each of the use case shows how this can be exercised in a Simics environment apart for the GSRD, but these can also be exercise from the Simics environment inside of the GSRD. For this last case, you can modify the **\*.simics** target scripts provided inside of the GSRD (below **simics/linux/** directory) as indicated in the use case description or create a new target script and call  it from the **runsimics.sh** script. 
+
+The preconditions required to execute them are listed in the following section.
 
 #### Simulation Setup 
 
-Consider that the Intel Simics Simulator for Altera® FPGAs Simulator has been installed on a Linux System and the output binaries generated from [Build Instructions](#build-instructions) section are already available.
+Consider that the Intel Simics Simulator for Altera® FPGAs Simulator has been installed on a Linux System and the output binaries generated from [Build Instructions - GSRD 2.0 Baseline](#build-instructions-gsrd-20-baseline) section are already available.
 
 
-1. Create a project directory under the Intel Simics Simulator installation directory (Assuming it is **SimicsInstallDir**):
+1\. Create a project directory under the Intel Simics Simulator installation directory (Assuming it is **SimicsInstallDir**):
 
   ```bash
   $ mkdir project-1
   $ cd project-1
   ```
 
-2. Under the new project directory created, deploy the **agilex5e-universal** virtual platform:
+2\. Under the new project directory created, deploy the **agilex5e-universal** virtual platform:
 
   ```bash
   $<Simics installation dir>/simics/bin/simics_intelfpga_cli --deploy agilex5e-universal
@@ -1084,7 +651,7 @@ Consider that the Intel Simics Simulator for Altera® FPGAs Simulator has been i
   # platform.
   ```
 
-3. Build the virtual platform components:
+3\. Build the virtual platform components:
 
   ```bash
   $ make
@@ -1100,30 +667,30 @@ Consider that the Intel Simics Simulator for Altera® FPGAs Simulator has been i
   Copying agilex5_icon_84x84.png
   ```
 
-4. Copy the following binaries created in [Build Instructions](#build-instructions) section to the Simics project directory:
+4\. Copy the following binaries created in [Build Instructions - GSRD 2.0 Baseline](#build-instructions-gsrd-20-baseline) section to the Simics project directory:
 
-  - gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/gsrd-console-image-agilex5.wic
+```bash
+$ cp $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/gsrd-console-image-agilex5e.rootfs.wic .
+$ cp
+$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin .
+$ cp $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi/qspi_rpd/flash_image_jic.rpd .
+$ cp $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin u-boot-spl-dtb_qspi.bin
+```
 
-  - gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.bin
+5.\ Customize the configuration of the Agilex™ 5 E-Series Universal virtual platform, according to the setup required to exercise any specific use case. Set up the **fsbl_image_filename** parameter with the first-stage bootloader. If the boot implies booting from an SD Card device, configure **sd_image_filename** and **create_hps_sd_card** parameters (this image should include the main bootloader and the OS and/or application images). As part of the configuration, select the core used to boot using the **hps_boot_core** parameter, which could be core 0 (A55) or core 2 (A76).
 
-  - qspi-bin/flash_image_jic.rpd
+You can configure the virtual platform by creating a top-level target script (named based on the simulation purpose) that is expected to be run with this (example: **uboot-linux_sdcard.simics** used to boot from U-Boot to Linux from an SD Card device). You become the owner of this new target script, in which, you can set the required parameters and call the original virtual platform target script (**targets/agilex5e-universal/agilex5e-universal.simics** path). An example of the setup required to run a simulation that exercises the boot flow going from U-Boot to Linux, booting from an SD Card is shown in the following:
 
+```bash
+#uboot-linux_sdcard.simics
+$sd_image_filename = "gsrd-console-image-agilex5e.rootfs.wic"
+$fsbl_image_filename = "u-boot-spl-dtb.bin"
+$hps_boot_core = 0
+$create_hps_sd_card = TRUE
+run-script "targets/agilex5e-universal/agilex5e-universal.simics"
+```
 
-
-5. Customize the configuration of the Agilex™ 5 E-Series Universal virtual platform, according to the setup required to exercise any specific use case. Set up the **fsbl_image_filename** parameter with the first-stage bootloader. If the boot implies booting from an SD Card device, configure **sd_image_filename** and **create_hps_sd_card** parameters (this image should include the main bootloader and the OS and/or application images). As part of the configuration, select the core used to boot using the **hps_boot_core** parameter, which could be core 0 (A55) or core 2 (A76).
-
-  You can configure the virtual platform either by updating the **agilex5e-universal.simics** target script or creating a separate top-level target script (named based on the simulation purpose) that is expected to be run with this (example: **uboot-linux_sdcard.simics** used to boot from U-Boot to Linux from an SD Card device). You become the owner of this new target script, in which, you can set the required parameters and call the original virtual platform target script (**targets/agilex5e-universal/agilex5e-universal.simics** path). An example of the setup required to run a simulation that exercises the boot flow going from U-Boot to Linux, booting from an SD Card is shown in the following:
-
-  ```bash
-  #uboot-linux_sdcard.simics
-  $sd_image_filename = "gsrd-console-image-agilex5.wic"
-  $fsbl_image_filename = "u-boot-spl-dtb.bin"
-  $hps_boot_core = 0
-  $create_hps_sd_card = TRUE
-  run-script "targets/agilex5e-universal/agilex5e-universal.simics"
-  ```
-
-  **Note:** The **uboot-linux_sdcard.simics** file must be created under the Intel Simics project directory.
+  **Note:** The **uboot-linux_sdcard.simics** file must be created under the Simics project directory.
 
   **Tip:** Any specific configuration needed for a use case is indicated under the **Setup** section of that use case.
 
@@ -1134,6 +701,8 @@ This use case consists of booting from an SDCard device going from U-Boot to Lin
 <h5>Setup</h5>
 
 Complete the procedure described in the [Simulation Setup](#simulation-setup) section.
+
+You will need to copy the following binaries to your project directory: 
 
 <h5>Procedure</h5>
 
@@ -1265,101 +834,6 @@ To exercise this use case, follow the below steps once the Simulation setup is c
   Scanning mmc 0:1...
   ```
 
-#### Use Case: Exercise Hello Application
-
-This is an extension of the **Use Case: Exercise SDCard Boot Flow from FSBL to Linux** and includes executing the **hello** application from the Linux prompt.
-
-<h5>Setup</h5>
-
-Complete the procedure described in the [Simulation Setup](#simulation-setup) section.
-
-<h5>Procedure</h5>
-
-1. Execute the parent use case to get to the Linux prompt and log in.
-
-2. Execute the **hello** application located in the **intelFPGA** directory. After executing this application, the **Hello SoC FPGA!** message is displayed on the command prompt:
-
-  ```bash
-  # Target Serial console 
-  root@dhcp0:~#  ./intelFPGA/hello 
-  Hello SoC FPGA!
-  ```
-
-#### Use Case: Exercise System Check Application with HPS LED Turn On/Off control
-
-
-This use case is an extension of the **Use Case: Exercise SDCard Boot Flow from FSBL to Linux** and includes executing the System Check Application to observe the state of the HPS LEDs. The execution of this use case works under the assumption that the LEDs are connected to the corresponding GPIOs in the virtual platform.
-
-<h5>Setup</h5>
-
-Same setup as the parent use case.
-
-<h5>Procedure</h5>
-
-1. Execute the parent use case to get to the Linux prompt and log in.
-
-2. From the target system serial console, execute the System Check application (**syschk**) located under the **intelFPGA** directory. This shows some system information, such as the target system IP address and the state of the HPS LEDs. Observe that the initial state of the three HPS LEDs is **OFF**.
-
-  **Note:**  When using device tree targeted for OOB card, only **hps_led1** is available, so the System Check application only shows this led.
-
-  ```bash
-  # Target Serial console 
-  root@dhcp0:~#  ./intelFPGA/syschk 
-  # Target Serial console 
-  Actual changes:
-                                ALTERA SYSTEM CHECK                              
-  lo                    : 127.0.0.1       usb3                  : xHCI Host Contro
-  eth1                  : 10.10.0.100     usb1                  : DWC OTG Controll
-                                        usb2                  : xHCI Host Contro
-  hps_led2              : OFF
-  hps_led0              : OFF             serial@10c02100       : disabled
-  mmc0::                : OFF             serial@10c02000       : okay
-  hps_led1              : OFF
-  ```
-
-3. Change the state of any of the HPS LEDs using the **/sys/class/led/hps_ledX/brightness** files writing either a '1' or '0' to these. For this, you need to first close the System Check application by typing **Ctrl+C** in the target serial console. Change the state of the LEDs to 'ON' state as indicated next and reopen the System Check application to observe the new state of the LEDs.
-
-  ```bash
-  # Target Serial console 
-  root@dhcp0:~# echo 1 > /sys/class/leds/hps_led0/brightness 
-  root@dhcp0:~# echo 1 > /sys/class/leds/hps_led1/brightness 
-  root@dhcp0:~# echo 1 > /sys/class/leds/hps_led2/brightness 
-  root@dhcp0:~# ./intelFPGA/syschk 
-  # Target Serial console 
-  Actual changes:
-                                      ALTERA SYSTEM CHECK
-
-  lo                    : 127.0.0.1       usb3                  : xHCI Host Contro
-  eth1                  : 10.10.0.100     usb1                  : DWC OTG Controll
-                                          usb2                  : xHCI Host Contro
-  hps_led2              : ON
-  hps_led0              : ON              serial@10c02100       : disabled
-  mmc0::                : OFF             serial@10c02000       : okay
-  hps_led1              : ON
-  ```
-
-4. Close the System Check application with **Ctrl+C** and return the HPS LEDs to the OFF state. Reconfirm that the state of the LEDs was updated to the new state in the System Check application.
-
-  ```bash
-  # Target Serial console 
-  root@dhcp0:~# echo 0 > /sys/class/leds/hps_led0/brightness 
-  root@dhcp0:~# echo 0 > /sys/class/leds/hps_led1/brightness 
-  root@dhcp0:~# echo 0 > /sys/class/leds/hps_led2/brightness 
-  root@dhcp0:~# ./intelFPGA/syschk 
-  # Target Serial console 
-  Actual changes:
-                                ALTERA SYSTEM CHECK                              
-
-  lo                    : 127.0.0.1       usb3                  : xHCI Host Contro
-  eth1                  : 10.10.0.100     usb1                  : DWC OTG Controll
-                                        usb2                  : xHCI Host Contro
-  hps_led2              : OFF
-  hps_led0              : OFF             serial@10c02100       : disabled
-  mmc0::                : OFF             serial@10c02000       : okay
-  hps_led1              : OFF
-  ```
-
-5. Close the System Check application with **Ctrl+C**.
 
 #### Use Case: Access the Web Server Application from Host PC
 
@@ -1381,7 +855,7 @@ The port forwarding created allows you to access the webpage from the host PC. I
 
 2. From the host PC, open a web browser and access the webpage running in the target system using the address: http://localhost:4080 . Note that the host machine is referred to as **localhost** and the port is 4080, which is the one visible from the host PC. 
 
-  ![](images/webServerExample.jpg)
+  ![](images/webServerGSRD2.0.png)
 
   **Note:** The IP address of the host PC could be used as well instead of **localhost**.
 
@@ -1716,7 +1190,7 @@ Perform steps 1 to 4 described in the [Simulation Setup](#simulation-setup) sect
 5. In the Intel Simics environment at the project directory, generate a compressed version of the .rpd file created (.craff) file using the **craff** tool provided under the Simics Base installation directory:
 
   ```bash
-  <SimicsInstallDir>/simics-7.52.0/bin/craff -o qspi_image.img.craff flash_image_jic.rpd
+  <SimicsInstallDir>/simics-7.59.0/bin/craff -o qspi_image.img.craff flash_image_jic.rpd
   ```
 
   The following file is created under the Simics project directory:
@@ -1727,7 +1201,7 @@ Perform steps 1 to 4 described in the [Simulation Setup](#simulation-setup) sect
 
   ```bash
   #uboot-linux_qspi.simics
-  $fsbl_image_filename = "u-boot-spl-dtb.bin"
+  $fsbl_image_filename = "u-boot-spl-dtb_qspi.bin"
   $qspi_image_filename  = "qspi_image.img.craff"
   $hps_boot_core = 0
   $create_hps_sd_card = FALSE
@@ -1772,9 +1246,6 @@ To exercise this use case, follow the steps below once the Simulation setup is c
      DDR: firewall init success
      DDR: init success
      QSPI: Reference clock at 400000 kHz
-     Trying to boot from MMC1
-     MMC: no card present
-     spl: mmc init failed with error: -123
      Trying to boot from SPI
      ## Checking hash(es) for config board-0 ... OK
      ## Checking hash(es) for Image atf ... crc32+ OK
@@ -1937,11 +1408,11 @@ U_BOOT_CMD(
 );
 ```
 
-Note: You can perform the build of this application by updating the Yocto recipe. This can be done by creating a patch in which you describe the files that need to be created/updated in the U-Boot repository and then deploy it. This can be done during the Yocto customization stage (Customize the Yocto Build). To create the u-boot patch (`myUbootExampleApp.patch`), do the following:
+Note: You can perform the build of this application by updating the Yocto recipe as part of the flow described in [Build SD Card GSRD 2.0](#build-sd-card-gsrd-20) section. This can be done by creating a patch in which you describe the files that need to be created/updated in the U-Boot repository and then deploy it. This can be done during the Yocto customization stage (Customize the Yocto Build). To create the u-boot patch (`myUbootExampleApp.patch`), do the following:
 
 ```bash
-cd $TOP_FOLDER
-git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga-patch
+cd $TOP_FOLDER/
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga-patch
 cd u-boot-socfpga-patch/
  - Create cmd/socFPGATrainingExamples.c file with the source code provided of the example application.
  - Edit cmd/Makefile to include the build of socFPGATrainingExamples.c
@@ -1953,26 +1424,30 @@ cd u-boot-socfpga-patch/
 
 git add cmd/Makefile cmd/socFPGATrainingExamples.c
 git diff --patch --staged > myUbootExampleApp.patch
+# Add the Upstream-status label to prevent issues
+sed -i '1i Upstream-Status: Pending\n' myUbootExampleApp.patch
 ```
 
-To deploy the patch in the Yocto build flow do the following:
+To deploy the patch in the Yocto build flow do the following just before calling the **time ./build.sh** command:
 
-1. Copy the `myUbootExampleApp.patch` file to the **$TOP_FOLDER/gsrd-socfpga/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/** directory.
-2. Request to deploy the path by adding a patch to the **$TOP_FOLDER/gsrd-socfpga/meta-intel-fpga-refdes/recipes-bsp/u-boot/u-boot-socfpga_%.bbappend** file:
 
-  ```bash
-  SRC_URI:append = " \ 
-        file://0001-arm-Add-dwarf-4-to-compilation-flag.patch \   
-        file://0001-arm-agilex-add-board-configuration.patch \    
-        file://0001-arm-stratix10-add-board-configuration.patch \ 
-        file://myUbootExampleApp.patch \ 
+1\. Copy the `$TOP_FOLDER/u-boot-socfpga-patch/myUbootExampleApp.patch` file to the **$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_sd/meta-custom/recipes-bsp/u-boot/files/patches/** directory.
+
+2\. Request to deploy the path by adding a patch to the **$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_sd/meta-custom/recipes-bsp/u-boot/u-boot-socfpga_%.bbappend** file:
+
+```bash
+  # Set path for configs and source patches
+  FILESEXTRAPATHS:prepend := "${THISDIR}/files/configs:${THISDIR}/files/patches:"
+  
+  SRC_URI:append = " \      
+        file://myUbootExampleApp.patch \
         "
-  ```
+```
 
-3. Continue with the rest of the Yocto build flow indicated at [Build Yocto](#build-yocto) section.
+3\. Continue with the rest of the Yocto build flow indicated with the time **./build.sh command**.
 
 
-After these steps, the application is included in the U-Boot binary file (**uboot.itb**), which is part of the SDCard image created (**gsrd-console-image-agilex5.wic**) and a symbol file corresponding to the U-Boot image, located at **$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot**. The symbol file is used later during the setup of the debug session.
+After these steps, the application is included in the U-Boot binary file (**uboot.itb**), which is part of the SDCard image created (**gsrd-console-image-agilex5e.rootfs.wic**) and a symbol file corresponding to the U-Boot image, located at **$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/u-boot**. The symbol file is used later during the setup of the debug session.
 
 <h5>Setup</h5>
 
@@ -1981,11 +1456,12 @@ Start with the setup of the main use case defined at [Simulation Setup]#simulati
 ```bash
 # uboot-linux_sdcard.simics
 :
-add-symbol-file  <path of symbol file>/u-boot  0x7FAF2000 -relative
+add-symbol-file  <path of symbol file>/u-boot  0x7FD0D000 -relative
+add-pathmap-entry "/usr/src/debug/u-boot-socfpga/v2025.1+git/" "<$TOP_FOLDER path>/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2025.10+git/git/"
 bp.source_location.break do_helloTestApp
 ```
 
-**Note:** The symbol file is being loaded with an offset relocation of 0x7FAF2000. This is needed because in a late stage of the U-Boot execution, this relocates itself into a different SDRAM memory location and this should be indicated to the debugger, so there is a match between the addresses indicated in the symbol file and the real memory address location of the symbols. You can obtain this relocation offset by subtracting the real address of a specific function (which can be obtained from the application being executed) and the original offset from the same function in the symbols file (provided in the **u-boot.sym** file). This is shown in the following figure:
+**Note:** The symbol file is being loaded with an offset relocation of 0x7FD0D000. This is needed because in a late stage of the U-Boot execution, this relocates itself into a different SDRAM memory location and this should be indicated to the debugger, so there is a match between the addresses indicated in the symbol file and the real memory address location of the symbols. You can obtain this relocation offset by subtracting the real address of a specific function (which can be obtained from the application being executed) and the original offset from the same function in the symbols file (provided in the **$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2025.1+git/build/socfpga_agilex5_defconfig/u-boot.sym** file). An example of the calculation of this relocation offset is shown in the following figure (values are from a different release):
 
 ![ubootApp relocationOffset2.jpg](images/ubootApp_relocationOffset2.jpg)
 
@@ -2001,11 +1477,11 @@ bp.source_location.break do_helloTestApp
 
 3. From Simics CLI, start a debug session by calling the following command:
   ```bash
-  simics> (psel).debug 
-    dbg0 (the arm-cortex-a55 system.board.fpga.soc_inst.hps_subsys.agilex_hps.core[0]) Now debugging the arm-cortex-a55 
-    system.board.fpga.soc_inst.hps_subsys.agilex_hps.core[0] 
-    do_helloTestApp(cmdtp=(struct cmd_tbl *) 0xfffc5788, flag=0, argc=1, argv=(char * const *) 0xffb09520) at 
-    /home/tasks/gsrd/agilex5/updateUbootApp/agilex5_gsrd/gsrd-socfpga/agilex5_devkit-gsrd-rootfs/tmp/work/agilex5-poky-linux/u-boot-socfpga/1_v2022.10+gitAUTOINC+59fa161039-r0/git/cmd/socFPGATrainingExamples.c:19 19 volatile unsigned char exitVar = 0; 
+  simics> system.board.fpga.soc_inst.hps_subsys.agilex_hps.core[0].debug 
+  dbg0 (the arm-cortex-a55 system.board.fpga.soc_inst.hps_subsys.agilex_hps.core[0])
+  Now debugging the arm-cortex-a55 system.board.fpga.soc_inst.hps_subsys.agilex_hps.core[0]
+  do_helloTestApp(cmdtp=(struct cmd_tbl *) 0xfffc46b0, flag=0, argc=1, argv=(char * const *) 0xffb11460) at /usr/src/debug/u-boot-socfpga/v2025.10+git/cmd/socFPGATrainingExamples.c:16
+  16	   volatile unsigned char exitVar = 0;
   ```
 4. Following the program's logic, if the value of **exitVar** stays zero and the program is continued, the loop will continue until it reaches 100,000 and then the program ends with output messages in the serial console. You can check the values of the variable using the **sym-type**  and **sym-value** features:
   ```bash
@@ -2028,7 +1504,7 @@ bp.source_location.break do_helloTestApp
   35| }
   ```
 
-  In the Simics Serial Console, enter the following line to insert the breakpoint at Line 34:
+  In the Simics Console, enter the following line to insert the breakpoint at Line 34:
   ```bash
   running> bp.source_line.break filename=socFPGATrainingExamples.c line-number=34
   Breakpoint 2: 0x2 (planted) 
@@ -2047,7 +1523,7 @@ bp.source_location.break do_helloTestApp
   SOCFPGA_AGILEX5 # helloTestApp
       Hello Altera® SoC FPGA!
       Executed 1 times
-      Relocated address of do_helloTestApp: 00000000fff1a7a8 and execCount: 00000000fffddba0
+      Relocated address of do_helloTestApp: 00000000fff222d0 and execCount: 00000000fffddba0
       Exit from loop at iteration: 9691
       Final result: 691
   SOCFPGA_AGILEX5 #
@@ -2066,7 +1542,7 @@ bp.source_location.break do_helloTestApp
   SOCFPGA_AGILEX5 # helloTestApp
       Hello Altera® SoC FPGA!
       Executed 1 times
-      Relocated address of do_helloTestApp: 00000000fff1a7a8 and execCount: 00000000fffddba0
+      Relocated address of do_helloTestApp: 00000000fff222d0 and execCount: 00000000fffddba0
       Exit from loop at iteration: 2
       Final result: 2
   SOCFPGA_AGILEX5 #
@@ -2078,7 +1554,7 @@ bp.source_location.break do_helloTestApp
    SOCFPGA_AGILEX5 # helloTestApp
       Hello Altera® SoC FPGA!
       Executed 2 times
-      Relocated address of do_helloTestApp: 00000000fff1a7a8 and execCount: 00000000fffddba0
+      Relocated address of do_helloTestApp: 00000000fff222d0 and execCount: 00000000fffddba0
       Exit from loop at iteration: 100,000
       Final result: 345
   SOCFPGA_AGILEX5 #
@@ -2090,7 +1566,7 @@ bp.source_location.break do_helloTestApp
   SOCFPGA_AGILEX5 # helloTestApp
       Hello Altera® SoC FPGA!
       Executed 1 times
-      Relocated address of do_helloTestApp: 00000000fff1a7a8 and execCount: 00000000fffddba0
+      Relocated address of do_helloTestApp: 00000000fff222d0 and execCount: 00000000fffddba0
       Exit from loop at iteration: 100,000
       Final result: 0
   SOCFPGA_AGILEX5 #
@@ -2099,7 +1575,7 @@ bp.source_location.break do_helloTestApp
 #### Use Case: Debug Bare-metal Code Using Simics-RiscFree
 
 This use case is an extension to the use case in section **Use Case: Debug Bare-metal Code Using Intel Simics Simulator** above but the debugging steps are performed in the Simics-RiscFree IDE. The test program used here is the same **helloTestApp.c**
-**Important:** The offset relocation of 0x7FAF2000 in the symbol file is still required and must be done before the symbol file is used to launch Simics-RiscFree.
+**Important:** The offset relocation of 0x7FD0D000 in the symbol file is still required and must be done before the symbol file is used to launch Simics-RiscFree.
 
 <h5>Setup</h5>
 
@@ -2124,6 +1600,24 @@ This section requires the **simics-riscfree** script. It is included in your Int
 5. When prompted for Switching Perspective, select **Yes**. The interface switches to the RiscFree Debugger, which is more user-friendly for debugging.
     ![riscfreeworkspace4.png](images/riscfreeworkspace4.png)
 
+6. In the Debug view, select the project - uboot-linux_sdcard.simics and select Edit project to configure the debug session:
+
+   ![riscfreeworkspace4.png](images/riscfreeCfgDebugBaremetal.png)
+
+7. Go to the **PathMap** tab menu and **Add**  a new source code mapping providing the Source and Destination as shown next:
+
+   * Source: /usr/src/debug/u-boot-socfpga/v2025.1+git/" 
+
+   * Destination: <$TOP_FOLDER path>/agilex5_soc_devkit_ghrd_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2025.10+git/git/
+
+   * Keep **Context query** empty.
+
+     Press **Apply** and **Continue**.
+     
+   
+   ![riscfreeworkspace4.png](images/riscfreeAddSourceMapping.png)
+
+
 <h5>Procedure</h5>
 
 1. In the RiscFree Debugger window, click on the **Run** button ![runbutton.png](images/runbutton.png) to launch the Intel Simics Simulator project.
@@ -2139,7 +1633,7 @@ This section requires the **simics-riscfree** script. It is included in your Int
        [tcf] Breakpoint 1 on execution in context board.fpga.soc_inst.hps_subsys.agilex_hps.core[0]
   ```
 
-4. As the first breakpoint is met, the program is halted at the entry point of the **do_helloTestApp()** function. Use the **step into/step-over** buttons ![stepsDbg.png](images/stepsDbg.png) to get to the **while ((exitVar == 0)  &&  (waitIter < 100000))** line and show a capture of this with list command.
+4. As the first breakpoint is met, the program is halted at the entry point of the **do_helloTestApp()** function. You will see the source code of the  application (**socFPGATrainingExamples.c**). Use the **step into/step-over** buttons ![stepsDbg.png](images/stepsDbg.png) to get to the **while ((exitVar == 0)  &&  (waitIter < 100000))** line and show a capture of this with list command.
 
   ![helloTestApp1.png](images/helloTestApp1.png)
 
@@ -2150,7 +1644,11 @@ This section requires the **simics-riscfree** script. It is included in your Int
 
   **Note:** If the loop already ended, relaunch the test program "helloTestApp" to proceed to the next step.
 
-6. To modify the loop conditions for debugging purposes, you can modify the value of **exitVar** in the Variable window. For example, changing the value of **exitVar** from ‘\377’ (this is a random value assigned by the system) to ‘\001’. As `exitVar` is no longer zero, the condition of the loop is exceeded, and thus the looping ends.
+6. Set a breakpoint in the line 34 of the **socFPGATrainingExamples.c** file using the Riscfree source code window by doing a double left-click at the column at the left of this line. You can also do it from the Simics CLI using: **bp.source_line.break filename=socFPGATrainingExamples.c line-number=34**.
+
+   ![test1.png](images/riscfreeSetBreakpoint.png)
+
+7. Run the test and wait until the breakpoint triggers. To modify the loop conditions for debugging purposes, you can modify the value of **exitVar** in the Variable window. For example, changing the value of **exitVar** from ‘\377’ (this is a random value assigned by the system) to ‘\001’. As `exitVar` is no longer zero, the condition of the loop is exceeded, and thus the looping ends.
 
   Before modification:
 

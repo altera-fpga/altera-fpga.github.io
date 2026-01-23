@@ -150,7 +150,7 @@ The following table describes the configuration that is being performed in the C
 * Host PC with
 
   * Linux distribution with kernel-headers/ kernel-devel and Binutils packages properly installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1.
   * Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows).
 
 ## Building the Example
@@ -189,9 +189,10 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
 
 
 
@@ -207,20 +208,20 @@ This project starts using the GHRD for the DK-SI-AGF014EB OOBE (booting from SD 
 
 * Include the Modular Scatter-Gather DMA [mSGDMA's Overview](https://www.intel.com/content/www/us/en/docs/programmable/683130/21-4/modular-scatter-gather-dma-prefetcher-core.html)
 
-This can be performed automatically using the [update_ghrd_bridge_example.tcl](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/update_ghrd_bridge_example.tcl) script as indicated next:
+This can be performed automatically using the [update_ghrd_bridge_example.tcl](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/update_ghrd_bridge_example.tcl) script as indicated next:
 
 
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex7f-ed-gsrd
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
-unzip QPDS25.3_REL_GSRD_PR.zip
-rm QPDS25.3_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3.1_REL_GSRD_PR.zip
+unzip QPDS25.3.1_REL_GSRD_PR.zip
+rm QPDS25.3.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS25.3.1_REL_GSRD_PR agilex7f-ed-gsrd
 cd agilex7f-ed-gsrd
 make agf014eb-si-devkit-oobe-baseline-generate-design
 cd agilex_soc_devkit_ghrd
-wget https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/update_ghrd_bridge_example.tcl
+wget https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/update_ghrd_bridge_example.tcl
 qsys-script --qpf=ghrd_agfb014r24b2e2v.qpf --script=update_ghrd_bridge_example.tcl --system-file=qsys_top.qsys
 cd ..
 make agf014eb-si-devkit-oobe-baseline-package-design
@@ -426,7 +427,7 @@ Clone the Yocto script and prepare the build:
   ```bash
   cd $TOP_FOLDER
   rm -rf gsrd-socfpga
-  git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
+  git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
   cd gsrd-socfpga
   . agilex7_dk_si_agf014eb-gsrd-build.sh
   build_setup
@@ -584,7 +585,7 @@ as shown next.
   
   # Create a Linux repository in the $TOP_FOLDER
   rm -rf linux-socfpga-for-patch
-  git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga linux-socfpga-for-patch
+  git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga linux-socfpga-for-patch
   # Add the content of dmaBufNodes.txt  after 4 lines of finding memory@
   awk '
       /memory@/ {found=NR}  # Store the line number where "memory@" is found
@@ -641,12 +642,12 @@ To reserve the 1 GB memory for the buffers in the static region it is necessary 
 
 #### Copy Test Application to Linux File System
 
-To exercise this application, you need to have the [dmaTest_cache_v2.0.run ](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) test script provided in this example in the Linux file system. For this, you need to perform the following:
+To exercise this application, you need to have the [dmaTest_cache_v2.0.run ](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) test script provided in this example in the Linux file system. For this, you need to perform the following:
 
 
   ```bash
   cd $TOP_FOLDER/gsrd-socfpga/
-  wget https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run
+  wget https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run
   mv dmaTest_cache_v2.0.run meta-intel-fpga-refdes/recipes-gsrd/socfpga-gsrd-apps/files/
   # Adding this to the list of files to be copied to the file system
   sed -i '/file:\/\/README_agilex5/a\\t\tfile:\/\/dmaTest_cache_v2.0.run\\'  meta-intel-fpga-refdes/recipes-gsrd/socfpga-gsrd-apps/socfpga-gsrd-apps_1.0.bb
@@ -716,7 +717,7 @@ In order to excercise this example you will need to program the binaries that yo
 * SD Card: `$TOP_FOLDER/gsrd_socfpga/agilex7_dk_si_agf014ea-gsrd-images/gsrd-console-image-agilex7.wic`
 * QSPI: `$TOP_FOLDER/ghrd_agfb014r24b2e2v.hps.jic`
 
-When using the above SD Card image, this already includes the [dmaTest_cache_v2.0.run ](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) application that is used to exercise this example. This is a bash script is located at the **/home/root/** directoy in Linux which is running in the development kit. 
+When using the above SD Card image, this already includes the [dmaTest_cache_v2.0.run ](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) application that is used to exercise this example. This is a bash script is located at the **/home/root/** directoy in Linux which is running in the development kit. 
 
 **Note:** Make sure that the variables in the script used to define the addresses for the configuration registers for the Cache Coherency Translator and Modular Scatter-Gather DMA components match the ones set in the GHRD.
 
@@ -737,7 +738,7 @@ These variables are defined in the script as:
 To execute the sample test script:
 
 1. Power cycle the board to boot to Linux.
-2. Identify the [dmaTest_cache_v2.0.run](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) test script in your `/home/root` directory. 
+2. Identify the [dmaTest_cache_v2.0.run](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) test script in your `/home/root` directory. 
 3. You can see how to exercise the script by using the **-h** switch:
   ```
   root@agilex:~# bash dmaTest_cache_v2.0.run -h

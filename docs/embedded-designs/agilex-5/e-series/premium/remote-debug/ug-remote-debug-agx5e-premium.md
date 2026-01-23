@@ -47,7 +47,7 @@ The etherlink works with the standard UIO Linux kernel driver.
 
 This section shows an example of how to use the Remote Debug feature. Communication is established from the board to the host PC through Ethernet, so that the board appears as another JTAG device, listed by jtagconfig utility.
 
-The example is based on the [GSRD](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/), with the following changes:
+The example is based on the [GSRD](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/), with the following changes:
 
  * Adding JOP component to the GHRD
  * Adding JOP to the Linux device tree
@@ -70,7 +70,7 @@ The following are required:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
+  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -89,27 +89,14 @@ cd agilex5.remote_debug
 export TOP_FOLDER=$(pwd)
 ```
 
-Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
-
-
-```bash
-cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
-arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
-export ARCH=arm64
-export CROSS_COMPILE=aarch64-none-linux-gnu-
-```
-
 Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
 
 
 
@@ -123,13 +110,13 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
-unzip a5ed065es-premium-devkit-oobe-legacy-baseline.zip
-rm -f a5ed065es-premium-devkit-oobe-legacy-baseline.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
+unzip a5ed065es-premium-devkit-oobe-baseline-a55.zip
+rm -f a5ed065es-premium-devkit-oobe-baseline-a55.zip
 ```
 
 
-2\. Open the project in Quartus, open the `qsys_top.qsys` file in Platform Designer.
+2\. Open the project in Quartus, open the `baseline_top.qsys` file in Platform Designer.
 
 3\. In the IP Catalog search for jop and double-click the component to add it to the system:
 
@@ -139,7 +126,7 @@ rm -f a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 
 ![](images/add-jop-2.png)
 
-5\. Connect the reset and clock to JOP component, also connect it's slave bus to the HPS LW bridge, and map it at offset 0x0002_0000:
+5\. Connect the reset and clock to JOP component, also connect it's slave bus to the HPS LW bridge, and map it at offset 0x0001_4000:
 
 ![](images/add-jop-3.png)
 
@@ -149,10 +136,9 @@ rm -f a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 ```bash
 cd $TOP_FOLDER
 rm -f agilex5-ghrd-add-jop.tcl
-wget https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/remote-debug/collateral/agilex5-ghrd-add-jop.tcl
+wget https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/e-series/premium/remote-debug/collateral/agilex5-ghrd-add-jop.tcl
 cd agilex5_soc_devkit_ghrd
-qsys-script --qpf=top.qpf --script=../agilex5-ghrd-add-jop.tcl --system-file=qsys_top.qsys
-cd agilex5_soc_devkit_ghrd
+qsys-script --quartus-project=top.qpf --script=../agilex5-ghrd-add-jop.tcl --system-file=fabric_subsys.qsys
 
 ```
 
@@ -163,176 +149,139 @@ cd agilex5_soc_devkit_ghrd
 
 ```bash
 cd $TOP_FOLDER/agilex5_soc_devkit_ghrd
-make legacy_baseline-build
-pushd software/hps_debug && ./build.sh && popd
-quartus_pfg -c output_files/legacy_baseline.sof \
-  output_files/legacy_baseline_hps_debug.sof \
-  -o hps_path=software/hps_debug/hps_wipe.ihex
+make baseline_a55-install
 cd ..
 ```
 
 
 The following files are created:
-
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof`
-
-
-
-### Build Core.RBF File
-
-
-This section shows how to create the core RBF file, which is needed by the Yocto recipes:
-
-
-```bash
-cd $TOP_FOLDER
-rm -f ghrd_a5ed065bb32ae6sr0.rbf
-quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof ghrd_a5ed065bb32ae6sr0.rbf -o hps=1
-```
-
-
-The following file is created:
-
-* `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.core.rbf`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_a55_baseline.sof`
 
 
 
-### Build Yocto
+### Build Yocto Using Kas
 
 
-Perform the following steps to build Yocto:
-
-1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
-
-The command to install the required packages on Ubuntu 22.04 is:
-
-```bash
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \
-build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
-python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit mesa-common-dev zstd \
-liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \
-tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
-device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
-```
-
-On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:
-
-```bash
- sudo ln -sf /bin/bash /bin/sh
-```
-
-**Note**: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.
-
-2\. Clone the Yocto script and prepare the build:
+1\. Create and enter a new Python virtual environment:
 
 
 ```bash
-cd $TOP_FOLDER
-rm -rf gsrd-socfpga
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
-cd gsrd-socfpga
-. agilex5_dk_a5e065bb32aes1-gsrd-build.sh
-build_setup
+cd $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux
+python3 -m venv venv --system-site-packages
+source venv/bin/activate
+pip install --upgrade pip
+pip install kas
+pip install --upgrade kas
+pip install kconfiglib
 ```
 
 
-3\. Enable the JOP UIO driver in the Linux device tree, by editing the file `meta-intel-fpga-refdes` to inlcude the changes shown below:
+2\. Copy the core.rbf file to where Kas expects it to be:
+
+
+```bash
+cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.core.rbf \
+   $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/
+```
+
+
+3\. Update the device tree to add the JOP component:
+
+
+```bash
+rm agilex5-dts-add-jop.patch
+wget https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/e-series/premium/remote-debug/collateral/agilex5-dts-add-jop.patch
+patch -p1 < agilex5-dts-add-jop.patch
+```
+
+
+For reference, the patch looks like this:
 
 ```patch
-diff --git a/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi b/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi
-index 9e043ef..ceac3aa 100644
---- a/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi
-+++ b/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi
-@@ -49,6 +49,11 @@
-                                resetvalue = <0>;
-                };
+--- a/meta-custom/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi 2026-01-14 15:59:24.691579381 -0600
++++ b/meta-custom/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi 2026-01-14 16:05:24.686554319 -0600
+@@ -41,6 +41,11 @@
+        resetvalue = <0>;
+    };
  */
-+               jop@20020000 {
-+                       compatible = "generic-uio";
-+                       reg = <0x20020000 0x4000>;
-+                       reg-names = "jop";
-+               };
-                soc_leds: leds {
-                        compatible = "gpio-leds";
++   jop@20014000 {
++     compatible = "generic-uio";
++     reg = <0x20014000 0x4000>;
++     reg-names = "jop";
++   };
+    soc_leds: leds {
+      compatible = "gpio-leds";
 ```
 
-Note that the range of memory where the JOP is located is `0x20020000` .. `0x20023fff`.
-
-This can be done with the provided patch file:
+4\. Avoid using an older version of remote-debug-app which had an issue:
 
 
 ```bash
-rm -f agilex5-dts-add-jop.patch
-wget https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/remote-debug/collateral/agilex5-dts-add-jop.patch
-pushd meta-intel-fpga-refdes
-patch -p1 < ../agilex5-dts-add-jop.patch
-popd
+mkdir -p meta-custom/recipes-gsrd/remote-debug-app 
+echo 'SRCREV_default = "b6a13b03fe7e9566063eae65d99bd8bc1190ce62"' > meta-custom/recipes-gsrd/remote-debug-app/remote-debug-app_1.0.bbappend
 ```
 
 
-
-4\. Update the recipe to not use a broken version of =etherlink=:
+5\. Enable including the remote debug application in the rootfs build:
 
 
 ```bash
-sed -i 's/3a3eb126321429c0845276ef9c200df7786dbf74/b6a13b03fe7e9566063eae65d99bd8bc1190ce62/g' meta-intel-fpga-refdes/recipes-tools/remote-debug-app/remote-debug-app_1.0.bb
+echo -e 'header:\n  version: 17\n\nlocal_conf_header:\n  remote-debug: |\n    GSRD_APP_REMOTE_DEBUG = "true"' > remote-debug.yml
 ```
 
 
-5\. Update your Yocto recipes to use the core RBF file you have built, similar to how the GSRD does it:
+The file will contain the following:
+
+```yml
+
+cat <<'EOX' > remote-debug.yml
+  header:
+    version: 17
+
+  local_conf_header:
+    remote-debug: |
+      GSRD_APP_REMOTE_DEBUG = "true"
+EOX
+```
+
+6\. Build Yocto with Kas:
 
 
 ```bash
-CORE_RBF=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf
-ln -s $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf $CORE_RBF
-OLD_URI="\${GHRD_REPO}\/agilex5_dk_a5e065bb32aes1_gsrd_\${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_gsrd_core"
-CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ")
-NEW_URI="file:\/\/agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf;sha256sum=$CORE_SHA"
-sed -i "s/$OLD_URI/$NEW_URI/g" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
-sed -i "/agilex5_dk_a5e065bb32aes1_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+kas build kas.yml:remote-debug.yml gsrd-console-image
 ```
 
 
-6\. Build the Yocto recipes:
+The following relevant files are created in `$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/`:
 
+* `gsrd-console-image-agilex5e.rootfs.wic`
+* `u-boot-spl-dtb.hex`
+
+> **Note**: If you experience build failures related to file-locks, you can work around these by reducing the parallelism of your build by running the following commands before running `kas`:
 
 ```bash
-bitbake_image
+export PARALLEL_MAKE="-j 8"
+export BB_NUMBER_THREADS="8"
+export BB_ENV_PASSTHROUGH_ADDITIONS="$BB_ENV_PASSTHROUGH_ADDITIONS PARALLEL_MAKE BB_NUMBER_THREADS"
 ```
-
-
-7\. Gather the Yocto binaries:
-
-
-```bash
-package
-```
-
-
-The following relevant files are created:
-
-* `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex`
-* `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz`
 
 
 
 ### Build QSPI Image
 
 
-Run the following commands to build the QSPI image:
-
 
 ```bash
 cd $TOP_FOLDER
-rm -f ghrd_a5ed065bb32ae6sr0.hps.jic ghrd_a5ed065bb32ae6sr0.core.rbf
+rm -f baseline.hps.jic baseline.core.rbf
 quartus_pfg \
--c agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof ghrd_a5ed065bb32ae6sr0.jic \
+-c agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof baseline.jic \
 -o device=MT25QU128 \
 -o flash_loader=A5ED065BB32AE6SR0 \
--o hps_path=gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+-o hps_path=agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
 -o hps=1
 ```
@@ -340,13 +289,14 @@ quartus_pfg \
 
 The following file is created:
 
-* `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic`
+* `$TOP_FOLDER/baseline.hps.jic`
+
 
 
 
 ### Run Example
 
-The instructions from this section present how to run the remote debug example. Refer to the [GSRD](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/) for more detailed instructions on how to set up the board, serial port, and write the binaries.
+The instructions from this section present how to run the remote debug example. Refer to the [GSRD](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/) for more detailed instructions on how to set up the board, serial port, and write the binaries.
 
 1\. Write the QSPI image `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic` to flash.
 
@@ -407,8 +357,6 @@ $ jtagconfig
 ```
 
 At this point, the connection can be used by the tools which need a JTAG connection, like SignalTap.
-
-
 
 ## Notices & Disclaimers
 

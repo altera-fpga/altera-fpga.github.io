@@ -4,7 +4,7 @@
 
 ## Intro 
 
-This page is an extension of the  [Agilex 7 SoC HPS Remote System Update Example](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/) and will show you how to build RSU images with multi QSPI support. This feature allows you to extend the flash space available to store the RSU applications so the size of these could be increased. This feature allows you to support up to 4 QSPI flash devices of the same model (i.e. same size). 
+This page is an extension of the  [Agilex 7 SoC HPS Remote System Update Example](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/) and will show you how to build RSU images with multi QSPI support. This feature allows you to extend the flash space available to store the RSU applications so the size of these could be increased. This feature allows you to support up to 4 QSPI flash devices of the same model (i.e. same size). 
 
 **Note**: This feature is first enabled in 24.3 release.
 
@@ -72,9 +72,10 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
 
 
 
@@ -97,10 +98,10 @@ The commands to create and compile the projects are listed below.
 cd $TOP_FOLDER
 # Build 4 versions of the hardware design
 rm -rf hw && mkdir hw && cd hw
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
-unzip QPDS25.3_REL_GSRD_PR.zip
-rm QPDS25.3_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3.1_REL_GSRD_PR.zip
+unzip QPDS25.3.1_REL_GSRD_PR.zip
+rm QPDS25.3.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS25.3.1_REL_GSRD_PR agilex7f-ed-gsrd
 # boot from FPGA
 export BOOTS_FIRST=fpga
 # enable watchdog
@@ -148,7 +149,7 @@ rm -rf arm-trusted-firmware
 git clone https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 # checkout the branch used for this document, comment out to use default
-git checkout -b test -t origin/socfpga_v2.13.0
+git checkout -b test -t origin/socfpga_v2.13.1
 make bl31 PLAT=agilex
 cd ..
 ```
@@ -163,9 +164,10 @@ After completing the above steps, the Arm Trusted Firmware binary file is create
 
 The following commands can be used to get the U-Boot source code and compile it. To enable multi-qspi support in U-Boot RSU functionality, set **CONFIG_SOCFPGA_RSU_MULTIFLASH** to **y** in the build configuration file. Also make sure that **CONFIG_SF_DEFAULT_CS** is set to 0 to indicate that the SPTs and CPBs are located in chip 0. There are some required changes in the device tree that allow you to enable multi-QSPI in U-Boot. These changes are the following.
 
-* Add the number of QSPI flash devices in the system in the **qspi** node in **socfpga_agilex.dtsi**. This parameter will allow u-boot to know the number of flash devices. You can manually probe each device from U-Boot shell using **sf probe 0:&lt;flash device&gt;**. This command also is used to select the QSPI chip for which the **sf read**, **sf write** and **sf erase** will operate over.
-* Create the **flash1** node in **socfpga_agilex_socdk-u-boot.dtsi**, so it exist a node for each one of the flash devices in the system.
-* For each one of the flash nodes is necessary to  reduce the maximum SPI clock frequency to 25 MHz. This is done through the **spi-max-frequency** field. You also need to assign the corresponding chip select number to each one of the QSPI devices using the **reg** field. You also need to define any partitions that you want to create in each of the flash devices. In this case a single partition is created in each of the chips. The partition size corresponds to the size of each chip. These updates are done in the **socfpga_agilex_socdk.dts** file.
+* Add the number of QSPI flash devices in the system in the **qspi** node in **socfpga_agilex-u-boot.dtsi**. This parameter allows U-Boot to know the number of flash devices. You can manually probe each device from U-Boot shell using **sf probe 0:&lt;flash device num&gt;**. This command also is used to select the QSPI chip for which the **sf read**, **sf write** and **sf erase** will operate over.
+* Create an empty **flash1** node in **socfpga_agilex-u-boot.dtsi**, so it exist a node for each one of the flash devices in the system.
+* Create the complete **flash1** node in **socfpga_agilex_socdk-u-boot.dtsi**.
+* For each one of the flash nodes is necessary to  reduce the maximum SPI clock frequency to 25 MHz. This is done through the **spi-max-frequency** field. You also need to assign the corresponding chip select number to each one of the QSPI devices using the **reg** field. You also need to define any partitions that you want to create in each of the flash devices. In this case a single partition is created in each of the chips. The partition size corresponds to the size of each chip. These updates are done in the **socfpga_agilex_socdk-u-boot.dtsi** file.
 * You can also add QSPI flash0 as the 1st device from which SPL will try to boot from. This is done by updating the **u-boot,spl-boot-order** field in the **socfpga_agilex_socdk-u-boot.dtsi**. 
 
 
@@ -176,47 +178,46 @@ rm -rf u-boot-socfpga
 git clone https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga
 # comment out next line to use the latest default branch 
-git checkout -b test -t origin/socfpga_v2025.07
+git checkout -b test -t origin/socfpga_v2025.10
 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
 
 # Update device tree to enable multi-qspi
 # Adding the number of QSPI devices
-sed -i '/clocks = <&qspi_clk>;/a \\t\t\tnum-cs = <2>;'  arch/arm/dts/socfpga_agilex.dtsi
+sed -i '/compatible = "cdns,qspi-nor";/a \\tnum-cs = <2>;' arch/arm/dts/socfpga_agilex-u-boot.dtsi
+# Create the initial flash1 node copy the content of flash0. 
+# First rename the falsh0->flash1. 
+# Then use the initial line for flash1 to write the new flash0 before the line
+sed -i 's/flash0: flash@0 {/flash1: flash@1 {/' arch/arm/dts/socfpga_agilex-u-boot.dtsi
+sed -i 's/flash0/flash1/' arch/arm/dts/socfpga_agilex-u-boot.dtsi
+sed -i '/flash1: flash@1 {/i \\tflash0: flash@0 {\n\t};' arch/arm/dts/socfpga_agilex-u-boot.dtsi
+sed -i '/&flash1 {/i &flash0 {\n\t#address-cells = <1>;\n\t#size-cells = <1>;\n\tcompatible = "jedec,spi-nor";\n};\n' arch/arm/dts/socfpga_agilex-u-boot.dtsi
+
 
 # Starting booting from QSPI to probe QSPI devices. Removing atempt to boot from NAND
 sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&flash0,\&mmc;/g' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
-
-# Rename the flash0 to flash1 (later will recreate the node for flash0)
-# This is done to have a QSPI flash reference to add the new node just above the reference one.
-sed -i 's/\&flash0 {/\&flash1 {/' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
-sed -i '/\&flash1 {/i \&flash0 {\n\tcompatible = \"jedec,spi-nor\";\n\tspi-tx-bus-width = <4>;\n\tspi-rx-bus-width = <4>;\n\tbootph-all;\n\t/delete-property/ cdns,read-delay; \n};\n' \
-arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
 # disable NAND in the device tree
 sed -i '/&nand {/!b;n;c\\tstatus = "disabled";' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
 # remove the NAND configuration from device tree
 sed -i '/images/,/binman/{/binman/!d}' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
 
 # Change max clk frequency of SPI flash0
-sed -i 's/spi-max-frequency = <100000000>;/spi-max-frequency = <25000000>;/g' arch/arm/dts/socfpga_agilex_socdk.dts
+sed -i 's/spi-max-frequency = <100000000>;/spi-max-frequency = <25000000>;/g' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+# Rename the flash0 to flash1 (later will recreate the node for flash0)
+# This is done to have a QSPI flash reference to add the new node just above the reference one.
+sed -i 's/\&flash0 {/\&flash1 {/' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+# Change the reg value that indicates the CS to 1
+sed -i '/&flash1 {/!b;n;c\\treg = <1>;' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+# Change the name of the 1st partition qspi_boot->flash1_boot
+sed -i 's/qspi_boot:/flash1_boot:/g' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
 # Change the partition size for flash0
-sed -i 's/reg = <0x0 0x04200000>;/reg = <0x0 0x10000000>;/g' arch/arm/dts/socfpga_agilex_socdk.dts
+sed -i 's/reg = <0x0 0x04200000>;/reg = <0x0 0x10000000>;/g' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
 # Delete 2nd partition
-sed -i '/root/,/};/d' arch/arm/dts/socfpga_agilex_socdk.dts
+sed -i '/root/,/};/d' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
 
-# make this one flash1 (later will recreate node for flash0 using flash1 location as reference )
-sed -i 's/flash0: flash@0 {/flash1: flash@1 {/' arch/arm/dts/socfpga_agilex_socdk.dts
-sed -i '/flash1: flash@1 {/!b;n;n;n;n;c\\t\treg = <1>;' arch/arm/dts/socfpga_agilex_socdk.dts
-sed -i 's/qspi_boot:/flash1_boot:/g' arch/arm/dts/socfpga_agilex_socdk.dts
-# Re-create the original node for flash0
-sed -i '/flash1: flash@1 {/i \\tflash0: flash@0 {\n\t\t#address-cells = <1>;\n\t\t#size-cells = <1>;\
-\t\tcompatible = "mt25qu02g";\n\t\treg = <0>;\n\t\tspi-max-frequency = <25000000>;\n\n\t\tm25p,fast-read;\
-\t\tcdns,page-size = <256>;\n\t\tcdns,block-size = <16>;\n\t\tcdns,read-delay = <1>;\n\t\tcdns,tshsl-ns = <50>;\
-\t\tcdns,tsd2d-ns = <50>;\n\t\tcdns,tchsh-ns = <4>;\n\t\tcdns,tslch-ns = <4>;\n\n\t\tpartitions {\
-\t\t\tcompatible = "fixed-partitions";\n\t\t\t#address-cells = <1>;\n\t\t\t#size-cells = <1>;\
-\t\t\tqspi_boot: partition@0 {\n\t\t\t\tlabel = "u-boot";\n\t\t\t\treg = <0x0 0x10000000>;\
-\t\t\t};\n\n\t\t};\n\t};\n' arch/arm/dts/socfpga_agilex_socdk.dts
+# Re-create the original node for flash0 just above the flash1 node
+sed -i '/&flash1 {/i &flash0 {\n\treg = <0>;\n\tspi-tx-bus-width = <4>;\n\tspi-rx-bus-width = <4>;\n\tspi-max-frequency = <25000000>;\n\tbootph-all;\n\n\tm25p,fast-read;\n\tcdns,page-size = <256>;\n\tcdns,block-size = <16>;\n\tcdns,read-delay = <1>;\n\tcdns,tshsl-ns = <50>;\n\tcdns,tsd2d-ns = <50>;\n\tcdns,tchsh-ns = <4>;\n\tcdns,tslch-ns = <4>;\n\t/delete-property/ cdns,read-delay;\n\n\tpartitions {\n\t\tcompatible = "fixed-partitions";\n\t\t#address-cells = <1>;\n\t\t#size-cells = <1>;\n\n\t\tqspi_boot: partition@0 {\n\t\t\tlabel = "u-boot";\n\t\t\treg = <0x0 0x10000000>;\n\t\t};\n\t};\n};\n' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
 
 
 # link to atf 
@@ -249,6 +250,8 @@ CONFIG_DISTRO_DEFAULTS=n
 CONFIG_HUSH_PARSER=y
 CONFIG_SYS_PROMPT_HUSH_PS2="> "
 CONFIG_USE_BOOTCOMMAND=y
+# rsu_status boot command calls rsu dtb command to update the start address of 
+# qspi_boot0 partition in the Linux dtb to indicate it starts at SPT0 location
 CONFIG_BOOTCOMMAND="bridge enable; setenv bootfile Image; setenv fdtimage socfpga_agilex7f_socdk_multiqspi.dtb; run mmcload; run linux_qspi_enable; run rsu_status; run mmcboot"
 CONFIG_CMD_FAT=y
 CONFIG_CMD_FS_GENERIC=y
@@ -303,7 +306,7 @@ rm -rf linux-socfpga
 git clone https://github.com/altera-fpga/linux-socfpga 
 cd linux-socfpga 
 # checkout the branch used for this document, comment out to use default 
-git checkout -b test -t origin/socfpga-6.12.33-lts 
+git checkout -b test -t origin/socfpga-6.12.43-lts 
 
 # configure the RSU driver to be built into the kernel 
 make clean && make mrproper 
@@ -385,7 +388,7 @@ cat << EOF > initial_image_multiQSPI.pfg
 EOF
 
 # MultiQSPI is supported starting in 24.3
-~/altera_pro/25.1.1/quartus/bin/quartus_pfg -c initial_image_multiQSPI.pfg
+~/altera_pro/25.3/quartus/bin/quartus_pfg -c initial_image_multiQSPI.pfg
 mv initial_image_multiQSPI.jic initial_image_multiQSPI_prev.jic
 mv initial_image_multiQSPI_jic_2Gb_cs0.rpd initial_image_multiQSPI_jic_2Gb_cs0_prev.rpd
 mv initial_image_multiQSPI_jic_2Gb_cs1.rpd initial_image_multiQSPI_jic_2Gb_cs1_prev.rpd
@@ -402,7 +405,7 @@ After completion of this stage you should see the following files created. These
 * $TOP_FOLDER/initial_image_multiQSPI.jic - Initial QSPI image used for regular RSU use cases.
 * $TOP_FOLDER/initial_image_multiQSPI_prev.jic - Initial QSPI image used to exercise combined application use case. - Not available in 24.3 release.
 
-For detailed instructions on how to create the .pfg, please refer to the [Creating the initial flash-image](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/#creating-the-initial-flash-image) in main RSU page. For a multi-QSPI initial image there are some variations that need to be obserrved and these are described next.
+For detailed instructions on how to create the .pfg, please refer to the [Creating the initial flash-image](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/#creating-the-initial-flash-image) in main RSU page. For a multi-QSPI initial image there are some variations that need to be obserrved and these are described next.
 
 * When selecting the flash device in Configuration Device tab and clicking Add Device you need to select as device any of the QSPI0xG devices depending on the total size of the multi-QSPI system (in bits). In the figure below are shown the possible options. These options gets available when building an RSU image. In this figure, the QSPI04G is being selected for a 4 Gbit system (512 MB) integrated by 2 flash devices of 2Gbit each one.
 
@@ -653,8 +656,7 @@ The following commands can be used to create the SD card image used in this exam
 ```bash 
 cd $TOP_FOLDER
 sudo rm -rf sd_card && mkdir sd_card && cd sd_card
-wget https://releases.rocketboards.org/release/2021.04/gsrd/\
-tools/make_sdimage_p3.py
+wget https://releases.rocketboards.org/release/2020.11/gsrd/tools/make_sdimage_p3.py
 # remove mkfs.fat parameter which has some issues on Ubuntu 22.04
 sed -i 's/\"\-F 32\",//g' make_sdimage_p3.py
 chmod +x make_sdimage_p3.py
@@ -734,7 +736,7 @@ The following items are included in the rootfs on the SD card.
 
 ### Exercise RSU Binaries
 
-The same RSU exercises for U-Boot and Linux described at [Agilex 7 SoC HPS Remote System Update Example](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/) are supported for multi-QSPI. You can exercise all of them, but in the command responses just consider the new layout used in here (i.e. the location of the partitions will be different ). 
+The same RSU exercises for U-Boot and Linux described at [Agilex 7 SoC HPS Remote System Update Example](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/) are supported for multi-QSPI. You can exercise all of them, but in the command responses just consider the new layout used in here (i.e. the location of the partitions will be different ). 
 
 In the scenario in which an application is being corrupted using a U-Boot command, you also will need to use the correct location of the application. Also remember that in multi-QSPI the **sf probe** U-Boot command is used to select the appropriate flash device before performing any read, write or erase operation. The **sf erase**, **sf write** and **sd read** U-Boot commands use as memory address the relative address in the chip selected.
 

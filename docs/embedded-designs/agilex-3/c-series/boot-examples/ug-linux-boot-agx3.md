@@ -21,7 +21,7 @@ The following scenarios are covered:
 *  Boot from QSPI
 
 
-The instructions on this page are based on the [GSRD](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/).
+The instructions on this page are based on the [GSRD](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/).
 
 ### Prerequisites
 
@@ -35,42 +35,42 @@ The following are required to be able to fully exercise the guides from this pag
   * 64 GB of RAM or more
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1 
   * TFTP server. This used to download the eMMC binaries to board to be flashed by U-Boot
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files.
 
 ### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 and the following software component versions integrate the 25.3 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1 and the following software component versions integrate the 25.3.1 release. 
 
 **Note:** Regarding the GHRD components in the following table, only the device-specific GHRD is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 GHRD | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.3_REL_GSRD_PR   |
-| Agilex 5 GHRD - Include GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3_REL_GSRD_PR |
-| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
-| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
-| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS25.3_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.33-lts | QPDS25.3_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.0   | QPDS25.3_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.07 | QPDS25.3_REL_GSRD_PR |
+| Agilex 3 GHRD | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.3.1_REL_GSRD_PR   |
+| Agilex 5 GHRD - Include GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3.1_REL_GSRD_PR |
+| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.3.1_REL_GSRD_PR |
+| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.3.1_REL_GSRD_PR |
+| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS25.3.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.43-lts | QPDS25.3.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.1   | QPDS25.3.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.10 | QPDS25.3.1_REL_GSRD_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
-| Yocto Project: meta-altera-fpga (for GSRD 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3_REL_GSRD_PR |
+| Yocto Project: meta-altera-fpga (for GSRD 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3.1_REL_GSRD_PR |
 | Yocto Project: meta-intel-fpga (for Legacy GSRD) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest |
-| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3_REL_GSRD_PR |
-| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3.1_REL_GSRD_PR |
+| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3.1_REL_GSRD_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 ### Development Kit
 
-Refer to [Development Kit](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3) for details about the board.
+Refer to [Development Kit](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3) for details about the board.
 
 ### Release Notes
 
-Refer to [Release Notes](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.1.1_REL_GSRD_PR) for release readiness information and known issues.
+Refer to [Release Notes](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3.1_REL_GSRD_PR) for release readiness information and known issues.
 
 
 ## HPS Enablement Board
@@ -113,9 +113,10 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
 
 
 
@@ -128,11 +129,11 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex3_soc_devkit_ghrd && mkdir agilex3_soc_devkit_ghrd && cd agilex3_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS25.3_REL_GSRD_PR/a3cw135-devkit-oobe-legacy-baseline.zip
+wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a3cw135-devkit-oobe-legacy-baseline.zip
 unzip a3cw135-devkit-oobe-legacy-baseline.zip
 rm -f a3cw135-devkit-oobe-legacy-baseline.zip
 make legacy_baseline-build
-make legacy_baseline-sw-build
+make legacy_baseline-install
 quartus_pfg -c output_files/legacy_baseline.sof \
   output_files/legacy_baseline_hps_debug.sof \
   -o hps_path=software/hps_debug/hps_wipe.ihex
@@ -152,7 +153,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 make -j 48 PLAT=agilex3 bl31
 cd ..
@@ -171,7 +172,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga_sd
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga_sd
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga_sd
 cd u-boot-socfpga_sd 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -279,7 +280,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
 cat << EOF > config-fragment-agilex3
 # Enable Ethernet connectivity so we can get an IP address
@@ -450,7 +451,7 @@ mkdir $TOP_FOLDER/qspi-boot
 ```bash
 cd $TOP_FOLDER/qspi-boot
 rm -rf u-boot-socfpga_qspi
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga_qspi
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga_qspi
 cd u-boot-socfpga_qspi 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -837,9 +838,10 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
+
 
 
 
@@ -852,11 +854,11 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex3_soc_devkit_ghrd_sdqspi && mkdir agilex3_soc_devkit_ghrd_sdqspi && cd agilex3_soc_devkit_ghrd_sdqspi
-wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS25.3_REL_GSRD_PR/a3cw135-devkit-oobe-legacy-baseline.zip
+wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a3cw135-devkit-oobe-legacy-baseline.zip
 unzip a3cw135-devkit-oobe-legacy-baseline.zip
 rm -f a3cw135-devkit-oobe-legacy-baseline.zip
 make legacy_baseline-build
-make legacy_baseline-sw-build
+make legacy_baseline-install
 quartus_pfg -c output_files/legacy_baseline.sof \
   output_files/legacy_baseline_hps_debug.sof \
   -o hps_path=software/hps_debug/hps_wipe.ihex
@@ -877,7 +879,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware-sdcard
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-sdcard
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-sdcard
 cd arm-trusted-firmware-sdcard
 # Beacuse of limitations on DDR we need to change the following
 # sed -i 's/PLAT_QSPI_DATA_BASE.*/PLAT_QSPI_DATA_BASE			(0x00250000)/g' plat/altera/soc/common/include/platform_def.h
@@ -902,33 +904,8 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga-sdcard
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-sdcard
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-sdcard
 cd linux-socfpga-sdcard
-
-# Create a device tree for this flow
-cat << EOF > arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_atfboot.dts
-#include "socfpga_agilex3_socdk.dts"
-
-/ {
-
-	model = "SoCFPGA Agilex3 SoCDK";
-	compatible = "intel,socfpga-agilex3-socdk", "intel,socfpga-agilex3";
-
-	chosen {	
-		stdout-path = "serial0:115200n8";
-		bootargs = "console=ttys0,115200 earlycon panic=-1 root=/dev/mmcblk0p2 rw rootwait";
-	};
-
-	/*Beacuse of limitations on DDR we need to reduce the total memory to 0x70000000*/
-	memory {
-		device_type = "memory";
-		reg = <0 0x80000000 0 0x70000000>;
-	};
-};
-EOF
-
-# Build socfpga_agilex3_socdk_atfboot.dtb
-sed -i '/socfpga_agilex3_socdk.dtb \\/a socfpga_agilex3_socdk_atfboot.dtb \\' arch/arm64/boot/dts/intel/Makefile
 
 cat << EOF > config-fragment-agilex3
 # Enable DHCP 
@@ -971,7 +948,7 @@ make -j 64 Image dtbs
 The following files are created:
 
 * $TOP_FOLDER/linux-socfpga-sdcard/arch/arm64/boot/Image
-* $TOP_FOLDER/linux-socfpga-sdcard/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_atfboot.dtb
+* $TOP_FOLDER/linux-socfpga-sdcard/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_sdmmc_atfboot.dtb
 
 <h4>Build Rootfs</h4>
 
@@ -1044,7 +1021,7 @@ mkdir sd_card && cd sd_card
 $TOP_FOLDER/arm-trusted-firmware-sdcard/build/agilex3/release/tools/fiptool/fiptool create \
 --soc-fw $TOP_FOLDER/arm-trusted-firmware-sdcard/build/agilex3/release/bl31.bin \
 --nt-fw $TOP_FOLDER/linux-socfpga-sdcard/arch/arm64/boot/Image \
---nt-fw-config $TOP_FOLDER/linux-socfpga-sdcard/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_atfboot.dtb fip.bin
+--nt-fw-config $TOP_FOLDER/linux-socfpga-sdcard/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_sdmmc_atfboot.dtb fip.bin
 
 # Build now the SDCard
 wget https://releases.rocketboards.org/release/2020.11/gsrd/tools/make_sdimage_p3.py
@@ -1148,7 +1125,7 @@ ATF requires to be rebuilt to enable booting from QSPI by setting **SOCFPGA_BOOT
 cd $TOP_FOLDER
 # Building ATF
 rm -rf arm-trusted-firmware-qspi
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-qspi
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-qspi
 cd arm-trusted-firmware-qspi
 # Replacing the default location of fip.bin from 0x3C00000 to 0x00250000
 sed -i 's/PLAT_QSPI_DATA_BASE.*/PLAT_QSPI_DATA_BASE			(0x00250000)/g' plat/altera/soc/common/include/platform_def.h
@@ -1174,40 +1151,12 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga-qspi
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-qspi
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-qspi
 cd linux-socfpga-qspi
 
-# Create a device tree for this flow in which we create the command line to get the file system from QSPI
-cat << EOF > arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_atfboot.dts
-#include "socfpga_agilex3_socdk.dts"
+## Adjust the root partition to fit in 64MB memory
+sed -i  's/reg = <0x03400000 0x04FFFFFF>;/reg = <0x03400000 0x00C00000>;/g' arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_qspi_atfboot.dts
 
-/ {
-
-	model = "SoCFPGA Agilex3 SoCDK";
-	compatible = "intel,socfpga-agilex3-socdk", "intel,socfpga-agilex3";
-
-	chosen {
-		stdout-path = "serial0:115200n8";
-		bootargs = "console=ttys0,115200 earlycon panic=-1 root=/dev/mtdblock1 rw rootfstype=jffs2 rootwait";
-	};
-
-	memory {
-		device_type = "memory";		
-		reg = <0 0x80000000 0 0x70000000>;
-	};    
-};
-EOF
-
-## Modify QSPI clock frequency to 50 MHz to match ATF and modify the QSPI partitions ranges to fit the current images
-sed -i  's/spi-max-frequency = <100000000>;/spi-max-frequency = <50000000>;/g' arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts
-
-## Adjust the partitions so the commponents in QSPI can fit (to match pfg)
-sed -i  's/reg = <0x0 0x00c00000>;/reg = <0x0 0x03000000>;/g' arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts
-sed -i  's/root: partition@c00000/root: partition@3000000/g' arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts
-sed -i  's/reg = <0x00c00000 0x03400000>/reg = <0x03000000 0x01000000>/g' arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts
-
-# Include the build socfpga_agilex3_socdk_atfboot.dtb in the Makefile
-sed -i '/socfpga_agilex3_socdk.dtb \\/a socfpga_agilex3_socdk_atfboot.dtb \\' arch/arm64/boot/dts/intel/Makefile
 
 cat << EOF > config-fragment-agilex3
 # Enable DHCP 
@@ -1252,7 +1201,7 @@ make -j 64 Image dtbs
 The output files from this stage are:
 
 * $TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/Image
-* $TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_atfboot.dtb
+* $TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_qspi_atfboot.dtb
 
 <h4>Buid QSPI Image</h4>
 
@@ -1293,7 +1242,7 @@ cat << EOF > qspi_flash_image_agilex3_boot.pfg
           <partition reserved="1" fixed_s_addr="1" s_addr="0x00000000" e_addr="0x001FFFFF" fixed_e_addr="1" id="BOOT_INFO" size="0"/>
           <partition reserved="0" fixed_s_addr="0" s_addr="auto" e_addr="auto" fixed_e_addr="0" id="P1" size="0"/>
           <partition reserved="0" fixed_s_addr="0" s_addr="0x00250000" e_addr="auto" fixed_e_addr="0" id="fip" size="0"/>
-          <partition reserved="0" fixed_s_addr="0" s_addr="0x03000000" e_addr="auto" fixed_e_addr="0" id="Rootfs" size="0"/>
+          <partition reserved="0" fixed_s_addr="0" s_addr="0x03400000" e_addr="auto" fixed_e_addr="0" id="Rootfs" size="0"/>
       </flash_device>
       <flash_loader>A3CW135BM16AE6S</flash_loader>
   </flash_devices>
@@ -1318,7 +1267,7 @@ aarch64-none-linux-gnu-objcopy -v -I binary -O ihex --change-addresses 0x0000000
 $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex3/release/tools/fiptool/fiptool create \
 --soc-fw $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex3/release/bl31.bin \
 --nt-fw $TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/Image \
---nt-fw-config $TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_atfboot.dtb fip.bin
+--nt-fw-config $TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_qspi_atfboot.dtb fip.bin
 
 # Create the jic file
 ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/output_files/legacy_baseline.sof legacy_baseline.sof

@@ -1,6 +1,6 @@
 # **Altera Error Detection and Correction (EDAC) Driver for Hard Processor System**
 
-Last updated: **January 08, 2026** 
+Last updated: **January 23, 2026** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/edac/altera_edac.c)
 
@@ -66,9 +66,9 @@ The reference device tree for each one of the devices includes the configuration
 
 
 
-* Agilex™ 5/Agilex™ 3: [socfpga_agilex5.dtsi](https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.12.33-lts/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi)
-* Agilex™ 7: [socfpga_agilex.dtsi](https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.12.33-lts/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi)
-* Stratix® 10: [socfpga_stratix10.dtsi](https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.12.33-lts/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi)
+* Agilex™ 5/Agilex™ 3: [socfpga_agilex5.dtsi](https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.12.43-lts/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi)
+* Agilex™ 7: [socfpga_agilex.dtsi](https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.12.43-lts/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi)
+* Stratix® 10: [socfpga_stratix10.dtsi](https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.12.43-lts/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi)
 
 
 ## **Test Procedure**

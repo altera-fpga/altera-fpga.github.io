@@ -160,16 +160,16 @@ The following components are used in this design:
  |Address Offset	|Size (Bytes)	|Peripheral	| Description|
   |-|-|-|-|
   |0x0000_0000|512KB|On-Chip Memory II IP|To store application|
-  |0x0009_0040|64|Avalon I2C (Host) IP|To communicate thru I2C|
+  |0x0009_0040|64|Avalon I2C (Host) IP|To communicate through I2C|
   |0x0009_0080|64|Mailbox Client IP|To communicate with SDM|
-  |0x0009_00c0|32|SPI (4 Wire Serial) IP|To communicate thru SPI|
+  |0x0009_00c0|32|SPI (4 Wire Serial) IP|To communicate through SPI|
   |0x0009_00e0|32|Interval Timer IP|To produce a periodic interrupt once every second|
   |0x0009_0100|32|MSGDMA IP|To offload data transfer operation from processor|
   |0x0009_0120|16|Parallel Input/Output IP 0|To toggle LED connection on board|
   |0x0009_0130|16|MSGDMA IP Descriptor Agent Interface|To support extended descriptors|
   |0x0009_0140|8|System ID|Hardware configuration system ID (0xa5)|
   |0x0009_0150|8|JTAG UART|Communication between a host PC and the Nios V processor system|
-  |0x000c_0000|256KB|LPDDR4 EMIF|To store data thru Address Span Extender IP|
+  |0x000c_0000|256KB|LPDDR4 EMIF|To store data through Address Span Extender IP|
   |0x0010_0000|1MB|Destination RAM|The destination memory for MSGDMA IP data transfer|
   |0x0020_0000|1MB|Source RAM|The source data for MSGDMA IP data transfer|
   |0x0030_0000|16|Parallel Input/Output IP 1|To receive input from pushbutton on board|
