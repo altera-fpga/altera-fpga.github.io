@@ -1,0 +1,13 @@
+--- a/meta-custom/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi	2026-01-14 15:59:24.691579381 -0600
++++ b/meta-custom/recipes-bsp/device-tree/files/socfpga_agilex5_ghrd.dtsi	2026-01-14 16:05:24.686554319 -0600
+@@ -41,6 +41,11 @@
+ 				resetvalue = <0>;
+ 		};
+ */
++		jop@20014000 {
++			compatible = "generic-uio";
++			reg = <0x20014000 0x4000>;
++			reg-names = "jop";
++		};
+ 		soc_leds: leds {
+ 			compatible = "gpio-leds";
