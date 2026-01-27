@@ -4019,8 +4019,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pcie-bam-interface" class="md-nav__link">
-    PCIe BAM interface
+  <a href="#mcdma-bam-interface" class="md-nav__link">
+    MCDMA BAM interface
   </a>
   
 </li>
@@ -4053,6 +4053,40 @@
           <li class="md-nav__item">
   <a href="#fio-performance-transactions" class="md-nav__link">
     fio Performance transactions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-note" class="md-nav__link">
+    Release Note
+  </a>
+  
+    <nav class="md-nav" aria-label="Release Note">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features-enhancements" class="md-nav__link">
+    New features / enhancements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    Bug Fixes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    Known Issues
   </a>
   
 </li>
@@ -4683,8 +4717,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pcie-bam-interface" class="md-nav__link">
-    PCIe BAM interface
+  <a href="#mcdma-bam-interface" class="md-nav__link">
+    MCDMA BAM interface
   </a>
   
 </li>
@@ -4717,6 +4751,40 @@
           <li class="md-nav__item">
   <a href="#fio-performance-transactions" class="md-nav__link">
     fio Performance transactions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-note" class="md-nav__link">
+    Release Note
+  </a>
+  
+    <nav class="md-nav" aria-label="Release Note">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features-enhancements" class="md-nav__link">
+    New features / enhancements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    Bug Fixes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    Known Issues
   </a>
   
 </li>
@@ -4771,12 +4839,12 @@
 <li>PCIe Gen5 MCIO x4 for U.2 2x2 Dual Port<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></li>
 </ul>
 </li>
-<li><a href="https://github.com/altera-fpga/agilex7-ed-pcie-rp/releases/tag/24.3-rc1">Pre-compiled Software/Firmware</a>.</li>
+<li><a href="https://github.com/altera-fpga/agilex7-ed-pcie-rp/releases/tag/25.1.1-1">Pre-compiled Software/Firmware</a>.</li>
 </ul>
 <ul>
 <li>Tools and software.<ul>
 <li>System with supported Linux distribution with Ubuntu 22.04 (LTS)</li>
-<li>Intel ® Quartus ®Prime Design Suite software 24.3 version </li>
+<li>Intel ® Quartus ®Prime Design Suite software 25.1.1 version </li>
 <li>Serial terminal application such as Putty</li>
 </ul>
 </li>
@@ -4817,16 +4885,10 @@
 </thead>
 <tbody>
 <tr>
-<td>0x80000000</td>
-<td>256K</td>
-<td>On Chip Memory</td>
-<td>Block memory implemented in the FPGA fabric</td>
-</tr>
-<tr>
 <td>0x90000000</td>
 <td>256M</td>
 <td>BAS</td>
-<td>Avalon MM Slave of PCIe BAS port</td>
+<td>Avalon MM Slave of MCDMA BAS port (28-bit address space)</td>
 </tr>
 <tr>
 <td>0xA0000000</td>
@@ -4854,34 +4916,16 @@
 <td>Hardware configuration system ID</td>
 </tr>
 <tr>
-<td>0xF9001080</td>
+<td>0xF9000200</td>
 <td>16</td>
-<td>LED PIO</td>
-<td></td>
-</tr>
-<tr>
-<td>0xF9001060</td>
-<td>16</td>
-<td>Button PIO</td>
-<td>Push Button</td>
-</tr>
-<tr>
-<td>0xF9001070</td>
-<td>16</td>
-<td>DIPSW PIO</td>
-<td>DIP Switch</td>
-</tr>
-<tr>
-<td>0xF9001100</td>
-<td>256</td>
-<td>ILC</td>
-<td>Interrupt Latency Counter</td>
+<td>CCT</td>
+<td>Cache Coherent Translator </td>
 </tr>
 <tr>
 <td>0xF9010000</td>
-<td>32k</td>
-<td>PCIe CRA</td>
-<td>Avalon MM Slave of PCIe HIP CRA port</td>
+<td>16k</td>
+<td>CS</td>
+<td>Avalon MM Slave of PCIe Configuration Slave port (14b address space)</td>
 </tr>
 <tr>
 <td>0xF9018000</td>
@@ -4902,32 +4946,14 @@
 <td>Hardware timer for benchmarking purposes</td>
 </tr>
 <tr>
-<td>0xF9000210</td>
-<td>8</td>
-<td>CCT</td>
-<td>Cache Coherent Translator CSR for changing AxCACHE/PROT/DOMAIN signals of ACE-Lite </td>
-</tr>
-<tr>
-<td>0xF9000300</td>
-<td>32</td>
-<td>F2H interface tester</td>
-<td>HPS can indirectly initiate F2H request through LW H2F interface. </td>
-</tr>
-<tr>
-<td>0xF9001070</td>
-<td>16</td>
-<td>DIPSW PIO</td>
-<td>DIP Switch</td>
-</tr>
-<tr>
 <td>0xF90180C0</td>
-<td>256</td>
+<td>1k</td>
 <td>AVMM CS Cpl TimeOut &amp; System level Reg. map </td>
 <td>Error registers along with Timeout values </td>
 </tr>
 </tbody>
 </table>
-<h4 id="pcie-bam-interface">PCIe BAM interface<a class="headerlink" href="#pcie-bam-interface" title="Permanent link">&para;</a></h4>
+<h4 id="mcdma-bam-interface">MCDMA BAM interface<a class="headerlink" href="#mcdma-bam-interface" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
 <tr>
@@ -4939,22 +4965,22 @@
 </thead>
 <tbody>
 <tr>
-<td>0x80000000</td>
-<td>256k</td>
-<td>On Chip Memory</td>
-<td>Block memory implemented in the FPGA fabric</td>
-</tr>
-<tr>
-<td>0xF9018000</td>
+<td>0xF901_8000</td>
 <td>128</td>
-<td>MSI-to-GIC Vector</td>
-<td></td>
+<td>MSI-to-GIC</td>
+<td>MSI/MSI-X transactions from PCIe Endpoint. These should be aligned addresses to avoid any re-alignment on BAM AVMM interface.</td>
 </tr>
 <tr>
-<td>0x00000000</td>
-<td>8G</td>
-<td>HPS F2H</td>
-<td> HPS FPGA to HPS interface (SDRAM access)</td>
+<td>0x0000_0000 to 0x7FFF_FFFF</td>
+<td>2G</td>
+<td>F2H</td>
+<td> FPGA to HPS interface (SDRAM access). Expandable.</td>
+</tr>
+<tr>
+<td>0x10_8000_0000 to 0x11_FFFF_FFFF</td>
+<td>6G</td>
+<td>F2H</td>
+<td> FPGA to HPS interface (SDRAM access) - expanded memory range. Actual allocation is 8G (from 0x10_0000_0000 to 0x11_FFFF_FFFF) to match the 2 power of <Num. of bits>.</td>
 </tr>
 </tbody>
 </table>
@@ -4964,7 +4990,7 @@
 <li>Load the <a href="https://github.com/altera-fpga/agilex7-ed-pcie-rp/releases/download/24.3-1/agilex7_dk_dev_agm039fes_rped_ghrd.hps.rbf">hps.rbf</a> file<p>Using command line: </p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span>p<span class="p">;</span>MY_DESIGN.hps.rbf@1
 </code></pre></div>
-  Using the Intel ® Quartus ®Prime Programer 24.3 version GUI:</p>
+  Using the Intel ® Quartus ®Prime Programer 25.1.1 version GUI:</p>
 <p><a class="glightbox" href="../images/programer.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="image-20241214093054080" src="../images/programer.png" /></a></p>
 </li>
 </ul>
@@ -6020,6 +6046,21 @@
 </tr>
 </tbody>
 </table>
+<h2 id="release-note">Release Note<a class="headerlink" href="#release-note" title="Permanent link">&para;</a></h2>
+<h3 id="new-features-enhancements">New features / enhancements<a class="headerlink" href="#new-features-enhancements" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Upgraded to Quartus 25.1.1.</li>
+<li>Added functionality to handle MSI/MSI-X interrupts differently, while routing them to HPS IRQ port. See the block diagram for more details.</li>
+<li>Updated to 25.1.1 Yocto base (QPDS25.1.1_REL_GSRD_PR).</li>
+</ul>
+<h3 id="bug-fixes">Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>None</li>
+</ul>
+<h3 id="known-issues">Known Issues<a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h3>
+<ul>
+<li>14025268295: 512B MPS not supported. Fix is planned for a future release. </li>
+</ul>
 <h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
 <p>Altera® Corporation technologies may require enabled hardware, software or service activation. No product or component can be absolutely secure. Performance varies by use, configuration and other factors. Your costs and results may vary. You may not use or facilitate the use of this document in connection with any infringement or other legal analysis concerning Altera or Intel products described herein. You agree to grant Altera Corporation a non-exclusive, royalty-free license to any patent claim thereafter drafted which includes subject matter disclosed herein. No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document, with the sole exception that you may publish an unmodified copy. You may create software implementations based on this document and in compliance with the foregoing that are intended to execute on the Altera or Intel product(s) referenced in this document. No rights are granted to create modifications or derivatives of this document. The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications. Current characterized errata are available on request. Altera disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade. You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. © Altera Corporation. Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation. Other names and brands may be claimed as the property of others.</p>
 <div class="footnote">
