@@ -3354,6 +3354,33 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#sd-card-image-flashing" class="md-nav__link">
+    SD Card Image Flashing
+  </a>
+  
+    <nav class="md-nav" aria-label="SD Card Image Flashing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usbimager-windows-linux-mac-os" class="md-nav__link">
+    USBImager (Windows, Linux, Mac OS)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmaptool-linux" class="md-nav__link">
+    bmaptool (Linux)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#flash-the-qspi" class="md-nav__link">
     Flash The QSPI
   </a>
@@ -5102,6 +5129,33 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#sd-card-image-flashing" class="md-nav__link">
+    SD Card Image Flashing
+  </a>
+  
+    <nav class="md-nav" aria-label="SD Card Image Flashing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usbimager-windows-linux-mac-os" class="md-nav__link">
+    USBImager (Windows, Linux, Mac OS)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bmaptool-linux" class="md-nav__link">
+    bmaptool (Linux)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#flash-the-qspi" class="md-nav__link">
     Flash The QSPI
   </a>
@@ -5260,13 +5314,42 @@ ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
 <p><strong>USB connections to the board</strong>
 </center>
 <br></p>
+<h3 id="sd-card-image-flashing">SD Card Image Flashing<a class="headerlink" href="#sd-card-image-flashing" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Download SD card image (<code>.wic</code> or <code>.wic.gz</code>) from the prebuilt binary links above.</li>
+<li>Write the <code>.wic</code> or <code>.wic.gz</code> SD card image to the micro SD card using one of the options below.</li>
+<li>Turn off the board and insert the SD card in the micro SD card slot on the SOM board.</li>
+</ul>
+<h4 id="usbimager-windows-linux-mac-os"><a href="https://bztsrc.gitlab.io/usbimager/">USBImager</a> (Windows, Linux, Mac OS)<a class="headerlink" href="#usbimager-windows-linux-mac-os" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Open <a href="https://bztsrc.gitlab.io/usbimager/">USBImager</a> and click the <code>...</code> button in the top right.</li>
+<li>Select the image you downloaded earlier and click <code>Open</code>.</li>
+<li>Next select the device associated with your SD card reader from the drop-down list.</li>
+<li>Click <code>Write</code> to start flashing.</li>
+</ul>
+<h4 id="bmaptool-linux"><a href="https://github.com/yoctoproject/bmaptool">bmaptool</a> (Linux)<a class="headerlink" href="#bmaptool-linux" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You will require a <code>.wic.bmap</code> file in addition to the <code>.wic</code> or <code>.wic.gz</code> in order to use <code>bmaptool</code>. If this is not available use <code>USBImager</code>.</p>
+</div>
+<p>On many distributions <code>bmap-tools</code> can be installed using your distros package manager (e.g. <code>sudo apt install bmap-tools</code>).</p>
+<p>For more information see the <a href="https://docs.yoctoproject.org/dev-manual/bmaptool.html">Yocto documentation</a> for <code>bmaptool</code>.</p>
+<p>First of all determine the device <code>logical name</code> associated with the SD card on your host:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo lshw -class disk
+</code></pre></div>
+<p>Use <code>bmaptool</code> to copy the image to the SD card. Make sure the <code>wic</code> image file and <code>bmap</code> file are in the same directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo bmaptool copy ${IMAGE} ${DEVICE}
+</code></pre></div>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aes1.wic.gz /dev/sda
+</code></pre></div>
 <h3 id="flash-the-qspi">Flash The QSPI<a class="headerlink" href="#flash-the-qspi" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Download the <code>.jic</code> image from the prebuilt binary links above.</li>
 <li>Power down the board.</li>
 <li>Set <strong>MSEL</strong> dipswitch <strong>S4</strong> on SOM to <strong>JTAG: OFF-OFF</strong></li>
 <li>Power up the board.</li>
-<li>Program the QSPI with the following command. See: <a href="https://www.intel.com/content/www/us/en/docs/programmable/813773/25-1/understanding-configuration-status-using.html">quartus_pgm command</a><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;top.hps.jic&quot;</span><span class="w"> </span>
+<li>Program the QSPI with the following command. See: <a href="https://www.intel.com/content/www/us/en/docs/programmable/813773/25-1/understanding-configuration-status-using.html">quartus_pgm command</a><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;top.hps.jic&quot;</span><span class="w"> </span>
 </code></pre></div>
 </li>
 </ul>
@@ -5307,38 +5390,38 @@ ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
 <p class="admonition-title">Note</p>
 <p>An internet connection is required to run the following commands.</p>
 </div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git clone https://github.com/altera-fpga/altera-ros2.git
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>cd altera-ros2
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>docker build -f .docker/Dockerfile -t altera-ros2 .
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git clone https://github.com/altera-fpga/altera-ros2.git
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>cd altera-ros2
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>docker build -f .docker/Dockerfile -t altera-ros2 .
 </code></pre></div>
 <p>The Docker image should now be available.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker image ls
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>REPOSITORY                      TAG              IMAGE ID       CREATED         SIZE
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>altera-ros2                     latest           92816d4b0459   6 weeks ago     3.8GB
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker image ls
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>REPOSITORY                      TAG              IMAGE ID       CREATED         SIZE
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>altera-ros2                     latest           92816d4b0459   6 weeks ago     3.8GB
 </code></pre></div>
 <p>The resulting Docker image includes the Altera® ROS 2 packages and examples pre-installed and ready to use.</p>
 <h3 id="run-the-example-moveit-client">Run The Example MoveIt Client<a class="headerlink" href="#run-the-example-moveit-client" title="Permanent link">&para;</a></h3>
 <p>We will now deploy an instance of the example <a href="https://github.com/altera-fpga/altera-ros2/tree/main/examples/moveit_demo_client">MoveIt client</a> in a container on the HPS using the image we built previously. The <a href="https://github.com/altera-fpga/altera-ros2/tree/main/examples/moveit_demo_client">MoveIt client</a> is written in C++ and simply generates random pose goals for a given robot description before attempting to plan and execute a trajectory using the relevant <code>MoveGroup</code>. The client makes use of the <a href="https://docs.ros.org/en/noetic/api/moveit_ros_planning_interface/html/classmoveit_1_1planning__interface_1_1MoveGroupInterface.html"><code>MoveGroupInterface</code></a> class making it compatible with various robot arms. In this example we will be launching an instance to control a simulated <a href="https://www.ufactory.cc/lite-6-collaborative-robot/">UFACTORY Lite 6 robot arm</a>.</p>
 <p>ROS uses Python based <code>launch</code> files to bring up the necessary services and nodes for a given use-case. In this case we will be using the <a href="https://github.com/altera-fpga/altera-ros2/blob/main/examples/moveit_demo_client/launch/lite6_moveit_demo.launch.py">lite6_moveit_demo.launch.py</a> launch file which intializes the required controllers, publishers and move groups along with our client application. The result is a fully simulated robot controller implementation with low-level drives handled by the FPGA through the Altera® Drive-on-Chip IP and high-level functionality provided by ROS and MoveIt running on the HPS.</p>
 <p>Run the following command on the HPS to start a container passing through the Drive-on-Chip UIO devices used for motor control:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker run -it --rm --network host --device /dev/uio0 --device /dev/uio1 --device /dev/uio2 altera-ros2
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker run -it --rm --network host --device /dev/uio0 --device /dev/uio1 --device /dev/uio2 altera-ros2
 </code></pre></div>
 Next run the following command to launch the example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ros2 launch moveit_demo_client lite6_moveit_demo.launch.py random:=true mode:=doc use_rviz:=false
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ros2 launch moveit_demo_client lite6_moveit_demo.launch.py random:=true mode:=doc use_rviz:=false
 </code></pre></div>
 <p>Upon successful initialization you should see a stream of messages similar to that below indicating planning requests are being received by the <code>MoveGroup</code> and trajectories are being executed by the relevant controllers.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>[move_group-3] [INFO]: Motion plan was computed successfully.
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>[moveit_demo_client-5] [INFO]: Planning request complete!
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>[moveit_demo_client-5] [INFO]: time taken to generate plan: 0.0128849 seconds
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>[moveit_demo_client-5] [INFO]: Execute request accepted
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>[move_group-3] [INFO]: Execution request received
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>[move_group-3] [INFO]: Starting trajectory execution ...
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>[move_group-3] [INFO]: sending trajectory to lite6_traj_controller
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>[ros2_control_node-4] [INFO]: Received new action goal
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>[ros2_control_node-4] [INFO]: Accepted new action goal
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>[move_group-3] [INFO]: lite6_traj_controller started execution
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>[move_group-3] [INFO]: Goal request accepted!
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>[move_group-3] [INFO]: Motion plan was computed successfully.
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>[moveit_demo_client-5] [INFO]: Planning request complete!
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>[moveit_demo_client-5] [INFO]: time taken to generate plan: 0.0128849 seconds
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>[moveit_demo_client-5] [INFO]: Execute request accepted
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>[move_group-3] [INFO]: Execution request received
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>[move_group-3] [INFO]: Starting trajectory execution ...
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>[move_group-3] [INFO]: sending trajectory to lite6_traj_controller
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>[ros2_control_node-4] [INFO]: Received new action goal
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>[ros2_control_node-4] [INFO]: Accepted new action goal
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>[move_group-3] [INFO]: lite6_traj_controller started execution
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>[move_group-3] [INFO]: Goal request accepted!
 </code></pre></div>
 <h3 id="ros-visualizer-rviz">ROS Visualizer (RViz)<a class="headerlink" href="#ros-visualizer-rviz" title="Permanent link">&para;</a></h3>
 <p>In order to visualize what is happening behind the scenes you can use a tool called RViz on your host PC.</p>
@@ -5347,7 +5430,7 @@ Next run the following command to launch the example:</p>
 <li>Follow the official <a href="https://github.com/osrf/rocker#installation">installation instructions</a> to install <a href="https://github.com/osrf/rocker">Rocker</a></li>
 <li>Once installed run the following command to start RViz</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>rocker --x11 --devices /dev/dri --network host altera-ros2 rviz2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>rocker --x11 --devices /dev/dri --network host altera-ros2 rviz2
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
