@@ -2807,6 +2807,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#build-gsrd-20-roll-your-own-binaries" class="md-nav__link">
+    Build GSRD 2.0 Roll Your Own Binaries
+  </a>
+  
+    <nav class="md-nav" aria-label="Build GSRD 2.0 Roll Your Own Binaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hps-enablement-board_2" class="md-nav__link">
+    HPS Enablement Board
+  </a>
+  
+    <nav class="md-nav" aria-label="HPS Enablement Board">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-sd-card-binaries_1" class="md-nav__link">
+    Build SD Card Binaries
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#build-gsrd-10-binaries" class="md-nav__link">
     Build GSRD 1.0 Binaries
   </a>
@@ -2850,7 +2883,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#build-sd-card-binaries_1" class="md-nav__link">
+  <a href="#build-sd-card-binaries_2" class="md-nav__link">
     Build SD Card Binaries
   </a>
   
@@ -5496,6 +5529,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#build-gsrd-20-roll-your-own-binaries" class="md-nav__link">
+    Build GSRD 2.0 Roll Your Own Binaries
+  </a>
+  
+    <nav class="md-nav" aria-label="Build GSRD 2.0 Roll Your Own Binaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hps-enablement-board_2" class="md-nav__link">
+    HPS Enablement Board
+  </a>
+  
+    <nav class="md-nav" aria-label="HPS Enablement Board">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-sd-card-binaries_1" class="md-nav__link">
+    Build SD Card Binaries
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#build-gsrd-10-binaries" class="md-nav__link">
     Build GSRD 1.0 Binaries
   </a>
@@ -5539,7 +5605,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#build-sd-card-binaries_1" class="md-nav__link">
+  <a href="#build-sd-card-binaries_2" class="md-nav__link">
     Build SD Card Binaries
   </a>
   
@@ -6024,7 +6090,7 @@
 <li><a href="https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz">https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz</a></li>
 <li><a href="https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/sdimage.tar.gz">https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/sdimage.tar.gz</a></li>
 </ul>
-<p>2. Extract the archive, obtaining the file <code>gsrd-console-image-agilex5_devkit.wic</code></p>
+<p>2. Extract the archive, obtaining the file <code>gsrd-console-image-agilex5.wic</code></p>
 <p>3. Write the gsrd-console-image-agilex5_devkit.wic. SD card image to the micro SD card using the included USB writer in the host computer:</p>
 <ul>
 <li>On Linux, use the <code>dd</code> utility as shown next:
@@ -6032,7 +6098,7 @@
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cat<span class="w"> </span>/proc/partitions
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># This will return for example /dev/sdx</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Use dd to write the image in the corresponding device</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>gsrd-console-image-agilex5_devkit.wic<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/sdx<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>gsrd-console-image-agilex5.wic<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/sdx<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># Flush the changes to the SD card</span>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>sync
 </code></pre></div></li>
@@ -6046,16 +6112,14 @@
 <p>3. Power up the board</p>
 <p>4. Download and extract the JIC image:</p>
 <p>When using Cortex-A55 as the boot core:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>tar<span class="w"> </span>xf<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/uboot.jic
 </code></pre></div>
 <p>When using Cortex-A76 as the boot core:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>tar<span class="w"> </span>xf<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/uboot.jic
 </code></pre></div>
 <p>5. Write the JIC file to QSPI:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>jtagconfig<span class="w"> </span>--setparam<span class="w"> </span><span class="m">1</span><span class="w"> </span>JtagClock<span class="w"> </span>16M
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;ghrd_a5ed065bb32ae6sr0.hps.jic&quot;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;uboot.jic &quot;</span>
 </code></pre></div>
 <h5>Boot Linux</h5>
 
@@ -6207,20 +6271,18 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 <p>3. Power up the board</p>
 <p>4. Download and extract the JIC image:</p>
 <p>To use Cortex-A55 as the boot core:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.01/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a55/agilex_flash_image.hps.jic.tar.gz
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>tar<span class="w"> </span>xf<span class="w"> </span>agilex_flash_image.hps.jic.tar.gz
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>jtagconfig<span class="w"> </span>--setparam<span class="w"> </span><span class="m">1</span><span class="w"> </span>JtagClock<span class="w"> </span>16M
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;agilex_flash_image.hps.jic&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.01/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a55/qspi_flash_image.hps.jic
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>jtagconfig<span class="w"> </span>--setparam<span class="w"> </span><span class="m">1</span><span class="w"> </span>JtagClock<span class="w"> </span>16M
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;qspi_flash_image.hps.jic&quot;</span>
 </code></pre></div></p>
 <p>To use Cortex-A76 as the boot core:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.01/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a76/agilex_flash_image.hps.jic.tar.gz
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>tar<span class="w"> </span>xf<span class="w"> </span>agilex_flash_image.hps.jic.tar.gz
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>jtagconfig<span class="w"> </span>--setparam<span class="w"> </span><span class="m">1</span><span class="w"> </span>JtagClock<span class="w"> </span>16M
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;agilex_flash_image.hps.jic&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.01/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a76/qspi_flash_image.hps.jic
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>jtagconfig<span class="w"> </span>--setparam<span class="w"> </span><span class="m">1</span><span class="w"> </span>JtagClock<span class="w"> </span>16M
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;qspi_flash_image.hps.jic&quot;</span>
 </code></pre></div></p>
 <p>5. Write JIC image to QSPI:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>jtagconfig<span class="w"> </span>--setparam<span class="w"> </span><span class="m">1</span><span class="w"> </span>JtagClock<span class="w"> </span>16M
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;agilex_flash_image.hps.jic&quot;</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;qspi_flash_image.hps.jic&quot;</span>
 </code></pre></div></p>
 <h5>Boot Linux</h5>
 
@@ -6253,7 +6315,7 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>tar<span class="w"> </span>xf<span class="w"> </span>sdimage.tar.gz
 </code></pre></div>
 2. Split the eMMC image into 1GB chunks and copy them to your TFT folder:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>split<span class="w"> </span>--bytes<span class="o">=</span>1G<span class="w"> </span>gsrd-console-image-agilex5_devkit.wic
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>split<span class="w"> </span>--bytes<span class="o">=</span>1G<span class="w"> </span>gsrd-console-image-agilex5.wic
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>mv<span class="w"> </span>xa*<span class="w"> </span>&lt;your_tfp_folder&gt;
 </code></pre></div>
 This will put the two chunks called <code>xaa</code> and <code>xab</code> on your TFTP folder.
@@ -6261,10 +6323,9 @@ This will put the two chunks called <code>xaa</code> and <code>xab</code> on you
 <p>4. Set MSEL dipswitch SW27 to JTAG: OFF-OFF-OFF-OFF</p>
 <p>5. Power up the board</p>
 <p>6. Download the helper JIC used to write the eMMC image, extract it and write it to QSPI:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.01/emmc/agilex5_dk_a5e065bb32aes1_emmc/uboot.jic.tar.gz
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>tar<span class="w"> </span>xf<span class="w"> </span>uboot.jic.tar.gz
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>jtagconfig<span class="w"> </span>--setparam<span class="w"> </span><span class="m">1</span><span class="w"> </span>JtagClock<span class="w"> </span>16M
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;uboot.jic&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.01/emmc/agilex5_dk_a5e065bb32aes1_emmc/uboot.jic
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>jtagconfig<span class="w"> </span>--setparam<span class="w"> </span><span class="m">1</span><span class="w"> </span>JtagClock<span class="w"> </span>16M
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;uboot.jic&quot;</span>
 </code></pre></div>
 7. Determine your host IP address using <code>ifconfig</code> to use it as the IP address of the TFTP server</p>
 <p>8. Power down the board</p>
@@ -6294,10 +6355,9 @@ This will put the two chunks called <code>xaa</code> and <code>xab</code> on you
 <p>2. Set MSEL dipswitch SW27 to JTAG: OFF-OFF-OFF-OFF</p>
 <p>3. Power up the board</p>
 <p>4. Download the JIC and write it to QSPI:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.01/emmc/agilex5_dk_a5e065bb32aes1_emmc/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz<span class="w"> </span>
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>tar<span class="w"> </span>xf<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>jtagconfig<span class="w"> </span>--setparam<span class="w"> </span><span class="m">1</span><span class="w"> </span>JtagClock<span class="w"> </span>16M
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;ghrd_a5ed065bb32ae6sr0.hps.jic&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.01/emmc/agilex5_dk_a5e065bb32aes1_emmc/uboot.jic<span class="w"> </span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>jtagconfig<span class="w"> </span>--setparam<span class="w"> </span><span class="m">1</span><span class="w"> </span>JtagClock<span class="w"> </span>16M
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;uboot.jic&quot;</span>
 </code></pre></div></p>
 <h5>Boot Linux</h5>
 <p>1. Power down the board. </p>
@@ -6314,7 +6374,7 @@ This will put the two chunks called <code>xaa</code> and <code>xab</code> on you
 <h5>Write SD Card</h5>
 
 <p>1. Download SD card image from the prebuilt binaries https://releases.rocketboards.org/2026.01/debug/agilex5_dk_a5e065bb32aes1_debug/sdimage.tar.gz and extract the archive, obtaining the file <code>gsrd-console-image-agilex5_devkit.wic</code>.</p>
-<p>2. Write the SD card image to the micro SD card using the included USB writer in the host computer, and <code>dd</code> utility on Linux, or  Win32DiskImager on Windows, available at <a href="https://sourceforge.net/projects/win32diskimager">https://sourceforge.net/projects/win32diskimager</a>. Please refer to the <a href="#booting-from-sd-card">Booting from SD Card</a> section for more details about this.</p>
+<p>2. Write the SD card image to the micro SD card using the included USB writer in the host computer, and <code>dd</code> utility on Linux, or  Win32DiskImager on Windows, available at <a href="https://sourceforge.net/projects/win32diskimager">https://sourceforge.net/projects/win32diskimager</a>. Please refer to the <a href="#boot-from-sd-card">Boot from SD Card</a> section for more details about this.</p>
 <h5>Write QSPI Flash</h5>
 
 <p>1. Power down the board. </p>
@@ -6743,21 +6803,107 @@ You can verify that the Yocto environment has been setup using the <strong>which
 </li>
 </ol>
 <p><strong>NOTE</strong>: The <strong>wic</strong> application also allows you to modify any image with compatible vfat and ext* type partitions which also covers images used for <strong>eMMC</strong> boot flow.</p>
+<h2 id="build-gsrd-20-roll-your-own-binaries">Build GSRD 2.0 Roll Your Own Binaries<a class="headerlink" href="#build-gsrd-20-roll-your-own-binaries" title="Permanent link">&para;</a></h2>
+<p>Starting with release 25.3.1, a "roll your own" build flow is included. The key differences versus the Yocto/Kas build flow are:</p>
+<ul>
+<li>Each software component is built separately: ATF, U-Boot, Linux kernel, Linux root filesystem</li>
+<li>FPGA fabric is not configured</li>
+<li>The device tree from Linux kernel source code is used. This device tree does not enable IP from the FPGA fabric side</li>
+<li>Root filesystem is built with <a href="https://landley.net/toybox/">Toybox</a></li>
+<li>Root filesystem is used as initramfs. That makes it immutable, changes are not saved</li>
+<li>Binaries are not included, just build instructions</li>
+<li>Just the HPS Enablement Daughtercard, boot from SD card scenario is supported</li>
+</ul>
+<p><em>Note</em>: A similar example is presented in the <a href="https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/">Linux Boot Tutorial Example Design</a>. The key differences for that example are:</p>
+<ul>
+<li>FPGA fabric is configured from U-Boot before booting Linux</li>
+<li>Software components are built separately: ATF, U-Boot, Linux kernel</li>
+<li>Root filesystem is built with Yocto</li>
+<li>Root filesystem is stored in an EXT3 partition on the SD card, it is not immutable.</li>
+<li>Linux kernel modules are included in the root filesystem.</li>
+</ul>
+<h3 id="hps-enablement-board_2">HPS Enablement Board<a class="headerlink" href="#hps-enablement-board_2" title="Permanent link">&para;</a></h3>
+<h4 id="build-sd-card-binaries_1">Build SD Card Binaries<a class="headerlink" href="#build-sd-card-binaries_1" title="Permanent link">&para;</a></h4>
+<p>The overall build flow is presented in the following diagram:</p>
+<p><a class="glightbox" href="../images/agilex5-ryo-flow-sd.svg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/agilex5-ryo-flow-sd.svg" /></a></p>
+<p>The following diagram shows details on the flow used by the included roll your own build script:</p>
+<p><a class="glightbox" href="../images/agilex5-ryo-script-sd.svg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/agilex5-ryo-script-sd.svg" /></a></p>
+<p>The complete build instructions are presented below.</p>
+<h5>Prerequisites</h5>
+
+<p>The <code>mtools</code> are required in order to create the SD card image containing a single FAT partition. Install them on your Linux host. For Ubuntu you can use the following command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>mtools
+</code></pre></div>
+<h5>Setup Environment</h5>
+
+<p>1. Create the top folder to store all the build artifacts:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_gsrd_20.ryo
+<a id="__codelineno-62-2" name="__codelineno-62-2" href="#__codelineno-62-2"></a>mkdir<span class="w"> </span>agilex5_gsrd_20.ryo
+<a id="__codelineno-62-3" name="__codelineno-62-3" href="#__codelineno-62-3"></a><span class="nb">cd</span><span class="w"> </span>agilex5_gsrd_20.ryo
+<a id="__codelineno-62-4" name="__codelineno-62-4" href="#__codelineno-62-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+</code></pre></div>
+<p>Enable Quartus tools to be called from command line:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/altera_pro/25.3.1/quartus/
+<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
+</code></pre></div>
+<h5>Build Hardware Design</h5>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
+<a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
+<a id="__codelineno-64-4" name="__codelineno-64-4" href="#__codelineno-64-4"></a>unzip<span class="w"> </span>a5ed065es-premium-devkit-oobe-baseline-a55.zip
+<a id="__codelineno-64-5" name="__codelineno-64-5" href="#__codelineno-64-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>a5ed065es-premium-devkit-oobe-baseline-a55.zip
+<a id="__codelineno-64-6" name="__codelineno-64-6" href="#__codelineno-64-6"></a>make<span class="w"> </span>baseline_a55-install
+</code></pre></div>
+<p>The following files are created:</p>
+<ul>
+<li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof</code></li>
+<li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.sof</code></li>
+<li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.core.rbf</code></li>
+</ul>
+<h5>Build Software Components</h5>
+
+<p>1. Run the provided script to build the embedded software components: ATF, U-Boot, Linux Kernel &amp; Device Tree, Linux rootfs:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/ryo_linux
+<a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a>./ryo_linux_sd.sh
+</code></pre></div>
+<p>The following relevant files are created in <code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/ryo_linux/build_output/</code>:</p>
+<ul>
+<li><code>sdcard.img</code></li>
+<li><code>u-boot-socfpga/spl/u-boot-spl-dtb.hex</code></li>
+</ul>
+<h5>Build QSPI Image</h5>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/ryo_linux/build_output/
+<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>output_file.hps.jic<span class="w"> </span>output_file.core.rbf
+<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-66-4" name="__codelineno-66-4" href="#__codelineno-66-4"></a>-c<span class="w">  </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof<span class="w"> </span>output_file.jic<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-66-5" name="__codelineno-66-5" href="#__codelineno-66-5"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU128<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-66-6" name="__codelineno-66-6" href="#__codelineno-66-6"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A5ED065BB32AE6SR0<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-66-7" name="__codelineno-66-7" href="#__codelineno-66-7"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>u-boot-socfpga/spl/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-66-8" name="__codelineno-66-8" href="#__codelineno-66-8"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-66-9" name="__codelineno-66-9" href="#__codelineno-66-9"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
+</code></pre></div>
+<p>The following file is created in <code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/ryo_linux/build_output/</code>:</p>
+<ul>
+<li><code>output_file.hps.jic</code></li>
+</ul>
+<p>Refer to the <a href="#boot-from-sd-card">Boot from SD Card</a> section for details on how to write the SD card image and QSPI image, then boot to Linux. Note that the roll your own root filesystem is immutable, so any changes you may make will be discarded once you power cycle the board or reboot Linux. Also note that it is a simple, small root filesystem, without the sample applications or the webserver.</p>
 <h2 id="build-gsrd-10-binaries">Build GSRD 1.0 Binaries<a class="headerlink" href="#build-gsrd-10-binaries" title="Permanent link">&para;</a></h2>
 <h3 id="yocto-build-prerequisites">Yocto Build Prerequisites<a class="headerlink" href="#yocto-build-prerequisites" title="Permanent link">&para;</a></h3>
 <p>1. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.</p>
 <p>The command to install the required packages on Ubuntu 22.04 is:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-<a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade
-<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>openssh-server<span class="w"> </span>mc<span class="w"> </span>libgmp3-dev<span class="w"> </span>libmpc-dev<span class="w"> </span>gawk<span class="w"> </span>wget<span class="w"> </span>git<span class="w"> </span>diffstat<span class="w"> </span>unzip<span class="w"> </span>texinfo<span class="w"> </span>gcc<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a>build-essential<span class="w"> </span>chrpath<span class="w"> </span>socat<span class="w"> </span>cpio<span class="w"> </span>python3<span class="w"> </span>python3-pip<span class="w"> </span>python3-pexpect<span class="w"> </span>xz-utils<span class="w"> </span>debianutils<span class="w"> </span>iputils-ping<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-61-5" name="__codelineno-61-5" href="#__codelineno-61-5"></a>python3-git<span class="w"> </span>python3-jinja2<span class="w"> </span>libegl1-mesa<span class="w"> </span>libsdl1.2-dev<span class="w"> </span>pylint<span class="w"> </span>xterm<span class="w"> </span>python3-subunit<span class="w"> </span>mesa-common-dev<span class="w"> </span>zstd<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-61-6" name="__codelineno-61-6" href="#__codelineno-61-6"></a>liblz4-tool<span class="w"> </span>git<span class="w"> </span>fakeroot<span class="w"> </span>build-essential<span class="w"> </span>ncurses-dev<span class="w"> </span>xz-utils<span class="w"> </span>libssl-dev<span class="w"> </span>bc<span class="w"> </span>flex<span class="w"> </span>libelf-dev<span class="w"> </span>bison<span class="w"> </span>xinetd<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-61-7" name="__codelineno-61-7" href="#__codelineno-61-7"></a>tftpd<span class="w"> </span>tftp<span class="w"> </span>nfs-kernel-server<span class="w"> </span>libncurses5<span class="w"> </span>libc6-i386<span class="w"> </span>libstdc++6:i386<span class="w"> </span>libgcc++1:i386<span class="w"> </span>lib32z1<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-61-8" name="__codelineno-61-8" href="#__codelineno-61-8"></a>device-tree-compiler<span class="w"> </span>curl<span class="w"> </span>mtd-utils<span class="w"> </span>u-boot-tools<span class="w"> </span>net-tools<span class="w"> </span>swig<span class="w"> </span>-y
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+<a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>upgrade
+<a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>openssh-server<span class="w"> </span>mc<span class="w"> </span>libgmp3-dev<span class="w"> </span>libmpc-dev<span class="w"> </span>gawk<span class="w"> </span>wget<span class="w"> </span>git<span class="w"> </span>diffstat<span class="w"> </span>unzip<span class="w"> </span>texinfo<span class="w"> </span>gcc<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-67-4" name="__codelineno-67-4" href="#__codelineno-67-4"></a>build-essential<span class="w"> </span>chrpath<span class="w"> </span>socat<span class="w"> </span>cpio<span class="w"> </span>python3<span class="w"> </span>python3-pip<span class="w"> </span>python3-pexpect<span class="w"> </span>xz-utils<span class="w"> </span>debianutils<span class="w"> </span>iputils-ping<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-67-5" name="__codelineno-67-5" href="#__codelineno-67-5"></a>python3-git<span class="w"> </span>python3-jinja2<span class="w"> </span>libegl1-mesa<span class="w"> </span>libsdl1.2-dev<span class="w"> </span>pylint<span class="w"> </span>xterm<span class="w"> </span>python3-subunit<span class="w"> </span>mesa-common-dev<span class="w"> </span>zstd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-67-6" name="__codelineno-67-6" href="#__codelineno-67-6"></a>liblz4-tool<span class="w"> </span>git<span class="w"> </span>fakeroot<span class="w"> </span>build-essential<span class="w"> </span>ncurses-dev<span class="w"> </span>xz-utils<span class="w"> </span>libssl-dev<span class="w"> </span>bc<span class="w"> </span>flex<span class="w"> </span>libelf-dev<span class="w"> </span>bison<span class="w"> </span>xinetd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-67-7" name="__codelineno-67-7" href="#__codelineno-67-7"></a>tftpd<span class="w"> </span>tftp<span class="w"> </span>nfs-kernel-server<span class="w"> </span>libncurses5<span class="w"> </span>libc6-i386<span class="w"> </span>libstdc++6:i386<span class="w"> </span>libgcc++1:i386<span class="w"> </span>lib32z1<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-67-8" name="__codelineno-67-8" href="#__codelineno-67-8"></a>device-tree-compiler<span class="w"> </span>curl<span class="w"> </span>mtd-utils<span class="w"> </span>u-boot-tools<span class="w"> </span>net-tools<span class="w"> </span>swig<span class="w"> </span>-y
 </code></pre></div>
 <p>On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="w"> </span>sudo<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span>/bin/bash<span class="w"> </span>/bin/sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="w"> </span>sudo<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span>/bin/bash<span class="w"> </span>/bin/sh
 </code></pre></div>
 <p><strong>Note</strong>: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.</p>
 <h3 id="hps-nand-board_1">HPS NAND Board<a class="headerlink" href="#hps-nand-board_1" title="Permanent link">&para;</a></h3>
@@ -6770,38 +6916,38 @@ You can verify that the Yocto environment has been setup using the <strong>which
 <h5>Setup Environment</h5>
 
 <p>1. Create the top folder to store all the build artifacts:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_gsrd.emmc
-<a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>mkdir<span class="w"> </span>agilex5_gsrd.emmc
-<a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a><span class="nb">cd</span><span class="w"> </span>agilex5_gsrd.emmc
-<a id="__codelineno-63-4" name="__codelineno-63-4" href="#__codelineno-63-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_gsrd.emmc
+<a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a>mkdir<span class="w"> </span>agilex5_gsrd.emmc
+<a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a><span class="nb">cd</span><span class="w"> </span>agilex5_gsrd.emmc
+<a id="__codelineno-69-4" name="__codelineno-69-4" href="#__codelineno-69-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
 </code></pre></div>
 <p>Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a>wget<span class="w"> </span>https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/<span class="se">\</span>
-<a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a>arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-<a id="__codelineno-64-4" name="__codelineno-64-4" href="#__codelineno-64-4"></a>tar<span class="w"> </span>xf<span class="w"> </span>arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-<a id="__codelineno-64-5" name="__codelineno-64-5" href="#__codelineno-64-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-<a id="__codelineno-64-6" name="__codelineno-64-6" href="#__codelineno-64-6"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:<span class="nv">$PATH</span>
-<a id="__codelineno-64-7" name="__codelineno-64-7" href="#__codelineno-64-7"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>arm64
-<a id="__codelineno-64-8" name="__codelineno-64-8" href="#__codelineno-64-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-70-2" name="__codelineno-70-2" href="#__codelineno-70-2"></a>wget<span class="w"> </span>https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/<span class="se">\</span>
+<a id="__codelineno-70-3" name="__codelineno-70-3" href="#__codelineno-70-3"></a>arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+<a id="__codelineno-70-4" name="__codelineno-70-4" href="#__codelineno-70-4"></a>tar<span class="w"> </span>xf<span class="w"> </span>arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+<a id="__codelineno-70-5" name="__codelineno-70-5" href="#__codelineno-70-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+<a id="__codelineno-70-6" name="__codelineno-70-6" href="#__codelineno-70-6"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:<span class="nv">$PATH</span>
+<a id="__codelineno-70-7" name="__codelineno-70-7" href="#__codelineno-70-7"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>arm64
+<a id="__codelineno-70-8" name="__codelineno-70-8" href="#__codelineno-70-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/altera_pro/25.3.1/quartus/
-<a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/altera_pro/25.3.1/quartus/
+<a id="__codelineno-71-2" name="__codelineno-71-2" href="#__codelineno-71-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
 </code></pre></div>
 <h5>Build Hardware Design</h5>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
-<a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-emmc-legacy-baseline.zip
-<a id="__codelineno-66-4" name="__codelineno-66-4" href="#__codelineno-66-4"></a>unzip<span class="w"> </span>a5ed065es-premium-devkit-emmc-legacy-baseline.zip
-<a id="__codelineno-66-5" name="__codelineno-66-5" href="#__codelineno-66-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>a5ed065es-premium-devkit-emmc-legacy-baseline.zip
-<a id="__codelineno-66-6" name="__codelineno-66-6" href="#__codelineno-66-6"></a>make<span class="w"> </span>legacy_baseline-build
-<a id="__codelineno-66-7" name="__codelineno-66-7" href="#__codelineno-66-7"></a><span class="nb">pushd</span><span class="w"> </span>software/hps_debug<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./build.sh<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">popd</span>
-<a id="__codelineno-66-8" name="__codelineno-66-8" href="#__codelineno-66-8"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>output_files/legacy_baseline.sof<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-66-9" name="__codelineno-66-9" href="#__codelineno-66-9"></a><span class="w">  </span>output_files/legacy_baseline_hps_debug.sof<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-66-10" name="__codelineno-66-10" href="#__codelineno-66-10"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>software/hps_debug/hps_wipe.ihex
-<a id="__codelineno-66-11" name="__codelineno-66-11" href="#__codelineno-66-11"></a><span class="nb">cd</span><span class="w"> </span>..
+<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
+<a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-emmc-legacy-baseline.zip
+<a id="__codelineno-72-4" name="__codelineno-72-4" href="#__codelineno-72-4"></a>unzip<span class="w"> </span>a5ed065es-premium-devkit-emmc-legacy-baseline.zip
+<a id="__codelineno-72-5" name="__codelineno-72-5" href="#__codelineno-72-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>a5ed065es-premium-devkit-emmc-legacy-baseline.zip
+<a id="__codelineno-72-6" name="__codelineno-72-6" href="#__codelineno-72-6"></a>make<span class="w"> </span>legacy_baseline-build
+<a id="__codelineno-72-7" name="__codelineno-72-7" href="#__codelineno-72-7"></a><span class="nb">pushd</span><span class="w"> </span>software/hps_debug<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./build.sh<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">popd</span>
+<a id="__codelineno-72-8" name="__codelineno-72-8" href="#__codelineno-72-8"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>output_files/legacy_baseline.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-72-9" name="__codelineno-72-9" href="#__codelineno-72-9"></a><span class="w">  </span>output_files/legacy_baseline_hps_debug.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-72-10" name="__codelineno-72-10" href="#__codelineno-72-10"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>software/hps_debug/hps_wipe.ihex
+<a id="__codelineno-72-11" name="__codelineno-72-11" href="#__codelineno-72-11"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
 <p>The following files are created:</p>
 <ul>
@@ -6810,9 +6956,9 @@ You can verify that the Yocto environment has been setup using the <strong>which
 </ul>
 <h5>Build Core RBF</h5>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.rbf
-<a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.rbf<span class="w"> </span>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-73-2" name="__codelineno-73-2" href="#__codelineno-73-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.rbf
+<a id="__codelineno-73-3" name="__codelineno-73-3" href="#__codelineno-73-3"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.rbf<span class="w"> </span>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
@@ -6821,12 +6967,12 @@ You can verify that the Yocto environment has been setup using the <strong>which
 <h5>Set Up Yocto</h5>
 
 <p>1. Clone the Yocto script and prepare the build:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
-<a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/gsrd-socfpga
-<a id="__codelineno-68-4" name="__codelineno-68-4" href="#__codelineno-68-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga
-<a id="__codelineno-68-5" name="__codelineno-68-5" href="#__codelineno-68-5"></a>.<span class="w"> </span>agilex5_dk_a5e065bb32aes1-gsrd-build.sh
-<a id="__codelineno-68-6" name="__codelineno-68-6" href="#__codelineno-68-6"></a>build_setup
+<div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-74-2" name="__codelineno-74-2" href="#__codelineno-74-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
+<a id="__codelineno-74-3" name="__codelineno-74-3" href="#__codelineno-74-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/gsrd-socfpga
+<a id="__codelineno-74-4" name="__codelineno-74-4" href="#__codelineno-74-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga
+<a id="__codelineno-74-5" name="__codelineno-74-5" href="#__codelineno-74-5"></a>.<span class="w"> </span>agilex5_dk_a5e065bb32aes1-gsrd-build.sh
+<a id="__codelineno-74-6" name="__codelineno-74-6" href="#__codelineno-74-6"></a>build_setup
 </code></pre></div>
 <h5>Customize Yocto</h5>
 <p>1. Save the <code>core.rbf</code> as <code>$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_emmc_ghrd.core.rbf</code>  </p>
@@ -6836,21 +6982,21 @@ You can verify that the Yocto environment has been setup using the <strong>which
 <li>Delete the line <code>SRC_URI[agilex5_dk_a5e065bb32aes1_emmc_core.sha256sum] = "bf11c8cb3b6d9487f93ce0e055b1e5256998a25b25ac4690bef3fcd6225ee1ae"</code>
 The above are achieved by the following instructions:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="nv">CORE_RBF</span><span class="o">=</span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_emmc_ghrd.core.rbf
-<a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/ghrd_a5ed065bb32ae6sr0.core.rbf<span class="w"> </span><span class="nv">$CORE_RBF</span>
-<a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a><span class="nv">OLD_URI</span><span class="o">=</span><span class="s2">&quot;\${GHRD_REPO}\/agilex5_dk_a5e065bb32aes1_emmc_\${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_emmc_core&quot;</span>
-<a id="__codelineno-69-4" name="__codelineno-69-4" href="#__codelineno-69-4"></a><span class="nv">CORE_SHA</span><span class="o">=</span><span class="k">$(</span>sha256sum<span class="w"> </span><span class="nv">$CORE_RBF</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f1<span class="w"> </span>-d<span class="s2">&quot; &quot;</span><span class="k">)</span>
-<a id="__codelineno-69-5" name="__codelineno-69-5" href="#__codelineno-69-5"></a><span class="nv">NEW_URI</span><span class="o">=</span><span class="s2">&quot;file:\/\/agilex5_dk_a5e065bb32aes1_emmc_ghrd.core.rbf;sha256sum=</span><span class="nv">$CORE_SHA</span><span class="s2">&quot;</span>
-<a id="__codelineno-69-6" name="__codelineno-69-6" href="#__codelineno-69-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/</span><span class="nv">$OLD_URI</span><span class="s2">/</span><span class="nv">$NEW_URI</span><span class="s2">/g&quot;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
-<a id="__codelineno-69-7" name="__codelineno-69-7" href="#__codelineno-69-7"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;/agilex5_dk_a5e065bb32aes1_emmc_core\.sha256sum/d&quot;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+<div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="nv">CORE_RBF</span><span class="o">=</span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_emmc_ghrd.core.rbf
+<a id="__codelineno-75-2" name="__codelineno-75-2" href="#__codelineno-75-2"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/ghrd_a5ed065bb32ae6sr0.core.rbf<span class="w"> </span><span class="nv">$CORE_RBF</span>
+<a id="__codelineno-75-3" name="__codelineno-75-3" href="#__codelineno-75-3"></a><span class="nv">OLD_URI</span><span class="o">=</span><span class="s2">&quot;\${GHRD_REPO}\/agilex5_dk_a5e065bb32aes1_emmc_\${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_emmc_core&quot;</span>
+<a id="__codelineno-75-4" name="__codelineno-75-4" href="#__codelineno-75-4"></a><span class="nv">CORE_SHA</span><span class="o">=</span><span class="k">$(</span>sha256sum<span class="w"> </span><span class="nv">$CORE_RBF</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f1<span class="w"> </span>-d<span class="s2">&quot; &quot;</span><span class="k">)</span>
+<a id="__codelineno-75-5" name="__codelineno-75-5" href="#__codelineno-75-5"></a><span class="nv">NEW_URI</span><span class="o">=</span><span class="s2">&quot;file:\/\/agilex5_dk_a5e065bb32aes1_emmc_ghrd.core.rbf;sha256sum=</span><span class="nv">$CORE_SHA</span><span class="s2">&quot;</span>
+<a id="__codelineno-75-6" name="__codelineno-75-6" href="#__codelineno-75-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/</span><span class="nv">$OLD_URI</span><span class="s2">/</span><span class="nv">$NEW_URI</span><span class="s2">/g&quot;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+<a id="__codelineno-75-7" name="__codelineno-75-7" href="#__codelineno-75-7"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;/agilex5_dk_a5e065bb32aes1_emmc_core\.sha256sum/d&quot;</span><span class="w"> </span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
 </code></pre></div>
 <h5>Build Yocto</h5>
 
 <p>Build Yocto:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a>bitbake_image
+<div class="highlight"><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a>bitbake_image
 </code></pre></div>
 <p>Gather files:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a>package
+<div class="highlight"><pre><span></span><code><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a>package
 </code></pre></div>
 <p>The following files are created:</p>
 <ul>
@@ -6860,15 +7006,15 @@ The above are achieved by the following instructions:</li>
 </ul>
 <h5>Build QSPI Image</h5>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.jic<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.core.rbf
-<a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-72-4" name="__codelineno-72-4" href="#__codelineno-72-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.jic<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-72-5" name="__codelineno-72-5" href="#__codelineno-72-5"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU128<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-72-6" name="__codelineno-72-6" href="#__codelineno-72-6"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A5ED065BB32AE6SR0<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-72-7" name="__codelineno-72-7" href="#__codelineno-72-7"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-72-8" name="__codelineno-72-8" href="#__codelineno-72-8"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-72-9" name="__codelineno-72-9" href="#__codelineno-72-9"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-78-2" name="__codelineno-78-2" href="#__codelineno-78-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.jic<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.core.rbf
+<a id="__codelineno-78-3" name="__codelineno-78-3" href="#__codelineno-78-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-78-4" name="__codelineno-78-4" href="#__codelineno-78-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.jic<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-78-5" name="__codelineno-78-5" href="#__codelineno-78-5"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU128<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-78-6" name="__codelineno-78-6" href="#__codelineno-78-6"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A5ED065BB32AE6SR0<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-78-7" name="__codelineno-78-7" href="#__codelineno-78-7"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-78-8" name="__codelineno-78-8" href="#__codelineno-78-8"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-78-9" name="__codelineno-78-9" href="#__codelineno-78-9"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
@@ -6876,12 +7022,12 @@ The above are achieved by the following instructions:</li>
 </ul>
 <h5>Build HPS RBF</h5>
 <p>This is an optional step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-73-2" name="__codelineno-73-2" href="#__codelineno-73-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.rbf
-<a id="__codelineno-73-3" name="__codelineno-73-3" href="#__codelineno-73-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-73-4" name="__codelineno-73-4" href="#__codelineno-73-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof<span class="w">  </span>ghrd_a5ed065bb32ae6sr0.rbf<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-73-5" name="__codelineno-73-5" href="#__codelineno-73-5"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-73-6" name="__codelineno-73-6" href="#__codelineno-73-6"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-79-2" name="__codelineno-79-2" href="#__codelineno-79-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.rbf
+<a id="__codelineno-79-3" name="__codelineno-79-3" href="#__codelineno-79-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-79-4" name="__codelineno-79-4" href="#__codelineno-79-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof<span class="w">  </span>ghrd_a5ed065bb32ae6sr0.rbf<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-79-5" name="__codelineno-79-5" href="#__codelineno-79-5"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-79-6" name="__codelineno-79-6" href="#__codelineno-79-6"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
@@ -6893,32 +7039,32 @@ The above are achieved by the following instructions:</li>
 The following diagram illustrates how the helper JIC is built, base on the GHRD and Yocto compilation results:
 <a class="glightbox" href="../images/agilex5-build-helper-flow.svg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/agilex5-build-helper-flow.svg" /></a></p>
 <p>1. Create folder to contain the helper JIC artifacts</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-74-2" name="__codelineno-74-2" href="#__codelineno-74-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>jic-helper
-<a id="__codelineno-74-3" name="__codelineno-74-3" href="#__codelineno-74-3"></a>mkdir<span class="w"> </span>jic-helper
+<div class="highlight"><pre><span></span><code><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-80-2" name="__codelineno-80-2" href="#__codelineno-80-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>jic-helper
+<a id="__codelineno-80-3" name="__codelineno-80-3" href="#__codelineno-80-3"></a>mkdir<span class="w"> </span>jic-helper
 </code></pre></div>
 <p>2. Retrieve the .pfg file instructing the Quartus Programming File Generator on how to create the JIC file, and tweak it a little bit to make it smaller:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="nb">cd</span><span class="w"> </span>jic-helper
-<a id="__codelineno-75-2" name="__codelineno-75-2" href="#__codelineno-75-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.01/emmc/agilex5_dk_a5e065bb32aes1_emmc/uboot-only.pfg
-<a id="__codelineno-75-3" name="__codelineno-75-3" href="#__codelineno-75-3"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/directory=/hps=&quot;1&quot; directory=/g&#39;</span><span class="w"> </span>uboot-only.pfg
-<a id="__codelineno-75-4" name="__codelineno-75-4" href="#__codelineno-75-4"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/type=&quot;JIC&quot;/type=&quot;PERIPH_JIC&quot;/g&#39;</span><span class="w"> </span>uboot-only.pfg
-<a id="__codelineno-75-5" name="__codelineno-75-5" href="#__codelineno-75-5"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/MT25QU02G/MT25QU01G/g&#39;</span><span class="w"> </span>uboot-only.pfg
-<a id="__codelineno-75-6" name="__codelineno-75-6" href="#__codelineno-75-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/ghrd_a5ed065bb32ae6sr0\.sof/legacy_baseline.sof/g&#39;</span><span class="w"> </span>uboot-only.pfg
+<div class="highlight"><pre><span></span><code><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a><span class="nb">cd</span><span class="w"> </span>jic-helper
+<a id="__codelineno-81-2" name="__codelineno-81-2" href="#__codelineno-81-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.01/emmc/agilex5_dk_a5e065bb32aes1_emmc/uboot-only.pfg
+<a id="__codelineno-81-3" name="__codelineno-81-3" href="#__codelineno-81-3"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/directory=/hps=&quot;1&quot; directory=/g&#39;</span><span class="w"> </span>uboot-only.pfg
+<a id="__codelineno-81-4" name="__codelineno-81-4" href="#__codelineno-81-4"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/type=&quot;JIC&quot;/type=&quot;PERIPH_JIC&quot;/g&#39;</span><span class="w"> </span>uboot-only.pfg
+<a id="__codelineno-81-5" name="__codelineno-81-5" href="#__codelineno-81-5"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/MT25QU02G/MT25QU01G/g&#39;</span><span class="w"> </span>uboot-only.pfg
+<a id="__codelineno-81-6" name="__codelineno-81-6" href="#__codelineno-81-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/ghrd_a5ed065bb32ae6sr0\.sof/legacy_baseline.sof/g&#39;</span><span class="w"> </span>uboot-only.pfg
 </code></pre></div>
 <p>3. Bring in the files that are needed:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span>.
-<a id="__codelineno-76-2" name="__codelineno-76-2" href="#__codelineno-76-2"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof<span class="w"> </span>.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span>.
+<a id="__codelineno-82-2" name="__codelineno-82-2" href="#__codelineno-82-2"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof<span class="w"> </span>.
 </code></pre></div>
 <p>4. Process <code>u-boot.itb</code> file to be exactly 2MB in size, and have a <code>.bin</code> extension as needed by Quartus Programming File Generator:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb<span class="w"> </span>.
-<a id="__codelineno-77-2" name="__codelineno-77-2" href="#__codelineno-77-2"></a><span class="nv">uboot_part_size</span><span class="o">=</span><span class="m">2</span>*1024*1024
-<a id="__codelineno-77-3" name="__codelineno-77-3" href="#__codelineno-77-3"></a><span class="nv">uboot_size</span><span class="o">=</span><span class="sb">`</span>wc<span class="w"> </span>-c<span class="w"> </span>&lt;<span class="w"> </span>u-boot.itb<span class="sb">`</span>
-<a id="__codelineno-77-4" name="__codelineno-77-4" href="#__codelineno-77-4"></a><span class="nv">uboot_pad</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$((</span><span class="nv">uboot_part_size</span><span class="o">-</span><span class="nv">uboot_size</span><span class="k">))</span><span class="s2">&quot;</span>
-<a id="__codelineno-77-5" name="__codelineno-77-5" href="#__codelineno-77-5"></a>truncate<span class="w"> </span>-s<span class="w"> </span>+<span class="nv">$uboot_pad</span><span class="w"> </span>u-boot.itb
-<a id="__codelineno-77-6" name="__codelineno-77-6" href="#__codelineno-77-6"></a>mv<span class="w"> </span>u-boot.itb<span class="w"> </span>u-boot.bin
+<div class="highlight"><pre><span></span><code><a id="__codelineno-83-1" name="__codelineno-83-1" href="#__codelineno-83-1"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb<span class="w"> </span>.
+<a id="__codelineno-83-2" name="__codelineno-83-2" href="#__codelineno-83-2"></a><span class="nv">uboot_part_size</span><span class="o">=</span><span class="m">2</span>*1024*1024
+<a id="__codelineno-83-3" name="__codelineno-83-3" href="#__codelineno-83-3"></a><span class="nv">uboot_size</span><span class="o">=</span><span class="sb">`</span>wc<span class="w"> </span>-c<span class="w"> </span>&lt;<span class="w"> </span>u-boot.itb<span class="sb">`</span>
+<a id="__codelineno-83-4" name="__codelineno-83-4" href="#__codelineno-83-4"></a><span class="nv">uboot_pad</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$((</span><span class="nv">uboot_part_size</span><span class="o">-</span><span class="nv">uboot_size</span><span class="k">))</span><span class="s2">&quot;</span>
+<a id="__codelineno-83-5" name="__codelineno-83-5" href="#__codelineno-83-5"></a>truncate<span class="w"> </span>-s<span class="w"> </span>+<span class="nv">$uboot_pad</span><span class="w"> </span>u-boot.itb
+<a id="__codelineno-83-6" name="__codelineno-83-6" href="#__codelineno-83-6"></a>mv<span class="w"> </span>u-boot.itb<span class="w"> </span>u-boot.bin
 </code></pre></div>
 <p>5. Create the JIC file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>uboot-only.pfg
+<div class="highlight"><pre><span></span><code><a id="__codelineno-84-1" name="__codelineno-84-1" href="#__codelineno-84-1"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>uboot-only.pfg
 </code></pre></div>
 <p>The following file will be created:</p>
 <ul>
@@ -6926,7 +7072,7 @@ The following diagram illustrates how the helper JIC is built, base on the GHRD 
 </ul>
 <h3 id="hps-test-board_1">HPS Test Board<a class="headerlink" href="#hps-test-board_1" title="Permanent link">&para;</a></h3>
 <p>This section presents how to build the binaries for HPS Test Board.</p>
-<h4 id="build-sd-card-binaries_1">Build SD Card Binaries<a class="headerlink" href="#build-sd-card-binaries_1" title="Permanent link">&para;</a></h4>
+<h4 id="build-sd-card-binaries_2">Build SD Card Binaries<a class="headerlink" href="#build-sd-card-binaries_2" title="Permanent link">&para;</a></h4>
 <hr/>
 
 <p>The following diagram shows how the binaries are built for the HPS Test Daughtercard:  </p>
@@ -6934,28 +7080,28 @@ The following diagram illustrates how the helper JIC is built, base on the GHRD 
 <h5>Setup Environment</h5>
 
 <p>1. Create the top folder to store all the build artifacts:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_gsrd.test
-<a id="__codelineno-79-2" name="__codelineno-79-2" href="#__codelineno-79-2"></a>mkdir<span class="w"> </span>agilex5_gsrd.test
-<a id="__codelineno-79-3" name="__codelineno-79-3" href="#__codelineno-79-3"></a><span class="nb">cd</span><span class="w"> </span>agilex5_gsrd.test
-<a id="__codelineno-79-4" name="__codelineno-79-4" href="#__codelineno-79-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-85-1" name="__codelineno-85-1" href="#__codelineno-85-1"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_gsrd.test
+<a id="__codelineno-85-2" name="__codelineno-85-2" href="#__codelineno-85-2"></a>mkdir<span class="w"> </span>agilex5_gsrd.test
+<a id="__codelineno-85-3" name="__codelineno-85-3" href="#__codelineno-85-3"></a><span class="nb">cd</span><span class="w"> </span>agilex5_gsrd.test
+<a id="__codelineno-85-4" name="__codelineno-85-4" href="#__codelineno-85-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/altera_pro/25.3.1/quartus/
-<a id="__codelineno-80-2" name="__codelineno-80-2" href="#__codelineno-80-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-86-1" name="__codelineno-86-1" href="#__codelineno-86-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/altera_pro/25.3.1/quartus/
+<a id="__codelineno-86-2" name="__codelineno-86-2" href="#__codelineno-86-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
 </code></pre></div>
 <h5>Build Hardware Design</h5>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-81-2" name="__codelineno-81-2" href="#__codelineno-81-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
-<a id="__codelineno-81-3" name="__codelineno-81-3" href="#__codelineno-81-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-debug2-legacy-baseline.zip
-<a id="__codelineno-81-4" name="__codelineno-81-4" href="#__codelineno-81-4"></a>unzip<span class="w"> </span>a5ed065es-premium-devkit-debug2-legacy-baseline.zip
-<a id="__codelineno-81-5" name="__codelineno-81-5" href="#__codelineno-81-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>a5ed065es-premium-devkit-debug2-legacy-baseline.zip
-<a id="__codelineno-81-6" name="__codelineno-81-6" href="#__codelineno-81-6"></a>make<span class="w"> </span>legacy_baseline-build
-<a id="__codelineno-81-7" name="__codelineno-81-7" href="#__codelineno-81-7"></a><span class="nb">pushd</span><span class="w"> </span>software/hps_debug<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./build.sh<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">popd</span>
-<a id="__codelineno-81-8" name="__codelineno-81-8" href="#__codelineno-81-8"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>output_files/legacy_baseline.sof<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-81-9" name="__codelineno-81-9" href="#__codelineno-81-9"></a><span class="w">  </span>output_files/legacy_baseline_hps_debug.sof<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-81-10" name="__codelineno-81-10" href="#__codelineno-81-10"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>software/hps_debug/hps_wipe.ihex
-<a id="__codelineno-81-11" name="__codelineno-81-11" href="#__codelineno-81-11"></a><span class="nb">cd</span><span class="w"> </span>..
+<div class="highlight"><pre><span></span><code><a id="__codelineno-87-1" name="__codelineno-87-1" href="#__codelineno-87-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-87-2" name="__codelineno-87-2" href="#__codelineno-87-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
+<a id="__codelineno-87-3" name="__codelineno-87-3" href="#__codelineno-87-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-debug2-legacy-baseline.zip
+<a id="__codelineno-87-4" name="__codelineno-87-4" href="#__codelineno-87-4"></a>unzip<span class="w"> </span>a5ed065es-premium-devkit-debug2-legacy-baseline.zip
+<a id="__codelineno-87-5" name="__codelineno-87-5" href="#__codelineno-87-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>a5ed065es-premium-devkit-debug2-legacy-baseline.zip
+<a id="__codelineno-87-6" name="__codelineno-87-6" href="#__codelineno-87-6"></a>make<span class="w"> </span>legacy_baseline-build
+<a id="__codelineno-87-7" name="__codelineno-87-7" href="#__codelineno-87-7"></a><span class="nb">pushd</span><span class="w"> </span>software/hps_debug<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./build.sh<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">popd</span>
+<a id="__codelineno-87-8" name="__codelineno-87-8" href="#__codelineno-87-8"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>output_files/legacy_baseline.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-87-9" name="__codelineno-87-9" href="#__codelineno-87-9"></a><span class="w">  </span>output_files/legacy_baseline_hps_debug.sof<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-87-10" name="__codelineno-87-10" href="#__codelineno-87-10"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>software/hps_debug/hps_wipe.ihex
+<a id="__codelineno-87-11" name="__codelineno-87-11" href="#__codelineno-87-11"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
 <p>The following files are created:</p>
 <ul>
@@ -6964,9 +7110,9 @@ The following diagram illustrates how the helper JIC is built, base on the GHRD 
 </ul>
 <h5>Build Core RBF</h5>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-82-2" name="__codelineno-82-2" href="#__codelineno-82-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.rbf
-<a id="__codelineno-82-3" name="__codelineno-82-3" href="#__codelineno-82-3"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.rbf<span class="w"> </span>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-88-1" name="__codelineno-88-1" href="#__codelineno-88-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-88-2" name="__codelineno-88-2" href="#__codelineno-88-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.rbf
+<a id="__codelineno-88-3" name="__codelineno-88-3" href="#__codelineno-88-3"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.rbf<span class="w"> </span>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
@@ -6975,26 +7121,26 @@ The following diagram illustrates how the helper JIC is built, base on the GHRD 
 <h5>Set Up Yocto</h5>
 
 <p>1. Clone the Yocto script and prepare the build:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-83-1" name="__codelineno-83-1" href="#__codelineno-83-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-83-2" name="__codelineno-83-2" href="#__codelineno-83-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
-<a id="__codelineno-83-3" name="__codelineno-83-3" href="#__codelineno-83-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/gsrd-socfpga
-<a id="__codelineno-83-4" name="__codelineno-83-4" href="#__codelineno-83-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga
-<a id="__codelineno-83-5" name="__codelineno-83-5" href="#__codelineno-83-5"></a>.<span class="w"> </span>agilex5_dk_a5e065bb32aes1-gsrd-build.sh
-<a id="__codelineno-83-6" name="__codelineno-83-6" href="#__codelineno-83-6"></a>build_setup
+<div class="highlight"><pre><span></span><code><a id="__codelineno-89-1" name="__codelineno-89-1" href="#__codelineno-89-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-89-2" name="__codelineno-89-2" href="#__codelineno-89-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
+<a id="__codelineno-89-3" name="__codelineno-89-3" href="#__codelineno-89-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS25.3.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/gsrd-socfpga
+<a id="__codelineno-89-4" name="__codelineno-89-4" href="#__codelineno-89-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga
+<a id="__codelineno-89-5" name="__codelineno-89-5" href="#__codelineno-89-5"></a>.<span class="w"> </span>agilex5_dk_a5e065bb32aes1-gsrd-build.sh
+<a id="__codelineno-89-6" name="__codelineno-89-6" href="#__codelineno-89-6"></a>build_setup
 </code></pre></div>
 <h5>Customize Yocto</h5>
 <p>Replace the file <code>$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_debug2_ghrd.core.rbf</code> with the rebuilt core.rbf file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-84-1" name="__codelineno-84-1" href="#__codelineno-84-1"></a><span class="nv">CORE_RBF</span><span class="o">=</span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_debug2_ghrd.core.rbf
-<a id="__codelineno-84-2" name="__codelineno-84-2" href="#__codelineno-84-2"></a>rm<span class="w"> </span>-f<span class="w"> </span><span class="nv">$CORE_RBF</span>
-<a id="__codelineno-84-3" name="__codelineno-84-3" href="#__codelineno-84-3"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/ghrd_a5ed065bb32ae6sr0.core.rbf<span class="w"> </span><span class="nv">$CORE_RBF</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-90-1" name="__codelineno-90-1" href="#__codelineno-90-1"></a><span class="nv">CORE_RBF</span><span class="o">=</span><span class="nv">$WORKSPACE</span>/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_debug2_ghrd.core.rbf
+<a id="__codelineno-90-2" name="__codelineno-90-2" href="#__codelineno-90-2"></a>rm<span class="w"> </span>-f<span class="w"> </span><span class="nv">$CORE_RBF</span>
+<a id="__codelineno-90-3" name="__codelineno-90-3" href="#__codelineno-90-3"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/ghrd_a5ed065bb32ae6sr0.core.rbf<span class="w"> </span><span class="nv">$CORE_RBF</span>
 </code></pre></div>
 <h5>Build Yocto</h5>
 
 <p>Build Yocto:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-85-1" name="__codelineno-85-1" href="#__codelineno-85-1"></a>bitbake_image
+<div class="highlight"><pre><span></span><code><a id="__codelineno-91-1" name="__codelineno-91-1" href="#__codelineno-91-1"></a>bitbake_image
 </code></pre></div>
 <p>Gather files:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-86-1" name="__codelineno-86-1" href="#__codelineno-86-1"></a>package
+<div class="highlight"><pre><span></span><code><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a>package
 </code></pre></div>
 <p>The following files are created:</p>
 <ul>
@@ -7003,15 +7149,15 @@ The following diagram illustrates how the helper JIC is built, base on the GHRD 
 </ul>
 <h5>Build QSPI Image</h5>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-87-1" name="__codelineno-87-1" href="#__codelineno-87-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-87-2" name="__codelineno-87-2" href="#__codelineno-87-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.jic<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.core.rbf
-<a id="__codelineno-87-3" name="__codelineno-87-3" href="#__codelineno-87-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-87-4" name="__codelineno-87-4" href="#__codelineno-87-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.jic<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-87-5" name="__codelineno-87-5" href="#__codelineno-87-5"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU128<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-87-6" name="__codelineno-87-6" href="#__codelineno-87-6"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A5ED065BB32AE6SR0<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-87-7" name="__codelineno-87-7" href="#__codelineno-87-7"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-87-8" name="__codelineno-87-8" href="#__codelineno-87-8"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-87-9" name="__codelineno-87-9" href="#__codelineno-87-9"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-93-2" name="__codelineno-93-2" href="#__codelineno-93-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.jic<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.core.rbf
+<a id="__codelineno-93-3" name="__codelineno-93-3" href="#__codelineno-93-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-93-4" name="__codelineno-93-4" href="#__codelineno-93-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.jic<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-93-5" name="__codelineno-93-5" href="#__codelineno-93-5"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU128<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-93-6" name="__codelineno-93-6" href="#__codelineno-93-6"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A5ED065BB32AE6SR0<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-93-7" name="__codelineno-93-7" href="#__codelineno-93-7"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-93-8" name="__codelineno-93-8" href="#__codelineno-93-8"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-93-9" name="__codelineno-93-9" href="#__codelineno-93-9"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
@@ -7019,12 +7165,12 @@ The following diagram illustrates how the helper JIC is built, base on the GHRD 
 </ul>
 <h5>Build HPS RBF</h5>
 <p>This is an optional step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-88-1" name="__codelineno-88-1" href="#__codelineno-88-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-88-2" name="__codelineno-88-2" href="#__codelineno-88-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.rbf
-<a id="__codelineno-88-3" name="__codelineno-88-3" href="#__codelineno-88-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-88-4" name="__codelineno-88-4" href="#__codelineno-88-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof<span class="w">  </span>ghrd_a5ed065bb32ae6sr0.rbf<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-88-5" name="__codelineno-88-5" href="#__codelineno-88-5"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-88-6" name="__codelineno-88-6" href="#__codelineno-88-6"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-94-1" name="__codelineno-94-1" href="#__codelineno-94-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-94-2" name="__codelineno-94-2" href="#__codelineno-94-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.rbf
+<a id="__codelineno-94-3" name="__codelineno-94-3" href="#__codelineno-94-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-94-4" name="__codelineno-94-4" href="#__codelineno-94-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof<span class="w">  </span>ghrd_a5ed065bb32ae6sr0.rbf<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-94-5" name="__codelineno-94-5" href="#__codelineno-94-5"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-94-6" name="__codelineno-94-6" href="#__codelineno-94-6"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
@@ -7048,15 +7194,15 @@ The following diagram illustrates how the helper JIC is built, base on the GHRD 
 <ol>
 <li>
 <p>Install <strong>mtools</strong> package in your Linux machine.
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-89-1" name="__codelineno-89-1" href="#__codelineno-89-1"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
-<a id="__codelineno-89-2" name="__codelineno-89-2" href="#__codelineno-89-2"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>mtools
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-95-1" name="__codelineno-95-1" href="#__codelineno-95-1"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<a id="__codelineno-95-2" name="__codelineno-95-2" href="#__codelineno-95-2"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>mtools
 </code></pre></div></p>
 </li>
 <li>
 <p>Go to the folder in which the <strong>kernel.itb</strong> is being created under the GSRD.
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-90-1" name="__codelineno-90-1" href="#__codelineno-90-1"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/&lt;device-devkit&gt;-gsrd-rootfs/tmp/work/&lt;device-devkit&gt;-poky-linux/linux-socfpga-lts/&lt;linux<span class="w"> </span>branch&gt;+git/linux-&lt;device-devkit&gt;-standard-build/
-<a id="__codelineno-90-2" name="__codelineno-90-2" href="#__codelineno-90-2"></a>$<span class="w"> </span>ls<span class="w"> </span>*.its
-<a id="__codelineno-90-3" name="__codelineno-90-3" href="#__codelineno-90-3"></a>fit_kernel_&lt;device-devkit&gt;.its
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-96-1" name="__codelineno-96-1" href="#__codelineno-96-1"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/&lt;device-devkit&gt;-gsrd-rootfs/tmp/work/&lt;device-devkit&gt;-poky-linux/linux-socfpga-lts/&lt;linux<span class="w"> </span>branch&gt;+git/linux-&lt;device-devkit&gt;-standard-build/
+<a id="__codelineno-96-2" name="__codelineno-96-2" href="#__codelineno-96-2"></a>$<span class="w"> </span>ls<span class="w"> </span>*.its
+<a id="__codelineno-96-3" name="__codelineno-96-3" href="#__codelineno-96-3"></a>fit_kernel_&lt;device-devkit&gt;.its
 </code></pre></div></p>
 </li>
 <li>
@@ -7073,8 +7219,8 @@ The following diagram illustrates how the helper JIC is built, base on the GHRD 
 </li>
 <li>
 <p>Finally, you need to re-generate the new <strong>kernel.itb</strong> as indicated next.
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-91-1" name="__codelineno-91-1" href="#__codelineno-91-1"></a>$<span class="w"> </span>rm<span class="w"> </span>kernel.itb
-<a id="__codelineno-91-2" name="__codelineno-91-2" href="#__codelineno-91-2"></a>$<span class="w"> </span>mkimage<span class="w"> </span>-f<span class="w"> </span>fit_kernel_&lt;device-devkit&gt;.its<span class="w"> </span>kernel.itb
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-97-1" name="__codelineno-97-1" href="#__codelineno-97-1"></a>$<span class="w"> </span>rm<span class="w"> </span>kernel.itb
+<a id="__codelineno-97-2" name="__codelineno-97-2" href="#__codelineno-97-2"></a>$<span class="w"> </span>mkimage<span class="w"> </span>-f<span class="w"> </span>fit_kernel_&lt;device-devkit&gt;.its<span class="w"> </span>kernel.itb
 </code></pre></div></p>
 </li>
 </ol>
@@ -7089,66 +7235,66 @@ The following diagram illustrates how the helper JIC is built, base on the GHRD 
 <p>If you want to replace any the components or add a new item in any of these partitions, without having to run again the Yocto build flow. </p>
 <p>This can be done through the <strong>wic</strong> application available on the <strong>Poky</strong> repository that is included as part of the GSRD build directory: <strong>$TOP_FOLDER/gsrd-socfpga/poky/scripts/wic</strong> </p>
 <p>This command requires to be run in the Yocto build environment that can be setup as shown next in a Linux terminal:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/
-<a id="__codelineno-92-2" name="__codelineno-92-2" href="#__codelineno-92-2"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>build
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-98-1" name="__codelineno-98-1" href="#__codelineno-98-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/
+<a id="__codelineno-98-2" name="__codelineno-98-2" href="#__codelineno-98-2"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>build
 </code></pre></div>
 You can verify that the Yocto environment has been setup using the <strong>which bitbake</strong> command, which will respond with the path of the <strong>bitbake</strong> command located at <strong>poky/bitbake/bin/bitbake</strong>.</p>
 <p>The <strong>wic</strong> command allows you to inspect the content of a SD Card image, delete, add or replace any component inside of the image. This command is also provided with help support:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span><span class="nb">help</span>
-<a id="__codelineno-93-2" name="__codelineno-93-2" href="#__codelineno-93-2"></a>
-<a id="__codelineno-93-3" name="__codelineno-93-3" href="#__codelineno-93-3"></a>Creates<span class="w"> </span>a<span class="w"> </span>customized<span class="w"> </span>OpenEmbedded<span class="w"> </span>image.
-<a id="__codelineno-93-4" name="__codelineno-93-4" href="#__codelineno-93-4"></a>
-<a id="__codelineno-93-5" name="__codelineno-93-5" href="#__codelineno-93-5"></a>Usage:<span class="w">  </span>wic<span class="w"> </span><span class="o">[</span>--version<span class="o">]</span>
-<a id="__codelineno-93-6" name="__codelineno-93-6" href="#__codelineno-93-6"></a><span class="w">        </span>wic<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="o">[</span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC<span class="o">]</span>
-<a id="__codelineno-93-7" name="__codelineno-93-7" href="#__codelineno-93-7"></a><span class="w">        </span>wic<span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>
-<a id="__codelineno-93-8" name="__codelineno-93-8" href="#__codelineno-93-8"></a>
-<a id="__codelineno-93-9" name="__codelineno-93-9" href="#__codelineno-93-9"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>Returns<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>version<span class="w"> </span>of<span class="w"> </span>Wic
-<a id="__codelineno-93-10" name="__codelineno-93-10" href="#__codelineno-93-10"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">2</span>:<span class="w"> </span>Returns<span class="w"> </span>detailed<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC
-<a id="__codelineno-93-11" name="__codelineno-93-11" href="#__codelineno-93-11"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">3</span>:<span class="w"> </span>Executes<span class="w"> </span>COMMAND
-<a id="__codelineno-93-12" name="__codelineno-93-12" href="#__codelineno-93-12"></a>
-<a id="__codelineno-93-13" name="__codelineno-93-13" href="#__codelineno-93-13"></a>COMMAND:
-<a id="__codelineno-93-14" name="__codelineno-93-14" href="#__codelineno-93-14"></a>
-<a id="__codelineno-93-15" name="__codelineno-93-15" href="#__codelineno-93-15"></a><span class="w"> </span>list<span class="w">   </span>-<span class="w">   </span>List<span class="w"> </span>available<span class="w"> </span>canned<span class="w"> </span>images<span class="w"> </span>and<span class="w"> </span><span class="nb">source</span><span class="w"> </span>plugins
-<a id="__codelineno-93-16" name="__codelineno-93-16" href="#__codelineno-93-16"></a><span class="w"> </span>ls<span class="w">     </span>-<span class="w">   </span>List<span class="w"> </span>contents<span class="w"> </span>of<span class="w"> </span>partitioned<span class="w"> </span>image<span class="w"> </span>or<span class="w"> </span>partition
-<a id="__codelineno-93-17" name="__codelineno-93-17" href="#__codelineno-93-17"></a><span class="w"> </span>rm<span class="w">     </span>-<span class="w">   </span>Remove<span class="w"> </span>files<span class="w"> </span>or<span class="w"> </span>directories<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>vfat<span class="w"> </span>or<span class="w"> </span>ext*<span class="w"> </span>partitions
-<a id="__codelineno-93-18" name="__codelineno-93-18" href="#__codelineno-93-18"></a><span class="w"> </span><span class="nb">help</span><span class="w">   </span>-<span class="w">   </span>Show<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>wic<span class="w"> </span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC
-<a id="__codelineno-93-19" name="__codelineno-93-19" href="#__codelineno-93-19"></a><span class="w"> </span>write<span class="w">  </span>-<span class="w">   </span>Write<span class="w"> </span>an<span class="w"> </span>image<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>device
-<a id="__codelineno-93-20" name="__codelineno-93-20" href="#__codelineno-93-20"></a><span class="w"> </span>cp<span class="w">     </span>-<span class="w">   </span>Copy<span class="w"> </span>files<span class="w"> </span>and<span class="w"> </span>directories<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>vfat<span class="w"> </span>or<span class="w"> </span>ext*<span class="w"> </span>partitions
-<a id="__codelineno-93-21" name="__codelineno-93-21" href="#__codelineno-93-21"></a><span class="w"> </span>create<span class="w"> </span>-<span class="w">   </span>Create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>OpenEmbedded<span class="w"> </span>image
-<a id="__codelineno-93-22" name="__codelineno-93-22" href="#__codelineno-93-22"></a><span class="w"> </span>:
-<a id="__codelineno-93-23" name="__codelineno-93-23" href="#__codelineno-93-23"></a><span class="w"> </span>:
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-99-1" name="__codelineno-99-1" href="#__codelineno-99-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span><span class="nb">help</span>
+<a id="__codelineno-99-2" name="__codelineno-99-2" href="#__codelineno-99-2"></a>
+<a id="__codelineno-99-3" name="__codelineno-99-3" href="#__codelineno-99-3"></a>Creates<span class="w"> </span>a<span class="w"> </span>customized<span class="w"> </span>OpenEmbedded<span class="w"> </span>image.
+<a id="__codelineno-99-4" name="__codelineno-99-4" href="#__codelineno-99-4"></a>
+<a id="__codelineno-99-5" name="__codelineno-99-5" href="#__codelineno-99-5"></a>Usage:<span class="w">  </span>wic<span class="w"> </span><span class="o">[</span>--version<span class="o">]</span>
+<a id="__codelineno-99-6" name="__codelineno-99-6" href="#__codelineno-99-6"></a><span class="w">        </span>wic<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="o">[</span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC<span class="o">]</span>
+<a id="__codelineno-99-7" name="__codelineno-99-7" href="#__codelineno-99-7"></a><span class="w">        </span>wic<span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>
+<a id="__codelineno-99-8" name="__codelineno-99-8" href="#__codelineno-99-8"></a>
+<a id="__codelineno-99-9" name="__codelineno-99-9" href="#__codelineno-99-9"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>Returns<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>version<span class="w"> </span>of<span class="w"> </span>Wic
+<a id="__codelineno-99-10" name="__codelineno-99-10" href="#__codelineno-99-10"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">2</span>:<span class="w"> </span>Returns<span class="w"> </span>detailed<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC
+<a id="__codelineno-99-11" name="__codelineno-99-11" href="#__codelineno-99-11"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">3</span>:<span class="w"> </span>Executes<span class="w"> </span>COMMAND
+<a id="__codelineno-99-12" name="__codelineno-99-12" href="#__codelineno-99-12"></a>
+<a id="__codelineno-99-13" name="__codelineno-99-13" href="#__codelineno-99-13"></a>COMMAND:
+<a id="__codelineno-99-14" name="__codelineno-99-14" href="#__codelineno-99-14"></a>
+<a id="__codelineno-99-15" name="__codelineno-99-15" href="#__codelineno-99-15"></a><span class="w"> </span>list<span class="w">   </span>-<span class="w">   </span>List<span class="w"> </span>available<span class="w"> </span>canned<span class="w"> </span>images<span class="w"> </span>and<span class="w"> </span><span class="nb">source</span><span class="w"> </span>plugins
+<a id="__codelineno-99-16" name="__codelineno-99-16" href="#__codelineno-99-16"></a><span class="w"> </span>ls<span class="w">     </span>-<span class="w">   </span>List<span class="w"> </span>contents<span class="w"> </span>of<span class="w"> </span>partitioned<span class="w"> </span>image<span class="w"> </span>or<span class="w"> </span>partition
+<a id="__codelineno-99-17" name="__codelineno-99-17" href="#__codelineno-99-17"></a><span class="w"> </span>rm<span class="w">     </span>-<span class="w">   </span>Remove<span class="w"> </span>files<span class="w"> </span>or<span class="w"> </span>directories<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>vfat<span class="w"> </span>or<span class="w"> </span>ext*<span class="w"> </span>partitions
+<a id="__codelineno-99-18" name="__codelineno-99-18" href="#__codelineno-99-18"></a><span class="w"> </span><span class="nb">help</span><span class="w">   </span>-<span class="w">   </span>Show<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>wic<span class="w"> </span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC
+<a id="__codelineno-99-19" name="__codelineno-99-19" href="#__codelineno-99-19"></a><span class="w"> </span>write<span class="w">  </span>-<span class="w">   </span>Write<span class="w"> </span>an<span class="w"> </span>image<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>device
+<a id="__codelineno-99-20" name="__codelineno-99-20" href="#__codelineno-99-20"></a><span class="w"> </span>cp<span class="w">     </span>-<span class="w">   </span>Copy<span class="w"> </span>files<span class="w"> </span>and<span class="w"> </span>directories<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>vfat<span class="w"> </span>or<span class="w"> </span>ext*<span class="w"> </span>partitions
+<a id="__codelineno-99-21" name="__codelineno-99-21" href="#__codelineno-99-21"></a><span class="w"> </span>create<span class="w"> </span>-<span class="w">   </span>Create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>OpenEmbedded<span class="w"> </span>image
+<a id="__codelineno-99-22" name="__codelineno-99-22" href="#__codelineno-99-22"></a><span class="w"> </span>:
+<a id="__codelineno-99-23" name="__codelineno-99-23" href="#__codelineno-99-23"></a><span class="w"> </span>:
 </code></pre></div>
    The following steps show you how to replace the <strong>kernel.itb</strong> file inside of the fat32 partition in a .wic image.</p>
 <ol>
 <li>
 <p>The <strong>wic ls</strong> command allows you to inspect or navigate over the directory structure inside of the SD Card image. For example you can observe the partitions  in the SD Card image in this way:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-94-1" name="__codelineno-94-1" href="#__codelineno-94-1"></a><span class="c1"># Here you can inspect the content a wic image see the 2 partitions inside of the SD Card image</span>
-<a id="__codelineno-94-2" name="__codelineno-94-2" href="#__codelineno-94-2"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>ls<span class="w"> </span>my_image.wic
-<a id="__codelineno-94-3" name="__codelineno-94-3" href="#__codelineno-94-3"></a>Num<span class="w">     </span>Start<span class="w">        </span>End<span class="w">          </span>Size<span class="w">      </span>Fstype
-<a id="__codelineno-94-4" name="__codelineno-94-4" href="#__codelineno-94-4"></a><span class="m">1</span><span class="w">       </span><span class="m">1048576</span><span class="w">    </span><span class="m">525336575</span><span class="w">    </span><span class="m">524288000</span><span class="w">  </span>fat32<span class="w">    </span>
-<a id="__codelineno-94-5" name="__codelineno-94-5" href="#__codelineno-94-5"></a><span class="m">2</span><span class="w">     </span><span class="m">525336576</span><span class="w">   </span><span class="m">2098200575</span><span class="w">   </span><span class="m">1572864000</span><span class="w">  </span>ext4<span class="w">   </span>
-<a id="__codelineno-94-6" name="__codelineno-94-6" href="#__codelineno-94-6"></a>
-<a id="__codelineno-94-7" name="__codelineno-94-7" href="#__codelineno-94-7"></a><span class="c1"># Here you can naviagate inside of the partition 1</span>
-<a id="__codelineno-94-8" name="__codelineno-94-8" href="#__codelineno-94-8"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>ls<span class="w"> </span>my_image.wic:1
-<a id="__codelineno-94-9" name="__codelineno-94-9" href="#__codelineno-94-9"></a>Volume<span class="w"> </span><span class="k">in</span><span class="w"> </span>drive<span class="w"> </span>:<span class="w"> </span>is<span class="w"> </span>boot<span class="w">       </span>
-<a id="__codelineno-94-10" name="__codelineno-94-10" href="#__codelineno-94-10"></a>Volume<span class="w"> </span>Serial<span class="w"> </span>Number<span class="w"> </span>is<span class="w"> </span>9D2B-6341
-<a id="__codelineno-94-11" name="__codelineno-94-11" href="#__codelineno-94-11"></a>Directory<span class="w"> </span><span class="k">for</span><span class="w"> </span>::/
-<a id="__codelineno-94-12" name="__codelineno-94-12" href="#__codelineno-94-12"></a>
-<a id="__codelineno-94-13" name="__codelineno-94-13" href="#__codelineno-94-13"></a>BOOTSC~1<span class="w"> </span>UIM<span class="w">      </span><span class="m">2431</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w">  </span>boot.scr.uimg
-<a id="__codelineno-94-14" name="__codelineno-94-14" href="#__codelineno-94-14"></a>kernel<span class="w">   </span>itb<span class="w">  </span><span class="m">15160867</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w"> </span>
-<a id="__codelineno-94-15" name="__codelineno-94-15" href="#__codelineno-94-15"></a>u-boot<span class="w">   </span>itb<span class="w">   </span><span class="m">1052180</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w"> </span>
-<a id="__codelineno-94-16" name="__codelineno-94-16" href="#__codelineno-94-16"></a><span class="w">     </span><span class="m">3</span><span class="w"> </span>files<span class="w">          </span><span class="m">16</span><span class="w"> </span><span class="m">215</span><span class="w"> </span><span class="m">478</span><span class="w"> </span>bytes
-<a id="__codelineno-94-17" name="__codelineno-94-17" href="#__codelineno-94-17"></a><span class="w">                     </span><span class="m">506</span><span class="w"> </span><span class="m">990</span><span class="w"> </span><span class="m">592</span><span class="w"> </span>bytes<span class="w"> </span>free
+<div class="highlight"><pre><span></span><code><a id="__codelineno-100-1" name="__codelineno-100-1" href="#__codelineno-100-1"></a><span class="c1"># Here you can inspect the content a wic image see the 2 partitions inside of the SD Card image</span>
+<a id="__codelineno-100-2" name="__codelineno-100-2" href="#__codelineno-100-2"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>ls<span class="w"> </span>my_image.wic
+<a id="__codelineno-100-3" name="__codelineno-100-3" href="#__codelineno-100-3"></a>Num<span class="w">     </span>Start<span class="w">        </span>End<span class="w">          </span>Size<span class="w">      </span>Fstype
+<a id="__codelineno-100-4" name="__codelineno-100-4" href="#__codelineno-100-4"></a><span class="m">1</span><span class="w">       </span><span class="m">1048576</span><span class="w">    </span><span class="m">525336575</span><span class="w">    </span><span class="m">524288000</span><span class="w">  </span>fat32<span class="w">    </span>
+<a id="__codelineno-100-5" name="__codelineno-100-5" href="#__codelineno-100-5"></a><span class="m">2</span><span class="w">     </span><span class="m">525336576</span><span class="w">   </span><span class="m">2098200575</span><span class="w">   </span><span class="m">1572864000</span><span class="w">  </span>ext4<span class="w">   </span>
+<a id="__codelineno-100-6" name="__codelineno-100-6" href="#__codelineno-100-6"></a>
+<a id="__codelineno-100-7" name="__codelineno-100-7" href="#__codelineno-100-7"></a><span class="c1"># Here you can naviagate inside of the partition 1</span>
+<a id="__codelineno-100-8" name="__codelineno-100-8" href="#__codelineno-100-8"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>ls<span class="w"> </span>my_image.wic:1
+<a id="__codelineno-100-9" name="__codelineno-100-9" href="#__codelineno-100-9"></a>Volume<span class="w"> </span><span class="k">in</span><span class="w"> </span>drive<span class="w"> </span>:<span class="w"> </span>is<span class="w"> </span>boot<span class="w">       </span>
+<a id="__codelineno-100-10" name="__codelineno-100-10" href="#__codelineno-100-10"></a>Volume<span class="w"> </span>Serial<span class="w"> </span>Number<span class="w"> </span>is<span class="w"> </span>9D2B-6341
+<a id="__codelineno-100-11" name="__codelineno-100-11" href="#__codelineno-100-11"></a>Directory<span class="w"> </span><span class="k">for</span><span class="w"> </span>::/
+<a id="__codelineno-100-12" name="__codelineno-100-12" href="#__codelineno-100-12"></a>
+<a id="__codelineno-100-13" name="__codelineno-100-13" href="#__codelineno-100-13"></a>BOOTSC~1<span class="w"> </span>UIM<span class="w">      </span><span class="m">2431</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w">  </span>boot.scr.uimg
+<a id="__codelineno-100-14" name="__codelineno-100-14" href="#__codelineno-100-14"></a>kernel<span class="w">   </span>itb<span class="w">  </span><span class="m">15160867</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w"> </span>
+<a id="__codelineno-100-15" name="__codelineno-100-15" href="#__codelineno-100-15"></a>u-boot<span class="w">   </span>itb<span class="w">   </span><span class="m">1052180</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w"> </span>
+<a id="__codelineno-100-16" name="__codelineno-100-16" href="#__codelineno-100-16"></a><span class="w">     </span><span class="m">3</span><span class="w"> </span>files<span class="w">          </span><span class="m">16</span><span class="w"> </span><span class="m">215</span><span class="w"> </span><span class="m">478</span><span class="w"> </span>bytes
+<a id="__codelineno-100-17" name="__codelineno-100-17" href="#__codelineno-100-17"></a><span class="w">                     </span><span class="m">506</span><span class="w"> </span><span class="m">990</span><span class="w"> </span><span class="m">592</span><span class="w"> </span>bytes<span class="w"> </span>free
 </code></pre></div>
 </li>
 <li>
 <p>The <strong>wic rm</strong> command allows you to delete any of the components in the selected partition. For example, you can delete the <strong>kernel.itb</strong> image from the partition 1(fat32 partition).</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-95-1" name="__codelineno-95-1" href="#__codelineno-95-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>rm<span class="w"> </span>my_image.wic:1/kernel.itb
+<div class="highlight"><pre><span></span><code><a id="__codelineno-101-1" name="__codelineno-101-1" href="#__codelineno-101-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>rm<span class="w"> </span>my_image.wic:1/kernel.itb
 </code></pre></div>
 </li>
 <li>
 <p>The <strong>wic cp</strong> command allows you to copy any new item or file from your Linux machine to a specific partition and location inside of the SD Card image. For example, you can copy a new <strong>kernel.itb</strong> to the partition 1.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-96-1" name="__codelineno-96-1" href="#__codelineno-96-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>cp<span class="w"> </span>&lt;path_new_kernel.itb&gt;<span class="w"> </span>my_image.wic:1/kernel.itb
+<div class="highlight"><pre><span></span><code><a id="__codelineno-102-1" name="__codelineno-102-1" href="#__codelineno-102-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>cp<span class="w"> </span>&lt;path_new_kernel.itb&gt;<span class="w"> </span>my_image.wic:1/kernel.itb
 </code></pre></div>
 </li>
 </ol>

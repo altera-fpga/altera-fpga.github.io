@@ -5286,40 +5286,6 @@ The Robot Operating System (ROS) is a set of software libraries and tools that h
 </table>
 <p></center></p>
 <h3 id="setting-up-your-development-board">Setting Up your Development Board<a class="headerlink" href="#setting-up-your-development-board" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Configure the board switches:
-  The following provides the default configuration for all the switches in the
-  board.</li>
-</ul>
-<p><a class="glightbox" href="../common/images/board-1.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="board-1" src="../common/images/board-1.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
-<center></p>
-<p><strong>Development Board switch position</strong>
-</center>
-<br></p>
-<div class="admonition note">
-<p class="admonition-title">Main configurations used in this example design</p>
-<p>JTAG:     SOM SW4[2:1]=OFF:OFF <br>
-ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
-</div>
-<p><br></p>
-<ul>
-<li>Connect micro USB cable from bottom left of the carrier board to PC (<code>J35</code>).
-  This will be used for JTAG communication (see figure below).</li>
-<li>Connect micro USB cable from bottom right of the SOM board to PC
-  (<code>J2</code>, HSP_UART). This will be used for HPS UART communication. Look at what
-  ports are enumerated on your host computer, there should be a series of
-  four. Use the 3<sup>rd</sup> one in the list as the HPS serial port (see figure below).</li>
-<li>If ethernet capabilities or remote connection via <code>ssh</code> is required connect an
-  ethernet cable to the ethernet port on the SOM board (<code>J6</code>, ETH 1G HPS) and make
-  sure your device is in the same network as your intended host device. After
-  Linux boots, check the IP address of the <code>end2</code> ethernet interface using the
-  <code>ip addr</code> command.</li>
-</ul>
-<p><a class="glightbox" href="../common/images/Agx5-MDK-Conn.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Agx-MDK-Conn" src="../common/images/Agx5-MDK-Conn.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
-<center></p>
-<p><strong>USB connections to the board</strong>
-</center>
-<br></p>
 <h3 id="sd-card-image-flashing">SD Card Image Flashing<a class="headerlink" href="#sd-card-image-flashing" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Download SD card image (<code>.wic</code> or <code>.wic.gz</code>) from the prebuilt binary links above.</li>

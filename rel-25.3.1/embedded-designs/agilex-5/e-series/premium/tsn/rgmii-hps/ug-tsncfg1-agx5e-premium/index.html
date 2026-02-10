@@ -5977,8 +5977,9 @@ Note: The following must be re-done for fresh terminal session</p>
 <p>1. Save the <code>core.rbf</code> as <code>$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf</code></p>
 <p>2. Update the recipe <code>$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb</code> as follows:</p>
 <p>* Replace the entry <code>${GHRD_REPO}/agilex5_dk_a5e065bb32aes1_gsrd_${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_gsrd_core</code> with <code>file://agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf;sha256sum=&lt;CORE_SHA&gt;</code> where <code>CORE_SHA</code> is the sha256 checksum of the file</p>
-<p>* Delete the line <code>SRC_URI[agilex5_dk_a5e065bb32aes1_gsrd_core.sha256sum] = "bf11c8cb3b6d9487f93ce0e055b1e5256998a25b25ac4690bef3fcd6225ee1ae"</code><br />
-    The above are achieved by the following instructions:</p>
+<p>* Delete the line <code>SRC_URI[agilex5_dk_a5e065bb32aes1_gsrd_core.sha256sum] = "bf11c8cb3b6d9487f93ce0e055b1e5256998a25b25ac4690bef3fcd6225ee1ae"</code>  </p>
+<div class="highlight"><pre><span></span><code>The above are achieved by the following instructions:
+</code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>CORE_RBF=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>ln -s $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf $CORE_RBF
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>OLD_URI=&quot;\${GHRD_REPO}\/agilex5_dk_a5e065bb32aes1_gsrd_\${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_gsrd_core&quot;
@@ -6070,9 +6071,7 @@ Note: The following must be re-done for fresh terminal session</p>
 <li>Download and extract the JIC image, then write it to QSPI</li>
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>tar<span class="w"> </span>xf<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/uboot.jic
 </code></pre></div>
 <h5> Using compiled image </h5>
 
@@ -6080,13 +6079,13 @@ Note: The following must be re-done for fresh terminal session</p>
 <li>Write JIC image to QSPI:</li>
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;ghrd_a5ed065bb32ae6sr0.hps.jic&quot;</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;uboot.jic&quot;</span>
 </code></pre></div>
 <h4 id="programming-software-image">Programming Software Image<a class="headerlink" href="#programming-software-image" title="Permanent link">&para;</a></h4>
 <h5>For Prebuilt:</h5>
 
 <ul>
-<li>Download SD card image from the prebuilt binaries <a href="https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz">https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz</a> and extract the archive, obtaining the file <code>gsrd-console-image-agilex5_devkit.wic</code>.</li>
+<li>Download SD card image from the prebuilt binaries <a href="https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz">https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz</a> and extract the archive, obtaining the file <code>gsrd-console-image-agilex5_devkit.wic</code>.</li>
 </ul>
 <h5>For compiled image:</h5>
 
@@ -6094,7 +6093,7 @@ Note: The following must be re-done for fresh terminal session</p>
 <li>Extract sdcard image from the archive located at <code>$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz</code> </li>
 </ul>
 <h5 id="write-sd-card">Write SD Card<a class="headerlink" href="#write-sd-card" title="Permanent link">&para;</a></h5>
-<p>1. Write the gsrd-console-image-agilex5_devkit.wic. SD card image to the micro SD card using the included USB writer in the host computer:</p>
+<p>1. Write the gsrd-console-image-agilex5e.rootfs.wic. SD card image to the micro SD card using the included USB writer in the host computer:</p>
 <ul>
 <li>On Linux, use the <code>dd</code> utility as shown next:</li>
 </ul>
@@ -6102,7 +6101,7 @@ Note: The following must be re-done for fresh terminal session</p>
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">partitions</span>
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="cp"># This will return for example /dev/sdx</span>
 <a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="cp"># Use dd to write the image in the corresponding device</span>
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">sudo</span><span class="w"> </span><span class="n">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=</span><span class="n">gsrd</span><span class="o">-</span><span class="n">console</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">agilex5_devkit</span><span class="p">.</span><span class="n">wic</span><span class="w"> </span><span class="n">of</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdx</span><span class="w"> </span><span class="n">bs</span><span class="o">=</span><span class="mi">1</span><span class="n">M</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">sudo</span><span class="w"> </span><span class="n">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=</span><span class="n">gsrd</span><span class="o">-</span><span class="n">console</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">agilex5e</span><span class="p">.</span><span class="n">rootfs</span><span class="p">.</span><span class="n">wic</span><span class="w"> </span><span class="n">of</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdx</span><span class="w"> </span><span class="n">bs</span><span class="o">=</span><span class="mi">1</span><span class="n">M</span>
 <a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="cp"># Flush the changes to the SD card</span>
 <a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="n">sync</span>
 </code></pre></div>
