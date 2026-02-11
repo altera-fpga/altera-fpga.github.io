@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#introduction" class="md-skip">
+        <a href="#hps-tsn-rgmii-system-example-design-user-guide-for-the-agilextm-5-e-series-premium-dev-kit" class="md-skip">
           Skip to content
         </a>
       
@@ -2725,6 +2725,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           HPS TSN RGMII System Example Design User Guide
@@ -2741,6 +2743,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2749,83 +2753,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    Introduction
-  </a>
-  
-    <nav class="md-nav" aria-label="Introduction">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tsn-hps-rgmii-system-example-design-overview" class="md-nav__link">
-    TSN HPS RGMII System Example Design Overview
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    Prerequisites
-  </a>
-  
-    <nav class="md-nav" aria-label="Prerequisites">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#development-kit" class="md-nav__link">
-    Development Kit
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#development-environment" class="md-nav__link">
-    Development Environment
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#release-contents" class="md-nav__link">
-    Release Contents
-  </a>
-  
-    <nav class="md-nav" aria-label="Release Contents">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prebuilt-binaries" class="md-nav__link">
-    Prebuilt Binaries
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sources" class="md-nav__link">
-    Sources
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#release-notes" class="md-nav__link">
     Release Notes
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -5337,6 +5267,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -5345,83 +5277,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    Introduction
-  </a>
-  
-    <nav class="md-nav" aria-label="Introduction">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tsn-hps-rgmii-system-example-design-overview" class="md-nav__link">
-    TSN HPS RGMII System Example Design Overview
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    Prerequisites
-  </a>
-  
-    <nav class="md-nav" aria-label="Prerequisites">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#development-kit" class="md-nav__link">
-    Development Kit
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#development-environment" class="md-nav__link">
-    Development Environment
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#release-contents" class="md-nav__link">
-    Release Contents
-  </a>
-  
-    <nav class="md-nav" aria-label="Release Contents">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#prebuilt-binaries" class="md-nav__link">
-    Prebuilt Binaries
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sources" class="md-nav__link">
-    Sources
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#release-notes" class="md-nav__link">
     Release Notes
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -5700,195 +5558,8 @@
   
 
 
-  <h1>HPS TSN RGMII System Example Design User Guide</h1>
-
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>IEEE Ethernet is a core technology which is a backbone for IT operations and was designed to provide best effort communication suitable for IT operations. Operational Technology vendors have innovatively used Core IEEE Ethernet technology with proprietary solutions for enabling time-bounded communication. To address the need for precision timing, traffic shaping, and time-bounded communication over networks, IEEE introduced a suite of standards known as Time Sensitive Networking (TSN).</p>
-<p>Agilex&trade; 5 E-Series is designed as an end point for Industrial automation application with support for the following TSN protocols:</p>
-<ul>
-<li><strong>Time Synchronization Protocols</strong>:<ul>
-<li>IEEE 1588-2008 Advanced Timestamp (Precision Time Protocol - PTP):<ul>
-<li>Function: Provides sub-microsecond accuracy for time synchronization between computing systems over a local area network.</li>
-<li>Key Features: 2-step synchronization, PTP offload, and timestamping.</li>
-<li>Use Case: Synchronizing industrial devices to operate in unison, ensuring coordinated actions across factory or plant operations.</li>
-</ul>
-</li>
-<li>IEEE 802.1AS (Timing and Synchronization):<ul>
-<li>Function: A profile of PTP (version 2) that ensures precise time synchronization in a hierarchical master-slave architecture.</li>
-<li>Key Features: Prioritizes accuracy and variability of timing, crucial for industrial and automotive systems.</li>
-<li>Use Case: Synchronizing devices to a common time for optimal operation and collaboration.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><strong>Credit Based Shaper Protocol</strong>:<ul>
-<li>IEEE 802.1Qav (Time-Sensitive Streams Forwarding and Queuing):<ul>
-<li>Function: Provides low-latency, time-synchronized delivery of audio and video streams over Ethernet networks.</li>
-<li>Key Features: Credit-based shaper ensuring end-to-end guaranteed bandwidth with fairness to best-effort traffic.</li>
-<li>Use Case: Ensuring dedicated bandwidth for audio-video bridging (AVB) streams with minimal latency.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><strong>Traffic Scheduling Protocols</strong>:<ul>
-<li>IEEE 802.1Qbv (Time-Scheduled Traffic Enhancements):<ul>
-<li>Function: Enables the transmission of frames at specific scheduled times within microsecond ranges.</li>
-<li>Key Features: Critical for time-sensitive scheduled traffic in industrial applications.</li>
-<li>Use Case: Facilitating precise, time-critical communication for industrial devices like PLCs and drives.</li>
-</ul>
-</li>
-<li>IEEE 802.1Qbu (Frame Preemption):<ul>
-<li>Function: Allows high-priority frames to preempt lower-priority frames, reducing latency and jitter.</li>
-<li>Key Features: Utilizes Express Media Access Control (eMAC) and Preemptable Media Access Control (pMAC).</li>
-<li>Use Case: Ensuring high-priority frames arrive with fixed latency, crucial for applications requiring consistent timing.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>These TSN standards collectively enable precise timing, traffic shaping, and time-bounded communication, making them indispensable for applications requiring high reliability and determinism. </p>
-<p>The details of TSN is not in the scope of this document. Here are some reference to the TSN specifications</p>
-<ul>
-<li><a href="https://standards.ieee.org/standard/802_1AS-2011.html?oslc_config.context=https%3A%2F%2Frtc.intel.com%2Fgc%2Fconfiguration%2F964">IEEE Std 802.1AS™-2011 "Timing and Synchronization for Time-Sensitive Applications in Bridged Local Area Networks"</a></li>
-<li><a href="https://standards.ieee.org/standard/802_1Qav-2009.html?oslc_config.context=https%3A%2F%2Frtc.intel.com%2Fgc%2Fconfiguration%2F964">IEEE Std 802.1Qav™-2009 “Forwarding and Queuing Enhancements for Time-Sensitive Streams”</a></li>
-<li><a href="https://standards.ieee.org/standard/802_1Qbv-2015.html?oslc_config.context=https%3A%2F%2Frtc.intel.com%2Fgc%2Fconfiguration%2F964">IEEE Std 802.1Qbv™-2015 “Enhancements for Scheduled Traffic”</a></li>
-<li><a href="https://standards.ieee.org/standard/802_1Qbu-2016.html?oslc_config.context=https%3A%2F%2Frtc.intel.com%2Fgc%2Fconfiguration%2F964">IEEE Std 802.1Qbu™-2016 “Frame Preemption”</a></li>
-</ul>
-<h3 id="tsn-hps-rgmii-system-example-design-overview">TSN HPS RGMII System Example Design Overview<a class="headerlink" href="#tsn-hps-rgmii-system-example-design-overview" title="Permanent link">&para;</a></h3>
-<p>The Time Sensitive Network (TSN) through Hard Processor System (HPS) IO System Example Design (SED) is a reference design running on the Agilex&trade; 5 E-Series 065B Premium Development Kit.<br />
-This System Example Design comprises the following components:</p>
-<ul>
-<li>Hardware Reference Design (GHRD)</li>
-<li>Reference HPS software including:</li>
-<li>Arm Trusted Firmware</li>
-<li>U-Boot</li>
-<li>Linux Kernel</li>
-<li>Linux Drivers</li>
-<li>Sample Applications</li>
-</ul>
-<p>TSN Solution Architecture for this SED is illustrated as:</p>
-<p><a class="glightbox" href="../images/tsncfg1_soln_arch.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="TSN Solution Arch - HPS IO" src="../images/tsncfg1_soln_arch.png" /></a></p>
-<blockquote>
-<p>[Note:]
-This is a pre-production release of Agilex&trade; 5 TSN HPS RGMII System Example Design, on Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit with speed grade -6S. This corresponds to Engineering Samples Silicon quality.</p>
-</blockquote>
-<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
-<p>This system example design is based on the <a href="https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/">Agilex 5 E-Series Premium Development Kit GSRD</a>. It is recommended that you familiarize yourself with the GSRD development flow before proceeding with this design.
-The TSN through HPS IO System Example Design will be implemented on the HPS Enablement Expansion Board (also referred as HPS Daughter Card), which is included with the development kit.</p>
-<h4 id="development-kit">Development Kit<a class="headerlink" href="#development-kit" title="Permanent link">&para;</a></h4>
-<p>This Example Design targets the Agilex 5 FPGA E-Series 065B Premium Development Kit, utilizing the HPS. 
-Refer to <a href="https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium#development-kit">GSRD#Development Kit</a> for details about the board, including how to install the HPS Daughter Card.</p>
-<ul>
-<li>Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit</li>
-<li>HPS Enablement Expansion Board. Included with the development kit.</li>
-<li>Mini USB Cable</li>
-<li>Micro USB Cable</li>
-<li>Ethernet Cable</li>
-<li>Micro SD card and USB card writer</li>
-</ul>
-<p><strong>Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit:</strong></p>
-<p><a class="glightbox" href="../images/agilex5-premium-devkit-es.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Agilex 5 FPGA E-Series 065B Premium Development Kit" src="../images/agilex5-premium-devkit-es.png" /></a></p>
-<p><strong>HPS Enablement Expandsion Board Card:</strong></p>
-<p><a class="glightbox" href="../images/hps_dc_oobe.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="HPS OOBE Card:" src="../images/hps_dc_oobe.png" /></a></p>
-<h4 id="development-environment">Development Environment<a class="headerlink" href="#development-environment" title="Permanent link">&para;</a></h4>
-<p>Host PC with:</p>
-<ul>
-<li>64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.</li>
-<li>Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.</li>
-<li>Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
-<li>Altera&reg; Quartus&reg; Prime Pro Edition version. Used to recompile the hardware design. If only writing binaries is required, then the smaller Altera&reg; Quartus&reg; Prime Pro Edition Programmer is sufficient.</li>
-<li>The prebuilt binaries were built using Altera&reg; Quartus&reg; 25.3.1</li>
-<li>The instructions for rebuilding the binaries use Altera&reg; Quartus&reg; 25.3.1</li>
-<li>Local Ethernet network, with DHCP server</li>
-<li>Internet connection. For downloading the files, especially when rebuilding the GSRD.</li>
-</ul>
-<h3 id="release-contents">Release Contents<a class="headerlink" href="#release-contents" title="Permanent link">&para;</a></h3>
-<p>This page documents the following:</p>
-<ul>
-<li>Binary Release - see <a href="#programming-the-binaries">Programming the Binaries</a> section for release content details</li>
-<li>Source Code Release - see <a href="#programming-software-image">Programming Software Image</a> section for release content details</li>
-</ul>
-<h4 id="prebuilt-binaries">Prebuilt Binaries<a class="headerlink" href="#prebuilt-binaries" title="Permanent link">&para;</a></h4>
-<p>The Agilex 5 Premium Development Kit 25.3.1 Example Design binaries are located at
-<a href="https://releases.rocketboards.org/2026.01/">https://releases.rocketboards.org/2026.01/</a></p>
-<table>
-<thead>
-<tr>
-<th>HPS Daughter Card</th>
-<th>Boot Source</th>
-<th>Link</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Enablement Board</td>
-<td>SD Card</td>
-<td><a href="https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd">https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd</a></td>
-</tr>
-</tbody>
-</table>
-<h4 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h4>
-<p>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1 and the following software component versions integrate the 25.3.1 release. </p>
-<p><strong>Note:</strong> Regarding the GHRD components in the following table, only the device-specific GHRD is used in this page.</p>
-<table>
-<thead>
-<tr>
-<th align="left">Component</th>
-<th align="left">Location</th>
-<th align="left">Branch</th>
-<th align="left">Commit ID/Tag</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">Agilex 5 GHRD</td>
-<td align="left"><a href="https://github.com/altera-fpga/agilex5e-ed-gsrd">https://github.com/altera-fpga/agilex5e-ed-gsrd</a></td>
-<td align="left">main</td>
-<td align="left">QPDS25.3.1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left">Linux</td>
-<td align="left"><a href="https://github.com/altera-fpga/linux-socfpga">https://github.com/altera-fpga/linux-socfpga</a></td>
-<td align="left">socfpga-6.12.43-lts</td>
-<td align="left">QPDS25.3.1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left">Arm Trusted Firmware</td>
-<td align="left"><a href="https://github.com/altera-fpga/arm-trusted-firmware">https://github.com/altera-fpga/arm-trusted-firmware</a></td>
-<td align="left">socfpga_v2.13.1</td>
-<td align="left">QPDS25.3.1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left">U-Boot</td>
-<td align="left"><a href="https://github.com/altera-fpga/u-boot-socfpga">https://github.com/altera-fpga/u-boot-socfpga</a></td>
-<td align="left">socfpga_v2025.10</td>
-<td align="left">QPDS25.3.1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left">Yocto Project</td>
-<td align="left"><a href="https://git.yoctoproject.org/poky">https://git.yoctoproject.org/poky</a></td>
-<td align="left">walnascar</td>
-<td align="left">latest</td>
-</tr>
-<tr>
-<td align="left">Yocto Project: meta-intel-fpga</td>
-<td align="left"><a href="https://git.yoctoproject.org/meta-intel-fpga">https://git.yoctoproject.org/meta-intel-fpga</a></td>
-<td align="left">walnascar</td>
-<td align="left">latest</td>
-</tr>
-<tr>
-<td align="left">Yocto Project: meta-intel-fpga-refdes</td>
-<td align="left"><a href="https://github.com/altera-fpga/meta-intel-fpga-refdes">https://github.com/altera-fpga/meta-intel-fpga-refdes</a></td>
-<td align="left">walnascar</td>
-<td align="left">QPDS25.3.1_REL_GSRD_PR</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Note:</strong> The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.</p>
+<h1 id="hps-tsn-rgmii-system-example-design-user-guide-for-the-agilextm-5-e-series-premium-dev-kit">HPS TSN - RGMII System Example Design User Guide for the Agilex™ 5 E-Series Premium Dev Kit<a class="headerlink" href="#hps-tsn-rgmii-system-example-design-user-guide-for-the-agilextm-5-e-series-premium-dev-kit" title="Permanent link">&para;</a></h1>
+<p><span style="color: red;"> <strong>NOTE:</strong> This page is not available in this release. The latest release in which HPS TSN RGMII System Example Design User Guide is supported corresponds to 25.3. Please refer to the following page to access the latest documentation: <a href="https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hps/ug-tsncfg1-agx5e-premium/#sources">HPS TSN RGMII System Example Design User Guide</a>. </span></p>
 <h3 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h3>
 <p>See <a href="https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.3.1_REL_GSRD_PR">https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.3.1_REL_GSRD_PR</a></p>
 <h2 id="tsn-rgmii-architecture">TSN RGMII Architecture<a class="headerlink" href="#tsn-rgmii-architecture" title="Permanent link">&para;</a></h2>
@@ -6354,6 +6025,7 @@ Altera disclaims all express and implied warranties, including without limitatio
 You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
 <sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. </p>
 <p>OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. </p>
+<p>---&gt;</p>
 
   <hr>
 <div class="md-source-file">
