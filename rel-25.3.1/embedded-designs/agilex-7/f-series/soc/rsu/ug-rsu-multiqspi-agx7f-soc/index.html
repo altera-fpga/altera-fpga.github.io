@@ -4513,6 +4513,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_8_4_4" id="__nav_8_4_4_label" tabindex="0">
@@ -4535,6 +4537,20 @@
     <li class="md-nav__item">
       <a href="../../../../../../ed-ai-suite/agilex7/iseries_ofs_pcie/iseries_ofs_pcie/" class="md-nav__link">
         Agilex 7 PCIe-Attached Example Design with OFS (I-Series, 2x R-Tile and 1x F-Tile)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../i-series/ptp/agx7i-ptp-anlt/agx7i-ptp-anlt/" class="md-nav__link">
+        Time Precision Protocol System Example Design (I-Series, 4x F-Tile)
       </a>
     </li>
   
@@ -5544,104 +5560,107 @@
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>u-boot-socfpga
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/altera-fpga/u-boot-socfpga
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">cd</span><span class="w"> </span>u-boot-socfpga
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># comment out next line to use the latest default branch </span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-t<span class="w"> </span>origin/socfpga_v2025.10
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1"># enable dwarf4 debug info, for compatibility with arm ds </span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g&#39;</span><span class="w"> </span>arch/arm/config.mk
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># For 25.3.1 use this line to use the tag with the fix for the WDT issue </span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># (HSD:14026809936).Remove this in 26.1 and re-enable the original one below</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>QPDS25.3.1_Agilex7_WDT_fix
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1"># comment out next line to use the latest default branch </span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="c1">#git checkout -b test -t origin/socfpga_v2025.10</span>
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="c1"># Update device tree to enable multi-qspi</span>
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="c1"># Adding the number of QSPI devices</span>
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/compatible = &quot;cdns,qspi-nor&quot;;/a \\tnum-cs = &lt;2&gt;;&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex-u-boot.dtsi
-<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="c1"># Create the initial flash1 node copy the content of flash0. </span>
-<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="c1"># First rename the falsh0-&gt;flash1. </span>
-<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="c1"># Then use the initial line for flash1 to write the new flash0 before the line</span>
-<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/flash0: flash@0 {/flash1: flash@1 {/&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex-u-boot.dtsi
-<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/flash0/flash1/&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex-u-boot.dtsi
-<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/flash1: flash@1 {/i \\tflash0: flash@0 {\n\t};&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex-u-boot.dtsi
-<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/&amp;flash1 {/i &amp;flash0 {\n\t#address-cells = &lt;1&gt;;\n\t#size-cells = &lt;1&gt;;\n\tcompatible = &quot;jedec,spi-nor&quot;;\n};\n&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex-u-boot.dtsi
-<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>
-<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>
-<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="c1"># Starting booting from QSPI to probe QSPI devices. Removing atempt to boot from NAND</span>
-<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&amp;flash0,\&amp;mmc;/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
-<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="c1"># disable NAND in the device tree</span>
-<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/&amp;nand {/!b;n;c\\tstatus = &quot;disabled&quot;;&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
-<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="c1"># remove the NAND configuration from device tree</span>
-<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/images/,/binman/{/binman/!d}&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
-<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>
-<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="c1"># Change max clk frequency of SPI flash0</span>
-<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/spi-max-frequency = &lt;100000000&gt;;/spi-max-frequency = &lt;25000000&gt;;/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
-<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="c1"># Rename the flash0 to flash1 (later will recreate the node for flash0)</span>
-<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="c1"># This is done to have a QSPI flash reference to add the new node just above the reference one.</span>
-<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/\&amp;flash0 {/\&amp;flash1 {/&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
-<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="c1"># Change the reg value that indicates the CS to 1</span>
-<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/&amp;flash1 {/!b;n;c\\treg = &lt;1&gt;;&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
-<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="c1"># Change the name of the 1st partition qspi_boot-&gt;flash1_boot</span>
-<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/qspi_boot:/flash1_boot:/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
-<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a><span class="c1"># Change the partition size for flash0</span>
-<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/reg = &lt;0x0 0x04200000&gt;;/reg = &lt;0x0 0x10000000&gt;;/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
-<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a><span class="c1"># Delete 2nd partition</span>
-<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/root/,/};/d&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
-<a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>
-<a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a><span class="c1"># Re-create the original node for flash0 just above the flash1 node</span>
-<a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/&amp;flash1 {/i &amp;flash0 {\n\treg = &lt;0&gt;;\n\tspi-tx-bus-width = &lt;4&gt;;\n\tspi-rx-bus-width = &lt;4&gt;;\n\tspi-max-frequency = &lt;25000000&gt;;\n\tbootph-all;\n\n\tm25p,fast-read;\n\tcdns,page-size = &lt;256&gt;;\n\tcdns,block-size = &lt;16&gt;;\n\tcdns,read-delay = &lt;1&gt;;\n\tcdns,tshsl-ns = &lt;50&gt;;\n\tcdns,tsd2d-ns = &lt;50&gt;;\n\tcdns,tchsh-ns = &lt;4&gt;;\n\tcdns,tslch-ns = &lt;4&gt;;\n\t/delete-property/ cdns,read-delay;\n\n\tpartitions {\n\t\tcompatible = &quot;fixed-partitions&quot;;\n\t\t#address-cells = &lt;1&gt;;\n\t\t#size-cells = &lt;1&gt;;\n\n\t\tqspi_boot: partition@0 {\n\t\t\tlabel = &quot;u-boot&quot;;\n\t\t\treg = &lt;0x0 0x10000000&gt;;\n\t\t};\n\t};\n};\n&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="c1"># enable dwarf4 debug info, for compatibility with arm ds </span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g&#39;</span><span class="w"> </span>arch/arm/config.mk
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="c1"># Update device tree to enable multi-qspi</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="c1"># Adding the number of QSPI devices</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/compatible = &quot;cdns,qspi-nor&quot;;/a \\tnum-cs = &lt;2&gt;;&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex-u-boot.dtsi
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="c1"># Create the initial flash1 node copy the content of flash0. </span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="c1"># First rename the falsh0-&gt;flash1. </span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="c1"># Then use the initial line for flash1 to write the new flash0 before the line</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/flash0: flash@0 {/flash1: flash@1 {/&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex-u-boot.dtsi
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/flash0/flash1/&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex-u-boot.dtsi
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/flash1: flash@1 {/i \\tflash0: flash@0 {\n\t};&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex-u-boot.dtsi
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/&amp;flash1 {/i &amp;flash0 {\n\t#address-cells = &lt;1&gt;;\n\t#size-cells = &lt;1&gt;;\n\tcompatible = &quot;jedec,spi-nor&quot;;\n};\n&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex-u-boot.dtsi
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="c1"># Starting booting from QSPI to probe QSPI devices. Removing atempt to boot from NAND</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&amp;flash0,\&amp;mmc;/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="c1"># disable NAND in the device tree</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/&amp;nand {/!b;n;c\\tstatus = &quot;disabled&quot;;&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="c1"># remove the NAND configuration from device tree</span>
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/images/,/binman/{/binman/!d}&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="c1"># Change max clk frequency of SPI flash0</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/spi-max-frequency = &lt;100000000&gt;;/spi-max-frequency = &lt;25000000&gt;;/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="c1"># Rename the flash0 to flash1 (later will recreate the node for flash0)</span>
+<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="c1"># This is done to have a QSPI flash reference to add the new node just above the reference one.</span>
+<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/\&amp;flash0 {/\&amp;flash1 {/&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="c1"># Change the reg value that indicates the CS to 1</span>
+<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/&amp;flash1 {/!b;n;c\\treg = &lt;1&gt;;&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a><span class="c1"># Change the name of the 1st partition qspi_boot-&gt;flash1_boot</span>
+<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/qspi_boot:/flash1_boot:/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a><span class="c1"># Change the partition size for flash0</span>
+<a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/reg = &lt;0x0 0x04200000&gt;;/reg = &lt;0x0 0x10000000&gt;;/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+<a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a><span class="c1"># Delete 2nd partition</span>
+<a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/root/,/};/d&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
 <a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a>
-<a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a>
-<a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a><span class="c1"># link to atf </span>
-<a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/arm-trusted-firmware/build/agilex/release/bl31.bin<span class="w"> </span>.
-<a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a><span class="c1"># Create configuration custom file.</span>
-<a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; config-fragment-agilex</span>
-<a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a><span class="s"># Use &#39;Image&#39; for kernel image instead of &#39;kernel.itb&#39;</span>
-<a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a><span class="s">CONFIG_BOOTFILE=&quot;Image&quot;</span>
-<a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a><span class="s"># ENABLE MULTIFLASH</span>
-<a id="__codelineno-5-55" name="__codelineno-5-55" href="#__codelineno-5-55"></a><span class="s">CONFIG_SOCFPGA_RSU_MULTIFLASH=y</span>
-<a id="__codelineno-5-56" name="__codelineno-5-56" href="#__codelineno-5-56"></a><span class="s">CONFIG_SF_DEFAULT_CS=0</span>
-<a id="__codelineno-5-57" name="__codelineno-5-57" href="#__codelineno-5-57"></a><span class="s"># - Disable NAND/UBI related settings from defconfig.</span>
-<a id="__codelineno-5-58" name="__codelineno-5-58" href="#__codelineno-5-58"></a><span class="s">CONFIG_NAND_BOOT=n</span>
-<a id="__codelineno-5-59" name="__codelineno-5-59" href="#__codelineno-5-59"></a><span class="s">CONFIG_SPL_NAND_SUPPORT=n</span>
-<a id="__codelineno-5-60" name="__codelineno-5-60" href="#__codelineno-5-60"></a><span class="s">CONFIG_CMD_NAND_TRIMFFS=n</span>
-<a id="__codelineno-5-61" name="__codelineno-5-61" href="#__codelineno-5-61"></a><span class="s">CONFIG_CMD_NAND_LOCK_UNLOCK=n</span>
-<a id="__codelineno-5-62" name="__codelineno-5-62" href="#__codelineno-5-62"></a><span class="s">CONFIG_NAND_DENALI_DT=n</span>
-<a id="__codelineno-5-63" name="__codelineno-5-63" href="#__codelineno-5-63"></a><span class="s">CONFIG_SYS_NAND_U_BOOT_LOCATIONS=n</span>
-<a id="__codelineno-5-64" name="__codelineno-5-64" href="#__codelineno-5-64"></a><span class="s">CONFIG_SPL_NAND_FRAMEWORK=n</span>
-<a id="__codelineno-5-65" name="__codelineno-5-65" href="#__codelineno-5-65"></a><span class="s">CONFIG_CMD_NAND=n</span>
-<a id="__codelineno-5-66" name="__codelineno-5-66" href="#__codelineno-5-66"></a><span class="s">CONFIG_MTD_RAW_NAND=n</span>
-<a id="__codelineno-5-67" name="__codelineno-5-67" href="#__codelineno-5-67"></a><span class="s">CONFIG_CMD_UBI=n</span>
-<a id="__codelineno-5-68" name="__codelineno-5-68" href="#__codelineno-5-68"></a><span class="s">CONFIG_CMD_UBIFS=n</span>
-<a id="__codelineno-5-69" name="__codelineno-5-69" href="#__codelineno-5-69"></a><span class="s">CONFIG_MTD_UBI=n</span>
-<a id="__codelineno-5-70" name="__codelineno-5-70" href="#__codelineno-5-70"></a><span class="s">CONFIG_ENV_IS_IN_UBI=n</span>
-<a id="__codelineno-5-71" name="__codelineno-5-71" href="#__codelineno-5-71"></a><span class="s">CONFIG_UBI_SILENCE_MSG=n</span>
-<a id="__codelineno-5-72" name="__codelineno-5-72" href="#__codelineno-5-72"></a><span class="s">CONFIG_UBIFS_SILENCE_MSG=n</span>
-<a id="__codelineno-5-73" name="__codelineno-5-73" href="#__codelineno-5-73"></a><span class="s"># - Disable distroboot and use specific boot command.</span>
-<a id="__codelineno-5-74" name="__codelineno-5-74" href="#__codelineno-5-74"></a><span class="s">CONFIG_DISTRO_DEFAULTS=n</span>
-<a id="__codelineno-5-75" name="__codelineno-5-75" href="#__codelineno-5-75"></a><span class="s">CONFIG_HUSH_PARSER=y</span>
-<a id="__codelineno-5-76" name="__codelineno-5-76" href="#__codelineno-5-76"></a><span class="s">CONFIG_SYS_PROMPT_HUSH_PS2=&quot;&gt; &quot;</span>
-<a id="__codelineno-5-77" name="__codelineno-5-77" href="#__codelineno-5-77"></a><span class="s">CONFIG_USE_BOOTCOMMAND=y</span>
-<a id="__codelineno-5-78" name="__codelineno-5-78" href="#__codelineno-5-78"></a><span class="s"># rsu_status boot command calls rsu dtb command to update the start address of </span>
-<a id="__codelineno-5-79" name="__codelineno-5-79" href="#__codelineno-5-79"></a><span class="s"># qspi_boot0 partition in the Linux dtb to indicate it starts at SPT0 location</span>
-<a id="__codelineno-5-80" name="__codelineno-5-80" href="#__codelineno-5-80"></a><span class="s">CONFIG_BOOTCOMMAND=&quot;bridge enable; setenv bootfile Image; setenv fdtimage socfpga_agilex7f_socdk_multiqspi.dtb; run mmcload; run linux_qspi_enable; run rsu_status; run mmcboot&quot;</span>
-<a id="__codelineno-5-81" name="__codelineno-5-81" href="#__codelineno-5-81"></a><span class="s">CONFIG_CMD_FAT=y</span>
-<a id="__codelineno-5-82" name="__codelineno-5-82" href="#__codelineno-5-82"></a><span class="s">CONFIG_CMD_FS_GENERIC=y</span>
-<a id="__codelineno-5-83" name="__codelineno-5-83" href="#__codelineno-5-83"></a><span class="s">CONFIG_DOS_PARTITION=y</span>
-<a id="__codelineno-5-84" name="__codelineno-5-84" href="#__codelineno-5-84"></a><span class="s">CONFIG_SPL_DOS_PARTITION=y</span>
-<a id="__codelineno-5-85" name="__codelineno-5-85" href="#__codelineno-5-85"></a><span class="s">CONFIG_CMD_PART=y</span>
-<a id="__codelineno-5-86" name="__codelineno-5-86" href="#__codelineno-5-86"></a><span class="s">CONFIG_SPL_CRC32=y</span>
-<a id="__codelineno-5-87" name="__codelineno-5-87" href="#__codelineno-5-87"></a><span class="s">CONFIG_LZO=y</span>
-<a id="__codelineno-5-88" name="__codelineno-5-88" href="#__codelineno-5-88"></a><span class="s">CONFIG_CMD_DHCP=y</span>
-<a id="__codelineno-5-89" name="__codelineno-5-89" href="#__codelineno-5-89"></a><span class="s">CONFIG_SYS_PROMPT=&quot;SOCFPGA # &quot;</span>
-<a id="__codelineno-5-90" name="__codelineno-5-90" href="#__codelineno-5-90"></a><span class="s"># Enable more QSPI flash manufacturers</span>
-<a id="__codelineno-5-91" name="__codelineno-5-91" href="#__codelineno-5-91"></a><span class="s">CONFIG_SPI_FLASH_MACRONIX=y</span>
-<a id="__codelineno-5-92" name="__codelineno-5-92" href="#__codelineno-5-92"></a><span class="s">CONFIG_SPI_FLASH_GIGADEVICE=y</span>
-<a id="__codelineno-5-93" name="__codelineno-5-93" href="#__codelineno-5-93"></a><span class="s">CONFIG_SPI_FLASH_WINBOND=y</span>
-<a id="__codelineno-5-94" name="__codelineno-5-94" href="#__codelineno-5-94"></a><span class="s">CONFIG_SPI_FLASH_ISSI=y</span>
-<a id="__codelineno-5-95" name="__codelineno-5-95" href="#__codelineno-5-95"></a><span class="s">EOF</span>
-<a id="__codelineno-5-96" name="__codelineno-5-96" href="#__codelineno-5-96"></a><span class="c1"># build U-Boot</span>
-<a id="__codelineno-5-97" name="__codelineno-5-97" href="#__codelineno-5-97"></a>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>mrproper
-<a id="__codelineno-5-98" name="__codelineno-5-98" href="#__codelineno-5-98"></a>make<span class="w"> </span>socfpga_agilex_defconfig
-<a id="__codelineno-5-99" name="__codelineno-5-99" href="#__codelineno-5-99"></a><span class="c1"># Use created custom configuration file to merge with the default configuration obtained in .config file.</span>
-<a id="__codelineno-5-100" name="__codelineno-5-100" href="#__codelineno-5-100"></a>./scripts/kconfig/merge_config.sh<span class="w"> </span>-O<span class="w"> </span>./<span class="w"> </span>./.config<span class="w"> </span>./config-fragment-agilex
-<a id="__codelineno-5-101" name="__codelineno-5-101" href="#__codelineno-5-101"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">48</span>
-<a id="__codelineno-5-102" name="__codelineno-5-102" href="#__codelineno-5-102"></a><span class="nb">cd</span><span class="w"> </span>..
+<a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a><span class="c1"># Re-create the original node for flash0 just above the flash1 node</span>
+<a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/&amp;flash1 {/i &amp;flash0 {\n\treg = &lt;0&gt;;\n\tspi-tx-bus-width = &lt;4&gt;;\n\tspi-rx-bus-width = &lt;4&gt;;\n\tspi-max-frequency = &lt;25000000&gt;;\n\tbootph-all;\n\n\tm25p,fast-read;\n\tcdns,page-size = &lt;256&gt;;\n\tcdns,block-size = &lt;16&gt;;\n\tcdns,read-delay = &lt;1&gt;;\n\tcdns,tshsl-ns = &lt;50&gt;;\n\tcdns,tsd2d-ns = &lt;50&gt;;\n\tcdns,tchsh-ns = &lt;4&gt;;\n\tcdns,tslch-ns = &lt;4&gt;;\n\t/delete-property/ cdns,read-delay;\n\n\tpartitions {\n\t\tcompatible = &quot;fixed-partitions&quot;;\n\t\t#address-cells = &lt;1&gt;;\n\t\t#size-cells = &lt;1&gt;;\n\n\t\tqspi_boot: partition@0 {\n\t\t\tlabel = &quot;u-boot&quot;;\n\t\t\treg = &lt;0x0 0x10000000&gt;;\n\t\t};\n\t};\n};\n&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
+<a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a>
+<a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a>
+<a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a><span class="c1"># link to atf </span>
+<a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/arm-trusted-firmware/build/agilex/release/bl31.bin<span class="w"> </span>.
+<a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a><span class="c1"># Create configuration custom file.</span>
+<a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; config-fragment-agilex</span>
+<a id="__codelineno-5-55" name="__codelineno-5-55" href="#__codelineno-5-55"></a><span class="s"># Use &#39;Image&#39; for kernel image instead of &#39;kernel.itb&#39;</span>
+<a id="__codelineno-5-56" name="__codelineno-5-56" href="#__codelineno-5-56"></a><span class="s">CONFIG_BOOTFILE=&quot;Image&quot;</span>
+<a id="__codelineno-5-57" name="__codelineno-5-57" href="#__codelineno-5-57"></a><span class="s"># ENABLE MULTIFLASH</span>
+<a id="__codelineno-5-58" name="__codelineno-5-58" href="#__codelineno-5-58"></a><span class="s">CONFIG_SOCFPGA_RSU_MULTIFLASH=y</span>
+<a id="__codelineno-5-59" name="__codelineno-5-59" href="#__codelineno-5-59"></a><span class="s">CONFIG_SF_DEFAULT_CS=0</span>
+<a id="__codelineno-5-60" name="__codelineno-5-60" href="#__codelineno-5-60"></a><span class="s"># - Disable NAND/UBI related settings from defconfig.</span>
+<a id="__codelineno-5-61" name="__codelineno-5-61" href="#__codelineno-5-61"></a><span class="s">CONFIG_NAND_BOOT=n</span>
+<a id="__codelineno-5-62" name="__codelineno-5-62" href="#__codelineno-5-62"></a><span class="s">CONFIG_SPL_NAND_SUPPORT=n</span>
+<a id="__codelineno-5-63" name="__codelineno-5-63" href="#__codelineno-5-63"></a><span class="s">CONFIG_CMD_NAND_TRIMFFS=n</span>
+<a id="__codelineno-5-64" name="__codelineno-5-64" href="#__codelineno-5-64"></a><span class="s">CONFIG_CMD_NAND_LOCK_UNLOCK=n</span>
+<a id="__codelineno-5-65" name="__codelineno-5-65" href="#__codelineno-5-65"></a><span class="s">CONFIG_NAND_DENALI_DT=n</span>
+<a id="__codelineno-5-66" name="__codelineno-5-66" href="#__codelineno-5-66"></a><span class="s">CONFIG_SYS_NAND_U_BOOT_LOCATIONS=n</span>
+<a id="__codelineno-5-67" name="__codelineno-5-67" href="#__codelineno-5-67"></a><span class="s">CONFIG_SPL_NAND_FRAMEWORK=n</span>
+<a id="__codelineno-5-68" name="__codelineno-5-68" href="#__codelineno-5-68"></a><span class="s">CONFIG_CMD_NAND=n</span>
+<a id="__codelineno-5-69" name="__codelineno-5-69" href="#__codelineno-5-69"></a><span class="s">CONFIG_MTD_RAW_NAND=n</span>
+<a id="__codelineno-5-70" name="__codelineno-5-70" href="#__codelineno-5-70"></a><span class="s">CONFIG_CMD_UBI=n</span>
+<a id="__codelineno-5-71" name="__codelineno-5-71" href="#__codelineno-5-71"></a><span class="s">CONFIG_CMD_UBIFS=n</span>
+<a id="__codelineno-5-72" name="__codelineno-5-72" href="#__codelineno-5-72"></a><span class="s">CONFIG_MTD_UBI=n</span>
+<a id="__codelineno-5-73" name="__codelineno-5-73" href="#__codelineno-5-73"></a><span class="s">CONFIG_ENV_IS_IN_UBI=n</span>
+<a id="__codelineno-5-74" name="__codelineno-5-74" href="#__codelineno-5-74"></a><span class="s">CONFIG_UBI_SILENCE_MSG=n</span>
+<a id="__codelineno-5-75" name="__codelineno-5-75" href="#__codelineno-5-75"></a><span class="s">CONFIG_UBIFS_SILENCE_MSG=n</span>
+<a id="__codelineno-5-76" name="__codelineno-5-76" href="#__codelineno-5-76"></a><span class="s"># - Disable distroboot and use specific boot command.</span>
+<a id="__codelineno-5-77" name="__codelineno-5-77" href="#__codelineno-5-77"></a><span class="s">CONFIG_DISTRO_DEFAULTS=n</span>
+<a id="__codelineno-5-78" name="__codelineno-5-78" href="#__codelineno-5-78"></a><span class="s">CONFIG_HUSH_PARSER=y</span>
+<a id="__codelineno-5-79" name="__codelineno-5-79" href="#__codelineno-5-79"></a><span class="s">CONFIG_SYS_PROMPT_HUSH_PS2=&quot;&gt; &quot;</span>
+<a id="__codelineno-5-80" name="__codelineno-5-80" href="#__codelineno-5-80"></a><span class="s">CONFIG_USE_BOOTCOMMAND=y</span>
+<a id="__codelineno-5-81" name="__codelineno-5-81" href="#__codelineno-5-81"></a><span class="s"># rsu_status boot command calls rsu dtb command to update the start address of </span>
+<a id="__codelineno-5-82" name="__codelineno-5-82" href="#__codelineno-5-82"></a><span class="s"># qspi_boot0 partition in the Linux dtb to indicate it starts at SPT0 location</span>
+<a id="__codelineno-5-83" name="__codelineno-5-83" href="#__codelineno-5-83"></a><span class="s">CONFIG_BOOTCOMMAND=&quot;bridge enable; setenv bootfile Image; setenv fdtimage socfpga_agilex7f_socdk_multiqspi.dtb; run mmcload; run linux_qspi_enable; run rsu_status; run mmcboot&quot;</span>
+<a id="__codelineno-5-84" name="__codelineno-5-84" href="#__codelineno-5-84"></a><span class="s">CONFIG_CMD_FAT=y</span>
+<a id="__codelineno-5-85" name="__codelineno-5-85" href="#__codelineno-5-85"></a><span class="s">CONFIG_CMD_FS_GENERIC=y</span>
+<a id="__codelineno-5-86" name="__codelineno-5-86" href="#__codelineno-5-86"></a><span class="s">CONFIG_DOS_PARTITION=y</span>
+<a id="__codelineno-5-87" name="__codelineno-5-87" href="#__codelineno-5-87"></a><span class="s">CONFIG_SPL_DOS_PARTITION=y</span>
+<a id="__codelineno-5-88" name="__codelineno-5-88" href="#__codelineno-5-88"></a><span class="s">CONFIG_CMD_PART=y</span>
+<a id="__codelineno-5-89" name="__codelineno-5-89" href="#__codelineno-5-89"></a><span class="s">CONFIG_SPL_CRC32=y</span>
+<a id="__codelineno-5-90" name="__codelineno-5-90" href="#__codelineno-5-90"></a><span class="s">CONFIG_LZO=y</span>
+<a id="__codelineno-5-91" name="__codelineno-5-91" href="#__codelineno-5-91"></a><span class="s">CONFIG_CMD_DHCP=y</span>
+<a id="__codelineno-5-92" name="__codelineno-5-92" href="#__codelineno-5-92"></a><span class="s">CONFIG_SYS_PROMPT=&quot;SOCFPGA # &quot;</span>
+<a id="__codelineno-5-93" name="__codelineno-5-93" href="#__codelineno-5-93"></a><span class="s"># Enable more QSPI flash manufacturers</span>
+<a id="__codelineno-5-94" name="__codelineno-5-94" href="#__codelineno-5-94"></a><span class="s">CONFIG_SPI_FLASH_MACRONIX=y</span>
+<a id="__codelineno-5-95" name="__codelineno-5-95" href="#__codelineno-5-95"></a><span class="s">CONFIG_SPI_FLASH_GIGADEVICE=y</span>
+<a id="__codelineno-5-96" name="__codelineno-5-96" href="#__codelineno-5-96"></a><span class="s">CONFIG_SPI_FLASH_WINBOND=y</span>
+<a id="__codelineno-5-97" name="__codelineno-5-97" href="#__codelineno-5-97"></a><span class="s">CONFIG_SPI_FLASH_ISSI=y</span>
+<a id="__codelineno-5-98" name="__codelineno-5-98" href="#__codelineno-5-98"></a><span class="s">EOF</span>
+<a id="__codelineno-5-99" name="__codelineno-5-99" href="#__codelineno-5-99"></a><span class="c1"># build U-Boot</span>
+<a id="__codelineno-5-100" name="__codelineno-5-100" href="#__codelineno-5-100"></a>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>mrproper
+<a id="__codelineno-5-101" name="__codelineno-5-101" href="#__codelineno-5-101"></a>make<span class="w"> </span>socfpga_agilex_defconfig
+<a id="__codelineno-5-102" name="__codelineno-5-102" href="#__codelineno-5-102"></a><span class="c1"># Use created custom configuration file to merge with the default configuration obtained in .config file.</span>
+<a id="__codelineno-5-103" name="__codelineno-5-103" href="#__codelineno-5-103"></a>./scripts/kconfig/merge_config.sh<span class="w"> </span>-O<span class="w"> </span>./<span class="w"> </span>./.config<span class="w"> </span>./config-fragment-agilex
+<a id="__codelineno-5-104" name="__codelineno-5-104" href="#__codelineno-5-104"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">48</span>
+<a id="__codelineno-5-105" name="__codelineno-5-105" href="#__codelineno-5-105"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
 <p>After completing the above steps, the following files are created.</p>
 <ul>
@@ -6049,7 +6068,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 20, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 8, 2026</span>
       
         <br>
         Created:

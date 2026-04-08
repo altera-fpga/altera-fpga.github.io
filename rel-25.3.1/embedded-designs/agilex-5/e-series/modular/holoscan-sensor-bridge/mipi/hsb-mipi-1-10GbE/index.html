@@ -3449,6 +3449,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#setting-up-your-modular-development-board" class="md-nav__link">
+    Setting Up your Modular Development Board
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#board-and-nvidia-host-system-setup" class="md-nav__link">
     Board and NVIDIA Host System Setup
   </a>
@@ -4524,6 +4531,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_8_4_4" id="__nav_8_4_4_label" tabindex="0">
@@ -4546,6 +4555,20 @@
     <li class="md-nav__item">
       <a href="../../../../../../../ed-ai-suite/agilex7/iseries_ofs_pcie/iseries_ofs_pcie/" class="md-nav__link">
         Agilex 7 PCIe-Attached Example Design with OFS (I-Series, 2x R-Tile and 1x F-Tile)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/i-series/ptp/agx7i-ptp-anlt/agx7i-ptp-anlt/" class="md-nav__link">
+        Time Precision Protocol System Example Design (I-Series, 4x F-Tile)
       </a>
     </li>
   
@@ -5246,6 +5269,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#setting-up-your-modular-development-board" class="md-nav__link">
+    Setting Up your Modular Development Board
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#board-and-nvidia-host-system-setup" class="md-nav__link">
     Board and NVIDIA Host System Setup
   </a>
@@ -5478,6 +5508,31 @@ within Altera's Video and Vision Processing (VVP) Suite.</p>
 <p><br/></p>
 <h2 id="getting-started-run-with-pre-built-fpga">Getting Started - run with pre-built FPGA<a class="headerlink" href="#getting-started-run-with-pre-built-fpga" title="Permanent link">&para;</a></h2>
 <p>Follow the instructions provided in this section to run the Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices.</p>
+<h3 id="setting-up-your-modular-development-board"><strong>Setting Up your Modular Development Board</strong><a class="headerlink" href="#setting-up-your-modular-development-board" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Warning</p>
+<p>Handle ESD-sensitive equipment (boards, microSD Cards, Camera sensors, etc.) only when properly grounded and at an ESD-safe workstation</p>
+</div>
+<ul>
+<li>Configure the board switches as shown:</li>
+</ul>
+<p><br></p>
+<p><a class="glightbox" href="../assets/board-1.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="board-1" src="../assets/board-1.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<center markdown="1"></p>
+<p><strong>Modular Development Board - Default Switch Positions</strong>
+</center>
+<br></p>
+<ul>
+<li>Connect micro USB cable between the carrier board (<code>J35</code>) and the Host PC.
+  This will be used for JTAG communication. Look at what ports are enumerated
+  on your Host computer. There should be a series of four.</li>
+</ul>
+<p><br></p>
+<p><a class="glightbox" href="../assets/Agx5-MDK-Conn.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Agx-MDK-Conn" src="../assets/Agx5-MDK-Conn.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
+<center markdown="1"></p>
+<p><strong>Board Connections</strong>
+</center>
+<br></p>
 <h3 id="board-and-nvidia-host-system-setup"><strong>Board and NVIDIA Host System Setup</strong><a class="headerlink" href="#board-and-nvidia-host-system-setup" title="Permanent link">&para;</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Warning</p>

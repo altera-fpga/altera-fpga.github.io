@@ -2896,6 +2896,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#migrate-hardware-design-from-gsrd-10-to-gsrd-20" class="md-nav__link">
+    Migrate Hardware Design from GSRD 1.0 to GSRD 2.0
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#update-kernelitb-file" class="md-nav__link">
     Update kernel.itb File
   </a>
@@ -4725,6 +4732,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_8_4_4" id="__nav_8_4_4_label" tabindex="0">
@@ -4747,6 +4756,20 @@
     <li class="md-nav__item">
       <a href="../../../../../../ed-ai-suite/agilex7/iseries_ofs_pcie/iseries_ofs_pcie/" class="md-nav__link">
         Agilex 7 PCIe-Attached Example Design with OFS (I-Series, 2x R-Tile and 1x F-Tile)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-7/i-series/ptp/agx7i-ptp-anlt/agx7i-ptp-anlt/" class="md-nav__link">
+        Time Precision Protocol System Example Design (I-Series, 4x F-Tile)
       </a>
     </li>
   
@@ -5613,6 +5636,13 @@
           <li class="md-nav__item">
   <a href="#build-kas-interactively" class="md-nav__link">
     Build Kas Interactively
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#migrate-hardware-design-from-gsrd-10-to-gsrd-20" class="md-nav__link">
+    Migrate Hardware Design from GSRD 1.0 to GSRD 2.0
   </a>
   
 </li>
@@ -6560,6 +6590,7 @@ This will put the two chunks called <code>xaa</code> and <code>xab</code> on you
 <li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.sof</code></li>
 <li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.core.rbf</code></li>
 </ul>
+<p><span style="color: red;"><strong>Important Note:</strong></span> Please refer to <a href="#migrate-hardware-design-from-gsrd-10-to-gsrd-20">Migrate Hardware Design from GSRD 1.0 to GSRD 2.0</a> section for important information about how to migrate from a hardware design based on GSRD 1.0 to GSRD 2.0.</p>
 <h5>Build Yocto Using Kas</h5>
 
 <p>1. Create and enter a new Python virtual environment:</p>
@@ -6634,6 +6665,7 @@ This will put the two chunks called <code>xaa</code> and <code>xab</code> on you
 <li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.sof</code></li>
 <li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.core.rbf</code></li>
 </ul>
+<p><span style="color: red;"><strong>Important Note:</strong></span> Please refer to <a href="#migrate-hardware-design-from-gsrd-10-to-gsrd-20">Migrate Hardware Design from GSRD 1.0 to GSRD 2.0</a> section for important information about how to migrate from a hardware design based on GSRD 1.0 to GSRD 2.0.</p>
 <h5>Build Yocto Using Kas</h5>
 
 <p>1. Create and enter a new Python virtual environment. A virtual environment allows you to install packages without impacting your global environment:</p>
@@ -6787,6 +6819,14 @@ This will put the two chunks called <code>xaa</code> and <code>xab</code> on you
 <a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>bitbake<span class="w"> </span>console-image-minimal
 <a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>bitbake<span class="w"> </span>gsrd-console-image
 </code></pre></div>
+<h4 id="migrate-hardware-design-from-gsrd-10-to-gsrd-20">Migrate Hardware Design from GSRD 1.0 to GSRD 2.0<a class="headerlink" href="#migrate-hardware-design-from-gsrd-10-to-gsrd-20" title="Permanent link">&para;</a></h4>
+<p>If your hardware design was originally based on the legacy GHRD in GSRD 1.0, and you want to migrate it to  be used with GSRD 2.0, you must ensure that the <strong>JTAG user code</strong> parameter gets defined  with a value of 0 or not defined (FFFFFFFF). This parameter can be found in Quartus Pro from the <strong>Assignments</strong> &gt;&gt; <strong>Device</strong> &gt;&gt; <strong>Device and Pin Options</strong> &gt;&gt; <strong>General</strong> menu. Alternatively, this parameter can also be defined in the <strong>.qsf</strong> file  in your Quartus project directory as <strong>STRATIX_JTAG_USER_CODE</strong>, so you can set this parameter to 0 or just delete the assignment line. This change is needed because in the GSRD 1.0, this parameter is used to indicate to U-Boot which configuration components (kernel image, device tree and 2<sup>nd</sup> phase fabric design) need to be loaded from the kernel.itb binary. The most relevant configurations supported in GSRD 1.0 were  for booting from OOO daughter card, booting from eMMC/NAND daughter card and exercise Partial Reconfiguration. In each one of these configurations a specific value in the <strong>JTAG user code</strong>/<strong>STRATIX_JTAG_USER_CODE</strong> was used. In the case of GSRD 2.0, the valid value for this parameter are:</p>
+<ul>
+<li>0:  Load kernel image, device tree and 2<sup>nd</sup> phase fabric design from kernel.itb. FPGA is configured.</li>
+<li>1: Load kernel image and device tree from kernel.itb. FPGA is not configured. Used for debug purposes.</li>
+<li>FFFFFFFF or undefined: U-Boot assumes that the parameter is 0 and performs the actions described above.</li>
+</ul>
+<p>For any other value, U-Boot will fail to load a valid set of Linux components and 2<sup>nd</sup> phase fabric design.  </p>
 <h4 id="update-kernelitb-file">Update kernel.itb File<a class="headerlink" href="#update-kernelitb-file" title="Permanent link">&para;</a></h4>
 <p>The <strong>kernel.itb</strong> file is a Flattattened Image Tree (FIT) file that includes the following components:</p>
 <ul>
@@ -6974,6 +7014,7 @@ You can verify that the Yocto environment has been setup using the <strong>which
 <li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.sof</code></li>
 <li><code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.core.rbf</code></li>
 </ul>
+<p><span style="color: red;"><strong>Important Note:</strong></span> Please refer to <a href="#migrate-hardware-design-from-gsrd-10-to-gsrd-20">Migrate Hardware Design from GSRD 1.0 to GSRD 2.0</a> section for important information about how to migrate from a hardware design based on GSRD 1.0 to GSRD 2.0.</p>
 <h5>Build Software Components</h5>
 
 <p>1. Run the provided script to build the embedded software components: ATF, U-Boot, Linux Kernel &amp; Device Tree, Linux rootfs:</p>
@@ -7430,7 +7471,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 2, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 8, 2026</span>
       
         <br>
         Created:
