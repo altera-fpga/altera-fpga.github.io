@@ -65,6 +65,9 @@ extra:
     - src: 'embedded-designs/agilex-7/f-series/soc/xen/ug-xen-agx7f-soc.md'
       dests:
         - 'virtualization/hypervisors/xen/ug-xen-agx7f-soc.md'
+    - src: 'real-time/rt-overview/rt-overview.md'
+      dests:
+        - 'real-time/index.md'
 
   social:
     - icon: material/web  
@@ -180,6 +183,10 @@ nav:
             - Agilex™ 5 E-Series Premium Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx5e-premium.md
             - Agilex™ 5 E-Series Modular Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx5e-modular.md
             - Agilex™ 7 F-Series SoC Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx7f-soc.md
+  - Real-Time:
+    - 'real-time/index.md'
+    - Embedded Linux RT Tuning (KAS/Yocto): real-time/embedded-linux/yocto-kas.md
+    - Agilex 5 HPS CPU Cluster Latency: real-time/agilex5-hps-cpu-cluster-latency/agilex5_hps_cpu_cluster_latency.md
   - Baremetal Drivers:
     - 'driver-list_baremetal/index.md'
   - Host Attach Utilities:
@@ -209,34 +216,37 @@ nav:
   - Example Designs:
     - Summary: ed-demo-list/ed-list.md
     - Agilex™ 3:
-      - C-Series SoC and FPGA Development Kit:
+      - C-Series 135B Development Kit:
         - Drive-On-Chip with PLC Design Example for Agilex™ Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-plc.md
         - HPS GSRD User Guide: embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3.md
         - HPS GHRD Linux Boot Examples: embedded-designs/agilex-3/c-series/boot-examples/ug-linux-boot-agx3.md
-        - HPS Remote System Update: embedded-designs/agilex-3/c-series/rsu/ug-rsu-agx3c-fpga.md
+        - HPS Remote System Update Example Design: embedded-designs/agilex-3/c-series/rsu/ug-rsu-agx3c-fpga.md
         - SoC FPGA Remote Debug: embedded-designs/agilex-3/c-series/remote-debug/ug-remote-debug-agx3.md        
         - Debugging U-Boot with Arm Development Studio: demos/agilex-3/c-series/armds-debug-u-boot/ug-armds-debug-uboot-agx3.md
         - Debugging U-Boot with Ashling RiscFree: demos/agilex-3/c-series/riscfree-debug-u-boot/ug-riscfree-debug-uboot-agx3.md
         - Debugging Linux with Ashling RiscFree: demos/agilex-3/c-series/riscfree-debug-linux/ug-riscfree-debug-linux-agx3.md
         - Debugging Linux with Arm Development Studio: demos/agilex-3/c-series/armds-debug-linux/ug-armds-debug-linux-agx3.md
         - HPS Xen Hypervisor GSRD: embedded-designs/agilex-3/c-series/xen/ug-xen-agx3.md
+        - 4Kp30 Camera Lite Solution System Example Design for Agilex™ 3 Devices: embedded-designs/agilex-3/c-series/camera/camera_lite_4k30/camera_4k.md        
+        - HPS OpenOCD Debugging: embedded-designs/agilex-3/c-series/openocd/ug-openocd-debug-agx3.md
       - Intel Simics Virtual Platform Examples:
-        - HPS Simics Linux GSRD: embedded-designs/agilex-3/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex3-virtual-platforms.md       
+        - Simics Linux HPS Baseline System Example Design: embedded-designs/agilex-3/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex3-virtual-platforms.md       
     - Agilex™ 5:
-      - E-Series Premium Development Kit:
+      - E-Series 065B Premium Development Kit (ES):
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium.md
         - Enhanced HPS User Guide: embedded-designs/agilex-5/e-series/premium/egsrd/ug-ehps-agx5e-premium.md
         - HPS Zephyr GSRD User Guide: embedded-designs/agilex-5/e-series/premium/gsrd_zephyr/ug-zgsrd-agx5e-premium.md
-        - HPS GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium.md
+        - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium.md
         - TSN Examples:
           - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hps/ug-tsncfg1-agx5e-premium.md
           - HPS TSN RGMII HVIO System Example Design User Guide: embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hvio/ug-tsncfg2-agx5e-premium.md
           - HPS TSN SGMII XCVR System Example Design User Guide: embedded-designs/agilex-5/e-series/premium/tsn/sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5.md
         - USB 3.1 Example: 'embedded-designs/agilex-5/e-series/premium/usb3p1/ug-usb3p1-dev-drd-modes.md'
         - SoC FPGA Remote Debug: embedded-designs/agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium.md
-        - HPS Remote System Update: embedded-designs/agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc.md
+        - HPS Remote System Update Example Design: embedded-designs/agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc.md
         - HPS Xen Hypervisor GSRD: embedded-designs/agilex-5/e-series/premium/xen/ug-xen-agx5e-premium.md
         - PCIe Root Port: embedded-designs/agilex-5/e-series/premium/pcie_rp/ug-pcie_rp-agx5e-premium.md
+        - 2x10GbE PTP1588 System Example Design: embedded-designs/agilex-5/e-series/premium/ptp1588/agx5e-ptp-2p10g/ug-agx5e-ptp-2p10g.md
         - Nios V Processor Examples:
           - Nios V/c:
             - Helloworld and OCM memory test design on Nios® V/c Processor: embedded-designs/agilex-5/e-series/premium/niosv/niosv_c/niosv_c_helloworld_ocm_mem_test/ug-helloworld-ocm-mem-test-agx5e-premium.md
@@ -252,7 +262,15 @@ nav:
         - Debugging U-Boot with Ashling RiscFree: demos/agilex-5/e-series/premium/riscfree-debug-u-boot/ug-riscfree-debug-uboot-agx5e-premium.md
         - Debugging Linux with Ashling RiscFree: demos/agilex-5/e-series/premium/riscfree-debug-linux/ug-riscfree-debug-linux-agx5e-premium.md
         - Debugging Linux with Arm Development Studio: demos/agilex-5/e-series/premium/armds-debug-linux/ug-armds-debug-linux-agx5e-premium.md
-      - E-Series Modular Development Kit:
+      - E-Series 065B Premium Development Kit:
+        - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b.md 
+        - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/premium-065b/boot-examples/ug-linux-boot-agx5e-premium-065b.md
+        - HPS Remote System Update Example Design:  embedded-designs/agilex-5/e-series/premium-065b/rsu/ug-rsu-agx5e-soc-premium-065b.md
+        - HPS OpenOCD Debugging: embedded-designs/agilex-5/e-series/premium-065b/openocd/ug-openocd-debug-agx5e-premium-065b.md
+      - E-Series 065A Premium Development Kit:
+        - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/premium-065a/gsrd/ug-gsrd-agx5e-premium-065a.md      
+        - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/premium-065a/boot-examples/ug-linux-boot-agx5e-premium-065a.md
+      - E-Series 065B Modular Development Kit (ES):
         - Hostless JTAG Example Design: ed-ai-suite/agilex5/modular_jtag/modular_jtag.md
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular.md
         - HPS GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular.md
@@ -263,23 +281,30 @@ nav:
         - 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k/camera_4k.md
         - 4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k_ai/camera_4k_ai.md
         - Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/holoscan-sensor-bridge/mipi/hsb-mipi-1-10GbE.md
-        - Agilex™ 5 FPGA E-Series Modular Development Kit 1x10G Ethernet System Example Design: embedded-designs/agilex-5/e-series/modular/ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g.md
+        - 1x10G Ethernet System Example Design: embedded-designs/agilex-5/e-series/modular/ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g.md
         - TSN Examples:
           - HPS TSN SGMII XCVR System 3x2.5G Example Design User Guide: embedded-designs/agilex-5/e-series/modular/tsn/sgmii_xcvr_3x2.5G/ug-tsn-sgmii-xcvr-3x2.5G-agilex5.md
+      - E-Series 065B Modular Development Kit:
+          - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b.md
+      - E-Series 065A Modular Development Kit:
+          - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular-065a/gsrd/ug-gsrd-agx5e-modular-065a.md
       - E-Series 013B Development Kit:
-          - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/013B/ug-gsrd-agx5e-013b.md
+          - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/013B/gsrd/ug-gsrd-agx5e-013b.md
+          - HPS GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/013B/boot-examples/ug-linux-boot-agx5e-013b.md
+          - FPGA Crypto Services (FCS) Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/013B/security/crypto/cryptoservices/ug-fpga-cryptoservice-agx5e-soc.md
+          - Vendor Authorized Boot (HPS-First) Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/013B/security/vab/hps-first/ug-vab-hps-first-agx5e-soc.md
       - Intel Simics Virtual Platform Examples:
-        - Simics Linux GSRD: embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms.md
-        - Simics Zephyr GSRD: embedded-designs/agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms.md
+        - Simics Linux HPS Baseline System Example Design: embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms.md
+        - Simics Zephyr HPS Baseline System Example Design: embedded-designs/agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms.md
     - Agilex™ 7:
       - F-Series SoC Development Kit (P-Tiles & E-Tile):
         - HPS GSRD User Guide: embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc.md
-        - HPS Remote System Update: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc.md
-        - HPS Multi-QSPI Remote System Update: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc.md
+        - HPS Remote System Update Example Design: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc.md
+        - HPS Multi-QSPI Remote System Update Example Design: embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc.md
         - SoC FPGA Remote Debug: embedded-designs/agilex-7/f-series/soc/remote-debug/ug-remote-debug-agx7f-soc.md
         - HPS eMMC Boot: embedded-designs/agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc.md
         - SoC Fabric Configuration from Linux Example: embedded-designs/agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc.md
-        - HPS GHRD Linux Boot Examples: embedded-designs/agilex-7/f-series/soc/boot-examples/ug-linux-boot-agx7-soc.md
+        - HPS Linux Boot System Example Design: embedded-designs/agilex-7/f-series/soc/boot-examples/ug-linux-boot-agx7-soc.md
         - HPS Xen Hypervisor GSRD: embedded-designs/agilex-7/f-series/soc/xen/ug-xen-agx7f-soc.md
         - Setting up and Using Bridges HPS Linux Example: embedded-designs/agilex-7/f-series/soc/setup-use-bridges/ug-setup-use-bridges-agx7f-soc.md
         - FPGA Crypto Services (FCS) Tutorial Example Design User Guide: embedded-designs/agilex-7/f-series/soc/security/crypto/cryptoservices/ug-fpga-cryptoservice-agx7-soc.md
@@ -287,8 +312,8 @@ nav:
         - Vendor Authorized Boot (HPS-First) Tutorial Example Design User Guide: embedded-designs/agilex-7/f-series/soc/security/vab/hps-first/ug-vab-hps-first-agx7f-soc.md
         - Vendor Authorized Boot (FPGA-First) Tutorial Example Design User Guide: embedded-designs/agilex-7/f-series/soc/security/vab/fpga-first/ug-vab-fpga-first-agx7f-soc.md
         - Nios V Processor Examples:
-          #- Nios V/m:
-            #- Nios V/m Processor IPerf 2 Design: embedded-designs/agilex-7/f-series/soc/niosv/niosv_m/iperf/ug-iperf-agx7f-soc.md
+          - Nios V/m:
+            - Nios® V/m Processor IPerf Server Application: embedded-designs/agilex-7/f-series/soc/niosv/niosv_m/iperf/ug-iperf-agx7f-soc.md
             #- Nios V/m Processor Simple Socket Server: embedded-designs/agilex-7/f-series/soc/niosv/niosv_m/simple_socket_server/ug-sss-agx7f-soc.md
           - Nios V/g:
             - Nios® V/g Processor Floating Point Unit (FPU) Design: embedded-designs/agilex-7/f-series/soc/niosv/niosv_g/fpu_test/ug-fpu-agx7f-soc.md
@@ -300,10 +325,12 @@ nav:
             - Nios V/g CRC Custom Instruction: embedded-designs/agilex-7/f-series/fpga/niosv/niosv_g/custom_instr_crc/ug-ci-crc-agx7f-fpga.md
             - Nios V/g Basic Custom Instruction: embedded-designs/agilex-7/f-series/fpga/niosv/niosv_g/custom_instr_basic/ug-ci-basic-agx7f-fpga.md
             - Nios V/g ECC Feature: embedded-designs/agilex-7/f-series/fpga/niosv/niosv_g/ecc/ug-ecc-agx7f-fpga.md
+            - Nios V/g Lockstep Design: embedded-designs/agilex-7/f-series/fpga/niosv/niosv_g/lockstep/ug-lockstep-agx7f-fpga.md
       - F-Series FPGA Development Kit (2x F-Tile):
         - HPS GSRD User Guide: embedded-designs/agilex-7/f-series/fpga/gsrd/ug-gsrd-agx7f-fpga.md
       - I-Series FPGA Development Kit:
         - Agilex 7 PCIe-Attached Example Design with OFS (I-Series, 2x R-Tile and 1x F-Tile): ed-ai-suite/agilex7/iseries_ofs_pcie/iseries_ofs_pcie.md
+        - Time Precision Protocol System Example Design (I-Series, 4x F-Tile): embedded-designs/agilex-7/i-series/ptp/agx7i-ptp-anlt/agx7i-ptp-anlt.md
         - HPS GSRD User Guide: embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc.md
         - CII Example Design: embedded-designs/agilex-7/i-series/avst_cii/agilex7-ed-pcie-cii.md
       - M-Series HBM2e Development Kit (3x F-Tile & 1x R-Tile):
@@ -316,12 +343,12 @@ nav:
     - Stratix® 10:
       - SX SoC Development Kit:
         - HPS GSRD User Guide: embedded-designs/stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc.md
-        - HPS Remote System Update: embedded-designs/stratix-10/sx/soc/rsu/ug-rsu-s10sx-soc.md
+        - HPS Remote System Update Example Design: embedded-designs/stratix-10/sx/soc/rsu/ug-rsu-s10sx-soc.md
         - SoC FPGA Remote Debug: embedded-designs/stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc.md
         - HPS eMMC Boot: embedded-designs/stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc.md
         - SoC Fabric Configuration from Linux: embedded-designs/stratix-10/sx/soc/fabric-config/ug-linux-fabric-config-s10sx-soc.md
         - Secure Boot Tutorial Example Design User Guide: embedded-designs/stratix-10/sx/soc/security/secure-boot/hps-first/ug-secure-boot-hps-first-s10sx-soc.md
-        - HPS GHRD Linux Boot Examples: embedded-designs/stratix-10/sx/soc/boot-examples/ug-linux-boot-s10-soc.md
+        - HPS Linux Boot System Example Design: embedded-designs/stratix-10/sx/soc/boot-examples/ug-linux-boot-s10-soc.md
     - Arria® 10:
       - SX SoC Development Kit: 
         - GSRD User Guide: embedded-designs/arria-10/sx/soc/gsrd/ug-gsrd-a10sx-soc.md
@@ -330,6 +357,7 @@ nav:
       - SX SoC Development Kit:
         - GSRD User Guide: embedded-designs/cyclone-v/sx/soc/gsrd/ug-gsrd-cve-soc.md
         - HPS GHRD Linux Boot Examples: embedded-designs/cyclone-v/sx/soc/boot-examples/ug-linux-boot-cve-soc.md
+        - Cyclone® V and Arria® V SoC QSPI Boot: embedded-designs/cyclone-v/sx/soc/boot-examples/ug-cv-av-soc-qspi-boot.md
 
 # - FPGA AI Suite: 
 #    - Summary: ed-ai-suite/common/index.md
@@ -389,19 +417,26 @@ env:
   AGILEX: Altera® Agilex® 7 FPGA
 
 # Variables for content supported by current release  
-  ALTERA_RELEASE: rel-25.3
-  COMMON_QUARTUS_VER_L: Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
-  COMMON_QUARTUS_VER_S: 25.3
-  PREV_COMMON_QUARTUS_VER_S: 25.1.1
-  GSRD_LINUX_BRANCH_S: 6.12.33-lts
-  GSRD_UBOOT_BRANCH_S: 2025.07
-  GSRD_ATF_BRANCH_S: 2.13.0
-  GSRD_LINUX_BRANCH: socfpga-6.12.33-lts
-  GSRD_UBOOT_BRANCH: socfpga_v2025.07
-  GSRD_ATF_BRANCH: socfpga_v2.13.0
-  GSRD_DATE: "2025.10"
-  GSRD_TAG: QPDS25.3_REL_GSRD_PR
-  GSRD_YOCTO_BRANCH: walnascar
-  DCMF_VER: 25.3.0
-  DCMF_PREV_VER: 25.1.1
+  ALTERA_RELEASE: rel-26.1
+  COMMON_QUARTUS_VER_L: Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1
+  COMMON_QUARTUS_VER_S: 26.1
+  PREV_COMMON_QUARTUS_VER_S: 25.3.1
+  GSRD_LINUX_BRANCH_S: 6.18.2-lts
+  GSRD_UBOOT_BRANCH_S: 2026.01
+  GSRD_ATF_BRANCH_S: 2.14.0
+  GSRD_LINUX_BRANCH: socfpga-6.18.2-lts
+  GSRD_UBOOT_BRANCH: socfpga_v2026.01
+  GSRD_ATF_BRANCH: socfpga_v2.14.0
+  GSRD_DATE: "2026.04"
+  GSRD_TAG: QPDS26.1_REL_GSRD_PR
+  GSRD_YOCTO_BRANCH: scarthgap
+  DCMF_VER: 26.1.0
+  DCMF_PREV_VER: 25.3.1
+  FS_BUILDROOT_BRANCH: 2026.02
+  RSU_ZLIB_VER: 1.3.2
 
+
+
+# Variable substitution hooks
+hooks:
+  - hooks.py

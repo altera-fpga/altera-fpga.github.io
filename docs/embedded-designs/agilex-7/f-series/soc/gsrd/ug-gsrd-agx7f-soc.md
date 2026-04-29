@@ -1,15 +1,13 @@
 
 
-# HPS GSRD User Guide for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile)
-
 ## Overview
 
-The Golden System Reference Design (GSRD) is a reference design running on the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile).
+The HPS Baseline System Example Design demonstrate basic HPS functionality on the Altera® Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tile and E-Tile)
 
-The GSRD is comprised of the following components:
+The design is comprised of the following components:
 
-- Golden Hardware Reference Design (GHRD)
-- Reference HPS software including:
+- Hardware Design
+- HPS Software
   - Arm Trusted Firmware
   - U-Boot
   - Linux Kernel
@@ -18,9 +16,9 @@ The GSRD is comprised of the following components:
 
 ### Prerequisites
 
-The following are required in order to be able to fully exercise the GSRD:
+The following are required in order to be able to fully exercise the System Example Design:
 
-- [Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agf014.html) ordering code DK-SI-AGF014EB
+- [Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tile and E-Tile)](https://www.altera.com/products/devkit/po-3003/agilex-7-fpga-f-series-transceiver-soc-development-kit-p-tile-and-e-tile) ordering code DK-SI-AGF014EB
 - SD/MMC HPS Daughtercard
   - SDM QSPI Bootcard
   - Mini USB cable for serial output
@@ -30,10 +28,10 @@ The following are required in order to be able to fully exercise the GSRD:
   - Linux - Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   - Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows)
   - Micro SD card slot or Micro SD card writer/reader
-  - Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
+  - Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1
   - Local Ethernet network, with DHCP server (will be used to provide IP address to the board)
 
-You can determine your board version by referring to the following table from [https://www.intel.com/content/www/us/en/docs/programmable/683752/current/overview.html](https://www.intel.com/content/www/us/en/docs/programmable/683752/current/overview.html)
+You can determine your board version by referring to the following table from [https://docs.altera.com/r/docs/683752/current/agilextm-7-fpga-f-series-transceiver-soc-development-kit-user-guide/overview](https://docs.altera.com/r/docs/683752/current/agilextm-7-fpga-f-series-transceiver-soc-development-kit-user-guide/overview)
 
 | Development Kit Version | Ordering Code | Device Part Number | Starting Serial Number |
 | :-- | :-- | :-- | --: |
@@ -41,7 +39,7 @@ You can determine your board version by referring to the following table from [h
 | Altera® Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (Production 1 P-Tiles & E-Tiles) | DK-SI-AGF014EA | AGFB014R24B2E2V (Power Solution 1) | 0001101 |
 | Altera® Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (ES P-Tiles & E-Tiles) | DK-SI-AGF014E3ES | AGFB014E3ES (Power Solution 1) | 0001001 |
 
-The DK-SI-AGF014E3ES and DK-SI-AGF014EA are deprecated, and not supported anymore. Refer to previous versions of this page for more information about them.
+The DK-SI-AGF014E3ES and DK-SI-AGF014EA are deprecated, and not supported anymore.
 
 The U-Boot and Linux compilation, Yocto compilation and creating the SD card image require a Linux host PC. The rest of the operations can be performed on either a Windows or Linux host PC.
 
@@ -49,62 +47,57 @@ The U-Boot and Linux compilation, Yocto compilation and creating the SD card ima
 
 #### Release Notes
 
-The Altera® FPGA HPS Embedded Software release notes can be accessed from the following link: [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR)
+The Altera® FPGA HPS Embedded Software release notes can be accessed from the following link: [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR)
 
 #### Prebuilt Binaries
 
 <h5>SD Card Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2025.10/gsrd/agilex7_dk_si_agf014eb_gsrd/](https://releases.rocketboards.org/2025.10/gsrd/agilex7_dk_si_agf014eb_gsrd/)
-
+The release files are accessible at [https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agf014eb_gsrd/](https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agf014eb_gsrd/)
 
 The source code is also included on the SD card in the Linux rootfs path `/home/root`:
 
 | File | Description |
 | :-- | :-- |
-| linux-socfpga-v6.12.33-lts-src.tar.gz | Source code for Linux kernel |
-| u-boot-socfpga-v2025.07-src.tar.gz | Source code for U-Boot |
-| arm-trusted-firmware-v2.13.0-src.tar.gz | Source code for Arm Trusted Firmware |
+| linux-socfpga-v6.18.2-lts-src.tar.gz | Source code for Linux kernel |
+| u-boot-socfpga-v2026.01-src.tar.gz | Source code for U-Boot |
+| arm-trusted-firmware-v2.14.0-src.tar.gz | Source code for Arm Trusted Firmware |
 
 Before downloading the hardware design please read the agreement in the link [https://www.intel.com/content/www/us/en/programmable/downloads/software/license/lic-prog_lic.html](https://www.intel.com/content/www/us/en/programmable/downloads/software/license/lic-prog_lic.html)
 
-<h5>NAND Boot</h5>
-
-The release files are accessible at [https://releases.rocketboards.org/2025.10/nand/agilex7_dk_si_agf014eb_nand/](https://releases.rocketboards.org/2025.10/nand/agilex7_dk_si_agf014eb_nand/)
-
-To load the binaries in the development kit see [Write NAND Binaries](#write-nand-binaries).
-
 <h5>QSPI Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2025.10/qspi/agilex7_dk_si_agf014eb_qspi/](https://releases.rocketboards.org/2025.10/qspi/agilex7_dk_si_agf014eb_qspi/).
+The release files are accessible at [https://releases.rocketboards.org/2026.04/qspi/agilex7_dk_si_agf014eb_qspi/](https://releases.rocketboards.org/2026.04/qspi/agilex7_dk_si_agf014eb_qspi/).
+
+<h5>NAND Boot</h5>
+
+The release files are accessible at [https://releases.rocketboards.org/2026.04/nand/agilex7_dk_si_agf014eb_nand/](https://releases.rocketboards.org/2026.04/nand/agilex7_dk_si_agf014eb_nand/)
+
+<h5>eMMC Boot</h5>
+
+The release files are accessible at [https://releases.rocketboards.org/2026.04/emmc/agilex7_dk_si_agf014eb_emmc/](https://releases.rocketboards.org/2026.04/emmc/agilex7_dk_si_agf014eb_emmc/)
+
 
 #### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 and the following software component versions integrate the 25.3 release. 
-
-**Note:** Regarding the GHRD components in the following table, only the device-specific GHRD is used in this page.
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. 
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 GHRD | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.3_REL_GSRD_PR   |
-| Agilex 5 GHRD - Include GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3_REL_GSRD_PR |
-| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
-| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
-| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS25.3_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.33-lts | QPDS25.3_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.0   | QPDS25.3_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.07 | QPDS25.3_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
-| Yocto Project: meta-altera-fpga (for GSRD 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3_REL_GSRD_PR |
-| Yocto Project: meta-intel-fpga (for Legacy GSRD) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest |
-| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3_REL_GSRD_PR |
-| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3_REL_GSRD_PR |
+| HPS Baseline System Example Design | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
+| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| Yocto Build Script | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
-### GHRD Overview
+### Hardware Design Overview
 
-The Golden Hardware Reference Design is an important part of the GSRD and consists of the following components:
+The Hardware Design is an important part of the System Example Design and consists of the following components:
 
 - Hard Processor System (HPS)
   - Quad Arm Cortex-A53 MPCore Processor
@@ -131,7 +124,7 @@ The Golden Hardware Reference Design is an important part of the GSRD and consis
 
 ![](images/s10-ghrd.png)
 
-The GHRD allows hardware designers to access each peripheral in the FPGA portion of the SoC with System Console, through the JTAG master module. This signal-level access is independent of the driver readiness of each peripheral.
+The Hardware Design allows hardware designers to access each peripheral in the FPGA portion of the SoC with System Console, through the JTAG master module. This signal-level access is independent of the driver readiness of each peripheral.
 
 #### MPU Address Maps
 
@@ -185,7 +178,7 @@ The interrupt sources are also connected to an interrupt latency counter (ILC) m
 
 ### Typical HPS Boot Flow
 
-The GSRD boot flow includes the following stages:
+The boot flow includes the following stages:
 
 1\. SDM
 
@@ -214,11 +207,11 @@ The following table presents a short description of the different boot stages:
 
 For more information, please refer to [Altera® Agilex™ Hard Processor System Technical Reference Manual](https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/hb/agilex/mnl-1100.pdf) (Booting and Configuration chapter).
 
-## Exercise Prebuilt GSRD
+## Exercise Prebuilt Binaries
 
 ### Configure Board
 
-This section presents the necessary board settings in order to run the GSRD on the development board.
+This section presents the necessary board settings in order to run the System Example Design on the development board.
 
 First, confirm the following:
 
@@ -286,7 +279,7 @@ The QSPI JIC image contains the FPGA configuration bitstream, and the U-Boot SPL
 
 ```bash
 cd $TOP_FOLDER
-wget https://releases.rocketboards.org/2025.10/gsrd/agilex7_dk_si_agf014eb_gsrd/ghrd_agfb014r24b2e2v.jic.tar.gz
+wget https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agf014eb_gsrd/ghrd_agfb014r24b2e2v.jic.tar.gz
 tar xf ghrd_agfb014r24b2e2v.jic.tar.gz
 ```
 
@@ -317,7 +310,7 @@ This section explains how to create the SD card necessary to boot Linux, using t
 1\. Download the SD card image and extract it:
 
 ```bash
-wget https://releases.rocketboards.org/2025.10/gsrd/agilex7_dk_si_agf014eb_gsrd/sdimage.tar.gz
+wget https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agf014eb_gsrd/sdimage.tar.gz
 tar xf sdimage.tar.gz
 ```
 
@@ -347,7 +340,7 @@ $ sudo sync
 
 <h5> Write SD Card on Windows</h5>
 
-1\. Download the SD card image and extract it: [https://releases.rocketboards.org/2025.10/gsrd/agilex7_dk_si_agf014eb_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2025.10/gsrd/agilex7_dk_si_agf014eb_gsrd/sdimage.tar.gz)
+1\. Download the SD card image and extract it: [https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agf014eb_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agf014eb_gsrd/sdimage.tar.gz)
 
 The extacted file is named `gsrd-console-image-agilex7.wic`.
 
@@ -410,7 +403,7 @@ lo: flags=73 mtu 65536
 
 #### Run Sample Applications
 
-The GSRD includes a number of sample Linux applications that help demonstrate some of the features of the platform:
+The System Example Design includes a number of sample Linux applications that help demonstrate some of the features of the platform:
 
 - Display Hello World message
 - Control LEDs
@@ -427,11 +420,11 @@ The sample applications can be used as a starting point for users to write their
 - Connect using serial console, as described in [Boot Linux](#boot-linux)
 - Connect using ssh, as described in [Connect With SSH](#connect-with-ssh)
 
-3\. In serial console, or ssh client console, change current folder to be */home/root/intelFPGA*. This is where the application binaries are stored.
+3\. In serial console, or ssh client console, change current folder to be */home/root/alteraFPGA*. This is where the application binaries are stored.
 
 ```bash
-root@agilex7dksiagf014eb:~# cd /home/root/intelFPGA/
-root@agilex7dksiagf014eb:~/intelFPGA#
+root@agilex7dksiagf014eb:~# cd /home/root/alteraFPGA/
+root@agilex7dksiagf014eb:~/alteraFPGA#
 ```
 
 <h5>Display Hello World Message</h5>
@@ -439,7 +432,7 @@ root@agilex7dksiagf014eb:~/intelFPGA#
 Run the following command to display the Hello World message on the console:
 
 ```bash
-root@agilex7dksiagf014eb:~/intelFPGA# ./hello
+root@agilex7dksiagf014eb:~/alteraFPGA# ./hello
 Hello SoC FPGA!
 ```
 
@@ -497,7 +490,7 @@ System check application provides a glance of system status of basic peripherals
 Run the application by issuing the following command:
 
 ```bash
-root@agilex7dksiagf014eb:~/intelFPGA# ./syschk
+root@agilex7dksiagf014eb:~/alteraFPGA# ./syschk
 ```
 
 The application will look as follows, press 'q' to exit:
@@ -534,7 +527,7 @@ The following are exercised:
 
 In order to register an interrupt handler to a specific GPIO, you will first need to determine the GPIO number used.
 
-1\. Open the Linux Device Tree [socfpga_agilex7_ghrd.dtsi](https://raw.githubusercontent.com/altera-fpga/meta-intel-fpga-refdes/walnascar/recipes-bsp/device-tree/files/socfpga_agilex7_ghrd.dtsi) file and look up the labels for the DIP switches and Push button GPIOs:
+1\. Open the Linux Device Tree [socfpga_agilex7_ghrd.dtsi](https://raw.githubusercontent.com/altera-fpga/meta-intel-fpga-refdes/scarthgap/recipes-bsp/device-tree/files/socfpga_agilex7_ghrd.dtsi) file and look up the labels for the DIP switches and Push button GPIOs:
 
 ```bash
  button_pio: gpio@f9001060 {
@@ -563,7 +556,7 @@ In order to register an interrupt handler to a specific GPIO, you will first nee
 2\. Run the following to determine the GPIO numbers for the DIP switches
 
 ```bash
-root@agilex7dksiagf014eb:~/intelFPGA# grep -r "gpio@f9001070" /sys/class/gpio/gpiochip*/label
+root@agilex7dksiagf014eb:~/alteraFPGA# grep -r "gpio@f9001070" /sys/class/gpio/gpiochip*/label
 /sys/class/gpio/gpiochip1928/label:/soc/gpio@f9001070
 ```
 
@@ -572,7 +565,7 @@ This means that the GPIOs 1928 .. 1931 are allocated to the DIP switches (there 
 3\. Run the followinig to determine the GPIO numbers for the pushbuttons
 
 ```bash
-root@agilex7dksiagf014eb:~/intelFPGA# grep -r "gpio@f9001060" /sys/class/gpio/gpiochip*/label
+root@agilex7dksiagf014eb:~/alteraFPGA# grep -r "gpio@f9001060" /sys/class/gpio/gpiochip*/label
 /sys/class/gpio/gpiochip1960/label:/soc/gpio@f9001060
 ```
 
@@ -581,7 +574,7 @@ This means that the GPIOs 1960 … 1963 are allocated to the push buttons (there
 4\. Register interrupt for one of the dipswiches, using the appropriate GPIO number, as determined in a previous step:
 
 ```bash
-root@agilex7dksiagf014eb:~/intelFPGA# modprobe gpio_interrupt gpio_number=1928 intr_type=3
+root@agilex7dksiagf014eb:~/alteraFPGA# modprobe gpio_interrupt gpio_number=1928 intr_type=3
 [ 893.594901] gpio_interrupt: loading out-of-tree module taints kernel.
 [ 893.602212] Interrupt for GPIO:1928
 [ 893.602212] registered
@@ -599,13 +592,13 @@ root@agilex7dksiagf014eb:~/intelFPGA# modprobe gpio_interrupt gpio_number=1928 i
 6\. Remove the driver
 
 ```bash
-root@agilex7dksiagf014eb:~/intelFPGA# rmmod gpio_interrupt
+root@agilex7dksiagf014eb:~/alteraFPGA# rmmod gpio_interrupt
 ```
 
 7\. Register the pushbutton interrupt, using the appropriate GPIO number as determine on a previous step
 
 ```bash
-root@agilex7dksiagf014eb:~/intelFPGA# modprobe gpio_interrupt gpio_number=1960 intr_type=2
+root@agilex7dksiagf014eb:~/alteraFPGA# modprobe gpio_interrupt gpio_number=1960 intr_type=2
 [ 1138.025297] Interrupt for GPIO:1960
 [ 1138.025297] registered
 ```
@@ -622,18 +615,18 @@ root@agilex7dksiagf014eb:~/intelFPGA# modprobe gpio_interrupt gpio_number=1960 i
 9\. Once done, remove the handler
 
 ```bash
-root@agilex7dksiagf014eb:~/intelFPGA# rmmod gpio_interrupt
+root@agilex7dksiagf014eb:~/alteraFPGA# rmmod gpio_interrupt
 ```
 
 **Note**: If you are on the ssh console, you will need to run the program *dmesg* after pressing the button in order to see the messages:
 
 ```bash
-root@agilex7dksiagf014eb:~/intelFPGA# dmesg
+root@agilex7dksiagf014eb:~/alteraFPGA# dmesg
 ```
 
 #### Connect to Web Server
 
-The GSRD includes a web server running on the target board that can be used to exercise some of the board features:
+The System Example Design includes a web server running on the target board that can be used to exercise some of the board features:
 
 - Turning LEDs ON and OFF
 - Scrolling LEDs in a sequence
@@ -728,7 +721,7 @@ cp -f $TOP_FOLDER/gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7
 cp -f $TOP_FOLDER/nand-bin/root.ubi <your-tftp-server-folder>
 ```
 
-2\. Run U-Boot with the debugger, similar to how it is described at [Run U-Boot from Debugger](https://rocketboards.org/foswiki/Documentation/BuildingBootloader#Agilex_45_Run_U_45Boot_from_Debugger) just change the script to use the binaries directly from `$TOP_FOLDER/gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/` and use the new name for the sof: `agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps_debug.sof`.
+2\. Run U-Boot with the debugger.
 
 3\. Stop at U-Boot prompt, and run the following instructions to download and write NAND binaries to flash:
 
@@ -771,25 +764,99 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd_agfb014r24b2e2v.hps.jic"
 
 4\. Linux will boot, enter 'root' as user name to log in.
 
+### Boot From eMMC
+
+This section presents how to exercise the boot from eMMC scenario for the System Example Design.
+
+#### eMMC Daughtercard
+
+The NAND/eMMC HPS daughtercard that comes with the DevKit supports both NAND and eMMC.
+
+To configure the card for NAND operation, please set the jumpers as shown below:
+
+| Jumper | Setting       |
+| :----- | :------------ |
+| J2     | unpopulated   |
+| J9     | unpopulated   |
+| J10    | populated 1-2 |
+| J11    | populated 2-3 |
+
+#### Write eMMC Image
+
+The flow for writing the eMMC image is:
+
+- Configure the FPGA over JTAG with the `ghrd_agfb014r24b2e2v_hps_debug.sof`
+- Load and run SPL and U-Boot to HPS over JTAG
+- From U-Boot command prompt, transfer the eMMC image to HPS SDRAM over TFTP
+- From U-Boot command prompt, write the eMMC image from SDRAM to eMMC
+
+1. Run U-Boot from the debugger, as shown here [https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-7/f-series/soc/boot-examples/ug-linux-boot-agx7-soc/#running-u-boot-with-the-debugger-from-command-line](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-7/f-series/soc/boot-examples/ug-linux-boot-agx7-soc/#running-u-boot-with-the-debugger-from-command-line)
+
+2. The above will cause the U-Boot to start running on HPS. Stop U-Boot counter by pressing any key on the serial console.
+
+3. Download, extract anhd split the eMMC image into 1GB chunks and copy them to your TFT folder:
+
+```bash
+split --bytes=1G split --bytes=1G gsrd-console-image-agilex7.wic
+mv xa* <your_tfp_folder>
+```
+
+> *Note*: If using prebuilt binaries, extract first the wic image from `sdimage.tar.gz`.
+
+4. Determine the IP of your host computer running TFPT, by running 'ifconfig' command.
+
+5. In U-Boot connect to the local network, and set the server ip parameter, where the tftp commands will connect to:
+
+
+```bash
+setenv autoload no 
+dhcp 
+setenv serverip your_host_ip_address 
+```
+
+6. In U-Boot, download the eMMC image and write it to flash:
+
+```bash
+tftp ${loadaddr} xaa
+setexpr blkcnt1 ${filesize} / 0x200
+mmc write ${loadaddr} 0 ${blkcnt1}
+tftp ${loadaddr} xab
+setexpr blkcnt2 ${filesize} / 0x200
+mmc write ${loadaddr} ${blkcnt1} ${blkcnt2}
+```
+
+#### Write QSPI Image
+
+1\. Power off board
+
+2\. Set MSEL to JTAG
+
+3\. Power on board
+
+4\. Write jic image to QSPI:
+
+```bash
+cd $TOP_FOLDER
+quartus_pgm -c 1 -m jtag -o "pvi;ghrd_agfb014r24b2e2v.hps.jic"
+```
+
+#### Boot Linux
+
+1\. Make sure board is powered off.
+
+2\. Set MSEL to QSPI
+
+3\. Power up the board.
+
+4\. Linux will boot, enter 'root' as user name to log in.
+
 ### Partial Reconfiguration
 
-Partial reconfiguration (PR) allows you to reconfigure a portion of the FPGA dynamically, while the rest of the FPGA design continues to function.  This section presents how to run the PR scenarios included with the GSRD.
-
-#### Reference Information
-
-Refer to the following fore more details about Partial Reconfiguration
-
-- User Guide
-  - [Altera® Quartus Prime Pro Edition User Guide: Partial Reconfiguration](https://www.intel.com/content/dam/altera-www/global/en_US/pdfs/literature/ug/ug-qpp-pr.pdf)
-- Partial Reconfiguration for Altera® FPGA Devices YouTube videos:
-  - [Part1: Introduction & Project Assignments](https://www.youtube.com/watch?v=NAdn39EKWA0)
-  - [Part2: Design Guidelines & Host Requirements](https://www.youtube.com/watch?v=drb0cB_TZ3Y)
-  - [Part3: PR Host IP & Implementations](https://www.youtube.com/watch?v=DS4_xeLNG1c)
-  - [Part4: Output Files & Demonstration](https://www.youtube.com/watch?v=K-h5FfFrqes)
+Partial reconfiguration (PR) allows you to reconfigure a portion of the FPGA dynamically, while the rest of the FPGA design continues to function.  This section presents how to run the PR scenarios included with the System Example Design.
 
 #### Hardware Design
 
-The updated GHRD contains the following components which enable PR:
+The updated Hardware Design contains the following components which enable PR:
 
 - A PR region was created in the FPGA fabric, with the following associated IP
   - PR Freeze Controller - to help control the PR
@@ -822,7 +889,7 @@ The files on the Linux rootfs used for running the PR scenarios are shown below:
 | /lib/firmware/persona0.rbf | bitstream used by persona0 overlay |
 | /lib/firmware/persona1.rbf | bitstream used by persona1 overlay |
 
-The DTS files for the overlays are available at https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/walnascar/recipes-bsp/device-tree/files/:
+The DTS files for the overlays are available at https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/device-tree/files/:
 
 - agilex7_pr_fpga_static_region.dts
 - agilex7_pr_persona0.dts
@@ -919,7 +986,7 @@ root@agilex7dksiagf014eb:~# dtbt -l
 1 agilex_pr_fpga_static_region.dtbo applied /sys/kernel/config/device-tree/overlays/1-agilex_pr_fpga_static_region.dtbo
 ```
 
-## Rebuild the GSRD
+## Rebuild the Binaries
 
 ### Boot from SD Card
 
@@ -927,11 +994,10 @@ root@agilex7dksiagf014eb:~# dtbt -l
 
 #### Build Flow
 
-The following diagram illustrates the full build flow for the GSRD based on source code from GitHub.
+The following diagram illustrates the full build flow for the System Example Design, based on source code from GitHub.
 
 ![](images/agilex-gsrd-build-flow.svg)
 
-The current build flow creates a single boot image which is able to boot in different board configurations (either using OOBE or eMMC/NAND daughter card). For more information about how this single boot image is created, please refer to the following article: [https://rocketboards.org/foswiki/Documentation/SingleImageBoot](https://rocketboards.org/foswiki/Documentation/SingleImageBoot)
 
 #### Set up Environment
 
@@ -965,9 +1031,9 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
-export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+source ~/altera_pro/26.1/qinit.sh
 ```
+
 
 
 
@@ -982,10 +1048,10 @@ Use the following commands to build the hardware design:
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex7f-ed-gsrd
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
-unzip QPDS25.3_REL_GSRD_PR.zip
-rm QPDS25.3_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+unzip QPDS26.1_REL_GSRD_PR.zip
+rm QPDS26.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR agilex7f-ed-gsrd
 cd agilex7f-ed-gsrd
 make agf014eb-si-devkit-oobe-baseline-all
 ```
@@ -1000,7 +1066,7 @@ The following files are created:
 #### Build Core RBF
 
 
-Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the GHRD makefile:
+Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Hardware Design makefile:
 
 
 ```bash
@@ -1028,7 +1094,7 @@ Note we are also creating an HPS JIC file, but we are discarding it, as it has t
 
 #### Set Up Yocto
 
-1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
+1\. Make sure you have Yocto system requirements met: [https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions](https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions).
 
 The command to install the required packages on Ubuntu 22.04 is:
 
@@ -1057,7 +1123,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
 cd gsrd-socfpga
 . agilex7_dk_si_agf014eb-gsrd-build.sh
 build_setup
@@ -1068,7 +1134,8 @@ build_setup
 
 ```bash
 cd $TOP_FOLDER/gsrd-socfpga
-. ./poky/oe-init-build-env agilex-gsrd-rootfs/
+. agilex7_dk_si_agf014eb-gsrd-build.sh
+. ./poky/oe-init-build-env agilex7_dk_si_agf014eb-gsrd-rootfs
 ```
 
 #### Customize Yocto
@@ -1141,8 +1208,8 @@ sed -i "/agilex7_dk_si_agf014eb_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel-fp
 
 4\. Optionally change the following files in `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/`:
 
-- [uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/walnascar/recipes-bsp/u-boot/files/uboot.txt) - distroboot script
-- [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/walnascar/recipes-bsp/u-boot/files/uboot_script.its) - its file for creating FIT image from the above script
+- [uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot.txt) - distroboot script
+- [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot_script.its) - its file for creating FIT image from the above script
 
 5\. Optionally change the following file in `$WORKSPACE/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts`:
 
@@ -1219,7 +1286,7 @@ This section presents how to boot from QSPI.
 Much of the same binaries as when booting from SD card can be used to boot from QSPI, because:
 
 - The QSPI resides on the DevKit board, and not on the HPS daughtercard, so there are no board changes:
- - The same GHRD configuration can be used
+ - The same Hardware Design configuration can be used
  - The same U-Boot devce tree can be used
  - The same Linux device tree can be used
 - U-Boot uses distroboot, which will try first booting from SD/MMC, then from QSPI, then from NAND, so the same U-Boot can be used.
@@ -1244,8 +1311,8 @@ As the QSPI has a much smaller size than the SD card (256MB vs 2GB) the rootfs i
 ```bash
 cd $TOP_FOLDER
 rm -rf qspi-boot && mkdir qspi-boot && cd qspi-boot
-ln -s $TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof fpga.sof
-ln -s $TOP_FOLDER/gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex spl.hex
+ln -s $TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof ghrd_agfb014r24b2e2v.sof
+ln -s $TOP_FOLDER/gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex .
 ln -s $TOP_FOLDER/gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/boot.scr.uimg .
 ln -s $TOP_FOLDER/gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/kernel.itb .
 ln -s $TOP_FOLDER/gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/console-image-minimal-agilex7_nor.ubifs rootfs.ubifs
@@ -1316,14 +1383,18 @@ ln -s root.ubi hps.bin
 
 ```bash
 cd $TOP_FOLDER/qspi-boot
-wget https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/gsrd/collateral/agilex7f_gsrd.pfg
-quartus_pfg -c agilex7f_gsrd.pfg
+wget https://releases.rocketboards.org/2026.04/qspi/agilex7_dk_si_agf014eb_qspi/agilex_flash_image_hps.pfg
+quartus_pfg -c agilex_flash_image_hps.pfg
 ```
 
 
+This will create the following file:
+
+- `$TOP_FOLDER/qspi-boot/agilex_flash_image.hps.jic`
+
 #### Create PFG File
 
-This section presents how to manually re-create the Programming File Generator file provided at [https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/gsrd/collateral/agilex7f_gsrd.pfg](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/gsrd/collateral/agilex7f_gsrd.pfg)
+This section presents how to manually re-create the Programming File Generator file provided at [https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/gsrd/collateral/agilex7f_gsrd.pfg](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/gsrd/collateral/agilex7f_gsrd.pfg)
 
 1\. Start Quartus Programming File Generator GUI:
 
@@ -1344,8 +1415,8 @@ qpfgw &
 
 3\. In PFG **Input Files** tab:
 
-- Click **Add Bitstream", then browse to "fpga.sof" link, and add click \*Open** to add it.
-- Click **Bitstream_1>fpga.sof** then click **Properties** the click **HPS Bootloader**, browse to "spl.hex" then click **Open** to add it.
+- Click **Add Bitstream", then browse to "ghrd_agfb014r24b2e2v.sof" link, and add click \*Open** to add it.
+- Click **Bitstream_1>ghrd_agfb014r24b2e2v.sof** then click **Properties** the click **HPS Bootloader**, browse to "spl.hex" then click **Open** to add it.
  Note: By the time the fpga.sof file is read the following error is displayed, this was addressed by adding the spl.hex file to the Bitstream: File fpga.sof is incomplete- HPS is present but bootloader information is missing.
 - Click **Add Raw Data** then change the extension filter to **.bin** then browse to "u-boot.bin" and click **Open** to add it.
 - Click on the "u-boot.bin" then click "*Prpperties*" then select **Bit swap** option to "On"
@@ -1377,55 +1448,9 @@ The **Configuration Device** tab will now look something like this:
 
 ![](images/agilex-qspi-boot-pfg-configuration-device.png)
 
-5\. Go to **File** > **Save As** and save the configuration file as "flash_image_qspi.pfg".
+5\. Go to **File** > **Save As** and save the configuration file as "agilex_flash_image_hps.pfg".
 
-6\. [Optional] Open the file "flash_image_qspi.pfg" with a text editor and change absolute paths to relative paths.
-
-The file will look like this:
-
-```xml
-<pfg version="1">
-    <settings custom_db_dir="./" mode="ASX4"/>
-    <output_files>
-        <output_file name="flash_image" hps="1" directory="./" type="PERIPH_JIC">
-            <file_options/>
-            <secondary_file type="MAP" name="flash_image_jic">
-                <file_options/>
-            </secondary_file>
-            <flash_device_id>Flash_Device_1</flash_device_id>
-        </output_file>
-    </output_files>
-    <bitstreams>
-        <bitstream id="Bitstream_1">
-            <path signing="OFF" finalize_encryption="0" hps_path="spl.hex">fpga.sof</path>
-        </bitstream>
-    </bitstreams>
-    <raw_files>
-        <raw_file bitswap="1" type="RBF" id="Raw_File_1">u-boot.bin</raw_file>
-        <raw_file bitswap="1" type="RBF" id="Raw_File_2">hps.bin</raw_file>
-    </raw_files>
-    <flash_devices>
-        <flash_device type="MT25QU02G" id="Flash_Device_1">
-            <partition reserved="1" fixed_s_addr="1" s_addr="0x00000000" e_addr="0x001FFFFF" fixed_e_addr="1" id="BOOT_INFO" size="0"/>
-            <partition reserved="0" fixed_s_addr="0" s_addr="auto" e_addr="auto" fixed_e_addr="0" id="P1" size="0"/>
-            <partition reserved="0" fixed_s_addr="0" s_addr="0x04000000" e_addr="auto" fixed_e_addr="0" id="u-boot" size="0"/>
-            <partition reserved="0" fixed_s_addr="0" s_addr="0x04200000" e_addr="auto" fixed_e_addr="0" id="hps" size="0"/>
-        </flash_device>
-        <flash_loader>AGFB014R24B</flash_loader>
-    </flash_devices>
-    <assignments>
-        <assignment page="0" partition_id="P1">
-            <bitstream_id>Bitstream_1</bitstream_id>
-        </assignment>
-        <assignment partition_id="u-boot">
-            <raw_file_id>Raw_File_1</raw_file_id>
-        </assignment>
-        <assignment page="0" partition_id="hps">
-            <raw_file_id>Raw_File_2</raw_file_id>
-        </assignment>
-    </assignments>
-</pfg>
-```
+6\. [Optional] Open the file "fagilex_flash_image_hps.pfg" with a text editor and change absolute paths to relative paths.
 
 
 
@@ -1437,7 +1462,7 @@ The file will look like this:
 
 This section presents how to boot from NAND, including how to build all binaries.
 
-Build instructions are the same as for standard SD or QSPI boot. The U-Boot, ATF and Linux binaries are all the same. The only difference is that the GHRD is configured for the NAND HPS Daughtercard, then recompiled.
+Build instructions are the same as for standard SD or QSPI boot. The U-Boot, ATF and Linux binaries are all the same. The only difference is that the Hardware Design is configured for the NAND HPS Daughtercard, then recompiled.
 
 **Note**: As the NAND used on the devkit has a smaller size than the SD card (1GB vs 2GB) the rootfs is smaller, and less functionality is provided. The purpose of this section is just to show Linux booting.
 
@@ -1487,9 +1512,9 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
-export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+source ~/altera_pro/26.1/qinit.sh
 ```
+
 
 
 
@@ -1506,10 +1531,10 @@ Use the following commands to build the hardware design:
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex7f-ed-gsrd
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
-unzip QPDS25.3_REL_GSRD_PR.zip
-rm QPDS25.3_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+unzip QPDS26.1_REL_GSRD_PR.zip
+rm QPDS26.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR agilex7f-ed-gsrd
 cd agilex7f-ed-gsrd
 make agf014eb-si-devkit-nand-baseline-all
 ```
@@ -1527,7 +1552,7 @@ The following files are created:
 
 
 
-Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the GHRD makefile:
+Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Hardware Design makefile:
 
 
 
@@ -1556,7 +1581,7 @@ Note we are also creating an HPS JIC file, but we are discarding it, as it has t
 
 #### Set Up Yocto
 
-1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
+1\. Make sure you have Yocto system requirements met: [https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions](https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions).
 
 The command to install the required packages on Ubuntu 22.04 is:
 
@@ -1586,7 +1611,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
 cd gsrd-socfpga
 . agilex7_dk_si_agf014eb-gsrd-build.sh
 build_setup
@@ -1598,7 +1623,8 @@ build_setup
 
 ```bash
 cd $TOP_FOLDER/gsrd-socfpga
-. ./poky/oe-init-build-env agilex-gsrd-rootfs/
+. agilex7_dk_si_agf014eb-gsrd-build.sh
+. ./poky/oe-init-build-env agilex7_dk_si_agf014eb-gsrd-rootfs
 ```
 
 #### Customize Yocto
@@ -1677,8 +1703,8 @@ sed -i "/agilex7_dk_si_agf014eb_nand_core\.sha256sum/d" $WORKSPACE/meta-intel-fp
 
 4\. Optionally change the following files in `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/`:
 
-- [uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/walnascar/recipes-bsp/u-boot/files/uboot.txt) - distroboot script
-- [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/walnascar/recipes-bsp/u-boot/files/uboot_script.its) - its file for creating FIT image from the above script
+- [uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot.txt) - distroboot script
+- [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot_script.its) - its file for creating FIT image from the above script
 
 5\. Optionally change the following file in `$WORKSPACE/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts`:
 
@@ -1857,6 +1883,294 @@ The following file is created:
 
 
 
+### Boot from eMMC
+
+
+
+#### Build Flow
+
+The following diagram illustrates the full build flow for the System Example Design, based on source code from GitHub.
+
+![](images/agilex-gsrd-build-flow.svg)
+
+
+#### Set up Environment
+
+
+Create a top folder for this example, as the rest of the commands assume this location:
+
+
+```bash
+sudo rm -rf agilex7f_gsrd.emmc
+mkdir agilex7f_gsrd.emmc
+cd agilex7f_gsrd.emmc
+export TOP_FOLDER=$(pwd)
+```
+
+
+Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
+
+
+```bash
+cd $TOP_FOLDER
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-none-linux-gnu-
+```
+
+Enable Quartus tools to be called from command line:
+
+
+```bash
+source ~/altera_pro/26.1/qinit.sh
+```
+
+
+
+
+
+
+#### Build Hardware Design
+
+
+Use the following commands to build the hardware design:
+
+
+```bash
+cd $TOP_FOLDER
+rm -rf agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+unzip QPDS26.1_REL_GSRD_PR.zip
+rm QPDS26.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR agilex7f-ed-gsrd
+cd agilex7f-ed-gsrd
+make agf014eb-si-devkit-emmc-baseline-all
+```
+
+
+The following files are created:
+
+agf014eb_si_devkit_oobe_baseline.sof
+
+- `$TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_emmc_baseline.sof` - FPGA configuration file, without HPS FSBL
+- `$TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_emmc_baseline_hps_debug.sof` - FPGA configuration file, with HPS Debug FSBL
+
+
+#### Build Core RBF
+
+
+Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Hardware Design makefile:
+
+
+```bash
+cd $TOP_FOLDER
+rm -f *jic* *rbf*
+quartus_pfg -c $TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_emmc_baseline_hps_debug.sof \
+ ghrd.jic \
+ -o device=MT25QU02G \
+ -o flash_loader=AGFB014R24B2E2V \
+ -o mode=ASX4 \
+ -o hps=1
+rm ghrd.hps.jic
+```
+
+
+The following files will be created:
+
+- $TOP_FOLDER/ghrd.core.rbf - HPS First configuration bitstream, phase 2: FPGA fabric
+
+Note we are also creating an HPS JIC file, but we are discarding it, as it has the HPS Debug FSBL, while the final image needs to have the U-Boot SPL created by the Yocto recipes.
+
+
+
+
+
+#### Set Up Yocto
+
+1\. Make sure you have Yocto system requirements met: [https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions](https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions).
+
+The command to install the required packages on Ubuntu 22.04 is:
+
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \
+build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
+python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit mesa-common-dev zstd \
+liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \
+tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
+device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
+```
+
+On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:
+
+```bash
+ sudo ln -sf /bin/bash /bin/sh
+```
+
+**Note**: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.
+
+2\. Clone the Yocto script and prepare the build:
+
+
+```bash
+cd $TOP_FOLDER
+rm -rf gsrd-socfpga
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+cd gsrd-socfpga
+. agilex7_dk_si_agf014eb-gsrd-build.sh
+build_setup
+```
+
+
+**Note**: Run the following commands to set up again the yocto build environments, if you closed the current window (for example when rebooting the Linux host) and want to resume the next steps:
+
+```bash
+cd $TOP_FOLDER/gsrd-socfpga
+. agilex7_dk_si_agf014eb-gsrd-build.sh
+. ./poky/oe-init-build-env agilex7_dk_si_agf014eb-gsrd-rootfs
+```
+
+#### Customize Yocto
+
+1\. Copy the rebuilt files to `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files` using the following name, as expected by the yocto recipes:
+
+- agilex7_dk_si_agf014eb_emmc_ghrd.core.rbf
+
+In our case we just copy the core.ghrd file in the Yocto recipe location:
+
+                                            
+```bash
+CORE_RBF=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex7_dk_si_agf014eb_emmc_ghrd.core.rbf
+ln -s $TOP_FOLDER/ghrd.core.rbf $CORE_RBF
+```
+
+
+2\. In the Yocto recipe `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb` modify the agilex_gsrd_code file location:
+
+```bash
+SRC_URI:agilex7_dk_si_agf014eb ?= "\
+ ..
+ ${GHRD_REPO}/agilex7_dk_si_agf014eb_emmc_${ARM64_GHRD_CORE_RBF};name=agilex7_dk_si_agf014eb_emmc_core \
+ ..
+ "
+```
+
+to look like this:
+
+```bash
+SRC_URI:agilex7_dk_si_agf014eb ?= "\
+ ..
+ file://agilex7_dk_si_agf014eb_emmc_ghrd.core.rbf;sha256sum=xxxxxxxxx \
+ ..
+ "
+```
+
+using the following commands:
+
+
+```bash
+OLD_URI="\${GHRD_REPO}\/agilex7_dk_si_agf014eb_emmc_\${ARM64_GHRD_CORE_RBF};name=agilex7_dk_si_agf014eb_emmc_core"
+CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ")
+NEW_URI="file:\/\/agilex7_dk_si_agf014eb_emmc_ghrd.core.rbf;sha256sum=$CORE_SHA"
+sed -i "s/$OLD_URI/$NEW_URI/g" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+```
+
+
+3\. In the same Yocto recipe delete the old SHA256 checksum for the file:
+
+```bash
+SRC_URI[agilex7_dk_si_agf014eb_emmc_core.sha256sum] = "5d633ee561d5cc8c22b51211a144654fdc0be47ee14b07ac134074cbff84eb8b"
+```
+
+by using the following commands:
+
+
+```bash
+sed -i "/agilex7_dk_si_agf014eb_emmc_core\.sha256sum/d" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+```
+
+
+4\. Optionally change the following files in `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/`:
+
+- [uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot.txt) - distroboot script
+- [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot_script.its) - its file for creating FIT image from the above script
+
+5\. Optionally change the following file in `$WORKSPACE/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts`:
+
+- fit_kernel_agilex7_dk_si_agf014eb.its
+
+ \- its file for creating the kernel.itb image, containing by default:
+
+ - Kernel
+ - Device trees for SD, NAND and PR board configurations
+ - Core RBF files for SD, NAND and PR board configurations
+ - Board configurations for SD, NAND and PR cases
+
+#### Build Yocto
+
+Build Yocto:
+
+
+```bash
+bitbake_image
+```
+
+
+Gather files:
+
+
+```bash
+package
+```
+
+
+Once the build is completed successfully, you will see the following two folders are created:
+
+- `agilex7_dk_si_agf014eb-gsrd-rootfs`: area used by OpenEmbedded build system for builds. Description of build directory structure - https://docs.yoctoproject.org/ref-manual/structure.html#the-build-directory-build
+- `agilex7_dk_si_agf014eb-gsrd-images`: the build script copies here relevant files built by Yocto from the `agilex7_dk_si_agf014eb-gsrd-rootfs/tmp/deploy/images/agilex` folder, but also other relevant files.
+
+The two most relevant files created in the `$TOP_FOLDER/gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images` folder are:
+
+| File | Description |
+| :-- | :-- |
+| sdimage.tar.gz | SD Card Image |
+| u-boot-agilex-socdk-gsrd-atf/u-boot-spl-dtb.hex | U-Boot SPL Hex file |
+
+
+#### Create QSPI Image
+
+
+The QSPI image will contain the FPGA configuration data and the HPS FSBL and it can be built using the following command:
+
+
+```bash
+cd $TOP_FOLDER
+rm -f *jic* *rbf*
+quartus_pfg -c $TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_emmc_baseline_hps_debug.sof \
+ ghrd.jic \
+ -o hps_path=gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+ -o device=MT25QU02G \
+ -o flash_loader=AGFB014R24B2E2V \
+ -o mode=ASX4 \
+ -o hps=1
+```
+
+
+The following files will be created:
+
+- $TOP_FOLDER/ghrd.hps.jic - Flash image for HPS First configuration bitstream, phase 1: HPS and DDR
+- $TOP_FOLDER/ghrd.core.rbf - HPS First configuration bitstream, phase 2: FPGA fabric, discarded, as we already have it on the SD card
+
+
+
+
+
+
 ### Partial Reconfiguration
 
 
@@ -1865,7 +2179,7 @@ Partial reconfiguration (PR) allows you to reconfigure a portion of the FPGA dyn
 
 This section shows how to build everything needed to demonstrate the PR scenarios. Note that most of the binaries are the same as for the other boot scenarios (SD card, QSPI, NAND) just the following files are changed:
 
-- New GHRD variant, creating different configuration bitstreams
+- New Hardware Design variant, creating different configuration bitstreams
 - Updated core.rbf, persona0.rbf, persona1.rbf compared to prebuilt default files used by the Yocto recipes
 
 #### Set up Environment
@@ -1903,9 +2217,9 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
-export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+source ~/altera_pro/26.1/qinit.sh
 ```
+
 
 
 
@@ -1922,10 +2236,10 @@ Use the following commands to build the hardware design:
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex7f-ed-gsrd
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
-unzip QPDS25.3_REL_GSRD_PR.zip
-rm QPDS25.3_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+unzip QPDS26.1_REL_GSRD_PR.zip
+rm QPDS26.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR agilex7f-ed-gsrd
 cd agilex7f-ed-gsrd
 make agf014eb-si-devkit-oobe-pr-all
 ```
@@ -1945,7 +2259,7 @@ The following files are created:
 
 
 
-Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the GHRD makefile:
+Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Hardware Design makefile:
 
 
 
@@ -1975,7 +2289,7 @@ Note we are also creating an HPS JIC file, but we are discarding it, as it has t
 
 #### Set Up Yocto
 
-1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
+1\. Make sure you have Yocto system requirements met: [https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions](https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions).
 
 The command to install the required packages on Ubuntu 22.04 is:
 
@@ -2004,7 +2318,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
 cd gsrd-socfpga
 . agilex7_dk_si_agf014eb-gsrd-build.sh
 build_setup
@@ -2015,7 +2329,8 @@ build_setup
 
 ```bash
 cd $TOP_FOLDER/gsrd-socfpga
-. ./poky/oe-init-build-env agilex-gsrd-rootfs/
+. agilex7_dk_si_agf014eb-gsrd-build.sh
+. ./poky/oe-init-build-env agilex7_dk_si_agf014eb-gsrd-rootfs
 ```
 
 #### Customize Yocto
@@ -2111,8 +2426,8 @@ sed -i '/agilex7_dk_si_agf014eb_pr_persona1\.sha256sum/d' $RECIPE
 
 4\. Optionally change the following files in `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/`:
 
-- [uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/walnascar/recipes-bsp/u-boot/files/uboot.txt) - distroboot script
-- [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/walnascar/recipes-bsp/u-boot/files/uboot_script.its) - its file for creating FIT image from the above script
+- [uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot.txt) - distroboot script
+- [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot_script.its) - its file for creating FIT image from the above script
 
 5\. Optionally change the following file in `$WORKSPACE/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts`:
 
@@ -2206,7 +2521,7 @@ The **kernel.itb** file is a Flattattened Image Tree (FIT) file that includes th
 
  \* One or more of these components to support the different board configurations.
 
-The **kernel.itb** is created from a **.its** (Image Tree Source file) that describes its structure. In the GSRD, the  **kernel.itb** file is located in the following directory, where you can find also all the components needed to create it, including the .its file:
+The **kernel.itb** is created from a **.its** (Image Tree Source file) that describes its structure. In the HPS Legacy System Example Design 1.0, the  **kernel.itb** file is located in the following directory, where you can find also all the components needed to create it, including the .its file:
 
 * **$TOP_FOLDER/gsrd-socfpga/<*device-devkit*>-gsrd-rootfs/tmp/work/<*device-devkit*>-poky-linux/linux-socfpga-lts/<*linux branch*>+git/linux-<*device devkit*>-standard-build/**
 
@@ -2218,7 +2533,7 @@ If you want to modify the kernel.itb by replacing one of the component or modify
    $ sudo apt install mtools
    ```
    
-2. Go to the folder in which the **kernel.itb** is being created under the GSRD.
+2. Go to the folder in which the **kernel.itb** is being created under the HPS Legacy System Example Design 1.0.
    ```bash
    $ cd $TOP_FOLDER/gsrd-socfpga/<device-devkit>-gsrd-rootfs/tmp/work/<device-devkit>-poky-linux/linux-socfpga-lts/<linux branch>+git/linux-<device-devkit>-standard-build/
    $ ls *.its
@@ -2252,15 +2567,22 @@ At this point you can use the new **kernel.itb** as needed. Some options could b
 ### How to Manually Update the Content of the SD Card Image
 
 
-As part of the Yocto GSRD build flow, the SD Card image is built for the SD Card boot flow. This image includes a couple of partitions. One of these partition (a FAT32) includes the U-Boot proper, a Distroboot boot script and the Linux.itb - which includes the Linux kernel image, , the Linux device tree, the 2nd phase fabric design and board configuration (actually several versions of these last 3 components). The 2nd partition (an EXT3 or EXT4 ) includes the Linux file system. 
+As part of the Yocto HPS Legacy System Example Design build flow, the SD Card image is built for the SD Card boot flow. This image includes a couple of partitions. One of these partition (a FAT32) includes the U-Boot proper, a Distroboot boot script and the Linux **.itb** - which includes the Linux kernel image, , the Linux device tree, the phase 2 FPGA configuration bitstream and board configuration (there may be several versions of these last 3 components). The 2nd partition (an EXT3 or EXT4 ) includes the Linux file system. 
 
-![](/rel-25.3/embedded-designs/doc_modules/gsrd/images/sdcard_img.png){: style="height:500px"}
+![](images/sdcard_img.png){: style="height:500px"}
 
 If you want to replace any the components or add a new item in any of these partitions, without having to run again the Yocto build flow. 
 
-This can be done through the **wic** application available on the **Poky** repository that is included as part of the GSRD build directory: **$TOP_FOLDER/gsrd-socfpga/poky/scripts/wic** 
+This can be done through the **wic** application available on the **Poky** repository that is included as part of the HPS Legacy System Example Design build directory: **$TOP_FOLDER/gsrd-socfpga/poky/scripts/wic** 
 
-This command allows you to inspect the content of a SD Card image, delete, add or replace any component inside of the image. This command is also provided with help support:
+This command requires to be run in the Yocto build environment that can be setup as shown next in a Linux terminal:
+  ```bash
+  cd $TOP_FOLDER/gsrd-socfpga/
+  source poky/oe-init-build-env build
+  ```
+You can verify that the Yocto environment has been setup using the **which bitbake** command, which will respond with the path of the **bitbake** command located at **poky/bitbake/bin/bitbake**.
+
+The **wic** command allows you to inspect the content of a SD Card image, delete, add or replace any component inside of the image. This command is also provided with help support:
 
    ```bash
    $ $TOP_FOLDER/gsrd-socfpga/poky/scripts/wic help

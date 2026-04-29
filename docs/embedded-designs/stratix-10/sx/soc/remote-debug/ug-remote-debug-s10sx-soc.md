@@ -1,6 +1,5 @@
 
 
-# SoC FPGA Remote Debug Tutorial Example Design User Guide: Stratix® 10 SX SoC Development Kit
 
 ##  Introduction
 
@@ -70,7 +69,7 @@ The following are required:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
+  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -94,9 +93,9 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
-export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+source ~/altera_pro/26.1/qinit.sh
 ```
+
 
 
 
@@ -113,10 +112,10 @@ The hardware design is based on the GSRD, with the JOP component added.
 ```bash
 cd $TOP_FOLDER
 rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
-unzip QPDS25.3_REL_GSRD_PR.zip
-rm -f QPDS25.3_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS25.3_REL_GSRD_PR stratix10-ed-gsrd
+wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+unzip QPDS26.1_REL_GSRD_PR.zip
+rm -f QPDS26.1_REL_GSRD_PR.zip
+mv stratix10-ed-gsrd-QPDS26.1_REL_GSRD_PR stratix10-ed-gsrd
 cd stratix10-ed-gsrd
 make s10-htile-soc-devkit-oobe-baseline-generate-design
 cd ..
@@ -143,7 +142,16 @@ cd ..
 ```bash
 cd $TOP_FOLDER/stratix10-ed-gsrd
 cd s10_soc_devkit_ghrd
-wget https://altera-fpga.github.io/rel-25.3/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-ghrd-add-jop.tcl
+base64 -d << EOT | gunzip > s10-ghrd-add-jop.tcl
+H4sIADVT1GkCA62UwW6CQBCG7zzFpg+AaIxpj0ZoJdVqFNOml8kKY0UXdmVXqyG+exeqpSkkaCMX
+CPvPNz8zzAjqr+kHkgQ32zBBspEHaRg0CMDnkeAxxoqEsUIGKy5gzqhUmIBFQtHIpKB48QAVQjMU
+5fgqosE4rUlqSFSFAgRNaITZyY6yLRLnbTyaeDAd2ODYJLWONfqhM4Sp++6QtG09dC5Rv7q21ydp
+p10nnk0d8HrP4Lx0SdosqRO+Qj+/C0zUgfRd24HHyWgI7hh6Xa87GD2RdEGZRB1Ld1gEn3sTx5oQ
+8pj4bA1NyzL5Vqdg60ZVD/T7k4VzWMnxhRit4/7a5hEN4+lBuvGC//rA29AnVGHBtk6Xad04C2ra
+T5qbsZMMW67P364lUulpyWl5RCUvP6kzdjmpunet460zXFnZK/CVxW2VqyubFiyFNJetBbBPoPsQ
+opxUyaa7KAJZZ/M/TDKnErtBoH1LvZD29/o/1m7zidY7U2FEzrvT/F68YqskuZuJQM8AyYaeaQvm
+nfEF0TE1gacFAAA=
+EOT
 qsys-script --qpf=ghrd_1sx280hu2f50e1vgas.qpf --script=s10-ghrd-add-jop.tcl --system-file=qsys_top.qsys
 cd ..
 make s10-htile-soc-devkit-oobe-baseline-package-design
@@ -193,7 +201,7 @@ The following file is created:
 
 Perform the following steps to build Yocto:
 
-1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
+1\. Make sure you have Yocto system requirements met: [https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions](https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions).
 
 The command to install the required packages on Ubuntu 22.04 is:
 
@@ -222,7 +230,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd_socfpga
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-opensource/gsrd_socfpga
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd_socfpga
 cd gsrd_socfpga
 . stratix10_htile-gsrd-build.sh
 build_setup
@@ -256,7 +264,13 @@ This can be done with the provided patch file:
 
 ```bash
 rm -f s10-dts-add-jop.patch
-wget https://altera-fpga.github.io/rel-25.3/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-dts-add-jop.patch
+base64 -d << EOT | gunzip > s10-dts-add-jop.patch
+H4sIADVT1GkCA62PzU7DMBCEz8lTrHI1TjYopEChyptESbw2i/JjbLeKhHh3bCrBgWt9GEuznv3G
+irUGKQ0HGCpHE1vycvS2UnThiWRwRJXmmXzlt0lbM/Q+uCHwXmP/4an3ZmHuzZtTpQqeYbzFlpxX
+RTvU2JKmtizHg6IaD9HAtmlyKeVt2uZCiBs17jqQTXvXgoha30PX5ZDF48hTuAzzmeAVXvB0TPZX
+1Fxk2ftmO/2E+IiI8JmcLJu2xUbOOKdAYWglx5M881Ycrw8cmZ9V+28S94d4nf7mch0W8ikfCddc
+RIqEjr/pZ1L+GZJGKPxnWt5kmhap5je2RSPnIgIAAA==
+EOT
 pushd meta-intel-fpga-refdes
 patch -p1 < ../s10-dts-add-jop.patch
 popd
@@ -419,3 +433,4 @@ You are responsible for safety of the overall system, including compliance with 
 <sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
 
 OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 
+

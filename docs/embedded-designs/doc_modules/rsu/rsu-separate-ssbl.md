@@ -63,7 +63,7 @@ Application image update procedure needs to be updated as follows.
 
 **Steps to Rebuild Binaries compared with regular RSU build flow**
 
-1. GHRD, ATF, Linux, File System are built in the same way.
+1. Hardware design, ATF, Linux, File System are built in the same way.
 2. U-Boot is build adding **CONFIG_SOCFPGA_RSU_MULTIBOOT=y** to the **config-fragment-&lt;device&gt;** file. An independent U-Boot build is performed for each application. Name corresponding **u-boot.itb** as **u-boot_FACTORY_IMAGE.itb**, **u-boot_P1.itb**, **u-boot_P2.itb** and **u-boot_P3.itb**.
 3. Modify **initial_image.pfg** to include the proper new FSBLs for Bitstream 1 (FACTORY_IMAGE application) and Bitstream 2 (P1 application). 
 4. Generate the new **initial_image.jic** using the modified **initial_image.pfg** file.
@@ -98,7 +98,7 @@ Application image update procedure needs to be updated as follows.
 
 **Steps to Rebuild Binaries compared with regular RSU build flow**
 
-1. GHRD, ATF, Linux, File System are built in the same way.
+1. Hardware design, ATF, Linux, File System are built in the same way.
 2. U-Boot is build adding the following setting to the **config-fragment-&lt;device&gt;** file.
 ```bash
 CONFIG_SOCFPGA_RSU_MULTIBOOT=y

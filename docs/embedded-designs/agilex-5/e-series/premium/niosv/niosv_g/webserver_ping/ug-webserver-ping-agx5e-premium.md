@@ -58,7 +58,7 @@ graph LR
 
 ## Nios® V/g Ping Application LiteRT Design Architecture
  This example design includes a Nios® V/g processor connected to multiple soft IP peripherals. </br>
- The objective of the design is to perform a ping operation between the FPGA device (Nios® V/g processor) and the Host PC thru static IP address.
+ The objective of the design is to perform a ping operation between the FPGA device (Nios® V/g processor) and the Host PC through static IP address.
 
  - Establish Ethernet connection between FPGA and Host PC using Triple Speed Ethernet IP.
  - Assign On-Chip Memory II IP as the processor instruction and data memory.

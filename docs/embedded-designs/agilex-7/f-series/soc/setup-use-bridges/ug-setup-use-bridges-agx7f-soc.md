@@ -1,6 +1,5 @@
 
 
-# Setting up and Using Bridges HPS Linux Tutorial Example Design for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile)
 
 
 
@@ -64,7 +63,7 @@ ACE-LITE Signaling:
 For further reading:
 
 * The AMBA® AXI™ and ACE™ Protocol Specification available form arm.com contains more information on the AXI Side band signals.
-* The Bridges chapter of the [Altera® Agilex™ 7 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/683567/22-4/hard-processor-system-technical-reference.html) contains information and examples bridge settings for AXI Side Band Signals.
+* The Bridges chapter of the [Altera® Agilex™ 7 Hard Processor System Technical Reference Manual](https://docs.altera.com/r/docs/683567/25.3.1/agilextm-7-hard-processor-system-technical-reference-manual/agilextm-7-hard-processor-system-technical-reference-manual-revision-history) contains information and examples bridge settings for AXI Side Band Signals.
 
 ### Testing of the Project
 
@@ -150,7 +149,7 @@ The following table describes the configuration that is being performed in the C
 * Host PC with
 
   * Linux distribution with kernel-headers/ kernel-devel and Binutils packages properly installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.
   * Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows).
 
 ## Building the Example
@@ -189,9 +188,9 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
-export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+source ~/altera_pro/26.1/qinit.sh
 ```
+
 
 
 
@@ -200,33 +199,70 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ### Build Hardware Design
 
 
-This project starts using the GHRD for the DK-SI-AGF014EB OOBE (booting from SD Card) with some modifications that include:
-
-*  Change HPS parameters related to the FPGA to HPS interface
-* Changing the control interface of the  [Altera Cache Coherency Translator](https://www.intel.com/content/www/us/en/docs/programmable/683130/22-1/core-overview-48344.html)
-
-* Include the Modular Scatter-Gather DMA [mSGDMA's Overview](https://www.intel.com/content/www/us/en/docs/programmable/683130/21-4/modular-scatter-gather-dma-prefetcher-core.html)
-
-This can be performed automatically using the [update_ghrd_bridge_example.tcl](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/update_ghrd_bridge_example.tcl) script as indicated next:
+This hardware project starts using the hardware reference design for the DK-SI-AGF014EB OOBE (booting from SD Card): 
 
 
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex7f-ed-gsrd
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
-unzip QPDS25.3_REL_GSRD_PR.zip
-rm QPDS25.3_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+unzip QPDS26.1_REL_GSRD_PR.zip
+rm QPDS26.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR agilex7f-ed-gsrd
 cd agilex7f-ed-gsrd
 make agf014eb-si-devkit-oobe-baseline-generate-design
+```
+
+
+Update the hardware design with the following modifications:
+
+* Change HPS parameters related to the FPGA to HPS interface
+* Changing the control interface of the Altera Cache Coherency Translator¹.
+* Include the Modular Scatter-Gather DMA¹.
+
+¹ For more information about these IPs please refer to the [Embedded Peripherals IP User Guide](https://docs.altera.com/r/docs/683130/25.3/embedded-peripherals-ip-user-guide/introduction)
+
+
+This can be performed automatically by using the **update_ghrd_bridge_example.tcl** script provided as part of this page as as an encoded data stream:
+
+<details>
+<summary>
+  <span style="color: #0056b3; font-weight: bold; cursor: pointer;">
+  ⚠️Click for instructions to retrieve update_ghrd_bridge_example.tcl from encoded data
+  </span>
+</summary>
+
+
+
+```bash
 cd agilex_soc_devkit_ghrd
-wget https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/update_ghrd_bridge_example.tcl
+base64 -d <<'EOF' | gunzip > update_ghrd_bridge_example.tcl
+H4sIAFKM2mkCA61YW3OiShB+91dM7T6HReNuZR/yQAAjdRKgAI/Zp6kRRmTDLcyYaFn576cRRbwkjOb44mW+7q/7656eke9IX1B/zimKOHqL+Ay9sCW7Yn4R5RxdXb3k09twVgSYhNOJ
+3O0Xvf6kR3uvEizAcoW7necB4RSvgZMiCkKK6YIkeUwl7sclbsk4Ta6mUUxvSwLMs1wqP3Q6OfGfSUhRQV/mUUFR9et3NFr7REPbRX6W5FlKU96JMxLg+isiIThc4FnOOozy3QLOSUES
+ymmBX0k8p2jQc/E4CiC91fV7h5FXugN3Kq9RyjhJeUR4lKV7nkv03mojPJX4MwoBzmhBU3+JvIKkLCY8Kw5jjVJOY+yXeFzjMa/xWG7JQXFURR3q2PpXdxxD09Gq+/O91UazHhXDbBj1
+Wm3GF/CML+BZ2I7lNSyu2yxUy/Qc6wEbpqc7A0UVYdEUT8FjQ/OGkEfvRqj4IqU62RRKEERpiBIWBgnBcqNxSdDshRoQ5T+226H+gLerUpQjEkMqZPNTbVc3YMlmbzNmKAnZIfFBF9Ye
+PlftbuS4HtZN5e6hrP+7EHzsKLZtmPfYHdm25XhoJbdWdKiYpv5QMwkbbCp6I1T+gTGwsKbbpcXP7gUt8zlcd1XHsD3L2SP61W8z1E1IRtU1PNAVb+ToroDSsFeAR1iuCi4qlv5kW66O
+oZSC5RsYT1jRNAjd3ZJct8r7qDzhqmFUa2R6IkqtTf54kHFf/v1LBO16m9HVCrY0ESFNax1AJbwrYGAr6j+6J14p29EHugdz18Fn9l/D8hK2Ui1HV7T9mvTO8NCwPiMA695RHh9LOD5z
+2kC72ZYJjSrYpVUviMfmOYrpDiAx748NeCWOwpQGSPF9yhhlbeYjiOzExmilHTuGp+M6uY/DLbK/1F+/57TgSzQssxs41iM2bKxC8zxY92g1JTGjQsfd7kw4eaipWZoCH/IPrjq783Bz
+uq1h+5cnadab4vgNk0WEEwJ3wOJH++Eq+ezIpR8/464sS9kcpIifBb0ANPOfD30VjEOWa1cFBW1Fna3BnaYkoFwC0p2Vf326n8hSzDCg1bUbAoP4XullXiAb6AlG25TexSukZdM/tG16
+Qq7qf4Z4O9UukwRISCBSLyZ/5uWtiDgVdFMm4FKO7gijCHxCXgzxDPF19Jt9xQAE17co2OzVLevRJv+0NmsPEljzIour2qIJ0Cob1pW8kOH1DmSZD37PJGswZX4ilV9Z9yOCaR7CtbMH
+QJxP2oj+8hCuqFyqjLYkey5AykOqG7l6lXQwyaJ89iX1KhdSPsF+PscyPibsbsjaCv+lMMSGybHs3XrQt8oMxDuVhbr4oypXm+JL+Tbn2TFNvz2ry4beMVXv/6LaTsYTosFlrMOWqY/L
+rZpOsx3D5jlB9aADbf/LdTr5nDP0bfO0oJwXMaClb/8BgTqGBHgRAAA=
+EOF
+```
+
+</details>
+
+Proceed with the hardware project build with the following instructions:
+
+
+```bash
+cd agilex_soc_devkit_ghrd
 qsys-script --qpf=ghrd_agfb014r24b2e2v.qpf --script=update_ghrd_bridge_example.tcl --system-file=qsys_top.qsys
 cd ..
 make agf014eb-si-devkit-oobe-baseline-package-design
 make agf014eb-si-devkit-oobe-baseline-prep
 make agf014eb-si-devkit-oobe-baseline-build
-
 ```
 
 
@@ -372,7 +408,7 @@ The following files are created:
 ### Build Core RBF
 
 
-Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the GHRD makefile:
+Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the hardware design makefile:
 
 
 ```bash
@@ -398,7 +434,7 @@ The following files will be created:
 
 ### Set Up Yocto
 
-1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
+1\. Make sure you have Yocto system requirements met: [https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions](https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions).
 
 The command to install the required packages on Ubuntu 22.04 is:
 
@@ -426,7 +462,7 @@ Clone the Yocto script and prepare the build:
   ```bash
   cd $TOP_FOLDER
   rm -rf gsrd-socfpga
-  git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
+  git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
   cd gsrd-socfpga
   . agilex7_dk_si_agf014eb-gsrd-build.sh
   build_setup
@@ -437,7 +473,8 @@ Clone the Yocto script and prepare the build:
 
   ```bash
   cd $TOP_FOLDER/gsrd-socfpga
-  . ./poky/oe-init-build-env agilex-gsrd-rootfs/
+  . agilex7_dk_si_agf014eb-gsrd-build.sh
+  . ./poky/oe-init-build-env agilex7_dk_si_agf014eb-gsrd-rootfs
   ```
 
 ### Customize Yocto
@@ -584,7 +621,7 @@ as shown next.
   
   # Create a Linux repository in the $TOP_FOLDER
   rm -rf linux-socfpga-for-patch
-  git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga linux-socfpga-for-patch
+  git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga linux-socfpga-for-patch
   # Add the content of dmaBufNodes.txt  after 4 lines of finding memory@
   awk '
       /memory@/ {found=NR}  # Store the line number where "memory@" is found
@@ -639,18 +676,76 @@ To reserve the 1 GB memory for the buffers in the static region it is necessary 
   ```
 
 
-#### Copy Test Application to Linux File System
+#### Copy the Test Application to Linux File System
 
-To exercise this application, you need to have the [dmaTest_cache_v2.0.run ](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) test script provided in this example in the Linux file system. For this, you need to perform the following:
+To exercise this application, you need to have the **dmaTest_cache_v2.0.run** test script  into the Linux file system. 
+The test script is provided in this page as an encoded data stream which can be retreived as indicated next:
+
+<details><summary>
+  <span style="color: #0056b3; font-weight: bold; cursor: pointer;">
+  ⚠️Click for instructions to retireve dmaTest_cache_v2.0.run from encoded data
+  </span>
+</summary>
+
+```bash
+cd $TOP_FOLDER/gsrd-socfpga/
+base64 -d <<'EOF' | gunzip > dmaTest_cache_v2.0.run
+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
+EOF
+```
+
+</details>
+
+Then you need to include this script into the Linux file system with the following instructions:
 
 
   ```bash
   cd $TOP_FOLDER/gsrd-socfpga/
-  wget https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run
   mv dmaTest_cache_v2.0.run meta-intel-fpga-refdes/recipes-gsrd/socfpga-gsrd-apps/files/
   # Adding this to the list of files to be copied to the file system
   sed -i '/file:\/\/README_agilex5/a\\t\tfile:\/\/dmaTest_cache_v2.0.run\\'  meta-intel-fpga-refdes/recipes-gsrd/socfpga-gsrd-apps/socfpga-gsrd-apps_1.0.bb
-  sed -i '/intelFPGA\/syschk/a\\tinstall -m 0755 \${WORKDIR}\/sources-unpack\/dmaTest_cache_v2.0.run \${D}\/home\/root\/'  meta-intel-fpga-refdes/recipes-gsrd/socfpga-gsrd-apps/socfpga-gsrd-apps_1.0.bb
+  sed -i '/alteraFPGA\/syschk/a\\tinstall -m 0755 \${WORKDIR}\/dmaTest_cache_v2.0.run \${D}\/home\/root\/'  meta-intel-fpga-refdes/recipes-gsrd/socfpga-gsrd-apps/socfpga-gsrd-apps_1.0.bb
   sed -i '/FILES:\${PN} =/a\\t\t   \/home\/root\/dmaTest_cache_v2.0.run \\' meta-intel-fpga-refdes/recipes-gsrd/socfpga-gsrd-apps/socfpga-gsrd-apps_1.0.bb
   # Remove QA check for the new file INSANE_SKIP
   sed -i '/INSANE_SKIP:\${PN} =/aINSANE_SKIP:\${PN} \+= " file-rdeps"'  meta-intel-fpga-refdes/recipes-gsrd/socfpga-gsrd-apps/socfpga-gsrd-apps_1.0.bb
@@ -716,11 +811,11 @@ In order to excercise this example you will need to program the binaries that yo
 * SD Card: `$TOP_FOLDER/gsrd_socfpga/agilex7_dk_si_agf014ea-gsrd-images/gsrd-console-image-agilex7.wic`
 * QSPI: `$TOP_FOLDER/ghrd_agfb014r24b2e2v.hps.jic`
 
-When using the above SD Card image, this already includes the [dmaTest_cache_v2.0.run ](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) application that is used to exercise this example. This is a bash script is located at the **/home/root/** directoy in Linux which is running in the development kit. 
+When using the above SD Card image, this already includes the [dmaTest_cache_v2.0.run ](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) application that is used to exercise this example. This is a bash script is located at the **/home/root/** directoy in Linux which is running in the development kit. 
 
-**Note:** Make sure that the variables in the script used to define the addresses for the configuration registers for the Cache Coherency Translator and Modular Scatter-Gather DMA components match the ones set in the GHRD.
+**Note:** Make sure that the variables in the script used to define the addresses for the configuration registers for the Cache Coherency Translator and Modular Scatter-Gather DMA components match the ones set in the hardware design.
 
-The addresses set in the GHRD are defined at the **lwsoc2fpga** bridge with a base address of 0xF9000000:
+The addresses set in the hardware design are defined at the **lwsoc2fpga** bridge with a base address of 0xF9000000:
 
   ![](images/baseAddress.png)
 
@@ -737,7 +832,7 @@ These variables are defined in the script as:
 To execute the sample test script:
 
 1. Power cycle the board to boot to Linux.
-2. Identify the [dmaTest_cache_v2.0.run](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) test script in your `/home/root` directory. 
+2. Identify the [dmaTest_cache_v2.0.run](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) test script in your `/home/root` directory. 
 3. You can see how to exercise the script by using the **-h** switch:
   ```
   root@agilex:~# bash dmaTest_cache_v2.0.run -h

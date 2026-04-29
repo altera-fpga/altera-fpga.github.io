@@ -1,7 +1,5 @@
 
 
-# SoC Fabric Configuration from Linux Example for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile)
-
 ## Introduction 
 
 When using HPS Boot First method, the FPGA device is first configured with a small Phase 1 bitstream, which configures the periphery, and brings up HPS. Then, at a later time, HPS configures the FPGA fabric using a larger Phase 2 bitstream. 
@@ -11,15 +9,15 @@ The HPS can configure the fabric either from U-Boot or Linux. The Golden System 
 Two different examples are provided: 
 
 - Example building components separately 
- - based on the [Building Bootloader for Agilex&trade; 7](https://www.rocketboards.org/foswiki/Documentation/BuildingBootloaderAgilex7) example. 
+ - Based on HPS Linux Boot Tutorial Example Design for Agilex 7
  - Manages overlays directly. 
 - Example building everything with Yocto 
- - Based on the [GSRD for Agilex&trade; 7 F-Series Transceiver-SoC DevKit (P-Tile and E-Tile)](https://www.rocketboards.org/foswiki/Documentation/AgilexSoCGSRD). 
+ - Based on the Agilex 7 HPS Baseline System Example Design
  - Manages overlays with the [dtbt](https://github.com/altera-fpga/dtbt) utility 
 
 ### Prerequisites 
 
-* Altera&trade; Agilex&trade; 7 FPGA F-Series Transceiver-SoC Development Kit P-Tile E-Tile ordering code DK-SI-AGF014EB:  
+* [Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tile and E-Tile)](https://www.altera.com/products/devkit/po-3003/agilex-7-fpga-f-series-transceiver-soc-development-kit-p-tile-and-e-tile) ordering code DK-SI-AGF014EB 
   * OOBE/SD HPS Daughtercard
   * Mini USB cable for serial output
   * Micro USB cable for on-board Altera® FPGA Download Cable II
@@ -28,15 +26,13 @@ Two different examples are provided:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
+  * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
-Refer to [board documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agf014.html) for details about the board.
-
 ## Example Building Components Separately 
 
-This example is build on top of the [Building Bootloader for Agilex&trade; 7](https://www.rocketboards.org/foswiki/Documentation/BuildingBootloaderAgilex7) example, with the modification that the fabric is not configured from U-Boot anymore, but from Linux, with a device tree overlay. 
+This example is build on top of the Linux Boot Tutorial Example Design, with the modification that the fabric is not configured from U-Boot anymore, but from Linux, with a device tree overlay.
 
 The device tree overlay and the Phase 2 configuration bitstream core.rbf are stored in the Linux rootfs folder /lib/firmware, where the Linux overlay framework expects them to be by default. 
 
@@ -75,9 +71,9 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
-export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+source ~/altera_pro/26.1/qinit.sh
 ```
+
 
 
 
@@ -90,10 +86,10 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash 
 cd $TOP_FOLDER 
 rm -rf agilex7f-ed-gsrd
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
-unzip QPDS25.3_REL_GSRD_PR.zip
-rm QPDS25.3_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+unzip QPDS26.1_REL_GSRD_PR.zip
+rm QPDS26.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR agilex7f-ed-gsrd
 cd agilex7f-ed-gsrd
 make agf014eb-si-devkit-oobe-baseline-all
 cd ..
@@ -108,7 +104,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf arm-trusted-firmware 
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
 cd arm-trusted-firmware 
 make bl31 PLAT=agilex 
 cd .. 
@@ -123,12 +119,10 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf u-boot-socfpga 
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk 
-# use 'Image' for kernel image instead of 'kernel.itb'
-sed -i 's/kernel\.itb/Image/g' arch/arm/Kconfig
 # only boot from SD, do not try QSPI and NAND 
 sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&mmc;/g' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi 
 # disable NAND in the device tree 
@@ -160,7 +154,7 @@ CONFIG_DISTRO_DEFAULTS=n
 CONFIG_HUSH_PARSER=y 
 CONFIG_SYS_PROMPT_HUSH_PS2="> " 
 CONFIG_USE_BOOTCOMMAND=y 
-CONFIG_BOOTCOMMAND="load mmc 0:1 \${loadaddr} ghrd.core.rbf; bridge disable;fpga load 0 \${loadaddr} \${filesize};bridge enable; setenv bootfile Image; run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot" 
+CONFIG_BOOTCOMMAND="load mmc 0:1 \${loadaddr} ghrd.core.rbf; bridge disable;fpga load 0 \${loadaddr} \${filesize};bridge enable; setenv bootfile Image; setenv fdtimage socfpga_agilex_socdk.dtb; run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot" 
 CONFIG_CMD_FAT=y 
 CONFIG_CMD_FS_GENERIC=y 
 CONFIG_DOS_PARTITION=y 
@@ -197,13 +191,13 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -f ghrd.hps.jic ghrd.core.rbf 
-quartus_pfg -c \ 
- agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \ 
- ghrd.jic \ 
- -o device=MT25QU128 \ 
- -o flash_loader=AGFB014R24B2E2V \ 
- -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \ 
- -o mode=ASX4 \ 
+quartus_pfg -c \
+ agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+ ghrd.jic \
+ -o device=MT25QU128 \
+ -o flash_loader=AGFB014R24B2E2V \
+ -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+ -o mode=ASX4 \
  -o hps=1 
 ```
 
@@ -216,7 +210,7 @@ quartus_pfg -c \
 ```bash 
 cd $TOP_FOLDER 
 rm -rf linux-socfpga 
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
 make clean && make mrproper 
 make defconfig 
@@ -298,9 +292,9 @@ Explanation:
 ```bash 
 cd $TOP_FOLDER 
 rm -rf yocto && mkdir yocto && cd yocto 
-git clone -b walnascar https://git.yoctoproject.org/poky 
-git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga 
-git clone -b walnascar https://github.com/openembedded/meta-openembedded 
+git clone -b scarthgap https://git.yoctoproject.org/poky 
+git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga 
+git clone -b scarthgap https://github.com/openembedded/meta-openembedded 
 source poky/oe-init-build-env ./build 
 echo 'MACHINE = "agilex7_dk_si_agf014eb"' >> conf/local.conf 
 echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 
@@ -333,10 +327,10 @@ sudo mkdir -p lib/firmware
 sudo cp $TOP_FOLDER/ghrd.core.rbf lib/firmware/overlay.rbf 
 sudo cp $TOP_FOLDER/overlay.dtb lib/firmware/overlay.dtb 
 cd .. 
-sudo python3 make_sdimage_p3.py -f \ 
--P fat/*,num=1,format=fat32,size=48M \ 
--P rootfs/*,num=2,format=ext3,size=32M \ 
--s 100M \ 
+sudo python3 make_sdimage_p3.py -f \
+-P fat/*,num=1,format=fat32,size=48M \
+-P rootfs/*,num=2,format=ext3,size=32M \
+-s 100M \
 -n sdcard.img 
 cd .. 
 ```
@@ -399,7 +393,7 @@ root@agilex7_dk_si_agf014eb:~# find / -name sysid
 ## Example Building Everything with Yocto 
 
 
-This example is build on top of the [GSRD for Agilex 7 F-Series Transceiver-SoC DevKit (P-Tile and E-Tile)](https://www.rocketboards.org/foswiki/Documentation/AgilexSoCGSRD), with the modification that the fabric is not configured from U-Boot anymore, instead through a device tree overlay. 
+This example is build on top of the Agilex 7 HPS Baselione System Example Design, with the modification that the fabric is not configured from U-Boot anymore, instead through a device tree overlay. 
 
 Full instructions for building and running the example are provided. 
 
@@ -435,9 +429,9 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
-export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+source ~/altera_pro/26.1/qinit.sh
 ```
+
 
 
 
@@ -450,10 +444,10 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash 
 cd $TOP_FOLDER
 rm -rf agilex7f-ed-gsrd
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
-unzip QPDS25.3_REL_GSRD_PR.zip
-rm QPDS25.3_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+unzip QPDS26.1_REL_GSRD_PR.zip
+rm QPDS26.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR agilex7f-ed-gsrd
 cd agilex7f-ed-gsrd
 make agf014eb-si-devkit-oobe-baseline-all
 cd ..
@@ -468,12 +462,12 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -f ghrd.hps.jic ghrd.core.rbf 
-quartus_pfg -c \ 
- agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline_hps_debug.sof \ 
- ghrd.jic \ 
- -o device=MT25QU128 \ 
- -o flash_loader=AGFB014R24B2E2V \ 
- -o mode=ASX4 \ 
+quartus_pfg -c \
+ agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline_hps_debug.sof \
+ ghrd.jic \
+ -o device=MT25QU128 \
+ -o flash_loader=AGFB014R24B2E2V \
+ -o mode=ASX4 \
  -o hps=1 
  rm ghrd.hps.jic 
 ```
@@ -487,7 +481,7 @@ quartus_pfg -c \
 ```bash 
 cd $TOP_FOLDER 
 rm -rf gsrd-socfpga 
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
 cd gsrd-socfpga 
 . agilex7_dk_si_agf014eb-gsrd-build.sh 
 build_setup 
@@ -503,7 +497,26 @@ build_setup
 
 ```bash 
 rm -f agilex7-fabric-config-yocto.patch
-wget https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/fabric-config/collateral/agilex7-fabric-config-yocto.patch 
+base64 -d << EOT | gunzip > agilex7-fabric-config-yocto.patch
+H4sIALA94WkCA71WWW/jNhB+jn4F4c1DC4cW5dtJU2Sb7BEU2wVcFH0pIFAipRDVtSQdJzX033eG
+sndz2LFiLErA1pD85uTMkEIlCaE0VZZwX8tYVdLQyFS+kLcqltRqKR/SvSgiUUugpwoh78hkNh1J
+Oev1hjFnQcJIwNh4OPQopa11et1ut73eiwtC+8OTMenC/4TA9M/5ZfjX/PqUV5UsxClPVSbvJqH4
+NzQq5GnCgqGMyDnpkH88coQjAcSp72+QlQ4rqU1ZcNYT1uyHBdtgpoyTKuWhymLcVrDffbif8Eir
+OIzLIlFpWN5KnfH7R4I6HvH2eaNYf5LEa28wFgMXi8GoVSwecb8AhpgDOmeDWSLNttBtnN3wpDda
+bLz+f6Py3VTJ15aKNnmP+s0L6qNDOb1CLgliSF4KuSmIplxYM3q9WIwiJhJXJyjcLxZZtqcQ9unF
+bGAnjHSDk/4AksHr+rBMbwP/DMgqW6SqcCRZeV3yZCQagigLe8G27T4dlutUWlpxe4Mx9/GIqZap
+KovO2X72N1wILY2hscwyzK9f2F3/1zaMRv0nX80VbsIUhm2c+2HW/hjrnw7NixSLEvgZ+f57P2ty
+a7PE+m56iIZE6XzJtaQFzyWer6vuuNSyp6Okc4DEJltpXOZVJi3ks8plubB04QIxWJcF2vp62ebe
+KBF+gU/ITptZuyTebmgOSa2izPnNM6tPnETaH/SGnZNHS0GPHRILd4YybTLg4Qk2QQgOOjIcSrhg
+DtlowuBe7h8qBw/HWJ5XzsRDpNQteLZhcA1+O/s35qF/s4ROk1AhjUqL50+WrZh1+41mySSaQfsd
+TEeTiYh3v1a2S3nen7fjsBMH0z5ezPhxN7MoQ1VAWLOM/PQzpCdebpsFekVoTtAUcrz6+/P896vr
+ee0frz69vfx4/ce7Gp8ex6u380/jYfjh4/wqvPw8fxfOf3tfA/6q9qOytM4UAH6r01dr+PYGAmYn
+93gVcSPDTEVC6drftAX/IfBQLUFbLQ7o3gyttaQGIvFCvHZp3M6CHsrMyNd5us+G5sx2a0zU7jJY
+UMfcvAcWSPfsnX2SmdtB60LA9A+mYygEzvrTabK7EHaIeV4JO4BYCmOogO64KQOVEAvdBWLQvCFq
+7LN5HkMrJfZGFug7TKFDmpgXZy4U3GYlF8ACryF7X8m6IYtFXp8CpYzVZYgaK64tbiIcL22kcR2N
+qp0sA7dPcUtwEdQb0pFcZ/dwPZGKFyo+pwHRsHd+vAIjkKqJXrqlJVe2c3Z05NGjI2TPH+p5E5Vc
+C4ra4BsqgZ1sN445W+SdskjAUcOV630FiSezeK4NAAA=
+EOT 
 patch -d meta-intel-fpga-refdes -p1 < agilex7-fabric-config-yocto.patch
 ```
 
@@ -512,25 +525,25 @@ For reference, the patch looks like this:
 
 ```diff
 diff --git a/recipes-bsp/device-tree/device-tree.bb b/recipes-bsp/device-tree/device-tree.bb
-index 6516834..3382020 100644
+index 7985ee9..4ca01f0 100644
 --- a/recipes-bsp/device-tree/device-tree.bb
 +++ b/recipes-bsp/device-tree/device-tree.bb
-@@ -24,6 +24,7 @@ SRC_URI:append:agilex7_dk_si_agf014ea = " \
- 					file://agilex7_pr_persona0.dts \
- 					file://agilex7_pr_persona1.dts \
- 					file://socfpga_ilc.dtsi \
-+					file://fabric_config_overlay.dts \
- 					"
+@@ -24,6 +24,7 @@ SRC_URI:append:agilex7_dk_si_agf014eb = " \
+          file://agilex7_pr_persona0.dts \
+          file://agilex7_pr_persona1.dts \
+          file://socfpga_ilc.dtsi \
++         file://fabric_config_overlay.dts \
+          "
  
- SRC_URI:append:agilex7_dk_si_agf014eb = " \
-@@ -32,6 +33,7 @@ SRC_URI:append:agilex7_dk_si_agf014eb = " \
- 					file://agilex7_pr_persona0.dts \
- 					file://agilex7_pr_persona1.dts \
- 					file://socfpga_ilc.dtsi \
-+					file://fabric_config_overlay.dts \
- 					"
+ SRC_URI:append:agilex7_dk_si_agi027fc = " \
+@@ -34,6 +35,7 @@ SRC_URI:append:agilex7_dk_si_agi027fc = " \
+ SRC_URI:append:agilex7_dk_dev_agm039fes = " \
+          file://socfpga_agilex7_ghrd.dtsi \
+          file://socfpga_ilc.dtsi \
++         file://fabric_config_overlay.dts \
+          "
  
- SRC_URI:append:agilex7_dk_si_agi027fb = " \
+ SRC_URI:append:agilex7_dk_dev_agm039ea = " \
 diff --git a/recipes-bsp/device-tree/files/fabric_config_overlay.dts b/recipes-bsp/device-tree/files/fabric_config_overlay.dts
 new file mode 100644
 index 0000000..cd5b0df
@@ -561,31 +574,30 @@ index 0000000..cd5b0df
 +                };
 +};
 diff --git a/recipes-bsp/ghrd/hw-ref-design.bb b/recipes-bsp/ghrd/hw-ref-design.bb
-index eccd99d..dbd6f34 100644
+index b9f7b90..38577dc 100644
 --- a/recipes-bsp/ghrd/hw-ref-design.bb
 +++ b/recipes-bsp/ghrd/hw-ref-design.bb
-@@ -222,6 +222,7 @@ do_install () {
- 			install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_${ARM64_GHRD_CORE_RBF} ${D}/boot/ghrd_pr.core.rbf
- 			install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
- 			install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
-+			install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}${base_libdir}/firmware/${ARM64_GHRD_CORE_RBF}
- 		else
- 			install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}/boot/${ARM64_GHRD_CORE_RBF}
- 		fi
+@@ -182,6 +182,7 @@ do_install () {
+      install -D -m 0644 ${WORKDIR}/${MACHINE}_pr_${ARM64_GHRD_CORE_RBF} ${D}/boot/ghrd_pr.core.rbf
+      install -D -m 0644 ${WORKDIR}/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
+      install -D -m 0644 ${WORKDIR}/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
++     install -D -m 0644 ${WORKDIR}/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}${base_libdir}/firmware/${ARM64_GHRD_CORE_RBF}
+    else
+      install -D -m 0644 ${WORKDIR}/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}/boot/${ARM64_GHRD_CORE_RBF}
+    fi
 diff --git a/recipes-bsp/u-boot/files/uboot.txt b/recipes-bsp/u-boot/files/uboot.txt
 index 8577186..3a0288f 100644
 --- a/recipes-bsp/u-boot/files/uboot.txt
 +++ b/recipes-bsp/u-boot/files/uboot.txt
 @@ -6,7 +6,7 @@ if test ${target} = "mmc0"; then
- 		mmc rescan;
- 		fatload ${devtype} ${devnum}:${distro_bootpart} ${loadaddr} ${bootfile};
- 		setenv bootargs "earlycon panic=-1 root=${mmcroot} rw rootwait";		
--		bootm ${loadaddr}#board-${board_id};
-+		bootm ${loadaddr}#board-0;
- 		exit;
- 	fi
+    mmc rescan;
+    fatload ${devtype} ${devnum}:${distro_bootpart} ${loadaddr} ${bootfile};
+    setenv bootargs "earlycon panic=-1 root=${mmcroot} rw rootwait";    
+-   bootm ${loadaddr}#board-${board_id};
++   bootm ${loadaddr}#board-0;
+    exit;
+  fi
  fi
-
 ```
 
 6\. Customize Yocto Build 
@@ -619,12 +631,12 @@ package
 ```bash 
 cd $TOP_FOLDER 
 rm -f *jic* *rbf* 
- quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \ 
- ghrd.jic \ 
- -o hps_path=gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex \ 
- -o device=MT25QU128 \ 
- -o flash_loader=AGFB014R24B2E2V \ 
- -o mode=ASX4 \ 
+ quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+ ghrd.jic \
+ -o hps_path=gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+ -o device=MT25QU128 \
+ -o flash_loader=AGFB014R24B2E2V \
+ -o mode=ASX4 \
  -o hps=1 
 ```
 

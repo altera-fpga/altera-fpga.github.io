@@ -1,6 +1,6 @@
 
 
-
+ 
 ![Nios V Processor Header](../../devkit-img/niosv-header.png?raw=true)
 
 ## Introduction
@@ -17,13 +17,13 @@
  - Agilex™ 5 FPGA E-Series 065B Premium Development Kit, ordering code DK- A5E065BB32AES1. </br> Refer to the board documentation for more information about the development kit.
  - Mini and Micro USB Cable. Included with the development kit.
  - Host PC with 64 GB of RAM. Less will be fine for only exercising the prebuilt binaries, and not rebuilding the design.
- - Quartus® Prime Pro Edition Software version 25.3
+ - Quartus® Prime Pro Edition Software version 25.3.1
  - Ashling* RiscFree* IDE for Altera® FPGAs
  
 ### Release Contents  
 
 Every Nios V processor design example is maintained based on this folder structure. </br>
-Here is the Github link to root directory of this design example: [Nios® V/g TinyML LiteRT Example Design Github link](https://github.com/altera-fpga/agilex5e-nios-ed/tree/rel/25.3.0/niosv_g/tinyml_liteRT)
+Here is the Github link to root directory of this design example: [Nios® V/g TinyML LiteRT Example Design Github link](https://github.com/altera-fpga/agilex5e-nios-ed/tree/rel/25.3.1/niosv_g/tinyml_liteRT)
 
 ```mermaid 
 ---
@@ -55,7 +55,7 @@ graph LR
  The objective of the design is to accomplish data transfer between the processor and soft IP peripherals:
 
  - Running TinyML application that identify Modified National Institute of Standards and Technology (MNIST) data samples.
- - Prints the classification result thru JTAG UART IP.
+ - Prints the classification result through JTAG UART IP.
 
 ```mermaid 
 ---
@@ -113,6 +113,17 @@ The following components are used in this design:
 Refer to [Agilex™ 5 FPGA Premium Development Kit User Guide](https://www.intel.com/content/www/us/en/docs/programmable/814550.html) to setup the development kit.
 
 ![Development Kit](../../devkit-img/devkit.png?raw=true)
+
+## Environment Setup
+
+Download the Quartus® Prime Pro Edition and Ashling* RiscFree* IDE for Altera® FPGAs (software version 25.3.1) from the [Quartus® Prime Design Software - Download](https://www.altera.com/products/development-tools/quartus#download) from Altera website. </br>
+Follow the on-screen instructions to complete the installation process.
+
+Next, set up the Quartus® Prime Pro Edition and Ashling* RiscFree* IDE tools in the PATH.
+```console
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$QUARTUS_ROOTDIR/../riscfree/RiscFree:$QUARTUS_ROOTDIR/../niosv/bin/$PATH
+```
 
 ## Exercising Prebuilt Binaries
 

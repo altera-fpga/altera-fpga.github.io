@@ -1,147 +1,16 @@
 
 
-## Introduction
-
-IEEE Ethernet is a core technology which is a backbone for IT operations and was designed to provide best effort communication suitable for IT operations. Operational Technology vendors have innovatively used Core IEEE Ethernet technology with proprietary solutions for enabling time-bounded communication. To address the need for precision timing, traffic shaping, and time-bounded communication over networks, IEEE introduced a suite of standards known as Time Sensitive Networking (TSN).
-
-Agilex&trade; 5 E-Series is designed as an end point for Industrial automation application with support for the following TSN protocols:
-
-* __Time Synchronization Protocols__:
-  * IEEE 1588-2008 Advanced Timestamp (Precision Time Protocol - PTP):
-    * Function: Provides sub-microsecond accuracy for time synchronization between computing systems over a local area network.
-    * Key Features: 2-step synchronization, PTP offload, and timestamping.
-    * Use Case: Synchronizing industrial devices to operate in unison, ensuring coordinated actions across factory or plant operations.
-  * IEEE 802.1AS (Timing and Synchronization):
-    * Function: A profile of PTP (version 2) that ensures precise time synchronization in a hierarchical master-slave architecture.
-    * Key Features: Prioritizes accuracy and variability of timing, crucial for industrial and automotive systems.
-    * Use Case: Synchronizing devices to a common time for optimal operation and collaboration.
-
-* __Credit Based Shaper Protocol__:
-  * IEEE 802.1Qav (Time-Sensitive Streams Forwarding and Queuing):
-    * Function: Provides low-latency, time-synchronized delivery of audio and video streams over Ethernet networks.
-    * Key Features: Credit-based shaper ensuring end-to-end guaranteed bandwidth with fairness to best-effort traffic.
-    * Use Case: Ensuring dedicated bandwidth for audio-video bridging (AVB) streams with minimal latency.
-
-* __Traffic Scheduling Protocols__:
-  * IEEE 802.1Qbv (Time-Scheduled Traffic Enhancements):
-    * Function: Enables the transmission of frames at specific scheduled times within microsecond ranges.
-    * Key Features: Critical for time-sensitive scheduled traffic in industrial applications.
-    * Use Case: Facilitating precise, time-critical communication for industrial devices like PLCs and drives.
-  * IEEE 802.1Qbu (Frame Preemption):
-    * Function: Allows high-priority frames to preempt lower-priority frames, reducing latency and jitter.
-    * Key Features: Utilizes Express Media Access Control (eMAC) and Preemptable Media Access Control (pMAC).
-    * Use Case: Ensuring high-priority frames arrive with fixed latency, crucial for applications requiring consistent timing.
-
-These TSN standards collectively enable precise timing, traffic shaping, and time-bounded communication, making them indispensable for applications requiring high reliability and determinism. 
-
-The details of TSN is not in the scope of this document. Here are some reference to the TSN specifications
-
-- [IEEE Std 802.1AS™-2011 "Timing and Synchronization for Time-Sensitive Applications in Bridged Local Area Networks"](https://standards.ieee.org/standard/802_1AS-2011.html?oslc_config.context=https%3A%2F%2Frtc.intel.com%2Fgc%2Fconfiguration%2F964)
-- [IEEE Std 802.1Qav™-2009 “Forwarding and Queuing Enhancements for Time-Sensitive Streams”](https://standards.ieee.org/standard/802_1Qav-2009.html?oslc_config.context=https%3A%2F%2Frtc.intel.com%2Fgc%2Fconfiguration%2F964)
-- [IEEE Std 802.1Qbv™-2015 “Enhancements for Scheduled Traffic”](https://standards.ieee.org/standard/802_1Qbv-2015.html?oslc_config.context=https%3A%2F%2Frtc.intel.com%2Fgc%2Fconfiguration%2F964)
-- [IEEE Std 802.1Qbu™-2016 “Frame Preemption”](https://standards.ieee.org/standard/802_1Qbu-2016.html?oslc_config.context=https%3A%2F%2Frtc.intel.com%2Fgc%2Fconfiguration%2F964)
 
 
-### TSN HPS RGMII System Example Design Overview
+# HPS TSN - RGMII System Example Design User Guide for the Agilex™ 5 E-Series Premium Dev Kit
 
-The Time Sensitive Network (TSN) through Hard Processor System (HPS) IO System Example Design (SED) is a reference design running on the Agilex&trade; 5 E-Series 065B Premium Development Kit.  
-This System Example Design comprises the following components:
-
-* Hardware Reference Design (GHRD)
-* Reference HPS software including:
-* Arm Trusted Firmware
-* U-Boot
-* Linux Kernel
-* Linux Drivers
-* Sample Applications
-
-TSN Solution Architecture for this SED is illustrated as:
-
-![TSN Solution Arch - HPS IO](./images/tsncfg1_soln_arch.png)
-
->[Note:]
->This is a pre-production release of Agilex&trade; 5 TSN HPS RGMII System Example Design, on Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit with speed grade -6S. This corresponds to Engineering Samples Silicon quality.
-
-
-### Prerequisites
-
-This system example design is based on the [Agilex 5 E-Series Premium Development Kit GSRD](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/). It is recommended that you familiarize yourself with the GSRD development flow before proceeding with this design.
-The TSN through HPS IO System Example Design will be implemented on the HPS Enablement Expansion Board (also referred as HPS Daughter Card), which is included with the development kit.
-
-#### Development Kit
-
-This Example Design targets the Agilex 5 FPGA E-Series 065B Premium Development Kit, utilizing the HPS. 
-Refer to [GSRD\#Development Kit](https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium#development-kit) for details about the board, including how to install the HPS Daughter Card.
-
-* Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit
-* HPS Enablement Expansion Board. Included with the development kit.
-* Mini USB Cable
-* Micro USB Cable
-* Ethernet Cable
-* Micro SD card and USB card writer
-
-**Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit:**
-
-![Agilex 5 FPGA E-Series 065B Premium Development Kit](images/agilex5-premium-devkit-es.png)
-
-**HPS Enablement Expandsion Board Card:**
-
-![HPS OOBE Card:](images/hps_dc_oobe.png)
-
-
-#### Development Environment
-
-Host PC with:
-
-*   64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
-*   Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.
-*   Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-*   Altera&reg; Quartus&reg; Prime Pro Edition version. Used to recompile the hardware design. If only writing binaries is required, then the smaller Altera&reg; Quartus&reg; Prime Pro Edition Programmer is sufficient.
-*   The prebuilt binaries were built using Altera&reg; Quartus&reg; 25.3
-*   The instructions for rebuilding the binaries use Altera&reg; Quartus&reg; 25.3
-*   Local Ethernet network, with DHCP server
-*   Internet connection. For downloading the files, especially when rebuilding the GSRD.
-
-
-### Release Contents
-
-This page documents the following:
-
-*   Binary Release - see [Programming the Binaries](#programming-the-binaries) section for release content details
-*   Source Code Release - see [Programming Software Image](#programming-software-image) section for release content details
-
-#### Prebuilt Binaries
-
-The Agilex 5 Premium Development Kit 25.3 Example Design binaries are located at
-[https://releases.rocketboards.org/2025.10/](https://releases.rocketboards.org/2025.10/)
-
-| HPS Daughter Card | Boot Source | Link |
-| --- | --- | --- |
-| Enablement Board | SD Card | [https://releases.rocketboards.org/2025.10/gsrd/agilex5_dk_a5e065bb32aes1_gsrd](https://releases.rocketboards.org/2025.10/gsrd/agilex5_dk_a5e065bb32aes1_gsrd) |
-
-#### Sources
-
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 and the following software component versions integrate the 25.3 release. 
-
-**Note:** Regarding the GHRD components in the following table, only the device-specific GHRD is used in this page.
-
-| Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
-| :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 5 GHRD                                  | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.33-lts | QPDS25.3_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.0   | QPDS25.3_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.07 | QPDS25.3_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
-| Yocto Project: meta-intel-fpga        | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest              |
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3_REL_GSRD_PR |
-
-**Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
+<span style="color: red;"> **NOTE:** This page is not available in this release. The latest release in which HPS TSN RGMII System Example Design User Guide is supported corresponds to 25.3. Please refer to the following page to access the latest documentation: [HPS TSN RGMII System Example Design User Guide](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hps/ug-tsncfg1-agx5e-premium/#sources). </span>
 
 
 
 ### Release Notes
 
-See [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR)
+See [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR)
 
 
 
@@ -189,7 +58,7 @@ There are two ways to test the design based on use case.
 #### Tools Download and Installation
 
 1. Quartus Prime Pro
-     - Please download and install the Quartus&reg; Pro 25.3 version software. 
+     - Please download and install the Quartus&reg; Pro 26.1 version software. 
 
 2. Win32 Disk Imager
     - Please download and install the latest Win32 Disk Imager, available at [https://win32diskimager.org/](https://win32diskimager.org/)
@@ -226,7 +95,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 Note: The following must be re-done for fresh terminal session
 
 ```bash
-export export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
+export export QUARTUS_ROOTDIR=~/altera_pro/26.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -260,7 +129,7 @@ sudo ln -sf /bin/bash /bin/sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 unzip a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 rm -f a5ed065es-premium-devkit-oobe-legacy-baseline.zip
 make legacy_baseline-build
@@ -301,7 +170,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
 cd gsrd-socfpga
 . agilex5_dk_a5e065bb32aes1-gsrd-build.sh
 build_setup
@@ -316,6 +185,7 @@ build_setup
    * Replace the entry `${GHRD_REPO}/agilex5_dk_a5e065bb32aes1_gsrd_${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_gsrd_core` with `file://agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf;sha256sum=<CORE_SHA>` where `CORE_SHA` is the sha256 checksum of the file
 
    * Delete the line `SRC_URI[agilex5_dk_a5e065bb32aes1_gsrd_core.sha256sum] = "bf11c8cb3b6d9487f93ce0e055b1e5256998a25b25ac4690bef3fcd6225ee1ae"`  
+
     The above are achieved by the following instructions:
 
 ```
@@ -452,9 +322,7 @@ All the scenarios included in this release require a serial connection. This sec
 
 ```bash
 cd $TOP_FOLDER
-wget https://releases.rocketboards.org/2025.10/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
-
-tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+wget https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/uboot.jic
 ```
 
 <h5> Using compiled image </h5>
@@ -463,7 +331,7 @@ tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
 
 ```bash
 cd $TOP_FOLDER
-quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;uboot.jic"
 ```
 
 
@@ -471,7 +339,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 
 <h5>For Prebuilt:</h5>
 
-- Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2025.10/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2025.10/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
+- Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz](https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
 
 <h5>For compiled image:</h5>
 
@@ -479,7 +347,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 
 
 ##### Write SD Card
-1\. Write the gsrd-console-image-agilex5\_devkit.wic. SD card image to the micro SD card using the included USB writer in the host computer:
+1\. Write the gsrd-console-image-agilex5e.rootfs.wic. SD card image to the micro SD card using the included USB writer in the host computer:
 
 * On Linux, use the `dd` utility as shown next:
 
@@ -488,7 +356,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 cat /proc/partitions
 # This will return for example /dev/sdx
 # Use dd to write the image in the corresponding device
-sudo dd if=gsrd-console-image-agilex5_devkit.wic of=/dev/sdx bs=1M
+sudo dd if=gsrd-console-image-agilex5e.rootfs.wic of=/dev/sdx bs=1M
 # Flush the changes to the SD card
 sync
 ```
@@ -606,11 +474,11 @@ Once the test is completed, copy the following files from Board B (listener) to 
 
 Import 'afpkt-rxtstamps.txt' and 'afxdp-rxtstamps.txt' to excel in 2 seperate sheets.
 
-<img src="https://altera-fpga.github.io/rel-25.3/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
+<img src="https://altera-fpga.github.io/rel-26.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
 
 Plot Column 1 for each sheets using Scatter chart,
 
-<img src="https://altera-fpga.github.io/rel-25.3/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
+<img src="https://altera-fpga.github.io/rel-26.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
 
 
 This will generate plot for AFPKT and AFXDP with latency(on Y-axis) against packet count (on X-axis).
@@ -714,3 +582,5 @@ You are responsible for safety of the overall system, including compliance with 
 <sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
 
 OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 
+
+--->

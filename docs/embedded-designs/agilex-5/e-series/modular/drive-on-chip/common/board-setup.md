@@ -17,12 +17,11 @@
 
 <br>
 
-* Connect micro USB cable from bottom left of the carrier board to PC (`J35`).
-  This will be used for JTAG communication (see figure below).
 * Connect micro USB cable from bottom right of the SOM board to PC
-  (`J2`, HSP_UART). This will be used for HPS UART communication. Look at what
-  ports are enumerated on your host computer, there should be a series of
-  four. Use the 3rd one in the list as the HPS serial port (see figure below).
+  (`J2`, HSP_UART). This will be used for HPS UART communication and JTAG terminal
+  for FPGA programming. Look at what ports are enumerated on your host computer.
+  Use the new one in the list as the HPS serial
+  port (see figure below).
 * If ethernet capabilities or remote connection via `ssh` is required connect an
   ethernet cable to the ethernet port on the SOM board (`J6`, ETH 1G HPS) and make
   sure your device is in the same network as your intended host device. After
