@@ -11,7 +11,7 @@ The **kernel.itb** file is a Flattattened Image Tree (FIT) file that includes th
 
  \* One or more of these components to support the different board configurations.
 
-The **kernel.itb** is created from a **.its** (Image Tree Source file) that describes its structure. In the GSRD, the  **kernel.itb** file is located in the following directory, where you can find also all the components needed to create it, including the .its file:
+The **kernel.itb** is created from a **.its** (Image Tree Source file) that describes its structure. In the HPS Legacy System Example Design 1.0, the  **kernel.itb** file is located in the following directory, where you can find also all the components needed to create it, including the .its file:
 
 * **$TOP_FOLDER/gsrd-socfpga/<*device-devkit*>-gsrd-rootfs/tmp/work/<*device-devkit*>-poky-linux/linux-socfpga-lts/<*linux branch*>+git/linux-<*device devkit*>-standard-build/**
 
@@ -23,7 +23,7 @@ If you want to modify the kernel.itb by replacing one of the component or modify
    $ sudo apt install mtools
    ```
    
-2. Go to the folder in which the **kernel.itb** is being created under the GSRD.
+2. Go to the folder in which the **kernel.itb** is being created under the HPS Legacy System Example Design 1.0.
    ```bash
    $ cd $TOP_FOLDER/gsrd-socfpga/<device-devkit>-gsrd-rootfs/tmp/work/<device-devkit>-poky-linux/linux-socfpga-lts/<linux branch>+git/linux-<device-devkit>-standard-build/
    $ ls *.its

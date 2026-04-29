@@ -1,11 +1,9 @@
 
 
 
-# HPS Remote System Update Tutorial Example Design: Agilex™ 5 FPGA E-Series 065B Premium Development Kit
-
 ## Intro 
 
-This page presents a complete Remote System Update example, running on the Agilex™ 5 E-Series Premium Development Kit (DK-A5E065BB32AES1), including the following.
+This page presents a complete Remote System Update example, running on the Agilex™ 5 E-Series Premium ES Development Kit (DK-A5E065BB32AES1), including the following.
 
 - Creating the initial flash image containing the following components.
   - Bitstreams for a factory image 
@@ -28,25 +26,25 @@ Refer to the  [Hard Processor System Remote System Update User Guide: Agilex™ 
 
 ## Component Versions 
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 and the following software component versions integrate the 25.3 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. 
 
-**Note:** Regarding the GHRD components in the following table, only the device-specific GHRD is used in this page.
+**Note:** Regarding the Hardware Design components in the following table, only the device-specific one is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 GHRD | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.3_REL_GSRD_PR   |
-| Agilex 5 GHRD - Include GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3_REL_GSRD_PR |
-| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
-| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
-| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS25.3_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.33-lts | QPDS25.3_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.0   | QPDS25.3_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.07 | QPDS25.3_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
-| Yocto Project: meta-altera-fpga (for GSRD 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3_REL_GSRD_PR |
-| Yocto Project: meta-intel-fpga (for Legacy GSRD) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest |
-| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3_REL_GSRD_PR |
-| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3_REL_GSRD_PR |
+| Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1_REL_GSRD_PR   |
+| Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1_REL_GSRD_PR |
+| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
+| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
+| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
+| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
+| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -60,10 +58,10 @@ The following items are required to run the RSU example.
 
 - Host PC running Ubuntu 22.04 LTS (other Linux versions may work too) 
 - Minimum 48 GB of RAM, required for compiling the hardware designs 
-- Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3  for compiling the hardware projects, generating the flash images and writing to flash 
+- Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1  for compiling the hardware projects, generating the flash images and writing to flash 
 - cmake/3.24.0  (build configuration tool) or or above to build LibRSU library.
 - Access to Internet to download the hardware project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. 
-- [Agilex™ 5 E-Series Premium Development Kit (DK-A5E065BB32AES1)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html)  for running the example. 
+- [Agilex™ 5 E-Series 065B  Premium Development Kit ES(DK-A5E065BB32AES1)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html)  for running the example. 
 
 ## Building Binaries 
 
@@ -77,7 +75,7 @@ The end results of the build flow are these.
 - Initial flash image: contains the factory image, an application image and two empty application image partitions aka slots. 
 - SD card image: contains SSBL (U-Boot), ATF (Arm Trusted Firmware), Linux device tree, Linux kernel, Linux rootfs with the Altera® RSU driver, LIBRSU, RSU Client, an application image, a factory update image and a decision firmware update image. 
 
-**Note:** To build binaries for a different development kit than the one used in this page, please refer to the [Building the Hardware Projects](#building-the-hardware-projects) section in the corresponding  GSRD page for that development kit, which is the section that may differ from the instructions presented here.
+**Note:** To build binaries for a different development kit than the one used in this page, please refer to the [Building the Hardware Projects](#building-the-hardware-projects) section in the **HPS Baseline System Example Design User Guide** page for that development kit, which is the section that may differ from the instructions presented here.
 
 ### Installing cmake 
 In case that you have installed a cmake version earlier than 3.24.0, you need to unistall this and install a new version. Here are the steps to achieve that. Note that this only need to performed once in your PC:
@@ -123,9 +121,9 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
-export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+source ~/altera_pro/26.1/qinit.sh
 ```
+
 
 
 
@@ -133,7 +131,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ### Building the Hardware Projects 
 
 
-Create four different hardware projects, based on the GHRD from GitHub with a few changes listed next.
+Create four different hardware projects, based on the hardware design provided in the HPS Baseline System Example Design from GitHub with a few changes listed next.
 
 - Change the boot mode to FPGA first 
 - Use a different ID in the SystemID component, to make the binaries for each project slightly different. 
@@ -147,14 +145,14 @@ The commands to create and compile the projects are listed below.
 cd $TOP_FOLDER 
 # Build 4 versions of the hardware design
 rm -rf hw && mkdir hw && cd hw 
-rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-baseline.zip
-unzip a5ed065es-premium-devkit-oobe-legacy-baseline.zip
-rm -f a5ed065es-premium-devkit-oobe-legacy-baseline.zip
-cd ..
+rm -rf agilex5_soc_devkit_ghrd_a55 && mkdir agilex5_soc_devkit_ghrd_a55 && cd agilex5_soc_devkit_ghrd_a55
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
+unzip a5ed065es-premium-devkit-oobe-baseline-a55.zip
+rm -f a5ed065es-premium-devkit-oobe-baseline-a55.zip
+cd $TOP_FOLDER/hw 
 # Crteate script to update project settings
 cat <<EOT > update-qsf.tcl
-project_open top -revision legacy_baseline
+project_open top -revision baseline_a55
 set_global_assignment -name RSU_MAX_RETRY_COUNT 3
 set_global_assignment -name HPS_INITIALIZATION "AFTER INIT_DONE"
 project_close
@@ -162,8 +160,8 @@ EOT
 
 # Create script to update wdog configuration
 cat <<EOT > update-wdog.tcl
-package require -exact qsys 25.3
-load_component agilex_hps
+package require -exact qsys 26.1
+load_component u_agilex_hps
 set_component_parameter_value Rst_sdm_wd_config {2}
 set_component_parameter_value Rst_watchdog_en {1}
 save_component
@@ -173,36 +171,36 @@ EOT
 for version in {0..3}
 do
 rm -rf ghrd.$version
-cp -r agilex5_soc_devkit_ghrd ghrd.$version
+cp -r agilex5_soc_devkit_ghrd_a55 ghrd.$version
 cd ghrd.$version
-# Customizing to the current copy of the GHRD
+# Customizing to the current copy of the hardware design
 quartus_sh -t ../update-qsf.tcl
 # Customize WDT 
 qsys-script --qpf=top.qpf --script=../update-wdog.tcl --system-file=hps_subsys.qsys
 # update sysid with the loop iterator 'value'
 cat <<EOT > update-sysid.tcl
-package require -exact qsys 25.3
-load_component sysid
+package require -exact qsys 26.1
+load_component u_system_id
 set_component_parameter_value id {0xABAB000$version}
 save_component
-save_system peripheral_subsys.qsys
+save_system fabric_subsys.qsys
 EOT
-qsys-script --qpf=top.qpf --script=update-sysid.tcl --system-file=peripheral_subsys.qsys
+qsys-script --qpf=top.qpf --script=update-sysid.tcl --system-file=fabric_subsys.qsys
 # Finsish customization and now building the hardware design
-make legacy_baseline-build
+make baseline_a55-build
 cd ..
 done
-rm -rf agilex5_soc_devkit_ghrd 
+rm -rf agilex5_soc_devkit_ghrd_a55
 cd .. 
 ```
 
 
 After completing the above steps, the following SOF files are created.
 
-- $TOP_FOLDER/hw/ghrd.0/output_files/legacy_baseline.sof 
-- $TOP_FOLDER/hw/ghrd.1/output_files/legacy_baseline.sof 
-- $TOP_FOLDER/hw/ghrd.2/output_files/legacy_baseline.sof 
-- $TOP_FOLDER/hw/ghrd.3/output_files/legacy_baseline.sof 
+- $TOP_FOLDER/hw/ghrd.0/output_files/baseline_a55.sof
+- $TOP_FOLDER/hw/ghrd.1/output_files/baseline_a55.sof
+- $TOP_FOLDER/hw/ghrd.2/output_files/baseline_a55.sof
+- $TOP_FOLDER/hw/ghrd.3/output_files/baseline_a55.sof
 
 
 ### Building Arm Trusted Firmware 
@@ -217,7 +215,7 @@ rm -rf arm-trusted-firmware
 git clone https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 # checkout the branch used for this document, comment out to use default
-git checkout -b test -t origin/socfpga_v2.13.0
+git checkout -b test -t origin/socfpga_v2.14.0
 make -j 48 PLAT=agilex5 bl31
 cd ..
 ```
@@ -240,7 +238,7 @@ rm -rf u-boot-socfpga
 git clone https://github.com/altera-fpga/u-boot-socfpga 
 cd u-boot-socfpga 
 # comment out next line to use the latest default branch 
-git checkout -b test -t origin/socfpga_v2025.07 
+git checkout -b test -t origin/socfpga_v2026.01 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
 # only boot from SD, do not try QSPI and NAND
@@ -277,6 +275,8 @@ CONFIG_SYS_PROMPT_HUSH_PS2="> "
 # Enabling Watchdog automatically if it's not done already
 CONFIG_WATCHDOG_AUTOSTART=y
 CONFIG_USE_BOOTCOMMAND=y
+# rsu_status boot command calls rsu dtb command to update the start address of 
+# qspi_boot partition in the Linux dtb to indicate it starts at SPT0 location
 CONFIG_BOOTCOMMAND="bridge enable; mmc rescan; run mmcload; run linux_qspi_enable; run rsu_status; setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;run mmcboot"
 CONFIG_CMD_FAT=y
 CONFIG_CMD_FS_GENERIC=y
@@ -324,7 +324,7 @@ rm -rf linux-socfpga
 git clone https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
 # checkout the branch used for this document, comment out to use default
-git checkout -b test -t origin/socfpga-6.12.33-lts
+git checkout -b test -t origin/socfpga-6.18.2-lts
 # configure the RSU driver to be built into the kernel
 make clean && make mrproper
 make defconfig
@@ -349,9 +349,13 @@ After completing the above steps, the following files are created.
 
 This section presents detailed instructions on how to create the initial flash image, by using the Programming File Generator. 
 
-For reference, an example of the  Programming File Generator configuration file is being included in this page. You can see it below. 
 
-```xml
+
+```bash 
+cd $TOP_FOLDER 
+
+# Create automatically the .pfg file
+cat << EOF > initial_image.pfg
 <pfg version="1">
     <settings custom_db_dir="./" mode="ASX4"/>
     <output_files>
@@ -368,10 +372,10 @@ For reference, an example of the  Programming File Generator configuration file 
     </output_files>
     <bitstreams>
         <bitstream id="Bitstream_1">
-            <path signing="OFF" finalize_encryption="0" hps_path="./u-boot-socfpga/spl/u-boot-spl-dtb.hex">./hw/ghrd.0/output_files/legacy_baseline.sof</path>
+            <path signing="OFF" finalize_encryption="0" hps_path="./u-boot-socfpga/spl/u-boot-spl-dtb.hex">./hw/ghrd.0/output_files/baseline_a55.sof</path>
         </bitstream>
         <bitstream id="Bitstream_2">
-            <path signing="OFF" finalize_encryption="0" hps_path="./u-boot-socfpga/spl/u-boot-spl-dtb.hex">./hw/ghrd.1/output_files/legacy_baseline.sof</path>
+            <path signing="OFF" finalize_encryption="0" hps_path="./u-boot-socfpga/spl/u-boot-spl-dtb.hex">./hw/ghrd.1/output_files/baseline_a55.sof</path>
         </bitstream>
     </bitstreams>
     <flash_devices>
@@ -397,20 +401,10 @@ For reference, an example of the  Programming File Generator configuration file 
         </assignment>
     </assignments>
 </pfg>
-
-```
-
- You can also downloaded and use it to generate the flash image by passing it to the Programming File Generator as shown below.
-
-
-
-```bash 
-cd $TOP_FOLDER 
-# Get the .pfg file
-wget https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/rsu/collateral/initial_image.pfg
+EOF
 
 # Create Initial Image for previous release (in case needed to test  combined application)
-~/altera_pro/25.1.1/quartus/bin/quartus_pfg -c initial_image.pfg
+~/altera_pro/25.3.1/quartus/bin/quartus_pfg -c initial_image.pfg
 mv initial_image.jic initial_image_prev.jic
 mv initial_image_jic.rpd initial_image_jic_prev.rpd
 mv initial_image_jic.map initial_image_jic_prev.map
@@ -447,7 +441,7 @@ Here are the complete instructions on how to manually create the initial flash i
 
 8. Once the output type was selected, click the **Input Files** tab. 
 
-9. In the **Input Files** tab click the **Add Bitstream** button, then browse to **$TOP_FOLDER/hw/ghrd.0/output_files**, select the file **legacy_baseline.sof**, and then click **Open**. This is the initial factory image. Do the same for the **$TOP_FOLDER/hw/ghrd.1/output_files/legacy_baseline.sof** image. This is the initial application image. The tab now looks like below.
+9. In the **Input Files** tab click the **Add Bitstream** button, then browse to **$TOP_FOLDER/hw/ghrd.0/output_files**, select the file **baseline_a55.sof**, and then click **Open**. This is the initial factory image. Do the same for the **$TOP_FOLDER/hw/ghrd.1/output_files/baseline_a55.sof** image. This is the initial application image. The tab now looks like below.
 
     ![](images/create_pfg_2.png) 
 
@@ -469,7 +463,7 @@ Here are the complete instructions on how to manually create the initial flash i
 
      ![](images/create_pfg_5.png) 
 
-16. Select the **FACTORY_IMAGE** entry, and click the **Edit** button. The **Edit Partition** window pops up. Select the **Input file** as **Bitstream_1 (legacy_baseline.sof)**. Change **Address Mode** to **Block** because you want to make sure you are leaving enough space for the biggest factory image you anticipate using. Set the **End Address** to **0x0090FFFF** in order to reserve 7MB for the factory image. This end address was calculated by adding 8MB to the end of the **BOOT_INFO** partition. Click **OK**. 
+16. Select the **FACTORY_IMAGE** entry, and click the **Edit** button. The **Edit Partition** window pops up. Select the **Input file** as **Bitstream_1 (baseline_a55.sof)**. Change **Address Mode** to **Block** because you want to make sure you are leaving enough space for the biggest factory image you anticipate using. Set the **End Address** to **0x0090FFFF** in order to reserve 7MB for the factory image. This end address was calculated by adding 8MB to the end of the **BOOT_INFO** partition. Click **OK**. 
 
      **Note:** There is a requirement that the starting address of the **SPT0** partition is aligned to 64KB. In order to warranty this, the **End Address** of the **FACTORY_IMAGE** must finish at an address ending with **0xXXXXFFFF**.
 
@@ -479,7 +473,7 @@ Here are the complete instructions on how to manually create the initial flash i
 
      
 
-17. Select the **QSPI02G** flash device in the Configuration Device tab by clicking it, then click the **Add Partition** button to open the **Add Partition** window. Leave the **Name** as **P1** and select the **Input file** as **Bitstream_2(legacy_baseline.sof)**. This becomes the initial application image. Select the **Page** as **1**. Select the **Address Mode** as **Block** and allocate 16MB of data by setting **Start Address** = **0x01000000** and **End Address** = **0x01FFFFFF**. Since this is the first partition defined, this becomes the initial application image to be loaded and has the highest priority of all application images that may be defined later.
+17. Select the **QSPI02G** flash device in the Configuration Device tab by clicking it, then click the **Add Partition** button to open the **Add Partition** window. Leave the **Name** as **P1** and select the **Input file** as **Bitstream_2(baseline_a55.sof)**. This becomes the initial application image. Select the **Page** as **1**. Select the **Address Mode** as **Block** and allocate 16MB of data by setting **Start Address** = **0x01000000** and **End Address** = **0x01FFFFFF**. Since this is the first partition defined, this becomes the initial application image to be loaded and has the highest priority of all application images that may be defined later.
 
      The actual priority in which an application in a partition is loaded is defined based on the order in which the partition is defined when creating the initial flash image as shown above in this step.
      The Programming File Generator issues an error if there are multiple partitions with the same page number, or if there are any “gaps” as in having a Page=1 then a Page=3, without a Page=2 for example.
@@ -527,7 +521,7 @@ The following commands are used to create the application image used in this exa
 cd $TOP_FOLDER 
 mkdir -p images 
 rm -rf images/application2.rpd
-quartus_pfg -c hw/ghrd.2/output_files/legacy_baseline.sof \
+quartus_pfg -c hw/ghrd.2/output_files/baseline_a55.sof \
 images/application2.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -550,7 +544,7 @@ The following commands are used to create the factory update image used in this 
 cd $TOP_FOLDER 
 mkdir -p images 
 rm -f images/factory_update.rpd
-quartus_pfg -c hw/ghrd.3/output_files/legacy_baseline.sof \
+quartus_pfg -c hw/ghrd.3/output_files/baseline_a55.sof \
 images/factory_update.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -574,7 +568,7 @@ The following commands are used to create the decision firmware update image use
 cd $TOP_FOLDER 
 mkdir -p images 
 rm -f images/decision_firmware_update.rpd
-quartus_pfg -c hw/ghrd.3/output_files/legacy_baseline.sof \
+quartus_pfg -c hw/ghrd.3/output_files/baseline_a55.sof \
 images/decision_firmware_update.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -604,9 +598,9 @@ The following commands are used to create the combined application image used in
 cd $TOP_FOLDER 
 mkdir -p images
 rm -f images/combined_application.rpd
-quartus_pfg -c hw/ghrd.3/output_files/legacy_baseline.sof \
+quartus_pfg -c hw/ghrd.3/output_files/baseline_a55.sof \
 images/combined_application.rpd \
--o app_image=hw/ghrd.2/output_files/legacy_baseline.sof \
+-o app_image=hw/ghrd.2/output_files/baseline_a55.sof \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o app_image_hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -635,56 +629,43 @@ the following files are created **combined_application.hps.rpd** (combined appli
 ### Building the Root File System 
 
 
-A root file system is required to boot Linux. There are a lot of ways to build a root file system, depending on your specific needs. This section shows how to build a small root file system using Yocto. 
+A root file system is required to boot Linux. There are a lot of ways to build a root file system, depending on your specific needs. This section shows how to build a small root file system using Buildroot. 
 
-1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
-
-The command to install the required packages on Ubuntu 22.04 is:
-
-```bash
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \
-build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
-python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit mesa-common-dev zstd \
-liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \
-tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
-device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
-```
-
-On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:
-
-```bash
- sudo ln -sf /bin/bash /bin/sh
-```
-
-**Note**: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.
-
-2\. Run the following commands to build the root file system.
+Run the following commands to build the root file system.
 
   
 
   ```bash 
   cd $TOP_FOLDER 
-  rm -rf yocto && mkdir yocto && cd yocto 
-  git clone -b walnascar https://git.yoctoproject.org/poky 
-  git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga 
-  git clone -b walnascar   https://github.com/openembedded/meta-openembedded 
-  # work around issue
-  echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
-  source poky/oe-init-build-env ./build 
-  echo 'MACHINE = "agilex5_dk_a5e065bb32aes1"' >> conf/local.conf 
-  echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 
-  echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf 
-  echo 'IMAGE_FSTYPES = "tar.gz"' >> conf/local.conf
-  echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf  
-  bitbake core-image-minimal 
+  rm -rf buildroot
+  git clone https://github.com/buildroot/buildroot.git
+  cd buildroot
+  git checkout 2026.02
+  mkdir -p overlay/etc/profile.d/
+  # Use regilar prompt used in our devices root@<device>:~# instead of only #
+  echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
+  # Adding applications that we normaly need
+  cat > configs/agilex5_defconfig <<EOT
+  BR2_aarch64=y
+  BR2_TOOLCHAIN_BUILDROOT_CXX=y
+  BR2_KERNEL_HEADERS_6_12=y
+  BR2_PACKAGE_HOST_GDB=y
+  BR2_GDB_VERSION_14=y
+  BR2_PACKAGE_GDB=y
+  BR2_PACKAGE_DROPBEAR=y
+  BR2_SYSTEM_DHCP="eth0"
+  BR2_TARGET_ROOTFS_TAR_GZIP=y
+  BR2_TARGET_GENERIC_HOSTNAME="linux"
+  BR2_ROOTFS_OVERLAY="overlay"
+  EOT
+  make agilex5_defconfig
+  make -j 64
   ```
   
 
-After the build completes, which can take a few hours depending on your host system processing power and Internet connection speed, the following root file system archive is created.
+After the build completes, which can take a few minutes, the following root file system archive is created.
 
-* TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz 
+* TOP_FOLDER/buildroot/output/images/rootfs.tar.gz
 
 
 
@@ -697,11 +678,11 @@ The ZLIB is required by LIBRSU. The following steps can be used to compile it.
 
 ```bash 
 cd $TOP_FOLDER 
-rm -rf zlib-1.3.1 
-wget http://zlib.net/zlib-1.3.1.tar.gz 
-tar xf zlib-1.3.1.tar.gz 
-rm zlib-1.3.1.tar.gz 
-cd zlib-1.3.1/ 
+rm -rf zlib-1.3.2 
+wget http://zlib.net/zlib-1.3.2.tar.gz 
+tar xf zlib-1.3.2.tar.gz 
+rm zlib-1.3.2.tar.gz 
+cd zlib-1.3.2/ 
 export CROSS_PREFIX=${CROSS_COMPILE} 
 ./configure 
 make 
@@ -712,8 +693,8 @@ cd ..
 
 After the above steps are completed, the following items are available.
 
-- $TOP_FOLDER/zlib-1.3.1/zlib.h - header file, used to compile files using zlib services 
-- $TOP_FOLDER/zlib-1.3.1/libz.so* - shared objects, used to run executables linked against zlib APIs 
+- $TOP_FOLDER/zlib-1.3.2/zlib.h - header file, used to compile files using zlib services 
+- $TOP_FOLDER/zlib-1.3.2/libz.so* - shared objects, used to run executables linked against zlib APIs 
 
 **Note**: The version of zlib mentioned above is the one that was tested with this release. You may want to use the latest zlib version, as it may contain updates and bug fixes. 
 
@@ -781,24 +762,22 @@ cp $TOP_FOLDER/images/*.rpd .
 cd ..
 # prepare the rootfs partition contents
 mkdir rootfs && cd rootfs
-sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz
-sudo sed -i 's/agilex5_dk_a5e065bb32aes1/linux/g' etc/hostname
-sudo rm -rf lib/modules/*
-sudo cp $TOP_FOLDER/images/*.rpd home/root
+sudo tar xf $TOP_FOLDER/buildroot/output/images/rootfs.tar.gz 
+sudo cp $TOP_FOLDER/images/*.rpd root/
 # This also could be copy to /usr/bin/ so it can be accessed from anywhere
-sudo cp $TOP_FOLDER/librsu/build/bin/rsu_client home/root/
+sudo cp $TOP_FOLDER/librsu/build/bin/rsu_client root/
 sudo cp $TOP_FOLDER/librsu/build/lib/libuniLibRSU.so.1 usr/lib/
 sudo cp $TOP_FOLDER/librsu/etc/qspi.rc etc/librsu.rc
-sudo cp $TOP_FOLDER/zlib-1.3.1/libz.so* lib/
+sudo cp $TOP_FOLDER/zlib-1.3.2/libz.so* lib/
 # We need to link rsu_client with libuniLibRSU.so.1. So we do it during Linux bootup
-sudo cp ../S99linkRSULib.sh etc/rcS.d/
-sudo chmod +x etc/rcS.d/S99linkRSULib.sh
+sudo cp ../S99linkRSULib.sh etc/init.d/
+sudo chmod +x etc/init.d/S99linkRSULib.sh
 cd ..
 # create sd card image 
 sudo python3 ./make_sdimage_p3.py -f \
--P fat/*,num=1,format=vfat,size=100M \
--P rootfs/*,num=2,format=ext3,size=100M \
--s 256M \
+-P fat/*,num=1,format=vfat,size=64M \
+-P rootfs/*,num=2,format=ext3,size=64M \
+-s 128M \
 -n sdcard_agilex5_rsu.img
 cd ..
 ```
@@ -867,7 +846,7 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 1. Power up the board and press any key when prompted, to get to the U-Boot command prompt.
 
     ```
-    U-Boot SPL 2025.07-35102-g135e53726d-dirty (Jan 28 2025 - 13:23:54 -0600)
+    U-Boot SPL 2026.01-35102-g135e53726d-dirty (Jan 28 2025 - 13:23:54 -0600)
     Reset state: Cold
     MPU           800000 kHz
     L4 Main	      400000 kHz
@@ -887,11 +866,11 @@ This section demonstrates how to use U-Boot to perform the following basic opera
     WARNING: Data cache not enabled
     NOTICE:  BL31: Boot Core = 0
     NOTICE:  BL31: CPU ID = 0
-    NOTICE:  BL31: v2.13.0(release): QPDS25.3_REL_GSRD_PR
+    NOTICE:  BL31: v2.14.0(release): QPDS26.1_REL_GSRD_PR
     NOTICE:  BL31: Built : 13:23:25, Nov 23 2024
     
     
-    U-Boot 2025.07-35102-g135e53726d-dirty (Jan 28 2025 - 13:23:54 -0600)socfpga_agilex5
+    U-Boot 2026.01-35102-g135e53726d-dirty (Jan 28 2025 - 13:23:54 -0600)socfpga_agilex5
     
     CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
     Model: SoCFPGA Agilex5 SoCDK
@@ -1005,10 +984,10 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 
     ```bash
     SOCFPGA # rsu display_dcmf_version 
-    DCMF0 version = 25.3.0
-    DCMF1 version = 25.3.0
-    DCMF2 version = 25.3.0
-    DCMF3 version = 25.3.0
+    DCMF0 version = 26.1.0
+    DCMF1 version = 26.1.0
+    DCMF2 version = 26.1.0
+    DCMF3 version = 26.1.0
     SOCFPGA # rsu slot_count 
     Number of slots = 3. 
     SOCFPGA # rsu slot_get_info 0 
@@ -1856,10 +1835,10 @@ information from U-Boot, this should be a previous version.
 
     ```bash
     SOCFPGA # rsu display_dcmf_version
-    DCMF0 version = 25.1.1
-    DCMF1 version = 25.1.1
-    DCMF2 version = 25.1.1
-    DCMF3 version = 25.1.1
+    DCMF0 version = 25.3.1
+    DCMF1 version = 25.3.1
+    DCMF2 version = 25.3.1
+    DCMF3 version = 25.3.1
     ```
 
 3. Find an unused slot (slot 1, P2), erase it, write the combined application image to it, verify that it was programmed successfully  and check it is now the highest priority.
@@ -1901,10 +1880,10 @@ application image is running fine.
     Error details : 0x00000000
     Retry counter : 0x00000000
     SOCFPGA # rsu display_dcmf_version
-    DCMF0 version = 25.3.0
-    DCMF1 version = 25.3.0
-    DCMF2 version = 25.3.0
-    DCMF3 version = 25.3.0
+    DCMF0 version = 26.1.0
+    DCMF1 version = 26.1.0
+    DCMF2 version = 26.1.0
+    DCMF3 version = 26.1.0
     ```
 
 7. Power cycle the board, the same combined application image is loaded, as it is the highest priority. But it takes a couple of seconds less, as the decision firmware does not need to be updated.
@@ -2011,10 +1990,10 @@ This section demonstrates how to use the RSU client to perform the following bas
 
     ```bash 
     root@linux:~# ./rsu_client --display-dcmf-version 
-    DCMF0 version = 25.3.0
-    DCMF1 version = 25.3.0
-    DCMF2 version = 25.3.0
-    DCMF3 version = 25.3.0
+    DCMF0 version = 26.1.0
+    DCMF1 version = 26.1.0
+    DCMF2 version = 26.1.0
+    DCMF3 version = 26.1.0
     Operation completed 
     ```
 
@@ -3038,7 +3017,7 @@ Application image update procedure needs to be updated as follows.
 
 **Steps to Rebuild Binaries compared with regular RSU build flow**
 
-1. GHRD, ATF, Linux, File System are built in the same way.
+1. Hardware design, ATF, Linux, File System are built in the same way.
 2. U-Boot is build adding **CONFIG_SOCFPGA_RSU_MULTIBOOT=y** to the **config-fragment-&lt;device&gt;** file. An independent U-Boot build is performed for each application. Name corresponding **u-boot.itb** as **u-boot_FACTORY_IMAGE.itb**, **u-boot_P1.itb**, **u-boot_P2.itb** and **u-boot_P3.itb**.
 3. Modify **initial_image.pfg** to include the proper new FSBLs for Bitstream 1 (FACTORY_IMAGE application) and Bitstream 2 (P1 application). 
 4. Generate the new **initial_image.jic** using the modified **initial_image.pfg** file.
@@ -3073,7 +3052,7 @@ Application image update procedure needs to be updated as follows.
 
 **Steps to Rebuild Binaries compared with regular RSU build flow**
 
-1. GHRD, ATF, Linux, File System are built in the same way.
+1. Hardware design, ATF, Linux, File System are built in the same way.
 2. U-Boot is build adding the following setting to the **config-fragment-&lt;device&gt;** file.
 ```bash
 CONFIG_SOCFPGA_RSU_MULTIBOOT=y

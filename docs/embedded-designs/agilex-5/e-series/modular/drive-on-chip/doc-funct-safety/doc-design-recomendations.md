@@ -25,7 +25,7 @@ safety function logic to demonstrate the design in a single chip. You must
 implement the external safety logic as a separate entity.
 
 The design provides meta-layers for custom Yocto build based on KAS with the
-same underlying components recommended in the Agilex™ 5 GSRD 25.1 documented on
+same underlying components recommended in the Agilex™ 5 GSRD 26.1 documented on
 the [**Altera® FPGA Developer Site**](https://altera-fpga.github.io/) website.
 The meta layer provides the application and the modifications to the SD card
 collaterals to enable the HPS safety channel and the communication with devices

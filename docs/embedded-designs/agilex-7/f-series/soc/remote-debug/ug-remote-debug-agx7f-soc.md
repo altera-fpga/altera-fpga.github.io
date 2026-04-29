@@ -1,7 +1,5 @@
 
 
-# SoC FPGA Remote Debug Tutorial Example Design User Guide: Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile)
-
 ##  Introduction
 
 Altera offers an integrated set of System Level Debug (SLD) tools, including:
@@ -69,7 +67,7 @@ The following are required:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
+  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -106,9 +104,9 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
-export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+source ~/altera_pro/26.1/qinit.sh
 ```
+
 
 
 
@@ -122,14 +120,23 @@ The hardware design is based on the GSRD, just that the JOP component is added, 
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex7f-ed-gsrd
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
-unzip QPDS25.3_REL_GSRD_PR.zip
-rm QPDS25.3_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+unzip QPDS26.1_REL_GSRD_PR.zip
+rm QPDS26.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR agilex7f-ed-gsrd
 cd agilex7f-ed-gsrd
 make agf014eb-si-devkit-oobe-baseline-generate-design
 cd agilex_soc_devkit_ghrd
-wget https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/remote-debug/collateral/agilex7-ghrd-add-jop.tcl
+base64 -d << EOT | gunzip > agilex7-ghrd-add-jop.tcl
+H4sIADRT1GkCA62U3W6CQBCF73mKjQ+AtFHTXhqhlVSr8SdtejNZYVR0YVd2tRriu3ehWppCgjaS
+EAic+eYww4whqLemCyQxbrZBjGQjD9IwqO+Dx0PBI4wUCSKFDFZcwIxRqTAGiwSinkpB8fwGSoRm
+IIrxZUSDcVqR1JCocgUIGtMQ0zc7yrZInPfhYDSBcc8GxyaJdazQ950+jN0PhyQN67F1ifrNtSdd
+krQaVeLp2IFJ5wWc1zZJ7grqmK/Qy64CY3UgXdd24Gk06IM7hE570u4Nnkkyp0yijqU7zIPPvYki
+TQh4RDy2hjvLMvlWp2DrelkP9POThXNYwfGFGK3j3trmIQ2i8UG60Zz/+sDb0EdUYc62Todp3TgL
+atpPmpux4xRbrM/frsVS6WnJaFlEKS97U2XsclJp75rHWye4srBX4Mtq2yzWli4ChntYCmku7+fA
+PoHuAwgzVimd7sIQ9NarcPpPLplRiW3f1+6l3kr79Gd+0Kc2no22Xp4KQ3Jeoub3BhZbJUltKnw9
+DCSdfqadmDXjC7e+2x6xBQAA
+EOT
 qsys-script --qpf=ghrd_agfb014r24b2e2v.qpf --script=agilex7-ghrd-add-jop.tcl --system-file=qsys_top.qsys
 cd ..
 make agf014eb-si-devkit-oobe-baseline-package-design
@@ -193,7 +200,7 @@ The following file is created:
 
 Perform the following steps to build Yocto:
 
-1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
+1\. Make sure you have Yocto system requirements met: [https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions](https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions).
 
 The command to install the required packages on Ubuntu 22.04 is:
 
@@ -222,7 +229,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
 cd gsrd-socfpga
 . agilex7_dk_si_agf014eb-gsrd-build.sh
 build_setup
@@ -256,7 +263,13 @@ This can be done with the provided patch file:
 
 ```bash
 rm -f agilex7-dts-add-jop.patch
-wget https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/f-series/soc/remote-debug/collateral/agilex7-dts-add-jop.patch
+base64 -d << EOT | gunzip > agilex7-dts-add-jop.patch
+H4sIADRT1GkCA5WP3W6DMAyFr8lTWL1NA2GFjqlbxZtM+XGoJwoRSTekqe++gLS7SR2WbF8cH33H
+lpwDITqKoIoJDXkMQgdfWPwkgyJOiIWjHkMRRuN8p96pN7mNgUBvNDAaLM5waJ5to22el/XRat1A
+KeWxqpgQYnMGxjnfnqNtQZTVvgaeZimhbRlkWRaiircAb7CzFJTu0e5Oq6D6OO3Dl3DkRmHRx0s6
+ej08nVf5fmI8y+Bj9K17kbKRUn4zDg/KjFevIiXKAuxwwImMuNGYmA/NE3ZLAjn/AkHOdVrn/3nF
+oK64PppC/8W7L48tI/UPQU3+ryICAAA=
+EOT
 pushd meta-intel-fpga-refdes
 patch -p1 < ../agilex7-dts-add-jop.patch
 popd

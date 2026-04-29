@@ -1,12 +1,10 @@
 
 
-# HPS GHRD Linux Boot Tutorial Example Design: Stratix® 10 SX SoC Development Kit
-
 ## Intro
 
 This page contains instructions on how to build Linux systems from separate components: Hardware Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the Golden System Reference Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
 
-The key differences versus the GSRD are:
+The key differences versus the HPS Baseline System Example Design are:
 
  * Fabric is configured from U-Boot directly with the rbf file, with `fpga load` command, instead of using the `bootm` command with the core.rbf part of the kernel.itb file
  * Single image boot is disabled in U-Boot, and it boots directly with the slected boot source, not trying them all
@@ -16,25 +14,25 @@ This instructions from this page target the Stratix® 10 SX SOC Development kit 
 
 ## Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 and the following software component versions integrate the 25.3 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. 
 
-**Note:** Regarding the GHRD components in the following table, only the device-specific GHRD is used in this page.
+**Note:** Regarding the Hardware Design components in the following table, only the device-specific one is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 GHRD | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.3_REL_GSRD_PR   |
-| Agilex 5 GHRD - Include GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3_REL_GSRD_PR |
-| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
-| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
-| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS25.3_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.33-lts | QPDS25.3_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.0   | QPDS25.3_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.07 | QPDS25.3_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
-| Yocto Project: meta-altera-fpga (for GSRD 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3_REL_GSRD_PR |
-| Yocto Project: meta-intel-fpga (for Legacy GSRD) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest |
-| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3_REL_GSRD_PR |
-| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3_REL_GSRD_PR |
+| Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1_REL_GSRD_PR   |
+| Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1_REL_GSRD_PR |
+| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
+| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
+| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
+| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
+| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -44,6 +42,11 @@ The bootloader source code was removed from SoC EDS. Instead, the user needs to 
 The same U-Boot branch is used for all SoC FPGA devices: Cyclone® V SoC, Arria® V SoC, Arria® 10 SoC, Stratix® 10 SoC, Agilex™ 7 and Agilex™ 5.
 
 Starting with Quartus® Pro 20.3, the SoC EDS was discontinued, and the functionality of the tools which were previously part of SoC EDS are provided separately.
+
+## Release Notes
+
+Refer to [Release Notes](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR) for release readiness information and known issues.
+
 
 ## U-Boot Build Flow
 
@@ -63,9 +66,9 @@ Starting with U-Boot 2021.07, the following changes were made to enable a single
 
 Refer to [Single Image Boot](https://www.rocketboards.org/foswiki/Documentation/SingleImageBoot) for more details about this feature.
 
-The Stratix® 10 GSRDs are also updated to use this feature. See the GSRD documentation for details:
+The Stratix® 10 HPS Baseline System Example Designs are also updated to use this feature. See the **HPS Baseline System Example Design User Guide: Stratix® 10 SX SoC FPGA Development Kit (H-Tile)** page for details.
 
-* [Stratix® 10 GSRD User Guide](https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc/)
+
 
 ## U-Boot Branches
 
@@ -101,7 +104,7 @@ The following build instructions produce a QSPI(.jic) and an SDCard Image (.img)
 
 ![](images/binariesLayout.jpg){: style="height:500px"}
 
-This example uses building U-Boot manually. See [Stratix® 10 SoC H-Tile GSRD](https://altera-fpga.github.io/latest/embedded-designs/stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc/) for the full fledged booting from SD card example, where U-Boot is built through Yocto recipes.
+This example uses building U-Boot manually. See the **HPS Baseline System Example Design User Guide: Stratix® 10 SX SoC FPGA Development Kit (H-Tile)** page for the full fledged booting from SD card example, where U-Boot is built through Yocto recipes.
 
 ### Prerequisites
 
@@ -110,7 +113,7 @@ The following are required:
 * Host machine running Linux. Ubuntu 22.04 was used, but other versions may work too.
 * Internet connection to download the tools and clone the U-Boot git tree from github. If you are behind a firewall you will need your system administrator to enable you to get to the git trees.
 * Altera® Stratix® 10 H-Tile SoC FPGA Development Kit (DK-SOC-1SSX-H-D).
-* Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
+* Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1
 
 Note that the examples presented on this page boot to Linux and they require Linux kernel, device tree and rootfilesystem to boot. However, you can omit the Linux binaries and just boot to U-Boot prompt if you want to.
 
@@ -147,9 +150,9 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
-export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+source ~/altera_pro/26.1/qinit.sh
 ```
+
 
 
 
@@ -162,10 +165,10 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 
   ```bash 
   cd $TOP_FOLDER
-  wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
-  unzip QPDS25.3_REL_GSRD_PR.zip
-  rm QPDS25.3_REL_GSRD_PR.zip
-  mv stratix10-ed-gsrd-QPDS25.3_REL_GSRD_PR stratix10-ed-gsrd
+  wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+  unzip QPDS26.1_REL_GSRD_PR.zip
+  rm QPDS26.1_REL_GSRD_PR.zip
+  mv stratix10-ed-gsrd-QPDS26.1_REL_GSRD_PR stratix10-ed-gsrd
   cd stratix10-ed-gsrd
   make s10-htile-soc-devkit-oobe-baseline-all
   cd ..
@@ -182,7 +185,7 @@ After building the hardware design the following binary is created:
   ```bash
   cd $TOP_FOLDER
   rm -rf arm-trusted-firmware
-  git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
+  git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
   cd arm-trusted-firmware
   make -j 64 bl31 PLAT=stratix10
   cd ..
@@ -200,7 +203,7 @@ After completing the above steps, the Arm Trusted Firmware binary file is create
   ```bash
   cd $TOP_FOLDER
   rm -rf u-boot-socfpga
-  git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+  git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
   cd u-boot-socfpga
   # enable dwarf4 debug info, for compatibility with arm ds
   sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -307,7 +310,7 @@ Download and compile Linux:
   ```bash
   cd $TOP_FOLDER
   rm -rf linux-socfpga
-  git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
+  git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
   cd linux-socfpga
   make clean && make mrproper
   # enable kernel debugging with RiscFree
@@ -319,66 +322,73 @@ Download and compile Linux:
 
 
 
-The following items are built in $TOP_FOLDER:
+The following items are built:
 
 * $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtb
 * $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image
 
-### Building Yocto Rootfs
+### Build Linux Kernel Modules
+
+This is an optional step that should be executed in case that you need the kernel drivers module (.ko files) available in your Linux file system, so these could be loaded using the **modprobe** or **insmod** commands. These modules will be found under the **/lib/modules** directory in Linux (these are copied there when creating the sdcard/emmc image).
 
 
 
-This section presents how to build the Linux rootfs using Yocto recipes. Note that the yocto recipes actually build everything, but are only interested in the rootfs.
-
-First, make sure you have Yocto system requirements met: https://docs.yoctoproject.org/3.4.1/ref-manual/system-requirements.html#supported-linux-distributions.
-
-1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
-
-The command to install the required packages on Ubuntu 22.04 is:
 
 ```bash
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \
-build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
-python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit mesa-common-dev zstd \
-liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \
-tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
-device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
+# Build and install the Kernel modules
+cd $TOP_FOLDER/linux-socfpga
+make -j 32 modules
+rm -rf module_install_dir && mkdir module_install_dir
+make -j 32 modules_install INSTALL_MOD_PATH=`pwd`/module_install_dir
 ```
 
-On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:
 
-```bash
- sudo ln -sf /bin/bash /bin/sh
-```
 
-**Note**: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.
 
-**Note:** You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.
+The built modules are created under the following directory:
+
+* `$TOP_FOLDER/linux-socfpga/module_install_dir`
+
+### Building Rootfs
+
+
+
+This section presents how to build the Linux rootfs using Buildroot. 
+
 
 
   ```bash 
   cd $TOP_FOLDER 
-  rm -rf yocto && mkdir yocto && cd yocto
-  git clone -b walnascar https://git.yoctoproject.org/poky
-  git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga
-  git clone -b walnascar   https://github.com/openembedded/meta-openembedded
-  # work around issue
-  echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
-  source poky/oe-init-build-env ./build
-  echo 'MACHINE = "stratix10_htile"' >> conf/local.conf
-  echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
-  echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf  
-  echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver devmem2"' >> conf/local.conf
-  bitbake core-image-minimal
+  rm -rf buildroot
+  git clone https://github.com/buildroot/buildroot.git
+  cd buildroot
+  git checkout 2026.02
+  mkdir -p overlay/etc/profile.d/
+  # Use regilar prompt used in our devices root@<device>:~# instead of only #
+  echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
+  # Adding applications that we normaly need
+  cat > configs/stratix10_defconfig <<EOT
+  BR2_aarch64=y
+  BR2_TOOLCHAIN_BUILDROOT_CXX=y
+  BR2_KERNEL_HEADERS_6_12=y
+  BR2_PACKAGE_HOST_GDB=y
+  BR2_GDB_VERSION_14=y
+  BR2_PACKAGE_GDB=y
+  BR2_PACKAGE_DROPBEAR=y
+  BR2_SYSTEM_DHCP="eth0"
+  BR2_TARGET_ROOTFS_TAR_GZIP=y
+  BR2_TARGET_GENERIC_HOSTNAME="stratix10"
+  BR2_ROOTFS_OVERLAY="overlay"
+  EOT
+  make stratix10_defconfig
+  make -j 64
   ```
 
 
 
 The following file is created:
 
-* $TOP_FOLDER/yocto/build/tmp/deploy/images/stratix10_htile/core-image-minimal-stratix10_htile.rootfs.tar.gz
+* $TOP_FOLDER/buildroot/output/images/rootfs.tar.gz
 
 ### Prepare SD Card Image
 
@@ -397,13 +407,30 @@ The following file is created:
   cp $TOP_FOLDER/ghrd.core.rbf .
   cd ..
   mkdir rootfs && cd rootfs
-  sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/stratix10_htile/core-image-minimal-stratix10_htile.rootfs.tar.gz
-  sudo rm -rf lib/modules/*
+  sudo tar xf $TOP_FOLDER/buildroot/output/images/rootfs.tar.gz
+  sudo cp -r $TOP_FOLDER/linux-socfpga/module_install_dir/lib/modules lib/
+  # Needed to mount debugfs to get available /sys/kernel/debug features
+  cat << EOF > ../S99mountSysKrnDbg.sh
+  #!/bin/sh
+  # SPDX-License-Identifier: GPL-2.0-only
+  
+  ### BEGIN INIT INFO
+  # Provides: banner
+  # Required-Start:
+  # Required-Stop:
+  # Default-Start:     S
+  # Default-Stop:
+  ### END INIT INFO
+  echo "Mounting debugfs..."
+  mount -t debugfs none /sys/kernel/debug/
+  EOF
+  sudo cp ../S99mountSysKrnDbg.sh etc/init.d/
+  sudo chmod +x etc/init.d/S99mountSysKrnDbg.sh
   cd ..
   sudo python3 make_sdimage_p3.py -f \
   -P fatfs/*,num=1,format=fat32,size=100M \
-  -P rootfs/*,num=2,format=ext3,size=400M \
-  -s 512M \
+  -P rootfs/*,num=2,format=ext3,size=448M \
+  -s 560M \
   -n sdcard.img
   ```
 
@@ -449,14 +476,14 @@ Linux will boot up. Use 'root' as username, a password will not be required.
 ## Other Examples
 
 ### Boot from QSPI
-See  [Stratix® 10 Boot From QSPI](https://altera-fpga.github.io/latest/embedded-designs/stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc/#boot-from-qspi_1)
+See  Stratix® 10 Boot From QSPI section in the **HPS Baseline System Example Design User Guide: Stratix® 10 SX SoC FPGA Development Kit (H-Tile)** page.
 
 ### Boot with NAND Storage on HPS
 
-See [Stratix® 10 Boot From NAND](https://altera-fpga.github.io/latest/embedded-designs/stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc/#boot-from-nand_1)
+See Stratix® 10 Boot From NAND section in the **HPS Baseline System Example Design User Guide: Stratix® 10 SX SoC FPGA Development Kit (H-Tile)** page.
 
 ### Boot with eMMC Storage on HPS
-See [Stratix® 10 HPS eMMC Boot Example](https://altera-fpga.github.io/latest/embedded-designs/stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc/)
+See Stratix® 10 HPS eMMC Boot Example section in the **HPS Baseline System Example Design User Guide: Stratix® 10 SX SoC FPGA Development Kit (H-Tile)** page.
 
 ## Running U-Boot with the Debugger from Command Line
 
@@ -518,7 +545,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ```
   6.- The serial console will show SPL then U-Boot being run:
   ```
-  U-Boot SPL 2025.07-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
+  U-Boot SPL 2026.01-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
   Reset state: Cold
   MPU         1000000 kHz
   L3 main     400000 kHz
@@ -536,10 +563,10 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ## Checking hash(es) for Image atf … crc32+ OK
   ## Checking hash(es) for Image uboot … crc32+ OK
   ## Checking hash(es) for Image fdt-0 … crc32+ OK
-  NOTICE:  BL31: v2.13.0(release):QPDS25.3_REL_GSRD_PR
+  NOTICE:  BL31: v2.14.0(release):QPDS26.1_REL_GSRD_PR
   NOTICE:  BL31: Built : 11:03:24, Jan 29 2025
 
-  U-Boot 2025.07-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_stratix10
+  U-Boot 2026.01-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_stratix10
 
   CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
   Model: SoCFPGA Stratix 10 SoCDK
@@ -859,7 +886,7 @@ The HPS obtains the QSPI controller reference clock frequency when it obtains ex
 Before booting Linux, U-Boot loads the Linux device tree in memory, then runs the command **linux_qspi_enable** which sets the QSPI controller reference clock appropriately using the value from the **${qspi_clock}** environment variable.
 
 ## Reconfiguring Core Fabric from U-Boot
-The GSRD configures the FPGA core fabric only once by U-boot during the Linux launch using the **bootm** command. In the bootloaders build flow, the reconfiguration is done in the U-Boot Shell through the **fpga load** command.
+The HPS (Legacy and Baseline) System Example Design configures the FPGA core fabric only once by U-boot during the Linux launch using the **bootm** command. In the bootloaders build flow, the reconfiguration is done in the U-Boot Shell through the **fpga load** command.
 
 **Important**: If the FPGA fabric is already configured and bridges are enabled, you must call the **bridge disable** command from U-Boot before issuing the **bootm** or **fpga load** commands to reconfigure the fabric. Only do this if you are using an **arm-trusted-firmware** version more recent than the following:
 
@@ -939,3 +966,6 @@ You are responsible for safety of the overall system, including compliance with 
 <sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
 
 OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™.   
+
+
+

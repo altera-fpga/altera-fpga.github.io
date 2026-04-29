@@ -115,7 +115,7 @@ When you build the Linux* kernel for this feature, two <*.dtb> files are generat
 * overlay.dtb --- The *.dtb file used to trigger FPGA configuration in OS.
 
 
-4\. In your hardware (GHRD) compilation output folder, rename the FPGA configuration file (.rbf) to "overlay.rbf". Then, copy both the **overlay.rbf** and the **overlay.dtb** files to the Root File System:
+4\. In your hardware design compilation output folder, rename the FPGA configuration file (.rbf) to "overlay.rbf". Then, copy both the **overlay.rbf** and the **overlay.dtb** files to the Root File System:
 
 ```bash
 $ mkdir -p $TOP_FOLDER/sd_card/rootfs/lib/firmware

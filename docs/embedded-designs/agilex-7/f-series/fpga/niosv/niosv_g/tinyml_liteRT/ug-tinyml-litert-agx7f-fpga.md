@@ -17,13 +17,13 @@
  - Agilex® 7 FPGA F-Series Development Kit, ordering code DK-DEV-AGF014EA. </br> Refer to the board documentation for more information about the development kit.
  - Mini and Micro USB Cable. Included with the development kit.
  - Host PC with 64 GB of RAM. Less will be fine for only exercising the prebuilt binaries, and not rebuilding the design.
- - Quartus® Prime Pro Edition Software version 25.1.1
+ - Quartus® Prime Pro Edition Software version 25.3.1
  - Ashling* RiscFree* IDE for Altera® FPGAs
  
 ### Release Contents  
 
 Every Nios V processor design example is maintained based on this folder structure. </br>
-Here is the Github link to root directory of this design example: [Nios® V/g TinyML LiteRT Example Design Github link](https://github.com/altera-fpga/agilex7f-nios-ed/tree/rel/25.1.1/agf014ea-dev-devkit/niosv_g/tinyml_liteRT)
+Here is the Github link to root directory of this design example: [Nios® V/g TinyML LiteRT Example Design Github link](https://github.com/altera-fpga/agilex7f-nios-ed/tree/rel/25.3.1/agf014ea-dev-devkit/niosv_g/tinyml_liteRT)
 
 ```mermaid 
 ---
@@ -113,6 +113,17 @@ Refer to [Agilex® 7 FPGA F-Series Development Kit User Guide](https://www.alter
 
 ![Development Kit](../../devkit-img/devkit-dk-dev-agf014.png?raw=true)
 
+## Environment Setup
+
+Download the Quartus® Prime Pro Edition and Ashling* RiscFree* IDE for Altera® FPGAs (software version 25.3.1) from the [Quartus® Prime Design Software - Download](https://www.altera.com/products/development-tools/quartus#download) from Altera website. </br>
+Follow the on-screen instructions to complete the installation process.
+
+Next, set up the Quartus® Prime Pro Edition and Ashling* RiscFree* IDE tools in the PATH.
+```console
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$QUARTUS_ROOTDIR/../riscfree/RiscFree:$QUARTUS_ROOTDIR/../niosv/bin/$PATH
+```
+
 ## Exercising Prebuilt Binaries
 
 ### Program Hardware Binary SOF
@@ -194,7 +205,7 @@ Run the following command in the shell from the *source* directory.
 ```console
 niosv-shell
 
-niosv-bsp -c --quartus-project=hw/top.qpf --qsys=hw/qsys_top.qsys --type=hal --script=sw/bsp_script.tcl sw/tflite_bsp/settings.bsp
+niosv-bsp -c --quartus-project=hw/niosv_tinyml.qpf --qsys=hw/sys.qsys --type=hal --script=sw/bsp_script.tcl sw/tflite_bsp/settings.bsp 
 
 niosv-app --bsp-dir=sw/tflite_bsp --app-dir=sw/tflite_app --srcs-recursive=sw/tflite_app/image_classification,sw/tflite_app/signal,sw/tflite_app/tensorflow --incs=sw/tflite_app,sw/tflite_app/image_classification/model,sw/tflite_app/image_classification/image,sw/tflite_app/tensorflow,sw/tflite_app/third_party/flatbuffers/include,sw/tflite_app/third_party/gemmlowp,sw/tflite_app/third_party/kissfft,sw/tflite_app/third_party/ruy
 
