@@ -1,6 +1,6 @@
 # **Power State Coordination Interface (PSCI) driver for Hard Processor System**
 
-Last updated: **April 29, 2026** 
+Last updated: **April 30, 2026** 
 
 **Upstream Status**: [Upstreamed](https://github.com/zephyrproject-rtos/zephyr/blob/main/drivers/pm_cpu_ops/pm_cpu_ops_psci.c)
 

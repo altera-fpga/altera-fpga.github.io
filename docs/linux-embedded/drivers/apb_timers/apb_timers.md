@@ -1,6 +1,6 @@
 # **General-Purpose Timers Driver for Hard Processor System**
 
-Last updated: **April 29, 2026** 
+Last updated: **April 30, 2026** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clocksource/dw_apb_timer.c)
 
