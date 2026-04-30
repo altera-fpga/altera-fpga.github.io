@@ -1,0 +1,210 @@
+From 77486ec0cbea31d41ea7f3f1abe37a66b71f2a41 Mon Sep 17 00:00:00 2001
+From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+Date: Thu, 10 Jul 2025 15:50:19 +0800
+Subject: [PATCH] update yocto build for USB3.1 DRD Mode
+
+Update yocto build to generate dtb for USB3.1 DRD Mode.
+
+Signed-off-by: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+---
+ recipes-bsp/device-tree/device-tree.bb        | 16 ++++++++++
+ ...1-Update-usb3.1-node-for-drd-mode.patch_bc | 29 +++++++++++++++++++
+ .../linux-socfpga-lts/config_usb_drd_mode.cfg |  4 +++
+ .../linux/linux-socfpga-lts/usb_drd_mode.scc  |  1 +
+ .../linux/linux-socfpga-lts_%.bbappend        |  8 +++++
+ 5 files changed, 58 insertions(+)
+ create mode 100755 recipes-bsp/device-tree/files/0001-Update-usb3.1-node-for-drd-mode.patch_bc
+ create mode 100755 recipes-kernel/linux/linux-socfpga-lts/config_usb_drd_mode.cfg
+ create mode 100755 recipes-kernel/linux/linux-socfpga-lts/usb_drd_mode.scc
+
+diff --git a/recipes-bsp/device-tree/device-tree.bb b/recipes-bsp/device-tree/device-tree.bb
+index 6516834..ba665cf 100644
+--- a/recipes-bsp/device-tree/device-tree.bb
++++ b/recipes-bsp/device-tree/device-tree.bb
+@@ -80,24 +80,29 @@ SRC_URI:append:stratix10_htile = " \
+ SRC_URI:append:agilex5_dk_a5e065bb32aes1 = " \
+ 					file://socfpga_agilex5_ghrd.dtsi \
+ 					file://0001-AIC0-tsn-config.patch_bc \
++					file://0001-Update-usb3.1-node-for-drd-mode.patch_bc \
+ 					"
+ 
+ SRC_URI:append:agilex5_dk_a5e013bb32aesi0 = " \
+ 					file://socfpga_agilex5_ghrd.dtsi \
+ 					file://0001-AIC0-tsn-config.patch_bc \
++					file://0001-Update-usb3.1-node-for-drd-mode.patch_bc  \
+ 					"
+ 
+ SRC_URI:append:agilex5_dk_a5e013bb32aes = " \
+ 					file://socfpga_agilex5_ghrd.dtsi \
++					file://0001-Update-usb3.1-node-for-drd-mode.patch_bc  \
+ 					"
+ 
+ SRC_URI:append:agilex5_dk_a5e013bb32aes_5s = " \
+ 					file://socfpga_agilex5_ghrd.dtsi \
++					file://0001-Update-usb3.1-node-for-drd-mode.patch_bc  \
+ 					"
+ 
+ SRC_URI:append:agilex5_mk_a5e065bb32aes1 = " \
+ 					file://socfpga_agilex5_ghrd.dtsi \
+ 					file://0001-AIC0-tsn-config.patch_bc \
++					file://0001-Update-usb3.1-node-for-drd-mode.patch_bc  \
+ 					"
+ 
+ SRC_URI:append:agilex3 = " \
+@@ -107,11 +112,13 @@ SRC_URI:append:agilex3 = " \
+ SRC_URI:append:agilex5_mudv_cvr = " \
+ 					file://socfpga_agilex5_ghrd.dtsi \
+ 					file://0001-AIC0-tsn-config.patch_bc \
++					file://0001-Update-usb3.1-node-for-drd-mode.patch_bc  \
+ 					"
+ 
+ SRC_URI:append:agilex5_mucv = " \
+ 					file://socfpga_agilex5_ghrd.dtsi \
+ 					file://0001-AIC0-tsn-config.patch_bc \
++					file://0001-Update-usb3.1-node-for-drd-mode.patch_bc  \
+ 					"
+ 
+ do_configure[depends] += "virtual/kernel:do_configure"
+@@ -184,7 +191,10 @@ do_configure:append() {
+ 			# GSRD DTB Generation
+ 			# MMC, QSPI
+ 			cp ${STAGING_KERNEL_DIR}/arch/${ARCH}/boot/dts/intel/socfpga_agilex5_socdk.dts ${WORKDIR}/sources/socfpga_agilex5_socdk.dts
++			mv ${WORKDIR}/sources/0001-Update-usb3.1-node-for-drd-mode.patch_bc ${WORKDIR}/sources/0001-Update-usb3.1-node-for-drd-mode.patch
++			patch -p1 ${WORKDIR}/sources/socfpga_agilex5_socdk.dts ${WORKDIR}/sources/0001-Update-usb3.1-node-for-drd-mode.patch
+ 			sed -i '/\#include \"socfpga_agilex5.dtsi\"/a \#include \"socfpga_agilex5_ghrd.dtsi\"' ${WORKDIR}/sources/socfpga_agilex5_socdk.dts
++
+ 		elif [[ "${MACHINE}" == *"agilex5_dk_a5e013bb32aes"* ]]; then
+ 			# Vanilla DTB Generation
+ 			cp ${STAGING_KERNEL_DIR}/arch/${ARCH}/boot/dts/intel/socfpga_agilex5_socdk_b0.dts ${WORKDIR}/sources/socfpga_agilex5_vanilla.dts
+@@ -195,7 +205,10 @@ do_configure:append() {
+ 			# GSRD DTB Generation
+ 			# MMC, QSPI
+ 			cp ${STAGING_KERNEL_DIR}/arch/${ARCH}/boot/dts/intel/socfpga_agilex5_socdk_b0.dts ${WORKDIR}/sources/socfpga_agilex5_socdk.dts
++			mv ${WORKDIR}/sources/0001-Update-usb3.1-node-for-drd-mode.patch_bc ${WORKDIR}/sources/0001-Update-usb3.1-node-for-drd-mode.patch
++			patch -p1 ${WORKDIR}/sources/socfpga_agilex5_socdk.dts ${WORKDIR}/sources/0001-Update-usb3.1-node-for-drd-mode.patch
+ 			sed -i '/\#include \"socfpga_agilex5.dtsi\"/a \#include \"socfpga_agilex5_ghrd.dtsi\"' ${WORKDIR}/sources/socfpga_agilex5_socdk.dts
++
+ 			# EMMC
+ 			cp ${STAGING_KERNEL_DIR}/arch/${ARCH}/boot/dts/intel/socfpga_agilex5_socdk_emmc.dts ${WORKDIR}/sources/socfpga_agilex5_socdk_emmc.dts
+ 			sed -i '/\#include \"socfpga_agilex5.dtsi\"/a \#include \"socfpga_agilex5_ghrd.dtsi\"' ${WORKDIR}/sources/socfpga_agilex5_socdk_emmc.dts
+@@ -217,7 +230,10 @@ do_configure:append() {
+ 			# GSRD DTB Generation
+ 			# MMC, QSPI
+ 			cp ${STAGING_KERNEL_DIR}/arch/${ARCH}/boot/dts/intel/socfpga_agilex5_socdk.dts ${WORKDIR}/sources/socfpga_agilex5_socdk.dts
++			mv ${WORKDIR}/sources/0001-Update-usb3.1-node-for-drd-mode.patch_bc ${WORKDIR}/sources/0001-Update-usb3.1-node-for-drd-mode.patch
++			patch -p1 ${WORKDIR}/sources/socfpga_agilex5_socdk.dts ${WORKDIR}/sources/0001-Update-usb3.1-node-for-drd-mode.patch
+ 			sed -i '/\#include \"socfpga_agilex5.dtsi\"/a \#include \"socfpga_agilex5_ghrd.dtsi\"' ${WORKDIR}/sources/socfpga_agilex5_socdk.dts
++
+ 			# AIC0
+ 			cp ${STAGING_KERNEL_DIR}/arch/${ARCH}/boot/dts/intel/socfpga_agilex5_socdk.dts ${WORKDIR}/sources/socfpga_agilex5_socdk_aic0.dts
+ 			mv ${WORKDIR}/sources/0001-AIC0-tsn-config.patch_bc ${WORKDIR}/sources/0001-AIC0-tsn-config.patch
+diff --git a/recipes-bsp/device-tree/files/0001-Update-usb3.1-node-for-drd-mode.patch_bc b/recipes-bsp/device-tree/files/0001-Update-usb3.1-node-for-drd-mode.patch_bc
+new file mode 100755
+index 0000000..4d4edde
+--- /dev/null
++++ b/recipes-bsp/device-tree/files/0001-Update-usb3.1-node-for-drd-mode.patch_bc
+@@ -0,0 +1,29 @@
++From 1872c8e27cd44fc0e1fe0a8cc36ab7aefb1e0a36 Mon Sep 17 00:00:00 2001
++From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
++Date: Fri, 18 Jul 2025 13:43:10 +0800
++Subject: [PATCH] Update usb3.1 node for drd mode
++
++Update usb3.1 controller to start as drd mode and add extcon node.
++
++Signed-off-by: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
++---
++ socfpga_agilex5_socdk.dts | 3 ++-
++ 1 file changed, 2 insertions(+), 1 deletion(-)
++
++diff --git a/socfpga_agilex5_socdk.dts b/socfpga_agilex5_socdk.dts
++index 30c4d7347ee8..aa768311b348 100644
++--- a/socfpga_agilex5_socdk.dts
+++++ b/socfpga_agilex5_socdk.dts
++@@ -170,7 +170,8 @@ &usb0 {
++
++ &usb31 {
++	status = "okay";
++-	dr_mode = "host";
+++	extcon = <&extcon_usb>;
+++	dr_mode = "otg";
++ };
++
++ &smmu {
++-- 
++2.49.GIT
++
+diff --git a/recipes-kernel/linux/linux-socfpga-lts/config_usb_drd_mode.cfg b/recipes-kernel/linux/linux-socfpga-lts/config_usb_drd_mode.cfg
+new file mode 100755
+index 0000000..d9766a2
+--- /dev/null
++++ b/recipes-kernel/linux/linux-socfpga-lts/config_usb_drd_mode.cfg
+@@ -0,0 +1,4 @@
++CONFIG_USB_CONFIGFS=y
++CONFIG_USB_F_MASS_STORAGE=y
++CONFIG_USB_MASS_STORAGE=m
++CONFIG_GPIO_ALTERA=y
+diff --git a/recipes-kernel/linux/linux-socfpga-lts/usb_drd_mode.scc b/recipes-kernel/linux/linux-socfpga-lts/usb_drd_mode.scc
+new file mode 100755
+index 0000000..8438350
+--- /dev/null
++++ b/recipes-kernel/linux/linux-socfpga-lts/usb_drd_mode.scc
+@@ -0,0 +1 @@
++kconf non-hardware config_usb_drd_mode.cfg
+diff --git a/recipes-kernel/linux/linux-socfpga-lts_%.bbappend b/recipes-kernel/linux/linux-socfpga-lts_%.bbappend
+index 40d69af..737595b 100644
+--- a/recipes-kernel/linux/linux-socfpga-lts_%.bbappend
++++ b/recipes-kernel/linux/linux-socfpga-lts_%.bbappend
+@@ -45,31 +45,37 @@ SRC_URI:append:agilex7_dk_si_agf014eb = " file://sgmii.scc file://ilc.scc file:/
+ SRC_URI:append:agilex5 = " file://initrd.scc \
+                            file://xdp.scc \
+ 						   file://tsn.scc \
++						   file://usb_drd_mode.scc \
+ 						   file://sensors.scc"
+ SRC_URI:append:agilex5_dk_a5e065bb32aes1 = " file://initrd.scc \
+                                   file://xdp.scc \
+ 								  file://tsn.scc \
+ 								  file://sensors.scc \
++								  file://usb_drd_mode.scc \
+ 								  file://edac.scc"
+ SRC_URI:append:agilex5_dk_a5e013bb32aesi0 = " file://initrd.scc \
+                                   file://xdp.scc \
+ 								  file://tsn.scc \
+ 								  file://sensors.scc \
++								  file://usb_drd_mode.scc \
+ 								  file://edac.scc"
+ SRC_URI:append:agilex5_dk_a5e013bb32aes = " file://initrd.scc \
+                                   file://xdp.scc \
+ 								  file://tsn.scc \
+ 								  file://sensors.scc \
++								  file://usb_drd_mode.scc \
+ 								  file://edac.scc"
+ SRC_URI:append:agilex5_dk_a5e013bb32aes_5s = " file://initrd.scc \
+                                   file://xdp.scc \
+ 								  file://tsn.scc \
+ 								  file://sensors.scc \
++								  file://usb_drd_mode.scc \
+ 								  file://edac.scc"
+ SRC_URI:append:agilex5_mk_a5e065bb32aes1 = " file://initrd.scc \
+                                    file://xdp.scc \
+ 								   file://tsn.scc \
+ 								   file://sensors.scc \
++								   file://usb_drd_mode.scc \
+ 								   file://edac.scc"
+ SRC_URI:append:agilex3 = " file://initrd.scc \
+                            file://xdp.scc \
+@@ -79,10 +85,12 @@ SRC_URI:append:agilex3 = " file://initrd.scc \
+ SRC_URI:append:agilex5_mudv_cvr = " file://initrd.scc \
+                                     file://xdp.scc \
+ 									file://tsn.scc \
++									file://usb_drd_mode.scc \
+ 									file://sensors.scc"
+ SRC_URI:append:agilex5_mucv = " file://initrd.scc \
+                                 file://xdp.scc \
+                                 file://tsn.scc \
++								file://usb_drd_mode.scc \
+ 								file://sensors.scc"
+ SRC_URI:append:stratix10 = " file://sgmii.scc file://ilc.scc"
+ SRC_URI:append:stratix10_htile = " file://sgmii.scc file://ilc.scc"
+-- 
+2.49.GIT
+

@@ -1,0 +1,19 @@
+
+--- variables -- start --
+HSB_MIPI_10GBE_TITLE: Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices
+HSB_MIPI_10GBE_TOP_MD: ../mipi/hsb_mipi_1_10GbE.md
+NVIDIA: NVIDIA
+AGILEX_5_MOD_KIT: Agilex™ 5e Modular Development board SOF
+DESIGN_SOF: AGX_5E_065B_Modular_DevKit_HSB_MIPI_1_10GbE.sof
+QUARTUS_VER: 25.1
+ED_RELEASE_BRANCH: main
+ED_RELEASE_REPO: https://github.com/altera-fpga/agilex-ed-hsb-mipi
+ED_RELEASE_TAG: rel-25.1-2507-4
+ED_RELEASE_TAG_REPO: https://github.com/altera-fpga/agilex-ed-hsb-mipi/releases/tag/rel-25.1-2507-4
+
+HSB_REPO: https://github.com/altera-fpga/holoscan-sensor-bridge
+HSB_BRANCH: altera-2.3.0
+
+MDT_REPO: https://github.com/altera-fpga/modular-design-toolkit
+MDT_BRANCH: 25.1
+--- variables -- end --

@@ -1,0 +1,90 @@
+.md-grid {
+  max-width: 1900px; 
+}
+
+.md-header__source {
+  display: flex;
+  align-items: center;
+}
+
+:root {
+  --md-primary-fg-color:        #001E50;
+  --md-accent-fg-color:         #00C7FD;
+}
+
+.md-header__source a.need-help {
+  background-color: #001E50; 
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-left: 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.md-header__source a.need-help:hover {
+  background-color: #00C7FD;
+}
+
+.md-header__source a.need-help::before {
+  content: "❓ ";
+  font-size: 16px;
+}
+
+/* Improved floating help button */
+.floating-help-button {
+  position: fixed;
+  right: 25px;
+  bottom: 30px;
+  background-color: #001E50;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 30, 80, 0.3);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1000;
+  border: 2px solid transparent;
+}
+
+.floating-help-button:hover {
+  background-color: #00C7FD;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 199, 253, 0.4);
+}
+
+.floating-help-button:active {
+  transform: translateY(0);
+}
+
+.floating-help-button:focus {
+  outline: none;
+  border: 2px solid #ffffff;
+}
+
+.floating-help-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 768px) {
+  .floating-help-button {
+    padding: 10px;
+    border-radius: 50%;
+    right: 15px;
+    bottom: 20px;
+  }
+  
+  .floating-help-button span {
+    display: none;
+  }
+}
+
+
+
