@@ -1,6 +1,5 @@
 
 
-
 # HPS Linux Boot Tutorial Example User Guide for Arria® 10 SX SoC Development Kit
 
 ## Introduction
