@@ -126,21 +126,18 @@ source ~/altera_pro/26.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex3_soc_devkit_ghrd && mkdir agilex3_soc_devkit_ghrd && cd agilex3_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a3cw135-devkit-oobe-legacy-baseline.zip
-unzip a3cw135-devkit-oobe-legacy-baseline.zip
-rm -f a3cw135-devkit-oobe-legacy-baseline.zip
-make legacy_baseline-build
-make legacy_baseline-install
-quartus_pfg -c output_files/legacy_baseline.sof \
-  output_files/legacy_baseline_hps_debug.sof \
-  -o hps_path=software/hps_debug/hps_wipe.ihex
+wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a3cw135-devkit-oobe-baseline.zip
+unzip a3cw135-devkit-oobe-baseline.zip
+rm -f a3cw135-devkit-oobe-baseline.zip
+make baseline-build
+make baseline-install-core-rbf
 cd ..
 ```
 
 The following files are created:
 
-* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/legacy_baseline.sof`
-* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof`
+* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/baseline.sof`
+* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
 
 
 <h4>Build Arm Trusted Firmware</h4>
@@ -238,7 +235,7 @@ The following files are created:
 
 ```bash
 cd $TOP_FOLDER
-quartus_pfg -c agilex3_soc_devkit_ghrd/output_files/legacy_baseline.sof ghrd_sd.jic \
+quartus_pfg -c agilex3_soc_devkit_ghrd/output_files/baseline.sof ghrd_sd.jic \
 -o device=QSPI512 \
 -o flash_loader=A3CW135BM16AE6S \
 -o hps_path=$TOP_FOLDER/u-boot-socfpga_sd/spl/u-boot-spl-dtb.hex \
@@ -259,7 +256,7 @@ This is an optional step, in which you can build an HPS RBF file, which can be u
 
 ```bash
 cd $TOP_FOLDER
-quartus_pfg -c agilex3_soc_devkit_ghrd/output_files/legacy_baseline.sof ghrd_sd.rbf \
+quartus_pfg -c agilex3_soc_devkit_ghrd/output_files/baseline.sof ghrd_sd.rbf \
 -o hps_path=$TOP_FOLDER/u-boot-socfpga_sd/spl/u-boot-spl-dtb.hex \
 -o hps=1
 ```
@@ -723,7 +720,7 @@ The following file is created:
 
 
 ```bash
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/legacy_baseline.sof fpga.sof
+ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/baseline.sof fpga.sof
 ln -s u-boot-socfpga_qspi/spl/u-boot-spl-dtb.hex spl.hex
 ln -s root.ubi hps.bin
 cat << EOF > flash_image.pfg
@@ -875,15 +872,12 @@ source ~/altera_pro/26.1/qinit.sh
 
 ```bash
 cd $TOP_FOLDER
-rm -rf agilex3_soc_devkit_ghrd_sdqspi && mkdir agilex3_soc_devkit_ghrd_sdqspi && cd agilex3_soc_devkit_ghrd_sdqspi
-wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a3cw135-devkit-oobe-legacy-baseline.zip
-unzip a3cw135-devkit-oobe-legacy-baseline.zip
-rm -f a3cw135-devkit-oobe-legacy-baseline.zip
-make legacy_baseline-build
-make legacy_baseline-install
-quartus_pfg -c output_files/legacy_baseline.sof \
-  output_files/legacy_baseline_hps_debug.sof \
-  -o hps_path=software/hps_debug/hps_wipe.ihex
+rm -rf agilex3_soc_devkit_ghrd && mkdir agilex3_soc_devkit_ghrd && cd agilex3_soc_devkit_ghrd
+wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a3cw135-devkit-oobe-baseline.zip
+unzip a3cw135-devkit-oobe-baseline.zip
+rm -f a3cw135-devkit-oobe-baseline.zip
+make baseline-build
+make baseline-install-core-rbf
 cd ..
 ```
 
@@ -891,7 +885,8 @@ cd ..
 
 The following file is created:
 
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/output_files/legacy_baseline.sof
+* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/baseline.sof`
+* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
 
 <h4>Build Arm Trusted Firmware</h4>
 
@@ -1039,9 +1034,9 @@ rm -rf jic_sdcard
 mkdir jic_sdcard && cd jic_sdcard
 # Convert fsbl
 aarch64-none-linux-gnu-objcopy -v -I binary -O ihex --change-addresses 0x00000000 $TOP_FOLDER/arm-trusted-firmware-sdcard/build/agilex3/release/bl2.bin fsbl.hex
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/output_files/legacy_baseline.sof legacy_baseline.sof
+ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/baseline.sof baseline.sof
 # Create .jic file
-quartus_pfg -c legacy_baseline.sof \
+quartus_pfg -c baseline.sof \
 design_atf.jic \
 -o hps_path=fsbl.hex \
 -o device=QSPI512 \
@@ -1281,7 +1276,7 @@ cat << EOF > qspi_flash_image_agilex3_boot.pfg
   </output_files>
   <bitstreams>
       <bitstream id="Bitstream_1">
-          <path hps_path="./fsbl.hex">./legacy_baseline.sof</path>
+          <path hps_path="./fsbl.hex">./baseline.sof</path>
       </bitstream>
   </bitstreams>
   <raw_files>
@@ -1321,7 +1316,7 @@ $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex3/release/tools/fiptool/fiptoo
 --nt-fw-config $TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_qspi_atfboot.dtb fip.bin
 
 # Create the jic file
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/output_files/legacy_baseline.sof legacy_baseline.sof
+ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/baseline.sof baseline.sof
 ln -s $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex3/core-image-minimal-agilex3.rootfs.jffs2 rootfs.bin
 quartus_pfg -c qspi_flash_image_agilex3_boot.pfg
 

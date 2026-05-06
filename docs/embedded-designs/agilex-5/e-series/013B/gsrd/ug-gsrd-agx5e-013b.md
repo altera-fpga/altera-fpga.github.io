@@ -449,7 +449,8 @@ rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_so
 wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed013-devkit-oobe-baseline-a55.zip
 unzip a5ed013-devkit-oobe-baseline-a55.zip
 rm -f a5ed013-devkit-oobe-baseline-a55.zip
-make baseline_a55-install
+make baseline_a55-build
+make baseline_a55-install-core-rbf
 ```
 
 

@@ -42,27 +42,19 @@ The following are required to be able to fully exercise the guides from this pag
 
 ### Component Versions
 
-**Note:** For 25.3.1 version Agilex 5 FPGA E-Series 013B Development Kit GSRD tag is **QPDS25.3.1_REL_AGILEX5_013B_GSRD_PR**.
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. 
 
 Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. 
 
-**Note:** Regarding the GHRD components in the following table, only the device-specific GHRD is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 GHRD | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1_REL_GSRD_PR   |
-| Agilex 5 GHRD - Include GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1_REL_GSRD_PR |
-| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
-| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
-| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1_REL_GSRD_PR |
+| Agilex 5 Design | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1_REL_GSRD_PR |
 | Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
 | Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
 | U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
-| Yocto Project: meta-altera-fpga (for GSRD 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
-| Yocto Project: meta-intel-fpga (for Legacy GSRD) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
-| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
-| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS25.3.1_REL_AGILEX5_013B_GSRD_PR |
+| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -130,21 +122,18 @@ source ~/altera_pro/26.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed013-devkit-oobe-legacy-baseline.zip
-unzip a5ed013-devkit-oobe-legacy-baseline.zip
-rm -f a5ed013-devkit-oobe-legacy-baseline.zip
-make legacy_baseline-build
-pushd software/hps_debug && ./build.sh && popd
-quartus_pfg -c output_files/legacy_baseline.sof \
-  output_files/legacy_baseline_hps_debug.sof \
-  -o hps_path=software/hps_debug/hps_wipe.ihex
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed013-devkit-oobe-baseline-a55.zip
+unzip a5ed013-devkit-oobe-baseline-a55.zip
+rm -f a5ed013-devkit-oobe-baseline-a55.zip
+make baseline_a55-build
+make baseline_a55-install-core-rbf
 cd ..
 ```
 
 The following files are created:
 
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
 
 
 <h4>Build Arm Trusted Firmware</h4>
@@ -242,7 +231,7 @@ The following files are created:
 
 ```bash
 cd $TOP_FOLDER
-quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof ghrd_sd.jic \
+quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof ghrd_sd.jic \
 -o device=QSPI512 \
 -o flash_loader=A5ED013BM16AE4SCS \
 -o hps_path=$TOP_FOLDER/u-boot-socfpga_sd/spl/u-boot-spl-dtb.hex \
@@ -263,7 +252,7 @@ This is an optional step, in which you can build an HPS RBF file, which can be u
 
 ```bash
 cd $TOP_FOLDER
-quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof ghrd_sd.rbf \
+quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof ghrd_sd.rbf \
 -o hps_path=$TOP_FOLDER/u-boot-socfpga_sd/spl/u-boot-spl-dtb.hex \
 -o hps=1
 ```
@@ -726,7 +715,7 @@ The following file is created:
 
 
 ```bash
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof fpga.sof
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof fpga.sof
 ln -s u-boot-socfpga_qspi/spl/u-boot-spl-dtb.hex spl.hex
 ln -s root.ubi hps.bin
 cat << EOF > flash_image.pfg
@@ -881,11 +870,12 @@ source ~/altera_pro/26.1/qinit.sh
 
 ```bash
 cd $TOP_FOLDER
-rm -rf agilex5_soc_devkit_ghrd_sdqspi && mkdir agilex5_soc_devkit_ghrd_sdqspi && cd agilex5_soc_devkit_ghrd_sdqspi
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed013-devkit-oobe-legacy-baseline.zip
-unzip a5ed013-devkit-oobe-legacy-baseline.zip
-rm -f a5ed013-devkit-oobe-legacy-baseline.zip
-make legacy_baseline-build
+rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed013-devkit-oobe-baseline-a55.zip
+unzip a5ed013-devkit-oobe-baseline-a55.zip
+rm -f a5ed013-devkit-oobe-baseline-a55.zip
+make baseline_a55-build
+make baseline_a55-install-core-rbf
 cd ..
 ```
 
@@ -893,7 +883,8 @@ cd ..
 
 The following file is created:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi/output_files/legacy_baseline.sof
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
 
 <h4>Build Arm Trusted Firmware</h4>
 
@@ -1065,9 +1056,9 @@ rm -rf jic_sdcard
 mkdir jic_sdcard && cd jic_sdcard
 # Convert fsbl
 aarch64-none-linux-gnu-objcopy -v -I binary -O ihex --change-addresses 0x00000000 $TOP_FOLDER/arm-trusted-firmware-sdcard/build/agilex5/release/bl2.bin fsbl.hex
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi/output_files/legacy_baseline.sof legacy_baseline.sof
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof baseline.sof
 # Create .jic file
-quartus_pfg -c legacy_baseline.sof \
+quartus_pfg -c baseline.sof \
 design_atf.jic \
 -o hps_path=fsbl.hex \
 -o device=QSPI512 \
@@ -1334,7 +1325,7 @@ cat << EOF > qspi_flash_image_agilex5_boot.pfg
   </output_files>
   <bitstreams>
       <bitstream id="Bitstream_1">
-          <path hps_path="./fsbl.hex">./legacy_baseline.sof</path>
+          <path hps_path="./fsbl.hex">./baseline.sof</path>
       </bitstream>
   </bitstreams>
   <raw_files>
@@ -1374,7 +1365,7 @@ $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex5/release/tools/fiptool/fiptoo
 --nt-fw-config $TOP_FOLDER/linux-socfpga-qspi/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_013b_atfboot.dtb fip.bin
 
 # Create the jic file
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi/output_files/legacy_baseline.sof legacy_baseline.sof
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof baseline.sof
 ln -s $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5/core-image-minimal-agilex5.rootfs.jffs2 rootfs.bin
 quartus_pfg -c qspi_flash_image_agilex5_boot.pfg
 

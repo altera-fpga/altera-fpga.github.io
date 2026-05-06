@@ -229,6 +229,7 @@ nav:
         - HPS Xen Hypervisor GSRD: embedded-designs/agilex-3/c-series/xen/ug-xen-agx3.md
         - 4Kp30 Camera Lite Solution System Example Design for Agilex™ 3 Devices: embedded-designs/agilex-3/c-series/camera/camera_lite_4k30/camera_4k.md        
         - HPS OpenOCD Debugging: embedded-designs/agilex-3/c-series/openocd/ug-openocd-debug-agx3.md
+        - HPS Linux Application Debuging with Ashling RiscFree: embedded-designs/agilex-3/c-series/riscfree-linux-app-debug/ug-riscfree-linux-app-debug-agx3.md
       - Intel Simics Virtual Platform Examples:
         - Simics Linux HPS Baseline System Example Design: embedded-designs/agilex-3/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex3-virtual-platforms.md       
     - Agilex™ 5:
@@ -238,8 +239,8 @@ nav:
         - HPS Zephyr GSRD User Guide: embedded-designs/agilex-5/e-series/premium/gsrd_zephyr/ug-zgsrd-agx5e-premium.md
         - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium.md
         - TSN Examples:
-          - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hps/ug-tsncfg1-agx5e-premium.md
-          - HPS TSN RGMII HVIO System Example Design User Guide: embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hvio/ug-tsncfg2-agx5e-premium.md
+          - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hps/ug-tsn-rgmii-hps-pdk.md
+          - HPS TSN RGMII HVIO System Example Design User Guide: embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hvio/ug-tsncfg2-agx5e-pdk-rgmii-hvio.md
           - HPS TSN SGMII XCVR System Example Design User Guide: embedded-designs/agilex-5/e-series/premium/tsn/sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5.md
         - USB 3.1 Example: 'embedded-designs/agilex-5/e-series/premium/usb3p1/ug-usb3p1-dev-drd-modes.md'
         - SoC FPGA Remote Debug: embedded-designs/agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium.md
@@ -263,31 +264,50 @@ nav:
         - Debugging Linux with Ashling RiscFree: demos/agilex-5/e-series/premium/riscfree-debug-linux/ug-riscfree-debug-linux-agx5e-premium.md
         - Debugging Linux with Arm Development Studio: demos/agilex-5/e-series/premium/armds-debug-linux/ug-armds-debug-linux-agx5e-premium.md
       - E-Series 065B Premium Development Kit:
-        - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b.md 
+        - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b.md
         - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/premium-065b/boot-examples/ug-linux-boot-agx5e-premium-065b.md
         - HPS Remote System Update Example Design:  embedded-designs/agilex-5/e-series/premium-065b/rsu/ug-rsu-agx5e-soc-premium-065b.md
         - HPS OpenOCD Debugging: embedded-designs/agilex-5/e-series/premium-065b/openocd/ug-openocd-debug-agx5e-premium-065b.md
+        - HPS Linux Application Debuging with Ashling RiscFree: embedded-designs/agilex-5/e-series/premium-065b/riscfree-linux-app-debug/ug-riscfree-linux-app-debug-agx5e-premium-065b.md
+        - TSN Examples:
+          - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065b/tsn/rgmii-hps/ug-tsn-rgmii-hps-pdk-065b.md
+          - HPS TSN RGMII HVIO System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065b/tsn/rgmii-hvio/ug-tsncfg2-agx5e-pdk-rgmii-hvio-065b.md
       - E-Series 065A Premium Development Kit:
-        - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/premium-065a/gsrd/ug-gsrd-agx5e-premium-065a.md      
+        - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/premium-065a/gsrd/ug-gsrd-agx5e-premium-065a.md
         - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/premium-065a/boot-examples/ug-linux-boot-agx5e-premium-065a.md
+        - TSN Examples:
+          - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065a/tsn/rgmii-hps/ug-tsn-rgmii-hps-pdk-065a.md
+          - HPS TSN RGMII HVIO System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065a/tsn/rgmii-hvio/ug-tsncfg2-agx5e-pdk-rgmii-hvio-065a.md
       - E-Series 065B Modular Development Kit (ES):
         - Hostless JTAG Example Design: ed-ai-suite/agilex5/modular_jtag/modular_jtag.md
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular.md
         - HPS GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular.md
         - HPS Xen Hypervisor GSRD: embedded-designs/agilex-5/e-series/modular/xen/ug-xen-agx5e-modular.md
-        - Drive-On-Chip with Functional Safety Design Example for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-funct-safety.md
-        - Drive-On-Chip with PLC Design Example for Agilex™ Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-plc.md
-        - ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/drive-on-chip/doc-crc.md
+
         - 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k/camera_4k.md
         - 4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k_ai/camera_4k_ai.md
         - Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/holoscan-sensor-bridge/mipi/hsb-mipi-1-10GbE.md
         - 1x10G Ethernet System Example Design: embedded-designs/agilex-5/e-series/modular/ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g.md
         - TSN Examples:
           - HPS TSN SGMII XCVR System 3x2.5G Example Design User Guide: embedded-designs/agilex-5/e-series/modular/tsn/sgmii_xcvr_3x2.5G/ug-tsn-sgmii-xcvr-3x2.5G-agilex5.md
+          - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/modular/tsn/rgmii-hps/ug-tsn-rgmii-hps.md
       - E-Series 065B Modular Development Kit:
+        - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b.md
+        - TSN Example:
+          - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/modular-065b/tsn/rgmii-hps/ug-tsn-rgmii-hps-mdk-065b.md
+      - E-Series 065A Modular Development Kit:
+        - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular-065a/gsrd/ug-gsrd-agx5e-modular-065a.md
+        - TSN Example:
+          - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/modular-065a/tsn/rgmii-hps/ug-tsn-rgmii-hps-mdk-065a.md
+      - E-Series 013B Development Kit:  
           - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b.md
+          - Drive-On-Chip with Functional Safety Design Example for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety.md
+          - Drive-On-Chip with PLC Design Example for Agilex™ Devices: embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-plc.md
+          - ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-crc.md
+          - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/modular-065b/boot-examples/ug-linux-boot-agx5e-modular-065b.md
       - E-Series 065A Modular Development Kit:
           - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular-065a/gsrd/ug-gsrd-agx5e-modular-065a.md
+          - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/modular-065a/boot-examples/ug-linux-boot-agx5e-modular-065b.md
       - E-Series 013B Development Kit:
           - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/013B/gsrd/ug-gsrd-agx5e-013b.md
           - HPS GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/013B/boot-examples/ug-linux-boot-agx5e-013b.md

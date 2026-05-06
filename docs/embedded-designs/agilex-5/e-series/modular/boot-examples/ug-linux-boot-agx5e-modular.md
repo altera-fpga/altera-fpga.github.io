@@ -1,6 +1,6 @@
 
 
-# HPS GHRD Linux Boot Tutorial Example Design: Agilex™ 5 FPGA E-Series 065B Modular Development Kit
+# HPS GHRD Linux Boot Tutorial Example Design: Agilex™ 5 FPGA E-Series 065B Modular Development Kit (ES)
 
 ##  Introduction
 
@@ -148,22 +148,20 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 
 ```bash
 cd $TOP_FOLDER
+cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065es-modular-devkit-som-legacy-baseline.zip
-unzip a5ed065es-modular-devkit-som-legacy-baseline.zip
-rm -f a5ed065es-modular-devkit-som-legacy-baseline.zip
-make legacy_baseline-build
-pushd software/hps_debug && ./build.sh && popd
-quartus_pfg -c output_files/legacy_baseline.sof \
-  output_files/legacy_baseline_hps_debug.sof \
-  -o hps_path=software/hps_debug/hps_wipe.ihex
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065es-modular-devkit-som-baseline-a55.zip
+unzip a5ed065es-modular-devkit-som-baseline-a55.zip
+rm -f a5ed065es-modular-devkit-som-baseline-a55.zip
+make baseline_a55-build
+make baseline_a55-install-core-rbf
 cd ..
 ```
 
 The following files are created:
 
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
 
 
 <h3>Build Arm Trusted Firmware</h3>
@@ -262,7 +260,7 @@ The following files are created:
 
 ```bash
 cd $TOP_FOLDER
-quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof ghrd.jic \
+quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof ghrd.jic \
 -o device=MT25QU128 \
 -o flash_loader=A5ED065BB32AE6SR0 \
 -o hps_path=$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex \
@@ -283,7 +281,7 @@ This is an optional step, in which you can build an HPS RBF file, which can be u
 
 ```bash
 cd $TOP_FOLDER
-quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof ghrd.rbf \
+quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof ghrd.rbf \
 -o hps_path=$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o hps=1
 ```
@@ -705,7 +703,7 @@ The following file is created:
 
 
 ```bash
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof fpga.sof
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof fpga.sof
 ln -s u-boot-socfpga/spl/u-boot-spl-dtb.hex spl.hex
 ln -s root.ubi hps.bin
 cat << EOF > flash_image.pfg
