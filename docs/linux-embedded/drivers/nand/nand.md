@@ -1,6 +1,6 @@
 # **NAND Flash Controller Driver for Hard Processor System**
 
-Last updated: **May 06, 2026** 
+Last updated: **May 14, 2026** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/mtd/nand/raw/cadence-nand-controller.c)
 

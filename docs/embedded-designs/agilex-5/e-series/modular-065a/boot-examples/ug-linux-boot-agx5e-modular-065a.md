@@ -1,7 +1,7 @@
 
 
 
-# HPS GHRD Linux Boot Tutorial Example Design: Agilex™ 5 FPGA E-Series 065B Modular Development Kit
+# HPS GHRD Linux Boot Tutorial Example Design: Agilex™ 5 FPGA E-Series 065A Modular Development Kit
 
 ## Introduction
 

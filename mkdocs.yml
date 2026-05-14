@@ -230,6 +230,7 @@ nav:
         - 4Kp30 Camera Lite Solution System Example Design for Agilex™ 3 Devices: embedded-designs/agilex-3/c-series/camera/camera_lite_4k30/camera_4k.md        
         - HPS OpenOCD Debugging: embedded-designs/agilex-3/c-series/openocd/ug-openocd-debug-agx3.md
         - HPS Linux Application Debuging with Ashling RiscFree: embedded-designs/agilex-3/c-series/riscfree-linux-app-debug/ug-riscfree-linux-app-debug-agx3.md
+        - HPS Fabric Configuration from Linux: embedded-designs/agilex-3/c-series/fabric-config-linux/ug-fabric-config-linux-agx3.md
       - Intel Simics Virtual Platform Examples:
         - Simics Linux HPS Baseline System Example Design: embedded-designs/agilex-3/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex3-virtual-platforms.md       
     - Agilex™ 5:
@@ -237,6 +238,8 @@ nav:
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium.md
         - Enhanced HPS User Guide: embedded-designs/agilex-5/e-series/premium/egsrd/ug-ehps-agx5e-premium.md
         - HPS Zephyr GSRD User Guide: embedded-designs/agilex-5/e-series/premium/gsrd_zephyr/ug-zgsrd-agx5e-premium.md
+        - HPS GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium.md
+        - FPGA AI Suite JTAG System Example Design: ed-ai-suite/agilex5/hostless_jtag/hostless_jtag_design_example.md
         - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium.md
         - TSN Examples:
           - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hps/ug-tsn-rgmii-hps-pdk.md
@@ -269,6 +272,7 @@ nav:
         - HPS Remote System Update Example Design:  embedded-designs/agilex-5/e-series/premium-065b/rsu/ug-rsu-agx5e-soc-premium-065b.md
         - HPS OpenOCD Debugging: embedded-designs/agilex-5/e-series/premium-065b/openocd/ug-openocd-debug-agx5e-premium-065b.md
         - HPS Linux Application Debuging with Ashling RiscFree: embedded-designs/agilex-5/e-series/premium-065b/riscfree-linux-app-debug/ug-riscfree-linux-app-debug-agx5e-premium-065b.md
+        - HPS Fabric Configuration from Linux: embedded-designs/agilex-5/e-series/premium-065b/fabric-config-linux/ug-fabric-config-linux-agx5e-premium-065b.md
         - TSN Examples:
           - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065b/tsn/rgmii-hps/ug-tsn-rgmii-hps-pdk-065b.md
           - HPS TSN RGMII HVIO System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065b/tsn/rgmii-hvio/ug-tsncfg2-agx5e-pdk-rgmii-hvio-065b.md
@@ -279,7 +283,8 @@ nav:
           - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065a/tsn/rgmii-hps/ug-tsn-rgmii-hps-pdk-065a.md
           - HPS TSN RGMII HVIO System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065a/tsn/rgmii-hvio/ug-tsncfg2-agx5e-pdk-rgmii-hvio-065a.md
       - E-Series 065B Modular Development Kit (ES):
-        - Hostless JTAG Example Design: ed-ai-suite/agilex5/modular_jtag/modular_jtag.md
+        - FPGA AI Suite Hostless JTAG Example Design: ed-ai-suite/agilex5/hostless_jtag/hostless_jtag_design_example.md
+        - FPGA AI Suite SoC Design Example: ed-ai-suite/agilex5/soc/fpga_ai_suite_soc_design_example.md
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular.md
         - HPS GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular.md
         - HPS Xen Hypervisor GSRD: embedded-designs/agilex-5/e-series/modular/xen/ug-xen-agx5e-modular.md
@@ -293,18 +298,18 @@ nav:
           - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/modular/tsn/rgmii-hps/ug-tsn-rgmii-hps.md
       - E-Series 065B Modular Development Kit:
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b.md
+        - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/modular-065b/boot-examples/ug-linux-boot-agx5e-modular-065b.md
         - TSN Example:
-          - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/modular-065b/tsn/rgmii-hps/ug-tsn-rgmii-hps-mdk-065b.md
+          - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/modular-065b/tsn/rgmii-hps/ug-tsn-rgmii-hps-mdk-065b.md          
+        - Drive-On-Chip with Functional Safety Design Example for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety.md
+        - Drive-On-Chip with PLC Design Example for Agilex™ Devices: embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-plc.md
+        - ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-crc.md
+        - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/modular-065b/boot-examples/ug-linux-boot-agx5e-modular-065b.md          
       - E-Series 065A Modular Development Kit:
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular-065a/gsrd/ug-gsrd-agx5e-modular-065a.md
+        - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/modular-065a/boot-examples/ug-linux-boot-agx5e-modular-065a.md
         - TSN Example:
           - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/modular-065a/tsn/rgmii-hps/ug-tsn-rgmii-hps-mdk-065a.md
-      - E-Series 013B Development Kit:  
-          - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b.md
-          - Drive-On-Chip with Functional Safety Design Example for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety.md
-          - Drive-On-Chip with PLC Design Example for Agilex™ Devices: embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-plc.md
-          - ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-crc.md
-          - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/modular-065b/boot-examples/ug-linux-boot-agx5e-modular-065b.md
       - E-Series 065A Modular Development Kit:
           - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular-065a/gsrd/ug-gsrd-agx5e-modular-065a.md
           - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/modular-065a/boot-examples/ug-linux-boot-agx5e-modular-065b.md
@@ -349,7 +354,9 @@ nav:
       - F-Series FPGA Development Kit (2x F-Tile):
         - HPS GSRD User Guide: embedded-designs/agilex-7/f-series/fpga/gsrd/ug-gsrd-agx7f-fpga.md
       - I-Series FPGA Development Kit:
-        - Agilex 7 PCIe-Attached Example Design with OFS (I-Series, 2x R-Tile and 1x F-Tile): ed-ai-suite/agilex7/iseries_ofs_pcie/iseries_ofs_pcie.md
+        - FPGA AI Suite DDR-Free System Example Design: ed-ai-suite/agilex7/hostless_ddr_free_ed/hostless_ddr_free_design_example.md
+        - FPGA AI Suite OFS System Example Design: ed-ai-suite/agilex7/ofs/ofs_pcie_getting_started.md
+        - FPGA AI Suite SoC Design Example: ed-ai-suite/agilex5/soc/fpga_ai_suite_soc_design_example.md
         - Time Precision Protocol System Example Design (I-Series, 4x F-Tile): embedded-designs/agilex-7/i-series/ptp/agx7i-ptp-anlt/agx7i-ptp-anlt.md
         - HPS GSRD User Guide: embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc.md
         - CII Example Design: embedded-designs/agilex-7/i-series/avst_cii/agilex7-ed-pcie-cii.md
@@ -357,9 +364,9 @@ nav:
         - HPS GSRD User Guide: embedded-designs/agilex-7/m-series/hbm2e/ug-gsrd-agx7m-hbm2e.md
         - PCIe Root Port User Guide: embedded-designs/agilex-7/m-series/pcie_rp/ug-pcie_rp-agx7m-hbm2e.md
       - DE10-Agilex Terasic:
-        - Agilex 7 PCIe-Attached Example Design (DE10): ed-ai-suite/agilex7/de10_pcie/de10_pcie.md 
+        - FPGA AI Suite PCIe-based System Example Design: ed-ai-suite/agilex7/pcie/pcie_getting_started_extended.md
       - FPGA SmartNIC N6001-PL Platform:
-        - Agilex 7 PCIe-Attached Example Design with OFS (N6001): ed-ai-suite/agilex7/n6001_ofs_pcie/n6001_ofs_pcie.md
+        - FPGA AI Suite OFS System Example Design: ed-ai-suite/agilex7/ofs/ofs_pcie_getting_started.md
     - Stratix® 10:
       - SX SoC Development Kit:
         - HPS GSRD User Guide: embedded-designs/stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc.md

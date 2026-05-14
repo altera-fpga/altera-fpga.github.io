@@ -18,7 +18,9 @@ The components are:
 * Serial terminal on Host PC, connected over USB, showing the Linux Console
 * Ashling RiscFree running on Host PC, communicating Linux over the network
 
+> *Note*: For the Linux terminal, SSH could also be used instead of serial over USB, provided the IP address of the board is identified first.
 > *Note*: For debugging Linux applications, we do not use a JTAG connection. Instead the debugger connects to the GDB server running on the board, over Ethernet. 
+
 
 ### Prerequisites
 
@@ -211,7 +213,7 @@ The following options are used:
 | -o0 | Disable optimizations |
 | -static | Create a statically linked image, to avoid any incompatibilities between tool chain an target system |
 
-### Debug Sample Aplication
+### Debug Sample Application
 
 1\. Run `ifconfig` to determine the IP address of your board:
 
