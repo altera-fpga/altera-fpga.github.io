@@ -1,0 +1,105 @@
+diff --git a/a5ed065b-premium-devkit-oobe/baseline-a55/software/yocto_linux/kas/machine.yml b/a5ed065b-premium-devkit-oobe/baseline-a55/software/yocto_linux/kas/machine.yml
+index b67b5e97..060dc86a 100644
+--- a/a5ed065b-premium-devkit-oobe/baseline-a55/software/yocto_linux/kas/machine.yml
++++ b/a5ed065b-premium-devkit-oobe/baseline-a55/software/yocto_linux/kas/machine.yml
+@@ -5,6 +5,6 @@ local_conf_header:
+   machine: |
+     MACHINE = "agilex5e"
+     LINUX_DTS_FILE = "socfpga_agilex5_socdk.dts"
+-    CUSTOM_LINUX_DTS_FILE = "baseline_a55.dts"
++    CUSTOM_LINUX_DTS_FILE = "socfpga_agilex5_socdk_usb_device.dts"
+     UBOOT_DEFCONFIG = "socfpga_agilex5_defconfig"
+     UBOOT_DEVICE_TREE = "socfpga_agilex5_socdk.dtb"
+diff --git "a/a5ed065b-premium-devkit-oobe/baseline-a55/software/yocto_linux/meta-custom/recipes-kernel/linux/device-tree/socfpga_agilex5_socdk_usb_device.dts" "b/a5ed065b-premium-devkit-oobe/baseline-a55/software/yocto_linux/meta-custom/recipes-kernel/linux/device-tree/socfpga_agilex5_socdk_usb_device.dts"
+new file mode 100644
+index 00000000..8e3af43a
+--- /dev/null
++++ "b/a5ed065b-premium-devkit-oobe/baseline-a55/software/yocto_linux/meta-custom/recipes-kernel/linux/device-tree/socfpga_agilex5_socdk_usb_device.dts"
+@@ -0,0 +1,66 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Copyright (C) 2025, Altera Corporation
++ */
++/dts-v1/;
++#include "socfpga_agilex5_socdk.dts"
++
++/ {
++
++    soc@0 {
++
++        // FPGA LED PIO
++        led_pio: gpio@20010080 {
++            compatible = "altr,pio-1.0";
++            reg = <0x20010080 0x10>;
++            #gpio-cells = <2>;
++            gpio-controller;
++            resetvalue = <0>;
++        };
++
++        // FPGA Button PIO
++        button_pio: gpio@20010060 {
++            compatible = "altr,pio-1.0";
++            reg = <0x20010060 0x10>;
++            interrupt-parent = <&intc>;
++            interrupts = <0 17 1>;
++            altr,interrupt-type = <2>;
++            #gpio-cells = <2>;
++            gpio-controller;
++        };
++
++        // FPGA DIP switch PIO
++        dipsw_pio: gpio@20010070 {
++            compatible = "altr,pio-1.0";
++            reg = <0x20010070 0x10>;
++            #gpio-cells = <2>;
++            gpio-controller;
++        };
++    };
++
++    /* LED nodes */
++    soc_leds: leds {
++        compatible = "gpio-leds";
++
++        led_fpga0: fpga0 {
++            label = "fpga_led0";
++            gpios = <&led_pio 0 GPIO_ACTIVE_HIGH>;
++        };
++
++        led_fpga1: fpga1 {
++            label = "fpga_led1";
++            gpios = <&led_pio 1 GPIO_ACTIVE_HIGH>;
++        };
++
++        led_fpga2: fpga2 {
++            label = "fpga_led2";
++            gpios = <&led_pio 2 GPIO_ACTIVE_HIGH>;
++        };
++    };
++};
++
++/* Overlay overrides outside root */
++&usb31 {
++    dr_mode = "peripheral";
++    status = "okay";
++};
+diff --git a/a5ed065b-premium-devkit-oobe/baseline-a55/software/yocto_linux/meta-custom/recipes-kernel/linux/linux-socfpga-lts/configs/usb_device.scc b/a5ed065b-premium-devkit-oobe/baseline-a55/software/yocto_linux/meta-custom/recipes-kernel/linux/linux-socfpga-lts/configs/usb_device.scc
+new file mode 100644
+index 00000000..906ef1cb
+--- /dev/null
++++ b/a5ed065b-premium-devkit-oobe/baseline-a55/software/yocto_linux/meta-custom/recipes-kernel/linux/linux-socfpga-lts/configs/usb_device.scc
+@@ -0,0 +1,3 @@
++CONFIG_USB_CONFIGFS=y
++CONFIG_USB_F_MASS_STORAGE=y
++CONFIG_USB_MASS_STORAGE=m
+diff --git a/a5ed065b-premium-devkit-oobe/baseline-a55/software/yocto_linux/meta-custom/recipes-kernel/linux/linux-socfpga-lts_%.bbappend b/a5ed065b-premium-devkit-oobe/baseline-a55/software/yocto_linux/meta-custom/recipes-kernel/linux/linux-socfpga-lts_%.bbappend
+index 5571deca..1c34ee1a 100644
+--- a/a5ed065b-premium-devkit-oobe/baseline-a55/software/yocto_linux/meta-custom/recipes-kernel/linux/linux-socfpga-lts_%.bbappend
++++ b/a5ed065b-premium-devkit-oobe/baseline-a55/software/yocto_linux/meta-custom/recipes-kernel/linux/linux-socfpga-lts_%.bbappend
+@@ -48,6 +48,7 @@ SRC_URI:append = " file://agilex5.scc \
+ 		   file://sensors.scc \
+ 		   file://ubifs.scc \
+            file://usbedac.scc \
++           file://usb_device.scc \
+ "
+ 
+ # Auto-add all DTS / DTSI into SRC_URI at PARSE TIME
