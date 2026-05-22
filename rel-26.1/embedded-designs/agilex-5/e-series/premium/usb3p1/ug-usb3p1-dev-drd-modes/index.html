@@ -6331,8 +6331,8 @@
 <p>See https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR</p>
 <h2 id="1-usb-31-in-host-mode">1. USB 3.1 in Host Mode<a class="headerlink" href="#1-usb-31-in-host-mode" title="Permanent link">&para;</a></h2>
 <h3 id="11-build-sd-card-binaries">1.1 Build SD Card Binaries<a class="headerlink" href="#11-build-sd-card-binaries" title="Permanent link">&para;</a></h3>
-<p>1. To get the SD Card binaries, you may follow the steps in https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#build-sd-card-binaries to generate the bootable SD Card image. Or, you may get the prebuilt binaries in <a href="#prebuilt-binaries">Prebuilt Binaries</a></p>
-<p>2. To boot up the dev-kit from SD Card, you may refer to https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#hps-enablement-board for the steps to program the SD Card image.</p>
+<p>1. To get the SD Card binaries, you may follow the steps in <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#build-sd-card-binaries">Agilex 5 FPGA E-Series 065B Premium Development Kit HPS GSRD User Guide - HPS Enablement Board - Build SD Card Binaries</a> to generate the bootable SD Card image. Or, you may get the prebuilt binaries in <a href="#prebuilt-binaries">Prebuilt Binaries</a></p>
+<p>2. To boot up the dev-kit from SD Card, you may refer to <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#hps-enablement-board">Agilex 5 FPGA E-Series 065B Premium Development Kit HPS GSRD User Guide - HPS Enablement Board - Boot from SD Card</a> for the steps to program the SD Card image.</p>
 <h3 id="12-verification-transfer-a-file-to-a-removable-storage">1.2 Verification - Transfer a file to a Removable Storage<a class="headerlink" href="#12-verification-transfer-a-file-to-a-removable-storage" title="Permanent link">&para;</a></h3>
 <p>1. Boot up the dev-kit with the SD Card and Quartus Programmer, login with “root”.</p>
 <p>2. Plug in the dev-kit’s USB Type-C port with a USB Type-C thumbdrive.</p>
@@ -7373,13 +7373,31 @@ Observe that the dev-kit is being seen by Test PC as a storage.</p>
 
 </details>
 
-<p><strong>Note</strong>: The patch changes the value of dr_mode in the &amp;usb31 node from "host" to "otg" in the device tree file socfpga_agilex5_socdk.dts. The patch also implements new changes in the FPGA design to enable DRD Mode, the changes can be seen in the Platform Designer QSYS file.</p>
+<p><strong>Notes</strong>:</p>
+<p>A. The patch changes the value of dr_mode in the &amp;usb31 node from "host" to "otg" in the device tree file socfpga_agilex5_socdk.dts.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="w"> </span><span class="p">&amp;</span>usb31<span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="nv">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;okay&quot;</span><span class="p">;</span>
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="nv">extcon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>&lt;<span class="p">&amp;</span>extcon_usb&gt;<span class="p">;</span>
 <a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">    </span><span class="nv">dr_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;otg&quot;</span><span class="p">;</span>
 <a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w"> </span><span class="o">}</span><span class="p">;</span>
 </code></pre></div>
+<p>B. The patch moves the USB role detection/control from fixed HPS pins into a configurable FPGA PIO with interrupt and software control, enabling full USB 3.1 DRD (OTG) functionality across hardware and Linux.</p>
+<ul>
+<li>Enables USB 3.1 DRD (Dual-Role Device) support</li>
+<li>Introduces a new FPGA-side PIO interface (usb31_pio)</li>
+<li>Migrates USB control signals from fixed HPS pins → FPGA-accessible PIO</li>
+<li>Updates hardware design (Qsys), constraints, and software support</li>
+</ul>
+<p>C. Files changed by the patch: baseline_a55.sv, baseline_top.qsys, fabric_subsys.qsys</p>
+<p>D. Key Differences made by the patch:
+| Aspect | Before Patch | After Patch |
+| :-- | :-- | :-- |
+| Signal path | USB direct to HPS | USB routed via FPGA PIO to HPS |
+| Control signals | vbus_det, usb31_id | fpga_usb31_pio[1:0] |
+| FPGA Involvement | None | PIO and fabric |
+| Software visibility | None | Memory-mapped |
+| Interrupt support | None | Yes |
+| USB role handling | Fixed | Dynamically controlled |</p>
 <p>5. Apply the patch to enable DRD Mode:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>cp<span class="w"> </span>usb3p1_drd_enablement_QPDS26p1.patch<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5e-ed-gsrd/
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>git<span class="w"> </span>apply<span class="w"> </span>usb3p1_drd_enablement_QPDS26p1.patch
