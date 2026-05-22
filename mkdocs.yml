@@ -298,6 +298,7 @@ nav:
           - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/modular/tsn/rgmii-hps/ug-tsn-rgmii-hps.md
       - E-Series 065B Modular Development Kit:
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b.md
+        - 1x10G Ethernet System Example Design User Guide: embedded-designs/agilex-5/e-series/modular-065b/ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g.md
         - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/modular-065b/boot-examples/ug-linux-boot-agx5e-modular-065b.md
         - TSN Example:
           - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/modular-065b/tsn/rgmii-hps/ug-tsn-rgmii-hps-mdk-065b.md          

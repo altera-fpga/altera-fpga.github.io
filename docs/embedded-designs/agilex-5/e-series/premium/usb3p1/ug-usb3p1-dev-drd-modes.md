@@ -1,5 +1,6 @@
 
 
+
 # USB 3.1 Gen-1 Controller in Host Mode, Device Mode, and Dual-Role Device Mode
 
 ## Introduction
@@ -198,10 +199,15 @@ cd agilex5e-ed-gsrd
 git checkout QPDS26.1_REL_GSRD_PR
 ```
 
-4\. Download the patch from:
+4\. Run the following command in Linux shell to generate the file **usb3p1_device_enablement_QPDS26p1.patch** from the encoded data.
 
-(file: usb3p1_device_enablement_QPDS26p1.patch)
-
+<details>
+   <summary>
+      <span style="color: #0056b3; font-weight: bold; cursor: pointer;">
+      Click for the command to retrieve the encoded data
+      </span>
+   </summary>
+   
 ```bash
 base64 -d <<'EOF' | gunzip > usb3p1_device_enablement_QPDS26p1.patch
 H4sIAAHsA2oCA81XW0/jOBR+nvwKq2hHsxTnUmjLlJ0VpbQQCWhFy2geVrKcxC0WbhzFDlDtzn/f
@@ -226,6 +232,8 @@ IfO94R8LffgA21kpUtDPylStE2UBHz8JFq65WAUsomEJqK4FLG5KMAmczCy0g9qZlphGEfQzAsGB
 EDlm9E0LJOdRIKrRoH097KKRf9m1/gexdK8lbRAAAA==
 EOF
 ```
+   
+</details>
 
 **Note**: The patch changes the value of dr_mode in the &usb31 node from "host" to "peripheral" in the device tree file socfpga_agilex5_socdk.dts.
 
@@ -234,7 +242,7 @@ EOF
     status = "okay";
     dr_mode = "peripheral";
  };
- ```
+```
 
 5\. Apply the patch to enable Device Mode:
 
@@ -352,10 +360,15 @@ cd agilex5e-ed-gsrd
 git checkout QPDS26.1_REL_GSRD_PR
 ```
 
-4\. Download the patch from:
+4\. Run the following command in Linux shell to generate the file **usb3p1_drd_enablement_QPDS26p1.patch** from the encoded data.
 
-(file: usb3p1_drd_enablement_QPDS26p1.patch)
-
+<details>
+   <summary>
+      <span style="color: #0056b3; font-weight: bold; cursor: pointer;">
+      Click for the command to retrieve the encoded data
+      </span>
+   </summary>
+   
 ```bash
 base64 -d <<'EOF' | gunzip > usb3p1_drd_enablement_QPDS26p1.patch
 H4sIAAXsA2oCA+w9a3PiOLbf8ytU7NR0z/IINs/MTFJLAt1N3STkAt09U1NbLmML8G1ju/0IYXvn
@@ -1228,8 +1241,10 @@ WJycXAqgu1hd57qnzjbBkkTVPQUkoWdXaMMO//cS7dink1v+y2T8zuQh1Fh4Ib7rdEz/H+uJ//UT
 znXQ/46R76pYKHCCzj0NJtMRNxvfj376/wGp7eC+7OQLAA==
 EOF
 ```
+   
+</details>
 
-**Note**: The patch changes the value of dr_mode in the &usb31 node from "host" to "otg" in the device tree file socfpga_agilex5_socdk.dts. The patch also implements new changes in the FPGA design to enable DRD Mode, changes can be seen in Platform Designer QSYS file.
+**Note**: The patch changes the value of dr_mode in the &usb31 node from "host" to "otg" in the device tree file socfpga_agilex5_socdk.dts. The patch also implements new changes in the FPGA design to enable DRD Mode, the changes can be seen in the Platform Designer QSYS file.
 
 ```bash
  &usb31 {
@@ -1237,8 +1252,8 @@ EOF
     extcon = <&extcon_usb>;
     dr_mode = "otg";
  };
- ```
- 
+```
+
 5\. Apply the patch to enable DRD Mode:
 
 ```bash
