@@ -1,5 +1,6 @@
 
 
+
 # USB 3.1 Gen-1 Controller in Host Mode, Device Mode, and Dual-Role Device Mode
 
 ## Introduction
@@ -105,9 +106,9 @@ See https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_P
   
 ### 1.1 Build SD Card Binaries
 
-1\. To get the SD Card binaries, you may follow the steps in https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#build-sd-card-binaries to generate the bootable SD Card image. Or, you may get the prebuilt binaries in [Prebuilt Binaries](#prebuilt-binaries)
+1\. To get the SD Card binaries, you may follow the steps in [Agilex 5 FPGA E-Series 065B Premium Development Kit HPS GSRD User Guide - HPS Enablement Board - Build SD Card Binaries](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#build-sd-card-binaries) to generate the bootable SD Card image. Or, you may get the prebuilt binaries in [Prebuilt Binaries](#prebuilt-binaries)
 
-2\. To boot up the dev-kit from SD Card, you may refer to https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#hps-enablement-board for the steps to program the SD Card image.
+2\. To boot up the dev-kit from SD Card, you may refer to [Agilex 5 FPGA E-Series 065B Premium Development Kit HPS GSRD User Guide - HPS Enablement Board - Boot from SD Card](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#hps-enablement-board) for the steps to program the SD Card image.
 
 
 ### 1.2 Verification - Transfer a file to a Removable Storage
@@ -198,10 +199,15 @@ cd agilex5e-ed-gsrd
 git checkout QPDS26.1_REL_GSRD_PR
 ```
 
-4\. Download the patch from:
+4\. Run the following command in Linux shell to generate the file **usb3p1_device_enablement_QPDS26p1.patch** from the encoded data.
 
-(file: usb3p1_device_enablement_QPDS26p1.patch)
-
+<details>
+   <summary>
+      <span style="color: #0056b3; font-weight: bold; cursor: pointer;">
+      Click for the command to retrieve the encoded data
+      </span>
+   </summary>
+   
 ```bash
 base64 -d <<'EOF' | gunzip > usb3p1_device_enablement_QPDS26p1.patch
 H4sIAAHsA2oCA81XW0/jOBR+nvwKq2hHsxTnUmjLlJ0VpbQQCWhFy2geVrKcxC0WbhzFDlDtzn/f
@@ -226,6 +232,8 @@ IfO94R8LffgA21kpUtDPylStE2UBHz8JFq65WAUsomEJqK4FLG5KMAmczCy0g9qZlphGEfQzAsGB
 EDlm9E0LJOdRIKrRoH097KKRf9m1/gexdK8lbRAAAA==
 EOF
 ```
+   
+</details>
 
 **Note**: The patch changes the value of dr_mode in the &usb31 node from "host" to "peripheral" in the device tree file socfpga_agilex5_socdk.dts.
 
@@ -234,7 +242,7 @@ EOF
     status = "okay";
     dr_mode = "peripheral";
  };
- ```
+```
 
 5\. Apply the patch to enable Device Mode:
 
@@ -352,10 +360,15 @@ cd agilex5e-ed-gsrd
 git checkout QPDS26.1_REL_GSRD_PR
 ```
 
-4\. Download the patch from:
+4\. Run the following command in Linux shell to generate the file **usb3p1_drd_enablement_QPDS26p1.patch** from the encoded data.
 
-(file: usb3p1_drd_enablement_QPDS26p1.patch)
-
+<details>
+   <summary>
+      <span style="color: #0056b3; font-weight: bold; cursor: pointer;">
+      Click for the command to retrieve the encoded data
+      </span>
+   </summary>
+   
 ```bash
 base64 -d <<'EOF' | gunzip > usb3p1_drd_enablement_QPDS26p1.patch
 H4sIAAXsA2oCA+w9a3PiOLbf8ytU7NR0z/IINs/MTFJLAt1N3STkAt09U1NbLmML8G1ju/0IYXvn
@@ -1228,8 +1241,12 @@ WJycXAqgu1hd57qnzjbBkkTVPQUkoWdXaMMO//cS7dink1v+y2T8zuQh1Fh4Ib7rdEz/H+uJ//UT
 znXQ/46R76pYKHCCzj0NJtMRNxvfj376/wGp7eC+7OQLAA==
 EOF
 ```
+   
+</details>
 
-**Note**: The patch changes the value of dr_mode in the &usb31 node from "host" to "otg" in the device tree file socfpga_agilex5_socdk.dts. The patch also implements new changes in the FPGA design to enable DRD Mode, changes can be seen in Platform Designer QSYS file.
+**Notes**:
+
+A\. The patch changes the value of dr_mode in the &usb31 node from "host" to "otg" in the device tree file socfpga_agilex5_socdk.dts.
 
 ```bash
  &usb31 {
@@ -1237,8 +1254,27 @@ EOF
     extcon = <&extcon_usb>;
     dr_mode = "otg";
  };
- ```
- 
+```
+
+B\. The patch moves the USB role detection/control from fixed HPS pins into a configurable FPGA PIO with interrupt and software control, enabling full USB 3.1 DRD (OTG) functionality across hardware and Linux.
+
+* Enables USB 3.1 DRD (Dual-Role Device) support
+* Introduces a new FPGA-side PIO interface (usb31_pio)
+* Migrates USB control signals from fixed HPS pins → FPGA-accessible PIO
+* Updates hardware design (Qsys), constraints, and software support
+
+C\. Files changed by the patch: baseline_a55.sv, baseline_top.qsys, fabric_subsys.qsys
+
+D\. Key Differences made by the patch:
+| Aspect | Before Patch | After Patch |
+| :-- | :-- | :-- |
+| Signal path | USB direct to HPS | USB routed via FPGA PIO to HPS |
+| Control signals | vbus_det, usb31_id | fpga_usb31_pio[1:0] |
+| FPGA Involvement | None | PIO and fabric |
+| Software visibility | None | Memory-mapped |
+| Interrupt support | None | Yes |
+| USB role handling | Fixed | Dynamically controlled |
+
 5\. Apply the patch to enable DRD Mode:
 
 ```bash
