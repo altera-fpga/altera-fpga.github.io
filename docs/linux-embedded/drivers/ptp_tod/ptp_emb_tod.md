@@ -1,6 +1,6 @@
 # **Ethernet 1588 PTP Time of Day Clock IP Driver for Hard Processor System**
 
-Last updated: **May 22, 2026** 
+Last updated: **June 09, 2026** 
 
 **Upstream Status**: Not Upstreamed
 

@@ -245,7 +245,6 @@ nav:
           - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hps/ug-tsn-rgmii-hps-pdk.md
           - HPS TSN RGMII HVIO System Example Design User Guide: embedded-designs/agilex-5/e-series/premium/tsn/rgmii-hvio/ug-tsncfg2-agx5e-pdk-rgmii-hvio.md
           - HPS TSN SGMII XCVR System Example Design User Guide: embedded-designs/agilex-5/e-series/premium/tsn/sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5.md
-        - USB 3.1 Example: 'embedded-designs/agilex-5/e-series/premium/usb3p1/ug-usb3p1-dev-drd-modes.md'
         - SoC FPGA Remote Debug: embedded-designs/agilex-5/e-series/premium/remote-debug/ug-remote-debug-agx5e-premium.md
         - HPS Remote System Update Example Design: embedded-designs/agilex-5/e-series/premium/rsu/ug-rsu-agx5e-soc.md
         - HPS Xen Hypervisor GSRD: embedded-designs/agilex-5/e-series/premium/xen/ug-xen-agx5e-premium.md
@@ -271,11 +270,13 @@ nav:
         - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/premium-065b/boot-examples/ug-linux-boot-agx5e-premium-065b.md
         - HPS Remote System Update Example Design:  embedded-designs/agilex-5/e-series/premium-065b/rsu/ug-rsu-agx5e-soc-premium-065b.md
         - HPS OpenOCD Debugging: embedded-designs/agilex-5/e-series/premium-065b/openocd/ug-openocd-debug-agx5e-premium-065b.md
+        - Yocto Hardware to Software Flow for Agilex 5 Custom IP Integration: embedded-designs/agilex-5/e-series/premium-065b/hw2sw-flow/ug-hw2sw-flow-agx5e-premium-065b.md
         - HPS Linux Application Debuging with Ashling RiscFree: embedded-designs/agilex-5/e-series/premium-065b/riscfree-linux-app-debug/ug-riscfree-linux-app-debug-agx5e-premium-065b.md
         - HPS Fabric Configuration from Linux: embedded-designs/agilex-5/e-series/premium-065b/fabric-config-linux/ug-fabric-config-linux-agx5e-premium-065b.md
         - TSN Examples:
           - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065b/tsn/rgmii-hps/ug-tsn-rgmii-hps-pdk-065b.md
           - HPS TSN RGMII HVIO System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065b/tsn/rgmii-hvio/ug-tsncfg2-agx5e-pdk-rgmii-hvio-065b.md
+        - USB 3.1 Example: embedded-designs/agilex-5/e-series/premium-065b/usb3p1/ug-usb3p1-dev-drd-modes.md
       - E-Series 065A Premium Development Kit:
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/premium-065a/gsrd/ug-gsrd-agx5e-premium-065a.md
         - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/premium-065a/boot-examples/ug-linux-boot-agx5e-premium-065a.md

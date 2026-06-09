@@ -194,8 +194,8 @@ the Input source between the MIPI-CSI Rx and the Input TPG.
 
 !!! note "Related Information"
 
-    [Test Pattern Generator IP] <br/>
-    [Switch IP]
+    [Test Pattern Generator IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/test-pattern-generator-ip) <br/>
+    [Switch IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/switch-ip)
 
 ### **ISP Processing**
 
@@ -275,7 +275,7 @@ interface.
 
 !!! note "Related Information"
 
-    [White Balance Correction IP]
+    [White Balance Correction IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/white-balance-correction-ip)
 
 * [**Demosaic**](#demosaic)
 
@@ -303,7 +303,7 @@ interpolates missing colors to calculate the RGB output.
 
 !!! note "Related Information"
 
-    [Demosaic IP]
+    [Demosaic IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/demosaic-ip)
 
 * [**Color Correction Matrix**](#color-correction-matrix)
 
@@ -320,7 +320,7 @@ for a range of color temperatures.
 
 !!! note "Related Information"
 
-    [Color Space Converter IP]
+    [Color Space Converter IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/color-space-converter-ip)
 
 ### **Output Processing**
 
@@ -360,10 +360,10 @@ The opacity of the Icon overlay is globally controlled and can be changed during
 
 !!! note "Related Information"
 
-    [Test Pattern Generator IP] <br/>
-    [Video Frame Buffer IP] <br/>
-    [EMIF] <br/>
-    [Mixer IP]
+    [Test Pattern Generator IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/test-pattern-generator-ip) <br/>
+    [Video Frame Buffer IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/video-frame-buffer-ip) <br/>
+    [EMIF](https://www.altera.com/design/guidance/emif-support) <br/>
+    [Mixer IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/mixer-ip)
 
 * [**1D LUT**](#1d-lut)
 
@@ -396,9 +396,9 @@ VVP Protocol Converter IP.
 
 !!! note "Related Information"
 
-    [1D LUT IP] <br/>
-    [Pixels in Parallel Converter IP] <br/>
-    [Protocol Converter IP]
+    [1D LUT IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/about-the-1d-lut-ip) <br/>
+    [Pixels in Parallel Converter IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/pixels-in-parallel-converter-ip) <br/>
+    [Protocol Converter IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/protocol-converter-ip)
 
 
 
@@ -507,6 +507,12 @@ VVP Protocol Converter IP.
 
 <br>
 
+### **Software Requirements**
+
+* [Altera® Quartus® Prime Pro version (25.3)](https://www.altera.com/downloads/fpga-development-tools/quartus-prime-pro-edition-design-software-version-25-3-linux).
+  * Including open-source tools to compile software targeting Nios® V soft-processors
+* Device Support for Agilex™ 3.
+* [FPGA Nios® V Open-Source Tools 25.3](https://www.altera.com/design/guidance/nios-v-developer).
 
 
 <br>

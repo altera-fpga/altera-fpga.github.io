@@ -286,7 +286,7 @@ modprobe g_mass_storage file=/tmp/test.img removable=1
 4\. Plug in the dev-kit’s USB Type-C port with the USB Cable, connect the other end to the Test PC.
 Observe that the dev-kit is being seen by Test PC as a storage.
 
-![Dev Drive in Host](./images/16_device_mode_in_win.png)
+![Dev Drive in Host](./images/device_mode_in_win.png)
 
 5\. On the Test PC, write a file “device_test.txt” in the dev-kit storage. This step shows that the USB3.1 is now working in Device mode.
 
@@ -1266,6 +1266,7 @@ B\. The patch moves the USB role detection/control from fixed HPS pins into a co
 C\. Files changed by the patch: baseline_a55.sv, baseline_top.qsys, fabric_subsys.qsys
 
 D\. Key Differences made by the patch:
+
 | Aspect | Before Patch | After Patch |
 | :-- | :-- | :-- |
 | Signal path | USB direct to HPS | USB routed via FPGA PIO to HPS |
