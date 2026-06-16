@@ -51,8 +51,8 @@
 
 
 [Release Tag]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-safety-26.1
-[wic.gz]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.gz
-[wic.bmap]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.bmap
+[wic.gz]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.gz
+[wic.bmap]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.bmap
 [top.hps.jic]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/top.hps.jic
 [doc-gui.zip]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/doc-gui_1.0.0.zip
 [DOC_SAFETY_TANDEM_MOTORSIM_AGILEX5.qar]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/DOC_SAFETY_TANDEM_MOTORSIM_AGILEX5.qar
@@ -219,7 +219,7 @@ Agilex™ 5 FPGA E-Series 065B Modular Development Kit.
 
 | Boot Source            | Link |
 | ---------------------- | ---- |
-| SD Card                | [wic.gz](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.gz), [wic.bmap](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.bmap) |
+| SD Card                | [wic.gz](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.gz), [wic.bmap](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.bmap) |
 | QSPI                   | [top.hps.jic](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/top.hps.jic) |
 | GUI                    | [doc-gui.zip](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/doc-gui_1.0.0.zip) |
 
@@ -304,7 +304,7 @@ sudo bmaptool copy ${IMAGE} ${DEVICE}
 For example:
 
 ```
-sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aes1.wic.gz /dev/sda
+sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aea.wic.gz /dev/sda
 ```
 
 
@@ -477,7 +477,7 @@ g { color: Green; font-weight: bold; }
  |              | [Generating and Building the NiosV/g BSP for the Drive-On-Chip Application.](https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety/other-user-flow/#compiling-and-building-the-niosv-application-and-bsp)     |<r>&cross;</r>|<g>&check;</g>|<r>&cross;</r>|
  |              | [Creating and Building the Design based on Modular Design Toolkit (MDT).](https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/26.1/HPS_NIOSVg_DoC_Safety_dual_axis/Readme.md)                         |<r>&cross;</r>|<r>&cross;</r>|<g>&check;</g>|
  |              | [Creating the QSPI Flash and SD card configuration bitstreams for the board (JIC/RBF).](https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety/other-user-flow/#creating-the-qspi-flash-and-sd-card-configuration-bitstreams-for-the-board) <br> <r>Warning!</r>: this procedure requires a `u-boot-spl-dtb.hex` file, which is generated in the step below. |<r>&cross;</r>|<g>&check;</g>|<g>&check;</g>|
- |SW-Compilation| [Create SD card image (.wic) using YOCTO/KAS](https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/26.1/sw/README.md) <br> <r>NOTE</r>: use <g>**KAS_MACHINE=agilex5_mk_a5e065bb32aes1**</g> and <g>**kas_safety_dual_axis.yml**</g> configuration                                                                                                      |<r>&cross;</r>|<g>&check;</g>|<g>&check;</g>|
+ |SW-Compilation| [Create SD card image (.wic) using YOCTO/KAS](https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/26.1/sw/README.md) <br> <r>NOTE</r>: use <g>**KAS_MACHINE=agilex5_mk_a5e065bb32aea**</g> and <g>**kas_safety_dual_axis.yml**</g> configuration                                                                                                      |<r>&cross;</r>|<g>&check;</g>|<g>&check;</g>|
  |Programming   | [Setting Up your Development Board.](#setting-up-your-development-board)                          |<g>&check;</g>|<g>&check;</g>|<g>&check;</g>|
  |              | [SD Card Image Flashing.](#sd-card-image-flashing)                                                |<g>&check;</g>|<g>&check;</g>|<g>&check;</g>|
  |              | [Program the QSPI Flash Memory.](#flash-the-qspi)                                  |<g>&check;</g>|<g>&check;</g>|<g>&check;</g>|

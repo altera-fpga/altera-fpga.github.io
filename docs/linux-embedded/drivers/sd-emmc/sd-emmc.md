@@ -1,6 +1,6 @@
 # **SD/eMMC Driver for Hard Processor System**
 
-Last updated: **June 09, 2026** 
+Last updated: **June 16, 2026** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/mmc/host/sdhci-cadence.c)
 
@@ -58,20 +58,24 @@ Example Device tree location to configure the SD/eMMC:
 
 **Agilex™ 5**
 
-* For SD Card: https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.2-lts/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-* For eMMC: https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.2-lts/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_emmc.dts
+| Device Tree Target | File Path |
+| :------------ | :---------- |
+| SD Card | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.2-lts/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts |
+| eMMC | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.2-lts/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_emmc.dts |
+| SD Card<br/>DK-A5E013B | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.2-lts/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_013b.dts |
 
 **Agilex™ 3**
 
-* For SD Card: https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.2-lts/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts
-* For eMMC: https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.2-lts/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_emmc.dts
-
+| Device Tree Target | File Path |
+| :------------ | :---------- |
+| SD Card | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.2-lts/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts  |
+| eMMC | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.2-lts/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_emmc.dts |
 
 ![sdmmc_device_tree](images/sdmmc_device_tree.png)
 
 ### **Device Tree Configuration for Supported Operations Modes**
 
-**Linux Device Tree Configuration for SD Card**
+#### **Linux Device Tree Configuration for SD Card**
 
 | Operation Mode ➜<br> Parameter ↓ | High Speed | SDR12 | SDR25 | SDR50 | DDR50² | SDR104³ |
 | :------------ | :---------- | :----- | :----- | :----- | :----- | :------ |
@@ -102,7 +106,7 @@ Example Device tree location to configure the SD/eMMC:
 
 ⁴ The **sdhci-caps** and **sdhci-caps-mask** device tree parameters are used to override the value of the SRS16 and SRS17 capabilities registers in the SD/eMMC controller. The clock frequency value defined in **SRS16.BSDCLK** or the overridden value set by **sdhci-caps/sdhci-caps-mask** parameters **MUST** match the value defined for the **SOFT PHY** clock in the hardware design hence this is used as reference to calculate the clock divider value needed to get final clock frequency for the operation mode selected. In Agilex 5 Engineering Samples the **SRS16.BSDCLK** value is set to 50 MHz, so this value must be overridden with the **sdhci-caps/sdhci-caps-mask** parameters if wanted to run at higher frequency. In the Agilex 5 production silicon, the **SRS16.BSDCLK** value is set to 200 MHz, so if your project needs to run at a different frequency, this value must be also overridden with the **sdhci-caps/sdhci-caps-mask** parameters.
 
-**Linux Device Tree Configuration for eMMC**
+#### **Linux Device Tree Configuration for eMMC**
 
 | Operation Mode ➜ <br> Parameter ↓ | High Speed | HS-200² | HS-400² |
 | :------------ | :---------- | :----- | :----- |
@@ -136,25 +140,28 @@ The Linux SD/eMMC driver allow you to provide the PHY timing values that your bo
 
 **Note:** The Linux driver uses the above parameters to calculate the PHY timing values that need to be programmed in the Combo PHY registers.
 
-
-**U-Boot Configuration for some SD/eMMC Operation Modes**
+#### **U-Boot Configuration for some SD/eMMC Operation Modes**
 
 The following device trees and Config U-Boot files are the ones that define the operation mode as indicated in the following table:
 
 **Agilex™ 5**
 
-  *  CONFIG for SDCard: https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/configs/socfpga_agilex5_defconfig 
-  *  CONFIG for eMMC: https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/configs/socfpga_agilex5_emmc_defconfig
-  *  Device Tree for SDCard: https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi
-  *  Device Tree for eMMC: https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/arch/arm/dts/socfpga_agilex5_socdk_emmc-u-boot.dtsi
+| Target | File Path |
+| :------------ | :---------- |
+| CONFIG SD Card | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/configs/socfpga_agilex5_defconfig |
+| CONFIG eMMC | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/configs/socfpga_agilex5_emmc_defconfig |
+| CONFIG SD Card <br/>DK-A5E013B | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/configs/socfpga_agilex5_013b_defconfig ||
+| Device Tree SD Card |  https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi |
+| Device Tree eMMC | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/arch/arm/dts/socfpga_agilex5_socdk_emmc-u-boot.dtsi |
+| Device Tree SD Card <br/>DK-A5E013B | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/arch/arm/dts/socfpga_agilex5_socdk_013b-u-boot.dtsi |
 
 **Agilex™ 3**
 
-  * CONFIG for SDCard: https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/configs/socfpga_agilex3_defconfig
+| Target | File Path |
+| :------------ | :---------- |
+| CONFIG SDCard | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/configs/socfpga_agilex3_defconfig |
+| Device Tree SDCard | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/arch/arm/dts/socfpga_agilex3_socdk-u-boot.dtsi |
 
-  * Device Tree for SDCard: https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/arch/arm/dts/socfpga_agilex3_socdk-u-boot.dtsi
-
-    
 
 The next table shows some U-Boot configurations that allow the SD/eMMC controller to operate in a specific mode:
 
@@ -183,9 +190,9 @@ The next table shows some U-Boot configurations that allow the SD/eMMC controlle
 
 ³ This mode may not be functional in Agilex™ 5 ES device. Please refer to the [Known Issues](#known-issues) section for more details.
 
-⁴ The **sdhci-caps** and **sdhci-caps-mask** device tree parameters are used to override the value of the SRS16 and SRS17 capabilities registers in the SD/eMMC controller. The clock frequency value defined in **SRS16.BSDCLK** or the overridden value set by **sdhci-caps/sdhci-caps-mask** parameters **MUST** match the value defined for the **SOFT PHY** clock in the hardware design hence this is used as reference to calculate the clock divider value needed to get final clock frequency for the operation mode selected. In Agilex 5 Engineering Samples the **SRS16.BSDCLK** value is set to 50 MHz, so this value must be overridden with the **sdhci-caps/sdhci-caps-mask** parameters if wanted to run at higher frequency. In the Agilex 5 production silicon, the **SRS16.BSDCLK** value is set to 200 MHz, so if your project needs to run at a different frequency, this value must be also overridden with the **sdhci-caps/sdhci-caps-mask** parameters.
+⁴ The **sdhci-caps** and **sdhci-caps-mask** device tree parameters are used to override the value of the SRS16 and SRS17 capabilities registers in the SD/eMMC controller. The clock frequency value defined in **SRS16.BSDCLK** or the overridden value set by **sdhci-caps/sdhci-caps-mask** parameters **MUST** match the value defined for the **SOFT PHY** clock in the hardware design hence this is used as reference to calculate the clock divider value needed to get final clock frequency for the operation mode selected. In Agilex™ 5 Engineering Samples the **SRS16.BSDCLK** value is set to 50 MHz, so this value must be overridden with the **sdhci-caps/sdhci-caps-mask** parameters if wanted to run at higher frequency. In the Agilex™ 5 production silicon, the **SRS16.BSDCLK** value is set to 200 MHz, so if your project needs to run at a different frequency, this value must be also overridden with the **sdhci-caps/sdhci-caps-mask** parameters.
 
-**Note:** The PHY parameters defined in the device tree, were calculated to match the clock configuration in the GHRD (which uses a SOFT PHY clock of 200 MHz). For any other SOFT PHY clock frequency, the parameters need to be adjusted.
+**Note:** The default PHY parameters defined in the device trees, were calculated to match the clock configuration in the hardware reference design (which uses a SOFT PHY clock of 200 MHz). For any other SOFT PHY clock frequency, the parameters need to be adjusted. Alternatively to the PHY parameters update and specifically for the case of SD High Speed mode, you can enable a PHY tunning mechanism, which consist on a runtime calibration process dedicated to finding the optimal data sampling point. Please refer to the  [Known Issues](#known-issues) list for  information about how to enable this tunning mechanism.
 
 ## Test Procedures
 
@@ -262,6 +269,7 @@ MMC read: dev # 0, block # 8264, count 20480 ... 20480 blocks read: OK
 * SD Card DDR50 mode is not functional in Agilex™ 5 and Agilex™ 3 device due to CRC errors observed in the SD Card interface. Please refer to the [350306](https://community.altera.com/kb/knowledge-base/why-does-agilex%E2%84%A2-5-agilex%E2%84%A2-3-fpgas-fail-to-boot-from-sd-card-in-ddr50-mode/350306) KDB.
 * Agilex 5 ES (Engineering Sample) fails to boot from SD Card and eMMC devices operating in SDR104, HS400 and HS200 modes. Please refer to the [350691](https://community.altera.com/kb/knowledge-base/why-does-agilex%E2%84%A2-5-fpga-es-fails-to-boot-from-sdcard-and-emmc-devices-in-sdr104-/350691) KDB.
 * SD Card SDR12 mode in U-Boot requires a driver source code workaround in 26.1 release.  Please refer to the [351127](https://community.altera.com/kb/knowledge-base/why-does-the-sdemmc-u-boot-driver-fail-to-select-the-sdr12-mode-for-agilex%C2%AE-5-fp/351127) KDB.
+* U-Boot fails to boot from SD Card in High Speed Mode in 26.1 release in Agilex™ 5 and Agilex™ 3 production devices when the SOFT PHY  Clock is different than 200 MHz. A temporary workaround for this problem, you can enable a tuning mechanism. Please refer to [353736](https://community.altera.com/kb/knowledge-base/why-does-u-boot-fail-to-boot-from-sd-card-in-sd-high-speed-mode-in-agilex%C2%AE-5-and/353736) KDB.
 
 ## Notices & Disclaimers
 

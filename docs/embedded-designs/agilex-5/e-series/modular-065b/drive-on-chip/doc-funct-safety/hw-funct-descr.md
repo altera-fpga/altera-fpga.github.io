@@ -48,8 +48,8 @@
 
 
 [Release Tag]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-safety-26.1
-[wic.gz]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.gz
-[wic.bmap]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.bmap
+[wic.gz]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.gz
+[wic.bmap]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.bmap
 [top.hps.jic]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/top.hps.jic
 [doc-gui.zip]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/doc-gui_1.0.0.zip
 [DOC_SAFETY_TANDEM_MOTORSIM_AGILEX5.qar]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/DOC_SAFETY_TANDEM_MOTORSIM_AGILEX5.qar

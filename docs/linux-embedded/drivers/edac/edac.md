@@ -1,6 +1,6 @@
 # **Altera Error Detection and Correction (EDAC) Driver for Hard Processor System**
 
-Last updated: **June 09, 2026** 
+Last updated: **June 16, 2026** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/edac/altera_edac.c)
 

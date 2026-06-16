@@ -52,8 +52,8 @@
 
 
 [Release Tag]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-plc-26.1
-[wic.gz]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.gz
-[wic.bmap]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.bmap
+[wic.gz]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.gz
+[wic.bmap]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.bmap
 [top.hps.jic]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/top.hps.jic
 [doc-gui.zip]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/doc-gui_1.0.0.zip
 [DOC_PLC_TANDEM_MOTORSIM_AGILEX5.qar]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/DOC_PLC_TANDEM_MOTORSIM_AGILEX5.qar
@@ -372,7 +372,7 @@ Agilex™ Development Kit.
 
     | Boot Source            | Link |
     | ---------------------- | ---- |
-    | SD Card Image          | [wic.gz](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.gz), [wic.bmap](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/core-image-minimal-agilex5_mk_a5e065bb32aes1.rootfs.wic.bmap) |
+    | SD Card Image          | [wic.gz](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.gz), [wic.bmap](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.bmap) |
     | QSPI                   | [top.hps.jic](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/top.hps.jic) |
     | Structured Language (ST) program | [agilex_doc.st](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/agilex_doc.st) |
     | GUI                    | [doc-gui.zip](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/doc-gui_1.0.0.zip) |
@@ -396,6 +396,41 @@ Agilex™ Development Kit.
 === "Agilex™ 3"
     --8<-- "./docs/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/board-setup-agx3.md"
 
+
+
+[Drive-On-Chip with Functional Safety System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety
+[Drive-On-Chip with PLC System Example Design for Agilex™ Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-plc
+[ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-crc
+[Agilex™ 5 FPGA - Drive-On-Chip Design Example]: https://docs.altera.com/r/example-designs/825736/current
+[Altera® Agilex™ 7 FPGA – Drive-On-Chip for Altera® Agilex™ 7 Devices Design Example]: https://docs.altera.com/r/example-designs/780358/current
+[Agilex™ 7 FPGA – Safe Drive-On-Chip Design Example]: https://docs.altera.com/r/example-designs/825942/current
+[Agilex™ 5 E-Series Modular Development Kit GSRD User Guide (26.1)]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/
+[Agilex™ 5 E-Series Modular Development Kit GHRD Linux Boot Examples]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular/
+
+
+
+
+[AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices]: https://docs.altera.com/r/docs/826207/current
+[AN 999: Drive-on-Chip with Functional Safety Design Example: Agilex™ 7 Devices]: https://docs.altera.com/r/docs/823627/current/an-999-drive-on-chip-with-functional-safety-design-example-agilextm-7-devices
+[AN 994: Drive-on-Chip Design Example for Altera® Agilex™ 7 Devices]: https://docs.altera.com/r/docs/780361/current/an-994-drive-on-chip-design-example-for-agilextm-7-devices
+[AN 773: Drive-On-Chip Design Example for Altera® MAX® 10 Devices]: https://docs.altera.com/r/docs/683072/current/an-773-drive-on-chip-design-example-for-intel-max-10-devices
+[AN 669: Drive-On-Chip Design Example for Cyclone V Devices]: https://docs.altera.com/r/docs/683466/current/an-669-drive-on-chip-design-example-for-cyclone-v-devices
+
+
+
+[Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs (26.1)]: https://docs.altera.com/r/docs/814346/26.1/hard-processor-system-technical-reference-manual-agilextm-5-socs
+[NiosV Processor for Altera® FPGA]: https://www.altera.com/products/ip/po-3098/nios-v-processors
+[Tandem Motion-Power 48 V Board Reference Manual]: https://docs.altera.com/r/docs/683164/current/tandem-motion-power-48-v-board-reference-manual
+[Agilex™ 5 FPGA E-Series 065B Modular Development Kit]: https://www.altera.com/products/devkit/po-3274/agilex-5-fpga-and-soc-e-series-065b-modular-development-kit
+[Agilex™ 3 FPGA C-Series Development Kit]: https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit
+[Agilex™ 3 FPGA and SoC C-Series Development Kit]:https://www.altera.com/products/devkit/a1jui000004kfuxma0/agilex-3-fpga-and-soc-c-series-development-kit
+[Motor Control Designs with an Integrated FPGA Design Flow]: https://docs.altera.com/v/u/docs/654665/motor-control-ip-suite-components-for-drive-on-chip-reference-designs
+[Install Docker Engine]: https://docs.docker.com/engine/install/
+[Docker Build: Multi-Platform Builds]: https://docs.docker.com/build/building/multi-platform/
+[quartus_pgm command]: https://docs.altera.com/r/docs/847422/25.3.1/device-configuration-user-guide-agilextm-3-fpgas-and-socs/understanding-configuration-status-using-quartus_pgm-command
+
+
+[Disk Imager]: https://sourceforge.net/projects/win32diskimager
 
 
 ### SD Card Image Flashing
@@ -435,7 +470,7 @@ sudo bmaptool copy ${IMAGE} ${DEVICE}
 For example:
 
 ```
-sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aes1.wic.gz /dev/sda
+sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aea.wic.gz /dev/sda
 ```
 
 
@@ -762,7 +797,7 @@ y { color: #CCCC00; font-weight: bold;}
  |              | [Generating and Building the NiosV/g BSP for the Drive-On-Chip Application.](https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-plc/other-user-flow/#compiling-and-building-the-niosv-application-and-bsp)     |<r>&cross;</r>|<g>&check;</g>|<r>&cross;</r>|
  |              | [Creating and Building the Design based on Modular Design Toolkit (MDT).](https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/main/HPS_NIOSVg_DoC_dual_axis/Readme.md)                                 |<r>&cross;</r>|<r>&cross;</r>|<g>&check;</g>|
  |              | [Creating the QSPI Flash and SD card configuration bitstreams for the board (JIC/RBF).](https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-plc/other-user-flow/#creating-the-qspi-flash-and-sd-card-configuration-bitstreams-for-the-board) <br> <r>Warning!</r>: this procedure requires a `u-boot-spl-dtb.hex` file, which is generated in the step below. |<r>&cross;</r>|<g>&check;</g>|<g>&check;</g>|
- |SW-Compilation| [Create SD card image (.wic) using YOCTO/KAS](https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/main/sw/README.md) <br> <r>NOTE</r>: use <g>**KAS_MACHINE=agilex5_mk_a5e065bb32aes1**</g> or <g>**KAS_MACHINE=agilex3**</g> <br> and <g>**kas_dual_axis.yml**</g> configuration                                                                                                              |<r>&cross;</r>|<g>&check;</g>|<g>&check;</g>|
+ |SW-Compilation| [Create SD card image (.wic) using YOCTO/KAS](https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/main/sw/README.md) <br> <r>NOTE</r>: use <g>**KAS_MACHINE=agilex5_mk_a5e065bb32aea**</g> or <g>**KAS_MACHINE=agilex3**</g> <br> and <g>**kas_dual_axis.yml**</g> configuration                                                                                                              |<r>&cross;</r>|<g>&check;</g>|<g>&check;</g>|
  |              | [Altera OpenPLC Docker Container Image Cross-compilation.](https://github.com/altera-fpga/altera-openplc#build-a-docker-image) <y> Optional </y>                              |<r>&cross;</r>|<y>&#42;</y>  |<y>&#42;</y>|
  |Programming   | [Setting Up your Development Board.](#setting-up-your-development-board)                                  |<g>&check;</g>|<g>&check;</g>|<g>&check;</g>|
  |              | [SD Card Image Flashing.](#sd-card-image-flashing)                                                        |<g>&check;</g>|<g>&check;</g>|<g>&check;</g>|

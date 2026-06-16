@@ -312,9 +312,6 @@ nav:
         - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/modular-065a/boot-examples/ug-linux-boot-agx5e-modular-065a.md
         - TSN Example:
           - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/modular-065a/tsn/rgmii-hps/ug-tsn-rgmii-hps-mdk-065a.md
-      - E-Series 065A Modular Development Kit:
-          - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular-065a/gsrd/ug-gsrd-agx5e-modular-065a.md
-          - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/modular-065a/boot-examples/ug-linux-boot-agx5e-modular-065b.md
       - E-Series 013B Development Kit:
           - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/013B/gsrd/ug-gsrd-agx5e-013b.md
           - HPS GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/013B/boot-examples/ug-linux-boot-agx5e-013b.md
@@ -362,6 +359,7 @@ nav:
         - Time Precision Protocol System Example Design (I-Series, 4x F-Tile): embedded-designs/agilex-7/i-series/ptp/agx7i-ptp-anlt/agx7i-ptp-anlt.md
         - HPS GSRD User Guide: embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc.md
         - CII Example Design: embedded-designs/agilex-7/i-series/avst_cii/agilex7-ed-pcie-cii.md
+        - PCIe Root Port: embedded-designs/agilex-7/i-series/pcie_rp/ug-pcie_rp-agx7i-soc.md
       - M-Series HBM2e Development Kit (3x F-Tile & 1x R-Tile):
         - HPS GSRD User Guide: embedded-designs/agilex-7/m-series/hbm2e/ug-gsrd-agx7m-hbm2e.md
         - PCIe Root Port User Guide: embedded-designs/agilex-7/m-series/pcie_rp/ug-pcie_rp-agx7m-hbm2e.md
@@ -378,6 +376,7 @@ nav:
         - SoC Fabric Configuration from Linux: embedded-designs/stratix-10/sx/soc/fabric-config/ug-linux-fabric-config-s10sx-soc.md
         - Secure Boot Tutorial Example Design User Guide: embedded-designs/stratix-10/sx/soc/security/secure-boot/hps-first/ug-secure-boot-hps-first-s10sx-soc.md
         - HPS Linux Boot System Example Design: embedded-designs/stratix-10/sx/soc/boot-examples/ug-linux-boot-s10-soc.md
+        - PCIe Root Port: embedded-designs/stratix-10/sx/soc/pcie-rp/ug-pcie-rp-s10-soc.md
     - Arria® 10:
       - SX SoC Development Kit: 
         - GSRD User Guide: embedded-designs/arria-10/sx/soc/gsrd/ug-gsrd-a10sx-soc.md

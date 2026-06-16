@@ -72,5 +72,5 @@ sudo bmaptool copy ${IMAGE} ${DEVICE}
 For example:
 
 ```
-sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aes1.wic.gz /dev/sda
+sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aea.wic.gz /dev/sda
 ```
