@@ -96,17 +96,17 @@ You can use the pre-built binaries for reference:
 
 | Boot Source | Link |
 | ---------------------------------- | ---- |
-| Pre-built microSD Card Image for SOF MDT Flow | [fpga-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz](https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/fpga-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz) |
-| Pre-built FPGA First `.sof` file | [fsbl_agilex5_modkit_vvpisp_time_limited.sof](https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/fsbl_agilex5_modkit_vvpisp_time_limited.sof) |
+| Pre-built microSD Card Image for SOF MDT Flow | [fpga-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz] |
+| Pre-built FPGA First `.sof` file | [fsbl_agilex5_modkit_vvpisp_time_limited.sof] |
 
 </center>
 
 ## HW Compilation
-Use the **[SOF Modular Design Toolkit (MDT) Flow](https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt)** to create and build the
+Use the **[SOF Modular Design Toolkit (MDT) Flow]** to create and build the
 FPGA Design.
 
 ## SW Compilation
-Use the **[Create microSD card image (.wic.gz) using YOCTO/KAS](https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/sw/README.md)** flow to
+Use the **[Create microSD card image (.wic.gz) using YOCTO/KAS]** flow to
 create the microSD card image.
 
 !!! NOTE "Note"
@@ -189,7 +189,7 @@ create the microSD card image.
   tar -xzf `<name>.wic.gz`
   ```
 
-  * On Windows, use the [7-Zip] program (or similar):
+  * On Windows, use the [7-Zip](https://www.7-zip.org) program (or similar):
     * Right click `<name>.wic.gz` file, and select "Extract All..."
 
 * Write the `<name>.wic` image to the microSD card using a USB writer:
@@ -205,7 +205,7 @@ create the microSD card image.
   sync
   ```
 
-  * On Windows, use the [Win32DiskImager] program (or similar):
+  * On Windows, use the [Win32DiskImager](https://sourceforge.net/projects/win32diskimager) program (or similar):
     * Click browse icon and select "\*.\*" filter:
 
     ![disk-imager-browse](../common/images/disk-imager-browse.png){:style="display:block; margin-left:auto; margin-right:auto"}

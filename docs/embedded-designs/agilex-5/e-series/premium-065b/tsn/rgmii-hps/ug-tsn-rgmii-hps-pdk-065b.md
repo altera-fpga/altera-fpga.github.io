@@ -139,7 +139,9 @@ There are two ways to test the design based on use case.
 
     <a id="UserFlow2"></a>
 
-* User Flow 2a: [Testing Complete Flow build GSRD 2.0](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#build-gsrd-20-binaries)
+* User Flow 2a: [Testing Complete Flow Rebuilt Binaries](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#rebuild-binaries)
+>[Note:]
+>Please refer to "Exercise Prebuilt Binaries" to program the binaries
 
 | User Flow | Description | Required for [Userflow#1](#UserFlow1) | Required for [Userflow#2](#UserFlow2) |
 | --- | --- | --- | --- |

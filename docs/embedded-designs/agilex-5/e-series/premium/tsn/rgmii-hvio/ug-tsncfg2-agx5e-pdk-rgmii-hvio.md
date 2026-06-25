@@ -104,8 +104,8 @@ Host PC with:
 *   Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.
 *   Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
 *   Altera&reg; Quartus&reg; Prime Pro Edition version. Used to recompile the hardware design. If only writing binaries is required, then the smaller Altera&reg; Quartus&reg; Prime Pro Edition Programmer is sufficient.
-*   The prebuilt binaries were built using Quartus version 24.3.1
-*   The instructions for rebuilding the binaries use Quartus version 24.3.1
+*   The prebuilt binaries were built using Quartus version 26.1
+*   The instructions for rebuilding the binaries use Quartus version 26.1
 *   Local Ethernet network, with DHCP server
 *   Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -193,11 +193,11 @@ In this design example, `gmac1` is routed to the FPGA IO and the corresponding d
 There are two ways to test the design based on use case. 
     <a id="UserFlow1"></a> 
  
-* User Flow 1: Testing with [Prebuilt Binaries](https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/). 
+* User Flow 1: Testing with [Prebuilt Binaries](https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/) and next to [Programming the binaries](#programming-the-binaries)
  
     <a id="UserFlow2"></a> 
  
-* User Flow 2: Testing Complete Flow.
+* User Flow 2: Testing Complete Flow. Start from [Tools Download and Installation](#tools-download-and-installation).
 
 | User Flow | Description | Required for [Userflow#1](#UserFlow1) | Required for [Userflow#2](#UserFlow2) |
 | --- | --- | --- | --- |
@@ -477,8 +477,9 @@ All the scenarios included in this release require a serial connection. This sec
 
 ```bash
 cd $TOP_FOLDER
-wget https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/ghrd.hps.jic
-quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
+wget https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 ```
 
 <h5> Using compiled image </h5>

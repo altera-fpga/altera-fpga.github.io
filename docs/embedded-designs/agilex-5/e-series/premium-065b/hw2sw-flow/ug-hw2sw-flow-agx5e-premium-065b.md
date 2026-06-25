@@ -20,7 +20,7 @@ The following figure shows the Yocto Project structure from the HPS Baseline Sys
 
 ![](images/flow-tut-002.png)
 
-This tutorial utilizes the [HPS Expansion Board (HPS-EB)](https://docs.altera.com/r/docs/814550/current/agilextm-5-fpga-e-series-065b-premium-development-kit-user-guide/hps-expansion-board-hps-eb?tocId=RnMgo4C4EyXZyqa%7ErswC8A) mounted on an Agilex™ 5 FPGA E-Series 065B Premium Development Kit. It employs an HPS-First, split-boot topology. In this configuration, the HPS is responsible for configuring the FPGA fabric logic. The First Stage Bootloader (FSBL) executes directly from onboard QSPI memory to initialize the system, while the Second Stage Bootloader (SSBL), Linux kernel, device tree, and root filesystem are subsequently loaded from a micro SD card.
+This tutorial utilizes the [HPS Expansion Board (HPS-EB)](https://docs.altera.com/r/docs/814550/current/agilex-5-fpga-e-series-065b-premium-development-kit-user-guide/hps-expansion-board-hps-eb?tocId=RnMgo4C4EyXZyqa%7ErswC8A) mounted on an Agilex™ 5 FPGA E-Series 065B Premium Development Kit. It employs an HPS-First, split-boot topology. In this configuration, the HPS is responsible for configuring the FPGA fabric logic. The First Stage Bootloader (FSBL) executes directly from onboard QSPI memory to initialize the system, while the Second Stage Bootloader (SSBL), Linux kernel, device tree, and root filesystem are subsequently loaded from a micro SD card.
 
 ### Tutorial Organization
 
@@ -71,8 +71,8 @@ To facilitate the identification of physical interfaces and jumpers mentioned th
 
 For users new to this hardware, it is critical to follow official handling and power-up procedures to avoid equipment damage. Please consult the following Altera documentation before proceeding:
 
-- **[Development Kit Setup](https://docs.altera.com/r/docs/814550/current/agilextm-5-fpga-e-series-065b-premium-development-kit-user-guide/development-kit-setup)**: Provides the essential steps for cabling, power-up, and initial configuration.
-- **[Getting Started](https://docs.altera.com/r/docs/814550/current/agilextm-5-fpga-e-series-065b-premium-development-kit-user-guide/getting-started)**: Offers critical instructions on **handling the board** safely and includes links to **install required software** dependencies and tools.
+- **[Development Kit Setup](https://docs.altera.com/r/docs/814550/current/agilex-5-fpga-e-series-065b-premium-development-kit-user-guide/development-kit-setup)**: Provides the essential steps for cabling, power-up, and initial configuration.
+- **[Getting Started](https://docs.altera.com/r/docs/814550/current/agilex-5-fpga-e-series-065b-premium-development-kit-user-guide/getting-started)**: Offers critical instructions on **handling the board** safely and includes links to **install required software** dependencies and tools.
 
 #### Host Software and Dependency Configuration
 

@@ -88,7 +88,6 @@ plugins:
   - glightbox
   - search:
       lang: en
-  - symlink
   - mike:      
       canonical_version: null
       version_selector: true
@@ -292,7 +291,7 @@ nav:
 
         - 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k/camera_4k.md
         - 4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k_ai/camera_4k_ai.md
-        - Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/holoscan-sensor-bridge/mipi/hsb-mipi-1-10GbE.md
+        - Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE-ES.md
         - 1x10G Ethernet System Example Design: embedded-designs/agilex-5/e-series/modular/ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g.md
         - TSN Examples:
           - HPS TSN SGMII XCVR System 3x2.5G Example Design User Guide: embedded-designs/agilex-5/e-series/modular/tsn/sgmii_xcvr_3x2.5G/ug-tsn-sgmii-xcvr-3x2.5G-agilex5.md
@@ -306,12 +305,15 @@ nav:
         - Drive-On-Chip with Functional Safety Design Example for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety.md
         - Drive-On-Chip with PLC Design Example for Agilex™ Devices: embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-plc.md
         - ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-crc.md
-        - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/modular-065b/boot-examples/ug-linux-boot-agx5e-modular-065b.md          
+        - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/modular-065b/boot-examples/ug-linux-boot-agx5e-modular-065b.md
+        - HPS PCIe Root Port: embedded-designs/agilex-5/e-series/modular-065b/pcie-rp/ug-pcie_rp-agx5e-modular-065b.md          
+        - Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE.md
       - E-Series 065A Modular Development Kit:
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular-065a/gsrd/ug-gsrd-agx5e-modular-065a.md
         - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/modular-065a/boot-examples/ug-linux-boot-agx5e-modular-065a.md
         - TSN Example:
           - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/modular-065a/tsn/rgmii-hps/ug-tsn-rgmii-hps-mdk-065a.md
+        - Holoscan Sensor Bridge MIPI to 25GbE System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065a/holoscan-sensor-bridge/mipi/hsb-mipi-25GbE.md
       - E-Series 013B Development Kit:
           - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/013B/gsrd/ug-gsrd-agx5e-013b.md
           - HPS GHRD Linux Boot Examples: embedded-designs/agilex-5/e-series/013B/boot-examples/ug-linux-boot-agx5e-013b.md
@@ -342,6 +344,7 @@ nav:
           - Nios V/g:
             - Nios® V/g Processor Floating Point Unit (FPU) Design: embedded-designs/agilex-7/f-series/soc/niosv/niosv_g/fpu_test/ug-fpu-agx7f-soc.md
             - Nios® V/g Processor Tightly Coupled Memory: embedded-designs/agilex-7/f-series/soc/niosv/niosv_g/tcm_mem_test/ug-tcm-mem-test-agx7f-soc.md
+        - HPS SGMII LVDS System Example Design User Guide: embedded-designs/agilex-7/f-series/soc/sgmii_lvds/ug-sgmii-hps-agx7f.md
       - F-Series FPGA Development Kit (P-Tile and E-Tile, Rev A): 
         - Nios V Processor Examples:
           - Nios V/g:

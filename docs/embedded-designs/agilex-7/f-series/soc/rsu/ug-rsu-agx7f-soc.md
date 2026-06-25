@@ -12,7 +12,7 @@ This page presents a complete Remote System Update example, running on the Agile
 - Creating an SD card with the following components.
   - U-Boot 
   - Arm* Trusted Firmware 
-  - f22Linux 
+  - Linux 
   - LIBRSU 
   - RSU client 
   - Application image 
@@ -627,13 +627,15 @@ After the build completes, which can take a few minutes, the following root file
 The ZLIB is required by LIBRSU. The following steps can be used to compile it.
 
 
+
 ```bash 
 cd $TOP_FOLDER
-rm -rf zlib-1.3.2
-wget http://zlib.net/zlib-1.3.2.tar.gz
-tar xf zlib-1.3.2.tar.gz
-rm zlib-1.3.2.tar.gz
-cd zlib-1.3.2/
+rm -rf zlib
+wget https://zlib.net/current/zlib.tar.gz
+tar xf zlib.tar.gz
+rm zlib.tar.gz
+mv zlib-* zlib
+cd zlib/
 export CROSS_PREFIX=${CROSS_COMPILE}
 ./configure
 make
@@ -644,10 +646,10 @@ cd ..
 
 After the above steps are completed, the following items are available.
 
-- $TOP_FOLDER/zlib-1.3.2/zlib.h - header file, used to compile files using zlib services 
-- $TOP_FOLDER/zlib-1.3.2/libz.so* - shared objects, used to run executables linked against zlib APIs 
+- $TOP_FOLDER/zlib/zlib.h - header file, used to compile files using zlib services 
+- $TOP_FOLDER/zlib/libz.so* - shared objects, used to run executables linked against zlib APIs 
 
-**Note**: The version of zlib mentioned above is the one that was tested with this release. You may want to use the latest zlib version, as it may contain updates and bug fixes. 
+**Note**: The version of zlib that was tested in this release was 1.3.2. The build instructions uses the latest version, which may differ with the one used here. 
 
 
 ### Building LIBRSU and RSU Client 
@@ -712,7 +714,7 @@ sudo cp $TOP_FOLDER/images/*.rpd root/
 sudo cp $TOP_FOLDER/intel-rsu/example/rsu_client root/
 sudo cp $TOP_FOLDER/intel-rsu/lib/librsu.so usr/lib/
 sudo cp $TOP_FOLDER/intel-rsu/etc/qspi.rc etc/librsu.rc
-sudo cp $TOP_FOLDER/zlib-1.3.2/libz.so* lib/
+sudo cp $TOP_FOLDER/zlib/libz.so* lib/
 cd ..
 # create sd card image
 sudo python3 ./make_sdimage_p3.py -f \

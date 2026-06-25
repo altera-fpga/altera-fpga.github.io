@@ -189,14 +189,14 @@ In this design example, `gmac1` is routed to the FPGA IO and the corresponding d
 
 ## User Flow 
  
-There are two ways to test the design based on use case. 
+There are two ways to test the design based on use case 
     <a id="UserFlow1"></a> 
  
-* User Flow 1: Testing with [Prebuilt Binaries](https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065ab32aea_tsn-rgmii-hvio/).  
+* User Flow 1: Testing with [Prebuilt Binaries](https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065ab32aea_tsn-rgmii-hvio/). Next steps is [Programming the binaries](#programming-the-binaries) 
  
     <a id="UserFlow2"></a> 
  
-* User Flow 2: Testing Complete Flow.
+* User Flow 2: Testing Complete Flow. Start from [Tools Download and Installation](#tools-download-and-installation).
 
 | User Flow | Description | Required for [Userflow#1](#UserFlow1) | Required for [Userflow#2](#UserFlow2) |
 | --- | --- | --- | --- |
@@ -235,10 +235,6 @@ export TOP_FOLDER=`pwd` # The $TOP_FOLDER must be defined for every fresh termin
 Note that this is installed in the `TOP_FOLDER`. You may installed this is in other location, but note the path and export it accordingly
 
 #### Install dependencies for SW compilation
-
-Please refer this page:
-[Build GSRD 2.0 Binaries](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065a/gsrd/ug-gsrd-agx5e-premium-065a/#build-gsrd-20-binaries) 
-
 
 2\. Set up the Quartus tools in the PATH, so they are accessible without full path.
 
@@ -280,16 +276,12 @@ The following file is created:
 
 The following page shows an overview of how the build process works for this use case:
 
-[Build GSRD 2.0 Binaries](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065a/gsrd/ug-gsrd-agx5e-premium-065a/#build-gsrd-20-binaries)
-
-Please take note on design naming for each design:
-* BUILD YOCTO USING KAS
-e.g baseline_a55.sof, tsn_cfg2.sof
-
-#### Copy the core.rbf file to where Kas expects it to be:
-```bash
-cp ../../output_files/ghrd.rbf $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/tsn_cfg2_hps_debug.core.rbf
-```
+Please refer this page:
+[Rebuild Binaries](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#rebuild-binaries) 
+>[Note:]
+>SKip "Build Hardware Design" and direct to "Build Yocto Using Kas" and rename the design file as below
+$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf to 
+$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/tsn_cfg2_hps_debug.core.rbf
 
 #### Build QSPI Image
 ```bash
