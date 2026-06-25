@@ -4465,7 +4465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../modular/holoscan-sensor-bridge/mipi/hsb-mipi-1-10GbE/" class="md-nav__link">
+      <a href="../../../modular/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE-ES/" class="md-nav__link">
         Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices
       </a>
     </li>
@@ -4576,6 +4576,10 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_5" >
       
       
+        
+          
+        
+          
         
           
         
@@ -4757,6 +4761,34 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modular-065b/pcie-rp/ug-pcie_rp-agx5e-modular-065b/" class="md-nav__link">
+        HPS PCIe Root Port
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modular-065b/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE/" class="md-nav__link">
+        Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -4778,6 +4810,8 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_6" >
       
       
+        
+          
         
           
         
@@ -4874,6 +4908,20 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../modular-065a/holoscan-sensor-bridge/mipi/hsb-mipi-25GbE/" class="md-nav__link">
+        Holoscan Sensor Bridge MIPI to 25GbE System Example Design for Agilex™ 5 Devices
+      </a>
     </li>
   
 
@@ -5118,6 +5166,8 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_4_1" >
       
       
+        
+          
         
           
         
@@ -5498,6 +5548,20 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-7/f-series/soc/sgmii_lvds/ug-sgmii-hps-agx7f/" class="md-nav__link">
+        HPS SGMII LVDS System Example Design User Guide
+      </a>
     </li>
   
 
@@ -7255,7 +7319,7 @@
 </table>
 <p>The following figure shows the Yocto Project structure from the HPS Baseline System Example Design, highlighting the "hooks" or layers where custom recipes and kernel configuration changes (such as .scc configuration files) are performed to bind the new hardware to the UIO driver.</p>
 <p><a class="glightbox" href="../images/flow-tut-002.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/flow-tut-002.png" /></a></p>
-<p>This tutorial utilizes the <a href="https://docs.altera.com/r/docs/814550/current/agilextm-5-fpga-e-series-065b-premium-development-kit-user-guide/hps-expansion-board-hps-eb?tocId=RnMgo4C4EyXZyqa%7ErswC8A">HPS Expansion Board (HPS-EB)</a> mounted on an Agilex™ 5 FPGA E-Series 065B Premium Development Kit. It employs an HPS-First, split-boot topology. In this configuration, the HPS is responsible for configuring the FPGA fabric logic. The First Stage Bootloader (FSBL) executes directly from onboard QSPI memory to initialize the system, while the Second Stage Bootloader (SSBL), Linux kernel, device tree, and root filesystem are subsequently loaded from a micro SD card.</p>
+<p>This tutorial utilizes the <a href="https://docs.altera.com/r/docs/814550/current/agilex-5-fpga-e-series-065b-premium-development-kit-user-guide/hps-expansion-board-hps-eb?tocId=RnMgo4C4EyXZyqa%7ErswC8A">HPS Expansion Board (HPS-EB)</a> mounted on an Agilex™ 5 FPGA E-Series 065B Premium Development Kit. It employs an HPS-First, split-boot topology. In this configuration, the HPS is responsible for configuring the FPGA fabric logic. The First Stage Bootloader (FSBL) executes directly from onboard QSPI memory to initialize the system, while the Second Stage Bootloader (SSBL), Linux kernel, device tree, and root filesystem are subsequently loaded from a micro SD card.</p>
 <h3 id="tutorial-organization">Tutorial Organization<a class="headerlink" href="#tutorial-organization" title="Permanent link">&para;</a></h3>
 <p>The tutorial follows a progressive building-block approach, where each section validates a deeper layer of the system.</p>
 <h4 id="level-1-hardware-integration-and-low-level-validation">Level 1: Hardware Integration and Low-Level Validation<a class="headerlink" href="#level-1-hardware-integration-and-low-level-validation" title="Permanent link">&para;</a></h4>
@@ -7298,8 +7362,8 @@
 <p><a class="glightbox" href="../images/flow-tut-003.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/flow-tut-003.png" /></a></p>
 <p>For users new to this hardware, it is critical to follow official handling and power-up procedures to avoid equipment damage. Please consult the following Altera documentation before proceeding:</p>
 <ul>
-<li><strong><a href="https://docs.altera.com/r/docs/814550/current/agilextm-5-fpga-e-series-065b-premium-development-kit-user-guide/development-kit-setup">Development Kit Setup</a></strong>: Provides the essential steps for cabling, power-up, and initial configuration.</li>
-<li><strong><a href="https://docs.altera.com/r/docs/814550/current/agilextm-5-fpga-e-series-065b-premium-development-kit-user-guide/getting-started">Getting Started</a></strong>: Offers critical instructions on <strong>handling the board</strong> safely and includes links to <strong>install required software</strong> dependencies and tools.</li>
+<li><strong><a href="https://docs.altera.com/r/docs/814550/current/agilex-5-fpga-e-series-065b-premium-development-kit-user-guide/development-kit-setup">Development Kit Setup</a></strong>: Provides the essential steps for cabling, power-up, and initial configuration.</li>
+<li><strong><a href="https://docs.altera.com/r/docs/814550/current/agilex-5-fpga-e-series-065b-premium-development-kit-user-guide/getting-started">Getting Started</a></strong>: Offers critical instructions on <strong>handling the board</strong> safely and includes links to <strong>install required software</strong> dependencies and tools.</li>
 </ul>
 <h4 id="host-software-and-dependency-configuration">Host Software and Dependency Configuration<a class="headerlink" href="#host-software-and-dependency-configuration" title="Permanent link">&para;</a></h4>
 <p>Install the required software dependencies for the Kas and Yocto build system. For Ubuntu 22.04 LTS, execute the following commands:</p>
@@ -8777,7 +8841,7 @@ As a result, <code>$CDW/output_files/baseline_a55.sof</code> bitstream is create
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 9, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 25, 2026</span>
       
         <br>
         Created:

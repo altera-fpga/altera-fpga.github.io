@@ -3675,13 +3675,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#copy-the-corerbf-file-to-where-kas-expects-it-to-be" class="md-nav__link">
-    Copy the core.rbf file to where Kas expects it to be:
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#build-qspi-image" class="md-nav__link">
     Build QSPI Image
   </a>
@@ -4142,7 +4135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular/holoscan-sensor-bridge/mipi/hsb-mipi-1-10GbE/" class="md-nav__link">
+      <a href="../../../../modular/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE-ES/" class="md-nav__link">
         Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices
       </a>
     </li>
@@ -4253,6 +4246,10 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_5" >
       
       
+        
+          
+        
+          
         
           
         
@@ -4434,6 +4431,34 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../modular-065b/pcie-rp/ug-pcie_rp-agx5e-modular-065b/" class="md-nav__link">
+        HPS PCIe Root Port
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../modular-065b/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE/" class="md-nav__link">
+        Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -4455,6 +4480,8 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_6" >
       
       
+        
+          
         
           
         
@@ -4551,6 +4578,20 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../modular-065a/holoscan-sensor-bridge/mipi/hsb-mipi-25GbE/" class="md-nav__link">
+        Holoscan Sensor Bridge MIPI to 25GbE System Example Design for Agilex™ 5 Devices
+      </a>
     </li>
   
 
@@ -4795,6 +4836,8 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_4_1" >
       
       
+        
+          
         
           
         
@@ -5175,6 +5218,20 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/soc/sgmii_lvds/ug-sgmii-hps-agx7f/" class="md-nav__link">
+        HPS SGMII LVDS System Example Design User Guide
+      </a>
     </li>
   
 
@@ -6411,13 +6468,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#copy-the-corerbf-file-to-where-kas-expects-it-to-be" class="md-nav__link">
-    Copy the core.rbf file to where Kas expects it to be:
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#build-qspi-image" class="md-nav__link">
     Build QSPI Image
   </a>
@@ -6677,8 +6727,8 @@ Refer to <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex
 <li>Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.</li>
 <li>Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
 <li>Altera&reg; Quartus&reg; Prime Pro Edition version. Used to recompile the hardware design. If only writing binaries is required, then the smaller Altera&reg; Quartus&reg; Prime Pro Edition Programmer is sufficient.</li>
-<li>The prebuilt binaries were built using Quartus version 24.3.1</li>
-<li>The instructions for rebuilding the binaries use Quartus version 24.3.1</li>
+<li>The prebuilt binaries were built using Quartus version 26.1</li>
+<li>The instructions for rebuilding the binaries use Quartus version 26.1</li>
 <li>Local Ethernet network, with DHCP server</li>
 <li>Internet connection. For downloading the files, especially when rebuilding the GSRD.</li>
 </ul>
@@ -6761,11 +6811,11 @@ There is no register map access needed as the hps_gmii conduit interface will co
 <p>There are two ways to test the design based on use case. 
     <a id="UserFlow1"></a> </p>
 <ul>
-<li>User Flow 1: Testing with <a href="https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aea_tsn-rgmii-hvio/">Prebuilt Binaries</a>.  <p><a id="UserFlow2"></a> </p>
+<li>User Flow 1: Testing with <a href="https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aea_tsn-rgmii-hvio/">Prebuilt Binaries</a> and next to <a href="#programming-the-binaries">Programming the binaries</a><p><a id="UserFlow2"></a> </p>
 </li>
 </ul>
 <ul>
-<li>User Flow 2: Testing Complete Flow.</li>
+<li>User Flow 2: Testing Complete Flow. Start from <a href="#tools-download-and-installation">Tools Download and Installation</a>.</li>
 </ul>
 <table>
 <thead>
@@ -6854,8 +6904,6 @@ There is no register map access needed as the hps_gmii conduit interface will co
 </code></pre></div>
 <p>Note that this is installed in the <code>TOP_FOLDER</code>. You may installed this is in other location, but note the path and export it accordingly</p>
 <h4 id="install-dependencies-for-sw-compilation">Install dependencies for SW compilation<a class="headerlink" href="#install-dependencies-for-sw-compilation" title="Permanent link">&para;</a></h4>
-<p>Please refer this page:
-<a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#build-gsrd-20-binaries">Build GSRD 2.0 Binaries</a> </p>
 <p>2. Set up the Quartus tools in the PATH, so they are accessible without full path.</p>
 <p>Note: The following must be re-done for fresh terminal session</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/altera_pro/26.1/quartus/
@@ -6883,23 +6931,24 @@ There is no register map access needed as the hps_gmii conduit interface will co
 </ul>
 <h4 id="software-compilation-flow">Software Compilation Flow<a class="headerlink" href="#software-compilation-flow" title="Permanent link">&para;</a></h4>
 <p>The following page shows an overview of how the build process works for this use case:</p>
-<p><a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#build-gsrd-20-binaries">Build GSRD 2.0 Binaries</a></p>
-<p>Please take note on design naming for each design:
-* BUILD YOCTO USING KAS
-e.g baseline_a55.sof, tsn_cfg2.sof</p>
-<h4 id="copy-the-corerbf-file-to-where-kas-expects-it-to-be">Copy the core.rbf file to where Kas expects it to be:<a class="headerlink" href="#copy-the-corerbf-file-to-where-kas-expects-it-to-be" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cp<span class="w"> </span>../../output_files/ghrd.rbf<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/tsn_cfg2_hps_debug.core.rbf
-</code></pre></div>
+<p>Please refer this page:
+<a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#rebuild-binaries">Rebuild Binaries</a> </p>
+<blockquote>
+<p>[Note:]
+SKip "Build Hardware Design" and direct to "Build Yocto Using Kas" and rename the design file as below
+$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf to 
+$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/tsn_cfg2_hps_debug.core.rbf</p>
+</blockquote>
 <h4 id="build-qspi-image">Build QSPI Image<a class="headerlink" href="#build-qspi-image" title="Permanent link">&para;</a></h4>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>tsn_cfg2.hps.jic<span class="w"> </span>tsn_cfg2.core.rbf
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/tsn_cfg2.sof<span class="w"> </span>tsn_cfg2.jic<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU128<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A5ED065BB32AE6SR0<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>tsn_cfg2.hps.jic<span class="w"> </span>tsn_cfg2.core.rbf
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/tsn_cfg2.sof<span class="w"> </span>tsn_cfg2.jic<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU128<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A5ED065BB32AE6SR0<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 The following file is created:</p>
 <ul>
@@ -6944,17 +6993,17 @@ The following file is created:</p>
 <ul>
 <li>Download and extract the JIC image, then write it to QSPI</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aea_tsn-rgmii-hvio/ghrd.hps.jic
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;ghrd.hps.jic&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aea_tsn-rgmii-hvio/ghrd.hps.jic
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;ghrd.hps.jic&quot;</span>
 </code></pre></div>
 <h5> Using compiled image </h5>
 
 <ul>
 <li>Write JIC image to QSPI:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;tsn_cfg2.hps.jic&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;tsn_cfg2.hps.jic&quot;</span>
 </code></pre></div>
 <h4 id="programming-software-image">Programming Software Image<a class="headerlink" href="#programming-software-image" title="Permanent link">&para;</a></h4>
 <h5>For Prebuilt:</h5>
@@ -6974,13 +7023,13 @@ The following file is created:</p>
 <ul>
 <li>On Linux, use the <code>dd</code> utility as shown next:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="cp"># Determine the device associated with the SD card on the host computer.</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">partitions</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="cp"># This will return for example /dev/sdx</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="cp"># Use dd to write the image in the corresponding device</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">sudo</span><span class="w"> </span><span class="n">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=</span><span class="n">gsrd</span><span class="o">-</span><span class="n">console</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">agilex5_devkit</span><span class="p">.</span><span class="n">wic</span><span class="w"> </span><span class="n">of</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdx</span><span class="w"> </span><span class="n">bs</span><span class="o">=</span><span class="mi">1</span><span class="n">M</span>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="cp"># Flush the changes to the SD card</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="n">sync</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="cp"># Determine the device associated with the SD card on the host computer.</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">partitions</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="cp"># This will return for example /dev/sdx</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="cp"># Use dd to write the image in the corresponding device</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">sudo</span><span class="w"> </span><span class="n">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=</span><span class="n">gsrd</span><span class="o">-</span><span class="n">console</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">agilex5_devkit</span><span class="p">.</span><span class="n">wic</span><span class="w"> </span><span class="n">of</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdx</span><span class="w"> </span><span class="n">bs</span><span class="o">=</span><span class="mi">1</span><span class="n">M</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="cp"># Flush the changes to the SD card</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">sync</span>
 </code></pre></div>
 <ul>
 <li>On Windows, use the Win32DiskImager program. For this, first rename the extension of gsrd-console-image-agilex5_devkit.wic to an <strong>.img</strong> file (sdcard.img for example) and write the image as shown in the next figure:</li>
@@ -7019,37 +7068,37 @@ The following file is created:</p>
 <p>The following examples are demonstrated using 2 units of the Agilex 5 platform.  Please take note of the notation "[Board A or B]". The following steps assumes both platforms are connected to each other via an Ethernet connection.</p>
 <p>1. Boot to Linux</p>
 <p>2. Navigate to the <code>tsn</code> directory</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span>tsn
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span>tsn
 </code></pre></div>
 <h5>Configuration for Both Boards</h5>
 
 <h6>Step I: Setup Environment Path on Both Boards</h6>
 
 <p>3. Board A</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LIBXDP_OBJECT_PATH</span><span class="o">=</span>/usr/lib64/bpf
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/lib/custom_bpf/lib<span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LIBXDP_OBJECT_PATH</span><span class="o">=</span>/usr/lib64/bpf
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/lib/custom_bpf/lib<span class="w"> </span>
 </code></pre></div>
 <p>4. Board B</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LIBXDP_OBJECT_PATH</span><span class="o">=</span>/usr/lib64/bpf
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/lib/custom_bpf/lib<span class="w"> </span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LIBXDP_OBJECT_PATH</span><span class="o">=</span>/usr/lib64/bpf
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/lib/custom_bpf/lib<span class="w"> </span>
 </code></pre></div>
 <h5>TXRX-TSN App</h5>
 
 <h6>Step II: Run Configuration Script</h6>
 
 <p>5. Board A: Run the configuration script and wait for it to configure the IP and MAC address, start clock synchronization, and set up TAPRIO qdisc.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>./run.sh<span class="w"> </span>agilex5<span class="w"> </span>eth0<span class="w"> </span>vs1a<span class="w"> </span>setup
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>./run.sh<span class="w"> </span>agilex5<span class="w"> </span>eth0<span class="w"> </span>vs1a<span class="w"> </span>setup
 </code></pre></div>
 <p>6. Board B: Run the configuration script and wait for it to configure the IP and MAC address, start clock synchronization, and set up ingress qdiscs.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>./run.sh<span class="w"> </span>agilex5<span class="w"> </span>eth0<span class="w"> </span>vs1b<span class="w"> </span>setup
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>./run.sh<span class="w"> </span>agilex5<span class="w"> </span>eth0<span class="w"> </span>vs1b<span class="w"> </span>setup
 </code></pre></div>
 <h6>Step III: Start the Application</h6>
 
 <p>7. Board B: Run the application.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>./run.sh<span class="w"> </span>agilex5<span class="w"> </span>eth0<span class="w"> </span>vs1b<span class="w"> </span>run
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>./run.sh<span class="w"> </span>agilex5<span class="w"> </span>eth0<span class="w"> </span>vs1b<span class="w"> </span>run
 </code></pre></div>
 <p>8. Board A: Immediately after starting the application on Board B, run the application on Board A.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>./run.sh<span class="w"> </span>agilex5<span class="w"> </span>eth0<span class="w"> </span>vs1a<span class="w"> </span>run
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>./run.sh<span class="w"> </span>agilex5<span class="w"> </span>eth0<span class="w"> </span>vs1a<span class="w"> </span>run
 </code></pre></div>
 <h5>Post-Test Procedure</h5>
 <p>Once the test is completed, copy the following files from Board B (listener) to the host machine:</p>
@@ -7070,57 +7119,57 @@ The following file is created:</p>
 <p>You may use the following command guide to perform time synchronization on the Agilex&trade; 5 system using PTP4L and PHC2SYS, and to obtain delay values</p>
 <p><strong>End-to-End PTP master and slave synchronization</strong></p>
 <ul>
-<li>Board B (as slave):<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-s<span class="w"> </span>-H<span class="w"> </span>-E<span class="w"> </span>-2<span class="w"> </span>-m
+<li>Board B (as slave):<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-s<span class="w"> </span>-H<span class="w"> </span>-E<span class="w"> </span>-2<span class="w"> </span>-m
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>-i  eth0: This option specifies the `eth0` as the network interface to use for PTP.
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>-s  This option enables the slave-only mode. 
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>-H  This option enables hardware time stamping. 
-<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>-E  This option selects the end-to-end (E2E) delay measurement mechanism. This is the default.The E2E mechanism is also referred to as the delay “request-response” mechanism.
-<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>-2  Use Ethernet Layer (L2)
-<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>-m  This option enables printing of messages to the standard output.
-</code></pre></div>
-</li>
-</ul>
-<ul>
-<li>Boards A (as master):<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-H<span class="w"> </span>-E<span class="w"> </span>-2<span class="w"> </span>-m
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>-i  eth0: This option specifies the `eth0` as the network interface to use for PTP.
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>-s  This option enables the slave-only mode. 
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>-H  This option enables hardware time stamping. 
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>-E  This option selects the end-to-end (E2E) delay measurement mechanism. This is the default.The E2E mechanism is also referred to as the delay “request-response” mechanism.
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>-2  Use Ethernet Layer (L2)
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>-m  This option enables printing of messages to the standard output.
 </code></pre></div>
 </li>
 </ul>
 <ul>
-<li>At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>phc2sys<span class="w"> </span>-s<span class="w"> </span>eth0<span class="w"> </span>-w<span class="w"> </span>-m<span class="w"> </span>-c<span class="w"> </span>CLOCK_REALTIME<span class="w"> </span>-O<span class="w"> </span><span class="m">0</span><span class="w"> </span>-n<span class="w"> </span><span class="m">0</span>
+<li>Boards A (as master):<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-H<span class="w"> </span>-E<span class="w"> </span>-2<span class="w"> </span>-m
+</code></pre></div>
+</li>
+</ul>
+<ul>
+<li>At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>phc2sys<span class="w"> </span>-s<span class="w"> </span>eth0<span class="w"> </span>-w<span class="w"> </span>-m<span class="w"> </span>-c<span class="w"> </span>CLOCK_REALTIME<span class="w"> </span>-O<span class="w"> </span><span class="m">0</span><span class="w"> </span>-n<span class="w"> </span><span class="m">0</span>
 </code></pre></div>
 </li>
 </ul>
 <p><strong>Peer-to-Peer PTP synchronization</strong>:</p>
 <ul>
 <li>Board B (as slave):
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>slave:<span class="w"> </span>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-s<span class="w"> </span>-H<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-m
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>slave:<span class="w"> </span>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-s<span class="w"> </span>-H<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-m
 </code></pre></div><p>-P: This option enables the use of the Peer Delay Mechanism.</p>
 </li>
 </ul>
 <ul>
 <li>Board A (as master):
-    <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>master:<span class="w"> </span>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-H<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-m
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>master:<span class="w"> </span>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-H<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-m
 </code></pre></div></li>
 </ul>
 <ul>
-<li>At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>phc2sys<span class="w"> </span>-s<span class="w"> </span>eth0<span class="w"> </span>-w<span class="w"> </span>-m<span class="w"> </span>-c<span class="w"> </span>CLOCK_REALTIME<span class="w"> </span>-O<span class="w"> </span><span class="m">0</span><span class="w"> </span>-n<span class="w"> </span><span class="m">0</span>
+<li>At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>phc2sys<span class="w"> </span>-s<span class="w"> </span>eth0<span class="w"> </span>-w<span class="w"> </span>-m<span class="w"> </span>-c<span class="w"> </span>CLOCK_REALTIME<span class="w"> </span>-O<span class="w"> </span><span class="m">0</span><span class="w"> </span>-n<span class="w"> </span><span class="m">0</span>
 </code></pre></div>
 </li>
 </ul>
 <p><strong>gPTP synchronization</strong>:</p>
 <ul>
-<li>Board B (as slave):<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-s<span class="w"> </span>-H<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-m<span class="w"> </span>--transportSpecific<span class="o">=</span><span class="m">1</span>
+<li>Board B (as slave):<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-s<span class="w"> </span>-H<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-m<span class="w"> </span>--transportSpecific<span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 </li>
 </ul>
 <ul>
-<li>Board A (as master): <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-H<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-m<span class="w"> </span>--transportSpecific<span class="o">=</span><span class="m">1</span>
+<li>Board A (as master): <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>ptp4l<span class="w"> </span>-i<span class="w"> </span>eth0<span class="w">  </span>-H<span class="w"> </span>-P<span class="w"> </span>-2<span class="w"> </span>-m<span class="w"> </span>--transportSpecific<span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 </li>
 </ul>
 <ul>
-<li>At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>phc2sys<span class="w"> </span>-s<span class="w"> </span>eth0<span class="w"> </span>-w<span class="w"> </span>-m<span class="w"> </span>--transportSpecific<span class="w"> </span><span class="m">1</span><span class="w"> </span>-c<span class="w"> </span>CLOCK_REALTIME<span class="w"> </span>-O<span class="w"> </span><span class="m">0</span><span class="w"> </span>-n<span class="w"> </span><span class="m">0</span>
+<li>At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>phc2sys<span class="w"> </span>-s<span class="w"> </span>eth0<span class="w"> </span>-w<span class="w"> </span>-m<span class="w"> </span>--transportSpecific<span class="w"> </span><span class="m">1</span><span class="w"> </span>-c<span class="w"> </span>CLOCK_REALTIME<span class="w"> </span>-O<span class="w"> </span><span class="m">0</span><span class="w"> </span>-n<span class="w"> </span><span class="m">0</span>
 </code></pre></div>
 </li>
 </ul>
@@ -7169,7 +7218,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 6, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 25, 2026</span>
       
         <br>
         Created:

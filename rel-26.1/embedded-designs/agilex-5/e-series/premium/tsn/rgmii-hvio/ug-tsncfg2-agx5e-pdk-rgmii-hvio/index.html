@@ -4189,7 +4189,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular/holoscan-sensor-bridge/mipi/hsb-mipi-1-10GbE/" class="md-nav__link">
+      <a href="../../../../modular/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE-ES/" class="md-nav__link">
         Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices
       </a>
     </li>
@@ -4300,6 +4300,10 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_5" >
       
       
+        
+          
+        
+          
         
           
         
@@ -4481,6 +4485,34 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../modular-065b/pcie-rp/ug-pcie_rp-agx5e-modular-065b/" class="md-nav__link">
+        HPS PCIe Root Port
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../modular-065b/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE/" class="md-nav__link">
+        Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -4502,6 +4534,8 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_6" >
       
       
+        
+          
         
           
         
@@ -4598,6 +4632,20 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../modular-065a/holoscan-sensor-bridge/mipi/hsb-mipi-25GbE/" class="md-nav__link">
+        Holoscan Sensor Bridge MIPI to 25GbE System Example Design for Agilex™ 5 Devices
+      </a>
     </li>
   
 
@@ -4842,6 +4890,8 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_4_1" >
       
       
+        
+          
         
           
         
@@ -5222,6 +5272,20 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../../agilex-7/f-series/soc/sgmii_lvds/ug-sgmii-hps-agx7f/" class="md-nav__link">
+        HPS SGMII LVDS System Example Design User Guide
+      </a>
     </li>
   
 
@@ -6771,8 +6835,8 @@ Refer to <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex
 <li>Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.</li>
 <li>Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
 <li>Altera&reg; Quartus&reg; Prime Pro Edition version. Used to recompile the hardware design. If only writing binaries is required, then the smaller Altera&reg; Quartus&reg; Prime Pro Edition Programmer is sufficient.</li>
-<li>The prebuilt binaries were built using Quartus version 24.3.1</li>
-<li>The instructions for rebuilding the binaries use Quartus version 24.3.1</li>
+<li>The prebuilt binaries were built using Quartus version 26.1</li>
+<li>The instructions for rebuilding the binaries use Quartus version 26.1</li>
 <li>Local Ethernet network, with DHCP server</li>
 <li>Internet connection. For downloading the files, especially when rebuilding the GSRD.</li>
 </ul>
@@ -6855,11 +6919,11 @@ There is no register map access needed as the hps_gmii conduit interface will co
 <p>There are two ways to test the design based on use case. 
     <a id="UserFlow1"></a> </p>
 <ul>
-<li>User Flow 1: Testing with <a href="https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/">Prebuilt Binaries</a>. <p><a id="UserFlow2"></a> </p>
+<li>User Flow 1: Testing with <a href="https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/">Prebuilt Binaries</a> and next to <a href="#programming-the-binaries">Programming the binaries</a><p><a id="UserFlow2"></a> </p>
 </li>
 </ul>
 <ul>
-<li>User Flow 2: Testing Complete Flow.</li>
+<li>User Flow 2: Testing Complete Flow. Start from <a href="#tools-download-and-installation">Tools Download and Installation</a>.</li>
 </ul>
 <table>
 <thead>
@@ -7115,8 +7179,9 @@ There is no register map access needed as the hps_gmii conduit interface will co
 <li>Download and extract the JIC image, then write it to QSPI</li>
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/ghrd.hps.jic
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;ghrd.hps.jic&quot;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>tar<span class="w"> </span>xf<span class="w"> </span>ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;ghrd_a5ed065bb32ae6sr0.hps.jic&quot;</span>
 </code></pre></div>
 <h5> Using compiled image </h5>
 
@@ -7337,7 +7402,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 6, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 25, 2026</span>
       
         <br>
         Created:
