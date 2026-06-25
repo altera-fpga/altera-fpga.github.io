@@ -12,7 +12,7 @@ The hard processor system (HPS) clock generation is centralized in the clock man
 
 ![clock_manager_diagram](images/clock_manager_diagram.png)
 
-For more information please refer to the [Altera® Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
+For more information please refer to the [Intel Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
 
 ## **Driver Sources**
 

@@ -15,7 +15,7 @@ The following diagram shows the interaction between Zephyr/OS and Secure Monitor
 ![psci_diagram](images/psci_diagram.png)
 
 
-For More information please refer to the [Altera® Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
+For More information please refer to the [Intel Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
 
 ## **Driver Sources**
 

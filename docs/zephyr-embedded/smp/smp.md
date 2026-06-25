@@ -14,7 +14,7 @@ Zephyr sends “CPU_ON” and “CPU_OFF” functions via PSCI SMC to ATF BL31 t
 
 The below diagram shows HPS SMP flow (CPU_ON and CPU_OFF) supported by Zephyr:
 
-For More information please refer to the [Altera® Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
+For More information please refer to the [Intel Agilex 5 Hard Processor System Technical Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/814346).
 
 ## **Driver Sources**
 

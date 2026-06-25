@@ -1,6 +1,6 @@
 ## Using Separate SSBL Per Bitstream
 
-When using Remote System Update on Stratix® 10, Agilex™ 7, Agilex™ 5, Agilex™ 3 and N5X™ devices, each configuration bitstream from QSPI contains the HPS FSBL (First Stage Bootloader), specifically U-Boot SPL. In order to allow the most flexibility and compatibility, you must design your system so that each bitstream loads its own copy of the HPS SSBL, specifically U-Boot image.
+When using Remote System Update on Stratix® 10, Agilex™ 7, Agilex™ 5 and N5X™ devices, each configuration bitstream from QSPI contains the HPS FSBL (First Stage Bootloader), specifically U-Boot SPL. In order to allow the most flexibility and compatibility, you must design your system so that each bitstream loads its own copy of the HPS SSBL, specifically U-Boot image.
 
 This page presents details on how to achieve this for both the cases when U-Boot images are stored in QSPI flash, and when they are stored in SD card. 
 
@@ -12,8 +12,6 @@ Refer to the following documents for details about the Remote System Update.
 
 **Note:** In the scenario in which both SPTs tables are corrupted, U-Boot will fail to be launched because the FSBL won't be able to identify which SSBL needs to be launched since the partition information is kept in SPT tables.
 
-**Note:**  Agilex™ 3 HPS Remote System Update User Guide will be released soon.
-
 ### Configuring U-Boot for Separate U-Boot Images
 
 In order to configure U-Boot to support one U-Boot image per bitstream, the following configuration option must be enabled.
@@ -22,7 +20,7 @@ In order to configure U-Boot to support one U-Boot image per bitstream, the foll
 CONFIG_SOCFPGA_RSU_MULTIBOOT=y
 ```
 
-This configuration option is defined in [https://github.com/altera-opensource/u-boot-socfpga/blob/socfpga_v2023.04/arch/arm/mach-socfpga/Kconfig](https://github.com/altera-opensource/u-boot-socfpga/blob/socfpga_v2023.04/arch/arm/mach-socfpga/Kconfig) as follows.
+This configuration option is defined in https://github.com/altera-opensource/u-boot-socfpga/blob/socfpga_v2023.04/arch/arm/mach-socfpga/Kconfig as follows.
 
 ```bash
 config SOCFPGA_RSU_MULTIBOOT
@@ -63,7 +61,7 @@ Application image update procedure needs to be updated as follows.
 
 **Steps to Rebuild Binaries compared with regular RSU build flow**
 
-1. Hardware design, ATF, Linux, File System are built in the same way.
+1. GHRD, ATF, Linux, File System are built in the same way.
 2. U-Boot is build adding **CONFIG_SOCFPGA_RSU_MULTIBOOT=y** to the **config-fragment-&lt;device&gt;** file. An independent U-Boot build is performed for each application. Name corresponding **u-boot.itb** as **u-boot_FACTORY_IMAGE.itb**, **u-boot_P1.itb**, **u-boot_P2.itb** and **u-boot_P3.itb**.
 3. Modify **initial_image.pfg** to include the proper new FSBLs for Bitstream 1 (FACTORY_IMAGE application) and Bitstream 2 (P1 application). 
 4. Generate the new **initial_image.jic** using the modified **initial_image.pfg** file.
@@ -98,16 +96,16 @@ Application image update procedure needs to be updated as follows.
 
 **Steps to Rebuild Binaries compared with regular RSU build flow**
 
-1. Hardware design, ATF, Linux, File System are built in the same way.
+1. GHRD, ATF, Linux, File System are built in the same way.
 2. U-Boot is build adding the following setting to the **config-fragment-&lt;device&gt;** file.
 ```bash
 CONFIG_SOCFPGA_RSU_MULTIBOOT=y
 CONFIG_ENV_OFFSET=0x10000
 CONFIG_ENV_SECT_SIZE=0x10000
 ```
-and updating **arch/arm/dts/socfpga_&lt;device&gt;_socdk-u-boot.dtsi** file to find the U-Boot FSBL in QSPI as indicated next.
+and updating **arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi** file to find the U-Boot FSBL in QSPI as indicated next.
 ```bash
-sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&flash0;/g' arch/arm/dts/socfpga_<device>_socdk-u-boot.dtsi
+sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&flash0;/g' arch/arm/dts/socfpga_agilex_socdk-u-boot.dtsi
 ```
 For each application, a specific U-Boot is required to be built. Name corresponding **u-boot.itb** as **u-boot_FACTORY_IMAGE.bin**, **u-boot_P1.bin**, **u-boot_P2.bin** and **u-boot_P3.bin**.
 

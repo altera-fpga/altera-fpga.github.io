@@ -1,8 +1,6 @@
-
-
 ##  Introduction
 
-Altera offers an integrated set of System Level Debug (SLD) tools, including:
+Intel offers an integrated set of System Level Debug (SLD) tools, including:
 
 * SignalTap II Logic Analyzer
 * In-System Sources and Probes (ISSP),
@@ -61,13 +59,13 @@ The following are required:
 * Altera Agilex&trade; 7 FPGA F-Series Transceiver-SoC Development Kit (Production 1 P-Tiles & E-Tiles) ordering code DK-SI-AGF014EB.
   * SD/MMC HPS Daughtercard
   * Mini USB cable for serial output
-  * Micro USB cable for on-board Altera®; FPGA Download Cable II
+  * Micro USB cable for on-board Intel&reg; FPGA Download Cable II
   * Micro SD card
 * Host PC with:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1
+  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -91,22 +89,14 @@ Download the compiler toolchain, add it to the PATH variable, to be used by the 
 
 ```bash
 cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
-arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
+wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
+gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
-
-Enable Quartus tools to be called from command line:
-
-
-```bash
-source ~/altera_pro/26.1/qinit.sh
-```
-
 
 
 
@@ -119,40 +109,29 @@ The hardware design is based on the GSRD, just that the JOP component is added, 
 
 ```bash
 cd $TOP_FOLDER
-rm -rf agilex7f-ed-gsrd
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
-unzip QPDS26.1_REL_GSRD_PR.zip
-rm QPDS26.1_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR agilex7f-ed-gsrd
-cd agilex7f-ed-gsrd
-make agf014eb-si-devkit-oobe-baseline-generate-design
+rm -rf ghrd-socfpga agilex_soc_devkit_ghrd
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+mv ghrd-socfpga/agilex_soc_devkit_ghrd .
+rm -rf ghrd-socfpga
 cd agilex_soc_devkit_ghrd
-base64 -d << EOT | gunzip > agilex7-ghrd-add-jop.tcl
-H4sIADRT1GkCA62U3W6CQBCF73mKjQ+AtFHTXhqhlVSr8SdtejNZYVR0YVd2tRriu3ehWppCgjaS
-EAic+eYww4whqLemCyQxbrZBjGQjD9IwqO+Dx0PBI4wUCSKFDFZcwIxRqTAGiwSinkpB8fwGSoRm
-IIrxZUSDcVqR1JCocgUIGtMQ0zc7yrZInPfhYDSBcc8GxyaJdazQ950+jN0PhyQN67F1ifrNtSdd
-krQaVeLp2IFJ5wWc1zZJ7grqmK/Qy64CY3UgXdd24Gk06IM7hE570u4Nnkkyp0yijqU7zIPPvYki
-TQh4RDy2hjvLMvlWp2DrelkP9POThXNYwfGFGK3j3trmIQ2i8UG60Zz/+sDb0EdUYc62Todp3TgL
-atpPmpux4xRbrM/frsVS6WnJaFlEKS97U2XsclJp75rHWye4srBX4Mtq2yzWli4ChntYCmku7+fA
-PoHuAwgzVimd7sIQ9NarcPpPLplRiW3f1+6l3kr79Gd+0Kc2no22Xp4KQ3Jeoub3BhZbJUltKnw9
-DCSdfqadmDXjC7e+2x6xBQAA
-EOT
-qsys-script --qpf=ghrd_agfb014r24b2e2v.qpf --script=agilex7-ghrd-add-jop.tcl --system-file=qsys_top.qsys
-cd ..
-make agf014eb-si-devkit-oobe-baseline-package-design
-make agf014eb-si-devkit-oobe-baseline-prep
-make agf014eb-si-devkit-oobe-baseline-build
-make agf014eb-si-devkit-oobe-baseline-sw-build
-make agf014eb-si-devkit-oobe-baseline-test
-make agf014eb-si-devkit-oobe-baseline-install-sof
+export BOARD_PWRMGT=linear
+export ENABLE_JOP=1
+make scrub_clean_all
+make generate_from_tcl
+make all
+unset ENABLE_JOP 
+unset BOARD_PWRMGT
 cd ..
 ```
 
 
+
 The following files are created:
 
-- `$TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof` - FPGA configuration file, without HPS FSBL
-- `$TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline_hps_debug.sof` - FPGA configuration file, with HPS Debug FSBL
+ * `$TOP_FOLDER/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof` - FPGA configuration file, without HPS FSBL
+ * `$TOP_FOLDER/agilex_soc_devkit_ghrd/software/hps_debug/hps_debug.ihex` - HPS Debug FSBL
+ * `$TOP_FOLDER/agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps_debug.sof` - FPGA configuration file, with HPS Debug FSBL
+
 
 For reference, the JOP component can be added manually to a Platform Designer system as follows:
 
@@ -179,7 +158,7 @@ This section shows how to create the core RBF file, which is needed by the Yocto
 ```bash
 cd $TOP_FOLDER
 rm -f *jic* *rbf*
-quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline_hps_debug.sof \
+quartus_pfg -c agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v_hps_debug.sof \
   ghrd_agfb014r24b2e2v.jic \
   -o device=MT25QU02G \
   -o flash_loader=AGFB014R24B2E2V \
@@ -200,7 +179,7 @@ The following file is created:
 
 Perform the following steps to build Yocto:
 
-1\. Make sure you have Yocto system requirements met: [https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions](https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions).
+1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
 
 The command to install the required packages on Ubuntu 22.04 is:
 
@@ -228,9 +207,9 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 
 ```bash
 cd $TOP_FOLDER
-rm -rf gsrd-socfpga
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
-cd gsrd-socfpga
+rm -rf gsrd_socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/gsrd_socfpga
+cd gsrd_socfpga
 . agilex7_dk_si_agf014eb-gsrd-build.sh
 build_setup
 ```
@@ -263,29 +242,14 @@ This can be done with the provided patch file:
 
 ```bash
 rm -f agilex7-dts-add-jop.patch
-base64 -d << EOT | gunzip > agilex7-dts-add-jop.patch
-H4sIADRT1GkCA5WP3W6DMAyFr8lTWL1NA2GFjqlbxZtM+XGoJwoRSTekqe++gLS7SR2WbF8cH33H
-lpwDITqKoIoJDXkMQgdfWPwkgyJOiIWjHkMRRuN8p96pN7mNgUBvNDAaLM5waJ5to22el/XRat1A
-KeWxqpgQYnMGxjnfnqNtQZTVvgaeZimhbRlkWRaiircAb7CzFJTu0e5Oq6D6OO3Dl3DkRmHRx0s6
-ej08nVf5fmI8y+Bj9K17kbKRUn4zDg/KjFevIiXKAuxwwImMuNGYmA/NE3ZLAjn/AkHOdVrn/3nF
-oK64PppC/8W7L48tI/UPQU3+ryICAAA=
-EOT
+wget https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/f-series/soc/remote-debug/collateral/agilex7-dts-add-jop.patch
 pushd meta-intel-fpga-refdes
 patch -p1 < ../agilex7-dts-add-jop.patch
 popd
 ```
 
 
-4\. Update the recipe to not use a broken version of =etherlink=:
-
-
-```bash
-sed -i 's/3a3eb126321429c0845276ef9c200df7786dbf74/b6a13b03fe7e9566063eae65d99bd8bc1190ce62/g' meta-intel-fpga-refdes/recipes-tools/remote-debug-app/remote-debug-app_1.0.bb
-```
-
-
-
-5\. Update your Yocto recipes to use the core RBF file you have built, similar to how the GSRD does it:
+4\. Update your Yocto recipes to use the core RBF file you have built, similar to how the GSRD does it:
 
 
 ```bash
@@ -299,7 +263,7 @@ sed -i "/agilex7_dk_si_agf014eb_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel-fp
 ```
 
 
-6\. Build the Yocto recipes:
+5\. Build the Yocto recipes:
 
 
 ```bash
@@ -307,7 +271,7 @@ bitbake_image
 ```
 
 
-7\. Gather the Yocto binaries:
+6\. Gather the Yocto binaries:
 
 
 ```bash
@@ -331,9 +295,9 @@ Run the following commands to build the QSPI image:
 ```bash
 cd $TOP_FOLDER
 rm -f *jic* *rbf*
-quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+quartus_pfg -c agilex_soc_devkit_ghrd/output_files/ghrd_agfb014r24b2e2v.sof \
   ghrd_agfb014r24b2e2v.jic \
-  -o hps_path=gsrd-socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+  -o hps_path=gsrd_socfpga/agilex7_dk_si_agf014eb-gsrd-images/u-boot-agilex7-socdk-gsrd-atf/u-boot-spl-dtb.hex \
   -o device=MT25QU02G \
   -o flash_loader=AGFB014R24B2E2V \
   -o mode=ASX4 \

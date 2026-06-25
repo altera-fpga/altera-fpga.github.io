@@ -1,5 +1,3 @@
-
-
 ## Overview
 
 Agilex™ 5 E-Series and D-Series devices provide the next-generation hard processor system (HPS) after those provided with the Agilex™ 7 and  Stratix® 10 SoC FPGA devices. Agilex™ 5 E-Series devices support new features, such as TSN, USB 3.1 Gen 1, and I3C, SPI.
@@ -7,7 +5,9 @@ Agilex™ 5 E-Series and D-Series devices provide the next-generation hard proce
 
 The Agilex™ 5 HPS application processors can run Linux or an RTOS, such as Zephyr*, with a scalable performance using one to four Arm* Cortex*-A cores with variable frequencies that allow for a wide range of applications.
 
-The Agilex™ 5 Simics virtual platform models the HPS processor with two Arm Cortex-A55 cores, two Arm Cortex-A76 cores, and HPS peripherals. The Agilex™ 5 E-Series HPS virtual platform is released as part of the Simics® Simulator for Altera® FPGAs software, which also includes a virtual platforms where the Agilex™ 5 device is instantiated, emulating the concept of having different versions of a development kit or daughter cards.
+The Agilex™ 5 Simics virtual platform models the HPS processor with two Arm Cortex-A55 cores, two Arm Cortex-A76 cores, and HPS peripherals. The Agilex™ 5 E-Series HPS virtual platform is released as part of the Simics® Simulator for Intel® FPGAs software, which also includes a virtual platforms where the Agilex™ 5 device is instantiated, emulating the concept of having different versions of a development kit or daughter cards.
+
+
 
 The Agilex™ 5 E-Series device has the following supported virtual platforms:
 
@@ -15,7 +15,7 @@ The Agilex™ 5 E-Series device has the following supported virtual platforms:
 
 
 
-The following sections describe the prerequisites for the Intel Simics Simulator for Altera® FPGA and the available virtual platforms, including prebuilt binaries, and instructions for building these binaries. It also covers some common use cases that you can exercise on the virtual platforms.
+The following sections describe the prerequisites for the Intel Simics Simulator for Intel® FPGA and the available virtual platforms, including prebuilt binaries, and instructions for building these binaries. It also covers some common use cases that you can exercise on the virtual platforms.
 
 
 
@@ -31,67 +31,58 @@ To exercise the instructions presented on this page (build your binaries and exe
   - g++ 9.4 or higher
   - GNU make 4.1 or higher
 - Local Ethernet network with DHCP server (provides IP address to the board).
-- Intel Simics Simulator for Altera® FPGAs installed.
-- Altera® Agilex™ 5 Virtual Platform components available to be deployed.
+- Intel Simics Simulator for Intel FPGAs installed.
+- Intel Agilex™ 5 Virtual Platform components available to be deployed.
 
 
 
 **Notes:**
 
 - For binaries building instructions, see [Build Instructions](#build-instructions).
-- For installation instructions for the Intel Simics Simulator for Altera® FPGAs and the Agilex™ 5 E-Series virtual platforms, refer to the following documents:
-  - [Intel® Simics® Simulator Landing Page](https://www.altera.com/products/development-tools/simics-virtual-platform)
-  - [Intel® Simics® Simulator for Altera® FPGAs User Guide](https://docs.altera.com/r/docs/784383/current)
-  - [Agilex™ 5 E-Series Virtual Platform User Guide](https://docs.altera.com/r/docs/786901/current)
-  - [Intel® Simics® Simulator for Altera® FPGAs Release Notes](https://docs.altera.com/r/docs/870556/current/intel-simics-simulator-for-altera-fpgas-release-notes/)
+- For installation instructions for the Intel Simics Simulator for Intel FPGAs and the Agilex™ 5 E-Series virtual platforms, refer to the following documents:
+  - [Intel® Simics® Simulator Landing Page](https://www.intel.com/content/www/us/en/products/details/fpga/development-tools/simics-virtual-platform.html) 
+  - [Intel® Simics® Simulator for Intel® FPGAs User Guide](https://www.intel.com/content/www/us/en/docs/programmable/784383/)
+  - [Agilex™ 5 E-Series Virtual Platform User Guide](https://www.intel.com/content/www/us/en/docs/programmable/786901/)
 - U-Boot, Linux compilation, Yocto compilation, and the creation of an SD card image require a Linux host PC.
   To create these binaries, the toolchain and other software required need to be downloaded. This is described as part of the instructions in each section.
-- The Intel Simics Simulator for Altera® FPGAs is available only for Linux systems. In a system with Windows OS, this can be used through WSL.
+- The Intel Simics Simulator for Intel® FPGAs is available only for Linux systems.
 - In case any use case requires additional prerequisites, these are listed as part of the use case description.
 
 
 
 ## Release Content
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. 
 
-**Note:** Regarding the Hardware Design components in the following table, only the device-specific one is used in this page.
 
-| Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
-| :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1_REL_GSRD_PR   |
-| Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1_REL_GSRD_PR |
-| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
-| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
-| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
-| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
-| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
-| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
-| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
+**Version: 24.3**
 
-**Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
+| SW Component             | Repository                                                   | Branch/TAG/Version                                           |
+| :----------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
+| U-Boot                   | https://github.com/altera-opensource/u-boot-socfpga          | socfpga_v2024.04/QPDS24.3_REL_GSRD_PR |
+| ATF                      | https://github.com/altera-opensource/arm-trusted-firmware    | socfpga_v2.11.0/QPDS24.3_REL_GSRD_PR |
+| Linux                    | https://github.com/altera-opensource/linux-socfpga           | socfpga-6.6.37-lts/QPDS24.3_REL_GSRD_PR  |
+| Reference Design Sources | https://github.com/altera-opensource/meta-intel-fpga-refdes  | scarthgap/QPDS24.3_REL_GSRD_PR |
+| GSRD                     | https://github.com/altera-opensource/gsrd-socfpga            | scarthgap |
+| Yocto Project            | https://git.yoctoproject.org/poky                            |  scarthgap/latest     |
+| Reference Design Recipes | https://git.yoctoproject.org/meta-intel-fpga                 | scarthgap/latest |
+| Arm Debugger             | http://fpgasoftware.intel.com/armds                          | ARM DS 2022.2 |
+| Ashling RiscFree         | https://www.intel.com/content/www/us/en/software-kit/826843/ Additional Software/Stand-Alone Software tab | 24.3 |
 
-**Note:** For information prior 24.2 release, please refer to [Linux  Simics Virtual Platform HPS Baseline System Example Design for Altera® 5 E-Series](https://www.rocketboards.org/foswiki/Documentation/Agilex5SoCSimicsVirtualPlatformsReferenceGuide). 
+**Note:** For information prior 24.2 release, please refer to [Linux GSRD Intel Simics Virtual Platform for Intel Agilex® 5 E-Series](https://www.rocketboards.org/foswiki/Documentation/Agilex5SoCSimicsVirtualPlatformsReferenceGuide). 
 
 ### Prebuilt Binaries
 
-You can find the prebuilt binaries from the HPS Baseline System Example Design prebuilt at the following URL:
+You can find the prebuilt binaries from the GSRD prebuilt at the following URL: [https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/](https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/). The files in this folder allow you to boot directly from SDCard. It also contains some of the files that are used to generate the final images used to boot from QSPI and from NAND. The following folders contain the remaining files used by the recipes to create the binaries to boot from QSPI and NAND.
 
-* SD Card: [HPS Baseline System Example Design Binaries](https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/). 
+- QSPI: [QSPI boot complement files](https://releases.rocketboards.org/2024.11/qspi/agilex5_dk_a5e065bb32aes1_qspi/). Here is the link to obtain the [uboot_script.its](https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot_script.its) file which is also needed.
+- NAND: No available since NAND is not supported in silicon yet.
 
-* QSPI: [QSPI Binaries](https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e065bb32aea_qspi.baseline-a55/). 
 
-* NAND: [NAND Binaries](https://releases.rocketboards.org/2026.04/nand/agilex5_dk_a5e065bb32aea_nand.baseline-a55)
 
-You can exercise them using the internal Simics environment included under HPS Baseline System Example Design 2.0 or also from a separate Simics environment in which you need to create and build the project directory manually.
-
-**Note:** The final images used to boot from QSPI and NAND in Simics are not provided, but the binaries used to generate these are provided, so you can generate the final images following the instructions in [Build QSPI HPS Baseline System Example Design 2.0](#build-qspi-hps-baseline-system-example-design-20) and [Build NAND HPS Baseline System Example Design 2.0](#build-nand-hps-baseline-system-example-design-20) sections.
+**Note:** The final images used to boot from QSPI and NAND are not provided, but the binaries used to generate these are provided, so you can generate the final images following the instructions in [Build QSPI Boot Image](#build-qspi-boot-image) and [Build NAND Boot Image](#build-nand-boot-image) sections.
 
 **Note:**  Starting from 24.2 release, the binaries targeted for silicon can also be used with Simics simulator.
+
 
 
 | HPS Peripheral                         | Supported |
@@ -125,45 +116,52 @@ You can exercise them using the internal Simics environment included under HPS B
 | CVP                                    | Yes       |
 | PMU                                    | Yes       |
 
-#### Known Issues with the Release
 
-For known issues in this release please refer to the [Intel Simics Simulator for FPGA Release page](https://www.intel.com/content/www/us/en/docs/programmable/870556.html).
 
-### Build Instructions HPS Baseline System Example Design 2.0
+### Build Instructions
 
-The HPS Baseline System Example Design 2.0 was introduced on release 25.3. The HPS Baseline System Example Design 2.0 provides a framework based on **kas** and **yocto**, that allows to build be HPS binaries in a more simplified and automated methodology. In the HPS Baseline System Example Design 2.0, the  [agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) repository integrates software and hardware design components, which differs from the legacy HPS System Example Design build flow in which the software and hardware components were in separate repositories. 
-For the  Simics simulation case specific, the HPS Baseline System Example Design 2.0 also provides a Simics simulation environment allows to run Simics simulations from the HPS Baseline System Example Design build environment using directly the binaries produced from the build. The following steps shows how to produced the required binaries that can be used in Simics simulation.
+The following diagram illustrates the full-build flow for the binaries used with the Intel Simics simulator. The build flow utilizes the source code placed in [GitHub](https://github.com/altera-opensource) in repositories and uses a flow based on Yocto.
 
-**Note:** In 26.1 Release the HPS Baseline System Example Design 2.0 Reference design used in this example only provides a directory targeted for **a55** cores in which is expected that the generated binaries have a an **a55** core as the boot core (core 0). In the case of Simics, the selection of the boot core is done through the **hps_boot_core** parameter in the target script simics/linux/<device\>_boot/\*.simics).
+
+![](images/BuildBinariesFlow.jpg)
 
 
 
-
-For more information about the HPS Baseline System Example Design 2.0 for Agilex 5 device, please refer to the **HPS Baseline System Example Design User Guide: Agilex 5 FPGA E-Series 065B Premium Development Kit** page.
-
-#### Build Instructions for SD Card and QSPI
-
-
-
-##### Set Up the Environment
+#### Set Up the Environment
 
 
 
 ```bash
-sudo rm -rf agilex5_gsrd20_a55_sd_qspi
-mkdir agilex5_gsrd20_a55_sd_qspi
-cd agilex5_gsrd20_a55_sd_qspi
+sudo rm -rf agilex5_gsrd
+mkdir agilex5_gsrd
+cd agilex5_gsrd
 export TOP_FOLDER=$(pwd)
-export GITCONFIG_FILE="$HOME/.gitconfig"
 ```
 
 
+
+
+
+Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
+
+
+```bash
+cd $TOP_FOLDER
+wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
+gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-none-linux-gnu-
+```
 
 Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
 
@@ -172,196 +170,100 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-##### Build Hardware Design
+#### Get SOF from Hardware Design
+
+In Simics, the SOF file generated as result of the build of the hardware design is not used at all in the simulation, but this is needed to create the RPD file to exercise the QSPI boot. This is the reason why we provide the steps to build the hardware desgin here.
 
 
 
 
 ```bash
 cd $TOP_FOLDER
-rm -rf agilex5_soc_devkit_ghrd_sdqspi_a55
-mkdir agilex5_soc_devkit_ghrd_sdqspi_a55 && cd agilex5_soc_devkit_ghrd_sdqspi_a55
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065b-premium-devkit-oobe-baseline-a55.zip
-unzip a5ed065b-premium-devkit-oobe-baseline-a55.zip
-rm -f a5ed065b-premium-devkit-oobe-baseline-a55.zip
-make baseline_a55-install-core-rbf
-pushd software/hps_debug && ./build.sh && popd
-quartus_pfg -c output_files/baseline_a55.sof \
-  output_files/baseline_a55_hps_debug.sof \
-  -o hps_path=software/hps_debug/hps_wipe.ihex
-cd ..
+rm ghrd_a5ed065bb32ae6sr0_hps.sof
+wget https://releases.rocketboards.org/2024.11/gsrd/agilex5_dk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0_hps.sof 
 ```
 
 
-The output from this stage is:
+The following file is created:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/output_files/ghrd.rbf - Phase 2 hardware design.
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/output_files/baseline_a55_hps_debug.sof - SOF file with Phase 1 hardware design and Debug HPS
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux - Clean HPS Baseline System Example Design 2.0 software direcotry (not built yet).
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd_a5ed065bb32ae6sr0_hps.sof
 
 
 
-##### Build SD Card HPS Baseline System Example Design 2.0
+#### Set Up the Yocto Build System
 
 
+1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
 
-This section provides the instructions needed to build the HPS binaries needed to boot from SD Card in Simics. 
-
-**Note:** To Build the HPS Baseline System Example Design 2.0 you need to have the **KAS** version 4.8.2 in your Linux build machine. You also need also install `python3-newt`, and `python3.10-venv` packages. You can get them with:
+The command to install the required packages on Ubuntu 22.04 is:
 
 ```bash
-$ sudo apt-get install python3-newt python3.10-venv
-$ python3 -m pip install --upgrade kas
-$ kas --version
-kas 4.8.2 (configuration format version 19, earliest compatible version 1)
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \
+build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
+python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit mesa-common-dev zstd \
+liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \
+tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
+device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
 ```
-The instructions to build the HPS Baseline System Example Design 2.0 to boot from SD Card are shown next:
 
+On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:
 
 ```bash
-#Optional to Cash yocto downloads and sstate dirs
-export BB_ENV_PASSTHROUGH_ADDITIONS="DL_DIR SSTATE_DIR"
-export DL_DIR="$HOME/tasks/yocto/downloads"
-export SSTATE_DIR="$HOME/tasks/yocto/sstate"
- 
-# Build sd binaries with kas
-cd $TOP_FOLDER
-cp -r $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd
-# Add some tools used to exercise use cases
-sed -i '/local_conf_header:/a\\n  add-tools: |\n    CORE_IMAGE_EXTRA_INSTALL \+= \"gdbserver devmem2 openssh\"\n' kas.yml
-# Remove optimizations that are not needed in machines with high amount of memory.
-sed -i '/BB_NUMBER_THREADS\|PARALLEL_MAKE/d' kas.yml
-
-time ./build.sh $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/output_files/ghrd.rbf sd
+ sudo ln -sf /bin/bash /bin/sh
 ```
 
+**Note**: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.
 
-The output files that will be used to simulate with Simics are:
+2. Clone the Yocto script and prepare the build:
+    
+  ```bash
+  cd $TOP_FOLDER
+  rm -rf gsrd-socfpga
+  git clone -b scarthgap https://github.com/altera-opensource/gsrd-socfpga
+  cd gsrd-socfpga
+  . agilex5_dk_a5e065bb32aes1-gsrd-build.sh
+  build_setup
+  ```
+  
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/gsrd-console-image-agilex5e.rootfs.wic
+  **Note**: Run the following commands to set up the yocto build environments again, if you closed the current window (for example, when rebooting the Linux host) and want to resume the next steps:
+
+  ```bash
+  cd $TOP_FOLDER/gsrd-socfpga
+  . ./poky/oe-init-build-env agilex5_devkit-gsrd-rootfs/
+  ```
 
 
+#### Customize the Yocto Build
 
-#####  Build QSPI HPS Baseline System Example Design 2.0
+1. (Optional) Change the following files in **gsrd-socfpga/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/**:
+   * distroboot script:[uboot.txt](https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/master/recipes-bsp/u-boot/files/uboot.txt)
+   * **its** file for creating FIT image fromthe above script: [uboot_script.its](https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/master/recipes-bsp/u-boot/files/uboot_script.its) 
+
+2. (Optional) Change the following file in **gsrd-socfpga/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts**:
+   * **its** file for creating the **kernel.itb** image: [fit_kernel_agilex5.its](https://github.com/altera-opensource/meta-intel-fpga-refdes/blob/master/recipes-kernel/linux/linux-socfpga-lts/fit_kernel_agilex5.its) , which by default contains the following:<br>
+    * Kernel <br>
+    * Distroboot boot script<br>
+    * Device tree configurations<br>
+    * Board configurations 
+   
+#### Build Yocto
 
 
-
-This section provides the instructions needed to build the HPS binaries needed to boot from QSPI in Simics. 
-
-**Note:** To Build the HPS Baseline System Example Design 2.0 you need to have the **KAS** version 4.8.2 in your Linux build machine. You also need also install `python3-newt`, and `python3.10-venv` packages. You can do this with:
-
-```bash
-$ sudo apt-get install python3-newt python3.10-venv
-$ python3 -m pip install --upgrade kas
-$ kas --version
-kas 4.8.2 (configuration format version 19, earliest compatible version 1)
-```
-The instructions to build the HPS Baseline System Example Design 2.0 to boot from QSPI are shown next:
-
+Build Yocto:
 
 
 ```bash
-#Optional to Cash yocto downloads and sstate dirs
-export BB_ENV_PASSTHROUGH_ADDITIONS="DL_DIR SSTATE_DIR"
-export DL_DIR="$HOME/tasks/yocto/downloads"
-export SSTATE_DIR="$HOME/tasks/yocto/sstate"
- 
-# Build qspi dependencies with kas
-cd $TOP_FOLDER
-cp -r $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi
-# Add some tools used to exercise use cases
-sed -i '/local_conf_header:/a\\n  add-tools: |\n    CORE_IMAGE_EXTRA_INSTALL \+= \"gdbserver devmem2 openssh\"\n' kas.yml
-# Remove optimizations that are not needed in machines with high amount of memory.
-sed -i '/BB_NUMBER_THREADS\|PARALLEL_MAKE/d' kas.yml
-
-time ./build.sh $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/output_files/ghrd.rbf qspi
+bitbake_image
 ```
 
 
-The output files that will be used to generate the final binaries to simulate with Simics are:
+Gather files:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin
-* 										$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot.itb
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nor.ubifs
-* TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/kernel.itb
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/boot.scr.uimg
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/uboot.env
-
-
-
-At this point you can build the \*.rpd file used in Simics simulation using the Simics environment  integrated into the HPS Baseline System Example Design or building this apart from the HPS Baseline System Example Design environment (i.e. independent directory in which you manually create, deploy and build the Simics project.
-
-The following step tells you how to build the final \*.rpd to be used outside of the HPS Baseline System Example Design Simics environment. For this,  you require a \*.pfg file with the following layout:
-
-| Partition    | MTD Partition | UBI Volume | Volume Name | Type         | Image/Individual File               | Group File | Start Addr | Size |
-| :---------------- | :--------- | :--------- | :---------- | :----------- | :----------------------------------- | :--------- | :-------- | ----------- |
-| BOOT_INFO | 0 <br>(u-boot) | N/A        | N/A         | RAW          | Bootinfo (Empty)                     | N/A | 0x0    | 2MB |
-|   P1 | 0<br> (u-boot) | N/A | N/A | RAW | bitstream (FPGA image, SDM firmware) | N/A | 0x00200000 | ~1 MB |
-| U_BOOT | 0 <br>(u-boot) | N/A    | N/A     | RAW      | u-boot.bin | N/A | 0x04000000 |AUTO|
-| HPS | 1 <br>(root) | 0<br>1<br>2<br>3<br>4 | env<br>script<br>kernel<br>dtb<br>rootfs | UBI<br>UBI<br>UBI<br>UBI<br>UBIFS | u-boot.env<br>boot.scr.uimg<br>kernel.itb<br>kernel.dtb<br> .ubifs | <br><br>root.ubi | 0x04200000<br>Auto<br>Auto<br>Auto<br>Auto | 256KB<br>128KB<br>24MB<br>256KB<br>160MB |
-
-You also require to use the  **ubinize** command and the **ubinize_nor.cfg** file to create the .ubi needed to create the image. The **ubinize_nor.cfg** is provided as part of the HPS Baseline System Example Design repository. The **ubinize** command is available from the Ubuntu as part of the **mtd-tools** package.
-
-
-
-
-
-```bash
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/
-rm -rf qspi_rpd
-mkdir qspi_rpd && cd qspi_rpd
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/scripts/qspi_boot.pfg qspi_flash_image_agilex5-final.pfg
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/scripts/ubinize_nor.cfg ubinize.cfg
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/output_files/baseline_a55_hps_debug.sof ghrd.sof 
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin u-boot-spl-dtb.bin
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex u-boot-spl-dtb.hex
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot.itb u-boot.bin
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/uboot.env uboot.env
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/boot.scr.uimg boot.scr.uimg
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/kernel.itb kernel.itb
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nor.ubifs .
-ubinize -o hps.bin -p 65536 -m 1 -s 1 ubinize.cfg
-quartus_pfg -c qspi_flash_image_agilex5-final.pfg
-```
-
-
-The following files are created after this step:
-
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/qspi_rpd/qspi_boot.rpd
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/qspi_rpd/u-boot-spl-dtb.bin
-
-
-
-
-Once that you have build the binaries from HPS Baseline System Example Design 2.0, you can exercises these binaries with either the Simics environment included as part of the HPS Baseline System Example Design 2.0 [Exercising Simics Simulation from HPS Baseline System Example Design 2.0](#exercising-simics-simulation-from-hps-baseline-system-example-design-20) or using the a Simics environment apart from the HPS Baseline System Example Design [Use Cases Supported by the Agilex™ 5 E-Series Universal Virtual Platform](#use-cases-supported-by-the-agilextm-5-e-series-universal-virtual-platform).
-
-#### Build Instructions for NAND
-
-
-
-##### Set Up the Environment
-
-
-
-```bash
-sudo rm -rf agilex5_gsrd20_a55_nand
-mkdir agilex5_gsrd20_a55_nand
-cd agilex5_gsrd20_a55_nand
-export TOP_FOLDER=$(pwd)
-export GITCONFIG_FILE="$HOME/.gitconfig"
-```
-
-
-
-Enable Quartus tools to be called from command line:
-
-
-```bash
-source ~/altera_pro/26.1/qinit.sh
+```bash 
+package 
 ```
 
 
@@ -369,115 +271,369 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
+After the build is completed successfully, the following two folders are created:
 
-##### Build Hardware Design
-
-
-
-
-```bash
-cd $TOP_FOLDER
-rm -rf agilex5_soc_devkit_ghrd_nand_a55
-mkdir agilex5_soc_devkit_ghrd_nand_a55 && cd agilex5_soc_devkit_ghrd_nand_a55
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065b-premium-devkit-nand-baseline-a55.zip
-unzip a5ed065b-premium-devkit-nand-baseline-a55.zip
-rm -f a5ed065b-premium-devkit-nand-baseline-a55.zip
-make baseline_a55-install-core-rbf
-```
+- `agilex5_devkit-gsrd-rootfs`: area used by OpenEmbedded build system for builds. For the description of the build directory structure, refer to https://docs.yoctoproject.org/ref-manual/structure.html#the-build-directory-build.
+- `agilex5_devkit-gsrd-images`: the build script copies here are relevant files built by Yocto from the `agilex5_devkit-gsrd-rootfs/tmp/deploy/images/agilex5` folder. It also includes other relevant files.
 
 
 
-The output from this stage is:
-
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/output_files/ghrd.rbf - Phase 2 hardware design.
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux - Clean HPS Baseline System Example Design 2.0 software direcotry (not built yet).
-
-#####  Build NAND HPS Baseline System Example Design 2.0
+**Note**: If you want to build binaries creating each one of the binaries independently, you could refer to [Agilex™ 5 E-Series GHRD Linux Boot Examples](https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/).
 
 
 
-This section provides the instructions needed to build the HPS binaries needed to boot from NAND in Simics. 
-
-**Note:** To Build the HPS Baseline System Example Design 2.0 you need to have the **KAS** version 4.8.2 in your Linux build machine. You also need also install `python3-newt`, and `python3.10-venv` packages. You can do this with:
-
-```bash
-$ sudo apt-get install python3-newt python3.10-venv
-$ python3 -m pip install --upgrade kas
-$ kas --version
-kas 4.8.2 (configuration format version 19, earliest compatible version 1)
-```
-The instructions to build the HPS Baseline System Example Design 2.0 to boot from NAND are shown next:
-
-
-```bash
-export BB_ENV_PASSTHROUGH_ADDITIONS="DL_DIR SSTATE_DIR"
-export DL_DIR="$HOME/tasks/yocto/downloads"
-export SSTATE_DIR="$HOME/tasks/yocto/sstate"
-
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/
-# Add some tools used to exercise use cases
-sed -i '/local_conf_header:/a\\n  add-tools: |\n    CORE_IMAGE_EXTRA_INSTALL \+= \"gdbserver devmem2 openssh\"\n' kas.yml
-time ./build.sh $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/output_files/ghrd.rbf nand
-```
+The most relevant files created in the `$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images` folder are:
 
 
 
-The output files that will be used to generate the final binaries to simulate with Simics are:
+|                          File                           |                        Description                        | SD Card Boot | QSPI Boot | NAND Boot |
+| :-----------------------------------------------------: | :-------------------------------------------------------: | ------------ | --------- | --------- |
+| ghrd_a5ed065bb32ae6sr0_hps.sof | SOF file from the hardware design |  | * | | 
+| u-boot-spl-dtb.bin |                  U-Boot SPL binary file                   | * | * | * |
+|                       u-boot.itb                        |                       U-Boot (SSBL)                       | * | * | * |
+|                      boot.scr.uimg                      |                  Distroboot boot script                   | * |  | * |
+|                       kernel.itb                        |                  Linux kernel fit image                   | *            | *         | *         |
+|     console-image-minimal-agilex5_nand.ubifs     |                 File system for NAND boot                 |              |           | *         |
+|     console-image-minimal-agilex5_nor.ubifs      |                 File system for QSPI boot                 |              | *         |           |
+|          gsrd-console-image-agilex5.wic          |                       SD Card Image                       | *            |           |           |
+|                        uboot.txt                        |                 U-Boot Distroboot script                  |              | *         |           |
+|                    uboot_script.its                     | ITS file to create FIT binary of U-Boot Distroboot script |              | *         |           |
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin - U-Boot FSBL
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/boot.scr.uimg - Boot script
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot.itb - U-Boot SSBL
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/kernel.itb - Linux Kernel + Device tree
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/socfpga_agilex5_socdk_nand.dtb - NAND device tree (not used)
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nand.ubifs - File system for NAND Boot
+#### Build QSPI Boot Image
 
-The next step consists of creating the NAND image that will be used in the simulation to exercise boot from NAND. For this, the NAND image will have the layout shown in the following table:
+
+
+The next step consists of creating the QSPI image with UBIFS format that will be used by in the simulation that exercises this use case. To build this image the same binaries generated from the GSRD build are used.
+
+
+
+The layout of the QSPI image is shown in the following table:
+
+
+| MTD Partition     | UBI Volume | Volume Name | Type         | Image/Individual File               | Group File | Start Addr | Size |
+| :---------------- | :--------- | :---------- | :----------- | :----------------------------------- | :--------- | :-------- | ----------- |
+| 0 (qspi_bootinfo) | N/A        | N/A         | RAW          | Bootinfo (Empty)                     | N/A | 0x0    | 2MB |
+| 1 (qspi_uboot)    | N/A<br>N/A    | N/A<br>N/A     | RAW<br>RAW      | bitstream (FPGA image, SDM firmware)<br>u-boot.itb | N/A | 0x00200000<br>0x04000000 |~1 MB<br>AUTO|
+| 2 (qspi_root)     | 0<br>1<br>2<br>3<br>4 | env<br>script<br>kernel<br>dtb<br>rootfs | UBI<br>UBI<br>UBI<br>UBI<br>UBIFS | u-boot.env<br>u-boot.scr<br>kernel.itb<br>kernel.dtb<br>rootfs.ubifs | <br><br>root.ubi | 0x4200000<br>Auto<br>Auto<br>Auto<br>Auto | 256KB<br>128KB<br>24MB<br>256KB<br>160MB |
+
+
+
+
+1. Gather the required files.
+    
+  ```bash
+  # Gattering files
+  cd $TOP_FOLDER
+  rm -rf qspi-bin && mkdir qspi-bin && cd qspi-bin 
+  mv $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0_hps.sof agilex5_factory.sof
+  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb u-boot-itb.bin
+  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex u-boot-spl.hex
+  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/kernel.itb kernel-image
+  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/console-image-minimal-agilex5_nor.ubifs  rootfs.ubifs
+  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/boot.scr.uimg boot.scr.uimg
+  ```
+  
+
+2. Create the PFG file that describes the format of the QSPI image: 
+
+  
+
+  ```bash
+
+  cd $TOP_FOLDER/qspi-bin
+  cat << EOF > agilex5_flash_image.pfg
+  <pfg version="1">
+      <settings custom_db_dir="./" mode="ASX4"/>
+      <output_files>
+          <output_file name="flash_image" directory="." type="JIC">
+              <file_options/>
+              <secondary_file type="MAP" name="flash_image_jic">
+                  <file_options/>
+              </secondary_file>
+              <secondary_file type="SEC_RPD" name="flash_image_jic">
+                  <file_options bitswap="1"/>
+              </secondary_file>
+              <flash_device_id>Flash_Device_1</flash_device_id>
+          </output_file>
+      </output_files>
+      <bitstreams>
+          <bitstream id="Bitstream_1">
+              <path hps_path="./u-boot-spl.hex">./agilex5_factory.sof</path>
+          </bitstream>
+      </bitstreams>
+      <raw_files>
+          <raw_file bitswap="1" type="RBF" id="Raw_File_1">u-boot-itb.bin</raw_file>
+          <raw_file bitswap="1" type="RBF" id="Raw_File_2">hps.bin</raw_file>
+      </raw_files>
+      <flash_devices>
+          <flash_device type="MT25QU02G" id="Flash_Device_1">
+              <partition reserved="1" fixed_s_addr="1" s_addr="0x00000000" e_addr="0x001FFFFF" fixed_e_addr="1" id="BOOT_INFO" size="0"/>
+              <partition reserved="0" fixed_s_addr="0" s_addr="0x00200000" e_addr="0x0030FFFF" fixed_e_addr="0" id="P1" size="0"/>
+              <partition reserved="0" fixed_s_addr="0" s_addr="0x04000000" e_addr="auto" fixed_e_addr="0" id="U-Boot" size="0"/>
+              <partition reserved="0" fixed_e_addr="1" e_addr="0xFFFFFFF" id="HPS" s_addr="0x4200000"/>
+          </flash_device>
+          <flash_loader>A5ED065BB32AE6SR0</flash_loader>
+      </flash_devices>
+      <assignments>
+          <assignment page="0" partition_id="P1">
+              <bitstream_id>Bitstream_1</bitstream_id>
+          </assignment>
+          <assignment page="0" partition_id="U-Boot">
+              <raw_file_id>Raw_File_1</raw_file_id>
+          </assignment>
+          <assignment page="0" partition_id="HPS">
+              <raw_file_id>Raw_File_2</raw_file_id>
+          </assignment>
+      </assignments>
+  </pfg>
+  EOF
+  
+  ```
+  
+
+3. Create UBI configuration file for the rootfs partition:
+
+  
+  ```bash
+  # Creating UBI Configuration file
+  cd $TOP_FOLDER/qspi-bin
+  cat << EOT >ubinize_nor.cfg 
+  [env]
+  mode=ubi
+  vol_id=0
+  vol_name=env
+  vol_size=256KiB
+  vol_type=dynamic
+
+  [script]
+  mode=ubi
+  image=boot.scr.uimg
+  vol_id=1
+  vol_name=script
+  vol_size=128KiB
+  vol_type=dynamic
+
+  [kernel]
+  mode=ubi
+  image=kernel-image     
+  vol_id=2
+  vol_name=kernel
+  vol_size=24MiB
+  vol_type=dynamic
+
+  [dtb]
+  mode=ubi
+  vol_id=3
+  vol_name=dtb
+  vol_size=256KiB
+  vol_type=dynamic
+
+  [rootfs]
+  mode=ubi
+  image=rootfs.ubifs
+  vol_id=4
+  vol_name=rootfs
+  vol_type=dynamic
+  vol_size=160MiB
+  vol_flag=autoresize
+  EOT
+  ```
+  
+
+  The following file is created:
+
+  * $TOP_FOLDER/qspi-bin/ubinize_nor.cfg
+
+4. Generate the *root.ubi* file for root partition. For this, the *ubinize_nor.cfg* is used with the files obtained from the previous steps. This file defines the components to be included in the root.ubi file as indicated in the table above. The ubinize executable is available as part of the *mtd-tools* package. 
+    The parameters for ubinize command are:
+
+  -p: physical erase block size of the flash<br>
+  -m: minimum input/output unit size of the flash<br>
+  -s: sub-pages and sub-page size 
+
+  Once the *root.ubi* files is created this is renamed as *hps.bin*. <br>
+  *Required files for this step:* ubinize_nor.cfg,  boot.scr.uimg,  kernel-image,  rootfs.ubifs
+
+
+  
+
+  ```bash
+  # Generate hps.bin file with UBI format
+  ubinize -o root.ubi -p 65536 -m 1 -s 1 ubinize_nor.cfg
+  mv root.ubi hps.bin
+  ```
+  
+
+  The following file is created:
+
+   * $TOP_FOLDER/qspi-bin/hps.bin
+
+5. Using Quartus Programming File Generator to compile an RPD file by using the configuration specified in the PFG file.
+
+  *Required files for this step:* u-boot-spl.hex,  agilex5_factory.sof, u-boot-itb.bin and hps.bin  <br>
+  *Note:* Make sure the filenames are specified correctly in agilex5_flash_image.pfg
+
+  Run the Quartus File Generator command below to generate an RPD file:
+  
+
+  ```bash
+  # Creating QSPI image
+  quartus_pfg -c agilex5_flash_image.pfg
+  ```
+  
+
+
+
+The following file is created:
+
+* $TOP_FOLDER/qspi-bin/flash_image_jic.rpd
+
+#### Build NAND Boot Image
+
+
+
+The next step consists of creating the NAND image that will be used by in the simulation that exercises this use case. For this, the NAND image will have the layout shown in the following figure:
 
 | MTD Partition | UBI Volume | Volume Name | Type  | Image/Individual File | Group File | Flash Offset       | Size  | Size in Hex |
 | :------------ | :--------- | :---------- | :---- | :----------- | :--------- | :----------------- | :---- | ----------- |
 | 0 (u-boot)    | N/A        | N/A         | RAW   | u-boot.itb   | N/A | 0x00000000         | 2 MB  | 0x200000    |
-| 1 (root)      | 0<br>1<br>2<br>3<br>4 | env<br>script<br>kernel<br>dtb<br>rootfs| UBI<br>UBI<br>UBI<br>UBI<br>UBIFS   | u-boot.env<br>boot.scr.uimg<br>kernel.itb<br>kernel.dtb<br>.ubifs | <br><br>root.ubi | <br><br>0x00200000<br> onwards | 256KB<br>128KB<br>24MB<br>256KB<br>272MB | 0x40000<br>0x20000<br>0xA00000<br>0x40000<br>0x11000000 |
+| 1 (root)      | 0<br>1<br>2<br>3<br>4 | env<br>script<br>kernel<br>dtb<br>rootfs| UBI<br>UBI<br>UBI<br>UBI<br>UBIFS   | u-boot.env<br>u-boot.scr<br>kernel.itb<br>kernel.dtb<br>rootfs.ubifs | <br><br>root.ubi | <br><br>0x00200000<br> onwards | 256KB<br>128KB<br>24MB<br>256KB<br>272MB | 0x40000<br>0x20000<br>0xA00000<br>0x40000<br>0x11000000 |
 
 
 Based on the table above, we have 2 partitions. One contains just the U-Boot fit image located at address 0x0 and the other contains the rest of the software components in a ubi file (with UBIFS format) located at address 0x200000. Continue with the following steps to create the NAND boot image.
 
 
 
-Create a directory,  populate it with all the required binaries and then generate the final NAND image with **ubinize** command: 
+
+1. Bring the required files from the GSRD build directory to a NAND boot directory:
+    
+
+  ```bash
+  # Gathering the required files
+  cd $TOP_FOLDER
+  rm -rf nand-bin && mkdir nand-bin && cd nand-bin
+  ln -s $TOP_FOLDER/gsrd-socfpga/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/uboot_script.its uboot_script.its 
+  cp $TOP_FOLDER/gsrd-socfpga/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/uboot.txt .
+  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb u-boot.itb
+  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/kernel.itb kernel-image
+  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/socfpga_agilex5_socdk_nand_vanilla.dtb kernel-dtb
+  ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/console-image-minimal-agilex5_nand.ubifs rootfs.ubifs
+  ```
+  
+
+2. The Agilex 5 E-Series Universal virtual virtual returns by default a board_id = 0 when U-Boot reads the **STRATIX_JTAG_USER_CODE** parameter. The board_id is used to select the desired configuration (linux kernel image + device tree + fpga fabric design) as described in [Single  Image Boot flow](https://www.rocketboards.org/foswiki/Documentation/SingleImageBoot). Starting from 24.2 release, the configuration for board_id = 0 defines the device tree for the OOB board in the premium dev kit (SD card daughter card). Since we want to load the configuratio that works for NAND boot, we require to use the device tree specific for the NAND daughter card. In order to address this problem, one solution is to force having a board_id that defines the configuration for NAND (and also without defining a FPGA core fabric since in Simics programming the fabric is not supported). For this, we require to set in U-Boot the  **board_id** environment variable to 7 for which the **socfpga_agilex5_socdk_nand_vanilla.dtb** device tree is used (as can be seen in **fit_kernel_agilex5_devkit.its**). This is achieved with the following code:
+
+  
+
+  ```bash
+  # Update boot script to modify board_id so we can boot from nand_vanila device tree
+  cd $TOP_FOLDER/nand-bin
+  sed -i '/Trying to boot Linux from device/a setenv board_id 7 ' uboot.txt
+  mkimage -f uboot_script.its boot.scr.uimg
+  ```
+  
+
+3. Create UBI configuration file for the root partition:
+
+  
+
+  ```bash
+  # Create the UBI Configuration file
+  cd $TOP_FOLDER/nand-bin
+  cat <<EOT >ubinize_nand.cfg 
+  [env]
+  mode=ubi
+  vol_id=0
+  vol_name=env
+  vol_size=256KiB
+  vol_type=dynamic
+
+  [script]
+  mode=ubi
+  image=boot.scr.uimg
+  vol_id=1
+  vol_name=script
+  vol_size=128KiB
+  vol_type=dynamic
+
+  [kernel]
+  mode=ubi
+  image=kernel-image     
+  vol_id=2
+  vol_name=kernel
+  vol_size=24MiB
+  vol_type=dynamic
+
+  [dtb]
+  mode=ubi
+  image=kernel-dtb
+  vol_id=3
+  vol_name=dtb
+  vol_size=256KiB
+  vol_type=dynamic
+
+  [rootfs]
+  mode=ubi
+  image=rootfs.ubifs
+  vol_id=4
+  vol_name=rootfs
+  vol_type=dynamic
+  vol_size=400MiB
+  vol_flag=autoresize
+
+  EOT
+  ```
+  
+
+  **Note:** **kernel-dtb** is not really used since the dtb used is inside the **kernel-image** file.
+
+4. Generate root.ubi file for root partition, using the **ubinize_nand.cfg** file generated in previous step. This file defines the components to be included in the root.ubi file as indicated in the table above. The command used to generate the file is **ubinize** which is available as part of the mtd-tools package. The parameters that **ubinize** command received are listed next:
+
+  -p: physical erase block size of the flash<br>
+  -m: minimum input/output unit size of the flash<br>
+  -s: sub-pages and sub-page size, ubinize will take into account and put the VID header to same NAND page as the EC header
+
+  
+
+  ```bash
+  # Create the UBI file with root partition
+  cd $TOP_FOLDER/nand-bin
+  ubinize -o root.ubi -p 1024KiB -m 8192 -s 8192 ubinize_nand.cfg
+  ```
+  
+
+  The following file is created:
+
+  * $TOP_FOLDER/nand-bin/root.ubi
+
+5. Generate final NAND image (nand.img) using **dd** command. This file includes the U-Boot built from the GSRD and the root.ubi file generated in the step before. The location in the NAND image is indicated in the table above.
+
+  
+
+  ```bash
+  # Creating the NAND image
+  export COMBINEDFILE=nand.img
+  dd if=/dev/zero bs=1024M count=1 | tr '\0' $'\xFF' > $COMBINEDFILE
+  # Adding u-boot.itb
+  dd conv=notrunc bs=1 if='u-boot.itb' of=$COMBINEDFILE seek=$((0x00000000))
+  # Adding root.ubi
+  dd conv=notrunc bs=1 if='root.ubi' of=$COMBINEDFILE seek=$((0x00200000))
+  ```
+  
 
 
-```bash
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/
-rm -rf nand-bin && mkdir nand-bin && cd nand-bin
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/scripts/ubinize_nand.cfg ubinize_nand.cfg
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin u-boot-spl-dtb.bin
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/uboot.env uboot.env
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/boot.scr.uimg boot.scr.uimg
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot.itb u-boot.itb
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/kernel.itb kernel.itb
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nand.ubifs console-image-minimal-agilex5e.rootfs_nand.ubifs
-# Create root.ubi 
-ubinize -o root.ubi -p 1024KiB -m 8192 -s 8192 ubinize_nand.cfg
-# Creating the NAND image
-export COMBINEDFILE=nand.img
-dd if=/dev/zero bs=1024M count=1 | tr '\0' $'\xFF' > $COMBINEDFILE
-# Adding u-boot.itb
-dd conv=notrunc bs=1 if='u-boot.itb' of=$COMBINEDFILE seek=$((0x00000000))
-# Adding root.ubi
-dd conv=notrunc bs=1 if='root.ubi' of=$COMBINEDFILE seek=$((0x00200000))
-```
+
+The following file is created:
+
+* $TOP_FOLDER/nand-bin/nand.img 
 
 
 
-The final NAND image generated is:
-
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/nand-bin/nand.img
 
 
+### Known Issues with the Release
 
-Once that you have build the binaries from HPS Baseline System Example Design 2.0, you can exercises these binaries with either the Simics environment included as part of the HPS Baseline System Example Design 2.0 [Exercising Simics Simulation from HPS Baseline System Example Design 2.0](#exercising-simics-simulation-from-hps-baseline-system-example-design-20) or using the a Simics environment apart from the HPS Baseline System Example Design [Use Cases Supported by the Agilex™ 5 E-Series Universal Virtual Platform](#use-cases-supported-by-the-agilextm-5-e-series-universal-virtual-platform).
-
-
+For known issues in this release please refer to the [Intel Simics Simulator for FPGA Release page](https://www.rocketboards.org/foswiki/Documentation/SimicsSimulatorForIntelFPGAReleasePage#Known_Issues).
 
 ## Agilex™ 5  Simics Virtual Platform - Universal
 
@@ -487,20 +643,22 @@ This virtual platform is associated with the **agilex5e-universal.simics** targe
 
 ![](images/agilex5e_vp_block_24p2.jpg)
 
+
+
 In this block diagram:
 
-- The architecture of the virtual platform follows a hierarchy that goes from **target script → system → board → fpga → qsys_top → hps_subsystem → agilex_hps,** which is aligned with the Simics virtual platform development philosophy that tries to match with the real golden hardware reference design architecture.
+- The architecture of the virtual platform follows a hierarchy that goes from **target script → system → board → fpga → qsys_top → hps_subsystem → agilex_hps,** which is aligned with the Simics virtual platform development philosophy that tries to match with the real golden hardware reference design (GHRD) architecture.
 - The **target script** instantiates the **system component**, provides the CLI run time commands, and creates the network configuration. This script also defines the parameters that configure other components.
 - The **system component** represents the complete virtual platform system and instantiates the **board component**. This component is implemented in a Python file.
 - The **board component** represents the model of a PCB (analogous to a development kit). It includes the instance of the **FPGA component** and all board components connected to the FPGA (for example, flash devices, ethernet PHY). The GPIO loopback connection is implemented here. This component is implemented in a Python file.
-- The **FPGA component** represents the top-level hardware design model in the Quartus Prime software project design that targets the Agilex™ 5 E-Series SoC FPGA device. It matches the logical hierarchy of the fictitious hardware design that the Agilex™ 5 E-Series Universal Virtual Platform models. This component only instantiates the qsys_top component and is implemented as a Python script.
-- The **qsys_top** component matches the design's top view being modeled and corresponds to the system seen from the Platform Designer under the hardware design(soc_inst instance). The HPS subsystem component and the components included as part of the FPGA fabric design are instantiated under the qsys_top component. The qsys_top component is modeled as a Python script.
+- The **FPGA component** represents the top-level hardware design model in the Quartus Prime software project design that targets the Agilex™ 5 E-Series SoC FPGA device. It matches the logical hierarchy of the fictitious GHRD that the Agilex™ 5 E-Series Universal Virtual Platform models. This component only instantiates the qsys_top component and is implemented as a Python script.
+- The **qsys_top** component matches the design's top view being modeled and corresponds to the system seen from the Platform Designer under the GHRD (soc_inst instance). The HPS subsystem component and the components included as part of the FPGA fabric design are instantiated under the qsys_top component. The qsys_top component is modeled as a Python script.
 - The **FPGA fabric** design corresponds to the logic model implemented in the FPGA fabric.
 - The **HPS subsystem** component corresponds to the model of the module that integrates all components associated with the HPS in the Agilex™ 5 E-Series device. It includes the HPS models, SDM mailbox, and EMIF model.
 - The **Agilex™ 5 HPS component** in the virtual platform is an Intel Simics model that corresponds to the Hard Processor System Agilex™ 5 FPGA IP in the  Quartus Prime software.
 - The embedded software running in the HPS component is expected to be the same that can be run in the real silicon. Exercising the HPS-embedded software in this virtual platform allows you to debug the software using the Simics debug capabilities.
 
-### Main Features Supported by the Altera® Agilex™ 5 E-Series Universal Virtual Platform
+### Main Features Supported by the Intel Agilex™ 5 E-Series Universal Virtual Platform
 
 #### Boot an Operative System
 
@@ -648,16 +806,13 @@ silicon features that the Agilex 5 Simics model supports by stepping the target 
 parameter accepting the value of A0 or B0. The B0 stepping corresponds to the HPS model of the Agilex 5 D-Series.
 
 **Note:** Agilex 5 E-Series Universal Virtual Platform stepping features support is released in
-the 24.1 Intel Simics Simulator for Altera® FPGAs release although the default stepping
+the 24.1 Intel Simics Simulator for Intel FPGAs release although the default stepping
 during the project deployment remains being A0. You can override the default
 stepping using the stepping parameter from the target script. In this case, the B0
 features are enabled in the Agilex 5 E-Series model.
 
-#### UART1/UART2 Serial Console Selection
 
-The Agilex 5 Universal virtual platform supports creating a serial console that could be connected to UART0 (default one) or UART1. This feature provides more flexibility to the virtual platform allowing you to match your board. The selection of the serial console to be displayed is controlled by the **$create_hps_serial0_console** and **$create_hps_serial1_console** configuration parameters. These 2 parameters allow you to enable creating the corresponding serial console. A serial console object is created and connected when the corresponding parameter is set to TRUE. Note that is possible to have both serial consoles enabled or both disabled.
-
-### Configurable Parameters in the Altera® Agilex™ 5 E-Series Universal Virtual Platform
+### Configurable Parameters in the Intel Agilex™ 5 E-Series Universal Virtual Platform
 
 The parameters that you can configure are shown in the following table:
 
@@ -680,133 +835,28 @@ The parameters that you can configure are shown in the following table:
 | **usb3_hs_image_filename**     | Name of the USB disk image corresponding to the high-speed disk in the board component connected to the USB 3.1 controller. | Filename string      | ""            |
 | **usb_otg_image_filename**     | Name of the USB disk image corresponding to the high-speed disk in the board component connected to the USB 2.0 OTG controller. | Filename string      | ""            |
 | **hps_cpu_freq_mhz**           | ARM cores frequency in Megahertz (MHz).                      | Integer [400 - 1500] | 400           |
-| **stepping**     | Select the silicon features that the Agilex 5 Simics model supports. | A0 or B0. D-Series corresponds to B0 device.      | A0  |
-| **create_hps_serial0_console<br>create_hps_serial1_console** | Create a console component (serial console) and connect it to the corresponding UART controller peripheral in the Hard Processor System Agilex 5 FPGA IP.<br/>**create_hps_serial0_console** is for UART0 <br/>**create_hps_serial1_console** is for UART1. | Boolean |serial0: True<br>serial1: False|
-
-### Exercising Simics Simulation from HPS Baseline System Example Design 2.0
-
-The HPS Baseline System Example Design 2.0 build framework is provided with the capability to simulate with Simics some reference use cases using the binaries built with this framework. The components included as part of the HPS Baseline System Example Design repository are listed next. These are included at **$TOP_FOLDER/agilex5_soc_devkit_ghrd_\*/simics/linux** directory.
-
-* [runsimics.sh](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065b-premium-devkit-oobe/baseline/simics/linux/runsimics.sh) : This script is in charge of deploy the Simics project (under $TOP_FOLDER/agilex5_soc_devkit_ghrd\*/simics/linux which becomes the Simics project directory) and build it,  similarly to what is described in the [Simulation Setup section](#simulation-setup).  The script receives as parameter the device used to boot  along with the path of the location of the binaries. <br>
-Parameters:<br>  1\. **Boot mode:** **sdmmc** to boot from sdcard, **qspi** to boot from QSPI or **nand** to boot from NAND. <br>  2\. **Binaries path:** Path where the binares were built. The binaries needed could be the ones listed as output of the [Build SD Card HPS Baseline System Example Design 2.0](#build-sd-card-hps-baseline-system-example-design-20), [Build QSPI HPS Baseline System Example Design 2.0](#build-qspi-hps-baseline-system-example-design-20)  and [Build NAND HPS Baseline System Example Design 2.0](#build-nand-hps-baseline-system-example-design-20) sections, but the binaries could be taken from any other source. 
-
-* [sdmmc_boot](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/main/a5ed065b-premium-devkit-oobe/baseline-a55/simics/linux/sdmmc_boot) directory: This directory is used to the exercise the boot for SD Card use case. This includes  [sdmmc_gsrd.simics](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065b-premium-devkit-oobe/baseline-a55/simics/linux/sdmmc_boot/sdmmc_gsrd.simics) target script which defines the parameters needed to boot in this mode. The .simics target script calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed. In the binary directory, the SD Card image must be called **gsrd-console-image-agilex5e.rootfs.wic**.
-* [qspi_boot](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/main/a5ed065b-premium-devkit-oobe/baseline-a55/simics/linux/qspi_boot) directory: This directory is used to the exercise the QSPI boot mode. This includes the [qspi_gsrd.simics](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065b-premium-devkit-oobe/baseline-a55/simics/linux/qspi_boot/qspi_gsrd.simics) target script which defines the parameters needed to boot in this mode. The .simics target script in this directory calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed to run the simulation. In the binary directory, the QSPI image must be called **qspi_boot.rpd**.
-* [nand_boot](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/main/a5ed065b-premium-devkit-nand/baseline-a55/simics/linux/nand_boot): This directory is used to the exercise the NAND boot mode. This includes the [nand_gsrd.simics](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065b-premium-devkit-nand/baseline-a55/simics/linux/nand_boot/nand_gsrd.simics) target script which defines the parameters needed to boot in this mode. The .simics target script in this directory calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed to run the simulation. In the binary directory, the NAND image must be called **nand.img**. If this file does not exist, then the **runsimics.sh** script will try to create it using the binaries available in the binaries directory.
-
-The boot modes supported by the HPS Baseline System Example Design 2.0 are:
-
-* Booting from U-Boot to Linux from SD Card using Agilex 5 Universal Virtual Platform
-* Booting from U-Boot to Linux from QSPI using Agilex 5 Universal Virtual Platform
-* Booting from U-Boot to Linux from NAND using Agilex 5 Universal Virtual Platform
-
-The use cases that are listed in the [Use Cases Supported by the Agilex™ 5 E-Series Universal Virtual Platform](#use-cases-supported-by-the-agilextm-5-e-series-universal-virtual-platform) are also supported, but require manual update of the **.simics** target scripts included in the boot mode directories listed above.
-
-####  Simulation Setup under HPS Baseline System Example Design 2.0
-
-At this time, it is assumed that you had already built the HPS binaries as indicated in [Build Instructions - HPS Baseline System Example Design 2.0 Baseline](#build-instructions-hps-baseline-system-example-design-20) and you also have installed the Intel Simics Simulator for Altera FPGAs in to your Linux machine.
-
-You also need to add the following to yout Linux **$PATH** environment variable:
-
-* Simics Simulator installation directory. 
-* Quartus Pro. Needed only for QSPI boot mode.
-
-This can be done with:
-
-```bash
-$ cd $TOP_FOLDER
-# Simics installation dir
-$ export PATH=<Simics_installation_dir/simics/bin/:$PATH
-# Quartus Pro
-$ export QUARTUS_ROOTDIR=~/altera_pro/26.1/quartus/
-$ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
-```
-#### Exercise SDCard Boot Mode under HPS Baseline System Example Design 2.0 Environment
-
-It is assumed that the instructions at [Simulation Setup under HPS Baseline System Example Design 2.0](#simulation-setup-under-hps-baseline-system-example-design-20) section have been already executed.
-
-The **runsimics.sh** script need to be called, providing as parameters the **sdmmc** boot mode and the location of the binaries.
-```bash
-$ cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/simics/linux/
-$ ./runsimics.sh  sdmmc $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e
-```
-This will deploy the **agilex5e-universal** virtual platform under **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/simics/linux/** directory, create the Simics project and build it. This will also launch the Simics simulation using **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/simics/linux/sdmmc_boot/sdmmc_gsrd.simics** as target script. 
-
-When the simulation is launched, the current Linux terminal will become the Simics CLI and the Serial console will pop up.  To start the simulation enter **"run"** command in the Simics CLI.
-
-![](images/SimicsSimGRHD2.0.png)
-
-
-#### Exercise QSPI Boot Mode under HPS Baseline System Example Design 2.0 Environment
-
-It is assumed that the instructions at [Simulation Setup under HPS Baseline System Example Design 2.0](#simulation-setup-under-hps-baseline-system-example-design-20) section have been already executed.
-
-The **runsimics.sh** script need to be called, providing the (**qspi**) boot mode and the location of the binaries used to boot from QSPI as parameters.
-
-```bash
-$ cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/simics/linux/
-$ ./runsimics.sh  qspi $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/qspi_rpd
-```
-
-This will deploy the **agilex5e-universal** virtual platform under **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/simics/linux/** directory, create the Simics project and build it. This will also launch the Simics simulation using **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/simics/linux/qspi_boot/qspi_gsrd.simics** as target script.
-
-When the simulation is launched, the current Linux terminal will become the Simics CLI and the Serial console will pop up.  To start the simulation enter **"run"** command in the Simics CLI.
-
-#### Exercise NAND Boot Mode under HPS Baseline System Example Design 2.0 Environment
-
-It is assumed that the instructions at [Simulation Setup under HPS Baseline System Example Design 2.0](#simulation-setup-under-hps-baseline-system-example-design-20) section have been already executed.
-
-The **runsimics.sh** script need to be called, providing the (**nand**) boot mode and the location of the binaries used to boot from NAND as parameters.
-
-```bash
-$ cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/simics/linux/
-$ ./runsimics.sh  nand $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/nand-bin
-```
-
-This will deploy the **agilex5e-universal** virtual platform under **$TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/simics/linux/** directory, create the Simics project and build it. This will also launch the Simics simulation using **$TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/simics/linux/qspi_boot/qspi_gsrd.simics** as target script.
-
-When the simulation is launched, the current Linux terminal will become the Simics CLI and the Serial console will pop up.  To start the simulation enter **"run"** command in the Simics CLI.
-
-**NOTE:** In order to have ethernet connectivity, you need to connect the ethernet interface defined in the NAND device tree (eth0). For this, you need to deploy de project a first time and then update the following line in the **targets/agilex5e-universal/agilex5e-universal.simics** target script:
-
-  ```bash
-  if $create_hps_eth0_network {    
-      :
-      # Connect HPS eth0 instead of eth2 to Ethernet Switch
-      connect ($eth_switch.get-free-connector) $system.board.eth0
-	  :    
-  }
-  ```
-
-After subsequence times in which the **runsimics.sh** command is executed, the update in the target script will be taken.
-
-
-
+| **stepping**     | Select the silicon features that the Agilex 5 Simics model supports. | A0 or B0. D-Series corresponds to B0 device.      | A0  | 
 
 ### Use Cases Supported by the Agilex™ 5 E-Series Universal Virtual Platform
 
-The following sections explain some supported use cases using the **Agilex™ 5 E-Series Universal** virtual platform. 
+The following sections explain some supported use cases using the **Agilex™ 5 E-Series Universal** virtual platform. The preconditions required to execute them are listed in the following section:
 
-**Note:** The instructions in each of the use case shows how this can be exercised in a Simics environment apart for the HPS Baseline System Example Design, but these can also be exercise from the Simics environment inside of the HPS Baseline System Example Design. For this last case, you can modify the **\*.simics** target scripts provided inside of the HPS Baseline System Example Design (below **simics/linux/** directory) as indicated in the use case description or create a new target script and call  it from the **runsimics.sh** script. 
+#### Simulation Setup
 
-The preconditions required to execute them are listed in the following section.
-
-#### Simulation Setup 
-
-Consider that the Intel Simics Simulator for Altera® FPGAs Simulator has been installed on a Linux System and the output binaries generated from [Build Instructions - HPS Baseline System Example Design 2.0 Baseline](#build-instructions-hps-baseline-system-example-design-20) section are already available.
+Consider that the Intel Simics Simulator for Intel FPGAs Simulator has been installed on a Linux System and the output binaries generated from [Build Instructions](#build-instructions) section are already available.
 
 
-1\. Create a project directory under the Intel Simics Simulator installation directory (Assuming it is **SimicsInstallDir**):
+1. Create a project directory under the Intel Simics Simulator installation directory (Assuming it is **SimicsInstallDir**):
 
   ```bash
   $ mkdir project-1
   $ cd project-1
   ```
 
-2\. Under the new project directory created, deploy the **agilex5e-universal** virtual platform:
+2. Under the new project directory created, deploy the **agilex5e-universal** virtual platform:
 
   ```bash
-  $<Simics installation dir>/simics/bin/simics_intelfpga_cli --deploy agilex5e-universal
+  $<Simics installation dir>/simics/bin/simics_intelfpga_cli –-deploy agilex5e-universal
   Simics(R) Simulator for Intel(R) FPGA CLI:
   INFO: Preparing to initialize /home/simicsUser/SimicsInstallDir/project-1 as a
   Simics workspace
@@ -817,7 +867,7 @@ Consider that the Intel Simics Simulator for Altera® FPGAs Simulator has been i
   # platform.
   ```
 
-3\. Build the virtual platform components:
+3. Build the virtual platform components:
 
   ```bash
   $ make
@@ -833,30 +883,27 @@ Consider that the Intel Simics Simulator for Altera® FPGAs Simulator has been i
   Copying agilex5_icon_84x84.png
   ```
 
-4\. Copy the following binaries created in [Build Instructions - HPS Baseline System Example Design 2.0 Baseline](#build-instructions-hps-baseline-system-example-design-20-baseline) section to the Simics project directory:
+4. Copy the following binaries created in [Build Instructions](#build-instructions) section to the Simics project directory:
 
-```bash
-$ cp $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/gsrd-console-image-agilex5e.rootfs.wic .
-$ cp
-$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin .
-$ cp $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/qspi_rpd/qspi_boot.rpd .
-$ cp $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin u-boot-spl-dtb_qspi.bin
-```
+  - gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/gsrd-console-image-agilex5.wic
+  - gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.bin
+  - qspi-bin/flash_image_jic.rpd
+  - nand-bin/nand.img
 
-5.\ Customize the configuration of the Agilex™ 5 E-Series Universal virtual platform, according to the setup required to exercise any specific use case. Set up the **fsbl_image_filename** parameter with the first-stage bootloader. If the boot implies booting from an SD Card device, configure **sd_image_filename** and **create_hps_sd_card** parameters (this image should include the main bootloader and the OS and/or application images). As part of the configuration, select the core used to boot using the **hps_boot_core** parameter, which could be core 0 (A55) or core 2 (A76).
+5. Customize the configuration of the Agilex™ 5 E-Series Universal virtual platform, according to the setup required to exercise any specific use case. Set up the **fsbl_image_filename** parameter with the first-stage bootloader. If the boot implies booting from an SD Card device, configure **sd_image_filename** and **create_hps_sd_card** parameters (this image should include the main bootloader and the OS and/or application images). As part of the configuration, select the core used to boot using the **hps_boot_core** parameter, which could be core 0 (A55) or core 2 (A76).
 
-You can configure the virtual platform by creating a top-level target script (named based on the simulation purpose) that is expected to be run with this (example: **uboot-linux_sdcard.simics** used to boot from U-Boot to Linux from an SD Card device). You become the owner of this new target script, in which, you can set the required parameters and call the original virtual platform target script (**targets/agilex5e-universal/agilex5e-universal.simics** path). An example of the setup required to run a simulation that exercises the boot flow going from U-Boot to Linux, booting from an SD Card is shown in the following:
+  You can configure the virtual platform either by updating the **agilex5e-universal.simics**target script or creating a separate top-level target script (named based on the simulation purpose) that is expected to be run with this (example: **uboot-linux_sdcard.simics** used to boot from U-Boot to Linux from an SD Card device). You become the owner of this new target script, in which, you can set the required parameters and call the original virtual platform target script (**targets/agilex5e-universal/agilex5e-universal.simics** path). An example of the setup required to run a simulation that exercises the boot flow going from U-Boot to Linux, booting from an SD Card is shown in the following:
 
-```bash
-#uboot-linux_sdcard.simics
-$sd_image_filename = "gsrd-console-image-agilex5e.rootfs.wic"
-$fsbl_image_filename = "u-boot-spl-dtb.bin"
-$hps_boot_core = 0
-$create_hps_sd_card = TRUE
-run-script "targets/agilex5e-universal/agilex5e-universal.simics"
-```
+  ```bash
+  #uboot-linux_sdcard.simics
+  $sd_image_filename = "gsrd-console-image-agilex5.wic"
+  $fsbl_image_filename = "u-boot-spl-dtb.bin"
+  $hps_boot_core = 0
+  $create_hps_sd_card = TRUE
+  run-command-file "targets/agilex5e-universal/agilex5e-universal.simics"
+  ```
 
-  **Note:** The **uboot-linux_sdcard.simics** file must be created under the Simics project directory.
+  **Note:** The **uboot-linux_sdcard.simics** file must be created under the Intel Simics project directory.
 
   **Tip:** Any specific configuration needed for a use case is indicated under the **Setup** section of that use case.
 
@@ -868,27 +915,24 @@ This use case consists of booting from an SDCard device going from U-Boot to Lin
 
 Complete the procedure described in the [Simulation Setup](#simulation-setup) section.
 
-You will need to copy the following binaries to your project directory: 
-
 <h5>Procedure</h5>
 
 To exercise this use case, follow the below steps once the Simulation setup is complete:
 
-1\. From the project directory, launch the simulation using the **uboot-linux_sdcard.simics** target script. This script launches the simulator and the current terminal becomes the Simics CLI:
+1. From the project directory, launch the simulation using the **uboot-linux_sdcard.simics** target script. This script launches the simulator and the current terminal becomes the Simics CLI:
 
   ```bash
   $ ./simics uboot-linux_sdcard.simics 
   ```
 
-2\. From the Simics CLI, start running the simulation with the **run** command.
+2. From the Simics CLI, start running the simulation with the **run** command.
 
   ```bash
   simics>  run
   ```
 
-3\. Wait to get to the Linux prompt in the target serial console. 
-
-4\. Login into the Linux prompt using the **root** user without a password.
+3. Wait to get to the Linux prompt in the target serial console. 
+4. Login into the Linux prompt using the **root** user without a password.
 
   ```bash
   # Target Serial console
@@ -923,7 +967,7 @@ To exercise this use case, follow the below steps once the Simulation setup is c
 
   U-Boot 2024.04 (Oct 16 2024 - 02:54:45 +0000)socfpga_agilex5
 
-  CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
+  CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
   Model: SoCFPGA Agilex5 SoCDK
   DRAM:  2 GiB (effective 8 GiB)
   Core:  51 devices, 26 uclasses, devicetree: separate
@@ -989,7 +1033,7 @@ To exercise this use case, follow the below steps once the Simulation setup is c
   ```bash
   U-Boot 2024.01 (Jun 25 2024 - 09:28:56 +0000)socfpga_agilex5
 
-  CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
+  CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
   Model: SoCFPGA Agilex5 SoCDK
 
   :
@@ -1000,7 +1044,6 @@ To exercise this use case, follow the below steps once the Simulation setup is c
   mmc0 is current device
   Scanning mmc 0:1...
   ```
-
 
 #### Use Case: Exercise Hello Application
 
@@ -1033,9 +1076,9 @@ Same setup as the parent use case.
 
 <h5>Procedure</h5>
 
-1\. Execute the parent use case to get to the Linux prompt and log in.
+1. Execute the parent use case to get to the Linux prompt and log in.
 
-2\. From the target system serial console, execute the System Check application (**syschk**) located under the **intelFPGA** directory. This shows some system information, such as the target system IP address and the state of the HPS LEDs. Observe that the initial state of the three HPS LEDs is **OFF**.
+2. From the target system serial console, execute the System Check application (**syschk**) located under the **intelFPGA** directory. This shows some system information, such as the target system IP address and the state of the HPS LEDs. Observe that the initial state of the three HPS LEDs is **OFF**.
 
   **Note:**  When using device tree targeted for OOB card, only **hps_led1** is available, so the System Check application only shows this led.
 
@@ -1054,7 +1097,7 @@ Same setup as the parent use case.
   hps_led1              : OFF
   ```
 
-3\. Change the state of any of the HPS LEDs using the **/sys/class/led/hps_ledX/brightness** files writing either a '1' or '0' to these. For this, you need to first close the System Check application by typing **Ctrl+C** in the target serial console. Change the state of the LEDs to 'ON' state as indicated next and reopen the System Check application to observe the new state of the LEDs.
+3. Change the state of any of the HPS LEDs using the **/sys/class/led/hps_ledX/brightness** files writing either a '1' or '0' to these. For this, you need to first close the System Check application by typing **Ctrl+C** in the target serial console. Change the state of the LEDs to 'ON' state as indicated next and reopen the System Check application to observe the new state of the LEDs.
 
   ```bash
   # Target Serial console 
@@ -1075,7 +1118,7 @@ Same setup as the parent use case.
   hps_led1              : ON
   ```
 
-4\. Close the System Check application with **Ctrl+C** and return the HPS LEDs to the OFF state. Reconfirm that the state of the LEDs was updated to the new state in the System Check application.
+4. Close the System Check application with **Ctrl+C** and return the HPS LEDs to the OFF state. Reconfirm that the state of the LEDs was updated to the new state in the System Check application.
 
   ```bash
   # Target Serial console 
@@ -1096,9 +1139,7 @@ Same setup as the parent use case.
   hps_led1              : OFF
   ```
 
-5\. Close the System Check application with **Ctrl+C**.
-
-
+5. Close the System Check application with **Ctrl+C**.
 
 #### Use Case: Access the Web Server Application from Host PC
 
@@ -1120,7 +1161,7 @@ The port forwarding created allows you to access the webpage from the host PC. I
 
 2. From the host PC, open a web browser and access the webpage running in the target system using the address: http://localhost:4080 . Note that the host machine is referred to as **localhost** and the port is 4080, which is the one visible from the host PC. 
 
-  ![](images/webServerGSRD2.0.png)
+  ![](images/webServerExample.jpg)
 
   **Note:** The IP address of the host PC could be used as well instead of **localhost**.
 
@@ -1130,7 +1171,7 @@ The port forwarding created allows you to access the webpage from the host PC. I
   **connect-real-network-port-in ethernet-link = ethernet_switch0 target-ip=10.10.0.100 target-port = 22 host-port = 4022 -tcp**
 
 
-  Then, connect to the target system using **ssh -p 4022 root@localhost** from the host PC or **ssh -p 4022 root@<*host PC IP address*>** from any other PC in the same network.
+  Then, connect to the target system using **ssh -p 4022 root@localhost** from the host PC or **ssh -p 4022 root@<host PC IP address>** from any other PC in the same network.
 
 A variation of this use case consists of accessing the web page from another PC under the same network that the host PC (both PCs in a real network). For this, use the IP address of the host PC instead of **localhost** and continue using the same port: **http://<*host PC address*>:4080**.
 
@@ -1165,9 +1206,9 @@ script-branch{
 ```
 <h5>Procedure</h5>
 
-1\. Execute the parent use case to get to the Linux prompt and log in.
+1. Execute the parent use case to get to the Linux prompt and log in.
 
-2\. Read the first and last locations written by the CLI script in the memories in the example design using the **devmem2** application in Linux. This command receives the physical memory that wants to be accessed (in this case, based on the offset where the HPS2FPGA bridges are mapped to):
+2. Read the first and last locations written by the CLI script in the memories in the example design using the **devmem2** application in Linux. This command receives the physical memory that wants to be accessed (in this case, based on the offset where the HPS2FPGA bridges are mapped to):
 
   ```bash
   dhcp0 login:  root 
@@ -1185,7 +1226,7 @@ script-branch{
 
   **Note:** The addresses in parenthesis in the capture above correspond to the virtual address in which Linux maps the physical address corresponding to the location in the memory example design that is being accessed. This virtual address may be different than the one shown in the capture.
 
-3\. Use the `devmem2` command to write into the memories in the example design and read back the data. For this, the following addresses are selected:
+3. Use the `devmem2` command to write into the memories in the example design and read back the data. For this, the following addresses are selected:
 
 
   | Bridge   | Address    | Memory Design Addr | Index | Value      |
@@ -1201,7 +1242,7 @@ script-branch{
   Write at address 0x40000400 (0xffffbd034400): 0xCAFE0200, readback   0xCAFE0200
   ```
 
-4\. Read back to the previous memory location written to confirm the operation was performed successfully.
+4. Read back to the previous memory location written to confirm the operation was performed successfully.
 
   ```bash
   root@dhcp0:~#  devmem2 0x40000400 w  
@@ -1223,9 +1264,8 @@ Complete the procedure described in the [Simulation Setup](#simulation-setup) se
 
 <h5>Procedure</h5>
 
-1\. Start the simulation similar to how it is done in the main use case, but in the serial console stop the U-Boot autoboot by pressing a key on the reception of the message "**Hit any key to stop autoboot:**".
-
-2\. Here you are going to exercise the setting of some LEDs. Read the state of the LEDs I/O pins from the U-Boot shell through memory access using the address in which the DATA register of this component is mapped (0x20010080) and turn-on the 3 LEDs associated with the 3 less significative bits in this register. Then read-back the state of these pins to confirm these has been updated. You can confirm that the state of the LED's was updated reading directly into the DATA register of the LED I/O components from the Simics CLI.
+1. Start the simulation similar to how it is done in the main use case, but in the serial console stop the U-Boot autoboot by pressing a key on the reception of the message "**Hit any key to stop autoboot:**".
+2. Here you are going to exercise the setting of some LEDs. Read the state of the LEDs I/O pins from the U-Boot shell through memory access using the address in which the DATA register of this component is mapped (0x20010080) and turn-on the 3 LEDs associated with the 3 less significative bits in this register. Then read-back the state of these pins to confirm these has been updated. You can confirm that the state of the LED's was updated reading directly into the DATA register of the LED I/O components from the Simics CLI.
 
   ```bash
   # U-Boot shell
@@ -1249,7 +1289,8 @@ Complete the procedure described in the [Simulation Setup](#simulation-setup) se
     Data @ [31:0] : 00000000000000000000000000000111
   ```
 
-3\. Next you will exercise the toggling the input pin of the dip-switch component using the Simics CLI through the **signal_raise()** and **signal_lower()** and then reading back the state of the pin using the DATA register in this component using the U-Boot shell through the corresponding memory location of this register (0x20010070).
+
+3. Next you will exercise the toggling the input pin of the dip-switch component using the Simics CLI through the **signal_raise()** and **signal_lower()** and then reading back the state of the pin using the DATA register in this component using the U-Boot shell through the corresponding memory location of this register (0x20010070).
 
   ```bash
   # Simics CLI
@@ -1275,7 +1316,7 @@ Complete the procedure described in the [Simulation Setup](#simulation-setup) se
   20010070: 00000000                             ….
   ```
 
-4\. Finally you are going to exercise triggering an interrupt and clearing the interrupt generated from the rising edge of the input in the button I/O component. This will be exercised from the Simics CLI. To observe that the interrupt is triggered, the log level of the interrupt controller is increased. First the interrupt needs to be enabled using the INTERRUPT register in this component. Once the interrupt is enabled, we can assert the input signal and observe that the interrupt is triggered and the DATA register gets also updated with the set value ('1'). Finally, you will clear the interrupt using again the INTERRUPT register.
+4. Finally you are going to exercise triggering an interrupt and clearing the interrupt generated from the rising edge of the input in the button I/O component. This will be exercised from the Simics CLI. To observe that the interrupt is triggered, the log level of the interrupt controller is increased. First the interrupt needs to be enabled using the INTERRUPT register in this component. Once the interrupt is enabled, we can assert the input signal and observe that the interrupt is triggered and the DATA register gets also updated with the set value ('1'). Finally, you will clear the interrupt using again the INTERRUPT register.
 
   ```bash
   # Simics CLI
@@ -1314,7 +1355,7 @@ Start with the setup as the parent use case an continue with next steps. 1. Crea
 
 
 
-1\. In your Simics project directory, create the `usbImage.img` image:  
+1. In your Simics project directory, create the `usbImage.img` image:  
 
   ```bash
   # Create a dircetory to create the image
@@ -1332,7 +1373,7 @@ Start with the setup as the parent use case an continue with next steps. 1. Crea
   -n usbImage.img
   ```
 
-2\. Update the target script to attach the image to the USB disk.
+2. Update the target script to attach the image to the USB disk.
 
   ```bash
   #uboot-linux_sdcard.simics   
@@ -1341,12 +1382,12 @@ Start with the setup as the parent use case an continue with next steps. 1. Crea
   $usb3_image_filename = "usbDisk/usbImage.img"
   $hps_boot_core = 0
   $create_hps_sd_card = TRUE
-  run-script "targets/agilex5e-universal/agilex5e-universal.simics"
+  run-command-file "targets/agilex5e-universal/agilex5e-universal.simics"
   ```
 
 <h5>Procedure</h5>
 
-1\. Execute the parent use case to get to the Linux prompt and log in. By default, the USB disks in the virtual platform are plugged in. These can be detected from the Linux using the **fdisk -l** command and shown next:
+1. Execute the parent use case to get to the Linux prompt and log in. By default, the USB disks in the virtual platform are plugged in. These can be detected from the Linux using the **fdisk -l** command and shown next:
 
   ```bash
   root@dhcp0:~# fdisk -l 
@@ -1367,9 +1408,9 @@ Start with the setup as the parent use case an continue with next steps. 1. Crea
        phys=(2,42,41) logical=(19,32,8)
   ```
 
-2\. Observe that the usb3_disk corresponds to the **/dev/sda** device and **/dev/sda1** corresponds to the partition created in this disk which size of 16 MB.
+2. Observe that the usb3_disk corresponds to the **/dev/sda** device and **/dev/sda1** corresponds to the partition created in this disk which size of 16 MB.
 
-3\. Mount the partition in usb3_disk, observe the content (**hello1.txt** file), add new content (**hello2.txt**), and unmount the disk.
+3. Mount the partition in usb3_disk, observe the content (**hello1.txt** file), add new content (**hello2.txt**), and unmount the disk.
 
   ```bash
   root@dhcp0:~# mkdir /media/usbDrive 
@@ -1386,7 +1427,7 @@ Start with the setup as the parent use case an continue with next steps. 1. Crea
   [ 2403.043825] EXT4-fs (sda1): unmounting filesystem.
   ```
 
-4\. Unplug the usb3_disk from the Simics CLI and observe that Linux detects this action.
+4. Unplug the usb3_disk from the Simics CLI and observe that Linux detects this action.
 
   In Simics CLI:
   ```bash
@@ -1401,7 +1442,7 @@ Start with the setup as the parent use case an continue with next steps. 1. Crea
 
   You can call **fdisk -l** command again to observe that **/dev/sda** device is no longer present.
 
-5\. From the Simics CLI plugin, the usb3_disk again provides the **usb3** port. Observe in the Linux shell that the device connection is detected. Remount the device partition and confirm that the new content created before is still present. Finally, unmount the disk.
+5. From the Simics CLI plugin, the usb3_disk again provides the **usb3** port. Observe in the Linux shell that the device connection is detected. Remount the device partition and confirm that the new content created before is still present. Finally, unmount the disk.
 
   In Simics CLI:
 
@@ -1452,169 +1493,171 @@ This use case consists of booting from a QSPI flash device going from U-Boot to 
 
 Perform steps 1 to 4 described in the [Simulation Setup](#simulation-setup) section.
 
-1\. In the Intel Simics environment at the project directory, generate a compressed version of the .rpd file created (.craff) file using the **craff** tool provided under the Simics Base installation directory:
+5. In the Intel Simics environment at the project directory, generate a compressed version of the .rpd file created (.craff) file using the **craff** tool provided under the Simics Base installation directory:
 
   ```bash
-  <SimicsInstallDir>/simics-7.59.0/bin/craff -o qspi_image.img.craff qspi_boot.rpd
+  <SimicsInstallDir>/simics-6.0.202/bin/craff -o qspi_image.img.craff flash_image_jic.rpd
   ```
 
   The following file is created under the Simics project directory:
 
   - qspi_image.img.craff
 
-2\. In the Intel Simics environment at the project directory, create a customized target script to exercise the FSBL to Linux boot flow from QSPI device with an image with UBIFS format. The file to create is called **uboot-linux_qspi.simics**. This file will look like this:
+6. In the Intel Simics environment at the project directory, create a customized target script to exercise the FSBL to Linux boot flow from QSPI device with an image with UBIFS format. The file to create is called **uboot-linux_qspi.simics**. This file will look like this:
 
   ```bash
   #uboot-linux_qspi.simics
-  $fsbl_image_filename = "u-boot-spl-dtb_qspi.bin"
+  $fsbl_image_filename = "u-boot-spl-dtb.bin"
   $qspi_image_filename  = "qspi_image.img.craff"
   $hps_boot_core = 0
   $create_hps_sd_card = FALSE
-  run-script "targets/agilex5e-universal/agilex5e-universal.simics"
+  run-command-file "targets/agilex5e-universal/agilex5e-universal.simics"
   ```
 
 <h5>Procedure</h5>
 
 To exercise this use case, follow the steps below once the Simulation setup is complete:
 
-1\. From the project directory, launch the simulation using the **uboot-linux_qspi.simics** target script. This script launches the simulator and the current terminal becomes the Simics CLI:
+1. From the project directory, launch the simulation using the **uboot-linux_qspi.simics** target script. This script launches the simulator and the current terminal becomes the Simics CLI:
 
   ```bash
   $ ./simics uboot-linux_qspi.simics 
   ```
 
-2\. From the Simics CLI, start running the simulation with the `run` command.
-
+2. From the Simics CLI, start running the simulation with the `run` command.
   ```bash
   simics>  run
   ```
 
-3\. Wait for the simulation to get to the Linux prompt in the target serial console.
+3. Wait for the simulation to get to the Linux prompt in the target serial console.
 
-4\. Login into the Linux prompt using the **root** user without a password.  
+4. Login into the Linux prompt using the **root** user without a password.  
 
-```bash
- U-Boot SPL 2024.04 (Oct 16 2024 - 02:54:45 +0000)
-  Reset state: Cold
-  MPU           875000 kHz
-  L4 Main       400000 kHz
-  L4 sys free   100000 kHz
-  L4 MP         200000 kHz
-  L4 SP         100000 kHz
-  SDMMC          50000 kHz
-  io96b_cal_status: Calibration for IO96B instance 0x18400400 done at 0 msec!
-  init_mem_cal: Initial DDR calibration IO96B_0 succeed
-  io96b_mb_init: num_instance 1
-  io96b_mb_init: get memory interface IO96B 0
-  :
-  ecc_enable_status: ECC enable status: 0
-  DDR: size check success
-  DDR: firewall init success
-  DDR: init success
-  QSPI: Reference clock at 400000 kHz
-  Trying to boot from SPI
-  ## Checking hash(es) for config board-0 ... OK
-  ## Checking hash(es) for Image atf ... crc32+ OK
-  ## Checking hash(es) for Image uboot ... crc32+ OK
-  ## Checking hash(es) for Image fdt-0 ... crc32+ OK
-  WARNING: Data cache not enabled
-  NOTICE:  BL31: Boot Core = 0
-  NOTICE:  BL31: CPU ID = 0
-  NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
-  NOTICE:  BL31: Built : 07:09:49, Oct 15 2024
-  
-  U-Boot 2024.04 (Oct 16 2024 - 02:54:45 +0000)socfpga_agilex5
-  
-  CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
-  Model: SoCFPGA Agilex5 SoCDK
-  DRAM:  2 GiB (effective 8 GiB)
-  Core:  51 devices, 26 uclasses, devicetree: separate
-  WDT:   Not starting watchdog@10d00200
-  WDT:   Not starting watchdog@10d00300
-  WDT:   Not starting watchdog@10d00400
-  WDT:   Not starting watchdog@10d00500
-  WDT:   Not starting watchdog@10d00600
-  NAND:  4096 MiB
-  MMC:   mmc0@10808000: 0
-  Loading Environment from FAT... MMC: no card present
-  :
-  Hit any key to stop autoboot:  0 
-  MMC: no card present
-  SF: Detected mt25qu02g with page size 256 Bytes, erase size 64 KiB, total 256 MiB
-  Select Environment on UBI: OK
-  Saving Environment to UBI... done
-  OK
-  UBI partition 'root' already selected
-  UBI partition 'root' already selected
-  No size specified -> Using max size (196224)
-  Read 196224 bytes from volume script to 0000000081000000
-  QSPI: Running script from UBIFS
-  QSPI: Trying to boot script at 0x81000000
-  ## Executing script at 81000000
-  crc32+ Trying to boot Linux from device qspi
-  
-  device nor0 <nor0>, # parts = 2
-  #: name                size            offset          mask_flags
-  0: u-boot              0x04200000      0x00000000      0
-  1: root                0x0be00000      0x04200000      0
-  
-  device nand0 <nand.0>, # parts = 2
-  #: name                size            offset          mask_flags
-  0: nand_uboot          0x00200000      0x00000000      0
-  1: nand_root           0x1f400000      0x00200000      0
-  
-  active partition: nor0,0 - (u-boot) 0x04200000 @ 0x00000000
-  
-  defaults:
-  mtdids  : nand0=10b80000.nand.0
-  mtdparts: mtdparts=10b80000.nand.0:2m(u-boot),-(root)
-  UBI partition 'root' already selected
-  :
-  SF: Detected mt25qu02g with page size 256 Bytes, erase size 64 KiB, total 256 MiB
-  Enabling QSPI at Linux DTB...
-  Working FDT set to ffae1000
-  QSPI clock frequency updated
-  RSU: Firmware or flash content not supporting RSU
-  RSU: Firmware or flash content not supporting RSU
-  RSU: Firmware or flash content not supporting RSU
-  RSU: Firmware or flash content not supporting RSU
-  
-  Starting kernel ...
-  
-  Deasserting all peripheral resets
-  [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x412fd050]
-  [    0.000000] Linux version 6.6.37-altera-g978b3d90f408 (oe-user@oe-host) (aarch64-poky-linux-gcc (GCC) 13.3.0, GNU ld (GNU Binutils) 2.42.0.20240723) #1 SMP PREEMPT Mon Oct 14 01:56:39 UTC 2024
-  [    0.000000] KASLR disabled due to lack of seed
-  [    0.000000] Machine model: SoCFPGA Agilex5 SoCDK
-  [    0.000000] efi: UEFI not found.
-  [    0.000000] Reserved memory: created DMA memory pool at 0x0000000080000000, size 32 MiB
-  [    0.000000] OF: reserved mem: initialized node svcbuffer@0, compatible id shared-dma-pool
-  [    0.000000] OF: reserved mem: 0x0000000080000000..0x0000000081ffffff (32768 KiB) nomap non-reusable svcbuffer@0
-  [    0.000000] earlycon: uart0 at MMIO32 0x0000000010c02000 (options '115200n8')
-  [    0.000000] printk: bootconsole [uart0] enabled
-  [    0.000000] NUMA: No NUMA configuration found
-  :
-  Poky (Yocto Project Reference Distro) 5.0.5 agilex5dka5e065bb32aes1 ttyS0
-  
- agilex5dka5e065bb32aes1 login: [  270.942017] socfpga-dwmac 10830000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
-  [  270.947263] socfpga-dwmac 10830000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-1
-  [  270.952619] socfpga-dwmac 10830000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-2
-  :
-  [  281.452200] socfpga-dwmac 10830000.ethernet eth0: Link is Up - 1Gbps/Full - flow control rx/tx
-  [  311.541769] audit: type=1334 audit(1709054902.844:15): prog-id=18 op=UNLOAD
-  [  311.542509] audit: type=1334 audit(1709054902.844:16): prog-id=17 op=UNLOAD
-  [  311.543247] audit: type=1334 audit(1709054902.844:17): prog-id=16 op=UNLOAD
-  
-  dhcp0 login: root
-  
-  WARNING: Poky is a reference Yocto Project distribution that should be used for testing and development purposes only. It is recommended that you create your own distribution for production use.
-  
-  root@dhcp0:~#
-```
+   ```bash
+    U-Boot SPL 2024.04 (Oct 16 2024 - 02:54:45 +0000)
+     Reset state: Cold
+     MPU           875000 kHz
+     L4 Main       400000 kHz
+     L4 sys free   100000 kHz
+     L4 MP         200000 kHz
+     L4 SP         100000 kHz
+     SDMMC          50000 kHz
+     io96b_cal_status: Calibration for IO96B instance 0x18400400 done at 0 msec!
+     init_mem_cal: Initial DDR calibration IO96B_0 succeed
+     io96b_mb_init: num_instance 1
+     io96b_mb_init: get memory interface IO96B 0
+     :
+     ecc_enable_status: ECC enable status: 0
+     DDR: size check success
+     DDR: firewall init success
+     DDR: init success
+     QSPI: Reference clock at 400000 kHz
+     Trying to boot from MMC1
+     MMC: no card present
+     spl: mmc init failed with error: -123
+     Trying to boot from SPI
+     ## Checking hash(es) for config board-0 ... OK
+     ## Checking hash(es) for Image atf ... crc32+ OK
+     ## Checking hash(es) for Image uboot ... crc32+ OK
+     ## Checking hash(es) for Image fdt-0 ... crc32+ OK
+     WARNING: Data cache not enabled
+     NOTICE:  BL31: Boot Core = 0
+     NOTICE:  BL31: CPU ID = 0
+     NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
+     NOTICE:  BL31: Built : 07:09:49, Oct 15 2024
+     
+     U-Boot 2024.04 (Oct 16 2024 - 02:54:45 +0000)socfpga_agilex5
+     
+     CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
+     Model: SoCFPGA Agilex5 SoCDK
+     DRAM:  2 GiB (effective 8 GiB)
+     Core:  51 devices, 26 uclasses, devicetree: separate
+     WDT:   Not starting watchdog@10d00200
+     WDT:   Not starting watchdog@10d00300
+     WDT:   Not starting watchdog@10d00400
+     WDT:   Not starting watchdog@10d00500
+     WDT:   Not starting watchdog@10d00600
+     NAND:  4096 MiB
+     MMC:   mmc0@10808000: 0
+     Loading Environment from FAT... MMC: no card present
+     :
+     Hit any key to stop autoboot:  0 
+     MMC: no card present
+     SF: Detected mt25qu02g with page size 256 Bytes, erase size 64 KiB, total 256 MiB
+     Select Environment on UBI: OK
+     Saving Environment to UBI... done
+     OK
+     UBI partition 'root' already selected
+     UBI partition 'root' already selected
+     No size specified -> Using max size (196224)
+     Read 196224 bytes from volume script to 0000000081000000
+     QSPI: Running script from UBIFS
+     QSPI: Trying to boot script at 0x81000000
+     ## Executing script at 81000000
+     crc32+ Trying to boot Linux from device qspi
+     
+     device nor0 <nor0>, # parts = 2
+     #: name                size            offset          mask_flags
+     0: u-boot              0x04200000      0x00000000      0
+     1: root                0x0be00000      0x04200000      0
+     
+     device nand0 <nand.0>, # parts = 2
+     #: name                size            offset          mask_flags
+     0: nand_uboot          0x00200000      0x00000000      0
+     1: nand_root           0x1f400000      0x00200000      0
+     
+     active partition: nor0,0 - (u-boot) 0x04200000 @ 0x00000000
+     
+     defaults:
+     mtdids  : nand0=10b80000.nand.0
+     mtdparts: mtdparts=10b80000.nand.0:2m(u-boot),-(root)
+     UBI partition 'root' already selected
+     :
+     SF: Detected mt25qu02g with page size 256 Bytes, erase size 64 KiB, total 256 MiB
+     Enabling QSPI at Linux DTB...
+     Working FDT set to ffae1000
+     QSPI clock frequency updated
+     RSU: Firmware or flash content not supporting RSU
+     RSU: Firmware or flash content not supporting RSU
+     RSU: Firmware or flash content not supporting RSU
+     RSU: Firmware or flash content not supporting RSU
+     
+     Starting kernel ...
+     
+     Deasserting all peripheral resets
+     [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x412fd050]
+     [    0.000000] Linux version 6.6.37-altera-g978b3d90f408 (oe-user@oe-host) (aarch64-poky-linux-gcc (GCC) 13.3.0, GNU ld (GNU Binutils) 2.42.0.20240723) #1 SMP PREEMPT Mon Oct 14 01:56:39 UTC 2024
+     [    0.000000] KASLR disabled due to lack of seed
+     [    0.000000] Machine model: SoCFPGA Agilex5 SoCDK
+     [    0.000000] efi: UEFI not found.
+     [    0.000000] Reserved memory: created DMA memory pool at 0x0000000080000000, size 32 MiB
+     [    0.000000] OF: reserved mem: initialized node svcbuffer@0, compatible id shared-dma-pool
+     [    0.000000] OF: reserved mem: 0x0000000080000000..0x0000000081ffffff (32768 KiB) nomap non-reusable svcbuffer@0
+     [    0.000000] earlycon: uart0 at MMIO32 0x0000000010c02000 (options '115200n8')
+     [    0.000000] printk: bootconsole [uart0] enabled
+     [    0.000000] NUMA: No NUMA configuration found
+     :
+     Poky (Yocto Project Reference Distro) 5.0.5 agilex5dka5e065bb32aes1 ttyS0
+     
+    agilex5dka5e065bb32aes1 login: [  270.942017] socfpga-dwmac 10830000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+     [  270.947263] socfpga-dwmac 10830000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-1
+     [  270.952619] socfpga-dwmac 10830000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-2
+     :
+     [  281.452200] socfpga-dwmac 10830000.ethernet eth0: Link is Up - 1Gbps/Full - flow control rx/tx
+     [  311.541769] audit: type=1334 audit(1709054902.844:15): prog-id=18 op=UNLOAD
+     [  311.542509] audit: type=1334 audit(1709054902.844:16): prog-id=17 op=UNLOAD
+     [  311.543247] audit: type=1334 audit(1709054902.844:17): prog-id=16 op=UNLOAD
+     
+     dhcp0 login: root
+     
+     WARNING: Poky is a reference Yocto Project distribution that should be used for testing and development purposes only. It is recommended that you create your own distribution for production use.
+     
+     root@dhcp0:~#
+   ```
 
+   
 
-
-#### Use Case: Exercise NAND Boot Flow from FSBL to Linux
+####Use Case: Exercise NAND Boot Flow from FSBL to Linux
 
 This use case consists of booting from a NAND flash device going from U-Boot to Linux prompt passing through **U-Boot SPL → ATF → U-Boot → Linux**.
 
@@ -1622,7 +1665,7 @@ This use case consists of booting from a NAND flash device going from U-Boot to 
 
 Perform steps 1 to 4 described in the [Simulation Setup](#simulation-setup) section.
 
-1\. In the Simics environment at the project directory, create a customized target script to exercise the FSBL to Linux boot flow from NAND device. The file to create is called **uboot-linux_nand.simics**. This file will look like this:
+5. In the Intel Simics environment at the project directory, create a customized target script to exercise the FSBL to Linux boot flow from NAND device. The file to create is called **uboot-linux_nand.simics**. This file will look like this:
 
   ```bash
   #uboot-linux_nand.simics
@@ -1630,7 +1673,7 @@ Perform steps 1 to 4 described in the [Simulation Setup](#simulation-setup) sect
   $nand_data_image_filename = "nand.img"
   $hps_boot_core = 0 
   $create_hps_sd_card = FALSE
-  run-script "targets/agilex5e-universal/agilex5e-universal.simics"
+  run-command-file "targets/agilex5e-universal/agilex5e-universal.simics"
   ```
 
   Also, in order to have ethernet connectivity, you need to connect the ethernet interface defined in the NAND device tree (eth0). For this,  update the following line in the **targets/agilex5e-universal/agilex5e-universal.simics** file:
@@ -1648,144 +1691,144 @@ Perform steps 1 to 4 described in the [Simulation Setup](#simulation-setup) sect
 
 To exercise this use case, follow the below steps once the Simulation setup is complete:
 
-1\. From the project directory, launch the simulation using the `uboot-linux_nand.simics` target script. This script launches the simulator and the current terminal becomes the Simics CLI:
+1. From the project directory, launch the simulation using the `uboot-linux_nand.simics` target script. This script launches the simulator and the current terminal becomes the Simics CLI:
 
   ```bash
   $ ./simics uboot-linux_nand.simics 
   ```
 
-2\. From the Simics CLI, start running the simulation with the `run` command.
+2. From the Simics CLI, start running the simulation with the `run` command.
 
   ```bash
   simics>  run
   ```
 
-3\. Wait for the simulation to get to the Linux prompt in the target serial console.
+3. Wait for the simulation to get to the Linux prompt in the target serial console.
 
-4\. Login into the Linux prompt using the **root** user without a password.  
+4. Login into the Linux prompt using the **root** user without a password.  
 
-```bash
-  U-Boot SPL 2026.01 (Feb 26 2026 - 02:54:45 +0000)  
-  Reset state: Cold
-  MPU           875000 kHz
-  L4 Main       400000 kHz
-  L4 sys free   100000 kHz
-  L4 MP         200000 kHz
-  L4 SP         100000 kHz
-  SDMMC          50000 kHz
-  io96b_cal_status: Calibration for IO96B instance 0x18400400 done at 0 msec!
-  init_mem_cal: Initial DDR calibration IO96B_0 succeed
-  :
-  ecc_enable_status: ECC enable status: 0
-  DDR: size check success
-  DDR: firewall init success
-  DDR: init success
-  QSPI: Reference clock at 400000 kHz
-  Trying to boot from MMC1
-  MMC: no card present
-  spl: mmc init failed with error: -123
-  Trying to boot from SPI
-  Trying to boot from NAND
-  ## Checking hash(es) for config board-0 ... OK
-  ## Checking hash(es) for Image atf ... crc32+ OK
-  ## Checking hash(es) for Image uboot ... crc32+ OK
-  ## Checking hash(es) for Image fdt-0 ... crc32+ OK
-  WARNING: Data cache not enabled
-  NOTICE:  BL31: Boot Core = 0
-  NOTICE:  BL31: CPU ID = 0
-  NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
-  NOTICE:  BL31: Built : 07:09:49, Oct 15 2024
+   ```bash
+     U-Boot SPL 2024.04 (Oct 16 2024 - 02:54:45 +0000)  
+     Reset state: Cold
+     MPU           875000 kHz
+     L4 Main       400000 kHz
+     L4 sys free   100000 kHz
+     L4 MP         200000 kHz
+     L4 SP         100000 kHz
+     SDMMC          50000 kHz
+     io96b_cal_status: Calibration for IO96B instance 0x18400400 done at 0 msec!
+     init_mem_cal: Initial DDR calibration IO96B_0 succeed
+     :
+     ecc_enable_status: ECC enable status: 0
+     DDR: size check success
+     DDR: firewall init success
+     DDR: init success
+     QSPI: Reference clock at 400000 kHz
+     Trying to boot from MMC1
+     MMC: no card present
+     spl: mmc init failed with error: -123
+     Trying to boot from SPI
+     Trying to boot from NAND
+     ## Checking hash(es) for config board-0 ... OK
+     ## Checking hash(es) for Image atf ... crc32+ OK
+     ## Checking hash(es) for Image uboot ... crc32+ OK
+     ## Checking hash(es) for Image fdt-0 ... crc32+ OK
+     WARNING: Data cache not enabled
+     NOTICE:  BL31: Boot Core = 0
+     NOTICE:  BL31: CPU ID = 0
+     NOTICE:  BL31: v2.11.0(release):QPDS24.3_REL_GSRD_PR
+     NOTICE:  BL31: Built : 07:09:49, Oct 15 2024
+   
+     U-Boot 2024.04 (Oct 16 2024 - 02:54:45 +0000)socfpga_agilex5
+   
+     CPU:   Intel FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
+     Model: SoCFPGA Agilex5 SoCDK
+     DRAM:  2 GiB (effective 8 GiB)
+     Core:  51 devices, 26 uclasses, devicetree: separate
+     WDT:   Not starting watchdog@10d00200
+     WDT:   Not starting watchdog@10d00300
+     WDT:   Not starting watchdog@10d00400
+     WDT:   Not starting watchdog@10d00500
+     WDT:   Not starting watchdog@10d00600
+     NAND:  4096 MiB
+     MMC:   mmc0@10808000: 0
+     Loading Environment from FAT... MMC: no card present
+     :
+     ** Cannot find mtd partition "root"
+     In:    serial0@10c02000
+     Out:   serial0@10c02000
+     Err:   serial0@10c02000
+     Net:   
+     Warning: ethernet@10810000 (eth0) using random MAC address - 9a:4a:35:36:eb:71
+     eth0: ethernet@10810000
+     Warning: ethernet@10830000 (eth2) using random MAC address - 8e:87:b0:0c:94:09, eth2: ethernet@10830000
+     Hit any key to stop autoboot:  0 
+     MMC: no card present
+     SF: Detected mt25qu02g with page size 256 Bytes, erase size 64 KiB, total 256 MiB
+     Select Environment on UBI: OK
+   NAND: Trying to boot script at 0x81000000
+   
+     ## Executing script at 81000000
+     crc32+ Trying to boot Linux from device nand
+     Select Environment on UBI: OK
+     Saving Environment to UBI... UBI partition 'root' already selected
+     done
+     OK
+     :
+     device nor0 <nor0>, # parts = 2
+      #: name                size            offset          mask_flags
+      0: u-boot              0x04200000      0x00000000      0
+      1: qspi_root           0x0be00000      0x04200000      0
+   
+     device nand0 <ffb90000.nand.0>, # parts = 2
+      #: name                size            offset          mask_flags
+      0: u-boot              0x00200000      0x00000000      0
+      1: root                0xffe00000      0x00200000      0
+   
+     active partition: nor0,0 - (u-boot) 0x04200000 @ 0x00000000
+   
+     defaults:
+     mtdids  : nand0=10b80000.nand.0
+     mtdparts: mtdparts=10b80000.nand.0:2m(u-boot),-(root)
+     :
+     Starting kernel ...
+   
+     Deasserting all peripheral resets
+     [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x412fd050]
+     [    0.000000] Linux version 6.6.37-altera-g978b3d90f408 (oe-user@oe-host) (aarch64-poky-linux-gcc (GCC) 13.3.0, GNU ld (GNU Binutils) 2.42.0.20240723) #1 SMP PREEMPT Mon Oct 14 01:56:39 UTC 2024
+   
+     [    0.000000] KASLR disabled due to lack of seed
+     [    0.000000] Machine model: SoCFPGA Agilex5 SoCDK
+     [    0.000000] efi: UEFI not found.
+     [    0.000000] Reserved memory: created DMA memory pool at 0x0000000080000000, size 32 MiB
+     [    0.000000] OF: reserved mem: initialized node svcbuffer@0, compatible id shared-dma-pool
+     [    0.000000] OF: reserved mem: 0x0000000080000000..0x0000000081ffffff (32768 KiB) nomap non-reusable svcbuffer@0
+     [    0.000000] earlycon: uart0 at MMIO32 0x0000000010c02000 (options '115200n8')
+     :
+     Poky (Yocto Project Reference Distro) 5.0.2 dhcp0 ttyS0
+   
+     [   15.586539] soc64-hwmon soc@0:firmware:svc:hwmon: Initialized 4 temperature and 6 voltage channels
+     [   15.587715] soc64-hwmon soc@0:firmware:svc:hwmon: couldn't get service channel rsu
+     [   15.594272] Stratix10 SoC FPGA manager soc@0:firmware:svc:fpga-mgr: couldn't get service channel (fpga)
+     [   15.595272] platform soc@0:firmware:svc:hwmon: deferred probe pending
+     [   15.595948] platform soc@0:base_fpga_region: deferred probe pending
+     [   15.596631] platform soc@0:firmware:svc:fpga-mgr: deferred probe pending
+     [   36.588749] audit: type=1334 audit(1709054799.316:15): prog-id=18 op=UNLOAD
+     [   36.589487] audit: type=1334 audit(1709054799.316:16): prog-id=17 op=UNLOAD
+     [   36.590224] audit: type=1334 audit(1709054799.316:17): prog-id=16 op=UNLOAD
+   
+     WARNING: Poky is a reference Yocto Project distribution that should be used for testing and development purposes only. It is recommended that you create your own distribution for production use.
+   
+     root@dhcp0:~#
+   ```
 
-  U-Boot 2024.04 (Oct 16 2024 - 02:54:45 +0000)socfpga_agilex5
+   
 
-  CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
-  Model: SoCFPGA Agilex5 SoCDK
-  DRAM:  2 GiB (effective 8 GiB)
-  Core:  51 devices, 26 uclasses, devicetree: separate
-  WDT:   Not starting watchdog@10d00200
-  WDT:   Not starting watchdog@10d00300
-  WDT:   Not starting watchdog@10d00400
-  WDT:   Not starting watchdog@10d00500
-  WDT:   Not starting watchdog@10d00600
-  NAND:  4096 MiB
-  MMC:   mmc0@10808000: 0
-  Loading Environment from FAT... MMC: no card present
-  :
-  ** Cannot find mtd partition "root"
-  In:    serial0@10c02000
-  Out:   serial0@10c02000
-  Err:   serial0@10c02000
-  Net:   
-  Warning: ethernet@10810000 (eth0) using random MAC address - 9a:4a:35:36:eb:71
-  eth0: ethernet@10810000
-  Warning: ethernet@10830000 (eth2) using random MAC address - 8e:87:b0:0c:94:09, eth2: ethernet@10830000
-  Hit any key to stop autoboot:  0 
-  MMC: no card present
-  SF: Detected mt25qu02g with page size 256 Bytes, erase size 64 KiB, total 256 MiB
-  Select Environment on UBI: OK
-NAND: Trying to boot script at 0x81000000
-
-  ## Executing script at 81000000
-  crc32+ Trying to boot Linux from device nand
-  Select Environment on UBI: OK
-  Saving Environment to UBI... UBI partition 'root' already selected
-  done
-  OK
-  :
-  device nor0 <nor0>, # parts = 2
-   #: name                size            offset          mask_flags
-   0: u-boot              0x04200000      0x00000000      0
-   1: qspi_root           0x0be00000      0x04200000      0
-
-  device nand0 <ffb90000.nand.0>, # parts = 2
-   #: name                size            offset          mask_flags
-   0: u-boot              0x00200000      0x00000000      0
-   1: root                0xffe00000      0x00200000      0
-
-  active partition: nor0,0 - (u-boot) 0x04200000 @ 0x00000000
-
-  defaults:
-  mtdids  : nand0=10b80000.nand.0
-  mtdparts: mtdparts=10b80000.nand.0:2m(u-boot),-(root)
-  :
-  Starting kernel ...
-
-  Deasserting all peripheral resets
-  [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x412fd050]
-  [    0.000000] Linux version 6.6.37-altera-g978b3d90f408 (oe-user@oe-host) (aarch64-poky-linux-gcc (GCC) 13.3.0, GNU ld (GNU Binutils) 2.42.0.20240723) #1 SMP PREEMPT Mon Oct 14 01:56:39 UTC 2024
-
-  [    0.000000] KASLR disabled due to lack of seed
-  [    0.000000] Machine model: SoCFPGA Agilex5 SoCDK
-  [    0.000000] efi: UEFI not found.
-  [    0.000000] Reserved memory: created DMA memory pool at 0x0000000080000000, size 32 MiB
-  [    0.000000] OF: reserved mem: initialized node svcbuffer@0, compatible id shared-dma-pool
-  [    0.000000] OF: reserved mem: 0x0000000080000000..0x0000000081ffffff (32768 KiB) nomap non-reusable svcbuffer@0
-  [    0.000000] earlycon: uart0 at MMIO32 0x0000000010c02000 (options '115200n8')
-  :
-  Poky (Yocto Project Reference Distro) 5.0.2 dhcp0 ttyS0
-
-  [   15.586539] soc64-hwmon soc@0:firmware:svc:hwmon: Initialized 4 temperature and 6 voltage channels
-  [   15.587715] soc64-hwmon soc@0:firmware:svc:hwmon: couldn't get service channel rsu
-  [   15.594272] Stratix10 SoC FPGA manager soc@0:firmware:svc:fpga-mgr: couldn't get service channel (fpga)
-  [   15.595272] platform soc@0:firmware:svc:hwmon: deferred probe pending
-  [   15.595948] platform soc@0:base_fpga_region: deferred probe pending
-  [   15.596631] platform soc@0:firmware:svc:fpga-mgr: deferred probe pending
-  [   36.588749] audit: type=1334 audit(1709054799.316:15): prog-id=18 op=UNLOAD
-  [   36.589487] audit: type=1334 audit(1709054799.316:16): prog-id=17 op=UNLOAD
-  [   36.590224] audit: type=1334 audit(1709054799.316:17): prog-id=16 op=UNLOAD
-
-  WARNING: Poky is a reference Yocto Project distribution that should be used for testing and development purposes only. It is recommended that you create your own distribution for production use.
-
-  root@dhcp0:~#
-```
-
-
-
-  **Note:** Most of the  use cases that are exercised from the **Exercise SDCard Boot Flow from FSBL to Linux** use case can also be exercised from this use case. There are some exceptions due to the limitation in the size of the file system which does not support the required commands.
+  **Note:** Most of the same use cases that are exercised from the **Exercise SDCard Boot Flow from FSBL to Linux** use case can also be exercised from this use case. There are some exceptions due to the limitation in the size of the file system which does not support the required commands.
 
 #### Use Case: Debug Bare-Metal Code Using Intel Simics Simulator
 
-This use case consists of performing a debug session in a bare-metal environment, which in this case corresponds to a U-Boot application example. In this use case, debugging is performed using only the Simics CLI commands allowing us to navigate on the source code of the application, advance in the execution of this, and observe and modify values of variables. The application is created in the form of a U-Boot command (**helloTestApp**) that should be executed from the U-Boot shell. The application starts by printing a hello message (**Hello Altera® SoC FPGA!**) and printing the number of times the command has been executed since the last power-up. After this, the application enters into a loop in which it waits for 100 sec and increases an iteration counter by one. The content on the loop is executed as long as the iterator counter is lower than 100000 and also the value of the **exitVar** variable remains in 0, otherwise, it leaves the loop and continues printing the number of times the content of the loop was executed. After this, the code performs some mathematical operations involving the iterator value and other variables and finally prints the result of the final operation.
+This use case consists of performing a debug session in a bare-metal environment, which in this case corresponds to a U-Boot application example. In this use case, debugging is performed using only the Simics CLI commands allowing us to navigate on the source code of the application, advance in the execution of this, and observe and modify values of variables. The application is created in the form of a U-Boot command (**helloTestApp**) that should be executed from the U-Boot shell. The application starts by printing a hello message (**Hello Intel SoC FPGA!**) and printing the number of times the command has been executed since the last power-up. After this, the application enters into a loop in which it waits for 100 sec and increases an iteration counter by one. The content on the loop is executed as long as the iterator counter is lower than 100000 and also the value of the **exitVar** variable remains in 0, otherwise, it leaves the loop and continues printing the number of times the content of the loop was executed. After this, the code performs some mathematical operations involving the iterator value and other variables and finally prints the result of the final operation.
 
 
 The source code of the application is shown next. This is included in the **do_helloTestApp()** function, which then is referenced in the **U_BOOT_CMD** macro, which converts this into a U-Boot command. This source code must be included in a new file under the U-Boot repository as **cmd/socFPGATrainingExamples.c**. Also, to be built as part of the U-Boot binaries, update the **cmd/Makefile** file by adding **obj-y += socFPGATrainingExamples.o**.
@@ -1817,7 +1860,7 @@ static int do_helloTestApp(struct cmd_tbl *cmdtp, int flag, int argc, char *cons
       return CMD_RET_USAGE;
    }
 
-   printf("Hello Altera® SoC FPGA! \r\n");
+   printf("Hello Intel SoC FPGA! \r\n");
    execCount++;
    printf("Executed %d times \r\n", execCount);
    printf("Relocated address of do_helloTestApp: %p and execCount: %p \r\n", &do_helloTestApp, &execCount);
@@ -1843,11 +1886,11 @@ U_BOOT_CMD(
 );
 ```
 
-Note: You can perform the build of this application by updating the Yocto recipe as part of the flow described in [Build SD Card HPS Baseline System Example Design 2.0](#build-sd-card-hps-baseline-system-example-design-20) section. This can be done by creating a patch in which you describe the files that need to be created/updated in the U-Boot repository and then deploy it. This can be done during the Yocto customization stage (Customize the Yocto Build). To create the u-boot patch (`myUbootExampleApp.patch`), do the following:
+Note: You can perform the build of this application by updating the Yocto recipe. This can be done by creating a patch in which you describe the files that need to be created/updated in the U-Boot repository and then deploy it. This can be done during the Yocto customization stage (Customize the Yocto Build). To create the u-boot patch (`myUbootExampleApp.patch`), do the following:
 
 ```bash
-cd $TOP_FOLDER/
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga-patch
+cd $TOP_FOLDER
+git clone -b QPDS24.2_REL_GSRD_PR https://github.com/altera-opensource/u-boot-socfpga u-boot-socfpga-patch
 cd u-boot-socfpga-patch/
  - Create cmd/socFPGATrainingExamples.c file with the source code provided of the example application.
  - Edit cmd/Makefile to include the build of socFPGATrainingExamples.c
@@ -1859,29 +1902,26 @@ cd u-boot-socfpga-patch/
 
 git add cmd/Makefile cmd/socFPGATrainingExamples.c
 git diff --patch --staged > myUbootExampleApp.patch
-# Add the Upstream-status label to prevent issues
-sed -i '1i Upstream-Status: Pending\n' myUbootExampleApp.patch
 ```
 
-To deploy the patch in the Yocto build flow do the following just before calling the **time ./build.sh** command:
+To deploy the patch in the Yocto build flow do the following:
 
-1\. Copy the `$TOP_FOLDER/u-boot-socfpga-patch/myUbootExampleApp.patch` file to the **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/meta-custom/recipes-bsp/u-boot/files/patches/** directory.
+1. Copy the `myUbootExampleApp.patch` file to the **$TOP_FOLDER/gsrd-socfpga/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/** directory.
+2. Request to deploy the path by adding a patch to the **$TOP_FOLDER/gsrd-socfpga/meta-intel-fpga-refdes/recipes-bsp/u-boot/u-boot-socfpga_%.bbappend** file:
 
-2\. Request to deploy the path by adding a patch to the **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/meta-custom/recipes-bsp/u-boot/u-boot-socfpga_%.bbappend** file:
-
-```bash
-  # Set path for configs and source patches
-  FILESEXTRAPATHS:prepend := "${THISDIR}/files/configs:${THISDIR}/files/patches:"
-  
-  SRC_URI:append = " \      
-        file://myUbootExampleApp.patch \
+  ```bash
+  SRC_URI:append = " \ 
+        file://0001-arm-Add-dwarf-4-to-compilation-flag.patch \   
+        file://0001-arm-agilex-add-board-configuration.patch \    
+        file://0001-arm-stratix10-add-board-configuration.patch \ 
+        file://myUbootExampleApp.patch \ 
         "
-```
+  ```
 
-3\. Continue with the rest of the Yocto build flow indicated with the time **./build.sh command**.
+3. Continue with the rest of the Yocto build flow indicated at [Build Yocto](#build-yocto) section.
 
 
-After these steps, the application is included in the U-Boot binary file (**uboot.itb**), which is part of the SDCard image created (**gsrd-console-image-agilex5e.rootfs.wic**) and a symbol file corresponding to the U-Boot image, located at **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/u-boot**. The symbol file is used later during the setup of the debug session.
+After these steps, the application is included in the U-Boot binary file (**uboot.itb**), which is part of the SDCard image created (**gsrd-console-image-agilex5.wic**) and a symbol file corresponding to the U-Boot image, located at **$TOP_FOLDER/gsrd-socfpga/agilex5_devkit-gsrd-images/u-boot-agilex5_devkit-socdk-gsrd-atf/u-boot**. The symbol file is used later during the setup of the debug session.
 
 <h5>Setup</h5>
 
@@ -1890,36 +1930,33 @@ Start with the setup of the main use case defined at [Simulation Setup]#simulati
 ```bash
 # uboot-linux_sdcard.simics
 :
-add-symbol-file  <path of symbol file>/u-boot  0x7FD0D000 -relative
-add-pathmap-entry "/usr/src/debug/u-boot-socfpga/v2026.01+git/" "<$TOP_FOLDER path>/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2025.10+git/git/"
+add-symbol-file  <path of symbol file>/u-boot  0x7FAF2000 -relative
 bp.source_location.break do_helloTestApp
 ```
 
-**Note:** The symbol file is being loaded with an offset relocation of 0x7FD0D000. This is needed because in a late stage of the U-Boot execution, this relocates itself into a different SDRAM memory location and this should be indicated to the debugger, so there is a match between the addresses indicated in the symbol file and the real memory address location of the symbols. You can obtain this relocation offset by subtracting the real address of a specific function (which can be obtained from the application being executed) and the original offset from the same function in the symbols file (provided in the **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2026.01+git/build/socfpga_agilex5_defconfig/u-boot.sym** file). An example of the calculation of this relocation offset is shown in the following figure (values are from a different release):
+**Note:** The symbol file is being loaded with an offset relocation of 0x7FAF2000. This is needed because in a late stage of the U-Boot execution, this relocates itself into a different SDRAM memory location and this should be indicated to the debugger, so there is a match between the addresses indicated in the symbol file and the real memory address location of the symbols. You can obtain this relocation offset by subtracting the real address of a specific function (which can be obtained from the application being executed) and the original offset from the same function in the symbols file (provided in the **u-boot.sym** file). This is shown in the following figure:
 
 ![ubootApp relocationOffset2.jpg](images/ubootApp_relocationOffset2.jpg)
 
 <h5>Procedure</h5>
 
-1\. Start the simulation similar to how it is done in the main use case, but in the serial console stop the U-Boot autoboot by pressing a key on the reception of the message "**Hit any key to stop autoboot:**". 
+1. Start the simulation similar to how it is done in the main use case, but in the serial console stop the U-Boot autoboot by pressing a key on the reception of the message "**Hit any key to stop autoboot:**". 
 
-2\. Start the U-Boot example application by calling the **helloTestApp** command from the U-Boot shell. This will make the breakpoint set in the target script trigger and the simulation will be stopped. In the Simics CLI, you will see the following message:
+2. Start the U-Boot example application by calling the **helloTestApp** command from the U-Boot shell. This will make the breakpoint set in the target script trigger and the simulation will be stopped. In the Simics CLI, you will see the following message:
 
   ```bash
     [tcf] Breakpoint 1 on execution in context board.fpga.soc_inst.hps_subsys.agilex_hps.core[0] 
   ```
 
-3\. From Simics CLI, start a debug session by calling the following command:
-
+3. From Simics CLI, start a debug session by calling the following command:
   ```bash
-  simics> system.board.fpga.soc_inst.hps_subsys.agilex_hps.core[0].debug 
-  dbg0 (the arm-cortex-a55 system.board.fpga.soc_inst.hps_subsys.agilex_hps.core[0])
-  Now debugging the arm-cortex-a55 system.board.fpga.soc_inst.hps_subsys.agilex_hps.core[0]
-  do_helloTestApp(cmdtp=(struct cmd_tbl *) 0xfffc46b0, flag=0, argc=1, argv=(char * const *) 0xffb11460) at /usr/src/debug/u-boot-socfpga/v2025.10+git/cmd/socFPGATrainingExamples.c:16
-  16	   volatile unsigned char exitVar = 0;
+  simics> (psel).debug 
+    dbg0 (the arm-cortex-a55 system.board.fpga.soc_inst.hps_subsys.agilex_hps.core[0]) Now debugging the arm-cortex-a55 
+    system.board.fpga.soc_inst.hps_subsys.agilex_hps.core[0] 
+    do_helloTestApp(cmdtp=(struct cmd_tbl *) 0xfffc5788, flag=0, argc=1, argv=(char * const *) 0xffb09520) at 
+    /home/tasks/gsrd/agilex5/updateUbootApp/agilex5_gsrd/gsrd-socfpga/agilex5_devkit-gsrd-rootfs/tmp/work/agilex5-poky-linux/u-boot-socfpga/1_v2022.10+gitAUTOINC+59fa161039-r0/git/cmd/socFPGATrainingExamples.c:19 19 volatile unsigned char exitVar = 0; 
   ```
-4\. Following the program's logic, if the value of **exitVar** stays zero and the program is continued, the loop will continue until it reaches 100,000 and then the program ends with output messages in the serial console. You can check the values of the variable using the **sym-type**  and **sym-value** features:
-
+4. Following the program's logic, if the value of **exitVar** stays zero and the program is continued, the loop will continue until it reaches 100,000 and then the program ends with output messages in the serial console. You can check the values of the variable using the **sym-type**  and **sym-value** features:
   ```bash
   simics> dbg0.sym-type exitVar 
       volatile unsigned char 
@@ -1931,8 +1968,7 @@ bp.source_location.break do_helloTestApp
      0
   ```
 
-5\. Control the program by using *breakpoint* and *value modification*. In this section, first insert a breakpoint at Line 34, which is in the loop (You may let the program run for a few seconds before inserting this breakpoint). With that, expect the program to pause when the breakpoint is met and modify the value of **exitVar**.
-
+5. Control the program by using *breakpoint* and *value modification*. In this section, first insert a breakpoint at Line 34, which is in the loop (You may let the program run for a few seconds before inserting this breakpoint). With that, expect the program to pause when the breakpoint is met and modify the value of **exitVar**.
   ```bash
   //The loop conditions are exitVar and waitIter   
   32| while ((exitVar == 0) && (waitIter < 100000)){   
@@ -1941,7 +1977,7 @@ bp.source_location.break do_helloTestApp
   35| }
   ```
 
-  In the Simics Console, enter the following line to insert the breakpoint at Line 34:
+  In the Simics Serial Console, enter the following line to insert the breakpoint at Line 34:
   ```bash
   running> bp.source_line.break filename=socFPGATrainingExamples.c line-number=34
   Breakpoint 2: 0x2 (planted) 
@@ -1958,9 +1994,9 @@ bp.source_location.break do_helloTestApp
   Next, enter **run** and see the program ends immediately due to **exitVar=1**.
   ```bash
   SOCFPGA_AGILEX5 # helloTestApp
-      Hello Altera® SoC FPGA!
+      Hello Intel SoC FPGA!
       Executed 1 times
-      Relocated address of do_helloTestApp: 00000000fff222d0 and execCount: 00000000fffddba0
+      Relocated address of do_helloTestApp: 00000000fff1a7a8 and execCount: 00000000fffddba0
       Exit from loop at iteration: 9691
       Final result: 691
   SOCFPGA_AGILEX5 #
@@ -1973,37 +2009,37 @@ bp.source_location.break do_helloTestApp
     b) If the loop-ending condition (**myVarA** and **exitVar**) changed, the program should exit in the next **run**.
     c) Using the same Simics session, you can enter **helloTestApp** in U-boot Shell to restart the test program again.
 
-6\. For the first time the program is executed, the output shows **“Executed 1 times”**, this value will increase (+1) as you run the program again without ending the Simics session. Meanwhile, in the serial console, the program has ended as soon as it just started because the controlling variable **exitVar**, having a value of 1, already reached the loop-ending condition. Output on a serial console:
+6. For the first time the program is executed, the output shows **“Executed 1 times”**, this value will increase (+1) as you run the program again without ending the Simics session. Meanwhile, in the serial console, the program has ended as soon as it just started because the controlling variable **exitVar**, having a value of 1, already reached the loop-ending condition. Output on a serial console:
 
   ```bash
   SOCFPGA_AGILEX5 # helloTestApp
-      Hello Altera® SoC FPGA!
+      Hello Intel SoC FPGA!
       Executed 1 times
-      Relocated address of do_helloTestApp: 00000000fff222d0 and execCount: 00000000fffddba0
+      Relocated address of do_helloTestApp: 00000000fff1a7a8 and execCount: 00000000fffddba0
       Exit from loop at iteration: 2
       Final result: 2
   SOCFPGA_AGILEX5 #
   ```
 
-7\. If the value **exitVar** remained zero, the loop counter is allowed to run for 99,999 loops. While the program is looping, you may change the value of **myVarA** to ‘345’. The **Final result** will be 345 when the looping ends. Final result is the modulus value where the `Final result = ( (waitIter + myVarA) % 1000 )`
+7. If the value **exitVar** remained zero, the loop counter is allowed to run for 99,999 loops. While the program is looping, you may change the value of **myVarA** to ‘345’. The **Final result** will be 345 when the looping ends. Final result is the modulus value where the `Final result = ( (waitIter + myVarA) % 1000 )`
 
   ```bash
    SOCFPGA_AGILEX5 # helloTestApp
-      Hello Altera® SoC FPGA!
+      Hello Intel SoC FPGA!
       Executed 2 times
-      Relocated address of do_helloTestApp: 00000000fff222d0 and execCount: 00000000fffddba0
+      Relocated address of do_helloTestApp: 00000000fff1a7a8 and execCount: 00000000fffddba0
       Exit from loop at iteration: 100,000
       Final result: 345
   SOCFPGA_AGILEX5 #
   ```
 
-8\. If both values of **exitVar** and **myVarA** remain unchanged, both being zero respectively, the looping continues until it reaches waitIter = 100,000. When the program ends, the **Final result** would be zero.
+8. If both values of **exitVar** and **myVarA** remain unchanged, both being zero respectively, the looping continues until it reaches waitIter = 100,000. When the program ends, the **Final result** would be zero.
 
   ```bash
   SOCFPGA_AGILEX5 # helloTestApp
-      Hello Altera® SoC FPGA!
+      Hello Intel SoC FPGA!
       Executed 1 times
-      Relocated address of do_helloTestApp: 00000000fff222d0 and execCount: 00000000fffddba0
+      Relocated address of do_helloTestApp: 00000000fff1a7a8 and execCount: 00000000fffddba0
       Exit from loop at iteration: 100,000
       Final result: 0
   SOCFPGA_AGILEX5 #
@@ -2012,58 +2048,39 @@ bp.source_location.break do_helloTestApp
 #### Use Case: Debug Bare-metal Code Using Simics-RiscFree
 
 This use case is an extension to the use case in section **Use Case: Debug Bare-metal Code Using Intel Simics Simulator** above but the debugging steps are performed in the Simics-RiscFree IDE. The test program used here is the same **helloTestApp.c**
-**Important:** The offset relocation of 0x7FD0D000 in the symbol file is still required and must be done before the symbol file is used to launch Simics-RiscFree.
+**Important:** The offset relocation of 0x7FAF2000 in the symbol file is still required and must be done before the symbol file is used to launch Simics-RiscFree.
 
 <h5>Setup</h5>
 
 This section requires the **simics-riscfree** script. It is included in your Intel Simics Simulator project directory.
 
-1\. To launch Simics-RiscFree IDE, use this command:
+1. To launch Simics-RiscFree IDE, use this command:
 
   ```bash
   $  ./simics-riscfree 
   ```
 
-2\. Following the command, you must set up a **RiscFree**  workspace. You should use a new directory as a **RiscFree** workspace which must be different and outside from the Simics project directory.
-![riscfreeworkspace.png](images/riscfreeworkspace.png)
+2. Following the command, you must set up a **RiscFree**  workspace. You should use a new directory as a **RiscFree** workspace different from the Simics project directory.
+    ![riscfreeworkspace.png](images/riscfreeworkspace.png)
 
-3\. In the **RiscFree** IDE GUI launched, you should see the current Simics project you selected shown in the Project Explorer window. If this is not shown, you can open it from **"Window > Show View > Project Explorer"** menu.
+3. In the **RiscFree** IDE GUI launched, you should see the current Simics project you selected shown in the Project Explorer window. If this is not shown, you can open it from **"Window > Show View > Project Explorer"** menu.
 
   ![riscfreeworkspace2.png](images/riscfreeworkspace2.png)
 
-4\. From the Project Explorer window, right-click on the target script you want to launch (**uboot-linux_sdcard.simics**) and select **“Debug As > Simics Session”**.
-![riscfreeworkspace3.png](images/riscfreeworkspace3.png)
+4. From the Project Explorer window, right-click on the target script you want to launch (**uboot-linux_sdcard.simics**) and select **“Debug As > Simics Session”**.
+    ![riscfreeworkspace3.png](images/riscfreeworkspace3.png)
 
-5\. When prompted for Switching Perspective, select **Yes**. The interface switches to the RiscFree Debugger, which is more user-friendly for debugging.
-![riscfreeworkspace4.png](images/riscfreeworkspace4.png)
-
-6\. In the Debug view, select the project - uboot-linux_sdcard.simics and select Edit project to configure the debug session:
-
-![riscfreeworkspace4.png](images/riscfreeCfgDebugBaremetal.png)
-
-7\. Go to the **PathMap** tab menu and **Add**  a new source code mapping providing the Source and Destination as shown next:
-
-* Source: /usr/src/debug/u-boot-socfpga/v2026.01+git/" 
-
-* Destination: <$TOP_FOLDER path>/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2025.10+git/git/
-
-* Keep **Context query** empty.
-
-  Press **Apply** and **Continue**.
-  
-
-![riscfreeworkspace4.png](images/riscfreeAddSourceMapping.png)
-
+5. When prompted for Switching Perspective, select **Yes**. The interface switches to the RiscFree Debugger, which is more user-friendly for debugging.
+    ![riscfreeworkspace4.png](images/riscfreeworkspace4.png)
 
 <h5>Procedure</h5>
 
-1\. In the RiscFree Debugger window, click on the **Run** button ![runbutton.png](images/runbutton.png) to launch the Intel Simics Simulator project.
-
-2\. As the project is launched, a Simics CLI window appears. When the CLI reaches the **Hit any key to stop autoboot** message, press any key to stop the autoboot to OS, which will then go into the U-boot Shell.
+1. In the RiscFree Debugger window, click on the **Run** button ![runbutton.png](images/runbutton.png) to launch the Intel Simics Simulator project.
+2. As the project is launched, a Simics CLI window appears. When the CLI reaches the **Hit any key to stop autoboot** message, press any key to stop the autoboot to OS, which will then go into the U-boot Shell.
 
   ![riscfreeworkspace5.png](images/riscfreeworkspace5.png)
 
-3\. Start the test program by entering **helloTestApp** in the U-boot Shell.
+3. Start the test program by entering **helloTestApp** in the U-boot Shell.
 
   ```bash
   SOCFPGA_AGILEX5 # helloTestApp
@@ -2071,21 +2088,18 @@ This section requires the **simics-riscfree** script. It is included in your Int
        [tcf] Breakpoint 1 on execution in context board.fpga.soc_inst.hps_subsys.agilex_hps.core[0]
   ```
 
-4\. As the first breakpoint is met, the program is halted at the entry point of the **do_helloTestApp()** function. You will see the source code of the  application (**socFPGATrainingExamples.c**). Use the **step into/step-over** buttons ![stepsDbg.png](images/stepsDbg.png) to get to the **while ((exitVar == 0)  &&  (waitIter < 100000))** line and show a capture of this with list command.
+4. As the first breakpoint is met, the program is halted at the entry point of the **do_helloTestApp()** function. Use the **step into/step-over** buttons ![stepsDbg.png](images/stepsDbg.png) to get to the **while ((exitVar == 0)  &&  (waitIter < 100000))** line and show a capture of this with list command.
 
   ![helloTestApp1.png](images/helloTestApp1.png)
 
-5\. At this point, if you click on the **Run** button, the test program prints **“Hello Altera® SoC FPGA!”** and finishes looping after some time.
+
+5. At this point, if you click on the **Run** button, the test program prints **“Hello Intel SoC FPGA!”** and finishes looping after some time.
 
   ![test1.png](images/test1.png)
 
   **Note:** If the loop already ended, relaunch the test program "helloTestApp" to proceed to the next step.
 
-6\. Set a breakpoint in the line 34 of the **socFPGATrainingExamples.c** file using the Riscfree source code window by doing a double left-click at the column at the left of this line. You can also do it from the Simics CLI using: **bp.source_line.break filename=socFPGATrainingExamples.c line-number=34**.
-
-![test1.png](images/riscfreeSetBreakpoint.png)
-
-7\. Run the test and wait until the breakpoint triggers. To modify the loop conditions for debugging purposes, you can modify the value of **exitVar** in the Variable window. For example, changing the value of **exitVar** from ‘\377’ (this is a random value assigned by the system) to ‘\001’. As `exitVar` is no longer zero, the condition of the loop is exceeded, and thus the looping ends.
+6. To modify the loop conditions for debugging purposes, you can modify the value of **exitVar** in the Variable window. For example, changing the value of **exitVar** from ‘\377’ (this is a random value assigned by the system) to ‘\001’. As `exitVar` is no longer zero, the condition of the loop is exceeded, and thus the looping ends.
 
   Before modification:
 
@@ -2095,15 +2109,13 @@ This section requires the **simics-riscfree** script. It is included in your Int
 
   [![exitVar1.png](images/exitVar1.png)
 
-8\. The loop exits depending on two conditions: **exitVar** not equals to zero OR **waitIter** reached 100,000. As the value of exitVar is modified to 1 in the middle of looping, the loop ends with exitVar = 1 and `waitIter` at any number less than 100,000. In this example, **waitIter** is 82251 when the loop ends. Following the code logic, **Final result** is the modulus value where Final result = ( (waitIter + myVarA) % 1000 ) = 252.
+7. The loop exits depending on two conditions: **exitVar** not equals to zero OR **waitIter** reached 100,000. As the value of exitVar is modified to 1 in the middle of looping, the loop ends with exitVar = 1 and `waitIter` at any number less than 100,000. In this example, **waitIter** is 82251 when the loop ends. Following the code logic, **Final result** is the modulus value where Final result = ( (waitIter + myVarA) % 1000 ) = 252.
 
   ![loopends.png](images/loopends.png)
 
 #### Use Case: Remote Debugging of a Linux User Mode Program Using ARM DS Debugger
 
 This use case is an extension of the **Use Case: Exercise SDCard Boot Flow from FSBL to Linux** and consists of performing a debug session in a Linux user mode application using ARM Development Studio. For this, the debugging is done using the GDB server running in the target system. Also, set up the Simics network connectivity with the host PC, which is the one that runs ARM DS through TCP protocol. The application to be debugged is listed next **myArmDSDebugExample.c**. This application determines the core in which this run started and then enters into a loop counting the number of times the loop is executed and continue observing the execution core. It also counts the number of times the application is executed in each one of the four cores. The application exits from the loop when the iterator reaches a limit or the **exitVar** variable has a value of '1', which normally never should occur. After the loop, the application assigns the value in **x** variable to the **a** and **b** variables and then adds these variables and assigns the result value in **c** variable. In the end, the application prints the result of the addition, the number of times the loop was iterated and the final value of **exitVar**, and the number of times each core executed the application.
-
-<span style="color: red;"> **NOTE:** At this time, this use case can only be exercised with the Gold license for ARM DS Debugger. In the next release of Arm DS (2025.0) the Altera FPGA Edition license will support this case.</span>
 
   ```bash
   #define _GNU_SOURCE
@@ -2168,7 +2180,7 @@ This use case is an extension of the **Use Case: Exercise SDCard Boot Flow from 
 
 <h5>Setup</h5>
 
-1\. Start with the setup as the parent use case. From the Simics CLI or from the **uboot-linux_sdcard.simics** Simics script, add the network configuration that allows establishing the GDB server connexion between the target system and the host PC. This configuration creates an incoming forwarding port for TCP traffic from a port in the host PC to port **9123** in the target system. The port in the host PC is shown when calling the **list-port-forwarding-setup** command (port **4001** will be used in this example).
+1. Start with the setup as the parent use case. From the Simics CLI or from the **uboot-linux_sdcard.simics** Simics script, add the network configuration that allows establishing the GDB server connexion between the target system and the host PC. This configuration creates an incoming forwarding port for TCP traffic from a port in the host PC to port **9123** in the target system. The port in the host PC is shown when calling the **list-port-forwarding-setup** command (port **4001** will be used in this example).
 
   ```bash
   # uboot-linux_sdcard.simics
@@ -2185,7 +2197,7 @@ This use case is an extension of the **Use Case: Exercise SDCard Boot Flow from 
   Host TCP port 4001 → 10.10.0.100:9123
   ```
 
-2\. The Linux example application must be compiled so you can have the executable binary available. This binary is generated with a toolchain and should be built to include debug information (i.e. symbol file). ARM DS does not support the DWARF 5.0 format in the symbols files, so the application must be built with a toolchain that creates this with DWARF 4.0 version. The instructions to build the applications are shown next. This generates the **myArmDSDebugExample** binary.
+2. The Linux example application must be compiled so you can have the executable binary available. This binary is generated with a toolchain and should be built to include debug information (i.e. symbol file). ARM DS does not support the DWARF 5.0 format in the symbols files, so the application must be built with a toolchain that creates this with DWARF 4.0 version. The instructions to build the applications are shown next. This generates the **myArmDSDebugExample** binary.
 
   ```bash
   mkdir SymDbg && cd SymDbg
@@ -2197,9 +2209,9 @@ This use case is an extension of the **Use Case: Exercise SDCard Boot Flow from 
   ```
 <h5>Procedure</h5>
 
-1\. Execute parent use case to get to the Linux prompt and log in.
+1. Execute parent use case to get to the Linux prompt and log in.
 
-2\. Take the Linux application binary to the target system filesystem using tftp. For this, you will need to do the following. The **myArmDSDebugExample** binary should be located in the Simics project directory before calling **tftp** command.
+2. Take the Linux application binary to the target system filesystem using tftp. For this, you will need to do the following. The **myArmDSDebugExample** binary should be located in the Simics project directory before calling **tftp** command.
 
   ```bash
   root@dhcp0:~# ethtool -K eth1 tx off 
@@ -2211,7 +2223,7 @@ This use case is an extension of the **Use Case: Exercise SDCard Boot Flow from 
   root@dhcp0:~# chmod +x myArmDSDebugExample 
   ```
 
-3\. Start a GDB Server debug session over the application from the Linux prompt using the port created in the target system during the port forwarding setup:
+3. Start a GDB Server debug session over the application from the Linux prompt using the port created in the target system during the port forwarding setup:
 
   ```bash
   root@dhcp0:~# gdbserver 10.10.0.1:9123 myArmDSDebugExample 
@@ -2219,7 +2231,7 @@ This use case is an extension of the **Use Case: Exercise SDCard Boot Flow from 
   Listening on port 9123
   ```
 
-4\. In ARM Development Studio, create a new debug connection following the next steps:
+4. In ARM Development Studio, create a new debug connection following the next steps:
 
   a) Create a New Debug Connection to a **Linux Application Connection**. Press Next.
 
@@ -2247,7 +2259,7 @@ This use case is an extension of the **Use Case: Exercise SDCard Boot Flow from 
     
     Press **Debug** button to start the debug.
 
-5\. The application debug can be performed now. ARM DS shows the source code of the test application stopped at the entry point of the **main()** function and we observe at the left the Debug Control panel with the options to control the execution of the code:
+5. The application debug can be performed now. ARM DS shows the source code of the test application stopped at the entry point of the **main()** function and we observe at the left the Debug Control panel with the options to control the execution of the code:
 
   ![ARMDS Fig6.jpg](images/ARMDS_Fig6.jpg)
 

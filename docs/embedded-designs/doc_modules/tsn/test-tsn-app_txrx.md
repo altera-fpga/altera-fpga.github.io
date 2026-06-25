@@ -15,14 +15,14 @@ cd tsn
 3\. Board A
 
    ```bash
-   export LIBXDP_OBJECT_PATH=/usr/lib64/bpf
+   export LIBXDP_OBJECT_PATH=/usr/lib/bpf
    export LD_LIBRARY_PATH=/usr/lib/custom_bpf/lib 
    ```
 
 4\. Board B
 
    ```bash
-   export LIBXDP_OBJECT_PATH=/usr/lib64/bpf
+   export LIBXDP_OBJECT_PATH=/usr/lib/bpf
    export LD_LIBRARY_PATH=/usr/lib/custom_bpf/lib 
    ```
 
@@ -66,11 +66,11 @@ Once the test is completed, copy the following files from Board B (listener) to 
 
 Import 'afpkt-rxtstamps.txt' and 'afxdp-rxtstamps.txt' to excel in 2 seperate sheets.
 
-<img src="https://altera-fpga.github.io/rel-26.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
+<img src="https://altera-fpga.github.io/rel-24.3/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
 
 Plot Column 1 for each sheets using Scatter chart,
 
-<img src="https://altera-fpga.github.io/rel-26.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
+<img src="https://altera-fpga.github.io/rel-24.3/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
 
 
 This will generate plot for AFPKT and AFXDP with latency(on Y-axis) against packet count (on X-axis).

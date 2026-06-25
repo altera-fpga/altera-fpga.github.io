@@ -1,9 +1,6 @@
-
-
-
 ##  Introduction
 
-Altera offers an integrated set of System Level Debug (SLD) tools, including:
+Intel offers an integrated set of System Level Debug (SLD) tools, including:
 
 * SignalTap II Logic Analyzer
 * In-System Sources and Probes (ISSP),
@@ -64,12 +61,12 @@ The following are required:
   * SD/MMC HPS Daughtercard
   * SDM QSPI Bootcard(MT25QU02G)
   * Mini USB cable for serial output
-  * Micro USB cable for on-board Altera® FPGA Download Cable II
+  * Micro USB cable for on-board Intel&reg; FPGA Download Cable II
 * Host PC with:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1
+  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 24.3
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -88,15 +85,27 @@ cd stratix10.remote_debug
 export TOP_FOLDER=$(pwd)
 ```
 
+Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
+
+
+```bash
+cd $TOP_FOLDER
+wget https://developer.arm.com/-/media/Files/downloads/gnu/11.2-2022.02/binrel/\
+gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:$PATH
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-none-linux-gnu-
+```
 
 Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+export QUARTUS_ROOTDIR=~/intelFPGA_pro/24.3/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
-
-
 
 
 
@@ -111,14 +120,14 @@ The hardware design is based on the GSRD, with the JOP component added.
 
 ```bash
 cd $TOP_FOLDER
-rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
-unzip QPDS26.1_REL_GSRD_PR.zip
-rm -f QPDS26.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS26.1_REL_GSRD_PR stratix10-ed-gsrd
-cd stratix10-ed-gsrd
-make s10-htile-soc-devkit-oobe-baseline-generate-design
-cd ..
+rm -rf ghrd-socfpga s10_soc_devkit_ghrd
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/ghrd-socfpga
+mv ghrd-socfpga/s10_soc_devkit_ghrd .
+rm -rf ghrd-socfpga
+cd s10_soc_devkit_ghrd
+export QUARTUS_DEVICE=1SX280HU2F50E1VGAS
+make scrub_clean_all
+make generate_from_tcl
 ```
 
 
@@ -140,34 +149,28 @@ cd ..
 
 
 ```bash
-cd $TOP_FOLDER/stratix10-ed-gsrd
+cd $TOP_FOLDER
+rm -f s10-ghrd-add-jop.tcl
+wget https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-ghrd-add-jop.tcl
 cd s10_soc_devkit_ghrd
-base64 -d << EOT | gunzip > s10-ghrd-add-jop.tcl
-H4sIADVT1GkCA62UwW6CQBCG7zzFpg+AaIxpj0ZoJdVqFNOml8kKY0UXdmVXqyG+exeqpSkkaCMX
-CPvPNz8zzAjqr+kHkgQ32zBBspEHaRg0CMDnkeAxxoqEsUIGKy5gzqhUmIBFQtHIpKB48QAVQjMU
-5fgqosE4rUlqSFSFAgRNaITZyY6yLRLnbTyaeDAd2ODYJLWONfqhM4Sp++6QtG09dC5Rv7q21ydp
-p10nnk0d8HrP4Lx0SdosqRO+Qj+/C0zUgfRd24HHyWgI7hh6Xa87GD2RdEGZRB1Ld1gEn3sTx5oQ
-8pj4bA1NyzL5Vqdg60ZVD/T7k4VzWMnxhRit4/7a5hEN4+lBuvGC//rA29AnVGHBtk6Xad04C2ra
-T5qbsZMMW67P364lUulpyWl5RCUvP6kzdjmpunet460zXFnZK/CVxW2VqyubFiyFNJetBbBPoPsQ
-opxUyaa7KAJZZ/M/TDKnErtBoH1LvZD29/o/1m7zidY7U2FEzrvT/F68YqskuZuJQM8AyYaeaQvm
-nfEF0TE1gacFAAA=
-EOT
-qsys-script --qpf=ghrd_1sx280hu2f50e1vgas.qpf --script=s10-ghrd-add-jop.tcl --system-file=qsys_top.qsys
-cd ..
-make s10-htile-soc-devkit-oobe-baseline-package-design
-make s10-htile-soc-devkit-oobe-baseline-prep
-make s10-htile-soc-devkit-oobe-baseline-build
-make s10-htile-soc-devkit-oobe-baseline-sw-build
-make s10-htile-soc-devkit-oobe-baseline-test
-make s10-htile-soc-devkit-oobe-baseline-install-sof
+qsys-script --qpf=ghrd_1sx280hu2f50e1vgas.qpf --script=../s10-ghrd-add-jop.tcl --system-file=qsys_top.qsys
+```
+
+
+7\. Finish compilation of the GHRD from command line:
+
+
+```bash
+cd $TOP_FOLDER/s10_soc_devkit_ghrd
+make sof
 ```
 
 
 
 The following files are created:
 
-- `$TOP_FOLDER/stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline.sof`: FPGA SOF file, without HPS FSBL
-- `$TOP_FOLDER/stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline_hps_debug.sof`: FPGA SOF, with HPS Debug FSBL
+ * `$TOP_FOLDER/s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas.sof` - FPGA configuration file, without HPS FSBL
+ * `$TOP_FOLDER/s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas_hps_debug.sof` - FPGA configuration file, with HPS Debug FSBL
 
 
 
@@ -180,7 +183,7 @@ This section shows how to create the core RBF file, which is needed by the Yocto
 ```bash
 cd $TOP_FOLDER
 rm -f *jic* *rbf*
-quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline_hps_debug.sof \
+quartus_pfg -c s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas_hps_debug.sof \
   ghrd_1sx280hu2f50e1vgas.jic \
   -o device=MT25QU02G \
   -o flash_loader=1SX280HU2F50E1VGAS \
@@ -201,7 +204,7 @@ The following file is created:
 
 Perform the following steps to build Yocto:
 
-1\. Make sure you have Yocto system requirements met: [https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions](https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions).
+1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
 
 The command to install the required packages on Ubuntu 22.04 is:
 
@@ -230,7 +233,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd_socfpga
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd_socfpga
+git clone -b QPDS24.3_REL_GSRD_PR https://github.com/altera-opensource/gsrd_socfpga
 cd gsrd_socfpga
 . stratix10_htile-gsrd-build.sh
 build_setup
@@ -264,29 +267,14 @@ This can be done with the provided patch file:
 
 ```bash
 rm -f s10-dts-add-jop.patch
-base64 -d << EOT | gunzip > s10-dts-add-jop.patch
-H4sIADVT1GkCA62PzU7DMBCEz8lTrHI1TjYopEChyptESbw2i/JjbLeKhHh3bCrBgWt9GEuznv3G
-irUGKQ0HGCpHE1vycvS2UnThiWRwRJXmmXzlt0lbM/Q+uCHwXmP/4an3ZmHuzZtTpQqeYbzFlpxX
-RTvU2JKmtizHg6IaD9HAtmlyKeVt2uZCiBs17jqQTXvXgoha30PX5ZDF48hTuAzzmeAVXvB0TPZX
-1Fxk2ftmO/2E+IiI8JmcLJu2xUbOOKdAYWglx5M881Ycrw8cmZ9V+28S94d4nf7mch0W8ikfCddc
-RIqEjr/pZ1L+GZJGKPxnWt5kmhap5je2RSPnIgIAAA==
-EOT
+wget https://altera-fpga.github.io/rel-24.3/embedded-designs/stratix-10/sx/soc/remote-debug/collateral/s10-dts-add-jop.patch
 pushd meta-intel-fpga-refdes
 patch -p1 < ../s10-dts-add-jop.patch
 popd
 ```
 
 
-
-4\. Update the recipe to not use a broken version of =etherlink=:
-
-
-```bash
-sed -i 's/3a3eb126321429c0845276ef9c200df7786dbf74/b6a13b03fe7e9566063eae65d99bd8bc1190ce62/g' meta-intel-fpga-refdes/recipes-tools/remote-debug-app/remote-debug-app_1.0.bb
-```
-
-
-5\. Update your Yocto recipes to use the core RBF file you have built, similar to how the GSRD does it:
+4\. Update your Yocto recipes to use the core RBF file you have built, similar to how the GSRD does it:
 
 
 ```bash
@@ -304,7 +292,7 @@ sed -i "s/$OLD_CORE_SHA/$NEW_CORE_SHA/g" $RECIPE
 ```
 
 
-6\. Build the Yocto recipes:
+5\. Build the Yocto recipes:
 
 
 ```bash
@@ -312,7 +300,7 @@ bitbake_image
 ```
 
 
-7\. Gather the Yocto binaries:
+6\. Gather the Yocto binaries:
 
 
 ```bash
@@ -337,7 +325,7 @@ Run the following commands to build the QSPI image:
 
 ```bash
 cd $TOP_FOLDER
-quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline.sof \
+quartus_pfg -c s10_soc_devkit_ghrd/output_files/ghrd_1sx280hu2f50e1vgas.sof \
   ghrd_1sx280hu2f50e1vgas.jic \
   -o device=MT25QU128 \
   -o flash_loader=1SX280HU2 \
@@ -433,4 +421,3 @@ You are responsible for safety of the overall system, including compliance with 
 <sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
 
 OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 
-
