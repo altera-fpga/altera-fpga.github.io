@@ -3910,6 +3910,10 @@
         
           
         
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_8_3_5" id="__nav_8_3_5_label" tabindex="0">
@@ -4279,6 +4283,34 @@
     <li class="md-nav__item">
       <a href="../doc-crc/" class="md-nav__link">
         ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robotics/robotics-vision-doc/" class="md-nav__link">
+        Robot Controller with Vision System Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robotics/robotics-camera/" class="md-nav__link">
+        Robotics Camera System Example Design for Agilex™ 5 Devices
       </a>
     </li>
   
@@ -6553,8 +6585,8 @@ Agilex™ 5 FPGA E-Series 065B Modular Development Kit.</p>
 <br></p>
 <div class="admonition note">
 <p class="admonition-title">Main configurations used in this example design</p>
-<p>JTAG:     SOM SW4[2:1]=OFF:OFF <br>
-ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
+<p>JTAG:     SOM SW1[1:0]=OFF:OFF <br>
+ASx4 (QSPI):  SOM SW1[1:0]=ON:ON</p>
 </div>
 <p><br></p>
 <ul>
@@ -6607,7 +6639,7 @@ ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
 <ul>
 <li>Download the <code>.jic</code> image from the prebuilt binary links above.</li>
 <li>Power down the board.</li>
-<li>Set <strong>MSEL</strong> dipswitch <strong>S4</strong> on SOM to <strong>JTAG: OFF-OFF</strong></li>
+<li>Set <strong>MSEL</strong> dipswitch <strong>S1</strong> on SOM to <strong>JTAG: OFF-OFF</strong></li>
 <li>Power up the board.</li>
 <li>Program the QSPI with the following command. See: <a href="https://docs.altera.com/r/docs/847422/25.3.1/device-configuration-user-guide-agilextm-3-fpgas-and-socs/understanding-configuration-status-using-quartus_pgm-command">quartus_pgm command</a><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;top.hps.jic&quot;</span>
 </code></pre></div>
@@ -6635,7 +6667,7 @@ ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
 </li>
 </ul>
 <ul>
-<li>Power down the board. Set <strong>MSEL</strong> dip switch <strong>S4</strong> on SOM to <strong>ASX4 (QSPI): ON-ON</strong>
+<li>Power down the board. Set <strong>MSEL</strong> dip switch <strong>S1</strong> on SOM to <strong>ASX4 (QSPI): ON-ON</strong>
 <br></li>
 </ul>
 <h3 id="run-the-design-example"><strong>Run the design example</strong><a class="headerlink" href="#run-the-design-example" title="Permanent link">&para;</a></h3>
@@ -6898,6 +6930,8 @@ g { color: Green; font-weight: bold; }
 <h2 id="other-drive-on-chip-documentation-and-references">Other Drive-On-Chip Documentation and References<a class="headerlink" href="#other-drive-on-chip-documentation-and-references" title="Permanent link">&para;</a></h2>
 <h3 id="example-designs">Example Designs<a class="headerlink" href="#example-designs" title="Permanent link">&para;</a></h3>
 <ul>
+<li><a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-vision-doc">Robot Controller with Vision System Example Design for Agilex™ 5 Devices</a></li>
+<li><a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-camera">Robotics Camera System Example Design for Agilex™ 5 Devices</a></li>
 <li><a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-plc">Drive-On-Chip with PLC System Example Design for Agilex™ Devices</a></li>
 <li><a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-crc">ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices</a></li>
 <li><a href="https://docs.altera.com/r/example-designs/825736/current">Agilex™ 5 FPGA - Drive-On-Chip Design Example</a></li>
@@ -6956,7 +6990,7 @@ the Khronos Group™.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 16, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 25, 2026</span>
       
         <br>
         Created:

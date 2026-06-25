@@ -14,7 +14,7 @@
         <link rel="prev" href="../doc-plc/">
       
       
-        <link rel="next" href="../../boot-examples/ug-linux-boot-agx5e-modular-065b/">
+        <link rel="next" href="../../robotics/robotics-vision-doc/">
       
       <link rel="icon" href="../../../../../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
@@ -3910,6 +3910,10 @@
         
           
         
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_8_3_5" id="__nav_8_3_5_label" tabindex="0">
@@ -4217,6 +4221,19 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-robotics-example-designs" class="md-nav__link">
+    Related Robotics Example Designs
+  </a>
+  
+    <nav class="md-nav" aria-label="Related Robotics Example Designs">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#notices-disclaimers" class="md-nav__link">
     Notices &amp; Disclaimers
@@ -4233,6 +4250,34 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robotics/robotics-vision-doc/" class="md-nav__link">
+        Robot Controller with Vision System Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../robotics/robotics-camera/" class="md-nav__link">
+        Robotics Camera System Example Design for Agilex™ 5 Devices
+      </a>
     </li>
   
 
@@ -6230,6 +6275,19 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-robotics-example-designs" class="md-nav__link">
+    Related Robotics Example Designs
+  </a>
+  
+    <nav class="md-nav" aria-label="Related Robotics Example Designs">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#notices-disclaimers" class="md-nav__link">
     Notices &amp; Disclaimers
@@ -6339,8 +6397,8 @@
 <br></p>
 <div class="admonition note">
 <p class="admonition-title">Main configurations used in this example design</p>
-<p>JTAG:     SOM SW4[2:1]=OFF:OFF <br>
-ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
+<p>JTAG:     SOM SW1[1:0]=OFF:OFF <br>
+ASx4 (QSPI):  SOM SW1[1:0]=ON:ON</p>
 </div>
 <p><br></p>
 <ul>
@@ -6393,7 +6451,7 @@ ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
 <ul>
 <li>Download the <code>.jic</code> image from the prebuilt binary links above.</li>
 <li>Power down the board.</li>
-<li>Set <strong>MSEL</strong> dipswitch <strong>S4</strong> on SOM to <strong>JTAG: OFF-OFF</strong></li>
+<li>Set <strong>MSEL</strong> dipswitch <strong>S1</strong> on SOM to <strong>JTAG: OFF-OFF</strong></li>
 <li>Power up the board.</li>
 <li>Program the QSPI with the following command. See: <a href="https://docs.altera.com/r/docs/847422/25.3.1/device-configuration-user-guide-agilextm-3-fpgas-and-socs/understanding-configuration-status-using-quartus_pgm-command">quartus_pgm command</a><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;top.hps.jic&quot;</span>
 </code></pre></div>
@@ -6421,7 +6479,7 @@ ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
 </li>
 </ul>
 <ul>
-<li>Power down the board. Set <strong>MSEL</strong> dip switch <strong>S4</strong> on SOM to <strong>ASX4 (QSPI): ON-ON</strong>
+<li>Power down the board. Set <strong>MSEL</strong> dip switch <strong>S1</strong> on SOM to <strong>ASX4 (QSPI): ON-ON</strong>
 <br></li>
 </ul>
 <h3 id="build-docker-image">Build Docker Image<a class="headerlink" href="#build-docker-image" title="Permanent link">&para;</a></h3>
@@ -6492,6 +6550,11 @@ ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
 <p><center></p>
 <p><a class="glightbox" href="images/rviz_03.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="rviz_fixed_frame" src="images/rviz_03.png" /></a></p>
 <p></center></p>
+<h2 id="related-robotics-example-designs">Related Robotics Example Designs<a class="headerlink" href="#related-robotics-example-designs" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-vision-doc">Robot Controller with Vision System Example Design for Agilex™ 5 Devices</a></li>
+<li><a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-camera">Robotics Camera System Example Design for Agilex™ 5 Devices</a></li>
+</ul>
 <p><br></p>
 <h3 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h3>
 <p>Altera® Corporation technologies may require enabled hardware, software or service
@@ -6577,13 +6640,13 @@ the Khronos Group™.</p>
         
         
           
-          <a href="../../boot-examples/ug-linux-boot-agx5e-modular-065b/" class="md-footer__link md-footer__link--next" aria-label="Next: HPS Linux Boot System Example Design" rel="next">
+          <a href="../../robotics/robotics-vision-doc/" class="md-footer__link md-footer__link--next" aria-label="Next: Robot Controller with Vision System Example Design for Agilex™ 5 Devices" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                HPS Linux Boot System Example Design
+                Robot Controller with Vision System Example Design for Agilex™ 5 Devices
               </div>
             </div>
             <div class="md-footer__button md-icon">

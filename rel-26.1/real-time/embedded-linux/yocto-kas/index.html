@@ -4091,6 +4091,10 @@
         
           
         
+          
+        
+          
+        
       
       
         <label class="md-nav__link" for="__nav_8_3_5" id="__nav_8_3_5_label" tabindex="0">
@@ -4235,6 +4239,34 @@
     <li class="md-nav__item">
       <a href="../../../embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-crc/" class="md-nav__link">
         ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-vision-doc/" class="md-nav__link">
+        Robot Controller with Vision System Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-camera/" class="md-nav__link">
+        Robotics Camera System Example Design for Agilex™ 5 Devices
       </a>
     </li>
   
@@ -6315,7 +6347,7 @@ a single command.</p>
 <p>To illustrate how these configurations can be practically applied, Altera® provides an example implementation using a
 Yocto Project–based build system, managed via Kas. The example demonstrates how to define and integrate a dedicated
 <strong>“layer”</strong> that encapsulates real-time–oriented settings through <code>.yml</code> and <code>Kconfig</code> files.</p>
-<p>This meta-layer can be easily extended or combined with the <strong><a href="https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/">HPS Linux Golden System Reference Design</a></strong>,
+<p>This meta-layer can be easily extended or combined with the <strong>[HPS Linux Golden System Reference Design]</strong>,
 ensuring a reproducible and maintainable workflow for embedded software development.</p>
 <p>Even if your system is built using Poky or other Yocto-derived distributions, the recommendations in this guide
 remain relevant. They can be selectively applied to suit your system’s requirements, whether you are targeting
@@ -6339,22 +6371,22 @@ verified release tags.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-gsrd-20-binaries">HPS GSRD User Guide for the Agilex™ 5 E-Series Premium Dev Kit</a></td>
+<td>[HPS GSRD User Guide for the Agilex™ 5 E-Series Premium Dev Kit]</td>
 <td>https://github.com/altera-fpga/meta-altera-rt</td>
-<td><a href="https://github.com/altera-fpga/meta-altera-rt/tree/QPDS25.3.1_REL_GSRD_PR">QPDS25.3.1_REL_GSRD_PR</a></td>
+<td>[QPDS25.3.1_REL_GSRD_PR]</td>
 </tr>
 <tr>
-<td><a href="https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-gsrd-20-binaries">HPS GSRD User Guide for the Agilex™ 5 E-Series Premium Dev Kit</a></td>
+<td>[HPS GSRD User Guide for the Agilex™ 5 E-Series Premium Dev Kit]</td>
 <td>https://github.com/altera-fpga/meta-altera-rt</td>
-<td><a href="https://github.com/altera-fpga/meta-altera-rt/tree/QPDS26.1_REL_GSRD_PR">QPDS26.1_REL_GSRD_PR</a></td>
+<td>[QPDS26.1_REL_GSRD_PR]</td>
 </tr>
 </tbody>
 </table>
 <h2 id="get-started">Get Started<a class="headerlink" href="#get-started" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Get familiar with GSRD 2.0 dependencies, and get access to its source files. See: <strong><a href="https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-gsrd-20-binaries">GSRD 2.0 with Kas Build System</a></strong></li>
+<li>Get familiar with GSRD 2.0 dependencies, and get access to its source files. See: <strong>[GSRD 2.0 with Kas Build System]</strong></li>
 <li>
-<p>Clone the <code>meta-altera-fpga</code> layer and follow the <strong><a href="https://github.com/altera-fpga/meta-altera-rt">Altera® FPGA Real-Time Meta Layer</a></strong> Readme Instructions.
+<p>Clone the <code>meta-altera-fpga</code> layer and follow the <strong>[Altera® FPGA Real-Time Meta Layer]</strong> Readme Instructions.
    You should be able to see <g>"Real-Time tuning options (use with caution)"</g>. Anytime, after applying your settings,
    press "Build".</p>
 <p><a class="glightbox" href="../images/kconfig-main-menu.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="kconfig-main-menu" src="../images/kconfig-main-menu.png" style="display:block; margin-left:auto; margin-right:auto;" /></a></p>
@@ -6373,14 +6405,14 @@ verified release tags.</p>
 </li>
 <li>
 <p>Some concepts about the Hard Processor System in Agilex™ 5 SoC FPGA are well described in the
-   <strong><a href="https://docs.altera.com/r/docs/814346/current">Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs</a></strong>.</p>
+   <strong>[Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs]</strong>.</p>
 </li>
 </ol>
 <p>The following sections explain the available configuration options. You can enable all of them or only those relevant
 to your use case. More importantly, use this as a guide to help you tune your system for soft real-time workloads.</p>
 <p><br></p>
 <h2 id="atf-level-optimizations-for-yocto-kas-build">ATF level optimizations for Yocto-Kas build<a class="headerlink" href="#atf-level-optimizations-for-yocto-kas-build" title="Permanent link">&para;</a></h2>
-<p>These optimizations are fully explained in the Real-time guide <a href="https://altera-fpga.github.io/latest/real-time/agilex5-hps-cpu-cluster-latency/agilex5_hps_cpu_cluster_latency/">Agilex 5 HPS CPU Cluster Latency</a>. They consist of a set of HPS cluster
+<p>These optimizations are fully explained in the Real-time guide [Agilex 5 HPS CPU Cluster Latency]. They consist of a set of HPS cluster
 configurations that can help in the execution of tasks. The configuration is integrated into the Yocto/Kas build through a
  <code>.bbappend</code> recipe that modifies the Arm Trusted Firmware (ATF) build process. The file can be found at:
 <code>meta-altera-rt/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_%.bbappend</code>
@@ -6439,7 +6471,7 @@ added by the <code>.bbappend</code> file to the <code>plat/intel/soc/common/aarc
 <tbody>
 <tr>
 <td align="center"><a class="glightbox" href="../images/atf-patch.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="atf-opt" src="../images/atf-patch.png" style="display:block; margin-left:auto; margin-right:auto;" /></a></td>
-<td><br> <br> - <g>Line 3-11: </g> This code is executed once per core, <br> the code is used to identify the core. <br> <br> <g> - Line 14: </g> disables "no L3 allocation mode" from the cluster. (<code>nl3a</code>) <br> <br> <g> - Line 18:</g> Assign <code>Way Group 0</code> to <code>Scheme ID 1</code> while <br> <code>Way groups 1,2,3</code> to <code>Scheme ID 0</code>. Each "way group" holds <br> "4 cache ways" hence it covers the 16 available cache ways in this cluster,<br> this enables "Cache Partitioning" (<code>cp</code>).  See: <strong><a href="https://developer.arm.com/documentation/100453/0400/register-descriptions/control-registers/clusterpartcr--cluster-partition-control-register">CLUSTERPARTCR</a></strong> <br><br> <g> - Line 22: </g> Assigns CHI (Coherent Hub Interface) QoS <code>"F"</code> <br> (highest priority), to <code>Scheme ID 1</code> and sets CHI QoS <code>"0"</code> <br> to <code>Scheme ID 0</code> (<code>qos</code>). See: <strong><a href="https://developer.arm.com/documentation/100453/0401/Control-registers/CLUSTERBUSQOS--Cluster-Bus-QoS-Control-Register">CLUSTERBUSQOS</a></strong> <br> <br> <g> - Line 26: </g> "Scheme Management Registers enable" <br> and "Thread Scheme ID Register enable". See: <strong><a href="https://developer.arm.com/documentation/100442/0200/Register-descriptions/AArch64-system-registers/ACTLR-EL3--Auxiliary-Control-Register--EL3">ACTLR_EL3</a></strong> <br> <br> <g> - Line 30: </g> Assign this <code>thread (effectively core)</code> (in this example core3, <br> second A76) to <code>Scheme ID 1</code>. By default other <br> cores will be assigned to <code>Scheme ID 0</code>. See: <strong><a href="https://developer.arm.com/documentation/100453/0400/register-descriptions/control-registers/clusterthreadsid--cluster-thread-scheme-id-register">CLUSTERTHREADSID</a></strong></td>
+<td><br> <br> - <g>Line 3-11: </g> This code is executed once per core, <br> the code is used to identify the core. <br> <br> <g> - Line 14: </g> disables "no L3 allocation mode" from the cluster. (<code>nl3a</code>) <br> <br> <g> - Line 18:</g> Assign <code>Way Group 0</code> to <code>Scheme ID 1</code> while <br> <code>Way groups 1,2,3</code> to <code>Scheme ID 0</code>. Each "way group" holds <br> "4 cache ways" hence it covers the 16 available cache ways in this cluster,<br> this enables "Cache Partitioning" (<code>cp</code>).  See: <strong>[CLUSTERPARTCR]</strong> <br><br> <g> - Line 22: </g> Assigns CHI (Coherent Hub Interface) QoS <code>"F"</code> <br> (highest priority), to <code>Scheme ID 1</code> and sets CHI QoS <code>"0"</code> <br> to <code>Scheme ID 0</code> (<code>qos</code>). See: <strong>[CLUSTERBUSQOS]</strong> <br> <br> <g> - Line 26: </g> "Scheme Management Registers enable" <br> and "Thread Scheme ID Register enable". See: <strong>[ACTLR_EL3]</strong> <br> <br> <g> - Line 30: </g> Assign this <code>thread (effectively core)</code> (in this example core3, <br> second A76) to <code>Scheme ID 1</code>. By default other <br> cores will be assigned to <code>Scheme ID 0</code>. See: <strong>[CLUSTERTHREADSID]</strong></td>
 </tr>
 </tbody>
 </table>
@@ -6651,7 +6683,7 @@ Altera® devices using the Kas/Yocto infrastructure, transforming your system in
 environment. Note that Linux is not a hard real-time operating system, and Altera® Agilex™ devices
 feature an ARM cluster composed exclusively of A-class cores.</p>
 <p>Enabling this functionality requires applying the appropriate Linux kernel patch from the
-<strong><a href="https://wiki.linuxfoundation.org/realtime/preempt_rt_versions">PREEMPT_RT patch versions</a></strong> repository and configuring the corresponding Linux kernel options.</p>
+<strong>[PREEMPT_RT patch versions]</strong> repository and configuring the corresponding Linux kernel options.</p>
 <p>The RT_PREEMPT Kernel patch and Kernel configurations can be applied through the Kconfig GUI by selecting
 “Add kernel PREEMPT-RT patch”.</p>
 <p><a class="glightbox" href="../images/rt-preempt.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="rt-preempt" src="../images/rt-preempt.png" style="display:block; margin-left:auto; margin-right:auto;" /></a></p>
@@ -6717,10 +6749,10 @@ utilities that you consider necessary for your real-time evaluation.</p>
 </ul>
 <ul>
 <li>
-<p><strong>Cyclictest and Hackbench script:</strong> A script to run <strong><a href="https://wiki.linuxfoundation.org/realtime/documentation/howto/tools/cyclictest/">cyclictest</a></strong> in a core of your choosing while running
+<p><strong>Cyclictest and Hackbench script:</strong> A script to run <strong>[cyclictest]</strong> in a core of your choosing while running
   hackbench recurrently in non-interest cores. Useful to measures the difference between a thread's
   intended wake-up time and the time at which it actually wakes up while the system is upset by running
-  multiple instances of <strong><a href="https://wiki.linuxfoundation.org/realtime/documentation/howto/tools/hackbench">hackbench</a></strong> (stress test for kernel scheduler, parts of memory subsystem and inter-process
+  multiple instances of <strong>[hackbench]</strong> (stress test for kernel scheduler, parts of memory subsystem and inter-process
   communication).</p>
 <p>Usage:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">  </span>run_cyclictest_hackbench-core<span class="w"> </span>--iterations<span class="w"> </span>&lt;<span class="c1">#&gt; --board &lt;name&gt; --priority &lt;#&gt; --max_us_scale &lt;#&gt; --loops &lt;#&gt; --interval &lt;#&gt; --core &lt;#&gt;</span>
@@ -7027,7 +7059,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 29, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 25, 2026</span>
       
         <br>
         Created:
