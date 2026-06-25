@@ -3,6 +3,8 @@
 [Drive-On-Chip with Functional Safety System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety
 [Drive-On-Chip with PLC System Example Design for Agilex™ Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-plc
 [ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-crc
+[Robot Controller with Vision System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-vision-doc
+[Robotics Camera System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-camera
 [Agilex™ 5 FPGA - Drive-On-Chip Design Example]: https://docs.altera.com/r/example-designs/825736/current
 [Altera® Agilex™ 7 FPGA – Drive-On-Chip for Altera® Agilex™ 7 Devices Design Example]: https://docs.altera.com/r/example-designs/780358/current
 [Agilex™ 7 FPGA – Safe Drive-On-Chip Design Example]: https://docs.altera.com/r/example-designs/825942/current
@@ -34,6 +36,55 @@
 
 [Disk Imager]: https://sourceforge.net/projects/win32diskimager
 
+
+
+
+
+[https://github.com/altera-fpga/agilex-ed-drive-on-chip]: https://github.com/altera-fpga/agilex-ed-drive-on-chip
+[https://github.com/altera-fpga/modular-design-toolkit]: https://github.com/altera-fpga/modular-design-toolkit
+[https://github.com/altera-fpga/altera-openplc]: https://github.com/altera-fpga/altera-openplc
+[meta-altera-fpga]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/tree/rel/26.1/sw/meta-altera-fpga
+[meta-driveonchip]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/tree/rel/26.1/sw/meta-driveonchip
+[agilex-ed-drive-on-chip/sw]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/tree/rel/26.1/sw
+
+
+
+
+[Release Tag]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-plc-26.1
+[wic.gz]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.gz
+[wic.bmap]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.bmap
+[top.hps.jic]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/top.hps.jic
+[doc-gui.zip]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/doc-gui_1.0.0.zip
+[DOC_PLC_TANDEM_MOTORSIM_AGILEX5.qar]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/DOC_PLC_TANDEM_MOTORSIM_AGILEX5.qar
+[top.core.rbf]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/top.core.rbf
+[u-boot-spl-dtb.hex]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/u-boot-spl-dtb.hex
+[agilex_doc.st]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/agilex_doc.st
+
+
+[AGX3 Release Tag]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-plc-26.1
+[agx3-wic.gz]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/core-image-minimal-agilex3.rootfs.wic.gz
+[agx3-wic.bmap]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/core-image-minimal-agilex3.rootfs.wic.bmap
+[agx3-top.hps.jic]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/agx3-top.hps.jic
+[agx3-doc-gui.zip]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/doc-gui_1.0.0.zip
+[DOC_PLC_TANDEM_MOTORSIM_AGILEX3.qar]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/DOC_PLC_TANDEM_MOTORSIM_AGILEX3.qar
+[agx3-top.core.rbf]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/agx3-top.core.rbf
+[agx3-u-boot-spl-dtb.hex]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/agx3-u-boot-spl-dtb.hex
+[agx3-agilex_doc.st]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/agilex_doc.st
+
+
+
+[Creating and Building the Design based on Modular Design Toolkit (MDT).]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/main/HPS_NIOSVg_DoC_dual_axis/Readme.md
+[AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_dual_axis.xml]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/main/HPS_NIOSVg_DoC_dual_axis/AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_dual_axis.xml
+[Create SD card image (.wic) using YOCTO/KAS]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/main/sw/README.md
+[Altera OpenPLC Docker Container Image Cross-compilation.]: https://github.com/altera-fpga/altera-openplc#build-a-docker-image
+
+
+
+[OpenPLC Runtime version 3]: https://github.com/thiagoralves/OpenPLC_v3
+[OpenPLC Documentation]: https://autonomylogic.com/
+[Ruckig: Instantaneous Motion Generation for Robots and Machines]: https://github.com/pantor/ruckig
+[PLCopen Motion Control Specification]: https://www.plcopen.org/guidelines/user-guidelines/
+[docker-bullseye-20240722]: https://hub.docker.com/layers/library/debian/bullseye-20240722/images/sha256-315c507d52a055dc8143d48e81666575ce34f1bb0538d189edff09dfc2314260
 
 
 # Drive-On-Chip with PLC Design Example for Agilex™ Devices

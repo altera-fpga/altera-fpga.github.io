@@ -12,8 +12,8 @@
 
 !!! note "Main configurations used in this example design"
 
-    JTAG:     SOM SW4[2:1]=OFF:OFF <br>
-    ASx4 (QSPI):  SOM SW4[2:1]=ON:ON
+    JTAG:     SOM SW1[1:0]=OFF:OFF <br>
+    ASx4 (QSPI):  SOM SW1[1:0]=ON:ON
 
 <br>
 

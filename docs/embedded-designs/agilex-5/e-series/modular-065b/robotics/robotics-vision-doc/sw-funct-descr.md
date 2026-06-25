@@ -1,0 +1,104 @@
+
+
+[Robot Controller with Vision System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-vision-doc
+[Robotics Camera System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-camera
+[ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-crc
+[Drive-On-Chip with Functional Safety System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety
+[Drive-On-Chip with PLC System Example Design for Agilex™ Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-plc
+[4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular/camera/camera_4k/camera_4k
+[4Kp30 Camera Lite Solution System Example Design for Agilex™ 3 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-3/c-series/camera/camera_lite_4k30/camera_4k
+[Agilex™ 5 FPGA - Drive-On-Chip Design Example]: https://docs.altera.com/r/example-designs/825736/current
+[Altera® Agilex™ 7 FPGA – Drive-On-Chip for Altera® Agilex™ 7 Devices Design Example]: https://docs.altera.com/r/example-designs/780358/current
+[Agilex™ 7 FPGA – Safe Drive-On-Chip Design Example]: https://docs.altera.com/r/example-designs/825942/current
+
+
+
+[https://github.com/altera-fpga/agilex-ed-robotics]: https://github.com/altera-fpga/agilex-ed-robotics
+[Modular Design Toolkit]: https://github.com/altera-fpga/modular-design-toolkit
+[agilex-ed-robotics/sw]: https://github.com/altera-fpga/agilex-ed-robotics/tree/rel/26.1/sw
+
+
+
+[Agilex™ 5 FPGA E-Series 065B Modular Development Kit]: https://www.altera.com/products/devkit/po-3274/agilex-5-fpga-and-soc-e-series-065b-modular-development-kit
+[Agilex™ 5 E-Series Modular Development Kit GSRD User Guide (26.1)]: https://altera-fpga.github.io/26.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/
+[Agilex™ 5 E-Series Modular Development Kit GHRD Linux Boot Examples]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/boot-examples/ug-linux-boot-agx5e-modular-065b
+[Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs (26.1)]: https://docs.altera.com/r/docs/814346/26.1/hard-processor-system-technical-reference-manual-agilextm-5-socs/agilextm-5-hard-processor-system-technical-reference-manual-revision-history
+[VVP IP Suite]: https://www.altera.com/products/ip/po-3150/video-and-vision-processing-suite
+[AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices]: https://docs.altera.com/r/docs/826207/current
+[Tandem Motion-Power 48 V Board Reference Manual]: https://docs.altera.com/r/docs/683164/current/tandem-motion-power-48-v-board-reference-manual
+[Tamagawa TS4747N3200E600 motor]: https://www.tamagawa-seiki.com/products/servomotor/search/product.php?model=TS4747N3200E600
+
+
+
+[Framos FSM:GO IMX678C Camera Modules]: https://www.framos.com/en/fsmgo
+[Wide 110deg HFOV Lens]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L110A-PM-A1Q1?qs=%252BHhoWzUJg4KQkNyKsCEDHw%3D%3D
+[Medium 100deg HFOV Lens]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L100A-PM-A1Q1?qs=%252BHhoWzUJg4IesSwD2ACIBQ%3D%3D
+[Narrow 54deg HFOV Lens]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L54A-PM-A1Q1?qs=%252BHhoWzUJg4L5yHZulKgVGA%3D%3D
+[Framos Tripod Mount Adapter]: https://www.framos.com/en/products/fma-mnt-trp1-4-v1c-26333
+[Tripod]: https://thepihut.com/products/small-tripod-for-raspberry-pi-hq-camera
+[150mm flex-cable]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FMA-FC-150-60-V1A?qs=GedFDFLaBXGCmWApKt5QIQ%3D%3D
+[300mm micro-coax cable]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FFA-MC50-Kit-0.3m?qs=%252BHhoWzUJg4K3LtaE207mhw%3D%3D
+[Framos FFA-GMSL-SER-V2A Serializer]: https://www.framos.com/en/products/ffa-gmsl-ser-v2a-27617
+[Framos FFA-GMSL-DES-V2A Deserializer]: https://www.framos.com/en/products/ffa-gmsl-des-v2a-27240
+[DP to HDMI Adapter]: https://www.amazon.com/DisplayPort-HDMI-Adapter-Uni-Directional/dp/B01K2H8K6I
+[DIGITNOW USB Video Capture Card]: https://digitnow.com/en-euro/products/digitnow-usb-video-capture-card-4k-60hz-hdr10-zero-lag-passthrough-ultra-low-latency-full-hd-video-recording-for-ps5-ps4-pro-xbox-series-x-s-xbox-one-x-s-real-usb3-0
+
+
+
+[Video and Vision Processing Suite Altera® FPGA IP User Guide]: https://docs.altera.com/r/docs/683329/current/about-the-video-and-vision-processing-suite
+[Tone Mapping Operator]: https://www.altera.com/products/ip/a1jui000004r0hlmak/tone-mapping-operator-fpga-ip
+[3D LUT]: https://www.altera.com/products/ip/po-3152/3d-lut-altera-fpga-ip
+[MIPI DPHY IP and MIPI CSI-2 IP]: https://www.altera.com/products/ip/po-3062/mipi-d-phy-ip
+[Nios® V Processor]: https://www.altera.com/products/ip/po-3098/nios-v-processors
+
+
+
+[ROS 2]: https://www.ros.org/
+[MoveIt]: https://moveit.ai/
+[Altera ROS 2]: https://github.com/altera-fpga/altera-ros2
+[Rocker]: https://github.com/osrf/rocker
+[Docker]: https://docs.docker.com/engine/install/
+[quartus_pgm command]: https://docs.altera.com/r/docs/847422/25.3.1/device-configuration-user-guide-agilextm-3-fpgas-and-socs/understanding-configuration-status-using-quartus_pgm-command
+[UFACTORY Lite 6 robot arm]: https://www.ufactory.cc/lite-6-collaborative-robot/
+
+
+
+[Release Tag]: https://github.com/altera-fpga/agilex-ed-robotics/releases/tag/rel-vision-doc-26.1
+[wic.gz]: https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-vision-doc-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.gz
+[wic.bmap]: https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-vision-doc-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.bmap
+[top.hps.jic]: https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-vision-doc-26.1/top.hps.jic
+[top.core.rbf]: https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-vision-doc-26.1/top.core.rbf
+[u-boot-spl-dtb.hex]: https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-vision-doc-26.1/u-boot-spl-dtb.hex
+[ROBOTICS_ISP_VISION_DOC.qar]: https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-vision-doc-26.1/ROBOTICS_ISP_VISION_DOC.qar
+[top.sof]: https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-vision-doc-26.1/top.sof
+
+[HPS_ISP_VIS_DOC3x2_ROBOTICS]: https://github.com/altera-fpga/agilex-ed-robotics/tree/rel/26.1/HPS_ISP_VIS_DOC3x2_ROBOTICS
+[AGX_5E_Modular_Devkit_HPS_ISP_VIS_DOC3x2_ROB.xml]: https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/HPS_ISP_VIS_DOC3x2_ROBOTICS/AGX_5E_Modular_Devkit_HPS_ISP_VIS_DOC3x2_ROB.xml
+[Creating and Building the Design based on Modular Design Toolkit (MDT).]: https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/HPS_ISP_VIS_DOC3x2_ROBOTICS/Readme.md
+[Create SD card image (.wic) using YOCTO/KAS]: https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/sw/README.md
+[kas-vision-doc.yml]: https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/sw/kas-vision-doc.yml
+[6-axis Drive-on-Chip design]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/tree/rel/26.1/HPS_NIOSVg_DoC_3x2_axis
+[MoveIt client]: https://github.com/altera-fpga/altera-ros2/tree/main/examples/moveit_demo_client
+[ROS Control hardware interface]: https://github.com/altera-fpga/altera-ros2/tree/main/fpga_doc_control_driver
+
+
+# Robot Controller with Vision System Example Design — Software Functional Description
+
+## Linux image
+
+Build the HPS software stack from [agilex-ed-robotics/sw](https://github.com/altera-fpga/agilex-ed-robotics/tree/rel/26.1/sw):
+
+```bash
+cd <workspace>/agilex-ed-robotics/sw
+KAS_MACHINE=agilex5_mk_a5e065bb32aea kas build kas-vision-doc.yml
+```
+
+## NiosV/g motor application
+
+The `-sw_compile` MDT build produces `.elf` / `.hex` files for embedded NiosV/g processors in `software/dniosv_subsystem`. Monitor motor activity with `juart-terminal` as described in the Drive-on-Chip documentation.
+
+## Integration with ROS 2
+
+For a full robot controller stack, combine this FPGA design with the [ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-crc) and [Altera ROS 2](https://github.com/altera-fpga/altera-ros2) packages on the HPS.
+
+<br>

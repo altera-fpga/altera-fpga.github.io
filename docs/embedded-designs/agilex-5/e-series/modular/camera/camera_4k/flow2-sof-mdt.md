@@ -96,17 +96,17 @@ You can use the pre-built binaries for reference:
 
 | Boot Source | Link |
 | ---------------------------------- | ---- |
-| Pre-built microSD Card Image for SOF MDT Flow | [fpga-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz] |
-| Pre-built FPGA First `.sof` file | [fsbl_agilex5_modkit_vvpisp_time_limited.sof] |
+| Pre-built microSD Card Image for SOF MDT Flow | [fpga-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz](https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/fpga-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz) |
+| Pre-built FPGA First `.sof` file | [fsbl_agilex5_modkit_vvpisp_time_limited.sof](https://github.com/altera-fpga/agilex-ed-camera/releases/download/rel-25.1/fsbl_agilex5_modkit_vvpisp_time_limited.sof) |
 
 </center>
 
 ## HW Compilation
-Use the **[SOF Modular Design Toolkit (MDT) Flow]** to create and build the
+Use the **[SOF Modular Design Toolkit (MDT) Flow](https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt)** to create and build the
 FPGA Design.
 
 ## SW Compilation
-Use the **[Create microSD card image (.wic.gz) using YOCTO/KAS]** flow to
+Use the **[Create microSD card image (.wic.gz) using YOCTO/KAS](https://github.com/altera-fpga/agilex-ed-camera/blob/rel-25.1/sw/README.md)** flow to
 create the microSD card image.
 
 !!! NOTE "Note"

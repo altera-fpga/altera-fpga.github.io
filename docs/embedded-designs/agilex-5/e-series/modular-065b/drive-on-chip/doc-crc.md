@@ -6,6 +6,8 @@
 [Drive-On-Chip with Functional Safety System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety
 [Drive-On-Chip with PLC System Example Design for Agilex™ Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-plc
 [ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-crc
+[Robot Controller with Vision System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-vision-doc
+[Robotics Camera System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-camera
 [Agilex™ 5 FPGA - Drive-On-Chip Design Example]: https://docs.altera.com/r/example-designs/825736/current
 [Altera® Agilex™ 7 FPGA – Drive-On-Chip for Altera® Agilex™ 7 Devices Design Example]: https://docs.altera.com/r/example-designs/780358/current
 [Agilex™ 7 FPGA – Safe Drive-On-Chip Design Example]: https://docs.altera.com/r/example-designs/825942/current
@@ -146,8 +148,8 @@ Prebuilt binaries are provided to help get the example design running quickly. Y
 
 !!! note "Main configurations used in this example design"
 
-    JTAG:     SOM SW4[2:1]=OFF:OFF <br>
-    ASx4 (QSPI):  SOM SW4[2:1]=ON:ON
+    JTAG:     SOM SW1[1:0]=OFF:OFF <br>
+    ASx4 (QSPI):  SOM SW1[1:0]=ON:ON
 
 <br>
 
@@ -219,7 +221,7 @@ sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aea.wic.gz /dev/sda
 
 * Download the `.jic` image from the prebuilt binary links above.
 * Power down the board.
-* Set **MSEL** dipswitch **S4** on SOM to **JTAG: OFF-OFF**
+* Set **MSEL** dipswitch **S1** on SOM to **JTAG: OFF-OFF**
 * Power up the board.
 * Program the QSPI with the following command. See: [quartus_pgm command]
 
@@ -244,7 +246,7 @@ sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aea.wic.gz /dev/sda
 
   <br>
 
-* Power down the board. Set **MSEL** dip switch **S4** on SOM to **ASX4 (QSPI): ON-ON**
+* Power down the board. Set **MSEL** dip switch **S1** on SOM to **ASX4 (QSPI): ON-ON**
 <br>
 
 
@@ -345,6 +347,11 @@ At this point you should see a live visualization of the robot arm moving from p
 ![rviz_fixed_frame](./doc-crc/images/rviz_03.png)
 
 </center>
+
+## Related Robotics Example Designs
+
+* [Robot Controller with Vision System Example Design for Agilex™ 5 Devices](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-vision-doc)
+* [Robotics Camera System Example Design for Agilex™ 5 Devices](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-camera)
 
 <br>
 

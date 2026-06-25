@@ -305,6 +305,8 @@ nav:
         - Drive-On-Chip with Functional Safety Design Example for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety.md
         - Drive-On-Chip with PLC Design Example for Agilex™ Devices: embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-plc.md
         - ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-crc.md
+        - Robot Controller with Vision System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-vision-doc.md
+        - Robotics Camera System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-camera.md
         - HPS Linux Boot System Example Design: embedded-designs/agilex-5/e-series/modular-065b/boot-examples/ug-linux-boot-agx5e-modular-065b.md
         - HPS PCIe Root Port: embedded-designs/agilex-5/e-series/modular-065b/pcie-rp/ug-pcie_rp-agx5e-modular-065b.md          
         - Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE.md
