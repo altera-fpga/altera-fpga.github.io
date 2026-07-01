@@ -324,6 +324,8 @@ nav:
       - Intel Simics Virtual Platform Examples:
         - Simics Linux HPS Baseline System Example Design: embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms.md
         - Simics Zephyr HPS Baseline System Example Design: embedded-designs/agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms.md
+      - HPS TSN Examples:
+        - HPS TSN GMII to SGMII via FPGA LVDS I/O pins Tutorial Example Design User Guide: embedded-designs/agilex-5/common/tsn/sgmii_lvds/sgmii_lvds.md
     - Agilex™ 7:
       - F-Series SoC Development Kit (P-Tiles & E-Tile):
         - HPS GSRD User Guide: embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc.md
