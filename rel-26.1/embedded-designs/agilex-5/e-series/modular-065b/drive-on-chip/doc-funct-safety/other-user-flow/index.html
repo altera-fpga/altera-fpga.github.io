@@ -2601,6 +2601,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
@@ -4435,6 +4437,58 @@
 
             
           
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_9" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8_3_9" id="__nav_8_3_9_label" tabindex="0">
+          HPS TSN Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8_3_9">
+          <span class="md-nav__icon md-icon"></span>
+          HPS TSN Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../common/tsn/sgmii_lvds/sgmii_lvds/" class="md-nav__link">
+        HPS TSN GMII to SGMII via FPGA LVDS I/O pins Tutorial Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -5954,33 +6008,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#creating-the-qspi-flash-and-sd-card-configuration-bitstreams-for-the-board" class="md-nav__link">
-    Creating the QSPI Flash and SD card configuration bitstreams for the board
-  </a>
-  
-    <nav class="md-nav" aria-label="Creating the QSPI Flash and SD card configuration bitstreams for the board">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-phase-1-and-phase-2-configuration-bitstreams-for-hps-first-flow" class="md-nav__link">
-    Create phase 1 and phase 2 configuration bitstreams for "HPS First" Flow
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#create-phase-1-and-phase-2-configuration-bitstream-for-fpga-first-flow" class="md-nav__link">
-    Create phase 1 and phase 2 configuration bitstream for "FPGA First" Flow
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -6111,86 +6138,6 @@ contains the new binaries (<code>.hex</code>) for memory initialization (<code>&
 <p><br></p>
 <p><br></p>
 <p><a class="md-button" href="../#recommended-user-flows">Back to User Flows</a></p>
-<h2 id="creating-the-qspi-flash-and-sd-card-configuration-bitstreams-for-the-board">Creating the QSPI Flash and SD card configuration bitstreams for the board<a class="headerlink" href="#creating-the-qspi-flash-and-sd-card-configuration-bitstreams-for-the-board" title="Permanent link">&para;</a></h2>
-<h3 id="create-phase-1-and-phase-2-configuration-bitstreams-for-hps-first-flow">Create phase 1 and phase 2 configuration bitstreams for "HPS First" Flow<a class="headerlink" href="#create-phase-1-and-phase-2-configuration-bitstreams-for-hps-first-flow" title="Permanent link">&para;</a></h3>
-<p>Follow these steps if the "HPS init" property for the <code>hps_subsystem</code> in the <code>XML</code>
-is set to <code>"HPS FIRST"</code>. You can check this property by executing the following
-Quartus® command and the <code>"\*.sof"</code> file. For example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>quartus_pfg<span class="w"> </span>-i<span class="w"> </span>top.sof
-</code></pre></div>
-<p><strong>Note:</strong> top.sof is located in <code>&lt;project&gt;/quartus/output_files/top.sof</code></p>
-<p>In the log, look for the property <code>"HPS/FPGA configuration order"</code> SET TO <code>"HPS_FIRST"</code></p>
-<p><br></p>
-<p><a class="glightbox" href="/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/hps-first.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="hps-first" src="/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/hps-first.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
-<center></p>
-<p><strong>HPS First SOF file.</strong>
-</center>
-<br></p>
-<p><strong>Important!</strong> The following step depends on the output of u-boot compilation
-specifically the file <code>u-boot-spl-dtb.hex</code>. To generate the pair <code>top.core.rbf</code>
-and <code>top.hps.jic</code> execute:</p>
-<p><strong>Note:</strong> top.sof is located in <code>&lt;project&gt;/quartus/output_files/top.sof</code></p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Agilex™ 5</label><label for="__tabbed_1_2">Agilex™ 3</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>For [Agilex™ 5 FPGA E-Series 065B Modular Development Kit]
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>top.sof<span class="w"> </span>top.jic<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU02G<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A5ED065BB32AE4S<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
-</code></pre></div></p>
-</div>
-<div class="tabbed-block">
-<p>For [Agilex™ 3 FPGA and SoC C-Series Development Kit]
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>top.sof<span class="w"> </span>top.jic<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU512<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A3CW135BM16AE6S<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
-</code></pre></div></p>
-</div>
-</div>
-</div>
-<h3 id="create-phase-1-and-phase-2-configuration-bitstream-for-fpga-first-flow">Create phase 1 and phase 2 configuration bitstream for "FPGA First" Flow<a class="headerlink" href="#create-phase-1-and-phase-2-configuration-bitstream-for-fpga-first-flow" title="Permanent link">&para;</a></h3>
-<p>Follow these steps if the <code>"HPS init"</code> property for the hps_subsystem in the <code>XML</code>
-is set to <code>"AFTER INIT_DONE"</code>. You can check this property by executing the following
-Quartus® command and the <code>"\*.sof"</code> file. For example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>quartus_pfg<span class="w"> </span>-i<span class="w"> </span>top.sof
-</code></pre></div>
-<p>In the log, look for the property <code>"HPS/FPGA configuration order"</code> SET TO <code>"AFTER INIT_DONE"</code></p>
-<p><br></p>
-<p><a class="glightbox" href="/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/fpga-first.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="fpga-first" src="/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/fpga-first.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
-<center></p>
-<p><strong>FPGA First SOF file.</strong>
-</center>
-<br></p>
-<p><strong>Important!</strong> The following step depends on the output of u-boot compilation
-specifically the file <code>u-boot-spl-dtb.hex</code>. To generate the <code>top.jic</code> execute:</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Agilex™ 5</label><label for="__tabbed_2_2">Agilex™ 3</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>For [Agilex™ 5 FPGA E-Series 065B Modular Development Kit]
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>top.sof<span class="w"> </span>top.jic<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU02G<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A5ED065BB32AE4S
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
-</code></pre></div></p>
-</div>
-<div class="tabbed-block">
-<p>For [Agilex™ 3 FPGA and SoC C-Series Development Kit]
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>top.sof<span class="w"> </span>top.jic<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU512<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A3CW135BM16AE6S
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
-</code></pre></div></p>
-</div>
-</div>
-</div>
 <p><br></p>
 <p><a class="md-button" href="../#recommended-user-flows">Back to User Flows</a></p>
 
@@ -6199,7 +6146,7 @@ specifically the file <code>u-boot-spl-dtb.hex</code>. To generate the <code>top
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 22, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 1, 2026</span>
       
         <br>
         Created:

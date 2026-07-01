@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/">
       
       
-        <link rel="prev" href="../../../../../agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms/">
+        <link rel="prev" href="../../../../../agilex-5/common/tsn/sgmii_lvds/sgmii_lvds/">
       
       
         <link rel="next" href="../../rsu/ug-rsu-agx7f-soc/">
@@ -2609,6 +2609,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
@@ -4430,6 +4432,58 @@
     <li class="md-nav__item">
       <a href="../../../../../agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms/" class="md-nav__link">
         Simics Zephyr HPS Baseline System Example Design
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_9" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8_3_9" id="__nav_8_3_9_label" tabindex="0">
+          HPS TSN Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8_3_9">
+          <span class="md-nav__icon md-icon"></span>
+          HPS TSN Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../agilex-5/common/tsn/sgmii_lvds/sgmii_lvds/" class="md-nav__link">
+        HPS TSN GMII to SGMII via FPGA LVDS I/O pins Tutorial Example Design User Guide
       </a>
     </li>
   
@@ -9506,6 +9560,75 @@
 <li>Update the flash image (QSPI, SD Card, eMMC or NAND) from your working machine.</li>
 </ul>
 <h3 id="how-to-manually-update-the-content-of-the-sd-card-image">How to Manually Update the Content of the SD Card Image<a class="headerlink" href="#how-to-manually-update-the-content-of-the-sd-card-image" title="Permanent link">&para;</a></h3>
+<p>As part of the Yocto HPS Legacy System Example Design build flow, the SD Card image is built for the SD Card boot flow. This image includes a couple of partitions. One of these partition (a FAT32) includes the U-Boot proper, a Distroboot boot script and the Linux <strong>.itb</strong> - which includes the Linux kernel image, , the Linux device tree, the phase 2 FPGA configuration bitstream and board configuration (there may be several versions of these last 3 components). The 2<sup>nd</sup> partition (an EXT3 or EXT4 ) includes the Linux file system. </p>
+<p><a class="glightbox" href="../images/sdcard_img.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/sdcard_img.png" style="height:500px" /></a></p>
+<p>If you want to replace any the components or add a new item in any of these partitions, without having to run again the Yocto build flow. </p>
+<p>This can be done through the <strong>wic</strong> application available on the <strong>Poky</strong> repository that is included as part of the HPS Legacy System Example Design build directory: <strong>$TOP_FOLDER/gsrd-socfpga/poky/scripts/wic</strong> </p>
+<p>This command requires to be run in the Yocto build environment that can be setup as shown next in a Linux terminal:
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-129-1" name="__codelineno-129-1" href="#__codelineno-129-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/
+<a id="__codelineno-129-2" name="__codelineno-129-2" href="#__codelineno-129-2"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>build
+</code></pre></div>
+You can verify that the Yocto environment has been setup using the <strong>which bitbake</strong> command, which will respond with the path of the <strong>bitbake</strong> command located at <strong>poky/bitbake/bin/bitbake</strong>.</p>
+<p>The <strong>wic</strong> command allows you to inspect the content of a SD Card image, delete, add or replace any component inside of the image. This command is also provided with help support:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-130-1" name="__codelineno-130-1" href="#__codelineno-130-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span><span class="nb">help</span>
+<a id="__codelineno-130-2" name="__codelineno-130-2" href="#__codelineno-130-2"></a>
+<a id="__codelineno-130-3" name="__codelineno-130-3" href="#__codelineno-130-3"></a>Creates<span class="w"> </span>a<span class="w"> </span>customized<span class="w"> </span>OpenEmbedded<span class="w"> </span>image.
+<a id="__codelineno-130-4" name="__codelineno-130-4" href="#__codelineno-130-4"></a>
+<a id="__codelineno-130-5" name="__codelineno-130-5" href="#__codelineno-130-5"></a>Usage:<span class="w">  </span>wic<span class="w"> </span><span class="o">[</span>--version<span class="o">]</span>
+<a id="__codelineno-130-6" name="__codelineno-130-6" href="#__codelineno-130-6"></a><span class="w">        </span>wic<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="o">[</span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC<span class="o">]</span>
+<a id="__codelineno-130-7" name="__codelineno-130-7" href="#__codelineno-130-7"></a><span class="w">        </span>wic<span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>
+<a id="__codelineno-130-8" name="__codelineno-130-8" href="#__codelineno-130-8"></a>
+<a id="__codelineno-130-9" name="__codelineno-130-9" href="#__codelineno-130-9"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>Returns<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>version<span class="w"> </span>of<span class="w"> </span>Wic
+<a id="__codelineno-130-10" name="__codelineno-130-10" href="#__codelineno-130-10"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">2</span>:<span class="w"> </span>Returns<span class="w"> </span>detailed<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC
+<a id="__codelineno-130-11" name="__codelineno-130-11" href="#__codelineno-130-11"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">3</span>:<span class="w"> </span>Executes<span class="w"> </span>COMMAND
+<a id="__codelineno-130-12" name="__codelineno-130-12" href="#__codelineno-130-12"></a>
+<a id="__codelineno-130-13" name="__codelineno-130-13" href="#__codelineno-130-13"></a>COMMAND:
+<a id="__codelineno-130-14" name="__codelineno-130-14" href="#__codelineno-130-14"></a>
+<a id="__codelineno-130-15" name="__codelineno-130-15" href="#__codelineno-130-15"></a><span class="w"> </span>list<span class="w">   </span>-<span class="w">   </span>List<span class="w"> </span>available<span class="w"> </span>canned<span class="w"> </span>images<span class="w"> </span>and<span class="w"> </span><span class="nb">source</span><span class="w"> </span>plugins
+<a id="__codelineno-130-16" name="__codelineno-130-16" href="#__codelineno-130-16"></a><span class="w"> </span>ls<span class="w">     </span>-<span class="w">   </span>List<span class="w"> </span>contents<span class="w"> </span>of<span class="w"> </span>partitioned<span class="w"> </span>image<span class="w"> </span>or<span class="w"> </span>partition
+<a id="__codelineno-130-17" name="__codelineno-130-17" href="#__codelineno-130-17"></a><span class="w"> </span>rm<span class="w">     </span>-<span class="w">   </span>Remove<span class="w"> </span>files<span class="w"> </span>or<span class="w"> </span>directories<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>vfat<span class="w"> </span>or<span class="w"> </span>ext*<span class="w"> </span>partitions
+<a id="__codelineno-130-18" name="__codelineno-130-18" href="#__codelineno-130-18"></a><span class="w"> </span><span class="nb">help</span><span class="w">   </span>-<span class="w">   </span>Show<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>wic<span class="w"> </span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC
+<a id="__codelineno-130-19" name="__codelineno-130-19" href="#__codelineno-130-19"></a><span class="w"> </span>write<span class="w">  </span>-<span class="w">   </span>Write<span class="w"> </span>an<span class="w"> </span>image<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>device
+<a id="__codelineno-130-20" name="__codelineno-130-20" href="#__codelineno-130-20"></a><span class="w"> </span>cp<span class="w">     </span>-<span class="w">   </span>Copy<span class="w"> </span>files<span class="w"> </span>and<span class="w"> </span>directories<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>vfat<span class="w"> </span>or<span class="w"> </span>ext*<span class="w"> </span>partitions
+<a id="__codelineno-130-21" name="__codelineno-130-21" href="#__codelineno-130-21"></a><span class="w"> </span>create<span class="w"> </span>-<span class="w">   </span>Create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>OpenEmbedded<span class="w"> </span>image
+<a id="__codelineno-130-22" name="__codelineno-130-22" href="#__codelineno-130-22"></a><span class="w"> </span>:
+<a id="__codelineno-130-23" name="__codelineno-130-23" href="#__codelineno-130-23"></a><span class="w"> </span>:
+</code></pre></div>
+   The following steps show you how to replace the <strong>kernel.itb</strong> file inside of the fat32 partition in a .wic image.</p>
+<ol>
+<li>
+<p>The <strong>wic ls</strong> command allows you to inspect or navigate over the directory structure inside of the SD Card image. For example you can observe the partitions  in the SD Card image in this way:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-131-1" name="__codelineno-131-1" href="#__codelineno-131-1"></a><span class="c1"># Here you can inspect the content a wic image see the 2 partitions inside of the SD Card image</span>
+<a id="__codelineno-131-2" name="__codelineno-131-2" href="#__codelineno-131-2"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>ls<span class="w"> </span>my_image.wic
+<a id="__codelineno-131-3" name="__codelineno-131-3" href="#__codelineno-131-3"></a>Num<span class="w">     </span>Start<span class="w">        </span>End<span class="w">          </span>Size<span class="w">      </span>Fstype
+<a id="__codelineno-131-4" name="__codelineno-131-4" href="#__codelineno-131-4"></a><span class="m">1</span><span class="w">       </span><span class="m">1048576</span><span class="w">    </span><span class="m">525336575</span><span class="w">    </span><span class="m">524288000</span><span class="w">  </span>fat32<span class="w">    </span>
+<a id="__codelineno-131-5" name="__codelineno-131-5" href="#__codelineno-131-5"></a><span class="m">2</span><span class="w">     </span><span class="m">525336576</span><span class="w">   </span><span class="m">2098200575</span><span class="w">   </span><span class="m">1572864000</span><span class="w">  </span>ext4<span class="w">   </span>
+<a id="__codelineno-131-6" name="__codelineno-131-6" href="#__codelineno-131-6"></a>
+<a id="__codelineno-131-7" name="__codelineno-131-7" href="#__codelineno-131-7"></a><span class="c1"># Here you can naviagate inside of the partition 1</span>
+<a id="__codelineno-131-8" name="__codelineno-131-8" href="#__codelineno-131-8"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>ls<span class="w"> </span>my_image.wic:1
+<a id="__codelineno-131-9" name="__codelineno-131-9" href="#__codelineno-131-9"></a>Volume<span class="w"> </span><span class="k">in</span><span class="w"> </span>drive<span class="w"> </span>:<span class="w"> </span>is<span class="w"> </span>boot<span class="w">       </span>
+<a id="__codelineno-131-10" name="__codelineno-131-10" href="#__codelineno-131-10"></a>Volume<span class="w"> </span>Serial<span class="w"> </span>Number<span class="w"> </span>is<span class="w"> </span>9D2B-6341
+<a id="__codelineno-131-11" name="__codelineno-131-11" href="#__codelineno-131-11"></a>Directory<span class="w"> </span><span class="k">for</span><span class="w"> </span>::/
+<a id="__codelineno-131-12" name="__codelineno-131-12" href="#__codelineno-131-12"></a>
+<a id="__codelineno-131-13" name="__codelineno-131-13" href="#__codelineno-131-13"></a>BOOTSC~1<span class="w"> </span>UIM<span class="w">      </span><span class="m">2431</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w">  </span>boot.scr.uimg
+<a id="__codelineno-131-14" name="__codelineno-131-14" href="#__codelineno-131-14"></a>kernel<span class="w">   </span>itb<span class="w">  </span><span class="m">15160867</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w"> </span>
+<a id="__codelineno-131-15" name="__codelineno-131-15" href="#__codelineno-131-15"></a>u-boot<span class="w">   </span>itb<span class="w">   </span><span class="m">1052180</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w"> </span>
+<a id="__codelineno-131-16" name="__codelineno-131-16" href="#__codelineno-131-16"></a><span class="w">     </span><span class="m">3</span><span class="w"> </span>files<span class="w">          </span><span class="m">16</span><span class="w"> </span><span class="m">215</span><span class="w"> </span><span class="m">478</span><span class="w"> </span>bytes
+<a id="__codelineno-131-17" name="__codelineno-131-17" href="#__codelineno-131-17"></a><span class="w">                     </span><span class="m">506</span><span class="w"> </span><span class="m">990</span><span class="w"> </span><span class="m">592</span><span class="w"> </span>bytes<span class="w"> </span>free
+</code></pre></div>
+</li>
+<li>
+<p>The <strong>wic rm</strong> command allows you to delete any of the components in the selected partition. For example, you can delete the <strong>kernel.itb</strong> image from the partition 1(fat32 partition).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-132-1" name="__codelineno-132-1" href="#__codelineno-132-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>rm<span class="w"> </span>my_image.wic:1/kernel.itb
+</code></pre></div>
+</li>
+<li>
+<p>The <strong>wic cp</strong> command allows you to copy any new item or file from your Linux machine to a specific partition and location inside of the SD Card image. For example, you can copy a new <strong>kernel.itb</strong> to the partition 1.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-133-1" name="__codelineno-133-1" href="#__codelineno-133-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>cp<span class="w"> </span>&lt;path_new_kernel.itb&gt;<span class="w"> </span>my_image.wic:1/kernel.itb
+</code></pre></div>
+</li>
+</ol>
+<p><strong>NOTE</strong>: The <strong>wic</strong> application also allows you to modify any image with compatible vfat and ext* type partitions which also covers images used for <strong>eMMC</strong> boot flow. </p>
 <h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
 <p>Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
 No product or component can be absolutely secure. 
@@ -9524,7 +9647,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 25, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 1, 2026</span>
       
         <br>
         Created:
@@ -9559,7 +9682,7 @@ You are responsible for safety of the overall system, including compliance with 
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../../../../agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Simics Zephyr HPS Baseline System Example Design" rel="prev">
+          <a href="../../../../../agilex-5/common/tsn/sgmii_lvds/sgmii_lvds/" class="md-footer__link md-footer__link--prev" aria-label="Previous: HPS TSN GMII to SGMII via FPGA LVDS I/O pins Tutorial Example Design User Guide" rel="prev">
             <div class="md-footer__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
             </div>
@@ -9568,7 +9691,7 @@ You are responsible for safety of the overall system, including compliance with 
                 Previous
               </span>
               <div class="md-ellipsis">
-                Simics Zephyr HPS Baseline System Example Design
+                HPS TSN GMII to SGMII via FPGA LVDS I/O pins Tutorial Example Design User Guide
               </div>
             </div>
           </a>

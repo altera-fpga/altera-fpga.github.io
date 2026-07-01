@@ -2611,6 +2611,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
@@ -4685,6 +4687,58 @@
 
             
           
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_9" >
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8_3_9" id="__nav_8_3_9_label" tabindex="0">
+          HPS TSN Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8_3_9">
+          <span class="md-nav__icon md-icon"></span>
+          HPS TSN Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../common/tsn/sgmii_lvds/sgmii_lvds/" class="md-nav__link">
+        HPS TSN GMII to SGMII via FPGA LVDS I/O pins Tutorial Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -6485,7 +6539,7 @@ Altera® Agilex™ Devices refer to the
 <h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">&para;</a></h2>
 <h3 id="hardware-requirements"><strong>Hardware Requirements</strong><a class="headerlink" href="#hardware-requirements" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="https://www.altera.com/products/devkit/a1jui0000061qabmaa/agilex-5-fpga-and-soc-e-series-modular-development-kit-es">Agilex™ 5 FPGA E-Series 065B Modular Development Kit</a>.</li>
+<li>[Agilex™ 5 FPGA E-Series 065B Modular Development Kit].</li>
 </ul>
 <p><br/>
 <a class="glightbox" href="../../common/images/Agx5-MDK.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Agx5-MDK" src="../../common/images/Agx5-MDK.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
@@ -6494,26 +6548,26 @@ Altera® Agilex™ Devices refer to the
 </center>
 <br/></p>
 <ul>
-<li>1 or 2 <a href="https://www.framos.com/en/fsmgo">Framos FSM:GO IMX678C Camera Modules</a>, with:<ul>
-<li><a href="https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L110A-PM-A1Q1?qs=%252BHhoWzUJg4KQkNyKsCEDHw%3D%3D">Wide 110deg HFOV Lens</a>, or</li>
-<li><a href="https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L100A-PM-A1Q1?qs=%252BHhoWzUJg4IesSwD2ACIBQ%3D%3D">Medium 100deg HFOV Lens</a>, or</li>
-<li><a href="https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L54A-PM-A1Q1?qs=%252BHhoWzUJg4L5yHZulKgVGA%3D%3D">Narrow 54deg HFOV Lens</a>.</li>
+<li>1 or 2 [Framos FSM:GO IMX678C Camera Modules], with:<ul>
+<li>[Wide 110deg HFOV Lens], or</li>
+<li>[Medium 100deg HFOV Lens], or</li>
+<li>[Narrow 54deg HFOV Lens].</li>
 </ul>
 </li>
 <li>(Optional) Mount/Tripod<ul>
-<li><a href="https://www.framos.com/en/products/fma-mnt-trp1-4-v1c-26333">Framos Tripod Mount Adapter</a>.</li>
-<li><a href="https://thepihut.com/products/small-tripod-for-raspberry-pi-hq-camera">Tripod</a>.</li>
+<li>[Framos Tripod Mount Adapter].</li>
+<li>[Tripod].</li>
 </ul>
 </li>
 <li>A Framos cable for PixelMate MIPI-CSI-2 for each Camera Module:<ul>
-<li><a href="https://www.mouser.co.uk/ProductDetail/FRAMOS/FMA-FC-150-60-V1A?qs=GedFDFLaBXGCmWApKt5QIQ%3D%3D&amp;_gl=1*d93qim*_ga*MTkyOTE4MjMxNy4xNzQxMTcwMzQy*_ga_15W4STQT4T*MTc0MTE3MDM0Mi4xLjEuMTc0MTE3MDQ5OS40NS4wLjA">150mm flex-cable</a>, or</li>
-<li><a href="https://www.mouser.co.uk/ProductDetail/FRAMOS/FFA-MC50-Kit-0.3m?qs=%252BHhoWzUJg4K3LtaE207mhw%3D%3D">300mm micro-coax cable</a>.</li>
+<li>[150mm flex-cable], or</li>
+<li>[300mm micro-coax cable].</li>
 </ul>
 </li>
-<li>(Optional) <a href="https://www.mouser.co.uk/ProductDetail/FRAMOS/FFA-GMSL3-Kit-5m?qs=%252BHhoWzUJg4IkLHv%2F6fzsXQ%3D%3D">Framos GMSL3 5m</a> (if the Camera Solution System Example Design
+<li>(Optional) [Framos GMSL3 5m] (if the Camera Solution System Example Design
   supports this feature).</li>
 <li>MicroSD card (minimum 8Gb).</li>
-<li>DP cable or HDMI cable with <a href="https://www.amazon.co.uk/gp/product/B01M6WK3KU/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&amp;psc=1">DP to HDMI Adapter</a> (recommend 4Kp60 capable).</li>
+<li>DP cable or HDMI cable with [DP to HDMI Adapter] (recommend 4Kp60 capable).</li>
 <li>USB Micro B cable x2 (for QSPI programming and HPS serial console access).</li>
 <li>Ethernet cable (for HPS network connection).</li>
 <li>PC monitor or TV: 4Kp30 capable required.</li>
@@ -6524,14 +6578,14 @@ Altera® Agilex™ Devices refer to the
 <li>Host PC with:<ul>
 <li>8 GB of RAM (less if not rebuilding binaries).</li>
 <li>Linux/Windows OS installed.</li>
-<li>Serial terminal (such as GtkTerm or Minicom on Linux, and <a href="https://github.com/TeraTermProject/teraterm/releases">TeraTerm</a> or
-  <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PuTTY</a> on Windows).<ul>
+<li>Serial terminal (such as GtkTerm or Minicom on Linux, and [TeraTerm] or
+  [PuTTY] on Windows).<ul>
 <li>FTDI FT232R USB UART drivers (for a Windows host).</li>
 </ul>
 </li>
 <li>Tool to write images for removable USB drives or microSD cards such as
-<a href="https://sourceforge.net/projects/win32diskimager">Win32DiskImager</a> on Windows or "dd" command on Linux.</li>
-<li><a href="https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html">Altera® Quartus® Prime Pro Edition version 25.1 Programmer and Tools</a>.</li>
+[Win32DiskImager] on Windows or "dd" command on Linux.</li>
+<li>[Altera® Quartus® Prime Pro Edition version 25.1 Programmer and Tools].</li>
 <li>Ethernet connection (either direct from Host PC to development board, or
   via a switch or router).<ul>
 <li>Note, you may need to disconnected/disabled VPN if it is installed on the
@@ -6551,7 +6605,7 @@ go to ultralytics website to review and accept licensing and copyright
 information, before downloading the YOLOv8 nano models. The models must then be
 compiled for the FPGA AI Suite IP. This will only need to be done once:</p>
 <ul>
-<li>Visit the <a href="https://docs.ultralytics.com">ultralytics YOLO</a> website.</li>
+<li>Visit the [ultralytics YOLO] website.</li>
 <li>Review and accept the licensing and copyright terms.</li>
 <li>Download the YOLOv8 nano detection inference model <code>yolov8n.pt</code></li>
 <li>Download the YOLOv8 nano pose inference model <code>yolov8n-pose.pt</code></li>
@@ -6698,7 +6752,7 @@ ASx4 (QSPI) mode:  Modular Development Kit SOM Board S4=ON:ON</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>tar<span class="w"> </span>-xzf<span class="w"> </span><span class="sb">`</span>&lt;name&gt;.wic.gz<span class="sb">`</span>
 </code></pre></div>
 <ul>
-<li>On Windows, use the <a href="https://www.7-zip.org">7-Zip</a> program (or similar):<ul>
+<li>On Windows, use the [7-Zip] program (or similar):<ul>
 <li>Right click <code>&lt;name&gt;.wic.gz</code> file, and select "Extract All..."</li>
 </ul>
 </li>
@@ -6721,7 +6775,7 @@ ASx4 (QSPI) mode:  Modular Development Kit SOM Board S4=ON:ON</p>
 </code></pre></div>
 <ul>
 <li>
-<p>On Windows, use the <a href="https://sourceforge.net/projects/win32diskimager">Win32DiskImager</a> program (or similar):</p>
+<p>On Windows, use the [Win32DiskImager] program (or similar):</p>
 <ul>
 <li>Click browse icon and select "*.*" filter:</li>
 </ul>
@@ -6755,7 +6809,7 @@ Software to use at runtime:</p>
   <code>&lt;ip address&gt;</code>):</p>
 <ul>
 <li>Power up the Modular Development Kit (if not already powered) and set up the
-  serial terminal emulator (minicom, <a href="https://github.com/TeraTermProject/teraterm/releases">TeraTerm</a>, <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PuTTY</a>, etc.):<ul>
+  serial terminal emulator (minicom, [TeraTerm], [PuTTY], etc.):<ul>
 <li>Select the correct <code>COMx</code> port. (The Modular Development Kit presents 4
   serial COM ports over a single connection and the Linux system uses the 3<sup>rd</sup>
   port in order). Set the port configuration as follows:<ul>
@@ -6873,7 +6927,7 @@ Wait until the programming has been completed (which can take several minutes).
 </div>
 <ul>
 <li>Make the required connections between the Host PC and the
-<a href="https://www.altera.com/products/devkit/a1jui0000061qabmaa/agilex-5-fpga-and-soc-e-series-modular-development-kit-es">Agilex™ 5 FPGA E-Series 065B Modular Development Kit</a> as detailed in the
+[Agilex™ 5 FPGA E-Series 065B Modular Development Kit] as detailed in the
   <strong>Setting Up the Modular Development Kit</strong> section.</li>
 <li>Connect the Framos cable(s) between the Framos Camera Module(s) and the MIPI
   connector(s) on the Modular Development Kit Carrier Board taking care to
@@ -6899,15 +6953,15 @@ Wait until the programming has been completed (which can take several minutes).
 <ul>
 <li>If using the optional Framos GMSL3 solution (and the Camera Solution System
   Example Design supports it):<ul>
-<li>Connect the <a href="https://www.framos.com/en/products/ffa-gmsl-ser-v2a-27617">Framos FFA-GMSL-SER-V2A Serializer</a> module back-to-back to the
+<li>Connect the [Framos FFA-GMSL-SER-V2A Serializer] module back-to-back to the
   Framos Camera module.</li>
-<li>Using the Framos <a href="https://www.mouser.co.uk/ProductDetail/FRAMOS/FMA-FC-150-60-V1A?qs=GedFDFLaBXGCmWApKt5QIQ%3D%3D&amp;_gl=1*d93qim*_ga*MTkyOTE4MjMxNy4xNzQxMTcwMzQy*_ga_15W4STQT4T*MTc0MTE3MDM0Mi4xLjEuMTc0MTE3MDQ5OS40NS4wLjA">150mm flex-cable</a> connect the
-  <a href="https://www.framos.com/en/products/ffa-gmsl-des-v2a-27240">Framos FFA-GMSL-DES-V2A Deserializer</a> module to the MIPI0 connector on the
+<li>Using the Framos [150mm flex-cable] connect the
+  [Framos FFA-GMSL-DES-V2A Deserializer] module to the MIPI0 connector on the
   Modular Development Kit Carrier Board taking care to align the cable
   correctly with the connector (pin 1 to pin 1).<ul>
 <li>Note the System Example Design only supports one GMSL3 link on the MIPI0
   port. However, a second Framos Camera module can be connected directly to
-  the MIPI1 port using a Framos <a href="https://www.mouser.co.uk/ProductDetail/FRAMOS/FMA-FC-150-60-V1A?qs=GedFDFLaBXGCmWApKt5QIQ%3D%3D&amp;_gl=1*d93qim*_ga*MTkyOTE4MjMxNy4xNzQxMTcwMzQy*_ga_15W4STQT4T*MTc0MTE3MDM0Mi4xLjEuMTc0MTE3MDQ5OS40NS4wLjA">150mm flex-cable</a>.</li>
+  the MIPI1 port using a Framos [150mm flex-cable].</li>
 </ul>
 </li>
 <li>Connect the serializer module to the deserializer module using the GMSL3 5m
@@ -6941,7 +6995,7 @@ Wait until the programming has been completed (which can take several minutes).
 <h3 id="connecting-with-a-web-browser"><strong>Connecting with a Web Browser</strong><a class="headerlink" href="#connecting-with-a-web-browser" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Power up the Modular Development Kit (if not already powered) and set up the
-  serial terminal emulator (minicom, <a href="https://github.com/TeraTermProject/teraterm/releases">TeraTerm</a>, <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PuTTY</a>, etc.):<ul>
+  serial terminal emulator (minicom, [TeraTerm], [PuTTY], etc.):<ul>
 <li>Select the correct <code>COMx</code> port. (The Modular Development Kit presents 4
   serial COM ports over a single connection and the Linux system uses the 3<sup>rd</sup>
   port in order). Set the port configuration as follows:<ul>
@@ -7312,7 +7366,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 25, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 1, 2026</span>
       
         <br>
         Created:

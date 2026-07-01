@@ -8,23 +8,27 @@
       
       
       
-        <link rel="canonical" href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium/tsn/sgmii_lvds/sgmii_lvds/">
+        <link rel="canonical" href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/common/tsn/sgmii_lvds/sgmii_lvds/">
       
       
+        <link rel="prev" href="../../../virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms/">
       
-      <link rel="icon" href="../../../../../../../assets/favicon.ico">
+      
+        <link rel="next" href="../../../../../agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/">
+      
+      <link rel="icon" href="../../../../../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
     
     
       
-        <title>Sgmii lvds - Altera FPGA Developer Site</title>
+        <title>HPS TSN GMII to SGMII via FPGA LVDS I/O pins Tutorial Example Design User Guide - Altera FPGA Developer Site</title>
       
     
     
-      <link rel="stylesheet" href="../../../../../../../assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../../../../../../assets/stylesheets/main.85bb2934.min.css">
       
         
-        <link rel="stylesheet" href="../../../../../../../assets/stylesheets/palette.a6bdf11c.min.css">
+        <link rel="stylesheet" href="../../../../../../assets/stylesheets/palette.a6bdf11c.min.css">
       
       
 
@@ -40,16 +44,16 @@
       
     
     
-      <link rel="stylesheet" href="../../../../../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
     
     
     
-   <link href="../../../../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+   <link href="../../../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
         html.glightbox-open { overflow: initial; height: 100%; }
         .gslide-title { margin-top: 0px; user-select: text; }
         .gslide-desc { color: #666; user-select: text; }
@@ -60,7 +64,7 @@
             body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
             body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
             body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
-            </style> <script src="../../../../../../../assets/javascripts/glightbox.min.js"></script></head>
+            </style> <script src="../../../../../../assets/javascripts/glightbox.min.js"></script></head>
   
   
     
@@ -98,9 +102,9 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../../../../.." title="Altera FPGA Developer Site" class="md-header__button md-logo" aria-label="Altera FPGA Developer Site" data-md-component="logo">
+    <a href="../../../../../.." title="Altera FPGA Developer Site" class="md-header__button md-logo" aria-label="Altera FPGA Developer Site" data-md-component="logo">
       
-  <img src="../../../../../../../assets/logo.png" alt="logo">
+  <img src="../../../../../../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -116,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sgmii lvds
+              HPS TSN GMII to SGMII via FPGA LVDS I/O pins Tutorial Example Design User Guide
             
           </span>
         </div>
@@ -189,7 +193,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../../../../../.." class="md-tabs__link">
+    <a href="../../../../../.." class="md-tabs__link">
       Welcome
     </a>
   </li>
@@ -204,7 +208,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../../../../driver-list_linux/" class="md-tabs__link">
+      <a href="../../../../../../driver-list_linux/" class="md-tabs__link">
         Linux Drivers
       </a>
     </li>
@@ -220,7 +224,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../../../../driver-list_zephyr/" class="md-tabs__link">
+      <a href="../../../../../../driver-list_zephyr/" class="md-tabs__link">
         Zephyr Drivers
       </a>
     </li>
@@ -246,7 +250,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../../../../virtualization/hypervisors/xen/xen-overview/" class="md-tabs__link">
+      <a href="../../../../../../virtualization/hypervisors/xen/xen-overview/" class="md-tabs__link">
         Virtualization
       </a>
     </li>
@@ -266,7 +270,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../../../../real-time/" class="md-tabs__link">
+      <a href="../../../../../../real-time/" class="md-tabs__link">
         Real-Time
       </a>
     </li>
@@ -282,7 +286,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../../../../driver-list_baremetal/" class="md-tabs__link">
+      <a href="../../../../../../driver-list_baremetal/" class="md-tabs__link">
         Baremetal Drivers
       </a>
     </li>
@@ -298,7 +302,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../../../../../sw-tools-list/host-attach-tools/" class="md-tabs__link">
+      <a href="../../../../../../sw-tools-list/host-attach-tools/" class="md-tabs__link">
         Host Attach Utilities
       </a>
     </li>
@@ -308,13 +312,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../../../../../../../ed-demo-list/ed-list/" class="md-tabs__link">
+      <a href="../../../../../../ed-demo-list/ed-list/" class="md-tabs__link md-tabs__link--active">
         Example Designs
       </a>
     </li>
@@ -348,9 +354,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../../../../.." title="Altera FPGA Developer Site" class="md-nav__button md-logo" aria-label="Altera FPGA Developer Site" data-md-component="logo">
+    <a href="../../../../../.." title="Altera FPGA Developer Site" class="md-nav__button md-logo" aria-label="Altera FPGA Developer Site" data-md-component="logo">
       
-  <img src="../../../../../../../assets/logo.png" alt="logo">
+  <img src="../../../../../../assets/logo.png" alt="logo">
 
     </a>
     Altera FPGA Developer Site
@@ -378,7 +384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../.." class="md-nav__link">
+      <a href="../../../../../.." class="md-nav__link">
         Welcome
       </a>
     </li>
@@ -415,7 +421,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../../../../../driver-list_linux/">Linux Drivers</a>
+          <a href="../../../../../../driver-list_linux/">Linux Drivers</a>
           
             <label for="__nav_2">
               <span class="md-nav__icon md-icon"></span>
@@ -521,7 +527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/hwmon/hwmon/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/hwmon/hwmon/" class="md-nav__link">
         Altera Hardware Monitor
       </a>
     </li>
@@ -535,7 +541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/clock_manager/clock_manager/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/clock_manager/clock_manager/" class="md-nav__link">
         Clock Manager
       </a>
     </li>
@@ -549,7 +555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/dma/dma/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/dma/dma/" class="md-nav__link">
         DMA Controller
       </a>
     </li>
@@ -563,7 +569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/edac/edac/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/edac/edac/" class="md-nav__link">
         Error Detection & Correction (EDAC)
       </a>
     </li>
@@ -577,7 +583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/ptp_tod/ptp_emb_tod/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/ptp_tod/ptp_emb_tod/" class="md-nav__link">
         Ethernet 1588 PTP Time of Day Clock
       </a>
     </li>
@@ -591,7 +597,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/emac/emac/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/emac/emac/" class="md-nav__link">
         Ethernet Media Access Controller
       </a>
     </li>
@@ -605,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/hssi/hssi/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/hssi/hssi/" class="md-nav__link">
         Ethernet Subsystem FPGA IP MAC Specific Ctrl
       </a>
     </li>
@@ -619,7 +625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/hssi_xtile/hssi_xtile/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/hssi_xtile/hssi_xtile/" class="md-nav__link">
         Ethernet Subsystem FPGA IP Tile Specific Ctrl
       </a>
     </li>
@@ -633,7 +639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/apb_timers/apb_timers/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/apb_timers/apb_timers/" class="md-nav__link">
         General Purpose Timers
       </a>
     </li>
@@ -647,7 +653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/gpio/gpio/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/gpio/gpio/" class="md-nav__link">
         General Purpose I/O (GPIO)
       </a>
     </li>
@@ -661,7 +667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/i2c/i2c/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/i2c/i2c/" class="md-nav__link">
         I2C
       </a>
     </li>
@@ -675,7 +681,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/i3c/i3c/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/i3c/i3c/" class="md-nav__link">
         I3C
       </a>
     </li>
@@ -689,7 +695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/interrupt_controller_GICv3/irq_gic_v3/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/interrupt_controller_GICv3/irq_gic_v3/" class="md-nav__link">
         Interrupt Controller (GICv3)
       </a>
     </li>
@@ -703,7 +709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/msgdma/msgdma/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/msgdma/msgdma/" class="md-nav__link">
         MSGDMA
       </a>
     </li>
@@ -717,7 +723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/nand/nand/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/nand/nand/" class="md-nav__link">
         NAND Controller
       </a>
     </li>
@@ -731,7 +737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/qsfp/qsfp/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/qsfp/qsfp/" class="md-nav__link">
         QSFP Controller
       </a>
     </li>
@@ -745,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/qspi/qspi/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/qspi/qspi/" class="md-nav__link">
         QSPI
       </a>
     </li>
@@ -759,7 +765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/reset_manager/reset_manager/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/reset_manager/reset_manager/" class="md-nav__link">
         Reset Manager
       </a>
     </li>
@@ -773,7 +779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/sd-emmc/sd-emmc/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/sd-emmc/sd-emmc/" class="md-nav__link">
         SD/eMMC Controller
       </a>
     </li>
@@ -787,7 +793,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/spi/spi/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/spi/spi/" class="md-nav__link">
         SPI
       </a>
     </li>
@@ -801,7 +807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/system_manager/system_manager/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/system_manager/system_manager/" class="md-nav__link">
         System Manager
       </a>
     </li>
@@ -815,7 +821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/smmu/smmu/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/smmu/smmu/" class="md-nav__link">
         System Memory Management Unit
       </a>
     </li>
@@ -829,7 +835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/uart/uart/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/uart/uart/" class="md-nav__link">
         UART
       </a>
     </li>
@@ -843,7 +849,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/usb2_0_otg/usb_2_0_otg/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/usb2_0_otg/usb_2_0_otg/" class="md-nav__link">
         USB 2.0 OTG
       </a>
     </li>
@@ -857,7 +863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/usb3_1/usb3_1/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/usb3_1/usb3_1/" class="md-nav__link">
         USB 3.1 Gen-1
       </a>
     </li>
@@ -871,7 +877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/watchdog_timers/watchdog_timers/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/watchdog_timers/watchdog_timers/" class="md-nav__link">
         Watchdog Timers
       </a>
     </li>
@@ -885,7 +891,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-embedded/drivers/zarlink_clock_synchronizer/zarlink_clock_synchronizer/" class="md-nav__link">
+      <a href="../../../../../../linux-embedded/drivers/zarlink_clock_synchronizer/zarlink_clock_synchronizer/" class="md-nav__link">
         Zarlink Clock Synchronizer
       </a>
     </li>
@@ -959,7 +965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-dfl/uart_16550/uart_16550/" class="md-nav__link">
+      <a href="../../../../../../linux-dfl/uart_16550/uart_16550/" class="md-nav__link">
         Altera 16550 Compatible UART
       </a>
     </li>
@@ -973,7 +979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-dfl/dfl_afu/dfl_afu/" class="md-nav__link">
+      <a href="../../../../../../linux-dfl/dfl_afu/dfl_afu/" class="md-nav__link">
         Accelerator Functional Unit
       </a>
     </li>
@@ -987,7 +993,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-dfl/intel_m10_bmc_core/intel_m10_bmc_core/" class="md-nav__link">
+      <a href="../../../../../../linux-dfl/intel_m10_bmc_core/intel_m10_bmc_core/" class="md-nav__link">
         Board Management Controller
       </a>
     </li>
@@ -1001,7 +1007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-dfl/dfl/dfl/" class="md-nav__link">
+      <a href="../../../../../../linux-dfl/dfl/dfl/" class="md-nav__link">
         Device Feature List
       </a>
     </li>
@@ -1015,7 +1021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-dfl/s10hssi/s10hssi/" class="md-nav__link">
+      <a href="../../../../../../linux-dfl/s10hssi/s10hssi/" class="md-nav__link">
         Ethernet
       </a>
     </li>
@@ -1029,7 +1035,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-dfl/ptp_dfl_tod/ptp_dfl_tod/" class="md-nav__link">
+      <a href="../../../../../../linux-dfl/ptp_dfl_tod/ptp_dfl_tod/" class="md-nav__link">
         Ethernet 1588 PTP Time of Day Clock
       </a>
     </li>
@@ -1043,7 +1049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-dfl/dfl_fme/dfl_fme/" class="md-nav__link">
+      <a href="../../../../../../linux-dfl/dfl_fme/dfl_fme/" class="md-nav__link">
         FPGA Management Engine
       </a>
     </li>
@@ -1057,7 +1063,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-dfl/dfl_pci/dfl_pci/" class="md-nav__link">
+      <a href="../../../../../../linux-dfl/dfl_pci/dfl_pci/" class="md-nav__link">
         PCIe Subsystem
       </a>
     </li>
@@ -1071,7 +1077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-dfl/dfl_emif/dfl_emif/" class="md-nav__link">
+      <a href="../../../../../../linux-dfl/dfl_emif/dfl_emif/" class="md-nav__link">
         Memory Interface
       </a>
     </li>
@@ -1085,7 +1091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-dfl/intel_m10_bmc_core/intel_m10_bmc_core/" class="md-nav__link">
+      <a href="../../../../../../linux-dfl/intel_m10_bmc_core/intel_m10_bmc_core/" class="md-nav__link">
         MAX 10 Board Management Controller
       </a>
     </li>
@@ -1099,7 +1105,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-dfl/spi_altera_dfl/spi_altera_dfl/" class="md-nav__link">
+      <a href="../../../../../../linux-dfl/spi_altera_dfl/spi_altera_dfl/" class="md-nav__link">
         SPI
       </a>
     </li>
@@ -1113,7 +1119,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../linux-dfl/uio_dfl/uio_dfl/" class="md-nav__link">
+      <a href="../../../../../../linux-dfl/uio_dfl/uio_dfl/" class="md-nav__link">
         User space I/O (UIO)
       </a>
     </li>
@@ -1162,7 +1168,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../../../../../driver-list_zephyr/">Zephyr Drivers</a>
+          <a href="../../../../../../driver-list_zephyr/">Zephyr Drivers</a>
           
             <label for="__nav_3">
               <span class="md-nav__icon md-icon"></span>
@@ -1236,7 +1242,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../zephyr-embedded/clock_manager/clock_manager/" class="md-nav__link">
+      <a href="../../../../../../zephyr-embedded/clock_manager/clock_manager/" class="md-nav__link">
         Clock Manager
       </a>
     </li>
@@ -1250,7 +1256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../zephyr-embedded/psci/psci/" class="md-nav__link">
+      <a href="../../../../../../zephyr-embedded/psci/psci/" class="md-nav__link">
         Cold & Warm Reset -Power State Coordination Interface (PSCI)
       </a>
     </li>
@@ -1264,7 +1270,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../zephyr-embedded/dma/dma/" class="md-nav__link">
+      <a href="../../../../../../zephyr-embedded/dma/dma/" class="md-nav__link">
         DMA
       </a>
     </li>
@@ -1278,7 +1284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../zephyr-embedded/timer/timer/" class="md-nav__link">
+      <a href="../../../../../../zephyr-embedded/timer/timer/" class="md-nav__link">
         General Purpose Timer
       </a>
     </li>
@@ -1292,7 +1298,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../zephyr-embedded/gpio/gpio/" class="md-nav__link">
+      <a href="../../../../../../zephyr-embedded/gpio/gpio/" class="md-nav__link">
         GPIO
       </a>
     </li>
@@ -1306,7 +1312,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../zephyr-embedded/qspi/qspi/" class="md-nav__link">
+      <a href="../../../../../../zephyr-embedded/qspi/qspi/" class="md-nav__link">
         Quad SPI
       </a>
     </li>
@@ -1320,7 +1326,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../zephyr-embedded/reset_manager/reset_manager/" class="md-nav__link">
+      <a href="../../../../../../zephyr-embedded/reset_manager/reset_manager/" class="md-nav__link">
         Reset Manager
       </a>
     </li>
@@ -1334,7 +1340,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../zephyr-embedded/seu/seu/" class="md-nav__link">
+      <a href="../../../../../../zephyr-embedded/seu/seu/" class="md-nav__link">
         Single Event Upset (SEU)
       </a>
     </li>
@@ -1348,7 +1354,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../zephyr-embedded/smp/smp/" class="md-nav__link">
+      <a href="../../../../../../zephyr-embedded/smp/smp/" class="md-nav__link">
         SMP
       </a>
     </li>
@@ -1362,7 +1368,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../zephyr-embedded/uart/uart/" class="md-nav__link">
+      <a href="../../../../../../zephyr-embedded/uart/uart/" class="md-nav__link">
         UART
       </a>
     </li>
@@ -1376,7 +1382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../zephyr-embedded/watchdog/watchdog/" class="md-nav__link">
+      <a href="../../../../../../zephyr-embedded/watchdog/watchdog/" class="md-nav__link">
         Watchdog Timer
       </a>
     </li>
@@ -1500,7 +1506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../virtualization/hypervisors/xen/xen-overview/" class="md-nav__link">
+      <a href="../../../../../../virtualization/hypervisors/xen/xen-overview/" class="md-nav__link">
         Overview
       </a>
     </li>
@@ -1551,7 +1557,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../virtualization/hypervisors/xen/ug-xen-agx3/" class="md-nav__link">
+      <a href="../../../../../../virtualization/hypervisors/xen/ug-xen-agx3/" class="md-nav__link">
         Agilex™ 3 C-Series FPGA and SoC Development Kit Xen Hypervisor GSRD
       </a>
     </li>
@@ -1565,7 +1571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../virtualization/hypervisors/xen/ug-xen-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../../../virtualization/hypervisors/xen/ug-xen-agx5e-premium/" class="md-nav__link">
         Agilex™ 5 E-Series Premium Development Kit Xen Hypervisor GSRD
       </a>
     </li>
@@ -1579,7 +1585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../virtualization/hypervisors/xen/ug-xen-agx5e-modular/" class="md-nav__link">
+      <a href="../../../../../../virtualization/hypervisors/xen/ug-xen-agx5e-modular/" class="md-nav__link">
         Agilex™ 5 E-Series Modular Development Kit Xen Hypervisor GSRD
       </a>
     </li>
@@ -1593,7 +1599,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../virtualization/hypervisors/xen/ug-xen-agx7f-soc/" class="md-nav__link">
+      <a href="../../../../../../virtualization/hypervisors/xen/ug-xen-agx7f-soc/" class="md-nav__link">
         Agilex™ 7 F-Series SoC Development Kit Xen Hypervisor GSRD
       </a>
     </li>
@@ -1658,7 +1664,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../../../../../real-time/">Real-Time</a>
+          <a href="../../../../../../real-time/">Real-Time</a>
           
             <label for="__nav_5">
               <span class="md-nav__icon md-icon"></span>
@@ -1681,7 +1687,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../real-time/embedded-linux/yocto-kas/" class="md-nav__link">
+      <a href="../../../../../../real-time/embedded-linux/yocto-kas/" class="md-nav__link">
         Embedded Linux RT Tuning (KAS/Yocto)
       </a>
     </li>
@@ -1695,7 +1701,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../real-time/agilex5-hps-cpu-cluster-latency/agilex5_hps_cpu_cluster_latency/" class="md-nav__link">
+      <a href="../../../../../../real-time/agilex5-hps-cpu-cluster-latency/agilex5_hps_cpu_cluster_latency/" class="md-nav__link">
         Agilex 5 HPS CPU Cluster Latency
       </a>
     </li>
@@ -1735,7 +1741,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../../../../../driver-list_baremetal/">Baremetal Drivers</a>
+          <a href="../../../../../../driver-list_baremetal/">Baremetal Drivers</a>
           
         </div>
       
@@ -1837,7 +1843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../sw-tools-list/host-attach-tools/" class="md-nav__link">
+      <a href="../../../../../../sw-tools-list/host-attach-tools/" class="md-nav__link">
         Host Attach Utilities Summary
       </a>
     </li>
@@ -1851,7 +1857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/fpgaconf/fpgaconf/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/fpgaconf/fpgaconf/" class="md-nav__link">
         fpgaconf
       </a>
     </li>
@@ -1865,7 +1871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/fpgad/fpgad/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/fpgad/fpgad/" class="md-nav__link">
         fpgad
       </a>
     </li>
@@ -1879,7 +1885,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/fpgainfo/fpgainfo/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/fpgainfo/fpgainfo/" class="md-nav__link">
         fpgainfo
       </a>
     </li>
@@ -1893,7 +1899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/fpgaport/fpgaport/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/fpgaport/fpgaport/" class="md-nav__link">
         fpgaport
       </a>
     </li>
@@ -1907,7 +1913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/fpgasupdate/fpgasupdate/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/fpgasupdate/fpgasupdate/" class="md-nav__link">
         fpgasupdate
       </a>
     </li>
@@ -1921,7 +1927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/hssi/hssi/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/hssi/hssi/" class="md-nav__link">
         hssi
       </a>
     </li>
@@ -1935,7 +1941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/host_exerciser/host_exerciser/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/host_exerciser/host_exerciser/" class="md-nav__link">
         host_exerciser
       </a>
     </li>
@@ -1949,7 +1955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/hssi_ethernet/hssimac/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/hssi_ethernet/hssimac/" class="md-nav__link">
         HSSI ethernet loopback
       </a>
     </li>
@@ -1963,7 +1969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/hssi_ethernet/hssistats/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/hssi_ethernet/hssistats/" class="md-nav__link">
         HSSI ethernet statistics
       </a>
     </li>
@@ -1977,7 +1983,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/hssi_ethernet/hssimac/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/hssi_ethernet/hssimac/" class="md-nav__link">
         HSSI ethernet mac
       </a>
     </li>
@@ -1991,7 +1997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/mem_tg/mem_tg/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/mem_tg/mem_tg/" class="md-nav__link">
         mem_tg
       </a>
     </li>
@@ -2005,7 +2011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/mmlink/mmlink/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/mmlink/mmlink/" class="md-nav__link">
         mmlink
       </a>
     </li>
@@ -2019,7 +2025,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/ofs_uio/ofs_uio/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/ofs_uio/ofs_uio/" class="md-nav__link">
         ofs.uio
       </a>
     </li>
@@ -2033,7 +2039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/opae_io/opae_io/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/opae_io/opae_io/" class="md-nav__link">
         opae.io
       </a>
     </li>
@@ -2047,7 +2053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/opaeuio/opaeuio/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/opaeuio/opaeuio/" class="md-nav__link">
         opaeuio
       </a>
     </li>
@@ -2061,7 +2067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/opaevfio/opaevfio/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/opaevfio/opaevfio/" class="md-nav__link">
         opaevfio
       </a>
     </li>
@@ -2075,7 +2081,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/pac_hssi_config/pac_hssi_config/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/pac_hssi_config/pac_hssi_config/" class="md-nav__link">
         pac_hssi_config
       </a>
     </li>
@@ -2089,7 +2095,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/packager/packager/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/packager/packager/" class="md-nav__link">
         packager
       </a>
     </li>
@@ -2103,7 +2109,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/pci_device/pci_device/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/pci_device/pci_device/" class="md-nav__link">
         pci_device
       </a>
     </li>
@@ -2117,7 +2123,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/rsu/rsu/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/rsu/rsu/" class="md-nav__link">
         rsu
       </a>
     </li>
@@ -2131,7 +2137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/userclk/userclk/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/userclk/userclk/" class="md-nav__link">
         userclk
       </a>
     </li>
@@ -2145,7 +2151,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../host-attach-util/vabtool/vabtool/" class="md-nav__link">
+      <a href="../../../../../../host-attach-util/vabtool/vabtool/" class="md-nav__link">
         vabtool
       </a>
     </li>
@@ -2165,14 +2171,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
       
       
         
@@ -2197,7 +2205,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_8">
           <span class="md-nav__icon md-icon"></span>
           Example Designs
@@ -2210,7 +2218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../ed-demo-list/ed-list/" class="md-nav__link">
+      <a href="../../../../../../ed-demo-list/ed-list/" class="md-nav__link">
         Summary
       </a>
     </li>
@@ -2314,7 +2322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular/drive-on-chip/doc-plc.md" class="md-nav__link">
+      <a href="../../../../e-series/modular/drive-on-chip/doc-plc.md" class="md-nav__link">
         Drive-On-Chip with PLC Design Example for Agilex™ Devices
       </a>
     </li>
@@ -2328,7 +2336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-3/c-series/gsrd/ug-gsrd-agx3/" class="md-nav__link">
+      <a href="../../../../../agilex-3/c-series/gsrd/ug-gsrd-agx3/" class="md-nav__link">
         HPS GSRD User Guide
       </a>
     </li>
@@ -2342,7 +2350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-3/c-series/boot-examples/ug-linux-boot-agx3/" class="md-nav__link">
+      <a href="../../../../../agilex-3/c-series/boot-examples/ug-linux-boot-agx3/" class="md-nav__link">
         HPS GHRD Linux Boot Examples
       </a>
     </li>
@@ -2356,7 +2364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-3/c-series/rsu/ug-rsu-agx3c-fpga/" class="md-nav__link">
+      <a href="../../../../../agilex-3/c-series/rsu/ug-rsu-agx3c-fpga/" class="md-nav__link">
         HPS Remote System Update Example Design
       </a>
     </li>
@@ -2370,7 +2378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-3/c-series/remote-debug/ug-remote-debug-agx3/" class="md-nav__link">
+      <a href="../../../../../agilex-3/c-series/remote-debug/ug-remote-debug-agx3/" class="md-nav__link">
         SoC FPGA Remote Debug
       </a>
     </li>
@@ -2384,7 +2392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../demos/agilex-3/c-series/armds-debug-u-boot/ug-armds-debug-uboot-agx3/" class="md-nav__link">
+      <a href="../../../../../../demos/agilex-3/c-series/armds-debug-u-boot/ug-armds-debug-uboot-agx3/" class="md-nav__link">
         Debugging U-Boot with Arm Development Studio
       </a>
     </li>
@@ -2398,7 +2406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../demos/agilex-3/c-series/riscfree-debug-u-boot/ug-riscfree-debug-uboot-agx3/" class="md-nav__link">
+      <a href="../../../../../../demos/agilex-3/c-series/riscfree-debug-u-boot/ug-riscfree-debug-uboot-agx3/" class="md-nav__link">
         Debugging U-Boot with Ashling RiscFree
       </a>
     </li>
@@ -2412,7 +2420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../demos/agilex-3/c-series/riscfree-debug-linux/ug-riscfree-debug-linux-agx3/" class="md-nav__link">
+      <a href="../../../../../../demos/agilex-3/c-series/riscfree-debug-linux/ug-riscfree-debug-linux-agx3/" class="md-nav__link">
         Debugging Linux with Ashling RiscFree
       </a>
     </li>
@@ -2426,7 +2434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../demos/agilex-3/c-series/armds-debug-linux/ug-armds-debug-linux-agx3/" class="md-nav__link">
+      <a href="../../../../../../demos/agilex-3/c-series/armds-debug-linux/ug-armds-debug-linux-agx3/" class="md-nav__link">
         Debugging Linux with Arm Development Studio
       </a>
     </li>
@@ -2440,7 +2448,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-3/c-series/xen/ug-xen-agx3/" class="md-nav__link">
+      <a href="../../../../../agilex-3/c-series/xen/ug-xen-agx3/" class="md-nav__link">
         HPS Xen Hypervisor GSRD
       </a>
     </li>
@@ -2454,7 +2462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-3/c-series/camera/camera_lite_4k30/camera_4k/" class="md-nav__link">
+      <a href="../../../../../agilex-3/c-series/camera/camera_lite_4k30/camera_4k/" class="md-nav__link">
         4Kp30 Camera Lite Solution System Example Design for Agilex™ 3 Devices
       </a>
     </li>
@@ -2468,7 +2476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-3/c-series/openocd/ug-openocd-debug-agx3/" class="md-nav__link">
+      <a href="../../../../../agilex-3/c-series/openocd/ug-openocd-debug-agx3/" class="md-nav__link">
         HPS OpenOCD Debugging
       </a>
     </li>
@@ -2482,7 +2490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-3/c-series/riscfree-linux-app-debug/ug-riscfree-linux-app-debug-agx3/" class="md-nav__link">
+      <a href="../../../../../agilex-3/c-series/riscfree-linux-app-debug/ug-riscfree-linux-app-debug-agx3/" class="md-nav__link">
         HPS Linux Application Debuging with Ashling RiscFree
       </a>
     </li>
@@ -2496,7 +2504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-3/c-series/fabric-config-linux/ug-fabric-config-linux-agx3/" class="md-nav__link">
+      <a href="../../../../../agilex-3/c-series/fabric-config-linux/ug-fabric-config-linux-agx3/" class="md-nav__link">
         HPS Fabric Configuration from Linux
       </a>
     </li>
@@ -2548,7 +2556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-3/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex3-virtual-platforms/" class="md-nav__link">
+      <a href="../../../../../agilex-3/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex3-virtual-platforms/" class="md-nav__link">
         Simics Linux HPS Baseline System Example Design
       </a>
     </li>
@@ -2574,16 +2582,20 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" checked>
       
       
+        
+          
         
           
         
@@ -2608,7 +2620,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_8_3">
           <span class="md-nav__icon md-icon"></span>
           Agilex™ 5
@@ -2688,7 +2700,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../gsrd/ug-gsrd-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../e-series/premium/gsrd/ug-gsrd-agx5e-premium/" class="md-nav__link">
         HPS GSRD User Guide
       </a>
     </li>
@@ -2702,7 +2714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../egsrd/ug-ehps-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../e-series/premium/egsrd/ug-ehps-agx5e-premium/" class="md-nav__link">
         Enhanced HPS User Guide
       </a>
     </li>
@@ -2716,7 +2728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../gsrd_zephyr/ug-zgsrd-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../e-series/premium/gsrd_zephyr/ug-zgsrd-agx5e-premium/" class="md-nav__link">
         HPS Zephyr GSRD User Guide
       </a>
     </li>
@@ -2730,7 +2742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../boot-examples/ug-linux-boot-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/" class="md-nav__link">
         HPS GHRD Linux Boot Examples
       </a>
     </li>
@@ -2744,7 +2756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../ed-ai-suite/agilex5/hostless_jtag/hostless_jtag_design_example/" class="md-nav__link">
+      <a href="../../../../../../ed-ai-suite/agilex5/hostless_jtag/hostless_jtag_design_example/" class="md-nav__link">
         FPGA AI Suite JTAG System Example Design
       </a>
     </li>
@@ -2758,7 +2770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../boot-examples/ug-linux-boot-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/" class="md-nav__link">
         HPS Linux Boot System Example Design
       </a>
     </li>
@@ -2807,7 +2819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rgmii-hps/ug-tsn-rgmii-hps-pdk/" class="md-nav__link">
+      <a href="../../../../e-series/premium/tsn/rgmii-hps/ug-tsn-rgmii-hps-pdk/" class="md-nav__link">
         HPS TSN RGMII System Example Design User Guide
       </a>
     </li>
@@ -2821,7 +2833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rgmii-hvio/ug-tsncfg2-agx5e-pdk-rgmii-hvio/" class="md-nav__link">
+      <a href="../../../../e-series/premium/tsn/rgmii-hvio/ug-tsncfg2-agx5e-pdk-rgmii-hvio/" class="md-nav__link">
         HPS TSN RGMII HVIO System Example Design User Guide
       </a>
     </li>
@@ -2835,7 +2847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5/" class="md-nav__link">
+      <a href="../../../../e-series/premium/tsn/sgmii_xcvr/ug-tsn-sgmii-xcvr-agilex5/" class="md-nav__link">
         HPS TSN SGMII XCVR System Example Design User Guide
       </a>
     </li>
@@ -2856,7 +2868,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../remote-debug/ug-remote-debug-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../e-series/premium/remote-debug/ug-remote-debug-agx5e-premium/" class="md-nav__link">
         SoC FPGA Remote Debug
       </a>
     </li>
@@ -2870,7 +2882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../rsu/ug-rsu-agx5e-soc/" class="md-nav__link">
+      <a href="../../../../e-series/premium/rsu/ug-rsu-agx5e-soc/" class="md-nav__link">
         HPS Remote System Update Example Design
       </a>
     </li>
@@ -2884,7 +2896,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../xen/ug-xen-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../e-series/premium/xen/ug-xen-agx5e-premium/" class="md-nav__link">
         HPS Xen Hypervisor GSRD
       </a>
     </li>
@@ -2898,7 +2910,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pcie_rp/ug-pcie_rp-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../e-series/premium/pcie_rp/ug-pcie_rp-agx5e-premium/" class="md-nav__link">
         PCIe Root Port
       </a>
     </li>
@@ -2912,7 +2924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../ptp1588/agx5e-ptp-2p10g/ug-agx5e-ptp-2p10g/" class="md-nav__link">
+      <a href="../../../../e-series/premium/ptp1588/agx5e-ptp-2p10g/ug-agx5e-ptp-2p10g/" class="md-nav__link">
         2x10GbE PTP1588 System Example Design
       </a>
     </li>
@@ -2992,7 +3004,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../niosv/niosv_c/niosv_c_helloworld_ocm_mem_test/ug-helloworld-ocm-mem-test-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../e-series/premium/niosv/niosv_c/niosv_c_helloworld_ocm_mem_test/ug-helloworld-ocm-mem-test-agx5e-premium/" class="md-nav__link">
         Helloworld and OCM memory test design on Nios® V/c Processor
       </a>
     </li>
@@ -3046,7 +3058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../niosv/niosv_m/niosv_m_baseline_ghrd/ug-baseline-ghrd-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../e-series/premium/niosv/niosv_m/niosv_m_baseline_ghrd/ug-baseline-ghrd-agx5e-premium/" class="md-nav__link">
         Nios® V/m Processor Baseline GHRD Design
       </a>
     </li>
@@ -3060,7 +3072,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../niosv/niosv_m/niosv_m_full_feature_ghrd/ug-full-feature-ghrd-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../e-series/premium/niosv/niosv_m/niosv_m_full_feature_ghrd/ug-full-feature-ghrd-agx5e-premium/" class="md-nav__link">
         Nios® V/m Full Feature Golden Hardware Reference Design
       </a>
     </li>
@@ -3114,7 +3126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../niosv/niosv_g/tinyml_liteRT/ug-tinyml-liteRT-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../e-series/premium/niosv/niosv_g/tinyml_liteRT/ug-tinyml-liteRT-agx5e-premium/" class="md-nav__link">
         Nios® V/g TinyML LiteRT for Microcontroller Design
       </a>
     </li>
@@ -3128,7 +3140,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../niosv/niosv_g/webserver_ping/ug-webserver-ping-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../e-series/premium/niosv/niosv_g/webserver_ping/ug-webserver-ping-agx5e-premium/" class="md-nav__link">
         Nios® V/g Processor Ping Application
       </a>
     </li>
@@ -3156,7 +3168,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../baremetal-embedded/agilex-5/e-series/premium/ug-baremetal-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../../../baremetal-embedded/agilex-5/e-series/premium/ug-baremetal-agx5e-premium/" class="md-nav__link">
         Baremetal Hello World Example
       </a>
     </li>
@@ -3184,7 +3196,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../demos/agilex-5/e-series/premium/armds-debug-uboot/ug-armds-debug-uboot-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../../../demos/agilex-5/e-series/premium/armds-debug-uboot/ug-armds-debug-uboot-agx5e-premium/" class="md-nav__link">
         Debugging U-Boot with Arm Development Studio
       </a>
     </li>
@@ -3198,7 +3210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../demos/agilex-5/e-series/premium/riscfree-debug-u-boot/ug-riscfree-debug-uboot-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../../../demos/agilex-5/e-series/premium/riscfree-debug-u-boot/ug-riscfree-debug-uboot-agx5e-premium/" class="md-nav__link">
         Debugging U-Boot with Ashling RiscFree
       </a>
     </li>
@@ -3212,7 +3224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../demos/agilex-5/e-series/premium/riscfree-debug-linux/ug-riscfree-debug-linux-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../../../demos/agilex-5/e-series/premium/riscfree-debug-linux/ug-riscfree-debug-linux-agx5e-premium/" class="md-nav__link">
         Debugging Linux with Ashling RiscFree
       </a>
     </li>
@@ -3226,7 +3238,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../demos/agilex-5/e-series/premium/armds-debug-linux/ug-armds-debug-linux-agx5e-premium/" class="md-nav__link">
+      <a href="../../../../../../demos/agilex-5/e-series/premium/armds-debug-linux/ug-armds-debug-linux-agx5e-premium/" class="md-nav__link">
         Debugging Linux with Arm Development Studio
       </a>
     </li>
@@ -3294,7 +3306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/" class="md-nav__link">
+      <a href="../../../../e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/" class="md-nav__link">
         HPS GSRD User Guide
       </a>
     </li>
@@ -3308,7 +3320,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../premium-065b/boot-examples/ug-linux-boot-agx5e-premium-065b/" class="md-nav__link">
+      <a href="../../../../e-series/premium-065b/boot-examples/ug-linux-boot-agx5e-premium-065b/" class="md-nav__link">
         HPS Linux Boot System Example Design
       </a>
     </li>
@@ -3322,7 +3334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../premium-065b/rsu/ug-rsu-agx5e-soc-premium-065b/" class="md-nav__link">
+      <a href="../../../../e-series/premium-065b/rsu/ug-rsu-agx5e-soc-premium-065b/" class="md-nav__link">
         HPS Remote System Update Example Design
       </a>
     </li>
@@ -3336,7 +3348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../premium-065b/openocd/ug-openocd-debug-agx5e-premium-065b/" class="md-nav__link">
+      <a href="../../../../e-series/premium-065b/openocd/ug-openocd-debug-agx5e-premium-065b/" class="md-nav__link">
         HPS OpenOCD Debugging
       </a>
     </li>
@@ -3350,7 +3362,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../premium-065b/hw2sw-flow/ug-hw2sw-flow-agx5e-premium-065b/" class="md-nav__link">
+      <a href="../../../../e-series/premium-065b/hw2sw-flow/ug-hw2sw-flow-agx5e-premium-065b/" class="md-nav__link">
         Yocto Hardware to Software Flow for Agilex 5 Custom IP Integration
       </a>
     </li>
@@ -3364,7 +3376,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../premium-065b/riscfree-linux-app-debug/ug-riscfree-linux-app-debug-agx5e-premium-065b/" class="md-nav__link">
+      <a href="../../../../e-series/premium-065b/riscfree-linux-app-debug/ug-riscfree-linux-app-debug-agx5e-premium-065b/" class="md-nav__link">
         HPS Linux Application Debuging with Ashling RiscFree
       </a>
     </li>
@@ -3378,7 +3390,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../premium-065b/fabric-config-linux/ug-fabric-config-linux-agx5e-premium-065b/" class="md-nav__link">
+      <a href="../../../../e-series/premium-065b/fabric-config-linux/ug-fabric-config-linux-agx5e-premium-065b/" class="md-nav__link">
         HPS Fabric Configuration from Linux
       </a>
     </li>
@@ -3425,7 +3437,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../premium-065b/tsn/rgmii-hps/ug-tsn-rgmii-hps-pdk-065b/" class="md-nav__link">
+      <a href="../../../../e-series/premium-065b/tsn/rgmii-hps/ug-tsn-rgmii-hps-pdk-065b/" class="md-nav__link">
         HPS TSN RGMII System Example Design User Guide
       </a>
     </li>
@@ -3439,7 +3451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../premium-065b/tsn/rgmii-hvio/ug-tsncfg2-agx5e-pdk-rgmii-hvio-065b/" class="md-nav__link">
+      <a href="../../../../e-series/premium-065b/tsn/rgmii-hvio/ug-tsncfg2-agx5e-pdk-rgmii-hvio-065b/" class="md-nav__link">
         HPS TSN RGMII HVIO System Example Design User Guide
       </a>
     </li>
@@ -3460,7 +3472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../premium-065b/usb3p1/ug-usb3p1-dev-drd-modes/" class="md-nav__link">
+      <a href="../../../../e-series/premium-065b/usb3p1/ug-usb3p1-dev-drd-modes/" class="md-nav__link">
         USB 3.1 Example
       </a>
     </li>
@@ -3516,7 +3528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../premium-065a/gsrd/ug-gsrd-agx5e-premium-065a/" class="md-nav__link">
+      <a href="../../../../e-series/premium-065a/gsrd/ug-gsrd-agx5e-premium-065a/" class="md-nav__link">
         HPS GSRD User Guide
       </a>
     </li>
@@ -3530,7 +3542,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../premium-065a/boot-examples/ug-linux-boot-agx5e-premium-065a/" class="md-nav__link">
+      <a href="../../../../e-series/premium-065a/boot-examples/ug-linux-boot-agx5e-premium-065a/" class="md-nav__link">
         HPS Linux Boot System Example Design
       </a>
     </li>
@@ -3577,7 +3589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../premium-065a/tsn/rgmii-hps/ug-tsn-rgmii-hps-pdk-065a/" class="md-nav__link">
+      <a href="../../../../e-series/premium-065a/tsn/rgmii-hps/ug-tsn-rgmii-hps-pdk-065a/" class="md-nav__link">
         HPS TSN RGMII System Example Design User Guide
       </a>
     </li>
@@ -3591,7 +3603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../premium-065a/tsn/rgmii-hvio/ug-tsncfg2-agx5e-pdk-rgmii-hvio-065a/" class="md-nav__link">
+      <a href="../../../../e-series/premium-065a/tsn/rgmii-hvio/ug-tsncfg2-agx5e-pdk-rgmii-hvio-065a/" class="md-nav__link">
         HPS TSN RGMII HVIO System Example Design User Guide
       </a>
     </li>
@@ -3668,7 +3680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../ed-ai-suite/agilex5/hostless_jtag/hostless_jtag_design_example/" class="md-nav__link">
+      <a href="../../../../../../ed-ai-suite/agilex5/hostless_jtag/hostless_jtag_design_example/" class="md-nav__link">
         FPGA AI Suite Hostless JTAG Example Design
       </a>
     </li>
@@ -3682,7 +3694,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../ed-ai-suite/agilex5/soc/fpga_ai_suite_soc_design_example/" class="md-nav__link">
+      <a href="../../../../../../ed-ai-suite/agilex5/soc/fpga_ai_suite_soc_design_example/" class="md-nav__link">
         FPGA AI Suite SoC Design Example
       </a>
     </li>
@@ -3696,7 +3708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular/gsrd/ug-gsrd-agx5e-modular/" class="md-nav__link">
+      <a href="../../../../e-series/modular/gsrd/ug-gsrd-agx5e-modular/" class="md-nav__link">
         HPS GSRD User Guide
       </a>
     </li>
@@ -3710,7 +3722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular/boot-examples/ug-linux-boot-agx5e-modular/" class="md-nav__link">
+      <a href="../../../../e-series/modular/boot-examples/ug-linux-boot-agx5e-modular/" class="md-nav__link">
         HPS GHRD Linux Boot Examples
       </a>
     </li>
@@ -3724,7 +3736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular/xen/ug-xen-agx5e-modular/" class="md-nav__link">
+      <a href="../../../../e-series/modular/xen/ug-xen-agx5e-modular/" class="md-nav__link">
         HPS Xen Hypervisor GSRD
       </a>
     </li>
@@ -3738,7 +3750,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular/camera/camera_4k/camera_4k/" class="md-nav__link">
+      <a href="../../../../e-series/modular/camera/camera_4k/camera_4k/" class="md-nav__link">
         4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices
       </a>
     </li>
@@ -3752,7 +3764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular/camera/camera_4k_ai/camera_4k_ai/" class="md-nav__link">
+      <a href="../../../../e-series/modular/camera/camera_4k_ai/camera_4k_ai/" class="md-nav__link">
         4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices
       </a>
     </li>
@@ -3766,7 +3778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE-ES/" class="md-nav__link">
+      <a href="../../../../e-series/modular/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE-ES/" class="md-nav__link">
         Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices
       </a>
     </li>
@@ -3780,7 +3792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular/ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g/" class="md-nav__link">
+      <a href="../../../../e-series/modular/ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g/" class="md-nav__link">
         1x10G Ethernet System Example Design
       </a>
     </li>
@@ -3827,7 +3839,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular/tsn/sgmii_xcvr_3x2.5G/ug-tsn-sgmii-xcvr-3x2.5G-agilex5/" class="md-nav__link">
+      <a href="../../../../e-series/modular/tsn/sgmii_xcvr_3x2.5G/ug-tsn-sgmii-xcvr-3x2.5G-agilex5/" class="md-nav__link">
         HPS TSN SGMII XCVR System 3x2.5G Example Design User Guide
       </a>
     </li>
@@ -3841,7 +3853,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular/tsn/rgmii-hps/ug-tsn-rgmii-hps/" class="md-nav__link">
+      <a href="../../../../e-series/modular/tsn/rgmii-hps/ug-tsn-rgmii-hps/" class="md-nav__link">
         HPS TSN RGMII System Example Design User Guide
       </a>
     </li>
@@ -3922,7 +3934,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/" class="md-nav__link">
+      <a href="../../../../e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/" class="md-nav__link">
         HPS GSRD User Guide
       </a>
     </li>
@@ -3936,7 +3948,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular-065b/ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g/" class="md-nav__link">
+      <a href="../../../../e-series/modular-065b/ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g/" class="md-nav__link">
         1x10G Ethernet System Example Design User Guide
       </a>
     </li>
@@ -3950,7 +3962,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular-065b/boot-examples/ug-linux-boot-agx5e-modular-065b/" class="md-nav__link">
+      <a href="../../../../e-series/modular-065b/boot-examples/ug-linux-boot-agx5e-modular-065b/" class="md-nav__link">
         HPS Linux Boot System Example Design
       </a>
     </li>
@@ -3995,7 +4007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular-065b/tsn/rgmii-hps/ug-tsn-rgmii-hps-mdk-065b/" class="md-nav__link">
+      <a href="../../../../e-series/modular-065b/tsn/rgmii-hps/ug-tsn-rgmii-hps-mdk-065b/" class="md-nav__link">
         HPS TSN RGMII System Example Design User Guide
       </a>
     </li>
@@ -4016,7 +4028,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular-065b/drive-on-chip/doc-funct-safety/" class="md-nav__link">
+      <a href="../../../../e-series/modular-065b/drive-on-chip/doc-funct-safety/" class="md-nav__link">
         Drive-On-Chip with Functional Safety Design Example for Agilex™ 5 Devices
       </a>
     </li>
@@ -4030,7 +4042,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular-065b/drive-on-chip/doc-plc/" class="md-nav__link">
+      <a href="../../../../e-series/modular-065b/drive-on-chip/doc-plc/" class="md-nav__link">
         Drive-On-Chip with PLC Design Example for Agilex™ Devices
       </a>
     </li>
@@ -4044,7 +4056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular-065b/drive-on-chip/doc-crc/" class="md-nav__link">
+      <a href="../../../../e-series/modular-065b/drive-on-chip/doc-crc/" class="md-nav__link">
         ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices
       </a>
     </li>
@@ -4058,7 +4070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular-065b/robotics/robotics-vision-doc/" class="md-nav__link">
+      <a href="../../../../e-series/modular-065b/robotics/robotics-vision-doc/" class="md-nav__link">
         Robot Controller with Vision System Example Design for Agilex™ 5 Devices
       </a>
     </li>
@@ -4072,7 +4084,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular-065b/robotics/robotics-camera/" class="md-nav__link">
+      <a href="../../../../e-series/modular-065b/robotics/robotics-camera/" class="md-nav__link">
         Robotics Camera System Example Design for Agilex™ 5 Devices
       </a>
     </li>
@@ -4086,7 +4098,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular-065b/boot-examples/ug-linux-boot-agx5e-modular-065b/" class="md-nav__link">
+      <a href="../../../../e-series/modular-065b/boot-examples/ug-linux-boot-agx5e-modular-065b/" class="md-nav__link">
         HPS Linux Boot System Example Design
       </a>
     </li>
@@ -4100,7 +4112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular-065b/pcie-rp/ug-pcie_rp-agx5e-modular-065b/" class="md-nav__link">
+      <a href="../../../../e-series/modular-065b/pcie-rp/ug-pcie_rp-agx5e-modular-065b/" class="md-nav__link">
         HPS PCIe Root Port
       </a>
     </li>
@@ -4114,7 +4126,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular-065b/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE/" class="md-nav__link">
+      <a href="../../../../e-series/modular-065b/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE/" class="md-nav__link">
         Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices
       </a>
     </li>
@@ -4172,7 +4184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular-065a/gsrd/ug-gsrd-agx5e-modular-065a/" class="md-nav__link">
+      <a href="../../../../e-series/modular-065a/gsrd/ug-gsrd-agx5e-modular-065a/" class="md-nav__link">
         HPS GSRD User Guide
       </a>
     </li>
@@ -4186,7 +4198,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular-065a/boot-examples/ug-linux-boot-agx5e-modular-065a/" class="md-nav__link">
+      <a href="../../../../e-series/modular-065a/boot-examples/ug-linux-boot-agx5e-modular-065a/" class="md-nav__link">
         HPS Linux Boot System Example Design
       </a>
     </li>
@@ -4231,7 +4243,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular-065a/tsn/rgmii-hps/ug-tsn-rgmii-hps-mdk-065a/" class="md-nav__link">
+      <a href="../../../../e-series/modular-065a/tsn/rgmii-hps/ug-tsn-rgmii-hps-mdk-065a/" class="md-nav__link">
         HPS TSN RGMII System Example Design User Guide
       </a>
     </li>
@@ -4252,7 +4264,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../modular-065a/holoscan-sensor-bridge/mipi/hsb-mipi-25GbE/" class="md-nav__link">
+      <a href="../../../../e-series/modular-065a/holoscan-sensor-bridge/mipi/hsb-mipi-25GbE/" class="md-nav__link">
         Holoscan Sensor Bridge MIPI to 25GbE System Example Design for Agilex™ 5 Devices
       </a>
     </li>
@@ -4310,7 +4322,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../013B/gsrd/ug-gsrd-agx5e-013b/" class="md-nav__link">
+      <a href="../../../../e-series/013B/gsrd/ug-gsrd-agx5e-013b/" class="md-nav__link">
         HPS GSRD User Guide
       </a>
     </li>
@@ -4324,7 +4336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../013B/boot-examples/ug-linux-boot-agx5e-013b/" class="md-nav__link">
+      <a href="../../../../e-series/013B/boot-examples/ug-linux-boot-agx5e-013b/" class="md-nav__link">
         HPS GHRD Linux Boot Examples
       </a>
     </li>
@@ -4338,7 +4350,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../013B/security/crypto/cryptoservices/ug-fpga-cryptoservice-agx5e-soc/" class="md-nav__link">
+      <a href="../../../../e-series/013B/security/crypto/cryptoservices/ug-fpga-cryptoservice-agx5e-soc/" class="md-nav__link">
         FPGA Crypto Services (FCS) Tutorial Example Design User Guide
       </a>
     </li>
@@ -4352,7 +4364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../013B/security/vab/hps-first/ug-vab-hps-first-agx5e-soc/" class="md-nav__link">
+      <a href="../../../../e-series/013B/security/vab/hps-first/ug-vab-hps-first-agx5e-soc/" class="md-nav__link">
         Vendor Authorized Boot (HPS-First) Tutorial Example Design User Guide
       </a>
     </li>
@@ -4406,7 +4418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms/" class="md-nav__link">
+      <a href="../../../virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms/" class="md-nav__link">
         Simics Linux HPS Baseline System Example Design
       </a>
     </li>
@@ -4420,9 +4432,229 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms/" class="md-nav__link">
+      <a href="../../../virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms/" class="md-nav__link">
         Simics Zephyr HPS Baseline System Example Design
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_9" checked>
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8_3_9" id="__nav_8_3_9_label" tabindex="0">
+          HPS TSN Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_9_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_8_3_9">
+          <span class="md-nav__icon md-icon"></span>
+          HPS TSN Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          HPS TSN GMII to SGMII via FPGA LVDS I/O pins Tutorial Example Design User Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        HPS TSN GMII to SGMII via FPGA LVDS I/O pins Tutorial Example Design User Guide
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-creation-address-decoder-hps-subsystem-tsn-subsystem" class="md-nav__link">
+    Project creation (Address Decoder + HPS Subsystem + TSN Subsystem)
+  </a>
+  
+    <nav class="md-nav" aria-label="Project creation (Address Decoder + HPS Subsystem + TSN Subsystem)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-address-decoder-block" class="md-nav__link">
+    Creating Address Decoder block
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-hps-sub-system" class="md-nav__link">
+    Creating HPS Sub-System
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-tse-subsystem" class="md-nav__link">
+    Creating TSE Subsystem
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gmii-interface-integration" class="md-nav__link">
+    GMII Interface Integration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clock" class="md-nav__link">
+    Clock
+  </a>
+  
+    <nav class="md-nav" aria-label="Clock">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ptp-phasemeasurement-clock" class="md-nav__link">
+    PTP Phase‑Measurement Clock
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tse-receive-clock-mode" class="md-nav__link">
+    TSE Receive Clock Mode
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reset" class="md-nav__link">
+    Reset
+  </a>
+  
+    <nav class="md-nav" aria-label="Reset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sw-reset-control-of-the-tses" class="md-nav__link">
+    SW Reset Control of the TSEs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#software-enablement" class="md-nav__link">
+    Software Enablement
+  </a>
+  
+    <nav class="md-nav" aria-label="Software Enablement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#device-tree-changes-for-configuring-emac1-with-sfp" class="md-nav__link">
+    Device tree changes for configuring EMAC1 with SFP+
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stmmac-driver-changes-to-access-rxtx-latency-registers" class="md-nav__link">
+    STMMAC driver changes to access rx/tx latency registers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference-script-to-calculateprogram-emac-latency-registers" class="md-nav__link">
+    Reference script to calculate/program emac latency registers.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -4550,7 +4782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/" class="md-nav__link">
         HPS GSRD User Guide
       </a>
     </li>
@@ -4564,7 +4796,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/" class="md-nav__link">
         HPS Remote System Update Example Design
       </a>
     </li>
@@ -4578,7 +4810,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/rsu/ug-rsu-multiqspi-agx7f-soc/" class="md-nav__link">
         HPS Multi-QSPI Remote System Update Example Design
       </a>
     </li>
@@ -4592,7 +4824,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/soc/remote-debug/ug-remote-debug-agx7f-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/remote-debug/ug-remote-debug-agx7f-soc/" class="md-nav__link">
         SoC FPGA Remote Debug
       </a>
     </li>
@@ -4606,7 +4838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/emmc/ug-emmc-agx7f-soc/" class="md-nav__link">
         HPS eMMC Boot
       </a>
     </li>
@@ -4620,7 +4852,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc/" class="md-nav__link">
         SoC Fabric Configuration from Linux Example
       </a>
     </li>
@@ -4634,7 +4866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/soc/boot-examples/ug-linux-boot-agx7-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/boot-examples/ug-linux-boot-agx7-soc/" class="md-nav__link">
         HPS Linux Boot System Example Design
       </a>
     </li>
@@ -4648,7 +4880,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/soc/xen/ug-xen-agx7f-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/xen/ug-xen-agx7f-soc/" class="md-nav__link">
         HPS Xen Hypervisor GSRD
       </a>
     </li>
@@ -4662,7 +4894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/soc/setup-use-bridges/ug-setup-use-bridges-agx7f-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/setup-use-bridges/ug-setup-use-bridges-agx7f-soc/" class="md-nav__link">
         Setting up and Using Bridges HPS Linux Example
       </a>
     </li>
@@ -4676,7 +4908,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/soc/security/crypto/cryptoservices/ug-fpga-cryptoservice-agx7-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/security/crypto/cryptoservices/ug-fpga-cryptoservice-agx7-soc/" class="md-nav__link">
         FPGA Crypto Services (FCS) Tutorial Example Design User Guide
       </a>
     </li>
@@ -4690,7 +4922,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/soc/security/crypto/sdos/ug-sdos-agx7f-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/security/crypto/sdos/ug-sdos-agx7f-soc/" class="md-nav__link">
         Secure Data Object Storage (SDOS) Tutorial Example User Guide
       </a>
     </li>
@@ -4704,7 +4936,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/soc/security/vab/hps-first/ug-vab-hps-first-agx7f-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/security/vab/hps-first/ug-vab-hps-first-agx7f-soc/" class="md-nav__link">
         Vendor Authorized Boot (HPS-First) Tutorial Example Design User Guide
       </a>
     </li>
@@ -4718,7 +4950,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/soc/security/vab/fpga-first/ug-vab-fpga-first-agx7f-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/security/vab/fpga-first/ug-vab-fpga-first-agx7f-soc/" class="md-nav__link">
         Vendor Authorized Boot (FPGA-First) Tutorial Example Design User Guide
       </a>
     </li>
@@ -4796,7 +5028,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/soc/niosv/niosv_m/iperf/ug-iperf-agx7f-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/niosv/niosv_m/iperf/ug-iperf-agx7f-soc/" class="md-nav__link">
         Nios® V/m Processor IPerf Server Application
       </a>
     </li>
@@ -4850,7 +5082,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/soc/niosv/niosv_g/fpu_test/ug-fpu-agx7f-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/niosv/niosv_g/fpu_test/ug-fpu-agx7f-soc/" class="md-nav__link">
         Nios® V/g Processor Floating Point Unit (FPU) Design
       </a>
     </li>
@@ -4864,7 +5096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/soc/niosv/niosv_g/tcm_mem_test/ug-tcm-mem-test-agx7f-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/niosv/niosv_g/tcm_mem_test/ug-tcm-mem-test-agx7f-soc/" class="md-nav__link">
         Nios® V/g Processor Tightly Coupled Memory
       </a>
     </li>
@@ -4892,7 +5124,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/soc/sgmii_lvds/ug-sgmii-hps-agx7f/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/sgmii_lvds/ug-sgmii-hps-agx7f/" class="md-nav__link">
         HPS SGMII LVDS System Example Design User Guide
       </a>
     </li>
@@ -5014,7 +5246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/fpga/niosv/niosv_g/tinyml_liteRT/ug-tinyml-litert-agx7f-fpga/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/fpga/niosv/niosv_g/tinyml_liteRT/ug-tinyml-litert-agx7f-fpga/" class="md-nav__link">
         Nios® V/g TinyML LiteRT for Microcontroller Design
       </a>
     </li>
@@ -5028,7 +5260,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/fpga/niosv/niosv_g/custom_instr_crc/ug-ci-crc-agx7f-fpga/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/fpga/niosv/niosv_g/custom_instr_crc/ug-ci-crc-agx7f-fpga/" class="md-nav__link">
         Nios V/g CRC Custom Instruction
       </a>
     </li>
@@ -5042,7 +5274,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/fpga/niosv/niosv_g/custom_instr_basic/ug-ci-basic-agx7f-fpga/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/fpga/niosv/niosv_g/custom_instr_basic/ug-ci-basic-agx7f-fpga/" class="md-nav__link">
         Nios V/g Basic Custom Instruction
       </a>
     </li>
@@ -5056,7 +5288,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/fpga/niosv/niosv_g/ecc/ug-ecc-agx7f-fpga/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/fpga/niosv/niosv_g/ecc/ug-ecc-agx7f-fpga/" class="md-nav__link">
         Nios V/g ECC Feature
       </a>
     </li>
@@ -5070,7 +5302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/fpga/niosv/niosv_g/lockstep/ug-lockstep-agx7f-fpga/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/fpga/niosv/niosv_g/lockstep/ug-lockstep-agx7f-fpga/" class="md-nav__link">
         Nios V/g Lockstep Design
       </a>
     </li>
@@ -5136,7 +5368,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/f-series/fpga/gsrd/ug-gsrd-agx7f-fpga/" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/fpga/gsrd/ug-gsrd-agx7f-fpga/" class="md-nav__link">
         HPS GSRD User Guide
       </a>
     </li>
@@ -5200,7 +5432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../ed-ai-suite/agilex7/hostless_ddr_free_ed/hostless_ddr_free_design_example/" class="md-nav__link">
+      <a href="../../../../../../ed-ai-suite/agilex7/hostless_ddr_free_ed/hostless_ddr_free_design_example/" class="md-nav__link">
         FPGA AI Suite DDR-Free System Example Design
       </a>
     </li>
@@ -5214,7 +5446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../ed-ai-suite/agilex7/ofs/ofs_pcie_getting_started/" class="md-nav__link">
+      <a href="../../../../../../ed-ai-suite/agilex7/ofs/ofs_pcie_getting_started/" class="md-nav__link">
         FPGA AI Suite OFS System Example Design
       </a>
     </li>
@@ -5228,7 +5460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../ed-ai-suite/agilex5/soc/fpga_ai_suite_soc_design_example/" class="md-nav__link">
+      <a href="../../../../../../ed-ai-suite/agilex5/soc/fpga_ai_suite_soc_design_example/" class="md-nav__link">
         FPGA AI Suite SoC Design Example
       </a>
     </li>
@@ -5242,7 +5474,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/i-series/ptp/agx7i-ptp-anlt/agx7i-ptp-anlt/" class="md-nav__link">
+      <a href="../../../../../agilex-7/i-series/ptp/agx7i-ptp-anlt/agx7i-ptp-anlt/" class="md-nav__link">
         Time Precision Protocol System Example Design (I-Series, 4x F-Tile)
       </a>
     </li>
@@ -5256,7 +5488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/" class="md-nav__link">
         HPS GSRD User Guide
       </a>
     </li>
@@ -5270,7 +5502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/i-series/avst_cii/agilex7-ed-pcie-cii/" class="md-nav__link">
+      <a href="../../../../../agilex-7/i-series/avst_cii/agilex7-ed-pcie-cii/" class="md-nav__link">
         CII Example Design
       </a>
     </li>
@@ -5284,7 +5516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/i-series/pcie_rp/ug-pcie_rp-agx7i-soc/" class="md-nav__link">
+      <a href="../../../../../agilex-7/i-series/pcie_rp/ug-pcie_rp-agx7i-soc/" class="md-nav__link">
         PCIe Root Port
       </a>
     </li>
@@ -5338,7 +5570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/m-series/hbm2e/ug-gsrd-agx7m-hbm2e/" class="md-nav__link">
+      <a href="../../../../../agilex-7/m-series/hbm2e/ug-gsrd-agx7m-hbm2e/" class="md-nav__link">
         HPS GSRD User Guide
       </a>
     </li>
@@ -5352,7 +5584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../agilex-7/m-series/pcie_rp/ug-pcie_rp-agx7m-hbm2e/" class="md-nav__link">
+      <a href="../../../../../agilex-7/m-series/pcie_rp/ug-pcie_rp-agx7m-hbm2e/" class="md-nav__link">
         PCIe Root Port User Guide
       </a>
     </li>
@@ -5404,7 +5636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../ed-ai-suite/agilex7/pcie/pcie_getting_started_extended/" class="md-nav__link">
+      <a href="../../../../../../ed-ai-suite/agilex7/pcie/pcie_getting_started_extended/" class="md-nav__link">
         FPGA AI Suite PCIe-based System Example Design
       </a>
     </li>
@@ -5456,7 +5688,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../../ed-ai-suite/agilex7/ofs/ofs_pcie_getting_started/" class="md-nav__link">
+      <a href="../../../../../../ed-ai-suite/agilex7/ofs/ofs_pcie_getting_started/" class="md-nav__link">
         FPGA AI Suite OFS System Example Design
       </a>
     </li>
@@ -5560,7 +5792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc/" class="md-nav__link">
+      <a href="../../../../../stratix-10/sx/soc/gsrd/ug-gsrd-s10sx-soc/" class="md-nav__link">
         HPS GSRD User Guide
       </a>
     </li>
@@ -5574,7 +5806,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../stratix-10/sx/soc/rsu/ug-rsu-s10sx-soc/" class="md-nav__link">
+      <a href="../../../../../stratix-10/sx/soc/rsu/ug-rsu-s10sx-soc/" class="md-nav__link">
         HPS Remote System Update Example Design
       </a>
     </li>
@@ -5588,7 +5820,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc/" class="md-nav__link">
+      <a href="../../../../../stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc/" class="md-nav__link">
         SoC FPGA Remote Debug
       </a>
     </li>
@@ -5602,7 +5834,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc/" class="md-nav__link">
+      <a href="../../../../../stratix-10/sx/soc/emmc/ug-emmc-s10sx-soc/" class="md-nav__link">
         HPS eMMC Boot
       </a>
     </li>
@@ -5616,7 +5848,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../stratix-10/sx/soc/fabric-config/ug-linux-fabric-config-s10sx-soc/" class="md-nav__link">
+      <a href="../../../../../stratix-10/sx/soc/fabric-config/ug-linux-fabric-config-s10sx-soc/" class="md-nav__link">
         SoC Fabric Configuration from Linux
       </a>
     </li>
@@ -5630,7 +5862,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../stratix-10/sx/soc/security/secure-boot/hps-first/ug-secure-boot-hps-first-s10sx-soc/" class="md-nav__link">
+      <a href="../../../../../stratix-10/sx/soc/security/secure-boot/hps-first/ug-secure-boot-hps-first-s10sx-soc/" class="md-nav__link">
         Secure Boot Tutorial Example Design User Guide
       </a>
     </li>
@@ -5644,7 +5876,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../stratix-10/sx/soc/boot-examples/ug-linux-boot-s10-soc/" class="md-nav__link">
+      <a href="../../../../../stratix-10/sx/soc/boot-examples/ug-linux-boot-s10-soc/" class="md-nav__link">
         HPS Linux Boot System Example Design
       </a>
     </li>
@@ -5658,7 +5890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../stratix-10/sx/soc/pcie-rp/ug-pcie-rp-s10-soc/" class="md-nav__link">
+      <a href="../../../../../stratix-10/sx/soc/pcie-rp/ug-pcie-rp-s10-soc/" class="md-nav__link">
         PCIe Root Port
       </a>
     </li>
@@ -5750,7 +5982,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../arria-10/sx/soc/gsrd/ug-gsrd-a10sx-soc/" class="md-nav__link">
+      <a href="../../../../../arria-10/sx/soc/gsrd/ug-gsrd-a10sx-soc/" class="md-nav__link">
         GSRD User Guide
       </a>
     </li>
@@ -5764,7 +5996,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../arria-10/sx/soc/boot-examples/ug-linux-boot-a10-soc/" class="md-nav__link">
+      <a href="../../../../../arria-10/sx/soc/boot-examples/ug-linux-boot-a10-soc/" class="md-nav__link">
         HPS GHRD Linux Boot Examples
       </a>
     </li>
@@ -5858,7 +6090,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../cyclone-v/sx/soc/gsrd/ug-gsrd-cve-soc/" class="md-nav__link">
+      <a href="../../../../../cyclone-v/sx/soc/gsrd/ug-gsrd-cve-soc/" class="md-nav__link">
         GSRD User Guide
       </a>
     </li>
@@ -5872,7 +6104,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../cyclone-v/sx/soc/boot-examples/ug-linux-boot-cve-soc/" class="md-nav__link">
+      <a href="../../../../../cyclone-v/sx/soc/boot-examples/ug-linux-boot-cve-soc/" class="md-nav__link">
         HPS GHRD Linux Boot Examples
       </a>
     </li>
@@ -5886,7 +6118,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../../cyclone-v/sx/soc/boot-examples/ug-cv-av-soc-qspi-boot/" class="md-nav__link">
+      <a href="../../../../../cyclone-v/sx/soc/boot-examples/ug-cv-av-soc-qspi-boot/" class="md-nav__link">
         Cyclone® V and Arria® V SoC QSPI Boot
       </a>
     </li>
@@ -6092,7 +6324,7 @@
   
 
 
-  <h1>Sgmii lvds</h1>
+  <h1>HPS TSN GMII to SGMII via FPGA LVDS I/O pins Tutorial Example Design User Guide</h1>
 
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>This tutorial presents an introduction to the TSE GMII to SGMII via FPGA LVDS I/O pins Design example and focuses on the design development workflow and methodology. The compiled binaries included with this material are provided strictly for reference purposes and have not been built, optimized, or validated for any specific target development kit. As such, they should not be used for device programming or hardware deployment.</p>
@@ -6589,7 +6821,7 @@ To simplify the process of calculating and programming emac registers the prog_r
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 25, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 1, 2026</span>
       
         <br>
         Created:
@@ -6619,6 +6851,42 @@ To simplify the process of calculating and programming emac registers the prog_r
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../../virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Simics Zephyr HPS Baseline System Example Design" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Simics Zephyr HPS Baseline System Example Design
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../../../../agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/" class="md-footer__link md-footer__link--next" aria-label="Next: HPS GSRD User Guide" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                HPS GSRD User Guide
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
@@ -6687,18 +6955,18 @@ To simplify the process of calculating and programming emac registers the prog_r
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../../../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.indexes", "navigation.footer", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "search.suggest", "search.highlight", "content.code.copy", "navigation.indexes", "toc.follow"], "search": "../../../../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.indexes", "navigation.footer", "navigation.path", "navigation.tabs", "navigation.tabs.sticky", "search.suggest", "search.highlight", "content.code.copy", "navigation.indexes", "toc.follow"], "search": "../../../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
   <script defer src="https://cloud.umami.is/script.js" data-website-id="95a45ca2-f7f4-47e3-ab82-76a7057c6f0f"></script>
   
-      <script src="../../../../../../../assets/javascripts/bundle.fac441b0.min.js"></script>
+      <script src="../../../../../../assets/javascripts/bundle.fac441b0.min.js"></script>
       
         <script src="https://unpkg.com/tablefilter@0.7.3/dist/tablefilter/tablefilter.js"></script>
       
-        <script src="../../../../../../../assets/tables.js"></script>
+        <script src="../../../../../../assets/tables.js"></script>
       
-        <script src="../../../../../../../assets/extra.js"></script>
+        <script src="../../../../../../assets/extra.js"></script>
       
     
   <!-- Floating Need Help Button -->
