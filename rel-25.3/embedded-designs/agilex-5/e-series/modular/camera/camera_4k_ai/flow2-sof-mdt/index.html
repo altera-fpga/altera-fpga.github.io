@@ -4893,13 +4893,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#license-requirements-to-build" class="md-nav__link">
-    License Requirements to build
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#hardware-requirements" class="md-nav__link">
     Hardware Requirements
   </a>
@@ -4966,13 +4959,6 @@
   
     <nav class="md-nav" aria-label="Programming">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#setting-up-the-development-kit" class="md-nav__link">
-    Setting Up the Development Kit
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#burn-the-microsd-card-image" class="md-nav__link">
@@ -5059,17 +5045,6 @@
 <li>FPGA NiosV Open-Source Tools 25.1 (installed with Quartus® Prime).</li>
 </ul>
 <p><br/></p>
-<h3 id="license-requirements-to-build"><strong>License Requirements to build</strong><a class="headerlink" href="#license-requirements-to-build" title="Permanent link">&para;</a></h3>
-<p>Note licenses must be downloaded and installed where needed.</p>
-<ul>
-<li>OpenCore Plus (OCP) IP evaluation license.</li>
-</ul>
-<ul>
-<li>Free licenses:<ul>
-<li><a href="https://www.altera.com/products/ip/a1jui0000049uvama2/nios-v-processors">Nios® V Processor</a>.</li>
-</ul>
-</li>
-</ul>
 <ul>
 <li>Full or Free licenses:<ul>
 <li><a href="https://www.altera.com/products/development-tools/fpga-ai-suite">Altera® FPGA AI Suite</a>.</li>
@@ -5230,61 +5205,6 @@ create the microSD card image.</p>
 <p>use <g><strong>KAS_MACHINE=agilex5_mk_a5e065bb32aes1</strong></g> and <g><strong>kas/agilex_camera_ff.yml</strong></g> configuration</p>
 </div>
 <h2 id="programming">Programming<a class="headerlink" href="#programming" title="Permanent link">&para;</a></h2>
-<h3 id="setting-up-the-development-kit"><strong>Setting Up the Development Kit</strong><a class="headerlink" href="#setting-up-the-development-kit" title="Permanent link">&para;</a></h3>
-<div class="admonition note">
-<p class="admonition-title">Warning</p>
-<p>Handle ESD-sensitive equipment (boards, microSD cards, camera sensors, etc.) only when properly grounded and at an ESD-safe workstation</p>
-</div>
-<ul>
-<li>Configure the Agilex™ 5 FPGA E-Series 065B Modular Development Kit switches
-  as shown:</li>
-</ul>
-<p><br></p>
-<p><a class="glightbox" href="../../common/images/board-1.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="board-1" src="../../common/images/board-1.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
-<center markdown="1"></p>
-<p><strong>Modular Development Kit - Default Switch Positions</strong>
-</center>
-<br></p>
-<div class="admonition note">
-<p class="admonition-title">FPGA configuration modes used by the Camera Solution System Example Design</p>
-<p>The Camera Solution System Example Design can use one of the following FPGA configuration modes: JTAG or ASx4(QSPI).<br>
-The MSEL switch (S4) on the SOM board instructs the FPGA device on which configuration mode to use.</p>
-<p>JTAG mode:         Modular Development Kit SOM Board S4=OFF:OFF, or<br>
-ASx4 (QSPI) mode:  Modular Development Kit SOM Board S4=ON:ON</p>
-<p>The pre-built version of the design uses ASx4 (QSPI) mode, S4=ON:ON.</p>
-</div>
-<p><br></p>
-<ul>
-<li>Make the required connections between the Host PC and the Modular Development
-  Kit as shown in the following diagram:</li>
-</ul>
-<p><br/></p>
-<p><a class="glightbox" href="../../camera_4k_resources/images/ed-conn.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="ed-conn" src="../../camera_4k_resources/images/ed-conn.png" style="display:block; margin-left:auto; margin-right:auto;" /></a>
-<center markdown="1"></p>
-<p><strong>Host PC and Modular Development Kit Connections diagram</strong>
-</center>
-<br/></p>
-<ul>
-<li>Connect micro USB cable between the Modular Development Kit Carrier Board
-  (<code>J35</code>) and the Host PC. This will be used for QSPI programming / FGPA
-  configuration over JTAG.
-  Look at what serial ports are enumerated on your Host computer. There should be a
-  series of four.</li>
-<li>Connect micro USB cable between the Modular Development Kit SOM Board (<code>J2</code>,
-  HSP_UART) and the Host PC. This will be used to access HPS serial console. Look
-  at what ports are enumerated on your Host computer. There should be a series
-  of four. Use the 3<sup>rd</sup> one in the list as the HPS serial port.</li>
-<li>Connect an RJ45 cable between the ethernet port on the Modular Development
-  Kit SOM Board (<code>J6</code>, ETH 1G HPS) and make sure it is on the same network as
-  your Host PC. You can check the <code>eth0</code> IP address after boot using the Linux
-  <code>ip a</code> command.</li>
-</ul>
-<p><br></p>
-<p><a class="glightbox" href="../../common/images/Agx5-MDK-Conn.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Agx-MDK-Conn" src="../../common/images/Agx5-MDK-Conn.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
-<center markdown="1"></p>
-<p><strong>Modular Development Kit Connector Locations</strong>
-</center>
-<br></p>
 <h3 id="burn-the-microsd-card-image"><strong>Burn the microSD Card Image</strong><a class="headerlink" href="#burn-the-microsd-card-image" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Either use your own or download the pre-built <code>&lt;name&gt;.wic.gz</code> image.</li>
@@ -5619,7 +5539,7 @@ until the programming has been completed.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 10, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 9, 2026</span>
       
         <br>
         Created:

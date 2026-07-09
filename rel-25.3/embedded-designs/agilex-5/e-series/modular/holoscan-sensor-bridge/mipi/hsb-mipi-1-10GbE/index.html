@@ -3357,13 +3357,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#software-requirements" class="md-nav__link">
-    Software Requirements
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#download-the-pre-built-fpga" class="md-nav__link">
     Download the pre-built FPGA
   </a>
@@ -3382,13 +3375,6 @@
   
     <nav class="md-nav" aria-label="Getting Started - run with pre-built FPGA">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#setting-up-your-modular-development-board" class="md-nav__link">
-    Setting Up your Modular Development Board
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#board-and-nvidia-host-system-setup" class="md-nav__link">
@@ -5123,13 +5109,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#software-requirements" class="md-nav__link">
-    Software Requirements
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#download-the-pre-built-fpga" class="md-nav__link">
     Download the pre-built FPGA
   </a>
@@ -5148,13 +5127,6 @@
   
     <nav class="md-nav" aria-label="Getting Started - run with pre-built FPGA">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#setting-up-your-modular-development-board" class="md-nav__link">
-    Setting Up your Modular Development Board
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#board-and-nvidia-host-system-setup" class="md-nav__link">
@@ -5348,20 +5320,6 @@ within Altera's Video and Vision Processing (VVP) Suite.</p>
 <li><a href="https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/index.html">NVIDIA Jetson Orin AGX Devkit</a>
 <br/></li>
 </ul>
-<h3 id="software-requirements"><strong>Software Requirements</strong><a class="headerlink" href="#software-requirements" title="Permanent link">&para;</a></h3>
-<ul>
-<li>NVIDIA host system running Holoscan SDK<ul>
-<li>Set up the host system following : <a href="https://docs.nvidia.com/holoscan/sensor-bridge/latest/setup.html">NVIDIA Host Setup</a></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>When cloning the <a href="https://docs.nvidia.com/holoscan/sensor-bridge/latest/build.html#building-the-holoscan-sensor-bridge-container">Holoscan Sensor Bridge Repo</a> use the Altera mirror:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git clone -b altera-2.3.0 --single-branch https://github.com/altera-fpga/holoscan-sensor-bridge
-</code></pre></div></p>
-</div>
-<p><br/></p>
-</li>
-</ul>
 <h3 id="download-the-pre-built-fpga"><strong>Download the pre-built FPGA</strong><a class="headerlink" href="#download-the-pre-built-fpga" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Download the Agilex™ 5e Modular Development board SOF binaries:</li>
@@ -5389,31 +5347,6 @@ within Altera's Video and Vision Processing (VVP) Suite.</p>
 <p><br/></p>
 <h2 id="getting-started-run-with-pre-built-fpga">Getting Started - run with pre-built FPGA<a class="headerlink" href="#getting-started-run-with-pre-built-fpga" title="Permanent link">&para;</a></h2>
 <p>Follow the instructions provided in this section to run the Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices.</p>
-<h3 id="setting-up-your-modular-development-board"><strong>Setting Up your Modular Development Board</strong><a class="headerlink" href="#setting-up-your-modular-development-board" title="Permanent link">&para;</a></h3>
-<div class="admonition note">
-<p class="admonition-title">Warning</p>
-<p>Handle ESD-sensitive equipment (boards, microSD Cards, Camera sensors, etc.) only when properly grounded and at an ESD-safe workstation</p>
-</div>
-<ul>
-<li>Configure the board switches as shown:</li>
-</ul>
-<p><br></p>
-<p><a class="glightbox" href="../assets/board-1.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="board-1" src="../assets/board-1.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
-<center markdown="1"></p>
-<p><strong>Modular Development Board - Default Switch Positions</strong>
-</center>
-<br></p>
-<ul>
-<li>Connect micro USB cable between the carrier board (<code>J35</code>) and the Host PC.
-  This will be used for JTAG communication. Look at what ports are enumerated
-  on your Host computer. There should be a series of four.</li>
-</ul>
-<p><br></p>
-<p><a class="glightbox" href="../assets/Agx5-MDK-Conn.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="Agx-MDK-Conn" src="../assets/Agx5-MDK-Conn.png" style="display:block; margin-left:auto; margin-right:auto" /></a>
-<center markdown="1"></p>
-<p><strong>Board Connections</strong>
-</center>
-<br></p>
 <h3 id="board-and-nvidia-host-system-setup"><strong>Board and NVIDIA Host System Setup</strong><a class="headerlink" href="#board-and-nvidia-host-system-setup" title="Permanent link">&para;</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Warning</p>
@@ -5467,7 +5400,7 @@ board as shown in the following diagram:</p>
 <li>
 <p>Either use your own or download the pre-built <code>SOF</code> image, and program
   the FPGA with either the command:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;p;AGX_5E_065B_Modular_DevKit_HSB_MIPI_1_10GbE.sof&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;p;AGX_5E_065B_Modular_DevKit_HSB_MIPI_1_10GbE.sof&quot;</span>
 </code></pre></div>
 </li>
 </ul>
@@ -5513,30 +5446,30 @@ until the programming has been completed.</p>
 <p>Set up the NVIDIA host system as per <a href="./#board-and-nvidia-host-system-setup">instructions</a>.</p>
 <h4 id="build-the-demo-docker-container">Build the Demo Docker Container<a class="headerlink" href="#build-the-demo-docker-container" title="Permanent link">&para;</a></h4>
 <p>Build the holoscan sensor bridge demonstration container. For systems with dGPU or DGX Spark,</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cd &lt;holoscan sensor bridge&gt;
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sh docker/build.sh --dgpu
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cd &lt;holoscan sensor bridge&gt;
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sh docker/build.sh --dgpu
 </code></pre></div>
 <p>For systems with iGPU,
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cd &lt;holoscan sensor bridge&gt;
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sh docker/build.sh --igpu
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cd &lt;holoscan sensor bridge&gt;
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sh docker/build.sh --igpu
 </code></pre></div></p>
 <h4 id="to-run-a-demo-application-start-the-demo-container">To run a demo application, start the demo container<a class="headerlink" href="#to-run-a-demo-application-start-the-demo-container" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>cd &lt;holoscan sensor bridge&gt;
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sh docker/demo.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cd &lt;holoscan sensor bridge&gt;
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sh docker/demo.sh
 </code></pre></div>
 <h4 id="from-within-the-demo-container-run-one-of-the-following-demos">From within the Demo container run one of the following demos:<a class="headerlink" href="#from-within-the-demo-container-run-one-of-the-following-demos" title="Permanent link">&para;</a></h4>
 <p>* Simple Playback Example
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>python examples/linux_agx5_player.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>python examples/linux_agx5_player.py
 </code></pre></div>
 * YOLOv8 Body Pose Example</p>
 <p><a href="https://docs.nvidia.com/holoscan/sensor-bridge/latest/examples.html#running-the-imx274-body-pose-example">Follow instructions to download YOLOv8 ONNX Model</a>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>python examples/linux_body_pose_estimation_agx5.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>python examples/linux_body_pose_estimation_agx5.py
 </code></pre></div></p>
 <ul>
 <li>TAO PeopleNet Example</li>
 </ul>
 <p><a href="https://docs.nvidia.com/holoscan/sensor-bridge/latest/examples.html#running-the-imx274-tao-peoplenet-example">Follow instructions to download tao peoplenet model</a>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>python examples/linux_tao_peoplenet_agx5.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>python examples/linux_tao_peoplenet_agx5.py
 </code></pre></div></p>
 <h2 id="recommended-user-flows">Recommended User Flows<a class="headerlink" href="#recommended-user-flows" title="Permanent link">&para;</a></h2>
 <h3 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h3>
@@ -5695,7 +5628,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 10, 2025</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 9, 2026</span>
       
         <br>
         Created:
