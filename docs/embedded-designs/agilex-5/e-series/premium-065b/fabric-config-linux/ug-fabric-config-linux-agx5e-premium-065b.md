@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The HPS Baseline System Example Design configures the FPGA fabric from U-Boot. This Tutorial example design shows how to customize the Yocto recipes for the HPS Baseline System Example Design to configure the fabric from Linux, instead of U-Boot.
+The HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design") configures the FPGA fabric from U-Boot. This Tutorial example design shows how to customize the Yocto recipes for the HPS Baseline System Example Design to configure the fabric from Linux, instead of U-Boot.
 
 The following modifications are done:
 
@@ -52,7 +52,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-### Build Hardware Design
+### Build Quartus Design
 
 
 

@@ -2,9 +2,9 @@
 
 ## Overview 
 
-This page presents the Golden System Reference Design for the Agilex™ 7 FPGA M-Series Development Kit - HBM2e Edition (3x F-Tile & 1x R-Tile).
+This page presents the HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design") for the Agilex™ 7 FPGA M-Series Development Kit - HBM2e Edition (3x F-Tile & 1x R-Tile).
 
-- Hardware Design
+- Quartus Design
   - LEDs connected to GPIO soft IP modules 
   - DIP switches and push buttons connected to GPIO soft IP modules 
 - HPS Software
@@ -63,7 +63,6 @@ The source code is also included on the SD card in the Linux rootfs path `/home/
 | u-boot-socfpga-v2026.01-src.tar.gz | Source code for U-Boot | 
 | arm-trusted-firmware-v2.14.0-src.tar.gz | Source code for Arm Trusted Firmware | 
 
-Before downloading the hardware design please read the agreement in the link [https://www.intel.com/content/www/us/en/programmable/downloads/software/license/lic-prog_lic.html](https://www.intel.com/content/www/us/en/programmable/downloads/software/license/lic-prog_lic.html)
 
 #### Component Versions
 
@@ -232,10 +231,10 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-### Build Hardware Design 
+### Build Quartus Design 
 
 
-Use the following commands to build the hardware design: 
+Use the following commands to build the Quartus Design: 
 
 
 ```bash 

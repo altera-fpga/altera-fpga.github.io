@@ -19,8 +19,8 @@ The following diagram shows the overall architecture for debugging Agilex 5 HPS 
 
 The instructions demonstrate both use cases:
 
-* Debugging from OpenOCD console
-* Debugging from GDB connected to OpenOCD
+* Debugging from OpenOCD console.
+* Debugging from GDB connected to OpenOCD.
 
 ### Known Issues
 

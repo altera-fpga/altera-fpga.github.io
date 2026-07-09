@@ -4,11 +4,11 @@
 
 ### Overview
 
-The HPS Baseline System Example Design demonstrate basic HPS functionality on the Agilex 5 FPGA E-Series 065A Premium Development Kit.
+The HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design") demonstrates basic HPS functionality on the Agilex 5 FPGA E-Series 065A Premium Development Kit.
 
 The design is comprised of the following components:
 
-- Hardware Design 
+- Quartus Design 
 - HPS software:
   - Arm Trusted Firmware
   - U-Boot
@@ -113,9 +113,9 @@ Configuration OFF-ON-ON-OFF corresponds to QSPI:
 
 ![](images/devkit-msel-qspi.png)
 
-### Hardware Design Overview
+### Quartus Design Overview
 
-The Hardware Design is an important part of the HPS Baseline System Example Design and consists of the following components:
+The Quartus Design is an important part of the HPS Baseline System Example Design and consists of the following components:
 
 - Hard Processor System (HPS)
   - Dual core Arm Cortex-A76 processor
@@ -138,7 +138,7 @@ The Hardware Design is an important part of the HPS Baseline System Example Desi
 
 ![](images/agilex5_ghrd.png) 
 
-The HPS Baseline System Example Design allows hardware designers to access each peripheral in the FPGA portion of the SoC with System Console, through the JTAG master module. This signal-level access is independent of the driver readiness of each peripheral.
+The HPS Baseline System Example Design allows Quartus Designers to access each peripheral in the FPGA portion of the SoC with System Console, through the JTAG master module. This signal-level access is independent of the driver readiness of each peripheral.
 
 <h4> MPU Address Maps</h4>
 
@@ -758,7 +758,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h5>Build Hardware Design</h5>
+<h5>Build Quartus Design</h5>
 
 
 
@@ -886,7 +886,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h5>Build Hardware Design</h5>
+<h5>Build Quartus Design</h5>
 
 
 
@@ -967,7 +967,7 @@ cd qspi_boot
 ```
 
 
-2\. Link to the files that are needed from building the hardware design, and yocto:
+2\. Link to the files that are needed from building the Quartus Design, and Yocto:
 
 ```bash
 ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof ghrd.sof
@@ -1038,7 +1038,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h5>Build Hardware Design</h5>
+<h5>Build Quartus Design</h5>
 
 
 
@@ -1187,7 +1187,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h5>Build Hardware Design</h5>
+<h5>Build Quartus Design</h5>
 
 
 
@@ -1363,7 +1363,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h5>Build Hardware Design</h5>
+<h5>Build Quartus Design</h5>
 
 
 
@@ -1473,7 +1473,7 @@ In the build instructions we did not use the Kconfig options, only the default o
 When using `kas menu`, the initial settings from `kas.yml` are customized with the user selected options through Kconfig, and are saved to a file called `.config.yaml` which is then used for build purposes.
 
 
-1\. Build the hardware design as mentioned before. Note the same hardware design is used for both booting from SD card and booting from QSPI.
+1\. Build the Quartus Design as mentioned before. Note the same Quartus Design is used for both booting from SD card and booting from QSPI.
 
 2\. Copy the core.rbf file to where Kas needs it to be:
 
@@ -1537,7 +1537,7 @@ kas menu
 In addition to using `kas build` to build Yocto based on the `kas.yml` and `kas menu` to build Yocto based on Kconfig options selected from the text GUI, there is also the `kas shell` option, which allows you to build Yocto interactively.
 
 
-1\. Build the hardware design as mentioned before. Note the same hardware design is used for both booting from SD card and booting from QSPI.
+1\. Build the Quartus Design as mentioned before. Note the same Quartus Design is used for both booting from SD card and booting from QSPI.
 
 2\. Copy the core.rbf file to where Kas needs it to be:
 
@@ -1886,7 +1886,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h5>Build Hardware Design</h5>
+<h5>Build Quartus Design</h5>
 
 
 

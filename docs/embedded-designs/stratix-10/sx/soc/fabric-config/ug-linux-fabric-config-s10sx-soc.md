@@ -4,7 +4,7 @@
 
 When using HPS Boot First method, the FPGA device is first configured with a small Phase 1 bitstream, which configures the periphery, and brings up HPS. Then, at a later time, HPS configures the FPGA fabric using a larger Phase 2 bitstream. 
 
-The HPS can configure the fabric either from U-Boot or Linux. The HPS Baseline System Example Design configures the fabric from U-Boot. The examples in this page demonstrate how to configure the FPGA fabric from Linux, using device tree overlays. 
+The HPS can configure the fabric either from U-Boot or Linux. The HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design") configures the fabric from U-Boot. The examples in this page demonstrate how to configure the FPGA fabric from Linux, using device tree overlays. 
 
 Two different examples are provided: 
 
@@ -25,12 +25,12 @@ You will need the following items:
   * Micro USB cable for on-board Altera® FPGA Download Cable II
   * SDM QSPI Bootcard with MT25QU02G flash device 
 * Host PC with:  
-  * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
+  * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the Quartus design.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
   * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1
 * Local Ethernet network, with DHCP server
-* Internet connection. For downloading the files, especially when rebuilding the GSRD.
+* Internet connection. For downloading the files, especially when rebuilding the design.
 
 ## Example Building Components Separately 
 
@@ -81,7 +81,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-2\. Build Hardware Design 
+2\. Build Quartus Design 
 
 
 
@@ -436,7 +436,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-2\. Build hardware design:
+2\. Build Quartus design:
 
 
 

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The HPS Baseline System Example Design configures the FPGA fabric from U-Boot. This Tutorial example design shows how to customize the Yocto recipes for the HPS Baseline System Example Design to configure the fabric from Linux, instead of U-Boot.
+The HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design") configures the FPGA fabric from U-Boot. This Tutorial example design shows how to customize the Yocto recipes for the HPS Baseline System Example Design to configure the fabric from Linux, instead of U-Boot.
 
 The following modifications are done:
 
@@ -51,9 +51,13 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-### Build Hardware Design
+### Build Quartus Design
 
 
+
+The Quartus design is derived from the HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design"), with the JOP component added and connected to clock, reset and the LWH2F bridge
+
+The following instructions are used:
 
 
 
@@ -484,7 +488,9 @@ quartus_pfg \
 
 
 
-## Exercise Example Design
+## Run Example
+
+The instructions from this section present how to run the remote debug example. Refer to the HPS Baseline System Example Design for more detailed instructions on how to set up the board, serial port, and write the binaries.
 
 1\. Write the SD card image: `$TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex3/gsrd-console-image-agilex3.rootfs.wic`
 

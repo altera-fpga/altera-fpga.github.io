@@ -4,11 +4,11 @@
 
 ### Overview
 
-The HPS Baseline System Example Design demonstrate basic HPS functionality on the Agilex 5 FPGA E-Series 065B Premium Development Kit (ES)
+The HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design") demonstrates basic HPS functionality on the Agilex 5 FPGA E-Series 065B Premium Development Kit (ES)
 
 The design is comprised of the following components:
 
-- Hardware Design 
+- Quartus Design 
 - HPS software:
   - Arm Trusted Firmware
   - U-Boot
@@ -126,9 +126,9 @@ Configuration OFF-ON-ON-OFF corresponds to QSPI:
 
 ![](images/devkit-msel-qspi.png)
 
-### Hardware Design Overview
+### Quartus Design Overview
 
-The Hardware Design is an important part of the HPS Baseline System Example Design and consists of the following components:
+The Quartus Design is an important part of the HPS Baseline System Example Design and consists of the following components:
 
 - Hard Processor System (HPS)
   - Dual core Arm Cortex-A76 processor
@@ -151,7 +151,7 @@ The Hardware Design is an important part of the HPS Baseline System Example Desi
 
 ![](images/agilex5_ghrd.png) 
 
-The GHRD allows hardware designers to access each peripheral in the FPGA portion of the SoC with System Console, through the JTAG master module. This signal-level access is independent of the driver readiness of each peripheral.
+The Quartus Design enables access to each peripheral in the FPGA portion of the SoC with System Console, through the JTAG master module. This signal-level access is independent of the driver readiness of each peripheral.
 
 <h4> MPU Address Maps</h4>
 
@@ -575,7 +575,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h5>Build Hardware Design</h5>
+<h5>Build Quartus Design</h5>
 
 
 
@@ -597,8 +597,6 @@ The following files are created:
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof`
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55_hps_debug.sof`
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
-
-
 
 
 <h5>Build Yocto Using Kas</h5>
@@ -703,7 +701,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h5>Build Hardware Design</h5>
+<h5>Build Quartus Design</h5>
 
 
 
@@ -723,8 +721,6 @@ The following files are created:
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof`
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55_hps_debug.sof`
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
-
-
 
 
 <h5>Build Yocto Using Kas</h5>
@@ -786,7 +782,7 @@ cd qspi_boot
 ```
 
 
-2\. Link to the files that are needed from building the hardware design, and yocto:
+2\. Link to the files that are needed from building the Quartus Design, and Yocto:
 
 ```bash
 ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof ghrd.sof
@@ -838,7 +834,7 @@ In the build instructions, we did not use the Kconfig options, only the default 
 When using `kas menu`, the initial settings from `kas.yml` are customized with the user selected options through Kconfig, and are saved to a file called `.config.yaml` which is then used for build purposes.
 
 
-1\. Build the hardware design as mentioned before. Note the same hardware design is used for both booting from SD card and booting from QSPI.
+1\. Build the Quartus Design as mentioned before. Note the same Quartus Design is used for both booting from SD card and booting from QSPI.
 
 2\. Copy the core.rbf file to where Kas needs it to be. Note that the filename when using Kconfig is different than when using the `kas.yml` alone (`top.core.rbf` vs `baseline_a55_hps_debug.core.rbf`)
 
@@ -912,7 +908,7 @@ See below the locations where different components selected above are located in
 In addition to using `kas build` to build Yocto based on the `kas.yml` and `kas menu` to build Yocto based on Kconfig options selected from the text GUI, there is also the `kas shell` option, which allows you to build Yocto interactively.
 
 
-1\. Build the hardware design as mentioned before. Note the same hardware design is used for both booting from SD card and booting from QSPI.
+1\. Build the Quartus Design as mentioned before. Note the same Quartus Design is used for both booting from SD card and booting from QSPI.
 
 2\. Copy the core.rbf file to where bitbake needs it to be. 
 
@@ -1016,7 +1012,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h5>Build Hardware Design</h5>
+<h5>Build Quartus Design</h5>
 
 
 ```bash
@@ -1347,7 +1343,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h5>Build Hardware Design</h5>
+<h5>Build Quartus Design</h5>
 
 
 
@@ -1367,8 +1363,6 @@ The following files are created:
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof`
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55_hps_debug.sof`
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
-
-
 
 
 <h5>Build Software Components</h5>

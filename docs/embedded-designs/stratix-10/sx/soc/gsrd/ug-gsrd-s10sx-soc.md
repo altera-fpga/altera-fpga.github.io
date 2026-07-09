@@ -2,11 +2,11 @@
 
 ## Overview
 
-The HPS Baseline System Example Design demonstrate basic HPS functionality on the Altera® Stratix® 10 SX SoC FPGA Development Kit (H-Tile).
+The HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design") demonstrates basic HPS functionality on the Altera® Stratix® 10 SX SoC FPGA Development Kit (H-Tile).
 
 The design is comprised of the following components:
 
-- Hardware Design
+- Quartus Design
 - HPS Software
   - Arm Trusted Firmware
   - U-Boot
@@ -53,7 +53,6 @@ The source code is also included on the SD card in the Linux rootfs path `/home/
 | u-boot-socfpga-v2026.01-src.tar.gz | Source code for U-Boot | 
 | arm-trusted-firmware-v2.14.0-src.tar.gz | Source code for Arm Trusted Firmware | 
 
-Before downloading the hardware design please read the agreement in the link [https://www.intel.com/content/www/us/en/programmable/downloads/software/license/lic-prog_lic.html](https://www.intel.com/content/www/us/en/programmable/downloads/software/license/lic-prog_lic.html)
 
 <h5>Binaries for QSPI Boot</h5>
 
@@ -86,9 +85,9 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
-### Hardware Design Overview
+### Quartus Design Overview
 
-The Hardware Design is an important part of the HPS Baseline System Example Design and consists of the following components:
+The Quartus Design is an important part of the HPS Baseline System Example Design and consists of the following components:
 
 - Hard Processor System (HPS)
   - Quad Arm Cortex-A53 MPCore Processor
@@ -120,7 +119,7 @@ The Hardware Design is an important part of the HPS Baseline System Example Desi
 
 ![](images/s10-ghrd.png)
 
-The Hardware Design allows hardware designers to access each peripheral in the FPGA portion of the SoC with System Console, through the JTAG master module. This signal-level access is independent of the driver readiness of each peripheral.
+The Quartus Design allows hardware designers to access each peripheral in the FPGA portion of the SoC with System Console, through the JTAG master module. This signal-level access is independent of the driver readiness of each peripheral.
 
 #### MPU Address Maps
 
@@ -954,7 +953,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-#### Build Hardware Design
+#### Build Quartus Design
 
 
 
@@ -980,7 +979,7 @@ The following files are created in $TOP_FOLDER/s10_soc_devkit_ghrd/output_files:
 #### Build Core RBF
 
 
-Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Hardware Design makefile:
+Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Quartus Design makefile:
 
 
 ```bash
@@ -1200,7 +1199,7 @@ This section presents how to boot the Stratix 10 SoC from QSPI, using the rebuil
 The same binaries as when booting from SD card can be used to boot from QSPI, because:
 
 - The QSPI resides on the DevKit board, and not on the HPS daughtercard, so there are no board changes:
- - The same Hardware Design configuration can be used
+ - The same Quartus Design configuration can be used
  - The same U-Boot devce tree can be used
  - The same Linux device tree can be used
 - U-Boot uses distroboot, which will try first booting from SD/MMC, then from QSPI, then from NAND, so the same U-Boot can be used.
@@ -1382,8 +1381,8 @@ This section presents how to boot the Stratix 10 SoC from NAND, including how to
 
 Build instructions are the same as for standard SD or QSPI boot. The U-Boot, ATF and Linux binaries are all the same. The only differences are:
 
-- Hardware Design is configured for the NAND HPS Daughtercard, then recompiled
-- The PR persona.rbf files are the ones compiled by the Hardware Design configured for NAND
+- Quartus Design is configured for the NAND HPS Daughtercard, then recompiled
+- The PR persona.rbf files are the ones compiled by the Quartus Design configured for NAND
 
 **Note**: As the NAND used on the devkit has a smaller size than the SD card (1GB vs 2GB) the rootfs is smaller, and less functionality is provided. The purpose of this section is just to show Linux booting.
 
@@ -1443,10 +1442,10 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-#### Build Hardware Design
+#### Build Quartus Design
 
 
-Build the Hardware Design targeting the NAND HPS daughtercard, by passing the correct parameter to the make utility:
+Build the Quartus Design targeting the NAND HPS daughtercard, by passing the correct parameter to the make utility:
 
 
 ```bash
@@ -1471,7 +1470,7 @@ The following files are created in $TOP_FOLDER/s10_soc_devkit_ghrd/output_files:
 #### Build Core RBF
 
 
-Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Hardware Design makefile:
+Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Quartus Design makefile:
 
 
 ```bash
@@ -1827,7 +1826,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-#### Build Hardware Design
+#### Build Quartus Design
 
 
 
@@ -1853,7 +1852,7 @@ The following files are created in $TOP_FOLDER/s10_soc_devkit_ghrd/output_files:
 #### Build Core RBF
 
 
-Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Hardware Design makefile:
+Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Quartus Design makefile:
 
 
 ```bash

@@ -2,11 +2,11 @@
 
 ## Overview
 
-The HPS Baseline System Example Design demonstrate basic HPS functionality on the Altera® Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tile and E-Tile)
+The HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design") demonstrates basic HPS functionality on the Altera® Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tile and E-Tile)
 
 The design is comprised of the following components:
 
-- Hardware Design
+- Quartus Design
 - HPS Software
   - Arm Trusted Firmware
   - U-Boot
@@ -63,8 +63,6 @@ The source code is also included on the SD card in the Linux rootfs path `/home/
 | u-boot-socfpga-v2026.01-src.tar.gz | Source code for U-Boot |
 | arm-trusted-firmware-v2.14.0-src.tar.gz | Source code for Arm Trusted Firmware |
 
-Before downloading the hardware design please read the agreement in the link [https://www.intel.com/content/www/us/en/programmable/downloads/software/license/lic-prog_lic.html](https://www.intel.com/content/www/us/en/programmable/downloads/software/license/lic-prog_lic.html)
-
 <h5>QSPI Boot</h5>
 
 The release files are accessible at [https://releases.rocketboards.org/2026.04/qspi/agilex7_dk_si_agf014eb_qspi/](https://releases.rocketboards.org/2026.04/qspi/agilex7_dk_si_agf014eb_qspi/).
@@ -95,9 +93,9 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
-### Hardware Design Overview
+### Quartus Design Overview
 
-The Hardware Design is an important part of the System Example Design and consists of the following components:
+The Quartus Design is an important part of the System Example Design and consists of the following components:
 
 - Hard Processor System (HPS)
   - Quad Arm Cortex-A53 MPCore Processor
@@ -124,7 +122,7 @@ The Hardware Design is an important part of the System Example Design and consis
 
 ![](images/s10-ghrd.png)
 
-The Hardware Design allows hardware designers to access each peripheral in the FPGA portion of the SoC with System Console, through the JTAG master module. This signal-level access is independent of the driver readiness of each peripheral.
+The Quartus Design allows hardware designers to access each peripheral in the FPGA portion of the SoC with System Console, through the JTAG master module. This signal-level access is independent of the driver readiness of each peripheral.
 
 #### MPU Address Maps
 
@@ -854,9 +852,9 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd_agfb014r24b2e2v.hps.jic"
 
 Partial reconfiguration (PR) allows you to reconfigure a portion of the FPGA dynamically, while the rest of the FPGA design continues to function.  This section presents how to run the PR scenarios included with the System Example Design.
 
-#### Hardware Design
+#### Quartus Design
 
-The updated Hardware Design contains the following components which enable PR:
+The updated Quartus Design contains the following components which enable PR:
 
 - A PR region was created in the FPGA fabric, with the following associated IP
   - PR Freeze Controller - to help control the PR
@@ -1039,10 +1037,10 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-#### Build Hardware Design
+#### Build Quartus Design
 
 
-Use the following commands to build the hardware design:
+Use the following commands to build the Quartus Design:
 
 
 ```bash
@@ -1066,7 +1064,7 @@ The following files are created:
 #### Build Core RBF
 
 
-Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Hardware Design makefile:
+Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Quartus Design makefile:
 
 
 ```bash
@@ -1286,7 +1284,7 @@ This section presents how to boot from QSPI.
 Much of the same binaries as when booting from SD card can be used to boot from QSPI, because:
 
 - The QSPI resides on the DevKit board, and not on the HPS daughtercard, so there are no board changes:
- - The same Hardware Design configuration can be used
+ - The same Quartus Design configuration can be used
  - The same U-Boot devce tree can be used
  - The same Linux device tree can be used
 - U-Boot uses distroboot, which will try first booting from SD/MMC, then from QSPI, then from NAND, so the same U-Boot can be used.
@@ -1462,7 +1460,7 @@ The **Configuration Device** tab will now look something like this:
 
 This section presents how to boot from NAND, including how to build all binaries.
 
-Build instructions are the same as for standard SD or QSPI boot. The U-Boot, ATF and Linux binaries are all the same. The only difference is that the Hardware Design is configured for the NAND HPS Daughtercard, then recompiled.
+Build instructions are the same as for standard SD or QSPI boot. The U-Boot, ATF and Linux binaries are all the same. The only difference is that the Quartus Design is configured for the NAND HPS Daughtercard, then recompiled.
 
 **Note**: As the NAND used on the devkit has a smaller size than the SD card (1GB vs 2GB) the rootfs is smaller, and less functionality is provided. The purpose of this section is just to show Linux booting.
 
@@ -1520,7 +1518,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-#### Build Hardware Design
+#### Build Quartus Design
 
 
 
@@ -1552,7 +1550,7 @@ The following files are created:
 
 
 
-Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Hardware Design makefile:
+Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Quartus Design makefile:
 
 
 
@@ -1934,7 +1932,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-#### Build Hardware Design
+#### Build Quartus Design
 
 
 Use the following commands to build the hardware design:
@@ -1963,7 +1961,7 @@ agf014eb_si_devkit_oobe_baseline.sof
 #### Build Core RBF
 
 
-Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Hardware Design makefile:
+Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Quartus Design makefile:
 
 
 ```bash
@@ -2179,7 +2177,7 @@ Partial reconfiguration (PR) allows you to reconfigure a portion of the FPGA dyn
 
 This section shows how to build everything needed to demonstrate the PR scenarios. Note that most of the binaries are the same as for the other boot scenarios (SD card, QSPI, NAND) just the following files are changed:
 
-- New Hardware Design variant, creating different configuration bitstreams
+- New Quartus Design variant, creating different configuration bitstreams
 - Updated core.rbf, persona0.rbf, persona1.rbf compared to prebuilt default files used by the Yocto recipes
 
 #### Set up Environment
@@ -2225,11 +2223,11 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-#### Build Hardware Design
+#### Build Quartus Design
 
 
 
-Use the following commands to build the hardware design:
+Use the following commands to build the Quartus Design:
 
 
 
@@ -2259,7 +2257,7 @@ The following files are created:
 
 
 
-Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Hardware Design makefile:
+Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Quartus Design makefile:
 
 
 

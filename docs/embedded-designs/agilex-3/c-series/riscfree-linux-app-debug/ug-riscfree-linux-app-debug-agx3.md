@@ -14,9 +14,9 @@ The following diagram shows the overall architecture for debugging a Linux appli
 
 The components are:
 
-* Development Board with Linux running on it
-* Serial terminal on Host PC, connected over USB, showing the Linux Console
-* Ashling RiscFree running on Host PC, communicating Linux over the network
+* Development Board with Linux running on it.
+* Serial terminal on Host PC, connected over USB, showing the Linux Console.
+* Ashling RiscFree running on Host PC, communicating Linux over the network.
 
 > *Note*: For debugging Linux applications, we do not use a JTAG connection. Instead the debugger connects to the GDB server running on the board, over Ethernet. 
 > *Note*: For the Linux terminal, SSH could also be used instead of serial over USB, provided the IP address of the board is identified first.

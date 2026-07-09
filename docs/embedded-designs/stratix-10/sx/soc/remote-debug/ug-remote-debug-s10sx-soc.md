@@ -19,7 +19,7 @@ Another alternative approach is also available, to interface the SLD to the outs
 
 ![](images/option3.png)
 
-This page presents an example on how enable this remote debug feature on top of the [GSRD](https://www.rocketboards.org/foswiki/Documentation/Stratix10SoCGSRDHTile).
+This page presents an example on how enable this remote debug feature on top of the HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design").
 
 ## Architecture
 
@@ -101,12 +101,14 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-### Build Hardware Design
+### Build Quartus Design
 
 
-The hardware design is based on the GSRD, with the JOP component added.
+The Quartus design is derived from the HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design"), with the JOP component added and connected to clock, reset and the LWH2F bridge
 
-1\. Generate the hardware design:
+The following instructions are used:
+
+1\. Generate the Quartus design:
 
 
 ```bash
@@ -355,7 +357,7 @@ The following file is created:
 
 ### Run Example
 
-The instructions from this section present how to run the remote debug example. Refer to the [GSRD](https://www.rocketboards.org/foswiki/Documentation/Stratix10SoCGSRDHTile) for more detailed instructions on how to set up the board, serial port, and write the binaries.
+The instructions from this section present how to run the remote debug example. Refer to the HPS Baseline System Example Design for more detailed instructions on how to set up the board, serial port, and write the binaries.
 
 1\. Write the QSPI image `$TOP_FOLDER/ghrd_1sx280hu2f50e1vgas.jic` to flash.
 

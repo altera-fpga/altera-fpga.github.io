@@ -1,6 +1,6 @@
 # **Device Feature List Driver**
 
-Last updated: **July 01, 2026** 
+Last updated: **July 09, 2026** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/fpga/dfl.c?h=master)
 

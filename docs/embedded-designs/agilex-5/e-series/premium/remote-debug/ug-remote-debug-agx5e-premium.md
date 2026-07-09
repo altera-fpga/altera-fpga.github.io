@@ -18,7 +18,7 @@ Another alternative approach is also available, to interface the SLD to the outs
 
 ![](images/option3.png)
 
-This page presents an example on how enable this remote debug feature on top of the GSRD.
+This page presents an example on how enable this remote debug feature on top of the HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design").
 
 ## Architecture
 
@@ -98,10 +98,14 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-### Build Hardware Design
+### Build Quartus Design
 
 
-1\. Generate the hardware design:
+The Quartus design is derived from the HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design"), with the JOP component added and connected to clock, reset and the LWH2F bridge
+
+The following instructions are used:
+
+1\. Generate the Quartus design:
 
 
 ```bash
@@ -307,7 +311,7 @@ The following file is created:
 
 ### Run Example
 
-The instructions from this section present how to run the remote debug example. Refer to the [GSRD](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/) for more detailed instructions on how to set up the board, serial port, and write the binaries.
+The instructions from this section present how to run the remote debug example. Refer to the HPS Baseline System Example Design for more detailed instructions on how to set up the board, serial port, and write the binaries.
 
 1\. Write the QSPI image `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic` to flash.
 

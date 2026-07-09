@@ -2,11 +2,11 @@
 
 ## Overview 
 
-The HPS Baseline System Example Design demonstrate basic HPS functionality on the Agilex™ 7 FPGA F-Series Development Kit (2x F-Tile)
+The HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design") demonstrates basic HPS functionality on the Agilex™ 7 FPGA F-Series Development Kit (2x F-Tile)
 
 The design is comprised of the following components:
 
-- Hardware Design
+- Quartus Design
 - HPS Software
   - Arm Trusted Firmware
   - U-Boot
@@ -49,8 +49,6 @@ The source code is also included on the SD card in the Linux rootfs path `/home/
 | linux-socfpga-v6.18.2-lts-src.tar.gz | Source code for Linux kernel | 
 | u-boot-socfpga-v2026.01-src.tar.gz | Source code for U-Boot | 
 | arm-trusted-firmware-v2.14.0-src.tar.gz | Source code for Arm Trusted Firmware |  
-
-Before downloading the hardware design please read the agreement in the link [https://www.intel.com/content/www/us/en/programmable/downloads/software/license/lic-prog_lic.html](https://www.intel.com/content/www/us/en/programmable/downloads/software/license/lic-prog_lic.html)
 
 ### Component Versions
 
@@ -422,10 +420,10 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-### Build Hardware Design 
+### Build Quartus Design 
 
 
-Use the following commands to build the hardware design: 
+Use the following commands to build the Quartus Design: 
 
 
 ```bash 
@@ -450,7 +448,7 @@ The following files are created:
 ### Build Core RBF 
 
 
-Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Hardware Design makefile: 
+Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Quartus Design makefile: 
 
 
 ```bash 

@@ -2,11 +2,11 @@
 
 ## Overview 
 
-The HPS Baseline System Example Design demonstrate basic HPS functionality on the Agilex™ 7 FPGA F-Series Development Kit (2x F-Tile)
+The HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design") demonstrates basic HPS functionality on the Agilex™ 7 FPGA F-Series Development Kit (2x F-Tile)
 
 The design is comprised of the following components:
 
-- Hardware Design
+- Quartus Design
   - LEDs connected to GPIO soft IP modules 
   - DIP switches and push buttons connected to GPIO soft IP modules 
 - HPS Software
@@ -575,10 +575,10 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-### Build Hardware Design 
+### Build Quartus Design 
 
 
-Use the following commands to build the hardware design: 
+Use the following commands to build the Quartus Design: 
 
 
 ```bash 
@@ -603,7 +603,7 @@ The following files are created:
 ### Build Core RBF 
 
 
-Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Hardware Design makefile: 
+Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Quartus Design makefile: 
 
 
 ```bash 
