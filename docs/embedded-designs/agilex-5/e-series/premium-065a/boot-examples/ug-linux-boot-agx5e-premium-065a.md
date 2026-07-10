@@ -4,9 +4,7 @@
 
 ##  Introduction
 
-### Overview
-
-This page contains instructions on how to build Linux systems from separate components: Hardware Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the Golden System Reference Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
+This page contains instructions on how to build Linux systems from separate components: Quartus Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the HPS Baseline System Example Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
 
 The key differences versus the HPS Baseline System Example Design are:
 
@@ -124,7 +122,8 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h4>Build Hardware Design</h4>
+<h4>Build Quartus Design</h4>
+
 
 
 
@@ -873,7 +872,8 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h4>Build Hardware Design</h4>
+<h4>Build Quartus Design</h4>
+
 
 
 
@@ -1433,7 +1433,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h4>Build Hardware Design</h4>
+<h4>Build Quartus Design</h4>
 
 
 
@@ -1932,7 +1932,8 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h4>Build Hardware Design</h4>
+<h4>Build Quartus Design</h4>
+
 
 
 
@@ -2271,7 +2272,7 @@ Starting from 24.3.1 release, the Agilex™ 5 device is provided with the suppor
 
    ![](images/ATF_Linux_bootflow.svg) 
 
-In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and hardware design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (Secure Monitor) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI, SDCard, NAND or eMMC). 
+In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and Quartus design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (Secure Monitor) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI, SDCard, NAND or eMMC). 
 
 When creating the flash image, it's necessary to provide the location in where ATF expects to find the FIP image (fip.bin). This is hardcoded in the ATF code (**plat/intel/soc/common/include/platform_def.h**) for each one of the flash devices in which this boot flow is supported as indicated in the next table:
 
@@ -2288,7 +2289,7 @@ The following sections provide instructions about how to generate the binaries t
 
 ### Boot from SD Card
 
-Here we provide all the steps needed to create the binaries that allow you to exercise the ATF to Linux boot flow from a SD Card device. This includes building the hardware design, ATF (BL2, BL31), Linux file system, and Linux. These are some notes about the build instructions:
+Here we provide all the steps needed to create the binaries that allow you to exercise the ATF to Linux boot flow from a SD Card device. This includes building the Quartus design, ATF (BL2, BL31), Linux file system, and Linux. These are some notes about the build instructions:
 
 * Exercise the HPS boot first flow.
 * When building ATF, we indicate the device used to boot from. We also indicate the SDRAM memory locations where the Linux kernel image and device tree will be loaded and launched from. In this boot flow, Linux is referred to as BL33.
@@ -2334,7 +2335,8 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h4>Build Hardware Design</h4>
+<h4>Build Quartus Design</h4>
+
 
 
 
@@ -2647,7 +2649,7 @@ This section provides instructions to build binaries to exercise ATF to Linux di
 **NOTE:** This section depends on some steps from the [ATF to Linux from SD Card](#atf-to-linux-from-sd-card) section. So, to build the binaries in this section, the instructions in the following sections need to be executed earlier:
 
 * [Toolchain Setup (ATF-To-Linux)](#toolchain-setup-atf-to-linux)
-* [Build Hardware Design SD_QSPI (ATF-To-Linux)](#build-hardware-design-sd_qspi-atf-to-linux)
+* [Build Quartus Design SD_QSPI (ATF-To-Linux)](#build-quartus-design-sd_qspi-atf-to-linux)
 * [Build Linux File System  (ATF-To-Linux)](#build-linux-file-system-atf-to-linux)
 
 ATF requires to be rebuilt to enable booting from QSPI by setting **SOCFPGA_BOOT_SOURCE_QSPI** to '1'. Linux also need to be rebuild since this time we are including a JFFS2 file system and since booting from QSPI we need to change some parameters in the device tree. The FIP image is created in the same way but this time the FIP image is put into the QSPI image using a specific .pfg file. In this .pfg file, we are indicating that the fip file will be located at **0x3C00000** location in the QSPI since this is also indicated by the **PLAT_QSPI_DATA_BASE** definition in the ATF.

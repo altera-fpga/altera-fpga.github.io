@@ -3,11 +3,9 @@
 
 ##  Introduction
 
-### Overview
+This page contains instructions on how to build Linux systems from separate components: Quartus Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the HPS Baseline System Example Design (formerly called GSRD), where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
 
-This page contains instructions on how to build Linux systems from separate components: Hardware Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the Golden System Reference Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
-
-The key differences versus the GSRD are:
+The key differences versus the HPS Baseline System Example Design are:
 
  * Fabric is configured from U-Boot directly with the rbf file, with `fpga load` command, instead of using the `bootm` command with the core.rbf part of the kernel.itb file
  * Single image boot is disabled in U-Boot, and it boots directly with the slected boot source, not trying them all
@@ -19,7 +17,7 @@ The following scenarios are covered:
 *  Boot from QSPI
 
 
-The instructions on this page are based on the [GSRD](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/).
+The instructions on this page are based on the [HPS Baseline System Example Design: Agilex™ 3 FPGA and SoC C-Series](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/).
 
 ### Prerequisites
 
@@ -93,19 +91,6 @@ export TOP_FOLDER=`pwd`
 ```
 
 
-Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
-
-
-```bash
-cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
-arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
-export ARCH=arm64
-export CROSS_COMPILE=aarch64-none-linux-gnu-
-```
 
 Enable Quartus tools to be called from command line:
 
@@ -119,7 +104,8 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h4>Build Hardware Design</h4>
+<h4>Build Quartus Design</h4>
+
 
 
 
@@ -445,7 +431,7 @@ This section demonstrates how to build Linux system from separate components, wh
 **NOTE:**  This section assumes that the [Boot from SD Card](#boot-from-sd-card) section has been already built and the environment setup in that section is still available.
 
 This section presents how to build the binaries and boot from QSPI with the HPS Enablement Board.
-While the example is based on the GSRD, it contains the following differences:
+While the example is based on the HPS Baseline System Example Design, it contains the following differences:
 
 * U-Boot tries to boot only from QSPI flash, does not try SD card
 * U-Boot does not use a script to boot, instead it used the `BOOTCMD` environment variable directly
@@ -803,7 +789,7 @@ Starting from 25.3 release, the 3 device is provided with the support of direct 
 
    ![](images/ATF_Linux_bootflow.svg) 
 
-In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and hardware design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (Secure Monitor) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI, SDCard, NAND or eMMC). 
+In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and Quartus design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (Secure Monitor) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI, SDCard, NAND or eMMC). 
 
 When creating the flash image, it's necessary to provide the location in where ATF expects to find the FIP image (fip.bin). This is hardcoded in the ATF code (**plat/intel/soc/common/include/platform_def.h**) for each one of the flash devices in which this boot flow is supported as indicated in the next table:
 
@@ -819,7 +805,7 @@ The following sections provide instructions about how to generate the binaries t
 
 ### Boot from SD Card
 
-Here we provide all the steps needed to create the binaries that allow you to exercise the ATF to Linux boot flow from a SD Card device. This includes building the hardware design, ATF (BL2, BL31), Linux file system, and Linux. These are some notes about the build instructions:
+Here we provide all the steps needed to create the binaries that allow you to exercise the ATF to Linux boot flow from a SD Card device. This includes building the Quartus design, ATF (BL2, BL31), Linux file system, and Linux. These are some notes about the build instructions:
 
 * Exercise the HPS boot first flow.
 * When building ATF, we indicate the device used to boot from. We also indicate the SDRAM memory locations where the Linux kernel image and device tree will be loaded and launched from. In this boot flow, Linux is referred to as BL33.
@@ -840,19 +826,6 @@ mkdir agilex3_boot.atf2linux_sd_qspi && cd agilex3_boot.atf2linux_sd_qspi
 export TOP_FOLDER=`pwd`
 ```
 
-Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
-
-
-```bash
-cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
-arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
-export ARCH=arm64
-export CROSS_COMPILE=aarch64-none-linux-gnu-
-```
 
 Enable Quartus tools to be called from command line:
 
@@ -865,7 +838,8 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h4>Build Hardware Design</h4>
+<h4>Build Quartus Design</h4>
+
 
 
 
@@ -1152,7 +1126,7 @@ This section provides instructions to build binaries to exercise ATF to Linux di
 **NOTE:** This section depends on some steps from the [ATF to Linux from SD Card](#atf-to-linux-from-sd-card) section. So, to build the binaries in this section, you need to perform the instructions in the following sections before:
 
 * [Toolchain Setup (ATF-To-Linux)](#toolchain-setup-atf-to-linux)
-* [Build Hardware Design SD_QSPI (ATF-To-Linux)](#build-hardware-design-sd_qspi-atf-to-linux)
+* [Build Quartus Design SD_QSPI (ATF-To-Linux)](#build-quartus-design-sd_qspi-atf-to-linux)
 * [Build Linux File System  (ATF-To-Linux)](#build-linux-file-system-atf-to-linux)
 
 ATF requires to be rebuilt to enable booting from QSPI by setting **SOCFPGA_BOOT_SOURCE_QSPI** to '1'. Linux also need to be rebuild since this time we are including a JFFS2 file system and since booting from QSPI, we need to change some parameters in the device tree. The FIP image is created in the same way but this time the FIP image is put into the QSPI image using a specific .pfg file. In this .pfg file, we are indicating that the fip file will be located at **0x00250000** location in the QSPI since this is also indicated by the **PLAT_QSPI_DATA_BASE** definition in the ATF.
@@ -1409,209 +1383,6 @@ SOCFPGA_AGILEX # fpga load 0 ${loadaddr} ${filesize}
 …FPGA reconfiguration OK!
 ```
 
-## Reconfiguring Core Fabric from Linux
-
-Reconfiguration of FPGA Core Fabric can be implemented by using the Linux device tree overlay mechanism, it is a powerful and flexible mechanism to enable the customization of the device tree during in run-time.
-
-**Note**:
-
-* This feature is supported with Linux* kernel v4.9 LTSI and onwards. 
-* The Linux* kernel for Stratix® and Agilex® SoC FPGA devices allow you to enable the programming of FPGA from within the OS.
-* Refer to *Build Linux* for the prerequisite work.
-
-To implement the FPGA reconfiguration at kernel level, the following changes must be made to the kernel source code:
-
-1\. Create a new overlay file, use filename "overlay.dts" as example, and add the overlay information of the RBF file:
-
-```bash
-cd $TOP_FOLDER
-vi linux-socfpga/arch/arm64/boot/dts/intel/overlay.dts
-
-# Add the DTS file content:
-==============================================================
-/dts-v1/;
-/plugin/;
-/ {
-	fragment@0 {
-		target-path = "/soc/base_fpga_region";
-		#address-cells = <2>;
-		#size-cells = <2>;
-		__overlay__ {
-			#address-cells = <2>;
-			#size-cells = <2>;
-
-			firmware-name = "overlay.rbf";
-			config-complete-timeout-us = <30000000>;
-		};
-	};
-};
-==============================================================
-```
-
-The explanation of the keywords:
-
-| Keyword | Meaning |
-| :-- | :-- |
-| fragment@0 | Node Name of the Overlay |
-| target-path | Refers to base_fpga_region located in arch/arm64/boot/dts/intel/socfpga_agilex.dtsi. This will invoke the driver: drivers/fpga/of-fpga-region.c |
-| fragment@0 <br>#address-cells<br>#size-cells | This specifies the number of cells (32-bit size) to be used for the child's address map. For overlays, this value must be set to avoid "default_addr_size" errors |
-| \_\_overlay__ <br>#address-cells<br>#size-cells | These fields should match those in arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |
-| firmware-name = "overlay.rbf" | The fabric's file name |
-|||
-
-
-2\. Add the newly created overlay file **overlay.dtb** into the Makefile:
-
-```bash
-cd $TOP_FOLDER
-vi linux-socfpga/arch/arm64/boot/dts/intel/Makefile
-
-# Append to existing Makefile content, continue with ONE Device Tree Blob according to your device:
-==============================================================
-# Stratix® 10 SoC FPGA device:
-dtb-$(CONFIG_ARCH_AGILEX) += socfpga_stratix10_socdk.dtb
-dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += overlay.dtb
-
-# Agilex® 7 SoC FPGA device:
-dtb-$(CONFIG_ARCH_AGILEX) += socfpga_agilex_socdk.dtb
-dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += overlay.dtb
-
-# Agilex® 5 SoC FPGA device:
-dtb-$(CONFIG_ARCH_AGILEX) += socfpga_agilex5_socdk.dtb
-dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += overlay.dtb
-
-# Agilex® 3 SoC FPGA device:
-dtb-$(CONFIG_ARCH_AGILEX) += socfpga_agilex3_socdk.dtb
-dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += overlay.dtb
-
-==============================================================
-```
-
-3\. The commands to configure and build the Linux kernel are:
-
-```bash
-cd $TOP_FOLDER 
-cd linux-socfpga
-make clean && make mrproper
-make defconfig
-# enable device tree overlays and fpga bridges
-./scripts/config --set-val CONFIG_INTEL_STRATIX10_SERVICE y
-./scripts/config --set-val CONFIG_FPGA y
-./scripts/config --set-val CONFIG_FPGA_BRIDGE y
-./scripts/config --set-val CONFIG_FPGA_MGR_STRATIX10_SOC y
-./scripts/config --set-val CONFIG_FPGA_REGION y
-./scripts/config --set-val CONFIG_OF_FPGA_REGION y
-./scripts/config --set-val CONFIG_FW_LOADER y
-./scripts/config --set-val CONFIG_FW_LOADER_PAGED_BUF y
-./scripts/config --set-val CONFIG_FW_LOADER_SYSFS y
-./scripts/config --set-val CONFIG_FW_LOADER_USER_HELPER y
-
-# Build the Linux kernel image, continue with ONE command according to your device:
-# Stratix® 10 SoC FPGA device:
-make -j 48 Image && make intel/socfpga_stratix10_socdk.dtb && make intel/overlay.dtb
-
-# Agilex® 7 SoC FPGA device:
-make -j 48 Image && make intel/socfpga_agilex_socdk.dtb && make intel/overlay.dtb
-
-# Agilex® 5 SoC FPGA device:
-make -j 48 Image && make intel/socfpga_agilex5_socdk.dtb && make intel/overlay.dtb
-
-# Agilex® 3 SoC FPGA device:
-make -j 48 Image && make intel/socfpga_agilex3_socdk.dtb && make intel/overlay.dtb
-```
-
-When you build the Linux* kernel for this feature, two <*.dtb> files are generated under $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/:
-
-* socfpga_*DEVICE*_socdk.dtb --- The default *.dtb file used with the kernel image to boot the system.
-* overlay.dtb --- The *.dtb file used to trigger FPGA configuration in OS.
-
-
-4\. In your hardware design compilation output folder, rename the FPGA configuration file (.rbf) to "overlay.rbf". Then, copy both the **overlay.rbf** and the **overlay.dtb** files to the Root File System:
-
-```bash
-$ mkdir -p $TOP_FOLDER/sd_card/rootfs/lib/firmware
-
-$ cd $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/
-$ cp overlay.dtb $TOP_FOLDER/sd_card/rootfs/lib/firmware/
-
-$ cd [GHRD_OUTPUT_DIR i.e. ghrd/output_files/]
-$ mv <DEVICE_GHRD>.core.rbf overlay.rbf
-# e.g. mv ghrd_a5ed065bb32ae5s.core.rbf overlay.rbf
-$ cp overlay.rbf $TOP_FOLDER/sd_card/rootfs/lib/firmware/
-
-# To create the SD Card Image:
-cd $TOP_FOLDER/sd_card/
-
-# Get the make_sdimage_p3.py
-wget https://releases.rocketboards.org/release/2020.11/gsrd/tools/make_sdimage_p3.py
-
-# remove mkfs.fat parameter which has some issues on Ubuntu 22.04
-sed -i 's/\"\-F 32\",//g' make_sdimage_p3.py
-chmod +x make_sdimage_p3.py
-
-sudo python3 make_sdimage_p3.py -f \
--P fatfs/*,num=1,format=fat32,size=512M \
--P rootfs/*,num=2,format=ext3,size=512M \
--s 1024M \
--n sdcard.img
-```
-
-**Note**: Refer to *Create SD Card Image* for the full instructions.
-
-
-5\. The changes above allow you to program the FPGA in Linux* by applying an overlay on the system. Next, you may boot your device to Linux.
-
-```bash
-# In the U-boot Shell, run the following commands to load the kernel image and boot to Linux. 
-# This step is not required if your device boots to Linux automatically.
-Hit any key to stop autoboot:  0 /// Hit any key at this point to enter the U-boot Shell ///
-
-# Stratix® 10 SoC FPGA device:
-mmc rescan
-fatload mmc 0:1 01000000 Image
-fatload mmc 0:1 08000000 socfpga_stratix10_socdk.dtb
-setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;
-booti 0x01000000 - 0x08000000
-
-# Agilex® 7 SoC FPGA device:
-mmc rescan
-fatload mmc 0:1 02000000 Image
-fatload mmc 0:1 06000000 socfpga_agilex_socdk.dtb
-setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;
-booti 0x02000000 - 0x06000000
-
-# Agilex® 5 SoC FPGA device:
-mmc rescan
-fatload mmc 0:1 82000000 Image
-fatload mmc 0:1 86000000 socfpga_agilex5_socdk.dtb
-setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;
-booti 0x82000000 - 0x86000000
-
-# Agilex® 3 SoC FPGA device:
-mmc rescan
-fatload mmc 0:1 82000000 Image
-fatload mmc 0:1 86000000 socfpga_agilex3_socdk.dtb
-setenv bootargs console=ttyS0,115200 root=${mmcroot} rw rootwait;
-booti 0x82000000 - 0x86000000
-
-```
-
-6\. After you boot to Linux and log in with root privilege, use the following command to begin FPGA configuration:
-
-```bash
-mkdir /sys/kernel/config/device-tree/overlays/0
-cd /lib/firmware/
-echo overlay.dtb > /sys/kernel/config/device-tree/overlays/0/path
-```
-
-7\. If you want to re-apply the overlay, you have to first remove the existing overlay, and then re-run the previous steps:
-
-```bash
-rmdir /sys/kernel/config/device-tree/overlays/0
-mkdir /sys/kernel/config/device-tree/overlays/0
-cd /lib/firmware/
-echo overlay.dtb >/sys/kernel/config/device-tree/overlays/0/path
-```
 
 ## Notices & Disclaimers
 

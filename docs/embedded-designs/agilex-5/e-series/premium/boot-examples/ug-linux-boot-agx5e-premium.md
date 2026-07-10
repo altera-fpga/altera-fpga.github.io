@@ -2,9 +2,7 @@
 
 ##  Introduction
 
-### Overview
-
-This page contains instructions on how to build Linux systems from separate components: Hardware Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the Golden System Reference Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
+This page contains instructions on how to build Linux systems from separate components: Quartus Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the HPS Baseline System Example Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
 
 The key differences versus the HPS Baseline System Example Design are:
 
@@ -122,7 +120,8 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h4>Build Hardware Design</h4>
+<h4>Build Quartus Design</h4>
+
 
 
 
@@ -147,7 +146,7 @@ The following files are created:
 
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/output_files/baseline_a55_hps_debug.sof`
 
-**NOTE:** In this example we build the hardware design using **a5ed065es-premium-devkit-oobe-baseline-a55.zip** which uses one of the **a55** cores (core 0) as the **boot core** . You can also start with the **a5ed065es-premium-devkit-oobe-baseline-a76.zip** to use one of the **a76** cores (core 2) as the **boot core**. In that case, the **make baseline_a76-build** command would be required to build the hardware design producing the **baseline_a76.sof** file. 
+**NOTE:** In this example we build the Quartus design using **a5ed065es-premium-devkit-oobe-baseline-a55.zip** which uses one of the **a55** cores (core 0) as the **boot core** . You can also start with the **a5ed065es-premium-devkit-oobe-baseline-a76.zip** to use one of the **a76** cores (core 2) as the **boot core**. In that case, the **make baseline_a76-build** command would be required to build the Quartus design producing the **baseline_a76.sof** file. 
 
 
 
@@ -185,6 +184,11 @@ sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-
 sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&mmc;/g' arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi
 # disable NAND in the device tree
 sed -i '/&nand {/!b;n;c\\tstatus = "disabled";' arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi
+# Prevent booting in the default mode SDR104 which is not supported by ES device
+sed -i '/sd-uhs-sdr104/d'  arch/arm/dts/socfpga_agilex5_socdk.dts
+sed -i 's/sdhci-caps-mask.*/sdhci-caps-mask = <0x00002007 0x0000ff00>;/g' arch/arm/dts/socfpga_agilex5_socdk.dts
+sed -i '/sdhci-caps-mask/a \\tno-1-8-v;' arch/arm/dts/socfpga_agilex5_socdk.dts
+
 # link to atf
 ln -s ../arm-trusted-firmware/build/agilex5/release/bl31.bin 
 # create configuration custom file. 
@@ -289,6 +293,11 @@ cd $TOP_FOLDER
 rm -rf linux-socfpga
 git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
+# Prevent booting in the default mode SDR104 which is not supported by ES device
+sed -i '/sd-uhs-sdr104/d' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+sed -i 's/sdhci-caps-mask.*/sdhci-caps-mask = <0x00002007 0x0000ff00>;/g' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+sed -i '/sdhci-caps-mask/a \\tno-1-8-v;' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+
 cat << EOF > config-fragment-agilex5
 # Enable Ethernet connectivity so we can get an IP address
 CONFIG_MARVELL_PHY=y
@@ -869,7 +878,8 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h4>Build Hardware Design</h4>
+<h4>Build Quartus Design</h4>
+
 
 
 
@@ -1421,7 +1431,8 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h4>Build Hardware Design</h4>
+<h4>Build Quartus Design</h4>
+
 
 
 
@@ -1760,7 +1771,7 @@ Starting from 24.3.1 release, the Agilex™ 5 device is provided with the suppor
 
    ![](images/ATF_Linux_bootflow.svg) 
 
-In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and hardware design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (Secure Monitor) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI, SDCard, NAND or eMMC). 
+In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and Quartus design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (Secure Monitor) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI, SDCard, NAND or eMMC). 
 
 When creating the flash image, it's necessary to provide the location in where ATF expects to find the FIP image (fip.bin). This is hardcoded in the ATF code (**plat/intel/soc/common/include/platform_def.h**) for each one of the flash devices in which this boot flow is supported as indicated in the next table:
 
@@ -1776,7 +1787,7 @@ The following sections provide instructions about how to generate the binaries t
 
 ### Boot from SD Card
 
-Here we provide all the steps needed to create the binaries that allow you to exercise the ATF to Linux boot flow from a SD Card device. This includes building the hardware design, ATF (BL2, BL31), Linux file system, and Linux. These are some notes about the build instructions:
+Here we provide all the steps needed to create the binaries that allow you to exercise the ATF to Linux boot flow from a SD Card device. This includes building the Quartus design, ATF (BL2, BL31), Linux file system, and Linux. These are some notes about the build instructions:
 
 * Exercise the HPS boot first flow.
 * When building ATF, we indicate the device used to boot from. We also indicate the SDRAM memory locations where the Linux kernel image and device tree will be loaded and launched from. In this boot flow, Linux is referred to as BL33.
@@ -1822,7 +1833,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h4>Build Hardware Design</h4>
+<h4>Build Quartus Design</h4>
 
 
 
@@ -1846,7 +1857,7 @@ The following file is created:
 
 * $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi/output_files/baseline_a55.sof
 
-**NOTE:** In this example we build the hardware design using **a5ed065es-premium-devkit-oobe-baseline-a55.zip** which uses one of the **a55** cores (core 0) as the **boot core** . You can also start with the **a5ed065es-premium-devkit-oobe-baseline-a76.zip** to use one of the **a76** cores (core 2) as the **boot core**. In that case, the **make baseline_a76-build** command would be required to build the hardware design producing the **baseline_a76.sof** file. 
+**NOTE:** In this example we build the Quartus design using **a5ed065es-premium-devkit-oobe-baseline-a55.zip** which uses one of the **a55** cores (core 0) as the **boot core** . You can also start with the **a5ed065es-premium-devkit-oobe-baseline-a76.zip** to use one of the **a76** cores (core 2) as the **boot core**. In that case, the **make baseline_a76-build** command would be required to build the Quartus design producing the **baseline_a76.sof** file. 
 
 <h4>Build Arm Trusted Firmware</h4>
 
@@ -2140,7 +2151,7 @@ This section provides instructions to build binaries to exercise ATF to Linux di
 **NOTE:** This section depends on some steps from the [ATF to Linux from SD Card](#atf-to-linux-from-sd-card) section. So, to build the binaries in this section, the instructions in the following sections need to be executed earlier:
 
 * Toolchain Setup  in [Boot from SD Card in ATF2Linux flow](#boot-from-sd-card_2)
-* Build Hardware Design in [Boot from SD Card in ATF2Linux flow](#boot-from-sd-card_2)
+* Build Quartus Design in [Boot from SD Card in ATF2Linux flow](#boot-from-sd-card_2)
 * Build Linux File System  in [Boot from SD Card in ATF2Linux flow](#boot-from-sd-card_2) 
 
 ATF requires to be rebuilt to enable booting from QSPI by setting **SOCFPGA_BOOT_SOURCE_QSPI** to '1'. Linux also need to be rebuild since this time we are including a JFFS2 file system and since booting from QSPI we need to change some parameters in the device tree. The FIP image is created in the same way but this time the FIP image is put into the QSPI image using a specific .pfg file. In this .pfg file, we are indicating that the fip file will be located at **0x3C00000** location in the QSPI since this is also indicated by the **PLAT_QSPI_DATA_BASE** definition in the ATF.
@@ -2384,7 +2395,7 @@ mount -t debugfs none /sys/kernel/debug/
 
 This section provides instructions to build binaries to exercise ATF to Linux direct boot flow booting from a eMMC card.
 
-The hardware must be re-built as this time it's required a hardware design specific to boot from eMMC.  ATF also requires to be rebuilt to enable booting from eMMC by setting SOCFPGA_BOOT_SOURCE_SDMMC to '1' and setting MMC_DEVICE_TYPE to '0' (eMMC used instead of SD Card). Linux also need to be re-built because we need to addapt the device tree to use the correct configuration to boot from eMMC. The FIP image and the eMMC image are created in the same way than for the SD Card use case.
+The Quartus design must be re-built as this time it's required a Quartus design specific to boot from eMMC.  ATF also requires to be rebuilt to enable booting from eMMC by setting SOCFPGA_BOOT_SOURCE_SDMMC to '1' and setting MMC_DEVICE_TYPE to '0' (eMMC used instead of SD Card). Linux also need to be re-built because we need to addapt the device tree to use the correct configuration to boot from eMMC. The FIP image and the eMMC image are created in the same way than for the SD Card use case.
 
    ![](images/ATF_Linux_Image_eMMC.jpg) 
 

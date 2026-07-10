@@ -1,15 +1,10 @@
 
 
-
-# HPS GHRD Linux Boot Tutorial Example Design: Agilex™ 5 FPGA E-Series 065A Modular Development Kit
-
 ## Introduction
 
-### Overview
+This page contains instructions on how to build Linux systems from separate components: Quartus Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the Golden System Reference Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
 
-This page contains instructions on how to build Linux systems from separate components: Hardware Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the Golden System Reference Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
-
-The key differences versus the GSRD are:
+The key differences versus the HPS Baseline System Example Design are:
 
  * Fabric is configured from U-Boot directly with the rbf file, with `fpga load` command, instead of using the `bootm` command with the core.rbf part of the kernel.itb file
  * Single image boot is disabled in U-Boot, and it boots directly with the slected boot source, not trying them all
@@ -21,7 +16,7 @@ The following scenarios are covered:
 *  Boot from QSPI
 
 
-The instructions on this page are based on the [GSRD](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065a/gsrd/ug-gsrd-agx5e-modular-065a/).
+The instructions on this page are based on the [HPS Baseline System Example Design](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065a/gsrd/ug-gsrd-agx5e-modular-065a/).
 
 ### Prerequisites
 
@@ -113,7 +108,8 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h4>Build Hardware Design</h4>
+<h4>Build Quartus Design</h4>
+
 
 
 
@@ -290,6 +286,7 @@ The following files are created:
   
 
 
+
 <h4>Build Linux Kernel Modules</h4>
 
 This is an optional step that should be executed in case that you need the kernel drivers module (.ko files) available in your Linux file system, so these could be loaded using the **modprobe** or **insmod** commands. These modules will be found under the **lib/modules** directory in Linux (these are copied there when creating the sdcard/emmc image).
@@ -441,7 +438,7 @@ This section demonstrates how to build Linux system from separate components, wh
 **NOTE:**  This section assumes that the [Boot from SD Card](#boot-from-sd-card) section has been already built and the environment setup in that section is still available.
 
 This section presents how to build the binaries and boot from QSPI with the HPS Enablement Board.
-While the example is based on the GSRD, it contains the following differences:
+While the example is based on the HPS Baseline System Example Design, it contains the following differences:
 
 * U-Boot tries to boot only from QSPI flash, does not try SD card
 * U-Boot does not use a script to boot, instead it used the `BOOTCMD` environment variable directly

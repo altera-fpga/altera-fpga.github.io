@@ -135,7 +135,7 @@ For known issues in this release please refer to the [Intel Simics Simulator for
 
 ### Build Instructions HPS Baseline System Example Design 2.0
 
-The HPS Baseline System Example Design 2.0 was intruduced on release 25.3. The HPS Baseline System Example Design 2.0 provides a framework based on **kas** and **yocto**, that allows to build be HPS binaries in a more simplified and automated methodology. In the HPS Baseline System Example Design 2.0, the  [agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd) repository integrates HPS Baseline System Example Design and hardware design components, which differs from the legacy System Example Design build flow in which the HPS Baseline System Example Design and hardware design components were in separate repositories. 
+The HPS Baseline System Example Design 2.0 was intruduced on release 25.3. The HPS Baseline System Example Design 2.0 provides a framework based on **kas** and **yocto**, that allows to build be HPS binaries in a more simplified and automated methodology. In the HPS Baseline System Example Design 2.0, the  [agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd) repository integrates HPS Baseline System Example Design and Quartus design components, which differs from the legacy System Example Design build flow in which the HPS Baseline System Example Design and Quartus design components were in separate repositories. 
 For the  Simics simulation case specific, the HPS Baseline System Example Design 2.0 also provides a Simics simulation environment allows to run Simics simulations from the HPS Baseline System Example Design build environment using directly the binaries produced from the build. The following steps shows how to produced the required binaries that can be used in Simics simulation.
 
 
@@ -200,7 +200,8 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-<h5> Build Hardware Design </h5>
+<h5> Build Quartus Design </h5>
+
 
 
 
@@ -223,13 +224,13 @@ cd ..
 
 The output from this stage is:
 
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/output_files/ghrd.rbf - Phase 2 hardware design.
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/output_files/baseline_hps_debug.sof - SOF file with Phase 1 hardware design and Debug HPS
+* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/output_files/ghrd.rbf - Phase 2 Quartus design.
+* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/output_files/baseline_hps_debug.sof - SOF file with Phase 1 Quartus design and Debug HPS
 * $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux - Clean HPS Baseline System Example Design 2.0 software direcotry (not built yet).
 
 
 
-<h5> Build SD Card GSRD 2.0 </h5>
+<h5> Build SD Card HPS Baseline System Example Design </h5>
 
 
 
@@ -270,8 +271,7 @@ The output files that will be used to simulate with Simics are:
 * $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_sd/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.bin
 * $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_sd/build/tmp/deploy/images/agilex3/gsrd-console-image-agilex3.rootfs.wic
 
-
-<h5> Build QSPI Card GSRD 2.0 </h5>
+<h5> Build QSPI Card HPS Baseline System Example Design</h5>
 
 This section provides the instructions to generate the binaries necessaries to boot from QSPI in Simics. Since the QSPI device used in the Agilex 3 C-Series development kit includes an small QSPI device, and we want to keep compatibility between the images used in real hardware and the images used in Simics, we need to create a reduced file system through the Yocto build. The following steps need to be re-run to build the final QSPI image used for Simics.
 

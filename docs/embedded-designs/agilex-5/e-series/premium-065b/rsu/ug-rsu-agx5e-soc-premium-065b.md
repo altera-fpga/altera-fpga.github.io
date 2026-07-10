@@ -56,10 +56,10 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 The following items are required to run the RSU example.
 
 - Host PC running Ubuntu 22.04 LTS (other Linux versions may work too) 
-- Minimum 48 GB of RAM, required for compiling the hardware designs 
-- Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1  for compiling the hardware projects, generating the flash images and writing to flash 
+- Minimum 48 GB of RAM, required for compiling the Quartus designs 
+- Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1  for compiling the Quartus projects, generating the flash images and writing to flash 
 - cmake/3.24.0  (build configuration tool) or or above to build LibRSU library.
-- Access to Internet to download the hardware project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. 
+- Access to Internet to download the Quartus project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. 
 - [Agilex™ 5 FPGA E-Series 065B Premium Development Kit (DK-A5E065BB32AEA)](https://www.altera.com/products/devkit/po-3284/agilex-5-fpga-e-series-065b-premium-development-kit)  for running the example. 
 
 ## Building Binaries 
@@ -74,7 +74,7 @@ The end results of the build flow are these.
 - Initial flash image: contains the factory image, an application image and two empty application image partitions aka slots. 
 - SD card image: contains SSBL (U-Boot), ATF (Arm Trusted Firmware), Linux device tree, Linux kernel, Linux rootfs with the Altera® RSU driver, LIBRSU, RSU Client, an application image, a factory update image and a decision firmware update image. 
 
-**Note:** To build binaries for a different development kit than the one used in this page, please refer to the [Building the Hardware Projects](#building-the-hardware-projects) section in the corresponding  **HPS Baseline System Reference Design User Guide** page for that development kit, which is the section that may differ from the instructions presented here.
+**Note:** To build binaries for a different development kit than the one used in this page, please refer to the [Building the Quartus Projects](#building-the-quartus-projects) section in the corresponding  **HPS Baseline System Reference Design User Guide** page for that development kit, which is the section that may differ from the instructions presented here.
 
 ### Installing cmake 
 In case that you have installed a cmake version earlier than 3.24.0, you need to unistall this and install a new version. Here are the steps to achieve that. Note that this only need to performed once in your PC:
@@ -127,10 +127,10 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-### Building the Hardware Projects 
+### Building the Quartus Projects 
 
 
-Create four different hardware projects, based on the hardware design provided in the HPS Baseline System Example Design from GitHub with a few changes listed next.
+Create four different Quartus projects, based on the Quartus design provided in the HPS Baseline System Example Design from GitHub with a few changes listed next.
 
 - Change the boot mode to FPGA first 
 - Use a different ID in the SystemID component, to make the binaries for each project slightly different. 
@@ -142,7 +142,7 @@ The commands to create and compile the projects are listed below.
 
 ```bash 
 cd $TOP_FOLDER 
-# Build 4 versions of the hardware design
+# Build 4 versions of the Quartus design
 rm -rf hw && mkdir hw && cd hw 
 rm -rf agilex5_soc_devkit_ghrd_a55 && mkdir agilex5_soc_devkit_ghrd_a55 && cd agilex5_soc_devkit_ghrd_a55
 wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065b-premium-devkit-oobe-baseline-a55.zip
@@ -172,7 +172,7 @@ do
 rm -rf ghrd.$version
 cp -r agilex5_soc_devkit_ghrd_a55 ghrd.$version
 cd ghrd.$version
-# Customizing to the current copy of the hardware design
+# Customizing to the current copy of the Quartus design
 quartus_sh -t ../update-qsf.tcl
 # Customize WDT 
 qsys-script --qpf=top.qpf --script=../update-wdog.tcl --system-file=hps_subsys.qsys
@@ -185,7 +185,7 @@ save_component
 save_system fabric_subsys.qsys
 EOT
 qsys-script --qpf=top.qpf --script=update-sysid.tcl --system-file=fabric_subsys.qsys
-# Finsish customization and now building the hardware design
+# Finsish customization and now building the Quartus design
 make baseline_a55-build
 cd ..
 done
@@ -806,6 +806,8 @@ The following items are included in the rootfs on the SD card.
 
 ## Flashing Binaries 
 
+The following sections describe how to program the HPS binaries generated previously.
+
 ### Writing Initial RSU Image to QSPI 
 
 1. Make sure to install the QSPI SDM bootcard on the Agilex SoC Development Kit 
@@ -830,6 +832,8 @@ The following items are included in the rootfs on the SD card.
 2. Insert the micro SD card in the slot on the Agilex SoC Development kit HPS daughtercard. 
 
 ## Exercising U-Boot RSU Commands 
+
+The following sections describe how to exercise some RSU use cases from the U-Boot shell.
 
 ### Basic RSU Operations 
 
@@ -1891,6 +1895,8 @@ application image is running fine.
 7. Power cycle the board, the same combined application image is loaded, as it is the highest priority. But it takes a couple of seconds less, as the decision firmware does not need to be updated.
 
 ## Exercising RSU Client 
+
+The following sections describe how to exercise some RSU use cases from the Linux shell using RSU Client library.
 
 ### Basic RSU Operations 
 

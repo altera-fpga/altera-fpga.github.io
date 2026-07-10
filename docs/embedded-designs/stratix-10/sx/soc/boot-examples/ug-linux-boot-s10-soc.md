@@ -2,7 +2,7 @@
 
 ## Intro
 
-This page contains instructions on how to build Linux systems from separate components: Hardware Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the Golden System Reference Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
+This page contains instructions on how to build Linux systems from separate components: Quartus Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the HPS Baseline System Example Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
 
 The key differences versus the HPS Baseline System Example Design are:
 
@@ -56,9 +56,9 @@ For Stratix® 10, Agilex™ 7 and Agilex™ 5 devices, all the handoff informati
 
 ## Single Boot Image
 
-Starting with U-Boot 2021.07, the following changes were made to enable a single set of binaries to be used with multiple boards and hardware projects:
+Starting with U-Boot 2021.07, the following changes were made to enable a single set of binaries to be used with multiple boards and Quartus projects:
 
-* The Quartus hardware project defines a JTAG User Code which is used by the rest of the system as a board_id to identify the hardware.
+* The Quartus Quartus project defines a JTAG User Code which is used by the rest of the system as a board_id to identify the hardware.
 * U-Boot has a single defconfig enabling all possible HPS hardware, and depending on the timeouts to determine which hardware is not actually available.
 * U-Boot has a single device tree FIT file enabling all possible HPS hardware, but with different configurations inside, selected according to the board_id.
 * Linux FIT file also has a different configuration for each board_id. Each configuration includes the kernel, the specific device file, and an optional core.rbf file. If the core.rbf file is specified, the fabric is configured with that file.
@@ -85,7 +85,7 @@ The official Altera® SOCFPGA U-Boot repository is located at https://github.com
 This example shows a simple example booting Stratix® 10 from SD card.
 Note the following:
 
-* Hardware design was customized as follows: <br>
+* Quartus design was customized as follows: <br>
     -  Disable SGMII and PR to reduce compilation time and boot time.<br>
     -  Override the JTAG User Core to that board_id is 4, and the standard SD Card/OOBE configuration is used.
 
@@ -158,7 +158,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-### Build Hardware Design
+### Build Quartus Design
 
 
 
@@ -175,7 +175,7 @@ source ~/altera_pro/26.1/qinit.sh
   ```
 
 
-After building the hardware design the following binary is created:
+After building the Quartus design the following binary is created:
 
 - $TOP_FOLDER/stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline.sof
 
@@ -474,6 +474,8 @@ Power cycle the board.
 Linux will boot up. Use 'root' as username, a password will not be required.
 
 ## Other Examples
+
+This section describes additional examples that allows the HPS to boot from other flash devices.
 
 ### Boot from QSPI
 See  Stratix® 10 Boot From QSPI section in the **HPS Baseline System Example Design User Guide: Stratix® 10 SX SoC FPGA Development Kit (H-Tile)** page.

@@ -79,6 +79,37 @@ Altera® Agilex™ Devices refer to the
 
 ## Pre-requisites
 
+### **Hardware Requirements**
+
+* [Agilex™ 5 FPGA E-Series 065B Modular Development Kit].
+
+<br/>
+![Agx5-MDK](../common/images/Agx5-MDK.png){:style="display:block; margin-left:auto; margin-right:auto"}
+<center markdown="1">
+
+**Agilex™ 5 FPGA E-Series 065B Modular Development Kit**
+</center>
+<br/>
+
+* 1 or 2 [Framos FSM:GO IMX678C Camera Modules], with:
+  * [Wide 110deg HFOV Lens], or
+  * [Medium 100deg HFOV Lens], or
+  * [Narrow 54deg HFOV Lens].
+* (Optional) Mount/Tripod
+  * [Framos Tripod Mount Adapter].
+  * [Tripod].
+* A Framos cable for PixelMate MIPI-CSI-2 for each Camera Module:
+  * [150mm flex-cable], or
+  * [300mm micro-coax cable].
+* (Optional) [Framos GMSL3 5m] (if the Camera Solution System Example Design
+  supports this feature).
+* MicroSD card (minimum 8Gb).
+* DP cable or HDMI cable with [DP to HDMI Adapter] (recommend 4Kp60 capable).
+* USB Micro B cable x2 (for QSPI programming and HPS serial console access).
+* Ethernet cable (for HPS network connection).
+* PC monitor or TV: 4Kp30 capable required.
+
+<br/>
 
 
 ### **Software Requirements to run**
@@ -173,6 +204,24 @@ Additionally, the model_compiler generates the following category identifier fil
 Follow the instructions provided in this section to run the Camera Solution System Example Design on the Agilex™ 5 FPGA E-Series 065B Modular Development
 Kit.
 
+### **Download the pre-built Binaries**
+
+* Download the pre-built Camera Solution System Example Design binaries for the
+  Modular Development Kit:
+
+<br/>
+<center markdown="1">
+
+**Binaries**
+
+| Source | Link | Description |
+| ---- | ---- | ---- |
+| QSPI | [top.core.jic] | Allows the Camera Solution System Example Design to be booted from the microSD card |
+| microSD Card Image | [hps-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz] | The Camera Solution System Example Design |
+
+<br/>
+
+</center>
 
 
 ## Programming

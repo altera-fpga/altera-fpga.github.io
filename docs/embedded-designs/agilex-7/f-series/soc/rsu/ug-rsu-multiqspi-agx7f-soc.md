@@ -78,10 +78,10 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-### Building the Hardware Projects 
+### Building the Quartus Projects 
 
 
-Create four different hardware projects, based on the hardware design provided as part of the HPS Baseline System Example Design from GitHub with a few changes.
+Create four different Quartus projects, based on the Quartus design provided as part of the HPS Baseline System Example Design from GitHub with a few changes.
 
 - Change the boot mode to FPGA first 
 - Use a different ID in the SystemID component, to make the binaries for each project slightly different. 
@@ -93,7 +93,7 @@ The commands to create and compile the projects are listed below.
 
 ```bash 
 cd $TOP_FOLDER
-# Build 4 versions of the hardware design
+# Build 4 versions of the Quartus design
 rm -rf hw && mkdir hw && cd hw
 wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
 unzip QPDS26.1_REL_GSRD_PR.zip
@@ -116,7 +116,7 @@ cp -r agilex7f-ed-gsrd ghrd.$version
 cd ghrd.$version
 # update sysid to make binaries slightly different 
 sed -i 's/0xACD5CAFE/0xABAB000'$version'/g' agilex_soc_devkit_ghrd/create_ghrd_qsys.tcl
-# Finsish customization and now building the hardware design
+# Finsish customization and now building the Quartus design
 make agf014eb-si-devkit-oobe-baseline-all
 cd ..
 done
@@ -694,6 +694,8 @@ The following items are included in the rootfs on the SD card.
 
 
 ## Flashing Binaries 
+
+The following sections describe how to program the HPS binaries generated previously.
 
 ### Writing Initial multi-QSPI RSU Image to QSPI 
 

@@ -56,10 +56,10 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 The following items are required to run the RSU example.
 
 - Host PC running Ubuntu 22.04 LTS (other Linux versions may work too) 
-- Minimum 48 GB of RAM, required for compiling the hardware designs 
-- Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1  for compiling the hardware projects, generating the flash images and writing to flash 
+- Minimum 48 GB of RAM, required for compiling the Quartus designs 
+- Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1  for compiling the Quartus projects, generating the flash images and writing to flash 
 - cmake/3.24.0  (build configuration tool) or above to build **LibRSU** library.
-- Access to Internet to download the hardware project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. 
+- Access to Internet to download the Quartus project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. 
 - [Agilex™ 3 C-Series Development Kit (DK-A3Y135BM16AEA)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a3y135b.html)  for running the example. 
 
 ## Building Binaries 
@@ -90,6 +90,7 @@ sudo ln -s ~/cmake_install/cmake-x.y.z-linux-x86_64/bin/* /usr/local/bin/
 
 
 Create a top folder to store the example files.
+
 
 
 ```bash 
@@ -125,10 +126,10 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-### Building the Hardware Projects 
+### Building the Quartus Projects 
 
 
-Create four different hardware projects, based on the hardware design provided in the HPS Baseline System Example Design from GitHub with a few changes listed next.
+Create four different Quartus projects, based on the Quartus design provided in the HPS Baseline System Example Design from GitHub with a few changes listed next.
 
 - Change the boot mode to FPGA first 
 - Use a different ID in the SystemID component, to make the binaries for each project slightly different. 
@@ -140,7 +141,7 @@ The commands to create and compile the projects are listed below.
 
 ```bash 
 cd $TOP_FOLDER 
-# Build 4 versions of the hardware design
+# Build 4 versions of the Quartus design
 rm -rf hw && mkdir hw && cd hw 
 rm -rf agilex3_soc_devkit_ghrd && mkdir agilex3_soc_devkit_ghrd && cd agilex3_soc_devkit_ghrd
 wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a3cw135-devkit-oobe-baseline.zip
@@ -170,7 +171,7 @@ do
 rm -rf ghrd.$version
 cp -r agilex3_soc_devkit_ghrd ghrd.$version
 cd ghrd.$version
-# Customizing to the current copy of the hardware design
+# Customizing to the current copy of the Quartus design
 quartus_sh -t ../update-qsf.tcl
 # Customize WDT 
 qsys-script --qpf=top.qpf --script=../update-wdog.tcl --system-file=hps_subsys.qsys
@@ -183,7 +184,7 @@ save_component
 save_system fabric_subsys.qsys
 EOT
 qsys-script --qpf=top.qpf --script=update-sysid.tcl --system-file=fabric_subsys.qsys
-# Finsish customization and now building the hardware design
+# Finsish customization and now building the Quartus design
 make baseline-build
 cd ..
 done
@@ -807,6 +808,8 @@ The following items are included in the rootfs on the SD card.
 
 ## Flashing Binaries 
 
+The following sections shows you how to use the HPS binaries generated.
+
 ### Writing Initial RSU Image to QSPI 
 
 1. Make sure to install the QSPI SDM bootcard on the Agilex SoC Development Kit 
@@ -831,6 +834,8 @@ The following items are included in the rootfs on the SD card.
 2. Insert the micro SD card in the slot on the Agilex SoC Development kit HPS daughtercard. 
 
 ## Exercising U-Boot RSU Commands 
+
+This section describe some use cases exercised from U-Boot shell.
 
 ### Basic RSU Operations 
 
@@ -1914,6 +1919,8 @@ information from U-Boot, this should be a previous version.
 7. Power cycle the board, the same combined application image is loaded, as it is the highest priority. But it takes a couple of seconds less, as the decision firmware does not need to be updated.
 
 ## Exercising RSU Client 
+
+This section describe some use cases exercised from Linux shell using RSU Client library.
 
 ### Basic RSU Operations 
 

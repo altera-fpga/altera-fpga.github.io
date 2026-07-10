@@ -131,10 +131,10 @@ For known issues in this release please refer to the [Intel Simics Simulator for
 
 ### Build Instructions HPS Baseline System Example Design 2.0
 
-The HPS Baseline System Example Design 2.0 was introduced on release 25.3. The HPS Baseline System Example Design 2.0 provides a framework based on **kas** and **yocto**, that allows to build be HPS binaries in a more simplified and automated methodology. In the HPS Baseline System Example Design 2.0, the  [agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) repository integrates software and hardware design components, which differs from the legacy HPS System Example Design build flow in which the software and hardware components were in separate repositories. 
+The HPS Baseline System Example Design 2.0 was introduced on release 25.3. The HPS Baseline System Example Design 2.0 provides a framework based on **kas** and **yocto**, that allows to build be HPS binaries in a more simplified and automated methodology. In the HPS Baseline System Example Design 2.0, the  [agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) repository integrates software and Quartus design components, which differs from the legacy HPS System Example Design build flow in which the software and hardware components were in separate repositories. 
 For the  Simics simulation case specific, the HPS Baseline System Example Design 2.0 also provides a Simics simulation environment allows to run Simics simulations from the HPS Baseline System Example Design build environment using directly the binaries produced from the build. The following steps shows how to produced the required binaries that can be used in Simics simulation.
 
-**Note:** In 26.1 Release the HPS Baseline System Example Design 2.0 Reference design used in this example only provides a directory targeted for **a55** cores in which is expected that the generated binaries have a an **a55** core as the boot core (core 0). In the case of Simics, the selection of the boot core is done through the **hps_boot_core** parameter in the target script simics/linux/<device\>_boot/\*.simics).
+**Note:** In 26.1 Release, the HPS Baseline System Example Design 2.0 used in this example only provides a directory targeted for **a55** cores in which is expected that the generated binaries have a an **a55** core as the boot core (core 0). In the case of Simics, the selection of the boot core is done through the **hps_boot_core** parameter in the target script simics/linux/<device\>_boot/\*.simics).
 
 
 
@@ -172,7 +172,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-##### Build Hardware Design
+##### Build Quartus Design
 
 
 
@@ -195,8 +195,8 @@ cd ..
 
 The output from this stage is:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/output_files/ghrd.rbf - Phase 2 hardware design.
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/output_files/baseline_a55_hps_debug.sof - SOF file with Phase 1 hardware design and Debug HPS
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/output_files/ghrd.rbf - Phase 2 Quartus design.
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/output_files/baseline_a55_hps_debug.sof - SOF file with Phase 1 Quartus design and Debug HPS
 * $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux - Clean HPS Baseline System Example Design 2.0 software direcotry (not built yet).
 
 
@@ -370,7 +370,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-##### Build Hardware Design
+##### Build Quartus Design
 
 
 
@@ -389,7 +389,7 @@ make baseline_a55-install-core-rbf
 
 The output from this stage is:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/output_files/ghrd.rbf - Phase 2 hardware design.
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/output_files/ghrd.rbf - Phase 2 Quartus design.
 * $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux - Clean HPS Baseline System Example Design 2.0 software direcotry (not built yet).
 
 #####  Build NAND HPS Baseline System Example Design 2.0
@@ -489,18 +489,20 @@ This virtual platform is associated with the **agilex5e-universal.simics** targe
 
 In this block diagram:
 
-- The architecture of the virtual platform follows a hierarchy that goes from **target script → system → board → fpga → qsys_top → hps_subsystem → agilex_hps,** which is aligned with the Simics virtual platform development philosophy that tries to match with the real golden hardware reference design architecture.
+- The architecture of the virtual platform follows a hierarchy that goes from **target script → system → board → fpga → qsys_top → hps_subsystem → agilex_hps,** which is aligned with the Simics virtual platform development philosophy that tries to match with the real Quartus design architecture.
 - The **target script** instantiates the **system component**, provides the CLI run time commands, and creates the network configuration. This script also defines the parameters that configure other components.
 - The **system component** represents the complete virtual platform system and instantiates the **board component**. This component is implemented in a Python file.
 - The **board component** represents the model of a PCB (analogous to a development kit). It includes the instance of the **FPGA component** and all board components connected to the FPGA (for example, flash devices, ethernet PHY). The GPIO loopback connection is implemented here. This component is implemented in a Python file.
-- The **FPGA component** represents the top-level hardware design model in the Quartus Prime software project design that targets the Agilex™ 5 E-Series SoC FPGA device. It matches the logical hierarchy of the fictitious hardware design that the Agilex™ 5 E-Series Universal Virtual Platform models. This component only instantiates the qsys_top component and is implemented as a Python script.
-- The **qsys_top** component matches the design's top view being modeled and corresponds to the system seen from the Platform Designer under the hardware design(soc_inst instance). The HPS subsystem component and the components included as part of the FPGA fabric design are instantiated under the qsys_top component. The qsys_top component is modeled as a Python script.
+- The **FPGA component** represents the top-level Quartus design model in the Quartus Prime software project design that targets the Agilex™ 5 E-Series SoC FPGA device. It matches the logical hierarchy of the fictitious Quartus design that the Agilex™ 5 E-Series Universal Virtual Platform models. This component only instantiates the qsys_top component and is implemented as a Python script.
+- The **qsys_top** component matches the design's top view being modeled and corresponds to the system seen from the Platform Designer under the Quartus design(soc_inst instance). The HPS subsystem component and the components included as part of the FPGA fabric design are instantiated under the qsys_top component. The qsys_top component is modeled as a Python script.
 - The **FPGA fabric** design corresponds to the logic model implemented in the FPGA fabric.
 - The **HPS subsystem** component corresponds to the model of the module that integrates all components associated with the HPS in the Agilex™ 5 E-Series device. It includes the HPS models, SDM mailbox, and EMIF model.
 - The **Agilex™ 5 HPS component** in the virtual platform is an Intel Simics model that corresponds to the Hard Processor System Agilex™ 5 FPGA IP in the  Quartus Prime software.
 - The embedded software running in the HPS component is expected to be the same that can be run in the real silicon. Exercising the HPS-embedded software in this virtual platform allows you to debug the software using the Simics debug capabilities.
 
 ### Main Features Supported by the Altera® Agilex™ 5 E-Series Universal Virtual Platform
+
+The following sections describes some typical use cases that can be exercised with the Universal Virtual Platform.
 
 #### Boot an Operative System
 

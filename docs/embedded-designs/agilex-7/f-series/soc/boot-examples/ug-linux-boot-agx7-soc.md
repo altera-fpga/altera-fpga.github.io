@@ -2,7 +2,7 @@
 
 ## Intro
 
-This page contains instructions on how to build Linux systems from separate components: Hardware Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the Golden System Reference Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
+This page contains instructions on how to build Linux systems from separate components: Quartus Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the HPS Baseline System Example Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
 
 The key differences versus the HPS Baseline System Example Design are:
 
@@ -55,9 +55,9 @@ For Stratix® 10, Agilex™ 7 and Agilex™ 5 devices, all the handoff informati
 
 ## Single Boot Image
 
-Starting with U-Boot 2021.07, the following changes were made to enable a single set of binaries to be used with multiple boards and hardware projects:
+Starting with U-Boot 2021.07, the following changes were made to enable a single set of binaries to be used with multiple boards and Quartus projects:
 
-* The Quartus® hardware project defines a JTAG User Code which is used by the rest of the system as a board_id to indentify the hardware.
+* The Quartus® project defines a JTAG User Code which is used by the rest of the system as a board_id to identify the hardware.
 * U-Boot has a single defconfig enabling all possible HPS hardware, and depending on the timeouts to determine which hardware is not actually available.
 * U-Boot has a single device tree FIT file enabling all possible HPS hardware, but with different configurations inside, selected according to the board_id.
 * Linux FIT file also has a different configuration for each board_id. Each configuration includes the kernel, the specific device file, and an optional core.rbf file. If the core.rbf file is specified, the fabric is configured with that file.
@@ -88,7 +88,7 @@ This example shows a simple example of the U-Boot to Linux boot flow, booting Ag
 
 Note the following:
 
-* Hardware design was customized as follows: <br>
+* Quartus design was customized as follows: <br>
     -Disable SGMII and PR to reduce boot time    
     
 * U-Boot was customized as follows: <br>
@@ -162,7 +162,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-### Build Hardware Design
+### Build Quartus Design
 
 
 
@@ -181,7 +181,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-After building the hardware design the following binary is created:
+After building the Quartus design the following binary is created:
 
 - $TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof
 
@@ -489,6 +489,8 @@ Write SD card image to SD card and insert it in the slot.
 
 ## Other Examples
 
+The following sections present some  examples in whcih HPS boots from other flash devices.
+
 ### Boot from QSPI
 See  Agilex™ 7 Boot From QSPI section in the **HPS Baseline System Example Design User Guide: Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tile and E-Tile)** page.
 
@@ -725,7 +727,7 @@ Starting from 24.2 release, the Agilex™ 7 device is provided with the support 
 
    ![](images/ATF_Linux_bootflow.jpg)
 
- In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and hardware design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (System Monitor) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI or SDCard). 
+ In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and Quartus design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (System Monitor) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI or SDCard). 
 
 When creating the flash image, it's necessary to provide the location in where ATF expects to find the FIP image (fip.bin). This is hardcoded in the ATF code (**plat/intel/soc/common/include/platform_def.h**) for each one of the flash devices in which this boot flow is supported as indicated in the next table:
 
@@ -740,7 +742,7 @@ The following sections provide instructions about how to generate the binaries t
 
 ### ATF to Linux from SD Card
 
-The following recipe provides all the steps needed to create the binaries that allow you to exercise the ATF to Linux boot flow from a SD Card device. The recipe includes building the hardware design, ATF (BL2, BL31), Linux file system, and Linux. These are some notes about the build instructions:
+The following recipe provides all the steps needed to create the binaries that allow you to exercise the ATF to Linux boot flow from a SD Card device. The recipe includes building the Quartus design, ATF (BL2, BL31), Linux file system, and Linux. These are some notes about the build instructions:
 
 * Excercise the HPS boot first flow.
 * When building ATF, we indicate the device used to boot from. We also indicate the SDRAM memory locations where the Linux kernel image and device tree will be loaded and launched from. In this boot flow, Linux is referred to as BL33.
@@ -788,7 +790,7 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-#### Build Hardware Design (ATF-To-Linux)
+#### Build Quartus Design (ATF-To-Linux)
 
 
 
@@ -1064,7 +1066,7 @@ This section provides instructions to build binaries to exercise ATF to Linux di
 **NOTE:** This section depends on some steps from the [ATF to Linux from SD Card](#atf-to-linux-from-sd-card) section. So, to build the binaries in this section, the instructions in the following sections need to be executed earlier:
 
 * [Toolchain Setup (ATF-To-Linux)](#toolchain-setup-(atf-to-linux))
-* [Build Hardware Design (ATF-To-Linux)](#build-hardware-design-atf-to-linux)
+* [Build Quartus Design (ATF-To-Linux)](#build-quartus-design-atf-to-linux)
 * [Build Linux File System  (ATF-To-Linux)](#build-linux-file-system-atf-to-linux)
 
 

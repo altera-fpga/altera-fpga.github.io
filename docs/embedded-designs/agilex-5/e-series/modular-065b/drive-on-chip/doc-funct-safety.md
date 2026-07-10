@@ -269,46 +269,20 @@ Agilex™ 5 FPGA E-Series 065B Modular Development Kit.
 
 
 
-### SD Card Image Flashing
+### Flash The QSPI
 
-* Download SD card image (`.wic` or `.wic.gz`) from the prebuilt binary links above.
-* Write the `.wic` or `.wic.gz` SD card image to the micro SD card using one of the options below.
-* Turn off the board and insert the SD card in the micro SD card slot on the SOM board.
 
-#### [USBImager](https://bztsrc.gitlab.io/usbimager/) (Windows, Linux, Mac OS)
 
-* Open [USBImager](https://bztsrc.gitlab.io/usbimager/) and click the `...` button in the top right.
-* Select the image you downloaded earlier and click `Open`.
-* Next select the device associated with your SD card reader from the drop-down list.
-* Click `Write` to start flashing.
-
-#### [bmaptool](https://github.com/yoctoproject/bmaptool) (Linux)
-
-!!! note
-    You will require a `.wic.bmap` file in addition to the `.wic` or `.wic.gz` in order to use `bmaptool`. If this is not available use `USBImager`.
-
-On many distributions `bmap-tools` can be installed using your distros package manager (e.g. `sudo apt install bmap-tools`).
-
-For more information see the [Yocto documentation](https://docs.yoctoproject.org/dev-manual/bmaptool.html) for `bmaptool`.
-
-First of all determine the device `logical name` associated with the SD card on your host:
-
-```
-sudo lshw -class disk
-```
-
-Use `bmaptool` to copy the image to the SD card. Make sure the `wic` image file and `bmap` file are in the same directory.
-
-```
-sudo bmaptool copy ${IMAGE} ${DEVICE}
-```
-
-For example:
-
-```
-sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aea.wic.gz /dev/sda
-```
-ilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular/
+[Drive-On-Chip with Functional Safety System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety
+[Drive-On-Chip with PLC System Example Design for Agilex™ Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-plc
+[ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-crc
+[Robot Controller with Vision System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-vision-doc
+[Robotics Camera System Example Design for Agilex™ 5 Devices]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-camera
+[Agilex™ 5 FPGA - Drive-On-Chip Design Example]: https://docs.altera.com/r/example-designs/825736/current
+[Altera® Agilex™ 7 FPGA – Drive-On-Chip for Altera® Agilex™ 7 Devices Design Example]: https://docs.altera.com/r/example-designs/780358/current
+[Agilex™ 7 FPGA – Safe Drive-On-Chip Design Example]: https://docs.altera.com/r/example-designs/825942/current
+[Agilex™ 5 E-Series Modular Development Kit GSRD User Guide (26.1)]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/
+[Agilex™ 5 E-Series Modular Development Kit GHRD Linux Boot Examples]: https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular/
 
 
 
@@ -336,56 +310,11 @@ ilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular/
 [Disk Imager]: https://sourceforge.net/projects/win32diskimager
 
 
-### SD Card Image Flashing
-
-* Download SD card image (`.wic` or `.wic.gz`) from the prebuilt binary links above.
-* Write the `.wic` or `.wic.gz` SD card image to the micro SD card using one of the options below.
-* Turn off the board and insert the SD card in the micro SD card slot on the SOM board.
-
-#### [USBImager](https://bztsrc.gitlab.io/usbimager/) (Windows, Linux, Mac OS)
-
-* Open [USBImager](https://bztsrc.gitlab.io/usbimager/) and click the `...` button in the top right.
-* Select the image you downloaded earlier and click `Open`.
-* Next select the device associated with your SD card reader from the drop-down list.
-* Click `Write` to start flashing.
-
-#### [bmaptool](https://github.com/yoctoproject/bmaptool) (Linux)
-
-!!! note
-    You will require a `.wic.bmap` file in addition to the `.wic` or `.wic.gz` in order to use `bmaptool`. If this is not available use `USBImager`.
-
-On many distributions `bmap-tools` can be installed using your distros package manager (e.g. `sudo apt install bmap-tools`).
-
-For more information see the [Yocto documentation](https://docs.yoctoproject.org/dev-manual/bmaptool.html) for `bmaptool`.
-
-First of all determine the device `logical name` associated with the SD card on your host:
-
-```
-sudo lshw -class disk
-```
-
-Use `bmaptool` to copy the image to the SD card. Make sure the `wic` image file and `bmap` file are in the same directory.
-
-```
-sudo bmaptool copy ${IMAGE} ${DEVICE}
-```
-
-For example:
-
-```
-sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aea.wic.gz /dev/sda
-```
-
-
-### Flash The QSPI
-
-
-
 * Download the `.jic` image from the prebuilt binary links above.
 * Power down the board.
 * Set **MSEL** dipswitch **S1** on SOM to **JTAG: OFF-OFF**
 * Power up the board.
-* Program the QSPI with the following command. See: [quartus_pgm command]
+* Program the QSPI with the following command. See: [quartus_pgm command](https://docs.altera.com/r/docs/847422/25.3.1/device-configuration-user-guide-agilextm-3-fpgas-and-socs/understanding-configuration-status-using-quartus_pgm-command)
 
     ```bash
     quartus_pgm -c 1 -m jtag -o "pvi;top.hps.jic"

@@ -196,10 +196,10 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-### Build Hardware Design
+### Build Quartus Design
 
 
-This hardware project starts using the hardware reference design for the DK-SI-AGF014EB OOBE (booting from SD Card): 
+This Quartus project starts using the Quartus reference design for the DK-SI-AGF014EB OOBE (booting from SD Card): 
 
 
 ```bash
@@ -214,7 +214,7 @@ make agf014eb-si-devkit-oobe-baseline-generate-design
 ```
 
 
-Update the hardware design with the following modifications:
+Update the Quartus design with the following modifications:
 
 * Change HPS parameters related to the FPGA to HPS interface
 * Changing the control interface of the Altera Cache Coherency Translator¹.
@@ -253,7 +253,7 @@ EOF
 
 </details>
 
-Proceed with the hardware project build with the following instructions:
+Proceed with the Quartus project build with the following instructions:
 
 
 ```bash
@@ -274,7 +274,7 @@ The output of this stage will be:
 
 
 
-You can also modify and build the hardware project manually as indicated next. This should be done just after executing the **make agf014eb-si-devkit-oobe-baseline-generate-design** command in the previous instructions.
+You can also modify and build the Quartus project manually as indicated next. This should be done just after executing the **make agf014eb-si-devkit-oobe-baseline-generate-design** command in the previous instructions.
 
 1. Open the Quartus project with the following command and then open **qsys_top.qsys** from Platform Designer:
 
@@ -378,7 +378,7 @@ You can also modify and build the hardware project manually as indicated next. T
 
 9. If everything is ok, there shouldn't be any error on the system Messages tray and you can save the design and click on **Generate HDL** button now.
 
-10. Finally close **Platform Designer** and start building the updated hardware design on **Quartus Pro** by either clicking ![](images/startbuilding.png) or pressing **CTL-L**.
+10. Finally close **Platform Designer** and start building the updated Quartus design on **Quartus Pro** by either clicking ![](images/startbuilding.png) or pressing **CTL-L**.
 
 
 
@@ -408,7 +408,7 @@ The following files are created:
 ### Build Core RBF
 
 
-Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the hardware design makefile:
+Create the Core RBF file to be used in the rootfs created by Yocto by using the HPS Debug SOF built by the Quartus design makefile:
 
 
 ```bash
@@ -478,6 +478,8 @@ Clone the Yocto script and prepare the build:
   ```
 
 ### Customize Yocto
+
+This section describes how to customize the Yocto recipes to use the core.rbf file created previously and also to support the required features needed in this example.
 
 #### Adding our custom core.rbf
 
@@ -813,9 +815,9 @@ In order to excercise this example you will need to program the binaries that yo
 
 When using the above SD Card image, this already includes the [dmaTest_cache_v2.0.run ](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) application that is used to exercise this example. This is a bash script is located at the **/home/root/** directoy in Linux which is running in the development kit. 
 
-**Note:** Make sure that the variables in the script used to define the addresses for the configuration registers for the Cache Coherency Translator and Modular Scatter-Gather DMA components match the ones set in the hardware design.
+**Note:** Make sure that the variables in the script used to define the addresses for the configuration registers for the Cache Coherency Translator and Modular Scatter-Gather DMA components match the ones set in the Quartus design.
 
-The addresses set in the hardware design are defined at the **lwsoc2fpga** bridge with a base address of 0xF9000000:
+The addresses set in the Quartus design are defined at the **lwsoc2fpga** bridge with a base address of 0xF9000000:
 
   ![](images/baseAddress.png)
 

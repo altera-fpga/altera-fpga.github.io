@@ -58,9 +58,9 @@ For RSU example previous 24.2 version, please refer to [Agilex 7 SoC HPS Remote 
 The following items are required to run the RSU example.
 
 - Host PC running Ubuntu 22.04 LTS (other Linux versions may work too) 
- - Minimum 48 GB of RAM, required for compiling the hardware designs 
- - Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1  for compiling the hardware projects, generating the flash images and writing to flash 
-- Access to Internet to download the hardware project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. 
+ - Minimum 48 GB of RAM, required for compiling the Quartus designs 
+ - Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1  for compiling the Quartus projects, generating the flash images and writing to flash 
+- Access to Internet to download the Quartus project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. 
 - [Agilex 7 Transceiver-SoC Development kit P-Tile E-Tile Production Linear power solution(DK-SI-AGF014EB)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agf014.html)  for running the example. 
 
 ## Building Binaries 
@@ -75,7 +75,7 @@ The end results of the build flow are these.
 - Initial flash image: contains the factory image, an application image and two empty application image partitions aka slots. 
 - SD card image: contains SSBL (U-Boot), ATF (Arm Trusted Firmware), Linux device tree, Linux kernel, Linux rootfs with the Altera® RSU driver, LIBRSU, RSU Client, an application image, a factory update image and a decision firmware update image. 
 
-**Note:** To build binaries for a different development kit than the one used in this page, please refer to the [Building the Hardware Projects](#building-the-hardware-projects) section in the corresponding  **HPS Baseline System Example Design User Guide** page for that development kit, which is the section that may differ from the instructions presented here.
+**Note:** To build binaries for a different development kit than the one used in this page, please refer to the [Building the Quartus Projects](#building-the-quartus-projects) section in the corresponding  **HPS Baseline System Example Design User Guide** page for that development kit, which is the section that may differ from the instructions presented here.
 
 ### Setting up the Environment 
 
@@ -117,10 +117,10 @@ source ~/altera_pro/26.1/qinit.sh
 
 
 
-### Building the Hardware Projects 
+### Building the Quartus Projects 
 
 
-Create four different hardware projects, based on the hardware design provided as part of the HPS Baseline System Example Design from GitHub with a few changes listed next.
+Create four different Quartus projects, based on the Quartus design provided as part of the HPS Baseline System Example Design from GitHub with a few changes listed next.
 
 - Change the boot mode to FPGA first 
 - Use a different ID in the SystemID component, to make the binaries for each project slightly different. 
@@ -132,7 +132,7 @@ The commands to create and compile the projects are listed below.
 
 ```bash 
 cd $TOP_FOLDER 
-# Build 4 versions of the hardware design
+# Build 4 versions of the Quartus design
 rm -rf hw && mkdir hw && cd hw
 wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
 unzip QPDS26.1_REL_GSRD_PR.zip
@@ -153,7 +153,7 @@ cp -r agilex7f-ed-gsrd ghrd.$version
 cd ghrd.$version
 # update sysid to make binaries slightly different 
 sed -i 's/0xACD5CAFE/0xABAB000'$version'/g' agilex_soc_devkit_ghrd/create_ghrd_qsys.tcl
-# Finsish customization and now building the hardware design
+# Finsish customization and now building the Quartus design
 make agf014eb-si-devkit-oobe-baseline-all
 cd ..
 done
@@ -747,6 +747,8 @@ The following items are included in the rootfs on the SD card.
 
 ## Flashing Binaries 
 
+The following sections describe how to program the HPS binaries generated previously.
+
 ### Writing Initial RSU Image to QSPI 
 
 1. Make sure to install the QSPI SDM bootcard on the Agilex SoC Development Kit 
@@ -771,6 +773,8 @@ The following items are included in the rootfs on the SD card.
 2. Insert the micro SD card in the slot on the Agilex SoC Development kit HPS daughtercard. 
 
 ## Exercising U-Boot RSU Commands 
+
+The following sections describe how to exercise some RSU use cases from the U-Boot shell.
 
 ### Basic RSU Operations 
 
@@ -1823,6 +1827,8 @@ application image is running fine.
 
 
 ## Exercising RSU Client 
+
+The following sections describe how to exercise some RSU use cases from the Linux shell using RSU Client library.
 
 ### Basic RSU Operations 
 
