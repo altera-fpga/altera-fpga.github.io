@@ -275,6 +275,7 @@ nav:
         - Yocto Hardware to Software Flow for Agilex 5 Custom IP Integration: embedded-designs/agilex-5/e-series/premium-065b/hw2sw-flow/ug-hw2sw-flow-agx5e-premium-065b.md
         - HPS Linux Application Debugging with Ashling RiscFree: embedded-designs/agilex-5/e-series/premium-065b/riscfree-linux-app-debug/ug-riscfree-linux-app-debug-agx5e-premium-065b.md
         - HPS Fabric Configuration from Linux: embedded-designs/agilex-5/e-series/premium-065b/fabric-config-linux/ug-fabric-config-linux-agx5e-premium-065b.md
+        - 2-Port 10GbE PTP1588 System Example Design: embedded-designs/agilex-5/e-series/premium-065b/ptp1588/agx5e-ptp-2p10g/ug-agx5e-ptp-2p10g.md
         - TSN Examples:
           - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065b/tsn/rgmii-hps/ug-tsn-rgmii-hps-pdk-065b.md
           - HPS TSN RGMII HVIO System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065b/tsn/rgmii-hvio/ug-tsncfg2-agx5e-pdk-rgmii-hvio-065b.md
@@ -282,6 +283,7 @@ nav:
       - E-Series 065A Premium Development Kit:
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/premium-065a/gsrd/ug-gsrd-agx5e-premium-065a.md
         - HPS Linux Boot Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065a/boot-examples/ug-linux-boot-agx5e-premium-065a.md
+        - 2-Port 25GbE PTP1588 System Example Design: embedded-designs/agilex-5/e-series/premium-065a/ptp1588/agx5e-ptp-2p/ug-agx5e-ptp-2p.md
         - TSN Examples:
           - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065a/tsn/rgmii-hps/ug-tsn-rgmii-hps-pdk-065a.md
           - HPS TSN RGMII HVIO System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065a/tsn/rgmii-hvio/ug-tsncfg2-agx5e-pdk-rgmii-hvio-065a.md

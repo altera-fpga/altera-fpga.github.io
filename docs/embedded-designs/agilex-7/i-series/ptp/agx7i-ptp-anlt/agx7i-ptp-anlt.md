@@ -74,6 +74,7 @@ This system example design supports multiple Ethernet link data rates. Select th
   <button onclick="setAllTabsTo('25 GbE')">25 GbE</button>
   <button onclick="setAllTabsTo('50 GbE')">50 GbE</button>
   <button onclick="setAllTabsTo('100 GbE')">100 GbE</button>
+  <button onclick="setAllTabsTo('DR-10/25GbE')">DR-10/25GbE</button>
 </div>
 
 <center>
@@ -116,6 +117,8 @@ The high-level hardware setup for the system example design is shown below:
 |-----------|------------------------------------|
 | PTP       | Precision Time Protocol            |
 | ANLT      | Auto Negotiation and Link Training |
+| DR        | Dynamic Reconfiguration            |
+| FEC       | Forward Error Correction           |
 | SED       | System Example Design              |
 | ToD       | Time of Day                        |
 | mSGDMA    | Modular Scatter-Gather DMA         |
@@ -134,18 +137,18 @@ The high-level hardware setup for the system example design is shown below:
 
 ### Prerequisites
 
-This system example design builds upon the [Golden System Reference Design (GSRD) for the Agilex&trade; 7 I-Series Transceiver-SoC Development Kit (4x F-Tile)](https://altera-fpga.github.io/rel-24.3/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/). It is recommended to familiarize yourself with the GSRD development flow before proceeding with this document.
+This system example design builds upon the [Golden System Reference Design (GSRD) for the Agilex&trade; 7 I-Series Transceiver-SoC Development Kit (4x F-Tile)](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/). It is recommended to familiarize yourself with the GSRD development flow before proceeding with this document.
 
 The following items are required to fully exercise the SED:
 
-- Agilex&trade; I-Series Transceiver-SoC Development Kit (4x F-Tile) ([DK-SI-AGI027FC](https://www.altera.com/products/devkit/po-3013/agilex-7-fpga-i-series-transceiver-soc-development-kit-4x-f-tile)) x 2.
+- Agilex&trade; I-Series Transceiver-SoC Development Kit (4x F-Tile) ([DK-SI-AGI027FD](https://www.altera.com/products/devkit/po-3248/agilex-7-fpga-i-series-transceiver-soc-development-kit-4x-f-tile)) x 2.
   - HPS IO48 OOBE daughter card x 2.
   - Micro USB cable for serial output x 2.
   - USB Type B cable for on-board FPGA Download Cable II x 2.
   - Micro SD card (4GB or greater) x 2.
   - Mini USB cable for OOBE daughter card serial port x 2.
-  - QSFP Cable x2. 
-    - 10G and 25G designs tested with:
+  - QSFP Cable x2.
+    - 10G, 25G and DR(10G/25G) designs tested with:
       - FS (Q28-PC01) - 1m (3ft)  100G QSFP28 Passive Direct Attach Copper Twinax Cable
       - FS (Q28-PC05) - 3m (10ft) 100G QSFP28 Passive Direct Attach Copper Twinax Cable
     - 50G and 100G designs tested with:
@@ -163,7 +166,7 @@ U-Boot and Linux compilation, Yocto build, and SD card image creation require a 
 
 ### Binaries
 
-Release notes and pre-built binaries are available under the [GitHub repository release](https://github.com/altera-fpga/agilex7-ed-ptp/releases/tag/SED-PTP-agilex7_dk_si_agi027fc-Q25.3.1-Rel-1.1).
+Release notes and pre-built binaries are available under the [GitHub repository release](https://github.com/altera-fpga/agilex7-ed-ptp/releases/tag/SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.1).
 
 | _File_                                        | _Description_                                                   |
 |-----------------------------------------------|-----------------------------------------------------------------|
@@ -175,6 +178,7 @@ Release notes and pre-built binaries are available under the [GitHub repository 
 | 50g_anlt.zip                                  | Pre-compiled binaries for 50G with ANLT configuration.          |
 | 100g.zip                                      | Pre-compiled binaries for 100G non-ANLT configuration.          |
 | 100g_anlt.zip                                 | Pre-compiled binaries for 100G with ANLT configuration.         |
+| 10g25g_dr.zip                                 | Pre-compiled binaries for 10G/25G with DR configuration.        |
 | max10_system_0002aa4F.pof                     | MAX10 custom bitstream for SED                                  |
 | Source code (zip)                             | System example design source files provided as a ZIP archive    |
 | Source code (tar.gz)                          | System example design source files provided as a TAR GZ archive |
@@ -183,19 +187,19 @@ Release notes and pre-built binaries are available under the [GitHub repository 
 
 | _Component_                               | _Location_                                                                                                                                                                          | _Branch_                         | _Commit ID/Tag_                                |
 |-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------|------------------------------------------------|
-| **Hardware Design**                       | [https://github.com/altera-fpga/agilex7-ed-ptp.git](https://github.com/altera-fpga/agilex7-ed-ptp.git)                                                                              | rel/25.3.1                       | SED-PTP-agilex7_dk_si_agi027fc-Q25.3.1-Rel-1.1 |
-| **Linux**                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga)                                                                                        | socfpga-6.12.19-lts-ethernet-sed | SED-PTP-agilex7_dk_si_agi027fc-Q25.3.1-Rel-1.1 |
-| **Arm Trusted Firmware**                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware)                                                                          | socfpga_v2.13.0                  | 116f2f97fa533e3540be97a2d9ec828f2a2b68aa       |
-| **U-Boot**                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga)                                                                                      | socfpga_v2025.07                 | e5f40a8ed1ec65f20c4e2491bfe8e738efce6d94       |
-| **Yocto Project: poky**                   | [https://git.yoctoproject.org/poky/](https://git.yoctoproject.org/poky/)                                                                                                            | scarthgap                        | d1c25a3ce446a23e453e40ac2ba8f22b0e7ccefd       |
-| **Yocto Project: meta-intel-fpga**        | [https://git.yoctoproject.org/meta-intel-fpga/](https://git.yoctoproject.org/meta-intel-fpga/)                                                                                      | scarthgap                        | 9714ae1ef8f22302bac60b7d2081bbdf3199ca70       |
-| **Yocto Project: meta-intel-fpga-refdes** | [https://github.com/altera-fpga/meta-intel-fpga-refdes/](https://github.com/altera-fpga/meta-intel-fpga-refdes/)                                                                    | scarthgap                        | bffc5bc012f1653beb58878b54b44e74b0f27404       |
-| **Yocto Project: meta-agilex7-sed**       | [https://github.com/altera-fpga/agilex7-ed-ptp/tree/rel/25.3.1/...](https://github.com/altera-fpga/agilex7-ed-ptp/tree/rel/25.3.1/agi027fc-si-devkit/src/sw/yocto/meta-agilex7-sed) | rel/25.3.1                       | SED-PTP-agilex7_dk_si_agi027fc-Q25.3.1-Rel-1.1 |
-| **Design Build Script: gsrd-socfpga**     | [https://github.com/altera-fpga/agilex7-ed-ptp/tree/rel/25.3.1/...](https://github.com/altera-fpga/agilex7-ed-ptp/tree/rel/25.3.1/agi027fc-si-devkit/src/sw/yocto/build.sh)         | rel/25.3.1                       | SED-PTP-agilex7_dk_si_agi027fc-Q25.3.1-Rel-1.1 |
+| **Hardware Design**                       | [https://github.com/altera-fpga/agilex7-ed-ptp.git](https://github.com/altera-fpga/agilex7-ed-ptp.git)                                                                              | rel/26.1                       | SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.1 |
+| **Linux**                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga)                                                                                        | socfpga-6.12.19-lts-ethernet-sed | SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.1 |
+| **Arm Trusted Firmware**                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware)                                                                          | socfpga_v2.14.0                  | 4a4b4573e12fabd0a88e95952af49840db6b770d       |
+| **U-Boot**                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga)                                                                                      | socfpga_v2026.1                | 6e59447316d06b25ca98caaa5c16787f5c74e862       |
+| **Yocto Project: poky**                   | [https://git.yoctoproject.org/poky/](https://git.yoctoproject.org/poky/)                                                                                                            | scarthgap                        | b56134ff90dec996e8aae45ed7e6ad6b1d5a84a0       |
+| **Yocto Project: meta-intel-fpga**        | [https://git.yoctoproject.org/meta-intel-fpga/](https://git.yoctoproject.org/meta-intel-fpga/)                                                                                      | scarthgap                        | QPDS26.1_REL_GSRD_PR       |
+| **Yocto Project: meta-intel-fpga-refdes** | [https://github.com/altera-fpga/meta-intel-fpga-refdes/](https://github.com/altera-fpga/meta-intel-fpga-refdes/)                                                                    | scarthgap                        | QPDS26.1_REL_GSRD_PR       |
+| **Yocto Project: meta-agilex7-sed**       | [https://github.com/altera-fpga/agilex7-ed-ptp/tree/rel/26.1/...](https://github.com/altera-fpga/agilex7-ed-ptp/tree/rel/26.1/agi027fd-si-devkit/src/sw/yocto/meta-agilex7-sed) | rel/26.1                       | SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.1 |
+| **Design Build Script: gsrd-socfpga**     | [https://github.com/altera-fpga/agilex7-ed-ptp/tree/rel/26.1/...](https://github.com/altera-fpga/agilex7-ed-ptp/tree/rel/26.1/agi027fd-si-devkit/src/sw/yocto/build.sh)         | rel/26.1                       | SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.1 |
 
 ## Release Notes
 
-[Precision Time Protocol System Example Design Release Notes](https://github.com/altera-fpga/agilex7-ed-ptp/releases/tag/SED-PTP-agilex7_dk_si_agi027fc-Q25.3.1-Rel-1.1).
+[Precision Time Protocol System Example Design Release Notes](https://github.com/altera-fpga/agilex7-ed-ptp/releases/tag/SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.1).
 
 ## Precision Time Protocol System Example Design Architecture
 
@@ -222,6 +226,9 @@ Figure 2 illustrates the high-level architecture of the system example design. T
 
 === "100 GbE"
     ![](./images/ptp_sed_high_arch_100g.png)
+
+=== "DR-10/25GbE"
+    ![](./images/ptp_sed_high_arch_dr.png)
 
 **Figure 2.** Precision Time Protocol SED High Level Hardware Architecture
 
@@ -253,6 +260,8 @@ The subsystem groups DMA Ports into sets of three, assigning each group to one E
 === "100 GbE"
     ![](./images/ptp_sed_dma_subsys_high_arch_100g.png)
 
+=== "DR-10/25GbE"
+    ![](./images/ptp_sed_dma_subsys_high_arch_dr.png)
 **Figure 3.** DMA Subsystem Port High Level Architecture
 
 #### Packet Switch Subsystem
@@ -260,7 +269,7 @@ The subsystem groups DMA Ports into sets of three, assigning each group to one E
 The Packet Switch Subsystem implements an L2–L4 Ethernet packet switch that arbitrates among four client interfaces per port, connecting three DMA engines and a traffic generator to the transmit path. On the receive path, packet routing between ports and clients is handled by a [Ternary Content-Addressable Memory (TCAM)](https://docs.altera.com/r/docs/789389/24.1/agilextm-7-f-series-and-i-series-fpga-memory-subsystem-ip-user-guide/memory-subsystem-tcam), with rules dynamically configurable via software. By default, packets without a TCAM match are dropped for security reasons. For matched entries, the Packet Switch subsystem routes packets to either a DMA Port or a User Port (Traffic Generator).
 
 The TX datapath arbitration ignores Ethernet packet type and uses a weighted priority round-robin scheme to manage requests from DMA and User Port. Figure 4 illustrates the high-level architecture of the Packet Switch transmitter path. On the transmit path, the Ethernet Subsystem returns the egress timestamp (ETS) for each packet along with its corresponding fingerprint for tracking.
- 
+
 The RX datapath does not implement priority-based arbitration. Instead, traffic priority to the HPS is software-defined, with each DMA Port represented as a queue and assigned a configurable priority level. Figure 5 illustrates the high-level architecture of the Packet Switch receiver path.
 
 === "10 GbE"
@@ -275,6 +284,9 @@ The RX datapath does not implement priority-based arbitration. Instead, traffic 
 === "100 GbE"
     ![](./images/ptp_sed_ptp_bridge_tx_arch_100g.png)
 
+=== "DR-10/25GbE"
+    ![](./images/ptp_sed_ptp_bridge_tx_arch_dr.png)
+
 **Figure 4.** Packet Switch Subsystem TX Datapath High Level Architecture
 
 === "10 GbE"
@@ -288,6 +300,9 @@ The RX datapath does not implement priority-based arbitration. Instead, traffic 
 
 === "100 GbE"
     ![](./images/ptp_sed_ptp_bridge_rx_arch_100g.png)
+
+=== "DR-10/25GbE"
+    ![](./images/ptp_sed_ptp_bridge_rx_arch_dr.png)
 
 **Figure 5.** Packet Switch Subsystem RX Datapath High Level Architecture
 
@@ -340,7 +355,7 @@ The table below defines the structure of a TCAM query result. This data is used 
 
 The Main ToD Subsystem wraps the [Time of Day Clock FPGA IP](https://docs.altera.com/r/docs/683044/25.1/ethernet-design-example-components-user-guide/time-of-day-clock) and its support logic, serving as the system’s local ToD reference. The IP is configured for Accuracy Advanced mode and uses the IOPLL Reconfig FPGA IP, as described in the [IOPLL and TOD Setup using IOPLL Reconfig IP](https://docs.altera.com/r/docs/683044/25.1/ethernet-design-example-components-user-guide/iopll-and-tod-setup-using-iopll-reconfig-ip) chapter of the Ethernet Design Example Components User Guide.
 
-The Subordinate ToD Subsystem instantiates a dedicated Time of Day Clock FPGA IP per Ethernet interface and integrates an [Time of Day Synchronizer FPGA IP](https://docs.altera.com/r/docs/683044/25.1/ethernet-design-example-components-user-guide/time-of-day-synchronizer) to present timestamps in the Ethernet clock domain, as described in the [PTP Timestamp Accuracy in Advanced Mode](https://docs.altera.com/r/docs/683023/25.1.1/f-tile-ethernet-hard-ip-user-guide/ptp-timestamp-accuracy) chapter of the F-Tile Ethernet Hard IP User Guide.
+The Subordinate ToD Subsystem instantiates a dedicated Time of Day Clock FPGA IP per Ethernet interface and integrates an [Time of Day Synchronizer FPGA IP](https://docs.altera.com/r/docs/683044/25.1/ethernet-design-example-components-user-guide/time-of-day-synchronizer) to present timestamps in the Ethernet clock domain, as described in the [PTP Timestamp Accuracy in Advanced Mode](https://docs.altera.com/r/docs/683023/25.3.1/f-tile-ethernet-hard-ip-user-guide/ptp-timestamp-accuracy) chapter of the F-Tile Ethernet Hard IP User Guide.
 
 #### Ethernet Packet Generators
 
@@ -393,6 +408,9 @@ At the board level, the system clocking architecture includes the following comp
 === "100 GbE"
     ![](./images/ptp_sed_board_clock_arch_100g.png)
 
+=== "DR-10/25GbE"
+    ![](./images/ptp_sed_board_clock_arch_dr.png)
+
 **Figure 6.** Board High Level Clocking Architecture
 
 On power-up, the Microchip ZL30733 PTP & SyncE Network Synchronizer loads its configuration profile from internal non-volatile memory (NVM). The default profile doesn't contain the correct configuration needed for the system example design components. At boot time, the HPS establishes access to the ZL30733 via I2C and proceeds to load the correct profile for the system.
@@ -402,6 +420,8 @@ To enable HPS access to the onboard Microchip ZL30733, a custom bitstream must b
 ### FPGA Design Clocking Architecture
 
 The clock frequencies for the Ethernet Subsystem IP ports `i_p8_clk_tx_tod`, `i_p8_clk_rx_tod`,  and `i_p8_clk_ptp_sample` follow the guidelines in the [Ethernet Subsystem FPGA IP User Guide](https://docs.altera.com/r/docs/773413/24.3.1/ethernet-subsystem-ip-user-guide/clocks).
+
+Please note that for the DR-10G/25G design configuration, the default operating speed is 25G, with SyncE enabled for 25G operation. SyncE is not supported when switching to the 10G data rate, due to a hardware limitation that prevents reconfiguration of the Zarlink chip after the DR rate changes.
 
 Figure 7 shows the high-level system clock distribution tree. For clarity, only a single Ethernet Subsystem instance and one DMA Subsystem port are shown. All DMA ports share the same clock connections.
 
@@ -416,6 +436,9 @@ Figure 7 shows the high-level system clock distribution tree. For clarity, only 
 
 === "100 GbE"
     ![](./images/ptp_sed_fpga_clock_arch_100g.png)
+
+=== "DR-10/25GbE"
+    ![](./images/ptp_sed_fpga_clock_arch_dr.png)
 
 **Figure 7.** FPGA High Level Clocking Architecture Reduced Diagram
 
@@ -624,7 +647,7 @@ The above command defines the following rule:
 | axi4lite_pktcli_0.s0                       | Generic Packet Client  |           0x0806_0000 - 0x0806_ffff           | [Link](#packet-client-register-description)                                                                        |
 | axi4lite_pktcli_1.s0                       | Generic Packet Client  |           0x0807_0000 - 0x0807_ffff           | [Link](#packet-client-register-description)                                                                        |
 | axi4lite_ptpb.s0                           | Packet Switch          |           0x0805_0000 - 0x0805_ffff           | [Link](#ptp-bridge-register-map)                                                                                   |
-| axi4lite_qsfp_mem_cntrl.s0                 | QSFP Controller Module |           0x084d_0000 - 0x084d_0fff           | [Link](https://docs.altera.com/r/docs/683130/25.3/embedded-peripherals-ip-user-guide/register-description?tocId=cRZrH4uSmIYqojSpFYwOuA)    |
+| axi4lite_qsfp_mem_cntrl.s0                 | QSFP Controller Module |           0x084d_0000 - 0x084d_0fff           | [Link](https://docs.altera.com/r/docs/683130/26.1/embedded-peripherals-ip-user-guide/register-description?tocId=cRZrH4uSmIYqojSpFYwOuA)    |
 | ftile_debug_status_pio_0.s1                | F-Tile Status Register |           0x0804_0060 - 0x0804_006f           |                                                                                                                    |
 | qsfpdd_status_pio.s1                       | QSFP-DD Status PIO     |           0x0804_0050 - 0x0804_005f           |                                                                                                                    |
 | sys_ctrl_pio_0.s1                          | QSFP-DD Control PIO    |           0x0804_0040 - 0x0804_004f           |                                                                                                                    |
@@ -637,7 +660,7 @@ The above command defines the following rule:
 | hps_sub_sys.agilex_axi_bridge_for_acp_0.s0 | AXI ACP Bridge         | 0x0000_0000_0000_0000 - 0x0000_0003_ffff_ffff |                                                                                                                    |
 | mtod_subsys.master_tod_top_0_csr           | Main ToD Subsystem     |           0x0804_0000 - 0x0804_003f           | [Link](#dma-subsystem-port-memory-map)                                                                             |
 | mtod_subsys.mtod_subsys_pps_load_tod_0_csr | Main ToD PPS Loader    |           0x0804_0100 - 0x0804_01ff           |                                                                                                                    |
-| sys_manager.sysid_control_slave            | System ID Peripheral   |           0x0004_1208 - 0x0004_120f           | [Link](https://docs.altera.com/r/docs/683130/25.3/embedded-peripherals-ip-user-guide/system-id-peripheral-core) |
+| sys_manager.sysid_control_slave            | System ID Peripheral   |           0x0004_1208 - 0x0004_120f           | [Link](https://docs.altera.com/r/docs/683130/26.1/embedded-peripherals-ip-user-guide/system-id-peripheral-core) |
 
 **Table 3.** qsys_top Platform Designer system address map.
 
@@ -689,8 +712,8 @@ Refer to section [Packet Client Register Map](https://docs.altera.com/r/docs/767
 
 | _Subordinate Name_     | _Component_    | _[rx/tx]_dma_csr_ | _Register Description_                                                                                       |
 |------------------------|----------------|:-----------------:|--------------------------------------------------------------------------------------------------------------|
-| [tx/rx]_dma_dispatcher | DMA dispatcher | 0x0020 - 0x003f   | [Link](https://docs.altera.com/r/docs/683130/25.3/embedded-peripherals-ip-user-guide/register-map-of-msgdma) |
-| [tx/rx]_dma_prefetcher | DMA prefetcher | 0x0000 - 0x001f   | [Link](https://docs.altera.com/r/docs/683130/25.3/embedded-peripherals-ip-user-guide/prefetcher-register)    |
+| [tx/rx]_dma_dispatcher | DMA dispatcher | 0x0020 - 0x003f   | [Link](https://docs.altera.com/r/docs/683130/26.1/embedded-peripherals-ip-user-guide/register-map-of-msgdma) |
+| [tx/rx]_dma_prefetcher | DMA prefetcher | 0x0000 - 0x001f   | [Link](https://docs.altera.com/r/docs/683130/26.1/embedded-peripherals-ip-user-guide/prefetcher-register)    |
 
 **Table 7.** DMA Subsystem channel memory map.
 
@@ -957,15 +980,15 @@ There are two ways to test the design based on use case.
 
 #### Altera Quartus Prime Pro
 
-Download the Quartus&reg; Prime Pro Edition software version 26.1 from the [FPGA Software Download Center](https://www.altera.com/downloads/fpga-development-tools/quartus-prime-pro-edition-design-software-version-25-3-1-linux). Follow the on-screen instructions to complete the installation process.
+Download the Quartus&reg; Prime Pro Edition software version 26.1 from the [FPGA Software Download Center](https://www.altera.com/downloads/fpga-development-tools/quartus-prime-pro-edition-design-software-version-26-1-linux). Follow the on-screen instructions to complete the installation process.
 
-Refer to [Altera&reg; FPGA Software Installation and Licensing](https://docs.altera.com/r/docs/683472/25.3/altera-fpga-software-installation-and-licensing/answers-to-top-faqs) for more information on the installation and licensing process.
+Refer to [Altera&reg; FPGA Software Installation and Licensing](https://docs.altera.com/r/docs/683472/26.1/altera-fpga-software-installation-and-licensing/answers-to-top-faqs) for more information on the installation and licensing process.
 
 Set up the Altera&reg; Quartus&reg; tools in the PATH environmental variable.
 
 ``` bash
 # Adjust QUARTUS_ROOTDIR target to reflect your Quartus installation path  
-export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/26.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -1008,22 +1031,22 @@ Clone the GitHub repository to obtain the System Example Design source package.
 ``` bash
 git clone https://github.com/altera-fpga/agilex7-ed-ptp.git
 cd agilex7-ed-ptp
-git checkout rel25.3.1
-cd agi027fc-si-devkit
+git checkout rel/26.1
+cd agi027fd-si-devkit
 export TOP_FOLDER=`pwd`
 ```
 
 Directory Structure Used in This Example Design:
 
 ``` bash
-  |--- agi027fc-si-devkit
+  |--- agi027fd-si-devkit
   |   |--- src
   |   |   |--- hw
   |   |   |--- sw
 
 ```
 
-Pre-built binaries are available under the [GitHub repository releases](https://github.com/altera-fpga/agilex7-ed-ptp/releases/tag/SED-PTP-agilex7_dk_si_agi027fc-Q25.3.1-Rel-1.1). File descriptions are provided in the [Binaries](#binaries) section.
+Pre-built binaries are available under the [GitHub repository releases](https://github.com/altera-fpga/agilex7-ed-ptp/releases/tag/SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.1). File descriptions are provided in the [Binaries](#binaries) section.
 
 Extract all files and copy them to $TOP_FOLDER/bin to run hardware tests on the development kit.
 
@@ -1045,7 +1068,7 @@ The project Makefile reads `src/hw/synth/config.txt` to determine the Ethernet d
     ``` bash
     Configuration=10G_ANLT
     ```
-    
+
     A message with your configuration selection will be printed as part of Quartus compilation standard output messages as shown below.
 
     ``` bash
@@ -1084,7 +1107,7 @@ The project Makefile reads `src/hw/synth/config.txt` to determine the Ethernet d
     ``` bash
     Configuration=100G_ANLT
     ```
-    
+
     A message with your configuration selection will be printed as part of Quartus compilation standard output messages as shown below.
 
     ``` bash
@@ -1093,7 +1116,16 @@ The project Makefile reads `src/hw/synth/config.txt` to determine the Ethernet d
 
     If ANLT support is not required, use `100G_NON_ANLT` configuration as target. Removing ANLT support will require a [Yocto Update](#yocto-update)
 
-Run the following command to compile the project:
+=== "DR-10/25GbE"
+    ``` bash
+    Configuration=10G_25G_NON_ANLT_DR
+    ```
+
+    A message with your configuration selection will be printed as part of Quartus compilation standard output messages as shown below.
+
+    ``` bash
+    Info: Configuration selected is 10G_25G_NON_ANLT_DR
+    ```
 
 ``` bash
 cd $TOP_FOLDER/src/hw/synth/
@@ -1118,7 +1150,6 @@ The following files are generated:
 
 - `$TOP_FOLDER/bin/top.hps.rbf`  - HPS First configuration bitstream, phase 1 (HPS and DDR)
 - `$TOP_FOLDER/bin/top.core.rbf` - HPS First configuration bitstream, phase 2 (FPGA fabric)
-
 
 ### SW Compilation
 
@@ -1183,6 +1214,12 @@ Start the Yocto build process by executing the following command:
     ``` bash
     cd $TOP_FOLDER/src/sw/yocto
     . agilex7_dk_si_agi027fc-PTP_2P100G_MCQ-build.sh
+    build_default
+    ```
+=== "DR-10/25GbE"
+    ``` bash
+    cd $TOP_FOLDER/src/sw/yocto
+    . agilex7_dk_si_agi027fc-PTP_2P_MCQ_DR-build.sh.sh
     build_default
     ```
 
@@ -1341,7 +1378,22 @@ To update the FPGA bitstream SHA signature in the HPS second-stage bootloader, f
     NEW_SHA="sha256sum_PTP_2P100G_MCQ = \"$CORE_SHA\"" 
     sed -i "s/$OLD_SHA/$NEW_SHA/" "$FILE"
     ```
+=== "DR-10/25GbE"
 
+    1. Replace `$TOP_FOLDER/src/sw/yocto/meta-agilex7-sed/recipes-bsp/ghrd/files/agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P_MCQ_DR.core.rbf` with the updated `top.core.rbf`
+    2. Update the recipe at `$TOP_FOLDER/src/sw/yocto/meta-agilex7-sed/recipes-bsp/ghrd/hw-ref-design.bb` using the following commands
+
+    ``` bash
+    cd $TOP_FOLDER
+    CORE_RBF=src/sw/yocto/meta-agilex7-sed/recipes-bsp/ghrd/files/agilex7_dk_si_agi027fc_gsrd_ghrd_PTP_2P_MCQ_DR.core.rbf
+    rm -rf $CORE_RBF
+    cp -f bin/top.core.rbf $CORE_RBF
+    FILE=src/sw/yocto/meta-agilex7-sed/recipes-bsp/ghrd/hw-ref-design.bbappend
+    CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ") 
+    OLD_SHA=".*sha256sum_PTP_2P_MCQ_DR.*"
+    NEW_SHA="sha256sum_PTP_2P_MCQ_DR = \"$CORE_SHA\"" 
+    sed -i "s/$OLD_SHA/$NEW_SHA/" "$FILE"
+    ```
 After completing the previous step, rebuild the design as described in [Build Yocto](#build-yocto).
 
 Regenerate the HPS configuration file with the new `u-boot-spl-dtb.hex` file.
@@ -1431,89 +1483,117 @@ On the HPS UART (Minicom connection), you’ll observe the HPS booting Linux fro
 
 If everything is functioning correctly, each Minicom terminal will display boot messages from the HPS running Linux.
 
-=== "10 GbE" 
+Commands:
 
-    ```bash
-    agilex7dksiagi027fc login: root
+```
+uname -a
+cat /etc/os-release
+```
 
-    WARNING: Poky is a reference Yocto Project distribution that should r
-    testing and development purposes only. It is recommended that you crr
+=== "10 GbE"
+
+    ``` bash
+    agilex7dksiagi027fc login:root
+    WARNING: Poky is a reference Yocto Project distribution that should be used for
+    testing and development purposes only. It is recommended that you create your
     own distribution for production use.
 
     root@agilex7dksiagi027fc:~# uname -a
-    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2x10G-ptp-anlt-sed-Q25.3.1-R1.1 #1 SMP PREEMPT Thu Jan 29 07:47:33 UTC 2026 aarch64 GNU/Linux
+    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2xMulti-ptp-anlt-sed-Q26.1-R1.1 #1 SMP PREEMPT Wed Jun 17 07:05:03 UTC 2026 aarch64 GNU/Linux
     root@agilex7dksiagi027fc:~# cat /etc/os-release
     ID=poky
     NAME="Poky (Yocto Project Reference Distro)"
-    VERSION="5.0.5 (scarthgap)"
-    VERSION_ID=5.0.5
+    VERSION="5.0.18 (scarthgap)"
+    VERSION_ID=5.0.18
     VERSION_CODENAME="scarthgap"
-    PRETTY_NAME="Poky (Yocto Project Reference Distro) 5.0.5 (scarthgap)"
-    CPE_NAME="cpe:/o:openembedded:poky:5.0.5"
+    PRETTY_NAME="Poky (Yocto Project Reference Distro) 5.0.18 (scarthgap)"
+    CPE_NAME="cpe:/o:openembedded:poky:5.0.18"
+    root@agilex7dksiagi027fc:~#
     ```
 
 === "25 GbE"
 
-    ```bash
+    ``` bash
     agilex7dksiagi027fc login: root
 
-    WARNING: Poky is a reference Yocto Project distribution that should r
-    testing and development purposes only. It is recommended that you crr
+    WARNING: Poky is a reference Yocto Project distribution that should be used for
+    testing and development purposes only. It is recommended that you create your
     own distribution for production use.
 
     root@agilex7dksiagi027fc:~# uname -a
-    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2x25G-ptp-anlt-sed-Q25.3.1-R1.1 #1 SMP PREEMPT Thu Jan 29 07:47:33 UTC 2026 aarch64 GNU/Linux
+    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2x25G-ptp-anlt-sed-Q26.1-R1.1 #1 SMP PREEMPT Wed Jun 17 07:05:03 UTC 2026 aarch64 GNU/Linux
     root@agilex7dksiagi027fc:~# cat /etc/os-release
     ID=poky
     NAME="Poky (Yocto Project Reference Distro)"
-    VERSION="5.0.5 (scarthgap)"
-    VERSION_ID=5.0.5
+    VERSION="5.0.18 (scarthgap)"
+    VERSION_ID=5.0.18
     VERSION_CODENAME="scarthgap"
-    PRETTY_NAME="Poky (Yocto Project Reference Distro) 5.0.5 (scarthgap)"
-    CPE_NAME="cpe:/o:openembedded:poky:5.0.5"
+    PRETTY_NAME="Poky (Yocto Project Reference Distro) 5.0.18 (scarthgap)"
+    CPE_NAME="cpe:/o:openembedded:poky:5.0.18"
+    root@agilex7dksiagi027fc:~#
     ```
 
 === "50 GbE"
-    ``` bash
-    agilex7dksiagi027fc login: root
 
-    WARNING: Poky is a reference Yocto Project distribution that should r
-    testing and development purposes only. It is recommended that you crr
+    ```bash
+    agilex7dksiagi027fc login:root
+    WARNING: Poky is a reference Yocto Project distribution that should be used for
+    testing and development purposes only. It is recommended that you create your
     own distribution for production use.
 
     root@agilex7dksiagi027fc:~# uname -a
-    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2x50G-ptp-anlt-sed-Q25.3.1-R1.1 #1 SMP PREEMPT Thu Jan 29 07:47:33 UTC 2026 aarch64 GNU/Linux
+    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2xMulti-ptp-anlt-sed-Q26.1-R1.1 #1 SMP PREEMPT Wed Jun 17 07:05:03 UTC 2026 aarch64 GNU/Linux
     root@agilex7dksiagi027fc:~# cat /etc/os-release
     ID=poky
     NAME="Poky (Yocto Project Reference Distro)"
-    VERSION="5.0.5 (scarthgap)"
-    VERSION_ID=5.0.5
+    VERSION="5.0.18 (scarthgap)"
+    VERSION_ID=5.0.18
     VERSION_CODENAME="scarthgap"
-    PRETTY_NAME="Poky (Yocto Project Reference Distro) 5.0.5 (scarthgap)"
-    CPE_NAME="cpe:/o:openembedded:poky:5.0.5"
+    PRETTY_NAME="Poky (Yocto Project Reference Distro) 5.0.18 (scarthgap)"
+    CPE_NAME="cpe:/o:openembedded:poky:5.0.18"
+    root@agilex7dksiagi027fc:~#
     ```
 
-=== "100 GbE" 
+=== "100 GbE"
 
-    ``` bash
-    agilex7dksiagi027fc login: root
-
-    WARNING: Poky is a reference Yocto Project distribution that should r
-    testing and development purposes only. It is recommended that you crr
+    ```bash
+    agilex7dksiagi027fc login:root
+    WARNING: Poky is a reference Yocto Project distribution that should be used for
+    testing and development purposes only. It is recommended that you create your
     own distribution for production use.
 
     root@agilex7dksiagi027fc:~# uname -a
-    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2x100G-ptp-anlt-sed-Q25.3.1-R1.1 #1 SMP PREEMPT Thu Jan 29 07:47:33 UTC 2026 aarch64 GNU/Linux
+    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2xMulti-ptp-anlt-sed-Q26.1-R1.1 #1 SMP PREEMPT Wed Jun 17 07:05:03 UTC 2026 aarch64 GNU/Linux
     root@agilex7dksiagi027fc:~# cat /etc/os-release
     ID=poky
     NAME="Poky (Yocto Project Reference Distro)"
-    VERSION="5.0.5 (scarthgap)"
-    VERSION_ID=5.0.5
+    VERSION="5.0.18 (scarthgap)"
+    VERSION_ID=5.0.18
     VERSION_CODENAME="scarthgap"
-    PRETTY_NAME="Poky (Yocto Project Reference Distro) 5.0.5 (scarthgap)"
-    CPE_NAME="cpe:/o:openembedded:poky:5.0.5"
+    PRETTY_NAME="Poky (Yocto Project Reference Distro) 5.0.18 (scarthgap)"
+    CPE_NAME="cpe:/o:openembedded:poky:5.0.18"
+    root@agilex7dksiagi027fc:~#
     ```
+=== "DR-10/25GbE"
 
+    ```bash
+    agilex7dksiagi027fc login:root
+    WARNING: Poky is a reference Yocto Project distribution that should be used for
+    testing and development purposes only. It is recommended that you create your
+    own distribution for production use.
+
+    root@agilex7dksiagi027fc:~# uname -a
+    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2xMulti-ptp-anlt-sed-Q26.1-R1.1 #1 SMP PREEMPT Wed Jun 17 07:05:03 UTC 2026 aarch64 GNU/Linux
+    root@agilex7dksiagi027fc:~# cat /etc/os-release
+    ID=poky
+    NAME="Poky (Yocto Project Reference Distro)"
+    VERSION="5.0.18 (scarthgap)"
+    VERSION_ID=5.0.18
+    VERSION_CODENAME="scarthgap"
+    PRETTY_NAME="Poky (Yocto Project Reference Distro) 5.0.18 (scarthgap)"
+    CPE_NAME="cpe:/o:openembedded:poky:5.0.18"
+    root@agilex7dksiagi027fc:~#
+    ```
 
 Repeat the same steps for the second Agilex&trade; 7 I-Series Transceiver-SoC Development Kit.
 
@@ -1522,30 +1602,34 @@ Repeat the same steps for the second Agilex&trade; 7 I-Series Transceiver-SoC De
 Check the network status on each Agilex&trade; 7 I-Series Transceiver-SoC Development Kit using the following command:
 
 ``` bash
-root@agilex7dksiagi027fc:~# ip addr
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN 0
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host noprefixroute 
-       valid_lft forever preferred_lft forever
-2: eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state0
-    link/ether 66:68:45:23:2d:d3 brd ff:ff:ff:ff:ff:ff
-3: teql0: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 0
-    link/void 
-4: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state U0
-    link/ether 4a:e9:22:7c:86:00 brd ff:ff:ff:ff:ff:ff
-    inet 169.254.167.23/16 brd 169.254.255.255 scope global eth1
-       valid_lft forever preferred_lft forever
-    inet6 fe80::48e9:22ff:fe7c:8600/64 scope link proto kernel_ll 
-       valid_lft forever preferred_lft forever
-5: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state U0
-    link/ether ae:1b:b7:7c:16:d0 brd ff:ff:ff:ff:ff:ff
-    inet 169.254.86.21/16 brd 169.254.255.255 scope global eth2
-       valid_lft forever preferred_lft forever
-    inet6 fe80::ac1b:b7ff:fe7c:16d0/64 scope link proto kernel_ll 
-       valid_lft forever preferred_lft forever
-root@agilex7dksiagi027fc:~# 
+    root@agilex7dksiagi027fc:~# ip addr
+    1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+        link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+        inet 127.0.0.1/8 scope host lo
+        valid_lft forever preferred_lft forever
+        inet6 ::1/128 scope host noprefixroute
+        valid_lft forever preferred_lft forever
+    2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+        link/ether 46:25:34:1c:a8:42 brd ff:ff:ff:ff:ff:ff
+        inet 10.244.192.207/22 brd 10.244.195.255 scope global eth0
+        valid_lft forever preferred_lft forever
+        inet6 fe80::4425:34ff:fe1c:a842/64 scope link proto kernel_ll
+        valid_lft forever preferred_lft forever
+    3: teql0: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 100
+        link/void
+    4: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+        link/ether b2:df:bc:83:1e:4b brd ff:ff:ff:ff:ff:ff
+        inet 169.254.105.251/16 brd 169.254.255.255 scope global eth1
+        valid_lft forever preferred_lft forever
+        inet6 fe80::b0df:bcff:fe83:1e4b/64 scope link proto kernel_ll
+        valid_lft forever preferred_lft forever
+    5: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+        link/ether 62:6c:7c:b0:30:6c brd ff:ff:ff:ff:ff:ff
+        inet 169.254.62.1/16 brd 169.254.255.255 scope global eth2
+        valid_lft forever preferred_lft forever
+        inet6 fe80::606c:7cff:feb0:306c/64 scope link proto kernel_ll
+        valid_lft forever preferred_lft forever
+    root@agilex7dksiagi027fc:~#
 ```
 
 Three Ethernet interfaces will be listed in the output of `ip addr`:
@@ -1570,6 +1654,77 @@ Three Ethernet interfaces will be listed in the output of `ip addr`:
     2. `eth1` : 100G Ethernet Port (100Gbps)
     3. `eth2` : 100G Ethernet Port (100Gbps)
 
+=== "DR-10/25GbE"
+    1. `eth0` : HPS dedicated Ethernet interface (1Gbps)
+    2. `eth1` : DR configuratable 10G/25G Ethernet Port 
+    3. `eth2` : DR configuratable 10G/25G Ethernet Port
+        
+    **Dynamic reconfiguration of Ethernet Ports**
+
+    There are four DR(Dynamic Reconfiguration) profiles supported for the 10G/25G DR Design configuration.
+
+    1.  base profile (profile#0) - 25GbE (RS-FEC)
+    2.  (profile#1) - 10GbE no-fec
+    3.  (profile#2) - 25GbE no- fec
+    4.  (profile#3) - 25GbE (BASE-R Firecode FEC)
+
+    When design is booted the default boot will be base profile 25GbE (RS-FEC), you can verify this by executing command `ethtool --show-priv-flags <eth1/eth2>`.
+
+    ``` bash
+    root@agilex7dksiagi027fc:~# ethtool --show-priv-flags eth1
+    Private flags for eth1:
+    dr_supported           : on
+    active_profile_valid   : on
+    fec_baser              : off
+    fec_rs                 : on
+    active_speed_10g       : off
+    active_speed_25g       : on
+    active_speed_50g       : off
+    active_speed_100g      : off
+    active_speed_200g      : off
+    active_speed_400g      : off
+    ptp_enabled            : on
+    ptp_clockcleaner_enable: on
+    root@agilex7dksiagi027fc:~# ethtool --show-priv-flags eth2
+    Private flags for eth2:
+    dr_supported           : on
+    active_profile_valid   : on
+    fec_baser              : off
+    fec_rs                 : on
+    active_speed_10g       : off
+    active_speed_25g       : on
+    active_speed_50g       : off
+    active_speed_100g      : off
+    active_speed_200g      : off
+    active_speed_400g      : off
+    ptp_enabled            : on
+    ptp_clockcleaner_enable: on
+    root@agilex7dksiagi027fc:~#
+    ```
+
+    Steps to change the DR profiles and bring up the Ethernet links
+
+    1. bring down the link on the Ethernet port
+        ``` bash
+        ip link set eth1 down
+        ```
+    2. Select the required speed using `ethtool -s eth1 speed <10000/25000>`
+        ``` bash
+        ethtool -s eth1 speed 10000
+        ```
+    3. Select the required FEC configuration using command `ethtool --set-fec eth1 encoding <rs/baser/off>`
+        ``` bash
+        ethtool --set-fec eth1 encoding off
+        ```
+    4. Bring up the link using `ip link` command.
+        ``` bash
+        ip link set eth1 up
+        ```
+    5. Check the link status wiht `ip addr` command
+        ``` bash
+        ip addr
+        ```
+
 ## Initial System Configuration
 
 After booting on both development kits, the System Example design requires initialization of key components: DMA subsystem, User Logic (Packet Generator), Packet Switch, Egress QoS-TC, and Iperf. Two configuration methods are supported.
@@ -1592,31 +1747,31 @@ Valid argument values are `1` or `2`.
 Run the following command on Development Kit 1:
 
 ``` bash
-source ./2PortMCQ.sh 1
+source ./scripts/2PortMCQ.sh 1
 ```
 
 Expected output:
 
 ``` bash
-root@agilex7dksiagi027fc:~/scripts# source ./2PortMCQ.sh 1
+root@agilex7dksiagi027fc:~# source ./scripts/2PortMCQ.sh 1
 Programming the Basic IP address...
-Clearing old PacketSwitch rules Port - 0...
+Clearing old Packet Switch rules Port - 0...
 UIO device file found. Using /dev/uio2
 Key Flush successful...
 No Filters attached to eth1. Continuing...
-Clearing old PacketSwitch rules Port - 1...
+Clearing old Packet Switch rules Port - 1...
 UIO device file found. Using /dev/uio2
 Key Flush successful...
 No Filters attached to eth2. Continuing...
 Flushing old IPv4 and IPv6 addresses and routes
-Setting DEVKIT to 2.
-Running script for Devkit 2.
-    link/ether 12:bf:d3:47:23:ed brd ff:ff:ff:ff:ff:ff
-    link/ether 46:4f:0d:9c:a0:b5 brd ff:ff:ff:ff:ff:ff
-    link/ether 3a:5f:04:da:0b:6d brd ff:ff:ff:ff:ff:ff
-Programming the Packet Switch Port - 0...
-Programming the Packet Switch Generic rule...
-eth1 - 46:4f:0d:9c:a0:b5
+Setting DEVKIT to 1.
+Running script for Devkit 1.
+    link/ether 36:02:a8:1c:4f:02 brd ff:ff:ff:ff:ff:ff
+    link/ether ca:52:26:4d:70:55 brd ff:ff:ff:ff:ff:ff
+    link/ether 4e:77:5e:b9:ac:b3 brd ff:ff:ff:ff:ff:ff
+Programming the PacketSwitch Port - 0...
+Programming the PacketSwitch Generic rule...
+eth1 - ca:52:26:4d:70:55
 UIO device file found. Using /dev/uio2
 Setting Entry: Success
 Copying Keyfields: Port: 0 Key index: 0 Success
@@ -1624,7 +1779,7 @@ Setting Result Register: 2. Success
 Setting Mask Register: Success
 Setting Mgmt Cntrl Register: Success
 Wait till operation is done: Key Insertion successful...
-Programming the Packet Switch - Low priority rules...
+Programming the PacketSwitch - Low priority rules...
 UIO device file found. Using /dev/uio2
 Setting Entry: Success
 Copying Keyfields: Port: 0 Key index: 1 Success
@@ -1637,20 +1792,31 @@ Setting Entry: Success
 
 <-- output truncated -->
 
-Programming the IPV6 rules - Port 1
-Setting IPv6 local addresses
-RTNETLINK answers: Operation not supported
-RTNETLINK answers: Operation not supported
-UIO device file found. Using /dev/uio2
 Setting Entry: Success
-Copying Keyfields: Port: 1 Key index: 20 Success
+Copying Keyfields: Port: 0 Key index: 29 Success
 Setting Result Register: 2. Success
 Setting Mask Register: Success
 Setting Mgmt Cntrl Register: Success
 Wait till operation is done: Key Insertion successful...
 UIO device file found. Using /dev/uio2
 Setting Entry: Success
-Copying Keyfields: Port: 1 Key index: 21 Success
+Copying Keyfields: Port: 0 Key index: 30 Success
+Setting Result Register: 2. Success
+Setting Mask Register: Success
+Setting Mgmt Cntrl Register: Success
+Wait till operation is done: Key Insertion successful...
+Programming the IPV6 rules - Port 1
+Setting IPv6 local addresses
+UIO device file found. Using /dev/uio2
+Setting Entry: Success
+Copying Keyfields: Port: 1 Key index: 29 Success
+Setting Result Register: 2. Success
+Setting Mask Register: Success
+Setting Mgmt Cntrl Register: Success
+Wait till operation is done: Key Insertion successful...
+UIO device file found. Using /dev/uio2
+Setting Entry: Success
+Copying Keyfields: Port: 1 Key index: 30 Success
 Setting Result Register: 2. Success
 Setting Mask Register: Success
 Setting Mgmt Cntrl Register: Success
@@ -1662,6 +1828,8 @@ Create Filters - IPERF 540X packets to DMA0...
 Create Filters - IPERF 530X packets to DMA1...
 Create Filters - IPERF 520X packets to DMA2...
 Create Filters - ICMP packets to DMA2...
+Create Filters - All other packets to DMA2...
+Create Filters - All broadcast packets to DMA2...
 Traffic Class Egress QOS programming - Port - eth2
 Create QDisc...
 Create Filters - PTP packets to DMA0...
@@ -1669,13 +1837,16 @@ Create Filters - IPERF 540X packets to DMA0...
 Create Filters - IPERF 530X packets to DMA1...
 Create Filters - IPERF 520X packets to DMA2...
 Create Filters - ICMP packets to DMA2...
+Create Filters - All other packets to DMA2...
+Create Filters - All broadcast packets to DMA2...
 Configuration for Devkit 1 set
+root@agilex7dksiagi027fc:~#
 ```
 
 Configure Development Kit 2:
 
 ``` bash
-source ./2PortMCQ.sh 2
+source ./scripts/2PortMCQ.sh 2
 ```
 
 ### Manual Configuration
@@ -1688,8 +1859,14 @@ Execute the following commands on both development kits:
 
 ``` bash
 echo -e "Programming the Basic IP address..."
-echo "2" > /proc/irq/25/smp_affinity && echo "2" > /proc/irq/26/smp_affinity && echo "4" > /proc/irq/27/smp_affinity && echo "4" > /proc/irq/28/smp_affinity && echo "8" > /proc/irq/29/smp_affinity && echo "8" > /proc/irq/30/smp_affinity
-echo "1" > /proc/irq/31/smp_affinity && echo "1" > /proc/irq/32/smp_affinity && echo "2" > /proc/irq/33/smp_affinity && echo "2" > /proc/irq/34/smp_affinity && echo "4" > /proc/irq/35/smp_affinity && echo "4" > /proc/irq/36/smp_affinity
+arr_eth1=($(awk -F: '/eth1/ {print $1}' /proc/interrupts))
+arr_eth2=($(awk -F: '/eth2/ {print $1}' /proc/interrupts))
+echo "2" > /proc/irq/${arr_eth1[0]}/smp_affinity && echo "2" > /proc/irq/${arr_eth1[1]}/smp_affinity
+echo "4" > /proc/irq/${arr_eth1[2]}/smp_affinity && echo "4" > /proc/irq/${arr_eth1[3]}/smp_affinity
+echo "8" > /proc/irq/${arr_eth1[4]}/smp_affinity && echo "8" > /proc/irq/${arr_eth1[5]}/smp_affinity
+echo "1" > /proc/irq/${arr_eth2[0]}/smp_affinity && echo "1" > /proc/irq/${arr_eth2[1]}/smp_affinity
+echo "2" > /proc/irq/${arr_eth2[2]}/smp_affinity && echo "2" > /proc/irq/${arr_eth2[3]}/smp_affinity
+echo "4" > /proc/irq/${arr_eth2[4]}/smp_affinity && echo "4" > /proc/irq/${arr_eth2[5]}/smp_affinity
 ```
 
 #### Clear Old Configurations
@@ -1699,28 +1876,28 @@ Clear existing Packet Switch TCAM keys, traffic class (TC) configurations, and a
 Execute the following commands on both development kits:
 
 ``` bash
-echo -e "Clearing old PacketSwitch rules Port - 0..."
+echo -e "Clearing old Packet Switch rules Port - 0..."
 packetswitch --port 0 --flush-all-keys
 
 FILTERS=$(tc filter show dev eth1 egress 2>/dev/null)
 if [[ -z "$FILTERS" ]]; then
-	 echo -e "No Filters attached to eth1. Continuing..."
+        echo -e "No Filters attached to eth1. Continuing..."
 else
-	 echo -e "Clearing old TC rules Port - 0..."
-	 tc filter del dev eth1 egress
-	 tc qdisc del dev eth1 clsact
+        echo -e "Clearing old TC rules Port - 0..."
+        tc filter del dev eth1 egress
+        tc qdisc del dev eth1 clsact
 fi
 
-echo -e "Clearing old PacketSwitch rules Port - 1..."
+echo -e "Clearing old Packet Switch rules Port - 1..."
 packetswitch --port 1 --flush-all-keys
 
 FILTERS=$(tc filter show dev eth2 egress 2>/dev/null)
 if [[ -z "$FILTERS" ]]; then
-	 echo -e "No Filters attached to eth2. Continuing..."
+        echo -e "No Filters attached to eth2. Continuing..."
 else
-	 echo -e "Clearing old TC rules Port - 1..."
-	 tc filter del dev eth2 egress
-	 tc qdisc del dev eth2 clsact
+        echo -e "Clearing old TC rules Port - 1..."
+        tc filter del dev eth2 egress
+        tc qdisc del dev eth2 clsact
 fi
 
 echo -e "Flushing old IPv4 and IPv6 addresses and routes"
@@ -1755,83 +1932,104 @@ ip link set eth2 up && ip addr add 192.168.122.2 dev eth2 && ip route add 192.16
 The following rules configure the Packet Switch to route ping requests to the lowest priority DMA (DMA-2) on both Ethernet interfaces.
 
 ``` bash
-echo -e "Programming the Packet Switch Port - 0..."
-echo -e "Programming the Packet Switch Generic rule..."
+echo -e "Programming the PacketSwitch Port - 0..."
+echo -e "Programming the PacketSwitch Generic rule..."
 packetswitch --port 0 --set-key --key-index 0 --dest-mac "eth1"  --result 0x2
-echo -e "Programming the Packet Switch - Low priority rules..."
+echo -e "Programming the PacketSwitch - Low priority rules..."
 packetswitch --port 0 --set-key --key-index 1 --ethtype 0x0806 --result 0x2
 packetswitch --port 0 --set-key --key-index 2 --ethtype 0x0800 --protocol 0x01 --result 0x2
 
-echo -e "Programming the Packet Switch Port - 1..."
-echo -e "Programming the Packet Switch Generic rule..."
+echo -e "Programming the PacketSwitch Port - 1..."
+echo -e "Programming the PacketSwitch Generic rule..."
 packetswitch --port 1 --set-key --key-index 0 --dest-mac "eth2"  --result 0x2
-echo -e "Programming the Packet Switch - Low priority rules..."
+echo -e "Programming the PacketSwitch - Low priority rules..."
 packetswitch --port 1 --set-key --key-index 1 --ethtype 0x0806 --result 0x2
 packetswitch --port 1 --set-key --key-index 2 --ethtype 0x0800 --protocol 0x01 --result 0x2
 ```
 
 The first rule matches packets with a destination MAC address equal to that of the Ethernet interface. The second rule filters Ethernet frames with Ethertype set to IPv4 and the IPv4 protocol field set to ICMP. The final rule filters frames with Ethertype set to ARP.
 
-##### iPerf3 Synthetic Traffic Rules
+##### iPerf3 Synthetic Traffic & VLAN Rules
 
 iPerf3 is a tool for active measurement of maximum achievable bandwidth on IP networks. It can generate traffic between a client and server, with configurable parameters such as the network port used. The following rules assign a target DMA based on the network port of incoming Ethernet packets.
 
 ``` bash
-echo -e "Programming the Packet Switch Port - 0..."
-echo -e "Programming the Packet Switch - IPERF 540X to DMA0..."
+echo -e "Programming the PacketSwitch Port - 0..."
+echo -e "Programming the PacketSwitch - IPERF 540X to DMA0..."
 packetswitch --port 0 --set-key --key-index 3 --ethtype 0x0800 --dest-port 5401 --result 0x0
 packetswitch --port 0 --set-key --key-index 4 --ethtype 0x0800 --dest-port 5402 --result 0x0
 packetswitch --port 0 --set-key --key-index 5 --ethtype 0x0800 --src-port 5401 --result 0x0
 packetswitch --port 0 --set-key --key-index 6 --ethtype 0x0800 --src-port 5402 --result 0x0
-echo -e "Programming the Packet Switch - IPERF 530X to DMA1..."
+echo -e "Programming the PacketSwitch - IPERF 530X to DMA1..."
 packetswitch --port 0 --set-key --key-index 7 --ethtype 0x0800 --dest-port 5301 --result 0x1
 packetswitch --port 0 --set-key --key-index 8 --ethtype 0x0800 --dest-port 5302 --result 0x1
 packetswitch --port 0 --set-key --key-index 9 --ethtype 0x0800 --src-port 5301 --result 0x1
 packetswitch --port 0 --set-key --key-index 10 --ethtype 0x0800 --src-port 5302 --result 0x1
-echo -e "Programming the Packet Switch - IPERF 520X to DMA2..."
+echo -e "Programming the PacketSwitch - IPERF 520X to DMA2..."
 packetswitch --port 0 --set-key --key-index 11 --ethtype 0x0800 --dest-port 5201 --result 0x2
 packetswitch --port 0 --set-key --key-index 12 --ethtype 0x0800 --dest-port 5202 --result 0x2
 packetswitch --port 0 --set-key --key-index 13 --ethtype 0x0800 --src-port 5201 --result 0x2
 packetswitch --port 0 --set-key --key-index 14 --ethtype 0x0800 --src-port 5202 --result 0x2
+echo -e "Programming the PacketSwitch - VLAN frames IPERF 530X to DMA1..."
+packetswitch --port 0 --set-key --key-index 22 --ethtype 0x8100 --dest-port 5300 --mask 0xFFFC --result 0x1
+packetswitch --port 0 --set-key --key-index 23 --ethtype 0x8100 --src-port 5300 --mask 0xFFFC --result 0x1
+echo -e "Programming the PacketSwitch - VLAN frames IPERF 520X to DMA2..."
+packetswitch --port 0 --set-key --key-index 24 --ethtype 0x8100 --dest-port 5200 --mask 0xFFFC --result 0x2
+packetswitch --port 0 --set-key --key-index 25 --ethtype 0x8100 --src-port 5200 --mask 0xFFFC --result 0x2
+packetswitch --port 0 --set-key --key-index 26 --dest-mac "01:00:5E:00:00:00" --mask "FF:FF:FF:FF:FE:00" --result 0x0
+packetswitch --port 0 --set-key --key-index 27 --dest-mac "33:33:00:00:01:80" --mask "FF:FF:FF:FF:FF:FC" --result 0x0
 
-echo -e "Programming the Packet Switch Port - 1..."
-echo -e "Programming the Packet Switch - IPERF 540X to DMA0..."
+echo -e "Programming the PacketSwitch Port - 1..."
+echo -e "Programming the PacketSwitch - IPERF 540X to DMA0..."
 packetswitch --port 1 --set-key --key-index 3 --ethtype 0x0800 --dest-port 5401 --result 0x0
 packetswitch --port 1 --set-key --key-index 4 --ethtype 0x0800 --dest-port 5402 --result 0x0
 packetswitch --port 1 --set-key --key-index 5 --ethtype 0x0800 --src-port 5401 --result 0x0
 packetswitch --port 1 --set-key --key-index 6 --ethtype 0x0800 --src-port 5402 --result 0x0
-echo -e "Programming the Packet Switch - IPERF 530X to DMA1..."
+echo -e "Programming the PacketSwitch - IPERF 530X to DMA1..."
 packetswitch --port 1 --set-key --key-index 7 --ethtype 0x0800 --dest-port 5301 --result 0x1
 packetswitch --port 1 --set-key --key-index 8 --ethtype 0x0800 --dest-port 5302 --result 0x1
 packetswitch --port 1 --set-key --key-index 9 --ethtype 0x0800 --src-port 5301 --result 0x1
 packetswitch --port 1 --set-key --key-index 10 --ethtype 0x0800 --src-port 5302 --result 0x1
-echo -e "Programming the Packet Switch - IPERF 520X to DMA2..."
+echo -e "Programming the PacketSwitch - IPERF 520X to DMA2..."
 packetswitch --port 1 --set-key --key-index 11 --ethtype 0x0800 --dest-port 5201 --result 0x2
 packetswitch --port 1 --set-key --key-index 12 --ethtype 0x0800 --dest-port 5202 --result 0x2
 packetswitch --port 1 --set-key --key-index 13 --ethtype 0x0800 --src-port 5201 --result 0x2
 packetswitch --port 1 --set-key --key-index 14 --ethtype 0x0800 --src-port 5202 --result 0x2
+echo -e "Programming the PacketSwitch - VLAN frames IPERF 530X to DMA1..."
+packetswitch --port 1 --set-key --key-index 22 --ethtype 0x8100 --dest-port 5300 --mask 0xFFFC --result 0x1
+packetswitch --port 1 --set-key --key-index 23 --ethtype 0x8100 --src-port 5300 --mask 0xFFFC --result 0x1
+echo -e "Programming the PacketSwitch - VLAN frames IPERF 520X to DMA2..."
+packetswitch --port 1 --set-key --key-index 24 --ethtype 0x8100 --dest-port 5200 --mask 0xFFFC --result 0x2
+packetswitch --port 1 --set-key --key-index 25 --ethtype 0x8100 --src-port 5200 --mask 0xFFFC --result 0x2
+packetswitch --port 1 --set-key --key-index 26 --dest-mac "01:00:5E:00:00:00" --mask "FF:FF:FF:FF:FE:00" --result 0x0
+packetswitch --port 1 --set-key --key-index 27 --dest-mac "33:33:00:00:01:80" --mask "FF:FF:FF:FF:FF:FC" --result 0x0
 ```
 
 The commands above configure the Packet Switch to route all traffic using port 540X to DMA-0, 530X to DMA-1, and 520X to DMA-2.
 
 ##### PTP Traffic Rules
 
-PTP Ethernet packets will be routed to the highest priority DMA (DMA-0) to keep the system time synchronized with the network time. Execute the following commands on both development kits to make both Ethernet interfaces prioritize the PTP traffic: 
+PTP Ethernet packets will be routed to the highest priority DMA (DMA-0) to keep the system time synchronized with the network time. Execute the following commands on both development kits to make both Ethernet interfaces prioritize the PTP traffic:
 
 ``` bash
 echo -e "Programming the PTP Bridge Port - 0..."
-echo -e "Programming the Packet Switch - PTP Packets to DMA0..."
+echo -e "Programming the PacketSwitch - PTP Packets to DMA0..."
 packetswitch --port 0 --set-key --key-index 15 --dest-mac "01:80:C2:00:00:0E" --result 0x0
 packetswitch --port 0 --set-key --key-index 16 --dest-mac "01:1B:19:00:00:00" --result 0x0
 packetswitch --port 0 --set-key --key-index 17 --ethtype 0x88F7 --result 0x0
 packetswitch --port 0 --set-key --key-index 18 --ethtype 0x88F8 --result 0x0
-
+packetswitch --port 0 --set-key --key-index 19 --ethtype 0x8100 --protocol 0x01 --result 0x2
+packetswitch --port 0 --set-key --key-index 20 --ethtype 0x8100 --dest-port 5400 --mask 0xFFFC --result 0x0
+packetswitch --port 0 --set-key --key-index 21 --ethtype 0x8100 --src-port 5400 --mask 0xFFFC --result 0x0
 echo -e "Programming the PTP Bridge Port - 1..."
-echo -e "Programming the Packet Switch - PTP Packets to DMA0..."
+echo -e "Programming the PacketSwitch - PTP Packets to DMA0..."
 packetswitch --port 1 --set-key --key-index 15 --dest-mac "01:80:C2:00:00:0E" --result 0x0
 packetswitch --port 1 --set-key --key-index 16 --dest-mac "01:1B:19:00:00:00" --result 0x0
 packetswitch --port 1 --set-key --key-index 17 --ethtype 0x88F7 --result 0x0
 packetswitch --port 1 --set-key --key-index 18 --ethtype 0x88F8 --result 0x0
+packetswitch --port 1 --set-key --key-index 19 --ethtype 0x8100 --protocol 0x01 --result 0x2
+packetswitch --port 1 --set-key --key-index 20 --ethtype 0x8100 --dest-port 5400 --mask 0xFFFC --result 0x0
+packetswitch --port 1 --set-key --key-index 21 --ethtype 0x8100 --src-port 5400 --mask 0xFFFC --result 0x0
 
 ```
 
@@ -1846,12 +2044,12 @@ The `packetgenerator` commands set the source and destination MAC addresses to b
 Execute the following commands on development kit 1:
 
 ``` bash
-echo -e "Programming the Packet Switch - Port 0 User packets to User port..."
+echo -e "Programming the PacketSwitch - Port 0 User packets to User port..."
 packetgenerator --device /dev/uio0 --dest-mac "12:34:56:78:0A:2" --src-mac "12:34:56:78:0A:1"
-packetswitch --set-key --port 0 --key-index 19 --dest-mac "12:34:56:78:0A:1" --result 0x8
-echo -e "Programming the Packet Switch - Port 1 User packets to User port..."
+packetswitch --set-key --port 0 --key-index 28 --dest-mac "12:34:56:78:0A:1" --result 0x8
+echo -e "Programming the PacketSwitch - Port 1 User packets to User port..."
 packetgenerator --device /dev/uio1 --dest-mac "12:34:56:78:0A:4" --src-mac "12:34:56:78:0A:3"
-packetswitch --set-key --port 1 --key-index 19 --dest-mac "12:34:56:78:0A:3" --result 0x8
+packetswitch --set-key --port 1 --key-index 28 --dest-mac "12:34:56:78:0A:3" --result 0x8
 
 echo -e "Programming the Packet Generator - Port 0"
 packetgenerator --device /dev/uio0 --traffic false --fixed-gap true --pkt-len-mode 0x01 --num-idle-cycles 22 --packet-checker true --num-packets 0xFFFFFFFF --one-shot false --tx-pkt-size 1024 --tx-max-pkt-size 1024
@@ -1862,12 +2060,12 @@ packetgenerator --device /dev/uio1 --traffic false --fixed-gap true --pkt-len-mo
 Execute the following commands on development kit 2:
 
 ``` bash
-echo -e "Programming the Packet Switch - Port 0 User packets to User port..."
+echo -e "Programming the PacketSwitch - Port 0 User packets to User port..."
 packetgenerator --device /dev/uio0 --dest-mac "12:34:56:78:0A:1" --src-mac "12:34:56:78:0A:2"
-packetswitch --set-key --port 0 --key-index 19 --dest-mac "12:34:56:78:0A:2" --result 0x8
-echo -e "Programming the Packet Switch - Port 1 User packets to User port..."
+packetswitch --set-key --port 0 --key-index 28 --dest-mac "12:34:56:78:0A:2" --result 0x8
+echo -e "Programming the PacketSwitch - Port 1 User packets to User port..."
 packetgenerator --device /dev/uio1 --dest-mac "12:34:56:78:0A:3" --src-mac "12:34:56:78:0A:4"
-packetswitch --set-key --port 1 --key-index 19 --dest-mac "12:34:56:78:0A:4" --result 0x8
+packetswitch --set-key --port 1 --key-index 28 --dest-mac "12:34:56:78:0A:4" --result 0x8
 
 echo -e "Programming the Packet Generator - Port 0"
 packetgenerator --device /dev/uio0 --traffic false --fixed-gap true --pkt-len-mode 0x01 --num-idle-cycles 22 --packet-checker true --num-packets 0xFFFFFFFF --one-shot false --tx-pkt-size 1024 --tx-max-pkt-size 1024
@@ -1886,10 +2084,10 @@ echo -e "Programming the IPV6 rules - Port 0"
 echo -e "Setting IPv6 local addresses"
 ip -6 addr add 2001:db8:abcd:0012::1/64 dev eth1 && ip link set dev eth1 up
 sleep 2
-ip -6 route add 2001:db8:abcd:0012::1/64 dev eth1 src 2001:db8:abcd:0012::1
+ip -6 route add 2001:db8:abcd:0012::/64 dev eth1 src 2001:db8:abcd:0012::1
 
-packetswitch --port 0 --set-key --key-index 20 --ethtype 0x86DD --result 0x2
-packetswitch --port 0 --set-key --key-index 21 --ethtype 0x86DD --protocol 0x3A  --result 0x2
+packetswitch --port 0 --set-key --key-index 29 --ethtype 0x86DD --result 0x2
+packetswitch --port 0 --set-key --key-index 30 --ethtype 0x86DD --protocol 0x3A  --result 0x2
 
 echo -e "Programming the IPV6 rules - Port 1"
 echo -e "Setting IPv6 local addresses"
@@ -1897,8 +2095,8 @@ ip -6 addr add 2001:db8:abcd:0013::1/64 dev eth2 && ip link set dev eth2 up
 sleep 2
 ip -6 route add 2001:db8:abcd:0013::1/64 dev eth2 src 2001:db8:abcd:0013::1
 
-packetswitch --port 1 --set-key --key-index 20 --ethtype 0x86DD --result 0x2
-packetswitch --port 1 --set-key --key-index 21 --ethtype 0x86DD --protocol 0x3A  --result 0x2
+packetswitch --port 1 --set-key --key-index 29 --ethtype 0x86DD --result 0x2
+packetswitch --port 1 --set-key --key-index 30 --ethtype 0x86DD --protocol 0x3A  --result 0x2
 ```
 
 Execute the following commands on development kit 2:
@@ -1910,8 +2108,8 @@ ip -6 addr add 2001:db8:abcd:0012::2/64 dev eth1 && ip link set dev eth1 up
 sleep 2
 ip -6 route add 2001:db8:abcd:0012::2/64 dev eth1 src 2001:db8:abcd:0012::2
 
-packetswitch --port 0 --set-key --key-index 20 --ethtype 0x86DD --result 0x2
-packetswitch --port 0 --set-key --key-index 21 --ethtype 0x86DD --protocol 0x3A  --result 0x2
+packetswitch --port 0 --set-key --key-index 29 --ethtype 0x86DD --result 0x2
+packetswitch --port 0 --set-key --key-index 30 --ethtype 0x86DD --protocol 0x3A  --result 0x2
 
 echo -e "Programming the IPV6 rules - Port 1"
 echo -e "Setting IPv6 local addresses"
@@ -1919,8 +2117,8 @@ ip -6 addr add 2001:db8:abcd:0013::2/64 dev eth2 && ip link set dev eth2 up
 sleep 2
 ip -6 route add 2001:db8:abcd:0013::2/64 dev eth2 src 2001:db8:abcd:0013::2
 
-packetswitch --port 1 --set-key --key-index 20 --ethtype 0x86DD --result 0x2
-packetswitch --port 1 --set-key --key-index 21 --ethtype 0x86DD --protocol 0x3A  --result 0x2
+packetswitch --port 1 --set-key --key-index 29 --ethtype 0x86DD --result 0x2
+packetswitch --port 1 --set-key --key-index 30 --ethtype 0x86DD --protocol 0x3A  --result 0x2
 ```
 
 ### Traffic Classes
@@ -1941,48 +2139,62 @@ tc filters route traffic as follows:
 echo -e "Traffic Class Egress QOS programming - Port - eth1"
 echo -e "Create QDisc..."
 tc qdisc add dev eth1 clsact
+BC_MAC="FF:FF:FF:FF:FF:FF"
+BC_HEX=$(echo $BC_MAC | sed 's/://g')
 echo -e "Create Filters - PTP packets to DMA0..."
 MAC1_ADDR="01:80:C2:00:00:0E"
 MAC1_HEX=$(echo $MAC1_ADDR | sed 's/://g' | tr 'a-f' 'A-F')
 MAC2_ADDR="01:1B:19:00:00:00"
 MAC2_HEX=$(echo $MAC2_ADDR | sed 's/://g' | tr 'a-f' 'A-F')
-tc filter add dev eth1 egress prio 0 u32 match ip dport 319 0xffff match ip protocol 17 0xff action skbedit priority 0
-tc filter add dev eth1 egress prio 0 u32 match ip dport 320 0xffff match ip protocol 17 0xff action skbedit priority 0
-tc filter add dev eth1 egress prio 0 u32 match u16 0x${MAC1_HEX:0:4} 0xFFFF at -14 match u32 0x${MAC1_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 0
-tc filter add dev eth1 egress prio 0 u32 match u16 0x${MAC2_HEX:0:4} 0xFFFF at -14 match u32 0x${MAC2_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 0
+tc filter add dev eth1 egress prio 1 u32 match ip dport 319 0xffff match ip protocol 17 0xff action skbedit priority 7
+tc filter add dev eth1 egress prio 2 u32 match ip dport 320 0xffff match ip protocol 17 0xff action skbedit priority 7
+tc filter add dev eth1 egress prio 3 u32 match u16 0x${MAC1_HEX:0:4} 0xFFFF at -14 match u32 0x${MAC1_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 7
+tc filter add dev eth1 egress prio 4 u32 match u16 0x${MAC2_HEX:0:4} 0xFFFF at -14 match u32 0x${MAC2_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 7
 
+tc filter add dev eth1 egress prio 14 protocol ip u32 match u16 0x0000 0xffc0 at 2 action skbedit priority 1
 echo -e "Create Filters - IPERF 540X packets to DMA0..."
-tc filter add dev eth1 egress prio 0 u32 match ip dport 5401 0xffff match ip protocol 6 0xff action skbedit priority 0
-tc filter add dev eth1 egress prio 0 u32 match ip sport 5401 0xffff match ip protocol 6 0xff action skbedit priority 0
+tc filter add dev eth1 egress prio 15 u32 match ip dport 5401 0xffff match ip protocol 6 0xff action skbedit priority 7
+tc filter add dev eth1 egress prio 16 u32 match ip sport 5401 0xffff match ip protocol 6 0xff action skbedit priority 7
 echo -e "Create Filters - IPERF 530X packets to DMA1..."
-tc filter add dev eth1 egress prio 0 u32 match ip dport 5301 0xffff match ip protocol 6 0xff action skbedit priority 1
-tc filter add dev eth1 egress prio 0 u32 match ip sport 5301 0xffff match ip protocol 6 0xff action skbedit priority 1
+tc filter add dev eth1 egress prio 17 u32 match ip dport 5301 0xffff match ip protocol 6 0xff action skbedit priority 4
+tc filter add dev eth1 egress prio 18 u32 match ip sport 5301 0xffff match ip protocol 6 0xff action skbedit priority 4
 echo -e "Create Filters - IPERF 520X packets to DMA2..."
-tc filter add dev eth1 egress prio 0 u32 match ip dport 5201 0xffff match ip protocol 6 0xff action skbedit priority 2
-tc filter add dev eth1 egress prio 0 u32 match ip sport 5201 0xffff match ip protocol 6 0xff action skbedit priority 2
+tc filter add dev eth1 egress prio 19 u32 match ip dport 5201 0xffff match ip protocol 6 0xff action skbedit priority 1
+tc filter add dev eth1 egress prio 20 u32 match ip sport 5201 0xffff match ip protocol 6 0xff action skbedit priority 1
 echo -e "Create Filters - ICMP packets to DMA2..."
-tc filter add dev eth1 egress prio 0 u32 match ip protocol 1 0xff action skbedit priority 2
+tc filter add dev eth1 egress prio 21 u32 match ip protocol 1 0xff action skbedit priority 1
+echo -e "Create Filters - All other packets to DMA2..."
+tc filter add dev eth1 egress prio 998 protocol ip matchall action skbedit priority 1
+echo -e "Create Filters - All broadcast packets to DMA2..."
+# Match the first 2 bytes at offset -14 (Dest MAC bytes 1-2)
+# Match the remaining 4 bytes at offset -12 (Dest MAC bytes 3-6)
+tc filter add dev eth1 egress prio 999 u32 match u16 0x${BC_HEX:0:4} 0xFFFF at -14 match u32 0x${BC_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 1
 
 echo -e "Traffic Class Egress QOS programming - Port - eth2"
 echo -e "Create QDisc..."
 tc qdisc add dev eth2 clsact
 echo -e "Create Filters - PTP packets to DMA0..."
-tc filter add dev eth2 egress prio 0 u32 match ip dport 319 0xffff match ip protocol 17 0xff action skbedit priority 0
-tc filter add dev eth2 egress prio 0 u32 match ip dport 320 0xffff match ip protocol 17 0xff action skbedit priority 0
-tc filter add dev eth2 egress prio 0 u32 match u16 0x${MAC1_HEX:0:4} 0xFFFF at -14 match u32 0x${MAC1_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 0
-tc filter add dev eth2 egress prio 0 u32 match u16 0x${MAC2_HEX:0:4} 0xFFFF at -14 match u32 0x${MAC2_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 0
+tc filter add dev eth2 egress prio 1 u32 match ip dport 319 0xffff match ip protocol 17 0xff action skbedit priority 7
+tc filter add dev eth2 egress prio 2 u32 match ip dport 320 0xffff match ip protocol 17 0xff action skbedit priority 7
+tc filter add dev eth2 egress prio 3 u32 match u16 0x${MAC1_HEX:0:4} 0xFFFF at -14 match u32 0x${MAC1_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 7
+tc filter add dev eth2 egress prio 4 u32 match u16 0x${MAC2_HEX:0:4} 0xFFFF at -14 match u32 0x${MAC2_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 7
 
+tc filter add dev eth2 egress prio 14 protocol ip u32 match u16 0x0000 0xffc0 at 2 action skbedit priority 1
 echo -e "Create Filters - IPERF 540X packets to DMA0..."
-tc filter add dev eth2 egress prio 0 u32 match ip dport 5401 0xffff match ip protocol 6 0xff action skbedit priority 0
-tc filter add dev eth2 egress prio 0 u32 match ip sport 5401 0xffff match ip protocol 6 0xff action skbedit priority 0
+tc filter add dev eth2 egress prio 15 u32 match ip dport 5401 0xffff match ip protocol 6 0xff action skbedit priority 7
+tc filter add dev eth2 egress prio 16 u32 match ip sport 5401 0xffff match ip protocol 6 0xff action skbedit priority 7
 echo -e "Create Filters - IPERF 530X packets to DMA1..."
-tc filter add dev eth2 egress prio 0 u32 match ip dport 5301 0xffff match ip protocol 6 0xff action skbedit priority 1
-tc filter add dev eth2 egress prio 0 u32 match ip sport 5301 0xffff match ip protocol 6 0xff action skbedit priority 1
+tc filter add dev eth2 egress prio 17 u32 match ip dport 5301 0xffff match ip protocol 6 0xff action skbedit priority 4
+tc filter add dev eth2 egress prio 18 u32 match ip sport 5301 0xffff match ip protocol 6 0xff action skbedit priority 4
 echo -e "Create Filters - IPERF 520X packets to DMA2..."
-tc filter add dev eth2 egress prio 0 u32 match ip dport 5201 0xffff match ip protocol 6 0xff action skbedit priority 2
-tc filter add dev eth2 egress prio 0 u32 match ip sport 5201 0xffff match ip protocol 6 0xff action skbedit priority 2
+tc filter add dev eth2 egress prio 19 u32 match ip dport 5201 0xffff match ip protocol 6 0xff action skbedit priority 1
+tc filter add dev eth2 egress prio 20 u32 match ip sport 5201 0xffff match ip protocol 6 0xff action skbedit priority 1
 echo -e "Create Filters - ICMP packets to DMA2..."
-tc filter add dev eth2 egress prio 0 u32 match ip protocol 1 0xff action skbedit priority 2
+tc filter add dev eth2 egress prio 21 u32 match ip protocol 1 0xff action skbedit priority 1
+echo -e "Create Filters - All other packets to DMA2..."
+tc filter add dev eth2 egress prio 998 protocol ip matchall action skbedit priority 1
+echo -e "Create Filters - All broadcast packets to DMA2..."
+tc filter add dev eth2 egress prio 999 u32 match u16 0x${BC_HEX:0:4} 0xFFFF at -14 match u32 0x${BC_HEX:4:8} 0xFFFFFFFF at -12 action skbedit priority 1
 ```
 
 ### Ethernet Connectivity Test
@@ -1999,23 +2211,27 @@ root@agilex7dksiagi027fc:~# ip addr
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
        valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host noprefixroute 
+    inet6 ::1/128 scope host noprefixroute
        valid_lft forever preferred_lft forever
-2: eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DOWN group default qlen0
-    link/ether c2:15:53:59:8b:9f brd ff:ff:ff:ff:ff:ff
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 36:02:a8:1c:4f:02 brd ff:ff:ff:ff:ff:ff
+    inet 10.244.193.53/22 brd 10.244.195.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::3402:a8ff:fe1c:4f02/64 scope link proto kernel_ll
+       valid_lft forever preferred_lft forever
 3: teql0: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 100
-    link/void 
+    link/void
 4: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
-    link/ether a2:0a:92:62:93:4c brd ff:ff:ff:ff:ff:ff
+    link/ether ca:52:26:4d:70:55 brd ff:ff:ff:ff:ff:ff
     inet 192.168.121.1/32 scope global eth1
        valid_lft forever preferred_lft forever
-    inet6 2001:db8:abcd:12::1/64 scope global 
+    inet6 2001:db8:abcd:12::1/64 scope global
        valid_lft forever preferred_lft forever
 5: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
-    link/ether 86:28:4b:90:11:dd brd ff:ff:ff:ff:ff:ff
+    link/ether 4e:77:5e:b9:ac:b3 brd ff:ff:ff:ff:ff:ff
     inet 192.168.122.1/32 scope global eth2
        valid_lft forever preferred_lft forever
-    inet6 2001:db8:abcd:13::1/64 scope global 
+    inet6 2001:db8:abcd:13::1/64 scope global
        valid_lft forever preferred_lft forever
 root@agilex7dksiagi027fc:~#
 ```
@@ -2028,56 +2244,28 @@ root@agilex7dksiagi027fc:~# ip addr
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
        valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host noprefixroute 
+    inet6 ::1/128 scope host noprefixroute
        valid_lft forever preferred_lft forever
-2: eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DOWN group default qlen0
-    link/ether fa:06:aa:f6:2b:48 brd ff:ff:ff:ff:ff:ff
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 26:30:59:8d:82:75 brd ff:ff:ff:ff:ff:ff
+    inet 10.244.193.51/22 brd 10.244.195.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::2430:59ff:fe8d:8275/64 scope link proto kernel_ll
+       valid_lft forever preferred_lft forever
 3: teql0: <NOARP> mtu 1500 qdisc noop state DOWN group default qlen 100
-    link/void 
+    link/void
 4: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
-    link/ether be:3b:79:e1:0d:ac brd ff:ff:ff:ff:ff:ff
+    link/ether c6:af:eb:69:7b:71 brd ff:ff:ff:ff:ff:ff
     inet 192.168.121.2/32 scope global eth1
        valid_lft forever preferred_lft forever
-    inet6 2001:db8:abcd:12::2/64 scope global 
+    inet6 2001:db8:abcd:12::2/64 scope global
        valid_lft forever preferred_lft forever
 5: eth2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
-    link/ether e2:4c:47:71:75:4c brd ff:ff:ff:ff:ff:ff
+    link/ether 62:52:63:2e:72:34 brd ff:ff:ff:ff:ff:ff
     inet 192.168.122.2/32 scope global eth2
        valid_lft forever preferred_lft forever
-    inet6 2001:db8:abcd:13::2/64 scope global 
+    inet6 2001:db8:abcd:13::2/64 scope global
        valid_lft forever preferred_lft forever
-root@agilex7dksiagi027fc:~#
-```
-
-Verify connectivity between development kits using `ping`:
-
-Execute the following commands on development kit 1:
-
-``` bash
-root@agilex7dksiagi027fc:~# ping -c 3 192.168.121.2                             
-PING 192.168.121.2 (192.168.121.2): 56 data bytes
-64 bytes from 192.168.121.2: seq=0 ttl=64 time=0.298 ms
-64 bytes from 192.168.121.2: seq=1 ttl=64 time=0.196 ms
-64 bytes from 192.168.121.2: seq=2 ttl=64 time=0.102 ms
-
---- 192.168.121.2 ping statistics ---
-3 packets transmitted, 3 packets received, 0% packet loss
-round-trip min/avg/max = 0.102/0.198/0.298 ms
-root@agilex7dksiagi027fc:~#
-```
-
-Execute the following commands on development kit 2:
-
-``` bash
-root@agilex7dksiagi027fc:~# ping -c 3 192.168.121.1                             
-PING 192.168.121.1 (192.168.121.1): 56 data bytes
-64 bytes from 192.168.121.1: seq=0 ttl=64 time=0.421 ms
-64 bytes from 192.168.121.1: seq=1 ttl=64 time=0.124 ms
-64 bytes from 192.168.121.1: seq=2 ttl=64 time=0.117 ms
-
---- 192.168.121.1 ping statistics ---
-3 packets transmitted, 3 packets received, 0% packet loss
-round-trip min/avg/max = 0.117/0.220/0.421 ms
 root@agilex7dksiagi027fc:~#
 ```
 
@@ -2091,38 +2279,50 @@ The transcript below shows a ping test from development kit 1 serial session. 10
 
 Execute the following commands on development kit 1:
 
+```
+ping -i 0.0001 -q -c 100000 -I eth1 192.168.121.2
+cat /proc/interrupts | grep eth1
+```
+
 ``` bash
 root@agilex7dksiagi027fc:~# ping -i 0.0001 -q -c 100000 -I eth1 192.168.121.2
 PING 192.168.121.2 (192.168.121.2): 56 data bytes
 
 --- 192.168.121.2 ping statistics ---
 100000 packets transmitted, 100000 packets received, 0% packet loss
-round-trip min/avg/max = 0.063/0.073/0.977 ms
+round-trip min/avg/max = 0.067/0.077/1.029 ms
 root@agilex7dksiagi027fc:~# cat /proc/interrupts | grep eth1
- 25:         26         16          0          0     GICv2  72 Level     eth1
- 26:          0          0          0          0     GICv2  73 Level     eth1
- 27:          0          0          0          0     GICv2  70 Level     eth1
- 28:          0          0          0          0     GICv2  71 Level     eth1
- 29:          2          0          0     100009     GICv2  68 Level     eth1
- 30:          0          0          0     100004     GICv2  69 Level     eth1
+ 48:         11          7          0          0     GICv2  72 Level     eth1
+ 49:          0         17          0          0     GICv2  73 Level     eth1
+ 50:         47          0         17          0     GICv2  70 Level     eth1
+ 51:          0          0          0          0     GICv2  71 Level     eth1
+ 52:          0          0          0     100370     GICv2  68 Level     eth1
+ 53:          0          0          0     100009     GICv2  69 Level     eth1
+root@agilex7dksiagi027fc:~#
 ```
 
 Test `eth2` interface executing the next commands:
+
+```
+ping -i 0.0001 -q -c 100000 -I eth2 192.168.122.2
+cat /proc/interrupts | grep eth2
+```
 
 ``` bash
 root@agilex7dksiagi027fc:~# ping -i 0.0001 -q -c 100000 -I eth2 192.168.122.2
 PING 192.168.122.2 (192.168.122.2): 56 data bytes
 
 --- 192.168.122.2 ping statistics ---
-100000 packets transmitted, 100000 packets received, 0% packet loss
-round-trip min/avg/max = 0.062/0.072/0.821 ms
+100000 packets transmitted, 99999 packets received, 1 duplicates, 0% packet loss
+round-trip min/avg/max = 0.067/0.077/0.666 ms
 root@agilex7dksiagi027fc:~# cat /proc/interrupts | grep eth2
- 31:         47          0          0          0     GICv2  66 Level     eth2
- 32:          0          0          0          0     GICv2  67 Level     eth2
- 33:          0          0          0          0     GICv2  64 Level     eth2
- 34:          0          0          0          0     GICv2  65 Level     eth2
- 35:          2          0     100000          0     GICv2  63 Level     eth2
- 36:          0          0      99995          0     GICv2  62 Level     eth2
+ 54:         18          0          0          0     GICv2  66 Level     eth2
+ 55:         17          0          0          0     GICv2  67 Level     eth2
+ 56:         44         16          0          0     GICv2  64 Level     eth2
+ 57:          0          0          0          0     GICv2  65 Level     eth2
+ 58:          0          0     100374          0     GICv2  63 Level     eth2
+ 59:          0          0     100004          0     GICv2  62 Level     eth2
+root@agilex7dksiagi027fc:~#
 ```
 
 ### Run iPerf3 Test
@@ -2137,112 +2337,152 @@ iperf3 -D -s -B 192.168.121.2 -p 5301 > /var/log/iperf.eth1.2 2>&1 &
 iperf3 -D -s -B 192.168.121.2 -p 5401 > /var/log/iperf.eth1.3 2>&1 &
 ```
 
+for eth2 port,
+
+``` bash
+iperf3 -D -s -B 192.168.122.2 -p 5201 > /var/log/iperf.eth2.1 2>&1 &
+iperf3 -D -s -B 192.168.122.2 -p 5301 > /var/log/iperf.eth2.2 2>&1 &
+iperf3 -D -s -B 192.168.122.2 -p 5401 > /var/log/iperf.eth2.3 2>&1 &
+```
+
 #### iPerf traffic to DMA 0
 
 The transcript below shows an iPerf3 test from development kit 1, targeting port 5401 on the server and using port 5402 locally. DMA-0 usage (highest priority) is confirmed by the interrupt count on its associated queue.
 
 Execute the following commands on development kit 1:
+for eth1 : `iperf3 -M 1460 -c 192.168.121.2 -t 80000 -p 5401 --cport 5402`
+for eth2 : `iperf3 -M 1460 -c 192.168.122.2 -t 80000 -p 5401 --cport 5402`
 
 ``` bash
 root@agilex7dksiagi027fc:~# iperf3 -M 1460 -c 192.168.121.2 -t 80000 -p 5401 --cport 5402
 Connecting to host 192.168.121.2, port 5401
 [  5] local 192.168.121.1 port 5402 connected to 192.168.121.2 port 5401
 [ ID] Interval           Transfer     Bitrate         Retr  Cwnd
-[  5]   0.00-1.00   sec   168 MBytes  1.41 Gbits/sec   18    293 KBytes       
-[  5]   1.00-2.00   sec   166 MBytes  1.40 Gbits/sec    0    564 KBytes       
-[  5]   2.00-3.00   sec   166 MBytes  1.39 Gbits/sec    4    437 KBytes       
-[  5]   3.00-4.00   sec   165 MBytes  1.39 Gbits/sec   15    400 KBytes       
-[  5]   4.00-5.00   sec   166 MBytes  1.39 Gbits/sec   12    393 KBytes       
-[  5]   5.00-6.00   sec   162 MBytes  1.36 Gbits/sec   17    321 KBytes       
-[  5]   6.00-7.00   sec   165 MBytes  1.39 Gbits/sec    2    424 KBytes       
-[  5]   7.00-8.00   sec   164 MBytes  1.37 Gbits/sec   18    448 KBytes       
-[  5]   8.00-9.00   sec   162 MBytes  1.36 Gbits/sec   16    509 KBytes       
-[  5]   9.00-10.00  sec   164 MBytes  1.38 Gbits/sec    9    399 KBytes       
+[  5]   0.00-1.00   sec   172 MBytes  1.44 Gbits/sec  571    177 KBytes
+[  5]   1.00-2.00   sec   170 MBytes  1.42 Gbits/sec  451    211 KBytes
+[  5]   2.00-3.00   sec   170 MBytes  1.42 Gbits/sec  556    150 KBytes
+[  5]   3.00-4.00   sec   166 MBytes  1.40 Gbits/sec  622    150 KBytes
+[  5]   4.00-5.00   sec   144 MBytes  1.21 Gbits/sec    0    506 KBytes
+[  5]   5.00-6.00   sec   145 MBytes  1.22 Gbits/sec    0    694 KBytes
+[  5]   6.00-7.00   sec   141 MBytes  1.18 Gbits/sec    0    837 KBytes
+[  5]   7.00-8.00   sec   144 MBytes  1.21 Gbits/sec   36    716 KBytes
+[  5]   8.00-9.00   sec   143 MBytes  1.20 Gbits/sec    0    858 KBytes
+[  5]   9.00-10.00  sec   145 MBytes  1.21 Gbits/sec   90    527 KBytes
+[  5]  10.00-11.00  sec   141 MBytes  1.18 Gbits/sec    0    708 KBytes
+[  5]  11.00-12.00  sec   144 MBytes  1.21 Gbits/sec  138    628 KBytes
+[  5]  12.00-13.00  sec   148 MBytes  1.24 Gbits/sec  198    205 KBytes
+[  5]  13.00-14.00  sec   156 MBytes  1.31 Gbits/sec  277    147 KBytes
+[  5]  14.00-15.00  sec   170 MBytes  1.43 Gbits/sec  529    136 KBytes
+[  5]  15.00-16.00  sec   165 MBytes  1.38 Gbits/sec  355    276 KBytes
+[  5]  16.00-17.00  sec   169 MBytes  1.42 Gbits/sec  468    127 KBytes
+[  5]  17.00-18.00  sec   169 MBytes  1.42 Gbits/sec  518    137 KBytes
+^C[  5]  19.00-19.08  sec  12.4 MBytes  1.27 Gbits/sec   51    188 KBytes
 - - - - - - - - - - - - - - - - - - - - - - - - -
 [ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-30.40  sec  4.86 GBytes  1.37 Gbits/sec  290            sender
-[  5]   0.00-30.40  sec  0.00 Bytes  0.00 bits/sec                  receiver
+[  5]   0.00-19.08  sec  2.93 GBytes  1.32 Gbits/sec  5299            sender
+[  5]   0.00-19.08  sec  0.00 Bytes  0.00 bits/sec                  receiver
 iperf3: interrupt - the client has terminated
-
-
 root@agilex7dksiagi027fc:~# cat /proc/interrupts | grep eth1
- 25:         26     593859          0          0     GICv2  72 Level     eth1
- 26:          0      85810          0          0     GICv2  73 Level     eth1
- 27:          0          0          0          0     GICv2  70 Level     eth1
- 28:          0          0          0          0     GICv2  71 Level     eth1
- 29:          2          0          0     100009     GICv2  68 Level     eth1
- 30:          0          0          0     100005     GICv2  69 Level     eth1
+ 48:         11     221444          0          0     GICv2  72 Level     eth1
+ 49:          0      77525          0          0     GICv2  73 Level     eth1
+ 50:         47          0         18          0     GICv2  70 Level     eth1
+ 51:          0          0          0          0     GICv2  71 Level     eth1
+ 52:          0          0          0     100388     GICv2  68 Level     eth1
+ 53:          0          0          0     100010     GICv2  69 Level     eth1
+root@agilex7dksiagi027fc:~#
 ```
 
 #### iPerf traffic to DMA 1
 
 The transcript below shows an iPerf3 test from development kit 1, targeting port 5301 on the server and using port 5302 locally. DMA-1 usage is confirmed by the interrupt count on its associated queue.
+for eth1 : `iperf3 -M 1460 -c 192.168.121.2 -t 80000 -p 5301 --cport 5302`
+for eth2 : `iperf3 -M 1460 -c 192.168.122.2 -t 80000 -p 5301 --cport 5302`
 
 ``` bash
 root@agilex7dksiagi027fc:~# iperf3 -M 1460 -c 192.168.121.2 -t 80000 -p 5301 --cport 5302
 Connecting to host 192.168.121.2, port 5301
 [  5] local 192.168.121.1 port 5302 connected to 192.168.121.2 port 5301
 [ ID] Interval           Transfer     Bitrate         Retr  Cwnd
-[  5]   0.00-1.00   sec   166 MBytes  1.39 Gbits/sec   12    696 KBytes       
-[  5]   1.00-2.00   sec   164 MBytes  1.37 Gbits/sec   67    618 KBytes       
-[  5]   2.00-3.00   sec   164 MBytes  1.38 Gbits/sec   19    549 KBytes       
-[  5]   3.00-4.00   sec   165 MBytes  1.38 Gbits/sec    2    624 KBytes       
-[  5]   4.00-5.00   sec   165 MBytes  1.39 Gbits/sec    0    730 KBytes       
-[  5]   5.00-6.00   sec   165 MBytes  1.38 Gbits/sec    5    550 KBytes       
-[  5]   6.00-7.00   sec   164 MBytes  1.38 Gbits/sec    2    494 KBytes       
-[  5]   7.00-8.00   sec   165 MBytes  1.38 Gbits/sec    5    574 KBytes       
-[  5]   8.00-9.00   sec   164 MBytes  1.37 Gbits/sec   19    431 KBytes       
-[  5]   9.00-10.00  sec   165 MBytes  1.38 Gbits/sec    0    624 KBytes       
+[  5]   0.00-1.00   sec   169 MBytes  1.42 Gbits/sec  804    157 KBytes
+[  5]   1.00-2.00   sec   168 MBytes  1.41 Gbits/sec  655    147 KBytes
+[  5]   2.00-3.00   sec   170 MBytes  1.42 Gbits/sec  694    209 KBytes
+[  5]   3.00-4.00   sec   168 MBytes  1.41 Gbits/sec  604    222 KBytes
+[  5]   4.00-5.00   sec   167 MBytes  1.40 Gbits/sec  480    147 KBytes
+[  5]   5.00-6.00   sec   169 MBytes  1.42 Gbits/sec  505    153 KBytes
+[  5]   6.00-7.00   sec   170 MBytes  1.42 Gbits/sec  546    136 KBytes
+[  5]   7.00-8.00   sec   163 MBytes  1.37 Gbits/sec  339    318 KBytes
+[  5]   8.00-9.00   sec   147 MBytes  1.23 Gbits/sec    0    568 KBytes
+[  5]   9.00-10.00  sec   146 MBytes  1.23 Gbits/sec    0    738 KBytes
+[  5]  10.00-11.00  sec   143 MBytes  1.20 Gbits/sec    0    880 KBytes
+[  5]  11.00-12.00  sec   146 MBytes  1.22 Gbits/sec    3    762 KBytes
+[  5]  12.00-13.00  sec   143 MBytes  1.20 Gbits/sec    6    629 KBytes
+[  5]  13.00-14.00  sec   145 MBytes  1.22 Gbits/sec    0    788 KBytes
+[  5]  14.00-15.00  sec   144 MBytes  1.21 Gbits/sec    4    656 KBytes
+[  5]  15.00-16.00  sec   145 MBytes  1.22 Gbits/sec    0    810 KBytes
+[  5]  16.00-17.00  sec   144 MBytes  1.21 Gbits/sec   14    694 KBytes
+[  5]  17.00-18.00  sec   145 MBytes  1.22 Gbits/sec    2    622 KBytes
+^C[  5]  18.00-18.06  sec  7.88 MBytes  1.19 Gbits/sec    0    636 KBytes
 - - - - - - - - - - - - - - - - - - - - - - - - -
 [ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-30.01  sec  4.73 GBytes  1.35 Gbits/sec  203            sender
-[  5]   0.00-30.01  sec  0.00 Bytes  0.00 bits/sec                  receiver
+[  5]   0.00-18.06  sec  2.74 GBytes  1.30 Gbits/sec  4656            sender
+[  5]   0.00-18.06  sec  0.00 Bytes  0.00 bits/sec                  receiver
 iperf3: interrupt - the client has terminated
-
-
 root@agilex7dksiagi027fc:~# cat /proc/interrupts | grep eth1
- 25:         26     593866          0          0     GICv2  72 Level     eth1
- 26:          0      85810          0          0     GICv2  73 Level     eth1
- 27:          0          0     513334          0     GICv2  70 Level     eth1
- 28:          0          0      94096          0     GICv2  71 Level     eth1
- 29:          2          0          0     100009     GICv2  68 Level     eth1
- 30:          0          0          0     100006     GICv2  69 Level     eth1
-
+ 48:         11     221444          0          0     GICv2  72 Level     eth1
+ 49:          0      77525          0          0     GICv2  73 Level     eth1
+ 50:         47          0     173629          0     GICv2  70 Level     eth1
+ 51:          0          0      80270          0     GICv2  71 Level     eth1
+ 52:          0          0          0     100407     GICv2  68 Level     eth1
+ 53:          0          0          0     100011     GICv2  69 Level     eth1
+root@agilex7dksiagi027fc:~#
 ```
 
 #### iPerf traffic to DMA 2
 
 The transcript below shows an iPerf3 test from development kit 1 using port 5201 on the server and 5202 on the client. DMA-2 usage (lowest priority) is confirmed by the interrupt count on its associated queue.
 
+for eth1 : `iperf3 -M 1460 -c 192.168.121.2 -t 80000 -p 5201 --cport 5202`
+for eth2 : `iperf3 -M 1460 -c 192.168.122.2 -t 80000 -p 5201 --cport 5202`
+
 ``` bash
 root@agilex7dksiagi027fc:~# iperf3 -M 1460 -c 192.168.121.2 -t 80000 -p 5201 --cport 5202
 Connecting to host 192.168.121.2, port 5201
 [  5] local 192.168.121.1 port 5202 connected to 192.168.121.2 port 5201
 [ ID] Interval           Transfer     Bitrate         Retr  Cwnd
-[  5]   0.00-1.00   sec   167 MBytes  1.40 Gbits/sec  115    617 KBytes       
-[  5]   1.00-2.00   sec   165 MBytes  1.38 Gbits/sec   10    509 KBytes       
-[  5]   2.00-3.00   sec   166 MBytes  1.39 Gbits/sec    0    676 KBytes       
-[  5]   3.00-4.00   sec   165 MBytes  1.39 Gbits/sec    8    533 KBytes       
-[  5]   4.00-5.00   sec   165 MBytes  1.39 Gbits/sec    0    696 KBytes       
-[  5]   5.00-6.00   sec   164 MBytes  1.38 Gbits/sec    0    831 KBytes       
-[  5]   6.00-7.00   sec   165 MBytes  1.39 Gbits/sec    5    680 KBytes       
-[  5]   7.00-8.00   sec   164 MBytes  1.38 Gbits/sec   24    428 KBytes       
-[  5]   8.00-9.00   sec   165 MBytes  1.39 Gbits/sec    0    638 KBytes       
-[  5]   9.00-10.00  sec   166 MBytes  1.39 Gbits/sec   14    600 KBytes        
+[  5]   0.00-1.00   sec   150 MBytes  1.26 Gbits/sec   88    440 KBytes
+[  5]   1.00-2.00   sec   145 MBytes  1.22 Gbits/sec   64    479 KBytes
+[  5]   2.00-3.00   sec   157 MBytes  1.32 Gbits/sec  202    359 KBytes
+[  5]   3.00-4.00   sec   146 MBytes  1.22 Gbits/sec    0    595 KBytes
+[  5]   4.00-5.00   sec   145 MBytes  1.21 Gbits/sec   22    577 KBytes
+[  5]   5.00-6.00   sec   146 MBytes  1.22 Gbits/sec    0    747 KBytes
+[  5]   6.00-7.00   sec   142 MBytes  1.19 Gbits/sec    0    884 KBytes
+[  5]   7.00-8.00   sec   144 MBytes  1.21 Gbits/sec   12    772 KBytes
+[  5]   8.00-9.00   sec   143 MBytes  1.20 Gbits/sec   19    650 KBytes
+[  5]   9.00-10.00  sec   144 MBytes  1.21 Gbits/sec    0    803 KBytes
+[  5]  10.00-11.00  sec   142 MBytes  1.19 Gbits/sec   11    687 KBytes
+[  5]  11.00-12.00  sec   144 MBytes  1.21 Gbits/sec    0    834 KBytes
+[  5]  12.00-13.00  sec   143 MBytes  1.20 Gbits/sec   34    561 KBytes
+[  5]  13.00-14.00  sec   143 MBytes  1.20 Gbits/sec    0    734 KBytes
+[  5]  14.00-15.00  sec   143 MBytes  1.20 Gbits/sec    0    871 KBytes
+[  5]  15.00-16.00  sec   143 MBytes  1.20 Gbits/sec    8    762 KBytes
+[  5]  16.00-17.00  sec   162 MBytes  1.36 Gbits/sec  485    139 KBytes
+[  5]  17.00-18.00  sec   157 MBytes  1.32 Gbits/sec  349    293 KBytes
+[  5]  18.00-19.00  sec   157 MBytes  1.32 Gbits/sec  269    229 KBytes
+[  5]  19.00-20.00  sec   157 MBytes  1.31 Gbits/sec  405    194 KBytes
+^C[  5]  20.00-20.28  sec  47.0 MBytes  1.41 Gbits/sec  120    134 KBytes
 - - - - - - - - - - - - - - - - - - - - - - - - -
 [ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-18.06  sec  2.93 GBytes  1.39 Gbits/sec  249            sender
-[  5]   0.00-18.06  sec  0.00 Bytes  0.00 bits/sec                  receiver
+[  5]   0.00-20.28  sec  2.94 GBytes  1.24 Gbits/sec  2088            sender
+[  5]   0.00-20.28  sec  0.00 Bytes  0.00 bits/sec                  receiver
 iperf3: interrupt - the client has terminated
-
-
 root@agilex7dksiagi027fc:~# cat /proc/interrupts | grep eth1
- 25:         26     593872          0          0     GICv2  72 Level     eth1
- 26:          0      85810          0          0     GICv2  73 Level     eth1
- 27:          0          0     513334          0     GICv2  70 Level     eth1
- 28:          0          0      94096          0     GICv2  71 Level     eth1
- 29:          2          0          0     462759     GICv2  68 Level     eth1
- 30:          0          0          0     159291     GICv2  69 Level     eth1
+ 48:         11     221444          0          0     GICv2  72 Level     eth1
+ 49:          0      77525          0          0     GICv2  73 Level     eth1
+ 50:         47          0     173629          0     GICv2  70 Level     eth1
+ 51:          0          0      80270          0     GICv2  71 Level     eth1
+ 52:          0          0          0     272566     GICv2  68 Level     eth1
+ 53:          0          0          0     166269     GICv2  69 Level     eth1
+root@agilex7dksiagi027fc:~#
 ```
 
 ### Run Packet Generator Test
@@ -2263,21 +2503,21 @@ Test execution involves configuring traffic parameters for the generators. The t
     The expected output is shown below.
 
     ``` bash
-    root@agilex7dksiagi027fc:~# packetgenerator --device /dev/uio0 --traffic false --fixed-gap true --pkt-len-mode 0x01 --num-idle-cycles 8 --packet-checker true  --one-shot false --tx-pkt-size 1024 --tx-max-pkt-size 1024
-    Tx traffic state set: Disabled    
+    root@agilex7dksiagi027fc:~#     packetgenerator --device /dev/uio0 --traffic false --fixed-gap true --pkt-len-mode 0x01 --num-idle-cycles 8 --packet-checker true  --one-shot false --tx-pkt-size 1024 --tx-max-pkt-size 1024
+    Tx traffic state set: Disabled
     Fixed Gap set: Enabled
-    Packet length mode set: 1
+        packetPacket length mode set: 1
     Number of Idle Cycles set: 8
     Pkt Checker set: Enabled
     One Shot mode set: Disabled
     Tx Packet Size set: 1024
     Max Tx Packet Size set: 1024
-    root@agilex7dksiagi027fc:~# packetgenerator --device /dev/uio0 --traffic 1
+    root@agilex7dksiagi027fc:~#     packetgenerator --device /dev/uio0 --traffic 1
     Tx traffic state set: Enabled
-    root@agilex7dksiagi027fc:~# packetgenerator --device /dev/uio0 --dump
+    root@agilex7dksiagi027fc:~#     packetgenerator --device /dev/uio0 --dump
     Config Control: 0x8635
             Tx traffic: Enabled
-            Packet Generation Mode: Continuous 
+            Packet Generation Mode: Continuous
             Soft Reset: Disabled
             Dynamic Mode: Enabled
             Pkt Checker: Enabled
@@ -2300,34 +2540,36 @@ Test execution involves configuring traffic parameters for the generators. The t
             HSSI SS rx_pcs status: Asserted
     Packet Checker Status: 0x0
             Data Mismatch status: Not seen
-    TX Start of Packet Count: 17098118
-    TX End of Packet Count: 17098203
+    TX Start of Packet Count: 3899642
+    TX End of Packet Count: 3899731
     TX Error Packet Count: 0
-    RX Start of Packet Count: 0
-    RX End of Packet Count: 0
+    RX Start of Packet Count: 2247034
+    RX End of Packet Count: 2247116
     RX Error Packet Count: 0
-    Pkt Checker Live Counter: 0
-    PKT TX Byte Count: 46159995200
-    PKT RX Byte Count: 0
-    PKT TX Num Ticks Count: 5770056275
-    PKT RX Num Ticks Count: 0
-    TX Bandwidth: 1003899872 bps
-    RX Bandwidth: 0 bps
+    Pkt Checker Live Counter: 2247257
+    PKT TX Byte Count: 3993810608
+    PKT RX Byte Count: 2301363200
+    PKT TX Num Ticks Count: 499247838
+    PKT RX Num Ticks Count: 779106411
+    TX Bandwidth: 9810105472 bps
+    RX Bandwidth: 9810105856 bps
+    Number of words: 1
+    root@agilex7dksiagi027fc:~#
     ```
 
-    The transcript above shows that the Ethernet link is reporting a 10.03 Gbps throughput.
+    The transcript above shows that the Ethernet link is reporting a 9.8 Gbps throughput.
 
-    TX bandwidth utilization can be tuned by adjusting packet length and idle cycles. The transcript below modifies the number of idle cycles between packets in flight. The change is verified via a read of the packet generator status registers, which shows a maximum bandwidth of 6.61 Gbps as shown below.
+    TX bandwidth utilization can be tuned by adjusting packet length and idle cycles. The transcript below modifies the number of idle cycles between packets in flight. The change is verified via a read of the packet generator status registers, which shows a maximum bandwidth of 8.8 Gbps as shown below.
 
     ``` bash
-    root@agilex7dksiagi027fc:~# packetgenerator --device /dev/uio0 --num-idle-cycles 128 --tx-pkt-size 1024 --tx-max-pkt-size 1024
+    root@agilex7dksiagi027fc:~# packetgenerator --device /dev/uio0 --num-idle-cycles 128 --tx-pkt-size 512 --tx-max-pkt-size 512
     Number of Idle Cycles set: 128
-    Tx Packet Size set: 1024
-    Max Tx Packet Size set: 1024
-    root@agilex7dksiagi027fc:~# packetgenerator --device /dev/uio0 --dump 
-    Config Control: 0x10635
+    Tx Packet Size set: 512
+    Max Tx Packet Size set: 512
+    root@agilex7dksiagi027fc:~#     packetgenerator --device /dev/uio0 --dump
+    Config Control: 0x80635
             Tx traffic: Enabled
-            Packet Generation Mode: Continuous 
+            Packet Generation Mode: Continuous
             Soft Reset: Disabled
             Dynamic Mode: Enabled
             Pkt Checker: Enabled
@@ -2336,12 +2578,12 @@ Test execution involves configuring traffic parameters for the generators. The t
             Internal Counter Clear Status: Disabled
             Fixed Gap: Enabled
             Packet Length Mode: Fixed
-            Number of Idle Cycles: 16
-    Destination Mac Address: 12:34:56:78:0A:02
-    Source Mac Address: 12:34:56:78:0A:01
+            Number of Idle Cycles: 128
+    Destination Mac Address: 12:34:56:78:0A:01
+    Source Mac Address: 12:34:56:78:0A:02
     Number of Packets: 4294967295
-    Packet Size Config Control: 0x4000400
-            Tx Packet Size: 1024 Tx Max Packet Size: 1024
+    Packet Size Config Control: 0x2000200
+            Tx Packet Size: 512 Tx Max Packet Size: 512
     Packet Generator Status: 0x1e
             SADB configuration status: Incomplete
             System Reset Sequence status: Complete
@@ -2350,20 +2592,21 @@ Test execution involves configuring traffic parameters for the generators. The t
             HSSI SS rx_pcs status: Asserted
     Packet Checker Status: 0x0
             Data Mismatch status: Not seen
-    TX Start of Packet Count: 523341555
-    TX End of Packet Count: 523341643
+    TX Start of Packet Count: 322905455
+    TX End of Packet Count: 322905615
     TX Error Packet Count: 0
-    RX Start of Packet Count: 0
-    RX End of Packet Count: 0
+    RX Start of Packet Count: 329647963
+    RX End of Packet Count: 329648117
     RX Error Packet Count: 0
-    Pkt Checker Live Counter: 0
-    PKT TX Byte Count: 1403435894648
-    PKT RX Byte Count: 0
-    PKT TX Num Ticks Count: 175429526527
-    PKT RX Num Ticks Count: 0
-    TX Bandwidth: 6616897856 bps
-    RX Bandwidth: 0 bps
+    Pkt Checker Live Counter: 329648288
+    PKT TX Byte Count: 124799165440
+    PKT RX Byte Count: 112900685120
+    PKT TX Num Ticks Count: 15599914975
+    PKT RX Num Ticks Count: 39995817785
+    TX Bandwidth: 8855680064 bps
+    RX Bandwidth: 8855680000 bps
     Number of words: 1
+    root@agilex7dksiagi027fc:~#
     ```
 
     Enabling the packet generator on the second development kit starts the integrated packet checker and reports RX bandwidth. The transcript below shows the status change after activation.
@@ -2424,10 +2667,16 @@ Test execution involves configuring traffic parameters for the generators. The t
     Both development kits are now transmitting and receiving Ethernet traffic on port 1. Run a status dump on either kit to report bandwidth utilization:
 
     ``` bash
-    root@agilex7dksiagi027fc:~/scripts# packetgenerator --device /dev/uio0 --dump
+    root@agilex7dksiagi027fc:~#     packetgenerator --device /dev/uio0 --num-idle-cycles 8 --tx-pkt-size 1024 --tx-max-pkt-size 1024
+    Number of Idle Cycles set: 8
+    Tx Packet Size set: 1024
+    Max Tx Packet Size set: 1024
+    root@agilex7dksiagi027fc:~#     packetgenerator --device /dev/uio0 --traffic 1
+    Tx traffic state set: Enabled
+    root@agilex7dksiagi027fc:~#     packetgenerator --device /dev/uio0 --dump
     Config Control: 0x8635
             Tx traffic: Enabled
-            Packet Generation Mode: Continuous 
+            Packet Generation Mode: Continuous
             Soft Reset: Disabled
             Dynamic Mode: Enabled
             Pkt Checker: Enabled
@@ -2450,19 +2699,21 @@ Test execution involves configuring traffic parameters for the generators. The t
             HSSI SS rx_pcs status: Asserted
     Packet Checker Status: 0x0
             Data Mismatch status: Not seen
-    TX Start of Packet Count: 249401806
-    TX End of Packet Count: 249402022
+    TX Start of Packet Count: 517303669
+    TX End of Packet Count: 517303758
     TX Error Packet Count: 0
-    RX Start of Packet Count: 43882945
-    RX End of Packet Count: 43883143
+    RX Start of Packet Count: 511842094
+    RX End of Packet Count: 511842176
     RX Error Packet Count: 0
-    Pkt Checker Live Counter: 43883467
-    PKT TX Byte Count: 264077193064
-    PKT RX Byte Count: 44937076872
-    PKT TX Num Ticks Count: 33009703937
-    PKT RX Num Ticks Count: 6319335403
-    TX Bandwidth: 9810100736 bps
-    RX Bandwidth: 9810100736 bps
+    Pkt Checker Live Counter: 511842316
+    PKT TX Byte Count: 212595201784
+    PKT RX Byte Count: 215042082048
+    PKT TX Num Ticks Count: 26574421473
+    PKT RX Num Ticks Count: 77117511929
+    TX Bandwidth: 9810105536 bps
+    RX Bandwidth: 9810105856 bps
+    Number of words: 1
+    root@agilex7dksiagi027fc:~#
     ```
 
     Both TX and RX channels are now active and transmitting at a ~9.81 Gpbs.
@@ -2479,7 +2730,7 @@ Test execution involves configuring traffic parameters for the generators. The t
     The expected output is shown below.
 
     ``` bash
-    root@agilex7dksiagi027fc:~# packetgenerator --device /dev/uio0 --traffic false --fixed-gap true --pkt-len-mode 0x01 --num-idle-cycles 8 --packet-checker true  --one-shot false --tx-pkt-size 1024 --tx-max-pkt-size 1024
+    root@agilex7dksiagi027fc:~#     packetgenerator --device /dev/uio0 --traffic false --fixed-gap true --pkt-len-mode 0x01 --num-idle-cycles 8 --packet-checker true  --one-shot false --tx-pkt-size 1024 --tx-max-pkt-size 1024
     Tx traffic state set: Disabled
     Fixed Gap set: Enabled
     Packet length mode set: 1
@@ -2488,12 +2739,12 @@ Test execution involves configuring traffic parameters for the generators. The t
     One Shot mode set: Disabled
     Tx Packet Size set: 1024
     Max Tx Packet Size set: 1024
-    root@agilex7dksiagi027fc:~# packetgenerator --device /dev/uio0 --traffic 1
+    root@agilex7dksiagi027fc:~#     packetgenerator --device /dev/uio0 --traffic 1
     Tx traffic state set: Enabled
-    root@agilex7dksiagi027fc:~# packetgenerator --device /dev/uio0 --dump
+    root@agilex7dksiagi027fc:~#     packetgenerator --device /dev/uio0 --dump
     Config Control: 0x8635
             Tx traffic: Enabled
-            Packet Generation Mode: Continuous 
+            Packet Generation Mode: Continuous
             Soft Reset: Disabled
             Dynamic Mode: Enabled
             Pkt Checker: Enabled
@@ -2516,20 +2767,21 @@ Test execution involves configuring traffic parameters for the generators. The t
             HSSI SS rx_pcs status: Asserted
     Packet Checker Status: 0x0
             Data Mismatch status: Not seen
-    TX Start of Packet Count: 34650033
-    TX End of Packet Count: 34650248
+    TX Start of Packet Count: 14334223
+    TX End of Packet Count: 14334446
     TX Error Packet Count: 0
     RX Start of Packet Count: 0
     RX End of Packet Count: 0
     RX Error Packet Count: 0
     Pkt Checker Live Counter: 0
-    PKT TX Byte Count: 36690296008
+    PKT TX Byte Count: 14679770112
     PKT RX Byte Count: 0
-    PKT TX Num Ticks Count: 4586342348
+    PKT TX Num Ticks Count: 1835024713
     PKT RX Num Ticks Count: 0
-    TX Bandwidth: 25358395776 bps
+    TX Bandwidth: 24524066432 bps
     RX Bandwidth: 0 bps
     Number of words: 1
+    root@agilex7dksiagi027fc:~#
     ```
 
     The transcript above shows that the Ethernet link is reporting a ~25.3 Gbps throughput. 
@@ -2541,10 +2793,10 @@ Test execution involves configuring traffic parameters for the generators. The t
     Number of Idle Cycles set: 16
     Tx Packet Size set: 1024
     Max Tx Packet Size set: 1024
-    root@agilex7dksiagi027fc:~# packetgenerator --device /dev/uio0 --dump 
+    root@agilex7dksiagi027fc:~# packetgenerator --device /dev/uio0 --dump
     Config Control: 0x10635
             Tx traffic: Enabled
-            Packet Generation Mode: Continuous 
+            Packet Generation Mode: Continuous
             Soft Reset: Disabled
             Dynamic Mode: Enabled
             Pkt Checker: Enabled
@@ -2567,20 +2819,21 @@ Test execution involves configuring traffic parameters for the generators. The t
             HSSI SS rx_pcs status: Asserted
     Packet Checker Status: 0x0
             Data Mismatch status: Not seen
-    TX Start of Packet Count: 982755076
-    TX End of Packet Count: 982755289
+    TX Start of Packet Count: 190226766
+    TX End of Packet Count: 190226981
     TX Error Packet Count: 0
     RX Start of Packet Count: 0
     RX End of Packet Count: 0
     RX Error Packet Count: 0
     Pkt Checker Live Counter: 0
-    PKT TX Byte Count: 1038984507184
+    PKT TX Byte Count: 194793575688
     PKT RX Byte Count: 0
-    PKT TX Num Ticks Count: 129873111048
+    PKT TX Num Ticks Count: 24349248453
     PKT RX Num Ticks Count: 0
     TX Bandwidth: 23615147264 bps
     RX Bandwidth: 0 bps
     Number of words: 1
+    root@agilex7dksiagi027fc:~#
     ```
 
     Enabling the packet generator on the second development kit starts the integrated packet checker and reports RX bandwidth. The transcript below shows the status change after activation.
@@ -2707,34 +2960,34 @@ Test execution involves configuring traffic parameters for the generators. The t
     One Shot mode set: Disabled
     Tx Packet Size set: 1024
     Max Tx Packet Size set: 1024
-    tgenerator --device /dev/uio0 --dumproot@agilex7dksiagi027fc:~# packetgenerator --device /dev/uio0 --traffic 1
+    root@agilex7dksiagi027fc:~# packetgenerator --device /dev/uio0 --traffic 1
     Tx traffic state set: Enabled
     root@agilex7dksiagi027fc:~# packetgenerator --device /dev/uio0 --dump
     Config Control: 0x8635
-    	Tx traffic: Enabled
-    	Packet Generation Mode: Continuous 
-    	Soft Reset: Disabled
-    	Dynamic Mode: Enabled
-    	Pkt Checker: Enabled
-    	Counter Snapshot Status: Disabled
-    	Counter Clear Status: Disabled
-    	Internal Counter Clear Status: Disabled
-    	Fixed Gap: Enabled
-    	Packet Length Mode: Fixed
-    	Number of Idle Cycles: 8
+     Tx traffic: Enabled
+     Packet Generation Mode: Continuous 
+     Soft Reset: Disabled
+     Dynamic Mode: Enabled
+     Pkt Checker: Enabled
+     Counter Snapshot Status: Disabled
+     Counter Clear Status: Disabled
+     Internal Counter Clear Status: Disabled
+     Fixed Gap: Enabled
+     Packet Length Mode: Fixed
+     Number of Idle Cycles: 8
     Destination Mac Address: 12:34:56:78:0A:02
     Source Mac Address: 12:34:56:78:0A:01
     Number of Packets: 4294967295
     Packet Size Config Control: 0x2000200
-    	Tx Packet Size: 1024 Tx Max Packet Size: 1024
+     Tx Packet Size: 1024 Tx Max Packet Size: 1024
     Packet Generator Status: 0x1e
-    	SADB configuration status: Incomplete
-    	System Reset Sequence status: Complete
-    	HSSI SS tx_lanes_stable status: Asserted
-    	HSSI SS tx_pll_locked status: Asserted
-    	HSSI SS rx_pcs status: Asserted
+     SADB configuration status: Incomplete
+     System Reset Sequence status: Complete
+     HSSI SS tx_lanes_stable status: Asserted
+     HSSI SS tx_pll_locked status: Asserted
+     HSSI SS rx_pcs status: Asserted
     Packet Checker Status: 0x0
-    	Data Mismatch status: Not seen
+     Data Mismatch status: Not seen
     TX Start of Packet Count: 41971660
     TX End of Packet Count: 41972079
     TX Error Packet Count: 0
@@ -3132,6 +3385,227 @@ Test execution involves configuring traffic parameters for the generators. The t
 
     Both TX and RX channels are now active and transmitting at a ~99.52 Gpbs.
 
+=== "DR-10/25GbE"  
+    Execute the following commands on development kit 1:
+
+    ```bash
+    packetgenerator --device /dev/uio0 --traffic false --fixed-gap true --pkt-len-mode 0x01 --num-idle-cycles 8 --packet-checker true  --one-shot false --tx-pkt-size 1024 --tx-max-pkt-size 1024
+    packetgenerator --device /dev/uio0 --traffic 1
+    packetgenerator --device /dev/uio0 --dump
+    ```
+
+    The expected output is shown below.
+
+    ``` bash
+    root@agilex7dksiagi027fc:~#     packetgenerator --device /dev/uio0 --traffic false --fixed-gap true --pkt-len-mode 0x01 --num-idle-cycles 8 --packet-checker true  --one-shot false --tx-pkt-size 1024 --tx-max-pkt-size 1024
+    Tx traffic state set: Disabled
+    Fixed Gap set: Enabled
+    Packet length mode set: 1
+    Number of Idle Cycles set: 8
+    Pkt Checker set: Enabled
+    One Shot mode set: Disabled
+    Tx Packet Size set: 1024
+    Max Tx Packet Size set: 1024
+    root@agilex7dksiagi027fc:~#     packetgenerator --device /dev/uio0 --traffic 1
+    Tx traffic state set: Enabled
+    root@agilex7dksiagi027fc:~#     packetgenerator --device /dev/uio0 --dump
+    Config Control: 0x8635
+            Tx traffic: Enabled
+            Packet Generation Mode: Continuous
+            Soft Reset: Disabled
+            Dynamic Mode: Enabled
+            Pkt Checker: Enabled
+            Counter Snapshot Status: Disabled
+            Counter Clear Status: Disabled
+            Internal Counter Clear Status: Disabled
+            Fixed Gap: Enabled
+            Packet Length Mode: Fixed
+            Number of Idle Cycles: 8
+    Destination Mac Address: 12:34:56:78:0A:02
+    Source Mac Address: 12:34:56:78:0A:01
+    Number of Packets: 4294967295
+    Packet Size Config Control: 0x4000400
+            Tx Packet Size: 1024 Tx Max Packet Size: 1024
+    Packet Generator Status: 0x1e
+            SADB configuration status: Incomplete
+            System Reset Sequence status: Complete
+            HSSI SS tx_lanes_stable status: Asserted
+            HSSI SS tx_pll_locked status: Asserted
+            HSSI SS rx_pcs status: Asserted
+    Packet Checker Status: 0x0
+            Data Mismatch status: Not seen
+    TX Start of Packet Count: 10898272
+    TX End of Packet Count: 10898494
+    TX Error Packet Count: 0
+    RX Start of Packet Count: 0
+    RX End of Packet Count: 0
+    RX Error Packet Count: 0
+    Pkt Checker Live Counter: 0
+    PKT TX Byte Count: 11161329784
+    PKT RX Byte Count: 0
+    PKT TX Num Ticks Count: 1395219461
+    PKT RX Num Ticks Count: 0
+    TX Bandwidth: 24524066624 bps
+    RX Bandwidth: 0 bps
+    Number of words: 1
+    root@agilex7dksiagi027fc:~#
+    ```
+
+    The transcript above shows that the Ethernet link is reporting a ~24.5 Gbps throughput. 
+
+    TX bandwidth utilization can be tuned by adjusting packet length and idle cycles. The transcript below modifies the number of idle cycles between packets in flight. The change is verified via a read of the packet generator status registers, which shows a maximum bandwidth of ~24.5 Gbps as shown below.
+
+    ``` bash
+    root@agilex7dksiagi027fc:~# packetgenerator --device /dev/uio0 --num-idle-cycles 16 --tx-pkt-size 1024 --tx-max-pkt-size 1024
+    Number of Idle Cycles set: 16
+    Tx Packet Size set: 1024
+    Max Tx Packet Size set: 1024
+    root@agilex7dksiagi027fc:~#     packetgenerator --device /dev/uio0 --dump
+    Config Control: 0x10635
+            Tx traffic: Enabled
+            Packet Generation Mode: Continuous
+            Soft Reset: Disabled
+            Dynamic Mode: Enabled
+            Pkt Checker: Enabled
+            Counter Snapshot Status: Disabled
+            Counter Clear Status: Disabled
+            Internal Counter Clear Status: Disabled
+            Fixed Gap: Enabled
+            Packet Length Mode: Fixed
+            Number of Idle Cycles: 16
+    Destination Mac Address: 12:34:56:78:0A:02
+    Source Mac Address: 12:34:56:78:0A:01
+    Number of Packets: 4294967295
+    Packet Size Config Control: 0x4000400
+            Tx Packet Size: 1024 Tx Max Packet Size: 1024
+    Packet Generator Status: 0x1e
+            SADB configuration status: Incomplete
+            System Reset Sequence status: Complete
+            HSSI SS tx_lanes_stable status: Asserted
+            HSSI SS tx_pll_locked status: Asserted
+            HSSI SS rx_pcs status: Asserted
+    Packet Checker Status: 0x0
+            Data Mismatch status: Not seen
+    TX Start of Packet Count: 338867184
+    TX End of Packet Count: 338867400
+    TX Error Packet Count: 0
+    RX Start of Packet Count: 0
+    RX End of Packet Count: 0
+    RX Error Packet Count: 0
+    Pkt Checker Live Counter: 0
+    PKT TX Byte Count: 347001245696
+    PKT RX Byte Count: 0
+    PKT TX Num Ticks Count: 43375207836
+    PKT RX Num Ticks Count: 0
+    TX Bandwidth: 23615147264 bps
+    RX Bandwidth: 0 bps
+    Number of words: 1
+    root@agilex7dksiagi027fc:~#
+    ```
+    Enabling the packet generator on the second development kit starts the integrated packet checker and reports RX bandwidth. The transcript below shows the status change after activation.
+
+    Execute the following commands on development kit 2:
+
+    ``` bash
+    root@agilex7dksiagi027fc:~# packetgenerator --device /dev/uio0 --dump
+    Config Control: 0x16634
+            Tx traffic: Disabled
+            Packet Generation Mode: Continuous
+            Soft Reset: Disabled
+            Dynamic Mode: Enabled
+            Pkt Checker: Enabled
+            Counter Snapshot Status: Disabled
+            Counter Clear Status: Disabled
+            Internal Counter Clear Status: Disabled
+            Fixed Gap: Enabled
+            Packet Length Mode: Fixed
+            Number of Idle Cycles: 22
+    Destination Mac Address: 12:34:56:78:0A:01
+    Source Mac Address: 12:34:56:78:0A:02
+    Number of Packets: 4294967295
+    Packet Size Config Control: 0x4000400
+            Tx Packet Size: 1024 Tx Max Packet Size: 1024
+    Packet Generator Status: 0x1e
+            SADB configuration status: Incomplete
+            System Reset Sequence status: Complete
+            HSSI SS tx_lanes_stable status: Asserted
+            HSSI SS tx_pll_locked status: Asserted
+            HSSI SS rx_pcs status: Asserted
+    Packet Checker Status: 0x0
+            Data Mismatch status: Not seen
+    TX Start of Packet Count: 0
+    TX End of Packet Count: 0
+    TX Error Packet Count: 0
+    RX Start of Packet Count: 438294262
+    RX End of Packet Count: 438294462
+    RX Error Packet Count: 0
+    Pkt Checker Live Counter: 438294686
+    PKT TX Byte Count: 0
+    PKT RX Byte Count: 0
+    PKT TX Num Ticks Count: 0
+    PKT RX Num Ticks Count: 0
+    TX Bandwidth: 0 bps
+    RX Bandwidth: 23615147136 bps
+    Number of words: 1 
+    ```
+
+    RX bandwidth is reported to be 23.6 Gbps.
+
+    To fully saturate an Ethernet port, run the following commands on both development kits to enable their respective packet generators:
+
+    ``` bash
+    packetgenerator --device /dev/uio0 --num-idle-cycles 8 --tx-pkt-size 1024 --tx-max-pkt-size 1024
+    packetgenerator --device /dev/uio0 --traffic 1
+    packetgenerator --device /dev/uio0 --dump
+    ```
+
+    Both development kits are now transmitting and receiving Ethernet traffic on port 1. Run a status dump on either kit to report bandwidth utilization:
+
+    ``` bash
+    root@agilex7dksiagi027fc:~#     packetgenerator --device /dev/uio0 --dump
+    Config Control: 0x8635
+            Tx traffic: Enabled
+            Packet Generation Mode: Continuous
+            Soft Reset: Disabled
+            Dynamic Mode: Enabled
+            Pkt Checker: Enabled
+            Counter Snapshot Status: Disabled
+            Counter Clear Status: Disabled
+            Internal Counter Clear Status: Disabled
+            Fixed Gap: Enabled
+            Packet Length Mode: Fixed
+            Number of Idle Cycles: 8
+    Destination Mac Address: 12:34:56:78:0A:01
+    Source Mac Address: 12:34:56:78:0A:02
+    Number of Packets: 4294967295
+    Packet Size Config Control: 0x4000400
+            Tx Packet Size: 1024 Tx Max Packet Size: 1024
+    Packet Generator Status: 0x1e
+            SADB configuration status: Incomplete
+            System Reset Sequence status: Complete
+            HSSI SS tx_lanes_stable status: Asserted
+            HSSI SS tx_pll_locked status: Asserted
+            HSSI SS rx_pcs status: Asserted
+    Packet Checker Status: 0x0
+            Data Mismatch status: Not seen
+    TX Start of Packet Count: 3462119
+    TX End of Packet Count: 3462343
+    TX Error Packet Count: 0
+    RX Start of Packet Count: 933215599
+    RX End of Packet Count: 933215806
+    RX Error Packet Count: 0
+    Pkt Checker Live Counter: 933216143
+    PKT TX Byte Count: 3546642376
+    PKT RX Byte Count: 3546839536
+    PKT TX Num Ticks Count: 443383370
+    PKT RX Num Ticks Count: 480345978
+    TX Bandwidth: 24524066752 bps
+    RX Bandwidth: 24524066496 bps
+    Number of words: 1
+    ```
+
+    Both TX and RX channels are now active and transmitting at a ~24.5 Gpbs.
+
 ### Run ptp4l Test
 
 Development kit 1 acts as the network master; development kit 2 is the subordinate. Both are configured as ordinary clocks using ptp4l. Configuration files provided by the system example design are located at `/root/cfg/`.
@@ -3148,16 +3622,17 @@ The transcript below configures development kit 1 as the network master.
 Execute the following commands on development kit 1:
 
 ``` bash
-root@agilex7dksiagi027fc:~# ptp4l -i eth1 -m -f /root/cfg/master.cfg                        
+root@agilex7dksiagi027fc:~# ptp4l -i eth1 -m -f /root/cfg/master.cfg
 option slaveOnly is deprecated, please use clientOnly instead
 option masterOnly is deprecated, please use serverOnly instead
-ptp4l[519.676]: selected /dev/ptp0 as PTP clock
-ptp4l[519.736]: port 1 (eth1): INITIALIZING to LISTENING on INIT_COMPLETE
-ptp4l[519.736]: port 0 (/var/run/ptp4l): INITIALIZING to LISTENING on INIT_COMPLETE
-ptp4l[519.736]: port 0 (/var/run/ptp4lro): INITIALIZING to LISTENING on INIT_COMPLETE
-ptp4l[520.190]: port 1 (eth1): LISTENING to MASTER on ANNOUNCE_RECEIPT_TIMEOUT_EXPIRES
-ptp4l[520.190]: selected local clock 068f63.fffe.21cd77 as best master
-ptp4l[520.190]: port 1 (eth1): assuming the grand master role
+ptp4l[4766.750]: selected /dev/ptp0 as PTP clock
+ptp4l[4766.800]: port 1 (eth1): INITIALIZING to LISTENING on INIT_COMPLETE
+ptp4l[4766.800]: port 0 (/var/run/ptp4l): INITIALIZING to LISTENING on INIT_COMPLETE
+ptp4l[4766.800]: port 0 (/var/run/ptp4lro): INITIALIZING to LISTENING on INIT_COMPLETE
+ptp4l[4767.212]: port 1 (eth1): LISTENING to MASTER on ANNOUNCE_RECEIPT_TIMEOUT_EXPIRES
+ptp4l[4767.212]: selected local clock ca5226.fffe.4d7055 as best master
+ptp4l[4767.212]: port 1 (eth1): assuming the grand master role
+
 ```
 
 Development kit 2 loads `slave.cfg` to operate as the network slave.
@@ -3168,50 +3643,60 @@ Execute the following commands on development kit 2:
 root@agilex7dksiagi027fc:~# ptp4l -i eth1 -m -s -f /root/cfg/slave.cfg
 option slaveOnly is deprecated, please use clientOnly instead
 option masterOnly is deprecated, please use serverOnly instead
-ptp4l[193.064]: selected /dev/ptp0 as PTP clock
-ptp4l[193.124]: port 1 (eth1): INITIALIZING to LISTENING on INIT_COMPLETE
-ptp4l[193.124]: port 0 (/var/run/ptp4l): INITIALIZING to LISTENING on INIT_COMPLETE
-ptp4l[193.124]: port 0 (/var/run/ptp4lro): INITIALIZING to LISTENING on INIT_COMPLETE
-ptp4l[193.246]: port 1 (eth1): new foreign master 52c803.fffe.45f11c-1
-ptp4l[193.496]: selected best master clock 52c803.fffe.45f11c
-ptp4l[193.496]: port 1 (eth1): LISTENING to UNCALIBRATED on RS_SLAVE
-ptp4l[527.727]: master offset  917676925 s0 freq      -0 path delay         5
-ptp4l[527.790]: master offset  917676942 s0 freq      -0 path delay         4
-ptp4l[527.852]: master offset  917676949 s0 freq      -0 path delay         4
+ptp4l[4777.182]: selected /dev/ptp0 as PTP clock
+ptp4l[4777.248]: port 1 (eth1): INITIALIZING to LISTENING on INIT_COMPLETE
+ptp4l[4777.248]: port 0 (/var/run/ptp4l): INITIALIZING to LISTENING on INIT_COMPLETE
+ptp4l[4777.248]: port 0 (/var/run/ptp4lro): INITIALIZING to LISTENING on INIT_COMPLETE
+ptp4l[4777.322]: port 1 (eth1): new foreign master ca5226.fffe.4d7055-1
+ptp4l[4777.572]: selected best master clock ca5226.fffe.4d7055
+ptp4l[4777.572]: port 1 (eth1): LISTENING to UNCALIBRATED on RS_SLAVE
+ptp4l[4777.635]: master offset 3604409026 s0 freq      -0 path delay         0
+ptp4l[4777.697]: master offset 3604409026 s0 freq      -0 path delay        10
+ptp4l[4777.760]: master offset 3604409026 s0 freq      -0 path delay        10
+ptp4l[4777.822]: master offset 3604409026 s0 freq      -0 path delay        10
+ptp4l[4777.885]: master offset 3604409026 s0 freq      -0 path delay        10
+ptp4l[4777.947]: master offset 3604409026 s0 freq      -0 path delay        10
+ptp4l[4778.010]: master offset 3604409026 s0 freq      -0 path delay        10
 
 <-- output truncated -->
 
-ptp4l[540.795]: master offset  917680128 s0 freq      -0 path delay         9
-ptp4l[540.857]: master offset  917680148 s0 freq      -0 path delay         5
-ptp4l[540.920]: master offset  917680160 s0 freq      -0 path delay         8
-ptp4l[540.982]: master offset  917680177 s0 freq      -0 path delay         5
-ptp4l[541.045]: master offset  917680185 s0 freq      -0 path delay         5
-ptp4l[541.108]: master offset  917680209 s1 freq    +245 path delay         5
-ptp4l[541.170]: master offset      -1962 s2 freq   -1032 path delay         5
-ptp4l[541.170]: port 1 (eth1): UNCALIBRATED to SLAVE on MASTER_CLOCK_SELECTED
-ptp4l[541.233]: master offset      -1923 s2 freq   -1009 path delay         5
-ptp4l[541.295]: master offset      -1840 s2 freq    -957 path delay         5
-ptp4l[541.358]: master offset      -1742 s2 freq    -896 path delay       -16
-ptp4l[541.420]: master offset      -1706 s2 freq    -874 path delay       -16
-ptp4l[541.483]: master offset      -1609 s2 freq    -813 path delay        -5
-ptp4l[541.545]: master offset      -1529 s2 freq    -763 path delay       -16
-ptp4l[541.608]: master offset      -1478 s2 freq    -732 path delay        -2
+ptp4l[4790.702]: master offset 3604409026 s0 freq      -0 path delay        10
+ptp4l[4790.765]: master offset 3604409026 s0 freq      -0 path delay        10
+ptp4l[4790.827]: master offset 3604409027 s0 freq      -0 path delay        10
+ptp4l[4790.890]: master offset 3604409027 s0 freq      -0 path delay        10
+ptp4l[4790.952]: master offset 3604409026 s0 freq      -0 path delay        10
+ptp4l[4791.015]: master offset 3604409027 s1 freq      +0 path delay        10
+ptp4l[4791.077]: master offset      -1966 s2 freq   -1280 path delay        10
+ptp4l[4791.077]: port 1 (eth1): UNCALIBRATED to SLAVE on MASTER_CLOCK_SELECTED
+ptp4l[4791.140]: master offset      -1900 s2 freq   -1240 path delay       -17
+ptp4l[4791.203]: master offset      -1861 s2 freq   -1216 path delay       -17
+ptp4l[4791.265]: master offset      -1759 s2 freq   -1152 path delay        -4
+ptp4l[4791.328]: master offset      -1722 s2 freq   -1130 path delay        -4
+ptp4l[4791.390]: master offset      -1605 s2 freq   -1056 path delay       -11
+ptp4l[4791.453]: master offset      -1546 s2 freq   -1020 path delay        -2
+ptp4l[4791.515]: master offset      -1491 s2 freq    -986 path delay         7
+ptp4l[4791.578]: master offset      -1407 s2 freq    -933 path delay       -14
+ptp4l[4791.640]: master offset      -1359 s2 freq    -903 path delay        -1
 
 <-- output truncated -->
 
-ptp4l[616.512]: master offset          1 s2 freq    +238 path delay        10
-ptp4l[616.575]: master offset          0 s2 freq    +237 path delay        10
-ptp4l[616.637]: master offset          1 s2 freq    +238 path delay        10
-ptp4l[616.700]: master offset          0 s2 freq    +237 path delay        10
-ptp4l[616.762]: master offset          1 s2 freq    +238 path delay         9
-ptp4l[616.825]: master offset          1 s2 freq    +238 path delay        10
-ptp4l[616.887]: master offset          0 s2 freq    +237 path delay        10
-ptp4l[616.950]: master offset          1 s2 freq    +238 path delay        10
-ptp4l[617.012]: master offset          1 s2 freq    +238 path delay        10
-ptp4l[617.075]: master offset          0 s2 freq    +237 path delay        10
-ptp4l[617.137]: master offset          0 s2 freq    +237 path delay        10
-ptp4l[617.200]: master offset          1 s2 freq    +238 path delay         9
-ptp4l[617.262]: master offset          1 s2 freq    +238 path delay        10
+ptp4l[4955.017]: master offset          0 s2 freq      -0 path delay        10
+ptp4l[4955.080]: master offset          1 s2 freq      +0 path delay        10
+ptp4l[4955.143]: master offset          0 s2 freq      -0 path delay        11
+ptp4l[4955.205]: master offset          1 s2 freq      +0 path delay        10
+ptp4l[4955.268]: master offset          0 s2 freq      -0 path delay        10
+ptp4l[4955.330]: master offset          1 s2 freq      +0 path delay        10
+ptp4l[4955.393]: master offset          0 s2 freq      -0 path delay        10
+ptp4l[4955.455]: master offset          1 s2 freq      +0 path delay        10
+ptp4l[4955.518]: master offset          0 s2 freq      -0 path delay        10
+ptp4l[4955.580]: master offset          1 s2 freq      +0 path delay        10
+ptp4l[4955.643]: master offset          0 s2 freq      -0 path delay        10
+ptp4l[4955.705]: master offset          0 s2 freq      -0 path delay        10
+ptp4l[4955.768]: master offset          0 s2 freq      -0 path delay        10
+ptp4l[4955.830]: master offset          1 s2 freq      +0 path delay        10
+ptp4l[4955.893]: master offset          0 s2 freq      -0 path delay        10
+ptp4l[4955.955]: master offset          0 s2 freq      -0 path delay        10
+ptp4l[4956.018]: master offset          1 s2 freq      +0 path delay        10
 ```
 
 To verify that both systems use DMA-0 for PTP traffic, inspect `/proc/interrupts` and confirm that the highest-priority interrupts are triggered for PTP TX/RX handling.
@@ -3220,12 +3705,12 @@ Execute the following commands on development kit 1:
 
 ``` bash
 root@agilex7dksiagi027fc:~# cat /proc/interrupts | grep eth1
- 25:       1283          0          0          0     GICv2  72 Level     eth1
- 26:        175          0          0          0     GICv2  73 Level     eth1
- 27:          0          0          0          0     GICv2  70 Level     eth1
- 28:          0          0          0          0     GICv2  71 Level     eth1
- 29:          9          0         17          0     GICv2  68 Level     eth1
- 30:          0          0         10          0     GICv2  69 Level     eth1
+ 48:         11     231822          0          0     GICv2  72 Level     eth1
+ 49:          0      80325          0          0     GICv2  73 Level     eth1
+ 50:         47          0     173629          0     GICv2  70 Level     eth1
+ 51:          0          0      80270          0     GICv2  71 Level     eth1
+ 52:          0          0          0     272590     GICv2  68 Level     eth1
+ 53:          0          0          0     166269     GICv2  69 Level     eth1
 root@agilex7dksiagi027fc:~#
 ```
 
@@ -3233,12 +3718,12 @@ Execute the following commands on development kit 2:
 
 ``` bash
 root@agilex7dksiagi027fc:~# cat /proc/interrupts | grep eth1
- 25:       1456          0          0          0     GICv2  72 Level     eth1
- 26:       5841          0          0          0     GICv2  73 Level     eth1
- 27:          0          0          0          0     GICv2  70 Level     eth1
- 28:          0          0          0          0     GICv2  71 Level     eth1
- 29:         10          0         10          0     GICv2  68 Level     eth1
- 30:          0          0         11          0     GICv2  69 Level     eth1
+ 48:         11       2862          0          0     GICv2  72 Level     eth1
+ 49:          0     985515          0          0     GICv2  73 Level     eth1
+ 50:         73          0         64          0     GICv2  70 Level     eth1
+ 51:          0          0    1077374          0     GICv2  71 Level     eth1
+ 52:          0          0          0     313757     GICv2  68 Level     eth1
+ 53:          0          0          0    1844451     GICv2  69 Level     eth1
 root@agilex7dksiagi027fc:~#
 ```
 
@@ -3323,7 +3808,7 @@ A common cause of this error are listed below.
 
 The System Example Design can be configured to remove support for auto-negotiation or link training (refer to [HW compilation](#hw-compilation)). Without ANLT support, the SED uses fixed analog settings optimized for active optical cables (AOC). Validated with FS Q28-AO05 (5 m / 16 ft) 100G QSFP28 AOC and FS Q28-PC01 (1 m / 3 ft) 100G QSFP28 passive DAC. Longer DAC cables or different cable types (length, vendor, optical) may require manual tuning of the Ethernet interface analog settings.
 
-Before debugging, ensure cables are properly connected to both development kits. Begin by assessing link health using the procedure in [Reading the Ethernet Subsystem IP Configuration and Status Registers with the HPS](#reading-the-ethernet-subsystem-ip-configuration-and-status-registers-with-the-hps). If a port shows degraded status and a DAC cable is used, adjust analog settings as described in [Enabling Transceiver Tool Kit for the Ethernet Subsystem](#enabling-transceiver-tool-kit-for-the-ethernet-subsystem). Run BER and Eye Viewer tests; if results are suboptimal, follow the guidance in section [7.2.7 of the F-Tile Architecture and PMA and FEC Direct PHY IP User Guide](https://docs.altera.com/r/docs/683872/25.3/f-tile-architecture-and-pma-and-fec-direct-phy-ip-user-guide/running-link-optimization-tests).
+Before debugging, ensure cables are properly connected to both development kits. Begin by assessing link health using the procedure in [Reading the Ethernet Subsystem IP Configuration and Status Registers with the HPS](#reading-the-ethernet-subsystem-ip-configuration-and-status-registers-with-the-hps). If a port shows degraded status and a DAC cable is used, adjust analog settings as described in [Enabling Transceiver Tool Kit for the Ethernet Subsystem](#enabling-transceiver-tool-kit-for-the-ethernet-subsystem). Run BER and Eye Viewer tests; if results are suboptimal, follow the guidance in section [7.2.7 of the F-Tile Architecture and PMA and FEC Direct PHY IP User Guide](https://docs.altera.com/r/docs/683872/26.1/f-tile-architecture-and-pma-and-fec-direct-phy-ip-user-guide/running-link-optimization-tests).
 
 #### Ethernet Interfaces are not Configured
 
@@ -3552,7 +4037,7 @@ Where:
 
 **Example**
 
-The next steps describe the process to read and write the Scratch Register (0x104) from `eth1`. The base address for `eth1` port 8 is documented in [7.3. F-Tile Address Maps](https://docs.altera.com/r/docs/773413/24.3.1/ethernet-subsystem-ip-user-guide/f-tile-address-maps). For register offsets, refer to [F-Tile Ethernet FPGA Hard IP Register Map](https://docs.altera.com/v/u/resources/637401/f-tile-ethernet-fpga-hard-ip-register-map). 
+The next steps describe the process to read and write the Scratch Register (0x104) from `eth1`. The base address for `eth1` port 8 is documented in [7.3. F-Tile Address Maps](https://docs.altera.com/r/docs/773413/24.3.1/ethernet-subsystem-ip-user-guide/f-tile-address-maps). For register offsets, refer to [F-Tile Ethernet FPGA Hard IP Register Map](https://docs.altera.com/v/u/resources/637401/f-tile-ethernet-fpga-hard-ip-register-map).
 
 Move to the next directory:
 
@@ -3626,7 +4111,17 @@ The system example design supports the F-Tile Transceiver Toolkit for debugging 
     7. Recompile the Altera Quartus Prime project.
     8. Regenerate the Yocto project with the new generated 'core.rbf' file as described in [Yocto Update](#yocto-update).
 
-Refer to section '[7.2. F-Tile Transceiver Debugging Flow Walkthrough](https://docs.altera.com/r/docs/683872/25.3/f-tile-architecture-and-pma-and-fec-direct-phy-ip-user-guide/f-tile-transceiver-debugging-flow-walkthrough)' from the 'F-Tile Architecture and PMA and FEC Direct PHY IP User Guide' for more information on link quality related issues and their resolution. Sections '[7.2.5. Running BER Tests](https://docs.altera.com/r/docs/683872/25.3/f-tile-architecture-and-pma-and-fec-direct-phy-ip-user-guide/running-ber-tests)' and '[7.2.6. Running Eye Viewer Tests](https://docs.altera.com/r/docs/683872/25.3/f-tile-architecture-and-pma-and-fec-direct-phy-ip-user-guide/running-eye-viewer-tests)' are essential to qualify the Ethernet link health.
+=== "DR-10/25GbE"
+    1. With Quartus&reg; Prime Pro version 26.1, open the system example design project.
+    2. In 'Project Navigator' click on 'Hierarchy' Tab.
+    3. Double click on the Ethernet Subsystem IP instance to edit, 'inst_port1_hssi_100G_PAM4_anlt' for `eth1` or 'inst_port2_hssi_100G_PAM4_anlt' for `eth2`. IP Parameter Editor will open.
+    4. In the 'HSSI Subsystem' >> 'Device 0 Configuration' >> 'Main Configuration' tab, set to 'Enable' the 'Enable JTAG to Avalon Master Bridge' parameter. Refer to the screen shot below.
+    5. In the 'HSSI Subsystem' >> 'Device 0 Configuration' >> 'F-Tile IP Configuration' >> 'Port 8 Configuration' >> 'P8 IP' tab, click on the 'Enable debug endpoint for transceiver toolkit' parameter.
+    6. Save and regenerate the IP.
+    7. Recompile the Altera Quartus Prime project.
+    8. Regenerate the Yocto project with the new generated 'core.rbf' file as described in [Yocto Update](#yocto-update).
+
+Refer to section '[7.2. F-Tile Transceiver Debugging Flow Walkthrough](https://docs.altera.com/r/docs/683872/26.1/f-tile-architecture-and-pma-and-fec-direct-phy-ip-user-guide/f-tile-transceiver-debugging-flow-walkthrough)' from the 'F-Tile Architecture and PMA and FEC Direct PHY IP User Guide' for more information on link quality related issues and their resolution. Sections '[7.2.5. Running BER Tests](https://docs.altera.com/r/docs/683872/26.1/f-tile-architecture-and-pma-and-fec-direct-phy-ip-user-guide/running-ber-tests)' and '[7.2.6. Running Eye Viewer Tests](https://docs.altera.com/r/docs/683872/26.1/f-tile-architecture-and-pma-and-fec-direct-phy-ip-user-guide/running-eye-viewer-tests)' are essential to qualify the Ethernet link health.
 
 ![](./images/ptp_sed_ttk_ftile_1.png)
 
@@ -3650,4 +4145,4 @@ Refer to section '[7.2. F-Tile Transceiver Debugging Flow Walkthrough](https://d
 
 Altera® Corporation technologies may require enabled hardware, software or service activation. No product or component can be absolutely secure. Performance varies by use, configuration and other factors. Your costs and results may vary. You may not use or facilitate the use of this document in connection with any infringement or other legal analysis concerning Altera or Intel products described herein. You agree to grant Altera Corporation a non-exclusive, royalty-free license to any patent claim thereafter drafted which includes subject matter disclosed herein. No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document, with the sole exception that you may publish an unmodified copy. You may create software implementations based on this document and in compliance with the foregoing that are intended to execute on the Altera or Intel product(s) referenced in this document. No rights are granted to create modifications or derivatives of this document. The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications. Current characterized errata are available on request. Altera disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade. You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. © Altera Corporation. Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation. Other names and brands may be claimed as the property of others.
 
-OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™.
+OpenCL*and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™.

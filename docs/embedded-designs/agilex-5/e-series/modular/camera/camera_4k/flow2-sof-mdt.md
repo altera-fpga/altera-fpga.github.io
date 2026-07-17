@@ -27,37 +27,6 @@ Note licenses must be downloaded and installed where needed.
 
 <br/>
 
-### **Hardware Requirements**
-
-* [Agilex™ 5 FPGA E-Series 065B Modular Development Kit].
-
-<br/>
-![Agx5-MDK](../common/images/Agx5-MDK.png){:style="display:block; margin-left:auto; margin-right:auto"}
-<center markdown="1">
-
-**Agilex™ 5 FPGA E-Series 065B Modular Development Kit**
-</center>
-<br/>
-
-* 1 or 2 [Framos FSM:GO IMX678C Camera Modules], with:
-  * [Wide 110deg HFOV Lens], or
-  * [Medium 100deg HFOV Lens], or
-  * [Narrow 54deg HFOV Lens].
-* (Optional) Mount/Tripod
-  * [Framos Tripod Mount Adapter].
-  * [Tripod].
-* A Framos cable for PixelMate MIPI-CSI-2 for each Camera Module:
-  * [150mm flex-cable], or
-  * [300mm micro-coax cable].
-* (Optional) [Framos GMSL3 5m] (if the Camera Solution System Example Design
-  supports this feature).
-* MicroSD card (minimum 8Gb).
-* DP cable or HDMI cable with [DP to HDMI Adapter] (recommend 4Kp60 capable).
-* USB Micro B cable x2 (for QSPI programming and HPS serial console access).
-* Ethernet cable (for HPS network connection).
-* PC monitor or TV: 4Kp60 recommended.
-
-<br/>
 
 
 ### **Software Requirements to run**
@@ -189,7 +158,7 @@ create the microSD card image.
   tar -xzf `<name>.wic.gz`
   ```
 
-  * On Windows, use the [7-Zip](https://www.7-zip.org) program (or similar):
+  * On Windows, use the [7-Zip] program (or similar):
     * Right click `<name>.wic.gz` file, and select "Extract All..."
 
 * Write the `<name>.wic` image to the microSD card using a USB writer:
@@ -205,7 +174,7 @@ create the microSD card image.
   sync
   ```
 
-  * On Windows, use the [Win32DiskImager](https://sourceforge.net/projects/win32diskimager) program (or similar):
+  * On Windows, use the [Win32DiskImager] program (or similar):
     * Click browse icon and select "\*.\*" filter:
 
     ![disk-imager-browse](../common/images/disk-imager-browse.png){:style="display:block; margin-left:auto; margin-right:auto"}
