@@ -220,7 +220,7 @@ and `top.hps.jic` execute:
 **Note:** top.sof is located in `<project>/quartus/output_files/top.sof`
 
 === "Agilex™ 5"
-    For [Agilex™ 5 FPGA E-Series 065B Modular Development Kit](https://www.altera.com/products/devkit/po-3274/agilex-5-fpga-and-soc-e-series-065b-modular-development-kit)
+    For [Agilex™ 5 FPGA E-Series 065B Modular Development Kit]
     ```bash
     quartus_pfg -c top.sof top.jic \
     -o device=MT25QU02G \
@@ -265,7 +265,7 @@ In the log, look for the property `"HPS/FPGA configuration order"` SET TO `"AFTE
 specifically the file `u-boot-spl-dtb.hex`. To generate the `top.jic` execute:
 
 === "Agilex™ 5"
-    For [Agilex™ 5 FPGA E-Series 065B Modular Development Kit](https://www.altera.com/products/devkit/po-3274/agilex-5-fpga-and-soc-e-series-065b-modular-development-kit)
+    For [Agilex™ 5 FPGA E-Series 065B Modular Development Kit]
     ```bash
     quartus_pfg -c top.sof top.jic \
     -o device=MT25QU02G \

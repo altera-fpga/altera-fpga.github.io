@@ -2,8 +2,8 @@
 
 
 [NiosV Processor for Altera® FPGA]: https://www.altera.com/design/guidance/nios-v-developer
-[Agilex™ 3 FPGA and SoC C-Series Development Kit]: https://www.altera.com/products/devkit/a1jui000006ty5dmae/agilex-3-fpga-and-soc-c-series-development-kit
-[Agilex™ 3 FPGA C-Series Development Kit]: https://www.altera.com/products/devkit/a1jui000006own7mai/agilex-3-fpga-c-series-development-kit
+[Agilex™ 3 FPGA and SoC C-Series Development Kit]: https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit
+[Agilex™ 3 FPGA C-Series Development Kit]: https://www.altera.com/products/devkit/po-2999/agilex-3-fpga-c-series-development-kit
 
 
 [7-Zip]: https://www.7-zip.org
@@ -12,9 +12,9 @@
 [DP to HDMI Adapter]: https://www.amazon.co.uk/gp/product/B01M6WK3KU/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
 
 
-[VVP IP Suite]: https://www.altera.com/products/ip/a1jui000004qxfpmak/video-and-vision-processing-suite
-[MIPI DPHY IP and MIPI CSI-2 IP]: https://www.altera.com/products/ip/a1jui0000049uuamam/mipi-d-phy-ip#tab-blade-1-3
-[Nios® V Processor]: https://www.altera.com/products/ip/a1jui0000049uvama2/nios-v-processors
+[VVP IP Suite]: https://www.altera.com/products/ip/po-3150/video-and-vision-processing-suite
+[MIPI DPHY IP and MIPI CSI-2 IP]: https://www.altera.com/products/ip/po-3062/mipi-d-phy-ip
+[Nios® V Processor]: https://www.altera.com/products/ip/po-3098/nios-v-processors
 
 
 [Altera® Quartus® Prime Pro Edition version 25.3]: https://www.altera.com/downloads/fpga-development-tools/quartus-prime-pro-edition-design-software-version-25-3-linux
@@ -72,11 +72,10 @@
 [Bits per Color Sample Adapter IP]: https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/bits-per-color-sample-adapter.html
 [Protocol Converter IP]: https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/protocol-converter-ip
 [Pixels in Parallel Converter IP]: https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/pixels-in-parallel-converter-ip
-[Video and Vision Processing Suite Altera® FPGA IP User Guide]: https://www.altera.com/products/ip/a1jui000004qxfpmak/video-and-vision-processing-suite
-[Altera® FPGA Streaming Video Protocol Specification]: https://www.intel.com/content/www/us/en/docs/programmable/683397/current/about-the-intel-fpga-streaming-video.html
+[Video and Vision Processing Suite Altera® FPGA IP User Guide]: https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/about-the-video-and-vision-processing-suite
+[Altera® FPGA Streaming Video Protocol Specification]: https://docs.altera.com/r/docs/683397/current/altera-streaming-video-protocol-specification/about-the-altera-streaming-video-protocol
 [AMBA 4 AXI4-Stream Protocol Specification]: https://developer.arm.com/documentation/ihi0051/a/
 [Avalon® Interface Specifications – Avalon® Streaming Interfaces]: https://www.intel.com/content/www/us/en/docs/programmable/683091/20-1/streaming-interfaces.html
 [EMIF]: https://www.altera.com/design/guidance/emif-support
-
 
 

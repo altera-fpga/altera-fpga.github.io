@@ -4,7 +4,7 @@
 
 ##  Introduction
 
-This page contains instructions on how to build Linux systems from separate components: Quartus Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the HPS Baseline System Reference Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
+This page contains instructions on how to build Linux systems from separate components: Quartus Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the HPS Baseline System Example Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
 
 The key differences versus the HPS Baseline System Example Design are:
 
@@ -49,8 +49,8 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1_REL_GSRD_PR   |
-| Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1_REL_GSRD_PR |
+| Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1_p1_REL_GSRD_PR   |
+| Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main | QPDS26.1_p1_REL_GSRD_PR |
 | Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
 | Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
 | Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1_REL_GSRD_PR |
@@ -58,10 +58,11 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 | Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
 | U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
-| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_p1_REL_GSRD_PR |
 | Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
 | Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
 | HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| KAS | [https://github.com/jeffhammond/STREAM.git](https://github.com/jeffhammond/STREAM.git) | master | 5.2 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -1578,7 +1579,7 @@ quartus_pfg -c agilex5_soc_devkit_ghrd_a55/output_files/baseline_a55.sof ghrd.rb
 
 The following file is created:
 
-* `$TOP_FOLDER/ghrd.hps.rbf
+* `$TOP_FOLDER/ghrd.hps.rbf`
 
 <h4>Build Linux</h4>
 
@@ -1827,7 +1828,7 @@ mkfs.ubifs -r rootfs --leb-size 1032192 --min-io-size 8192 --max-leb-cnt 8600 -o
 
 The following file is created:
 
-* `$TOP_FOLDER/rootfs_nand.ubifs`
+* `$TOP_FOLDER/nand_bin/rootfs_nand.ubifs`
 
 <h4> Build root.ubi </h4>
 
@@ -1844,45 +1845,202 @@ Based on the table above, we have 2 partitions. One contains just the U-Boot fit
 
 1. Bring all the components needed to build the NAND image
 
+  
 
+  ```bash
+  cd $TOP_FOLDER/nand_bin
+  # Bring U-Boot and make it with a size of exactly 2MB:
+  cp $TOP_FOLDER/u-boot-socfpga/u-boot.itb .
+  uboot_part_size=2*1024*1024
+  uboot_size=`wc -c < u-boot.itb`
+  uboot_pad="$((uboot_part_size-uboot_size))"
+  truncate -s +$uboot_pad u-boot.itb
 
-```bash
-cd $TOP_FOLDER/nand_bin
-# Bring U-Boot and make it with a size of exactly 2MB:
-cp $TOP_FOLDER/u-boot-socfpga/u-boot.itb .
-uboot_part_size=2*1024*1024
-uboot_size=`wc -c < u-boot.itb`
-uboot_pad="$((uboot_part_size-uboot_size))"
-truncate -s +$uboot_pad u-boot.itb
+  # Bring binize_nand.cfg and modify it as needed
+  cp $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux/scripts/ubinize_nand.cfg ubinize_nand.cfg
+  # Remove the line that provides the name of the boot.scr.uimg script and the uboot.env as they are not available
+  sed -i '/uboot\.env/d' ubinize_nand.cfg
+  sed -i '/boot\.scr\.uimg/d' ubinize_nand.cfg
+  # Rename .ubifs
+  sed -i 's|console-image-minimal-agilex5e.rootfs_nand.ubifs|rootfs_nand.ubifs|g' ubinize_nand.cfg
 
-# Bring binize_nand.cfg and modify it as needed
-cp $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/yocto_linux/scripts/ubinize_nand.cfg ubinize_nand.cfg
-# Remove the line that provides the name of the boot.scr.uimg script and the uboot.env as they are not available
-sed -i '/uboot\.env/d' ubinize_nand.cfg
-sed -i '/boot\.scr\.uimg/d' ubinize_nand.cfg
-# Rename .ubifs
-sed -i 's|console-image-minimal-agilex5e.rootfs_nand.ubifs|rootfs_nand.ubifs|g' ubinize_nand.cfg
-
-# Bring other components
-ln -s $TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.bin u-boot-spl-dtb.bin
-ln -s $TOP_FOLDER/kernel_build/kernel.itb kernel.itb
-```
-
+  # Bring other components
+  ln -s $TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.bin u-boot-spl-dtb.bin
+  ln -s $TOP_FOLDER/kernel_build/kernel.itb kernel.itb
+  ```
+  
 
 2. Create the root.ubi file using **ubinize** command from the **mtd-tools** package:
 
+  
 
-
-```bash
-ubinize -o root.ubi -p 1024KiB -m 8192 -s 8192 ubinize_nand.cfg
-```
-
+  ```bash
+  ubinize -o root.ubi -p 1024KiB -m 8192 -s 8192 ubinize_nand.cfg
+  ```
+  
 
 The following file is created:
 
 * $TOP_FOLDER/nand_bin/root.ubi
 
-   
+A capture of the output seen is shown next:
+
+```
+U-Boot SPL 2026.01-g6e59447316d0-dirty (Apr 09 2026 - 10:16:24 -0500)
+Reset state: Cold
+MPU          1500000 kHz
+L4 Main	      400000 kHz
+L4 sys free   100000 kHz
+L4 MP         200000 kHz
+L4 SP         100000 kHz
+SDMMC         100000 kHz
+init_mem_cal: Initial DDR calibration IO96B_0 succeed
+DDR: Calibration success
+is_mailbox_spec_compatible: IOSSM mailbox version: 1
+DDR4: 8192 MiB
+ecc_interrupt_status: ECC error number detected on IO96B_0: 0
+SDRAM-ECC: Initialized success
+DDR: size check success
+DDR: firewall init success
+DDR: init success
+QSPI: Reference clock at 400000 kHz
+Bloblist at 72000 not found (err=-2)
+WDT:   Started watchdog@10d00200 with servicing every 1000ms (30s timeout)
+Trying to boot from NAND
+## Checking hash(es) for config board-0 ... OK
+## Checking hash(es) for Image atf ... crc32+ OK
+## Checking hash(es) for Image uboot ... crc32+ OK
+## Checking hash(es) for Image fdt-0 ... crc32+ OK
+NOTICE:  SOCFPGA: Boot Core = 0
+NOTICE:  SOCFPGA: CPU ID = 0
+NOTICE:  SOCFPGA: Setting CLUSTERECTRL_EL1
+NOTICE:  BL31: v2.14.0(release):QPDS26.1_REL_GSRD_PR
+NOTICE:  BL31: Built : 10:15:26, Apr  9 2026
+
+
+U-Boot 2026.01-g6e59447316d0-dirty (Apr 09 2026 - 10:16:24 -0500)socfpga_agilex5
+
+CPU: Altera FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
+Model: SoCFPGA Agilex5 SoCDK
+DRAM:  2 GiB (total 8 GiB)
+Core:  49 devices, 23 uclasses, devicetree: separate
+WDT:   Started watchdog@10d00200 with servicing every 1000ms (30s timeout)
+:
+Hit any key to stop autoboot: 0
+
+device nor0 <nor0>, # parts = 2
+ #: name		size		offset		mask_flags
+ 0: u-boot              0x04200000	0x00000000	0
+ 1: qspi_root           0x0be00000	0x04200000	0
+
+device nand0 <ffb90000.nand.0>, # parts = 2
+ #: name		size		offset		mask_flags
+ 0: u-boot              0x00200000	0x00000000	0
+ 1: root                0xffe00000	0x00200000	0
+
+active partition: nor0,0 - (u-boot) 0x04200000 @ 0x00000000
+
+defaults:
+mtdids  : nor0=nor0,nand0=ffb90000.nand.0
+mtdparts: mtdparts=nor0:66m(u-boot),190m(qspi_root);ffb90000.nand.0:2m(u-boot),-(root)
+UBI partition 'root' already selected
+No size specified -> Using max size (25804800)
+Read 25804800 bytes from volume kernel to 0000000082000000
+## Loading kernel (any) from FIT Image at 82000000 ...
+   Using 'board-0' configuration
+   Verifying Hash Integrity ... OK
+   Trying 'kernel' kernel subimage
+     Description:  Linux Kernel
+     Type:         Kernel Image
+     Compression:  lzma compressed
+     Data Start:   0x820000dc
+     Data Size:    10807214 Bytes = 10.3 MiB
+:
+Starting kernel ...
+
+Deasserting all peripheral resets
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x412fd050]
+[    0.000000] Linux version 6.18.2-gb2496f2fcb06 (rolando@rolando3-linux-lab) (aarch64-none-linux-gnu-gcc (Arm GNU Toolchain 14.3.Rel1 (Build arm-14.174)) 14.3.1 20250623, GNU ld (Arm GNU Toolchain 14.3.Rel1 (Build arm-14.174)) 2.44.0.20250616) #1 SMP PREEMPT Thu Apr  9 10:34:30 CDT 2026
+[    0.000000] KASLR disabled due to lack of seed
+[    0.000000] Machine model: SoCFPGA Agilex5 SoCDK NAND daughter board
+[    0.000000] efi: UEFI not found.
+[    0.000000] earlycon: uart0 at MMIO32 0x0000000010c02000 (options '115200n8')
+[    0.000000] printk: legacy bootconsole [uart0] enabled
+[    0.000000] Reserved memory: created DMA memory pool at 0x0000000080000000, size 32 MiB
+[    0.000000] OF: reserved mem: initialized node svcbuffer@0, compatible id shared-dma-pool
+[    0.000000] OF: reserved mem: 0x0000000080000000..0x0000000081ffffff (32768 KiB) nomap non-reusable svcbuffer@0
+[    0.000000] NUMA: Faking a node at [mem 0x0000000080000000-0x00000009ffffffff]
+[    0.000000] NODE_DATA(0) allocated [mem 0x9fefee400-0x9feff0a7f]
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000080000000-0x00000000ffffffff]
+[    0.000000]   DMA32    empty
+[    0.000000]   Normal   [mem 0x0000000100000000-0x00000009ffffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000080000000-0x0000000081ffffff]
+[    0.000000]   node   0: [mem 0x0000000082000000-0x00000000ffffffff]
+[    0.000000]   node   0: [mem 0x0000000880000000-0x00000009ffffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000080000000-0x00000009ffffffff]
+[    0.000000] cma: Reserved 32 MiB at 0x00000000fca00000
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: MIGRATE_INFO_TYPE not supported.
+[    0.000000] psci: SMC Calling Convention v1.5
+[    0.000000] percpu: Embedded 25 pages/cpu s62488 r8192 d31720 u102400
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: detected: GICv3 CPU interface
+[    0.000000] CPU features: detected: Virtualization Host Extensions
+[    0.000000] CPU features: detected: ARM errata 1165522, 1319367, or 1530923
+[    0.000000] alternatives: applying boot alternatives
+[    0.000000] Kernel command line: earlycon panic=-1 ubi.mtd=1 root=ubi0:rootfs rootfstype=ubifs rw rootwait
+:
+[    5.259596] socfpga-dwmac 10810000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-7
+[    5.435788] socfpga-dwmac 10810000.ethernet eth0: PHY [stmmac-0:00] driver [Marvell 88E1510] (irq=POLL)
+[    5.448518] socfpga-dwmac 10810000.ethernet eth0: No Safety Features support found
+[    5.457751] socfpga-dwmac 10810000.ethernet eth0: IEEE 1588-2008 Advanced Timestamp supported
+[    5.466416] socfpga-dwmac 10810000.ethernet eth0: registered PTP clock
+[    5.472919] socfpga-dwmac 10810000.ethernet eth0: configuring for phy/rgmii link mode
+udhcpc: started, v1.37.0
+udhcpc: broadcasting discover
+udhcpc: no lease, forking to background
+OK
+Starting crond: OK
+Starting dropbear sshd: [    8.964981] NET: Registered PF_INET6 protocol family
+[    8.970457] Segment Routing with IPv6
+[    8.974149] In-situ OAM (IOAM) with IPv6
+OK
+Mounting debugfs...
+
+Welcome to Buildroot
+agilex5 login: 
+```
+
+ 
+
+You can write the NAND binaries using U-Boot from the [qspi_helper.hps.jic](https://releases.rocketboards.org/2026.04/nand/agilex5_dk_a5e065bb32aea_nand.baseline-a55/qspi_helper.hps.jic ) which needs to be programmed in the QSPI image. This helper file allows you to load the NAND binaries into SDRAM using TFTP and then write them into the NAND device using the **nand** command as shown next:
+
+<span style="color: red;"> Important Note: The helper JIC image will try to boot first from NAND, if it finds something bootable in there, otherwise will boot from QSPI.</span>
+
+```
+# In your development host machine
+cp $TOP_FOLDER/nand_bin/u-boot.itb <tftp_folder>
+cp $TOP_FOLDER/nand_bin/root.ubi <tftp_folder>
+
+# In the serial terminal of the dev kit
+setenv autoload no
+dhcp
+setenv serverip <tftp_server_ip_address>
+
+tftp $loadaddr u-boot.itb
+nand erase.part u-boot
+nand write $loadaddr u-boot $filesize
+
+tftp $loadaddr root.ubi
+nand erase.part clean root
+nand write.trimffs $loadaddr root $filesize
+```
+
 
 
 ## HPS Test Board
@@ -2880,6 +3038,413 @@ root@agilex5:~#
 mount -t debugfs none /sys/kernel/debug/
 ```
 
+
+
+
+
+### Boot from eMMC
+
+This section provides instructions to build binaries to exercise ATF to Linux direct boot flow booting from a eMMC card.
+
+The Quartus design must be re-built as this time it's required a Quartus design specific to boot from eMMC.  ATF also requires to be rebuilt to enable booting from eMMC by setting SOCFPGA_BOOT_SOURCE_SDMMC to '1' and setting MMC_DEVICE_TYPE to '0' (eMMC used instead of SD Card). The FIP image and the eMMC image are created in the same way than for the SD Card use case.
+
+   ![](images/ATF_Linux_Image_eMMC.jpg) 
+
+<h4>Toolchain Setup (ATF-To-Linux)</h4>
+
+
+
+
+```bash
+sudo rm -rf agilex5_boot.atf2linux_emmc
+mkdir agilex5_boot.atf2linux_emmc && cd agilex5_boot.atf2linux_emmc
+export TOP_FOLDER=`pwd`
+```
+
+Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
+
+
+```bash
+cd $TOP_FOLDER
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-none-linux-gnu-
+```
+
+Enable Quartus tools to be called from command line:
+
+
+```bash
+source ~/altera_pro/26.1/qinit.sh
+```
+
+
+
+
+
+
+<h4>Build Quartus Design</h4>
+
+
+
+
+```bash
+cd $TOP_FOLDER
+rm -rf agilex5_soc_devkit_ghrd_a55_emmc && mkdir agilex5_soc_devkit_ghrd_a55_emmc && cd agilex5_soc_devkit_ghrd_a55_emmc
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065b-premium-devkit-emmc-baseline-a55.zip
+unzip a5ed065b-premium-devkit-emmc-baseline-a55.zip
+rm -f a5ed065b-premium-devkit-emmc-baseline-a55.zip
+make baseline_a55-build
+pushd software/hps_debug && ./build.sh && popd
+quartus_pfg -c output_files/baseline_a55.sof \
+  output_files/baseline_a55_hps_debug.sof \
+  -o hps_path=software/hps_debug/hps_wipe.ihex
+cd ..
+```
+
+
+
+The following file is created:
+
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55_emmc/output_files/baseline_a55.sof
+
+RS: Hide this in 26.1
+
+**NOTE:** In this example we build the Quartus design using **a5ed065b-premium-devkit-emmc-baseline-a55.zip** which uses one of the **a55** cores (core 0) as the **boot core** . You can also start with the **a5ed065b-premium-devkit-emmc-baseline-a55.zip** to use one of the **a76** cores (core 2) as the **boot core**. In that case, the **make baseline_a76-build** command would be required to build the Quartus design producing the **baseline_a76.sof** file. 
+
+
+
+
+<h4>Build Arm Trusted Firmware</h4>
+
+
+
+
+```bash
+cd $TOP_FOLDER
+# Building ATF
+rm -rf arm-trusted-firmware-emmc
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-emmc
+cd arm-trusted-firmware-emmc
+# Indicate that we will boot from eMMC instead of SDCard
+sed -i 's/\#define MMC_DEVICE_TYPE.*/\#define MMC_DEVICE_TYPE						0  \/\* MMC = 0, SD = 1 \*\//g' plat/intel/soc/agilex5/include/socfpga_plat_def.h
+# WA: ES-1610 Change the clock to use an standard value of 26 MHz
+# include/drivers/cadence/cdns_sdmmc.h
+sed -i 's/SDEMMC_SDCLK.*/SDEMMC_SDCLK                           26000000U/g' include/drivers/cadence/cdns_sdmmc.h
+make realclean
+# Setting Bootsource as SDMMC
+make bl2 bl31 PLAT=agilex5 fiptool  ARM_LINUX_KERNEL_AS_BL33=1  PRELOADED_BL33_BASE=0x82000000 ARM_PRELOADED_DTB_BASE=0x90000000 SOCFPGA_BOOT_SOURCE_SDMMC=1
+cd ..
+
+```
+
+
+
+The following files are created:
+
+* $TOP_FOLDER/arm-trusted-firmware-emmc/build/agilex5/release/bl2.bin 
+* $TOP_FOLDER/arm-trusted-firmware-emmc/build/agilex5/release/bl31.bin
+* $TOP_FOLDER/arm-trusted-firmware-emmc/build/agilex5/release/tools/fiptool/fiptool
+
+<h4>Build Linux</h4>
+
+
+
+
+```bash
+cd $TOP_FOLDER
+rm -rf linux-socfpga-emmc
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-emmc
+cd linux-socfpga-emmc
+
+# WA: ES-1522 Incorrect name of ttyS0 serial console
+sed -i 's/ttys/ttyS/g' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_emmc_atfboot.dts
+
+# WA: ES-375 After NAND device tree was modified emmc boot failed as missing correct memory definition in device tree
+sed -i '/compatible/a \\n\tmemory {\n\t\tdevice_type = "memory";\n\t\treg = <0 0x80000000 0 0x80000000>;\n\t};' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_emmc_atfboot.dts
+
+cat << EOF > config-fragment-agilex5
+# Enable DHCP 
+CONFIG_IP_PNP_DHCP=y
+# enable kernel debugging with RiscFree
+CONFIG_DEBUG_INFO=y
+CONFIG_GDB_SCRIPTS=y
+CONFIG_INITRAMFS_ROOT_UID=0
+CONFIG_INITRAMFS_ROOT_GID=0
+CONFIG_INITRAMFS_COMPRESSION_GZIP=y
+
+# Include these configs if wanted to perform fpga reconfiguration using overlays (enable device tree overlays and fpga bridges)
+# Taken from SoC Fabric Configuration from Linux Example for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile) page
+CONFIG_OF_RESOLVE=y
+CONFIG_OF_OVERLAY=y
+CONFIG_OF_CONFIGFS=y
+CONFIG_FPGA_MGR_STRATIX10_SOC=y
+CONFIG_FPGA_BRIDGE=y
+CONFIG_FPGA_REGION=y
+CONFIG_OF_FPGA_REGION=y
+CONFIG_OVERLAY_FS=y
+CONFIG_ALTERA_SYSID=y
+
+# Needed for netwrok connectivity
+CONFIG_MARVELL_PHY=y
+EOF
+
+make clean && make mrproper
+make defconfig
+# Apply custom Configs in file
+./scripts/kconfig/merge_config.sh -O ./ ./.config ./config-fragment-agilex5
+
+make oldconfig
+make -j 64 Image dtbs
+```
+
+
+
+
+The output files from this stage are:
+
+* $TOP_FOLDER/linux-socfpga-emmc/arch/arm64/boot/Image
+* $TOP_FOLDER/linux-socfpga-emmc/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_emmc_atfboot.dtb
+
+<h4>Build Linux Kernel Modules</h4>
+
+This is an optional step that should be executed in case that you need the kernel drivers module (.ko files) available in your Linux file system, so these could be loaded using the **modprobe** or **insmod** commands. These modules will be found under the **/lib/modules** directory in Linux (these are copied there when creating the sdcard/emmc image).
+
+
+
+
+```bash
+# Build and install the Kernel modules
+cd $TOP_FOLDER/linux-socfpga-emmc
+make -j 32 modules
+rm -rf module_install_dir && mkdir module_install_dir
+make -j 32 modules_install INSTALL_MOD_PATH=`pwd`/module_install_dir
+```
+
+
+
+
+
+The built modules are created under the following directory:
+
+* `$TOP_FOLDER/linux-socfpga-emmc/module_install_dir`
+
+<h4>Build QSPI Image</h4>
+
+
+
+
+```bash
+cd $TOP_FOLDER
+rm -rf jic_emmc
+mkdir jic_emmc && cd jic_emmc
+# Convert fsbl
+aarch64-none-linux-gnu-objcopy -v -I binary -O ihex --change-addresses 0x00000000 $TOP_FOLDER/arm-trusted-firmware-emmc/build/agilex5/release/bl2.bin fsbl.hex
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55_emmc/output_files/baseline_a55.sof baseline_a55.sof
+# Create .jic file
+quartus_pfg -c baseline_a55.sof \
+emmc_atf.jic \
+-o hps_path=fsbl.hex \
+-o device=MT25QU128 \
+-o flash_loader=A5ED065BB32AE4S  \
+-o mode=ASX4 \
+-o hps=1
+```
+
+
+
+The following files are created:
+
+* $TOP_FOLDER/jic_emmc/emmc_atf.hps.jic
+* $TOP_FOLDER/jic_emmc/emmc_atf.core.rbf
+
+<h4>Build Rootfs</h4>
+
+
+
+
+
+```bash
+cd $TOP_FOLDER 
+rm -rf buildroot
+git clone https://github.com/buildroot/buildroot.git
+cd buildroot
+git checkout 2026.02
+mkdir -p overlay/etc/profile.d/
+# Use regilar prompt used in our devices root@<device>:~# instead of only #
+echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
+# Adding applications that we normaly need
+cat > configs/agilex5_defconfig <<EOT
+BR2_aarch64=y
+BR2_TOOLCHAIN_BUILDROOT_CXX=y
+BR2_KERNEL_HEADERS_6_12=y
+BR2_PACKAGE_HOST_GDB=y
+BR2_GDB_VERSION_14=y
+BR2_PACKAGE_GDB=y
+BR2_PACKAGE_DROPBEAR=y
+BR2_SYSTEM_DHCP="eth0"
+BR2_TARGET_ROOTFS_TAR_GZIP=y
+BR2_TARGET_GENERIC_HOSTNAME="agilex5"
+BR2_ROOTFS_OVERLAY="overlay"
+EOT
+make agilex5_defconfig
+make -j 64
+```
+
+
+
+The following file is created:
+
+* $TOP_FOLDER/buildroot/output/images/rootfs.tar.gz
+
+<h4>Build eMMC Image</h4>
+
+
+
+
+```bash
+cd $TOP_FOLDER
+sudo rm -rf emmc_image
+mkdir emmc_image && cd emmc_image
+## Create FIP image
+$TOP_FOLDER/arm-trusted-firmware-emmc/build/agilex5/release/tools/fiptool/fiptool create \
+--soc-fw $TOP_FOLDER/arm-trusted-firmware-emmc/build/agilex5/release/bl31.bin \
+--nt-fw $TOP_FOLDER/linux-socfpga-emmc/arch/arm64/boot/Image \
+--nt-fw-config $TOP_FOLDER/linux-socfpga-emmc/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_emmc_atfboot.dtb fip.bin
+
+# Build now the SDCard
+wget https://releases.rocketboards.org/release/2020.11/gsrd/tools/make_sdimage_p3.py
+# remove mkfs.fat parameter which has some issues on Ubuntu 22.04
+sed -i 's/\"\-F 32\",//g' make_sdimage_p3.py
+chmod +x make_sdimage_p3.py
+mkdir rootfs && cd rootfs
+sudo tar -xf $TOP_FOLDER/buildroot/output/images/rootfs.tar.gz
+sudo cp $TOP_FOLDER/jic_emmc/emmc_atf.core.rbf root/
+sudo cp -r $TOP_FOLDER/linux-socfpga-emmc/module_install_dir/lib/modules lib/
+cat << EOF > ../S99mountSysKrnDbg.sh
+#!/bin/sh
+# SPDX-License-Identifier: GPL-2.0-only
+
+### BEGIN INIT INFO
+# Provides: banner
+# Required-Start:
+# Required-Stop:
+# Default-Start:     S
+# Default-Stop:
+### END INIT INFO
+echo "Mounting debugfs..."
+mount -t debugfs none /sys/kernel/debug/
+EOF
+sudo cp ../S99mountSysKrnDbg.sh etc/init.d/
+sudo chmod +x etc/init.d/S99mountSysKrnDbg.sh
+cd ..
+sudo python3 make_sdimage_p3.py -f \
+-P fip.bin,num=1,format=raw,size=64M,type=a2 \
+-P rootfs/*,num=2,format=ext3,size=448M \
+-s 512M -n emmc_atf.img
+```
+
+
+
+The following file is created:
+
+* $TOP_FOLDER/emmc_image/emmc_atf.img
+
+
+
+You can exercise ATF to Linux boot flow from SD Card using the following binaries generated:
+
+* $TOP_FOLDER/emmc_image/emmc_atf.img
+* $TOP_FOLDER/jic_emmc/emmc_atf.hps.jic
+
+When booting with the binaries generated, this is the log that you will see. This is the log is just a refenrece and captured by the time the page was created and in the future the versions in the components may change.
+
+```
+NOTICE:  DDR: Reset type is 'Power-On'
+NOTICE:  IOSSM: Calibration success status check...
+NOTICE:  IOSSM: All EMIF instances within the IO96 have calibrated successfully!
+NOTICE:  DDR: Calibration success
+NOTICE:  DDR: ECC is enabled
+NOTICE:  IOSSM: Memory initialized successfully on IO96B
+NOTICE:  ###DDR:init success###
+NOTICE:  DFI interface selected successfully to SDEMMC
+NOTICE:  SOCFPGA: SDMMC boot
+NOTICE:  BL2: v2.12.1(release):410b93702-dirty
+NOTICE:  BL2: Built : 20:10:16, Jul 31 2025
+NOTICE:  BL2: Booting BL31
+NOTICE:  SOCFPGA: Boot Core = 0
+NOTICE:  SOCFPGA: CPU ID = 0
+NOTICE:  SOCFPGA: Setting CLUSTERECTRL_EL1
+NOTICE:  BL31: v2.12.1(release):410b93702-dirty
+NOTICE:  BL31: Built : 20:10:21, Jul 31 2025
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x412fd050]
+[    0.000000] Linux version 6.12.19-g7b497655d942-dirty (rolando@rolando3-linux-lab) (aarch64-none-linux-gnu-gcc (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 11.2.1 20220111, GNU ld (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 2.37.20220122) #1 SMP PREEMPT Thu Jul 31 19:25:32 CDT 2025
+[    0.000000] KASLR disabled due to lack of seed
+[    0.000000] Machine model: SoCFPGA Agilex5 SoCDK
+[    0.000000] efi: UEFI not found.
+[    0.000000] earlycon: uart0 at MMIO32 0x0000000010c02000 (options '115200n8')
+[    0.000000] printk: legacy bootconsole [uart0] enabled
+[    0.000000] Reserved memory: created DMA memory pool at 0x0000000080000000, size 32 MiB
+[    0.000000] OF: reserved mem: initialized node svcbuffer@0, compatible id shared-dma-pool
+[    0.000000] OF: reserved mem: 0x0000000080000000..0x0000000081ffffff (32768 KiB) nomap non-reusable svcbuffer@0
+[    0.000000] NUMA: Faking a node at [mem 0x0000000080000000-0x00000000ffffffff]
+[    0.000000] NODE_DATA(0) allocated [mem 0xffbf1bc0-0xffbf41ff]
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000080000000-0x00000000ffffffff]
+[    0.000000]   DMA32    empty
+[    0.000000]   Normal   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000080000000-0x0000000081ffffff]
+[    0.000000]   node   0: [mem 0x0000000082000000-0x00000000ffffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000080000000-0x00000000ffffffff]
+[    0.000000] cma: Reserved 32 MiB at 0x00000000fba00000 on node -1
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: MIGRATE_INFO_TYPE not supported.
+[    0.000000] psci: SMC Calling Convention v1.5
+[    0.000000] percpu: Embedded 25 pages/cpu s61720 r8192 d32488 u102400
+[    0.000000] Detected VIPT I-cache on CPU0
+[    0.000000] CPU features: detected: GIC system register CPU interface
+[    0.000000] CPU features: detected: Virtualization Host Extensions
+[    0.000000] CPU features: detected: ARM errata 1165522, 1319367, or 1530923
+[    0.000000] alternatives: applying boot alternatives
+[    0.000000] Kernel command line: console=ttys0,115200 earlycon panic=-1 root=/dev/mmcblk0p2 rw rootwait
+:
+[    1.666798] EXT4-fs (mmcblk0p2): mounting ext3 file system using the ext4 subsystem
+[    1.682241] EXT4-fs (mmcblk0p2): mounted filesystem c3b5fe0a-760b-4d2d-89dc-022dc29cde2f r/w with ordered data mode. Quota mode: none.
+[    1.694467] VFS: Mounted root (ext3 filesystem) on device 179:2.
+[    1.703706] devtmpfs: mounted
+[    1.718302] Freeing unused kernel memory: 10496K
+[    1.723362] Run /sbin/init as init process
+[    2.063314] udevd[108]: starting version 3.2.14
+[    3.807993] random: crng init done
+[    3.849113] udevd[109]: starting eudev-3.2.14
+[    4.124172] EXT4-fs (mmcblk0p2): re-mounted c3b5fe0a-760b-4d2d-89dc-022dc29cde2f r/w. Quota mode: none.
+[    4.785687] socfpga-dwmac 10810000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+[    4.796266] socfpga-dwmac 10810000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-1
+[    4.807002] socfpga-dwmac 10810000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-2
+[    4.818280] socfpga-dwmac 10810000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-3
+[    4.829721] socfpga-dwmac 10810000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-4
+[    4.840131] socfpga-dwmac 10810000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-5
+[    4.851595] socfpga-dwmac 10810000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-6
+[    4.862012] socfpga-dwmac 10810000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-7
+[    5.044042] socfpga-dwmac 10810000.ethernet eth0: PHY [stmmac-0:00] driver [Marvell 88E1510] (irq=POLL)
+[    5.054381] socfpga-dwmac 10810000.ethernet eth0: No Safety Features support found
+[    5.062117] socfpga-dwmac 10810000.ethernet eth0: IEEE 1588-2008 Advanced Timestamp supported
+[    5.071233] socfpga-dwmac 10810000.ethernet eth0: registered PTP clock
+[    5.077845] socfpga-dwmac 10810000.ethernet eth0: configuring for phy/rgmii link mode
+[    9.345961] socfpga-dwmac 10810000.ethernet eth0: Link is Up - 1Gbps/Full - flow control rx/tx
+[   15.171626] dw-apb-uart 10c02000.serial: failed to request DMA
+
+agilex5 login: 
+
+```
 
 
 ## Reconfiguring Core Fabric from U-Boot

@@ -1,6 +1,5 @@
 
 
-
 # HPS PCIe Root Port System Example Design for the Agilex™ 5 E-Series 065B Modular Development Kit
 
 ## Introduction
@@ -11,17 +10,17 @@ This page contain PCIe Gen 4 root port design example. Both designs demonstrate 
 
 ## Release Content
 
-Release note and pre-build binaries can be found in the [**GitHub repository**](https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/tag/26.1-1)
+Release note and pre-build binaries can be found in the [**GitHub repository**](https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/tag/26.1-2)
 
 ### PCIe Gen4 Root Port Design Example
 
 | File           |  Link        |
 |----------------|--------------|
-| Quartus Project| https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/26.1-1/a5ed065b-modular-devkit-pcie-rp-gen4x4.zip |
-| SD Image | https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/26.1-1/sdimage.tar.gz |
-| hps.rbf | https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/26.1-1/ghrd.hps.rbf |
-| core.rbf | https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/26.1-1/ghrd.core.rbf |
-| u-boot-spl-dtb.hex | https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/26.1-1/u-boot-spl-dtb.hex |
+| Quartus Project| https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/26.1-2/a5ed065b-modular-devkit-pcie-rp-gen4x4.zip |
+| SD Image | https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/26.1-2/sdimage.tar.gz |
+| hps.rbf | https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/26.1-2/ghrd.hps.rbf |
+| core.rbf | https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/26.1-2/ghrd.core.rbf |
+| u-boot-spl-dtb.hex | https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/26.1-2/u-boot-spl-dtb.hex |
 
 ## System Example Design Overview
 
@@ -57,9 +56,7 @@ Interrupt Path (Green arrows)
 
 ## Hardware Description
 
-### Memory Map
-
-#### HPS H2F Memory Map
+### HPS H2F Memory Map
 
 HPS-to-FPGA Bridge base address start at 0x4000_0000.
 
@@ -68,7 +65,7 @@ HPS-to-FPGA Bridge base address start at 0x4000_0000.
 |0x5000_0000      |256M          |BAS (Bursting AVMM Slave)     |Avalon MM Slave of AVMM Bridge’s BAS port|
 |0x6000_0000      |1M            |PCIe SS AXI-Lite interface    |AXI-Lite of PCIe SS|
 
-#### HPS LWH2F Memory Map
+### HPS LWH2F Memory Map
 
 Lightweight HPS-to-FPGA Bridge base address start at 0x2000_0000.
 
@@ -81,7 +78,7 @@ Lightweight HPS-to-FPGA Bridge base address start at 0x2000_0000.
 |0x200180A0      |32            |Performance Counter|Hardware timer for benchmarking purposes|
 |0x200180C0      |1K            |AVMM CS Cpl TimeOut & System level Reg. map |Error registers along with Timeout values |
 
-#### PCIe BAM(Bursting AVMM Master) interface
+### PCIe BAM(Bursting AVMM Master) interface
 
 | Address Offset | Size (Bytes) | Peripheral      | Remarks         |
 |----------------|--------------|-----------------|-----------------|
@@ -194,7 +191,7 @@ Manually add the PCIe Root Port bindings to your custom DTS by applying a patch 
 
 ## Running the System Example Design
 
-1\. Download SD card image from the prebuilt binaries https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/26.1-1/sdimage.tar.gz and extract the archive, obtaining the file `gsrd-console-image-agilex5.wic`.
+1\. Download SD card image from the prebuilt binaries https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/26.1-2/sdimage.tar.gz and extract the archive, obtaining the file `gsrd-console-image-agilex5.wic`.
 
 2\. Write the gsrd-console-image-agilex5.wic. SD card image to the micro SD card using the included USB writer in the host computer:
 
@@ -213,10 +210,12 @@ sync
 
 ![](images/win32diskimager.png) 
 
-Program the development kit with [hps.rbf](https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/26.1-1/ghrd.hps.rbf) file.
+Program the development kit with [hps.rbf](https://github.com/altera-fpga/agilex5-ed-pcie-rp/releases/download/26.1-2/ghrd.hps.rbf) file.
 ```bash
 quartus_pgm -c 1 -m jtag -o p;ghrd.hps.rbf@1
 ```
+
+![Devkit setup](images/setup.jpeg)
 
 Open the Putty serial terminal, it will show the board boot-up process.
   
@@ -419,6 +418,7 @@ Recommended command to perform read transactions on an NVMe SSD:
 ```
 
 #### Note
+
 ```bash
     You could change the parameters ==--size=**xG**== with 2G or 8G, ==--rw=**x**== with write or read, ==--numjobs=**x**== with values 4, 8, 16 or 20, i.e.:
 
@@ -433,8 +433,9 @@ Recommended command to perform read transactions on an NVMe SSD:
 
 ### Performance
 
-![performance](images/performance_result.png)
+![performance](images/fio_result.png)
 
+ **Note:** Current performance result is based on F2H running at 250Mhz. Increasing F2H frequency to the **Maximum F2H Bridges Clock Frequencies** of -4S speed grade may see higher performance.
 
 ## Notices & Disclaimers
 

@@ -1,7 +1,5 @@
 
 
-# Debugging Linux with Arm Development Studio Tutorial Example Design: Agilex™ 3 FPGA and SoC C-Series Development Kit
-
 ## Introduction
 
 Arm* Development Studio for Altera® SoC FPGAs is an Eclipse based tool suite enabling Arm* software development and debugging for Altera® FPGAs.
@@ -12,7 +10,7 @@ This page demonstrates how to use Arm* Development Studio to debug the Linux ker
 
 The following are needed:
 
-- Altera&reg; Agilex&trade; 3 FPGA and SoC C-Series Development Kit, ordering code DK-A3W135BM16AEA. Refer to [board documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a3y135b.html) for more information about the development kit.
+- Altera&reg; Agilex&trade; 3 FPGA and SoC C-Series Development Kit, ordering code DK-A3W135BM16AEA. Refer to [board documentation](https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit) for more information about the development kit.
 
 - Host PC with:
   - 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.

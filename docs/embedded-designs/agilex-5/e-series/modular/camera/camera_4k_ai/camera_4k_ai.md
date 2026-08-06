@@ -132,71 +132,6 @@ Altera® Agilex™ Devices refer to the
 <br/>
 
 
-### **Download and Compile the AI Models**
-
-The Altera® FPGA AI Suite IP in the Camera with AI Inference Solution System
-Example Design, is optimized to run both the ultralytics YOLOv8 nano detection
-and pose inference models, switching between them at runtime. The End User must
-go to ultralytics website to review and accept licensing and copyright
-information, before downloading the YOLOv8 nano models. The models must then be
-compiled for the FPGA AI Suite IP. This will only need to be done once:
-
-* Visit the [ultralytics YOLO] website.
-* Review and accept the licensing and copyright terms.
-* Download the YOLOv8 nano detection inference model `yolov8n.pt`
-* Download the YOLOv8 nano pose inference model `yolov8n-pose.pt`
-* Download the [model_compiler] to your `<workspace>` directory
-* Compile the models for FPGA AI Suite IP:
-
-!!! NOTE "Note"
-    The downloaded YOLOv8 nano models must be placed in the directory specified
-
-  ```bash
-  mkdir -p <workspace>
-  cd <workspace>
-  git clone [https://github.com/altera-fpga/agilex-ed-camera-ai] .
-  cd yolo_cnn
-  ```
-
-  ```bash
-  echo "Download the YOLOv8 nano inference models from ultralytics website into directory yolo_cnn"
-  wget <url>
-  ```
-
-  ```bash
-  mkdir -p compile
-  cd compile
-  echo "This step can take some time to extract Altera® FPGA AI Suite"
-  cmake -G Ninja ..
-  echo "This step can take some time to generate a python virtual environment"
-  ninja
-  cd output
-  tree
-  ```
-
-  ```bash
-  .
-  ├── generated_arch.arch
-  │   ├── yolov8n-pose_dla_m2m_compiled_640_384.bin
-  │   └── yolov8n_dla_m2m_compiled_640_384.bin
-  ├── yolov8n-pose_categories.txt
-  └── yolov8n_categories.txt
-
-  1 directory, 4 files
-  ```
-
-The model_compiler generates the following YOLOv8 nano inference model binaries:
-
-* Detection `generated_arch.arch/yolov8n_dla_m2m_compiled_640_384.bin`
-* Pose `generated_arch.arch/yolov8n-pose_dla_m2m_compiled_640_384.bin`
-
-Additionally, the model_compiler generates the following category identifier files:
-* Detection `yolov8n_categories.txt`
-* Pose `yolov8n-pose_categories.txt`
-
-
-<br/>
-
 
 
 ## Getting Started - run with pre-built binaries
@@ -204,24 +139,6 @@ Additionally, the model_compiler generates the following category identifier fil
 Follow the instructions provided in this section to run the Camera Solution System Example Design on the Agilex™ 5 FPGA E-Series 065B Modular Development
 Kit.
 
-### **Download the pre-built Binaries**
-
-* Download the pre-built Camera Solution System Example Design binaries for the
-  Modular Development Kit:
-
-<br/>
-<center markdown="1">
-
-**Binaries**
-
-| Source | Link | Description |
-| ---- | ---- | ---- |
-| QSPI | [top.core.jic] | Allows the Camera Solution System Example Design to be booted from the microSD card |
-| microSD Card Image | [hps-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz] | The Camera Solution System Example Design |
-
-<br/>
-
-</center>
 
 
 ## Programming
@@ -442,143 +359,10 @@ Software to use at runtime:
 
 
 
-### **Program the QSPI Flash Memory**
-
-This should only need to be done once. To program the QSPI flash memory:
-
-* Ensure the Modular Development Kit is powered off. Set MSEL=JTAG by setting
-  the **S4** dip switch on the Modular Development SOM Board to **OFF-OFF**.
-  * This prevents any bootloader from starting and leaves the JTAG chain in a
-    default state.
-
-* Power up the Modular Development Kit.
-
-* Either use your own or download the pre-built `JIC` image, and write it to
-  the QSPI Flash memory using either the command:
-
-    ```bash
-    quartus_pgm -c 1 -m jtag -o "pvi;top.core.jic" 
-    ```
-
-* or, optionally using the Quartus® Programmer GUI:
-
-  * Launch the Quartus® Programmer and Configure the **"Hardware Setup..."**
-settings as following:
-  <br>
-
-![hw-setup-set](../common/images/hw-setup-set.png){:style="display:block; margin-left:auto; margin-right:auto"}
-<center markdown="1">
-
-**Programmer - GUI Hardware Settings**
-</center>
-<br>
-
-* Click "Auto Detect", select the device `A5EC065BB32AR0`, and press **"Change File.."**
-<br>
-
-![programmer-agx5](../common/images/programmer-agx5.png){:style="display:block; margin-left:auto; margin-right:auto"}
-<center markdown="1">
-
-**Programmer - After "Auto Detect"**
-</center>
-<br>
-
-Select your `top.core.jic` file. The `MT25QU02G` device should be shown (see
-below). Check the **"Program/Configure"** box and press the **"Start"** button.
-Wait until the programming has been completed (which can take several minutes).
-<br>
-
-![programmer-agx5-2](../common/images/programmer-agx5-2.png){:style="display:block; margin-left:auto; margin-right:auto"}
-<center markdown="1">
-
-**Programming the QSPI Flash with the JIC file**
-</center>
-<br>
-
-* Power down the Modular Development Kit. Set MSEL=ASX4 (QSPI) by setting the
-  **S4** dip switch on the Modular Development SOM Board to **ON-ON**.
-  * This starts the HPS bootloader and FPGA configuration from the microSD Card
-    after power up.
-<br>
 
 
 ## Running
 
-### **Setting Up the Camera Solution**
-
-!!! NOTE "Warning"
-    Handle ESD-sensitive equipment (boards, microSD Cards, Camera sensors, etc.) only when properly grounded and at an ESD-safe workstation
-
-* Make the required connections between the Host PC and the
-[Agilex™ 5 FPGA E-Series 065B Modular Development Kit] as detailed in the
-  **Setting Up the Modular Development Kit** section.
-* Connect the Framos cable(s) between the Framos Camera Module(s) and the MIPI
-  connector(s) on the Modular Development Kit Carrier Board taking care to
-  align the cable(s) correctly with the connector(s) (pin 1 to pin 1). When
-  using a single camera module, either MIPI connector can be used.
-
-<br/>
-
-![board-mipi](../common/images/Agx5-MDK-MIPI.png){:style="display:block; margin-left:auto; margin-right:auto;"}
-<center markdown="1">
-
-**Modular Development Kit Carrier Board MIPI Connector Locations**
-</center>
-<br/>
-
-![mipi-ribbon](../common/images/mipi-ribbon-connection.png){:style="display:block; margin-left:auto; margin-right:auto;"}
-<center markdown="1">
-
-**Modular Development Kit Carrier Board with MIPI Framos Flex Cable Connected**
-</center>
-<br/>
-
-![camera-ribbon](../common/images/camera-ribbon-connection.png){:style="display:block; margin-left:auto; margin-right:auto;"}
-<center markdown="1">
-
-**Framos Camera with Flex Cable Connected**
-</center>
-<br/>
-
-* If using the optional Framos GMSL3 solution (and the Camera Solution System
-  Example Design supports it):
-  * Connect the [Framos FFA-GMSL-SER-V2A Serializer] module back-to-back to the
-    Framos Camera module.
-  * Using the Framos [150mm flex-cable] connect the
-    [Framos FFA-GMSL-DES-V2A Deserializer] module to the MIPI0 connector on the
-    Modular Development Kit Carrier Board taking care to align the cable
-    correctly with the connector (pin 1 to pin 1).
-    * Note the System Example Design only supports one GMSL3 link on the MIPI0
-      port. However, a second Framos Camera module can be connected directly to
-      the MIPI1 port using a Framos [150mm flex-cable].
-  * Connect the serializer module to the deserializer module using the GMSL3 5m
-    coax cable. 
-  * Connect the power supply to the deserializer module.
-    * Note the GMSL3 deserializer module must be powered up before the Modular
-      Development Kit.
-  * Power up the Modular Development Kit and ensure the deserializer
-    modules Lock LED is illuminated green.
-
-<br/>
-
-![GMSL](../common/images/GMSL.png){:style="display:block; margin-left:auto; margin-right:auto; width: 85%"}
-<center markdown="1">
-
-**GMSL Connections**
-</center>
-<br/>
-
-* Connect the Modular Development Kit Carrier Board DisplayPort Tx connector to
-  the Monitor using a suitable cable (and the adapter if you are using an HDMI cable).
-
-<br/>
-
-![full-system](../common/images/full-system.png){:style="display:block; margin-left:auto; margin-right:auto;"}
-<center markdown="1">
-
-**Modular Development Kit with Connections**
-</center>
-<br/>
 
 
 ### **Connecting with a Web Browser**

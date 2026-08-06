@@ -351,7 +351,7 @@ function, which can be used to test the DP output.
 The video buffer provides the image coming from the ISP ingest subsystem, 
 and the Nios® V does not have access to its video data.
 The video buffer is generated using a VVP Frame Buffer IP, and
-an external DDR4 SDRAM (via an EMIF). It is only used for video synchronization, 
+an external LPDDR4 SDRAM (via an EMIF). It is only used for video synchronization, 
 as the sensor ingest cannot accept any sufficient back-pressure.
 
 The base layer is mixed with the video buffer
@@ -404,8 +404,8 @@ VVP Protocol Converter IP.
 
 
 [NiosV Processor for Altera® FPGA]: https://www.altera.com/design/guidance/nios-v-developer
-[Agilex™ 3 FPGA and SoC C-Series Development Kit]: https://www.altera.com/products/devkit/a1jui000006ty5dmae/agilex-3-fpga-and-soc-c-series-development-kit
-[Agilex™ 3 FPGA C-Series Development Kit]: https://www.altera.com/products/devkit/a1jui000006own7mai/agilex-3-fpga-c-series-development-kit
+[Agilex™ 3 FPGA and SoC C-Series Development Kit]: https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit
+[Agilex™ 3 FPGA C-Series Development Kit]: https://www.altera.com/products/devkit/po-2999/agilex-3-fpga-c-series-development-kit
 
 
 [7-Zip]: https://www.7-zip.org
@@ -414,9 +414,9 @@ VVP Protocol Converter IP.
 [DP to HDMI Adapter]: https://www.amazon.co.uk/gp/product/B01M6WK3KU/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
 
 
-[VVP IP Suite]: https://www.altera.com/products/ip/a1jui000004qxfpmak/video-and-vision-processing-suite
-[MIPI DPHY IP and MIPI CSI-2 IP]: https://www.altera.com/products/ip/a1jui0000049uuamam/mipi-d-phy-ip#tab-blade-1-3
-[Nios® V Processor]: https://www.altera.com/products/ip/a1jui0000049uvama2/nios-v-processors
+[VVP IP Suite]: https://www.altera.com/products/ip/po-3150/video-and-vision-processing-suite
+[MIPI DPHY IP and MIPI CSI-2 IP]: https://www.altera.com/products/ip/po-3062/mipi-d-phy-ip
+[Nios® V Processor]: https://www.altera.com/products/ip/po-3098/nios-v-processors
 
 
 [Altera® Quartus® Prime Pro Edition version 25.3]: https://www.altera.com/downloads/fpga-development-tools/quartus-prime-pro-edition-design-software-version-25-3-linux
@@ -474,8 +474,8 @@ VVP Protocol Converter IP.
 [Bits per Color Sample Adapter IP]: https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/bits-per-color-sample-adapter.html
 [Protocol Converter IP]: https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/protocol-converter-ip
 [Pixels in Parallel Converter IP]: https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/pixels-in-parallel-converter-ip
-[Video and Vision Processing Suite Altera® FPGA IP User Guide]: https://www.altera.com/products/ip/a1jui000004qxfpmak/video-and-vision-processing-suite
-[Altera® FPGA Streaming Video Protocol Specification]: https://www.intel.com/content/www/us/en/docs/programmable/683397/current/about-the-intel-fpga-streaming-video.html
+[Video and Vision Processing Suite Altera® FPGA IP User Guide]: https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/about-the-video-and-vision-processing-suite
+[Altera® FPGA Streaming Video Protocol Specification]: https://docs.altera.com/r/docs/683397/current/altera-streaming-video-protocol-specification/about-the-altera-streaming-video-protocol
 [AMBA 4 AXI4-Stream Protocol Specification]: https://developer.arm.com/documentation/ihi0051/a/
 [Avalon® Interface Specifications – Avalon® Streaming Interfaces]: https://www.intel.com/content/www/us/en/docs/programmable/683091/20-1/streaming-interfaces.html
 [EMIF]: https://www.altera.com/design/guidance/emif-support
@@ -484,9 +484,24 @@ VVP Protocol Converter IP.
 
 
 
-
 ## **Pre-requisites**
 
+### **Hardware Requirements**
+
+* [Agilex™ 3 FPGA and SoC C-Series Development Kit] or [Agilex™ 3 FPGA C-Series Development Kit].
+* [Raspberry Pi High Quality Camera with C/CS mount](https://www.raspberrypi.com/products/raspberry-pi-high-quality-camera/)
+* [Wide-angle lens](https://thepihut.com/products/ultra-wide-angle-c-mount-lens-for-raspberry-pi-hq-camera-3-2mm-focal-length)
+* [Tripod](https://thepihut.com/products/small-tripod-for-raspberry-pi-hq-camera)
+* [15-> 22 pin flat mipi cable 20cm](https://thepihut.com/products/camera-adapter-cable-for-raspberry-pi-5)
+* DP cable or HDMI Cable with a [4KP60 converter dongle](https://www.amazon.co.uk/gp/product/B01M6WK3KU/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&th=1)
+* USB-C JTAG Cable.
+* 4K Monitor/TV.
+
+![Agx3-DK](../camera_lite_4k30/images/Agx3-devkit.png){:style="display:block; margin-left:auto; margin-right:auto; width: 80%"}
+<center markdown="1">
+
+**Agilex™ 3 FPGA and SoC C-Series Development Kit**
+</center>
 
 
 <br>
@@ -537,8 +552,8 @@ System Example Design on the Altera® Agilex™ 3 Development Kit.
 
 | Source | Link | Description | Device Part Number |
 | ---- | ---- | ---- | ---- |
-| SOF | [golden_agx3c_soc_devkit_isp_lite_top.sof](https://github.com/altera-fpga/agilex3-ed-camera/releases/download/rel-25.3/golden_agx3c_soc_devkit_isp_lite_top.sof) | SOF file for the [Agilex™ 3 FPGA and SoC C-Series Development Kit](https://www.altera.com/products/devkit/a1jui000006xwkvmac/agilex-3-fpga-and-soc-c-series-development-kit)| A3W135BM16AEA|
-| SOF | [golden_agx3c_fpga_devkit_isp_lite_top.sof](https://github.com/altera-fpga/agilex3-ed-camera/releases/download/rel-25.3/golden_agx3c_fpga_devkit_isp_lite_top.sof) | SOF file for the [Agilex™ 3 FPGA C-Series Development Kit](https://www.altera.com/products/devkit/a1jui000006xx13mac/agilex-3-fpga-c-series-development-kit) | A3Y135BM16AEA|
+| SOF | [golden_agx3c_soc_devkit_isp_lite_top.sof](https://github.com/altera-fpga/agilex3-ed-camera/releases/download/rel-25.3/golden_agx3c_soc_devkit_isp_lite_top.sof) | SOF file for the [Agilex™ 3 FPGA and SoC C-Series Development Kit](https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit)| A3W135BM16AEA|
+| SOF | [golden_agx3c_fpga_devkit_isp_lite_top.sof](https://github.com/altera-fpga/agilex3-ed-camera/releases/download/rel-25.3/golden_agx3c_fpga_devkit_isp_lite_top.sof) | SOF file for the [Agilex™ 3 FPGA C-Series Development Kit](https://www.altera.com/products/devkit/po-2999/agilex-3-fpga-c-series-development-kit) | A3Y135BM16AEA|
 
 </center>
 
@@ -546,6 +561,59 @@ System Example Design on the Altera® Agilex™ 3 Development Kit.
 
 ### **Setting Up the Development Kit**
 
+!!! NOTE "Warning"
+    Handle ESD-sensitive equipment (boards, microSD cards, camera sensors, etc.) only when properly grounded and at an ESD-safe workstation
+
+* Configure the Agilex™ 3 FPGA and SoC C-Series Development Kit switches and jumpers to their factory default settings,
+  as per to the user guide [instructions](https://docs.altera.com/r/docs/851698/current/agilextm-3-fpga-and-soc-c-series-development-kit-user-guide/default-settings)
+
+<br>
+
+![board-top](../camera_lite_4k30/images/devkit_top_with_labels.png){:style="display:block; margin-left:auto; margin-right:auto"}
+<center markdown="1">
+
+**Agilex™ 3 Development Kit - Default Switch Positions (Top View)**
+</center>
+
+<br>
+
+![board-bottom](../camera_lite_4k30/images/devkit_bottom_with_labels.png){:style="display:block; margin-left:auto; margin-right:auto"}
+<center markdown="1">
+
+**Agilex™ 3 Development Kit - Default Switch Positions (Bottom View)**
+</center>
+
+<br>
+
+* Proceed to connect the following items to the development kit, as shown in the following figures:
+  * USB-C power supply (J8)
+  * MIPI sensor cable ( MIPI Bank 3A - J21)
+  * DisplayPort Transmit cable (J12)
+  * USB-C JTAG cable (J2)
+
+<br>
+
+![connect-1](../camera_lite_4k30/images/devkit_sensor_1.png){:style="display:block; margin-left:auto; margin-right:auto"}
+<center markdown="1">
+
+**Sensor and Development Kit Connections (#1)**
+</center>
+
+<br>
+
+![connect-2](../camera_lite_4k30/images/devkit_sensor_2.png){:style="display:block; margin-left:auto; margin-right:auto"}
+<center markdown="1">
+
+**Sensor and Development Kit Connections (#2)**
+</center>
+
+<br>
+
+![connect-3](../camera_lite_4k30/images/devkit_sensor_3.png){:style="display:block; margin-left:auto; margin-right:auto"}
+<center markdown="1">
+
+**Sensor and Development Kit Connections (#3)**
+</center>
 
 
 <br>
@@ -747,9 +815,9 @@ Follow the next steps to create the Quartus® and Platform Designer Project for
 the 4Kp30 Camera Lite Solution System Example Design:
 
 * Currently, there are available two design description files, provided in a XML format:
-  * `AGX_3C_SoC_Devkit_ISP_Lite.xml` for [Agilex™ 3 FPGA and SoC C-Series Development Kit](https://www.altera.com/products/devkit/a1jui000006ty5dmae/agilex-3-fpga-and-soc-c-series-development-kit)
+  * `AGX_3C_SoC_Devkit_ISP_Lite.xml` for [Agilex™ 3 FPGA and SoC C-Series Development Kit](https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit)
     * Device Part Number: A3CW135BM16AE6S
-  * `AGX_3C_FPGA_Devkit_ISP_Lite.xml` for [Agilex™ 3 FPGA C-Series Development Kit](https://www.altera.com/products/devkit/a1jui000006own7mai/agilex-3-fpga-c-series-development-kit)
+  * `AGX_3C_FPGA_Devkit_ISP_Lite.xml` for [Agilex™ 3 FPGA C-Series Development Kit](https://www.altera.com/products/devkit/po-2999/agilex-3-fpga-c-series-development-kit)
     * Device Part Number: A3CY135BM16AE6S
 
 * Create your workspace and clone the repository using `--recurse-submodules`:
@@ -850,12 +918,12 @@ during compilation.
 ## **Useful User Manuals and Reference Materials**
 * [Agilex™ 3 FPGA and SoC C-Series Development Kit User Guide](https://docs.altera.com/r/docs/851698/current/agilextm-3-fpga-and-soc-c-series-development-kit-user-guide/overview).
 * [Raspberry Pi High Quality Camera with C/CS mount](https://www.raspberrypi.com/products/raspberry-pi-high-quality-camera/)
-* [Video and Vision Processing Suite Altera® FPGA IP User Guide](https://www.altera.com/products/ip/a1jui000004qxfpmak/video-and-vision-processing-suite).
-* [Altera® FPGA Streaming Video Protocol Specification](https://www.intel.com/content/www/us/en/docs/programmable/683397/current/about-the-intel-fpga-streaming-video.html)
+* [Video and Vision Processing Suite Altera® FPGA IP User Guide](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/about-the-video-and-vision-processing-suite).
+* [Altera® FPGA Streaming Video Protocol Specification](https://docs.altera.com/r/docs/683397/current/altera-streaming-video-protocol-specification/about-the-altera-streaming-video-protocol)
 * [AMBA 4 AXI4-Stream Protocol Specification](https://developer.arm.com/documentation/ihi0051/a/)
 * [Avalon® Interface Specifications – Avalon® Streaming Interfaces](https://www.intel.com/content/www/us/en/docs/programmable/683091/20-1/streaming-interfaces.html)
-* [MIPI DPHY IP and MIPI CSI-2 IP](https://www.altera.com/products/ip/a1jui0000049uuamam/mipi-d-phy-ip#tab-blade-1-3).
-* [Nios® V Processor](https://www.altera.com/products/ip/a1jui0000049uvama2/nios-v-processors).
+* [MIPI DPHY IP and MIPI CSI-2 IP](https://www.altera.com/products/ip/po-3062/mipi-d-phy-ip).
+* [Nios® V Processor](https://www.altera.com/products/ip/po-3098/nios-v-processors).
 
 <br>
 
@@ -877,8 +945,8 @@ OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of 
 
 
 [NiosV Processor for Altera® FPGA]: https://www.altera.com/design/guidance/nios-v-developer
-[Agilex™ 3 FPGA and SoC C-Series Development Kit]: https://www.altera.com/products/devkit/a1jui000006ty5dmae/agilex-3-fpga-and-soc-c-series-development-kit
-[Agilex™ 3 FPGA C-Series Development Kit]: https://www.altera.com/products/devkit/a1jui000006own7mai/agilex-3-fpga-c-series-development-kit
+[Agilex™ 3 FPGA and SoC C-Series Development Kit]: https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit
+[Agilex™ 3 FPGA C-Series Development Kit]: https://www.altera.com/products/devkit/po-2999/agilex-3-fpga-c-series-development-kit
 
 
 [7-Zip]: https://www.7-zip.org
@@ -887,9 +955,9 @@ OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of 
 [DP to HDMI Adapter]: https://www.amazon.co.uk/gp/product/B01M6WK3KU/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
 
 
-[VVP IP Suite]: https://www.altera.com/products/ip/a1jui000004qxfpmak/video-and-vision-processing-suite
-[MIPI DPHY IP and MIPI CSI-2 IP]: https://www.altera.com/products/ip/a1jui0000049uuamam/mipi-d-phy-ip#tab-blade-1-3
-[Nios® V Processor]: https://www.altera.com/products/ip/a1jui0000049uvama2/nios-v-processors
+[VVP IP Suite]: https://www.altera.com/products/ip/po-3150/video-and-vision-processing-suite
+[MIPI DPHY IP and MIPI CSI-2 IP]: https://www.altera.com/products/ip/po-3062/mipi-d-phy-ip
+[Nios® V Processor]: https://www.altera.com/products/ip/po-3098/nios-v-processors
 
 
 [Altera® Quartus® Prime Pro Edition version 25.3]: https://www.altera.com/downloads/fpga-development-tools/quartus-prime-pro-edition-design-software-version-25-3-linux
@@ -947,12 +1015,11 @@ OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of 
 [Bits per Color Sample Adapter IP]: https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/bits-per-color-sample-adapter.html
 [Protocol Converter IP]: https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/protocol-converter-ip
 [Pixels in Parallel Converter IP]: https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/pixels-in-parallel-converter-ip
-[Video and Vision Processing Suite Altera® FPGA IP User Guide]: https://www.altera.com/products/ip/a1jui000004qxfpmak/video-and-vision-processing-suite
-[Altera® FPGA Streaming Video Protocol Specification]: https://www.intel.com/content/www/us/en/docs/programmable/683397/current/about-the-intel-fpga-streaming-video.html
+[Video and Vision Processing Suite Altera® FPGA IP User Guide]: https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/about-the-video-and-vision-processing-suite
+[Altera® FPGA Streaming Video Protocol Specification]: https://docs.altera.com/r/docs/683397/current/altera-streaming-video-protocol-specification/about-the-altera-streaming-video-protocol
 [AMBA 4 AXI4-Stream Protocol Specification]: https://developer.arm.com/documentation/ihi0051/a/
 [Avalon® Interface Specifications – Avalon® Streaming Interfaces]: https://www.intel.com/content/www/us/en/docs/programmable/683091/20-1/streaming-interfaces.html
 [EMIF]: https://www.altera.com/design/guidance/emif-support
-
 
 
 

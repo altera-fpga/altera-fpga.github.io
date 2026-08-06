@@ -1,7 +1,5 @@
 
 
-# Debugging U-Boot with Arm Development Studio Tutorial Example Design: Agilex™ 5 Premium Development Kit
-
 ## Introduction
 
 Arm* Development Studio for Altera® SoC FPGAs is an Eclipse based tool suite enabling Arm* software development and debugging for Altera® FPGAs.
@@ -12,7 +10,8 @@ This page demonstrates how to use Arm* Development Studio to debug U-Boot SPL an
 
 The following are needed:
 
-- Altera® Agilex™ 5 FPGA E-Series 065B Premium Development Kit, ordering code DK A5E065BB32AES1, with the HPS Enablement Board. Refer to [Agilex™ 5 FPGA E-Series 065B Premium Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html) for information about the development kit.
+- [Altera&reg; Agilex&trade; 5 FPGA E-Series 065A Premium Development Kit](https://www.altera.com/products/devkit/po-3285/agilex-5-fpga-e-series-065a-premium-development-kit), ordering code DK-A5E065BB32AES1.
+
 - Host PC with:
   - 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   - Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too

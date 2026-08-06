@@ -95,18 +95,19 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 5 Design | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1_REL_GSRD_PR |
+| Agilex 5 Design | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1_p1_REL_GSRD_PR |
 | Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
 | Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
 | U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
-| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_p1_REL_GSRD_PR |
+| KAS | [https://github.com/jeffhammond/STREAM.git](https://github.com/jeffhammond/STREAM.git) | master | 5.2 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 #### Release Notes
 
-* Refer this link for [Known Issues](https://github.com/altera-fpga/agilex5-ed-tsn-sgmii/releases/tag/26.1).
+* Refer this link for [Known Issues](https://github.com/altera-fpga/agilex5-ed-tsn-sgmii/releases/tag/26.1-1).
 
 ### TSN XCVR SGMII+ 2.5G Architecture
 
@@ -180,7 +181,8 @@ Note: Port 2 (SFP) does not support dynamic reconfiguration.
 
 * GMII (8-bit) interface for TSN enabled ethernet data transfers to and from XGMAC to external PHY. Transceiever’s reference clocks are used to derive the required frequency for running this parallel interface as the expectation is to have zero ppm difference between these clocks.
 
-![](./images/6_SGMII_plus_3x2_5G.png)
+![alt text](./images/config3x1.png)
+![alt text](./images/config3x3.png)
 
 #### HPS Subsystem
 
@@ -359,15 +361,22 @@ _1. This is the reference hardware setup  and user can leverage with their own h
 | Address Offset | Size (Bytes) | Peripheral | Description |
 |-----|-----|-----|-----|
 | GHRD-aligned address space |
-|0x2001_0000 |8|System ID |Hardware configuration system ID (0xacd5cafe) |
-|0x2001_0060 | 16 | Button PIO | Push Button |
-|0x2001_0070 |16 | DIPSW PIO | DIP Switch |
-|0x2001_0080 | 16 | LED PIO | LED connections on board |
+|0x2000_0000 |4k|DFL ROM |DFL ROM containing device list content generated from Platform |
+|0x2001_0000 |32|System ID |Hardware configuration system ID (0xacd5cafe) |
+|0x2001_1060 | 16 | Button PIO | Push Button |
+|0x2001_1070 |16 | DIPSW PIO | DIP Switch |
+|0x2001_1080 | 16 | LED PIO | LED connections on board |
+|0x2001_0100 | 256 | Interrupt Latency Counter | Interrupt Latency Counting |
 | Application-specific address space |
-| 0x3002_0100 | 64 | Multirate Ethernet PHY | Multirate Ethernet PHY IP CSR |
-| 0x3002_0180 | 64 | Multirate Ethernet PHY | Multirate Ethernet PHY IP CSR |
-| 0x3002_0200 | 64 | Multirate Ethernet PHY | Multirate Ethernet PHY IP CSR |
-| 0x2002_0300 | 256 | User space CSR | Sideband status and control signals of various modules |
+| 0x3002_0000 | 128 | DR Controller | DR controller for XCVR Profile change |
+| 0x3002_0100 | 128 | Multirate Ethernet PHY | Multirate Ethernet PHY IP CSR |
+| 0x3002_0180 | 128 | Multirate Ethernet PHY | Multirate Ethernet PHY IP CSR |
+| 0x3002_0200 | 128 | Multirate Ethernet PHY | Multirate Ethernet PHY IP CSR |
+| 0x3002_0280 | Rsvd | | |
+| 0x3002_0300 | 128 | User space CSR | Collect sideband signals from different modules; Control signals like resets too; Error conditions |
+| 0x3002_0400 | Rsvd | | |
+| 0x3002_0500 | 256 | MDIO PHY Management| |
+| 0x3002_0600 | 256 | I2C PHY Management| |
 
 #### User Space CSR
 
@@ -439,6 +448,72 @@ The User Space CSR contains registers specific to system-level status (e.g. PLL 
 | Reserved | [31:3] | RO | 29'b0 | Reserved |
 | Unsupported_Speed_Error1 | [2:1] | RW | 2'b0 | For concurrent Usecases |
 | Unsupported_Speed_Error2 | [0:0] | RW | 1'b0 | Assert high when XGMAC publish unsupported speeds. SW to clear these bits once addressed |
+
+<h5>DR Status Register (Offset 0x14)</h5>
+
+| Field Name | Bits | Access | Default | Description |
+|------------|------|---------|---------|-------------|
+| Reserved | [31:17] | Reserved | 0x0 | Reserved |
+| dr_new_cfg_applied | [16] | RO | 0x0 | Asserted when a new profile is applied by the DR Controller |
+| Reserved | [15:1] | Reserved | 0x0 | Reserved |
+| dr_error_status | [0] | RW | 0x0 | Error status indication from DR Controller |
+
+<h5>XCVR_MODE Register (Offset 0x18)</h5>
+
+| Field Name | Bits | Access | Default | Description |
+|------------|------|---------|---------|-------------|
+| Reserved | [31:6] | RO | 26'b0 | Reserved |
+| xcvr_mode_phy2 | [5:4] | RW | 2'b00 | XCVR mode for MR PHY2 |
+| xcvr_mode_phy1 | [3:2] | RW | 2'b00 | XCVR mode for MR PHY1 |
+| xcvr_mode_phy0 | [1:0] | RW | 2'b00 | XCVR mode for MR PHY0 |
+
+<h5>PHY0_TX_DELAY (Offset 0x1C)</h5>
+
+| Field Name | Bits | Access | Default | Description |
+|------------|------|---------|---------|-------------|
+| Reserved | [31:16] | Reserved | 0x0 | Reserved |
+| phy_delay_ns | [15:0] | RO | 0 | FPGA IO to Marvell PHY TX path delay (ns) |
+
+<h5>PHY0_RX_DELAY (Offset 0x20)</h5>
+
+| Field Name | Bits | Access | Default | Description |
+|------------|------|---------|---------|-------------|
+| Reserved | [31:16] | Reserved | 0x0 | Reserved |
+| phy_delay_ns | [15:0] | RO | 0 | FPGA IO to Marvell PHY RX path delay (ns) |
+
+<h5>PHY1_TX_DELAY (Offset 0x24)</h5>
+
+| Field Name | Bits | Access | Default | Description |
+|------------|------|---------|---------|-------------|
+| Reserved | [31:16] | Reserved | 0x0 | Reserved |
+| phy_delay_ns | [15:0] | RO | 0 | FPGA IO to Marvell PHY TX path delay (ns) |
+
+<h5>PHY1_RX_DELAY (Offset 0x28)</h5>
+
+| Field Name | Bits | Access | Default | Description |
+|------------|------|---------|---------|-------------|
+| Reserved | [31:16] | Reserved | 0x0 | Reserved |
+| phy_delay_ns | [15:0] | RO | 0 | FPGA IO to Marvell PHY RX path delay (ns) |
+
+<h5>PHY2_TX_DELAY (Offset 0x2C)</h5>
+
+| Field Name | Bits | Access | Default | Description |
+|------------|------|---------|---------|-------------|
+| Reserved | [31:16] | Reserved | 0x0 | Reserved |
+| phy_delay_ns | [15:0] | RO | 0 | FPGA IO to Marvell PHY TX path delay (ns) |
+
+<h5>PHY2_RX_DELAY (Offset 0x30)</h5>
+
+| Field Name | Bits | Access | Default | Description |
+|------------|------|---------|---------|-------------|
+| Reserved | [31:16] | Reserved | 0x0 | Reserved |
+| phy_delay_ns | [15:0] | RO | 0 | FPGA IO to Marvell PHY RX path delay (ns) |
+
+<h5>Reserved Register (Offset 0x40)</h5>
+
+| Field Name | Bits | Access | Default | Description |
+|------------|------|---------|---------|-------------|
+| Reserved | [31:0] | Reserved | 0x0 | Address-space padding register. No functional use. |
 
 ## User Flow
 
@@ -531,7 +606,7 @@ Follow the instructions in the Base GSRD [Yocto Build Prerequisites](https://alt
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5-ed-tsn-sgmii
-git clone -b dev/rel/26.1 https://github.com/altera-fpga/agilex5-ed-tsn-sgmii
+git clone -b rel/26.1 https://github.com/altera-fpga/agilex5-ed-tsn-sgmii
 ```
 
 ### Compilation
@@ -625,9 +700,9 @@ Update the recipe `$WORKSPACE/meta-sm-tsn-sgmii/recipes-bsp/ghrd/hw-ref-design.b
 
 ```bash
 cd $TOP_FOLDER
-CORE_RBF=$WORKSPACE/meta-sm-tsn-sgmii/recipes-bsp/ghrd/files/agilex5_mk_a5e065bb32aes1_gsrd_ghrd.core.rbf
+CORE_RBF=$WORKSPACE/meta-altera-tsn-sgmii/recipes-bsp/ghrd/files/agilex5_mk_a5e065bb32aes1_gsrd_ghrd.core.rbf
 rm -rf $CORE_RBF
-ln -s $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf $CORE_RBF
+ln -s $TOP_FOLDER/top.core.rbf $CORE_RBF
 CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ")
 FILE="$WORKSPACE/meta-sm-tsn-sgmii/recipes-bsp/ghrd/hw-ref-design.bbappend"
 OLD_URI='SRC_URI\[agilex5_mk_a5e065bb32aes1_gsrd_core_cfg3.sha256sum\] += "[^"]*"'

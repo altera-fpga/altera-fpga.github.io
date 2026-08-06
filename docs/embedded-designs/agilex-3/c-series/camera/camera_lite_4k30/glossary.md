@@ -42,6 +42,7 @@
 | ISR       | Interrupt Service Routine                                 |
 | JTAG      | Joint Test Action Group (industry standard for testing)   |
 | LED       | Light Emitting Diode                                      |
+| LPDDR     | Low-Power Double Data-Rate                                |
 | LSB       | Least Significant Bit                                     |
 | LUMA      | Luminance                                                 |
 | LUT       | Look Up Table                                             |
@@ -85,4 +86,3 @@
 <br>
 
 [Back](../camera_lite_4k30/camera_4k.md#extra-resources){ .md-button }
-

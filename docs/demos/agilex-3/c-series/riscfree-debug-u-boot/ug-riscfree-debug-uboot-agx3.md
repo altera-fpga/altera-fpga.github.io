@@ -1,20 +1,18 @@
 
 
-# Debugging U-Boot with Ashling RiscFree Tutorial Example Design: Agilex™ 3 FPGA and SoC C-Series Development Kit
-
 ## Introduction
 
 RiscFree* is Ashling’s Eclipse* C/C++ Development Toolkit (CDT) based integrated development environment (IDE) for Altera® FPGAs Arm*-based HPS and RISC-V based Nios® V processors.
 
 This page demonstrates how to use RiscFree* to debug U-Boot SPL and U-Boot.
 
-For further information about RiscFree*, consult [Ashling RiscFree* IDE for Altera® FPGAs User Guide](https://www.intel.com/content/www/us/en/docs/programmable/730783/24-3.html).
+For further information about RiscFree*, visit [The Ashling RiscFree IDE for Altera® FPGAs](https://www.altera.com/products/development-tools/ashling).
 
 ## Prerequisites
 
 The following are needed:
 
--  Altera&reg; Agilex&trade; 3 FPGA and SoC C-Series Development Kit, ordering code DK-A3W135BM16AEA. Refer to [board documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a3y135b.html) for more information about the development kit.
+-  Altera&reg; Agilex&trade; 3 FPGA and SoC C-Series Development Kit, ordering code DK-A3W135BM16AEA. Refer to [board documentation](https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit) for more information about the development kit.
 
 - Host PC with:
   - 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
