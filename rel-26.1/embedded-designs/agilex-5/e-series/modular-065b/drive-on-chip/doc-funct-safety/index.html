@@ -5953,7 +5953,7 @@
   <span class="md-ellipsis">
     
   
-    Yocto Hardware to Software Flow for Agilex 5 Custom IP Integration
+    Custom IP Integration from Hardware to Software on Agilex 5 Tutorial
   
 
     
@@ -7386,45 +7386,6 @@
       
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sd-card-image-flashing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SD Card Image Flashing
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="SD Card Image Flashing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#usbimager-windows-linux-mac-os" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        USBImager (Windows, Linux, Mac OS)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bmaptool-linux" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        bmaptool (Linux)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -11387,45 +11348,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sd-card-image-flashing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SD Card Image Flashing
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="SD Card Image Flashing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#usbimager-windows-linux-mac-os" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        USBImager (Windows, Linux, Mac OS)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#bmaptool-linux" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        bmaptool (Linux)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#flash-the-qspi" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11849,35 +11771,6 @@ ASx4 (QSPI):  SOM SW1[1:0]=ON:ON</p>
 **USB connections to the board**
 </center>
 <p><br></p>
-<h3 id="sd-card-image-flashing">SD Card Image Flashing<a class="headerlink" href="#sd-card-image-flashing" title="Permanent link">¶</a></h3>
-<ul>
-<li>Download SD card image (<code>.wic</code> or <code>.wic.gz</code>) from the prebuilt binary links above.</li>
-<li>Write the <code>.wic</code> or <code>.wic.gz</code> SD card image to the micro SD card using one of the options below.</li>
-<li>Turn off the board and insert the SD card in the micro SD card slot on the SOM board.</li>
-</ul>
-<h4 id="usbimager-windows-linux-mac-os"><a href="https://bztsrc.gitlab.io/usbimager/">USBImager</a> (Windows, Linux, Mac OS)<a class="headerlink" href="#usbimager-windows-linux-mac-os" title="Permanent link">¶</a></h4>
-<ul>
-<li>Open <a href="https://bztsrc.gitlab.io/usbimager/">USBImager</a> and click the <code>...</code> button in the top right.</li>
-<li>Select the image you downloaded earlier and click <code>Open</code>.</li>
-<li>Next select the device associated with your SD card reader from the drop-down list.</li>
-<li>Click <code>Write</code> to start flashing.</li>
-</ul>
-<h4 id="bmaptool-linux"><a href="https://github.com/yoctoproject/bmaptool">bmaptool</a> (Linux)<a class="headerlink" href="#bmaptool-linux" title="Permanent link">¶</a></h4>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You will require a <code>.wic.bmap</code> file in addition to the <code>.wic</code> or <code>.wic.gz</code> in order to use <code>bmaptool</code>. If this is not available use <code>USBImager</code>.</p>
-</div>
-<p>On many distributions <code>bmap-tools</code> can be installed using your distros package manager (e.g. <code>sudo apt install bmap-tools</code>).</p>
-<p>For more information see the <a href="https://docs.yoctoproject.org/dev-manual/bmaptool.html">Yocto documentation</a> for <code>bmaptool</code>.</p>
-<p>First of all determine the device <code>logical name</code> associated with the SD card on your host:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo lshw -class disk
-</code></pre></div>
-<p>Use <code>bmaptool</code> to copy the image to the SD card. Make sure the <code>wic</code> image file and <code>bmap</code> file are in the same directory.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo bmaptool copy ${IMAGE} ${DEVICE}
-</code></pre></div>
-<p>For example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aea.wic.gz /dev/sda
-</code></pre></div>
 <h3 id="flash-the-qspi">Flash The QSPI<a class="headerlink" href="#flash-the-qspi" title="Permanent link">¶</a></h3>
 <h3 id="run-the-design-example"><strong>Run the design example</strong><a class="headerlink" href="#run-the-design-example" title="Permanent link">¶</a></h3>
 <ul>
@@ -11914,13 +11807,13 @@ ASx4 (QSPI):  SOM SW1[1:0]=ON:ON</p>
 <ul>
 <li>Unzip the GUI source code:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span>unzip<span class="w"> </span>doc-gui_1.0.0.zip
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nb">cd</span><span class="w"> </span>&lt;download&gt;/doc-gui_1.0.0
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">    </span>unzip<span class="w"> </span>doc-gui_1.0.0.zip
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nb">cd</span><span class="w"> </span>&lt;download&gt;/doc-gui_1.0.0
 </code></pre></div>
 <ul>
 <li>Open a terminal and run:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">    </span>python<span class="w"> </span>__main__.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span>python<span class="w"> </span>__main__.py
 </code></pre></div>
 <ul>
 <li>Select the right JTAG master from the menu (if it is not selected automatically).
@@ -11955,7 +11848,7 @@ the output from the drive-on-chip application that runs in the Nios V/g processo
 <li>Connect a micro-USB cable to the integrated USB blaster II in the board.</li>
 <li>Run (source the Nios V command shell if required):</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">    </span>juart-terminal<span class="w"> </span>-d<span class="w"> </span><span class="m">2</span><span class="w"> </span>-i<span class="w"> </span><span class="m">0</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">    </span>juart-terminal<span class="w"> </span>-d<span class="w"> </span><span class="m">2</span><span class="w"> </span>-i<span class="w"> </span><span class="m">0</span>
 </code></pre></div>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../common/images/nios-1.png" data-desc-position="bottom"><img alt="nios-1" src="../common/images/nios-1.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
@@ -12106,7 +11999,7 @@ the Khronos Group™.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 31, 2026 01:28:36 UTC">July 31, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 6, 2026 23:43:22 UTC">August 6, 2026</span>
   </span>
 
     

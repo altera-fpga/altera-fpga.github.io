@@ -6088,7 +6088,7 @@
   <span class="md-ellipsis">
     
   
-    Yocto Hardware to Software Flow for Agilex 5 Custom IP Integration
+    Custom IP Integration from Hardware to Software on Agilex 5 Tutorial
   
 
     
@@ -11252,7 +11252,7 @@
 
 
 <h1 id="spi-driver-for-hard-processor-system"><strong>SPI Driver for Hard Processor System</strong><a class="headerlink" href="#spi-driver-for-hard-processor-system" title="Permanent link">¶</a></h1>
-<p>Last updated: <strong>July 31, 2026</strong> </p>
+<p>Last updated: <strong>August 06, 2026</strong> </p>
 <p><strong>Upstream Status</strong>: <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/spi">Upstreamed</a></p>
 <p><strong>Devices supported</strong>: Agilex3, Agilex 5, Agilex 7</p>
 <h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
@@ -11334,7 +11334,7 @@ The DMA controller interface is integrated with the HPS DMA controller.</p>
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>};
 </code></pre></div>
 <p><strong>Note:</strong> When building binaries to exercise this test procedure using the Linux Boot example build flow, it is necessary to enable the drivers and their dependencies as indicated in <a href="#kernel-configurations">Kernel Configurations</a> section. In the case of the GSRB build flow, all the required drivers are already included either as part of the kernel image (included through kernel configuration) or including and loading the <strong>.ko</strong> driver file from the file system. </p>
-<p>The following test procedure can be exercised using the Agilex 5 E-Series device using the DEBUG2 daughter card for the Premium development kit, in which the <strong>spidev_test</strong> application targets the built-in Microchip 25AA128 EEPROM device. The <strong>spidev</strong> driver is compatible with this device.</p>
+<p>The following test procedure can be exercised using the Agilex 5 E-Series device using the HPS Test Board daughter card for the Premium development kit, in which the <strong>spidev_test</strong> application targets the built-in Microchip 25AA128 EEPROM device. The <strong>spidev</strong> driver is compatible with this device.</p>
 <p>The test procedure consist on enabling the writing in the EEPROM device, then writing a byte (0xC6) to a memory location (0x68D) and then reading this back.</p>
 <ol>
 <li>
@@ -11404,7 +11404,7 @@ You are responsible for safety of the overall system, including compliance with 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 31, 2026 01:28:36 UTC">July 31, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 6, 2026 23:43:22 UTC">August 6, 2026</span>
   </span>
 
     

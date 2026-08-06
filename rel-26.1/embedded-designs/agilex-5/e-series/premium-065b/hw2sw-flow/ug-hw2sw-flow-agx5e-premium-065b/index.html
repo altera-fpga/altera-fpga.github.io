@@ -22,7 +22,7 @@
     
     
       
-        <title>Yocto Hardware to Software Flow for Agilex 5 Custom IP Integration - Altera FPGA Developer Site</title>
+        <title>Custom IP Integration from Hardware to Software on Agilex 5 Tutorial - Altera FPGA Developer Site</title>
       
     
     
@@ -122,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Yocto Hardware to Software Flow for Agilex 5 Custom IP Integration
+              Custom IP Integration from Hardware to Software on Agilex 5 Tutorial
             
           </span>
         </div>
@@ -5962,7 +5962,7 @@
   <span class="md-ellipsis">
     
   
-    Yocto Hardware to Software Flow for Agilex 5 Custom IP Integration
+    Custom IP Integration from Hardware to Software on Agilex 5 Tutorial
   
 
     
@@ -5980,7 +5980,7 @@
   <span class="md-ellipsis">
     
   
-    Yocto Hardware to Software Flow for Agilex 5 Custom IP Integration
+    Custom IP Integration from Hardware to Software on Agilex 5 Tutorial
   
 
     
@@ -13011,10 +13011,10 @@
   
 
 
-  <h1>Yocto Hardware to Software Flow for Agilex 5 Custom IP Integration</h1>
+  <h1>Custom IP Integration from Hardware to Software on Agilex 5 Tutorial</h1>
 
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h2>
-<p>This tutorial demonstrates how to extend the <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#hardware-design-overview">HPS Baseline System Example Design</a> hardware project by adding an IP core to the fabric subsystem and enabling it through the software stack. You will integrate a <a href="https://docs.altera.com/r/docs/683130/26.1/embedded-peripherals-ip-user-guide/lightweight-uart-core">Lightweight UART Core</a> to simulate a custom IP that lacks a native Linux kernel driver. Rather than developing a complex kernel-space driver from scratch, this tutorial highlights the standard hardware-to-software enablement path utilizing the generic User Space I/O (UIO) platform driver.</p>
+<p>This tutorial demonstrates how to extend the <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#hardware-design-overview">HPS Baseline System Example Design</a> Quartus project by adding an IP core to the fabric subsystem and enabling it through the software stack. You will integrate a <a href="https://docs.altera.com/r/docs/683130/26.1/embedded-peripherals-ip-user-guide/lightweight-uart-core">Lightweight UART Core</a> to simulate a custom IP that lacks a native Linux kernel driver. Rather than developing a complex kernel-space driver from scratch, this tutorial highlights the standard hardware-to-software enablement path utilizing the generic User Space I/O (UIO) platform driver.</p>
 <p>The hardware architecture interfaces the new UART IP with the Hard Processor System (HPS) via the Lightweight AXI Bridge. To facilitate a self-contained validation process without requiring external wiring, the design incorporates a System ID Peripheral IP — acting as a verifiable hardware fingerprint — and utilizes an internal loopback (TX to RX) within the SystemVerilog top-level wrapper.</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/flow-tut-001.png" data-desc-position="bottom"><img alt="" src="../images/flow-tut-001.png"></a></p>
 <p>Software enablement is organized into a progressive, three-tier integration/verification stack. This ensures the hardware is fundamentally sound before OS complexity is introduced:</p>
@@ -13151,7 +13151,7 @@ As a result, <code>$CDW/output_files/baseline_a55.sof</code> bitstream is create
 <p>The build produces <code>$CWD/output_files/baseline_a55_hps_debug.core.rbf</code>, which contains the FPGA fabric logic configuration data. This file is a required input for the Yocto build process to ensure the Linux image bundles the correct hardware configuration.</p>
 <h3 id="yocto-project-build">Yocto Project Build<a class="headerlink" href="#yocto-project-build" title="Permanent link">¶</a></h3>
 <h4 id="custom-layer-and-recipe-configuration">Custom Layer and Recipe Configuration<a class="headerlink" href="#custom-layer-and-recipe-configuration" title="Permanent link">¶</a></h4>
-<p>Build a Linux image for the previously compiled hardware project. This process uses default Yocto settings, modified only to include the custom FPGA core fabric bitstream and a unique Linux Kernel version suffix.</p>
+<p>Build a Linux image for the previously compiled Quartus project. This process uses default Yocto settings, modified only to include the custom FPGA core fabric bitstream and a unique Linux Kernel version suffix.</p>
 <p>Customize the Yocto project using the <code>meta-custom</code> layer, which provides recipes for modifying Linux image components.</p>
 <h4 id="linux-kernel-identification-and-modification">Linux Kernel Identification and Modification<a class="headerlink" href="#linux-kernel-identification-and-modification" title="Permanent link">¶</a></h4>
 <p>Copy the <code>baseline_a55_hps_debug.core.rbf</code> to the FPGA bitstream recipe folder:</p>
@@ -13251,7 +13251,7 @@ As a result, <code>$CDW/output_files/baseline_a55.sof</code> bitstream is create
 <p>The expected output should contain the kernel version with the <strong>-altera-F06D06-</strong> suffix. This confirms that the system is running the specific kernel image generated by your Yocto build.</p>
 <h3 id="hardware-ip-integration">Hardware IP Integration<a class="headerlink" href="#hardware-ip-integration" title="Permanent link">¶</a></h3>
 <h4 id="adding-the-lightweight-uart-core-to-the-system">Adding the Lightweight UART Core to the System<a class="headerlink" href="#adding-the-lightweight-uart-core-to-the-system" title="Permanent link">¶</a></h4>
-<p>Open the hardware project using the Quartus graphical interface.</p>
+<p>Open the Quartus project using the Quartus graphical interface.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$CWD</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>quartus<span class="w"> </span>top.qpf<span class="w"> </span><span class="p">&amp;</span>
 </code></pre></div>
@@ -13350,13 +13350,13 @@ As a result, <code>$CDW/output_files/baseline_a55.sof</code> bitstream is create
 </li>
 </ol>
 <blockquote>
-<p>The <code>make clean</code> command removes all generated artifacts from the GHRD and GSRD project folders, including the compiled binaries and the Python virtual environment.</p>
+<p>The <code>make clean</code> command removes all generated artifacts from the Baseline Quartus Design and Baseline System Example Design project folders, including the compiled binaries and the Python virtual environment.</p>
 </blockquote>
 <hr>
 <h2 id="level-1-u-boot-enablement">Level 1: U-Boot Enablement<a class="headerlink" href="#level-1-u-boot-enablement" title="Permanent link">¶</a></h2>
 <h3 id="build-and-boot-u-boot">Build and Boot U-Boot<a class="headerlink" href="#build-and-boot-u-boot" title="Permanent link">¶</a></h3>
 <h4 id="ryo-toolchain-and-environment-setup">RYO Toolchain and Environment Setup<a class="headerlink" href="#ryo-toolchain-and-environment-setup" title="Permanent link">¶</a></h4>
-<p>Set up a minimal software environment to validate the basic functionality of the IP integrated into the hardware project. The "<a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#build-and-exercise-roll-your-own-binaries">Roll Your Own</a>" (RYO) flow facilitates the build of U-Boot and Arm Trusted Firmware for rapid bring-up.</p>
+<p>Set up a minimal software environment to validate the basic functionality of the IP integrated into the Quartus project. The "<a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#build-and-exercise-roll-your-own-binaries">Roll Your Own</a>" (RYO) flow facilitates the build of U-Boot and Arm Trusted Firmware for rapid bring-up.</p>
 <p>Navigate to the RYO folder:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$CWD</span>/software/ryo_linux
 </code></pre></div>
@@ -13584,7 +13584,7 @@ As a result, <code>$CDW/output_files/baseline_a55.sof</code> bitstream is create
 <p>Verify the update in <code>$CWD/software/yocto_linux/.config.yaml</code>, <code>KERNEL_BOOTARGS_SD_MMC</code> variable must matches your input.</p>
 <h4 id="user-space-io-uio-built-in-kernel-module">User Space I/O (UIO) Built-in Kernel Module<a class="headerlink" href="#user-space-io-uio-built-in-kernel-module" title="Permanent link">¶</a></h4>
 <blockquote>
-<p>The User Space I/O (UIO) interface Kernel support depends on <a href="https://www.kernelconfig.io/CONFIG_UIO">CONFIG_UIO</a> and <a href="https://www.kernelconfig.io/CONFIG_UIO_PDRV_GENIRQ">CONFIG_UIO_PDRV_GENIRQ</a> parameters. These configurations are pre-enabled as a loading module in the GSRD 2.0 kernel. <code>CONFIG_UIO</code> and <code>CONFIG_UIO_PDRV_GENIRQ</code> need to be compile as built-in modules in the Kernel to be able to bind the driver after boot without user intervention.</p>
+<p>The User Space I/O (UIO) interface Kernel support depends on <a href="https://www.kernelconfig.io/CONFIG_UIO">CONFIG_UIO</a> and <a href="https://www.kernelconfig.io/CONFIG_UIO_PDRV_GENIRQ">CONFIG_UIO_PDRV_GENIRQ</a> parameters. These configurations are pre-enabled as a loading module in the Baseline System Example Design 2.0 kernel. <code>CONFIG_UIO</code> and <code>CONFIG_UIO_PDRV_GENIRQ</code> need to be compile as built-in modules in the Kernel to be able to bind the driver after boot without user intervention.</p>
 </blockquote>
 <p>Configure the Yocto Linux Kernel (<code>linux-socfpga-lts</code>) to include UIO support as a built-in module through a Kernel configuration Fragment.</p>
 <ol>
@@ -13893,7 +13893,7 @@ As a result, <code>$CDW/output_files/baseline_a55.sof</code> bitstream is create
 </blockquote>
 <h3 id="deploy-linux-application-to-linux-image">Deploy Linux Application to Linux Image<a class="headerlink" href="#deploy-linux-application-to-linux-image" title="Permanent link">¶</a></h3>
 <h4 id="yocto-recipe-creation">Yocto Recipe Creation<a class="headerlink" href="#yocto-recipe-creation" title="Permanent link">¶</a></h4>
-<p>The GSRD 2.0 Yocto project includes a hook to add custom applications. Follow these steps to integrate <code>uio-bist-uart</code> into the Yocto build process.</p>
+<p>The Baseline System Example Design 2.0 Yocto project includes a hook to add custom applications. Follow these steps to integrate <code>uio-bist-uart</code> into the Yocto build process.</p>
 <p>Create a new recipe by copying the <code>hello-world</code> example:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$CWD</span>/software/yocto_linux/meta-custom/recipes-apps/
 <a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a>cp<span class="w"> </span>-r<span class="w"> </span>hello/<span class="w"> </span>uio-bist-uart
@@ -14420,9 +14420,9 @@ As a result, <code>$CDW/output_files/baseline_a55.sof</code> bitstream is create
 <a id="__codelineno-84-148" name="__codelineno-84-148" href="#__codelineno-84-148"></a><span class="w">  </span><span class="c1">//    if not the right device abort the test.</span>
 <a id="__codelineno-84-149" name="__codelineno-84-149" href="#__codelineno-84-149"></a><span class="w">  </span><span class="n">VerifyUioName</span><span class="p">();</span>
 <a id="__codelineno-84-150" name="__codelineno-84-150" href="#__codelineno-84-150"></a>
-<a id="__codelineno-84-151" name="__codelineno-84-151" href="#__codelineno-84-151"></a><span class="w">  </span><span class="cm">/* 'addr': Physical Base Address of the UART on the system bus.</span>
-<a id="__codelineno-84-152" name="__codelineno-84-152" href="#__codelineno-84-152"></a><span class="cm">   * This is the absolute hardware address decoded by the bus infrastructure,</span>
-<a id="__codelineno-84-153" name="__codelineno-84-153" href="#__codelineno-84-153"></a><span class="cm">   * representing the true starting point of the chip in physical memory.</span>
+<a id="__codelineno-84-151" name="__codelineno-84-151" href="#__codelineno-84-151"></a><span class="w">  </span><span class="cm">/* 'offset' is the byte distance between the 4KB page start and the device.</span>
+<a id="__codelineno-84-152" name="__codelineno-84-152" href="#__codelineno-84-152"></a><span class="cm">   * Because mmap() must round down to a strict 4KB page boundary, this </span>
+<a id="__codelineno-84-153" name="__codelineno-84-153" href="#__codelineno-84-153"></a><span class="cm">   * displacement value bridges the gap to hit the actual hardware registers.</span>
 <a id="__codelineno-84-154" name="__codelineno-84-154" href="#__codelineno-84-154"></a><span class="cm">   */</span>
 <a id="__codelineno-84-155" name="__codelineno-84-155" href="#__codelineno-84-155"></a><span class="w">  </span><span class="kt">uintptr_t</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_uio_map_attribute</span><span class="p">(</span><span class="n">UIO_MAP0_PATH</span><span class="p">,</span><span class="w"> </span><span class="s">"offset"</span><span class="p">);</span>
 <a id="__codelineno-84-156" name="__codelineno-84-156" href="#__codelineno-84-156"></a><span class="w">  </span><span class="cm">/* 'size':total memory range allocated to this hardware device.</span>
@@ -14430,9 +14430,9 @@ As a result, <code>$CDW/output_files/baseline_a55.sof</code> bitstream is create
 <a id="__codelineno-84-158" name="__codelineno-84-158" href="#__codelineno-84-158"></a><span class="cm">   * Control, etc.), telling the OS how much physical space to protect.</span>
 <a id="__codelineno-84-159" name="__codelineno-84-159" href="#__codelineno-84-159"></a><span class="cm">   */</span>
 <a id="__codelineno-84-160" name="__codelineno-84-160" href="#__codelineno-84-160"></a><span class="w">  </span><span class="kt">intptr_t</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_uio_map_attribute</span><span class="p">(</span><span class="n">UIO_MAP0_PATH</span><span class="p">,</span><span class="w"> </span><span class="s">"size"</span><span class="p">);</span>
-<a id="__codelineno-84-161" name="__codelineno-84-161" href="#__codelineno-84-161"></a><span class="w">  </span><span class="cm">/* 'offset' is the byte distance between the 4KB page start and the device.</span>
-<a id="__codelineno-84-162" name="__codelineno-84-162" href="#__codelineno-84-162"></a><span class="cm">   * Because mmap() must round down to a strict 4KB page boundary, this </span>
-<a id="__codelineno-84-163" name="__codelineno-84-163" href="#__codelineno-84-163"></a><span class="cm">   * displacement value bridges the gap to hit the actual hardware registers.</span>
+<a id="__codelineno-84-161" name="__codelineno-84-161" href="#__codelineno-84-161"></a><span class="w">  </span><span class="cm">/* 'addr': Physical Base Address of the UART on the system bus.</span>
+<a id="__codelineno-84-162" name="__codelineno-84-162" href="#__codelineno-84-162"></a><span class="cm">   * This is the absolute hardware address decoded by the bus infrastructure,</span>
+<a id="__codelineno-84-163" name="__codelineno-84-163" href="#__codelineno-84-163"></a><span class="cm">   * representing the true starting point of the chip in physical memory.</span>
 <a id="__codelineno-84-164" name="__codelineno-84-164" href="#__codelineno-84-164"></a><span class="cm">   */</span>
 <a id="__codelineno-84-165" name="__codelineno-84-165" href="#__codelineno-84-165"></a><span class="w">  </span><span class="kt">intptr_t</span><span class="w"> </span><span class="n">addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_uio_map_attribute</span><span class="p">(</span><span class="n">UIO_MAP0_PATH</span><span class="p">,</span><span class="w"> </span><span class="s">"addr"</span><span class="p">);</span>
 <a id="__codelineno-84-166" name="__codelineno-84-166" href="#__codelineno-84-166"></a>
@@ -14588,7 +14588,7 @@ As a result, <code>$CDW/output_files/baseline_a55.sof</code> bitstream is create
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 31, 2026 01:28:36 UTC">July 31, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 6, 2026 23:43:22 UTC">August 6, 2026</span>
   </span>
 
     
@@ -14598,7 +14598,7 @@ As a result, <code>$CDW/output_files/baseline_a55.sof</code> bitstream is create
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 31, 2026 01:28:36 UTC">July 31, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 9, 2026 18:05:29 UTC">June 9, 2026</span>
   </span>
 
     

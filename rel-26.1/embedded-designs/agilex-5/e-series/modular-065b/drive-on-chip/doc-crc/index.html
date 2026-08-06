@@ -5953,7 +5953,7 @@
   <span class="md-ellipsis">
     
   
-    Yocto Hardware to Software Flow for Agilex 5 Custom IP Integration
+    Custom IP Integration from Hardware to Software on Agilex 5 Tutorial
   
 
     
@@ -11693,44 +11693,78 @@ ASx4 (QSPI):  SOM SW1[1:0]=ON:ON</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aea.wic.gz /dev/sda
 </code></pre></div>
 <h3 id="flash-the-qspi">Flash The QSPI<a class="headerlink" href="#flash-the-qspi" title="Permanent link">¶</a></h3>
+<ul>
+<li>Download the <code>.jic</code> image from the prebuilt binary links above.</li>
+<li>Power down the board.</li>
+<li>Set <strong>MSEL</strong> dipswitch <strong>S1</strong> on SOM to <strong>JTAG: OFF-OFF</strong></li>
+<li>Power up the board.</li>
+<li>Program the QSPI with the following command. See: <a href="https://docs.altera.com/r/docs/847422/25.3.1/device-configuration-user-guide-agilextm-3-fpgas-and-socs/understanding-configuration-status-using-quartus_pgm-command">quartus_pgm command</a><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">"pvi;top.hps.jic"</span>
+</code></pre></div>
+</li>
+</ul>
+<ul>
+<li>
+<p><strong>(Optional)</strong> Use the Quartus® Programmer GUI</p>
+<ul>
+<li>Launch the Quartus® Programmer and Configure the <strong>"Hardware Setup..."</strong>
+  and select the SOM device (SM27 MDK OB-SOM UBIII)</li>
+</ul>
+<ul>
+<li>Click "Auto Detect", select the device <code>A5ED065BB32A</code> and press
+  <strong>"Change File.."</strong></li>
+</ul>
+<ul>
+<li>Select the <code>.jic</code> file you downloaded earlier. The <code>MT25QU02G</code> device
+  should now show. Select the <strong>"Program/Configure"</strong> box, and press <strong>"Start"</strong>.
+  Wait until completed (It could take several minutes).
+<br></li>
+</ul>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../common/images/programmer-agx5-2.png" data-desc-position="bottom"><img alt="programmer-agx5-2" src="../common/images/programmer-agx5-2.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
+<p><br></p>
+</li>
+</ul>
+<ul>
+<li>Power down the board. Set <strong>MSEL</strong> dip switch <strong>S1</strong> on SOM to <strong>ASX4 (QSPI): ON-ON</strong>
+<br></li>
+</ul>
 <h3 id="build-docker-image">Build Docker Image<a class="headerlink" href="#build-docker-image" title="Permanent link">¶</a></h3>
 <p>The following steps will need to be run on <strong>both</strong> the Agilex™ 5 development kit HPS <strong>and</strong> the host PC if you wish to run the ROS Visualizer.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>An internet connection is required to run the following commands.</p>
 </div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/altera-fpga/altera-ros2.git
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">cd</span><span class="w"> </span>altera-ros2
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>docker<span class="w"> </span>build<span class="w"> </span>-f<span class="w"> </span>.docker/Dockerfile<span class="w"> </span>-t<span class="w"> </span>altera-ros2<span class="w"> </span>.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/altera-fpga/altera-ros2.git
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">cd</span><span class="w"> </span>altera-ros2
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>docker<span class="w"> </span>build<span class="w"> </span>-f<span class="w"> </span>.docker/Dockerfile<span class="w"> </span>-t<span class="w"> </span>altera-ros2<span class="w"> </span>.
 </code></pre></div>
 <p>The Docker image should now be available.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>image<span class="w"> </span>ls
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>REPOSITORY<span class="w">                      </span>TAG<span class="w">              </span>IMAGE<span class="w"> </span>ID<span class="w">       </span>CREATED<span class="w">         </span>SIZE
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>altera-ros2<span class="w">                     </span>latest<span class="w">           </span>92816d4b0459<span class="w">   </span><span class="m">6</span><span class="w"> </span>weeks<span class="w"> </span>ago<span class="w">     </span><span class="m">3</span>.8GB
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>image<span class="w"> </span>ls
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>REPOSITORY<span class="w">                      </span>TAG<span class="w">              </span>IMAGE<span class="w"> </span>ID<span class="w">       </span>CREATED<span class="w">         </span>SIZE
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>altera-ros2<span class="w">                     </span>latest<span class="w">           </span>92816d4b0459<span class="w">   </span><span class="m">6</span><span class="w"> </span>weeks<span class="w"> </span>ago<span class="w">     </span><span class="m">3</span>.8GB
 </code></pre></div>
 <p>The resulting Docker image includes the Altera® ROS 2 packages and examples pre-installed and ready to use.</p>
 <h3 id="run-the-example-moveit-client">Run The Example MoveIt Client<a class="headerlink" href="#run-the-example-moveit-client" title="Permanent link">¶</a></h3>
 <p>We will now deploy an instance of the example <a href="https://github.com/altera-fpga/altera-ros2/tree/main/examples/moveit_demo_client">MoveIt client</a> in a container on the HPS using the image we built previously. The <a href="https://github.com/altera-fpga/altera-ros2/tree/main/examples/moveit_demo_client">MoveIt client</a> is written in C++ and simply generates random pose goals for a given robot description before attempting to plan and execute a trajectory using the relevant <code>MoveGroup</code>. The client makes use of the <a href="https://docs.ros.org/en/noetic/api/moveit_ros_planning_interface/html/classmoveit_1_1planning__interface_1_1MoveGroupInterface.html"><code>MoveGroupInterface</code></a> class making it compatible with various robot arms. In this example we will be launching an instance to control a simulated <a href="https://www.ufactory.cc/lite-6-collaborative-robot/">UFACTORY Lite 6 robot arm</a>.</p>
 <p>ROS uses Python based <code>launch</code> files to bring up the necessary services and nodes for a given use-case. In this case we will be using the <a href="https://github.com/altera-fpga/altera-ros2/blob/main/examples/moveit_demo_client/launch/lite6_moveit_demo.launch.py">lite6_moveit_demo.launch.py</a> launch file which intializes the required controllers, publishers and move groups along with our client application. The result is a fully simulated robot controller implementation with low-level drives handled by the FPGA through the Altera® Drive-on-Chip IP and high-level functionality provided by ROS and MoveIt running on the HPS.</p>
 <p>Run the following command on the HPS to start a container passing through the Drive-on-Chip UIO devices used for motor control:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>--device<span class="w"> </span>/dev/uio0<span class="w"> </span>--device<span class="w"> </span>/dev/uio1<span class="w"> </span>--device<span class="w"> </span>/dev/uio2<span class="w"> </span>altera-ros2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>--device<span class="w"> </span>/dev/uio0<span class="w"> </span>--device<span class="w"> </span>/dev/uio1<span class="w"> </span>--device<span class="w"> </span>/dev/uio2<span class="w"> </span>altera-ros2
 </code></pre></div>
 <p>Next run the following command to launch the example:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>moveit_demo_client<span class="w"> </span>lite6_moveit_demo.launch.py<span class="w"> </span>random:<span class="o">=</span><span class="nb">true</span><span class="w"> </span>mode:<span class="o">=</span>doc<span class="w"> </span>use_rviz:<span class="o">=</span><span class="nb">false</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>moveit_demo_client<span class="w"> </span>lite6_moveit_demo.launch.py<span class="w"> </span>random:<span class="o">=</span><span class="nb">true</span><span class="w"> </span>mode:<span class="o">=</span>doc<span class="w"> </span>use_rviz:<span class="o">=</span><span class="nb">false</span>
 </code></pre></div>
 <p>Upon successful initialization you should see a stream of messages similar to that below indicating planning requests are being received by the <code>MoveGroup</code> and trajectories are being executed by the relevant controllers.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>move_group-3<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>Motion<span class="w"> </span>plan<span class="w"> </span>was<span class="w"> </span>computed<span class="w"> </span>successfully.
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="o">[</span>moveit_demo_client-5<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>Planning<span class="w"> </span>request<span class="w"> </span>complete!
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="o">[</span>moveit_demo_client-5<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span><span class="nb">time</span><span class="w"> </span>taken<span class="w"> </span>to<span class="w"> </span>generate<span class="w"> </span>plan:<span class="w"> </span><span class="m">0</span>.0128849<span class="w"> </span>seconds
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="o">[</span>moveit_demo_client-5<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>Execute<span class="w"> </span>request<span class="w"> </span>accepted
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="o">[</span>move_group-3<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>Execution<span class="w"> </span>request<span class="w"> </span>received
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="o">[</span>move_group-3<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>Starting<span class="w"> </span>trajectory<span class="w"> </span>execution<span class="w"> </span>...
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="o">[</span>move_group-3<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>sending<span class="w"> </span>trajectory<span class="w"> </span>to<span class="w"> </span>lite6_traj_controller
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="o">[</span>ros2_control_node-4<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>Received<span class="w"> </span>new<span class="w"> </span>action<span class="w"> </span>goal
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="o">[</span>ros2_control_node-4<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>Accepted<span class="w"> </span>new<span class="w"> </span>action<span class="w"> </span>goal
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="o">[</span>move_group-3<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>lite6_traj_controller<span class="w"> </span>started<span class="w"> </span>execution
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="o">[</span>move_group-3<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>Goal<span class="w"> </span>request<span class="w"> </span>accepted!
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>move_group-3<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>Motion<span class="w"> </span>plan<span class="w"> </span>was<span class="w"> </span>computed<span class="w"> </span>successfully.
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="o">[</span>moveit_demo_client-5<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>Planning<span class="w"> </span>request<span class="w"> </span>complete!
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="o">[</span>moveit_demo_client-5<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span><span class="nb">time</span><span class="w"> </span>taken<span class="w"> </span>to<span class="w"> </span>generate<span class="w"> </span>plan:<span class="w"> </span><span class="m">0</span>.0128849<span class="w"> </span>seconds
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="o">[</span>moveit_demo_client-5<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>Execute<span class="w"> </span>request<span class="w"> </span>accepted
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="o">[</span>move_group-3<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>Execution<span class="w"> </span>request<span class="w"> </span>received
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="o">[</span>move_group-3<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>Starting<span class="w"> </span>trajectory<span class="w"> </span>execution<span class="w"> </span>...
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="o">[</span>move_group-3<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>sending<span class="w"> </span>trajectory<span class="w"> </span>to<span class="w"> </span>lite6_traj_controller
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="o">[</span>ros2_control_node-4<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>Received<span class="w"> </span>new<span class="w"> </span>action<span class="w"> </span>goal
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="o">[</span>ros2_control_node-4<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>Accepted<span class="w"> </span>new<span class="w"> </span>action<span class="w"> </span>goal
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="o">[</span>move_group-3<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>lite6_traj_controller<span class="w"> </span>started<span class="w"> </span>execution
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="o">[</span>move_group-3<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span>:<span class="w"> </span>Goal<span class="w"> </span>request<span class="w"> </span>accepted!
 </code></pre></div>
 <h3 id="ros-visualizer-rviz">ROS Visualizer (RViz)<a class="headerlink" href="#ros-visualizer-rviz" title="Permanent link">¶</a></h3>
 <p>In order to visualize what is happening behind the scenes you can use a tool called RViz on your host PC.</p>
@@ -11739,7 +11773,7 @@ ASx4 (QSPI):  SOM SW1[1:0]=ON:ON</p>
 <li>Follow the official <a href="https://github.com/osrf/rocker#installation">installation instructions</a> to install <a href="https://github.com/osrf/rocker">Rocker</a></li>
 <li>Once installed run the following command to start RViz</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>rocker<span class="w"> </span>--x11<span class="w"> </span>--devices<span class="w"> </span>/dev/dri<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>altera-ros2<span class="w"> </span>rviz2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>rocker<span class="w"> </span>--x11<span class="w"> </span>--devices<span class="w"> </span>/dev/dri<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>altera-ros2<span class="w"> </span>rviz2
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -11825,7 +11859,7 @@ the Khronos Group™.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="July 31, 2026 01:28:36 UTC">July 31, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 6, 2026 23:43:22 UTC">August 6, 2026</span>
   </span>
 
     
