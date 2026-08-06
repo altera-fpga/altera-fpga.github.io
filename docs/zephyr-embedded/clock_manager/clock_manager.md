@@ -1,6 +1,6 @@
 # **Clock Manager Driver for Hard Processor System**
 
-Last updated: **July 17, 2026** 
+Last updated: **August 06, 2026** 
 
 **Upstream Status**: [Upstreamed](https://github.com/zephyrproject-rtos/zephyr/blob/main/drivers/clock_control/clock_control_agilex5.c)
 

@@ -272,7 +272,7 @@ nav:
         - HPS Linux Boot Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065b/boot-examples/ug-linux-boot-agx5e-premium-065b.md
         - HPS Remote System Update Example Design:  embedded-designs/agilex-5/e-series/premium-065b/rsu/ug-rsu-agx5e-soc-premium-065b.md
         - HPS OpenOCD Debugging: embedded-designs/agilex-5/e-series/premium-065b/openocd/ug-openocd-debug-agx5e-premium-065b.md
-        - Yocto Hardware to Software Flow for Agilex 5 Custom IP Integration: embedded-designs/agilex-5/e-series/premium-065b/hw2sw-flow/ug-hw2sw-flow-agx5e-premium-065b.md
+        - Custom IP Integration from Hardware to Software on Agilex 5 Tutorial: embedded-designs/agilex-5/e-series/premium-065b/hw2sw-flow/ug-hw2sw-flow-agx5e-premium-065b.md
         - HPS Linux Application Debugging with Ashling RiscFree: embedded-designs/agilex-5/e-series/premium-065b/riscfree-linux-app-debug/ug-riscfree-linux-app-debug-agx5e-premium-065b.md
         - HPS Fabric Configuration from Linux: embedded-designs/agilex-5/e-series/premium-065b/fabric-config-linux/ug-fabric-config-linux-agx5e-premium-065b.md
         - 2-Port 10GbE PTP1588 System Example Design: embedded-designs/agilex-5/e-series/premium-065b/ptp1588/agx5e-ptp-2p10g/ug-agx5e-ptp-2p10g.md

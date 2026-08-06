@@ -61,12 +61,13 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 5 Design | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1_REL_GSRD_PR |
+| Agilex 5 Design | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1_p1_REL_GSRD_PR |
 | Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
 | Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
 | U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
-| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_p1_REL_GSRD_PR |
+| KAS | [https://github.com/jeffhammond/STREAM.git](https://github.com/jeffhammond/STREAM.git) | master | 5.2 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -817,7 +818,7 @@ kas build kas.yml gsrd-console-image
 ```
 
 
-The following relevant files are created in `$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/`:
+The following relevant files are created in `$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/`:
 
 * `gsrd-console-image-agilex5e.rootfs.wic`
 * `u-boot-spl-dtb.hex`
@@ -842,7 +843,7 @@ quartus_pfg \
 -c agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof baseline.jic \
 -o device=MT25QU128 \
 -o flash_loader=A5ED065BB32AE4S \
--o hps_path=agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex \
+-o hps_path=agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
 -o hps=1
 ```
@@ -946,7 +947,7 @@ kas build kas.yml:qspi_boot_src.yml console-image-minimal
 
 > **Note**: If you wish to customize your Linux image, you can use the `kas menu` command instead. The options here are explained in section [Customizing Yocto Kas Build](#customizing-yocto-kas-build) below.
 
-The following relevant files are created in `$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/`:
+The following relevant files are created in `$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/`:
 
 * `u-boot-spl-dtb.hex`
 * `u-boot.itb`
@@ -973,12 +974,12 @@ cd qspi_boot
 
 ```bash
 ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof ghrd.sof
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex .
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot.itb u-boot.bin
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nor.ubifs .
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/kernel.itb .
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/boot.scr.uimg .
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/uboot.env .
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/u-boot-spl-dtb.hex .
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/u-boot.itb u-boot.bin
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nor.ubifs .
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/kernel.itb .
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/boot.scr.uimg .
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/uboot.env .
 ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/scripts/ubinize_nor.cfg .
 ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/scripts/qspi_boot.pfg .
 ```
@@ -1098,7 +1099,7 @@ kas build kas.yml gsrd-console-image
 ```
 
 
-The following relevant files are created in `$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/`:
+The following relevant files are created in `$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/`:
 
 * `gsrd-console-image-agilex5e.rootfs.wic`
 * `u-boot-spl-dtb.hex`
@@ -1123,7 +1124,7 @@ quartus_pfg \
 -c agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof baseline.jic \
 -o device=MT25QU128 \
 -o flash_loader=A5ED065BB32AE4S \
--o hps_path=agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex \
+-o hps_path=agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
 -o hps=1
 ```
@@ -1143,8 +1144,8 @@ The following file is created:
 cd $TOP_FOLDER
 rm -rf qspi_helper && mkdir qspi_helper && cd qspi_helper
 ln -s ../agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof ghrd.sof
-ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex u-boot-spl-dtb.hex
-ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot.itb u-boot.bin
+ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/u-boot-spl-dtb.hex u-boot-spl-dtb.hex
+ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/u-boot.itb u-boot.bin
 ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/scripts/qspi_helper.pfg .
 quartus_pfg -c qspi_helper.pfg
 ```
@@ -1247,7 +1248,7 @@ kas build kas.yml console-image-minimal
 ```
 
 
-The following relevant files are created in `$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/`:
+The following relevant files are created in `$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/`:
 
 * `gsrd-console-image-agilex5e.rootfs.wic`
 * `u-boot.itb`
@@ -1270,12 +1271,12 @@ export BB_ENV_PASSTHROUGH_ADDITIONS="$BB_ENV_PASSTHROUGH_ADDITIONS PARALLEL_MAKE
 
 cd $TOP_FOLDER
 rm -rf nand_images && mkdir nand_images && cd nand_images
-ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot.itb
+ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/u-boot.itb
 ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/scripts/ubinize_nand.cfg .
-ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/uboot.env .
-ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/boot.scr.uimg .
-ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/kernel.itb .
-ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nand.ubifs .
+ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/uboot.env .
+ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/boot.scr.uimg .
+ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/kernel.itb .
+ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nand.ubifs .
 ubinize -o root.ubi -p 1024KiB -m 8192 -s 8192 ubinize_nand.cfg
 ```
 
@@ -1296,7 +1297,7 @@ quartus_pfg \
 -c agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof baseline.jic \
 -o device=MT25QU128 \
 -o flash_loader=A5ED065BB32AE4S \
--o hps_path=agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex \
+-o hps_path=agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
 -o hps=1
 ```
@@ -1316,8 +1317,8 @@ The following file is created:
 cd $TOP_FOLDER
 rm -rf qspi_helper && mkdir qspi_helper && cd qspi_helper
 ln -s ../agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof ghrd.sof
-ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex u-boot-spl-dtb.hex
-ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot.itb u-boot.bin
+ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/u-boot-spl-dtb.hex u-boot-spl-dtb.hex
+ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/u-boot.itb u-boot.bin
 ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/scripts/qspi_helper.pfg .
 quartus_pfg -c qspi_helper.pfg
 ```
@@ -1423,7 +1424,7 @@ kas build kas.yml gsrd-console-image
 ```
 
 
-The following relevant files are created in `$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/`:
+The following relevant files are created in `$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/`:
 
 * `gsrd-console-image-agilex5e.rootfs.wic`
 * `u-boot-spl-dtb.hex`
@@ -1448,7 +1449,7 @@ quartus_pfg \
 -c agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof baseline.jic \
 -o device=MT25QU128 \
 -o flash_loader=A5ED065BB32AE4S \
--o hps_path=agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex \
+-o hps_path=agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp-glibc/deploy/images/agilex5e/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
 -o hps=1
 ```
@@ -1691,10 +1692,10 @@ The **kernel.itb** file is a Flattattened Image Tree (FIT) file that includes th
 
 The **kernel.itb** is created from a **.its** (Image Tree Source file) that describes its structure. In the HPS Baseline System Example Design, the  **kernel.itb** file is generated in the following directory. In this directory you can also find the **.its** files and all other the components needed to create the **kernel.itb** :
 
-* **$TOP_FOLDER/<*gsrd-directory*>/<*project-directory*>/software/yocto_linux/build/tmp/work/<*device*>-poky-linux/linux-socfpga-lts/<*linux-branch*>+git/linux-<*device*>-standard-build/**
+* **$TOP_FOLDER/<*gsrd-directory*>/<*project-directory*>/software/yocto_linux/build/tmp*/work/<*device*>-poky-linux/linux-socfpga-lts/<*linux-branch*>+git/linux-<*device*>-standard-build/**
 
 As an example of this path, for the Agilex 5 device you will find this directory as
-$TOP_FOLDER/a5ed065es-premium-devkit-oobe/baseline-a55/software/yocto_linux/build/tmp/work/agilex5e-poky-linux/linux-socfpga-lts/6.12.43-lts+git/linux-agilex5e-standard-build
+$TOP_FOLDER/a5ed065es-premium-devkit-oobe/baseline-a55/software/yocto_linux/build/tmp*/work/agilex5e-poky-linux/linux-socfpga-lts/6.12.43-lts+git/linux-agilex5e-standard-build
 
 If you want to modify the **kernel.itb** by replacing one of the component or modifying any board configuration, you can do the following:
 
@@ -1706,7 +1707,7 @@ If you want to modify the **kernel.itb** by replacing one of the component or mo
    
 2. Go to the folder in which the **kernel.itb** is being created under the HPS Baseline System Example Design.
    ```bash
-   $ cd $TOP_FOLDER/<gsrd-directory>/<project-directory>/software/yocto_linux/build/tmp/work/<device>-poky-linux/linux-socfpga-lts/<linux-branch>+git/linux-<device>-standard-build/
+   $ cd $TOP_FOLDER/<gsrd-directory>/<project-directory>/software/yocto_linux/build/tmp*/work/<device>-poky-linux/linux-socfpga-lts/<linux-branch>+git/linux-<device>-standard-build/
    $ ls *.its
    fit_<device>_kernel_.its
    ```

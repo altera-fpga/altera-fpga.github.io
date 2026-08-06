@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This tutorial demonstrates how to extend the [HPS Baseline System Example Design](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#hardware-design-overview) hardware project by adding an IP core to the fabric subsystem and enabling it through the software stack. You will integrate a [Lightweight UART Core](https://docs.altera.com/r/docs/683130/26.1/embedded-peripherals-ip-user-guide/lightweight-uart-core) to simulate a custom IP that lacks a native Linux kernel driver. Rather than developing a complex kernel-space driver from scratch, this tutorial highlights the standard hardware-to-software enablement path utilizing the generic User Space I/O (UIO) platform driver.
+This tutorial demonstrates how to extend the [HPS Baseline System Example Design](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#hardware-design-overview) Quartus project by adding an IP core to the fabric subsystem and enabling it through the software stack. You will integrate a [Lightweight UART Core](https://docs.altera.com/r/docs/683130/26.1/embedded-peripherals-ip-user-guide/lightweight-uart-core) to simulate a custom IP that lacks a native Linux kernel driver. Rather than developing a complex kernel-space driver from scratch, this tutorial highlights the standard hardware-to-software enablement path utilizing the generic User Space I/O (UIO) platform driver.
 
 The hardware architecture interfaces the new UART IP with the Hard Processor System (HPS) via the Lightweight AXI Bridge. To facilitate a self-contained validation process without requiring external wiring, the design incorporates a System ID Peripheral IP — acting as a verifiable hardware fingerprint — and utilizes an internal loopback (TX to RX) within the SystemVerilog top-level wrapper.
 
@@ -167,7 +167,7 @@ The build produces `$CWD/output_files/baseline_a55_hps_debug.core.rbf`, which co
 
 #### Custom Layer and Recipe Configuration
 
-Build a Linux image for the previously compiled hardware project. This process uses default Yocto settings, modified only to include the custom FPGA core fabric bitstream and a unique Linux Kernel version suffix.
+Build a Linux image for the previously compiled Quartus project. This process uses default Yocto settings, modified only to include the custom FPGA core fabric bitstream and a unique Linux Kernel version suffix.
 
 Customize the Yocto project using the `meta-custom` layer, which provides recipes for modifying Linux image components.
 
@@ -313,7 +313,7 @@ The expected output should contain the kernel version with the **-altera-F06D06-
 
 #### Adding the Lightweight UART Core to the System
 
-Open the hardware project using the Quartus graphical interface.
+Open the Quartus project using the Quartus graphical interface.
 
 ``` bash
 cd $CWD
@@ -411,7 +411,7 @@ Update the top-level System Verilog wrapper, `baseline_a55.sv`, to loopback the 
   make baseline_a55-build
   ```
 
-> The `make clean` command removes all generated artifacts from the GHRD and GSRD project folders, including the compiled binaries and the Python virtual environment.
+> The `make clean` command removes all generated artifacts from the Baseline Quartus Design and Baseline System Example Design project folders, including the compiled binaries and the Python virtual environment.
 
 ---
 
@@ -421,7 +421,7 @@ Update the top-level System Verilog wrapper, `baseline_a55.sv`, to loopback the 
 
 #### RYO Toolchain and Environment Setup
 
-Set up a minimal software environment to validate the basic functionality of the IP integrated into the hardware project. The "[Roll Your Own](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#build-and-exercise-roll-your-own-binaries)" (RYO) flow facilitates the build of U-Boot and Arm Trusted Firmware for rapid bring-up.
+Set up a minimal software environment to validate the basic functionality of the IP integrated into the Quartus project. The "[Roll Your Own](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#build-and-exercise-roll-your-own-binaries)" (RYO) flow facilitates the build of U-Boot and Arm Trusted Firmware for rapid bring-up.
 
 Navigate to the RYO folder:
 
@@ -720,7 +720,7 @@ Verify the update in `$CWD/software/yocto_linux/.config.yaml`, `KERNEL_BOOTARGS_
 
 #### User Space I/O (UIO) Built-in Kernel Module
 
->The User Space I/O (UIO) interface Kernel support depends on [CONFIG_UIO](https://www.kernelconfig.io/CONFIG_UIO) and [CONFIG_UIO_PDRV_GENIRQ](https://www.kernelconfig.io/CONFIG_UIO_PDRV_GENIRQ) parameters. These configurations are pre-enabled as a loading module in the GSRD 2.0 kernel. `CONFIG_UIO` and `CONFIG_UIO_PDRV_GENIRQ` need to be compile as built-in modules in the Kernel to be able to bind the driver after boot without user intervention.
+>The User Space I/O (UIO) interface Kernel support depends on [CONFIG_UIO](https://www.kernelconfig.io/CONFIG_UIO) and [CONFIG_UIO_PDRV_GENIRQ](https://www.kernelconfig.io/CONFIG_UIO_PDRV_GENIRQ) parameters. These configurations are pre-enabled as a loading module in the Baseline System Example Design 2.0 kernel. `CONFIG_UIO` and `CONFIG_UIO_PDRV_GENIRQ` need to be compile as built-in modules in the Kernel to be able to bind the driver after boot without user intervention.
 
 Configure the Yocto Linux Kernel (`linux-socfpga-lts`) to include UIO support as a built-in module through a Kernel configuration Fragment.
 
@@ -1096,7 +1096,7 @@ Import the `uio-bist-uart` binary and source code into the RiscFree workspace:
 
 #### Yocto Recipe Creation
 
-The GSRD 2.0 Yocto project includes a hook to add custom applications. Follow these steps to integrate `uio-bist-uart` into the Yocto build process.
+The Baseline System Example Design 2.0 Yocto project includes a hook to add custom applications. Follow these steps to integrate `uio-bist-uart` into the Yocto build process.
 
 Create a new recipe by copying the `hello-world` example:
 
@@ -1629,9 +1629,9 @@ int32_t main(void) {
   //    if not the right device abort the test.
   VerifyUioName();
 
-  /* 'addr': Physical Base Address of the UART on the system bus.
-   * This is the absolute hardware address decoded by the bus infrastructure,
-   * representing the true starting point of the chip in physical memory.
+  /* 'offset' is the byte distance between the 4KB page start and the device.
+   * Because mmap() must round down to a strict 4KB page boundary, this 
+   * displacement value bridges the gap to hit the actual hardware registers.
    */
   uintptr_t offset = get_uio_map_attribute(UIO_MAP0_PATH, "offset");
   /* 'size':total memory range allocated to this hardware device.
@@ -1639,9 +1639,9 @@ int32_t main(void) {
    * Control, etc.), telling the OS how much physical space to protect.
    */
   intptr_t size = get_uio_map_attribute(UIO_MAP0_PATH, "size");
-  /* 'offset' is the byte distance between the 4KB page start and the device.
-   * Because mmap() must round down to a strict 4KB page boundary, this 
-   * displacement value bridges the gap to hit the actual hardware registers.
+  /* 'addr': Physical Base Address of the UART on the system bus.
+   * This is the absolute hardware address decoded by the bus infrastructure,
+   * representing the true starting point of the chip in physical memory.
    */
   intptr_t addr = get_uio_map_attribute(UIO_MAP0_PATH, "addr");
 

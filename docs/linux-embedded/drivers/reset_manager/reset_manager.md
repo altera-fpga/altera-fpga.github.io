@@ -1,6 +1,6 @@
 # **Reset Manager Driver for Hard Processor System**
 
-Last updated: **July 17, 2026** 
+Last updated: **August 06, 2026** 
 
 **Upstream Status**: Not Upstreamed
 

@@ -1,6 +1,6 @@
 # **SPI Driver for Hard Processor System**
 
-Last updated: **July 17, 2026** 
+Last updated: **August 06, 2026** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/spi)
 
@@ -114,7 +114,7 @@ The **spidev_test** application depends on the **drivers/spi/spidev.c** driver t
 
 **Note:** When building binaries to exercise this test procedure using the Linux Boot example build flow, it is necessary to enable the drivers and their dependencies as indicated in [Kernel Configurations](#kernel-configurations) section. In the case of the GSRB build flow, all the required drivers are already included either as part of the kernel image (included through kernel configuration) or including and loading the **.ko** driver file from the file system. 
 
-The following test procedure can be exercised using the Agilex 5 E-Series device using the DEBUG2 daughter card for the Premium development kit, in which the **spidev_test** application targets the built-in Microchip 25AA128 EEPROM device. The **spidev** driver is compatible with this device.
+The following test procedure can be exercised using the Agilex 5 E-Series device using the HPS Test Board daughter card for the Premium development kit, in which the **spidev_test** application targets the built-in Microchip 25AA128 EEPROM device. The **spidev** driver is compatible with this device.
 
 The test procedure consist on enabling the writing in the EEPROM device, then writing a byte (0xC6) to a memory location (0x68D) and then reading this back.
 

@@ -41,7 +41,7 @@
 * Power down the board.
 * Set **MSEL** dipswitch **S1** on SOM to **JTAG: OFF-OFF**
 * Power up the board.
-* Program the QSPI with the following command. See: [quartus_pgm command](https://docs.altera.com/r/docs/847422/25.3.1/device-configuration-user-guide-agilextm-3-fpgas-and-socs/understanding-configuration-status-using-quartus_pgm-command)
+* Program the QSPI with the following command. See: [quartus_pgm command]
 
     ```bash
     quartus_pgm -c 1 -m jtag -o "pvi;top.hps.jic"
