@@ -118,7 +118,7 @@ The following block diagram shows the main components and subsystems of the
 
 The diagram is color-coded to match the Platform Designer view and the XML file
 (Modular Design Toolkit methodology) for this design
-(see: [AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_safe_dual_axis.xml](https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/26.1/HPS_NIOSVg_DoC_Safety_dual_axis/AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_safe_dual_axis.xml)). The following figure
+(see: [AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_safe_dual_axis.xml]). The following figure
 correlates the block diagram, the XML file and the Platform Designer view:
 
 <br>

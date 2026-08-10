@@ -64,24 +64,6 @@ Note licenses must be downloaded and installed where needed.
 <br/>
 
 
-### **Software Requirements to run**
-
-* Host PC with:
-  * 8 GB of RAM (less if not rebuilding binaries).
-  * Linux/Windows OS installed.
-  * Serial terminal (such as GtkTerm or Minicom on Linux, and [TeraTerm] or
-    [PuTTY] on Windows).
-    * FTDI FT232R USB UART drivers (for a Windows host).
-  * Tool to write images for removable USB drives or microSD cards such as
-  [Win32DiskImager] on Windows or "dd" command on Linux.
-  * [Altera® Quartus® Prime Pro Edition version 25.1 Programmer and Tools].
-  * Ethernet connection (either direct from Host PC to development board, or
-    via a switch or router).
-    * Note, you may need to disconnected/disabled VPN if it is installed on the
-      Host PC.
-  * Web browser.
-
-<br/>
 
 
 ### **Download and Compile the AI Models**
@@ -167,17 +149,17 @@ You can use the pre-built binaries for reference:
 
 | Boot Source | Link |
 | ---------------------------------- | ---- |
-| Pre-built microSD Card Image for SOF MDT Flow | [fpga-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz](https://github.com/altera-fpga/agilex-ed-camera-ai/releases/download/rel-25.1/fpga-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz) |
-| Pre-built FPGA First `.sof` file | [fsbl_agilex5_modkit_vvpisp_time_limited.sof](https://github.com/altera-fpga/agilex-ed-camera-ai/releases/download/rel-25.1/fsbl_agilex5_modkit_vvpisp_time_limited.sof) |
+| Pre-built microSD Card Image for SOF MDT Flow | [fpga-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz] |
+| Pre-built FPGA First `.sof` file | [fsbl_agilex5_modkit_vvpisp_time_limited.sof] |
 
 </center>
 
 ## HW Compilation
-Use the **[SOF Modular Design Toolkit (MDT) Flow](https://github.com/altera-fpga/agilex-ed-camera-ai/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt)** to create and build the
+Use the **[SOF Modular Design Toolkit (MDT) Flow]** to create and build the
 FPGA Design.
 
 ## SW Compilation
-Use the **[Create microSD card image (.wic.gz) using YOCTO/KAS](https://github.com/altera-fpga/agilex-ed-camera-ai/blob/rel-25.1/sw/README.md)** flow to
+Use the **[Create microSD card image (.wic.gz) using YOCTO/KAS]** flow to
 create the microSD card image.
 
 !!! NOTE "Note"
@@ -260,7 +242,7 @@ create the microSD card image.
   tar -xzf `<name>.wic.gz`
   ```
 
-  * On Windows, use the [7-Zip](https://www.7-zip.org) program (or similar):
+  * On Windows, use the [7-Zip] program (or similar):
     * Right click `<name>.wic.gz` file, and select "Extract All..."
 
 * Write the `<name>.wic` image to the microSD card using a USB writer:
@@ -276,7 +258,7 @@ create the microSD card image.
   sync
   ```
 
-  * On Windows, use the [Win32DiskImager](https://sourceforge.net/projects/win32diskimager) program (or similar):
+  * On Windows, use the [Win32DiskImager] program (or similar):
     * Click browse icon and select "\*.\*" filter:
 
     ![disk-imager-browse](../common/images/disk-imager-browse.png){:style="display:block; margin-left:auto; margin-right:auto"}

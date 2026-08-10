@@ -269,8 +269,80 @@ Agilex™ 5 FPGA E-Series 065B Modular Development Kit.
 
 
 
+### SD Card Image Flashing
+
+* Download SD card image (`.wic` or `.wic.gz`) from the prebuilt binary links above.
+* Write the `.wic` or `.wic.gz` SD card image to the micro SD card using one of the options below.
+* Turn off the board and insert the SD card in the micro SD card slot on the SOM board.
+
+#### [USBImager](https://bztsrc.gitlab.io/usbimager/) (Windows, Linux, Mac OS)
+
+* Open [USBImager](https://bztsrc.gitlab.io/usbimager/) and click the `...` button in the top right.
+* Select the image you downloaded earlier and click `Open`.
+* Next select the device associated with your SD card reader from the drop-down list.
+* Click `Write` to start flashing.
+
+#### [bmaptool](https://github.com/yoctoproject/bmaptool) (Linux)
+
+!!! note
+    You will require a `.wic.bmap` file in addition to the `.wic` or `.wic.gz` in order to use `bmaptool`. If this is not available use `USBImager`.
+
+On many distributions `bmap-tools` can be installed using your distros package manager (e.g. `sudo apt install bmap-tools`).
+
+For more information see the [Yocto documentation](https://docs.yoctoproject.org/dev-manual/bmaptool.html) for `bmaptool`.
+
+First of all determine the device `logical name` associated with the SD card on your host:
+
+```
+sudo lshw -class disk
+```
+
+Use `bmaptool` to copy the image to the SD card. Make sure the `wic` image file and `bmap` file are in the same directory.
+
+```
+sudo bmaptool copy ${IMAGE} ${DEVICE}
+```
+
+For example:
+
+```
+sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aea.wic.gz /dev/sda
+```
+
+
 ### Flash The QSPI
 
+
+
+* Download the `.jic` image from the prebuilt binary links above.
+* Power down the board.
+* Set **MSEL** dipswitch **S1** on SOM to **JTAG: OFF-OFF**
+* Power up the board.
+* Program the QSPI with the following command. See: [quartus_pgm command]
+
+    ```bash
+    quartus_pgm -c 1 -m jtag -o "pvi;top.hps.jic"
+    ```
+
+* **(Optional)** Use the Quartus® Programmer GUI
+
+  * Launch the Quartus® Programmer and Configure the **"Hardware Setup..."**
+    and select the SOM device (SM27 MDK OB-SOM UBIII)
+
+  * Click "Auto Detect", select the device `A5ED065BB32A` and press
+    **"Change File.."**
+
+  * Select the `.jic` file you downloaded earlier. The `MT25QU02G` device
+    should now show. Select the **"Program/Configure"** box, and press **"Start"**.
+    Wait until completed (It could take several minutes).
+  <br>
+
+  ![programmer-agx5-2](./common/images/programmer-agx5-2.png){:style="display:block; margin-left:auto; margin-right:auto"}
+
+  <br>
+
+* Power down the board. Set **MSEL** dip switch **S1** on SOM to **ASX4 (QSPI): ON-ON**
+<br>
 
 
 ### **Run the design example**

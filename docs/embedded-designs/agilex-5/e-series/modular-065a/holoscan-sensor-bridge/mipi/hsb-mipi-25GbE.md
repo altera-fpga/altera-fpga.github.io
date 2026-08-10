@@ -54,4 +54,9 @@ You are responsible for safety of the overall system, including compliance with 
 
 OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 
 
+[Agilex™ 5 FPGA E-Series 065A Modular Development Kit]: https://www.altera.com/products/devkit/po-3278/agilex-5-fpga-and-soc-e-series-065a-modular-development-kit
+
+
+[Altera® Quartus® Prime Pro Edition version 26.1 Linux]: https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-26-1-for-linux.html
+
 
