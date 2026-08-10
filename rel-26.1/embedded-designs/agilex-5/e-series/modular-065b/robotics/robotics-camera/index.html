@@ -11880,40 +11880,6 @@ ASx4 (QSPI):  SOM SW1[1:0]=ON:ON</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aea.wic.gz /dev/sda
 </code></pre></div>
 <h3 id="flash-the-qspi">Flash the QSPI<a class="headerlink" href="#flash-the-qspi" title="Permanent link">¶</a></h3>
-<ul>
-<li>Download the <code>.jic</code> image from the prebuilt binary links above.</li>
-<li>Power down the board.</li>
-<li>Set <strong>MSEL</strong> dipswitch <strong>S1</strong> on SOM to <strong>JTAG: OFF-OFF</strong></li>
-<li>Power up the board.</li>
-<li>Program the QSPI with the following command. See: <a href="https://docs.altera.com/r/docs/847422/25.3.1/device-configuration-user-guide-agilextm-3-fpgas-and-socs/understanding-configuration-status-using-quartus_pgm-command">quartus_pgm command</a><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">"pvi;top.hps.jic"</span>
-</code></pre></div>
-</li>
-</ul>
-<ul>
-<li>
-<p><strong>(Optional)</strong> Use the Quartus® Programmer GUI</p>
-<ul>
-<li>Launch the Quartus® Programmer and Configure the <strong>"Hardware Setup..."</strong>
-  and select the SOM device (SM27 MDK OB-SOM UBIII)</li>
-</ul>
-<ul>
-<li>Click "Auto Detect", select the device <code>A5ED065BB32A</code> and press
-  <strong>"Change File.."</strong></li>
-</ul>
-<ul>
-<li>Select the <code>.jic</code> file you downloaded earlier. The <code>MT25QU02G</code> device
-  should now show. Select the <strong>"Program/Configure"</strong> box, and press <strong>"Start"</strong>.
-  Wait until completed (It could take several minutes).
-<br></li>
-</ul>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../common/images/programmer-agx5-2.png" data-desc-position="bottom"><img alt="programmer-agx5-2" src="../common/images/programmer-agx5-2.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
-<p><br></p>
-</li>
-</ul>
-<ul>
-<li>Power down the board. Set <strong>MSEL</strong> dip switch <strong>S1</strong> on SOM to <strong>ASX4 (QSPI): ON-ON</strong>
-<br></li>
-</ul>
 <h3 id="bring-up-the-board">Bring Up the board<a class="headerlink" href="#bring-up-the-board" title="Permanent link">¶</a></h3>
 <ul>
 <li>Power up the board and set up the serial terminal (minicom, PuTTY, etc.):<ul>
@@ -11936,31 +11902,31 @@ ASx4 (QSPI):  SOM SW1[1:0]=ON:ON</p>
 <p class="admonition-title">Note</p>
 <p>An internet connection is required to run the following commands.</p>
 </div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>alterafpga/ros2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>alterafpga/ros2
 </code></pre></div>
 <p>The Docker image <code>alterafpga/ros2</code> should now be listed when you run the following command.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>image<span class="w"> </span>ls
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>image<span class="w"> </span>ls
 </code></pre></div>
 <p>The Docker image includes the <a href="https://github.com/altera-fpga/altera-ros2">Altera ROS 2</a> packages and examples pre-installed and ready to use.</p>
 <h3 id="run-the-altera-camera-ros-node">Run the Altera® Camera ROS node<a class="headerlink" href="#run-the-altera-camera-ros-node" title="Permanent link">¶</a></h3>
 <p>Next, run the <strong>Altera® Camera</strong> ROS node in a <a href="https://docs.docker.com/engine/install/">Docker</a> container on the HPS. The node is a C++ <a href="https://www.ros.org/">ROS 2</a> publisher that reads frames from the <strong>ISP Robotics subsystem</strong> and publishes <a href="https://docs.ros.org/en/api/sensor_msgs/html/msg/CameraInfo.html"><code>sensor_msgs/CameraInfo</code></a> and <a href="https://docs.ros.org/en/rolling/p/sensor_msgs/msg/Image.html"><code>sensor_msgs/msg/Image</code></a> messages.</p>
 <p>You can use the <code>altera_camera.launch.py</code> launch file provided by the <code>altera_camera</code> ROS package to start an instance of the node and start publishing frames from the FPGA video pipeline with <a href="https://www.ros.org/">ROS 2</a>.</p>
 <p>On the HPS, start a container using the image pulled in the previous section:</p>
-<p></p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>--device<span class="w"> </span>/dev/uio0<span class="w"> </span>--device<span class="w"> </span>/dev/uio1<span class="w"> </span>alterafpga/ros2
+<p></p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>--device<span class="w"> </span>/dev/uio0<span class="w"> </span>--device<span class="w"> </span>/dev/uio1<span class="w"> </span>alterafpga/ros2
 </code></pre></div>
 Note that the container is run with host networking passthrough mode so the board can communicate to other machines on the same LAN.<p></p>
 <p>We also pass through the <strong>ISP Robotics subsystem</strong> frame writer devices which appear as Userspace I/O (UIO) devices in Linux. <code>uio0</code> is the <strong>BGR</strong> color stream and <code>uio1</code> is the greyscale stream.</p>
 <p>Launch the example camera node:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>altera_camera<span class="w"> </span>altera_camera.launch.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>altera_camera<span class="w"> </span>altera_camera.launch.py
 </code></pre></div>
 <p>By default this will use <code>/dev/uio0</code>. If you wish to publish the greyscale stream run the following:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>altera_camera<span class="w"> </span>altera_camera.launch.py<span class="w"> </span>fw_device:<span class="o">=</span>/dev/uio1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>altera_camera<span class="w"> </span>altera_camera.launch.py<span class="w"> </span>fw_device:<span class="o">=</span>/dev/uio1
 </code></pre></div>
 <p>Upon successful initialization, you should see output similar to the following:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>launch<span class="o">]</span>:<span class="w"> </span>Default<span class="w"> </span>logging<span class="w"> </span>verbosity<span class="w"> </span>is<span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span>INFO
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>altera_camera_node-1<span class="o">]</span>:<span class="w"> </span>process<span class="w"> </span>started<span class="w"> </span>with<span class="w"> </span>pid<span class="w"> </span><span class="o">[</span><span class="m">29</span><span class="o">]</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="o">[</span>altera_camera_node-1<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1781794579</span>.867108167<span class="o">]</span><span class="w"> </span><span class="o">[</span>altera_camera<span class="o">]</span>:<span class="w"> </span>using<span class="w"> </span>default<span class="w"> </span>calibration<span class="w"> </span>URL
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="o">[</span>altera_camera_node-1<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1781794579</span>.867396841<span class="o">]</span><span class="w"> </span><span class="o">[</span>altera_camera<span class="o">]</span>:<span class="w"> </span>camera<span class="w"> </span>calibration<span class="w"> </span>URL:<span class="w"> </span>file:///root/.ros/camera_info/altera-camera.yaml
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>launch<span class="o">]</span>:<span class="w"> </span>Default<span class="w"> </span>logging<span class="w"> </span>verbosity<span class="w"> </span>is<span class="w"> </span><span class="nb">set</span><span class="w"> </span>to<span class="w"> </span>INFO
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>altera_camera_node-1<span class="o">]</span>:<span class="w"> </span>process<span class="w"> </span>started<span class="w"> </span>with<span class="w"> </span>pid<span class="w"> </span><span class="o">[</span><span class="m">29</span><span class="o">]</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="o">[</span>altera_camera_node-1<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1781794579</span>.867108167<span class="o">]</span><span class="w"> </span><span class="o">[</span>altera_camera<span class="o">]</span>:<span class="w"> </span>using<span class="w"> </span>default<span class="w"> </span>calibration<span class="w"> </span>URL
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="o">[</span>altera_camera_node-1<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">1781794579</span>.867396841<span class="o">]</span><span class="w"> </span><span class="o">[</span>altera_camera<span class="o">]</span>:<span class="w"> </span>camera<span class="w"> </span>calibration<span class="w"> </span>URL:<span class="w"> </span>file:///root/.ros/camera_info/altera-camera.yaml
 </code></pre></div>
 <p>While the node runs, the <strong>DisplayPort</strong> output continues to show the mixed live and preview video from the FPGA for local monitoring independent of <a href="https://www.ros.org/">ROS 2</a>.</p>
 <h3 id="view-the-published-camera-stream">View the published camera stream<a class="headerlink" href="#view-the-published-camera-stream" title="Permanent link">¶</a></h3>
@@ -11972,10 +11938,10 @@ Note that the container is run with host networking passthrough mode so the boar
 <p class="admonition-title">Note</p>
 <p>An internet connection is required to run the following commands.</p>
 </div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>alterafpga/ros2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>alterafpga/ros2
 </code></pre></div>
 <p>Next launch the <code>rqt_image_view</code> application in a <a href="https://docs.docker.com/engine/install/">Docker</a> container on your host PC using the following command:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>rocker<span class="w"> </span>--x11<span class="w"> </span>--devices<span class="w"> </span>/dev/dri<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>alterafpga/ros2<span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>rqt_image_view<span class="w"> </span>rqt_image_view<span class="w"> </span>/image_raw
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>rocker<span class="w"> </span>--x11<span class="w"> </span>--devices<span class="w"> </span>/dev/dri<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>alterafpga/ros2<span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>rqt_image_view<span class="w"> </span>rqt_image_view<span class="w"> </span>/image_raw
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -12120,7 +12086,7 @@ the Khronos Group™.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 6, 2026 23:43:22 UTC">August 6, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 10, 2026 18:49:41 UTC">August 10, 2026</span>
   </span>
 
     
