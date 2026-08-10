@@ -41,27 +41,6 @@
 
 
 
-
-[AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_3x2_axis.xml]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/26.1/HPS_NIOSVg_DoC_3x2_axis/AGX_5E_Modular_Devkit_HPS_NIOSVg_DoC_3x2_axis.xml
-[6-axis Drive-on-Chip design]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/tree/main/HPS_NIOSVg_DoC_3x2_axis
-[ROS Control hardware interface]: https://github.com/altera-fpga/altera-ros2/tree/main/fpga_doc_control_driver
-[MoveIt client]: https://github.com/altera-fpga/altera-ros2/tree/main/examples/moveit_demo_client
-[Altera ROS 2]: https://github.com/altera-fpga/altera-ros2
-[lite6_moveit_demo.launch.py]: https://github.com/altera-fpga/altera-ros2/blob/main/examples/moveit_demo_client/launch/lite6_moveit_demo.launch.py
-
-
-[wic.gz]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-crc-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.gz
-[wic.bmap]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-crc-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.bmap
-[top.hps.jic]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-crc-26.1/top.hps.jic
-
-
-[ROS 2]: https://www.ros.org/
-[MoveIt2]: https://moveit.ai/
-[Docker]: https://docs.docker.com/engine/install/
-[UFACTORY Lite 6 robot arm]: https://www.ufactory.cc/lite-6-collaborative-robot/
-[Rocker]: https://github.com/osrf/rocker
-
-
 # ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices
 
 ## Overview
@@ -172,47 +151,6 @@ Prebuilt binaries are provided to help get the example design running quickly. Y
 <br>
 
 
-
-
-### SD Card Image Flashing
-
-* Download SD card image (`.wic` or `.wic.gz`) from the prebuilt binary links above.
-* Write the `.wic` or `.wic.gz` SD card image to the micro SD card using one of the options below.
-* Turn off the board and insert the SD card in the micro SD card slot on the SOM board.
-
-#### [USBImager](https://bztsrc.gitlab.io/usbimager/) (Windows, Linux, Mac OS)
-
-* Open [USBImager](https://bztsrc.gitlab.io/usbimager/) and click the `...` button in the top right.
-* Select the image you downloaded earlier and click `Open`.
-* Next select the device associated with your SD card reader from the drop-down list.
-* Click `Write` to start flashing.
-
-#### [bmaptool](https://github.com/yoctoproject/bmaptool) (Linux)
-
-!!! note
-    You will require a `.wic.bmap` file in addition to the `.wic` or `.wic.gz` in order to use `bmaptool`. If this is not available use `USBImager`.
-
-On many distributions `bmap-tools` can be installed using your distros package manager (e.g. `sudo apt install bmap-tools`).
-
-For more information see the [Yocto documentation](https://docs.yoctoproject.org/dev-manual/bmaptool.html) for `bmaptool`.
-
-First of all determine the device `logical name` associated with the SD card on your host:
-
-```
-sudo lshw -class disk
-```
-
-Use `bmaptool` to copy the image to the SD card. Make sure the `wic` image file and `bmap` file are in the same directory.
-
-```
-sudo bmaptool copy ${IMAGE} ${DEVICE}
-```
-
-For example:
-
-```
-sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aea.wic.gz /dev/sda
-```
 
 
 ### Flash The QSPI

@@ -172,18 +172,18 @@ You can use the pre-built binaries for reference:
 
 | Boot Source | Link |
 | ---------------------------------- | ---- |
-| Pre-built microSD Card Image for RBF MDT Flow | [hps-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz](https://github.com/altera-fpga/agilex-ed-camera-ai/releases/download/rel-25.1/hps-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz) |
-| Pre-built HPS First `.rbf` file | [top.core.rbf](https://github.com/altera-fpga/agilex-ed-camera-ai/releases/download/rel-25.1/top.core.rbf) |
-| Pre-built `.jic` file | [top.core.jic](https://github.com/altera-fpga/agilex-ed-camera-ai/releases/download/rel-25.1/top.core.jic) |
+| Pre-built microSD Card Image for RBF MDT Flow | [hps-first-vvp-isp-demo-image-agilex5_mk_a5e065bb32aes1.wic.gz] |
+| Pre-built HPS First `.rbf` file | [top.core.rbf] |
+| Pre-built `.jic` file | [top.core.jic] |
 
 </center>
 
 ## HW Compilation
-Use the **[RBF Modular Design Toolkit (MDT) Flow](https://github.com/altera-fpga/agilex-ed-camera-ai/blob/rel-25.1/README.md#create-the-design-using-the-modular-design-toolkit-mdt)** to create and build the
+Use the **[RBF Modular Design Toolkit (MDT) Flow]** to create and build the
 FPGA Design.
 
 ## SW Compilation
-Use the **[Create microSD card image (.wic.gz) using YOCTO/KAS](https://github.com/altera-fpga/agilex-ed-camera-ai/blob/rel-25.1/sw/README.md)** flow to
+Use the **[Create microSD card image (.wic.gz) using YOCTO/KAS]** flow to
 create the microSD card image.
 
 !!! NOTE "Note"
@@ -272,7 +272,7 @@ create the microSD card image.
   tar -xzf `<name>.wic.gz`
   ```
 
-  * On Windows, use the [7-Zip](https://www.7-zip.org) program (or similar):
+  * On Windows, use the [7-Zip] program (or similar):
     * Right click `<name>.wic.gz` file, and select "Extract All..."
 
 * Write the `<name>.wic` image to the microSD card using a USB writer:
@@ -288,7 +288,7 @@ create the microSD card image.
   sync
   ```
 
-  * On Windows, use the [Win32DiskImager](https://sourceforge.net/projects/win32diskimager) program (or similar):
+  * On Windows, use the [Win32DiskImager] program (or similar):
     * Click browse icon and select "\*.\*" filter:
 
     ![disk-imager-browse](../common/images/disk-imager-browse.png){:style="display:block; margin-left:auto; margin-right:auto"}
