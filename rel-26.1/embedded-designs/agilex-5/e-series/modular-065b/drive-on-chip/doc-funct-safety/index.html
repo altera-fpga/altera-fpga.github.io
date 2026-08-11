@@ -11695,9 +11695,8 @@ Example for Agilex™ 7 Devices.</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="images/HW/top-block-diagram.png" data-desc-position="bottom"><img alt="top-block-diagram" src="images/HW/top-block-diagram.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**High-Level Block Diagram of the Drive-On-Chip <br>
-with Functional Safety Design Example.**
+<p><strong>High-Level Block Diagram of the Drive-On-Chip <br>
+with Functional Safety Design Example.</strong></p>
 </center>
 <p><br></p>
 <p>The blocks in yellow belong to the original Drive-On-Chip Design Example for
@@ -11710,11 +11709,9 @@ hardware components in this example design.</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="images/top-sw-hw.png" data-desc-position="bottom"><img alt="top-sw-hw" src="images/top-sw-hw.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**High-Level HW/SW Block Diagram of the Drive-On-Chip<br>
-with Functional Safety Design Example.**
+<p><strong>High-Level HW/SW Block Diagram of the Drive-On-Chip<br>
+with Functional Safety Design Example.</strong></p>
 </center>
-
 <h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">¶</a></h2>
 <h3 id="software-requirements-to-run">Software Requirements to run<a class="headerlink" href="#software-requirements-to-run" title="Permanent link">¶</a></h3>
 <p>The following are required to be able to fully exercise the Agilex™ 5 Modular
@@ -11768,8 +11765,7 @@ Development Kit:</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../common/images/Agx5-MDK.png" data-desc-position="bottom"><img alt="Agx5-MDK" src="../common/images/Agx5-MDK.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Agilex™ 5 FPGA E-Series 065B Modular Development Kit.**
+<p><strong>Agilex™ 5 FPGA E-Series 065B Modular Development Kit.</strong></p>
 </center>
 <p><br></p>
 <h4 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">¶</a></h4>
@@ -11779,21 +11775,54 @@ building blocks for production environments. This is an example design not
 ready for production or end-production.</p>
 <p><br></p>
 <center>
-
-**Example Design Source Repositories.**
-
-|Component|Location|Branch|
-|-|-|-|
-|Assets Release Tag|[https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-safety-26.1](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-safety-26.1)| rel-safety-26.1|
-|Drive-On-Chip Variants|[https://github.com/altera-fpga/agilex-ed-drive-on-chip](https://github.com/altera-fpga/agilex-ed-drive-on-chip)|rel/26.1|
-|Modular Design Toolkit|[https://github.com/altera-fpga/modular-design-toolkit](https://github.com/altera-fpga/modular-design-toolkit)|re/26.1|
-|Linux|[https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga)|socfpga-6.18.2-lts|
-|Arm Trusted Firmware|[https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware)|socfpga_v2.14.0|
-|U-Boot|[https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga)|socfpga_v2026.01|
-|Yocto Project: poky|[https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky)|scarthgap|
-
+<p><strong>Example Design Source Repositories.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Location</th>
+<th>Branch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assets Release Tag</td>
+<td><a href="https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-safety-26.1">https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/tag/rel-safety-26.1</a></td>
+<td>rel-safety-26.1</td>
+</tr>
+<tr>
+<td>Drive-On-Chip Variants</td>
+<td><a href="https://github.com/altera-fpga/agilex-ed-drive-on-chip">https://github.com/altera-fpga/agilex-ed-drive-on-chip</a></td>
+<td>rel/26.1</td>
+</tr>
+<tr>
+<td>Modular Design Toolkit</td>
+<td><a href="https://github.com/altera-fpga/modular-design-toolkit">https://github.com/altera-fpga/modular-design-toolkit</a></td>
+<td>re/26.1</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td><a href="https://github.com/altera-fpga/linux-socfpga">https://github.com/altera-fpga/linux-socfpga</a></td>
+<td>socfpga-6.18.2-lts</td>
+</tr>
+<tr>
+<td>Arm Trusted Firmware</td>
+<td><a href="https://github.com/altera-fpga/arm-trusted-firmware">https://github.com/altera-fpga/arm-trusted-firmware</a></td>
+<td>socfpga_v2.14.0</td>
+</tr>
+<tr>
+<td>U-Boot</td>
+<td><a href="https://github.com/altera-fpga/u-boot-socfpga">https://github.com/altera-fpga/u-boot-socfpga</a></td>
+<td>socfpga_v2026.01</td>
+</tr>
+<tr>
+<td>Yocto Project: poky</td>
+<td><a href="https://git.yoctoproject.org/poky">https://git.yoctoproject.org/poky</a></td>
+<td>scarthgap</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <h2 id="getting-started-run-with-pre-build-binaries">Getting Started - run with pre-build binaries<a class="headerlink" href="#getting-started-run-with-pre-build-binaries" title="Permanent link">¶</a></h2>
 <p>Follow the instructions provided in this section to run this example design in
 Agilex™ 5 FPGA E-Series 065B Modular Development Kit.</p>
@@ -11802,17 +11831,30 @@ Agilex™ 5 FPGA E-Series 065B Modular Development Kit.</p>
 <li>Download the Agilex™ 5 Modular Development Kit binaries that are located at:</li>
 </ul>
 <center>
-
-**Binaries**
-
-| Boot Source            | Link |
-| ---------------------- | ---- |
-| SD Card                | [wic.gz](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.gz), [wic.bmap](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.bmap) |
-| QSPI                   | [top.hps.jic](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/top.hps.jic) |
-| GUI                    | [doc-gui.zip](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/doc-gui_1.0.0.zip) |
-
+<p><strong>Binaries</strong></p>
+<table>
+<thead>
+<tr>
+<th>Boot Source</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SD Card</td>
+<td><a href="https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.gz">wic.gz</a>, <a href="https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.bmap">wic.bmap</a></td>
+</tr>
+<tr>
+<td>QSPI</td>
+<td><a href="https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/top.hps.jic">top.hps.jic</a></td>
+</tr>
+<tr>
+<td>GUI</td>
+<td><a href="https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/doc-gui_1.0.0.zip">doc-gui.zip</a></td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <h3 id="setting-up-your-development-board">Setting Up your Development Board<a class="headerlink" href="#setting-up-your-development-board" title="Permanent link">¶</a></h3>
 <ul>
 <li>Configure the board switches:
@@ -11821,8 +11863,7 @@ Agilex™ 5 FPGA E-Series 065B Modular Development Kit.</p>
 </ul>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../common/images/board-1.png" data-desc-position="bottom"><img alt="board-1" src="../common/images/board-1.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Development Board switch position**
+<p><strong>Development Board switch position</strong></p>
 </center>
 <p><br></p>
 <div class="admonition note">
@@ -11845,8 +11886,7 @@ ASx4 (QSPI):  SOM SW1[1:0]=ON:ON</p>
 </ul>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../common/images/Agx5-MDK-Conn.png" data-desc-position="bottom"><img alt="Agx-MDK-Conn" src="../common/images/Agx5-MDK-Conn.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**USB connections to the board**
+<p><strong>USB connections to the board</strong></p>
 </center>
 <p><br></p>
 <h3 id="sd-card-image-flashing">SD Card Image Flashing<a class="headerlink" href="#sd-card-image-flashing" title="Permanent link">¶</a></h3>
@@ -11936,8 +11976,7 @@ ASx4 (QSPI):  SOM SW1[1:0]=ON:ON</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="images/HPSSafety.png" data-desc-position="bottom"><img alt="HPSSafety" src="images/HPSSafety.png" style="display:block; margin-left:auto; margin-right:auto;"></a></p>
 <center>
-
-**HPS Safety Function Serial Port Printing.**
+<p><strong>HPS Safety Function Serial Port Printing.</strong></p>
 </center>
 <p><br></p>
 <ul>
@@ -11963,9 +12002,8 @@ ASx4 (QSPI):  SOM SW1[1:0]=ON:ON</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../common/images/GUI-1.png" data-desc-position="bottom"><img alt="GUI-1" src="../common/images/GUI-1.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Select the Agilex™ device in
-the JTAG Device dropdown menu.**
+<p><strong>Select the Agilex™ device in
+the JTAG Device dropdown menu.</strong></p>
 </center>
 <p><br></p>
 <ul>
@@ -11978,8 +12016,7 @@ the JTAG Device dropdown menu.**
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="images/GUI-2.png" data-desc-position="bottom"><img alt="GUI-2" src="images/GUI-2.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Safety Function Tab.**
+<p><strong>Safety Function Tab.</strong></p>
 </center>
 <p><br></p>
 <h3 id="looking-into-the-drive-on-chip-output"><strong>Looking into the Drive-On-Chip Output.</strong><a class="headerlink" href="#looking-into-the-drive-on-chip-output" title="Permanent link">¶</a></h3>
@@ -11994,8 +12031,7 @@ the output from the drive-on-chip application that runs in the Nios V/g processo
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../common/images/nios-1.png" data-desc-position="bottom"><img alt="nios-1" src="../common/images/nios-1.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Nios V/g Drive-on-chip application output.**
+<p><strong>Nios V/g Drive-on-chip application output.</strong></p>
 </center>
 <p><br></p>
 <h2 id="recommended-user-flows">Recommended User Flows<a class="headerlink" href="#recommended-user-flows" title="Permanent link">¶</a></h2>
@@ -12008,18 +12044,34 @@ design example. Additionally, there are two extra user flows that you can explor
   Toolkit (MDT) and KAS.</li>
 </ul>
 <center>
-
-**More resources.**
-
-| Source | Link |
-| ---------------------------------- | ---- |
-| Pre-created QAR file               | [DOC_SAFETY_TANDEM_MOTORSIM_AGILEX5.qar](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/DOC_SAFETY_TANDEM_MOTORSIM_AGILEX5.qar) |
-| JIC/RBF files                      | [top.hps.jic](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/top.hps.jic) <br> [top.core.rbf](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/top.core.rbf) |
-| u-boot-spl-dtb.hex                 | [u-boot-spl-dtb.hex](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/u-boot-spl-dtb.hex) |
-| HPS Channel Safety Application     | [hpssafechannel_1.0.tar.gz](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/hpssafechannel_1.0.tar.gz)|
-
+<p><strong>More resources.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pre-created QAR file</td>
+<td><a href="https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/DOC_SAFETY_TANDEM_MOTORSIM_AGILEX5.qar">DOC_SAFETY_TANDEM_MOTORSIM_AGILEX5.qar</a></td>
+</tr>
+<tr>
+<td>JIC/RBF files</td>
+<td><a href="https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/top.hps.jic">top.hps.jic</a> <br> <a href="https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/top.core.rbf">top.core.rbf</a></td>
+</tr>
+<tr>
+<td>u-boot-spl-dtb.hex</td>
+<td><a href="https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/u-boot-spl-dtb.hex">u-boot-spl-dtb.hex</a></td>
+</tr>
+<tr>
+<td>HPS Channel Safety Application</td>
+<td><a href="https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-safety-26.1/hpssafechannel_1.0.tar.gz">hpssafechannel_1.0.tar.gz</a></td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <style>
 r { color: Red; font-weight: bold; }
 o { color: Orange; font-weight: bold;}
@@ -12027,29 +12079,126 @@ g { color: Green; font-weight: bold; }
 </style>
 
 <center>
-
-**Recommended User Flows.**
-
- |User Flow     |Description| User flow 1 | User flow 2 | User flow 3 |
- |--------------|---------------------------------------------------------------------------------------------------|:------------:|:------------:|:------------:|
- |Pre-requisites| [Software Requirements to run.](#software-requirements-to-run)                                    |<g>✓</g>|<g>✓</g>|<g>✓</g>|
- |              | [Software Requirements to build.](#software-requirements-to-build)                                |<r>✗</r>|<g>✓</g>|<g>✓</g>|
- |              | [Hardware Requirements.](#hardware-requirements)                                                  |<g>✓</g>|<g>✓</g>|<g>✓</g>|
- |              | [Download the minimum Pre-built Binaries.](#download-the-minimum-pre-built-binaries)              |<g>✓</g>|<r>✗</r>|<r>✗</r>|
- |HW-Compilation| [Compile pre-created QAR with Quartus®.](https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety/other-user-flow/#compiling-the-project-using-a-mdt-qar-file)     |<r>✗</r>|<g>✓</g>|<r>✗</r>|
- |              | [Generating and Building the NiosV/g BSP for the Drive-On-Chip Application.](https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety/other-user-flow/#compiling-and-building-the-niosv-application-and-bsp)     |<r>✗</r>|<g>✓</g>|<r>✗</r>|
- |              | [Creating and Building the Design based on Modular Design Toolkit (MDT).](https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/26.1/HPS_NIOSVg_DoC_Safety_dual_axis/Readme.md)                         |<r>✗</r>|<r>✗</r>|<g>✓</g>|
- |              | [Creating the QSPI Flash and SD card configuration bitstreams for the board (JIC/RBF).](https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety/other-user-flow/#creating-the-qspi-flash-and-sd-card-configuration-bitstreams-for-the-board) <br> <r>Warning!</r>: this procedure requires a `u-boot-spl-dtb.hex` file, which is generated in the step below. |<r>✗</r>|<g>✓</g>|<g>✓</g>|
- |SW-Compilation| [Create SD card image (.wic) using YOCTO/KAS](https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/26.1/sw/README.md) <br> <r>NOTE</r>: use <g>**KAS_MACHINE=agilex5_mk_a5e065bb32aea**</g> and <g>**kas_safety_dual_axis.yml**</g> configuration                                                                                                      |<r>✗</r>|<g>✓</g>|<g>✓</g>|
- |Programming   | [Setting Up your Development Board.](#setting-up-your-development-board)                          |<g>✓</g>|<g>✓</g>|<g>✓</g>|
- |              | [SD Card Image Flashing.](#sd-card-image-flashing)                                                |<g>✓</g>|<g>✓</g>|<g>✓</g>|
- |              | [Program the QSPI Flash Memory.](#flash-the-qspi)                                  |<g>✓</g>|<g>✓</g>|<g>✓</g>|
- |Testing       | [Run the example design.](#run-the-design-example)                                                |<g>✓</g>|<g>✓</g>|<g>✓</g>|
- |              | [Debugging and Monitoring the Safety Function.](#debugging-and-monitoring-the-safety-function)    |<g>✓</g>|<g>✓</g>|<g>✓</g>|
- |              | [Looking into the Drive-On-Chip Output.](#looking-into-the-drive-on-chip-output)                  |<g>✓</g>|<g>✓</g>|<g>✓</g>|
-
+<p><strong>Recommended User Flows.</strong></p>
+<table>
+<thead>
+<tr>
+<th>User Flow</th>
+<th>Description</th>
+<th style="text-align: center;">User flow 1</th>
+<th style="text-align: center;">User flow 2</th>
+<th style="text-align: center;">User flow 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pre-requisites</td>
+<td><a href="#software-requirements-to-run">Software Requirements to run.</a></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="#software-requirements-to-build">Software Requirements to build.</a></td>
+<td style="text-align: center;"><r>✗</r></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="#hardware-requirements">Hardware Requirements.</a></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="#download-the-minimum-pre-built-binaries">Download the minimum Pre-built Binaries.</a></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><r>✗</r></td>
+<td style="text-align: center;"><r>✗</r></td>
+</tr>
+<tr>
+<td>HW-Compilation</td>
+<td><a href="https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety/other-user-flow/#compiling-the-project-using-a-mdt-qar-file">Compile pre-created QAR with Quartus®.</a></td>
+<td style="text-align: center;"><r>✗</r></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><r>✗</r></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety/other-user-flow/#compiling-and-building-the-niosv-application-and-bsp">Generating and Building the NiosV/g BSP for the Drive-On-Chip Application.</a></td>
+<td style="text-align: center;"><r>✗</r></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><r>✗</r></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/26.1/HPS_NIOSVg_DoC_Safety_dual_axis/Readme.md">Creating and Building the Design based on Modular Design Toolkit (MDT).</a></td>
+<td style="text-align: center;"><r>✗</r></td>
+<td style="text-align: center;"><r>✗</r></td>
+<td style="text-align: center;"><g>✓</g></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-funct-safety/other-user-flow/#creating-the-qspi-flash-and-sd-card-configuration-bitstreams-for-the-board">Creating the QSPI Flash and SD card configuration bitstreams for the board (JIC/RBF).</a> <br> <r>Warning!</r>: this procedure requires a <code>u-boot-spl-dtb.hex</code> file, which is generated in the step below.</td>
+<td style="text-align: center;"><r>✗</r></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+</tr>
+<tr>
+<td>SW-Compilation</td>
+<td><a href="https://github.com/altera-fpga/agilex-ed-drive-on-chip/blob/rel/26.1/sw/README.md">Create SD card image (.wic) using YOCTO/KAS</a> <br> <r>NOTE</r>: use <g><strong>KAS_MACHINE=agilex5_mk_a5e065bb32aea</strong></g> and <g><strong>kas_safety_dual_axis.yml</strong></g> configuration</td>
+<td style="text-align: center;"><r>✗</r></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+</tr>
+<tr>
+<td>Programming</td>
+<td><a href="#setting-up-your-development-board">Setting Up your Development Board.</a></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="#sd-card-image-flashing">SD Card Image Flashing.</a></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="#flash-the-qspi">Program the QSPI Flash Memory.</a></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+</tr>
+<tr>
+<td>Testing</td>
+<td><a href="#run-the-design-example">Run the example design.</a></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="#debugging-and-monitoring-the-safety-function">Debugging and Monitoring the Safety Function.</a></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+</tr>
+<tr>
+<td></td>
+<td><a href="#looking-into-the-drive-on-chip-output">Looking into the Drive-On-Chip Output.</a></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+<td style="text-align: center;"><g>✓</g></td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <h2 id="example-design-documentation">Example Design Documentation<a class="headerlink" href="#example-design-documentation" title="Permanent link">¶</a></h2>
 <p>Drive-On-Chip with Functional Safety Design Example for Agilex™ 5 Devices</p>
 <ul>
@@ -12140,7 +12289,7 @@ the Khronos Group™.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 10, 2026 18:49:41 UTC">August 10, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 11, 2026 03:24:40 UTC">August 11, 2026</span>
   </span>
 
     

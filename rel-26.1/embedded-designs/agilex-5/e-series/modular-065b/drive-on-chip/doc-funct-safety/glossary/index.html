@@ -10951,44 +10951,138 @@
 
 <h1 id="drive-on-chip-with-functional-safety-design-example-for-agilextm-5-devices">Drive-On-Chip with Functional Safety Design Example for Agilex™ 5 Devices<a class="headerlink" href="#drive-on-chip-with-functional-safety-design-example-for-agilextm-5-devices" title="Permanent link">¶</a></h1>
 <center>
-
-**Acronyms and Terminology**
-
-| **Term**  | **Description**                                           |
-| :------:  | :-------------------------------------------------------- |
-| DoC       | Drive On Chip                                             |
-| FOC       | Field Oriented Control                                    |
-| QEP       | Quadrature Encoder Pulse                                  |
-| EMIF      | External Memory Interface                                 |
-| FPGA      | Field Programmable Gate Array                             |
-| BSP       | Board Support Package                                     |
-| IP        | Intellectual Property (hardware)                          |
-| DSP       | Digital Signal Processing                                 |
-| CAN       | Controller Area Network                                   |
-| GUI       | Graphical User Interface                                  |
-| JTAG      | Joint Test Action Group (industry standard for testing)   |
-| UART      | Universal Asynchronous Receiver-Transmitter               |
-| RAM       | Random Access Memory                                      |
-| SRT       | Safety Response Time                                      |
-| HPS       | Hard Processor System                                     |
-| ESL       | External Safety Logic                                     |
-| FUSA      | Functional Safety                                         |
-| APB       | Advance Peripheral Bus Interface                          |
-| AXI       | Advance eXtensible Interface bus protocol                 |
-| SDM       | Secure Device Manager                                     |
-| ADC       | Analog to Digital Converter                               |
-| HPS2FPGA  | Hard Processor System to FPGA, usually referring to a hardened memory-mapped bridge |
-| IRQ       | Interrupt Request                                         |
-| PD        | Usually used to refer to "Platform Designer               |
-| SPI       | Serial Peripheral Interface                               |
-| PIO       | Parallel Input/Output                                     |
-| DSP BA    | Used to refer to "DSP Builder Advanced tool               |
-| RTL       | Register Transfer Level                                   |
-| DTS       | Device Tree Source                                        |
-| DTB       | Device Tree Blob                                          |
-
+<p><strong>Acronyms and Terminology</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Term</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">DoC</td>
+<td style="text-align: left;">Drive On Chip</td>
+</tr>
+<tr>
+<td style="text-align: center;">FOC</td>
+<td style="text-align: left;">Field Oriented Control</td>
+</tr>
+<tr>
+<td style="text-align: center;">QEP</td>
+<td style="text-align: left;">Quadrature Encoder Pulse</td>
+</tr>
+<tr>
+<td style="text-align: center;">EMIF</td>
+<td style="text-align: left;">External Memory Interface</td>
+</tr>
+<tr>
+<td style="text-align: center;">FPGA</td>
+<td style="text-align: left;">Field Programmable Gate Array</td>
+</tr>
+<tr>
+<td style="text-align: center;">BSP</td>
+<td style="text-align: left;">Board Support Package</td>
+</tr>
+<tr>
+<td style="text-align: center;">IP</td>
+<td style="text-align: left;">Intellectual Property (hardware)</td>
+</tr>
+<tr>
+<td style="text-align: center;">DSP</td>
+<td style="text-align: left;">Digital Signal Processing</td>
+</tr>
+<tr>
+<td style="text-align: center;">CAN</td>
+<td style="text-align: left;">Controller Area Network</td>
+</tr>
+<tr>
+<td style="text-align: center;">GUI</td>
+<td style="text-align: left;">Graphical User Interface</td>
+</tr>
+<tr>
+<td style="text-align: center;">JTAG</td>
+<td style="text-align: left;">Joint Test Action Group (industry standard for testing)</td>
+</tr>
+<tr>
+<td style="text-align: center;">UART</td>
+<td style="text-align: left;">Universal Asynchronous Receiver-Transmitter</td>
+</tr>
+<tr>
+<td style="text-align: center;">RAM</td>
+<td style="text-align: left;">Random Access Memory</td>
+</tr>
+<tr>
+<td style="text-align: center;">SRT</td>
+<td style="text-align: left;">Safety Response Time</td>
+</tr>
+<tr>
+<td style="text-align: center;">HPS</td>
+<td style="text-align: left;">Hard Processor System</td>
+</tr>
+<tr>
+<td style="text-align: center;">ESL</td>
+<td style="text-align: left;">External Safety Logic</td>
+</tr>
+<tr>
+<td style="text-align: center;">FUSA</td>
+<td style="text-align: left;">Functional Safety</td>
+</tr>
+<tr>
+<td style="text-align: center;">APB</td>
+<td style="text-align: left;">Advance Peripheral Bus Interface</td>
+</tr>
+<tr>
+<td style="text-align: center;">AXI</td>
+<td style="text-align: left;">Advance eXtensible Interface bus protocol</td>
+</tr>
+<tr>
+<td style="text-align: center;">SDM</td>
+<td style="text-align: left;">Secure Device Manager</td>
+</tr>
+<tr>
+<td style="text-align: center;">ADC</td>
+<td style="text-align: left;">Analog to Digital Converter</td>
+</tr>
+<tr>
+<td style="text-align: center;">HPS2FPGA</td>
+<td style="text-align: left;">Hard Processor System to FPGA, usually referring to a hardened memory-mapped bridge</td>
+</tr>
+<tr>
+<td style="text-align: center;">IRQ</td>
+<td style="text-align: left;">Interrupt Request</td>
+</tr>
+<tr>
+<td style="text-align: center;">PD</td>
+<td style="text-align: left;">Usually used to refer to "Platform Designer</td>
+</tr>
+<tr>
+<td style="text-align: center;">SPI</td>
+<td style="text-align: left;">Serial Peripheral Interface</td>
+</tr>
+<tr>
+<td style="text-align: center;">PIO</td>
+<td style="text-align: left;">Parallel Input/Output</td>
+</tr>
+<tr>
+<td style="text-align: center;">DSP BA</td>
+<td style="text-align: left;">Used to refer to "DSP Builder Advanced tool</td>
+</tr>
+<tr>
+<td style="text-align: center;">RTL</td>
+<td style="text-align: left;">Register Transfer Level</td>
+</tr>
+<tr>
+<td style="text-align: center;">DTS</td>
+<td style="text-align: left;">Device Tree Source</td>
+</tr>
+<tr>
+<td style="text-align: center;">DTB</td>
+<td style="text-align: left;">Device Tree Blob</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p><br></p>
 <p><a class="md-button" href="../#example-design-documentation">Back to Documentation</a></p>
 

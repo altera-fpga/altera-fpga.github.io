@@ -11244,8 +11244,7 @@ described in the subsequent sections:</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/SW/top-sw.png" data-desc-position="bottom"><img alt="top-swm." src="../images/SW/top-sw.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Software Top Block Diagram.**
+<p><strong>Software Top Block Diagram.</strong></p>
 </center>
 <p><br></p>
 <p>In summary:</p>
@@ -11308,8 +11307,7 @@ different meta-layers provided above.</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/SW/device-tree.png" data-desc-position="bottom"><img alt="device-tree" src="../images/SW/device-tree.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Custom Device Tree Fragment.**
+<p><strong>Custom Device Tree Fragment.</strong></p>
 </center>
 <p><br></p>
 <p>You expand the device tree by appending the contents of the file
@@ -11352,8 +11350,7 @@ the files in the meta-layer).</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/SW/rbf-program.png" data-desc-position="bottom"><img alt="rbf-program" src="../images/SW/rbf-program.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**FPGA configuration during HPS booting process.**
+<p><strong>FPGA configuration during HPS booting process.</strong></p>
 </center>
 <p><br></p>
 <p>Look for the print <strong>"..... FPGA reconfiguration OK "</strong> during the device booting
@@ -11414,70 +11411,150 @@ servo motors through the Drive-on-Chip device.</p>
 <p>The following definitions and enumerations are enclosed in the namespace
 called <code>DoC</code>:</p>
 <center>
-
-**Definitions and Enums for servo Driver Program**
-
-| Definitions and Enums | Description |
-| :-------------------- | :---------- |
-| `RTMOTION`            | A macro defined at the beginning, likely indicating that the program is <br> part of the RTmotion library or framework|
-| `DRIVE_AXIS_PER_DEVICE`, `MAX_AXIS_NUM` | Constants defining the number of axes per device and the <br> maximum number of axes, respectively|
-| `WaveDemoMode`, `WaveDemoWaveform` | Enumerations defining different modes and waveforms for a wave demonstration feature|
-| `DebugRegister` | An enumeration listing various registers for debugging and controlling the <br> device. These registers cover a wide range <br> of functionalities, from general drive <br> status to specific control parameters|
-
+<p><strong>Definitions and Enums for servo Driver Program</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Definitions and Enums</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>RTMOTION</code></td>
+<td style="text-align: left;">A macro defined at the beginning, likely indicating that the program is <br> part of the RTmotion library or framework</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>DRIVE_AXIS_PER_DEVICE</code>, <code>MAX_AXIS_NUM</code></td>
+<td style="text-align: left;">Constants defining the number of axes per device and the <br> maximum number of axes, respectively</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>WaveDemoMode</code>, <code>WaveDemoWaveform</code></td>
+<td style="text-align: left;">Enumerations defining different modes and waveforms for a wave demonstration feature</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>DebugRegister</code></td>
+<td style="text-align: left;">An enumeration listing various registers for debugging and controlling the <br> device. These registers cover a wide range <br> of functionalities, from general drive <br> status to specific control parameters</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <h3 id="d1-uiodevice-class">d.1. "UIODevice" class<a class="headerlink" href="#d1-uiodevice-class" title="Permanent link">¶</a></h3>
 <p>Manages the interaction with a UIO device, including memory mapping and
 register access. The constructor <code>UIODevice</code> initializes the device
 and axis, checks for device and axis availability, and sets up memory
 mapping. The destructor <code>~UIODevice</code> cleans up the memory mapping.</p>
 <center>
-
-**Class Methods**
-
-| Method           | Description |
-| :--------------- | :---------- |
-| `Read`           | Reads a value from a specified register |
-| `Write`          | Writes a value to a specified register |
-| `GetDevicePath`  | Determines the device path for a given device name |
-| `IsAxisMapped`   | Checks if a specific axis is mapped for a given device |
-| `ReadSysHexVal`  | Reads a hexadecimal value from a system file |
-
+<p><strong>Class Methods</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>Read</code></td>
+<td style="text-align: left;">Reads a value from a specified register</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>Write</code></td>
+<td style="text-align: left;">Writes a value to a specified register</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>GetDevicePath</code></td>
+<td style="text-align: left;">Determines the device path for a given device name</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>IsAxisMapped</code></td>
+<td style="text-align: left;">Checks if a specific axis is mapped for a given device</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ReadSysHexVal</code></td>
+<td style="text-align: left;">Reads a hexadecimal value from a system file</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <h3 id="d2-docservo-class">d.2. "DoCServo" class<a class="headerlink" href="#d2-docservo-class" title="Permanent link">¶</a></h3>
 <p>Represents a servo motor controlled by the DoC device. The constructor
 <code>DoCServo</code> initializes the servo for a specific axis, checking if the
 axis is mapped and setting up the device. The destructor is empty.</p>
 <center>
-
-**Class Methods**
-
-| Method           | Description |
-| :--------------- | :---------- |
-| `setVel`         | Sets the target velocity for the servo |
-| `vel`            | Retrieves the current velocity from the device |
-| `runCycle`       | Updates the device with the current target <br> velocity and configures the wave demo settings |
-
+<p><strong>Class Methods</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Method</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>setVel</code></td>
+<td style="text-align: left;">Sets the target velocity for the servo</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>vel</code></td>
+<td style="text-align: left;">Retrieves the current velocity from the device</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>runCycle</code></td>
+<td style="text-align: left;">Updates the device with the current target <br> velocity and configures the wave demo settings</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <h3 id="d3-global-variables-and-functions">d.3. Global variables and functions<a class="headerlink" href="#d3-global-variables-and-functions" title="Permanent link">¶</a></h3>
 <center>
-
-| Variables and Functions | Description |
-| :---------------------- | :---------- |
-| **Global Variables**    ||
-| `config`                | Array of AxisConfig objects for configuring axes |
-| `servo`                 | Array of pointers to DoCServo objects |
-| `active_drives_num`     | Tracks the number of active drives |
-| **Global Functions**    ||
-| `initializeHardware`    | Initializes the hardware by setting up axes and servos, <br> and configuring them |
-| `finalizeHardware`      | Cleans up resources by deleting axes and servos |
-| `updateBuffersIn`       | Updates input buffers, running the cycle for each <br> active axis|
-| `updateBuffersOut`      | Placeholder function for updating output buffers |
-
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Variables and Functions</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Global Variables</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>config</code></td>
+<td style="text-align: left;">Array of AxisConfig objects for configuring axes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>servo</code></td>
+<td style="text-align: left;">Array of pointers to DoCServo objects</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>active_drives_num</code></td>
+<td style="text-align: left;">Tracks the number of active drives</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Global Functions</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>initializeHardware</code></td>
+<td style="text-align: left;">Initializes the hardware by setting up axes and servos, <br> and configuring them</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>finalizeHardware</code></td>
+<td style="text-align: left;">Cleans up resources by deleting axes and servos</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>updateBuffersIn</code></td>
+<td style="text-align: left;">Updates input buffers, running the cycle for each <br> active axis</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>updateBuffersOut</code></td>
+<td style="text-align: left;">Placeholder function for updating output buffers</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p>In summary the program in <code>agilex_doc.cpp</code> files is structured to manage
 and control servo motors using a UIO device interface. It sets up memory
 mapping for device registers, configures axes and servos, and provides
@@ -11499,8 +11576,7 @@ in a simplified API. The advantages include:</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/SW/plc-motion.png" data-desc-position="bottom"><img alt="plc-motion" src="../images/SW/plc-motion.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Example of PLCOpen Motion control functional block.**
+<p><strong>Example of PLCOpen Motion control functional block.</strong></p>
 </center>
 <p><br></p>
 <ul>
@@ -11558,47 +11634,125 @@ in the file <code>agilex_doc.st</code>. The program description is as follows:</
 <p>This function block is designed to control an on-off interval timer. It has
 the following components:</p>
 <center>
-
-**Function Block Description.**
-
-| Variable      | Description |
-| :------------ | :---------- |
-| **VAR_INPUT** |             |
-|`ON_TIME`      | A `TIME` variable specifying the duration for which the timer should be active |
-| `OFF_TIME`    | A `TIME` variable specifying the duration for which the timer should be inactive |
-| **VAR_OUTPUT**|             |
-| `ACTIVE`      | A `BOOL` variable indicating whether the timer is currently active|
-| **VAR**       |             |
-| `LATCH`       | An RS (Reset-Set) latch used to control the timing logic |
-| `ON_INTERVAL` | A TP (Timer Pulse) block that generates a pulse for the `ON_TIME`|
-| `OFF_INTERVAL`| A TOF (Timer Off Delay) block that manages the `OFF_TIME`|
-| **Logic**     |             |
-| `LATCH`       |It is set when the `OFF_INTERVAL` is not active and reset when the `ON_INTERVAL` is active|
-| `ON_INTERVAL` |It is triggered by the latch and runs for the `ON_TIME`|
-| `OFF_INTERVAL`|It starts when the `ON_INTERVAL` finishes and runs for the `OFF_TIME`|
-| `ACTIVE`      |The output is true when the `ON_INTERVAL` is active|
-
+<p><strong>Function Block Description.</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>VAR_INPUT</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ON_TIME</code></td>
+<td style="text-align: left;">A <code>TIME</code> variable specifying the duration for which the timer should be active</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>OFF_TIME</code></td>
+<td style="text-align: left;">A <code>TIME</code> variable specifying the duration for which the timer should be inactive</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>VAR_OUTPUT</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ACTIVE</code></td>
+<td style="text-align: left;">A <code>BOOL</code> variable indicating whether the timer is currently active</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>VAR</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>LATCH</code></td>
+<td style="text-align: left;">An RS (Reset-Set) latch used to control the timing logic</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ON_INTERVAL</code></td>
+<td style="text-align: left;">A TP (Timer Pulse) block that generates a pulse for the <code>ON_TIME</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>OFF_INTERVAL</code></td>
+<td style="text-align: left;">A TOF (Timer Off Delay) block that manages the <code>OFF_TIME</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Logic</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>LATCH</code></td>
+<td style="text-align: left;">It is set when the <code>OFF_INTERVAL</code> is not active and reset when the <code>ON_INTERVAL</code> is active</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ON_INTERVAL</code></td>
+<td style="text-align: left;">It is triggered by the latch and runs for the <code>ON_TIME</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>OFF_INTERVAL</code></td>
+<td style="text-align: left;">It starts when the <code>ON_INTERVAL</code> finishes and runs for the <code>OFF_TIME</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ACTIVE</code></td>
+<td style="text-align: left;">The output is true when the <code>ON_INTERVAL</code> is active</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <h3 id="g2-program-prog0">g.2 PROGRAM "prog0"<a class="headerlink" href="#g2-program-prog0" title="Permanent link">¶</a></h3>
 <p>This program utilizes the <code>OnOffIntervalTimer</code> function block to control
 two axes of a motor system. It includes:</p>
 <center>
-
-| Variable | Description |
-| :------- | :---------- |
-| **VAR** ||
-| `MOTOR_PULSE0`| An instance of `OnOffIntervalTimer` to manage the timing of motor pulses|
-| **VAR** ||
-| `AXIS_0_HALT`, `AXIS_1_HALT`| Instances of `MC_HALT` to stop the axes|
-| `AXIS_0_SET_VEL`, `AXIS_1_SET_VEL`| Instances of `MC_MOVEVELOCITY` to set the velocity of the axes|
-| `AXIS_0_READ_VEL`, `AXIS_1_READ_VEL`| Instances of `MC_READACTUALVELOCITY` to read the actual velocity of the axes|
-| `AXIS_0_POWER`, `AXIS_1_POWER`| Instances of `MC_POWER` to control the power state of the axes|
-| **VAR** ||
-| `AXIS_0_VELOCITY`, `AXIS_1_VELOCITY` | Real variables to store the actual velocity of each axis|
-
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>VAR</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>MOTOR_PULSE0</code></td>
+<td style="text-align: left;">An instance of <code>OnOffIntervalTimer</code> to manage the timing of motor pulses</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>VAR</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>AXIS_0_HALT</code>, <code>AXIS_1_HALT</code></td>
+<td style="text-align: left;">Instances of <code>MC_HALT</code> to stop the axes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>AXIS_0_SET_VEL</code>, <code>AXIS_1_SET_VEL</code></td>
+<td style="text-align: left;">Instances of <code>MC_MOVEVELOCITY</code> to set the velocity of the axes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>AXIS_0_READ_VEL</code>, <code>AXIS_1_READ_VEL</code></td>
+<td style="text-align: left;">Instances of <code>MC_READACTUALVELOCITY</code> to read the actual velocity of the axes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>AXIS_0_POWER</code>, <code>AXIS_1_POWER</code></td>
+<td style="text-align: left;">Instances of <code>MC_POWER</code> to control the power state of the axes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>VAR</strong></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>AXIS_0_VELOCITY</code>, <code>AXIS_1_VELOCITY</code></td>
+<td style="text-align: left;">Real variables to store the actual velocity of each axis</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <h4 id="g22-program-logic">g.2.2. Program Logic<a class="headerlink" href="#g22-program-logic" title="Permanent link">¶</a></h4>
 <ul>
 <li>Powers on both axes with positive and negative enable.</li>
@@ -11646,7 +11800,7 @@ on the timer's state.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 11, 2026 02:57:15 UTC">August 11, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 25, 2026 17:16:42 UTC">June 25, 2026</span>
   </span>
 
     

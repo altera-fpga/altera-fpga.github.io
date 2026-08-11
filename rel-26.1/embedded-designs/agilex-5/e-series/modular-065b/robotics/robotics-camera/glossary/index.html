@@ -10951,84 +10951,298 @@
 
 <h1 id="robotics-camera-system-example-design-acronyms-and-terminology">Robotics Camera System Example Design — Acronyms and Terminology<a class="headerlink" href="#robotics-camera-system-example-design-acronyms-and-terminology" title="Permanent link">¶</a></h1>
 <center>
-
-**Acronyms and Terminology**
-
-| **Term**                 | **Description** |
-| :----------------------: | :-------------- |
-|                          | **Platform and design methodology** |
-| AXI                      | Advanced eXtensible Interface — on-chip interconnect protocol used by HPS bridges and many IP cores |
-| BSP                      | Board Support Package — software support layer for embedded processors (Nios® V) |
-| CSR                      | Control and Status Registers — memory-mapped registers used to configure and monitor IP blocks |
-| EMIF                     | External Memory Interface — FPGA interface to external DDR memory used for frame buffering |
-| FPGA                     | Field-Programmable Gate Array — programmable logic device hosting the camera pipeline |
-| F2SDRAM                  | FPGA-to-SDRAM bridge — hardened path between FPGA logic and HPS-attached system memory |
-| Glass-to-glass           | End-to-end path from image sensor through FPGA processing to display output |
-| HPS                      | Hard Processor System — integrated ARM processors running Linux and application software |
-| HPS2FPGA                 | HPS-to-FPGA bridge — memory-mapped access from HPS into FPGA fabric |
-| IP                       | Intellectual Property — licensed or custom hardware blocks integrated in Platform Designer |
-| IRQ                      | Interrupt Request — signal from hardware to processor for event handling |
-| ISR                      | Interrupt Service Routine — software handler executed when an IRQ is asserted |
-| JTAG                     | Joint Test Action Group — industry-standard debug and programming interface |
-| MDT                      | Modular Design Toolkit — XML-driven flow to create and build Platform Designer systems from subsystems |
-| MIPI                     | Mobile Industry Processor Interface — standard for camera sensor and display interfaces |
-| Nios® V                  | Soft processor in FPGA fabric used for video pipeline control in this design |
-| PD                       | Platform Designer — Altera® system integration tool (formerly Qsys) |
-| PIP                      | Pixels In Parallel — number of parallel pixels processed per clock in streaming video IP |
-| QPDS                     | Quartus® Prime Design Software |
-| RTL                      | Register Transfer Level — hardware description level for FPGA design |
-| SoC                      | System-on-Chip — device combining processors and FPGA in one package |
-| UART                     | Universal Asynchronous Receiver-Transmitter — serial console interface |
-|                          | **Vision, ISP, and display** |
-| AE                       | Auto Exposure — automatic adjustment of exposure time/gain |
-| AWB                      | Auto White Balance — automatic color balance correction |
-| Bayer                    | Raw sensor format where each pixel is one of R, G, or B (CFA pattern) |
-| BLC                      | Black Level Correction — offset correction for sensor black level |
-| BLS                      | Black Level Statistics — hardware statistics used to guide BLC/AE |
-| CCM                      | Color Correction Matrix — color transformation matrix in the ISP pipeline |
-| CFA                      | Color Filter Array — sensor color filter layout (often Bayer) |
-| Clipper                  | Video IP block that crops the active region of a frame |
-| CSC                      | Color Space Converter — converts between color spaces (for example RGB to grayscale) |
-| CSI-2                    | MIPI Camera Serial Interface — packetized protocol for image data from sensors |
-| Demosaic (DMS)           | Reconstruction of full-color pixels from Bayer CFA data |
-| DisplayPort (DP)         | Digital display interface standard used for local video output |
-| D-PHY                    | MIPI physical layer for high-speed serial camera/display links |
-| FPS                      | Frames Per Second — video frame rate |
-| FRAMOS IMX678            | Framos FSM:GO IMX678C Camera Modules: sensor used on the modular development kit MIPI connector |
-| HDR                      | High Dynamic Range — imaging with extended luminance range (not used in ISP Lite path) |
-| HS                       | Histogram Statistics — pixel distribution stats for AE/AWB loops |
-| ISP                      | Image Signal Processor — pipeline block(s) for raw-to-processed video |
-| ISP In                   | Platform Designer subsystem selecting live Bayer input or test-pattern path |
-| ISP Lite                 | Streamlined ISP variant — BLC, white balance, demosaic, and CCM in this design |
-| ISP Lite Out             | Output stage of ISP Lite feeding ISP Robotics and the display path |
-| ISP Out                  | Platform Designer subsystem buffering the 4K RGB path, mixer, and DisplayPort TX |
-| ISP Robotics             | Robotics-oriented processing between ISP Lite and display — clip/scale, grayscale, frame buffer, and mixer inputs |
-| LUT                      | Look-Up Table — 1D/3D tables for tone/color transforms |
-| Mixer                    | Video compositor combining full-resolution RGB, grayscale preview, and overlays |
-| MSGDMA                   | Modular Scatter-Gather DMA — DMA engine for frame transfers between FPGA EMIF and HPS memory |
-| OBR                      | Optical Black Region — sensor/optical black reference region |
-| Remosaic (RMS)           | Re-insertion of Bayer pattern from processed data (test-pattern debug path in ISP In) |
-| RGB                      | Red, Green, Blue — processed video color format on the main display path |
-| Scaler                   | Video IP block that resizes frames (for example 4K to 1080p and 540p branches) |
-| TMO                      | Tone Mapping Operator — HDR tone reproduction (full camera solution designs) |
-| TPG                      | Test Pattern Generator — synthetic video source for debug without a sensor |
-| UHD                      | Ultra-High Definition — typically 4K (3840×2160) in this design |
-| VVP                      | Video and Vision Processing — Altera® IP suite for camera/vision pipelines |
-| WBC                      | White Balance Correction — color gain adjustment in the ISP |
-|                          | **Software, robotics, and build flows** |
-| Docker                   | Container runtime used to deploy application on the HPS |
-| DTB                      | Device Tree Blob — compiled device tree consumed by Linux boot |
-| DTS                      | Device Tree Source — source description of hardware visible to Linux |
-| KAS                      | Tooling to orchestrate Yocto/OpenEmbedded builds from YAML manifests |
-| mono8                    | Single-channel 8-bit pixel encoding used by the robotics_camera package (`sensor_msgs/Image`) |
-| robotics_camera          | ROS 2 package and launch flow publishing grayscale frames from ISP Robotics to `/robotics_camera/image_raw` |
-| ROS / ROS 2              | Robot Operating System — middleware for perception, recording, and visualization |
-| RViz                     | ROS visualization tool for viewing `/robotics_camera/image_raw` and other topics |
-| sensor_msgs              | ROS 2 message package; this design publishes `sensor_msgs/msg/Image` |
-| Yocto                    | Embedded Linux build system used to produce the HPS `.wic` image |
-
+<p><strong>Acronyms and Terminology</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><strong>Term</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"><strong>Platform and design methodology</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">AXI</td>
+<td style="text-align: left;">Advanced eXtensible Interface — on-chip interconnect protocol used by HPS bridges and many IP cores</td>
+</tr>
+<tr>
+<td style="text-align: center;">BSP</td>
+<td style="text-align: left;">Board Support Package — software support layer for embedded processors (Nios® V)</td>
+</tr>
+<tr>
+<td style="text-align: center;">CSR</td>
+<td style="text-align: left;">Control and Status Registers — memory-mapped registers used to configure and monitor IP blocks</td>
+</tr>
+<tr>
+<td style="text-align: center;">EMIF</td>
+<td style="text-align: left;">External Memory Interface — FPGA interface to external DDR memory used for frame buffering</td>
+</tr>
+<tr>
+<td style="text-align: center;">FPGA</td>
+<td style="text-align: left;">Field-Programmable Gate Array — programmable logic device hosting the camera pipeline</td>
+</tr>
+<tr>
+<td style="text-align: center;">F2SDRAM</td>
+<td style="text-align: left;">FPGA-to-SDRAM bridge — hardened path between FPGA logic and HPS-attached system memory</td>
+</tr>
+<tr>
+<td style="text-align: center;">Glass-to-glass</td>
+<td style="text-align: left;">End-to-end path from image sensor through FPGA processing to display output</td>
+</tr>
+<tr>
+<td style="text-align: center;">HPS</td>
+<td style="text-align: left;">Hard Processor System — integrated ARM processors running Linux and application software</td>
+</tr>
+<tr>
+<td style="text-align: center;">HPS2FPGA</td>
+<td style="text-align: left;">HPS-to-FPGA bridge — memory-mapped access from HPS into FPGA fabric</td>
+</tr>
+<tr>
+<td style="text-align: center;">IP</td>
+<td style="text-align: left;">Intellectual Property — licensed or custom hardware blocks integrated in Platform Designer</td>
+</tr>
+<tr>
+<td style="text-align: center;">IRQ</td>
+<td style="text-align: left;">Interrupt Request — signal from hardware to processor for event handling</td>
+</tr>
+<tr>
+<td style="text-align: center;">ISR</td>
+<td style="text-align: left;">Interrupt Service Routine — software handler executed when an IRQ is asserted</td>
+</tr>
+<tr>
+<td style="text-align: center;">JTAG</td>
+<td style="text-align: left;">Joint Test Action Group — industry-standard debug and programming interface</td>
+</tr>
+<tr>
+<td style="text-align: center;">MDT</td>
+<td style="text-align: left;">Modular Design Toolkit — XML-driven flow to create and build Platform Designer systems from subsystems</td>
+</tr>
+<tr>
+<td style="text-align: center;">MIPI</td>
+<td style="text-align: left;">Mobile Industry Processor Interface — standard for camera sensor and display interfaces</td>
+</tr>
+<tr>
+<td style="text-align: center;">Nios® V</td>
+<td style="text-align: left;">Soft processor in FPGA fabric used for video pipeline control in this design</td>
+</tr>
+<tr>
+<td style="text-align: center;">PD</td>
+<td style="text-align: left;">Platform Designer — Altera® system integration tool (formerly Qsys)</td>
+</tr>
+<tr>
+<td style="text-align: center;">PIP</td>
+<td style="text-align: left;">Pixels In Parallel — number of parallel pixels processed per clock in streaming video IP</td>
+</tr>
+<tr>
+<td style="text-align: center;">QPDS</td>
+<td style="text-align: left;">Quartus® Prime Design Software</td>
+</tr>
+<tr>
+<td style="text-align: center;">RTL</td>
+<td style="text-align: left;">Register Transfer Level — hardware description level for FPGA design</td>
+</tr>
+<tr>
+<td style="text-align: center;">SoC</td>
+<td style="text-align: left;">System-on-Chip — device combining processors and FPGA in one package</td>
+</tr>
+<tr>
+<td style="text-align: center;">UART</td>
+<td style="text-align: left;">Universal Asynchronous Receiver-Transmitter — serial console interface</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"><strong>Vision, ISP, and display</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">AE</td>
+<td style="text-align: left;">Auto Exposure — automatic adjustment of exposure time/gain</td>
+</tr>
+<tr>
+<td style="text-align: center;">AWB</td>
+<td style="text-align: left;">Auto White Balance — automatic color balance correction</td>
+</tr>
+<tr>
+<td style="text-align: center;">Bayer</td>
+<td style="text-align: left;">Raw sensor format where each pixel is one of R, G, or B (CFA pattern)</td>
+</tr>
+<tr>
+<td style="text-align: center;">BLC</td>
+<td style="text-align: left;">Black Level Correction — offset correction for sensor black level</td>
+</tr>
+<tr>
+<td style="text-align: center;">BLS</td>
+<td style="text-align: left;">Black Level Statistics — hardware statistics used to guide BLC/AE</td>
+</tr>
+<tr>
+<td style="text-align: center;">CCM</td>
+<td style="text-align: left;">Color Correction Matrix — color transformation matrix in the ISP pipeline</td>
+</tr>
+<tr>
+<td style="text-align: center;">CFA</td>
+<td style="text-align: left;">Color Filter Array — sensor color filter layout (often Bayer)</td>
+</tr>
+<tr>
+<td style="text-align: center;">Clipper</td>
+<td style="text-align: left;">Video IP block that crops the active region of a frame</td>
+</tr>
+<tr>
+<td style="text-align: center;">CSC</td>
+<td style="text-align: left;">Color Space Converter — converts between color spaces (for example RGB to grayscale)</td>
+</tr>
+<tr>
+<td style="text-align: center;">CSI-2</td>
+<td style="text-align: left;">MIPI Camera Serial Interface — packetized protocol for image data from sensors</td>
+</tr>
+<tr>
+<td style="text-align: center;">Demosaic (DMS)</td>
+<td style="text-align: left;">Reconstruction of full-color pixels from Bayer CFA data</td>
+</tr>
+<tr>
+<td style="text-align: center;">DisplayPort (DP)</td>
+<td style="text-align: left;">Digital display interface standard used for local video output</td>
+</tr>
+<tr>
+<td style="text-align: center;">D-PHY</td>
+<td style="text-align: left;">MIPI physical layer for high-speed serial camera/display links</td>
+</tr>
+<tr>
+<td style="text-align: center;">FPS</td>
+<td style="text-align: left;">Frames Per Second — video frame rate</td>
+</tr>
+<tr>
+<td style="text-align: center;">FRAMOS IMX678</td>
+<td style="text-align: left;">Framos FSM:GO IMX678C Camera Modules: sensor used on the modular development kit MIPI connector</td>
+</tr>
+<tr>
+<td style="text-align: center;">HDR</td>
+<td style="text-align: left;">High Dynamic Range — imaging with extended luminance range (not used in ISP Lite path)</td>
+</tr>
+<tr>
+<td style="text-align: center;">HS</td>
+<td style="text-align: left;">Histogram Statistics — pixel distribution stats for AE/AWB loops</td>
+</tr>
+<tr>
+<td style="text-align: center;">ISP</td>
+<td style="text-align: left;">Image Signal Processor — pipeline block(s) for raw-to-processed video</td>
+</tr>
+<tr>
+<td style="text-align: center;">ISP In</td>
+<td style="text-align: left;">Platform Designer subsystem selecting live Bayer input or test-pattern path</td>
+</tr>
+<tr>
+<td style="text-align: center;">ISP Lite</td>
+<td style="text-align: left;">Streamlined ISP variant — BLC, white balance, demosaic, and CCM in this design</td>
+</tr>
+<tr>
+<td style="text-align: center;">ISP Lite Out</td>
+<td style="text-align: left;">Output stage of ISP Lite feeding ISP Robotics and the display path</td>
+</tr>
+<tr>
+<td style="text-align: center;">ISP Out</td>
+<td style="text-align: left;">Platform Designer subsystem buffering the 4K RGB path, mixer, and DisplayPort TX</td>
+</tr>
+<tr>
+<td style="text-align: center;">ISP Robotics</td>
+<td style="text-align: left;">Robotics-oriented processing between ISP Lite and display — clip/scale, grayscale, frame buffer, and mixer inputs</td>
+</tr>
+<tr>
+<td style="text-align: center;">LUT</td>
+<td style="text-align: left;">Look-Up Table — 1D/3D tables for tone/color transforms</td>
+</tr>
+<tr>
+<td style="text-align: center;">Mixer</td>
+<td style="text-align: left;">Video compositor combining full-resolution RGB, grayscale preview, and overlays</td>
+</tr>
+<tr>
+<td style="text-align: center;">MSGDMA</td>
+<td style="text-align: left;">Modular Scatter-Gather DMA — DMA engine for frame transfers between FPGA EMIF and HPS memory</td>
+</tr>
+<tr>
+<td style="text-align: center;">OBR</td>
+<td style="text-align: left;">Optical Black Region — sensor/optical black reference region</td>
+</tr>
+<tr>
+<td style="text-align: center;">Remosaic (RMS)</td>
+<td style="text-align: left;">Re-insertion of Bayer pattern from processed data (test-pattern debug path in ISP In)</td>
+</tr>
+<tr>
+<td style="text-align: center;">RGB</td>
+<td style="text-align: left;">Red, Green, Blue — processed video color format on the main display path</td>
+</tr>
+<tr>
+<td style="text-align: center;">Scaler</td>
+<td style="text-align: left;">Video IP block that resizes frames (for example 4K to 1080p and 540p branches)</td>
+</tr>
+<tr>
+<td style="text-align: center;">TMO</td>
+<td style="text-align: left;">Tone Mapping Operator — HDR tone reproduction (full camera solution designs)</td>
+</tr>
+<tr>
+<td style="text-align: center;">TPG</td>
+<td style="text-align: left;">Test Pattern Generator — synthetic video source for debug without a sensor</td>
+</tr>
+<tr>
+<td style="text-align: center;">UHD</td>
+<td style="text-align: left;">Ultra-High Definition — typically 4K (3840×2160) in this design</td>
+</tr>
+<tr>
+<td style="text-align: center;">VVP</td>
+<td style="text-align: left;">Video and Vision Processing — Altera® IP suite for camera/vision pipelines</td>
+</tr>
+<tr>
+<td style="text-align: center;">WBC</td>
+<td style="text-align: left;">White Balance Correction — color gain adjustment in the ISP</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"><strong>Software, robotics, and build flows</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">Docker</td>
+<td style="text-align: left;">Container runtime used to deploy application on the HPS</td>
+</tr>
+<tr>
+<td style="text-align: center;">DTB</td>
+<td style="text-align: left;">Device Tree Blob — compiled device tree consumed by Linux boot</td>
+</tr>
+<tr>
+<td style="text-align: center;">DTS</td>
+<td style="text-align: left;">Device Tree Source — source description of hardware visible to Linux</td>
+</tr>
+<tr>
+<td style="text-align: center;">KAS</td>
+<td style="text-align: left;">Tooling to orchestrate Yocto/OpenEmbedded builds from YAML manifests</td>
+</tr>
+<tr>
+<td style="text-align: center;">mono8</td>
+<td style="text-align: left;">Single-channel 8-bit pixel encoding used by the robotics_camera package (<code>sensor_msgs/Image</code>)</td>
+</tr>
+<tr>
+<td style="text-align: center;">robotics_camera</td>
+<td style="text-align: left;">ROS 2 package and launch flow publishing grayscale frames from ISP Robotics to <code>/robotics_camera/image_raw</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">ROS / ROS 2</td>
+<td style="text-align: left;">Robot Operating System — middleware for perception, recording, and visualization</td>
+</tr>
+<tr>
+<td style="text-align: center;">RViz</td>
+<td style="text-align: left;">ROS visualization tool for viewing <code>/robotics_camera/image_raw</code> and other topics</td>
+</tr>
+<tr>
+<td style="text-align: center;">sensor_msgs</td>
+<td style="text-align: left;">ROS 2 message package; this design publishes <code>sensor_msgs/msg/Image</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">Yocto</td>
+<td style="text-align: left;">Embedded Linux build system used to produce the HPS <code>.wic</code> image</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p><br></p>
 <p><a class="md-button" href="../#example-design-documentation">Back to Documentation</a></p>
 

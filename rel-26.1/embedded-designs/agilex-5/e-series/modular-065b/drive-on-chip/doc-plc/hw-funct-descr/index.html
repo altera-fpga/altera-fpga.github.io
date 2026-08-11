@@ -11075,8 +11075,7 @@ subsystems allow the system to work appropriately.</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/top-block-diagram.png" data-desc-position="bottom"><img alt="top-block-diagram." src="../images/HW/top-block-diagram.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Hardware Top Block Diagram.**
+<p><strong>Hardware Top Block Diagram.</strong></p>
 </center>
 <p><br></p>
 <p>The diagram is color-coded to match the Platform Designer view and the XML file
@@ -11086,8 +11085,7 @@ correlates the block diagram, the XML file and the Platform Designer view:</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/mdt-top.png" data-desc-position="bottom"><img alt="mdt-top" src="../images/HW/mdt-top.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Modular Design Tool Kit PD project vs XML file.**
+<p><strong>Modular Design Tool Kit PD project vs XML file.</strong></p>
 </center>
 <p><br></p>
 <h2 id="hardware-subsystems-and-components">Hardware Subsystems and Components<a class="headerlink" href="#hardware-subsystems-and-components" title="Permanent link">¶</a></h2>
@@ -11104,8 +11102,7 @@ They provide the clocks and resets for the other subsystems.</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/board-clk-sub-pd.png" data-desc-position="bottom"><img alt="board-clk-sub-pd" src="../images/HW/board-clk-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Board and Clock Subsystems PD sub-Blocks.**
+<p><strong>Board and Clock Subsystems PD sub-Blocks.</strong></p>
 </center>
 <p><br></p>
 <h3 id="b-hps-subsystem">b. HPS Subsystem<a class="headerlink" href="#b-hps-subsystem" title="Permanent link">¶</a></h3>
@@ -11124,8 +11121,7 @@ for the control loops, among other settings.</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/hps-sub-pd.png" data-desc-position="bottom"><img alt="hps-sub-pd" src="../images/HW/hps-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Hard Processor System (HPS) PD sub-Block.**
+<p><strong>Hard Processor System (HPS) PD sub-Block.</strong></p>
 </center>
 <p><br></p>
 <h3 id="c-cpu-dnios_-subsystem">c. CPU (dnios_) Subsystem<a class="headerlink" href="#c-cpu-dnios_-subsystem" title="Permanent link">¶</a></h3>
@@ -11137,8 +11133,7 @@ performance counters.</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/niosv-sub-pd.png" data-desc-position="bottom"><img alt="niosv-sub-pd" src="../images/HW/niosv-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**CPU Subsystem (NIOSV/g) PD sub-Blocks.**
+<p><strong>CPU Subsystem (NIOSV/g) PD sub-Blocks.</strong></p>
 </center>
 <p><br></p>
 <p>The ISR uses the memory blocks for code and data to ensure fast, predictable
@@ -11164,8 +11159,7 @@ and <a href="https://docs.altera.com/r/docs/823627/current/an-999-drive-on-chip-
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/drive-sub-pd.png" data-desc-position="bottom"><img alt="drive-sub-pd" src="../images/HW/drive-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Drive Subsystem PD sub-Blocks.**
+<p><strong>Drive Subsystem PD sub-Blocks.</strong></p>
 </center>
 <p><br></p>
 <h3 id="e-control-subsystem">e. Control Subsystem<a class="headerlink" href="#e-control-subsystem" title="Permanent link">¶</a></h3>
@@ -11180,8 +11174,7 @@ for debugging and external control.</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/control-sub-pd.png" data-desc-position="bottom"><img alt="control-sub-pd" src="../images/HW/control-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Control Subsystem PD sub-Blocks.**
+<p><strong>Control Subsystem PD sub-Blocks.</strong></p>
 </center>
 <p><br></p>
 <p>To interface directly with the Drive-On-Chip application for command
@@ -11189,14 +11182,25 @@ and configuration purposes, utilize the FULL HPS-to-FPGA Bridge base
 address along with the specified offsets (each being a 32-bit wide value).
 Be sure to account for the offset between the first and second axis.</p>
 <center>
-
-| Axis   | Offset from HPS bridge base |
-| :----: | :-------------------------- |
-| Axis0  | 0x0008_0000                 |
-| Axis1  | 0x0008_0108                 |
-
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Axis</th>
+<th style="text-align: left;">Offset from HPS bridge base</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Axis0</td>
+<td style="text-align: left;">0x0008_0000</td>
+</tr>
+<tr>
+<td style="text-align: center;">Axis1</td>
+<td style="text-align: left;">0x0008_0108</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In the previous table the address 0x0008_0000 is the base address
@@ -11207,32 +11211,139 @@ the second axis memory space initiates at 0x108).</p>
 <p>The user can interact with the motor control application by reading
 or writing to the following memory locations from the Axis* base.</p>
 <center>
-
-| Offset from Axis base | Register Name              | Read/Write | Description   |
-| :-------------------- | :------------------------- | :--------- | :------------ |
-|     0x00              | DOC_DBG_DRIVE_STATE        |    R       | State of the Drive System Monitor IP, refer to source code if the Drive-On-Chip <br> app running on NiosV for more details. |
-|     0x04              | DOC_DBG_RUNTIME            |    R       | Time in seconds the DoC App has been running. |
-|     0x08              | DOC_DBG_DSP_MODE           |    R       | Software (0x0) or DSP Builder IP (0x1) Field Oriented Control Algorithm execution. |
-|     0x0C              | DOC_DBG_APP_STATE          |    R       | Drive-On-Chip Embedded Software Application State, refer to source code if <br> the Drive-On-Chip app running on NiosV for more details. |
-|     0x10              | DOC_DBG_LATENCY1           |    R       | Latency of the FOC algorithm calculation. |
-|     0x28              | DOC_DBG_SPEED              |    R       | Measured Speed in RPM of the axis.|
-|     0x30              | DOC_DBG_POSITION           |    R       | Measured position of the encoder, need to decode the value to get degrees = \<value\> * 360 / 65536 |
-|     0x34              | DOC_DBG_BUTTON_DSP_MODE    |    R/W     | Software (0x0) or DSP Builder IP (0x1) Field Oriented Control Algorithm execution|
-|     0x38              | DOC_DBG_BUTTON_DRIVE_RESET |    R/W     | Write a 0x1 to the first axis of the array, to reset all axes controlled by a <br> single Nios, this register clears automatically. |
-|     0x3C              | DOC_DBG_DEMO_MODE          |    R/W     | Close-loop, Open-loop, with 16kHz, 32kHz and 64kHz variants, refer <br> to source code if the Drive-On-Chip app running on NiosV for more details. |
-|     0x48              | DOC_DBG_I_PI_KP            |    R/W     | Current Loop Proportional Gain. |
-|     0X4C              | DOC_DBG_I_PI_KI            |    R/W     | Current Loop Integral Gain. |
-|     0x50              | DOC_DBG_SPEED_PI_KP        |    R/W     | Speed Loop Proportional Gain. |
-|     0x54              | DOC_DBG_SPEED_PI_KI        |    R/W     | Speed Loop Integral Gain. |
-|     0x58              | DOC_DBG_SPEED_SETP0        |    R/W     | Speed set-point for the axis in RPM. |
-|     0x64              | DOC_DBG_POS_SETP0          |    R/W     | Position set-point. E.g: If you want 1500 degrees then write to the <br> memory location 1500 * 65536 / 360 = 273066 =&gt; 0x42AAA |
-|     0x74              | DOC_DBG_WAVE_DEMO_MODE     |    R/W     | Motor control mode 0x0 for speed mode, 0x1 for position mode. |
-|     0x78              | DOC_DBG_POS_SPEED_LIMIT    |    R/W     | Speed limit in position mode in RPM. |
-|     0x7C              | DOC_DBG_POS_PI_KP          |    R/W     | Position Loop Proportional Gain. |
-|     0xE0              | DOC_DBG_LATENCY2           |    R       | ISR Latency. |
-
-</value\></center>
-
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Offset from Axis base</th>
+<th style="text-align: left;">Register Name</th>
+<th style="text-align: left;">Read/Write</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">0x00</td>
+<td style="text-align: left;">DOC_DBG_DRIVE_STATE</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">State of the Drive System Monitor IP, refer to source code if the Drive-On-Chip <br> app running on NiosV for more details.</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x04</td>
+<td style="text-align: left;">DOC_DBG_RUNTIME</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">Time in seconds the DoC App has been running.</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x08</td>
+<td style="text-align: left;">DOC_DBG_DSP_MODE</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">Software (0x0) or DSP Builder IP (0x1) Field Oriented Control Algorithm execution.</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x0C</td>
+<td style="text-align: left;">DOC_DBG_APP_STATE</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">Drive-On-Chip Embedded Software Application State, refer to source code if <br> the Drive-On-Chip app running on NiosV for more details.</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x10</td>
+<td style="text-align: left;">DOC_DBG_LATENCY1</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">Latency of the FOC algorithm calculation.</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x28</td>
+<td style="text-align: left;">DOC_DBG_SPEED</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">Measured Speed in RPM of the axis.</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x30</td>
+<td style="text-align: left;">DOC_DBG_POSITION</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">Measured position of the encoder, need to decode the value to get degrees = \&lt;value&gt; * 360 / 65536</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x34</td>
+<td style="text-align: left;">DOC_DBG_BUTTON_DSP_MODE</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Software (0x0) or DSP Builder IP (0x1) Field Oriented Control Algorithm execution</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x38</td>
+<td style="text-align: left;">DOC_DBG_BUTTON_DRIVE_RESET</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Write a 0x1 to the first axis of the array, to reset all axes controlled by a <br> single Nios, this register clears automatically.</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x3C</td>
+<td style="text-align: left;">DOC_DBG_DEMO_MODE</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Close-loop, Open-loop, with 16kHz, 32kHz and 64kHz variants, refer <br> to source code if the Drive-On-Chip app running on NiosV for more details.</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x48</td>
+<td style="text-align: left;">DOC_DBG_I_PI_KP</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Current Loop Proportional Gain.</td>
+</tr>
+<tr>
+<td style="text-align: left;">0X4C</td>
+<td style="text-align: left;">DOC_DBG_I_PI_KI</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Current Loop Integral Gain.</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x50</td>
+<td style="text-align: left;">DOC_DBG_SPEED_PI_KP</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Speed Loop Proportional Gain.</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x54</td>
+<td style="text-align: left;">DOC_DBG_SPEED_PI_KI</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Speed Loop Integral Gain.</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x58</td>
+<td style="text-align: left;">DOC_DBG_SPEED_SETP0</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Speed set-point for the axis in RPM.</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x64</td>
+<td style="text-align: left;">DOC_DBG_POS_SETP0</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Position set-point. E.g: If you want 1500 degrees then write to the <br> memory location 1500 * 65536 / 360 = 273066 =&gt; 0x42AAA</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x74</td>
+<td style="text-align: left;">DOC_DBG_WAVE_DEMO_MODE</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Motor control mode 0x0 for speed mode, 0x1 for position mode.</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x78</td>
+<td style="text-align: left;">DOC_DBG_POS_SPEED_LIMIT</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Speed limit in position mode in RPM.</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x7C</td>
+<td style="text-align: left;">DOC_DBG_POS_PI_KP</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Position Loop Proportional Gain.</td>
+</tr>
+<tr>
+<td style="text-align: left;">0xE0</td>
+<td style="text-align: left;">DOC_DBG_LATENCY2</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">ISR Latency.</td>
+</tr>
+</tbody>
+</table>
+</center>
 <p>For other values, refer to the source code of the Drive-On-Chip app running on NiosV for more details.
 <br></p>
 <p>The resulting addressing formula is as the following:  <code>Target = HPS_bridge_base + Debug_Memory_Base + (Axis_Number * Axis_Mem_Space_Span) + Offset_from_Axis_Base_Reg</code>. Where <code>Axis_Mem_Space_Span</code> is <code>0x108</code>.</p>
@@ -11278,7 +11389,7 @@ the motor_model_subsystem in this design.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 11, 2026 02:57:15 UTC">August 11, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 25, 2026 17:16:42 UTC">June 25, 2026</span>
   </span>
 
     

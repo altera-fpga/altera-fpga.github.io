@@ -10938,6 +10938,122 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Safety IP Input and Output Signals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drive-on-chip-safety-interface-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Drive-on-chip Safety Interface Signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drive-on-chip-safety-function-interface-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Drive-on-chip Safety Function Interface Signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#axi-to-apb-block-interface-signals-platform-designer-block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AXI to APB block Interface Signals (Platform Designer Block)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heartbeat-generator-interface-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heartbeat Generator Interface Signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#speed-estimator-block-interface-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Speed Estimator block Interface Signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#payload-generator-block-interface-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Payload Generator block Interface Signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-comparison-function-block-interface-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-comparison Function block Interface Signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quadrature-encoder-pulse-block-interface-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quadrature Encoder Pulse block Interface Signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-safety-logic-interface-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Safety Logic Interface Signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-block-interface-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware block Interface Signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -10948,6 +11064,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Safety IP Registers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#speed-estimator-block-registers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Speed Estimator Block Registers.
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -10985,223 +11118,677 @@
 Design Example for Agilex™ 5 devices.</p>
 <p><br></p>
 <center>
-
-### Drive-on-chip Safety Interface Signals
-
-| Port name | Polarity | Description     |
-| :-------- |:--------:| :-------------- |
-| clk                         | Input    | Clock. Asynchronous to any other clock                                      |
-| reset_n                     | Input    | Active low reset. Asynchronous to any other resets.                         |
-| reset_safety_n_i            | Input    | Reset to get out of the safe state                                          |
-| reset_safety_n_o            | Output   | Reset to get out of the safe state                                          |
-| reset_safety_mem_n_o        | Output   | Extension of `reset_safety_n` for memory safe state clearance               |
-| qep_count [31 : 0]          | Input    | Quadrature encoder pulse IP counter input                                   |
-| timer_pulse                 | Input    | Time-out signal from the Interval timer block                               |
-| quad_error (_p, _n)         | Output   | Quadrature encoder pulse error feed to the external safety logic.           |
-| fpga_is_safe (_p, _n)       | Output   | Over-speed detection. Traduced to safe status.                              |
-| fpga_compare_good_p(_p, _n) | Output   | Result of comparison of HPS and FPGA payloads                               |
-| compare_timeout             | Output   | FPGA finite state machine timeout asserted                                  |
-| heartbeat_fusa              | Output   | The heartbeat signal of FuSa block 1 toggle once every <br> safety cycle period to indicate correct functionality. |
-| heartbeat_timer             | Output   | The heartbeat signal of interval time toggle once every <br> safety cycle period to indicate correct functionality. |
-| AXI Lite Interface          | -        | -                                                                           |
-| APB Interface               | -        | -                                                                           |
-
+<h3 id="drive-on-chip-safety-interface-signals">Drive-on-chip Safety Interface Signals<a class="headerlink" href="#drive-on-chip-safety-interface-signals" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Port name</th>
+<th style="text-align: center;">Polarity</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">clk</td>
+<td style="text-align: center;">Input</td>
+<td style="text-align: left;">Clock. Asynchronous to any other clock</td>
+</tr>
+<tr>
+<td style="text-align: left;">reset_n</td>
+<td style="text-align: center;">Input</td>
+<td style="text-align: left;">Active low reset. Asynchronous to any other resets.</td>
+</tr>
+<tr>
+<td style="text-align: left;">reset_safety_n_i</td>
+<td style="text-align: center;">Input</td>
+<td style="text-align: left;">Reset to get out of the safe state</td>
+</tr>
+<tr>
+<td style="text-align: left;">reset_safety_n_o</td>
+<td style="text-align: center;">Output</td>
+<td style="text-align: left;">Reset to get out of the safe state</td>
+</tr>
+<tr>
+<td style="text-align: left;">reset_safety_mem_n_o</td>
+<td style="text-align: center;">Output</td>
+<td style="text-align: left;">Extension of <code>reset_safety_n</code> for memory safe state clearance</td>
+</tr>
+<tr>
+<td style="text-align: left;">qep_count [31 : 0]</td>
+<td style="text-align: center;">Input</td>
+<td style="text-align: left;">Quadrature encoder pulse IP counter input</td>
+</tr>
+<tr>
+<td style="text-align: left;">timer_pulse</td>
+<td style="text-align: center;">Input</td>
+<td style="text-align: left;">Time-out signal from the Interval timer block</td>
+</tr>
+<tr>
+<td style="text-align: left;">quad_error (_p, _n)</td>
+<td style="text-align: center;">Output</td>
+<td style="text-align: left;">Quadrature encoder pulse error feed to the external safety logic.</td>
+</tr>
+<tr>
+<td style="text-align: left;">fpga_is_safe (_p, _n)</td>
+<td style="text-align: center;">Output</td>
+<td style="text-align: left;">Over-speed detection. Traduced to safe status.</td>
+</tr>
+<tr>
+<td style="text-align: left;">fpga_compare_good_p(_p, _n)</td>
+<td style="text-align: center;">Output</td>
+<td style="text-align: left;">Result of comparison of HPS and FPGA payloads</td>
+</tr>
+<tr>
+<td style="text-align: left;">compare_timeout</td>
+<td style="text-align: center;">Output</td>
+<td style="text-align: left;">FPGA finite state machine timeout asserted</td>
+</tr>
+<tr>
+<td style="text-align: left;">heartbeat_fusa</td>
+<td style="text-align: center;">Output</td>
+<td style="text-align: left;">The heartbeat signal of FuSa block 1 toggle once every <br> safety cycle period to indicate correct functionality.</td>
+</tr>
+<tr>
+<td style="text-align: left;">heartbeat_timer</td>
+<td style="text-align: center;">Output</td>
+<td style="text-align: left;">The heartbeat signal of interval time toggle once every <br> safety cycle period to indicate correct functionality.</td>
+</tr>
+<tr>
+<td style="text-align: left;">AXI Lite Interface</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">APB Interface</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">-</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p><br></p>
 <center>
-
-### Drive-on-chip Safety Function Interface Signals
-
-| Port name            | Polarity | Description                                                                 |
-|----------------------|----------|-----------------------------------------------------------------------------|
-| clk                  | Input    | Clock. Asynchronous to any other clock                                      |
-| reset_n              | Input    | Active low reset. Asynchronous to any other resets.                         |
-| reset_safety_n       | Input    | Reset to get out of the safe state                                          |
-| generate_bit         | Input    | Enable the heartbeat generation                                             |
-| timeout_pulse        | Input    | Time-out signal from the Interval timer block                               |
-| qep_count [31 : 0]   | Input    | Quadrature encoder pulse IP counter input                                   |
-| qep_error            | Input    | Error input. Assert when you detect a quadrature decode <br> error (over-speed). If A and B both change during the same <br> clock cycle or if the encoder error input (E) is asserted. |
-| quad_error (_p, _n)  | Output   | Quadrature encoder pulse Error feed to the external safety logic.           |
-| fpga_is_safe (_p, _n)| Output   | Overs-peed detection: traduced to safe status.                               |
-| over_speed           | Output   | Asserted if the calculated speed in the speed estimator is over the threshold|
-| over_speed_led       | Output   | `over_speed` negated, routed to a board LED                                 |
-| heartbeat_fusa       | Output   | The heartbeat signal of FUSA block 1 toggle once every <br> safety cycle period to indicate correct functionality. |
-| heartbeat_timer      | Output   | The heartbeat signal of timer block 1 toggle once every <br> safety cycle period to indicate functionality. |
-| payload [31 : 0]     | Output   | Type `t_safety_payload` defined in `pkg_doc_safety.sv`                      |
-| AXI Lite Interface   | -        |-                                                                            |
-
+<h3 id="drive-on-chip-safety-function-interface-signals">Drive-on-chip Safety Function Interface Signals<a class="headerlink" href="#drive-on-chip-safety-function-interface-signals" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Port name</th>
+<th>Polarity</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clk</td>
+<td>Input</td>
+<td>Clock. Asynchronous to any other clock</td>
+</tr>
+<tr>
+<td>reset_n</td>
+<td>Input</td>
+<td>Active low reset. Asynchronous to any other resets.</td>
+</tr>
+<tr>
+<td>reset_safety_n</td>
+<td>Input</td>
+<td>Reset to get out of the safe state</td>
+</tr>
+<tr>
+<td>generate_bit</td>
+<td>Input</td>
+<td>Enable the heartbeat generation</td>
+</tr>
+<tr>
+<td>timeout_pulse</td>
+<td>Input</td>
+<td>Time-out signal from the Interval timer block</td>
+</tr>
+<tr>
+<td>qep_count [31 : 0]</td>
+<td>Input</td>
+<td>Quadrature encoder pulse IP counter input</td>
+</tr>
+<tr>
+<td>qep_error</td>
+<td>Input</td>
+<td>Error input. Assert when you detect a quadrature decode <br> error (over-speed). If A and B both change during the same <br> clock cycle or if the encoder error input (E) is asserted.</td>
+</tr>
+<tr>
+<td>quad_error (_p, _n)</td>
+<td>Output</td>
+<td>Quadrature encoder pulse Error feed to the external safety logic.</td>
+</tr>
+<tr>
+<td>fpga_is_safe (_p, _n)</td>
+<td>Output</td>
+<td>Overs-peed detection: traduced to safe status.</td>
+</tr>
+<tr>
+<td>over_speed</td>
+<td>Output</td>
+<td>Asserted if the calculated speed in the speed estimator is over the threshold</td>
+</tr>
+<tr>
+<td>over_speed_led</td>
+<td>Output</td>
+<td><code>over_speed</code> negated, routed to a board LED</td>
+</tr>
+<tr>
+<td>heartbeat_fusa</td>
+<td>Output</td>
+<td>The heartbeat signal of FUSA block 1 toggle once every <br> safety cycle period to indicate correct functionality.</td>
+</tr>
+<tr>
+<td>heartbeat_timer</td>
+<td>Output</td>
+<td>The heartbeat signal of timer block 1 toggle once every <br> safety cycle period to indicate functionality.</td>
+</tr>
+<tr>
+<td>payload [31 : 0]</td>
+<td>Output</td>
+<td>Type <code>t_safety_payload</code> defined in <code>pkg_doc_safety.sv</code></td>
+</tr>
+<tr>
+<td>AXI Lite Interface</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p><br></p>
 <center>
-
-### AXI to APB block Interface Signals (Platform Designer Block)
-
-| <div style="width:100px">Port name</div>| Polarity | <div style="width:100px">Description</div>|
-|-------------------|----------|-----------------------------------------------------------------------------|
-| s_axi_aclk        | Input    | Clock. Asynchronous to any other clock                                      |
-| s_axi_aresetn     | Input    | Active low reset. Asynchronous to any other resets.                         |
-| reset_safety_n    | Input    | Reset to get out of the safe state                                          |
-| AXI Lite Interface| -        | -                                                                           |
-| APB Interface     | -        | -                                                                           |
-
+<h3 id="axi-to-apb-block-interface-signals-platform-designer-block">AXI to APB block Interface Signals (Platform Designer Block)<a class="headerlink" href="#axi-to-apb-block-interface-signals-platform-designer-block" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th><div style="width:100px">Port name</div></th>
+<th>Polarity</th>
+<th><div style="width:100px">Description</div></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s_axi_aclk</td>
+<td>Input</td>
+<td>Clock. Asynchronous to any other clock</td>
+</tr>
+<tr>
+<td>s_axi_aresetn</td>
+<td>Input</td>
+<td>Active low reset. Asynchronous to any other resets.</td>
+</tr>
+<tr>
+<td>reset_safety_n</td>
+<td>Input</td>
+<td>Reset to get out of the safe state</td>
+</tr>
+<tr>
+<td>AXI Lite Interface</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>APB Interface</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p><br></p>
 <center>
-
-### Heartbeat Generator Interface Signals
-
-| Port name   | Polarity | Description                                                                    |
-|-------------|----------|--------------------------------------------------------------------------------|
-| clk         | Input    | Clock                                                                          |
-| generateBit | Input    | Control signal to toggle the state of heartbeat output. Input may be <br> derived from comparison function output or timeout pulse. |
-| heartbeat   | Output   | Singular bit to indicate the heartbeat. Indicates overall block functionality. |
-
+<h3 id="heartbeat-generator-interface-signals">Heartbeat Generator Interface Signals<a class="headerlink" href="#heartbeat-generator-interface-signals" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Port name</th>
+<th>Polarity</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clk</td>
+<td>Input</td>
+<td>Clock</td>
+</tr>
+<tr>
+<td>generateBit</td>
+<td>Input</td>
+<td>Control signal to toggle the state of heartbeat output. Input may be <br> derived from comparison function output or timeout pulse.</td>
+</tr>
+<tr>
+<td>heartbeat</td>
+<td>Output</td>
+<td>Singular bit to indicate the heartbeat. Indicates overall block functionality.</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p><br></p>
 <center>
-
-### Speed Estimator block Interface Signals
-
-| Port name              | Polarity | Description                                                                 |
-|------------------------|----------|-----------------------------------------------------------------------------|
-| clk                    | Input    | Clock                                                                       |
-| reset                  | Input    | Reset                                                                       |
-| qep_count [31 : 0]     | Input    | Quadrature encoder pulse IP counter input                                   |
-| qep_error              | Input    | Error input. Asserted when a quadrature decode error (over-speed) <br> is detected. If A and B both change during the same clock cycle <br> or if the encoder error input (E) is asserted. |
-| over_speed             | Output   | Singular bit to indicate whether the current estimated speed <br> is beyond a parameterizable threshold. |
-| led_signal             | Output   | Singular bit to be sent to an active low LED to represent the <br> status of `over_speed`. |
-| motor_speed_filtered   | Output   | Custom variable type, `t_speed`.                                            |
-| quad_error (_p, _n)    | Output   | Complementary bits (p = 1'b0, n = 1'b1) to represent whether <br> a quadrature error is detected. Entirely based of the input <br> `qep_error`. |
-| fpga_is_safe (_p, _n)  | Output   | Complementary bits (p = 1'b1, n = 1'b0) to represent that FPGA <br> is overall safe, in respect to `over_speed`. |
-| APB Interface          | -        | -                                                                           |
-
+<h3 id="speed-estimator-block-interface-signals">Speed Estimator block Interface Signals<a class="headerlink" href="#speed-estimator-block-interface-signals" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Port name</th>
+<th>Polarity</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clk</td>
+<td>Input</td>
+<td>Clock</td>
+</tr>
+<tr>
+<td>reset</td>
+<td>Input</td>
+<td>Reset</td>
+</tr>
+<tr>
+<td>qep_count [31 : 0]</td>
+<td>Input</td>
+<td>Quadrature encoder pulse IP counter input</td>
+</tr>
+<tr>
+<td>qep_error</td>
+<td>Input</td>
+<td>Error input. Asserted when a quadrature decode error (over-speed) <br> is detected. If A and B both change during the same clock cycle <br> or if the encoder error input (E) is asserted.</td>
+</tr>
+<tr>
+<td>over_speed</td>
+<td>Output</td>
+<td>Singular bit to indicate whether the current estimated speed <br> is beyond a parameterizable threshold.</td>
+</tr>
+<tr>
+<td>led_signal</td>
+<td>Output</td>
+<td>Singular bit to be sent to an active low LED to represent the <br> status of <code>over_speed</code>.</td>
+</tr>
+<tr>
+<td>motor_speed_filtered</td>
+<td>Output</td>
+<td>Custom variable type, <code>t_speed</code>.</td>
+</tr>
+<tr>
+<td>quad_error (_p, _n)</td>
+<td>Output</td>
+<td>Complementary bits (p = 1'b0, n = 1'b1) to represent whether <br> a quadrature error is detected. Entirely based of the input <br> <code>qep_error</code>.</td>
+</tr>
+<tr>
+<td>fpga_is_safe (_p, _n)</td>
+<td>Output</td>
+<td>Complementary bits (p = 1'b1, n = 1'b0) to represent that FPGA <br> is overall safe, in respect to <code>over_speed</code>.</td>
+</tr>
+<tr>
+<td>APB Interface</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p><br></p>
 <center>
-
-### Payload Generator block Interface Signals
-
-| Port name        | Polarity | Description                                                                 |
-|------------------|----------|-----------------------------------------------------------------------------|
-| clk              | Input    | Clock                                                                       |
-| reset_n          | Input    | Reset                                                                       |
-| reset_safety_n   | Input    | Reset to get out of the safe state                                          |
-| speed_rpm        | Input    | Incoming signal from the speed estimator module, which indicates <br> the current estimated speed of the motor. Type `t_speed` |
-| over_speed       | Input    | Singular bit to indicate whether the current estimated speed <br> is beyond a threshold. |
-| generate_pulse   | Input    | Control signal to create a valid payload and increment an <br> internal sequence counter when asserted. |
-| fpga_payload     | Output   | Created using a custom defined `struct`, `t_safety_payload`, <br> which has the properties over-speed, speed and sequence. <br> The design assigns these properties. |
-
+<h3 id="payload-generator-block-interface-signals">Payload Generator block Interface Signals<a class="headerlink" href="#payload-generator-block-interface-signals" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Port name</th>
+<th>Polarity</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clk</td>
+<td>Input</td>
+<td>Clock</td>
+</tr>
+<tr>
+<td>reset_n</td>
+<td>Input</td>
+<td>Reset</td>
+</tr>
+<tr>
+<td>reset_safety_n</td>
+<td>Input</td>
+<td>Reset to get out of the safe state</td>
+</tr>
+<tr>
+<td>speed_rpm</td>
+<td>Input</td>
+<td>Incoming signal from the speed estimator module, which indicates <br> the current estimated speed of the motor. Type <code>t_speed</code></td>
+</tr>
+<tr>
+<td>over_speed</td>
+<td>Input</td>
+<td>Singular bit to indicate whether the current estimated speed <br> is beyond a threshold.</td>
+</tr>
+<tr>
+<td>generate_pulse</td>
+<td>Input</td>
+<td>Control signal to create a valid payload and increment an <br> internal sequence counter when asserted.</td>
+</tr>
+<tr>
+<td>fpga_payload</td>
+<td>Output</td>
+<td>Created using a custom defined <code>struct</code>, <code>t_safety_payload</code>, <br> which has the properties over-speed, speed and sequence. <br> The design assigns these properties.</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p><br></p>
 <center>
-
-### Cross-comparison Function block Interface Signals
-
-| Port name              | Polarity | Description                                                                 |
-|------------------------|----------|-----------------------------------------------------------------------------|
-| clk                    | Input    | Clock                                                                       |
-| reset_n                | Input    | Reset                                                                       |
-| reset_safety_n         | Input    | Reset to get out of the safe state                                          |
-| start                  | Input    | Assert to start the FPGA safe channel cycle by the Interval timer <br> every safety response time. |
-| fpga_payload           | Input    | Type `t_safety_payload`<br>Over-speed, speed in rpm, sequence number.        |
-| generate_fpga          | Output   | Indicates to the safety function block to return a valid payload <br> from the speed estimation. |
-| compare_good(_p, _n)   | Output   | Output asserted if the HPS payload and FPGA payload <br> in memory are consistent. |
-| compare_timeout        | Output   | FPGA finite state machine timeout asserted                                  |
-| APB Interface          | -        | -                                                                           |
-
+<h3 id="cross-comparison-function-block-interface-signals">Cross-comparison Function block Interface Signals<a class="headerlink" href="#cross-comparison-function-block-interface-signals" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Port name</th>
+<th>Polarity</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clk</td>
+<td>Input</td>
+<td>Clock</td>
+</tr>
+<tr>
+<td>reset_n</td>
+<td>Input</td>
+<td>Reset</td>
+</tr>
+<tr>
+<td>reset_safety_n</td>
+<td>Input</td>
+<td>Reset to get out of the safe state</td>
+</tr>
+<tr>
+<td>start</td>
+<td>Input</td>
+<td>Assert to start the FPGA safe channel cycle by the Interval timer <br> every safety response time.</td>
+</tr>
+<tr>
+<td>fpga_payload</td>
+<td>Input</td>
+<td>Type <code>t_safety_payload</code><br>Over-speed, speed in rpm, sequence number.</td>
+</tr>
+<tr>
+<td>generate_fpga</td>
+<td>Output</td>
+<td>Indicates to the safety function block to return a valid payload <br> from the speed estimation.</td>
+</tr>
+<tr>
+<td>compare_good(_p, _n)</td>
+<td>Output</td>
+<td>Output asserted if the HPS payload and FPGA payload <br> in memory are consistent.</td>
+</tr>
+<tr>
+<td>compare_timeout</td>
+<td>Output</td>
+<td>FPGA finite state machine timeout asserted</td>
+</tr>
+<tr>
+<td>APB Interface</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p><br></p>
 <center>
-
-### Quadrature Encoder Pulse block Interface Signals
-
-| Port name        | Polarity | Description                                                                 |
-|------------------|----------|-----------------------------------------------------------------------------|
-| clk              | Input    | Clock                                                                       |
-| reset_n          | Input    | Reset                                                                       |
-| QEP_A            | Input    | Quadrature pulse from motor (model)                                         |
-| QEP_B            | Input    | Quadrature pulse from motor (model)                                         |
-| QEP_I            | Input    | Index pulse, per complete revolution                                        |
-| QEP_E            | Input    | Encoder Error input. 1 indicates that the motor's encoder detects <br> a fault and the design cannot rely on the quadrature signals. |
-| QEP_error        | Output   | Error output. Asserted when a quadrature decode error (over-speed) <br> is detected. If A and B both change during the same clock cycle or <br> if the encoder error input (E) is asserted.<br>Only de-asserted when you write a 1 to the `reset_quad_error` <br> bit in the control register via the Avalon bus. |
-| QEP_count [31 : 0] | Output | Quadrature encoder pulse IP counter output                                  |
-| Avalon Interface | -        | Avalon bus byte addressing but only full word accesses supported.           |
-
+<h3 id="quadrature-encoder-pulse-block-interface-signals">Quadrature Encoder Pulse block Interface Signals<a class="headerlink" href="#quadrature-encoder-pulse-block-interface-signals" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Port name</th>
+<th>Polarity</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clk</td>
+<td>Input</td>
+<td>Clock</td>
+</tr>
+<tr>
+<td>reset_n</td>
+<td>Input</td>
+<td>Reset</td>
+</tr>
+<tr>
+<td>QEP_A</td>
+<td>Input</td>
+<td>Quadrature pulse from motor (model)</td>
+</tr>
+<tr>
+<td>QEP_B</td>
+<td>Input</td>
+<td>Quadrature pulse from motor (model)</td>
+</tr>
+<tr>
+<td>QEP_I</td>
+<td>Input</td>
+<td>Index pulse, per complete revolution</td>
+</tr>
+<tr>
+<td>QEP_E</td>
+<td>Input</td>
+<td>Encoder Error input. 1 indicates that the motor's encoder detects <br> a fault and the design cannot rely on the quadrature signals.</td>
+</tr>
+<tr>
+<td>QEP_error</td>
+<td>Output</td>
+<td>Error output. Asserted when a quadrature decode error (over-speed) <br> is detected. If A and B both change during the same clock cycle or <br> if the encoder error input (E) is asserted.<br>Only de-asserted when you write a 1 to the <code>reset_quad_error</code> <br> bit in the control register via the Avalon bus.</td>
+</tr>
+<tr>
+<td>QEP_count [31 : 0]</td>
+<td>Output</td>
+<td>Quadrature encoder pulse IP counter output</td>
+</tr>
+<tr>
+<td>Avalon Interface</td>
+<td>-</td>
+<td>Avalon bus byte addressing but only full word accesses supported.</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p><br></p>
 <center>
-
-### External Safety Logic Interface Signals
-
-| Port name| Polarity | Description |
-|------------------------|----------|-----------------------------------------------------------------------------|
-| esl_clk                | Input    | Clock. Asynchronous to any other clock                                      |
-| esl_reset              | Input    | Reset. Independent to any other reset                                       |
-| clk_hps                | Input    | HPS clock                                                                   |
-| clk_fpga               | Input    | FPGA clock                                                                  |
-| Heartbeat_timer        | Input    | Heartbeat signal of the timer that toggles once every <br> safety cycle period to indicate correct behavior |
-| Heartbeat_fusa         | Input    | Heartbeat signal of FUSA block 1 that toggles once <br> every safety cycle period to indicate correct behavior |
-| Quad_error (_p, _n)    | Input    | Indicates that the quadrature encoder pulse detects <br> a quadrature error.<br>(`p`=0, `n`=1) |
-| FPGA_safe (_p, _n)     | Input    | Indicates that the FPGA detects the motor speed <br> as safe (`p`=1, `n`=0)      |
-| FPGA_compare (_p, _n)  | Input    | Indicates that the FPGA cross comparison function <br> detects the FPGA and HPS payloads as the same <br> (`p`=1, `n`=0) |
-| HPS_safe (_p, _n)      | Input    | Indicates that the HPS detects the motor speed <br> as safe (`p`=1, `n`=0)       |
-| HPS_compare (_p, _n)   | Input    | Indicates that the HPS cross comparison function detects <br> the FPGA and HPS payloads as the same (`p`=1, `n`=0) |
-| compare_timeout        | Input    | FPGA finite state machine timeout asserted                                  |
-| CRAM_good (_p, _n)     | Input    | Indicates that no fault is detected in the FPGA's <br> CRAM (`p`=1, `n`=0)       |
-| power_good (_p, _n)    | Input    | Indicates that the voltage monitor block measures <br> the power rails within the acceptable <br> range (`p`=1, `n`=0) |
-| current_rp_temp        | Input    | Variable of parameterizable bits that indicates the <br> current temperature measured by the hardware block. |
-| safe_state (_p, _n)    | Output   | Control signal from the external safety logic to the <br> power control to the motor to put the motor into a <br> safe state (`p`=1, `n`=0) |
-| APB Interface          | -        | -                                                                           |
-
+<h3 id="external-safety-logic-interface-signals">External Safety Logic Interface Signals<a class="headerlink" href="#external-safety-logic-interface-signals" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Port name</th>
+<th>Polarity</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>esl_clk</td>
+<td>Input</td>
+<td>Clock. Asynchronous to any other clock</td>
+</tr>
+<tr>
+<td>esl_reset</td>
+<td>Input</td>
+<td>Reset. Independent to any other reset</td>
+</tr>
+<tr>
+<td>clk_hps</td>
+<td>Input</td>
+<td>HPS clock</td>
+</tr>
+<tr>
+<td>clk_fpga</td>
+<td>Input</td>
+<td>FPGA clock</td>
+</tr>
+<tr>
+<td>Heartbeat_timer</td>
+<td>Input</td>
+<td>Heartbeat signal of the timer that toggles once every <br> safety cycle period to indicate correct behavior</td>
+</tr>
+<tr>
+<td>Heartbeat_fusa</td>
+<td>Input</td>
+<td>Heartbeat signal of FUSA block 1 that toggles once <br> every safety cycle period to indicate correct behavior</td>
+</tr>
+<tr>
+<td>Quad_error (_p, _n)</td>
+<td>Input</td>
+<td>Indicates that the quadrature encoder pulse detects <br> a quadrature error.<br>(<code>p</code>=0, <code>n</code>=1)</td>
+</tr>
+<tr>
+<td>FPGA_safe (_p, _n)</td>
+<td>Input</td>
+<td>Indicates that the FPGA detects the motor speed <br> as safe (<code>p</code>=1, <code>n</code>=0)</td>
+</tr>
+<tr>
+<td>FPGA_compare (_p, _n)</td>
+<td>Input</td>
+<td>Indicates that the FPGA cross comparison function <br> detects the FPGA and HPS payloads as the same <br> (<code>p</code>=1, <code>n</code>=0)</td>
+</tr>
+<tr>
+<td>HPS_safe (_p, _n)</td>
+<td>Input</td>
+<td>Indicates that the HPS detects the motor speed <br> as safe (<code>p</code>=1, <code>n</code>=0)</td>
+</tr>
+<tr>
+<td>HPS_compare (_p, _n)</td>
+<td>Input</td>
+<td>Indicates that the HPS cross comparison function detects <br> the FPGA and HPS payloads as the same (<code>p</code>=1, <code>n</code>=0)</td>
+</tr>
+<tr>
+<td>compare_timeout</td>
+<td>Input</td>
+<td>FPGA finite state machine timeout asserted</td>
+</tr>
+<tr>
+<td>CRAM_good (_p, _n)</td>
+<td>Input</td>
+<td>Indicates that no fault is detected in the FPGA's <br> CRAM (<code>p</code>=1, <code>n</code>=0)</td>
+</tr>
+<tr>
+<td>power_good (_p, _n)</td>
+<td>Input</td>
+<td>Indicates that the voltage monitor block measures <br> the power rails within the acceptable <br> range (<code>p</code>=1, <code>n</code>=0)</td>
+</tr>
+<tr>
+<td>current_rp_temp</td>
+<td>Input</td>
+<td>Variable of parameterizable bits that indicates the <br> current temperature measured by the hardware block.</td>
+</tr>
+<tr>
+<td>safe_state (_p, _n)</td>
+<td>Output</td>
+<td>Control signal from the external safety logic to the <br> power control to the motor to put the motor into a <br> safe state (<code>p</code>=1, <code>n</code>=0)</td>
+</tr>
+<tr>
+<td>APB Interface</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p><br></p>
 <center>
-
-### Hardware block Interface Signals
-
-The following table details the Hardware Subsystem's I/O and a description of the
+<h3 id="hardware-block-interface-signals">Hardware block Interface Signals<a class="headerlink" href="#hardware-block-interface-signals" title="Permanent link">¶</a></h3>
+<p>The following table details the Hardware Subsystem's I/O and a description of the
 signal.<br>
 All I/O signals are asynchronous to the input clock, to avoid meta-stability
-these are synchronized.
-
-| Port name          | Polarity | Description                                                                         |
-|--------------------|----------|-------------------------------------------------------------------------------------|
-| hw_clk             | Input    | Clock. Asynchronous to any other clock                                              |
-| hw_reset           | Input    | Reset. Independent to any other reset                                               |
-| pwr_good (_p, _n)  | Output   | Complementary bits to represent that power is functional <br> as intended, all voltages measured are within safe limits. |
-| temp_good (_p, _n) | Output   | Complementary bits to represent measured temperatures <br> are safe, within limits. |
-| cram_good (_p, _n) | Output   | Complementary bits to represent measured temperatures <br> are safe, within limits. |
-
+these are synchronized.</p>
+<table>
+<thead>
+<tr>
+<th>Port name</th>
+<th>Polarity</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hw_clk</td>
+<td>Input</td>
+<td>Clock. Asynchronous to any other clock</td>
+</tr>
+<tr>
+<td>hw_reset</td>
+<td>Input</td>
+<td>Reset. Independent to any other reset</td>
+</tr>
+<tr>
+<td>pwr_good (_p, _n)</td>
+<td>Output</td>
+<td>Complementary bits to represent that power is functional <br> as intended, all voltages measured are within safe limits.</td>
+</tr>
+<tr>
+<td>temp_good (_p, _n)</td>
+<td>Output</td>
+<td>Complementary bits to represent measured temperatures <br> are safe, within limits.</td>
+</tr>
+<tr>
+<td>cram_good (_p, _n)</td>
+<td>Output</td>
+<td>Complementary bits to represent measured temperatures <br> are safe, within limits.</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p><br></p>
 <h2 id="safety-ip-registers">Safety IP Registers<a class="headerlink" href="#safety-ip-registers" title="Permanent link">¶</a></h2>
 <p>The Drive-on-Chip with Functional Safety Design Example for Agilex™ 5 devices
 contain registers that you can set.</p>
 <p><br></p>
 <center>
-
-### Speed Estimator Block Registers.
-
-| Address | Access | Register                                                                                  |
-|---------|--------|-------------------------------------------------------------------------------------------|
-| 0x00    | R/W    | Control.<br>Bit 0 `overspeed_error_reset`. <br>* Writing 1 clears the over-speed bit in the status register.<br> * This bit is self-clearing. <br><br> Bit 1 `quadrature_error_reset`.<br> * Writing 1 clears the quadrature  error bit in the status register. <br>* This bit is self-clearing. <br> Bit 31 `sw_reset`.<br>*  Resets all registers in the safety function. |
-| 0x04    | RO     | Clock frequency in Hz.                                                                    |
-| 0x08    | R/W    | Speed estimation frequency. Default to 4 kHz.                                             |
-| 0x0C    | R/W    | Over-speed threshold (rpm). Speed at which the <br> over-speed signal and register is asserted. Default is 3000 rpm. |
-| 0x10    | RO     | Status.<br>Bit 0 `overspeed`.<br>Bit 1 `quadrature_error`                                 |
-
+<h3 id="speed-estimator-block-registers">Speed Estimator Block Registers.<a class="headerlink" href="#speed-estimator-block-registers" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Access</th>
+<th>Register</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x00</td>
+<td>R/W</td>
+<td>Control.<br>Bit 0 <code>overspeed_error_reset</code>. <br>* Writing 1 clears the over-speed bit in the status register.<br> * This bit is self-clearing. <br><br> Bit 1 <code>quadrature_error_reset</code>.<br> * Writing 1 clears the quadrature  error bit in the status register. <br>* This bit is self-clearing. <br> Bit 31 <code>sw_reset</code>.<br>*  Resets all registers in the safety function.</td>
+</tr>
+<tr>
+<td>0x04</td>
+<td>RO</td>
+<td>Clock frequency in Hz.</td>
+</tr>
+<tr>
+<td>0x08</td>
+<td>R/W</td>
+<td>Speed estimation frequency. Default to 4 kHz.</td>
+</tr>
+<tr>
+<td>0x0C</td>
+<td>R/W</td>
+<td>Over-speed threshold (rpm). Speed at which the <br> over-speed signal and register is asserted. Default is 3000 rpm.</td>
+</tr>
+<tr>
+<td>0x10</td>
+<td>RO</td>
+<td>Status.<br>Bit 0 <code>overspeed</code>.<br>Bit 1 <code>quadrature_error</code></td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p><a class="md-button" href="../#example-design-documentation">Back to Documentation</a></p>
 
 

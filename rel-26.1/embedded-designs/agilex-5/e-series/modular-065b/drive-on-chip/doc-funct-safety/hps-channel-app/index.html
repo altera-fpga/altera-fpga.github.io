@@ -11073,8 +11073,7 @@ the design issues the program with a <code>SIGNALTERM</code>. At the end, some c
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/SW/main-sw.png" data-desc-position="bottom"><img alt="main-sw" src="../images/SW/main-sw.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**HPS Safety Function Main Execution Flow.**
+<p><strong>HPS Safety Function Main Execution Flow.</strong></p>
 </center>
 <p><br></p>
 <p>The loop does not finish unless you stop it. When the interval timer triggers
@@ -11089,8 +11088,7 @@ next wake up time.</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/SW/speed-est-sw.png" data-desc-position="bottom"><img alt="speed-est-sw" src="../images/SW/speed-est-sw.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Speed Estimation Thread Execution Flow.**
+<p><strong>Speed Estimation Thread Execution Flow.</strong></p>
 </center>
 <p><br></p>
 <p>The design allocates this thread to core 3, which is isolated for this purpose.</p>
@@ -11103,8 +11101,7 @@ not isolated.</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/SW/print-sw.png" data-desc-position="bottom"><img alt="print-sw" src="../images/SW/print-sw.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Printing Thread Execution Flow.**
+<p><strong>Printing Thread Execution Flow.</strong></p>
 </center>
 <p><br></p>
 <h3 id="safety-function-application-srtch">Safety Function Application (srt.c/.h)<a class="headerlink" href="#safety-function-application-srtch" title="Permanent link">¶</a></h3>
@@ -11114,8 +11111,7 @@ interval timer to run at 1ms (the safety response time, SRT).</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/SW/safety-sw.png" data-desc-position="bottom"><img alt="safety-sw" src="../images/SW/safety-sw.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**HPS Safety Function Flow Diagram.**
+<p><strong>HPS Safety Function Flow Diagram.</strong></p>
 </center>
 <p><br></p>
 <p>In every interrupt by the timer the application copies an HPS channel speed
@@ -11163,8 +11159,7 @@ check the core allocation using the tool <strong><code>htop</code></strong>.</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/SW/core-isol-sw.png" data-desc-position="bottom"><img alt="core-isol-sw" src="../images/SW/core-isol-sw.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Core Affinity and Isolation using HTOP View.**
+<p><strong>Core Affinity and Isolation using HTOP View.</strong></p>
 </center>
 <p><br></p>
 <p>The figure shows the intended core allocation for HPS safe application threads.

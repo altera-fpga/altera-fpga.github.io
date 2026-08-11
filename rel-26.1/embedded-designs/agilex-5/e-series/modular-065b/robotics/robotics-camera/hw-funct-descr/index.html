@@ -11168,8 +11168,7 @@ Agilex™ 5 device.</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/top-block-diagram.png" data-desc-position="bottom"><img alt="top-block-diagram" src="../images/HW/top-block-diagram.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**High-Level Hardware Block Diagram of the Robotics Camera System Example Design.**
+<p><strong>High-Level Hardware Block Diagram of the Robotics Camera System Example Design.</strong></p>
 </center>
 <p><br></p>
 <p>Blue interconnect in the diagram is the live video path (<strong>MIPI In → ISP In → ISP Lite → ISP Robotics → ISP Lite Out → DisplayPort</strong>).
@@ -11180,8 +11179,7 @@ XML file, and the Platform Designer view:</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/mdt-top.png" data-desc-position="bottom"><img alt="mdt-top" src="../images/HW/mdt-top.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Modular Design Tool Kit PD project vs XML file.**
+<p><strong>Modular Design Tool Kit PD project vs XML file.</strong></p>
 </center>
 <p><br></p>
 <h2 id="hardware-subsystems-and-components">Hardware subsystems and components<a class="headerlink" href="#hardware-subsystems-and-components" title="Permanent link">¶</a></h2>
@@ -11192,8 +11190,7 @@ shared MDT building blocks, consistent with other camera and robotics example de
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/board-clk-sub-pd.png" data-desc-position="bottom"><img alt="board-clk-sub-pd" src="../images/HW/board-clk-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Board and Clock Subsystems PD sub-Blocks.**
+<p><strong>Board and Clock Subsystems PD sub-Blocks.</strong></p>
 </center>
 <p><br></p>
 <p>This variant uses a <strong>single</strong> <code>clock_subsystem</code> with multiple generated clocks (for example 297 MHz, 148.5 MHz, and
@@ -11212,8 +11209,7 @@ shared MDT building blocks, consistent with other camera and robotics example de
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/hps-sub-pd.png" data-desc-position="bottom"><img alt="hps-sub-pd" src="../images/HW/hps-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Hard Processor System (HPS) PD sub-Block.**
+<p><strong>Hard Processor System (HPS) PD sub-Block.</strong></p>
 </center>
 <p><br></p>
 <p>The <strong>lightweight</strong> HPS-to-FPGA bridge (base <code>0x2000_0000</code>) exposes ISP Robotics control registers to Linux and UIO
@@ -11230,8 +11226,7 @@ the Nios® V pipeline controller during bring-up (configuration profile <code>cf
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/mipi-in-sub-pd.png" data-desc-position="bottom"><img alt="mipi-in-sub-pd" src="../images/HW/mipi-in-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**MIPI In Subsystem PD sub-Blocks.**
+<p><strong>MIPI In Subsystem PD sub-Blocks.</strong></p>
 </center>
 <p><br></p>
 <h4 id="isp-in-subsystem">ISP In subsystem<a class="headerlink" href="#isp-in-subsystem" title="Permanent link">¶</a></h4>
@@ -11241,8 +11236,7 @@ path after the sensor is powered and configured.</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/isp-in-sub-pd.png" data-desc-position="bottom"><img alt="isp-in-sub-pd" src="../images/HW/isp-in-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**ISP In Subsystem PD sub-Blocks.**
+<p><strong>ISP In Subsystem PD sub-Blocks.</strong></p>
 </center>
 <p><br></p>
 <h4 id="isp-lite-subsystem">ISP Lite subsystem<a class="headerlink" href="#isp-lite-subsystem" title="Permanent link">¶</a></h4>
@@ -11256,8 +11250,7 @@ path after the sensor is powered and configured.</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/isp-lite-sub-pd.png" data-desc-position="bottom"><img alt="isp-lite-sub-pd" src="../images/HW/isp-lite-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**ISP Lite Subsystem PD sub-Blocks.**
+<p><strong>ISP Lite Subsystem PD sub-Blocks.</strong></p>
 </center>
 <p><br></p>
 <p>This stage matches the <strong>Camera Lite</strong> philosophy: a focused real-time path without tone-mapping, HDR merge, or
@@ -11276,53 +11269,130 @@ multi-exposure blocks of the full 4K HDR camera solution.</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/isp-rob-sub-pd.png" data-desc-position="bottom"><img alt="isp-rob-sub-pd" src="../images/HW/isp-rob-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**ISP Robotics Subsystem PD sub-Blocks.**
+<p><strong>ISP Robotics Subsystem PD sub-Blocks.</strong></p>
 </center>
 <p><br></p>
 <h5 id="hps-control-lightweight-bridge">HPS control (lightweight bridge)<a class="headerlink" href="#hps-control-lightweight-bridge" title="Permanent link">¶</a></h5>
 <p>ISP Robotics blocks that Linux configures are on the <strong>lightweight</strong> HPS-to-FPGA bridge (MPU base <strong><code>0x2000_0000</code></strong>):</p>
 <center>
-
-| Block | Offset from lightweight base (`0x2000_0000`) | MPU address |
-| :---- | :------------------------------------------- | :---------- |
-| Frame writer (low res, RGB) | `0x0000_0200` | `0x2000_0200` |
-| Frame writer (low res, grayscale) | `0x0000_0800` | `0x2000_0800` |
-
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Block</th>
+<th style="text-align: left;">Offset from lightweight base (<code>0x2000_0000</code>)</th>
+<th style="text-align: left;">MPU address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Frame writer (low res, RGB)</td>
+<td style="text-align: left;"><code>0x0000_0200</code></td>
+<td style="text-align: left;"><code>0x2000_0200</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Frame writer (low res, grayscale)</td>
+<td style="text-align: left;"><code>0x0000_0800</code></td>
+<td style="text-align: left;"><code>0x2000_0800</code></td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p>Frame <strong>pixel data</strong> is not on the lightweight bridge; it resides in <code>EMIF subsystem 1</code> and is reached through
 the <strong>full</strong> bridge (see <strong>EMIF subsystems</strong> below).</p>
 <h6 id="frame-writer-low-res-rgb-and-grayscale">Frame writer (low res, RGB and grayscale)<a class="headerlink" href="#frame-writer-low-res-rgb-and-grayscale" title="Permanent link">¶</a></h6>
 <p>Both low-resolution frame writers share the same VVP frame-writer CSR map (see the <a href="https://docs.altera.com/r/docs/683329/current/about-the-video-and-vision-processing-suite">Video and Vision Processing Suite Altera® FPGA IP User Guide</a>).
 Offsets in the table below are relative to each block’s base (<code>0x2000_0200</code> for RGB, <code>0x2000_0800</code> for grayscale).</p>
 <center>
-
-| Offset | Register | Access | Description |
-| :----- | :------- | :----- | :---------- |
-| `0x0100` | IRQ_CONTROL | R/W | Interrupt control |
-| `0x0104` | IRQ_STATUS | R | Interrupt status |
-| `0x0120` | IMG_INFO_WIDTH | R/W | Image width (default 960) |
-| `0x0124` | IMG_INFO_HEIGHT | R/W | Image height (default 540) |
-| `0x0140` | STATUS | R | Frame writer status |
-| `0x0164` | COMMIT | R/W | Commit pending CSR writes |
-| `0x0168` | BUFFER_ACKNOWLEDGE | W | Write **`0x1`** to commit a frame write to memory |
-| `0x016C` | RUN | R/W | Run mode (see below) |
-
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Offset</th>
+<th style="text-align: left;">Register</th>
+<th style="text-align: left;">Access</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>0x0100</code></td>
+<td style="text-align: left;">IRQ_CONTROL</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Interrupt control</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x0104</code></td>
+<td style="text-align: left;">IRQ_STATUS</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">Interrupt status</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x0120</code></td>
+<td style="text-align: left;">IMG_INFO_WIDTH</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Image width (default 960)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x0124</code></td>
+<td style="text-align: left;">IMG_INFO_HEIGHT</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Image height (default 540)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x0140</code></td>
+<td style="text-align: left;">STATUS</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">Frame writer status</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x0164</code></td>
+<td style="text-align: left;">COMMIT</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Commit pending CSR writes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x0168</code></td>
+<td style="text-align: left;">BUFFER_ACKNOWLEDGE</td>
+<td style="text-align: left;">W</td>
+<td style="text-align: left;">Write <strong><code>0x1</code></strong> to commit a frame write to memory</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x016C</code></td>
+<td style="text-align: left;">RUN</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Run mode (see below)</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p><strong>RUN</strong> (<code>0x016C</code>) values:</p>
 <center>
-
-| Value | Mode |
-| :---: | :--- |
-| `0` | Frame writer stopped |
-| `1` | Frame writer free-running |
-| `2` | Frame writer stopped |
-| `3` | Frame writer single-shot |
-
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Value</th>
+<th style="text-align: left;">Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>0</code></td>
+<td style="text-align: left;">Frame writer stopped</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>1</code></td>
+<td style="text-align: left;">Frame writer free-running</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>2</code></td>
+<td style="text-align: left;">Frame writer stopped</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>3</code></td>
+<td style="text-align: left;">Frame writer single-shot</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <h4 id="isp-lite-out-subsystem">ISP Lite Out subsystem<a class="headerlink" href="#isp-lite-out-subsystem" title="Permanent link">¶</a></h4>
 <p>The ISP Lite Out subsystem buffers the main <strong>4K</strong> display path. A <strong>Mixer</strong> composites the full-resolution RGB
 stream with the scaled <strong>960×540</strong> grayscale preview, an optional <strong>Altera icon</strong> overlay, and test patterns.
@@ -11340,14 +11410,37 @@ frame access for the ISP Robotics path. Refer to the <code>software</code> direc
 from the HPS DDR4 EMIF used by the HPS.</p>
 <p>In the default <strong>960×540</strong> configuration, <code>EMIF subsystem 1</code> exposes two buffers for HPS software:</p>
 <center>
-
-| Buffer | Format | Size (pixels) | Bytes per frame | Offset in FPGA EMIF window | HPS access (full bridge) |
-| :----- | :----- | :------------ | :-------------- | :------------------------- | :----------------------- |
-| Grayscale (luma) | Single-plane 8-bit (mono8-style) | 960 × 540 | **518,400** (`0x7E900`) | `0x0020_0000` | **`0x6020_0000`** |
-| RGB | 8 bits per color sample (R, G, B) | 960 × 540 | **1,555,200** (`0x17B000`) | `0x0000_0000` | **`0x6000_0000`** |
-
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Buffer</th>
+<th style="text-align: left;">Format</th>
+<th style="text-align: left;">Size (pixels)</th>
+<th style="text-align: left;">Bytes per frame</th>
+<th style="text-align: left;">Offset in FPGA EMIF window</th>
+<th style="text-align: left;">HPS access (full bridge)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Grayscale (luma)</td>
+<td style="text-align: left;">Single-plane 8-bit (mono8-style)</td>
+<td style="text-align: left;">960 × 540</td>
+<td style="text-align: left;"><strong>518,400</strong> (<code>0x7E900</code>)</td>
+<td style="text-align: left;"><code>0x0020_0000</code></td>
+<td style="text-align: left;"><strong><code>0x6020_0000</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">RGB</td>
+<td style="text-align: left;">8 bits per color sample (R, G, B)</td>
+<td style="text-align: left;">960 × 540</td>
+<td style="text-align: left;"><strong>1,555,200</strong> (<code>0x17B000</code>)</td>
+<td style="text-align: left;"><code>0x0000_0000</code></td>
+<td style="text-align: left;"><strong><code>0x6000_0000</code></strong></td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p>Frame size calculations:</p>
 <ul>
 <li>Grayscale: 960 × 540 × <strong>1</strong> byte/sample = <strong>518,400</strong> bytes.</li>
@@ -11382,7 +11475,7 @@ the buffer regions through UIO; ISP Robotics CSRs remain on the lightweight brid
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 11, 2026 02:57:15 UTC">August 11, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 25, 2026 17:16:42 UTC">June 25, 2026</span>
   </span>
 
     

@@ -11234,8 +11234,7 @@ ArUco control, and frame-buffer access; a <strong>Nios® V</strong> core configu
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/top-block-diagram.png" data-desc-position="bottom"><img alt="top-block-diagram" src="../images/HW/top-block-diagram.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**High-Level Hardware Block Diagram of the Robot Controller with Vision System Example Design.**
+<p><strong>High-Level Hardware Block Diagram of the Robot Controller with Vision System Example Design.</strong></p>
 </center>
 <p><br></p>
 <p>Blue interconnect in the diagram is the video path (ISP In → ISP Lite → ISP Robotics → ISP Lite Out → DisplayPort). In the
@@ -11249,8 +11248,7 @@ the Platform Designer view:</p>
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/mdt-top.png" data-desc-position="bottom"><img alt="mdt-top" src="../images/HW/mdt-top.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Modular Design Tool Kit PD project vs XML file.**
+<p><strong>Modular Design Tool Kit PD project vs XML file.</strong></p>
 </center>
 <p><br></p>
 <h2 id="hardware-subsystems-and-components">Hardware subsystems and components<a class="headerlink" href="#hardware-subsystems-and-components" title="Permanent link">¶</a></h2>
@@ -11261,8 +11259,7 @@ These subsystems are shared MDT building blocks, consistent with the Drive-On-Ch
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/board-clk-sub-pd.png" data-desc-position="bottom"><img alt="board-clk-sub-pd" src="../images/HW/board-clk-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Board and Clock Subsystems PD sub-Blocks.**
+<p><strong>Board and Clock Subsystems PD sub-Blocks.</strong></p>
 </center>
 <p><br></p>
 <p>This variant instantiates <strong>two</strong> <code>clock_subsystem</code> blocks (<code>clock_subsystem</code> and <code>clock_subsystem1</code>), each with its own
@@ -11281,8 +11278,7 @@ for the <strong>Drive-on-Chip</strong> motor-control fabric (NiosV/g, drive, and
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/hps-sub-pd.png" data-desc-position="bottom"><img alt="hps-sub-pd" src="../images/HW/hps-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Hard Processor System (HPS) PD sub-Block.**
+<p><strong>Hard Processor System (HPS) PD sub-Block.</strong></p>
 </center>
 <p><br></p>
 <p>The <strong>lightweight</strong> HPS-to-FPGA bridge (base <code>0x2000_0000</code>) connects to the Drive-on-Chip <code>control_subsystem</code> instances and
@@ -11309,8 +11305,7 @@ for the virtualized fiducial scene on DisplayPort while any high-level software 
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/isp-in-sub-pd.png" data-desc-position="bottom"><img alt="isp-in-sub-pd" src="../images/HW/isp-in-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**ISP In Subsystem (HPS) PD sub-Block.**
+<p><strong>ISP In Subsystem (HPS) PD sub-Block.</strong></p>
 </center>
 <p><br></p>
 <p>The live-sensor path remains available for bring-up and for applications that move to a physical camera later, using the
@@ -11326,8 +11321,7 @@ same ISP Lite and ISP Robotics pipeline as the Robotics Camera example design.</
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/isp-lite-sub-pd.png" data-desc-position="bottom"><img alt="isp-lite-sub-pd" src="../images/HW/isp-lite-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**ISP Lite Subsystem (HPS) PD sub-Block.**
+<p><strong>ISP Lite Subsystem (HPS) PD sub-Block.</strong></p>
 </center>
 <p><br></p>
 <p>This stage matches the <strong>Camera Lite</strong> philosophy: a focused real-time path without the tone-mapping, HDR merge, or multi-exposure blocks.</p>
@@ -11346,8 +11340,7 @@ same ISP Lite and ISP Robotics pipeline as the Robotics Camera example design.</
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/HW/isp-rob-sub-pd.png" data-desc-position="bottom"><img alt="isp-rob-sub-pd" src="../images/HW/isp-rob-sub-pd.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**ISP Robotics Subsystem (HPS) PD sub-Block.**
+<p><strong>ISP Robotics Subsystem (HPS) PD sub-Block.</strong></p>
 </center>
 <p><br></p>
 <h5 id="hps-control-lightweight-bridge">HPS control (lightweight bridge)<a class="headerlink" href="#hps-control-lightweight-bridge" title="Permanent link">¶</a></h5>
@@ -11355,47 +11348,129 @@ same ISP Lite and ISP Robotics pipeline as the Robotics Camera example design.</
 base address is <strong><code>0x2000_0000</code></strong>. Add the offsets below to that base for absolute addresses (for example RGB frame writer
 CSRs at <strong><code>0x2030_0200</code></strong>).</p>
 <center>
-
-| Block | Offset from lightweight base (`0x2000_0000`) | MPU address |
-| :---- | :------------------------------------------- | :---------- |
-| Frame writer (low res, RGB) | `0x0030_0200` | `0x2030_0200` |
-| ArUco marker control | `0x0030_0600` | `0x2030_0600` |
-| Frame writer (low res, grayscale) | `0x0030_0800` | `0x2030_0800` |
-
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Block</th>
+<th style="text-align: left;">Offset from lightweight base (<code>0x2000_0000</code>)</th>
+<th style="text-align: left;">MPU address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Frame writer (low res, RGB)</td>
+<td style="text-align: left;"><code>0x0030_0200</code></td>
+<td style="text-align: left;"><code>0x2030_0200</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">ArUco marker control</td>
+<td style="text-align: left;"><code>0x0030_0600</code></td>
+<td style="text-align: left;"><code>0x2030_0600</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Frame writer (low res, grayscale)</td>
+<td style="text-align: left;"><code>0x0030_0800</code></td>
+<td style="text-align: left;"><code>0x2030_0800</code></td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p>Frame pixel data for these writers is <strong>not</strong> on the lightweight bridge; it resides in <code>EMIF subsystem 1</code> and is reached
 through the <strong>full</strong> bridge (see <strong>EMIF subsystems</strong> below).</p>
 <h6 id="frame-writer-low-res-rgb-and-grayscale">Frame writer (low res, RGB and grayscale)<a class="headerlink" href="#frame-writer-low-res-rgb-and-grayscale" title="Permanent link">¶</a></h6>
 <p>Both low-resolution frame writers share the same VVP frame-writer CSR map (see the <a href="https://docs.altera.com/r/docs/683329/current/about-the-video-and-vision-processing-suite">Video and Vision Processing Suite Altera® FPGA IP User Guide</a>).
 Offsets are relative to each block’s base (<code>0x0030_0200</code> for RGB, <code>0x0030_0800</code> for grayscale).</p>
 <center>
-
-| Offset | Register | Access | Description |
-| :----- | :------- | :----- | :---------- |
-| `0x0100` | IRQ_CONTROL | R/W | Interrupt control |
-| `0x0104` | IRQ_STATUS | R | Interrupt status |
-| `0x0120` | IMG_INFO_WIDTH | R/W | Image width (default 960) |
-| `0x0124` | IMG_INFO_HEIGHT | R/W | Image height (default 540) |
-| `0x0140` | STATUS | R | Frame writer status |
-| `0x0164` | COMMIT | R/W | Commit pending CSR writes |
-| `0x0168` | BUFFER_ACKNOWLEDGE | W | Write **`0x1`** to acknowledge / commit a frame write to memory |
-| `0x016C` | RUN | R/W | Run mode (see below) |
-
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Offset</th>
+<th style="text-align: left;">Register</th>
+<th style="text-align: left;">Access</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>0x0100</code></td>
+<td style="text-align: left;">IRQ_CONTROL</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Interrupt control</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x0104</code></td>
+<td style="text-align: left;">IRQ_STATUS</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">Interrupt status</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x0120</code></td>
+<td style="text-align: left;">IMG_INFO_WIDTH</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Image width (default 960)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x0124</code></td>
+<td style="text-align: left;">IMG_INFO_HEIGHT</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Image height (default 540)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x0140</code></td>
+<td style="text-align: left;">STATUS</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">Frame writer status</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x0164</code></td>
+<td style="text-align: left;">COMMIT</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Commit pending CSR writes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x0168</code></td>
+<td style="text-align: left;">BUFFER_ACKNOWLEDGE</td>
+<td style="text-align: left;">W</td>
+<td style="text-align: left;">Write <strong><code>0x1</code></strong> to acknowledge / commit a frame write to memory</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x016C</code></td>
+<td style="text-align: left;">RUN</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Run mode (see below)</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p><strong>RUN</strong> (<code>0x016C</code>) values:</p>
 <center>
-
-| Value | Mode |
-| :---: | :--- |
-| `0` | Frame writer stopped |
-| `1` | Frame writer free-running |
-| `2` | Frame writer stopped |
-| `3` | Frame writer single-shot |
-
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Value</th>
+<th style="text-align: left;">Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>0</code></td>
+<td style="text-align: left;">Frame writer stopped</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>1</code></td>
+<td style="text-align: left;">Frame writer free-running</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>2</code></td>
+<td style="text-align: left;">Frame writer stopped</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>3</code></td>
+<td style="text-align: left;">Frame writer single-shot</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <h6 id="aruco-marker-control-register">ArUco marker control register<a class="headerlink" href="#aruco-marker-control-register" title="Permanent link">¶</a></h6>
 <p>The <strong>ArUco marker control</strong> register is the main <strong>HPS</strong> interface for the virtualized fiducial overlay. It is
 reached on the <strong>lightweight</strong> HPS-to-FPGA bridge (MPU base <strong><code>0x2000_0000</code></strong>) at offset <strong><code>0x0030_0600</code></strong>, so
@@ -11406,16 +11481,38 @@ bridge used only for frame-buffer data in FPGA DDR.</p>
 drives the ISP Robotics mixer layers.</p>
 <p>Register format <strong>RR-SS-ID-MM</strong> (MSB to LSB):</p>
 <center>
-
-| Field | Bits | Description |
-| :---- | :--- | :---------- |
-| RR | [31:24] | Reserved |
-| SS | [23:16] | **Show** mask — one bit per marker ID. Controls which ArUco layers are enabled in the robotics mixer. |
-| ID | [15:8] | **ID** — marker count. Updated by Nios to `num_mixer_layers − 1` (not normally written by the HPS). |
-| MM | [7:0] | **Mix** — write **`0x1`** to request a new placement mix. Cleared to **`0`** by Nios after the mix completes. |
-
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Bits</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">RR</td>
+<td style="text-align: left;">[31:24]</td>
+<td style="text-align: left;">Reserved</td>
+</tr>
+<tr>
+<td style="text-align: left;">SS</td>
+<td style="text-align: left;">[23:16]</td>
+<td style="text-align: left;"><strong>Show</strong> mask — one bit per marker ID. Controls which ArUco layers are enabled in the robotics mixer.</td>
+</tr>
+<tr>
+<td style="text-align: left;">ID</td>
+<td style="text-align: left;">[15:8]</td>
+<td style="text-align: left;"><strong>ID</strong> — marker count. Updated by Nios to <code>num_mixer_layers − 1</code> (not normally written by the HPS).</td>
+</tr>
+<tr>
+<td style="text-align: left;">MM</td>
+<td style="text-align: left;">[7:0]</td>
+<td style="text-align: left;"><strong>Mix</strong> — write <strong><code>0x1</code></strong> to request a new placement mix. Cleared to <strong><code>0</code></strong> by Nios after the mix completes.</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p><strong>SS = 0 (default / “show all” mode).</strong> When the show mask is zero, the Nios firmware does <strong>not</strong> hide the markers.
 Instead, <code>arUco_ctrl()</code> automatically sets <strong>MM</strong> to <strong><code>0x1</code></strong>, calls <code>pixels_place_squares_random()</code> to assign new
 non-overlapping screen positions for every marker, updates the mixer offsets, and then writes <strong>SS</strong> with all placement
@@ -11447,8 +11544,7 @@ six-axis arm while the video path behaves like a dynamic parts table, without Ar
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/framebuffer-dump.png" data-desc-position="bottom"><img alt="framebuffer-dump" src="../images/framebuffer-dump.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**arUco marker FrameWritter dump from EMIF2 example.**
+<p><strong>arUco marker FrameWritter dump from EMIF2 example.</strong></p>
 </center>
 <p><br></p>
 <h4 id="isp-lite-out-subsystem">ISP Lite Out subsystem<a class="headerlink" href="#isp-lite-out-subsystem" title="Permanent link">¶</a></h4>
@@ -11467,14 +11563,37 @@ by Linux and from the motor-control datapath.</p>
 <p>In the default <strong>960×540</strong> robotics configuration, <code>EMIF subsystem 1</code> exposes two buffers for HPS software
 (for example perception or debug capture via MSGDMA / UIO):</p>
 <center>
-
-| Buffer | Format | Size (pixels) | Bytes per frame | Offset in FPGA EMIF window | HPS access (full bridge) |
-| :----- | :----- | :------------ | :-------------- | :------------------------- | :----------------------- |
-| Grayscale (luma) | Single-plane 8-bit (mono8-style) | 960 × 540 | **518,400** (`0x7E900`) | `0x0020_0000` | **`0x6020_0000`** |
-| RGB | 8 bits per color sample (R, G, B) | 960 × 540 | **1,555,200** (`0x17B000`) | `0x0000_0000` | **`0x6000_0000`** |
-
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Buffer</th>
+<th style="text-align: left;">Format</th>
+<th style="text-align: left;">Size (pixels)</th>
+<th style="text-align: left;">Bytes per frame</th>
+<th style="text-align: left;">Offset in FPGA EMIF window</th>
+<th style="text-align: left;">HPS access (full bridge)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Grayscale (luma)</td>
+<td style="text-align: left;">Single-plane 8-bit (mono8-style)</td>
+<td style="text-align: left;">960 × 540</td>
+<td style="text-align: left;"><strong>518,400</strong> (<code>0x7E900</code>)</td>
+<td style="text-align: left;"><code>0x0020_0000</code></td>
+<td style="text-align: left;"><strong><code>0x6020_0000</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">RGB</td>
+<td style="text-align: left;">8 bits per color sample (R, G, B)</td>
+<td style="text-align: left;">960 × 540</td>
+<td style="text-align: left;"><strong>1,555,200</strong> (<code>0x17B000</code>)</td>
+<td style="text-align: left;"><code>0x0000_0000</code></td>
+<td style="text-align: left;"><strong><code>0x6000_0000</code></strong></td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p>Frame size calculations:</p>
 <ul>
 <li>Grayscale: 960 × 540 × <strong>1</strong> byte/sample = <strong>518,400</strong> bytes.</li>
@@ -11515,18 +11634,41 @@ trace memory (<code>doc_svm_dump</code>) let software and the HPS read drive sta
 address <strong><code>0x2000_0000</code></strong>, plus the per-axis offsets below (32-bit registers). Each <code>control_subsystem</code> debug window
 is in the lightweight address map; each axis occupies <code>0x108</code> bytes within that window.</p>
 <center>
-
-| Axis  | Offset from lightweight bridge base (`0x2000_0000`) |
-| :---: | :-------------------------- |
-| Axis0 | 0x0008_0000                 |
-| Axis1 | 0x0008_0108                 |
-| Axis2 | 0x0018_0000                 |
-| Axis3 | 0x0018_0108                 |
-| Axis4 | 0x0028_0000                 |
-| Axis5 | 0x0028_0108                 |
-
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Axis</th>
+<th style="text-align: left;">Offset from lightweight bridge base (<code>0x2000_0000</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Axis0</td>
+<td style="text-align: left;">0x0008_0000</td>
+</tr>
+<tr>
+<td style="text-align: center;">Axis1</td>
+<td style="text-align: left;">0x0008_0108</td>
+</tr>
+<tr>
+<td style="text-align: center;">Axis2</td>
+<td style="text-align: left;">0x0018_0000</td>
+</tr>
+<tr>
+<td style="text-align: center;">Axis3</td>
+<td style="text-align: left;">0x0018_0108</td>
+</tr>
+<tr>
+<td style="text-align: center;">Axis4</td>
+<td style="text-align: left;">0x0028_0000</td>
+</tr>
+<tr>
+<td style="text-align: center;">Axis5</td>
+<td style="text-align: left;">0x0028_0108</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Offsets in the table are added to the lightweight bridge base <code>0x2000_0000</code>. For example, axis0 debug memory
@@ -11534,32 +11676,139 @@ starts at <code>0x2008_0000</code> (<code>0x2000_0000 + 0x0008_0000</code>). The
 within the same control block. The next pair uses offset <code>0x0018_0000</code>, and the third pair uses <code>0x0028_0000</code>.</p>
 </div>
 <center>
-
-| Offset from axis base | Register name              | R/W | Description |
-| :-------------------- | :------------------------- | :-- | :---------- |
-| 0x00                  | DOC_DBG_DRIVE_STATE        | R   | Drive system monitor state |
-| 0x04                  | DOC_DBG_RUNTIME            | R   | DoC application runtime (seconds) |
-| 0x08                  | DOC_DBG_DSP_MODE           | R   | FOC in software (0) or DSP Builder IP (1) |
-| 0x0C                  | DOC_DBG_APP_STATE          | R   | Embedded application state |
-| 0x10                  | DOC_DBG_LATENCY1           | R   | FOC calculation latency |
-| 0x28                  | DOC_DBG_SPEED              | R   | Measured speed (RPM) |
-| 0x30                  | DOC_DBG_POSITION           | R   | Encoder position; degrees = value × 360 / 65536 |
-| 0x34                  | DOC_DBG_BUTTON_DSP_MODE    | R/W | Select software or DSP Builder FOC |
-| 0x38                  | DOC_DBG_BUTTON_DRIVE_RESET | R/W | Write 0x1 to reset axes on this NiosV/g |
-| 0x3C                  | DOC_DBG_DEMO_MODE          | R/W | Closed/open loop and rate variants |
-| 0x48                  | DOC_DBG_I_PI_KP            | R/W | Current-loop proportional gain |
-| 0x4C                  | DOC_DBG_I_PI_KI            | R/W | Current-loop integral gain |
-| 0x50                  | DOC_DBG_SPEED_PI_KP        | R/W | Speed-loop proportional gain |
-| 0x54                  | DOC_DBG_SPEED_PI_KI        | R/W | Speed-loop integral gain |
-| 0x58                  | DOC_DBG_SPEED_SETP0        | R/W | Speed set-point (RPM) |
-| 0x64                  | DOC_DBG_POS_SETP0          | R/W | Position set-point |
-| 0x74                  | DOC_DBG_WAVE_DEMO_MODE     | R/W | 0 = speed mode, 1 = position mode |
-| 0x78                  | DOC_DBG_POS_SPEED_LIMIT    | R/W | Speed limit in position mode (RPM) |
-| 0x7C                  | DOC_DBG_POS_PI_KP          | R/W | Position-loop proportional gain |
-| 0xE0                  | DOC_DBG_LATENCY2           | R   | ISR latency |
-
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Offset from axis base</th>
+<th style="text-align: left;">Register name</th>
+<th style="text-align: left;">R/W</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">0x00</td>
+<td style="text-align: left;">DOC_DBG_DRIVE_STATE</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">Drive system monitor state</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x04</td>
+<td style="text-align: left;">DOC_DBG_RUNTIME</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">DoC application runtime (seconds)</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x08</td>
+<td style="text-align: left;">DOC_DBG_DSP_MODE</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">FOC in software (0) or DSP Builder IP (1)</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x0C</td>
+<td style="text-align: left;">DOC_DBG_APP_STATE</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">Embedded application state</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x10</td>
+<td style="text-align: left;">DOC_DBG_LATENCY1</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">FOC calculation latency</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x28</td>
+<td style="text-align: left;">DOC_DBG_SPEED</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">Measured speed (RPM)</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x30</td>
+<td style="text-align: left;">DOC_DBG_POSITION</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">Encoder position; degrees = value × 360 / 65536</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x34</td>
+<td style="text-align: left;">DOC_DBG_BUTTON_DSP_MODE</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Select software or DSP Builder FOC</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x38</td>
+<td style="text-align: left;">DOC_DBG_BUTTON_DRIVE_RESET</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Write 0x1 to reset axes on this NiosV/g</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x3C</td>
+<td style="text-align: left;">DOC_DBG_DEMO_MODE</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Closed/open loop and rate variants</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x48</td>
+<td style="text-align: left;">DOC_DBG_I_PI_KP</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Current-loop proportional gain</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x4C</td>
+<td style="text-align: left;">DOC_DBG_I_PI_KI</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Current-loop integral gain</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x50</td>
+<td style="text-align: left;">DOC_DBG_SPEED_PI_KP</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Speed-loop proportional gain</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x54</td>
+<td style="text-align: left;">DOC_DBG_SPEED_PI_KI</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Speed-loop integral gain</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x58</td>
+<td style="text-align: left;">DOC_DBG_SPEED_SETP0</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Speed set-point (RPM)</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x64</td>
+<td style="text-align: left;">DOC_DBG_POS_SETP0</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Position set-point</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x74</td>
+<td style="text-align: left;">DOC_DBG_WAVE_DEMO_MODE</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">0 = speed mode, 1 = position mode</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x78</td>
+<td style="text-align: left;">DOC_DBG_POS_SPEED_LIMIT</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Speed limit in position mode (RPM)</td>
+</tr>
+<tr>
+<td style="text-align: left;">0x7C</td>
+<td style="text-align: left;">DOC_DBG_POS_PI_KP</td>
+<td style="text-align: left;">R/W</td>
+<td style="text-align: left;">Position-loop proportional gain</td>
+</tr>
+<tr>
+<td style="text-align: left;">0xE0</td>
+<td style="text-align: left;">DOC_DBG_LATENCY2</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">ISR latency</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p>Target address:</p>
 <p><code>0x2000_0000 + debug_memory_offset + (axis_within_pair × 0x108) + register_offset</code></p>
 <p>where <code>0x2000_0000</code> is the lightweight HPS-to-FPGA bridge base and <code>debug_memory_offset</code> is the axis row in
@@ -11601,7 +11850,7 @@ a camera, so both motion and vision feedback are demonstrated on the development
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 11, 2026 02:57:15 UTC">August 11, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 11, 2026 03:24:40 UTC">August 11, 2026</span>
   </span>
 
     

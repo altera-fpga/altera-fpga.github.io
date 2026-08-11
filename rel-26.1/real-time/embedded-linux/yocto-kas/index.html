@@ -11597,7 +11597,7 @@ verified release tags.</p>
    You should be able to see <g>"Real-Time tuning options (use with caution)"</g>. Anytime, after applying your settings,
    press "Build".</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/kconfig-main-menu.png" data-desc-position="bottom"><img alt="kconfig-main-menu" src="../images/kconfig-main-menu.png" style="display:block; margin-left:auto; margin-right:auto;"></a></p>
-<center>
+<center markdown="block">
 
    **Kconfig Real-Time main menu**
    </center>
@@ -11606,7 +11606,7 @@ verified release tags.</p>
 <li>
 <p>In the GUI, enable the <code>meta-altera-rt</code> layer (&lt;Space&gt; selects). The menu will expand.
    <a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/en-layer.png" data-desc-position="bottom"><img alt="en-layer" src="../images/en-layer.png" style="display:block; margin-left:auto; margin-right:auto;"></a></p>
-<center>
+<center markdown="block">
 
    **Enable the meta-altera-rt layer.**
    </center>
@@ -11628,35 +11628,63 @@ configurations that can help in the execution of tasks. The configuration is int
 two example configurations are provided, each enabled by one of two build variables:</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/atf-opt-options.png" data-desc-position="bottom"><img alt="atf-opt" src="../images/atf-opt-options.png" style="display:block; margin-left:auto; margin-right:auto;"></a></p>
 <center>
-
-**ATF Optimization options Kconfig GUI**
+<p><strong>ATF Optimization options Kconfig GUI</strong></p>
 </center>
 <p><br></p>
 <p>The following table outlines the available options presented as configuration examples linking them with
 corresponding Kconfig and Yocto/Kas variables. You can use these two examples as a reference to create
 more configurations for other cores.</p>
 <center>
-
-| GUI Configuration Option           | Kconfig Variables | Kas/Yocto Variable | Effective Action |
-| ---------------------------------- | ---- | --- | :---: |
-| Enable ATF optimizations for core 3.  | (bool) `RT_CORE3_OPT` = true <br> (string) `CONFIG_RT_CORE3_OPT` = "rt-atf-core3" <br> (bool) `RT_CORE1_OPT` = false <br> (string)`CONFIG_RT_CORE3_OPT` = ""  | `SOCFPGA_RT_FEATURES` =+ "rt-atf-core3" <br> `SOCFPGA_RT_FEATURES` =+ ""| Adds the assembler fragment `core3_nl3a_cp_qos_plat_helpers.S` <br> to the ATF build. |
-| Enable ATF optimizations for core 1.  | (bool) `RT_CORE3_OPT` = false  <br> (string) `CONFIG_RT_CORE3_OPT` = ""  <br> (bool) `RT_CORE1_OPT` = true <br> (string) `CONFIG_RT_CORE3_OPT` = "rt-atf-core1" | `SOCFPGA_RT_FEATURES` =+ ""  <br> `SOCFPGA_RT_FEATURES` =+ "rt-atf-core1" | Adds the assembler fragment `core1_nl3a_cp_qos_plat_helpers.S` <br> to the ATF build. |
-| None.                                 | (bool) `RT_CORE3_OPT` = false  <br> (string) `CONFIG_RT_CORE3_OPT` = ""  <br> (bool) `RT_CORE1_OPT` = false <br> (string) `CONFIG_RT_CORE3_OPT` = "" | `SOCFPGA_RT_FEATURES` =+ ""  <br> `SOCFPGA_RT_FEATURES` =+ "" | No change in ATF. |
-
+<table>
+<thead>
+<tr>
+<th>GUI Configuration Option</th>
+<th>Kconfig Variables</th>
+<th>Kas/Yocto Variable</th>
+<th style="text-align: center;">Effective Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enable ATF optimizations for core 3.</td>
+<td>(bool) <code>RT_CORE3_OPT</code> = true <br> (string) <code>CONFIG_RT_CORE3_OPT</code> = "rt-atf-core3" <br> (bool) <code>RT_CORE1_OPT</code> = false <br> (string)<code>CONFIG_RT_CORE3_OPT</code> = ""</td>
+<td><code>SOCFPGA_RT_FEATURES</code> =+ "rt-atf-core3" <br> <code>SOCFPGA_RT_FEATURES</code> =+ ""</td>
+<td style="text-align: center;">Adds the assembler fragment <code>core3_nl3a_cp_qos_plat_helpers.S</code> <br> to the ATF build.</td>
+</tr>
+<tr>
+<td>Enable ATF optimizations for core 1.</td>
+<td>(bool) <code>RT_CORE3_OPT</code> = false  <br> (string) <code>CONFIG_RT_CORE3_OPT</code> = ""  <br> (bool) <code>RT_CORE1_OPT</code> = true <br> (string) <code>CONFIG_RT_CORE3_OPT</code> = "rt-atf-core1"</td>
+<td><code>SOCFPGA_RT_FEATURES</code> =+ ""  <br> <code>SOCFPGA_RT_FEATURES</code> =+ "rt-atf-core1"</td>
+<td style="text-align: center;">Adds the assembler fragment <code>core1_nl3a_cp_qos_plat_helpers.S</code> <br> to the ATF build.</td>
+</tr>
+<tr>
+<td>None.</td>
+<td>(bool) <code>RT_CORE3_OPT</code> = false  <br> (string) <code>CONFIG_RT_CORE3_OPT</code> = ""  <br> (bool) <code>RT_CORE1_OPT</code> = false <br> (string) <code>CONFIG_RT_CORE3_OPT</code> = ""</td>
+<td><code>SOCFPGA_RT_FEATURES</code> =+ ""  <br> <code>SOCFPGA_RT_FEATURES</code> =+ ""</td>
+<td style="text-align: center;">No change in ATF.</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p>The following table explains the contents of the ATF helper fragment (<code>core3_nl3a_cp_qos_plat_helpers.S</code>), which is
 added by the <code>.bbappend</code> file to the <code>plat/intel/soc/common/aarch64/plat_helpers.S</code> file within the ATF source code.</p>
 <center>
-
-<br>
-
-| Example of an ATF plat_helper.S fragment |  Line description |
-| :----------------------------------: | ---- |
-|![atf-opt](images/atf-patch.png){:style="display:block; margin-left:auto; margin-right:auto;"} | <br> <br> - <g>Line 3-11: </g> This code is executed once per core, <br> the code is used to identify the core. <br> <br> <g> - Line 14: </g> disables "no L3 allocation mode" from the cluster. (`nl3a`) <br> <br> <g> - Line 18:</g> Assign `Way Group 0` to `Scheme ID 1` while <br> `Way groups 1,2,3` to `Scheme ID 0`. Each "way group" holds <br> "4 cache ways" hence it covers the 16 available cache ways in this cluster,<br> this enables "Cache Partitioning" (`cp`).  See: **[CLUSTERPARTCR]** <br><br> <g> - Line 22: </g> Assigns CHI (Coherent Hub Interface) QoS `"F"` <br> (highest priority), to `Scheme ID 1` and sets CHI QoS `"0"` <br> to `Scheme ID 0` (`qos`). See: **[CLUSTERBUSQOS]** <br> <br> <g> - Line 26: </g> "Scheme Management Registers enable" <br> and "Thread Scheme ID Register enable". See: **[ACTLR_EL3]** <br> <br> <g> - Line 30: </g> Assign this `thread (effectively core)` (in this example core3, <br> second A76) to `Scheme ID 1`. By default other <br> cores will be assigned to `Scheme ID 0`. See: **[CLUSTERTHREADSID]** |
-
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Example of an ATF plat_helper.S fragment</th>
+<th>Line description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/atf-patch.png" data-desc-position="bottom"><img alt="atf-opt" src="../images/atf-patch.png" style="display:block; margin-left:auto; margin-right:auto;"></a></td>
+<td><br> <br> - <g>Line 3-11: </g> This code is executed once per core, <br> the code is used to identify the core. <br> <br> <g> - Line 14: </g> disables "no L3 allocation mode" from the cluster. (<code>nl3a</code>) <br> <br> <g> - Line 18:</g> Assign <code>Way Group 0</code> to <code>Scheme ID 1</code> while <br> <code>Way groups 1,2,3</code> to <code>Scheme ID 0</code>. Each "way group" holds <br> "4 cache ways" hence it covers the 16 available cache ways in this cluster,<br> this enables "Cache Partitioning" (<code>cp</code>).  See: <strong><a href="https://developer.arm.com/documentation/100453/0400/register-descriptions/control-registers/clusterpartcr--cluster-partition-control-register">CLUSTERPARTCR</a></strong> <br><br> <g> - Line 22: </g> Assigns CHI (Coherent Hub Interface) QoS <code>"F"</code> <br> (highest priority), to <code>Scheme ID 1</code> and sets CHI QoS <code>"0"</code> <br> to <code>Scheme ID 0</code> (<code>qos</code>). See: <strong><a href="https://developer.arm.com/documentation/100453/0401/Control-registers/CLUSTERBUSQOS--Cluster-Bus-QoS-Control-Register">CLUSTERBUSQOS</a></strong> <br> <br> <g> - Line 26: </g> "Scheme Management Registers enable" <br> and "Thread Scheme ID Register enable". See: <strong><a href="https://developer.arm.com/documentation/100442/0200/Register-descriptions/AArch64-system-registers/ACTLR-EL3--Auxiliary-Control-Register--EL3">ACTLR_EL3</a></strong> <br> <br> <g> - Line 30: </g> Assign this <code>thread (effectively core)</code> (in this example core3, <br> second A76) to <code>Scheme ID 1</code>. By default other <br> cores will be assigned to <code>Scheme ID 0</code>. See: <strong><a href="https://developer.arm.com/documentation/100453/0400/register-descriptions/control-registers/clusterthreadsid--cluster-thread-scheme-id-register">CLUSTERTHREADSID</a></strong></td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p>You should evaluate and select the most appropriate options for your platform and application. You can enable or
 disable the "No L3 Allocate Mode" (<strong><code>nl3a</code></strong>), "Cache Partitioning" (<strong><code>cp</code></strong>), and/or adjust the "HIC Quality
 of Service" (<strong><code>qos</code></strong>) by enabling/disabling and /or incrementing/decrementing these settings for one or more
@@ -11680,8 +11708,7 @@ and kernel settings.</p>
 <p>In this example the arguments are modified in the GUI with the following options:</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/cpu-isol-irq-aff.png" data-desc-position="bottom"><img alt="cpu-isol-irq-aff" src="../images/cpu-isol-irq-aff.png" style="display:block; margin-left:auto; margin-right:auto;"></a></p>
 <center>
-
-**CPU Isolation and Interrupt Affinity options Kconfig GUI**
+<p><strong>CPU Isolation and Interrupt Affinity options Kconfig GUI</strong></p>
 </center>
 <p><br></p>
 <p>You must select which cores to isolate and define the ones that handle interrupts. Typically, you should keep
@@ -11691,16 +11718,43 @@ isolate cores 1 and 3 for dedicated applications, while cores 0 and 2 handle sys
 variables.</p>
 <p><br></p>
 <center>
-
-| GUI Configuration Option              | Kconfig Variables | Kas/Yocto Variable | Effective Action |
-| ------------------------------------- | ---- | --- | :---: |
-| List of CPUs to isolate               | (string) `CPU_ISOL`          | `KERNEL_BOOTARGS` += isolcpus=`CPU_ISOL`      | Adds `isolcpus` and core list to u-boot boot arguments. |
-| List of CPUs for IRQ affinity         | (string) `CPU_IRQ_AFF`       | `KERNEL_BOOTARGS` += irqaffinity=`CPU_IRQ_AFF`| Adds `irqaffinity` and core list to u-boot boot arguments. |
-| List of CPUs for full tickless mode   | (string) `CPU_NO_HZ_FULL`    | `KERNEL_BOOTARGS` += nohz_full=`CPU_NO_HZ_FULL`| Adds `nohz_full` and core list to u-boot boot arguments. |
-| List of CPUs to disable RCU callbacks | (string) `CPU_RCU_NOCBS`     | `KERNEL_BOOTARGS` += rcu_nocbs=`CPU_RCU_NOCBSL`| Adds `rcu_nocbs` and core list to u-boot boot arguments. |
-
+<table>
+<thead>
+<tr>
+<th>GUI Configuration Option</th>
+<th>Kconfig Variables</th>
+<th>Kas/Yocto Variable</th>
+<th style="text-align: center;">Effective Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>List of CPUs to isolate</td>
+<td>(string) <code>CPU_ISOL</code></td>
+<td><code>KERNEL_BOOTARGS</code> += isolcpus=<code>CPU_ISOL</code></td>
+<td style="text-align: center;">Adds <code>isolcpus</code> and core list to u-boot boot arguments.</td>
+</tr>
+<tr>
+<td>List of CPUs for IRQ affinity</td>
+<td>(string) <code>CPU_IRQ_AFF</code></td>
+<td><code>KERNEL_BOOTARGS</code> += irqaffinity=<code>CPU_IRQ_AFF</code></td>
+<td style="text-align: center;">Adds <code>irqaffinity</code> and core list to u-boot boot arguments.</td>
+</tr>
+<tr>
+<td>List of CPUs for full tickless mode</td>
+<td>(string) <code>CPU_NO_HZ_FULL</code></td>
+<td><code>KERNEL_BOOTARGS</code> += nohz_full=<code>CPU_NO_HZ_FULL</code></td>
+<td style="text-align: center;">Adds <code>nohz_full</code> and core list to u-boot boot arguments.</td>
+</tr>
+<tr>
+<td>List of CPUs to disable RCU callbacks</td>
+<td>(string) <code>CPU_RCU_NOCBS</code></td>
+<td><code>KERNEL_BOOTARGS</code> += rcu_nocbs=<code>CPU_RCU_NOCBSL</code></td>
+<td style="text-align: center;">Adds <code>rcu_nocbs</code> and core list to u-boot boot arguments.</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p>The <strong><code>nohz_full=</code></strong> parameter in U-Boot's bootargs enables full dynticks (also known as "No HZ Full") mode
 in the Linux kernel at boot time. When this option is set, it instructs the kernel to run certain CPU
 cores in a mode where the kernel avoids timer interrupts on those cores, effectively preventing any
@@ -11754,21 +11808,47 @@ This kernel configurations settings are applied using the example file
 <strong>"Enable <feature>”</feature></strong>.</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/add-rt-config.png" data-desc-position="bottom"><img alt="add-rt-config" src="../images/add-rt-config.png" style="display:block; margin-left:auto; margin-right:auto;"></a></p>
 <center>
-
-**Additional RT configurations options Kconfig GUI**
+<p><strong>Additional RT configurations options Kconfig GUI</strong></p>
 </center>
 <p><br></p>
 <center>
-
-| GUI Configuration Option               | Kconfig Variables | Kas/Yocto Variable | Effective Action |
-| -------------------------------------- | ---- | --- | --- |
-| Enable core isolation                  | (bool) `EN_CORE_ISOL` <br> (string) `CONFIG_EN_CORE_ISOL`         | `SOCFPGA_RT_FEATURES` =+  `rt-core-isol`    | If `rt-core-isol` the Linux kernel is compiled with <br> `CONFIG_CPU_ISOLATION=y` |
-| Enable interrupt affinity              | (bool) `EN_IRQ_AFF` <br> (string) `CONFIG_EN_IRQ_AFF`             | `SOCFPGA_RT_FEATURES` =+  `rt-irq-aff`      | If `rt-irq-aff` the Linux kernel is compiled with <br> `CONFIG_GENERIC_IRQ_AFFINITY=y` and `CONFIG_ARM64_PSEUDO_NMI=y` |
-| Enable full tickless mode (NO_HZ_FULL) | (bool) `EN_NO_HZ_FULL` <br> (string) `CONFIG_EN_NO_HZ_FULL`       | `SOCFPGA_RT_FEATURES` =+  `rt-no-hz-full`   | If `rt-no-hz-full` the Linux kernel is compiled with <br> `CONFIG_NO_HZ_FULL=y` |
-| Disable RCU callbacks (RCU_NOCB)       | (bool) `EN_RCU_NOCBS` <br> (string) `CONFIG_EN_RCU_NOCBS`         | `SOCFPGA_RT_FEATURES` =+  `rt-rcu-nocbs`   | If `rt-rcu-nocbs` the Linux kernel is compiled with <br> `CONFIG_RCU_NOCB_CPU=y` |
-
+<table>
+<thead>
+<tr>
+<th>GUI Configuration Option</th>
+<th>Kconfig Variables</th>
+<th>Kas/Yocto Variable</th>
+<th>Effective Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enable core isolation</td>
+<td>(bool) <code>EN_CORE_ISOL</code> <br> (string) <code>CONFIG_EN_CORE_ISOL</code></td>
+<td><code>SOCFPGA_RT_FEATURES</code> =+  <code>rt-core-isol</code></td>
+<td>If <code>rt-core-isol</code> the Linux kernel is compiled with <br> <code>CONFIG_CPU_ISOLATION=y</code></td>
+</tr>
+<tr>
+<td>Enable interrupt affinity</td>
+<td>(bool) <code>EN_IRQ_AFF</code> <br> (string) <code>CONFIG_EN_IRQ_AFF</code></td>
+<td><code>SOCFPGA_RT_FEATURES</code> =+  <code>rt-irq-aff</code></td>
+<td>If <code>rt-irq-aff</code> the Linux kernel is compiled with <br> <code>CONFIG_GENERIC_IRQ_AFFINITY=y</code> and <code>CONFIG_ARM64_PSEUDO_NMI=y</code></td>
+</tr>
+<tr>
+<td>Enable full tickless mode (NO_HZ_FULL)</td>
+<td>(bool) <code>EN_NO_HZ_FULL</code> <br> (string) <code>CONFIG_EN_NO_HZ_FULL</code></td>
+<td><code>SOCFPGA_RT_FEATURES</code> =+  <code>rt-no-hz-full</code></td>
+<td>If <code>rt-no-hz-full</code> the Linux kernel is compiled with <br> <code>CONFIG_NO_HZ_FULL=y</code></td>
+</tr>
+<tr>
+<td>Disable RCU callbacks (RCU_NOCB)</td>
+<td>(bool) <code>EN_RCU_NOCBS</code> <br> (string) <code>CONFIG_EN_RCU_NOCBS</code></td>
+<td><code>SOCFPGA_RT_FEATURES</code> =+  <code>rt-rcu-nocbs</code></td>
+<td>If <code>rt-rcu-nocbs</code> the Linux kernel is compiled with <br> <code>CONFIG_RCU_NOCB_CPU=y</code></td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <div class="admonition danger">
 <p class="admonition-title">Note</p>
 <p>This is just an example of how to enable or disable Linux kernel configurations
@@ -11787,9 +11867,8 @@ by configuring the <code>smp_affinity</code>. Start by identifying the interrupt
 <p><br></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/irq-count.png" data-desc-position="bottom"><img alt="irq-count" src="../images/irq-count.png" style="display:block; margin-left:auto; margin-right:auto"></a></p>
 <center>
-
-**Amount of Interrupts Triggered by the Interval
- Timer allocated to Core2 (3rd column)**
+<p><strong>Amount of Interrupts Triggered by the Interval
+ Timer allocated to Core2 (3<sup>rd</sup> column)</strong></p>
 </center>
 <p><br></p>
 <p>If you want to allocate interrupt 53, which is subscribed to the interval_timer (which is a device in the
@@ -11818,18 +11897,29 @@ feature an ARM cluster composed exclusively of A-class cores.</p>
 “Add kernel PREEMPT-RT patch”.</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/rt-preempt.png" data-desc-position="bottom"><img alt="rt-preempt" src="../images/rt-preempt.png" style="display:block; margin-left:auto; margin-right:auto;"></a></p>
 <center>
-
-**RT_PREEMPT configurations options Kconfig GUI**
+<p><strong>RT_PREEMPT configurations options Kconfig GUI</strong></p>
 </center>
 <p><br></p>
 <center>
-
-| GUI Configuration Option             | Kconfig Variables | Kas/Yocto Variable | Effective Action |
-| ----------------------------------   | ---- | --- | --- |
-| Add kernel PREEMPT-RT patch          | (bool) `REALTIME_PATCH` <br> (string) `CONFIG_REALTIME_PATCH`    | `SOCFPGA_RT_FEATURES` =+ ` rt-patch`      | If `rt-patch` the Linux kernel is patched and configured with <br> `CONFIG_PREEMPT_RT=y`, `CONFIG_HIGH_RES_TIMERS=y` and `CONFIG_IRQ_FORCED_THREADING=y` |
-
+<table>
+<thead>
+<tr>
+<th>GUI Configuration Option</th>
+<th>Kconfig Variables</th>
+<th>Kas/Yocto Variable</th>
+<th>Effective Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add kernel PREEMPT-RT patch</td>
+<td>(bool) <code>REALTIME_PATCH</code> <br> (string) <code>CONFIG_REALTIME_PATCH</code></td>
+<td><code>SOCFPGA_RT_FEATURES</code> =+ <code>rt-patch</code></td>
+<td>If <code>rt-patch</code> the Linux kernel is patched and configured with <br> <code>CONFIG_PREEMPT_RT=y</code>, <code>CONFIG_HIGH_RES_TIMERS=y</code> and <code>CONFIG_IRQ_FORCED_THREADING=y</code></td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <p>The <code>CONFIG_PREEMPT_RT</code> option enables full kernel preemption for real-time responsiveness. <code>CONFIG_HIGH_RES_TIMERS</code>
 activates high-resolution timers, allowing the kernel to use hardware timers with nanosecond precision instead of
 relying on periodic timer ticks. With this option enabled, the system can schedule events and wake-ups with much
@@ -11895,10 +11985,8 @@ generated.</p>
 <p>To install both Linux and custom utilities enable them in the Kconfig GUI</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/rt-utils.png" data-desc-position="bottom"><img alt="rt-utils" src="../images/rt-utils.png" style="display:block; margin-left:auto; margin-right:auto;"></a></p>
 <center>
-
-**RT Utilities configurations options Kconfig GUI**
+<p><strong>RT Utilities configurations options Kconfig GUI</strong></p>
 </center>
-
 <p><br></p>
 <h2 id="application-level-check-your-system-configuration-at-runtime">Application Level: Check your system configuration at Runtime<a class="headerlink" href="#application-level-check-your-system-configuration-at-runtime" title="Permanent link">¶</a></h2>
 <ul>
@@ -11966,10 +12054,8 @@ generated.</p>
 </ul>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/htop-example.png" data-desc-position="bottom"><img alt="htop-example" src="../images/htop-example.png" style="display:block; margin-left:auto; margin-right:auto;"></a></p>
 <center>
-
-**HTOP example**
+<p><strong>HTOP example</strong></p>
 </center>
-
 <p>The previous figure shows the CPU utilization when running the custom utility <code>run_cyclictest_hackbench-core</code>
   </p><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="w">  </span>run_cyclictest_hackbench-core<span class="w"> </span>--iterations<span class="w"> </span><span class="m">1000000</span><span class="w"> </span>--board<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--core<span class="w"> </span><span class="m">3</span>
 </code></pre></div><p></p>
@@ -11997,17 +12083,30 @@ is the priority level for real-time policies (<code>SCHED_FIFO</code> and <code>
 <h3 id="available-scheduling-policies-for-real-time">Available Scheduling Policies for Real-Time<a class="headerlink" href="#available-scheduling-policies-for-real-time" title="Permanent link">¶</a></h3>
 <p>These policies let you control task priority and execution for real-time workloads.</p>
 <center>
-
-Summary of Scheduling Policies in Linux
-
-|Policy         | Description |
-| ------------- | ----------- |
-|SCHED_OTHER    |Default policy used by most tasks (time-sharing, fair scheduler). |
-|SCHED_FIFO     |First-in, first-out real-time policy with fixed priority. Higher priority tasks are executed first. |
-|SCHED_RR       |Round-robin real-time policy. Similar to SCHED_FIFO but tasks get a time slice before the next task runs. |
-
+<p>Summary of Scheduling Policies in Linux</p>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCHED_OTHER</td>
+<td>Default policy used by most tasks (time-sharing, fair scheduler).</td>
+</tr>
+<tr>
+<td>SCHED_FIFO</td>
+<td>First-in, first-out real-time policy with fixed priority. Higher priority tasks are executed first.</td>
+</tr>
+<tr>
+<td>SCHED_RR</td>
+<td>Round-robin real-time policy. Similar to SCHED_FIFO but tasks get a time slice before the next task runs.</td>
+</tr>
+</tbody>
+</table>
 </center>
-
 <h3 id="basic-real-time-thread-creation-in-c-programming">Basic Real-Time Thread creation in C programming<a class="headerlink" href="#basic-real-time-thread-creation-in-c-programming" title="Permanent link">¶</a></h3>
 <p>In C, setting CPU core affinity is done using the <code>sched_setaffinity()</code> system call, which allows
 you to bind a process or thread to specific processor cores. The following code snippet provides
