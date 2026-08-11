@@ -6911,6 +6911,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#copying-the-compiled-ai-models-to-the-microsd-card" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Copying the Compiled AI Models to the microSD Card
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#program-the-qspi-flash-memory" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11404,6 +11415,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#copying-the-compiled-ai-models-to-the-microsd-card" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Copying the Compiled AI Models to the microSD Card
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#program-the-qspi-flash-memory" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12015,6 +12037,64 @@ ASx4 (QSPI) mode:  Modular Development Kit SOM Board S4=ON:ON</p>
   microSD card slot located on the Modular Development Kit SOM Board.</li>
 </ul>
 <p><br></p>
+<h3 id="copying-the-compiled-ai-models-to-the-microsd-card"><strong>Copying the Compiled AI Models to the microSD Card</strong><a class="headerlink" href="#copying-the-compiled-ai-models-to-the-microsd-card" title="Permanent link">¶</a></h3>
+<p>The compiled models must be copied onto the microSD card for the Application
+Software to use at runtime:</p>
+<ul>
+<li>
+<p><code>scp</code> and <code>ssh</code> the compiled models directly to the Development Kit (using its
+  <code>&lt;ip address&gt;</code>):</p>
+<ul>
+<li>Power up the Modular Development Kit (if not already powered) and set up the
+  serial terminal emulator (minicom, <a href="https://github.com/TeraTermProject/teraterm/releases">TeraTerm</a>, <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PuTTY</a>, etc.):<ul>
+<li>Select the correct <code>COMx</code> port. (The Modular Development Kit presents 4
+  serial COM ports over a single connection and the Linux system uses the 3<sup>rd</sup>
+  port in order). Set the port configuration as follows:<ul>
+<li>115200 baud rate, 8 Data bits, 1 Stop bit, CRC and Hardware flow control
+  disabled.</li>
+</ul>
+</li>
+<li>The Linux OS will boot.</li>
+<li>
+<p>Take note of the Modular Development Kit IP address.</p>
+<ul>
+<li>The IP address can also be found using the terminal by logging in as <code>root</code>
+(no password required) and querying the Ethernet controller:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>root
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>ifconfig
+</code></pre></div>
+<ul>
+<li><code>eth0</code> provides the IPv4 or IPv6 address to connect to.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>
+<p>Using a Linux terminal (or Windows equivalent like PowerShell) on your Host,
+  copy the files from the output directory to the Development Kit:</p>
+<p></p><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span>compile/output
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>scp<span class="w"> </span>-r<span class="w"> </span>*<span class="w"> </span>root@&lt;ip<span class="w"> </span>address&gt;:
+</code></pre></div>
+  * Ensure sdcard has stored the files
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ssh<span class="w"> </span>root@&lt;ip<span class="w"> </span>address&gt;
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sync
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>ls<span class="w"> </span>*_categories.txt<span class="w"> </span>*.arch
+</code></pre></div>
+Outputs:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>yolov8n-pose_categories.txt<span class="w"> </span>yolov8n_categories.txt
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>generated_arch.arch:
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>yolov8n-pose_dla_m2m_compiled_640_384.bin<span class="w"> </span>yolov8n_dla_m2m_compiled_640_384.bin
+</code></pre></div>
+  * The Development Kit can be powered down, and restarted to load the models.<p></p>
+</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
 <h3 id="program-the-qspi-flash-memory"><strong>Program the QSPI Flash Memory</strong><a class="headerlink" href="#program-the-qspi-flash-memory" title="Permanent link">¶</a></h3>
 <p>This should only need to be done once. To program the QSPI flash memory:</p>
 <ul>
@@ -12030,7 +12110,7 @@ ASx4 (QSPI) mode:  Modular Development Kit SOM Board S4=ON:ON</p>
 </ul>
 <ul>
 <li>Either use your own or download the pre-built <code>JIC</code> image, and write it to
-  the QSPI Flash memory using either the command:<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">"pvi;top.core.jic"</span><span class="w"> </span>
+  the QSPI Flash memory using either the command:<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">"pvi;top.core.jic"</span><span class="w"> </span>
 </code></pre></div>
 </li>
 </ul>
@@ -12173,8 +12253,8 @@ Wait until the programming has been completed (which can take several minutes).
 <li>
 <p>The IP address can also be found using the terminal by logging in as <code>root</code>
   (no password required) and querying the Ethernet controller:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>root
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>ifconfig
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>root
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>ifconfig
 </code></pre></div>
 </li>
 </ul>
@@ -12539,7 +12619,7 @@ You are responsible for safety of the overall system, including compliance with 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 10, 2026 18:49:41 UTC">August 10, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 11, 2026 02:57:15 UTC">August 11, 2026</span>
   </span>
 
     
