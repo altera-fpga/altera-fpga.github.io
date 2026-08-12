@@ -76,7 +76,7 @@ _**NOTE**_: For UVM Simulation, additional 3rd Party tools and IPs are required 
 
 ### Binaries
 
-  Release notes and pre-built binaries can be found in the [GitHub repository](https://github.com/altera-fpga/agilex5-ed-ethernet/releases/tag/SED-1x10GE-a5e065b-mdk-Q26.1-Rel-1.1).
+  Release notes and pre-built binaries can be found in the [GitHub repository](https://github.com/altera-fpga/agilex5-ed-ethernet/releases/tag/SED-1x10GE-a5e065b-mdk-Q26.1-Rel-1.2).
   
   Directory Structure used in this example design:
 
@@ -92,7 +92,7 @@ _**NOTE**_: For UVM Simulation, additional 3rd Party tools and IPs are required 
   ```bash
   git clone https://github.com/altera-fpga/agilex5-ed-ethernet.git
   cd agilex5-ed-ethernet/
-  git checkout SED-1x10GE-a5e065b-mdk-Q26.1-Rel-1.1
+  git checkout SED-1x10GE-a5e065b-mdk-Q26.1-Rel-1.2
   cd a5e065b-mod-devkit-exp-prod/
   export TOP_FOLDER=`pwd`
   mkdir bin
@@ -104,19 +104,19 @@ _**NOTE**_: For UVM Simulation, additional 3rd Party tools and IPs are required 
 
 | Component                             | Location                                                                                                                    | Branch                          | Commit ID/Tag                             |
 |---------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|---------------------------------|-----------------------------------------  |
-| GHRD                                  | <https://github.com/altera-fpga/agilex5-ed-ethernet/tree/rel/26.1/a5e065b-mod-devkit-exp-prod/src/hw>                         | rel/26.1                         |SED-1x10GE-a5e065b-mdk-Q26.1-Rel-1.1      |
+| GHRD                                  | <https://github.com/altera-fpga/agilex5-ed-ethernet/tree/rel/26.1/a5e065b-mod-devkit-exp-prod/src/hw>                         | rel/26.1                         |SED-1x10GE-a5e065b-mdk-Q26.1-Rel-1.2      |
 | Linux                                 | <https://github.com/altera-fpga/linux-socfpga>                                                                              | socfpga-6.12.19-lts-ethernet-sed |SED-1x10GE-a5e065b-mdk-Q26.1-Rel-1.1      |
 | Arm Trusted Firmware                  | <https://github.com/altera-fpga/arm-trusted-firmware>                                                                         | socfpga_v2.13.0                  | d1ca26265db2b4c3c4eb9c9bdb0d2547002058a6 |
 | U-Boot                                | <https://github.com/altera-fpga/u-boot-socfpga>                                                                               | socfpga_v2025.07                 | e5f40a8ed1ec65f20c4e2491bfe8e738efce6d94 |
 | Yocto Project: poky                   | <https://git.yoctoproject.org/poky/>                                                                                          | rel/26.1                         | d1c25a3ce446a23e453e40ac2ba8f22b0e7ccefd |
 | Yocto Project: meta-intel-fpga        | <https://git.yoctoproject.org/meta-intel-fpga/>                                                                               | rel/26.1                         | 9714ae1ef8f22302bac60b7d2081bbdf3199ca70 |
 | Yocto Project: meta-intel-fpga-refdes | <https://github.com/altera-fpga/meta-intel-fpga-refdes/>                                                                      | rel/26.1                         | bffc5bc012f1653beb58878b54b44e74b0f27404 |
-| Yocto Project: meta-agilex5-sed       | <https://github.com/altera-fpga/agilex5-ed-ethernet/tree/rel/26.1/a5e065b-mod-devkit-exp-prod/src/sw/yocto/meta-agilex5-sed>  | rel/26.1                         |SED-1x10GE-a5e065b-mdk-Q26.1-Rel-1.1      |
-| GSRD Build Script: gsrd-socfpga       | <https://github.com/altera-fpga/agilex5-ed-ethernet/blob/rel/26.1/a5e065b-mod-devkit-exp-prod/src/sw/yocto/build.sh>          | rel/26.1                         |SED-1x10GE-a5e065b-mdk-Q26.1-Rel-1.1      |
+| Yocto Project: meta-agilex5-sed       | <https://github.com/altera-fpga/agilex5-ed-ethernet/tree/rel/26.1/a5e065b-mod-devkit-exp-prod/src/sw/yocto/meta-agilex5-sed>  | rel/26.1                         |SED-1x10GE-a5e065b-mdk-Q26.1-Rel-1.2      |
+| GSRD Build Script: gsrd-socfpga       | <https://github.com/altera-fpga/agilex5-ed-ethernet/blob/rel/26.1/a5e065b-mod-devkit-exp-prod/src/sw/yocto/build.sh>          | rel/26.1                         |SED-1x10GE-a5e065b-mdk-Q26.1-Rel-1.2      |
 
 ## Release Notes
 
-   Refer to this link for [Known Issues](https://github.com/altera-fpga/agilex5-ed-ethernet/releases/tag/SED-1x10GE-a5e065b-mdk-Q26.1-Rel-1.1).
+   Refer to this link for [Known Issues](https://github.com/altera-fpga/agilex5-ed-ethernet/releases/tag/SED-1x10GE-a5e065b-mdk-Q26.1-Rel-1.2).
 
 ## Agilex&trade; 5E-Series MDK 1x10G Ethernet Design Architecture
 
@@ -259,7 +259,7 @@ Figure 5 . System high-level Reset Architecture.
 
 ### Software Architecture
 
-The Software Archtecture of the Design described in the following sections.
+The Software Architecture of the Design described in the following sections.
 
 #### Architecture Overview
 
@@ -613,7 +613,7 @@ Clone the repository to get the source package for the System Example Design
 ```bash
 git clone https://github.com/altera-fpga/agilex5-ed-ethernet.git
 cd agilex5-ed-ethernet/
-git checkout SED-1x10GE-a5e065b-mdk-Q26.1-Rel-1.1
+git checkout SED-1x10GE-a5e065b-mdk-Q26.1-Rel-1.2
 cd a5e065b-mod-devkit-exp-prod/
 export TOP_FOLDER=`pwd`
 mkdir bin
@@ -670,7 +670,7 @@ This step will generate the QSPI Flash Image for on-board QSPI Flash.
 cd $TOP_FOLDER
 rm -f bin/top.hps.jic bin/top.core.rbf
 
-# Note : If user doing compilation first time, download the prebuilt u-boot-spl-dtb.hex  file and create the following path $TOP_FOLDER/src/sw/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/ and copy the u boot file here.
+# Note : If user doing compilation first time, download the prebuilt u-boot-spl-dtb.hex  file and create the following path $TOP_FOLDER/src/sw/agilex5_mk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/ and copy the u boot file here.
 
 quartus_pfg \
 -c src/hw/synth/output_files/top.sof bin/top.jic \
@@ -693,24 +693,24 @@ the Yocto builds everything required for a boot of the devkit with the design. T
 
 ```bash
 cd $TOP_FOLDER/src/sw/yocto/
-. agilex5_modular-ETH_1P10G-build.sh
+. agilex5_mk_a5e065bb32aes1-ETH_1P10G-build.sh
 build_default
 ```
 
-All the required images are captured in the agilex5_modular-gsrd-images directory after a successful build.
+All the required images are captured in the agilex5_mk_a5e065bb32aes1-gsrd-images directory after a successful build.
 The build process time depends on the resource specifications of the Host being used to build the software. After a successful compilation process for the 10G system example design.
 The following files are created:
 
-* `$TOP_FOLDER/src/sw/yocto/agilex5_modular-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex`
-* `$TOP_FOLDER/src/sw/yocto/agilex5_modular-gsrd-images/u-boot.itb`
-* `$TOP_FOLDER/src/sw/yocto/agilex5_modular-gsrd-images/kernel_sed.itb`
-* `$TOP_FOLDER/src/sw/yocto/agilex5_modular-gsrd-images/sdimage.tar.gz`
+* `$TOP_FOLDER/src/sw/yocto/agilex5_mk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex`
+* `$TOP_FOLDER/src/sw/yocto/agilex5_mk_a5e065bb32aes1-gsrd-images/u-boot.itb`
+* `$TOP_FOLDER/src/sw/yocto/agilex5_mk_a5e065bb32aes1-gsrd-images/kernel_sed.itb`
+* `$TOP_FOLDER/src/sw/yocto/agilex5_mk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz`
 
 Copy the `sdimage.tar.gz` and `kernel_sed.itb` to `bin` folder.
 
 ```bash
-cp -rf $TOP_FOLDER/src/sw/yocto/agilex5_modular-gsrd-images/sdimage.tar.gz $TOP_FOLDER/bin/sdimage.tar.gz
-cp -rf $TOP_FOLDER/src/sw/yocto/agilex5_modular-gsrd-images/kernel_sed.itb $TOP_FOLDER/bin/kernel_sed.itb
+cp -rf $TOP_FOLDER/src/sw/yocto/agilex5_mk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz $TOP_FOLDER/bin/sdimage.tar.gz
+cp -rf $TOP_FOLDER/src/sw/yocto/agilex5_mk_a5e065bb32aes1-gsrd-images/kernel_sed.itb $TOP_FOLDER/bin/kernel_sed.itb
 ```
 
 ### Customize Yocto
@@ -724,7 +724,7 @@ Follow the next steps to update the FPGA core bitstream used in the HPS second s
 
 ```bash
 cd $TOP_FOLDER
-CORE_RBF=src/sw/yocto/meta-agilex5-sed/recipes-bsp/ghrd/files/agilex5_modular_gsrd_ghrd_ETH_1P10G.core.rbf
+CORE_RBF=src/sw/yocto/meta-agilex5-sed/recipes-bsp/ghrd/files/agilex5_mk_a5e065bb32aes1_gsrd_ghrd_ETH_1P10G.core.rbf
 rm -rf $CORE_RBF
 cp -f bin/top.core.rbf $CORE_RBF
 FILE=src/sw/yocto/meta-agilex5-sed/recipes-bsp/ghrd/hw-ref-design.bbappend
@@ -747,7 +747,7 @@ The Embedded Linux operating system running on the  Agilex&trade; 5 FPGA and SoC
 
 ### Programming Software Image
 
-The SD card image file `sdimage.tar.gz` is provided in  [Release package](https://github.com/altera-fpga/agilex5-ed-ethernet/releases/tag/SED-1x10GE-a5e065b-mdk-Q26.1-Rel-1.1), you may refer to [Release Content](#release-contents) for more details.
+The SD card image file `sdimage.tar.gz` is provided in  [Release package](https://github.com/altera-fpga/agilex5-ed-ethernet/releases/tag/SED-1x10GE-a5e065b-mdk-Q26.1-Rel-1.2), you may refer to [Release Content](#release-contents) for more details.
 
 Follow the instructions under ["Write SD Card"](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/#booting-from-sd-card) from the HPS GSRD User Guide for the Agilex&trade; 5 E-Series Modular Dev Kit to create a boot-able SD card with this image file.
 
@@ -886,23 +886,24 @@ If everything went as expected, each Minicom terminal shows the messages from th
 To login into the system use `root` as your login credentials with no password. You can execute `uname -a` and `cat /etc/os-release` commands to print current version of package as shown in below commands.
 
 ```bash
-agilex5modular login: root
+agilex5mka5e065bb32aes1 login: root
 
 WARNING: Poky is a reference Yocto Project distribution that should be used for
 testing and development purposes only. It is recommended that you create your
 own distribution for production use.
 
-root@agilex5modular:~# uname -a
-Linux agilex5modular 6.12.19-altera-eth-sed-Q26.1-R1.1 #1 SMP PREEMPT Thu Jan 29 07:47:33 UTC 2026 aarch64 GNU/Linux
-root@agilex5modular:~# cat /etc/os-release
+root@agilex5mka5e065bb32aes1:~# uname -a
+Linux agilex5mka5e065bb32aes1 6.12.19-altera-eth-sed-Q26.1-R1.2 #1 SMP PREEMPT Thu Jan 29 07:47:33 UTC 2026 aarch64 GNU/Linux
+root@agilex5mka5e065bb32aes1:~# cat /etc/os-release
 ID=poky
 NAME="Poky (Yocto Project Reference Distro)"
-VERSION="5.0.5 (scarthgap)"
-VERSION_ID=5.0.5
+VERSION="5.0.19 (scarthgap)"
+VERSION_ID=5.0.19
 VERSION_CODENAME="scarthgap"
-PRETTY_NAME="Poky (Yocto Project Reference Distro) 5.0.5 (scarthgap)"
-CPE_NAME="cpe:/o:openembedded:poky:5.0.5"
-root@agilex5modular:~# 
+PRETTY_NAME="Poky (Yocto Project Reference Distro) 5.0.19 (scarthgap)"
+CPE_NAME="cpe:/o:openembedded:poky:5.0.19"
+root@agilex5mka5e065bb32aes1:~# 
+
 ```
 
 Repeat the same steps for the second Agilex&trade; 5 FPGA and SoC E-Series 065B Modular Development Kit.
@@ -920,7 +921,7 @@ ip addr
 **Output:**
 
 ```bash
-root@agilex5modular:~# ip addr
+root@agilex5mka5e065bb32aes1:~# ip addr
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -943,7 +944,7 @@ root@agilex5modular:~# ip addr
     link/void 
 5: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN group default qlen 1000
     link/sit 0.0.0.0 brd 0.0.0.0
-root@agilex5modular:~# 
+root@agilex5mka5e065bb32aes1:~# 
 ```
 
 Please note There are Three Ethernet Links available.
@@ -984,7 +985,7 @@ Command:
 Output:
 
 ```bash
-root@agilex5modular:~# ./scripts/1Port.sh 1
+root@agilex5mka5e065bb32aes1:~# ./scripts/1Port.sh 1
 Programming the Basic IP address...
 Clearing old packetswitch rules Port - 0...
 UIO device file found. Using /dev/uio2
@@ -1126,13 +1127,13 @@ Configuration for Devkit 1 set
 Command:
 
 ```bash
-root@agilex5modular:~# . /scripts/1Port.sh 2
+root@agilex5mka5e065bb32aes1:~# . /scripts/1Port.sh 2
 ```
 
 Output:
 
 ```bash
-root@agilex5modular:~# ./scripts/1Port.sh 2
+root@agilex5mka5e065bb32aes1:~# ./scripts/1Port.sh 2
 Programming the Basic IP address...
 Clearing old packetswitch rules Port - 0...
 UIO device file found. Using /dev/uio2
@@ -1452,31 +1453,31 @@ Both IP addresses must belong to the same sub network in order to communicate be
 #### Development Kit 1
 
 ```bash
-root@agilex5modular:~# ping -i 0.0001 -q -c 100000 -I eth1 192.168.121.2
+root@agilex5mka5e065bb32aes1:~# ping -i 0.0001 -q -c 100000 -I eth1 192.168.121.2
 PING 192.168.121.2 (192.168.121.2): 56 data bytes
 
 --- 192.168.121.2 ping statistics ---
 100000 packets transmitted, 100000 packets received, 0% packet loss
 round-trip min/avg/max = 0.049/0.077/1.029 ms
-root@agilex5modular:~# cat /proc/interrupts | grep eth1
+root@agilex5mka5e065bb32aes1:~# cat /proc/interrupts | grep eth1
  23:         56          0          0     100054     GICv3  51 Level     eth1
  24:          0          0          0      99996     GICv3  52 Level     eth1
-root@agilex5modular:~#
+root@agilex5mka5e065bb32aes1:~#
 ```
 
 #### Development Kit 2
 
 ```bash
-root@agilex5modular:~# ping -i 0.0001 -q -c 100000 -I eth1 192.168.121.1
+root@agilex5mka5e065bb32aes1:~# ping -i 0.0001 -q -c 100000 -I eth1 192.168.121.1
 PING 192.168.121.1 (192.168.121.1): 56 data bytes
 
 --- 192.168.121.1 ping statistics ---
 100000 packets transmitted, 100000 packets received, 0% packet loss
 round-trip min/avg/max = 0.049/0.076/1.328 ms
-root@agilex5modular:~# cat /proc/interrupts | grep eth1
+root@agilex5mka5e065bb32aes1:~# cat /proc/interrupts | grep eth1
  23:         52          0          0     200053     GICv3  51 Level     eth1
  24:          0          0          0     200003     GICv3  52 Level     eth1
-root@agilex5modular:~#
+root@agilex5mka5e065bb32aes1:~#
 ```
 
 In the above example, we can see clearly that the ping packets have been routed to the DMA which is serviced by the last 2 interrupts.
@@ -1506,7 +1507,7 @@ iperf3 -M 1460 -c 192.168.121.1 -t 80000 -p 5401 --cport 5402 -w 102400 -A 2,2 -
 Output:
 
 ```bash
-root@agilex5modular:~# iperf3 -M 1460 -c 192.168.121.1 -t 80000 -p 5401 --cport 5402 -w 102400 -A 2,2 -R
+root@agilex5mka5e065bb32aes1:~# iperf3 -M 1460 -c 192.168.121.1 -t 80000 -p 5401 --cport 5402 -w 102400 -A 2,2 -R
 Connecting to host 192.168.121.1, port 5401
 Reverse mode, remote host 192.168.121.1 is sending
 [  5] local 192.168.121.2 port 5402 connected to 192.168.121.1 port 5401
@@ -1560,7 +1561,7 @@ packetgenerator --device /dev/uio0 --dump
 Output:
 
 ```bash
-root@agilex5modular:~# packetgenerator --device /dev/uio0 --traffic true --fixed-gap true --pkt-len-mode 0x01 --num-idle-cycles 8 --packet-checker true  --one-shot false --tx-pkt-size 512 -t
+root@agilex5mka5e065bb32aes1:~# packetgenerator --device /dev/uio0 --traffic true --fixed-gap true --pkt-len-mode 0x01 --num-idle-cycles 8 --packet-checker true  --one-shot false --tx-pkt-size 512 -t
 evice /dev/uio0 --dump 
 packetgenerator --device /dev/uio0 --num-idle-cycles 16 --tx-pkt-size 1024 -Tx traffic state set: Enabled
 Fixed Gap set: Enabled
@@ -1572,7 +1573,7 @@ Tx Packet Size set: 512
 Max Tx Packet Size set: 512
 -tx-max-pkt-size 1024
 packetgenerator --device /dev/uio0 --dump
-root@agilex5modular:~# packetgenerator --device /dev/uio0 --dump 
+root@agilex5mka5e065bb32aes1:~# packetgenerator --device /dev/uio0 --dump 
 Config Control: 0x8635
         Tx traffic: Enabled
         Packet Generation Mode: Continuous 
@@ -1612,11 +1613,11 @@ PKT RX Num Ticks Count: 1848720186
 TX Bandwidth: 0 bps
 RX Bandwidth: 9166665792 bps
 Number of words: 1
-root@agilex5modular:~# packetgenerator --device /dev/uio0 --num-idle-cycles 16 --tx-pkt-size 1024 --tx-max-pkt-size 1024
+root@agilex5mka5e065bb32aes1:~# packetgenerator --device /dev/uio0 --num-idle-cycles 16 --tx-pkt-size 1024 --tx-max-pkt-size 1024
 Number of Idle Cycles set: 16
 Tx Packet Size set: 1024
 Max Tx Packet Size set: 1024
-root@agilex5modular:~# packetgenerator --device /dev/uio0 --dump
+root@agilex5mka5e065bb32aes1:~# packetgenerator --device /dev/uio0 --dump
 Config Control: 0x10635
         Tx traffic: Enabled
         Packet Generation Mode: Continuous 
@@ -1661,11 +1662,11 @@ Number of words: 1
 Number of idle cycles `num-idle-cycles` and tx packet length `tx-pkt-size` can be changed as required to get the target bandwidth. Please note that `packetgenerator` can also be started on the other devkit to generate Rx Traffic on the user port.
 
 ```bash
-root@agilex5modular:~# packetgenerator --device /dev/uio0 --num-idle-cycles 6 --tx-pkt-size 1024 --tx-max-pkt-size 1024
+root@agilex5mka5e065bb32aes1:~# packetgenerator --device /dev/uio0 --num-idle-cycles 6 --tx-pkt-size 1024 --tx-max-pkt-size 1024
 Number of Idle Cycles set: 6
 Tx Packet Size set: 1024
 Max Tx Packet Size set: 1024
-root@agilex5modular:~# packetgenerator --device /dev/uio0 --dump
+root@agilex5mka5e065bb32aes1:~# packetgenerator --device /dev/uio0 --dump
 Config Control: 0x6635
         Tx traffic: Enabled
         Packet Generation Mode: Continuous 
@@ -1705,7 +1706,7 @@ PKT RX Num Ticks Count: 22635744370
 TX Bandwidth: 9808428928 bps
 RX Bandwidth: 9808427840 bps
 Number of words: 1
-root@agilex5modular:~# 
+root@agilex5mka5e065bb32aes1:~# 
 ```
 
 ## Simulation

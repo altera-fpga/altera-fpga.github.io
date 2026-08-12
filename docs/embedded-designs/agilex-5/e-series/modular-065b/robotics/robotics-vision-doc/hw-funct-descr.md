@@ -63,25 +63,6 @@
 
 
 
-[Release Tag]: https://github.com/altera-fpga/agilex-ed-robotics/releases/tag/rel-vision-doc-26.1
-[wic.gz]: https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-vision-doc-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.gz
-[wic.bmap]: https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-vision-doc-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.bmap
-[top.hps.jic]: https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-vision-doc-26.1/top.hps.jic
-[top.core.rbf]: https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-vision-doc-26.1/top.core.rbf
-[u-boot-spl-dtb.hex]: https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-vision-doc-26.1/u-boot-spl-dtb.hex
-[ROBOTICS_ISP_VISION_DOC.qar]: https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-vision-doc-26.1/ROBOTICS_ISP_VISION_DOC.qar
-[top.sof]: https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-vision-doc-26.1/top.sof
-
-[HPS_ISP_VIS_DOC3x2_ROBOTICS]: https://github.com/altera-fpga/agilex-ed-robotics/tree/rel/26.1/HPS_ISP_VIS_DOC3x2_ROBOTICS
-[AGX_5E_Modular_Devkit_HPS_ISP_VIS_DOC3x2_ROB.xml]: https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/HPS_ISP_VIS_DOC3x2_ROBOTICS/AGX_5E_Modular_Devkit_HPS_ISP_VIS_DOC3x2_ROB.xml
-[Creating and Building the Design based on Modular Design Toolkit (MDT).]: https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/HPS_ISP_VIS_DOC3x2_ROBOTICS/Readme.md
-[Create SD card image (.wic) using YOCTO/KAS]: https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/sw/README.md
-[kas-vision-doc.yml]: https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/sw/kas-vision-doc.yml
-[6-axis Drive-on-Chip design]: https://github.com/altera-fpga/agilex-ed-drive-on-chip/tree/rel/26.1/HPS_NIOSVg_DoC_3x2_axis
-[MoveIt client]: https://github.com/altera-fpga/altera-ros2/tree/main/examples/moveit_demo_client
-[ROS Control hardware interface]: https://github.com/altera-fpga/altera-ros2/tree/main/fpga_doc_control_driver
-
-
 # Robot Controller with Vision System Example Design — FPGA Hardware Functional Description
 
 This document describes the functionality of the **[HPS_ISP_VIS_DOC3x2_ROBOTICS](https://github.com/altera-fpga/agilex-ed-robotics/tree/rel/26.1/HPS_ISP_VIS_DOC3x2_ROBOTICS)** hardware variant using the Platform Designer
@@ -108,7 +89,7 @@ The Platform Designer system combines vision ingress and display, robotics ISP p
   branches. A **Nios® V/m subsystem** configures and monitors MIPI and ISP Lite CSRs; the HPS uses MSGDMA and CSR access for the robotics path.
 * **Motor subsystems** — three instances each of `dniosv_subsystem`, `control_subsystem`, and paired `drive_subsystem` and
   `motor_model_subsystem` blocks implement a **3×2** Drive-on-Chip topology (six axes of field-oriented control with simulated motors).
-  For IP-level motor details, refer to [AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices] hardware description.
+  For IP-level motor details, refer to [AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices](https://docs.altera.com/r/docs/826207/current) hardware description.
 
 <br>
 
@@ -162,7 +143,7 @@ for the **Drive-on-Chip** motor-control fabric (NiosV/g, drive, and control subs
 ### HPS subsystem
 
 The HPS subsystem is an instance of the Hard Processor System Agilex™ 5 FPGA IP, configured consistently with the
-[Agilex™ 5 E-Series Modular Development Kit GSRD User Guide (26.1)]. The design boots a Yocto-based Linux image built.
+[Agilex™ 5 E-Series Modular Development Kit GSRD User Guide (26.1)](https://altera-fpga.github.io/26.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/). The design boots a Yocto-based Linux image built.
 
 Internally the subsystem includes:
 
@@ -188,7 +169,7 @@ used for **high-bandwidth** access to frame **pixel data** in FPGA DDR (`EMIF su
 ### Vision pipeline subsystems
 
 The vision path follows the streamlined **ISP Lite** style. Video and vision IP blocks come from the Video and Vision
-Processing (VVP) IP Suite; see the [Video and Vision Processing Suite Altera® FPGA IP User Guide] for block-level IP documentation.
+Processing (VVP) IP Suite; see the [Video and Vision Processing Suite Altera® FPGA IP User Guide](https://docs.altera.com/r/docs/683329/current/about-the-video-and-vision-processing-suite) for block-level IP documentation.
 
 #### MIPI In subsystem (optional)
 
@@ -284,7 +265,7 @@ through the **full** bridge (see **EMIF subsystems** below).
 
 ###### Frame writer (low res, RGB and grayscale)
 
-Both low-resolution frame writers share the same VVP frame-writer CSR map (see the [Video and Vision Processing Suite Altera® FPGA IP User Guide]).
+Both low-resolution frame writers share the same VVP frame-writer CSR map (see the [Video and Vision Processing Suite Altera® FPGA IP User Guide](https://docs.altera.com/r/docs/683329/current/about-the-video-and-vision-processing-suite)).
 Offsets are relative to each block’s base (`0x0030_0200` for RGB, `0x0030_0800` for grayscale).
 
 <center>
@@ -427,7 +408,7 @@ display pipeline in ISP Lite Out and DisplayPort output.
 ### Motor control subsystems (6-axis, 3×2 topology)
 
 The lower portion of the design reuses the [6-axis Drive-on-Chip design](https://github.com/altera-fpga/agilex-ed-drive-on-chip/tree/rel/26.1/HPS_NIOSVg_DoC_3x2_axis) architecture, as documented in the
-[ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices]. Three **NiosV/g** processor subsystems
+[ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-crc). Three **NiosV/g** processor subsystems
 each manage **two** drive axes (dual-axis Drive-on-Chip slice), for six axes total in FPGA fabric with **emulated**
 motor and power-stage models.
 
@@ -449,7 +430,7 @@ There are six instances of `drive_subsystem` (two per NiosV/g). Each instance co
 * Resolver SPI interface (doc_rslvr_spi*)
 * Parallel I/O for Hall interface
 
-Refer to [AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices] for block-level descriptions.
+Refer to [AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices](https://docs.altera.com/r/docs/826207/current) for block-level descriptions.
 
 #### Control subsystem — three instances
 
@@ -514,12 +495,12 @@ the table above (`0x0008_0000`, `0x0008_0108`, …). Example: to write the speed
 use `0x2000_0000 + 0x0008_0108 + 0x58` = `0x2008_0160`.
 
 For additional registers and application states, refer to the Drive-on-Chip NiosV/g source in the
-`HPS_ISP_VIS_DOC3x2_ROBOTICS` and [AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices].
+`HPS_ISP_VIS_DOC3x2_ROBOTICS` and [AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices](https://docs.altera.com/r/docs/826207/current).
 
 #### Motor model subsystem — six instances
 
 Six instances of `motor_model_subsystem` implement DSP Builder–based motor and power-board models
-([Tandem Motion-Power 48 V Board Reference Manual] parameters with [Tamagawa TS4747N3200E600 motor] data).
+([Tandem Motion-Power 48 V Board Reference Manual](https://docs.altera.com/r/docs/683164/current/tandem-motion-power-48-v-board-reference-manual) parameters with [Tamagawa TS4747N3200E600 motor](https://www.tamagawa-seiki.com/products/servomotor/search/product.php?model=TS4747N3200E600) data).
 Each instance is paired one-to-one with a `drive_subsystem`, so all **six drives** close their control
 loops against a **virtualized axis** that models a joint on a manipulator arm. You can run the full robotics
 controller example **without a real robot or motor kit**: the plant is emulated in fabric, but each axis

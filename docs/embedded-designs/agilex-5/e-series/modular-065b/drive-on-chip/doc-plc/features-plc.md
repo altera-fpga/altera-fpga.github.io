@@ -81,8 +81,8 @@ motor axes.
 
 * Integration in a single Agilex™ FPGA of multi-axis
   motor control IP, see:
-  * [AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices]
-  * [AN 999: Drive-on-Chip with Functional Safety Design Example: Agilex™ 7 Devices]
+  * [AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices](https://docs.altera.com/r/docs/826207/current)
+  * [AN 999: Drive-on-Chip with Functional Safety Design Example: Agilex™ 7 Devices](https://docs.altera.com/r/docs/823627/current/an-999-drive-on-chip-with-functional-safety-design-example-agilextm-7-devices)
 
 <br>
 

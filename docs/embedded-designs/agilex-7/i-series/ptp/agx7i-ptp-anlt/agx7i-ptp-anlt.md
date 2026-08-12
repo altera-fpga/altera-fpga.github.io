@@ -488,13 +488,13 @@ Packet generation is customizable via parameters such as:
 - Frame sizes
 - Idle packet gaps
 
-**Syntax**
+**Syntax**:
 
 ``` bash
 packetgenerator [--device] [/dev/uioX] [options]
 ```
 
-**Parameters**
+**Parameters**:
 
 - `--help`: Print this help contents
 - `--device`: `UIO` device name
@@ -519,7 +519,7 @@ packetgenerator [--device] [/dev/uioX] [options]
 
 System example design packet generators are mapped to `/dev/uio0` and `/dev/uio1`.
 
-**Basic Usage**
+**Basic Usage**:
 
 _Synthetic Traffic Configuration_ – The command below sets up the packet generator with parameters including fixed gap, packet length mode, idle cycles, packet checker, one-shot mode, and packet sizes before initiating traffic generation.
 
@@ -547,13 +547,13 @@ Rule priority is determined by index number, higher index means higher priority.
 
 A maximum of 32 keys can be programmed (0-31).
 
-**Syntax**
+**Syntax**:
 
 ``` bash
 packetswitch [--device] [/dev/uioX] [Options]
 ```
 
-**Parameters**
+**Parameters**:
 
 - `--help`: Print this help contents
 - `--device`: *UIO device name
@@ -592,7 +592,7 @@ packetswitch [--device] [/dev/uioX] [Options]
 
 System example design Packet Switch is mapped to `/dev/uio2`.
 
-**Basic Usage**
+**Basic Usage**:
 
 _Route all incoming traffic to DMA 0_
 
@@ -1659,7 +1659,7 @@ Three Ethernet interfaces will be listed in the output of `ip addr`:
     2. `eth1` : DR configuratable 10G/25G Ethernet Port 
     3. `eth2` : DR configuratable 10G/25G Ethernet Port
         
-    **Dynamic reconfiguration of Ethernet Ports**
+    **Dynamic reconfiguration of Ethernet Ports**:
 
     There are four DR(Dynamic Reconfiguration) profiles supported for the 10G/25G DR Design configuration.
 
@@ -3953,7 +3953,7 @@ Dumping port status
 
 To decode status for port 8, refer to section [7.1.14 HSSI Ethernet Port X Status](https://docs.altera.com/r/docs/773413/24.3.1/ethernet-subsystem-ip-user-guide/hssi-ethernet-port-x-status) in the Ethernet Subsystem FPGA IP User Guide.
 
-**Example**
+**Example**:
 
 Port 8 status at offset `0xA00180`:
 
@@ -4035,7 +4035,7 @@ Where:
 
 **Table 18.** `direct_reg` Fields.
 
-**Example**
+**Example**:
 
 The next steps describe the process to read and write the Scratch Register (0x104) from `eth1`. The base address for `eth1` port 8 is documented in [7.3. F-Tile Address Maps](https://docs.altera.com/r/docs/773413/24.3.1/ethernet-subsystem-ip-user-guide/f-tile-address-maps). For register offsets, refer to [F-Tile Ethernet FPGA Hard IP Register Map](https://docs.altera.com/v/u/resources/637401/f-tile-ethernet-fpga-hard-ip-register-map).
 
@@ -4143,6 +4143,15 @@ Refer to section '[7.2. F-Tile Transceiver Debugging Flow Walkthrough](https://d
 
 ## Notices & Disclaimers
 
-Altera® Corporation technologies may require enabled hardware, software or service activation. No product or component can be absolutely secure. Performance varies by use, configuration and other factors. Your costs and results may vary. You may not use or facilitate the use of this document in connection with any infringement or other legal analysis concerning Altera or Intel products described herein. You agree to grant Altera Corporation a non-exclusive, royalty-free license to any patent claim thereafter drafted which includes subject matter disclosed herein. No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document, with the sole exception that you may publish an unmodified copy. You may create software implementations based on this document and in compliance with the foregoing that are intended to execute on the Altera or Intel product(s) referenced in this document. No rights are granted to create modifications or derivatives of this document. The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications. Current characterized errata are available on request. Altera disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade. You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. © Altera Corporation. Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation. Other names and brands may be claimed as the property of others.
+Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
+No product or component can be absolutely secure. 
+Performance varies by use, configuration and other factors.
+Your costs and results may vary. 
+You may not use or facilitate the use of this document in connection with any infringement or other legal analysis concerning Altera or Intel products described herein. You agree to grant Altera Corporation a non-exclusive, royalty-free license to any patent claim thereafter drafted which includes subject matter disclosed herein.
+No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document, with the sole exception that you may publish an unmodified copy. You may create software implementations based on this document and in compliance with the foregoing that are intended to execute on the Altera or Intel product(s) referenced in this document. No rights are granted to create modifications or derivatives of this document.
+The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications.  Current characterized errata are available on request.
+Altera disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade.
+You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
+<sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
 
-OpenCL*and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™.
+OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 

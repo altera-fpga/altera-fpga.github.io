@@ -7,7 +7,7 @@
 # 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices
 
 The design is compatible with
-[Altera® Quartus® Prime Pro Edition version 25.1 Linux].
+[Altera® Quartus® Prime Pro Edition version 25.1 Linux](https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html).
 
 ## Overview
 
@@ -535,7 +535,7 @@ Wait until the programming has been completed (which can take several minutes).
 ### **Sources**
 
 The sources listed in this table are the most current and highly recommended
-for [Altera® Quartus® Prime Pro Edition version 25.1 Linux] builds. Users are
+for [Altera® Quartus® Prime Pro Edition version 25.1 Linux](https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html) builds. Users are
 advised to utilize the updated versions of these building blocks in production
 environments. Please note that this is a demonstration design and is not
 suitable for production or final deployment.
@@ -623,17 +623,17 @@ y { color: #CCCC00; font-weight: bold;}
 * [Acronyms and Terminology.](./glossary.md)
 
 ### **References**
-* [Agilex™ 5 FPGA E-Series 065B Modular Development Kit Product Brief].
-* [Framos FSM:GO IMX678C Camera Modules].
-* [Framos FFA-GMSL-SER-V2A Serializer].
-* [Framos FFA-GMSL-DES-V2A Deserializer].
+* [Agilex™ 5 FPGA E-Series 065B Modular Development Kit Product Brief](https://www.intel.com/content/www/us/en/content-details/815178/agilex-5-fpga-e-series-065b-modular-development-kit-product-brief.html).
+* [Framos FSM:GO IMX678C Camera Modules](https://www.framos.com/en/fsmgo).
+* [Framos FFA-GMSL-SER-V2A Serializer](https://www.framos.com/en/products/ffa-gmsl-ser-v2a-27617).
+* [Framos FFA-GMSL-DES-V2A Deserializer](https://www.framos.com/en/products/ffa-gmsl-des-v2a-27240).
 * [Video and Vision Processing Suite Altera® FPGA IP User Guide](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/about-the-video-and-vision-processing-suite.html).
-* [VVP IP Suite].
+* [VVP IP Suite](https://www.altera.com/products/ip/a1jui000004qxfpmak/video-and-vision-processing-suite).
 * [Warp](https://www.altera.com/products/ip/a1jui000004rhk1mag/warp-fpga-ip).
 * [Tone Mapping Operator](https://www.altera.com/products/ip/a1jui000004r0hlmak/tone-mapping-operator-fpga-ip).
 * [3D LUT](https://www.altera.com/products/ip/a1jui000004r4gnmas/3d-lut-altera-fpga-ip).
-* [MIPI DPHY IP and MIPI CSI-2 IP].
-* [Nios® V Processor].
+* [MIPI DPHY IP and MIPI CSI-2 IP](https://www.altera.com/products/ip/a1jui0000049uuamam/mipi-d-phy-ip#tab-blade-1-3).
+* [Nios® V Processor](https://www.altera.com/products/ip/a1jui0000049uvama2/nios-v-processors).
 
 
 ### **Other Repositories Used**
@@ -646,9 +646,9 @@ y { color: #CCCC00; font-weight: bold;}
 |Yocto Project: poky|[https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky)|scarthgap|
 
 ### **Other Documentation and References**
-* [Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs (25.1)].
-* [NiosV Processor for Altera® FPGA].
-* [Agilex™ 5 FPGA E-Series 065B Modular Development Kit].
+* [Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs (25.1)](https://www.intel.com/content/www/us/en/docs/programmable/814346/25-1/hard-processor-system-technical-reference.html).
+* [NiosV Processor for Altera® FPGA](https://www.altera.com/design/guidance/nios-v-developer).
+* [Agilex™ 5 FPGA E-Series 065B Modular Development Kit](https://www.altera.com/products/devkit/a1jui0000061qabmaa/agilex-5-fpga-and-soc-e-series-modular-development-kit-es).
 
 <br/>
 

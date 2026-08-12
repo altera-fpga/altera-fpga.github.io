@@ -194,8 +194,8 @@ the Input source between the MIPI-CSI Rx and the Input TPG.
 
 !!! note "Related Information"
 
-    [Test Pattern Generator IP] <br/>
-    [Switch IP]
+    [Test Pattern Generator IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/test-pattern-generator-ip) <br/>
+    [Switch IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/switch-ip)
 
 ### **ISP Processing**
 
@@ -275,7 +275,7 @@ interface.
 
 !!! note "Related Information"
 
-    [White Balance Correction IP]
+    [White Balance Correction IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/white-balance-correction-ip)
 
 * [**Demosaic**](#demosaic)
 
@@ -303,7 +303,7 @@ interpolates missing colors to calculate the RGB output.
 
 !!! note "Related Information"
 
-    [Demosaic IP]
+    [Demosaic IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/demosaic-ip)
 
 * [**Color Correction Matrix**](#color-correction-matrix)
 
@@ -320,7 +320,7 @@ for a range of color temperatures.
 
 !!! note "Related Information"
 
-    [Color Space Converter IP]
+    [Color Space Converter IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/color-space-converter-ip)
 
 ### **Output Processing**
 
@@ -360,10 +360,10 @@ The opacity of the Icon overlay is globally controlled and can be changed during
 
 !!! note "Related Information"
 
-    [Test Pattern Generator IP] <br/>
-    [Video Frame Buffer IP] <br/>
-    [EMIF] <br/>
-    [Mixer IP]
+    [Test Pattern Generator IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/test-pattern-generator-ip) <br/>
+    [Video Frame Buffer IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/video-frame-buffer-ip) <br/>
+    [EMIF](https://www.altera.com/design/guidance/emif-support) <br/>
+    [Mixer IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/mixer-ip)
 
 * [**1D LUT**](#1d-lut)
 
@@ -396,9 +396,9 @@ VVP Protocol Converter IP.
 
 !!! note "Related Information"
 
-    [1D LUT IP] <br/>
-    [Pixels in Parallel Converter IP] <br/>
-    [Protocol Converter IP]
+    [1D LUT IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/about-the-1d-lut-ip) <br/>
+    [Pixels in Parallel Converter IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/pixels-in-parallel-converter-ip) <br/>
+    [Protocol Converter IP](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/protocol-converter-ip)
 
 
 
@@ -927,20 +927,7 @@ during compilation.
 
 <br>
 
-## Notices & Disclaimers
 
-Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
-No product or component can be absolutely secure. 
-Performance varies by use, configuration and other factors.
-Your costs and results may vary. 
-You may not use or facilitate the use of this document in connection with any infringement or other legal analysis concerning Altera or Intel products described herein. You agree to grant Altera Corporation a non-exclusive, royalty-free license to any patent claim thereafter drafted which includes subject matter disclosed herein.
-No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document, with the sole exception that you may publish an unmodified copy. You may create software implementations based on this document and in compliance with the foregoing that are intended to execute on the Altera or Intel product(s) referenced in this document. No rights are granted to create modifications or derivatives of this document.
-The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications.  Current characterized errata are available on request.
-Altera disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade.
-You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
-<sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
-
-OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 
 
 
 
