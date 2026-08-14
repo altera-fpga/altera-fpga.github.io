@@ -3808,6 +3808,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_8_3_4" id="__nav_8_3_4_label" tabindex="0">
@@ -3926,6 +3928,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../modular/camera/camera_4k_stitch/camera_4k_stitch/" class="md-nav__link">
+        4Kp60 Multi-Sensor Camera Stitch Solution System Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../modular/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE-ES/" class="md-nav__link">
         Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices
       </a>
@@ -3959,7 +3975,7 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_4_10" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_4_11" >
       
       
         
@@ -3969,13 +3985,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_8_3_4_10" id="__nav_8_3_4_10_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_8_3_4_11" id="__nav_8_3_4_11_label" tabindex="0">
           TSN Examples
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_8_3_4_10_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_8_3_4_10">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_8_3_4_11_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8_3_4_11">
           <span class="md-nav__icon md-icon"></span>
           TSN Examples
         </label>
@@ -4039,6 +4055,10 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_5" checked>
       
       
+        
+          
+        
+          
         
           
         
@@ -4526,6 +4546,34 @@
     <li class="md-nav__item">
       <a href="../../holoscan-sensor-bridge/mipi/hsb-mipi-10GbE/" class="md-nav__link">
         Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../camera/camera_4k/camera_4k/" class="md-nav__link">
+        4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../camera/camera_4k_stitch/camera_4k_stitch/" class="md-nav__link">
+        4Kp60 Multi-Sensor Camera Stitch Solution System Example Design for Agilex™ 5 Devices
       </a>
     </li>
   
@@ -7288,16 +7336,19 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 <a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nb">cd</span><span class="w"> </span>agilex5_065b_gsrd_20.mdk_sd
 <a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
 </code></pre></div>
+<p>Enable Quartus tools to be called from command line:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
+</code></pre></div>
 <h5>Build Hardware Design</h5>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065b-modular-devkit-som-baseline-a55.zip
-<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>unzip<span class="w"> </span>a5ed065b-modular-devkit-som-baseline-a55.zip
-<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>a5ed065b-modular-devkit-som-baseline-a55.zip
-<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>make<span class="w"> </span>baseline_a55-build
-<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>make<span class="w"> </span>baseline_a55-install-core-rbf
-<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="nb">cd</span><span class="w"> </span>..
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065b-modular-devkit-som-baseline-a55.zip
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>unzip<span class="w"> </span>a5ed065b-modular-devkit-som-baseline-a55.zip
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>a5ed065b-modular-devkit-som-baseline-a55.zip
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>make<span class="w"> </span>baseline_a55-build
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>make<span class="w"> </span>baseline_a55-install-core-rbf
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
 <p>The following files are created:</p>
 <ul>
@@ -7307,20 +7358,20 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 <h5>Build Yocto Using Kas</h5>
 
 <p>1. Create and enter a new Python virtual environment:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv<span class="w"> </span>--system-site-packages
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>pip<span class="w"> </span>install<span class="w"> </span>kas
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>kas
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>pip<span class="w"> </span>install<span class="w"> </span>kconfiglib
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv<span class="w"> </span>--system-site-packages
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>pip<span class="w"> </span>install<span class="w"> </span>kas
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>kas
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>pip<span class="w"> </span>install<span class="w"> </span>kconfiglib
 </code></pre></div>
 <p>2. Copy the core.rbf file to where Kas expects it to be:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">   </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">   </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf
 </code></pre></div>
 <p>3. Build Yocto with Kas:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>kas<span class="w"> </span>build<span class="w"> </span>kas.yml<span class="w"> </span>gsrd-console-image
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>kas<span class="w"> </span>build<span class="w"> </span>kas.yml<span class="w"> </span>gsrd-console-image
 </code></pre></div>
 <p>The following relevant files are created in <code>$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/</code>:</p>
 <ul>
@@ -7330,21 +7381,21 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 <blockquote>
 <p><strong>Note</strong>: If you experience build failures related to file-locks, you can work around these by reducing the parallelism of your build by running the following commands before running <code>kas</code>:</p>
 </blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PARALLEL_MAKE</span><span class="o">=</span><span class="s2">&quot;-j 8&quot;</span>
-<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">BB_NUMBER_THREADS</span><span class="o">=</span><span class="s2">&quot;8&quot;</span>
-<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">BB_ENV_PASSTHROUGH_ADDITIONS</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$BB_ENV_PASSTHROUGH_ADDITIONS</span><span class="s2"> PARALLEL_MAKE BB_NUMBER_THREADS&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PARALLEL_MAKE</span><span class="o">=</span><span class="s2">&quot;-j 8&quot;</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">BB_NUMBER_THREADS</span><span class="o">=</span><span class="s2">&quot;8&quot;</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">BB_ENV_PASSTHROUGH_ADDITIONS</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$BB_ENV_PASSTHROUGH_ADDITIONS</span><span class="s2"> PARALLEL_MAKE BB_NUMBER_THREADS&quot;</span>
 </code></pre></div>
 <h5>Build QSPI Image</h5>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>baseline_a55.hps.jic<span class="w"> </span>baseline_a55.core.rbf
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof<span class="w"> </span>baseline_a55.jic<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU128<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A5ED065BB32AE4S<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>rm<span class="w"> </span>-f<span class="w"> </span>baseline_a55.hps.jic<span class="w"> </span>baseline_a55.core.rbf
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>quartus_pfg<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>-c<span class="w"> </span>agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof<span class="w"> </span>baseline_a55.jic<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>-o<span class="w"> </span><span class="nv">device</span><span class="o">=</span>MT25QU128<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>-o<span class="w"> </span><span class="nv">flash_loader</span><span class="o">=</span>A5ED065BB32AE4S<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>-o<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>ASX4<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span><span class="m">1</span>
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
@@ -7354,21 +7405,24 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 <h5>Setup Environment</h5>
 
 <p>1. Create the top folder to store all the build artifacts:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_065b_gsrd_20.mdk_qspi
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>mkdir<span class="w"> </span>agilex5_065b_gsrd_20.mdk_qspi
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="nb">cd</span><span class="w"> </span>agilex5_065b_gsrd_20.mdk_qspi
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_065b_gsrd_20.mdk_qspi
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>mkdir<span class="w"> </span>agilex5_065b_gsrd_20.mdk_qspi
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="nb">cd</span><span class="w"> </span>agilex5_065b_gsrd_20.mdk_qspi
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+</code></pre></div>
+<p>Enable Quartus tools to be called from command line:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
 </code></pre></div>
 <h5>Build Hardware Design</h5>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065b-modular-devkit-som-baseline-a55.zip
-<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>unzip<span class="w"> </span>a5ed065b-modular-devkit-som-baseline-a55.zip
-<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>a5ed065b-modular-devkit-som-baseline-a55.zip
-<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>make<span class="w"> </span>baseline_a55-build
-<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>make<span class="w"> </span>baseline_a55-install-core-rbf
-<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="nb">cd</span><span class="w"> </span>..
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065b-modular-devkit-som-baseline-a55.zip
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>unzip<span class="w"> </span>a5ed065b-modular-devkit-som-baseline-a55.zip
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>a5ed065b-modular-devkit-som-baseline-a55.zip
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>make<span class="w"> </span>baseline_a55-build
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>make<span class="w"> </span>baseline_a55-install-core-rbf
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
 <p>The following files are created:</p>
 <ul>
@@ -7378,20 +7432,20 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 <h5>Build Yocto Using Kas</h5>
 
 <p>1. Create and enter a new Python virtual environment. A virtual environment allows you to install packages without impacting your global environment:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux
-<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv<span class="w"> </span>--system-site-packages
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
-<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>pip<span class="w"> </span>install<span class="w"> </span>kas
-<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>kas
-<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>pip<span class="w"> </span>install<span class="w"> </span>kconfiglib
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv<span class="w"> </span>--system-site-packages
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>pip<span class="w"> </span>install<span class="w"> </span>kas
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>kas
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>pip<span class="w"> </span>install<span class="w"> </span>kconfiglib
 </code></pre></div>
 <p>2. Copy the core.rbf file to where Kas expects it to be:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">   </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">   </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf
 </code></pre></div>
 <p>3. Build Yocto with Kas:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>kas<span class="w"> </span>build<span class="w"> </span>kas.yml:qspi_boot_src.yml<span class="w"> </span>console-image-minimal
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>kas<span class="w"> </span>build<span class="w"> </span>kas.yml:qspi_boot_src.yml<span class="w"> </span>console-image-minimal
 </code></pre></div>
 <blockquote>
 <p><strong>Note</strong>: If you wish to customize your Linux image, you can use the <code>kas menu</code> command instead. The options here are explained in section <a href="#customizing-yocto-kas-build">Customizing Yocto Kas Build</a> below.</p>
@@ -7407,30 +7461,30 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 <h5>Build QSPI Image</h5>
 
 <p>1. Create the folder to contain all the files:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>qspi_boot
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>mkdir<span class="w"> </span>qspi_boot
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="nb">cd</span><span class="w"> </span>qspi_boot
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>qspi_boot
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>mkdir<span class="w"> </span>qspi_boot
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="nb">cd</span><span class="w"> </span>qspi_boot
 </code></pre></div>
 <p>2. Get the <code>ubinize_nor.cfg</code> file which contains the details on how to build the <code>root.ubi</code> volume, and <code>qspi_boot.pfg</code> which contains the instructions for Programming File Generator on how to create the .jic filem and the <code>uboot.env</code> containing the U-Boot environment:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.04/qspi/agilex5_mk_a5e065bb32aea_qspi.baseline-a55/ubinize_nor.cfg
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.04/qspi/agilex5_mk_a5e065bb32aea_qspi.baseline-a55/qspi_boot.pfg
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.04/qspi/agilex5_mk_a5e065bb32aea_qspi.baseline-a55/uboot.env
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.04/qspi/agilex5_mk_a5e065bb32aea_qspi.baseline-a55/ubinize_nor.cfg
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.04/qspi/agilex5_mk_a5e065bb32aea_qspi.baseline-a55/qspi_boot.pfg
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.04/qspi/agilex5_mk_a5e065bb32aea_qspi.baseline-a55/uboot.env
 </code></pre></div>
 <p>3. Link to the files that are needed from building the hardware design, and yocto:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof<span class="w"> </span>ghrd.sof
-<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex<span class="w"> </span>.
-<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot.itb<span class="w"> </span>u-boot.bin
-<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nor.ubifs<span class="w"> </span>.
-<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/kernel.itb<span class="w"> </span>.
-<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/boot.scr.uimg<span class="w"> </span>.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof<span class="w"> </span>ghrd.sof
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex<span class="w"> </span>.
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot.itb<span class="w"> </span>u-boot.bin
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nor.ubifs<span class="w"> </span>.
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/kernel.itb<span class="w"> </span>.
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>ln<span class="w"> </span>-s<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/boot.scr.uimg<span class="w"> </span>.
 </code></pre></div>
 <p>4. Create the <code>root.ubi</code> file and rename it to <code>hps.bin</code> as Programming File Generator needs the <code>.bin</code> extension:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>ubinize<span class="w"> </span>-o<span class="w"> </span>root.ubi<span class="w"> </span>-p<span class="w"> </span><span class="m">65536</span><span class="w"> </span>-m<span class="w"> </span><span class="m">1</span><span class="w"> </span>-s<span class="w"> </span><span class="m">1</span><span class="w"> </span>ubinize_nor.cfg
-<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>ln<span class="w"> </span>-s<span class="w"> </span>root.ubi<span class="w"> </span>hps.bin
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>ubinize<span class="w"> </span>-o<span class="w"> </span>root.ubi<span class="w"> </span>-p<span class="w"> </span><span class="m">65536</span><span class="w"> </span>-m<span class="w"> </span><span class="m">1</span><span class="w"> </span>-s<span class="w"> </span><span class="m">1</span><span class="w"> </span>ubinize_nor.cfg
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>ln<span class="w"> </span>-s<span class="w"> </span>root.ubi<span class="w"> </span>hps.bin
 </code></pre></div>
 <p>5. Create the JIC file:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>qspi_boot.pfg
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>qspi_boot.pfg
 </code></pre></div>
 <p>The following file will be created:</p>
 <ul>
@@ -7444,20 +7498,20 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 <p>This section shows how you can use <code>kas menu</code> to customize the build. When using <code>kas menu</code>, the initial settings from <code>kas.yml</code> are customized with the user selected options through Kconfig, and are saved to a file called <code>.config.yaml</code> which is then used for build purposes.</p>
 <p>1. Build the hardware design as mentioned before. Note the same hardware design is used for both booting from SD card and booting from QSPI.</p>
 <p>2. Copy the core.rbf file to where Kas needs it to be. Note that the filename when using Kconfig is different than when using the <code>kas.yml</code> alone (<code>top.core.rbf</code> vs <code>ghrd.core.rbf</code>)</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">   </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/top.core.rbf
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">   </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/top.core.rbf
 </code></pre></div>
 <p>3. Create an enter a new Python virtual environment, not to interfere with the current system Python packages:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux
-<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv<span class="w"> </span>--system-site-packages
-<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
-<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>pip<span class="w"> </span>install<span class="w"> </span>kas
-<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>kas
-<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>pip<span class="w"> </span>install<span class="w"> </span>kconfiglib
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv<span class="w"> </span>--system-site-packages
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>pip<span class="w"> </span>install<span class="w"> </span>kas
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>kas
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>pip<span class="w"> </span>install<span class="w"> </span>kconfiglib
 </code></pre></div>
 <p>4. Run <code>kas menu</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>kas<span class="w"> </span>menu
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>kas<span class="w"> </span>menu
 </code></pre></div>
 <p>5. You will be presented with a Kconfig text menu, similar to the ones from Linux Kernel &amp; U-Boot:</p>
 <p><a class="glightbox" href="../images/kas-1-top-level.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/kas-1-top-level.png" /></a></p>
@@ -7479,17 +7533,17 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 <p>In addition to using <code>kas build</code> to build Yocto based on the <code>kas.yml</code> and <code>kas menu</code> to build Yocto based on Kconfig options selected from the text GUI, there is also the <code>kas shell</code> option, which allows you to build Yocto interactively.</p>
 <p>1. Build the hardware design as mentioned before. Note the same hardware design is used for both booting from SD card and booting from QSPI.</p>
 <p>2. Copy the core.rbf file to where bitbake needs it to be. </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">   </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="w">   </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/
 </code></pre></div>
 <p>3. Create an enter a new Python virtual environment, not to interfere with the current system Python packages:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux
-<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv<span class="w"> </span>--system-site-packages
-<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
-<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>pip<span class="w"> </span>install<span class="w"> </span>kas
-<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>kas
-<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>pip<span class="w"> </span>install<span class="w"> </span>kconfiglib
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/agilex5_soc_devkit_ghrd/software/yocto_linux
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv<span class="w"> </span>--system-site-packages
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>pip<span class="w"> </span>install<span class="w"> </span>kas
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>kas
+<a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a>pip<span class="w"> </span>install<span class="w"> </span>kconfiglib
 </code></pre></div>
 <p>4. You can optionally use <code>kas menu</code> to change settings, and at the end press the <strong>Save</strong> button instead of the <strong>Build</strong> button. This will save the custom configuration in the file <code>.config.yaml</code>.</p>
 <p>5. Run <code>kas shell</code>, there are several options:</p>
@@ -7516,38 +7570,38 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 </tbody>
 </table>
 <p>6. Use regular <code>bitbake</code> commands. For example to simply build the rootfs, use:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>bitbake<span class="w"> </span>core-image-minimal
-<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>bitbake<span class="w"> </span>console-image-minimal
-<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>bitbake<span class="w"> </span>gsrd-console-image
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>bitbake<span class="w"> </span>core-image-minimal
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>bitbake<span class="w"> </span>console-image-minimal
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>bitbake<span class="w"> </span>gsrd-console-image
 </code></pre></div>
 <h4 id="using-beanchmarking-applications">Using Beanchmarking Applications<a class="headerlink" href="#using-beanchmarking-applications" title="Permanent link">&para;</a></h4>
 <p>The HPS Baseline System Example Design provides you a set of Linux benchmarking applications that allow you to evaluate the performance of your system. These applications aim to evaluate areas such a CPUs performance and memory transfer performance among others.</p>
 <p>You can control the inclusion/exclusion of each one of these applications individually using the KAS framework.</p>
 <p><strong>Option 1. Use the Kas menu</strong></p>
 <p>After you obtain the HPS Baseline System Example Design source content from the corresponding device HPS Baseline System Example Design repository and before you build Yocto with Kas, open the Kas menu with:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>software/yocto_linux/
-<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>$<span class="w"> </span>kas<span class="w"> </span>menu
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>software/yocto_linux/
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>$<span class="w"> </span>kas<span class="w"> </span>menu
 </code></pre></div>
 This opens the Kas graphical interface menu. Navigate to the <strong>Benchmarking applications</strong> option. This switches to a menu window that allows you to select the benchmarking applications that you want to include in your Linux file system.</p>
 <p><a class="glightbox" href="../images/benchmarksKasControl.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/benchmarksKasControl.png" /></a></p>
 <p>Once you complete the selection of the application, go to the <strong>Save and Exit</strong> option.</p>
 <p><strong>Option 2.  Use the Kconfig Configuration file</strong></p>
 <p>Alternatively, you can add or remove the benchmarking applications by manually editing Kas configuration file <strong>software/yocto_linux/kas/gsrd/Kconfig.</strong> Each one of these applications is associated with a <strong>config</strong> that you can set to <strong>‘y’</strong> to include it or with <strong>‘n’</strong> to exclude this. An extract  of this configuration file is shown next. After editing the file you must save it to keep these changes.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">if</span><span class="w"> </span>GSRD_CONSOLE_IMAGE_BUILD
-<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>menu<span class="w"> </span><span class="s2">&quot;Benchmarking applications&quot;</span>
-<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>
-<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>config<span class="w"> </span>APP_COREMARK
-<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="w">    </span>bool<span class="w"> </span><span class="s2">&quot;CoreMark&quot;</span>
-<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="w">    </span>default<span class="w"> </span>y
-<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="w">    </span><span class="nb">help</span>
-<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="w">      </span>CoreMark<span class="w"> </span>-<span class="w"> </span>EEMBC<span class="w"> </span>benchmark<span class="w"> </span><span class="k">for</span><span class="w"> </span>evaluating<span class="w"> </span>embedded<span class="w"> </span>CPU<span class="w"> </span>performance<span class="w"> </span>through<span class="w"> </span>lightweight<span class="w"> </span>core<span class="w"> </span>tests.
-<a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a>
-<a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a>config<span class="w"> </span>BENCHMARK_APP_COREMARK
-<a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a><span class="w">    </span>string
-<a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a><span class="w">    </span>default<span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span>APP_COREMARK
-<a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a><span class="w">    </span>default<span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span>!APP_COREMARK
-<a id="__codelineno-37-14" name="__codelineno-37-14" href="#__codelineno-37-14"></a>:
-<a id="__codelineno-37-15" name="__codelineno-37-15" href="#__codelineno-37-15"></a>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="k">if</span><span class="w"> </span>GSRD_CONSOLE_IMAGE_BUILD
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>menu<span class="w"> </span><span class="s2">&quot;Benchmarking applications&quot;</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>config<span class="w"> </span>APP_COREMARK
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="w">    </span>bool<span class="w"> </span><span class="s2">&quot;CoreMark&quot;</span>
+<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="w">    </span>default<span class="w"> </span>y
+<a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="w">    </span><span class="nb">help</span>
+<a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a><span class="w">      </span>CoreMark<span class="w"> </span>-<span class="w"> </span>EEMBC<span class="w"> </span>benchmark<span class="w"> </span><span class="k">for</span><span class="w"> </span>evaluating<span class="w"> </span>embedded<span class="w"> </span>CPU<span class="w"> </span>performance<span class="w"> </span>through<span class="w"> </span>lightweight<span class="w"> </span>core<span class="w"> </span>tests.
+<a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a>
+<a id="__codelineno-39-10" name="__codelineno-39-10" href="#__codelineno-39-10"></a>config<span class="w"> </span>BENCHMARK_APP_COREMARK
+<a id="__codelineno-39-11" name="__codelineno-39-11" href="#__codelineno-39-11"></a><span class="w">    </span>string
+<a id="__codelineno-39-12" name="__codelineno-39-12" href="#__codelineno-39-12"></a><span class="w">    </span>default<span class="w"> </span><span class="s2">&quot;true&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span>APP_COREMARK
+<a id="__codelineno-39-13" name="__codelineno-39-13" href="#__codelineno-39-13"></a><span class="w">    </span>default<span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span>!APP_COREMARK
+<a id="__codelineno-39-14" name="__codelineno-39-14" href="#__codelineno-39-14"></a>:
+<a id="__codelineno-39-15" name="__codelineno-39-15" href="#__codelineno-39-15"></a>:
 </code></pre></div>
 <p>After you make your choose about the applications to be included or excluded, you can continue with the regular Kas Yocto Build.</p>
 <blockquote>
@@ -7671,15 +7725,15 @@ $TOP_FOLDER/a5ed065es-premium-devkit-oobe/baseline-a55/software/yocto_linux/buil
 <ol>
 <li>
 <p>Install <strong>mtools</strong> package in your Linux machine.
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
-<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>mtools
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>mtools
 </code></pre></div></p>
 </li>
 <li>
 <p>Go to the folder in which the <strong>kernel.itb</strong> is being created under the HPS Baseline System Example Design.
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/&lt;gsrd-directory&gt;/&lt;project-directory&gt;/software/yocto_linux/build/tmp*/work/&lt;device&gt;-poky-linux/linux-socfpga-lts/&lt;linux-branch&gt;+git/linux-&lt;device&gt;-standard-build/
-<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>$<span class="w"> </span>ls<span class="w"> </span>*.its
-<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>fit_&lt;device&gt;_kernel_.its
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/&lt;gsrd-directory&gt;/&lt;project-directory&gt;/software/yocto_linux/build/tmp*/work/&lt;device&gt;-poky-linux/linux-socfpga-lts/&lt;linux-branch&gt;+git/linux-&lt;device&gt;-standard-build/
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>$<span class="w"> </span>ls<span class="w"> </span>*.its
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>fit_&lt;device&gt;_kernel_.its
 </code></pre></div></p>
 </li>
 <li>
@@ -7696,8 +7750,8 @@ $TOP_FOLDER/a5ed065es-premium-devkit-oobe/baseline-a55/software/yocto_linux/buil
 </li>
 <li>
 <p>Finally, you need to re-generate the new <strong>kernel.itb</strong> running the following command in the same <strong>linux-<device>-standard-build/</strong> directory.
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>$<span class="w"> </span>rm<span class="w"> </span>kernel.itb
-<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>$<span class="w"> </span>mkimage<span class="w"> </span>-f<span class="w"> </span>fit_&lt;device&gt;_kernel.its<span class="w"> </span>kernel.itb
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>$<span class="w"> </span>rm<span class="w"> </span>kernel.itb
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>$<span class="w"> </span>mkimage<span class="w"> </span>-f<span class="w"> </span>fit_&lt;device&gt;_kernel.its<span class="w"> </span>kernel.itb
 </code></pre></div></p>
 </li>
 </ol>
@@ -7715,68 +7769,68 @@ $TOP_FOLDER/a5ed065es-premium-devkit-oobe/baseline-a55/software/yocto_linux/buil
 <li><strong>$TOP_FOLDER/&lt;<em>gsrd-directory</em>&gt;/&lt;<em>project-directory</em>&gt;/software/yocto_linux/poky/scripts/wic</strong> </li>
 </ul>
 <p>The <strong>wic</strong> command requires to be run in the Yocto build environment that can be setup as shown next in a Linux terminal:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/&lt;gsrd-directory&gt;/&lt;project-directory&gt;/software/yocto_linux/
-<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>build
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/&lt;gsrd-directory&gt;/&lt;project-directory&gt;/software/yocto_linux/
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>build
 </code></pre></div>
 You can verify that the Yocto environment has been setup using the <strong>which bitbake</strong>  command, which will respond with the path of the <strong>bitbake</strong> command located at <strong>poky/bitbake/bin/bitbake</strong>.</p>
 <p>The <strong>wic</strong> command allows you to inspect the content of a SD Card image, delete, add or replace any component inside of the image. This command is also provided with help support:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/&lt;gsrd-directory&gt;/&lt;project-directory&gt;/software/yocto_linux/poky/scripts/wic<span class="w"> </span><span class="nb">help</span>
-<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>
-<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>Creates<span class="w"> </span>a<span class="w"> </span>customized<span class="w"> </span>OpenEmbedded<span class="w"> </span>image.
-<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>
-<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a>Usage:<span class="w">  </span>wic<span class="w"> </span><span class="o">[</span>--version<span class="o">]</span>
-<a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a><span class="w">        </span>wic<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="o">[</span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC<span class="o">]</span>
-<a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a><span class="w">        </span>wic<span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>
-<a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a>
-<a id="__codelineno-42-9" name="__codelineno-42-9" href="#__codelineno-42-9"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>Returns<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>version<span class="w"> </span>of<span class="w"> </span>Wic
-<a id="__codelineno-42-10" name="__codelineno-42-10" href="#__codelineno-42-10"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">2</span>:<span class="w"> </span>Returns<span class="w"> </span>detailed<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC
-<a id="__codelineno-42-11" name="__codelineno-42-11" href="#__codelineno-42-11"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">3</span>:<span class="w"> </span>Executes<span class="w"> </span>COMMAND
-<a id="__codelineno-42-12" name="__codelineno-42-12" href="#__codelineno-42-12"></a>
-<a id="__codelineno-42-13" name="__codelineno-42-13" href="#__codelineno-42-13"></a>COMMAND:
-<a id="__codelineno-42-14" name="__codelineno-42-14" href="#__codelineno-42-14"></a>
-<a id="__codelineno-42-15" name="__codelineno-42-15" href="#__codelineno-42-15"></a><span class="w"> </span>list<span class="w">   </span>-<span class="w">   </span>List<span class="w"> </span>available<span class="w"> </span>canned<span class="w"> </span>images<span class="w"> </span>and<span class="w"> </span><span class="nb">source</span><span class="w"> </span>plugins
-<a id="__codelineno-42-16" name="__codelineno-42-16" href="#__codelineno-42-16"></a><span class="w"> </span>ls<span class="w">     </span>-<span class="w">   </span>List<span class="w"> </span>contents<span class="w"> </span>of<span class="w"> </span>partitioned<span class="w"> </span>image<span class="w"> </span>or<span class="w"> </span>partition
-<a id="__codelineno-42-17" name="__codelineno-42-17" href="#__codelineno-42-17"></a><span class="w"> </span>rm<span class="w">     </span>-<span class="w">   </span>Remove<span class="w"> </span>files<span class="w"> </span>or<span class="w"> </span>directories<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>vfat<span class="w"> </span>or<span class="w"> </span>ext*<span class="w"> </span>partitions
-<a id="__codelineno-42-18" name="__codelineno-42-18" href="#__codelineno-42-18"></a><span class="w"> </span><span class="nb">help</span><span class="w">   </span>-<span class="w">   </span>Show<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>wic<span class="w"> </span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC
-<a id="__codelineno-42-19" name="__codelineno-42-19" href="#__codelineno-42-19"></a><span class="w"> </span>write<span class="w">  </span>-<span class="w">   </span>Write<span class="w"> </span>an<span class="w"> </span>image<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>device
-<a id="__codelineno-42-20" name="__codelineno-42-20" href="#__codelineno-42-20"></a><span class="w"> </span>cp<span class="w">     </span>-<span class="w">   </span>Copy<span class="w"> </span>files<span class="w"> </span>and<span class="w"> </span>directories<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>vfat<span class="w"> </span>or<span class="w"> </span>ext*<span class="w"> </span>partitions
-<a id="__codelineno-42-21" name="__codelineno-42-21" href="#__codelineno-42-21"></a><span class="w"> </span>create<span class="w"> </span>-<span class="w">   </span>Create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>OpenEmbedded<span class="w"> </span>image
-<a id="__codelineno-42-22" name="__codelineno-42-22" href="#__codelineno-42-22"></a><span class="w"> </span>:
-<a id="__codelineno-42-23" name="__codelineno-42-23" href="#__codelineno-42-23"></a><span class="w"> </span>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/&lt;gsrd-directory&gt;/&lt;project-directory&gt;/software/yocto_linux/poky/scripts/wic<span class="w"> </span><span class="nb">help</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>Creates<span class="w"> </span>a<span class="w"> </span>customized<span class="w"> </span>OpenEmbedded<span class="w"> </span>image.
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>Usage:<span class="w">  </span>wic<span class="w"> </span><span class="o">[</span>--version<span class="o">]</span>
+<a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a><span class="w">        </span>wic<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="o">[</span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC<span class="o">]</span>
+<a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a><span class="w">        </span>wic<span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>
+<a id="__codelineno-44-8" name="__codelineno-44-8" href="#__codelineno-44-8"></a>
+<a id="__codelineno-44-9" name="__codelineno-44-9" href="#__codelineno-44-9"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>Returns<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>version<span class="w"> </span>of<span class="w"> </span>Wic
+<a id="__codelineno-44-10" name="__codelineno-44-10" href="#__codelineno-44-10"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">2</span>:<span class="w"> </span>Returns<span class="w"> </span>detailed<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC
+<a id="__codelineno-44-11" name="__codelineno-44-11" href="#__codelineno-44-11"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">3</span>:<span class="w"> </span>Executes<span class="w"> </span>COMMAND
+<a id="__codelineno-44-12" name="__codelineno-44-12" href="#__codelineno-44-12"></a>
+<a id="__codelineno-44-13" name="__codelineno-44-13" href="#__codelineno-44-13"></a>COMMAND:
+<a id="__codelineno-44-14" name="__codelineno-44-14" href="#__codelineno-44-14"></a>
+<a id="__codelineno-44-15" name="__codelineno-44-15" href="#__codelineno-44-15"></a><span class="w"> </span>list<span class="w">   </span>-<span class="w">   </span>List<span class="w"> </span>available<span class="w"> </span>canned<span class="w"> </span>images<span class="w"> </span>and<span class="w"> </span><span class="nb">source</span><span class="w"> </span>plugins
+<a id="__codelineno-44-16" name="__codelineno-44-16" href="#__codelineno-44-16"></a><span class="w"> </span>ls<span class="w">     </span>-<span class="w">   </span>List<span class="w"> </span>contents<span class="w"> </span>of<span class="w"> </span>partitioned<span class="w"> </span>image<span class="w"> </span>or<span class="w"> </span>partition
+<a id="__codelineno-44-17" name="__codelineno-44-17" href="#__codelineno-44-17"></a><span class="w"> </span>rm<span class="w">     </span>-<span class="w">   </span>Remove<span class="w"> </span>files<span class="w"> </span>or<span class="w"> </span>directories<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>vfat<span class="w"> </span>or<span class="w"> </span>ext*<span class="w"> </span>partitions
+<a id="__codelineno-44-18" name="__codelineno-44-18" href="#__codelineno-44-18"></a><span class="w"> </span><span class="nb">help</span><span class="w">   </span>-<span class="w">   </span>Show<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>wic<span class="w"> </span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC
+<a id="__codelineno-44-19" name="__codelineno-44-19" href="#__codelineno-44-19"></a><span class="w"> </span>write<span class="w">  </span>-<span class="w">   </span>Write<span class="w"> </span>an<span class="w"> </span>image<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>device
+<a id="__codelineno-44-20" name="__codelineno-44-20" href="#__codelineno-44-20"></a><span class="w"> </span>cp<span class="w">     </span>-<span class="w">   </span>Copy<span class="w"> </span>files<span class="w"> </span>and<span class="w"> </span>directories<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>vfat<span class="w"> </span>or<span class="w"> </span>ext*<span class="w"> </span>partitions
+<a id="__codelineno-44-21" name="__codelineno-44-21" href="#__codelineno-44-21"></a><span class="w"> </span>create<span class="w"> </span>-<span class="w">   </span>Create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>OpenEmbedded<span class="w"> </span>image
+<a id="__codelineno-44-22" name="__codelineno-44-22" href="#__codelineno-44-22"></a><span class="w"> </span>:
+<a id="__codelineno-44-23" name="__codelineno-44-23" href="#__codelineno-44-23"></a><span class="w"> </span>:
 </code></pre></div>
 <p>The following steps show you how to replace the <strong>kernel.itb</strong> file inside of the fat32 partition in a .wic image.</p>
 <ol>
 <li>
 <p>The <strong>wic ls</strong> command allows you to inspect or navigate over the directory structure inside of the SD Card image. For example you can observe the partitions  in the SD Card image in this way.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="c1"># Here you can inspect the content a wic image see the 2 partitions inside of the SD Card image</span>
-<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/&lt;gsrd-directory&gt;/&lt;project-directory&gt;/software/yocto_linux/poky/scripts/wic<span class="w"> </span>ls<span class="w"> </span>my_image.wic
-<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="w"> </span>Num<span class="w">     </span>Start<span class="w">        </span>End<span class="w">          </span>Size<span class="w">      </span>Fstype
-<a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a><span class="w"> </span><span class="m">1</span><span class="w">       </span><span class="m">1048576</span><span class="w">    </span><span class="m">525336575</span><span class="w">    </span><span class="m">524288000</span><span class="w">  </span>fat32
-<a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a><span class="w"> </span><span class="m">2</span><span class="w">     </span><span class="m">525336576</span><span class="w">   </span><span class="m">2098200575</span><span class="w">   </span><span class="m">1572864000</span><span class="w">  </span>ext4
-<a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a>
-<a id="__codelineno-43-7" name="__codelineno-43-7" href="#__codelineno-43-7"></a>
-<a id="__codelineno-43-8" name="__codelineno-43-8" href="#__codelineno-43-8"></a><span class="c1"># Here you can naviagate inside of the partition 1</span>
-<a id="__codelineno-43-9" name="__codelineno-43-9" href="#__codelineno-43-9"></a><span class="w"> </span>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/&lt;gsrd-directory&gt;/&lt;project-directory&gt;/software/yocto_linux/poky/scripts/wic<span class="w"> </span>ls<span class="w"> </span>my_image.wic:1
-<a id="__codelineno-43-10" name="__codelineno-43-10" href="#__codelineno-43-10"></a>Volume<span class="w"> </span><span class="k">in</span><span class="w"> </span>drive<span class="w"> </span>:<span class="w"> </span>is<span class="w"> </span>boot<span class="w">       </span>
-<a id="__codelineno-43-11" name="__codelineno-43-11" href="#__codelineno-43-11"></a>Volume<span class="w"> </span>Serial<span class="w"> </span>Number<span class="w"> </span>is<span class="w"> </span>8F65-ACE9
-<a id="__codelineno-43-12" name="__codelineno-43-12" href="#__codelineno-43-12"></a>Directory<span class="w"> </span><span class="k">for</span><span class="w"> </span>::/
-<a id="__codelineno-43-13" name="__codelineno-43-13" href="#__codelineno-43-13"></a>
-<a id="__codelineno-43-14" name="__codelineno-43-14" href="#__codelineno-43-14"></a>BOOTSC~1<span class="w"> </span>UIM<span class="w">      </span><span class="m">2739</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w">  </span>boot.scr.uimg
-<a id="__codelineno-43-15" name="__codelineno-43-15" href="#__codelineno-43-15"></a>kernel<span class="w">   </span>itb<span class="w">  </span><span class="m">12885831</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w"> </span>
-<a id="__codelineno-43-16" name="__codelineno-43-16" href="#__codelineno-43-16"></a>uboot<span class="w">    </span>env<span class="w">      </span><span class="m">8192</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w"> </span>
-<a id="__codelineno-43-17" name="__codelineno-43-17" href="#__codelineno-43-17"></a>u-boot<span class="w">   </span>itb<span class="w">    </span><span class="m">938816</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w"> </span>
-<a id="__codelineno-43-18" name="__codelineno-43-18" href="#__codelineno-43-18"></a><span class="w">      </span><span class="m">4</span><span class="w"> </span>files<span class="w">          </span><span class="m">13</span><span class="w"> </span><span class="m">835</span><span class="w"> </span><span class="m">578</span><span class="w"> </span>bytes
-<a id="__codelineno-43-19" name="__codelineno-43-19" href="#__codelineno-43-19"></a><span class="w">                      </span><span class="m">509</span><span class="w"> </span><span class="m">370</span><span class="w"> </span><span class="m">368</span><span class="w"> </span>bytes<span class="w"> </span>free
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="c1"># Here you can inspect the content a wic image see the 2 partitions inside of the SD Card image</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/&lt;gsrd-directory&gt;/&lt;project-directory&gt;/software/yocto_linux/poky/scripts/wic<span class="w"> </span>ls<span class="w"> </span>my_image.wic
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="w"> </span>Num<span class="w">     </span>Start<span class="w">        </span>End<span class="w">          </span>Size<span class="w">      </span>Fstype
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="w"> </span><span class="m">1</span><span class="w">       </span><span class="m">1048576</span><span class="w">    </span><span class="m">525336575</span><span class="w">    </span><span class="m">524288000</span><span class="w">  </span>fat32
+<a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a><span class="w"> </span><span class="m">2</span><span class="w">     </span><span class="m">525336576</span><span class="w">   </span><span class="m">2098200575</span><span class="w">   </span><span class="m">1572864000</span><span class="w">  </span>ext4
+<a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a>
+<a id="__codelineno-45-7" name="__codelineno-45-7" href="#__codelineno-45-7"></a>
+<a id="__codelineno-45-8" name="__codelineno-45-8" href="#__codelineno-45-8"></a><span class="c1"># Here you can naviagate inside of the partition 1</span>
+<a id="__codelineno-45-9" name="__codelineno-45-9" href="#__codelineno-45-9"></a><span class="w"> </span>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/&lt;gsrd-directory&gt;/&lt;project-directory&gt;/software/yocto_linux/poky/scripts/wic<span class="w"> </span>ls<span class="w"> </span>my_image.wic:1
+<a id="__codelineno-45-10" name="__codelineno-45-10" href="#__codelineno-45-10"></a>Volume<span class="w"> </span><span class="k">in</span><span class="w"> </span>drive<span class="w"> </span>:<span class="w"> </span>is<span class="w"> </span>boot<span class="w">       </span>
+<a id="__codelineno-45-11" name="__codelineno-45-11" href="#__codelineno-45-11"></a>Volume<span class="w"> </span>Serial<span class="w"> </span>Number<span class="w"> </span>is<span class="w"> </span>8F65-ACE9
+<a id="__codelineno-45-12" name="__codelineno-45-12" href="#__codelineno-45-12"></a>Directory<span class="w"> </span><span class="k">for</span><span class="w"> </span>::/
+<a id="__codelineno-45-13" name="__codelineno-45-13" href="#__codelineno-45-13"></a>
+<a id="__codelineno-45-14" name="__codelineno-45-14" href="#__codelineno-45-14"></a>BOOTSC~1<span class="w"> </span>UIM<span class="w">      </span><span class="m">2739</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w">  </span>boot.scr.uimg
+<a id="__codelineno-45-15" name="__codelineno-45-15" href="#__codelineno-45-15"></a>kernel<span class="w">   </span>itb<span class="w">  </span><span class="m">12885831</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w"> </span>
+<a id="__codelineno-45-16" name="__codelineno-45-16" href="#__codelineno-45-16"></a>uboot<span class="w">    </span>env<span class="w">      </span><span class="m">8192</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w"> </span>
+<a id="__codelineno-45-17" name="__codelineno-45-17" href="#__codelineno-45-17"></a>u-boot<span class="w">   </span>itb<span class="w">    </span><span class="m">938816</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w"> </span>
+<a id="__codelineno-45-18" name="__codelineno-45-18" href="#__codelineno-45-18"></a><span class="w">      </span><span class="m">4</span><span class="w"> </span>files<span class="w">          </span><span class="m">13</span><span class="w"> </span><span class="m">835</span><span class="w"> </span><span class="m">578</span><span class="w"> </span>bytes
+<a id="__codelineno-45-19" name="__codelineno-45-19" href="#__codelineno-45-19"></a><span class="w">                      </span><span class="m">509</span><span class="w"> </span><span class="m">370</span><span class="w"> </span><span class="m">368</span><span class="w"> </span>bytes<span class="w"> </span>free
 </code></pre></div>
 </li>
 <li>
 <p>The <strong>wic rm</strong> command allows you to delete any of the components in the selected partition. For example, you can delete the <strong>kernel.itb</strong> image from the partition 1(fat32 partition).</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/&lt;gsrd-directory&gt;/&lt;project-directory&gt;/software/yocto_linux/poky/scripts/wic<span class="w"> </span>rm<span class="w"> </span>my_image.wic:1/kernel.itb
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/&lt;gsrd-directory&gt;/&lt;project-directory&gt;/software/yocto_linux/poky/scripts/wic<span class="w"> </span>rm<span class="w"> </span>my_image.wic:1/kernel.itb
 </code></pre></div>
 </li>
 <li>
 <p>The <strong>wic cp</strong> command allows you to copy any new item or file from your Linux machine to a specific partition and location inside of the SD Card image. For example, you can copy a new <strong>kernel.itb</strong> to the partition 1.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/&lt;gsrd-directory&gt;/&lt;project-directory&gt;/software/yocto_linux/poky/scripts/wic<span class="w"> </span>cp<span class="w"> </span>&lt;path_new_kernel.itb&gt;<span class="w"> </span>my_image.wic:1/kernel.itb
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/&lt;gsrd-directory&gt;/&lt;project-directory&gt;/software/yocto_linux/poky/scripts/wic<span class="w"> </span>cp<span class="w"> </span>&lt;path_new_kernel.itb&gt;<span class="w"> </span>my_image.wic:1/kernel.itb
 </code></pre></div>
 </li>
 </ol>
@@ -7799,7 +7853,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 12, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 14, 2026</span>
       
         <br>
         Created:
