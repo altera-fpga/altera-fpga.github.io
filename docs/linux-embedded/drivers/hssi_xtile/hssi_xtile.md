@@ -1,6 +1,6 @@
 # **Ethernet Subsystem Altera® FPGA IP Tile Specific Ethernet MAC Driver for Hard Processor System**
 
-Last updated: **August 12, 2026** 
+Last updated: **August 14, 2026** 
 
 **Upstream Status**: Not Upstreamed
 

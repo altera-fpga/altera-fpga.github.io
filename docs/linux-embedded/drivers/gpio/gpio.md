@@ -1,6 +1,6 @@
 # **General Purpose I/O Driver for Hard Processor System**
 
-Last updated: **August 12, 2026** 
+Last updated: **August 14, 2026** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpio/gpio-dwapb.c)
 

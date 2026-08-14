@@ -452,6 +452,14 @@ export TOP_FOLDER=`pwd`
 ```
 
 
+Enable Quartus tools to be called from command line:
+
+
+```bash
+source ~/altera_pro/26.1/qinit.sh
+```
+
+
 
 
 
@@ -567,6 +575,14 @@ sudo rm -rf agilex5_065b_gsrd_20.mdk_qspi
 mkdir agilex5_065b_gsrd_20.mdk_qspi
 cd agilex5_065b_gsrd_20.mdk_qspi
 export TOP_FOLDER=`pwd`
+```
+
+
+Enable Quartus tools to be called from command line:
+
+
+```bash
+source ~/altera_pro/26.1/qinit.sh
 ```
 
 

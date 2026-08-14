@@ -295,6 +295,7 @@ nav:
         - HPS Xen Hypervisor GSRD: embedded-designs/agilex-5/e-series/modular/xen/ug-xen-agx5e-modular.md      
         - 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k/camera_4k.md
         - 4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k_ai/camera_4k_ai.md
+        - 4Kp60 Multi-Sensor Camera Stitch Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k_stitch/camera_4k_stitch.md
         - Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE-ES.md
         - 1x10G Ethernet System Example Design: embedded-designs/agilex-5/e-series/modular/ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g.md
         - TSN Examples:
@@ -315,6 +316,8 @@ nav:
         - Robotics Camera System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-camera.md
         - HPS PCIe Root Port: embedded-designs/agilex-5/e-series/modular-065b/pcie-rp/ug-pcie_rp-agx5e-modular-065b.md          
         - Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE.md
+        - 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/camera/camera_4k/camera_4k.md
+        - 4Kp60 Multi-Sensor Camera Stitch Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/camera/camera_4k_stitch/camera_4k_stitch.md
       - E-Series 065A Modular Development Kit:
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular-065a/gsrd/ug-gsrd-agx5e-modular-065a.md
         - HPS Linux Boot Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/modular-065a/boot-examples/ug-linux-boot-agx5e-modular-065a.md
