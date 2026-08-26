@@ -70,7 +70,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -95,10 +95,10 @@ The commands to create and compile the projects are listed below.
 cd $TOP_FOLDER
 # Build 4 versions of the Quartus design
 rm -rf hw && mkdir hw && cd hw
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
-unzip QPDS26.1_REL_GSRD_PR.zip
-rm QPDS26.1_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
+unzip QPDS26.1.1_REL_GSRD_PR.zip
+rm QPDS26.1.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS26.1.1_REL_GSRD_PR agilex7f-ed-gsrd
 # boot from FPGA
 export BOOTS_FIRST=fpga
 # enable watchdog
@@ -146,7 +146,7 @@ rm -rf arm-trusted-firmware
 git clone https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 # checkout the branch used for this document, comment out to use default
-git checkout -b test -t origin/socfpga_v2.14.0
+git checkout -b test -t origin/socfpga_v2.14.1
 make bl31 PLAT=agilex
 cd ..
 ```
@@ -175,7 +175,7 @@ rm -rf u-boot-socfpga
 git clone https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga
 # comment out next line to use the latest default branch 
-git checkout -b test -t origin/socfpga_v2026.01
+git checkout -b test -t origin/socfpga_v2026.04
 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -303,7 +303,7 @@ rm -rf linux-socfpga
 git clone https://github.com/altera-fpga/linux-socfpga 
 cd linux-socfpga 
 # checkout the branch used for this document, comment out to use default 
-git checkout -b test -t origin/socfpga-6.18.2-lts 
+git checkout -b test -t origin/socfpga-6.18.20-lts 
 
 # configure the RSU driver to be built into the kernel 
 make clean && make mrproper 
@@ -385,7 +385,7 @@ cat << EOF > initial_image_multiQSPI.pfg
 EOF
 
 # MultiQSPI is supported starting in 24.3
-~/altera_pro/25.3.1/quartus/bin/quartus_pfg -c initial_image_multiQSPI.pfg
+~/altera_pro/26.1/quartus/bin/quartus_pfg -c initial_image_multiQSPI.pfg
 mv initial_image_multiQSPI.jic initial_image_multiQSPI_prev.jic
 mv initial_image_multiQSPI_jic_2Gb_cs0.rpd initial_image_multiQSPI_jic_2Gb_cs0_prev.rpd
 mv initial_image_multiQSPI_jic_2Gb_cs1.rpd initial_image_multiQSPI_jic_2Gb_cs1_prev.rpd
@@ -532,7 +532,7 @@ Run the following commands to build the root file system.
   rm -rf buildroot
   git clone https://github.com/buildroot/buildroot.git
   cd buildroot
-  git checkout 2026.02
+  git checkout 2026.05
   mkdir -p overlay/etc/profile.d/
   # Use regilar prompt used in our devices root@<device>:~# instead of only #
   echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh

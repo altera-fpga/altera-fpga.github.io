@@ -17,7 +17,7 @@ The following scenarios are covered:
 *  Boot from QSPI
 
 
-The instructions on this page are based on the [HPS Baseline System Example Design: Agilex™ 3 FPGA and SoC C-Series](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/).
+The instructions on this page are based on the [HPS Baseline System Example Design: Agilex™ 3 FPGA and SoC C-Series](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/).
 
 ### Prerequisites
 
@@ -31,14 +31,14 @@ The following are required to be able to fully exercise the guides from this pag
   * 64 GB of RAM or more
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 
   * TFTP server. This used to download the eMMC binaries to board to be flashed by U-Boot
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files.
 
 ### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
 
 **Note:** Regarding the Hardware Design components in the following table, only the device-specific one is used in this page.
 
@@ -46,28 +46,28 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
 | Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1_p1_REL_GSRD_PR   |
 | Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main | QPDS26.1_p1_REL_GSRD_PR |
-| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
-| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
-| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
-| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_p1_REL_GSRD_PR |
-| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
-| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
-| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
-| KAS | [https://github.com/jeffhammond/STREAM.git](https://github.com/jeffhammond/STREAM.git) | master | 5.2 |
+| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
+| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
+| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
+| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1_p1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
+| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 ### Development Kit
 
-Refer to [Development Kit](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3) for details about the board.
+Refer to [Development Kit](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3) for details about the board.
 
 ### Release Notes
 
-Refer to [Release Notes](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR) for release readiness information and known issues.
+Refer to [Release Notes](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR) for release readiness information and known issues.
 
 
 ## HPS Enablement Board
@@ -110,7 +110,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -126,7 +126,7 @@ source ~/altera_pro/26.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex3_soc_devkit_ghrd && mkdir agilex3_soc_devkit_ghrd && cd agilex3_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a3cw135-devkit-oobe-baseline.zip
+wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a3cw135-devkit-oobe-baseline.zip
 unzip a3cw135-devkit-oobe-baseline.zip
 rm -f a3cw135-devkit-oobe-baseline.zip
 make baseline-build
@@ -147,7 +147,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 make -j 48 PLAT=agilex3 bl31
 cd ..
@@ -166,7 +166,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga_sd
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga_sd
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga_sd
 cd u-boot-socfpga_sd 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -274,7 +274,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
 cat << EOF > config-fragment-agilex3
 # Enable Ethernet connectivity so we can get an IP address
@@ -350,9 +350,9 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf yocto && mkdir yocto && cd yocto
-git clone -b scarthgap https://git.yoctoproject.org/poky
-git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga
-git clone -b scarthgap https://github.com/openembedded/meta-openembedded
+git clone -b wrynose https://git.yoctoproject.org/poky
+git clone -b wrynose https://git.yoctoproject.org/meta-intel-fpga
+git clone -b wrynose https://github.com/openembedded/meta-openembedded
 source poky/oe-init-build-env ./build
 echo 'MACHINE = "agilex3"' >> conf/local.conf
 echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
@@ -471,7 +471,7 @@ mkdir $TOP_FOLDER/qspi-boot
 ```bash
 cd $TOP_FOLDER/qspi-boot
 rm -rf u-boot-socfpga_qspi
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga_qspi
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga_qspi
 cd u-boot-socfpga_qspi 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -858,7 +858,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -874,7 +874,7 @@ source ~/altera_pro/26.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex3_soc_devkit_ghrd && mkdir agilex3_soc_devkit_ghrd && cd agilex3_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a3cw135-devkit-oobe-baseline.zip
+wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a3cw135-devkit-oobe-baseline.zip
 unzip a3cw135-devkit-oobe-baseline.zip
 rm -f a3cw135-devkit-oobe-baseline.zip
 make baseline-build
@@ -897,7 +897,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware-sdcard
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-sdcard
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-sdcard
 cd arm-trusted-firmware-sdcard
 # Beacuse of limitations on DDR we need to change the following
 # sed -i 's/PLAT_QSPI_DATA_BASE.*/PLAT_QSPI_DATA_BASE			(0x00250000)/g' plat/altera/soc/common/include/platform_def.h
@@ -922,7 +922,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga-sdcard
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-sdcard
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-sdcard
 cd linux-socfpga-sdcard
 
 # WA: ES-1522 Incorrect name of ttyS0 serial console
@@ -1003,9 +1003,9 @@ The built modules are created under the following directory:
 ```bash
 cd $TOP_FOLDER
 rm -rf yocto && mkdir yocto && cd yocto
-git clone -b scarthgap https://git.yoctoproject.org/poky
-git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga
-git clone -b scarthgap https://github.com/openembedded/meta-openembedded
+git clone -b wrynose https://git.yoctoproject.org/poky
+git clone -b wrynose https://git.yoctoproject.org/meta-intel-fpga
+git clone -b wrynose https://github.com/openembedded/meta-openembedded
 # work around issue
 echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
 source poky/oe-init-build-env ./build
@@ -1169,7 +1169,7 @@ ATF requires to be rebuilt to enable booting from QSPI by setting **SOCFPGA_BOOT
 cd $TOP_FOLDER
 # Building ATF
 rm -rf arm-trusted-firmware-qspi
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-qspi
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-qspi
 cd arm-trusted-firmware-qspi
 # Replacing the default location of fip.bin from 0x3C00000 to 0x00250000
 sed -i 's/PLAT_QSPI_DATA_BASE.*/PLAT_QSPI_DATA_BASE			(0x00250000)/g' plat/altera/soc/common/include/platform_def.h
@@ -1195,7 +1195,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga-qspi
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-qspi
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-qspi
 cd linux-socfpga-qspi
 
 # WA: ES-1522 Incorrect name of ttyS0 serial console

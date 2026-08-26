@@ -15,7 +15,7 @@
 
     <br>
 
-    ![qar-content](/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/qar-content.png){:style="display:block; margin-left:auto; margin-right:auto"}
+    ![qar-content](/rel-26.1.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/qar-content.png){:style="display:block; margin-left:auto; margin-right:auto"}
     <center>
 
     **QAR file content.**
@@ -56,7 +56,7 @@
 
 <br>
 
-![quartus-comp](/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/quartus-comp.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![quartus-comp](/rel-26.1.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/quartus-comp.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center>
 
 **Quartus® Prime Pro compilation flow.**

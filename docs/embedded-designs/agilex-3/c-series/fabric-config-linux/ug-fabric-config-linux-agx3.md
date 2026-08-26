@@ -17,8 +17,8 @@ The following are needed:
 
 * [Agilex 3 FPGA and SoC C-Series Development Kit](https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit), ordering code DK-A3W135BM16AEA. Other Agilex 3 development boards will also work in the same manner, just that other set HPS Baseline System Example Design binaries will be used.
 * Host PC with Linux (Ubuntu 22.04 was used, but others should work too)
-* Quartus Pro 26.1 (or just Quartus Pro standalone Programmer 26.1).
-* Ashling RiscFree bundled with Quartus Pro 26.1 (can be installed and use with just the standalone Programmer)
+* Quartus Pro 26.1.1 (or just Quartus Pro standalone Programmer 26.1.1).
+* Ashling RiscFree bundled with Quartus Pro 26.1.1 (can be installed and use with just the standalone Programmer)
 * Network access, for downloading the sources while building the binaries
 
 ## Build Example Design
@@ -42,7 +42,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -64,7 +64,7 @@ The following instructions are used:
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex3_soc_devkit_ghrd && mkdir agilex3_soc_devkit_ghrd && cd agilex3_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a3cw135-devkit-oobe-baseline.zip
+wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a3cw135-devkit-oobe-baseline.zip
 unzip a3cw135-devkit-oobe-baseline.zip
 rm -f a3cw135-devkit-oobe-baseline.zip
 make baseline-install

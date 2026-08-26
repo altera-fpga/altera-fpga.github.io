@@ -49,8 +49,8 @@ The details of TSN are out of scope of this document. Here are some reference to
   
 ### TSN XCVR SGMII+ 3x2.5G Overview
 
-The TSN XCVR SGMII+ is a Reference design, enable datapath between [HPS](https://docs.altera.com/r/docs/814346/26.1/hard-processor-system-technical-reference-manual-agilextm-5-socs/agilextm-5-hard-processor-system-technical-reference-manual-revision-history), [EMAC Controller](https://docs.altera.com/r/docs/814346/26.1/hard-processor-system-technical-reference-manual-agilextm-5-socs/ethernet-media-access-controller), [Multirate Ethernet
-PHY IP](https://docs.altera.com/r/docs/813667/26.1/1g/2.5g/5g/10g-multirate-ethernet-phy-ip-user-guide-agilextm-3-and-agilextm-5-fpgas-and-socs/about-the-1g/2.5g/5g/10g-multirate-ethernet-phy-ip-for-agilextm-3-and-agilextm-5-devices) and [Marvell PHY 88E2110](https://www.marvell.com/content/dam/marvell/en/public-collateral/phys-transceivers/marvell-phys-transceivers-alaska-m-88e21x0-datasheet.pdf) running at 2.5G rate on the Agilex™ 5 FPGA E-Series 065B Modular Development Kit.
+The TSN XCVR SGMII+ is a Reference design, enable datapath between [HPS](https://docs.altera.com/r/docs/814346/26.1.1/hard-processor-system-technical-reference-manual-agilextm-5-socs/agilextm-5-hard-processor-system-technical-reference-manual-revision-history), [EMAC Controller](https://docs.altera.com/r/docs/814346/26.1.1/hard-processor-system-technical-reference-manual-agilextm-5-socs/ethernet-media-access-controller), [Multirate Ethernet
+PHY IP](https://docs.altera.com/r/docs/813667/26.1.1/1g/2.5g/5g/10g-multirate-ethernet-phy-ip-user-guide-agilextm-3-and-agilextm-5-fpgas-and-socs/about-the-1g/2.5g/5g/10g-multirate-ethernet-phy-ip-for-agilextm-3-and-agilextm-5-devices) and [Marvell PHY 88E2110](https://www.marvell.com/content/dam/marvell/en/public-collateral/phys-transceivers/marvell-phys-transceivers-alaska-m-88e21x0-datasheet.pdf) running at 2.5G rate on the Agilex™ 5 FPGA E-Series 065B Modular Development Kit.
 
 ```bash
 Note:
@@ -77,7 +77,7 @@ Note:
 
 * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
 
-* Quartus&reg; Prime Pro Edition software version 26.1 is used to recompile the hardware design. If only writing binaries is required, then the Quartus&reg; Prime Pro Edition Programmer version 26.1 is sufficient.
+* Quartus&reg; Prime Pro Edition software version 26.1.1 is used to recompile the hardware design. If only writing binaries is required, then the Quartus&reg; Prime Pro Edition Programmer version 26.1.1 is sufficient.
 
 * Local Ethernet network, with DHCP server
 Internet connection. For downloading the files, especially when rebuilding the GSRD.
@@ -90,18 +90,18 @@ Internet connection. For downloading the files, especially when rebuilding the G
 
 #### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
 
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
 | Agilex 5 Design | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1_p1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
-| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_p1_REL_GSRD_PR |
-| KAS | [https://github.com/jeffhammond/STREAM.git](https://github.com/jeffhammond/STREAM.git) | master | 5.2 |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
+| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1_p1_REL_GSRD_PR |
+| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -194,7 +194,7 @@ The Hard Processor System (HPS) in this design is a critical component that inte
 
 #### TSN Subsystem
 
-The main components of the TSN Subsystem are _[Multirate Ethernet PHY IP](https://docs.altera.com/r/docs/813667/26.1/1g/2.5g/5g/10g-multirate-ethernet-phy-ip-user-guide-agilextm-3-and-agilextm-5-fpgas-and-socs/about-the-1g/2.5g/5g/10g-multirate-ethernet-phy-ip-for-agilextm-3-and-agilextm-5-devices), GTS System PLL Clocks IP, Reset Release IP and IOPLL IP_.
+The main components of the TSN Subsystem are _[Multirate Ethernet PHY IP](https://docs.altera.com/r/docs/813667/26.1.1/1g/2.5g/5g/10g-multirate-ethernet-phy-ip-user-guide-agilextm-3-and-agilextm-5-fpgas-and-socs/about-the-1g/2.5g/5g/10g-multirate-ethernet-phy-ip-for-agilextm-3-and-agilextm-5-devices), GTS System PLL Clocks IP, Reset Release IP and IOPLL IP_.
 
 * The Multirate Ethernet PHY IP transmits outgoing traffic (from HPS GMII interface) and receives incoming traffic through GTS Transceiver PHY.
 
@@ -543,7 +543,7 @@ The User Space CSR contains registers specific to system-level status (e.g. PLL 
 
 1\. Quartus Prime Pro
 
-* Download the Quartus® Prime Pro Edition software version 26.1 from the FPGA Software Download Center of the Altera® Website. Follow the on-screen instructions to complete the installation process. Choose an installation directory that is relative to the Quartus® Prime Pro Edition software installation directory.
+* Download the Quartus® Prime Pro Edition software version 26.1.1 from the FPGA Software Download Center of the Altera® Website. Follow the on-screen instructions to complete the installation process. Choose an installation directory that is relative to the Quartus® Prime Pro Edition software installation directory.
 
 * Set up the Quartus tools in the PATH, so they are accessible without full path.
   
@@ -553,7 +553,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -599,7 +599,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 
 #### Installing Dependency Packages for SW Compilation
 
-Follow the instructions in the Base GSRD [Yocto Build Prerequisites](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/#yocto-build-prerequisites) section.
+Follow the instructions in the Base GSRD [Yocto Build Prerequisites](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/#yocto-build-prerequisites) section.
 
 #### Package Download
 
@@ -780,7 +780,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;top.hps.jic"
 
 1. Open the serial port of Board A and Board B by using serial communication utility.
 
-    _Note: Follow the instructions in the Base GSRD [configure-serial-console](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/#configure-serial-console) section, to configure and setup serial connection._
+    _Note: Follow the instructions in the Base GSRD [configure-serial-console](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/#configure-serial-console) section, to configure and setup serial connection._
 
 2. Power cycle the board.
 

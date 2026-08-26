@@ -5,7 +5,7 @@ OpenOCD (Open On-Chip Debugger) is a free, open-source tool that provides debugg
 
 OpenOCD is widely adopted, supporting a broad range of architectures—Arm Cortex-A/R/M, RISC-V, Xtensa, MIPS, and others—making it a staple in SoC bring-up, bootloader development, and production programming workflows where vendor tools are either unavailable, too restrictive, or insufficient for automation.
 
-This page demonstrates how to use OpenOCD included with Quartus 26.1 to debug the HPS Arm cores on Agilex 3. The following examples are provided:
+This page demonstrates how to use OpenOCD included with Quartus 26.1.1 to debug the HPS Arm cores on Agilex 3. The following examples are provided:
 
 * Connect to U-Boot running on A55.0 core, and debug it.
 * Connect to Linux running on all cores in SMP, and debug it.
@@ -34,7 +34,7 @@ The following are needed:
 
 * [Agilex 3 FPGA and SoC C-Series Development Kit](https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit), ordering code DK-A3W135BM16AEA. Other Agilex 3  development boards will also work in the same manner, but the instructions for building the binaries would need to be modified to target a different board. The `agilex3.cfg` file and the instructions would remain unchanged.
 * Host PC with Linux (Ubuntu 22.04 was used, but others should work too)
-* Quartus Pro 26.1 (or just Quartus Pro Programmer 26.1). Quartus versions prior to 26.1 contained an older version of OpenOCD which did not support debugging HPS on Agilex 3.
+* Quartus Pro 26.1.1 (or just Quartus Pro Programmer 26.1.1). Quartus versions prior to 26.1 contained an older version of OpenOCD which did not support debugging HPS on Agilex 3.
  * `gdb-multiarch` tool (installed with `sudo apt-install gdb-multiarch ` on Ubuntu)
 * Network access, for downloading the sources while building the binaries
 
@@ -69,21 +69,21 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 # -----------------------------------------------------------------------------
 # Add Quartus tools to PATH
 # -----------------------------------------------------------------------------
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 
 # -----------------------------------------------------------------------------
 # Get precompiled SOF
 # -----------------------------------------------------------------------------
 cd $TOP_FOLDER
 rm -f *.sof
-wget https://releases.rocketboards.org/2026.04/gsrd/agilex3_gsrd.baseline/baseline.sof
+wget https://releases.rocketboards.org/2026.08/gsrd/agilex3_gsrd.baseline/baseline.sof
 
 # -----------------------------------------------------------------------------
 # Build atf
 # -----------------------------------------------------------------------------
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 make -j 48 PLAT=agilex3 bl31 
 cd ..
@@ -93,7 +93,7 @@ cd ..
 # -----------------------------------------------------------------------------
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
 sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&mmc;/g' arch/arm/dts/socfpga_agilex3_socdk-u-boot.dtsi
@@ -160,7 +160,7 @@ rm -f *.jic *.rbf
 # -----------------------------------------------------------------------------
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga
 cd linux-socfpga
 make clean
 make defconfig
@@ -181,7 +181,7 @@ make intel/socfpga_agilex3_socdk.dtb
 # -----------------------------------------------------------------------------
 cd $TOP_FOLDER
 rm -f console-image-minimal-agilex3.rootfs.tar.gz
-wget https://releases.rocketboards.org/2026.04/gsrd/agilex3_gsrd.baseline/console-image-minimal-agilex3.rootfs.tar.gz
+wget https://releases.rocketboards.org/2026.08/gsrd/agilex3_gsrd.baseline/console-image-minimal-agilex3.rootfs.tar.gz
 
 # -----------------------------------------------------------------------------
 # Create SD card image

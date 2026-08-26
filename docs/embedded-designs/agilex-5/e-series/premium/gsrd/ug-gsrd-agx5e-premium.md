@@ -39,7 +39,7 @@ The following are required to be able to fully exercise this System Example Desi
   * 200 GB of free disk space for Yocto buils
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 
   
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the System Example Design.
@@ -47,21 +47,21 @@ The following are required to be able to fully exercise this System Example Desi
 
 ### Prebuilt Binaries
 
-The System Example Design binaries are located at [https://releases.rocketboards.org/2026.04/](https://releases.rocketboards.org/2026.04/):
+The System Example Design binaries are located at [https://releases.rocketboards.org/2026.08/](https://releases.rocketboards.org/2026.08/):
 
 | HPS Daughter Card | Boot Source | Link |
 | -- | ---------------------- | -- |
-| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/](https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/) |
-| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/](https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/) |
-| Enablement Board | QSPI | [https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e065bb32aes1_qspi](https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e065bb32aes1_qspi) |
-| Test Board | SD Card | [https://releases.rocketboards.org/2026.04/debug/agilex5_dk_a5e065bb32aes1_debug](https://releases.rocketboards.org/2026.04/debug/agilex5_dk_a5e065bb32aes1_debug) |
+| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/) |
+| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/) |
+| Enablement Board | QSPI | [https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e065bb32aes1_qspi](https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e065bb32aes1_qspi) |
+| Test Board | SD Card | [https://releases.rocketboards.org/2026.08/debug/agilex5_dk_a5e065bb32aes1_debug](https://releases.rocketboards.org/2026.08/debug/agilex5_dk_a5e065bb32aes1_debug) |
 
 
 > *Note*: The System Example Design release for the HPS Enablement Board comes in two versions: one which uses a Cortex-A55 as the boot core, and one which uses a Cortex-A76 as the boot core. The rest of the functionality is the same, and all cores are enabled in Linux by default. The instructions on how to exercise the binaries are the same for both versions. And the instructions for rebuilding the binaries are similar, just using a different version of the GHRD which has the respective option selected. 
 
 ### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
 
 **Note:** Regarding the Hardware Design components in the following table, only the device-specific one is used in this page.
 
@@ -69,24 +69,24 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
 | Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1_p1_REL_GSRD_PR   |
 | Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main | QPDS26.1_p1_REL_GSRD_PR |
-| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
-| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
-| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
-| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_p1_REL_GSRD_PR |
-| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
-| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
-| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
-| KAS | [https://github.com/jeffhammond/STREAM.git](https://github.com/jeffhammond/STREAM.git) | master | 5.2 |
+| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
+| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
+| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
+| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1_p1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
+| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 ### Release Notes
 
-See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR)
+See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR)
 
 ### Development Kit
 
@@ -251,8 +251,8 @@ This section presents how to use HPS Enablement Board to boot from SD card, and 
 
 1\. Download SD card image archive from the prebuilt binaries, for either Cortex-A55 or Cortex-A76 as the boot core:
 
-* [https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz](https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz)
-* [https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/sdimage.tar.gz](https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/sdimage.tar.gz)
+* [https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz)
+* [https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/sdimage.tar.gz)
 
 2\. Extract the archive, obtaining the file `gsrd-console-image-agilex5e.rootfs.wic`
 
@@ -285,13 +285,13 @@ sync
 When using Cortex-A55 as the boot core:
 
 ```bash
-wget https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/ghrd.hps.jic
+wget https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/ghrd.hps.jic
 ```
 
 When using Cortex-A76 as the boot core:
 
 ```bash
-wget https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/ghrd.hps.jic
+wget https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/ghrd.hps.jic
 ```
 
 5\. Write the JIC file to QSPI:
@@ -460,14 +460,14 @@ Either write 1MB of zeroes at the beginning of the SD card, or remove the SD car
 
 To use Cortex-A55 as the boot core:
 ```bash
-wget https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a55/qspi_flash_image.hps.jic
+wget https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a55/qspi_flash_image.hps.jic
 jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;qspi_flash_image.hps.jic"
 ```
 
 To use Cortex-A76 as the boot core:
 ```bash
-wget https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a76/qspi_flash_image.hps.jic
+wget https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a76/qspi_flash_image.hps.jic
 jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;qspi_flash_image.hps.jic"
 ```
@@ -508,7 +508,7 @@ This section presents how to rebuild the binaries for the HPS Enablement board, 
 
 [Kas](https://github.com/siemens/kas) is a Python-based lightweight build orchestration layer on top of BitBake/Yocto. Kas allows you to define your build environment in a YAML manifest, so you can perform checkout, environment setup, configuration, and build invocation with a single command. Kas provides a more maintainable build description, it offers improved reproducibility, reduced setup friction, and a clearer abstraction for managing multiple layers, revisions, and configuration fragments. 
 
-The software source code for this System Example Design is released inside the [software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe/baseline/software/yocto_linux) directory. Accessing the link will display a README page with details regarding the software.
+The software source code for this System Example Design is released inside the [software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe/baseline/software/yocto_linux) directory. Accessing the link will display a README page with details regarding the software.
 
 For more details about Kas, refer to the official documentation at [https://kas.readthedocs.io/en/latest/](https://kas.readthedocs.io/en/latest/).
 
@@ -568,7 +568,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -586,7 +586,7 @@ source ~/altera_pro/26.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
 unzip a5ed065es-premium-devkit-oobe-baseline-a55.zip
 rm -f a5ed065es-premium-devkit-oobe-baseline-a55.zip
 make baseline_a55-install
@@ -694,7 +694,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -710,7 +710,7 @@ source ~/altera_pro/26.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
 unzip a5ed065es-premium-devkit-oobe-baseline-a55.zip
 rm -f a5ed065es-premium-devkit-oobe-baseline-a55.zip
 make baseline_a55-install
@@ -828,7 +828,7 @@ The `kas.yml` file is the central configuration file used by Kas to define all c
 
 Kas also offers Kconfig-based customizations to provide a flexible and user-friendly configuration experience. This enables you to select repositories, layers, and build targets through a structured menu interface instead of editing YAML files directly. This approach combines the clarity and reproducibility of Kas with the modular configurability of the Linux kernel’s Kconfig system, making it easier to tailor builds for different platforms or use cases while maintaining a consistent and automated setup.
 
-Review the kas.yml file, the Kconfig options and associated documentation at [https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe/baseline-a55/software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe/baseline-a55/software/yocto_linux).
+Review the kas.yml file, the Kconfig options and associated documentation at [https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe/baseline-a55/software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe/baseline-a55/software/yocto_linux).
 
 In the build instructions, we did not use the Kconfig options, only the default options from `kas.yml` were used. This section shows how you can use `kas menu` to customize the build.
 
@@ -1005,7 +1005,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -1019,7 +1019,7 @@ source ~/altera_pro/26.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065es-premium-devkit-debug2-legacy-baseline.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-debug2-legacy-baseline.zip
 unzip a5ed065es-premium-devkit-debug2-legacy-baseline.zip
 rm -f a5ed065es-premium-devkit-debug2-legacy-baseline.zip
 make legacy_baseline-build
@@ -1059,7 +1059,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
 cd gsrd-socfpga
 . agilex5_dk_a5e065bb32aes1-gsrd-build.sh
 build_setup
@@ -1336,7 +1336,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -1352,7 +1352,7 @@ source ~/altera_pro/26.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
 unzip a5ed065es-premium-devkit-oobe-baseline-a55.zip
 rm -f a5ed065es-premium-devkit-oobe-baseline-a55.zip
 make baseline_a55-install

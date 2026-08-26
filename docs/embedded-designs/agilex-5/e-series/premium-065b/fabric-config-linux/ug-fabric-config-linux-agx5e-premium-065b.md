@@ -17,8 +17,8 @@ The following are needed:
 
 * [Agilex 5 FPGA E-Series 065B Premium Development Kit](https://www.altera.com/products/devkit/po-3284/agilex-5-fpga-e-series-065b-premium-development-kit), ordering code DK-A5E065BB32AEA. Other Agilex 5 development boards will also work in the same manner, just that other set HPS Baseline System Example Design binaries will be used.
 * Host PC with Linux (Ubuntu 22.04 was used, but others should work too)
-* Quartus Pro 26.1 (or just Quartus Pro standalone Programmer 26.1).
-* Ashling RiscFree bundled with Quartus Pro 26.1 (can be installed and use with just the standalone Programmer)
+* Quartus Pro 26.1.1 (or just Quartus Pro standalone Programmer 26.1.1).
+* Ashling RiscFree bundled with Quartus Pro 26.1.1 (can be installed and use with just the standalone Programmer)
 * Network access, for downloading the sources while building the binaries
 
 ## Build Example Design
@@ -43,7 +43,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -61,7 +61,7 @@ source ~/altera_pro/26.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065b-premium-devkit-oobe-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed065b-premium-devkit-oobe-baseline-a55.zip
 unzip a5ed065b-premium-devkit-oobe-baseline-a55.zip
 rm -f a5ed065b-premium-devkit-oobe-baseline-a55.zip
 make baseline_a55-install

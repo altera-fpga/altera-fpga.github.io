@@ -292,7 +292,7 @@ nav:
         - FPGA AI Suite SoC Design Example: ed-ai-suite/agilex5/soc/fpga_ai_suite_soc_design_example.md
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular.md
         - HPS Linux Boot Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular.md
-        - HPS Xen Hypervisor GSRD: embedded-designs/agilex-5/e-series/modular/xen/ug-xen-agx5e-modular.md      
+        - HPS Xen Hypervisor GSRD: embedded-designs/agilex-5/e-series/modular/xen/ug-xen-agx5e-modular.md    
         - 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k/camera_4k.md
         - 4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k_ai/camera_4k_ai.md
         - 4Kp60 Multi-Sensor Camera Stitch Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k_stitch/camera_4k_stitch.md

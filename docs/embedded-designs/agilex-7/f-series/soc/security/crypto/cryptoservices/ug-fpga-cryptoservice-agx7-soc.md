@@ -39,9 +39,9 @@ The new FCS architecture software stack and its components can be found in the f
 | **SW Component** | **Repository**                                               | **Branch/tag/Version** |
 | ---------------- | ------------------------------------------------------------ | ---------------------- |
 | LibFCS           | [altera-fpga/libfcs: Altera FPGA Crypto Services Library](https://github.com/altera-fpga/libfcs) | main                   |
-| Linux            | [altera-fpga/linux-socfpga: Linux development repository for socfpga](https://github.com/altera-fpga/linux-socfpga) | QPDS26.1_REL_GSRD_PR      |
-| U-Boot           | [altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | QPDS26.1_REL_GSRD_PR      |
-| ATF              | [altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | QPDS26.1_REL_GSRD_PR      |
+| Linux            | [altera-fpga/linux-socfpga: Linux development repository for socfpga](https://github.com/altera-fpga/linux-socfpga) | QPDS26.1.1_REL_GSRD_PR      |
+| U-Boot           | [altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | QPDS26.1.1_REL_GSRD_PR      |
+| ATF              | [altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | QPDS26.1.1_REL_GSRD_PR      |
 
 ## Environment Setup
 
@@ -68,7 +68,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 3\. Enable Quartus tools to be called from command line:
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/26.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/26.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -99,7 +99,7 @@ sudo ln -sf /bin/bash /bin/sh
 
 ```bash
 cd $TOP_FOLDER
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
 cd arm-trusted-firmware 
 make bl31 PLAT=agilex 
 cd ..
@@ -110,7 +110,7 @@ cd ..
 ```bash
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -181,7 +181,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b QPDS26.1_REL_GSRD_PR  https://github.com/altera-fpga/linux-socfpga linux-socfpga
+git clone -b QPDS26.1.1_REL_GSRD_PR  https://github.com/altera-fpga/linux-socfpga linux-socfpga
 cd linux-socfpga
 make defconfig 
 ```
@@ -269,7 +269,7 @@ mkdir -p privatekeys; mkdir -p publickeys; mkdir -p qky
 Start a Nios V command shell to have all Quartus tools in the PATH:
 
 ```bash
-~/altera_pro/26.1/quartus/niosv/bin/niosv-shell
+~/altera_pro/26.1.1/quartus/niosv/bin/niosv-shell
 ```
 
 ### Generate Root Key
@@ -301,10 +301,10 @@ quartus_sign --family=agilex7 --operation=append_key --previous_pem=privatekeys/
 
 ```bash
 cd $TOP_FOLDER
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
-unzip QPDS26.1_REL_GSRD_PR.zip
-rm QPDS26.1_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
+unzip QPDS26.1.1_REL_GSRD_PR.zip
+rm QPDS26.1.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS26.1.1_REL_GSRD_PR agilex7f-ed-gsrd
 cd agilex7f-ed-gsrd
 make agf014eb-si-devkit-oobe-baseline-all
 cd ..

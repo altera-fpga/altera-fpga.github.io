@@ -64,7 +64,7 @@ This tutorial example design is based on the Agilex 5 E-Series Premium Developme
   * Ethernet Cable. Included with the development kit
   * Micro SD card and USB card writer. Included with the development kit
   
-Refer to [Development Kit](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/) for details about the board, including how to install the HPS Boards, and how to set the MSEL DIP switches.
+Refer to [Development Kit](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/) for details about the board, including how to install the HPS Boards, and how to set the MSEL DIP switches.
 
 ### Development Environment
 
@@ -75,7 +75,7 @@ This is the recommended setting for the system used for compilation of the boot 
   * 64 GB of RAM or more
   * Disk space of 100GB or more
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 
   * TFTP server. This used to download the eMMC binaries to board to be flashed by U-Boot
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files.
@@ -92,7 +92,7 @@ This is the recommended setting for the system used for testing.
 
 ### Prebuilt Binaries
 
-The prebuilt binaries is located at https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/
+The prebuilt binaries is located at https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/
 
 ### Component Versions
 
@@ -100,15 +100,15 @@ The version of The HPS Baseline System Example Design (formerly known as GSRD or
 
 ### Release Notes
 
-See https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR
+See https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR
 
 ## 1. USB 3.1 in Host Mode
   
 ### 1.1 Build SD Card Binaries
 
-1\. To get the SD Card binaries, you may follow the steps in [Agilex 5 FPGA E-Series 065B Premium Development Kit HPS GSRD User Guide - HPS Enablement Board - Build SD Card Binaries](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#build-sd-card-binaries) to generate the bootable SD Card image. Or, you may get the prebuilt binaries in [Prebuilt Binaries](#prebuilt-binaries)
+1\. To get the SD Card binaries, you may follow the steps in [Agilex 5 FPGA E-Series 065B Premium Development Kit HPS GSRD User Guide - HPS Enablement Board - Build SD Card Binaries](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#build-sd-card-binaries) to generate the bootable SD Card image. Or, you may get the prebuilt binaries in [Prebuilt Binaries](#prebuilt-binaries)
 
-2\. To boot up the dev-kit from SD Card, you may refer to [Agilex 5 FPGA E-Series 065B Premium Development Kit HPS GSRD User Guide - HPS Enablement Board - Boot from SD Card](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#hps-enablement-board) for the steps to program the SD Card image.
+2\. To boot up the dev-kit from SD Card, you may refer to [Agilex 5 FPGA E-Series 065B Premium Development Kit HPS GSRD User Guide - HPS Enablement Board - Boot from SD Card](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#hps-enablement-board) for the steps to program the SD Card image.
 
 
 ### 1.2 Verification - Transfer a file to a Removable Storage
@@ -183,7 +183,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -344,7 +344,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 

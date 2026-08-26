@@ -28,7 +28,7 @@ You will need the following items:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the Quartus design.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1
+  * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the design.
 
@@ -73,7 +73,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -87,10 +87,10 @@ source ~/altera_pro/26.1/qinit.sh
 
 ```bash 
 rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
-unzip QPDS26.1_REL_GSRD_PR.zip
-rm -f QPDS26.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS26.1_REL_GSRD_PR stratix10-ed-gsrd
+wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
+unzip QPDS26.1.1_REL_GSRD_PR.zip
+rm -f QPDS26.1.1_REL_GSRD_PR.zip
+mv stratix10-ed-gsrd-QPDS26.1.1_REL_GSRD_PR stratix10-ed-gsrd
 cd stratix10-ed-gsrd
 make s10-htile-soc-devkit-oobe-baseline-all
 cd ..
@@ -105,7 +105,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf arm-trusted-firmware 
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
 cd arm-trusted-firmware 
 make -j 48 bl31 PLAT=stratix10 
 cd .. 
@@ -120,7 +120,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf u-boot-socfpga 
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk 
@@ -209,7 +209,7 @@ quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_basel
 ```bash 
 cd $TOP_FOLDER 
 rm -rf linux-socfpga 
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga 
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga 
 cd linux-socfpga 
 make clean && make mrproper 
 make defconfig 
@@ -291,9 +291,9 @@ Explanation:
 ```bash 
 cd $TOP_FOLDER 
 rm -rf yocto && mkdir yocto && cd yocto 
-git clone -b scarthgap https://git.yoctoproject.org/poky 
-git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga 
-git clone -b scarthgap https://github.com/openembedded/meta-openembedded 
+git clone -b wrynose https://git.yoctoproject.org/poky 
+git clone -b wrynose https://git.yoctoproject.org/meta-intel-fpga 
+git clone -b wrynose https://github.com/openembedded/meta-openembedded 
 source poky/oe-init-build-env ./build 
 echo 'MACHINE = "stratix10_htile"' >> conf/local.conf 
 echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 
@@ -428,7 +428,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -442,10 +442,10 @@ source ~/altera_pro/26.1/qinit.sh
 
 ```bash 
 rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
-unzip QPDS26.1_REL_GSRD_PR.zip
-rm -f QPDS26.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS26.1_REL_GSRD_PR stratix10-ed-gsrd
+wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
+unzip QPDS26.1.1_REL_GSRD_PR.zip
+rm -f QPDS26.1.1_REL_GSRD_PR.zip
+mv stratix10-ed-gsrd-QPDS26.1.1_REL_GSRD_PR stratix10-ed-gsrd
 cd stratix10-ed-gsrd
 make s10-htile-soc-devkit-oobe-baseline-all
 cd ..
@@ -479,7 +479,7 @@ rm ghrd.hps.jic
 ```bash 
 cd $TOP_FOLDER 
 rm -rf gsrd-socfpga 
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
 cd gsrd-socfpga 
 . stratix10_htile-gsrd-build.sh 
 build_setup 

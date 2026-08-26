@@ -14,7 +14,7 @@ This instructions from this page target the Stratix® 10 SX SOC Development kit 
 
 ## Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
 
 **Note:** Regarding the Hardware Design components in the following table, only the device-specific one is used in this page.
 
@@ -22,18 +22,18 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
 | Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1_p1_REL_GSRD_PR   |
 | Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main | QPDS26.1_p1_REL_GSRD_PR |
-| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
-| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
-| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
-| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_p1_REL_GSRD_PR |
-| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
-| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
-| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
-| KAS | [https://github.com/jeffhammond/STREAM.git](https://github.com/jeffhammond/STREAM.git) | master | 5.2 |
+| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
+| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
+| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
+| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1_p1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
+| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -46,7 +46,7 @@ Starting with Quartus® Pro 20.3, the SoC EDS was discontinued, and the function
 
 ## Release Notes
 
-Refer to [Release Notes](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR) for release readiness information and known issues.
+Refer to [Release Notes](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR) for release readiness information and known issues.
 
 
 ## U-Boot Build Flow
@@ -114,7 +114,7 @@ The following are required:
 * Host machine running Linux. Ubuntu 22.04 was used, but other versions may work too.
 * Internet connection to download the tools and clone the U-Boot git tree from github. If you are behind a firewall you will need your system administrator to enable you to get to the git trees.
 * Altera® Stratix® 10 H-Tile SoC FPGA Development Kit (DK-SOC-1SSX-H-D).
-* Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1
+* Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1
 
 Note that the examples presented on this page boot to Linux and they require Linux kernel, device tree and rootfilesystem to boot. However, you can omit the Linux binaries and just boot to U-Boot prompt if you want to.
 
@@ -151,7 +151,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -166,10 +166,10 @@ source ~/altera_pro/26.1/qinit.sh
 
   ```bash 
   cd $TOP_FOLDER
-  wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
-  unzip QPDS26.1_REL_GSRD_PR.zip
-  rm QPDS26.1_REL_GSRD_PR.zip
-  mv stratix10-ed-gsrd-QPDS26.1_REL_GSRD_PR stratix10-ed-gsrd
+  wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
+  unzip QPDS26.1.1_REL_GSRD_PR.zip
+  rm QPDS26.1.1_REL_GSRD_PR.zip
+  mv stratix10-ed-gsrd-QPDS26.1.1_REL_GSRD_PR stratix10-ed-gsrd
   cd stratix10-ed-gsrd
   make s10-htile-soc-devkit-oobe-baseline-all
   cd ..
@@ -186,7 +186,7 @@ After building the Quartus design the following binary is created:
   ```bash
   cd $TOP_FOLDER
   rm -rf arm-trusted-firmware
-  git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
+  git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
   cd arm-trusted-firmware
   make -j 64 bl31 PLAT=stratix10
   cd ..
@@ -204,7 +204,7 @@ After completing the above steps, the Arm Trusted Firmware binary file is create
   ```bash
   cd $TOP_FOLDER
   rm -rf u-boot-socfpga
-  git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+  git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
   cd u-boot-socfpga
   # enable dwarf4 debug info, for compatibility with arm ds
   sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -311,7 +311,7 @@ Download and compile Linux:
   ```bash
   cd $TOP_FOLDER
   rm -rf linux-socfpga
-  git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
+  git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
   cd linux-socfpga
   make clean && make mrproper
   # enable kernel debugging with RiscFree
@@ -363,7 +363,7 @@ This section presents how to build the Linux rootfs using Buildroot.
   rm -rf buildroot
   git clone https://github.com/buildroot/buildroot.git
   cd buildroot
-  git checkout 2026.02
+  git checkout 2026.05
   mkdir -p overlay/etc/profile.d/
   # Use regilar prompt used in our devices root@<device>:~# instead of only #
   echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
@@ -548,7 +548,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ```
   6.- The serial console will show SPL then U-Boot being run:
   ```
-  U-Boot SPL 2026.01-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
+  U-Boot SPL 2026.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
   Reset state: Cold
   MPU         1000000 kHz
   L3 main     400000 kHz
@@ -566,10 +566,10 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ## Checking hash(es) for Image atf … crc32+ OK
   ## Checking hash(es) for Image uboot … crc32+ OK
   ## Checking hash(es) for Image fdt-0 … crc32+ OK
-  NOTICE:  BL31: v2.14.0(release):QPDS26.1_REL_GSRD_PR
+  NOTICE:  BL31: v2.14.1(release):QPDS26.1.1_REL_GSRD_PR
   NOTICE:  BL31: Built : 11:03:24, Jan 29 2025
 
-  U-Boot 2026.01-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_stratix10
+  U-Boot 2026.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_stratix10
 
   CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
   Model: SoCFPGA Stratix 10 SoCDK

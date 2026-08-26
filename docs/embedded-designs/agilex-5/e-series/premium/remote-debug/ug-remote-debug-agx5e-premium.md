@@ -45,7 +45,7 @@ The etherlink works with the standard UIO Linux kernel driver.
 
 This section shows an example of how to use the Remote Debug feature. Communication is established from the board to the host PC through Ethernet, so that the board appears as another JTAG device, listed by jtagconfig utility.
 
-The example is based on the [GSRD](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/), with the following changes:
+The example is based on the [GSRD](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/), with the following changes:
 
  * Adding JOP component to the GHRD
  * Adding JOP to the Linux device tree
@@ -68,7 +68,7 @@ The following are required:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1
+  * Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -91,7 +91,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -111,7 +111,7 @@ The following instructions are used:
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
 unzip a5ed065es-premium-devkit-oobe-baseline-a55.zip
 rm -f a5ed065es-premium-devkit-oobe-baseline-a55.zip
 ```
