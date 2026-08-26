@@ -6573,7 +6573,7 @@
 
 
 <h1 id="altera-error-detection-and-correction-edac-driver-for-hard-processor-system"><strong>Altera Error Detection and Correction (EDAC) Driver for Hard Processor System</strong><a class="headerlink" href="#altera-error-detection-and-correction-edac-driver-for-hard-processor-system" title="Permanent link">&para;</a></h1>
-<p>Last updated: <strong>August 14, 2026</strong> </p>
+<p>Last updated: <strong>August 26, 2026</strong> </p>
 <p><strong>Upstream Status</strong>: <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/edac/altera_edac.c">Upstreamed</a></p>
 <p><strong>Devices supported</strong>: Agilex™ 3, Agilex™ 5, Agilex™ 7 and Stratix® 10</p>
 <h2 id="introduction"><strong>Introduction</strong><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
@@ -6689,9 +6689,9 @@
 <p><strong>(3) Note:</strong> For Agilex™ 7 CRAM SEU Data Injection, please refer to <a href="https://www.intel.com/content/www/us/en/docs/programmable/683128/25-3/fault-injection-and-read-emq-via-hps.html">4.7. Fault Injection and Read EMQ via HPS</a>. For Agilex™ 5 and Agilex™ 3 the similar documentation will be available soon.</p>
 <p>The reference device tree for each one of the devices includes the configuration for the ECC manager and the supported components. This configuration is under the <strong>eccmgr</strong> node. </p>
 <ul>
-<li>Agilex™ 5/Agilex™ 3: <a href="https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.2-lts/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi">socfpga_agilex5.dtsi</a></li>
-<li>Agilex™ 7: <a href="https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.2-lts/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi">socfpga_agilex.dtsi</a></li>
-<li>Stratix® 10: <a href="https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.2-lts/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi">socfpga_stratix10.dtsi</a></li>
+<li>Agilex™ 5/Agilex™ 3: <a href="https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.20-lts/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi">socfpga_agilex5.dtsi</a></li>
+<li>Agilex™ 7: <a href="https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.20-lts/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi">socfpga_agilex.dtsi</a></li>
+<li>Stratix® 10: <a href="https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.20-lts/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi">socfpga_stratix10.dtsi</a></li>
 </ul>
 <h2 id="test-procedure"><strong>Test Procedure</strong><a class="headerlink" href="#test-procedure" title="Permanent link">&para;</a></h2>
 <p><strong>Note:</strong> The examples shown in this section correspond to exercise the the Altera EDAC driver in Agilex™ 5 device, but the same applies for other devices.</p>
@@ -6807,7 +6807,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 14, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2026</span>
       
         <br>
         Created:

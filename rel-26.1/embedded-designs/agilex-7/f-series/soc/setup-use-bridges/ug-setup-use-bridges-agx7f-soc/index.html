@@ -6986,7 +6986,7 @@ For further reading:</p>
 <p>Host PC with</p>
 <ul>
 <li>Linux distribution with kernel-headers/ kernel-devel and Binutils packages properly installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.</li>
-<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.</li>
+<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1.</li>
 <li>Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows).</li>
 </ul>
 </li>
@@ -7010,16 +7010,16 @@ For further reading:</p>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1.1/qinit.sh
 </code></pre></div>
 <h3 id="build-quartus-design">Build Quartus Design<a class="headerlink" href="#build-quartus-design" title="Permanent link">&para;</a></h3>
 <p>This Quartus project starts using the Quartus reference design for the DK-SI-AGF014EB OOBE (booting from SD Card): </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex7f-ed-gsrd
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>unzip<span class="w"> </span>QPDS26.1_REL_GSRD_PR.zip
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>rm<span class="w"> </span>QPDS26.1_REL_GSRD_PR.zip
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>mv<span class="w"> </span>agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR<span class="w"> </span>agilex7f-ed-gsrd
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>unzip<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR.zip
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>rm<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR.zip
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>mv<span class="w"> </span>agilex7f-ed-gsrd-QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>agilex7f-ed-gsrd
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nb">cd</span><span class="w"> </span>agilex7f-ed-gsrd
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>make<span class="w"> </span>agf014eb-si-devkit-oobe-baseline-generate-design
 </code></pre></div>
@@ -7222,7 +7222,7 @@ For further reading:</p>
 <p>Clone the Yocto script and prepare the build:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/gsrd-socfpga
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/gsrd-socfpga
 <a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga
 <a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>.<span class="w"> </span>agilex7_dk_si_agf014eb-gsrd-build.sh
 <a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>build_setup
@@ -7351,7 +7351,7 @@ as shown next.</p>
 <a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a>
 <a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a><span class="c1"># Create a Linux repository in the $TOP_FOLDER</span>
 <a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga-for-patch
-<a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga<span class="w"> </span>linux-socfpga-for-patch
+<a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga<span class="w"> </span>linux-socfpga-for-patch
 <a id="__codelineno-21-37" name="__codelineno-21-37" href="#__codelineno-21-37"></a><span class="c1"># Add the content of dmaBufNodes.txt  after 4 lines of finding memory@</span>
 <a id="__codelineno-21-38" name="__codelineno-21-38" href="#__codelineno-21-38"></a>awk<span class="w"> </span><span class="s1">&#39;</span>
 <a id="__codelineno-21-39" name="__codelineno-21-39" href="#__codelineno-21-39"></a><span class="s1">    /memory@/ {found=NR}  # Store the line number where &quot;memory@&quot; is found</span>
@@ -7502,7 +7502,7 @@ The test script is provided in this page as an encoded data stream which can be 
 <li>SD Card: <code>$TOP_FOLDER/gsrd_socfpga/agilex7_dk_si_agf014ea-gsrd-images/gsrd-console-image-agilex7.wic</code></li>
 <li>QSPI: <code>$TOP_FOLDER/ghrd_agfb014r24b2e2v.hps.jic</code></li>
 </ul>
-<p>When using the above SD Card image, this already includes the <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run">dmaTest_cache_v2.0.run </a> application that is used to exercise this example. This is a bash script is located at the <strong>/home/root/</strong> directoy in Linux which is running in the development kit. </p>
+<p>When using the above SD Card image, this already includes the <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run">dmaTest_cache_v2.0.run </a> application that is used to exercise this example. This is a bash script is located at the <strong>/home/root/</strong> directoy in Linux which is running in the development kit. </p>
 <p><strong>Note:</strong> Make sure that the variables in the script used to define the addresses for the configuration registers for the Cache Coherency Translator and Modular Scatter-Gather DMA components match the ones set in the Quartus design.</p>
 <p>The addresses set in the Quartus design are defined at the <strong>lwsoc2fpga</strong> bridge with a base address of 0xF9000000:</p>
 <p><a class="glightbox" href="../images/baseAddress.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/baseAddress.png" /></a></p>
@@ -7516,7 +7516,7 @@ The test script is provided in this page as an encoded data stream which can be 
 <p>To execute the sample test script:</p>
 <ol>
 <li>Power cycle the board to boot to Linux.</li>
-<li>Identify the <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run">dmaTest_cache_v2.0.run</a> test script in your <code>/home/root</code> directory. </li>
+<li>Identify the <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run">dmaTest_cache_v2.0.run</a> test script in your <code>/home/root</code> directory. </li>
 <li>
 <p>You can see how to exercise the script by using the <strong>-h</strong> switch:
   <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>root@agilex:~# bash dmaTest_cache_v2.0.run -h
@@ -7713,7 +7713,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 10, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2026</span>
       
         <br>
         Created:

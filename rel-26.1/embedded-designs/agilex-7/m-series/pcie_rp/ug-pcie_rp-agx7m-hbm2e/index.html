@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#pcie-root-port-user-guide" class="md-skip">
+        <a href="#hps-pcie-root-port-system-example-design-for-the-agilextm-7-fpga-m-series-development-kit-hbm2e" class="md-skip">
           Skip to content
         </a>
       
@@ -5639,9 +5639,189 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          PCIe Root Port User Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         PCIe Root Port User Guide
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#required-components" class="md-nav__link">
+    Required Components
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helpful-reference-documentation" class="md-nav__link">
+    Helpful Reference Documentation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-content" class="md-nav__link">
+    Release Content
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-description" class="md-nav__link">
+    Hardware Description
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware Description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memory-map" class="md-nav__link">
+    Memory Map
+  </a>
+  
+    <nav class="md-nav" aria-label="Memory Map">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hps-h2f-memory-map" class="md-nav__link">
+    HPS H2F Memory Map
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hps-lwh2f-memory-map" class="md-nav__link">
+    HPS LWH2F Memory Map
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcdma-bam-interface" class="md-nav__link">
+    MCDMA BAM interface
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-the-pcie-root-port-design" class="md-nav__link">
+    Building the PCIe Root Port Design
+  </a>
+  
+    <nav class="md-nav" aria-label="Building the PCIe Root Port Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-environment" class="md-nav__link">
+    Setting up the environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-the-hardware-files" class="md-nav__link">
+    Building the Hardware Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-the-software-files" class="md-nav__link">
+    Building the Software Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-pcie-root-port-in-dts" class="md-nav__link">
+    Adding PCIe root port in dts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-system-example-design" class="md-nav__link">
+    Running the System Example Design
+  </a>
+  
+    <nav class="md-nav" aria-label="Running the System Example Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fio-transactions" class="md-nav__link">
+    fio transactions
+  </a>
+  
+    <nav class="md-nav" aria-label="fio transactions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    Note
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notices-disclaimers" class="md-nav__link">
+    Notices &amp; Disclaimers
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -6388,6 +6568,170 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#required-components" class="md-nav__link">
+    Required Components
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helpful-reference-documentation" class="md-nav__link">
+    Helpful Reference Documentation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-content" class="md-nav__link">
+    Release Content
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-description" class="md-nav__link">
+    Hardware Description
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardware Description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#memory-map" class="md-nav__link">
+    Memory Map
+  </a>
+  
+    <nav class="md-nav" aria-label="Memory Map">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hps-h2f-memory-map" class="md-nav__link">
+    HPS H2F Memory Map
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hps-lwh2f-memory-map" class="md-nav__link">
+    HPS LWH2F Memory Map
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcdma-bam-interface" class="md-nav__link">
+    MCDMA BAM interface
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-the-pcie-root-port-design" class="md-nav__link">
+    Building the PCIe Root Port Design
+  </a>
+  
+    <nav class="md-nav" aria-label="Building the PCIe Root Port Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-up-the-environment" class="md-nav__link">
+    Setting up the environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-the-hardware-files" class="md-nav__link">
+    Building the Hardware Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-the-software-files" class="md-nav__link">
+    Building the Software Files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-pcie-root-port-in-dts" class="md-nav__link">
+    Adding PCIe root port in dts
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-system-example-design" class="md-nav__link">
+    Running the System Example Design
+  </a>
+  
+    <nav class="md-nav" aria-label="Running the System Example Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fio-transactions" class="md-nav__link">
+    fio transactions
+  </a>
+  
+    <nav class="md-nav" aria-label="fio transactions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#note" class="md-nav__link">
+    Note
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notices-disclaimers" class="md-nav__link">
+    Notices &amp; Disclaimers
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -6404,15 +6748,290 @@
   
 
 
-<h1 id="pcie-root-port-user-guide">PCIe Root Port User Guide<a class="headerlink" href="#pcie-root-port-user-guide" title="Permanent link">&para;</a></h1>
-<p><span style="color: red;"> <strong>NOTE:</strong> This page is not available in this release. The latest release in which PCIe Root Port User Guide for the Agilex™ 7 FPGA M-Series FPGA Transceiver-SoC Development Kit is supported corresponds to 25.1.1. Please refer to the following page to access the latest documentation: <a href="https://altera-fpga.github.io/rel-25.1.1/embedded-designs/agilex-7/m-series/pcie_rp/ug-pcie_rp-agx7m-hbm2e/">PCIe Root Port User Guide</a>. </span></p>
+<h1 id="hps-pcie-root-port-system-example-design-for-the-agilextm-7-fpga-m-series-development-kit-hbm2e">HPS PCIe Root Port System Example Design for the Agilex™ 7 FPGA M-Series Development Kit – HBM2e<a class="headerlink" href="#hps-pcie-root-port-system-example-design-for-the-agilextm-7-fpga-m-series-development-kit-hbm2e" title="Permanent link">&para;</a></h1>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>PCIe root port is the downstream port of Root Complex which establish the PCIe link with any PCIe Endpoint or PCIe Bridge.</p>
+<p>This reference design demonstrates a PCIe root port running on Agilex™ 7 FPGA M-Series FPGA M-Series Development Kit – HBM2e connected to end point. A Gen5x4 link is shown. The root port reference design is based on the Agilex 7 Golden System Reference Design, with PCIe root port and necessary Linux software infrastructure added.</p>
+<p>Refer to the <a href="https://github.com/altera-fpga/agilex7-ed-pcie-rp">GitHub repository</a> for the Quartus Project and Yocto Project files.</p>
+<h2 id="required-components">Required Components<a class="headerlink" href="#required-components" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Root Port Host Board.<ul>
+<li>Agilex™ 7 FPGA M-Series Development Kit – HBM2e.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Hardware needed for End Point.<ul>
+<li>PCI Express NVMe Gen 5.0 x4 M.2 SSD[^1]</li>
+<li>PCIe Gen5 capable x4 U.2 to M.2 Adapter</li>
+<li>PCIe Gen5 MCIO x4 for U.2 2x2 Dual Port[^2]</li>
+</ul>
+</li>
+<li><a href="https://github.com/altera-fpga/agilex7-ed-pcie-rp/releases/tag/26.1">Pre-compiled Software/Firmware</a>.</li>
+</ul>
+<ul>
+<li>Tools and software.<ul>
+<li>System with supported Linux distribution with Ubuntu 22.04 (LTS)</li>
+<li>Intel ® Quartus ®Prime Design Suite software 26.1 version </li>
+<li>Serial terminal application such as Putty</li>
+</ul>
+</li>
+</ul>
+<p><a class="glightbox" href="../images/newSetUp.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img" src="../images/newSetUp.png" /></a></p>
+<p>*Full setup with the Agilex™ 7 FPGA M-Series Development Kit – HBM2e, MCIO cables, adapter &amp; NVMe.</p>
+<p><a class="glightbox" href="../images/newAdapter.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="img" src="../images/newAdapter.png" /></a></p>
+<p>*NVMe connected to the U.2 to M.2 adapter.</p>
+<h2 id="helpful-reference-documentation">Helpful Reference Documentation<a class="headerlink" href="#helpful-reference-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://www.altera.com/products/devkit/po-3207/agilex-7-fpga-m-series-development-kit-hbm2e-edition-3x-f-tile-1x-r-tile">Agilex ® 7 FPGA M-Series Development Kit – HBM2e</a></li>
+</ul>
+<ul>
+<li><a href="https://docs.altera.com/r/docs/683821/25.3.1/multi-channel-dma-ip-for-pci-express-user-guide/before-you-begin">Multi Channel DMA IP for PCI Express User Guide</a></li>
+</ul>
+<ul>
+<li><a href="https://docs.altera.com/r/docs/683501/26.1/r-tile-avalon-streaming-ip-for-pci-express-user-guide/about-the-r-tile-avalon-streaming-ip-for-pci-express">R-Tile Avalon ® Streaming IP for PCI Express</a></li>
+</ul>
+<h2 id="release-content">Release Content<a class="headerlink" href="#release-content" title="Permanent link">&para;</a></h2>
+<p>Release note and pre-build binaries can be found in the <a href="https://github.com/altera-fpga/agilex7-ed-pcie-rp/releases/tag/26.1">GitHub repository</a></p>
+<p>The pre-build binaries <a href="https://github.com/altera-fpga/agilex7-ed-pcie-rp/releases/download/26.1/Agilex-7_M-series_Rtile_artifacts.zip">Agilex-7_M-series_Rtile_artifacts.zip</a> contain the files below.</p>
+<ul>
+<li>ghrd.core.rbf</li>
+<li>ghrd.hps.rbf</li>
+<li>Image.lzma</li>
+<li>kernal.itb</li>
+<li>sdimage.tar.gz</li>
+<li>socfpga_agilex7_socdk.dtb</li>
+<li>u-boot.itb</li>
+</ul>
+<h2 id="hardware-description">Hardware Description<a class="headerlink" href="#hardware-description" title="Permanent link">&para;</a></h2>
+<p><a class="glightbox" href="../images/RPDiagram.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="image-20241214093228785" src="../images/RPDiagram.png" /></a></p>
+<h3 id="memory-map">Memory Map<a class="headerlink" href="#memory-map" title="Permanent link">&para;</a></h3>
+<h4 id="hps-h2f-memory-map">HPS H2F Memory Map<a class="headerlink" href="#hps-h2f-memory-map" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Address Offset</th>
+<th>Size (Bytes)</th>
+<th>Peripheral</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x90000000</td>
+<td>256M</td>
+<td>BAS</td>
+<td>Avalon MM Slave of MCDMA BAS port (28-bit address space)</td>
+</tr>
+<tr>
+<td>0xA0000000</td>
+<td>2M</td>
+<td>PCIe HIP Reconfig</td>
+<td>Avalon MM Slave of PCIe HIP Reconfiguration port</td>
+</tr>
+</tbody>
+</table>
+<h4 id="hps-lwh2f-memory-map">HPS LWH2F Memory Map<a class="headerlink" href="#hps-lwh2f-memory-map" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Address Offset</th>
+<th>Size (Bytes)</th>
+<th>Peripheral</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0xF9000000</td>
+<td>8</td>
+<td>System ID</td>
+<td>Hardware configuration system ID</td>
+</tr>
+<tr>
+<td>0xF9000200</td>
+<td>16</td>
+<td>CCT</td>
+<td>Cache Coherent Translator </td>
+</tr>
+<tr>
+<td>0xF9010000</td>
+<td>16k</td>
+<td>CS</td>
+<td>Avalon MM Slave of PCIe Configuration Slave port (14b address space)</td>
+</tr>
+<tr>
+<td>0xF9018000</td>
+<td>128</td>
+<td>MSI-to-GIC Vector</td>
+<td></td>
+</tr>
+<tr>
+<td>0xF9018080</td>
+<td>16</td>
+<td>MSI-to-GIC CSR</td>
+<td>Avalon MM Slave of MSI-to-GIC CSR port</td>
+</tr>
+<tr>
+<td>0xF90180A0</td>
+<td>32</td>
+<td>Performance Counter</td>
+<td>Hardware timer for benchmarking purposes</td>
+</tr>
+<tr>
+<td>0xF90180C0</td>
+<td>1k</td>
+<td>AVMM CS Cpl TimeOut &amp; System level Reg. map </td>
+<td>Error registers along with Timeout values </td>
+</tr>
+</tbody>
+</table>
+<h4 id="mcdma-bam-interface">MCDMA BAM interface<a class="headerlink" href="#mcdma-bam-interface" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Address Offset</th>
+<th>Size (Bytes)</th>
+<th>Peripheral</th>
+<th>Remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0xF901_8000</td>
+<td>128</td>
+<td>MSI-to-GIC</td>
+<td>MSI/MSI-X transactions from PCIe Endpoint. These should be aligned addresses to avoid any re-alignment on BAM AVMM interface.</td>
+</tr>
+<tr>
+<td>0x0000_0000 to 0x7FFF_FFFF</td>
+<td>2G</td>
+<td>F2H</td>
+<td> FPGA to HPS interface (SDRAM access). Expandable.</td>
+</tr>
+<tr>
+<td>0x10_8000_0000 to 0x11_FFFF_FFFF</td>
+<td>6G</td>
+<td>F2H</td>
+<td> FPGA to HPS interface (SDRAM access) - expanded memory range. Actual allocation is 8G (from 0x10_0000_0000 to 0x11_FFFF_FFFF) to match the 2 power of <Num. of bits>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="building-the-pcie-root-port-design">Building the PCIe Root Port Design<a class="headerlink" href="#building-the-pcie-root-port-design" title="Permanent link">&para;</a></h2>
+<p>Here are the steps to build either HW and SW files:</p>
+<ul>
+<li><a href="https://github.com/altera-fpga/agilex7-ed-pcie-rp/blob/main/src/sw/README.md">SW_Readme</a></li>
+<li><a href="https://github.com/altera-fpga/agilex7-ed-pcie-rp/tree/main/src/hw">HW_Readme</a></li>
+</ul>
+<p>Both links show how to build the files needed for the project, according with the <a href="https://github.com/altera-opensource/gsrd-socfpga">Altera® SoC FPGA Golden Software Reference Design (GSRD)</a></p>
+<h3 id="setting-up-the-environment">Setting up the environment<a class="headerlink" href="#setting-up-the-environment" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/altera-fpga/agilex7-ed-pcie-rp.git
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>agilex7-ed-pcie-rp
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>dev/rel/26.1
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+</code></pre></div>
+<p>Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>wget<span class="w"> </span>https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/<span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>tar<span class="w"> </span>xf<span class="w"> </span>arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:<span class="nv">$PATH</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>arm64
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
+</code></pre></div>
+<h3 id="building-the-hardware-files">Building the Hardware Files<a class="headerlink" href="#building-the-hardware-files" title="Permanent link">&para;</a></h3>
+<p>Enable Quartus tools to be called from command line:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">QUARTUS_ROOTDIR</span><span class="o">=</span>~/altera_pro/26.1/quartus/
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$QUARTUS_ROOTDIR</span>/bin:<span class="nv">$QUARTUS_ROOTDIR</span>/linux64:<span class="nv">$QUARTUS_ROOTDIR</span>/../qsys/bin:<span class="nv">$PATH</span>
+</code></pre></div>
+<p>Building the Hardware files:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/src/hw/ag7m039_devkit/syn/
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>make<span class="w"> </span>all
+</code></pre></div>
+<h3 id="building-the-software-files">Building the Software Files<a class="headerlink" href="#building-the-software-files" title="Permanent link">&para;</a></h3>
+<p>Building the Software files:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/src/sw/
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>.<span class="w"> </span>agilex7_dk_dev_agm039fes-rped-build.sh
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>build_setup
+</code></pre></div>
+<p>Perform Yocto bitbake to generate binaries:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>bitbake_image
+</code></pre></div>
+<p>Package binaries into build folder:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>package
+</code></pre></div>
+<p>Generate the Programming file</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/src/hw/ag7m039_devkit/syn/
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>quartus_pfg<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span><span class="nv">hps</span><span class="o">=</span>on<span class="w"> </span>-o<span class="w"> </span><span class="nv">hps_path</span><span class="o">=</span>../../../sw/agilex7_dk_dev_agm039fes-rped-rootfs/tmp/deploy/images/agilex7_dk_dev_agm039fes/u-boot-spl-dtb.hex<span class="w"> </span>output_files/top.sof<span class="w"> </span>output_files/top.rbf
+</code></pre></div>
+<h3 id="adding-pcie-root-port-in-dts">Adding PCIe root port in dts<a class="headerlink" href="#adding-pcie-root-port-in-dts" title="Permanent link">&para;</a></h3>
+<p>Refer to <a href="https://github.com/altera-fpga/linux-socfpga/blob/QPDS26.1_REL_GSRD_PR/arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi">socfpga_agilex_pcie_root_port.dtsi</a> for adding PCIe Root Port bindings to your custom DTS.</p>
+<h2 id="running-the-system-example-design">Running the System Example Design<a class="headerlink" href="#running-the-system-example-design" title="Permanent link">&para;</a></h2>
+<p>Write the $TOP_FOLDER/src/sw/agilex7_dk_dev_agm039fes-rped-images/gsrd-console-image-agilex7.wic. SD card image to the micro SD card using the included USB writer in the host computer:</p>
+<ul>
+<li>On Linux, use the <code>dd</code> utility as shown next:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Determine the device asociated with the SD card on the host computer. </span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>cat<span class="w"> </span>/proc/partitions
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1"># This will return for example /dev/sdx</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Use dd to write the image in the corresponding device</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>sudo<span class="w"> </span>dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>gsrd-console-image-agilex7.wic<span class="w"> </span><span class="nv">of</span><span class="o">=</span>/dev/sdx<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1"># Flush the changes to the SD card</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>sync
+</code></pre></div>
+<ul>
+<li>On Windows, use the Win32DiskImager program, available at <a href="https://sourceforge.net/projects/win32diskimager">https://sourceforge.net/projects/win32diskimager</a>. For this, first rename the gsrd-console-image-agilex7.wic to an .img file (sdcard.img for example) and write the image as shown in the next figure:</li>
+</ul>
+<p><a class="glightbox" href="../images/win32diskimager.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/win32diskimager.png" /></a></p>
+<p>Program the development kit with $TOP_FOLDER/src/hw/ag7m039_devkit/syn/output_files/top.hps.rbf file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span>p<span class="p">;</span>ghrd.hps.rbf@1
+</code></pre></div>
+<p>Open the Putty serial terminal, it will show the board boot-up process.</p>
+<p>Execute the <code>lspci</code> command to display information about all PCI devices on the system</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="w">        </span>root@agilex7dkdevagm039fes:~#<span class="w"> </span>lspci
+</code></pre></div>
+<p>There you will see both PCIe devices Rootport(00:00.0) &amp; End Point(01:00.0)</p>
+<p>Run the following command to retrieve detailed information about the PCIe Root Port:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="w">        </span>lspci<span class="w"> </span>-vvv
+</code></pre></div></p>
+<h3 id="fio-transactions">fio transactions<a class="headerlink" href="#fio-transactions" title="Permanent link">&para;</a></h3>
+<p>Recommended command to perform write transactions on an NVMe SSD:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="w">        </span>fio<span class="w"> </span>--filename<span class="o">=</span>/dev/nvme0n1<span class="w"> </span>--rw<span class="o">=</span>write<span class="w"> </span>--gtod_reduce<span class="o">=</span><span class="m">1</span><span class="w"> </span>--blocksize<span class="o">=</span>64k<span class="w"> </span>--size<span class="o">=</span>2G<span class="w"> </span>--iodepth<span class="o">=</span><span class="m">2</span><span class="w"> </span>--group_reporting<span class="w"> </span>--name<span class="o">=</span>myjob<span class="w"> </span>--ioengine<span class="o">=</span>libaio<span class="w"> </span>--numjobs<span class="o">=</span>num_of_job
+</code></pre></div>
+<p>Recommended command to perform read transactions on an NVMe SSD:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="w">        </span>fio<span class="w"> </span>--filename<span class="o">=</span>/dev/nvme0n1<span class="w"> </span>--rw<span class="o">=</span><span class="nb">read</span><span class="w"> </span>--gtod_reduce<span class="o">=</span><span class="m">1</span><span class="w"> </span>--blocksize<span class="o">=</span>64k<span class="w"> </span>--size<span class="o">=</span>2G<span class="w"> </span>--iodepth<span class="o">=</span><span class="m">2</span><span class="w"> </span>--group_reporting<span class="w"> </span>--name<span class="o">=</span>myjob<span class="w"> </span>--ioengine<span class="o">=</span>libaio<span class="w"> </span>--numjobs<span class="o">=</span>num_of_job
+</code></pre></div>
+<h4 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="w">    </span>You<span class="w"> </span>could<span class="w"> </span>change<span class="w"> </span>the<span class="w"> </span><span class="nv">parameters</span><span class="w"> </span><span class="o">==</span>--size<span class="o">=</span>**xG**<span class="o">==</span><span class="w"> </span>with<span class="w"> </span>2G<span class="w"> </span>or<span class="w"> </span>8G,<span class="w"> </span><span class="o">==</span>--rw<span class="o">=</span>**x**<span class="o">==</span><span class="w"> </span>with<span class="w"> </span>write<span class="w"> </span>or<span class="w"> </span>read,<span class="w"> </span><span class="o">==</span>--numjobs<span class="o">=</span>**x**<span class="o">==</span><span class="w"> </span>with<span class="w"> </span>values<span class="w"> </span><span class="m">4</span>,<span class="w"> </span><span class="m">8</span>,<span class="w"> </span><span class="m">16</span><span class="w"> </span>or<span class="w"> </span><span class="m">20</span>,<span class="w"> </span>i.e.:
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span>*<span class="w"> </span>fio<span class="w"> </span>--filename<span class="o">=</span>/dev/nvme0n1<span class="w"> </span>--rw<span class="o">=</span><span class="w"> </span><span class="o">==</span>**write**<span class="o">==</span><span class="w"> </span>--gtod_reduce<span class="o">=</span><span class="m">1</span><span class="w"> </span>--blocksize<span class="o">=</span>64k<span class="w"> </span>--size<span class="o">=</span><span class="w"> </span><span class="o">==</span>**2G**<span class="o">==</span><span class="w"> </span>--iodepth<span class="o">=</span><span class="m">2</span><span class="w"> </span>--group_reporting<span class="w"> </span>--name<span class="o">=</span>myjob<span class="w"> </span>--ioengine<span class="o">=</span>libaio<span class="w"> </span>--numjobs<span class="o">=</span><span class="w"> </span><span class="o">==</span>**4**<span class="o">==</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span>*<span class="w"> </span>fio<span class="w"> </span>--filename<span class="o">=</span>/dev/nvme0n1<span class="w"> </span>--rw<span class="o">=</span><span class="w"> </span><span class="o">==</span>**read**<span class="o">==</span><span class="w"> </span>--gtod_reduce<span class="o">=</span><span class="m">1</span><span class="w"> </span>--blocksize<span class="o">=</span>64k<span class="w"> </span>--size<span class="o">=</span><span class="w"> </span><span class="o">==</span>**2G**<span class="o">==</span><span class="w"> </span>--iodepth<span class="o">=</span><span class="m">2</span><span class="w"> </span>--group_reporting<span class="w"> </span>--name<span class="o">=</span>myjob<span class="w"> </span>--ioengine<span class="o">=</span>libaio<span class="w"> </span>--numjobs<span class="o">=</span><span class="w"> </span><span class="o">==</span>**8**<span class="o">==</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span>*<span class="w"> </span>fio<span class="w"> </span>--filename<span class="o">=</span>/dev/nvme0n1<span class="w"> </span>--rw<span class="o">=</span><span class="w"> </span><span class="o">==</span>**write**<span class="o">==</span><span class="w"> </span>--gtod_reduce<span class="o">=</span><span class="m">1</span><span class="w"> </span>--blocksize<span class="o">=</span>64k<span class="w"> </span>--size<span class="o">=</span><span class="w"> </span><span class="o">==</span>**8G**<span class="o">==</span><span class="w"> </span>--iodepth<span class="o">=</span><span class="m">2</span><span class="w"> </span>--group_reporting<span class="w"> </span>--name<span class="o">=</span>myjob<span class="w"> </span>--ioengine<span class="o">=</span>libaio<span class="w"> </span>--numjobs<span class="o">=</span><span class="w"> </span><span class="o">==</span>**16**<span class="o">==</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">    </span>*<span class="w"> </span>fio<span class="w"> </span>--filename<span class="o">=</span>/dev/nvme0n1<span class="w"> </span>--rw<span class="o">=</span><span class="w"> </span><span class="o">==</span>**read**<span class="o">==</span><span class="w"> </span>--gtod_reduce<span class="o">=</span><span class="m">1</span><span class="w"> </span>--blocksize<span class="o">=</span>64k<span class="w"> </span>--size<span class="o">=</span><span class="w"> </span><span class="o">==</span>**8G**<span class="o">==</span><span class="w"> </span>--iodepth<span class="o">=</span><span class="m">2</span><span class="w"> </span>--group_reporting<span class="w"> </span>--name<span class="o">=</span>myjob<span class="w"> </span>--ioengine<span class="o">=</span>libaio<span class="w"> </span>--numjobs<span class="o">=</span><span class="w"> </span><span class="o">==</span>**20**<span class="o">==</span>
+</code></pre></div>
+<h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
+<p>Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
+No product or component can be absolutely secure. 
+Performance varies by use, configuration and other factors.
+Your costs and results may vary. 
+You may not use or facilitate the use of this document in connection with any infringement or other legal analysis concerning Altera or Intel products described herein. You agree to grant Altera Corporation a non-exclusive, royalty-free license to any patent claim thereafter drafted which includes subject matter disclosed herein.
+No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document, with the sole exception that you may publish an unmodified copy. You may create software implementations based on this document and in compliance with the foregoing that are intended to execute on the Altera or Intel product(s) referenced in this document. No rights are granted to create modifications or derivatives of this document.
+The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications.  Current characterized errata are available on request.
+Altera disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade.
+You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
+<sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. </p>
+<p>OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™.  </p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 29, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2026</span>
       
         <br>
         Created:

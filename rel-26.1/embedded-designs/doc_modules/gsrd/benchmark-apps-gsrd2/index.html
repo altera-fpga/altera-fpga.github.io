@@ -6407,7 +6407,7 @@ This opens the Kas graphical interface menu. Navigate to the <strong>Benchmarkin
 </code></pre></div>
 <p>After you make your choose about the applications to be included or excluded, you can continue with the regular Kas Yocto Build.</p>
 <blockquote>
-<p><strong>NOTE:</strong> By default, all of the benchmarking applications are already enabled to be built and added in to the Linux file system. You still can use any of the 2 options above to change this default configuration. Also, it is very important to note that <strong>the benchmarking applications are only available when the target image is the gsrd-console-image</strong> . This means that you will not see them when the target is Console Image Minimal (console-image-minimal) nor Core Image Minimal (core-image-minimal). Please observe the implementation of the <strong>software/yocto_linux/kas/gsrd/Kconfig</strong> and the <a href="https://github.com/altera-fpga/meta-altera-fpga/tree/scarthgap/meta-altera-platform/recipes-images/poky/gsrd-console-image.bb">gsrd-console-image.bb</a> recipe.</p>
+<p><strong>NOTE:</strong> By default, all of the benchmarking applications are already enabled to be built and added in to the Linux file system. You still can use any of the 2 options above to change this default configuration. Also, it is very important to note that <strong>the benchmarking applications are only available when the target image is the gsrd-console-image</strong> . This means that you will not see them when the target is Console Image Minimal (console-image-minimal) nor Core Image Minimal (core-image-minimal). Please observe the implementation of the <strong>software/yocto_linux/kas/gsrd/Kconfig</strong> and the <a href="https://github.com/altera-fpga/meta-altera-fpga/tree/wrynose/meta-altera-platform/recipes-images/poky/gsrd-console-image.bb">gsrd-console-image.bb</a> recipe.</p>
 </blockquote>
 <p>Once your binaries build finishes, you can proceed to program these in to your dev kit.  After your board boots to Linux shell, you will see the benchmarking applications available in the file system under the <strong>/bin/</strong> directory, meaning that you can actually exercise these applications from any path by just entering the application name similarly to how you can run any other Linux command.</p>
 <p>The following table provides a brief description of the Benchmarking Scripts available as part of the HPS Baseline System Example Design:</p>
@@ -6453,7 +6453,7 @@ This opens the Kas graphical interface menu. Navigate to the <strong>Benchmarkin
 </tr>
 </tbody>
 </table>
-<p>The applications are integrated into the Yocto build flow through recipes (<strong>.bb</strong> or <strong>.bbappend</strong> files). These recipes are located under the <a href="https://github.com/altera-fpga/meta-altera-fpga/tree/scarthgap/meta-altera-platform/recipes-benchmarking"><strong>meta-altera-fpga/meta-altera-platform/recipes-benchmarking</strong></a>  repository.</p>
+<p>The applications are integrated into the Yocto build flow through recipes (<strong>.bb</strong> or <strong>.bbappend</strong> files). These recipes are located under the <a href="https://github.com/altera-fpga/meta-altera-fpga/tree/wrynose/meta-altera-platform/recipes-benchmarking"><strong>meta-altera-fpga/meta-altera-platform/recipes-benchmarking</strong></a>  repository.</p>
 <p><a class="glightbox" href="../images/benchmarkrecipeLocation.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/benchmarkrecipeLocation.png" /></a></p>
 <p>There is a Yocto recipe for each one of the application as you can see in the previous  figure. In each one of the recipes you may find:</p>
 <ul>
@@ -6495,7 +6495,7 @@ This opens the Kas graphical interface menu. Navigate to the <strong>Benchmarkin
 </tr>
 <tr>
 <td align="left"><strong>Sample Benchmark Script</strong></td>
-<td align="left">The script receives as parameters the name of the application(s) that want to be executed. The script iterates over the cores enabled in the system (only one of the same family or CPU ID). <br>Example:<br><strong>run-hps-benchmarks coremark dhrystone stream lmbench</strong><br><br>You can see the parameters provided to each one of the applications in the corresponding <strong>run_[application]</strong> function included in <a href="https://github.com/altera-fpga/meta-altera-fpga/tree/scarthgap/meta-altera-platform/recipes-benchmarking/run-hps-benchmarks/files/run-hps-benchmarks.sh"><strong>run-hps-benchmarks.sh</strong></a> script .<br>The script produces an independent .log file with the results for each benchmarking application executed in a specific mode bound to a specific core. The output log file has the following format: <strong>[<em>app_name</em>]-[<em>mode</em>]-[<em>#core</em>].log</strong></td>
+<td align="left">The script receives as parameters the name of the application(s) that want to be executed. The script iterates over the cores enabled in the system (only one of the same family or CPU ID). <br>Example:<br><strong>run-hps-benchmarks coremark dhrystone stream lmbench</strong><br><br>You can see the parameters provided to each one of the applications in the corresponding <strong>run_[application]</strong> function included in <a href="https://github.com/altera-fpga/meta-altera-fpga/tree/wrynose/meta-altera-platform/recipes-benchmarking/run-hps-benchmarks/files/run-hps-benchmarks.sh"><strong>run-hps-benchmarks.sh</strong></a> script .<br>The script produces an independent .log file with the results for each benchmarking application executed in a specific mode bound to a specific core. The output log file has the following format: <strong>[<em>app_name</em>]-[<em>mode</em>]-[<em>#core</em>].log</strong></td>
 </tr>
 </tbody>
 </table>
@@ -6514,7 +6514,7 @@ This opens the Kas graphical interface menu. Navigate to the <strong>Benchmarkin
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 29, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2026</span>
       
         <br>
         Created:

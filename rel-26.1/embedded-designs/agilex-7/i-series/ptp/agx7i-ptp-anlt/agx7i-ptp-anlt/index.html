@@ -8400,7 +8400,7 @@ This system example design supports multiple Ethernet link data rates. Select th
 <li>OS Ubuntu 22.04 LTS. System example design source files were compiled using Ubuntu 22.04 LTS. Other versions and distributions may also be compatible.</li>
 <li>Serial terminal software (e.g., Minicom on Linux, Tera Term or PuTTY on Windows) is required.</li>
 <li>Micro SD card slot or Micro SD card writer/reader</li>
-<li>Altera Quartus Prime Pro 26.1</li>
+<li>Altera Quartus Prime Pro 26.1.1</li>
 </ul>
 </li>
 </ul>
@@ -10288,7 +10288,7 @@ This system example design supports multiple Ethernet link data rates. Select th
 <h2 id="environment-setup">Environment Setup<a class="headerlink" href="#environment-setup" title="Permanent link">&para;</a></h2>
 <h3 id="tools-download-and-installation">Tools Download and Installation<a class="headerlink" href="#tools-download-and-installation" title="Permanent link">&para;</a></h3>
 <h4 id="altera-quartus-prime-pro">Altera Quartus Prime Pro<a class="headerlink" href="#altera-quartus-prime-pro" title="Permanent link">&para;</a></h4>
-<p>Download the Quartus&reg; Prime Pro Edition software version 26.1 from the <a href="https://www.altera.com/downloads/fpga-development-tools/quartus-prime-pro-edition-design-software-version-26-1-linux">FPGA Software Download Center</a>. Follow the on-screen instructions to complete the installation process.</p>
+<p>Download the Quartus&reg; Prime Pro Edition software version 26.1.1 from the <a href="https://www.altera.com/downloads/fpga-development-tools/quartus-prime-pro-edition-design-software-version-26-1-linux">FPGA Software Download Center</a>. Follow the on-screen instructions to complete the installation process.</p>
 <p>Refer to <a href="https://docs.altera.com/r/docs/683472/26.1/altera-fpga-software-installation-and-licensing/answers-to-top-faqs">Altera&reg; FPGA Software Installation and Licensing</a> for more information on the installation and licensing process.</p>
 <p>Set up the Altera&reg; Quartus&reg; tools in the PATH environmental variable.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Adjust QUARTUS_ROOTDIR target to reflect your Quartus installation path  </span>
@@ -10631,7 +10631,7 @@ This system example design supports multiple Ethernet link data rates. Select th
 <p>Insert the SD cards into each development kit.</p>
 <h3 id="programming-the-hw-binary">Programming the HW binary<a class="headerlink" href="#programming-the-hw-binary" title="Permanent link">&para;</a></h3>
 <h4 id="program-the-onboard-max10-device">Program the onboard MAX10 device<a class="headerlink" href="#program-the-onboard-max10-device" title="Permanent link">&para;</a></h4>
-<p>Using Quartus&reg; Programmer Tool version 26.1 GUI, configure the onboard MAX10 device with <code>max10_system_0002aa4F.pof</code> from the <a href="#binaries">pre-build binaries</a> files.</p>
+<p>Using Quartus&reg; Programmer Tool version 26.1.1 GUI, configure the onboard MAX10 device with <code>max10_system_0002aa4F.pof</code> from the <a href="#binaries">pre-build binaries</a> files.</p>
 <p>Alternatively, you can perform this operation via the command line. First, verify that all devices on the development kit are recognized and identify the JTAG cable number using the following command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>/home/user$<span class="w"> </span>jtagconfig
 <a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="m">1</span><span class="o">)</span><span class="w"> </span>Agilex<span class="w"> </span>I-Series<span class="w"> </span>SOC<span class="w"> </span>Dev<span class="w"> </span>Kit<span class="w"> </span>on<span class="w"> </span><span class="m">10</span>.244.179.132<span class="w"> </span><span class="o">[</span>USB-1<span class="o">]</span>
@@ -10651,7 +10651,7 @@ This system example design supports multiple Ethernet link data rates. Select th
 <a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;p;./max10_system_0002aa4F.pof@3&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">2</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;p;./max10_system_0002aa4F.pof@3&quot;</span>
 </code></pre></div>
 <h4 id="program-the-onboard-agilex-7-device">Program the onboard Agilex&trade; 7 device<a class="headerlink" href="#program-the-onboard-agilex-7-device" title="Permanent link">&para;</a></h4>
-<p>Using Quartus&reg; Programmer Tool version 26.1 GUI, configure the onboard <code>AGFB027R24C</code> device with <code>top.hps.rbf</code>.</p>
+<p>Using Quartus&reg; Programmer Tool version 26.1.1 GUI, configure the onboard <code>AGFB027R24C</code> device with <code>top.hps.rbf</code>.</p>
 <p>Alternatively, you can perform this operation via the command line. First, verify that all devices on the development kit are recognized and identify the JTAG cable number using the following command:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>/home/user$<span class="w"> </span>jtagconfig
 <a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="m">1</span><span class="o">)</span><span class="w"> </span>Agilex<span class="w"> </span>I-Series<span class="w"> </span>SOC<span class="w"> </span>Dev<span class="w"> </span>Kit<span class="w"> </span>on<span class="w"> </span><span class="m">10</span>.244.179.132<span class="w"> </span><span class="o">[</span>USB-1<span class="o">]</span>
@@ -13056,7 +13056,7 @@ Enabling the packet generator on the second development kit starts the integrate
 <div class="tabbed-content">
 <div class="tabbed-block">
 <ol>
-<li>With Quartus&reg; Prime Pro version 26.1, open the system example design project.</li>
+<li>With Quartus&reg; Prime Pro version 26.1.1, open the system example design project.</li>
 <li>In 'Project Navigator' click on 'Hierarchy' Tab.</li>
 <li>Double click on the Ethernet Subsystem IP instance to edit, 'inst_port1_hssi_10G_anlt' for <code>eth1</code> or 'inst_port2_hssi_10G_anlt' for <code>eth2</code>. IP Parameter Editor will open.</li>
 <li>In the 'HSSI Subsystem' &gt;&gt; 'Device 0 Configuration' &gt;&gt; 'Main Configuration' tab, set to 'Enable' the 'Enable JTAG to Avalon Master Bridge' parameter. Refer to the screen shot below.</li>
@@ -13068,7 +13068,7 @@ Enabling the packet generator on the second development kit starts the integrate
 </div>
 <div class="tabbed-block">
 <ol>
-<li>With Quartus&reg; Prime Pro version 26.1, open the system example design project.</li>
+<li>With Quartus&reg; Prime Pro version 26.1.1, open the system example design project.</li>
 <li>In 'Project Navigator' click on 'Hierarchy' Tab.</li>
 <li>Double click on the Ethernet Subsystem IP instance to edit, 'inst_port1_hssi_25G_anlt' for <code>eth1</code> or 'inst_port2_hssi_25G_anlt' for <code>eth2</code>. IP Parameter Editor will open.</li>
 <li>In the 'HSSI Subsystem' &gt;&gt; 'Device 0 Configuration' &gt;&gt; 'Main Configuration' tab, set to 'Enable' the 'Enable JTAG to Avalon Master Bridge' parameter. Refer to the screen shot below.</li>
@@ -13080,7 +13080,7 @@ Enabling the packet generator on the second development kit starts the integrate
 </div>
 <div class="tabbed-block">
 <ol>
-<li>With Quartus&reg; Prime Pro version 26.1, open the system example design project.</li>
+<li>With Quartus&reg; Prime Pro version 26.1.1, open the system example design project.</li>
 <li>In 'Project Navigator' click on 'Hierarchy' Tab.</li>
 <li>Double click on the Ethernet Subsystem IP instance to edit, 'inst_port1_hssi_50G_PAM4_anlt' for <code>eth1</code> or 'inst_port2_hssi_50G_PAM4_anlt' for <code>eth2</code>. IP Parameter Editor will open.</li>
 <li>In the 'HSSI Subsystem' &gt;&gt; 'Device 0 Configuration' &gt;&gt; 'Main Configuration' tab, set to 'Enable' the 'Enable JTAG to Avalon Master Bridge' parameter. Refer to the screen shot below.</li>
@@ -13092,7 +13092,7 @@ Enabling the packet generator on the second development kit starts the integrate
 </div>
 <div class="tabbed-block">
 <ol>
-<li>With Quartus&reg; Prime Pro version 26.1, open the system example design project.</li>
+<li>With Quartus&reg; Prime Pro version 26.1.1, open the system example design project.</li>
 <li>In 'Project Navigator' click on 'Hierarchy' Tab.</li>
 <li>Double click on the Ethernet Subsystem IP instance to edit, 'inst_port1_hssi_100G_PAM4_anlt' for <code>eth1</code> or 'inst_port2_hssi_100G_PAM4_anlt' for <code>eth2</code>. IP Parameter Editor will open.</li>
 <li>In the 'HSSI Subsystem' &gt;&gt; 'Device 0 Configuration' &gt;&gt; 'Main Configuration' tab, set to 'Enable' the 'Enable JTAG to Avalon Master Bridge' parameter. Refer to the screen shot below.</li>
@@ -13104,7 +13104,7 @@ Enabling the packet generator on the second development kit starts the integrate
 </div>
 <div class="tabbed-block">
 <ol>
-<li>With Quartus&reg; Prime Pro version 26.1, open the system example design project.</li>
+<li>With Quartus&reg; Prime Pro version 26.1.1, open the system example design project.</li>
 <li>In 'Project Navigator' click on 'Hierarchy' Tab.</li>
 <li>Double click on the Ethernet Subsystem IP instance to edit, 'inst_port1_hssi_100G_PAM4_anlt' for <code>eth1</code> or 'inst_port2_hssi_100G_PAM4_anlt' for <code>eth2</code>. IP Parameter Editor will open.</li>
 <li>In the 'HSSI Subsystem' &gt;&gt; 'Device 0 Configuration' &gt;&gt; 'Main Configuration' tab, set to 'Enable' the 'Enable JTAG to Avalon Master Bridge' parameter. Refer to the screen shot below.</li>
@@ -13147,7 +13147,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 12, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2026</span>
       
         <br>
         Created:

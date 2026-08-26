@@ -6597,7 +6597,7 @@
 <ul>
 <li><a href="https://www.altera.com/products/devkit/po-3284/agilex-5-fpga-e-series-065b-premium-development-kit">Agilex 5 FPGA E-Series 065B Premium Development Kit</a>, ordering code DK-A5E065BB32AEA. Other Agilex 5 development boards will also work in the same manner, but the instructions for building the binaries would need to be modified to target a different board. The <code>agilex5.cfg</code> file and the instructions would remain unchanged.</li>
 <li>Host PC with Linux (Ubuntu 22.04 was used, but others should work too)</li>
-<li>Quartus Pro 26.1 (or just Quartus Pro Programmer 26.1). Quartus versions prior to 26.1 contained an older version of OpenOCD which did not support debugging HPS on Agilex 3.</li>
+<li>Quartus Pro 26.1.1 (or just Quartus Pro Programmer 26.1.1). Quartus versions prior to 26.1 contained an older version of OpenOCD which did not support debugging HPS on Agilex 3.</li>
 <li><code>gdb-multiarch</code> tool (installed with <code>sudo apt-install gdb-multiarch</code> on Ubuntu)</li>
 <li>Network access, for downloading the sources while building the binaries</li>
 </ul>
@@ -6626,21 +6626,21 @@
 <a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="c1"># -----------------------------------------------------------------------------</span>
 <a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="c1"># Add Quartus tools to PATH</span>
 <a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="c1"># -----------------------------------------------------------------------------</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1.1/qinit.sh
 <a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
 <a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="c1"># -----------------------------------------------------------------------------</span>
 <a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="c1"># Get precompiled SOF</span>
 <a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="c1"># -----------------------------------------------------------------------------</span>
 <a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>rm<span class="w"> </span>-f<span class="w"> </span>*.sof
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/baseline_a55.sof
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/baseline_a55.sof
 <a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
 <a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="c1"># -----------------------------------------------------------------------------</span>
 <a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="c1"># Build atf</span>
 <a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="c1"># -----------------------------------------------------------------------------</span>
 <a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>rm<span class="w"> </span>-rf<span class="w"> </span>arm-trusted-firmware
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/arm-trusted-firmware
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/arm-trusted-firmware
 <a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="nb">cd</span><span class="w"> </span>arm-trusted-firmware
 <a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">48</span><span class="w"> </span><span class="nv">PLAT</span><span class="o">=</span>agilex5<span class="w"> </span>bl31<span class="w"> </span>
 <a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="nb">cd</span><span class="w"> </span>..
@@ -6650,7 +6650,7 @@
 <a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="c1"># -----------------------------------------------------------------------------</span>
 <a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>rm<span class="w"> </span>-rf<span class="w"> </span>u-boot-socfpga
-<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/u-boot-socfpga
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/u-boot-socfpga
 <a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="nb">cd</span><span class="w"> </span>u-boot-socfpga<span class="w"> </span>
 <a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g&#39;</span><span class="w"> </span>arch/arm/config.mk
 <a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&amp;mmc;/g&#39;</span><span class="w"> </span>arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi
@@ -6717,7 +6717,7 @@
 <a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a><span class="c1"># -----------------------------------------------------------------------------</span>
 <a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga
-<a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga
+<a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-opensource/linux-socfpga
 <a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a><span class="nb">cd</span><span class="w"> </span>linux-socfpga
 <a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>make<span class="w"> </span>clean
 <a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>make<span class="w"> </span>defconfig
@@ -6738,7 +6738,7 @@
 <a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a><span class="c1"># -----------------------------------------------------------------------------</span>
 <a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>rm<span class="w"> </span>-f<span class="w"> </span>console-image-minimal-agilex5e.rootfs.tar.gz
-<a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/console-image-minimal-agilex5e.rootfs.tar.gz
+<a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>wget<span class="w"> </span>https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/console-image-minimal-agilex5e.rootfs.tar.gz
 <a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>
 <a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a><span class="c1"># -----------------------------------------------------------------------------</span>
 <a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a><span class="c1"># Create SD card image</span>
@@ -7620,7 +7620,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 9, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2026</span>
       
         <br>
         Created:
