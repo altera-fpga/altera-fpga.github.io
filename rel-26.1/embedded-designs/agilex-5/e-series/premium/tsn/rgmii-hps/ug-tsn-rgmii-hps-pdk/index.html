@@ -6769,11 +6769,11 @@ This System Example Design comprises the following components:</p>
 This is a pre-production release of Agilex&trade; 5 TSN HPS RGMII System Example Design, on Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit with speed grade -6S. This corresponds to Engineering Samples Silicon quality.</p>
 </blockquote>
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
-<p>This system example design is based on the <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/">Agilex 5 E-Series Premium Development Kit GSRD</a>. It is recommended that you familiarize yourself with the GSRD development flow before proceeding with this design.
+<p>This system example design is based on the <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/">Agilex 5 E-Series Premium Development Kit GSRD</a>. It is recommended that you familiarize yourself with the GSRD development flow before proceeding with this design.
 The TSN through HPS IO System Example Design will be implemented on the HPS Enablement Expansion Board (also referred as HPS Daughter Card), which is included with the development kit.</p>
 <h4 id="development-kit">Development Kit<a class="headerlink" href="#development-kit" title="Permanent link">&para;</a></h4>
 <p>This Example Design targets the Agilex 5 FPGA E-Series 065B Premium Development Kit, utilizing the HPS. 
-Refer to <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium#development-kit">GSRD#Development Kit</a> for details about the board, including how to install the HPS Daughter Card.</p>
+Refer to <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium#development-kit">GSRD#Development Kit</a> for details about the board, including how to install the HPS Daughter Card.</p>
 <ul>
 <li>Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit</li>
 <li>HPS Enablement Expansion Board. Included with the development kit.</li>
@@ -6793,8 +6793,8 @@ Refer to <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agil
 <li>Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.</li>
 <li>Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
 <li>Altera&reg; Quartus&reg; Prime Pro Edition version. Used to recompile the hardware design. If only writing binaries is required, then the smaller Altera&reg; Quartus&reg; Prime Pro Edition Programmer is sufficient.</li>
-<li>The prebuilt binaries were built using Altera&reg; Quartus&reg; 26.1.1</li>
-<li>The instructions for rebuilding the binaries use Altera&reg; Quartus&reg; 26.1.1</li>
+<li>The prebuilt binaries were built using Altera&reg; Quartus&reg; 26.1</li>
+<li>The instructions for rebuilding the binaries use Altera&reg; Quartus&reg; 26.1</li>
 <li>Local Ethernet network, with DHCP server</li>
 <li>Internet connection. For downloading the files, especially when rebuilding the GSRD.</li>
 </ul>
@@ -6802,10 +6802,10 @@ Refer to <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agil
 <p>This page documents content testing with prebuild binaries flow and testing with complete flow.</p>
 <ul>
 <li>
-<p>See <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/">HPS GSRD User Guide for the Agilex™ 5 E-Series Premium Dev Kit</a></p>
+<p>See <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/">HPS GSRD User Guide for the Agilex™ 5 E-Series Premium Dev Kit</a></p>
 <ul>
 <li>See Prerequisites</li>
-<li>See <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#prebuilt-binaries">Prebuild Binaries</a> </li>
+<li>See <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#prebuilt-binaries">Prebuild Binaries</a> </li>
 <li>See Component Versions </li>
 <li>See Exercise-prebuilt-binaries</li>
 </ul>
@@ -6829,11 +6829,11 @@ Refer to <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agil
 <p>There are two ways to test the design based on use case.
     <a id="UserFlow1"></a></p>
 <ul>
-<li>User Flow 1: <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#exercise-prebuilt-binaries">Testing with Prebuilt Binaries</a><p><a id="UserFlow2"></a></p>
+<li>User Flow 1: <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#exercise-prebuilt-binaries">Testing with Prebuilt Binaries</a><p><a id="UserFlow2"></a></p>
 </li>
 </ul>
 <ul>
-<li>User Flow 2: <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#rebuild-binaries-using-legacy-yocto-build-script">Testing Complete Flow</a><blockquote>
+<li>User Flow 2: <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#rebuild-binaries-using-legacy-yocto-build-script">Testing Complete Flow</a><blockquote>
 <p>[Note:]
 Please refer to "Exercise Prebuilt Binaries" to program the binaries</p>
 </blockquote>
@@ -6973,9 +6973,9 @@ Please refer to "Exercise Prebuilt Binaries" to program the binaries</p>
 <h5>Generating Latency Plot Using Excel</h5>
 
 <p>Import 'afpkt-rxtstamps.txt' and 'afxdp-rxtstamps.txt' to excel in 2 seperate sheets.</p>
-<p><a class="glightbox" href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img src="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800"></a></p>
+<p><a class="glightbox" href="https://altera-fpga.github.io/rel-26.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img src="https://altera-fpga.github.io/rel-26.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800"></a></p>
 <p>Plot Column 1 for each sheets using Scatter chart,</p>
-<p><a class="glightbox" href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img src="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800"></a></p>
+<p><a class="glightbox" href="https://altera-fpga.github.io/rel-26.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img src="https://altera-fpga.github.io/rel-26.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800"></a></p>
 <p>This will generate plot for AFPKT and AFXDP with latency(on Y-axis) against packet count (on X-axis).</p>
 <p>The latency for this design example can be seen as below:
 <a class="glightbox" href="../images/cfg1_ag5-pdk_af_latency.jpg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/cfg1_ag5-pdk_af_latency.jpg" /></a></p>
@@ -7055,7 +7055,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 27, 2026</span>
       
         <br>
         Created:

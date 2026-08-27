@@ -6596,8 +6596,8 @@
 <ul>
 <li><a href="https://www.altera.com/products/devkit/po-3284/agilex-5-fpga-e-series-065b-premium-development-kit">Agilex 5 FPGA E-Series 065B Premium Development Kit</a>, ordering code DK-A5E065BB32AEA. Other Agilex 5 development boards will also work in the same manner, just that other set HPS Baseline System Example Design binaries will be used.</li>
 <li>Host PC with Linux (Ubuntu 22.04 was used, but others should work too)</li>
-<li>Quartus Pro 26.1.1 (or just Quartus Pro standalone Programmer 26.1.1).</li>
-<li>Ashling RiscFree bundled with Quartus Pro 26.1.1 (can be installed and use with just the standalone Programmer)</li>
+<li>Quartus Pro 26.1 (or just Quartus Pro standalone Programmer 26.1).</li>
+<li>Ashling RiscFree bundled with Quartus Pro 26.1 (can be installed and use with just the standalone Programmer)</li>
 <li>Network access, for downloading the sources while building the binaries</li>
 </ul>
 <h2 id="build-example-design">Build Example Design<a class="headerlink" href="#build-example-design" title="Permanent link">&para;</a></h2>
@@ -6609,12 +6609,12 @@
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1.1/qinit.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
 </code></pre></div>
 <h3 id="build-quartus-design">Build Quartus Design<a class="headerlink" href="#build-quartus-design" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed065b-premium-devkit-oobe-baseline-a55.zip
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065b-premium-devkit-oobe-baseline-a55.zip
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>unzip<span class="w"> </span>a5ed065b-premium-devkit-oobe-baseline-a55.zip
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>a5ed065b-premium-devkit-oobe-baseline-a55.zip
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>make<span class="w"> </span>baseline_a55-install
@@ -7079,7 +7079,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 27, 2026</span>
       
         <br>
         Created:

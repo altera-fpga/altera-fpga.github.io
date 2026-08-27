@@ -6862,7 +6862,7 @@
 <li>64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.</li>
 <li>Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too</li>
 <li>Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
-<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 </li>
+<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 </li>
 </ul>
 </li>
 <li>Local Ethernet network, with DHCP server</li>
@@ -6889,7 +6889,7 @@
 </tbody>
 </table>
 <h3 id="component-versions">Component Versions<a class="headerlink" href="#component-versions" title="Permanent link">&para;</a></h3>
-<p>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. </p>
+<p>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. </p>
 <table>
 <thead>
 <tr>
@@ -6910,19 +6910,19 @@
 <td align="left">Linux</td>
 <td align="left"><a href="https://github.com/altera-fpga/linux-socfpga">https://github.com/altera-fpga/linux-socfpga</a></td>
 <td align="left">socfpga-6.18.20-lts</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Arm Trusted Firmware</td>
 <td align="left"><a href="https://github.com/altera-fpga/arm-trusted-firmware">https://github.com/altera-fpga/arm-trusted-firmware</a></td>
 <td align="left">socfpga_v2.14.1</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">U-Boot</td>
 <td align="left"><a href="https://github.com/altera-fpga/u-boot-socfpga">https://github.com/altera-fpga/u-boot-socfpga</a></td>
 <td align="left">socfpga_v2026.04</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Yocto Project</td>
@@ -6946,7 +6946,7 @@
 </table>
 <p><strong>Note:</strong> The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.</p>
 <h3 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h3>
-<p>See <a href="https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR">https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR</a></p>
+<p>See <a href="https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR">https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR</a></p>
 <h3 id="development-kit">Development Kit<a class="headerlink" href="#development-kit" title="Permanent link">&para;</a></h3>
 <p>This release targets the Agilex 5 FPGA E-Series 065B Modular Development Kit. It is composed of a carrier board which offers additional connectivity, and a SOM board which contains the FPGA part, HPS DDRAM and all other required circuitry. Refer to <a href="https://www.altera.com/products/devkit/po-3274/agilex-5-fpga-and-soc-e-series-065b-modular-development-kit">board documentation</a> for more information about the development kit.</p>
 <p><a class="glightbox" href="../images/agilex5-065b.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/agilex5-065b.png" /></a></p>
@@ -7305,7 +7305,7 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 <h2 id="build-gsrd-20-binaries">Build GSRD 2.0 Binaries<a class="headerlink" href="#build-gsrd-20-binaries" title="Permanent link">&para;</a></h2>
 <p>Kas is a Python-based lightweight build orchestration layer on top of BitBake/Yocto. Kas allows you to define your build environment in a YAML manifest, so you can perform checkout, environment setup, configuration, and build invocation with a single command. </p>
 <p>Kas replaces the <a href="https://github.com/altera-fpga/gsrd-socfpga">gsrd-socfpga repository</a>, providing a more maintainable build description. It offers improved reproducibility, reduced setup friction, and a clearer abstraction for managing multiple layers, revisions, and configuration fragments. Once all GSRD variations move to Kas, the gsrd-soc-fpga repository and GSRD build script will be retired.</p>
-<p>The GSRD 2.0 software source code is released inside the <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/a5ed065b-modular-devkit-som/baseline-a55/software/yocto_linux">software/yocto_linux</a> directory of the Agilex 5 E-Series Golden Hardware Reference Design (GHRD). Accessing the link will display a README page with details on how the GSRD 2.0 is organized around the Kas tool.</p>
+<p>The GSRD 2.0 software source code is released inside the <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1_REL_GSRD_PR/a5ed065b-modular-devkit-som/baseline-a55/software/yocto_linux">software/yocto_linux</a> directory of the Agilex 5 E-Series Golden Hardware Reference Design (GHRD). Accessing the link will display a README page with details on how the GSRD 2.0 is organized around the Kas tool.</p>
 <p>For more details about Kas, refer to the official documentation at <a href="https://kas.readthedocs.io/en/latest/">https://kas.readthedocs.io/en/latest/</a>.</p>
 <h3 id="kas-build-prerequisites">Kas Build Prerequisites<a class="headerlink" href="#kas-build-prerequisites" title="Permanent link">&para;</a></h3>
 <p>The same <a href="#yocto-build-prerequisites">prerequisites</a> as for regular Yocto build are required. </p>
@@ -7337,13 +7337,13 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 <a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1.1/qinit.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
 </code></pre></div>
 <h5>Build Hardware Design</h5>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed065b-modular-devkit-som-baseline-a55.zip
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065b-modular-devkit-som-baseline-a55.zip
 <a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>unzip<span class="w"> </span>a5ed065b-modular-devkit-som-baseline-a55.zip
 <a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>a5ed065b-modular-devkit-som-baseline-a55.zip
 <a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>make<span class="w"> </span>baseline_a55-build
@@ -7411,13 +7411,13 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 <a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1.1/qinit.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
 </code></pre></div>
 <h5>Build Hardware Design</h5>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed065b-modular-devkit-som-baseline-a55.zip
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065b-modular-devkit-som-baseline-a55.zip
 <a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>unzip<span class="w"> </span>a5ed065b-modular-devkit-som-baseline-a55.zip
 <a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>a5ed065b-modular-devkit-som-baseline-a55.zip
 <a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>make<span class="w"> </span>baseline_a55-build
@@ -7494,7 +7494,7 @@ Press <code>q</code> to exit the <code>syscheck</code> application.</p>
 <h4 id="customize-kas-build">Customize Kas Build<a class="headerlink" href="#customize-kas-build" title="Permanent link">&para;</a></h4>
 <p>The <code>kas.yml</code> file is the central configuration file used by Kas to define all components required for a reproducible Yocto build environment. It specifies the repositories, branches, layers, and build targets, as well as optional environment variables and machine settings. By consolidating this information into a single YAML file, <code>kas.yml</code> eliminates manual setup steps and ensures that builds can be easily replicated across systems or shared with collaborators. This makes it an essential part of version-controlled, automated build workflows.</p>
 <p>Kas also offers Kconfig-based customizations to provide a flexible and user-friendly configuration experience. This enables you to select repositories, layers, and build targets through a structured menu interface instead of editing YAML files directly. This approach combines the clarity and reproducibility of Kas with the modular configurability of the Linux kernel’s Kconfig system, making it easier to tailor builds for different platforms or use cases while maintaining a consistent and automated setup.</p>
-<p>Review the kas.yml file, the Kconfig options and associated documentation at <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/a5ed065b-modular-devkit-som/baseline-a55/software/yocto_linux">https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/a5ed065b-modular-devkit-som/baseline-a55/software/yocto_linux</a>.</p>
+<p>Review the kas.yml file, the Kconfig options and associated documentation at <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1_REL_GSRD_PR/a5ed065b-modular-devkit-som/baseline-a55/software/yocto_linux">https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1_REL_GSRD_PR/a5ed065b-modular-devkit-som/baseline-a55/software/yocto_linux</a>.</p>
 <p>This section shows how you can use <code>kas menu</code> to customize the build. When using <code>kas menu</code>, the initial settings from <code>kas.yml</code> are customized with the user selected options through Kconfig, and are saved to a file called <code>.config.yaml</code> which is then used for build purposes.</p>
 <p>1. Build the hardware design as mentioned before. Note the same hardware design is used for both booting from SD card and booting from QSPI.</p>
 <p>2. Copy the core.rbf file to where Kas needs it to be. Note that the filename when using Kconfig is different than when using the <code>kas.yml</code> alone (<code>top.core.rbf</code> vs <code>ghrd.core.rbf</code>)</p>
@@ -7853,7 +7853,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 27, 2026</span>
       
         <br>
         Created:

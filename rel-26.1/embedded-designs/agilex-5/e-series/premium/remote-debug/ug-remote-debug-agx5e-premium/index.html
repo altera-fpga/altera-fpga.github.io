@@ -6611,7 +6611,7 @@
 <p>The etherlink works with the standard UIO Linux kernel driver.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <p>This section shows an example of how to use the Remote Debug feature. Communication is established from the board to the host PC through Ethernet, so that the board appears as another JTAG device, listed by jtagconfig utility.</p>
-<p>The example is based on the <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/">GSRD</a>, with the following changes:</p>
+<p>The example is based on the <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/">GSRD</a>, with the following changes:</p>
 <ul>
 <li>Adding JOP component to the GHRD</li>
 <li>Adding JOP to the Linux device tree</li>
@@ -6635,7 +6635,7 @@
 <li>64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.</li>
 <li>Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too</li>
 <li>Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
-<li>Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1</li>
+<li>Altera Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1</li>
 </ul>
 </li>
 <li>Local Ethernet network, with DHCP server</li>
@@ -6650,7 +6650,7 @@
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">TOP_FOLDER</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1.1/qinit.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
 </code></pre></div>
 <h3 id="build-quartus-design">Build Quartus Design<a class="headerlink" href="#build-quartus-design" title="Permanent link">&para;</a></h3>
 <p>The Quartus design is derived from the HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design"), with the JOP component added and connected to clock, reset and the LWH2F bridge</p>
@@ -6658,7 +6658,7 @@
 <p>1. Generate the Quartus design:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>agilex5_soc_devkit_ghrd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>unzip<span class="w"> </span>a5ed065es-premium-devkit-oobe-baseline-a55.zip
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>a5ed065es-premium-devkit-oobe-baseline-a55.zip
 </code></pre></div>
@@ -6841,7 +6841,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 27, 2026</span>
       
         <br>
         Created:

@@ -6932,7 +6932,7 @@
 <li>Linux - Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too </li>
 <li>Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows) </li>
 <li>Micro SD card slot or Micro SD card writer/reader </li>
-<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1</li>
+<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1</li>
 </ul>
 </li>
 <li>Local Ethernet network, with DHCP server (will be used to provide IP address to the board) </li>
@@ -6969,7 +6969,7 @@
 </ul>
 <p>The U-Boot and Linux compilation, Yocto compilation and creating the SD card image require a Linux host PC. The rest of the operations can be performed on either a Windows or Linux host PC. </p>
 <h3 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h3>
-<p>The Intel FPGA HPS Embedded Software release notes can be accessed from the following link: <a href="https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR">https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR</a></p>
+<p>The Intel FPGA HPS Embedded Software release notes can be accessed from the following link: <a href="https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR">https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR</a></p>
 <h3 id="binary-release-contents">Binary Release Contents<a class="headerlink" href="#binary-release-contents" title="Permanent link">&para;</a></h3>
 <p>The binary release files are accessible at <a href="https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_dev_agm039ea_gsrd/">https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_dev_agm039ea_gsrd/</a>.</p>
 <p>The source code is also included on the SD card in the Linux rootfs path <code>/home/root</code>: </p>
@@ -6996,7 +6996,7 @@
 </tbody>
 </table>
 <h4 id="component-versions">Component Versions<a class="headerlink" href="#component-versions" title="Permanent link">&para;</a></h4>
-<p>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. </p>
+<p>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. </p>
 <table>
 <thead>
 <tr>
@@ -7011,25 +7011,25 @@
 <td align="left">HPS Baseline System Example Design</td>
 <td align="left"><a href="https://github.com/altera-fpga/agilex7f-ed-gsrd">https://github.com/altera-fpga/agilex7f-ed-gsrd</a></td>
 <td align="left">main</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Linux</td>
 <td align="left"><a href="https://github.com/altera-fpga/linux-socfpga">https://github.com/altera-fpga/linux-socfpga</a></td>
 <td align="left">socfpga-6.18.20-lts</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Arm Trusted Firmware</td>
 <td align="left"><a href="https://github.com/altera-fpga/arm-trusted-firmware">https://github.com/altera-fpga/arm-trusted-firmware</a></td>
 <td align="left">socfpga_v2.14.1</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">U-Boot</td>
 <td align="left"><a href="https://github.com/altera-fpga/u-boot-socfpga">https://github.com/altera-fpga/u-boot-socfpga</a></td>
 <td align="left">socfpga_v2026.04</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Yocto Project</td>
@@ -7047,13 +7047,13 @@
 <td align="left">Yocto Project: meta-intel-fpga-refdes</td>
 <td align="left"><a href="https://github.com/altera-fpga/meta-intel-fpga-refdes">https://github.com/altera-fpga/meta-intel-fpga-refdes</a></td>
 <td align="left">wrynose</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Yocto Build Script</td>
 <td align="left"><a href="https://github.com/altera-fpga/gsrd-socfpga">https://github.com/altera-fpga/gsrd-socfpga</a></td>
 <td align="left">wrynose</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 </tbody>
 </table>
@@ -7138,16 +7138,16 @@
 <a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1.1/qinit.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
 </code></pre></div>
 <h3 id="build-quartus-design">Build Quartus Design<a class="headerlink" href="#build-quartus-design" title="Permanent link">&para;</a></h3>
 <p>Use the following commands to build the Quartus Design: </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex7f-ed-gsrd
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>unzip<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>rm<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>mv<span class="w"> </span>agilex7f-ed-gsrd-QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>agilex7f-ed-gsrd
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>unzip<span class="w"> </span>QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>rm<span class="w"> </span>QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>mv<span class="w"> </span>agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR<span class="w"> </span>agilex7f-ed-gsrd
 <a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="nb">cd</span><span class="w"> </span>agilex7f-ed-gsrd
 <a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>make<span class="w"> </span>agm039ea-soc-devkit-oobe-baseline-all
 </code></pre></div>
@@ -7188,7 +7188,7 @@
 <p>Then clone the Yocto script and prepare the build: </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga<span class="w"> </span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR<span class="w">  </span>https://github.com/altera-fpga/gsrd-socfpga<span class="w"> </span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1_REL_GSRD_PR<span class="w">  </span>https://github.com/altera-fpga/gsrd-socfpga<span class="w"> </span>
 <a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga<span class="w"> </span>
 <a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>.<span class="w"> </span>agilex7_dk_dev_agm039ea-gsrd-build.sh<span class="w"> </span>
 <a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>build_setup<span class="w"> </span>
@@ -7449,7 +7449,7 @@ You can verify that the Yocto environment has been setup using the <strong>which
 <li>$TOP_FOLDER/ghrd_agmf039r47a1e2vr0.pof - contains the MAX 10 flash image required to configure the Agilex™ 7 device over AVST </li>
 </ul>
 <h3 id="create-cdf-programmer-configuration-file">Create CDF Programmer Configuration File<a class="headerlink" href="#create-cdf-programmer-configuration-file" title="Permanent link">&para;</a></h3>
-<p>The provided <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-7/m-series/hbm2e/collateral/ghrd_agmf039r47a1e2vr0.cdf">ghrd_agmf039r47a1e2vr0.cdf</a>) file contains the configuration required for the Quartus Programmer to be able to write the POF file to the QSPI attached to the MAX 10 Board Controller. </p>
+<p>The provided <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/m-series/hbm2e/collateral/ghrd_agmf039r47a1e2vr0.cdf">ghrd_agmf039r47a1e2vr0.cdf</a>) file contains the configuration required for the Quartus Programmer to be able to write the POF file to the QSPI attached to the MAX 10 Board Controller. </p>
 <p>This section provides instructions on how this CDF file was created, for reference purposes. </p>
 <p>1. Set dipswitch S24 to OFF-OFF-OFF-ON so that board configures through JTAG. </p>
 <p>2. Power up the board </p>
@@ -7526,7 +7526,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 27, 2026</span>
       
         <br>
         Created:

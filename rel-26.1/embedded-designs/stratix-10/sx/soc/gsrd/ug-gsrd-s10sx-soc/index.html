@@ -7614,14 +7614,14 @@
 <li>Linux - Ubuntu 22.04 was used to create this page, other versions and distributions may work too</li>
 <li>Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
 <li>Micro SD card slot or Micro SD card writer/reader</li>
-<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1</li>
+<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1</li>
 <li>Local Ethernet network, with DHCP server (will be used to provide IP address to the board)</li>
 </ul>
 </li>
 </ul>
 <h3 id="release-contents">Release Contents<a class="headerlink" href="#release-contents" title="Permanent link">&para;</a></h3>
 <h4 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h4>
-<p>The Altera® FPGA HPS Embedded Software release notes can be accessed here: <a href="https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR">https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR</a></p>
+<p>The Altera® FPGA HPS Embedded Software release notes can be accessed here: <a href="https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR">https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR</a></p>
 <h4 id="prebuilt-binaries">Prebuilt Binaries<a class="headerlink" href="#prebuilt-binaries" title="Permanent link">&para;</a></h4>
 <h5>Binaries for SD Card Boot</h5>
 
@@ -7660,7 +7660,7 @@
 
 <p>The release files are accessible at <a href="https://releases.rocketboards.org/2026.08/emmc/s10_htile_emmc/">https://releases.rocketboards.org/2026.08/emmc/s10_htile_emmc/</a></p>
 <h4 id="component-versions">Component Versions<a class="headerlink" href="#component-versions" title="Permanent link">&para;</a></h4>
-<p>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. </p>
+<p>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. </p>
 <table>
 <thead>
 <tr>
@@ -7675,25 +7675,25 @@
 <td align="left">HPS Baseline System Example Design</td>
 <td align="left"><a href="https://github.com/altera-fpga/stratix10-ed-gsrd">https://github.com/altera-fpga/stratix10-ed-gsrd</a></td>
 <td align="left">main</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Linux</td>
 <td align="left"><a href="https://github.com/altera-fpga/linux-socfpga">https://github.com/altera-fpga/linux-socfpga</a></td>
 <td align="left">socfpga-6.18.20-lts</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Arm Trusted Firmware</td>
 <td align="left"><a href="https://github.com/altera-fpga/arm-trusted-firmware">https://github.com/altera-fpga/arm-trusted-firmware</a></td>
 <td align="left">socfpga_v2.14.1</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">U-Boot</td>
 <td align="left"><a href="https://github.com/altera-fpga/u-boot-socfpga">https://github.com/altera-fpga/u-boot-socfpga</a></td>
 <td align="left">socfpga_v2026.04</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Yocto Project</td>
@@ -7711,13 +7711,13 @@
 <td align="left">Yocto Project: meta-intel-fpga-refdes</td>
 <td align="left"><a href="https://github.com/altera-fpga/meta-intel-fpga-refdes">https://github.com/altera-fpga/meta-intel-fpga-refdes</a></td>
 <td align="left">wrynose</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Yocto Build Script</td>
 <td align="left"><a href="https://github.com/altera-fpga/gsrd-socfpga">https://github.com/altera-fpga/gsrd-socfpga</a></td>
 <td align="left">wrynose</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 </tbody>
 </table>
@@ -8548,15 +8548,15 @@
 <a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1.1/qinit.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
 </code></pre></div>
 <h4 id="build-quartus-design">Build Quartus Design<a class="headerlink" href="#build-quartus-design" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>stratix10-ed-gsrd
-<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>unzip<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>mv<span class="w"> </span>stratix10-ed-gsrd-QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>stratix10-ed-gsrd
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>unzip<span class="w"> </span>QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>mv<span class="w"> </span>stratix10-ed-gsrd-QPDS26.1_REL_GSRD_PR<span class="w"> </span>stratix10-ed-gsrd
 <a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="nb">cd</span><span class="w"> </span>stratix10-ed-gsrd
 <a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a>make<span class="w"> </span>s10-htile-soc-devkit-oobe-baseline-all
 <a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a><span class="nb">cd</span><span class="w"> </span>..
@@ -8601,7 +8601,7 @@
 <p>2. Clone the Yocto script and prepare the build:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
-<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/gsrd-socfpga
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/gsrd-socfpga
 <a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga
 <a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a>.<span class="w"> </span>stratix10_htile-gsrd-build.sh
 <a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a>build_setup
@@ -8906,16 +8906,16 @@
 <a id="__codelineno-59-8" name="__codelineno-59-8" href="#__codelineno-59-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1.1/qinit.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
 </code></pre></div>
 <h4 id="build-quartus-design_1">Build Quartus Design<a class="headerlink" href="#build-quartus-design_1" title="Permanent link">&para;</a></h4>
 <p>Build the Quartus Design targeting the NAND HPS daughtercard, by passing the correct parameter to the make utility:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>stratix10-ed-gsrd
-<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a>unzip<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-61-5" name="__codelineno-61-5" href="#__codelineno-61-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-61-6" name="__codelineno-61-6" href="#__codelineno-61-6"></a>mv<span class="w"> </span>stratix10-ed-gsrd-QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>stratix10-ed-gsrd
+<a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a>unzip<span class="w"> </span>QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-61-5" name="__codelineno-61-5" href="#__codelineno-61-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-61-6" name="__codelineno-61-6" href="#__codelineno-61-6"></a>mv<span class="w"> </span>stratix10-ed-gsrd-QPDS26.1_REL_GSRD_PR<span class="w"> </span>stratix10-ed-gsrd
 <a id="__codelineno-61-7" name="__codelineno-61-7" href="#__codelineno-61-7"></a><span class="nb">cd</span><span class="w"> </span>stratix10-ed-gsrd
 <a id="__codelineno-61-8" name="__codelineno-61-8" href="#__codelineno-61-8"></a>make<span class="w"> </span>s10-htile-soc-devkit-nand-baseline-all<span class="w">  </span>
 <a id="__codelineno-61-9" name="__codelineno-61-9" href="#__codelineno-61-9"></a><span class="nb">cd</span><span class="w"> </span>..
@@ -8960,7 +8960,7 @@
 <p>2. Clone the Yocto script and prepare the build:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
-<a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/gsrd-socfpga
+<a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/gsrd-socfpga
 <a id="__codelineno-65-4" name="__codelineno-65-4" href="#__codelineno-65-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga
 <a id="__codelineno-65-5" name="__codelineno-65-5" href="#__codelineno-65-5"></a>.<span class="w"> </span>stratix10_htile-gsrd-build.sh
 <a id="__codelineno-65-6" name="__codelineno-65-6" href="#__codelineno-65-6"></a>build_setup
@@ -9175,15 +9175,15 @@
 <a id="__codelineno-81-8" name="__codelineno-81-8" href="#__codelineno-81-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1.1/qinit.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
 </code></pre></div>
 <h4 id="build-quartus-design_2">Build Quartus Design<a class="headerlink" href="#build-quartus-design_2" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-83-1" name="__codelineno-83-1" href="#__codelineno-83-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-83-2" name="__codelineno-83-2" href="#__codelineno-83-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>stratix10-ed-gsrd
-<a id="__codelineno-83-3" name="__codelineno-83-3" href="#__codelineno-83-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-83-4" name="__codelineno-83-4" href="#__codelineno-83-4"></a>unzip<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-83-5" name="__codelineno-83-5" href="#__codelineno-83-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-83-6" name="__codelineno-83-6" href="#__codelineno-83-6"></a>mv<span class="w"> </span>stratix10-ed-gsrd-QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>stratix10-ed-gsrd
+<a id="__codelineno-83-3" name="__codelineno-83-3" href="#__codelineno-83-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-83-4" name="__codelineno-83-4" href="#__codelineno-83-4"></a>unzip<span class="w"> </span>QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-83-5" name="__codelineno-83-5" href="#__codelineno-83-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-83-6" name="__codelineno-83-6" href="#__codelineno-83-6"></a>mv<span class="w"> </span>stratix10-ed-gsrd-QPDS26.1_REL_GSRD_PR<span class="w"> </span>stratix10-ed-gsrd
 <a id="__codelineno-83-7" name="__codelineno-83-7" href="#__codelineno-83-7"></a><span class="nb">cd</span><span class="w"> </span>stratix10-ed-gsrd
 <a id="__codelineno-83-8" name="__codelineno-83-8" href="#__codelineno-83-8"></a>make<span class="w"> </span>s10-htile-soc-devkit-emmc-baseline-all
 <a id="__codelineno-83-9" name="__codelineno-83-9" href="#__codelineno-83-9"></a><span class="nb">cd</span><span class="w"> </span>..
@@ -9228,7 +9228,7 @@
 <p>2. Clone the Yocto script and prepare the build:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-87-1" name="__codelineno-87-1" href="#__codelineno-87-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-87-2" name="__codelineno-87-2" href="#__codelineno-87-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga
-<a id="__codelineno-87-3" name="__codelineno-87-3" href="#__codelineno-87-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/gsrd-socfpga
+<a id="__codelineno-87-3" name="__codelineno-87-3" href="#__codelineno-87-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/gsrd-socfpga
 <a id="__codelineno-87-4" name="__codelineno-87-4" href="#__codelineno-87-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga
 <a id="__codelineno-87-5" name="__codelineno-87-5" href="#__codelineno-87-5"></a>.<span class="w"> </span>stratix10_htile-gsrd-build.sh
 <a id="__codelineno-87-6" name="__codelineno-87-6" href="#__codelineno-87-6"></a>build_setup
@@ -9395,75 +9395,6 @@
 <li>Update the flash image (QSPI, SD Card, eMMC or NAND) from your working machine.</li>
 </ul>
 <h3 id="how-to-manually-update-the-content-of-the-sd-card-image">How to Manually Update the Content of the SD Card Image<a class="headerlink" href="#how-to-manually-update-the-content-of-the-sd-card-image" title="Permanent link">&para;</a></h3>
-<p>As part of the Yocto HPS Legacy System Example Design build flow, the SD Card image is built for the SD Card boot flow. This image includes a couple of partitions. One of these partition (a FAT32) includes the U-Boot proper, a Distroboot boot script and the Linux <strong>.itb</strong> - which includes the Linux kernel image, , the Linux device tree, the phase 2 FPGA configuration bitstream and board configuration (there may be several versions of these last 3 components). The 2<sup>nd</sup> partition (an EXT3 or EXT4 ) includes the Linux file system. </p>
-<p><a class="glightbox" href="../images/sdcard_img.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/sdcard_img.png" style="height:500px" /></a></p>
-<p>If you want to replace any the components or add a new item in any of these partitions, without having to run again the Yocto build flow. </p>
-<p>This can be done through the <strong>wic</strong> application available on the <strong>Poky</strong> repository that is included as part of the HPS Legacy System Example Design build directory: <strong>$TOP_FOLDER/gsrd-socfpga/poky/scripts/wic</strong> </p>
-<p>This command requires to be run in the Yocto build environment that can be setup as shown next in a Linux terminal:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-101-1" name="__codelineno-101-1" href="#__codelineno-101-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/
-<a id="__codelineno-101-2" name="__codelineno-101-2" href="#__codelineno-101-2"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>build
-</code></pre></div>
-You can verify that the Yocto environment has been setup using the <strong>which bitbake</strong> command, which will respond with the path of the <strong>bitbake</strong> command located at <strong>poky/bitbake/bin/bitbake</strong>.</p>
-<p>The <strong>wic</strong> command allows you to inspect the content of a SD Card image, delete, add or replace any component inside of the image. This command is also provided with help support:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-102-1" name="__codelineno-102-1" href="#__codelineno-102-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span><span class="nb">help</span>
-<a id="__codelineno-102-2" name="__codelineno-102-2" href="#__codelineno-102-2"></a>
-<a id="__codelineno-102-3" name="__codelineno-102-3" href="#__codelineno-102-3"></a>Creates<span class="w"> </span>a<span class="w"> </span>customized<span class="w"> </span>OpenEmbedded<span class="w"> </span>image.
-<a id="__codelineno-102-4" name="__codelineno-102-4" href="#__codelineno-102-4"></a>
-<a id="__codelineno-102-5" name="__codelineno-102-5" href="#__codelineno-102-5"></a>Usage:<span class="w">  </span>wic<span class="w"> </span><span class="o">[</span>--version<span class="o">]</span>
-<a id="__codelineno-102-6" name="__codelineno-102-6" href="#__codelineno-102-6"></a><span class="w">        </span>wic<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="o">[</span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC<span class="o">]</span>
-<a id="__codelineno-102-7" name="__codelineno-102-7" href="#__codelineno-102-7"></a><span class="w">        </span>wic<span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>
-<a id="__codelineno-102-8" name="__codelineno-102-8" href="#__codelineno-102-8"></a>
-<a id="__codelineno-102-9" name="__codelineno-102-9" href="#__codelineno-102-9"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">1</span>:<span class="w"> </span>Returns<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>version<span class="w"> </span>of<span class="w"> </span>Wic
-<a id="__codelineno-102-10" name="__codelineno-102-10" href="#__codelineno-102-10"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">2</span>:<span class="w"> </span>Returns<span class="w"> </span>detailed<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC
-<a id="__codelineno-102-11" name="__codelineno-102-11" href="#__codelineno-102-11"></a><span class="w">    </span>usage<span class="w"> </span><span class="m">3</span>:<span class="w"> </span>Executes<span class="w"> </span>COMMAND
-<a id="__codelineno-102-12" name="__codelineno-102-12" href="#__codelineno-102-12"></a>
-<a id="__codelineno-102-13" name="__codelineno-102-13" href="#__codelineno-102-13"></a>COMMAND:
-<a id="__codelineno-102-14" name="__codelineno-102-14" href="#__codelineno-102-14"></a>
-<a id="__codelineno-102-15" name="__codelineno-102-15" href="#__codelineno-102-15"></a><span class="w"> </span>list<span class="w">   </span>-<span class="w">   </span>List<span class="w"> </span>available<span class="w"> </span>canned<span class="w"> </span>images<span class="w"> </span>and<span class="w"> </span><span class="nb">source</span><span class="w"> </span>plugins
-<a id="__codelineno-102-16" name="__codelineno-102-16" href="#__codelineno-102-16"></a><span class="w"> </span>ls<span class="w">     </span>-<span class="w">   </span>List<span class="w"> </span>contents<span class="w"> </span>of<span class="w"> </span>partitioned<span class="w"> </span>image<span class="w"> </span>or<span class="w"> </span>partition
-<a id="__codelineno-102-17" name="__codelineno-102-17" href="#__codelineno-102-17"></a><span class="w"> </span>rm<span class="w">     </span>-<span class="w">   </span>Remove<span class="w"> </span>files<span class="w"> </span>or<span class="w"> </span>directories<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>vfat<span class="w"> </span>or<span class="w"> </span>ext*<span class="w"> </span>partitions
-<a id="__codelineno-102-18" name="__codelineno-102-18" href="#__codelineno-102-18"></a><span class="w"> </span><span class="nb">help</span><span class="w">   </span>-<span class="w">   </span>Show<span class="w"> </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>wic<span class="w"> </span>COMMAND<span class="w"> </span>or<span class="w"> </span>TOPIC
-<a id="__codelineno-102-19" name="__codelineno-102-19" href="#__codelineno-102-19"></a><span class="w"> </span>write<span class="w">  </span>-<span class="w">   </span>Write<span class="w"> </span>an<span class="w"> </span>image<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>device
-<a id="__codelineno-102-20" name="__codelineno-102-20" href="#__codelineno-102-20"></a><span class="w"> </span>cp<span class="w">     </span>-<span class="w">   </span>Copy<span class="w"> </span>files<span class="w"> </span>and<span class="w"> </span>directories<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>vfat<span class="w"> </span>or<span class="w"> </span>ext*<span class="w"> </span>partitions
-<a id="__codelineno-102-21" name="__codelineno-102-21" href="#__codelineno-102-21"></a><span class="w"> </span>create<span class="w"> </span>-<span class="w">   </span>Create<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>OpenEmbedded<span class="w"> </span>image
-<a id="__codelineno-102-22" name="__codelineno-102-22" href="#__codelineno-102-22"></a><span class="w"> </span>:
-<a id="__codelineno-102-23" name="__codelineno-102-23" href="#__codelineno-102-23"></a><span class="w"> </span>:
-</code></pre></div>
-   The following steps show you how to replace the <strong>kernel.itb</strong> file inside of the fat32 partition in a .wic image.</p>
-<ol>
-<li>
-<p>The <strong>wic ls</strong> command allows you to inspect or navigate over the directory structure inside of the SD Card image. For example you can observe the partitions  in the SD Card image in this way:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-103-1" name="__codelineno-103-1" href="#__codelineno-103-1"></a><span class="c1"># Here you can inspect the content a wic image see the 2 partitions inside of the SD Card image</span>
-<a id="__codelineno-103-2" name="__codelineno-103-2" href="#__codelineno-103-2"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>ls<span class="w"> </span>my_image.wic
-<a id="__codelineno-103-3" name="__codelineno-103-3" href="#__codelineno-103-3"></a>Num<span class="w">     </span>Start<span class="w">        </span>End<span class="w">          </span>Size<span class="w">      </span>Fstype
-<a id="__codelineno-103-4" name="__codelineno-103-4" href="#__codelineno-103-4"></a><span class="m">1</span><span class="w">       </span><span class="m">1048576</span><span class="w">    </span><span class="m">525336575</span><span class="w">    </span><span class="m">524288000</span><span class="w">  </span>fat32<span class="w">    </span>
-<a id="__codelineno-103-5" name="__codelineno-103-5" href="#__codelineno-103-5"></a><span class="m">2</span><span class="w">     </span><span class="m">525336576</span><span class="w">   </span><span class="m">2098200575</span><span class="w">   </span><span class="m">1572864000</span><span class="w">  </span>ext4<span class="w">   </span>
-<a id="__codelineno-103-6" name="__codelineno-103-6" href="#__codelineno-103-6"></a>
-<a id="__codelineno-103-7" name="__codelineno-103-7" href="#__codelineno-103-7"></a><span class="c1"># Here you can naviagate inside of the partition 1</span>
-<a id="__codelineno-103-8" name="__codelineno-103-8" href="#__codelineno-103-8"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>ls<span class="w"> </span>my_image.wic:1
-<a id="__codelineno-103-9" name="__codelineno-103-9" href="#__codelineno-103-9"></a>Volume<span class="w"> </span><span class="k">in</span><span class="w"> </span>drive<span class="w"> </span>:<span class="w"> </span>is<span class="w"> </span>boot<span class="w">       </span>
-<a id="__codelineno-103-10" name="__codelineno-103-10" href="#__codelineno-103-10"></a>Volume<span class="w"> </span>Serial<span class="w"> </span>Number<span class="w"> </span>is<span class="w"> </span>9D2B-6341
-<a id="__codelineno-103-11" name="__codelineno-103-11" href="#__codelineno-103-11"></a>Directory<span class="w"> </span><span class="k">for</span><span class="w"> </span>::/
-<a id="__codelineno-103-12" name="__codelineno-103-12" href="#__codelineno-103-12"></a>
-<a id="__codelineno-103-13" name="__codelineno-103-13" href="#__codelineno-103-13"></a>BOOTSC~1<span class="w"> </span>UIM<span class="w">      </span><span class="m">2431</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w">  </span>boot.scr.uimg
-<a id="__codelineno-103-14" name="__codelineno-103-14" href="#__codelineno-103-14"></a>kernel<span class="w">   </span>itb<span class="w">  </span><span class="m">15160867</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w"> </span>
-<a id="__codelineno-103-15" name="__codelineno-103-15" href="#__codelineno-103-15"></a>u-boot<span class="w">   </span>itb<span class="w">   </span><span class="m">1052180</span><span class="w"> </span><span class="m">2011</span>-04-05<span class="w">  </span><span class="m">23</span>:00<span class="w"> </span>
-<a id="__codelineno-103-16" name="__codelineno-103-16" href="#__codelineno-103-16"></a><span class="w">     </span><span class="m">3</span><span class="w"> </span>files<span class="w">          </span><span class="m">16</span><span class="w"> </span><span class="m">215</span><span class="w"> </span><span class="m">478</span><span class="w"> </span>bytes
-<a id="__codelineno-103-17" name="__codelineno-103-17" href="#__codelineno-103-17"></a><span class="w">                     </span><span class="m">506</span><span class="w"> </span><span class="m">990</span><span class="w"> </span><span class="m">592</span><span class="w"> </span>bytes<span class="w"> </span>free
-</code></pre></div>
-</li>
-<li>
-<p>The <strong>wic rm</strong> command allows you to delete any of the components in the selected partition. For example, you can delete the <strong>kernel.itb</strong> image from the partition 1(fat32 partition).</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-104-1" name="__codelineno-104-1" href="#__codelineno-104-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>rm<span class="w"> </span>my_image.wic:1/kernel.itb
-</code></pre></div>
-</li>
-<li>
-<p>The <strong>wic cp</strong> command allows you to copy any new item or file from your Linux machine to a specific partition and location inside of the SD Card image. For example, you can copy a new <strong>kernel.itb</strong> to the partition 1.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-105-1" name="__codelineno-105-1" href="#__codelineno-105-1"></a>$<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/gsrd-socfpga/poky/scripts/wic<span class="w"> </span>cp<span class="w"> </span>&lt;path_new_kernel.itb&gt;<span class="w"> </span>my_image.wic:1/kernel.itb
-</code></pre></div>
-</li>
-</ol>
-<p><strong>NOTE</strong>: The <strong>wic</strong> application also allows you to modify any image with compatible vfat and ext* type partitions which also covers images used for <strong>eMMC</strong> boot flow. </p>
 <h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
 <p>Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
 No product or component can be absolutely secure. 
@@ -9482,7 +9413,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 27, 2026</span>
       
         <br>
         Created:

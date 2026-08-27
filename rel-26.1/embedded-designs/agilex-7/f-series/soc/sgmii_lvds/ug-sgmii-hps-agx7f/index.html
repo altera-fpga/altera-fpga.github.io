@@ -6718,7 +6718,7 @@
 </li>
 </ul>
 <p>Please refer to this pages for more detail.
-<a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/">HPS Baseline System Example Design (SED) User Guide</a></p>
+<a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/">HPS Baseline System Example Design (SED) User Guide</a></p>
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
 <p>This system example design is based on the <a href="https://www.altera.com/products/devkit/po-3003/agilex-7-fpga-f-series-transceiver-soc-development-kit-p-tile-and-e-tile">Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tile and E-Tile)</a>. It is recommended that you familiarize yourself with the HPS Baseline System Example Design (SED) development flow before proceeding with this design.
 The SGMII System Example Design will be implemented on Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit.</p>
@@ -6734,7 +6734,7 @@ The SGMII System Example Design will be implemented on Agilex™ 7 FPGA F-Series
 <li>Linux - Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too</li>
 <li>Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
 <li>Micro SD card slot or Micro SD card writer/reader</li>
-<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1</li>
+<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1</li>
 <li>Local Ethernet network, with DHCP server (will be used to provide IP address to the board)</li>
 </ul>
 </li>
@@ -6758,8 +6758,8 @@ The SGMII System Example Design will be implemented on Agilex™ 7 FPGA F-Series
 <li>Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.</li>
 <li>Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
 <li>Altera&reg; Quartus&reg; Prime Pro Edition version. Used to recompile the hardware design. If only writing binaries is required, then the smaller Altera&reg; Quartus&reg; Prime Pro Edition Programmer is sufficient.</li>
-<li>The prebuilt binaries were built using Altera&reg; Quartus&reg; 26.1.1</li>
-<li>The instructions for rebuilding the binaries use Altera&reg; Quartus&reg; 26.1.1</li>
+<li>The prebuilt binaries were built using Altera&reg; Quartus&reg; 26.1</li>
+<li>The instructions for rebuilding the binaries use Altera&reg; Quartus&reg; 26.1</li>
 <li>Local Ethernet network, with DHCP server</li>
 <li>Internet connection. For downloading the files, especially when rebuilding the HPS Baseline System Example Design (SED).</li>
 </ul>
@@ -6767,14 +6767,14 @@ The SGMII System Example Design will be implemented on Agilex™ 7 FPGA F-Series
 <p>This page documents content testing with prebuild binaries flow and testing with complete flow.</p>
 <h3 id="release-contents_1">Release Contents<a class="headerlink" href="#release-contents_1" title="Permanent link">&para;</a></h3>
 <h4 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h4>
-<p>The Altera® FPGA HPS Embedded Software release notes can be accessed from the following link: <a href="https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR">https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR</a></p>
+<p>The Altera® FPGA HPS Embedded Software release notes can be accessed from the following link: <a href="https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR">https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR</a></p>
 <h4 id="prebuilt-binaries">Prebuilt Binaries<a class="headerlink" href="#prebuilt-binaries" title="Permanent link">&para;</a></h4>
 <h5>SD Card Boot</h5>
 
 <p>The release files are accessible at <a href="https://releases.rocketboards.org/2026.08/sgmii/agilex7_dk_si_agf014eb_sgmii/">https://releases.rocketboards.org/2026.08/sgmii/agilex7_dk_si_agf014eb_sgmii/</a></p>
 <ul>
 <li>
-<p>See <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/">HPS Baseline System Example Design (SED) User Guide for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tile and E-Tile)</a></p>
+<p>See <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/">HPS Baseline System Example Design (SED) User Guide for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tile and E-Tile)</a></p>
 <ul>
 <li>See Prerequisites</li>
 <li>See <a href="https://releases.rocketboards.org/2026.08/sgmii/agilex7_dk_si_agf014eb_sgmii/">Prebuild Binaries</a></li>
@@ -6790,7 +6790,7 @@ The SGMII System Example Design will be implemented on Agilex™ 7 FPGA F-Series
 <p>There are two ways to test the design based on use case.
     <a id="UserFlow1"></a></p>
 <ul>
-<li>User Flow 1: <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/#exercise-prebuilt-binaries">Testing with Prebuilt Binaries</a><ul>
+<li>User Flow 1: <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/#exercise-prebuilt-binaries">Testing with Prebuilt Binaries</a><ul>
 <li>
 <p>The release of prebuild binaries are accessible at <a href="https://releases.rocketboards.org/2026.08/sgmii/agilex7_dk_si_agf014eb_sgmii/">https://releases.rocketboards.org/2026.08/sgmii/agilex7_dk_si_agf014eb_sgmii/</a></p>
 <p><a id="UserFlow2"></a></p>
@@ -6800,7 +6800,7 @@ The SGMII System Example Design will be implemented on Agilex™ 7 FPGA F-Series
 </ul>
 <ul>
 <li>
-<p>User Flow 2: <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/#rebuild-the-binaries">Testing Complete Flow Rebuild Binaries</a></p>
+<p>User Flow 2: <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/#rebuild-the-binaries">Testing Complete Flow Rebuild Binaries</a></p>
 <ul>
 <li><strong>Replace "make agf014eb-si-devkit-oobe-baseline-all" &gt; "make agf014eb-si-devkit-oobe-sgmii-all"</strong> at Build Hardware Design flow.</li>
 </ul>
@@ -6905,7 +6905,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 27, 2026</span>
       
         <br>
         Created:

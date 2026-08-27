@@ -6603,8 +6603,8 @@
 <ul>
 <li><a href="https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit">Agilex 3 FPGA and SoC C-Series Development Kit</a>, ordering code DK-A3W135BM16AEA. Other Agilex 3 development boards will also work in the same manner, just that other set HPS Baseline System Example Design binaries will be used.</li>
 <li>Host PC with Linux (Ubuntu 22.04 was used, but others should work too)</li>
-<li>Quartus Pro 26.1.1 (or just Quartus Pro standalone Programmer 26.1.1).</li>
-<li>Ashling RiscFree bundled with Quartus Pro 26.1.1 (can be installed and use with just the standalone Programmer)</li>
+<li>Quartus Pro 26.1 (or just Quartus Pro standalone Programmer 26.1).</li>
+<li>Ashling RiscFree bundled with Quartus Pro 26.1 (can be installed and use with just the standalone Programmer)</li>
 <li>Network access, for downloading the sources while building the binaries</li>
 </ul>
 <h2 id="instructions">Instructions<a class="headerlink" href="#instructions" title="Permanent link">&para;</a></h2>
@@ -6626,10 +6626,10 @@
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1.1/qinit.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
 </code></pre></div>
 <p>Sdd RiscFree to the system PATH:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/altera_pro/26.1.1/riscfree/RiscFree/:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/altera_pro/26.1/riscfree/RiscFree/:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
 </code></pre></div>
 <h3 id="boot-hps-baseline-system-example-design">Boot HPS Baseline System Example Design<a class="headerlink" href="#boot-hps-baseline-system-example-design" title="Permanent link">&para;</a></h3>
 <blockquote>
@@ -6822,7 +6822,7 @@
 <p><a class="glightbox" href="../images/debug-config-4.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/debug-config-4.png" /></a></p>
 <p>14. Go to the <strong>Debugger</strong> tab, check <strong>Stop on startup at</strong> <strong>main</strong>, then Click the <strong>Browse</strong> button for the <strong>GDB debugger</strong> field:</p>
 <p><a class="glightbox" href="../images/debug-config-6.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/debug-config-6.png" /></a></p>
-<p>15. Browse to <code>~/altera_pro/26.1.1/riscfree/toolchain/Arm/aarch64-none-linux-gnu/bin/</code> then select <code>aarch64-none-linux-gnu-gdb</code> and click <strong>Open</strong>:</p>
+<p>15. Browse to <code>~/altera_pro/26.1/riscfree/toolchain/Arm/aarch64-none-linux-gnu/bin/</code> then select <code>aarch64-none-linux-gnu-gdb</code> and click <strong>Open</strong>:</p>
 <p><a class="glightbox" href="../images/debug-config-7.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/debug-config-7.png" /></a></p>
 <p>16. Clear the <strong>GDB command file</strong> field:</p>
 <p><a class="glightbox" href="../images/debug-config-8.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/debug-config-8.png" /></a></p>
@@ -6873,7 +6873,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 27, 2026</span>
       
         <br>
         Created:

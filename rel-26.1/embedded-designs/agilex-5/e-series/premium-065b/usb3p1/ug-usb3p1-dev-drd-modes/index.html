@@ -6802,7 +6802,7 @@
 </ul>
 </li>
 </ul>
-<p>Refer to <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/">Development Kit</a> for details about the board, including how to install the HPS Boards, and how to set the MSEL DIP switches.</p>
+<p>Refer to <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/">Development Kit</a> for details about the board, including how to install the HPS Boards, and how to set the MSEL DIP switches.</p>
 <h3 id="development-environment">Development Environment<a class="headerlink" href="#development-environment" title="Permanent link">&para;</a></h3>
 <p>This is the recommended setting for the system used for compilation of the boot image.</p>
 <ul>
@@ -6811,7 +6811,7 @@
 <li>64 GB of RAM or more</li>
 <li>Disk space of 100GB or more</li>
 <li>Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
-<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 </li>
+<li>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 </li>
 <li>TFTP server. This used to download the eMMC binaries to board to be flashed by U-Boot</li>
 </ul>
 </li>
@@ -6834,11 +6834,11 @@
 <h3 id="component-versions">Component Versions<a class="headerlink" href="#component-versions" title="Permanent link">&para;</a></h3>
 <p>The version of The HPS Baseline System Example Design (formerly known as GSRD or Golden System Reference Design) used in this page is the QPDS26.1_REL_GSRD_PR</p>
 <h3 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h3>
-<p>See https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR</p>
+<p>See https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR</p>
 <h2 id="1-usb-31-in-host-mode">1. USB 3.1 in Host Mode<a class="headerlink" href="#1-usb-31-in-host-mode" title="Permanent link">&para;</a></h2>
 <h3 id="11-build-sd-card-binaries">1.1 Build SD Card Binaries<a class="headerlink" href="#11-build-sd-card-binaries" title="Permanent link">&para;</a></h3>
-<p>1. To get the SD Card binaries, you may follow the steps in <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#build-sd-card-binaries">Agilex 5 FPGA E-Series 065B Premium Development Kit HPS GSRD User Guide - HPS Enablement Board - Build SD Card Binaries</a> to generate the bootable SD Card image. Or, you may get the prebuilt binaries in <a href="#prebuilt-binaries">Prebuilt Binaries</a></p>
-<p>2. To boot up the dev-kit from SD Card, you may refer to <a href="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#hps-enablement-board">Agilex 5 FPGA E-Series 065B Premium Development Kit HPS GSRD User Guide - HPS Enablement Board - Boot from SD Card</a> for the steps to program the SD Card image.</p>
+<p>1. To get the SD Card binaries, you may follow the steps in <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#build-sd-card-binaries">Agilex 5 FPGA E-Series 065B Premium Development Kit HPS GSRD User Guide - HPS Enablement Board - Build SD Card Binaries</a> to generate the bootable SD Card image. Or, you may get the prebuilt binaries in <a href="#prebuilt-binaries">Prebuilt Binaries</a></p>
+<p>2. To boot up the dev-kit from SD Card, you may refer to <a href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#hps-enablement-board">Agilex 5 FPGA E-Series 065B Premium Development Kit HPS GSRD User Guide - HPS Enablement Board - Boot from SD Card</a> for the steps to program the SD Card image.</p>
 <h3 id="12-verification-transfer-a-file-to-a-removable-storage">1.2 Verification - Transfer a file to a Removable Storage<a class="headerlink" href="#12-verification-transfer-a-file-to-a-removable-storage" title="Permanent link">&para;</a></h3>
 <p>1. Boot up the dev-kit with the SD Card and Quartus Programmer, login with “root”.</p>
 <p>2. Plug in the dev-kit’s USB Type-C port with a USB Type-C thumbdrive.</p>
@@ -6880,7 +6880,7 @@
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1.1/qinit.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
 </code></pre></div>
 <p>3. Setup Hardware Design and Yocto</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
@@ -6988,7 +6988,7 @@ Observe that the dev-kit is being seen by Test PC as a storage.</p>
 <a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1.1/qinit.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
 </code></pre></div>
 <p>3. Setup Hardware Design and Yocto</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
@@ -7961,7 +7961,7 @@ Observe that the dev-kit is being seen by Test PC as a storage.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 27, 2026</span>
       
         <br>
         Created:

@@ -6619,7 +6619,7 @@
 <li>64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the Quartus design.</li>
 <li>Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too</li>
 <li>Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)</li>
-<li>Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1</li>
+<li>Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1</li>
 </ul>
 </li>
 <li>Local Ethernet network, with DHCP server</li>
@@ -6647,15 +6647,15 @@
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1.1/qinit.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
 </code></pre></div>
 <p>2. Build Quartus Design: </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex7f-ed-gsrd
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>unzip<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>rm<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>mv<span class="w"> </span>agilex7f-ed-gsrd-QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>agilex7f-ed-gsrd
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>unzip<span class="w"> </span>QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>rm<span class="w"> </span>QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>mv<span class="w"> </span>agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR<span class="w"> </span>agilex7f-ed-gsrd
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nb">cd</span><span class="w"> </span>agilex7f-ed-gsrd
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>make<span class="w"> </span>agf014eb-si-devkit-oobe-baseline-all
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nb">cd</span><span class="w"> </span>..
@@ -6663,7 +6663,7 @@
 <p>3. Build Arm* Trusted Firmware: </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>arm-trusted-firmware<span class="w"> </span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/arm-trusted-firmware<span class="w"> </span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/arm-trusted-firmware<span class="w"> </span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nb">cd</span><span class="w"> </span>arm-trusted-firmware<span class="w"> </span>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>make<span class="w"> </span>bl31<span class="w"> </span><span class="nv">PLAT</span><span class="o">=</span>agilex<span class="w"> </span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">cd</span><span class="w"> </span>..<span class="w"> </span>
@@ -6671,7 +6671,7 @@
 <p>4. Build U-Boot: </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>u-boot-socfpga<span class="w"> </span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/u-boot-socfpga<span class="w"> </span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/u-boot-socfpga<span class="w"> </span>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">cd</span><span class="w"> </span>u-boot-socfpga<span class="w"> </span>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># enable dwarf4 debug info, for compatibility with arm ds </span>
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g&#39;</span><span class="w"> </span>arch/arm/config.mk<span class="w"> </span>
@@ -6748,7 +6748,7 @@
 <p>6. Build Linux: </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>linux-socfpga<span class="w"> </span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/linux-socfpga
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/linux-socfpga
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nb">cd</span><span class="w"> </span>linux-socfpga
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>mrproper<span class="w"> </span>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>make<span class="w"> </span>defconfig<span class="w"> </span>
@@ -6904,15 +6904,15 @@
 <a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1.1/qinit.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
 </code></pre></div>
 <p>2. Compile the Quartus design: </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex7f-ed-gsrd
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>unzip<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>rm<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR.zip
-<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>mv<span class="w"> </span>agilex7f-ed-gsrd-QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>agilex7f-ed-gsrd
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>unzip<span class="w"> </span>QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>rm<span class="w"> </span>QPDS26.1_REL_GSRD_PR.zip
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>mv<span class="w"> </span>agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR<span class="w"> </span>agilex7f-ed-gsrd
 <a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="nb">cd</span><span class="w"> </span>agilex7f-ed-gsrd
 <a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>make<span class="w"> </span>agf014eb-si-devkit-oobe-baseline-all
 <a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="nb">cd</span><span class="w"> </span>..
@@ -6932,7 +6932,7 @@
 <p>4. Clone Yocto script and start the build: </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>gsrd-socfpga<span class="w"> </span>
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/gsrd-socfpga<span class="w"> </span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/gsrd-socfpga<span class="w"> </span>
 <a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="nb">cd</span><span class="w"> </span>gsrd-socfpga<span class="w"> </span>
 <a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>.<span class="w"> </span>agilex7_dk_si_agf014eb-gsrd-build.sh<span class="w"> </span>
 <a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>build_setup<span class="w"> </span>
@@ -7120,7 +7120,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 27, 2026</span>
       
         <br>
         Created:

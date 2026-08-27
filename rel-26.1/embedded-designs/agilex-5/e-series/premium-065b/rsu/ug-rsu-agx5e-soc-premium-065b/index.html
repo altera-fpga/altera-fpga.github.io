@@ -7214,7 +7214,7 @@
 </ul>
 <p>Refer to the  <a href="https://www.intel.com/content/www/us/en/docs/programmable/852610/">Hard Processor System Remote System Update User Guide: Agilex™ 5 SoCs</a> document for details about the Remote System Update.</p>
 <h2 id="component-versions">Component Versions<a class="headerlink" href="#component-versions" title="Permanent link">&para;</a></h2>
-<p>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. </p>
+<p>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. </p>
 <p><strong>Note:</strong> Regarding the Hardware Design components in the following table, only the device-specific one is used in this page.</p>
 <table>
 <thead>
@@ -7242,37 +7242,37 @@
 <td align="left">Agilex 7 Hardware Design</td>
 <td align="left"><a href="https://github.com/altera-fpga/agilex7f-ed-gsrd">https://github.com/altera-fpga/agilex7f-ed-gsrd</a></td>
 <td align="left">main</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Stratix 10 Hardware Design</td>
 <td align="left"><a href="https://github.com/altera-fpga/stratix10-ed-gsrd">https://github.com/altera-fpga/stratix10-ed-gsrd</a></td>
 <td align="left">main</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Arria 10 Hardware Design</td>
 <td align="left"><a href="https://github.com/altera-fpga/arria10-ed-gsrd">https://github.com/altera-fpga/arria10-ed-gsrd</a></td>
 <td align="left">main</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Linux</td>
 <td align="left"><a href="https://github.com/altera-fpga/linux-socfpga">https://github.com/altera-fpga/linux-socfpga</a></td>
 <td align="left">socfpga-6.18.20-lts</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Arm Trusted Firmware</td>
 <td align="left"><a href="https://github.com/altera-fpga/arm-trusted-firmware">https://github.com/altera-fpga/arm-trusted-firmware</a></td>
 <td align="left">socfpga_v2.14.1</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">U-Boot</td>
 <td align="left"><a href="https://github.com/altera-fpga/u-boot-socfpga">https://github.com/altera-fpga/u-boot-socfpga</a></td>
 <td align="left">socfpga_v2026.04</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">Yocto Project</td>
@@ -7296,13 +7296,13 @@
 <td align="left">Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design)</td>
 <td align="left"><a href="https://github.com/altera-fpga/meta-intel-fpga-refdes">https://github.com/altera-fpga/meta-intel-fpga-refdes</a></td>
 <td align="left">wrynose</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">HPS Legacy System Example Design</td>
 <td align="left"><a href="https://github.com/altera-fpga/gsrd-socfpga">https://github.com/altera-fpga/gsrd-socfpga</a></td>
 <td align="left">wrynose</td>
-<td align="left">QPDS26.1.1_REL_GSRD_PR</td>
+<td align="left">QPDS26.1_REL_GSRD_PR</td>
 </tr>
 <tr>
 <td align="left">KAS</td>
@@ -7320,7 +7320,7 @@
 <ul>
 <li>Host PC running Ubuntu 22.04 LTS (other Linux versions may work too) </li>
 <li>Minimum 48 GB of RAM, required for compiling the Quartus designs </li>
-<li>Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1  for compiling the Quartus projects, generating the flash images and writing to flash </li>
+<li>Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1  for compiling the Quartus projects, generating the flash images and writing to flash </li>
 <li>cmake/3.24.0  (build configuration tool) or or above to build LibRSU library.</li>
 <li>Access to Internet to download the Quartus project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. </li>
 <li><a href="https://www.altera.com/products/devkit/po-3284/agilex-5-fpga-e-series-065b-premium-development-kit">Agilex™ 5 FPGA E-Series 065B Premium Development Kit (DK-A5E065BB32AEA)</a>  for running the example. </li>
@@ -7362,7 +7362,7 @@
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-none-linux-gnu-
 </code></pre></div>
 <p>Enable Quartus tools to be called from command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1.1/qinit.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">source</span><span class="w"> </span>~/altera_pro/26.1/qinit.sh
 </code></pre></div>
 <h3 id="building-the-quartus-projects">Building the Quartus Projects<a class="headerlink" href="#building-the-quartus-projects" title="Permanent link">&para;</a></h3>
 <p>Create four different Quartus projects, based on the Quartus design provided in the HPS Baseline System Example Design from GitHub with a few changes listed next.</p>
@@ -7377,7 +7377,7 @@
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># Build 4 versions of the Quartus design</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>rm<span class="w"> </span>-rf<span class="w"> </span>hw<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>hw<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>hw<span class="w"> </span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>rm<span class="w"> </span>-rf<span class="w"> </span>agilex5_soc_devkit_ghrd_a55<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>agilex5_soc_devkit_ghrd_a55<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>agilex5_soc_devkit_ghrd_a55
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed065b-premium-devkit-oobe-baseline-a55.zip
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065b-premium-devkit-oobe-baseline-a55.zip
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>unzip<span class="w"> </span>a5ed065b-premium-devkit-oobe-baseline-a55.zip
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>rm<span class="w"> </span>-f<span class="w"> </span>a5ed065b-premium-devkit-oobe-baseline-a55.zip
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>/hw<span class="w"> </span>
@@ -7391,7 +7391,7 @@
 <a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
 <a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="c1"># Create script to update wdog configuration</span>
 <a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>cat<span class="w"> </span><span class="s">&lt;&lt;EOT &gt; update-wdog.tcl</span>
-<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="s">package require -exact qsys 26.1.1</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="s">package require -exact qsys 26.1</span>
 <a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="s">load_component u_agilex_hps</span>
 <a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="s">set_component_parameter_value Rst_sdm_wd_config {2}</span>
 <a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="s">set_component_parameter_value Rst_watchdog_en {1}</span>
@@ -7410,7 +7410,7 @@
 <a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>qsys-script<span class="w"> </span>--qpf<span class="o">=</span>top.qpf<span class="w"> </span>--script<span class="o">=</span>../update-wdog.tcl<span class="w"> </span>--system-file<span class="o">=</span>hps_subsys.qsys
 <a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="c1"># update sysid with the loop iterator &#39;value&#39;</span>
 <a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>cat<span class="w"> </span><span class="s">&lt;&lt;EOT &gt; update-sysid.tcl</span>
-<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="s">package require -exact qsys 26.1.1</span>
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="s">package require -exact qsys 26.1</span>
 <a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="s">load_component u_system_id</span>
 <a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="s">set_component_parameter_value id {0xABAB000$version}</span>
 <a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="s">save_component</span>
@@ -7986,7 +7986,7 @@ the following files are created <strong>combined_application.hps.rpd</strong> (c
 <a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>WARNING: Data cache not enabled
 <a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a>NOTICE:  BL31: Boot Core = 0
 <a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>NOTICE:  BL31: CPU ID = 0
-<a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>NOTICE:  BL31: v2.14.1(release): QPDS26.1.1_REL_GSRD_PR
+<a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>NOTICE:  BL31: v2.14.1(release): QPDS26.1_REL_GSRD_PR
 <a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>NOTICE:  BL31: Built : 13:23:25, Nov 23 2024
 <a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>
 <a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a>
@@ -8098,10 +8098,10 @@ the following files are created <strong>combined_application.hps.rpd</strong> (c
 <li>
 <p>Run the rsu display_dcmf_version to query and display the decision firmware versions.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>SOCFPGA<span class="w"> </span><span class="c1"># rsu display_dcmf_version </span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>DCMF0<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1.1
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>DCMF1<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1.1
-<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>DCMF2<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1.1
-<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>DCMF3<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1.1
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>DCMF0<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>DCMF1<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>DCMF2<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>DCMF3<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1
 <a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>SOCFPGA<span class="w"> </span><span class="c1"># rsu slot_count </span>
 <a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>Number<span class="w"> </span>of<span class="w"> </span><span class="nv">slots</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>.<span class="w"> </span>
 <a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>SOCFPGA<span class="w"> </span><span class="c1"># rsu slot_get_info 0 </span>
@@ -8909,10 +8909,10 @@ application image is running fine.</p>
 <a id="__codelineno-84-7" name="__codelineno-84-7" href="#__codelineno-84-7"></a>Error<span class="w"> </span>details<span class="w"> </span>:<span class="w"> </span>0x00000000
 <a id="__codelineno-84-8" name="__codelineno-84-8" href="#__codelineno-84-8"></a>Retry<span class="w"> </span>counter<span class="w"> </span>:<span class="w"> </span>0x00000000
 <a id="__codelineno-84-9" name="__codelineno-84-9" href="#__codelineno-84-9"></a>SOCFPGA<span class="w"> </span><span class="c1"># rsu display_dcmf_version</span>
-<a id="__codelineno-84-10" name="__codelineno-84-10" href="#__codelineno-84-10"></a>DCMF0<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1.1
-<a id="__codelineno-84-11" name="__codelineno-84-11" href="#__codelineno-84-11"></a>DCMF1<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1.1
-<a id="__codelineno-84-12" name="__codelineno-84-12" href="#__codelineno-84-12"></a>DCMF2<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1.1
-<a id="__codelineno-84-13" name="__codelineno-84-13" href="#__codelineno-84-13"></a>DCMF3<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1.1
+<a id="__codelineno-84-10" name="__codelineno-84-10" href="#__codelineno-84-10"></a>DCMF0<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1
+<a id="__codelineno-84-11" name="__codelineno-84-11" href="#__codelineno-84-11"></a>DCMF1<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1
+<a id="__codelineno-84-12" name="__codelineno-84-12" href="#__codelineno-84-12"></a>DCMF2<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1
+<a id="__codelineno-84-13" name="__codelineno-84-13" href="#__codelineno-84-13"></a>DCMF3<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1
 </code></pre></div>
 </li>
 <li>
@@ -9017,10 +9017,10 @@ application image is running fine.</p>
 <li>
 <p>Display the decision firmware version information.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-88-1" name="__codelineno-88-1" href="#__codelineno-88-1"></a>root@linux:~#<span class="w"> </span>./rsu_client<span class="w"> </span>--display-dcmf-version<span class="w"> </span>
-<a id="__codelineno-88-2" name="__codelineno-88-2" href="#__codelineno-88-2"></a>DCMF0<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1.1
-<a id="__codelineno-88-3" name="__codelineno-88-3" href="#__codelineno-88-3"></a>DCMF1<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1.1
-<a id="__codelineno-88-4" name="__codelineno-88-4" href="#__codelineno-88-4"></a>DCMF2<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1.1
-<a id="__codelineno-88-5" name="__codelineno-88-5" href="#__codelineno-88-5"></a>DCMF3<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1.1
+<a id="__codelineno-88-2" name="__codelineno-88-2" href="#__codelineno-88-2"></a>DCMF0<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1
+<a id="__codelineno-88-3" name="__codelineno-88-3" href="#__codelineno-88-3"></a>DCMF1<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1
+<a id="__codelineno-88-4" name="__codelineno-88-4" href="#__codelineno-88-4"></a>DCMF2<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1
+<a id="__codelineno-88-5" name="__codelineno-88-5" href="#__codelineno-88-5"></a>DCMF3<span class="w"> </span><span class="nv">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">26</span>.1
 <a id="__codelineno-88-6" name="__codelineno-88-6" href="#__codelineno-88-6"></a>Operation<span class="w"> </span>completed<span class="w"> </span>
 </code></pre></div>
 </li>
@@ -10043,7 +10043,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 26, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 27, 2026</span>
       
         <br>
         Created:
