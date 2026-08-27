@@ -17,7 +17,7 @@
 
     <br>
 
-    ![qar-content](/rel-26.1.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/qar-content.png){:style="display:block; margin-left:auto; margin-right:auto"}
+    ![qar-content](/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/qar-content.png){:style="display:block; margin-left:auto; margin-right:auto"}
     <center>
 
     **QAR file content.**
@@ -58,7 +58,7 @@
 
 <br>
 
-![quartus-comp](/rel-26.1.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/quartus-comp.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![quartus-comp](/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/quartus-comp.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center>
 
 **Quartus® Prime Pro compilation flow.**
@@ -130,7 +130,7 @@ In the log, look for the property `"HPS/FPGA configuration order"` SET TO `"HPS_
 
 <br>
 
-![hps-first](/rel-26.1.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/hps-first.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![hps-first](/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/hps-first.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center>
 
 **HPS First SOF file.**
@@ -144,7 +144,7 @@ and `top.hps.jic` execute:
 **Note:** top.sof is located in `<project>/quartus/output_files/top.sof`
 
 === "Agilex™ 5"
-    For [Agilex™ 5 FPGA E-Series 065B Modular Development Kit](https://www.altera.com/products/devkit/po-3274/agilex-5-fpga-and-soc-e-series-065b-modular-development-kit)
+    For [Agilex™ 5 FPGA E-Series 065B Modular Development Kit]
     ```bash
     quartus_pfg -c top.sof top.jic \
     -o device=MT25QU02G \
@@ -178,7 +178,7 @@ In the log, look for the property `"HPS/FPGA configuration order"` SET TO `"AFTE
 
 <br>
 
-![fpga-first](/rel-26.1.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/fpga-first.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![fpga-first](/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/fpga-first.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center>
 
 **FPGA First SOF file.**
@@ -189,7 +189,7 @@ In the log, look for the property `"HPS/FPGA configuration order"` SET TO `"AFTE
 specifically the file `u-boot-spl-dtb.hex`. To generate the `top.jic` execute:
 
 === "Agilex™ 5"
-    For [Agilex™ 5 FPGA E-Series 065B Modular Development Kit](https://www.altera.com/products/devkit/po-3274/agilex-5-fpga-and-soc-e-series-065b-modular-development-kit)
+    For [Agilex™ 5 FPGA E-Series 065B Modular Development Kit]
     ```bash
     quartus_pfg -c top.sof top.jic \
     -o device=MT25QU02G \

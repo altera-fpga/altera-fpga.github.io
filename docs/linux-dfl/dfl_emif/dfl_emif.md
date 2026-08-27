@@ -1,6 +1,6 @@
 # **Host Attach Memory Subsystem IP Driver**
 
-Last updated: **August 26, 2026** 
+Last updated: **August 27, 2026** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/memory/dfl-emif.c?h=master)
 

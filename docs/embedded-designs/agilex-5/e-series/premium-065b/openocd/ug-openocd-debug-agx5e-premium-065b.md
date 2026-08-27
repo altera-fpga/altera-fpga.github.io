@@ -35,7 +35,7 @@ The following are needed:
 
 * [Agilex 5 FPGA E-Series 065B Premium Development Kit](https://www.altera.com/products/devkit/po-3284/agilex-5-fpga-e-series-065b-premium-development-kit), ordering code DK-A5E065BB32AEA. Other Agilex 5 development boards will also work in the same manner, but the instructions for building the binaries would need to be modified to target a different board. The `agilex5.cfg` file and the instructions would remain unchanged.
 * Host PC with Linux (Ubuntu 22.04 was used, but others should work too)
-* Quartus Pro 26.1.1 (or just Quartus Pro Programmer 26.1.1). Quartus versions prior to 26.1 contained an older version of OpenOCD which did not support debugging HPS on Agilex 3.
+* Quartus Pro 26.1 (or just Quartus Pro Programmer 26.1). Quartus versions prior to 26.1 contained an older version of OpenOCD which did not support debugging HPS on Agilex 3.
 * `gdb-multiarch` tool (installed with `sudo apt-install gdb-multiarch ` on Ubuntu)
 * Network access, for downloading the sources while building the binaries
 
@@ -70,7 +70,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 # -----------------------------------------------------------------------------
 # Add Quartus tools to PATH
 # -----------------------------------------------------------------------------
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.1/qinit.sh
 
 # -----------------------------------------------------------------------------
 # Get precompiled SOF
@@ -84,7 +84,7 @@ wget https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aea_gsr
 # -----------------------------------------------------------------------------
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 make -j 48 PLAT=agilex5 bl31 
 cd ..
@@ -94,7 +94,7 @@ cd ..
 # -----------------------------------------------------------------------------
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
 sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&mmc;/g' arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi
@@ -161,7 +161,7 @@ rm -f *.jic *.rbf
 # -----------------------------------------------------------------------------
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga
 cd linux-socfpga
 make clean
 make defconfig

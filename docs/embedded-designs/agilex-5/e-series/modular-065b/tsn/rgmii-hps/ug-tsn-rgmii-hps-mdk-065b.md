@@ -65,13 +65,13 @@ TSN Solution Architecture for this SED is illustrated as:
 
 ### Prerequisites
 
-This system example design is based on the [Agilex 5 E-Series Modular Development Kit GSRD](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/). It is recommended that you familiarize yourself with the GSRD development flow before proceeding with this design.
+This system example design is based on the [Agilex 5 E-Series Modular Development Kit GSRD](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/). It is recommended that you familiarize yourself with the GSRD development flow before proceeding with this design.
 The TSN through HPS IO System Example Design will be implemented on the HPS Enablement Expansion Board (also referred as HPS Daughter Card), which is included with the development kit.
 
 #### Development Kit
 
 This Example Design targets the Agilex 5 FPGA E-Series 065B Modular Development Kit, utilizing the HPS. 
-Refer to [GSRD\#Development Kit](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/#development-kit) for details about the board, including how to install the HPS Daughter Card.
+Refer to [GSRD\#Development Kit](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/#development-kit) for details about the board, including how to install the HPS Daughter Card.
 
 * Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Modular Development Kit
 * HPS Enablement Expansion Board. Included with the development kit.
@@ -92,8 +92,8 @@ Host PC with:
 *   Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.
 *   Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
 *   Altera&reg; Quartus&reg; Prime Pro Edition version. Used to recompile the hardware design. If only writing binaries is required, then the smaller Altera&reg; Quartus&reg; Prime Pro Edition Programmer is sufficient.
-*   The prebuilt binaries were built using Altera&reg; Quartus&reg; 26.1.1
-*   The instructions for rebuilding the binaries use Altera&reg; Quartus&reg; 26.1.1
+*   The prebuilt binaries were built using Altera&reg; Quartus&reg; 26.1
+*   The instructions for rebuilding the binaries use Altera&reg; Quartus&reg; 26.1
 *   Local Ethernet network, with DHCP server
 *   Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -102,10 +102,10 @@ Host PC with:
 
 This page documents content testing with prebuild binaries flow and testing with complete flow.
 
-*   See [HPS GSRD User Guide for the Agilex™ 5 E-Series Modular Dev Kit] (https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/)
+*   See [HPS GSRD User Guide for the Agilex™ 5 E-Series Modular Dev Kit] (https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/)
   
   * See Prerequisites
-  * See [Prebuild Binaries](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/#prebuilt-binaries)
+  * See [Prebuild Binaries](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/#prebuilt-binaries)
   * See Component Versions
   * See Exercise-prebuilt-binaries
 
@@ -130,11 +130,11 @@ This system example design showcases Ethernet design through the HPS IO on the H
 There are two ways to test the design based on use case.
     <a id="UserFlow1"></a>
 
-* User Flow 1: [Testing with Prebuilt Binaries](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/#exercising-prebuilt-binaries)
+* User Flow 1: [Testing with Prebuilt Binaries](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/#exercising-prebuilt-binaries)
 
     <a id="UserFlow2"></a>
 
-* User Flow 2: [Testing Complete Flow build GSRD 2.0](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/#build-gsrd-20-binaries)
+* User Flow 2: [Testing Complete Flow build GSRD 2.0](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/#build-gsrd-20-binaries)
 
 | User Flow | Description | Required for [Userflow#1](#UserFlow1) | Required for [Userflow#2](#UserFlow2) |
 | --- | --- | --- | --- |
@@ -256,11 +256,11 @@ Once the test is completed, copy the following files from Board B (listener) to 
 
 Import 'afpkt-rxtstamps.txt' and 'afxdp-rxtstamps.txt' to excel in 2 seperate sheets.
 
-<img src="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
+<img src="https://altera-fpga.github.io/rel-26.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
 
 Plot Column 1 for each sheets using Scatter chart,
 
-<img src="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
+<img src="https://altera-fpga.github.io/rel-26.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
 
 
 This will generate plot for AFPKT and AFXDP with latency(on Y-axis) against packet count (on X-axis).

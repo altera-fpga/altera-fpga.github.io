@@ -19,7 +19,7 @@ This System Example Design comprises the following components:
   * Sample Applications
 
 Please refer to this pages for more detail.
-[HPS Baseline System Example Design (SED) User Guide](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/)
+[HPS Baseline System Example Design (SED) User Guide](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/)
 
 ### Prerequisites
 
@@ -35,7 +35,7 @@ The SGMII System Example Design will be implemented on Agilex™ 7 FPGA F-Series
   - Linux - Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   - Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows)
   - Micro SD card slot or Micro SD card writer/reader
-  - Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1
+  - Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1
   - Local Ethernet network, with DHCP server (will be used to provide IP address to the board)
 
 You can determine your board version by referring to the following table from [https://docs.altera.com/r/docs/683752/current/agilextm-7-fpga-f-series-transceiver-soc-development-kit-user-guide/overview](https://docs.altera.com/r/docs/683752/current/agilextm-7-fpga-f-series-transceiver-soc-development-kit-user-guide/overview)
@@ -61,8 +61,8 @@ Host PC with:
 *   Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.
 *   Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
 *   Altera&reg; Quartus&reg; Prime Pro Edition version. Used to recompile the hardware design. If only writing binaries is required, then the smaller Altera&reg; Quartus&reg; Prime Pro Edition Programmer is sufficient.
-*   The prebuilt binaries were built using Altera&reg; Quartus&reg; 26.1.1
-*   The instructions for rebuilding the binaries use Altera&reg; Quartus&reg; 26.1.1
+*   The prebuilt binaries were built using Altera&reg; Quartus&reg; 26.1
+*   The instructions for rebuilding the binaries use Altera&reg; Quartus&reg; 26.1
 *   Local Ethernet network, with DHCP server
 *   Internet connection. For downloading the files, especially when rebuilding the HPS Baseline System Example Design (SED).
 
@@ -75,7 +75,7 @@ This page documents content testing with prebuild binaries flow and testing with
 
 #### Release Notes
 
-The Altera® FPGA HPS Embedded Software release notes can be accessed from the following link: [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR)
+The Altera® FPGA HPS Embedded Software release notes can be accessed from the following link: [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR)
 
 #### Prebuilt Binaries
 
@@ -83,7 +83,7 @@ The Altera® FPGA HPS Embedded Software release notes can be accessed from the f
 
 The release files are accessible at [https://releases.rocketboards.org/2026.08/sgmii/agilex7_dk_si_agf014eb_sgmii/](https://releases.rocketboards.org/2026.08/sgmii/agilex7_dk_si_agf014eb_sgmii/)
 
-* See [HPS Baseline System Example Design (SED) User Guide for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tile and E-Tile)](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/)
+* See [HPS Baseline System Example Design (SED) User Guide for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tile and E-Tile)](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/)
   
   * See Prerequisites
   * See [Prebuild Binaries](https://releases.rocketboards.org/2026.08/sgmii/agilex7_dk_si_agf014eb_sgmii/)
@@ -104,12 +104,12 @@ This reference design adds one Ethernet interfaces by exporting HPS EMAC interfa
 There are two ways to test the design based on use case.
     <a id="UserFlow1"></a>
 
-* User Flow 1: [Testing with Prebuilt Binaries](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/#exercise-prebuilt-binaries)
+* User Flow 1: [Testing with Prebuilt Binaries](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/#exercise-prebuilt-binaries)
   * The release of prebuild binaries are accessible at [https://releases.rocketboards.org/2026.08/sgmii/agilex7_dk_si_agf014eb_sgmii/](https://releases.rocketboards.org/2026.08/sgmii/agilex7_dk_si_agf014eb_sgmii/)
 
     <a id="UserFlow2"></a>
 
-* User Flow 2: [Testing Complete Flow Rebuild Binaries](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/#rebuild-the-binaries)
+* User Flow 2: [Testing Complete Flow Rebuild Binaries](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/#rebuild-the-binaries)
   * **Replace "make agf014eb-si-devkit-oobe-baseline-all" > "make agf014eb-si-devkit-oobe-sgmii-all"** at Build Hardware Design flow.
 
   * The following files are created:

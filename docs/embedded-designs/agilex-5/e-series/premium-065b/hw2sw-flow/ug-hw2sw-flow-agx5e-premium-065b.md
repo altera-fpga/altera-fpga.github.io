@@ -55,7 +55,7 @@ Ensure you have the following hardware and software:
 
 - **OS**: Linux (Ubuntu 22.04 LTS recommended).
 - **Hardware**: Minimum 64 GB RAM and 200 GB free disk space.
-- **Software**: Altera® Quartus® Prime Pro Edition Version 26.1.1.
+- **Software**: Altera® Quartus® Prime Pro Edition Version 26.1.
 - **Serial Terminal**: GtkTerm, Minicom, TeraTerm, or PuTTY.
 
 **Network & Connectivity**
@@ -96,7 +96,7 @@ Configure Bash as the default system shell:
 sudo ln -sf /bin/bash /bin/sh
 ```
 
-Add the Quartus® Prime Pro Edition Version 26.1.1 binaries to your system path:
+Add the Quartus® Prime Pro Edition Version 26.1 binaries to your system path:
 
 ``` bash
 source ~/altera_pro/26.1/qinit.sh

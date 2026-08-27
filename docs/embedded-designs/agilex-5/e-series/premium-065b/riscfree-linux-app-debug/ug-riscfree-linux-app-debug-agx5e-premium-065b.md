@@ -28,8 +28,8 @@ The following are needed:
 
 * [Agilex 5 FPGA E-Series 065B Premium Development Kit](https://www.altera.com/products/devkit/po-3284/agilex-5-fpga-e-series-065b-premium-development-kit), ordering code DK-A5E065BB32AEA. Other Agilex 5 development boards will also work in the same manner, just that other set HPS Baseline System Example Design binaries will be used.
 * Host PC with Linux (Ubuntu 22.04 was used, but others should work too)
-* Quartus Pro 26.1.1 (or just Quartus Pro standalone Programmer 26.1.1).
-* Ashling RiscFree bundled with Quartus Pro 26.1.1 (can be installed and use with just the standalone Programmer)
+* Quartus Pro 26.1 (or just Quartus Pro standalone Programmer 26.1).
+* Ashling RiscFree bundled with Quartus Pro 26.1 (can be installed and use with just the standalone Programmer)
 * Network access, for downloading the sources while building the binaries
 
 ## Instructions
@@ -68,7 +68,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.1/qinit.sh
 ```
 
 
@@ -77,7 +77,7 @@ source ~/altera_pro/26.1.1/qinit.sh
 Sdd RiscFree to the system PATH:
 
 ```bash
- export PATH="$HOME/altera_pro/26.1.1/riscfree/RiscFree/:$PATH"
+ export PATH="$HOME/altera_pro/26.1/riscfree/RiscFree/:$PATH"
 ```
 
 
@@ -313,7 +313,7 @@ $ RiscFree -data workspace&
 
 ![](images/debug-config-6.png)
 
-15\. Browse to `~/altera_pro/26.1.1/riscfree/toolchain/Arm/aarch64-none-linux-gnu/bin/` then select `aarch64-none-linux-gnu-gdb` and click **Open**:
+15\. Browse to `~/altera_pro/26.1/riscfree/toolchain/Arm/aarch64-none-linux-gnu/bin/` then select `aarch64-none-linux-gnu-gdb` and click **Open**:
 
 ![](images/debug-config-7.png)
 

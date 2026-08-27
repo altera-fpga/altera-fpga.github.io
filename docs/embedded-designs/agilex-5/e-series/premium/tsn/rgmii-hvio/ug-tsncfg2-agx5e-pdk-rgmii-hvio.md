@@ -50,8 +50,8 @@ This design utilizes the HPS GMII-to-RGMII adapter IP to convert GMII to RGMII p
 
 Please refer to the following documentation for further information:
 
-1. Agilex™ 5 Hard Processor System Technical Reference Manual: chapter 12.3.1. [GMII to RGMII through RGMII adapter via FPGA HVIOs](https://www.intel.com/content/www/us/en/docs/programmable/814346/26.1.1/gmii-to-rgmii-through-rgmii-adapter.html)
-2. Embedded Peripherals IP User Guide: chapter 50 [HPS GMII to RGMII Adapter Altera® FPGA IP](https://www.intel.com/content/www/us/en/docs/programmable/683130/26.1.1/hps-gmii-to-rgmii-adapter.html)
+1. Agilex™ 5 Hard Processor System Technical Reference Manual: chapter 12.3.1. [GMII to RGMII through RGMII adapter via FPGA HVIOs](https://www.intel.com/content/www/us/en/docs/programmable/814346/26.1/gmii-to-rgmii-through-rgmii-adapter.html)
+2. Embedded Peripherals IP User Guide: chapter 50 [HPS GMII to RGMII Adapter Altera® FPGA IP](https://www.intel.com/content/www/us/en/docs/programmable/683130/26.1/hps-gmii-to-rgmii-adapter.html)
 
 This System Example Design comprises the following components:
 
@@ -72,13 +72,13 @@ TSN Solution Architecture for this SED is illustrated as:
 
 ### Prerequisites
 
-This system example design is based on the [Agilex 5 E-Series Premium Development Kit GSRD](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/). It is recommended that you familiarize yourself with the GSRD development flow before proceeding with this design.
+This system example design is based on the [Agilex 5 E-Series Premium Development Kit GSRD](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/). It is recommended that you familiarize yourself with the GSRD development flow before proceeding with this design.
 The TSN through FPGA IO System Example Design requires the HPS Enablement Expansion Board (also referred as HPS Daughter Card), which is included with the development kit.
 
 #### Development Kit
 
 This Example Design targets the Agilex 5 FPGA E-Series 065B Premium Development Kit, utilizing the HPS. 
-Refer to [GSRD\#Development Kit](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#development-kit) for details about the board, including how to install the HPS Daughter Card.
+Refer to [GSRD\#Development Kit](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#development-kit) for details about the board, including how to install the HPS Daughter Card.
 
 * Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit
 * HPS Enablement Expansion Board. Included with the development kit.
@@ -104,8 +104,8 @@ Host PC with:
 *   Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.
 *   Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
 *   Altera&reg; Quartus&reg; Prime Pro Edition version. Used to recompile the hardware design. If only writing binaries is required, then the smaller Altera&reg; Quartus&reg; Prime Pro Edition Programmer is sufficient.
-*   The prebuilt binaries were built using Quartus version 26.1.1
-*   The instructions for rebuilding the binaries use Quartus version 26.1.1
+*   The prebuilt binaries were built using Quartus version 26.1
+*   The instructions for rebuilding the binaries use Quartus version 26.1
 *   Local Ethernet network, with DHCP server
 *   Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -117,7 +117,7 @@ This page documents the following:
 
 #### Prebuilt Binaries
 
-The Agilex 5 Premium Development Kit 26.1.1 Example Design binaries are located at [https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/](https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/):
+The Agilex 5 Premium Development Kit 26.1 Example Design binaries are located at [https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/](https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/):
 
 | HPS Daughter Card | Boot Source | Link |
 | --- | --- | --- |
@@ -125,11 +125,11 @@ The Agilex 5 Premium Development Kit 26.1.1 Example Design binaries are located 
 
 #### Sources
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions were used to build the provided prebuilt binaries:
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions were used to build the provided prebuilt binaries:
 
 ### Release Notes
 
-See [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1)
+See [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1)
 
 
 
@@ -217,7 +217,7 @@ There are two ways to test the design based on use case.
 
 1. Quartus Prime Pro
 
-    Please download and install the Quartus&reg; Prime Pro Edition version 26.1.1 version software.
+    Please download and install the Quartus&reg; Prime Pro Edition version 26.1 version software.
 
 2. Win32 Disk Imager
 
@@ -255,7 +255,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 Note: The following must be re-done for fresh terminal session
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/26.1.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/26.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -289,7 +289,7 @@ sudo ln -sf /bin/bash /bin/sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-tsn-cfg2.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-tsn-cfg2.zip
 unzip a5ed065es-premium-devkit-oobe-legacy-tsn-cfg2.zip
 rm -f a5ed065es-premium-devkit-oobe-legacy-tsn-cfg2.zip
 make legacy_tsn_cfg2-build
@@ -327,7 +327,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
 cd gsrd-socfpga
 . agilex5_dk_a5e065bb32aes1-gsrd-build.sh
 build_setup
@@ -631,11 +631,11 @@ Once the test is completed, copy the following files from Board B (listener) to 
 
 Import 'afpkt-rxtstamps.txt' and 'afxdp-rxtstamps.txt' to excel in 2 seperate sheets.
 
-<img src="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
+<img src="https://altera-fpga.github.io/rel-26.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
 
 Plot Column 1 for each sheets using Scatter chart,
 
-<img src="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
+<img src="https://altera-fpga.github.io/rel-26.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
 
 
 This will generate plot for AFPKT and AFXDP with latency(on Y-axis) against packet count (on X-axis).

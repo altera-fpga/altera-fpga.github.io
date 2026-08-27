@@ -149,7 +149,7 @@ The following table describes the configuration that is being performed in the C
 * Host PC with
 
   * Linux distribution with kernel-headers/ kernel-devel and Binutils packages properly installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1.
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.
   * Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows).
 
 ## Building the Example
@@ -188,7 +188,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.1/qinit.sh
 ```
 
 
@@ -205,10 +205,10 @@ This Quartus project starts using the Quartus reference design for the DK-SI-AGF
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex7f-ed-gsrd
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-unzip QPDS26.1.1_REL_GSRD_PR.zip
-rm QPDS26.1.1_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS26.1.1_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+unzip QPDS26.1_REL_GSRD_PR.zip
+rm QPDS26.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR agilex7f-ed-gsrd
 cd agilex7f-ed-gsrd
 make agf014eb-si-devkit-oobe-baseline-generate-design
 ```
@@ -462,7 +462,7 @@ Clone the Yocto script and prepare the build:
   ```bash
   cd $TOP_FOLDER
   rm -rf gsrd-socfpga
-  git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
+  git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
   cd gsrd-socfpga
   . agilex7_dk_si_agf014eb-gsrd-build.sh
   build_setup
@@ -623,7 +623,7 @@ as shown next.
   
   # Create a Linux repository in the $TOP_FOLDER
   rm -rf linux-socfpga-for-patch
-  git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga linux-socfpga-for-patch
+  git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-opensource/linux-socfpga linux-socfpga-for-patch
   # Add the content of dmaBufNodes.txt  after 4 lines of finding memory@
   awk '
       /memory@/ {found=NR}  # Store the line number where "memory@" is found
@@ -813,7 +813,7 @@ In order to excercise this example you will need to program the binaries that yo
 * SD Card: `$TOP_FOLDER/gsrd_socfpga/agilex7_dk_si_agf014ea-gsrd-images/gsrd-console-image-agilex7.wic`
 * QSPI: `$TOP_FOLDER/ghrd_agfb014r24b2e2v.hps.jic`
 
-When using the above SD Card image, this already includes the [dmaTest_cache_v2.0.run ](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) application that is used to exercise this example. This is a bash script is located at the **/home/root/** directoy in Linux which is running in the development kit. 
+When using the above SD Card image, this already includes the [dmaTest_cache_v2.0.run ](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) application that is used to exercise this example. This is a bash script is located at the **/home/root/** directoy in Linux which is running in the development kit. 
 
 **Note:** Make sure that the variables in the script used to define the addresses for the configuration registers for the Cache Coherency Translator and Modular Scatter-Gather DMA components match the ones set in the Quartus design.
 
@@ -834,7 +834,7 @@ These variables are defined in the script as:
 To execute the sample test script:
 
 1. Power cycle the board to boot to Linux.
-2. Identify the [dmaTest_cache_v2.0.run](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) test script in your `/home/root` directory. 
+2. Identify the [dmaTest_cache_v2.0.run](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/setup-use-bridges/collateral/dmaTest_cache_v2.0.run) test script in your `/home/root` directory. 
 3. You can see how to exercise the script by using the **-h** switch:
   ```
   root@agilex:~# bash dmaTest_cache_v2.0.run -h

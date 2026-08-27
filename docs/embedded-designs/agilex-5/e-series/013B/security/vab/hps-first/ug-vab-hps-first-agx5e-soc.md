@@ -40,7 +40,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 3. Enable Quartus tools to be called from command line:
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/26.1.1/quartus
+export QUARTUS_ROOTDIR=~/altera_pro/26.1/quartus
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -72,7 +72,7 @@ sudo ln -sf /bin/bash /bin/sh
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
 cd arm-trusted-firmware
 make -j 48 PLAT=agilex5 bl31 
 cd ..
@@ -84,7 +84,7 @@ Enable VAB features for U-Boot
 
 ```bash
 cd $TOP_FOLDER
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -185,7 +185,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR  https://github.com/altera-fpga/linux-socfpga linux-socfpga
+git clone -b QPDS26.1_REL_GSRD_PR  https://github.com/altera-fpga/linux-socfpga linux-socfpga
 cd linux-socfpga
 make defconfig
 make -j 64 Image && make intel/socfpga_agilex5_socdk.dtb 
@@ -227,7 +227,7 @@ mkdir -p privatekeys; mkdir -p publickeys; mkdir -p qky
 Start a Nios V command shell to have all Quartus tools in the PATH:
 
 ```bash
-~/altera_pro/26.1.1/niosv/bin/niosv-shell
+~/altera_pro/26.1/niosv/bin/niosv-shell
 ```
 
 ### Generate Root Keys
@@ -277,7 +277,7 @@ quartus_sign --family=agilex5 --operation=append_key --previous_pem=privatekeys/
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed013-devkit-oobe-legacy-baseline.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed013-devkit-oobe-legacy-baseline.zip
 unzip a5ed013-devkit-oobe-legacy-baseline.zip
 rm -f a5ed013-devkit-oobe-legacy-baseline.zip
 make legacy_baseline-build
