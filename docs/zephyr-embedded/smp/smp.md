@@ -1,6 +1,6 @@
 # **SMP (Symmetric Multi-Processing) support for Hard Processor System**
 
-Last updated: **August 27, 2026** 
+Last updated: **August 28, 2026** 
 
 **Upstream Status**: [Upstreamed](https://github.com/zephyrproject-rtos/zephyr/blob/main/arch/arm64/core/smp.c)
 

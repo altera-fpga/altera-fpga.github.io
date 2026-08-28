@@ -166,7 +166,7 @@ U-Boot and Linux compilation, Yocto build, and SD card image creation require a 
 
 ### Binaries
 
-Release notes and pre-built binaries are available under the [GitHub repository release](https://github.com/altera-fpga/agilex7-ed-ptp/releases/tag/SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.1).
+Release notes and pre-built binaries are available under the [GitHub repository release](https://github.com/altera-fpga/agilex7-ed-ptp/releases/tag/SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.2).
 
 | _File_                                        | _Description_                                                   |
 |-----------------------------------------------|-----------------------------------------------------------------|
@@ -187,19 +187,19 @@ Release notes and pre-built binaries are available under the [GitHub repository 
 
 | _Component_                               | _Location_                                                                                                                                                                          | _Branch_                         | _Commit ID/Tag_                                |
 |-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------|------------------------------------------------|
-| **Hardware Design**                       | [https://github.com/altera-fpga/agilex7-ed-ptp.git](https://github.com/altera-fpga/agilex7-ed-ptp.git)                                                                              | rel/26.1                       | SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.1 |
+| **Hardware Design**                       | [https://github.com/altera-fpga/agilex7-ed-ptp.git](https://github.com/altera-fpga/agilex7-ed-ptp.git)                                                                              | rel/26.1                       | SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.2 |
 | **Linux**                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga)                                                                                        | socfpga-6.12.19-lts-ethernet-sed | SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.1 |
 | **Arm Trusted Firmware**                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware)                                                                          | socfpga_v2.14.0                  | 4a4b4573e12fabd0a88e95952af49840db6b770d       |
 | **U-Boot**                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga)                                                                                      | socfpga_v2026.1                | 6e59447316d06b25ca98caaa5c16787f5c74e862       |
 | **Yocto Project: poky**                   | [https://git.yoctoproject.org/poky/](https://git.yoctoproject.org/poky/)                                                                                                            | scarthgap                        | b56134ff90dec996e8aae45ed7e6ad6b1d5a84a0       |
 | **Yocto Project: meta-intel-fpga**        | [https://git.yoctoproject.org/meta-intel-fpga/](https://git.yoctoproject.org/meta-intel-fpga/)                                                                                      | scarthgap                        | QPDS26.1_REL_GSRD_PR       |
 | **Yocto Project: meta-intel-fpga-refdes** | [https://github.com/altera-fpga/meta-intel-fpga-refdes/](https://github.com/altera-fpga/meta-intel-fpga-refdes/)                                                                    | scarthgap                        | QPDS26.1_REL_GSRD_PR       |
-| **Yocto Project: meta-agilex7-sed**       | [https://github.com/altera-fpga/agilex7-ed-ptp/tree/rel/26.1/...](https://github.com/altera-fpga/agilex7-ed-ptp/tree/rel/26.1/agi027fd-si-devkit/src/sw/yocto/meta-agilex7-sed) | rel/26.1                       | SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.1 |
-| **Design Build Script: gsrd-socfpga**     | [https://github.com/altera-fpga/agilex7-ed-ptp/tree/rel/26.1/...](https://github.com/altera-fpga/agilex7-ed-ptp/tree/rel/26.1/agi027fd-si-devkit/src/sw/yocto/build.sh)         | rel/26.1                       | SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.1 |
+| **Yocto Project: meta-agilex7-sed**       | [https://github.com/altera-fpga/agilex7-ed-ptp/tree/rel/26.1/...](https://github.com/altera-fpga/agilex7-ed-ptp/tree/rel/26.1/agi027fd-si-devkit/src/sw/yocto/meta-agilex7-sed) | rel/26.1                       | SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.2 |
+| **Design Build Script: gsrd-socfpga**     | [https://github.com/altera-fpga/agilex7-ed-ptp/tree/rel/26.1/...](https://github.com/altera-fpga/agilex7-ed-ptp/tree/rel/26.1/agi027fd-si-devkit/src/sw/yocto/build.sh)         | rel/26.1                       | SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.2 |
 
 ## Release Notes
 
-[Precision Time Protocol System Example Design Release Notes](https://github.com/altera-fpga/agilex7-ed-ptp/releases/tag/SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.1).
+[Precision Time Protocol System Example Design Release Notes](https://github.com/altera-fpga/agilex7-ed-ptp/releases/tag/SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.2).
 
 ## Precision Time Protocol System Example Design Architecture
 
@@ -1046,7 +1046,7 @@ Directory Structure Used in This Example Design:
 
 ```
 
-Pre-built binaries are available under the [GitHub repository releases](https://github.com/altera-fpga/agilex7-ed-ptp/releases/tag/SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.1). File descriptions are provided in the [Binaries](#binaries) section.
+Pre-built binaries are available under the [GitHub repository releases](https://github.com/altera-fpga/agilex7-ed-ptp/releases/tag/SED-PTP-agilex7_dk_si_agi027fd-Q26.1-Rel-1.2). File descriptions are provided in the [Binaries](#binaries) section.
 
 Extract all files and copy them to $TOP_FOLDER/bin to run hardware tests on the development kit.
 
@@ -1255,7 +1255,7 @@ To update the FPGA bitstream SHA signature in the HPS second-stage bootloader, f
     cp -f bin/top.core.rbf $CORE_RBF
     FILE=src/sw/yocto/meta-agilex7-sed/recipes-bsp/ghrd/hw-ref-design.bbappend
     CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ") 
-    OLD_SHA=".*sha256sum_PTP_2P10G_MCQ_ANLT.*"
+    OLD_SHA=".*sha256sum_PTP_2P10G_MCQ_ANLT =.*"
     NEW_SHA="sha256sum_PTP_2P10G_MCQ_ANLT = \"$CORE_SHA\"" 
     sed -i "s/$OLD_SHA/$NEW_SHA/" "$FILE"
     ```
@@ -1272,7 +1272,7 @@ To update the FPGA bitstream SHA signature in the HPS second-stage bootloader, f
     cp -f bin/top.core.rbf $CORE_RBF
     FILE=src/sw/yocto/meta-agilex7-sed/recipes-bsp/ghrd/hw-ref-design.bbappend
     CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ") 
-    OLD_SHA=".*sha256sum_PTP_2P10G_MCQ.*"
+    OLD_SHA=".*sha256sum_PTP_2P10G_MCQ =.*"
     NEW_SHA="sha256sum_PTP_2P10G_MCQ = \"$CORE_SHA\"" 
     sed -i "s/$OLD_SHA/$NEW_SHA/" "$FILE"
     ```
@@ -1289,7 +1289,7 @@ To update the FPGA bitstream SHA signature in the HPS second-stage bootloader, f
     cp -f bin/top.core.rbf $CORE_RBF
     FILE=src/sw/yocto/meta-agilex7-sed/recipes-bsp/ghrd/hw-ref-design.bbappend
     CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ") 
-    OLD_SHA=".*sha256sum_PTP_2P25G_MCQ_ANLT.*"
+    OLD_SHA=".*sha256sum_PTP_2P25G_MCQ_ANLT =.*"
     NEW_SHA="sha256sum_PTP_2P25G_MCQ_ANLT = \"$CORE_SHA\"" 
     sed -i "s/$OLD_SHA/$NEW_SHA/" "$FILE"
     ```
@@ -1306,7 +1306,7 @@ To update the FPGA bitstream SHA signature in the HPS second-stage bootloader, f
     cp -f bin/top.core.rbf $CORE_RBF
     FILE=src/sw/yocto/meta-agilex7-sed/recipes-bsp/ghrd/hw-ref-design.bbappend
     CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ") 
-    OLD_SHA=".*sha256sum_PTP_2P25G_MCQ.*"
+    OLD_SHA=".*sha256sum_PTP_2P25G_MCQ =.*"
     NEW_SHA="sha256sum_PTP_2P25G_MCQ = \"$CORE_SHA\"" 
     sed -i "s/$OLD_SHA/$NEW_SHA/" "$FILE"
     ```
@@ -1323,7 +1323,7 @@ To update the FPGA bitstream SHA signature in the HPS second-stage bootloader, f
     cp -f bin/top.core.rbf $CORE_RBF
     FILE=src/sw/yocto/meta-agilex7-sed/recipes-bsp/ghrd/hw-ref-design.bbappend
     CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ") 
-    OLD_SHA=".*sha256sum_PTP_2P50G_MCQ_ANLT.*"
+    OLD_SHA=".*sha256sum_PTP_2P50G_MCQ_ANLT =.*"
     NEW_SHA="sha256sum_PTP_2P50G_MCQ_ANLT = \"$CORE_SHA\"" 
     sed -i "s/$OLD_SHA/$NEW_SHA/" "$FILE"
     ```
@@ -1340,7 +1340,7 @@ To update the FPGA bitstream SHA signature in the HPS second-stage bootloader, f
     cp -f bin/top.core.rbf $CORE_RBF
     FILE=src/sw/yocto/meta-agilex7-sed/recipes-bsp/ghrd/hw-ref-design.bbappend
     CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ") 
-    OLD_SHA=".*sha256sum_PTP_2P50G_MCQ.*"
+    OLD_SHA=".*sha256sum_PTP_2P50G_MCQ =.*"
     NEW_SHA="sha256sum_PTP_2P50G_MCQ = \"$CORE_SHA\"" 
     sed -i "s/$OLD_SHA/$NEW_SHA/" "$FILE"
     ```
@@ -1357,7 +1357,7 @@ To update the FPGA bitstream SHA signature in the HPS second-stage bootloader, f
     cp -f bin/top.core.rbf $CORE_RBF
     FILE=src/sw/yocto/meta-agilex7-sed/recipes-bsp/ghrd/hw-ref-design.bbappend
     CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ") 
-    OLD_SHA=".*sha256sum_PTP_2P100G_MCQ_ANLT.*"
+    OLD_SHA=".*sha256sum_PTP_2P100G_MCQ_ANLT =.*"
     NEW_SHA="sha256sum_PTP_2P100G_MCQ_ANLT = \"$CORE_SHA\"" 
     sed -i "s/$OLD_SHA/$NEW_SHA/" "$FILE"
     ```
@@ -1374,7 +1374,7 @@ To update the FPGA bitstream SHA signature in the HPS second-stage bootloader, f
     cp -f bin/top.core.rbf $CORE_RBF
     FILE=src/sw/yocto/meta-agilex7-sed/recipes-bsp/ghrd/hw-ref-design.bbappend
     CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ") 
-    OLD_SHA=".*sha256sum_PTP_2P100G_MCQ.*"
+    OLD_SHA=".*sha256sum_PTP_2P100G_MCQ =.*"
     NEW_SHA="sha256sum_PTP_2P100G_MCQ = \"$CORE_SHA\"" 
     sed -i "s/$OLD_SHA/$NEW_SHA/" "$FILE"
     ```
@@ -1390,7 +1390,7 @@ To update the FPGA bitstream SHA signature in the HPS second-stage bootloader, f
     cp -f bin/top.core.rbf $CORE_RBF
     FILE=src/sw/yocto/meta-agilex7-sed/recipes-bsp/ghrd/hw-ref-design.bbappend
     CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ") 
-    OLD_SHA=".*sha256sum_PTP_2P_MCQ_DR.*"
+    OLD_SHA=".*sha256sum_PTP_2P_MCQ_DR =.*"
     NEW_SHA="sha256sum_PTP_2P_MCQ_DR = \"$CORE_SHA\"" 
     sed -i "s/$OLD_SHA/$NEW_SHA/" "$FILE"
     ```
@@ -1499,7 +1499,7 @@ cat /etc/os-release
     own distribution for production use.
 
     root@agilex7dksiagi027fc:~# uname -a
-    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2xMulti-ptp-anlt-sed-Q26.1-R1.1 #1 SMP PREEMPT Wed Jun 17 07:05:03 UTC 2026 aarch64 GNU/Linux
+    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2x10G-ptp-anlt-sed-Q26.1-R1.2 #1 SMP PREEMPT Wed Jun 17 07:05:03 UTC 2026 aarch64 GNU/Linux
     root@agilex7dksiagi027fc:~# cat /etc/os-release
     ID=poky
     NAME="Poky (Yocto Project Reference Distro)"
@@ -1521,7 +1521,7 @@ cat /etc/os-release
     own distribution for production use.
 
     root@agilex7dksiagi027fc:~# uname -a
-    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2x25G-ptp-anlt-sed-Q26.1-R1.1 #1 SMP PREEMPT Wed Jun 17 07:05:03 UTC 2026 aarch64 GNU/Linux
+    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2x25G-ptp-anlt-sed-Q26.1-R1.2 #1 SMP PREEMPT Wed Jun 17 07:05:03 UTC 2026 aarch64 GNU/Linux
     root@agilex7dksiagi027fc:~# cat /etc/os-release
     ID=poky
     NAME="Poky (Yocto Project Reference Distro)"
@@ -1542,7 +1542,7 @@ cat /etc/os-release
     own distribution for production use.
 
     root@agilex7dksiagi027fc:~# uname -a
-    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2xMulti-ptp-anlt-sed-Q26.1-R1.1 #1 SMP PREEMPT Wed Jun 17 07:05:03 UTC 2026 aarch64 GNU/Linux
+    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2x50G-ptp-anlt-sed-Q26.1-R1.2 #1 SMP PREEMPT Wed Jun 17 07:05:03 UTC 2026 aarch64 GNU/Linux
     root@agilex7dksiagi027fc:~# cat /etc/os-release
     ID=poky
     NAME="Poky (Yocto Project Reference Distro)"
@@ -1563,7 +1563,7 @@ cat /etc/os-release
     own distribution for production use.
 
     root@agilex7dksiagi027fc:~# uname -a
-    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2xMulti-ptp-anlt-sed-Q26.1-R1.1 #1 SMP PREEMPT Wed Jun 17 07:05:03 UTC 2026 aarch64 GNU/Linux
+    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2x100G-ptp-anlt-sed-Q26.1-R1.2 #1 SMP PREEMPT Wed Jun 17 07:05:03 UTC 2026 aarch64 GNU/Linux
     root@agilex7dksiagi027fc:~# cat /etc/os-release
     ID=poky
     NAME="Poky (Yocto Project Reference Distro)"
@@ -1583,7 +1583,7 @@ cat /etc/os-release
     own distribution for production use.
 
     root@agilex7dksiagi027fc:~# uname -a
-    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2xMulti-ptp-anlt-sed-Q26.1-R1.1 #1 SMP PREEMPT Wed Jun 17 07:05:03 UTC 2026 aarch64 GNU/Linux
+    Linux agilex7dksiagi027fc 6.12.19-altera-agx7-2xMulti-ptp-anlt-sed-Q26.1-R1.2 #1 SMP PREEMPT Wed Jun 17 07:05:03 UTC 2026 aarch64 GNU/Linux
     root@agilex7dksiagi027fc:~# cat /etc/os-release
     ID=poky
     NAME="Poky (Yocto Project Reference Distro)"

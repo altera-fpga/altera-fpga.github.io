@@ -128,8 +128,8 @@ the Input source.
 
 !!! note "Related Information"
 
-    [Test Pattern Generator IP] <br/>
-    [Switch IP]
+    [Test Pattern Generator IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/test-pattern-generator.html) <br/>
+    [Switch IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/switch.html)
 
 <br/>
 
@@ -191,7 +191,7 @@ calibration flow.
 
 !!! note "Related Information"
 
-    [Black Level Statistics IP]
+    [Black Level Statistics IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/black-level-statistics.html)
 
 <br/>
 
@@ -206,7 +206,7 @@ configures the Clipper IP to bypass the input image.
 
 !!! note "Related Information"
 
-    [Clipper IP]
+    [Clipper IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/clipper.html)
 
 <br/>
 
@@ -256,7 +256,7 @@ median filter.
 
 !!! note "Related Information"
 
-    [Defective Pixel Correction IP]
+    [Defective Pixel Correction IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/defective-pixel-correction.html)
 
 <br/>
 
@@ -301,7 +301,7 @@ the software configures a Gaussian distribution into the spatial distance LUT.
 
 !!! note "Related Information"
 
-    [Adaptive Noise Reduction IP]
+    [Adaptive Noise Reduction IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/adaptive-noise-reduction.html)
 
 <br/>
 
@@ -364,7 +364,7 @@ function of analog gain of the sensor.
 
 !!! note "Related Information"
 
-    [Black Level Correction IP]
+    [Black Level Correction IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/black-level-correction.html)
 
 <br/>
 
@@ -417,7 +417,7 @@ coefficients.
 
 !!! note "Related Information"
 
-    [Vignette Correction IP]
+    [Vignette Correction IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/vignette-correction.html)
 
 <br/>
 
@@ -483,7 +483,7 @@ The WBS IP passes its input image to its output unchanged.
 
 !!! note "Related Information"
 
-    [White Balance Statistics IP]
+    [White Balance Statistics IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/white-balance-statistics.html)
 
 <br/>
 
@@ -519,7 +519,7 @@ mode. The SW App also supports many fixed color temperature options.
 
 !!! note "Related Information"
 
-    [White Balance Correction IP]
+    [White Balance Correction IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/white-balance-correction.html)
 
 <br/>
 
@@ -556,7 +556,7 @@ interpolates missing colors to calculate the RGB output.
 
 !!! note "Related Information"
 
-    [Demosaic IP]
+    [Demosaic IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/demosaic.html)
 
 <br/>
 
@@ -589,7 +589,7 @@ The HS IP passes its input to its output unmodified.
 
 !!! note "Related Information"
 
-    [Histogram Statistics IP]
+    [Histogram Statistics IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/histogram-statistics.html)
 
 <br/>
 
@@ -618,7 +618,7 @@ accurate representation of the scene.
 
 !!! note "Related Information"
 
-    [Color Space Converter IP]
+    [Color Space Converter IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/color-space-converter.html)
 
 <br/>
 
@@ -700,9 +700,9 @@ formatting conventions:
 
 !!! note "Related Information"
 
-    [3D LUT] <br/>
-    [3D LUT IP] <br/>
-    [LUTCalc GitHub page]
+    [3D LUT](https://www.altera.com/products/ip/a1jui000004r4gnmas/3d-lut-altera-fpga-ip) <br/>
+    [3D LUT IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/3d-lut.html) <br/>
+    [LUTCalc GitHub page](https://github.com/cameramanben/LUTCalc)
 
 <br/>
 
@@ -749,9 +749,9 @@ The SW App configures the TMO IP over the Avalon® memory-mapped interface.
 
 !!! note "Related Information"
 
-    [Tone Mapping Operator] <br/>
-    [Tone Mapping Operator IP] <br/>
-    [Bits per Color Sample Adapter IP] <br/>
+    [Tone Mapping Operator](https://www.altera.com/products/ip/a1jui000004r0hlmak/tone-mapping-operator-fpga-ip) <br/>
+    [Tone Mapping Operator IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/tone-mapping-operator.html) <br/>
+    [Bits per Color Sample Adapter IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/bits-per-color-sample-adapter.html) <br/>
 
 <br/>
 
@@ -775,7 +775,7 @@ unmodified.
 
 !!! note "Related Information"
 
-    [Unsharp Mask IP]
+    [Unsharp Mask IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/unsharp-mask.html)
 
 <br/>
 
@@ -827,9 +827,9 @@ Frame Buffer.
 
 !!! note "Related Information"
 
-    [Video Frame Writer IP] <br/>
-    [Video Frame Reader IP] <br/>
-    [EMIF]
+    [Video Frame Writer IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/video-frame-writer-intel-fpga-ip.html) <br/>
+    [Video Frame Reader IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/video-frame-reader-intel-fpga-ip.html) <br/>
+    [EMIF](https://www.altera.com/design/guidance/emif-support)
 
 <br/>
 
@@ -944,9 +944,9 @@ Input.
 
 !!! note "Related Information"
 
-    [Scaler IP] <br/>
-    [Video Frame Writer IP] <br/>
-    [EMIF]
+    [Scaler IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/scaler.html) <br/>
+    [Video Frame Writer IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/video-frame-writer-intel-fpga-ip.html) <br/>
+    [EMIF](https://www.altera.com/design/guidance/emif-support)
 
 <br/>
 
@@ -1015,10 +1015,10 @@ results for further processing.
 
 !!! note "Related Information"
 
-    [Altera® FPGA AI Suite] <br/>
+    [Altera® FPGA AI Suite](https://www.altera.com/products/development-tools/fpga-ai-suite) <br/>
     [Ultralytics YOLO] <br/>
-    [ONNX] <br/>
-    [OpenVINO Toolkit]
+    [ONNX](https://onnx.ai/) <br/>
+    [OpenVINO Toolkit](https://storage.openvinotoolkit.org/repositories/openvino/packages/2024.6/linux)
 
 <br/>
 
@@ -1054,9 +1054,9 @@ which has been delayed through the AI Main Frame Buffer to align correctly.
 
 !!! note "Related Information"
 
-    [Video Frame Reader IP] <br/>
-    [Scaler IP] <br/>
-    [EMIF]
+    [Video Frame Reader IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/video-frame-reader-intel-fpga-ip.html) <br/>
+    [Scaler IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/scaler.html) <br/>
+    [EMIF](https://www.altera.com/design/guidance/emif-support)
 
 <br/>
 
@@ -1078,8 +1078,8 @@ overlays, and track images through the different buffers.
 
 !!! note "Related Information"
 
-    [Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs (25.1)] <br/>
-    [NiosV Processor for Altera® FPGA]
+    [Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs (25.1)](https://www.intel.com/content/www/us/en/docs/programmable/814346/25-1/hard-processor-system-technical-reference.html) <br/>
+    [NiosV Processor for Altera® FPGA](https://www.altera.com/design/guidance/nios-v-developer)
 
 <br/>
 
@@ -1118,8 +1118,8 @@ runtime by the SW App.
 
 !!! note "Related Information"
 
-    [Test Pattern Generator IP] <br/>
-    [Mixer IP]
+    [Test Pattern Generator IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/test-pattern-generator.html) <br/>
+    [Mixer IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/mixer.html)
 
 <br/>
 
@@ -1155,7 +1155,7 @@ support the Capture Switch that follows.
 
 !!! note "Related Information"
 
-    [1D LUT IP]
+    [1D LUT IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/1d-lut.html)
 
 <br/>
 
@@ -1187,10 +1187,10 @@ the color bit depth back down to 10-bits.
 
 !!! note "Related Information"
 
-    [Switch IP] <br/>
-    [Video Frame Writer IP] <br/>
-    [Color Plane Manager IP] <br/>
-    [Bits per Color Sample Adapter IP] <br/>
+    [Switch IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/switch.html) <br/>
+    [Video Frame Writer IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/video-frame-writer-intel-fpga-ip.html) <br/>
+    [Color Plane Manager IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/color-plane-manager.html) <br/>
+    [Bits per Color Sample Adapter IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/bits-per-color-sample-adapter.html) <br/>
 
 <br/>
 
@@ -1232,11 +1232,11 @@ VVP Protocol Converter IP.
 !!! note "Related Information"
 
 
-    [Switch IP] <br/>
-    [Scaler IP] <br/>
+    [Switch IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/switch.html) <br/>
+    [Scaler IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/scaler.html) <br/>
 
-    [Pixels in Parallel Converter IP] <br/>
-    [Protocol Converter IP]
+    [Pixels in Parallel Converter IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/pixels-in-parallel-converter.html) <br/>
+    [Protocol Converter IP](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/protocol-converter.html)
 
 <br/>
 
@@ -1279,10 +1279,10 @@ memory copy functions between HPS and FPGA external DDR4 SDRAM/s.
 
 
 ## Additional Reference Information
-* [Video and Vision Processing Suite Altera® FPGA IP User Guide]
-* [Altera® FPGA Streaming Video Protocol Specification]
-* [AMBA 4 AXI4-Stream Protocol Specification]
-* [Avalon® Interface Specifications – Avalon® Streaming Interfaces]
+* [Video and Vision Processing Suite Altera® FPGA IP User Guide](https://www.intel.com/content/www/us/en/docs/programmable/683329/25-1/about-the-video-and-vision-processing-suite.html)
+* [Altera® FPGA Streaming Video Protocol Specification](https://www.intel.com/content/www/us/en/docs/programmable/683397/current/about-the-intel-fpga-streaming-video.html)
+* [AMBA 4 AXI4-Stream Protocol Specification](https://developer.arm.com/documentation/ihi0051/a/)
+* [Avalon® Interface Specifications – Avalon® Streaming Interfaces](https://www.intel.com/content/www/us/en/docs/programmable/683091/20-1/streaming-interfaces.html)
 
 <br/>
 
@@ -1290,52 +1290,6 @@ memory copy functions between HPS and FPGA external DDR4 SDRAM/s.
 [Back](../camera_4k_ai/camera_4k_ai.md#documentation){ .md-button }
 <br/>
 
-
-
-[Agilex™ 5 E-Series Modular Development Board GSRD User Guide (25.1)]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/
-
-
-
-[Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs (25.1)]: https://www.intel.com/content/www/us/en/docs/programmable/814346/25-1/hard-processor-system-technical-reference.html
-[NiosV Processor for Altera® FPGA]: https://www.altera.com/design/guidance/nios-v-developer
-[Agilex™ 5 FPGA E-Series 065B Modular Development Kit]: https://www.altera.com/products/devkit/a1jui0000061qabmaa/agilex-5-fpga-and-soc-e-series-modular-development-kit-es
-[Agilex™ 5 FPGA E-Series 065B Modular Development Kit Product Brief]: https://www.intel.com/content/www/us/en/content-details/815178/agilex-5-fpga-e-series-065b-modular-development-kit-product-brief.html
-[Altera® FPGA AI Suite]: https://www.altera.com/products/development-tools/fpga-ai-suite
-
-
-[Win32DiskImager]: https://sourceforge.net/projects/win32diskimager
-[7-Zip]: https://www.7-zip.org
-[TeraTerm]: https://github.com/TeraTermProject/teraterm/releases
-[PuTTY]: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
-
-
-[Framos FSM:GO IMX678C Camera Modules]: https://www.framos.com/en/fsmgo
-[Wide 110deg HFOV Lens]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L110A-PM-A1Q1?qs=%252BHhoWzUJg4KQkNyKsCEDHw%3D%3D
-[Medium 100deg HFOV Lens]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L100A-PM-A1Q1?qs=%252BHhoWzUJg4IesSwD2ACIBQ%3D%3D
-[Narrow 54deg HFOV Lens]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L54A-PM-A1Q1?qs=%252BHhoWzUJg4L5yHZulKgVGA%3D%3D
-[Framos Tripod Mount Adapter]: https://www.framos.com/en/products/fma-mnt-trp1-4-v1c-26333
-[Tripod]: https://thepihut.com/products/small-tripod-for-raspberry-pi-hq-camera
-[150mm flex-cable]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FMA-FC-150-60-V1A?qs=GedFDFLaBXGCmWApKt5QIQ%3D%3D&_gl=1*d93qim*_ga*MTkyOTE4MjMxNy4xNzQxMTcwMzQy*_ga_15W4STQT4T*MTc0MTE3MDM0Mi4xLjEuMTc0MTE3MDQ5OS40NS4wLjA
-[300mm micro-coax cable]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FFA-MC50-Kit-0.3m?qs=%252BHhoWzUJg4K3LtaE207mhw%3D%3D
-[DP to HDMI Adapter]: https://www.amazon.co.uk/gp/product/B01M6WK3KU/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
-[Framos GMSL3 5m]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FFA-GMSL3-Kit-5m?qs=%252BHhoWzUJg4IkLHv%2F6fzsXQ%3D%3D
-[Framos FFA-GMSL-SER-V2A Serializer]: https://www.framos.com/en/products/ffa-gmsl-ser-v2a-27617
-[Framos FFA-GMSL-DES-V2A Deserializer]: https://www.framos.com/en/products/ffa-gmsl-des-v2a-27240
-
-
-[VVP IP Suite]: https://www.altera.com/products/ip/a1jui000004qxfpmak/video-and-vision-processing-suite
-[MIPI DPHY IP and MIPI CSI-2 IP]: https://www.altera.com/products/ip/a1jui0000049uuamam/mipi-d-phy-ip#tab-blade-1-3
-[Nios® V Processor]: https://www.altera.com/products/ip/a1jui0000049uvama2/nios-v-processors
-
-
-[Altera® Quartus® Prime Pro Edition version 25.1 Linux]: https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html
-[Altera® Quartus® Prime Pro Edition version 25.1 Windows]: https://www.intel.com/content/www/us/en/software-kit/851653/intel-quartus-prime-pro-edition-design-software-version-25-1-for-windows.html
-[Altera® Quartus® Prime Pro Edition version 25.1 Programmer and Tools]: https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html
-
-
-[ultralytics YOLO]: https://docs.ultralytics.com
-[ONNX]: https://onnx.ai/
-[OpenVINO Toolkit]: https://storage.openvinotoolkit.org/repositories/openvino/packages/2024.6/linux
 
 
 

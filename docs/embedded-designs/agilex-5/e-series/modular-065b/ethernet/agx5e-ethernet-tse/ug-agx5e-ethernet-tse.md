@@ -141,9 +141,7 @@ The HPS-to-FPGA address map uses both H2F and lightweight H2F windows for periph
 
 #### Triple Speed Ethernet IP
 
-The Triple Speed Ethernet IP includes both the 10/100/1000 Ethernet MAC and the 1000BASE-X SGMII 2xTBI PCS with embedded PMA connectivity toward an external SERDES/PHY component.
-
-For the Agilex 5 MDK-based implementation captured by the HAS, the external PHY is the Marvell 88E2110.
+The Triple Speed Ethernet IP includes both the 10/100/1000 Ethernet MAC and the 1000BASE-X SGMII 2xTBI PCS with embedded PMA connectivity toward an external SERDES/PHY component. The external PHY is the Marvell 88E2110.
 
 The MAC handles data flow between user applications and the external Ethernet PHY, exposes configuration and status registers, and requires TX_ENA and RX_ENA to be set last because MAC operation begins immediately once those bits are asserted.
 
