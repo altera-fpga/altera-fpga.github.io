@@ -91,7 +91,7 @@ This design targets robotics perception workloads on Altera® FPGA devices.
 * ISP Lite pipeline in FPGA fabric for image conditioning.
 * DisplayPort video output for local monitoring.
 * Hard Processor System (HPS) running Linux for higher-level robotics software (for example ROS 2).
-* Modular Design Toolkit (MDT) project generation from XML ([AGX_5E_Modular_Devkit_HPS_ISP_CAM_ROB.xml](https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/HPS_ISP_CAM_ROBOTICS/AGX_5E_Modular_Devkit_HPS_ISP_CAM_ROB.xml)).
+* Modular Design Toolkit (MDT) project generation from XML ([AGX_5E_Modular_Devkit_HPS_ISP_CAM_ROB.xml]).
 
 ## Vision pipeline features
 
@@ -109,16 +109,16 @@ This design targets robotics perception workloads on Altera® FPGA devices.
 
 ## Software and integration features
 
-* **Yocto/KAS build flow:** Linux image generation from [agilex-ed-robotics/sw](https://github.com/altera-fpga/agilex-ed-robotics/tree/rel/26.1/sw) using [kas-camera.yml](https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/sw/kas-camera.yml).
+* **Yocto/KAS build flow:** Linux image generation from [agilex-ed-robotics/sw] using [kas-camera.yml].
 * Additional Yocto layer(s) supporting Docker (meta-altera-fpga).
-* **ROS 2-ready deployment model:** supports containerized workflows with [Altera ROS 2](https://github.com/altera-fpga/altera-ros2), enabling topic publication and visualization tooling.
-* **MDT-first hardware flow:** reproducible create/build flow driven by [HPS_ISP_CAM_ROBOTICS](https://github.com/altera-fpga/agilex-ed-robotics/tree/rel/26.1/HPS_ISP_CAM_ROBOTICS) and [Creating and Building the Design based on Modular Design Toolkit (MDT).](https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/HPS_ISP_CAM_ROBOTICS/Readme.md).
-* **Reference alignment:** architecture and IP usage are consistent with [VVP IP Suite](https://www.altera.com/products/ip/po-3150/video-and-vision-processing-suite) and related Agilex camera example designs.
+* **ROS 2-ready deployment model:** supports containerized workflows with [Altera ROS 2], enabling topic publication and visualization tooling.
+* **MDT-first hardware flow:** reproducible create/build flow driven by [HPS_ISP_CAM_ROBOTICS] and [Creating and Building the Design based on Modular Design Toolkit (MDT).].
+* **Reference alignment:** architecture and IP usage are consistent with [VVP IP Suite] and related Agilex camera example designs.
 
 ## Deliverables
 
-* Prebuilt assets from [Release Tag](https://github.com/altera-fpga/agilex-ed-robotics/releases/tag/rel-camera-26.1): SD card image ([wic.gz](https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-camera-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.gz), [wic.bmap](https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-camera-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.bmap)), QSPI image ([top.hps.jic](https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-camera-26.1/top.hps.jic)), and programmable files ([top.core.rbf](https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-camera-26.1/top.core.rbf), [top.sof](https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-camera-26.1/top.sof)).
-* Optional pre-created Quartus archive [ROBOTICS_ISP_CAMERA.qar](https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-camera-26.1/ROBOTICS_ISP_CAMERA.qar) for faster rebuild and iteration.
+* Prebuilt assets from [Release Tag]: SD card image ([wic.gz], [wic.bmap]), QSPI image ([top.hps.jic]), and programmable files ([top.core.rbf], [top.sof]).
+* Optional pre-created Quartus archive [ROBOTICS_ISP_CAMERA.qar] for faster rebuild and iteration.
 
 <br>
 

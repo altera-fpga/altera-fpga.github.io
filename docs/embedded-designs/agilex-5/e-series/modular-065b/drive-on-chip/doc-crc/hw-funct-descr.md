@@ -67,7 +67,7 @@ This document provides insights about the functionality of the design example us
 * The `hps_subsystem` is an instance of the Agilex™ 5 HPS, which operates the higher-level software stack in Linux. It includes an External Memory Interface (EMIF) to the on-board DDR4 chip, featuring presets and connections to link the HPS2FPGA AXI bridges to other subsystems.
 * The subsystems `dniosv_subsystem`, `motor_model_subsystem`, `drive_subsystem`and `control_subsystem` are blocks related to motor control and motor modeling. These are instantiated to achieve 6 motor drives being controlled in the FPGA fabric (3 NiosV/g cores controlling 2 drive subsystems each).
 
-  For more information on these blocks, refer to [AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices]
+  For more information on these blocks, refer to [AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices](https://docs.altera.com/r/docs/826207/current)
 <br>
 
 The following block diagrams show the main components and subsystems of the 6-Axis
@@ -89,8 +89,8 @@ The next diagram shows three instances of the dual-axis Drive-On-Chip design see
 
 ## Hardware Subsystems & Components
 
-This project variant is based on [AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices] and
-[AN 994: Drive-on-Chip Design Example for Altera® Agilex™ 7 Devices]. In this design an HPS Subsystem (Hard Processor System) has been included to provide a higher level of abstraction for motion control.
+This project variant is based on [AN 1000: Drive-on-Chip Design Example: Agilex™ 5 Devices](https://docs.altera.com/r/docs/826207/current) and
+[AN 994: Drive-on-Chip Design Example for Altera® Agilex™ 7 Devices](https://docs.altera.com/r/docs/780361/current/an-994-drive-on-chip-design-example-for-agilextm-7-devices). In this design an HPS Subsystem (Hard Processor System) has been included to provide a higher level of abstraction for motion control.
 
 The subsystems instantiated in the design are described below.
 
