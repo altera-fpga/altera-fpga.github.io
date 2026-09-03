@@ -37,15 +37,15 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 | Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
 | Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
 | Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1_p1_REL_GSRD_PR |
-| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
-| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1_REL_GSRD_PR |
-| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1_REL_GSRD_PR |
-| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
+| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_p1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
+| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.2 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -216,7 +216,7 @@ rm -rf arm-trusted-firmware
 git clone https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 # checkout the branch used for this document, comment out to use default
-git checkout -b test -t origin/socfpga_v2.14.1
+git checkout -b test -t origin/socfpga_v2.14.0
 make -j 48 PLAT=agilex5 bl31
 cd ..
 ```
@@ -239,7 +239,7 @@ rm -rf u-boot-socfpga
 git clone https://github.com/altera-fpga/u-boot-socfpga 
 cd u-boot-socfpga 
 # comment out next line to use the latest default branch 
-git checkout -b test -t origin/socfpga_v2026.04 
+git checkout -b test -t origin/socfpga_v2026.01 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
 # only boot from SD, do not try QSPI and NAND
@@ -325,7 +325,7 @@ rm -rf linux-socfpga
 git clone https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
 # checkout the branch used for this document, comment out to use default
-git checkout -b test -t origin/socfpga-6.18.20-lts
+git checkout -b test -t origin/socfpga-6.18.2-lts
 # configure the RSU driver to be built into the kernel
 make clean && make mrproper
 make defconfig
@@ -641,7 +641,7 @@ Run the following commands to build the root file system.
   rm -rf buildroot
   git clone https://github.com/buildroot/buildroot.git
   cd buildroot
-  git checkout 2026.05
+  git checkout 2026.02
   mkdir -p overlay/etc/profile.d/
   # Use regilar prompt used in our devices root@<device>:~# instead of only #
   echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
@@ -853,7 +853,7 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 1. Power up the board and press any key when prompted, to get to the U-Boot command prompt.
 
     ```
-    U-Boot SPL 2026.04-35102-g135e53726d-dirty (Jan 28 2025 - 13:23:54 -0600)
+    U-Boot SPL 2026.01-35102-g135e53726d-dirty (Jan 28 2025 - 13:23:54 -0600)
     Reset state: Cold
     MPU           800000 kHz
     L4 Main	      400000 kHz
@@ -873,11 +873,11 @@ This section demonstrates how to use U-Boot to perform the following basic opera
     WARNING: Data cache not enabled
     NOTICE:  BL31: Boot Core = 0
     NOTICE:  BL31: CPU ID = 0
-    NOTICE:  BL31: v2.14.1(release): QPDS26.1_REL_GSRD_PR
+    NOTICE:  BL31: v2.14.0(release): QPDS26.1_REL_GSRD_PR
     NOTICE:  BL31: Built : 13:23:25, Nov 23 2024
     
     
-    U-Boot 2026.04-35102-g135e53726d-dirty (Jan 28 2025 - 13:23:54 -0600)socfpga_agilex5
+    U-Boot 2026.01-35102-g135e53726d-dirty (Jan 28 2025 - 13:23:54 -0600)socfpga_agilex5
     
     CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A55/A76)
     Model: SoCFPGA Agilex5 SoCDK
@@ -1842,10 +1842,10 @@ information from U-Boot, this should be a previous version.
 
     ```bash
     SOCFPGA # rsu display_dcmf_version
-    DCMF0 version = 26.1.0
-    DCMF1 version = 26.1.0
-    DCMF2 version = 26.1.0
-    DCMF3 version = 26.1.0
+    DCMF0 version = 25.3.1
+    DCMF1 version = 25.3.1
+    DCMF2 version = 25.3.1
+    DCMF3 version = 25.3.1
     ```
 
 3. Find an unused slot (slot 1, P2), erase it, write the combined application image to it, verify that it was programmed successfully  and check it is now the highest priority.

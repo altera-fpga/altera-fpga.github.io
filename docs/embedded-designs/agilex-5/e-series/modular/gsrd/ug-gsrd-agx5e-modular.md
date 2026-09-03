@@ -39,12 +39,12 @@ The following are required to be able to fully exercise the Agilex  5 E-Series 0
 
 ### Prebuilt Binaries
 
-The Agilex 5 Modular Development Kit GSRD binaries are located at [https://releases.rocketboards.org/2026.08/](https://releases.rocketboards.org/2026.08/):
+The Agilex 5 Modular Development Kit GSRD binaries are located at [https://releases.rocketboards.org/2026.04/](https://releases.rocketboards.org/2026.04/):
 
 Boot Source | Link |
 | ---------------------- | -- |
-| SD Card | [https://releases.rocketboards.org/2026.08/gsrd/agilex5_mk_a5e065bb32aes1_gsrd/](https://releases.rocketboards.org/2026.08/gsrd/agilex5_mk_a5e065bb32aes1_gsrd/) |
-| QSPI | [https://releases.rocketboards.org/2026.08/qspi/agilex5_mk_a5e065bb32aes1_qspi/](https://releases.rocketboards.org/2026.08/qspi/agilex5_mk_a5e065bb32aes1_qspi/) |
+| SD Card | [https://releases.rocketboards.org/2026.04/gsrd/agilex5_mk_a5e065bb32aes1_gsrd/](https://releases.rocketboards.org/2026.04/gsrd/agilex5_mk_a5e065bb32aes1_gsrd/) |
+| QSPI | [https://releases.rocketboards.org/2026.04/qspi/agilex5_mk_a5e065bb32aes1_qspi/](https://releases.rocketboards.org/2026.04/qspi/agilex5_mk_a5e065bb32aes1_qspi/) |
 
 > *Note*: The GSRD release for the HPS Enablement Board comes in two versions: one which uses a Cortex-A55 as the boot core, and one which uses a Cortex-A76 as the boot core. The rest of the functionality is the same, and all cores are enabled in Linux by default. The instructions on how to exercise the binaries are the same for both versions. And the instructions for rebuilding the binaries are similar, just using a different version of the GHRD which has the respective option selected. 
 
@@ -56,12 +56,12 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
 | Agilex 5 Design | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1_p1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1_p1_REL_GSRD_PR |
-| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
+| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_p1_REL_GSRD_PR |
+| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.2 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -226,7 +226,7 @@ Notes:
 <hr/>
 <h4 id="write-sd-card-image">Write SD Card</h4>
 
-1\. Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.08/gsrd/agilex5_mk_a5e065bb32aes1_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/agilex5_mk_a5e065bb32aes1_gsrd/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
+1\. Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.04/gsrd/agilex5_mk_a5e065bb32aes1_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.04/gsrd/agilex5_mk_a5e065bb32aes1_gsrd/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
 
 2\. Write the gsrd-console-image-agilex5_devkit.wic. SD card image to the micro SD card using the included USB writer in the host computer:
 
@@ -254,7 +254,7 @@ sync
 
 4\. Download and extract the JIC image, then write it to QSPI
 ```bash
-wget https://releases.rocketboards.org/2026.08/gsrd/agilex5_mk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+wget https://releases.rocketboards.org/2026.04/gsrd/agilex5_mk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
 tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
 jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
@@ -368,7 +368,7 @@ Either write 1MB of zeroes at the beginning of the SD card, or remove the SD car
 
 4\. Download and extract the JIC image, then write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2026.08/qspi/agilex5_mk_a5e065bb32aes1_qspi/agilex_flash_image.hps.jic.tar.gz
+wget https://releases.rocketboards.org/2026.04/qspi/agilex5_mk_a5e065bb32aes1_qspi/agilex_flash_image.hps.jic.tar.gz
 tar xf agilex_flash_image.hps.jic.tar.gz
 jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;agilex_flash_image.hps.jic"
@@ -686,9 +686,9 @@ cd qspi_boot
 2\. Get the `ubinize_nor.cfg` file which contains the details on how to build the `root.ubi` volume, and `agilex5_devkit_flash_image_hps.pfg` which contains the instructions for Programming File Generator on how to create the .jic filem and the `uboot.env` containing the U-Boot environment:
 
 ```bash
-wget https://releases.rocketboards.org/2026.08/qspi/agilex5_mk_a5e065bb32aes1_qspi.baseline-a55/ubinize_nor.cfg
-wget https://releases.rocketboards.org/2026.08/qspi/agilex5_mk_a5e065bb32aes1_qspi.baseline-a55/qspi_boot.pfg
-wget https://releases.rocketboards.org/2026.08/qspi/agilex5_mk_a5e065bb32aes1_qspi.baseline-a55/uboot.env
+wget https://releases.rocketboards.org/2026.04/qspi/agilex5_mk_a5e065bb32aes1_qspi.baseline-a55/ubinize_nor.cfg
+wget https://releases.rocketboards.org/2026.04/qspi/agilex5_mk_a5e065bb32aes1_qspi.baseline-a55/qspi_boot.pfg
+wget https://releases.rocketboards.org/2026.04/qspi/agilex5_mk_a5e065bb32aes1_qspi.baseline-a55/uboot.env
 ```
 
 3\. Link to the files that are needed from building the hardware design, and yocto:

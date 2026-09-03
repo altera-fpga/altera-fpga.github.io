@@ -53,15 +53,15 @@ The Intel FPGA HPS Embedded Software release notes can be accessed from the foll
 
 ### Binary Release Contents 
 
-The binary release files are accessible at [https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_dev_agm039ea_gsrd/](https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_dev_agm039ea_gsrd/).
+The binary release files are accessible at [https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_dev_agm039ea_gsrd/](https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_dev_agm039ea_gsrd/).
 
 The source code is also included on the SD card in the Linux rootfs path `/home/root`: 
 
 | File | Description | 
 | :-- | :-- | 
-| linux-socfpga-v6.18.20-lts-src.tar.gz | Source code for Linux kernel | 
-| u-boot-socfpga-v2026.04-src.tar.gz | Source code for U-Boot | 
-| arm-trusted-firmware-v2.14.1-src.tar.gz | Source code for Arm Trusted Firmware | 
+| linux-socfpga-v6.18.2-lts-src.tar.gz | Source code for Linux kernel | 
+| u-boot-socfpga-v2026.01-src.tar.gz | Source code for U-Boot | 
+| arm-trusted-firmware-v2.14.0-src.tar.gz | Source code for Arm Trusted Firmware | 
 
 
 #### Component Versions
@@ -71,13 +71,13 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
 | HPS Baseline System Example Design | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1_REL_GSRD_PR |
-| Yocto Build Script | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
+| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| Yocto Build Script | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -99,7 +99,7 @@ Refer to the following for more information about the Development Kit: [https://
 - HPS UART Console: from vertical mini USB connector on the HPS daughtercard to host PC 
 - JTAG: from micro USB cable on edge of the board to host PC 
 
-2\. Download, extract and write to SD card the following SD card image: [https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_dev_agm039ea_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_dev_agm039ea_gsrd/sdimage.tar.gz)
+2\. Download, extract and write to SD card the following SD card image: [https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_dev_agm039ea_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_dev_agm039ea_gsrd/sdimage.tar.gz)
 
  Then insert SD card into the HPS OOBE Daughtercard socket. 
 
@@ -110,7 +110,7 @@ Refer to the following for more information about the Development Kit: [https://
 5\. Download the HPS RBF file and configure the HPS RBF file over JTAG: 
 
 ```bash 
-wget https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_dev_agm039ea_gsrd/ghrd.hps.rbf 
+wget https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_dev_agm039ea_gsrd/ghrd.hps.rbf 
 quartus_pgm -c 1 -m jtag -o "p;ghrd.hps.rbf" 
 ```
 

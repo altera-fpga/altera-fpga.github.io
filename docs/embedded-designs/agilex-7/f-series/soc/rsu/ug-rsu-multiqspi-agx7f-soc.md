@@ -146,7 +146,7 @@ rm -rf arm-trusted-firmware
 git clone https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 # checkout the branch used for this document, comment out to use default
-git checkout -b test -t origin/socfpga_v2.14.1
+git checkout -b test -t origin/socfpga_v2.14.0
 make bl31 PLAT=agilex
 cd ..
 ```
@@ -175,7 +175,7 @@ rm -rf u-boot-socfpga
 git clone https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga
 # comment out next line to use the latest default branch 
-git checkout -b test -t origin/socfpga_v2026.04
+git checkout -b test -t origin/socfpga_v2026.01
 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -303,7 +303,7 @@ rm -rf linux-socfpga
 git clone https://github.com/altera-fpga/linux-socfpga 
 cd linux-socfpga 
 # checkout the branch used for this document, comment out to use default 
-git checkout -b test -t origin/socfpga-6.18.20-lts 
+git checkout -b test -t origin/socfpga-6.18.2-lts 
 
 # configure the RSU driver to be built into the kernel 
 make clean && make mrproper 
@@ -532,7 +532,7 @@ Run the following commands to build the root file system.
   rm -rf buildroot
   git clone https://github.com/buildroot/buildroot.git
   cd buildroot
-  git checkout 2026.05
+  git checkout 2026.02
   mkdir -p overlay/etc/profile.d/
   # Use regilar prompt used in our devices root@<device>:~# instead of only #
   echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh

@@ -43,30 +43,30 @@ The Altera® FPGA HPS Embedded Software release notes can be accessed here: [htt
 
 <h5>Binaries for SD Card Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2026.08/gsrd/s10_htile_gsrd/](https://releases.rocketboards.org/2026.08/gsrd/s10_htile_gsrd/)
+The release files are accessible at [https://releases.rocketboards.org/2026.04/gsrd/s10_htile_gsrd/](https://releases.rocketboards.org/2026.04/gsrd/s10_htile_gsrd/)
 
 The source code is also included on the SD card in the Linux rootfs path `/home/root`:
 
 | **File** | **Description** | 
 | :-- | :-- | 
-| linux-socfpga-v6.18.20-lts-src.tar.gz | Source code for Linux kernel | 
-| u-boot-socfpga-v2026.04-src.tar.gz | Source code for U-Boot | 
-| arm-trusted-firmware-v2.14.1-src.tar.gz | Source code for Arm Trusted Firmware | 
+| linux-socfpga-v6.18.2-lts-src.tar.gz | Source code for Linux kernel | 
+| u-boot-socfpga-v2026.01-src.tar.gz | Source code for U-Boot | 
+| arm-trusted-firmware-v2.14.0-src.tar.gz | Source code for Arm Trusted Firmware | 
 
 
 <h5>Binaries for QSPI Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2026.08/qspi/s10_htile_qspi/](https://releases.rocketboards.org/2026.08/qspi/s10_htile_qspi/)
+The release files are accessible at [https://releases.rocketboards.org/2026.04/qspi/s10_htile_qspi/](https://releases.rocketboards.org/2026.04/qspi/s10_htile_qspi/)
 
 **Note**: To boot from QSPI is needed to remove SD card memory as SD Card memory has higher precedence in the boot order.
 
 <h5>Binaries for NAND Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2026.08/nand/s10_htile_nand/](https://releases.rocketboards.org/2026.08/nand/s10_htile_nand/)
+The release files are accessible at [https://releases.rocketboards.org/2026.04/nand/s10_htile_nand/](https://releases.rocketboards.org/2026.04/nand/s10_htile_nand/)
 
 <h5>Binaries for eMMC Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2026.08/emmc/s10_htile_emmc/](https://releases.rocketboards.org/2026.08/emmc/s10_htile_emmc/)
+The release files are accessible at [https://releases.rocketboards.org/2026.04/emmc/s10_htile_emmc/](https://releases.rocketboards.org/2026.04/emmc/s10_htile_emmc/)
 
 #### Component Versions
 
@@ -75,13 +75,13 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
 | HPS Baseline System Example Design | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1_REL_GSRD_PR |
-| Yocto Build Script | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
+| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| Yocto Build Script | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -283,7 +283,7 @@ The QSPI JIC image contains the FPGA configuration bitstream, and the U-Boot SPL
 1\. Download and extract the image file:
 
 ```bash
-wget https://releases.rocketboards.org/2026.08/gsrd/s10_htile_gsrd/ghrd_1sx280hu2f50e1vgas.jic.tar.gz
+wget https://releases.rocketboards.org/2026.04/gsrd/s10_htile_gsrd/ghrd_1sx280hu2f50e1vgas.jic.tar.gz
 
 tar xf ghrd_1sx280hu2f50e1vgas.jic.tar.gz
 ```
@@ -310,7 +310,7 @@ This section explains how to create the SD card necessary to boot Linux, using t
 
 <h5>Write SD Card on Linux</h5>
 
-1\. Download the SD card image from [https://releases.rocketboards.org/2026.08/gsrd/s10_htile_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/s10_htile_gsrd/sdimage.tar.gz) and extract it.
+1\. Download the SD card image from [https://releases.rocketboards.org/2026.04/gsrd/s10_htile_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.04/gsrd/s10_htile_gsrd/sdimage.tar.gz) and extract it.
 
 The extacted file is named `gsrd-console-image-stratix10.wic`.
 
@@ -338,7 +338,7 @@ $ sudo sync
 
 <h5>Write SD Card on Windows</h5>
 
-1\. Download the SD card image from [https://releases.rocketboards.org/2026.08/gsrd/s10_htile_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/s10_htile_gsrd/sdimage.tar.gz) and extract it.
+1\. Download the SD card image from [https://releases.rocketboards.org/2026.04/gsrd/s10_htile_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.04/gsrd/s10_htile_gsrd/sdimage.tar.gz) and extract it.
 
 The extacted file is named `gsrd-console-image-stratix10.wic`.
 
@@ -531,7 +531,7 @@ The following are exercised:
 
 In order to register an interrupt handler to a specific GPIO, you will first need to determine the GPIO number used.
 
-1\. Open the Linux Device Tree [socfpga_stratix10_qse_pcie_sgmii_ghrd.dtsi](https://raw.githubusercontent.com/altera-fpga/meta-intel-fpga-refdes/wrynose/recipes-bsp/device-tree/files/socfpga_stratix10_qse_sgmii_ghrd.dtsi) file and look up the labels for the DIP switches and Push button GPIOs:
+1\. Open the Linux Device Tree [socfpga_stratix10_qse_pcie_sgmii_ghrd.dtsi](https://raw.githubusercontent.com/altera-fpga/meta-intel-fpga-refdes/scarthgap/recipes-bsp/device-tree/files/socfpga_stratix10_qse_sgmii_ghrd.dtsi) file and look up the labels for the DIP switches and Push button GPIOs:
 
 ```bash
  button_pio: gpio@f9001060 {
@@ -1298,7 +1298,7 @@ ln -s root.ubi hps.bin
 
 ```bash
 cd $TOP_FOLDER/qspi-boot
-wget https://releases.rocketboards.org/2026.08/qspi/s10_htile_qspi/s10_htile_flash_image_hps.pfg
+wget https://releases.rocketboards.org/2026.04/qspi/s10_htile_qspi/s10_htile_flash_image_hps.pfg
 quartus_pfg -c s10_htile_flash_image_hps.pfg
 ```
 
@@ -1311,7 +1311,7 @@ The following files will be generated:
 
 #### Create Programming File Generator File
 
-This section presents how to manually re-create the PFG file provided at [https://releases.rocketboards.org/2026.08/qspi/s10_htile_qspi/s10_htile_flash_image_hps.pfg](https://releases.rocketboards.org/2026.08/qspi/s10_htile_qspi/s10_htile_flash_image_hps.pfg)
+This section presents how to manually re-create the PFG file provided at [https://releases.rocketboards.org/2026.04/qspi/s10_htile_qspi/s10_htile_flash_image_hps.pfg](https://releases.rocketboards.org/2026.04/qspi/s10_htile_qspi/s10_htile_flash_image_hps.pfg)
 
 1\. Start Quartus Programming File Generator GUI:
 

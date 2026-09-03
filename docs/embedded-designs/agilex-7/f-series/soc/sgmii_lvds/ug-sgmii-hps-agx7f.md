@@ -81,12 +81,12 @@ The Altera® FPGA HPS Embedded Software release notes can be accessed from the f
 
 <h5>SD Card Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2026.08/sgmii/agilex7_dk_si_agf014eb_sgmii/](https://releases.rocketboards.org/2026.08/sgmii/agilex7_dk_si_agf014eb_sgmii/)
+The release files are accessible at [https://releases.rocketboards.org/2026.04/sgmii/agilex7_dk_si_agf014eb_sgmii/](https://releases.rocketboards.org/2026.04/sgmii/agilex7_dk_si_agf014eb_sgmii/)
 
 * See [HPS Baseline System Example Design (SED) User Guide for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tile and E-Tile)](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/)
   
   * See Prerequisites
-  * See [Prebuild Binaries](https://releases.rocketboards.org/2026.08/sgmii/agilex7_dk_si_agf014eb_sgmii/)
+  * See [Prebuild Binaries](https://releases.rocketboards.org/2026.04/sgmii/agilex7_dk_si_agf014eb_sgmii/)
   * See Component Versions
   * See Exercise-prebuilt-binaries
 
@@ -105,7 +105,7 @@ There are two ways to test the design based on use case.
     <a id="UserFlow1"></a>
 
 * User Flow 1: [Testing with Prebuilt Binaries](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/f-series/soc/gsrd/ug-gsrd-agx7f-soc/#exercise-prebuilt-binaries)
-  * The release of prebuild binaries are accessible at [https://releases.rocketboards.org/2026.08/sgmii/agilex7_dk_si_agf014eb_sgmii/](https://releases.rocketboards.org/2026.08/sgmii/agilex7_dk_si_agf014eb_sgmii/)
+  * The release of prebuild binaries are accessible at [https://releases.rocketboards.org/2026.04/sgmii/agilex7_dk_si_agf014eb_sgmii/](https://releases.rocketboards.org/2026.04/sgmii/agilex7_dk_si_agf014eb_sgmii/)
 
     <a id="UserFlow2"></a>
 

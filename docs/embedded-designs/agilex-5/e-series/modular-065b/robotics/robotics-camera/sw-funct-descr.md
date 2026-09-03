@@ -100,6 +100,6 @@ Use **`KAS_MACHINE=agilex5_mk_a5e065bb32aea`** for the Agilex™ 5 E-Series 065B
 
 ## Custom bitstream
 
-To use a locally built `top.core.rbf`, follow the instructions in [Create SD card image (.wic) using YOCTO/KAS] for `FPGA_BST_SRC_URI` in [kas-camera.yml].
+To use a locally built `top.core.rbf`, follow the instructions in [Create SD card image (.wic) using YOCTO/KAS](https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/sw/README.md) for `FPGA_BST_SRC_URI` in [kas-camera.yml](https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/sw/kas-camera.yml).
 
 <br>

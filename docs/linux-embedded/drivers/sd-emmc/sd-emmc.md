@@ -1,6 +1,6 @@
 # **SD/eMMC Driver for Hard Processor System**
 
-Last updated: **August 28, 2026** 
+Last updated: **September 03, 2026** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/mmc/host/sdhci-cadence.c)
 
@@ -60,16 +60,16 @@ Example Device tree location to configure the SD/eMMC:
 
 | Device Tree Target | File Path |
 | :------------ | :---------- |
-| SD Card | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.20-lts/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts |
-| eMMC | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.20-lts/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_emmc.dts |
-| SD Card<br/>DK-A5E013B | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.20-lts/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_013b.dts |
+| SD Card | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.2-lts/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts |
+| eMMC | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.2-lts/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_emmc.dts |
+| SD Card<br/>DK-A5E013B | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.2-lts/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_013b.dts |
 
 **Agilex™ 3**
 
 | Device Tree Target | File Path |
 | :------------ | :---------- |
-| SD Card | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.20-lts/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts  |
-| eMMC | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.20-lts/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_emmc.dts |
+| SD Card | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.2-lts/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts  |
+| eMMC | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.2-lts/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_emmc.dts |
 
 ![sdmmc_device_tree](images/sdmmc_device_tree.png)
 
@@ -148,19 +148,19 @@ The following device trees and Config U-Boot files are the ones that define the 
 
 | Target | File Path |
 | :------------ | :---------- |
-| CONFIG SD Card | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.04/configs/socfpga_agilex5_defconfig |
-| CONFIG eMMC | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.04/configs/socfpga_agilex5_emmc_defconfig |
-| CONFIG SD Card <br/>DK-A5E013B | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.04/configs/socfpga_agilex5_013b_defconfig ||
-| Device Tree SD Card |  https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.04/arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi |
-| Device Tree eMMC | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.04/arch/arm/dts/socfpga_agilex5_socdk_emmc-u-boot.dtsi |
-| Device Tree SD Card <br/>DK-A5E013B | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.04/arch/arm/dts/socfpga_agilex5_socdk_013b-u-boot.dtsi |
+| CONFIG SD Card | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/configs/socfpga_agilex5_defconfig |
+| CONFIG eMMC | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/configs/socfpga_agilex5_emmc_defconfig |
+| CONFIG SD Card <br/>DK-A5E013B | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/configs/socfpga_agilex5_013b_defconfig ||
+| Device Tree SD Card |  https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi |
+| Device Tree eMMC | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/arch/arm/dts/socfpga_agilex5_socdk_emmc-u-boot.dtsi |
+| Device Tree SD Card <br/>DK-A5E013B | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/arch/arm/dts/socfpga_agilex5_socdk_013b-u-boot.dtsi |
 
 **Agilex™ 3**
 
 | Target | File Path |
 | :------------ | :---------- |
-| CONFIG SDCard | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.04/configs/socfpga_agilex3_defconfig |
-| Device Tree SDCard | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.04/arch/arm/dts/socfpga_agilex3_socdk-u-boot.dtsi |
+| CONFIG SDCard | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/configs/socfpga_agilex3_defconfig |
+| Device Tree SDCard | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.01/arch/arm/dts/socfpga_agilex3_socdk-u-boot.dtsi |
 
 
 The next table shows some U-Boot configurations that allow the SD/eMMC controller to operate in a specific mode:

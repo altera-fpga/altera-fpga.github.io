@@ -39,15 +39,15 @@ See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_
 
 ### Prebuilt Binaries
 
-The release files are accessible at [https://releases.rocketboards.org/2026.08/xen/agilex7_dk_si_agf014eb_xen/](https://releases.rocketboards.org/2026.08/xen/agilex7_dk_si_agf014eb_xen/)
+The release files are accessible at [https://releases.rocketboards.org/2026.04/xen/agilex7_dk_si_agf014eb_xen/](https://releases.rocketboards.org/2026.04/xen/agilex7_dk_si_agf014eb_xen/)
 
 The source code is also included on the SD card in the Linux rootfs path `/home/root`:
 
 | File | Description |
 | :-- | :-- |
-| linux-socfpga-v6.18.20-lts-src.tar.gz | Source code for Linux kernel |
-| u-boot-socfpga-v2026.04-src.tar.gz | Source code for U-Boot |
-| arm-trusted-firmware-v2.14.1-src.tar.gz | Source code for Arm Trusted Firmware |
+| linux-socfpga-v6.18.2-lts-src.tar.gz | Source code for Linux kernel |
+| u-boot-socfpga-v2026.01-src.tar.gz | Source code for U-Boot |
+| arm-trusted-firmware-v2.14.0-src.tar.gz | Source code for Arm Trusted Firmware |
 
 #### Component Versions
 
@@ -62,15 +62,15 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 | Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
 | Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
 | Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1_p1_REL_GSRD_PR |
-| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
-| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1_REL_GSRD_PR |
-| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1_REL_GSRD_PR |
-| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
+| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_p1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
+| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.2 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -84,16 +84,16 @@ Refer to the associated HPS Baseline System Example Design User guide for additi
 
 This section shows presents downloading and flashing the SD card image and JIC files, and downloading the xen rootfs cpio archive to be used by DomUs VMs.
 
-1\. Download and write to SD card the image [https://releases.rocketboards.org/2026.08/xen/agilex7_dk_si_agf014eb_xen/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/xen/agilex7_dk_si_agf014eb_xen/sdimage.tar.gz)
+1\. Download and write to SD card the image [https://releases.rocketboards.org/2026.04/xen/agilex7_dk_si_agf014eb_xen/sdimage.tar.gz](https://releases.rocketboards.org/2026.04/xen/agilex7_dk_si_agf014eb_xen/sdimage.tar.gz)
 
-2\. Download and write to QSPI flash the JIC file [https://releases.rocketboards.org/2026.08/xen/agilex7_dk_si_agf014eb_xen/ghrd_agfb014r24b2e2v.hps.jic.tar.gz](https://releases.rocketboards.org/2026.08/xen/agilex7_dk_si_agf014eb_xen/ghrd_agfb014r24b2e2v.hps.jic.tar.gz)
+2\. Download and write to QSPI flash the JIC file [https://releases.rocketboards.org/2026.04/xen/agilex7_dk_si_agf014eb_xen/ghrd_agfb014r24b2e2v.hps.jic.tar.gz](https://releases.rocketboards.org/2026.04/xen/agilex7_dk_si_agf014eb_xen/ghrd_agfb014r24b2e2v.hps.jic.tar.gz)
 
 3\. Set MSEL to QSPI, and power cycle the board to boot to Linux.
 
 4\. On the host computer, download the xen rootf cpio archive:
 
 ```bash
-wget https://releases.rocketboards.org/2026.08/xen/agilex7_dk_si_agf014eb_xen/xen-image-minimal-agilex7.cpio.gz
+wget https://releases.rocketboards.org/2026.04/xen/agilex7_dk_si_agf014eb_xen/xen-image-minimal-agilex7.cpio.gz
 ```
 
 5\. On the Linux on target board, copy over the above downloaded file in 'xen' folder:
@@ -436,7 +436,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b wrynose https://github.com/altera-fpga/gsrd-socfpga
+git clone -b scarthgap https://github.com/altera-fpga/gsrd-socfpga
 cd gsrd-socfpga
 export HYP_BUILD=1
 . agilex7_dk_si_agf014eb-gsrd-build.sh
@@ -522,8 +522,8 @@ sed -i "/agilex7_dk_si_agf014eb_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel-fp
 
 4\. Optionally change the following files in `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/`:
 
-- [uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/wrynose/recipes-bsp/u-boot/files/uboot.txt) - distroboot script
-- [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/wrynose/recipes-bsp/u-boot/files/uboot_script.its) - its file for creating FIT image from the above script
+- [uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot.txt) - distroboot script
+- [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot_script.its) - its file for creating FIT image from the above script
 
 5\. Optionally change the following file in `$WORKSPACE/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts`:
 

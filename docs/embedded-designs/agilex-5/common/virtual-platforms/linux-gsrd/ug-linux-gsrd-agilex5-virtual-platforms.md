@@ -64,15 +64,15 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 | Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
 | Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
 | Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1_p1_REL_GSRD_PR |
-| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
-| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1_REL_GSRD_PR |
-| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1_REL_GSRD_PR |
-| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
+| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_p1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
+| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.2 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -82,11 +82,11 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 
 You can find the prebuilt binaries from the HPS Baseline System Example Design prebuilt at the following URL:
 
-* SD Card: [HPS Baseline System Example Design Binaries](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/). 
+* SD Card: [HPS Baseline System Example Design Binaries](https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/). 
 
-* QSPI: [QSPI Binaries](https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e065bb32aea_qspi.baseline-a55/). 
+* QSPI: [QSPI Binaries](https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e065bb32aea_qspi.baseline-a55/). 
 
-* NAND: [NAND Binaries](https://releases.rocketboards.org/2026.08/nand/agilex5_dk_a5e065bb32aea_nand.baseline-a55)
+* NAND: [NAND Binaries](https://releases.rocketboards.org/2026.04/nand/agilex5_dk_a5e065bb32aea_nand.baseline-a55)
 
 You can exercise them using the internal Simics environment included under HPS Baseline System Example Design 2.0 or also from a separate Simics environment in which you need to create and build the project directory manually.
 
@@ -1894,11 +1894,11 @@ Start with the setup of the main use case defined at [Simulation Setup]#simulati
 # uboot-linux_sdcard.simics
 :
 add-symbol-file  <path of symbol file>/u-boot  0x7FD0D000 -relative
-add-pathmap-entry "/usr/src/debug/u-boot-socfpga/v2026.04+git/" "<$TOP_FOLDER path>/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2025.10+git/git/"
+add-pathmap-entry "/usr/src/debug/u-boot-socfpga/v2026.01+git/" "<$TOP_FOLDER path>/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2025.10+git/git/"
 bp.source_location.break do_helloTestApp
 ```
 
-**Note:** The symbol file is being loaded with an offset relocation of 0x7FD0D000. This is needed because in a late stage of the U-Boot execution, this relocates itself into a different SDRAM memory location and this should be indicated to the debugger, so there is a match between the addresses indicated in the symbol file and the real memory address location of the symbols. You can obtain this relocation offset by subtracting the real address of a specific function (which can be obtained from the application being executed) and the original offset from the same function in the symbols file (provided in the **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2026.04+git/build/socfpga_agilex5_defconfig/u-boot.sym** file). An example of the calculation of this relocation offset is shown in the following figure (values are from a different release):
+**Note:** The symbol file is being loaded with an offset relocation of 0x7FD0D000. This is needed because in a late stage of the U-Boot execution, this relocates itself into a different SDRAM memory location and this should be indicated to the debugger, so there is a match between the addresses indicated in the symbol file and the real memory address location of the symbols. You can obtain this relocation offset by subtracting the real address of a specific function (which can be obtained from the application being executed) and the original offset from the same function in the symbols file (provided in the **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2026.01+git/build/socfpga_agilex5_defconfig/u-boot.sym** file). An example of the calculation of this relocation offset is shown in the following figure (values are from a different release):
 
 ![ubootApp relocationOffset2.jpg](images/ubootApp_relocationOffset2.jpg)
 
@@ -2046,7 +2046,7 @@ This section requires the **simics-riscfree** script. It is included in your Int
 
 7\. Go to the **PathMap** tab menu and **Add**  a new source code mapping providing the Source and Destination as shown next:
 
-* Source: /usr/src/debug/u-boot-socfpga/v2026.04+git/" 
+* Source: /usr/src/debug/u-boot-socfpga/v2026.01+git/" 
 
 * Destination: <$TOP_FOLDER path>/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2025.10+git/git/
 

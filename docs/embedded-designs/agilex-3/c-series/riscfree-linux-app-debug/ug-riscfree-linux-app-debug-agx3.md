@@ -90,9 +90,9 @@ Sdd RiscFree to the system PATH:
 
 ```bash
 cd $TOP_FOLDER
-wget https://releases.rocketboards.org/2026.08/gsrd/agilex3_gsrd.baseline/sdimage.tar.gz
+wget https://releases.rocketboards.org/2026.04/gsrd/agilex3_gsrd.baseline/sdimage.tar.gz
 tar xf sdimage.tar.gz
-wget https://releases.rocketboards.org/2026.08/gsrd/agilex3_gsrd.baseline/ghrd.hps.jic
+wget https://releases.rocketboards.org/2026.04/gsrd/agilex3_gsrd.baseline/ghrd.hps.jic
 ```
 
 

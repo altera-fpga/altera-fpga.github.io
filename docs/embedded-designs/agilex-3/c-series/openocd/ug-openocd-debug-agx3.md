@@ -76,7 +76,7 @@ source ~/altera_pro/26.1/qinit.sh
 # -----------------------------------------------------------------------------
 cd $TOP_FOLDER
 rm -f *.sof
-wget https://releases.rocketboards.org/2026.08/gsrd/agilex3_gsrd.baseline/baseline.sof
+wget https://releases.rocketboards.org/2026.04/gsrd/agilex3_gsrd.baseline/baseline.sof
 
 # -----------------------------------------------------------------------------
 # Build atf
@@ -181,7 +181,7 @@ make intel/socfpga_agilex3_socdk.dtb
 # -----------------------------------------------------------------------------
 cd $TOP_FOLDER
 rm -f console-image-minimal-agilex3.rootfs.tar.gz
-wget https://releases.rocketboards.org/2026.08/gsrd/agilex3_gsrd.baseline/console-image-minimal-agilex3.rootfs.tar.gz
+wget https://releases.rocketboards.org/2026.04/gsrd/agilex3_gsrd.baseline/console-image-minimal-agilex3.rootfs.tar.gz
 
 # -----------------------------------------------------------------------------
 # Create SD card image

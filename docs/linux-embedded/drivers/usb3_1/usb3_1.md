@@ -1,6 +1,6 @@
 # **USB 3.1 Driver for Hard Processor System**
 
-Last updated: **August 28, 2026** 
+Last updated: **September 03, 2026** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/usb/dwc3)
 

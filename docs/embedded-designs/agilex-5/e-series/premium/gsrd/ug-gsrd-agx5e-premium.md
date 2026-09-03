@@ -47,14 +47,14 @@ The following are required to be able to fully exercise this System Example Desi
 
 ### Prebuilt Binaries
 
-The System Example Design binaries are located at [https://releases.rocketboards.org/2026.08/](https://releases.rocketboards.org/2026.08/):
+The System Example Design binaries are located at [https://releases.rocketboards.org/2026.04/](https://releases.rocketboards.org/2026.04/):
 
 | HPS Daughter Card | Boot Source | Link |
 | -- | ---------------------- | -- |
-| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/) |
-| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/) |
-| Enablement Board | QSPI | [https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e065bb32aes1_qspi](https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e065bb32aes1_qspi) |
-| Test Board | SD Card | [https://releases.rocketboards.org/2026.08/debug/agilex5_dk_a5e065bb32aes1_debug](https://releases.rocketboards.org/2026.08/debug/agilex5_dk_a5e065bb32aes1_debug) |
+| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/](https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/) |
+| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/](https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/) |
+| Enablement Board | QSPI | [https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e065bb32aes1_qspi](https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e065bb32aes1_qspi) |
+| Test Board | SD Card | [https://releases.rocketboards.org/2026.04/debug/agilex5_dk_a5e065bb32aes1_debug](https://releases.rocketboards.org/2026.04/debug/agilex5_dk_a5e065bb32aes1_debug) |
 
 
 > *Note*: The System Example Design release for the HPS Enablement Board comes in two versions: one which uses a Cortex-A55 as the boot core, and one which uses a Cortex-A76 as the boot core. The rest of the functionality is the same, and all cores are enabled in Linux by default. The instructions on how to exercise the binaries are the same for both versions. And the instructions for rebuilding the binaries are similar, just using a different version of the GHRD which has the respective option selected. 
@@ -72,15 +72,15 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 | Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
 | Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
 | Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1_p1_REL_GSRD_PR |
-| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
-| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1_REL_GSRD_PR |
-| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1_REL_GSRD_PR |
-| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
+| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_p1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
+| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.2 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -251,8 +251,8 @@ This section presents how to use HPS Enablement Board to boot from SD card, and 
 
 1\. Download SD card image archive from the prebuilt binaries, for either Cortex-A55 or Cortex-A76 as the boot core:
 
-* [https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz)
-* [https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/sdimage.tar.gz)
+* [https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz](https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz)
+* [https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/sdimage.tar.gz](https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/sdimage.tar.gz)
 
 2\. Extract the archive, obtaining the file `gsrd-console-image-agilex5e.rootfs.wic`
 
@@ -285,13 +285,13 @@ sync
 When using Cortex-A55 as the boot core:
 
 ```bash
-wget https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/ghrd.hps.jic
+wget https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/ghrd.hps.jic
 ```
 
 When using Cortex-A76 as the boot core:
 
 ```bash
-wget https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/ghrd.hps.jic
+wget https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/ghrd.hps.jic
 ```
 
 5\. Write the JIC file to QSPI:
@@ -460,14 +460,14 @@ Either write 1MB of zeroes at the beginning of the SD card, or remove the SD car
 
 To use Cortex-A55 as the boot core:
 ```bash
-wget https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a55/qspi_flash_image.hps.jic
+wget https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a55/qspi_flash_image.hps.jic
 jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;qspi_flash_image.hps.jic"
 ```
 
 To use Cortex-A76 as the boot core:
 ```bash
-wget https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a76/qspi_flash_image.hps.jic
+wget https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a76/qspi_flash_image.hps.jic
 jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;qspi_flash_image.hps.jic"
 ```

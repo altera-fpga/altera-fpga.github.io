@@ -54,19 +54,32 @@ The Altera® FPGA HPS Embedded Software release notes can be accessed from the f
 
 ### Binaries
 
-The prebuilt binaries are available at [https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_si_agi027fc_gsrd/](https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_si_agi027fc_gsrd/).
+The prebuilt binaries are available at [https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agi027fc_gsrd/](https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agi027fc_gsrd/).
 
 The source code is included on the SD card in the Linux rootfs path `/home/root`: 
 
 | File | Description | 
 | :-- | :-- | 
-| linux-socfpga-v6.18.20-lts-src.tar.gz | Source code for Linux kernel | 
-| u-boot-socfpga-v2026.04-src.tar.gz | Source code for U-Boot | 
-| arm-trusted-firmware-v2.14.1-src.tar.gz | Source code for Arm Trusted Firmware | 
+| linux-socfpga-v6.18.2-lts-src.tar.gz | Source code for Linux kernel | 
+| u-boot-socfpga-v2026.01-src.tar.gz | Source code for U-Boot | 
+| arm-trusted-firmware-v2.14.0-src.tar.gz | Source code for Arm Trusted Firmware | 
 
 ### Component Versions
 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. 
 
+| Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
+| :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
+| HPS Baseline System Example Design | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
+| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| Yocto Build Script | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
+
+**Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 ## Exercise Prebuilt Binaries 
 
@@ -102,7 +115,7 @@ This section explains how to create the SD card necessary to boot Linux, using t
 For DK-SI-AGI027FC board: 
 
 ```bash 
-wget https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_si_agi027fc_gsrd/sdimage.tar.gz 
+wget https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agi027fc_gsrd/sdimage.tar.gz 
 tar xf sdimage.tar.gz 
 ```
 
@@ -134,7 +147,7 @@ $ sudo sync
 
 1\. Download the SD card and extract it: 
 
-- For DK-SI-AGI027FC board: [https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_si_agi027fc_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_si_agi027fc_gsrd/sdimage.tar.gz)
+- For DK-SI-AGI027FC board: [https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agi027fc_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agi027fc_gsrd/sdimage.tar.gz)
 
 The extracted file is named `gsrd-console-image-agilex.wic`. 
 
@@ -192,7 +205,7 @@ The QSPI JIC image contains the FPGA configuration bitstream, and the U-Boot SPL
 For DK-SI-AGI027FC board: 
 
 ```bash 
-wget https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_si_agi027fc_gsrd/ghrd_agib027r31b1e1vb.jic.tar.gz 
+wget https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agi027fc_gsrd/ghrd_agib027r31b1e1vb.jic.tar.gz 
 tar xf ghrd_agib027r31b1e1vb.jic.tar.gz 
 ```
 

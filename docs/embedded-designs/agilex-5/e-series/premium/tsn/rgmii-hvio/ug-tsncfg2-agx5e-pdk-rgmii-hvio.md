@@ -117,11 +117,11 @@ This page documents the following:
 
 #### Prebuilt Binaries
 
-The Agilex 5 Premium Development Kit 26.1 Example Design binaries are located at [https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/](https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/):
+The Agilex 5 Premium Development Kit 26.1 Example Design binaries are located at [https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/](https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/):
 
 | HPS Daughter Card | Boot Source | Link |
 | --- | --- | --- |
-| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/](https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/) |
+| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/](https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/) |
 
 #### Sources
 
@@ -193,7 +193,7 @@ In this design example, `gmac1` is routed to the FPGA IO and the corresponding d
 There are two ways to test the design based on use case. 
     <a id="UserFlow1"></a> 
  
-* User Flow 1: Testing with [Prebuilt Binaries](https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/) and next to [Programming the binaries](#programming-the-binaries)
+* User Flow 1: Testing with [Prebuilt Binaries](https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/) and next to [Programming the binaries](#programming-the-binaries)
  
     <a id="UserFlow2"></a> 
  
@@ -477,7 +477,7 @@ All the scenarios included in this release require a serial connection. This sec
 
 ```bash
 cd $TOP_FOLDER
-wget https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+wget https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
 tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
 quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 ```
@@ -496,7 +496,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 
 <h5>For Prebuilt:</h5>
 
-- Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
+- Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/sdimage.tar.gz](https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
 
 <h5>For compiled image:</h5>
 

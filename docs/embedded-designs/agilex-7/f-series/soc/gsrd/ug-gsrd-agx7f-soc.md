@@ -53,27 +53,27 @@ The Altera® FPGA HPS Embedded Software release notes can be accessed from the f
 
 <h5>SD Card Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_si_agf014eb_gsrd/](https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_si_agf014eb_gsrd/)
+The release files are accessible at [https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agf014eb_gsrd/](https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agf014eb_gsrd/)
 
 The source code is also included on the SD card in the Linux rootfs path `/home/root`:
 
 | File | Description |
 | :-- | :-- |
-| linux-socfpga-v6.18.20-lts-src.tar.gz | Source code for Linux kernel |
-| u-boot-socfpga-v2026.04-src.tar.gz | Source code for U-Boot |
-| arm-trusted-firmware-v2.14.1-src.tar.gz | Source code for Arm Trusted Firmware |
+| linux-socfpga-v6.18.2-lts-src.tar.gz | Source code for Linux kernel |
+| u-boot-socfpga-v2026.01-src.tar.gz | Source code for U-Boot |
+| arm-trusted-firmware-v2.14.0-src.tar.gz | Source code for Arm Trusted Firmware |
 
 <h5>QSPI Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2026.08/qspi/agilex7_dk_si_agf014eb_qspi/](https://releases.rocketboards.org/2026.08/qspi/agilex7_dk_si_agf014eb_qspi/).
+The release files are accessible at [https://releases.rocketboards.org/2026.04/qspi/agilex7_dk_si_agf014eb_qspi/](https://releases.rocketboards.org/2026.04/qspi/agilex7_dk_si_agf014eb_qspi/).
 
 <h5>NAND Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2026.08/nand/agilex7_dk_si_agf014eb_nand/](https://releases.rocketboards.org/2026.08/nand/agilex7_dk_si_agf014eb_nand/)
+The release files are accessible at [https://releases.rocketboards.org/2026.04/nand/agilex7_dk_si_agf014eb_nand/](https://releases.rocketboards.org/2026.04/nand/agilex7_dk_si_agf014eb_nand/)
 
 <h5>eMMC Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2026.08/emmc/agilex7_dk_si_agf014eb_emmc/](https://releases.rocketboards.org/2026.08/emmc/agilex7_dk_si_agf014eb_emmc/)
+The release files are accessible at [https://releases.rocketboards.org/2026.04/emmc/agilex7_dk_si_agf014eb_emmc/](https://releases.rocketboards.org/2026.04/emmc/agilex7_dk_si_agf014eb_emmc/)
 
 
 #### Component Versions
@@ -83,13 +83,13 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
 | HPS Baseline System Example Design | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1_REL_GSRD_PR |
-| Yocto Build Script | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
+| Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| Yocto Build Script | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -277,7 +277,7 @@ The QSPI JIC image contains the FPGA configuration bitstream, and the U-Boot SPL
 
 ```bash
 cd $TOP_FOLDER
-wget https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_si_agf014eb_gsrd/ghrd_agfb014r24b2e2v.jic.tar.gz
+wget https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agf014eb_gsrd/ghrd_agfb014r24b2e2v.jic.tar.gz
 tar xf ghrd_agfb014r24b2e2v.jic.tar.gz
 ```
 
@@ -308,7 +308,7 @@ This section explains how to create the SD card necessary to boot Linux, using t
 1\. Download the SD card image and extract it:
 
 ```bash
-wget https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_si_agf014eb_gsrd/sdimage.tar.gz
+wget https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agf014eb_gsrd/sdimage.tar.gz
 tar xf sdimage.tar.gz
 ```
 
@@ -338,7 +338,7 @@ $ sudo sync
 
 <h5> Write SD Card on Windows</h5>
 
-1\. Download the SD card image and extract it: [https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_si_agf014eb_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_si_agf014eb_gsrd/sdimage.tar.gz)
+1\. Download the SD card image and extract it: [https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agf014eb_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.04/gsrd/agilex7_dk_si_agf014eb_gsrd/sdimage.tar.gz)
 
 The extacted file is named `gsrd-console-image-agilex7.wic`.
 
@@ -525,7 +525,7 @@ The following are exercised:
 
 In order to register an interrupt handler to a specific GPIO, you will first need to determine the GPIO number used.
 
-1\. Open the Linux Device Tree [socfpga_agilex7_ghrd.dtsi](https://raw.githubusercontent.com/altera-fpga/meta-intel-fpga-refdes/wrynose/recipes-bsp/device-tree/files/socfpga_agilex7_ghrd.dtsi) file and look up the labels for the DIP switches and Push button GPIOs:
+1\. Open the Linux Device Tree [socfpga_agilex7_ghrd.dtsi](https://raw.githubusercontent.com/altera-fpga/meta-intel-fpga-refdes/scarthgap/recipes-bsp/device-tree/files/socfpga_agilex7_ghrd.dtsi) file and look up the labels for the DIP switches and Push button GPIOs:
 
 ```bash
  button_pio: gpio@f9001060 {
@@ -887,7 +887,7 @@ The files on the Linux rootfs used for running the PR scenarios are shown below:
 | /lib/firmware/persona0.rbf | bitstream used by persona0 overlay |
 | /lib/firmware/persona1.rbf | bitstream used by persona1 overlay |
 
-The DTS files for the overlays are available at https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/wrynose/recipes-bsp/device-tree/files/:
+The DTS files for the overlays are available at https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/device-tree/files/:
 
 - agilex7_pr_fpga_static_region.dts
 - agilex7_pr_persona0.dts
@@ -1206,8 +1206,8 @@ sed -i "/agilex7_dk_si_agf014eb_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel-fp
 
 4\. Optionally change the following files in `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/`:
 
-- [uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/wrynose/recipes-bsp/u-boot/files/uboot.txt) - distroboot script
-- [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/wrynose/recipes-bsp/u-boot/files/uboot_script.its) - its file for creating FIT image from the above script
+- [uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot.txt) - distroboot script
+- [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot_script.its) - its file for creating FIT image from the above script
 
 5\. Optionally change the following file in `$WORKSPACE/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts`:
 
@@ -1381,7 +1381,7 @@ ln -s root.ubi hps.bin
 
 ```bash
 cd $TOP_FOLDER/qspi-boot
-wget https://releases.rocketboards.org/2026.08/qspi/agilex7_dk_si_agf014eb_qspi/agilex_flash_image_hps.pfg
+wget https://releases.rocketboards.org/2026.04/qspi/agilex7_dk_si_agf014eb_qspi/agilex_flash_image_hps.pfg
 quartus_pfg -c agilex_flash_image_hps.pfg
 ```
 
@@ -1701,8 +1701,8 @@ sed -i "/agilex7_dk_si_agf014eb_nand_core\.sha256sum/d" $WORKSPACE/meta-intel-fp
 
 4\. Optionally change the following files in `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/`:
 
-- [uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/wrynose/recipes-bsp/u-boot/files/uboot.txt) - distroboot script
-- [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/wrynose/recipes-bsp/u-boot/files/uboot_script.its) - its file for creating FIT image from the above script
+- [uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot.txt) - distroboot script
+- [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot_script.its) - its file for creating FIT image from the above script
 
 5\. Optionally change the following file in `$WORKSPACE/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts`:
 
@@ -2095,8 +2095,8 @@ sed -i "/agilex7_dk_si_agf014eb_emmc_core\.sha256sum/d" $WORKSPACE/meta-intel-fp
 
 4\. Optionally change the following files in `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/`:
 
-- [uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/wrynose/recipes-bsp/u-boot/files/uboot.txt) - distroboot script
-- [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/wrynose/recipes-bsp/u-boot/files/uboot_script.its) - its file for creating FIT image from the above script
+- [uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot.txt) - distroboot script
+- [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot_script.its) - its file for creating FIT image from the above script
 
 5\. Optionally change the following file in `$WORKSPACE/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts`:
 
@@ -2424,8 +2424,8 @@ sed -i '/agilex7_dk_si_agf014eb_pr_persona1\.sha256sum/d' $RECIPE
 
 4\. Optionally change the following files in `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/u-boot/files/`:
 
-- [uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/wrynose/recipes-bsp/u-boot/files/uboot.txt) - distroboot script
-- [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/wrynose/recipes-bsp/u-boot/files/uboot_script.its) - its file for creating FIT image from the above script
+- [uboot.txt](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot.txt) - distroboot script
+- [uboot_script.its](https://github.com/altera-fpga/meta-intel-fpga-refdes/blob/scarthgap/recipes-bsp/u-boot/files/uboot_script.its) - its file for creating FIT image from the above script
 
 5\. Optionally change the following file in `$WORKSPACE/meta-intel-fpga-refdes/recipes-kernel/linux/linux-socfpga-lts`:
 

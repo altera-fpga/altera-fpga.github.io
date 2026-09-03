@@ -292,9 +292,9 @@ Explanation:
 ```bash 
 cd $TOP_FOLDER 
 rm -rf yocto && mkdir yocto && cd yocto 
-git clone -b wrynose https://git.yoctoproject.org/poky 
-git clone -b wrynose https://git.yoctoproject.org/meta-intel-fpga 
-git clone -b wrynose https://github.com/openembedded/meta-openembedded 
+git clone -b scarthgap https://git.yoctoproject.org/poky 
+git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga 
+git clone -b scarthgap https://github.com/openembedded/meta-openembedded 
 source poky/oe-init-build-env ./build 
 echo 'MACHINE = "agilex7_dk_si_agf014eb"' >> conf/local.conf 
 echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 

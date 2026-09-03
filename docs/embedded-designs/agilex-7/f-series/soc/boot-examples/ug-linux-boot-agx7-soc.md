@@ -25,15 +25,15 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 | Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
 | Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
 | Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1_p1_REL_GSRD_PR |
-| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
-| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1_REL_GSRD_PR |
-| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1_REL_GSRD_PR |
-| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
+| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_p1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
+| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
+| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.2 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -379,7 +379,7 @@ This section presents how to build the Linux rootfs using Buildroot.
   rm -rf buildroot
   git clone https://github.com/buildroot/buildroot.git
   cd buildroot
-  git checkout 2026.05
+  git checkout 2026.02
   mkdir -p overlay/etc/profile.d/
   # Use regilar prompt used in our devices root@<device>:~# instead of only #
   echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
@@ -561,7 +561,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ```
   6.- The serial console will show SPL then U-Boot being run:
   ```
-  U-Boot SPL 2026.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
+  U-Boot SPL 2026.01-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
   Reset state: Cold
   MPU          1200000 kHz
   L4 Main	      400000 kHz
@@ -578,10 +578,10 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ## Checking hash(es) for Image atf … crc32+ OK
   ## Checking hash(es) for Image uboot … crc32+ OK
   ## Checking hash(es) for Image fdt-0 … crc32+ OK
-  NOTICE:  BL31: v2.14.1(release):QPDS26.1_REL_GSRD_PR
+  NOTICE:  BL31: v2.14.0(release):QPDS26.1_REL_GSRD_PR
   NOTICE:  BL31: Built : 11:03:24, Jan 29 2025
 
-  U-Boot 2026.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_agilex
+  U-Boot 2026.01-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_agilex
 
   CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
   Model: SoCFPGA Agilex SoCDK
@@ -844,7 +844,7 @@ The following files are created:
   rm -rf buildroot
   git clone https://github.com/buildroot/buildroot.git
   cd buildroot
-  git checkout 2026.05
+  git checkout 2026.02
   mkdir -p overlay/etc/profile.d/
   # Use regilar prompt used in our devices root@<device>:~# instead of only #
   echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
@@ -1035,13 +1035,13 @@ You can exercise ATF to Linux boot flow from SD Card using the following binarie
 When booting with the binaries generated, this is the log that you will see:
   ```
   NOTICE:  SDMMC boot
-  NOTICE:  BL2: 2.14.1(release):QPDS26.1_REL_GSRD_PR
+  NOTICE:  BL2: 2.14.0(release):QPDS26.1_REL_GSRD_PR
   NOTICE:  BL2: Built : 11:48:31, Jan 29 2025
   NOTICE:  BL2: Booting BL31
-  NOTICE:  BL31: 2.14.1(release):QPDS26.1_REL_GSRD_PR
+  NOTICE:  BL31: 2.14.0(release):QPDS26.1_REL_GSRD_PR
   NOTICE:  BL31: Built : 11:48:36, Jan 29 2025
   [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
-  [    0.000000] Linux version 6.18.20-lts-g346486b5245f-dirty (rolando@rolando2-linux-lab) (aarch64-none-linux-gnu-gcc (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 11.2.1 20220111, GNU ld (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 2.37.20220122) #1 SMP PREEMPT Wed Jan 29 11:56:17 CST 2025
+  [    0.000000] Linux version 6.18.2-lts-g346486b5245f-dirty (rolando@rolando2-linux-lab) (aarch64-none-linux-gnu-gcc (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 11.2.1 20220111, GNU ld (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 2.37.20220122) #1 SMP PREEMPT Wed Jan 29 11:56:17 CST 2025
   [    0.000000] KASLR disabled due to lack of seed
   [    0.000000] Machine model: SoCFPGA Agilex SoCDK
   [    0.000000] efi: UEFI not found.
@@ -1248,10 +1248,10 @@ When booting with flash_image_atf_qspi.jic, this is the log that you will see:
 
   ```
   NOTICE:  QSPI boot
-  NOTICE:  BL2: v2.14.1(release):QPDS26.1_REL_GSRD_PR
+  NOTICE:  BL2: v2.14.0(release):QPDS26.1_REL_GSRD_PR
   NOTICE:  BL2: Built : 11:57:29, Jan 29 2025
   NOTICE:  BL2: Booting BL31
-  NOTICE:  BL31: v2.14.1(release):QPDS24.3_REL_GSRD_PR
+  NOTICE:  BL31: v2.14.0(release):QPDS24.3_REL_GSRD_PR
   NOTICE:  BL31: Built : 11:57:34, Jan 29 2025
   [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
   [    0.000000] Linux version 6.6.37-g346486b5245f-dirty (rolando@rolando2-linux-lab) (aarch64-none-linux-gnu-gcc (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 11.2.1 20220111, GNU ld (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 2.37.20220122) #1 SMP PREEMPT Wed Jan 29 12:03:28 CST 2025

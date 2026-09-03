@@ -92,7 +92,7 @@ This is the recommended setting for the system used for testing.
 
 ### Prebuilt Binaries
 
-The prebuilt binaries is located at https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/
+The prebuilt binaries is located at https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/
 
 ### Component Versions
 
