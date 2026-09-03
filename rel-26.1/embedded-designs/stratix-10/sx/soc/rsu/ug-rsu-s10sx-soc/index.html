@@ -5008,7 +5008,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../../agilex-7/f-series/soc/pcie-rp/pcie-rp.md" class="md-nav__link">
+      <a href="../../../../../agilex-7/f-series/soc/pcie_rp/ug-pcie_rp_agx7f-soc/" class="md-nav__link">
         PCIe Root Port P-Tile System Example Design User Guide
       </a>
     </li>
@@ -7220,105 +7220,6 @@
 </ul>
 <p>Refer to <a href="https://www.intel.com/content/www/us/en/docs/programmable/683021/current/overview-s10-fm.html">Stratix® 10 Hard Processor System Remote System Update User Guide</a> for details about the Remote System Update. </p>
 <h2 id="component-versions">Component Versions<a class="headerlink" href="#component-versions" title="Permanent link">&para;</a></h2>
-<p>Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. </p>
-<p><strong>Note:</strong> Regarding the Hardware Design components in the following table, only the device-specific one is used in this page.</p>
-<table>
-<thead>
-<tr>
-<th align="left">Component</th>
-<th align="left">Location</th>
-<th align="left">Branch</th>
-<th align="left">Commit ID/Tag</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">Agilex 3 Hardware Design</td>
-<td align="left"><a href="https://github.com/altera-fpga/agilex3c-ed-gsrd">https://github.com/altera-fpga/agilex3c-ed-gsrd</a></td>
-<td align="left">main</td>
-<td align="left">QPDS26.1_p1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left">Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom</td>
-<td align="left"><a href="https://github.com/altera-fpga/agilex5e-ed-gsrd">https://github.com/altera-fpga/agilex5e-ed-gsrd</a></td>
-<td align="left">main</td>
-<td align="left">QPDS26.1_p1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left">Agilex 7 Hardware Design</td>
-<td align="left"><a href="https://github.com/altera-fpga/agilex7f-ed-gsrd">https://github.com/altera-fpga/agilex7f-ed-gsrd</a></td>
-<td align="left">main</td>
-<td align="left">QPDS26.1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left">Stratix 10 Hardware Design</td>
-<td align="left"><a href="https://github.com/altera-fpga/stratix10-ed-gsrd">https://github.com/altera-fpga/stratix10-ed-gsrd</a></td>
-<td align="left">main</td>
-<td align="left">QPDS26.1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left">Arria 10 Hardware Design</td>
-<td align="left"><a href="https://github.com/altera-fpga/arria10-ed-gsrd">https://github.com/altera-fpga/arria10-ed-gsrd</a></td>
-<td align="left">main</td>
-<td align="left">QPDS26.1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left">Linux</td>
-<td align="left"><a href="https://github.com/altera-fpga/linux-socfpga">https://github.com/altera-fpga/linux-socfpga</a></td>
-<td align="left">socfpga-6.18.2-lts</td>
-<td align="left">QPDS26.1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left">Arm Trusted Firmware</td>
-<td align="left"><a href="https://github.com/altera-fpga/arm-trusted-firmware">https://github.com/altera-fpga/arm-trusted-firmware</a></td>
-<td align="left">socfpga_v2.14.0</td>
-<td align="left">QPDS26.1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left">U-Boot</td>
-<td align="left"><a href="https://github.com/altera-fpga/u-boot-socfpga">https://github.com/altera-fpga/u-boot-socfpga</a></td>
-<td align="left">socfpga_v2026.01</td>
-<td align="left">QPDS26.1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left">Yocto Project</td>
-<td align="left"><a href="https://git.yoctoproject.org/poky">https://git.yoctoproject.org/poky</a></td>
-<td align="left">scarthgap</td>
-<td align="left">latest</td>
-</tr>
-<tr>
-<td align="left">Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0)</td>
-<td align="left"><a href="https://github.com/altera-fpga/meta-altera-fpga">https://github.com/altera-fpga/meta-altera-fpga</a></td>
-<td align="left">scarthgap</td>
-<td align="left">QPDS26.1_p1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left">Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design)</td>
-<td align="left"><a href="https://git.yoctoproject.org/meta-intel-fpga">https://git.yoctoproject.org/meta-intel-fpga</a></td>
-<td align="left">scarthgap</td>
-<td align="left">latest</td>
-</tr>
-<tr>
-<td align="left">Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design)</td>
-<td align="left"><a href="https://github.com/altera-fpga/meta-intel-fpga-refdes">https://github.com/altera-fpga/meta-intel-fpga-refdes</a></td>
-<td align="left">scarthgap</td>
-<td align="left">QPDS26.1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left">HPS Legacy System Example Design</td>
-<td align="left"><a href="https://github.com/altera-fpga/gsrd-socfpga">https://github.com/altera-fpga/gsrd-socfpga</a></td>
-<td align="left">scarthgap</td>
-<td align="left">QPDS26.1_REL_GSRD_PR</td>
-</tr>
-<tr>
-<td align="left">KAS</td>
-<td align="left"><a href="https://github.com/siemens/kas/">https://github.com/siemens/kas/</a></td>
-<td align="left">master</td>
-<td align="left">5.2</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Note:</strong> The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.</p>
 <p><strong>Note:</strong>  <a href="https://github.com/altera-fpga/intel-rsu">intel-rsu</a> repository uses <strong>master</strong> branch.</p>
 <p>For RSU example previous 24.2 version, please refer to <a href="https://www.rocketboards.org/foswiki/Projects/Stratix10HPSRemoteSystemUpdate">Stratix 10 HPS Remote System Update</a>.</p>
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
