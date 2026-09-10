@@ -10,43 +10,43 @@ This page demonstrates how to use Arm* Development Studio to debug U-Boot SPL an
 
 The following are needed:
 
-- [Altera&reg; Agilex&trade; 5 FPGA E-Series 065A Premium Development Kit](https://www.altera.com/products/devkit/po-3285/agilex-5-fpga-e-series-065a-premium-development-kit), ordering code DK-A5E065BB32AES1.
+* [Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit (ES)](https://www.altera.com/products/devkit/po-3002/agilex-5-fpga-and-soc-e-series-premium-development-kit-es), ordering code DK-A5E065BB32AES1.
 
 - Host PC with:
   - 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   - Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   - Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  - Altera® Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1
-  - Arm Development Studio 2025.0-1
+  - Altera® Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1
+  - Arm Development Studio 2025.1
 
-You will also need to compile the Agilex 5 GHRD Linux Boot Example targeting the HPS Enablement board, as described [here](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/#boot-from-sd-card). 
+You will also need to compile the [HPS Linux Boot Tutorial Example Design User Guide: Agilex™ 5 FPGA E-Series 065B Premium Development Kit ES](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium), refer to the *Boot from SD Card* section.
 
 ## Debug U-Boot
 
-1\. Build the example design specified in the [Prerequisites](#prerequisites) section.
+1\. Build the example design as specified above.
 
 2\. Write the SD card image $TOP_FOLDER/sd_card/sdcard.img to the micro SD card and insert it on the slot on the HPS Enablement Board.
 
-3\. Set MSEL dipswitch to JTAG, as specified in the design from the [Prerequisites](#prerequisites) section, then power cycle the board. That will ensure the device is not configured from QSPI.
+3\. Set MSEL dipswitch to JTAG, then power cycle the board. That will ensure the device is not configured from QSPI.
 
-4\. Go to the folder where the example was built, add the Quartus® tools in the path:
+4\. Add the Quartus and RiscFree* tools to the PATH:
 
 ```bash
-cd $TOP_FOLDER
-export QUARTUS_ROOTDIR=~/altera_pro/26.1/quartus/
-export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin
+source ~/altera_pro/26.1.1/qinit.sh
 ```
+
 5\. Configure the device with the 'debug' SOF, which contains an empty loop HPS FSBL, designed specifically for a debugger to connect afterwards:
 
 ```bash
-quartus_pgm -c 1 -m jtag -o "p;agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof"
+cd $TOP_FOLDER
+quartus_pgm -c 1 -m jtag -o "p;agilex5_soc_devkit_ghrd_a55/output_files/baseline_a55_hps_debug.sof"
 ```
 
 6\. Start Arm* DS Eclipse using a new workspace in the current folder:
 
 ```bash
 cd $TOP_FOLDER
-/opt/arm/developmentstudio-2025.0-1/bin/suite_exec -t "Arm Compiler for Embedded 6" bash
+/opt/arm/developmentstudio-2025.1/bin/suite_exec -t "Arm Compiler for Embedded 6" bash
 armds_ide -data workspace &
 ```
 
@@ -120,6 +120,3 @@ At this point, all the debugging features of Eclipse are available, such as:
 
 * Viewing and editing variables and registers
 * Setting breakpoints
-
-
-**Note:** Current Arm* DS 2024.1 release has an issue in that stepping through U-Boot code leads to an U-Boot exception and crash. You can set breakpoints, run up to them, look at variables, resume execution etc. Just stepping through the code causes the error. The issue does not happen when stepping through the U-Boot SPL.

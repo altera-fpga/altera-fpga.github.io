@@ -158,7 +158,7 @@ The following items are required to fully exercise the SED:
   - OS Ubuntu 22.04 LTS. System example design source files were compiled using Ubuntu 22.04 LTS. Other versions and distributions may also be compatible.
   - Serial terminal software (e.g., Minicom on Linux, Tera Term or PuTTY on Windows) is required.
   - Micro SD card slot or Micro SD card writer/reader
-  - Altera Quartus Prime Pro 26.1
+  - Altera Quartus Prime Pro 26.1.1
 
 U-Boot and Linux compilation, Yocto build, and SD card image creation require a Linux host PC. All other operations can be performed on either Windows or Linux.
 
@@ -980,7 +980,7 @@ There are two ways to test the design based on use case.
 
 #### Altera Quartus Prime Pro
 
-Download the Quartus&reg; Prime Pro Edition software version 26.1 from the [FPGA Software Download Center](https://www.altera.com/downloads/fpga-development-tools/quartus-prime-pro-edition-design-software-version-26-1-linux). Follow the on-screen instructions to complete the installation process.
+Download the Quartus&reg; Prime Pro Edition software version 26.1.1 from the [FPGA Software Download Center](https://www.altera.com/downloads/fpga-development-tools/quartus-prime-pro-edition-design-software-version-26-1-linux). Follow the on-screen instructions to complete the installation process.
 
 Refer to [Altera&reg; FPGA Software Installation and Licensing](https://docs.altera.com/r/docs/683472/26.1/altera-fpga-software-installation-and-licensing/answers-to-top-faqs) for more information on the installation and licensing process.
 
@@ -1420,7 +1420,7 @@ Insert the SD cards into each development kit.
 
 #### Program the onboard MAX10 device
 
-Using Quartus&reg; Programmer Tool version 26.1 GUI, configure the onboard MAX10 device with `max10_system_0002aa4F.pof` from the [pre-build binaries](#binaries) files.
+Using Quartus&reg; Programmer Tool version 26.1.1 GUI, configure the onboard MAX10 device with `max10_system_0002aa4F.pof` from the [pre-build binaries](#binaries) files.
 
 Alternatively, you can perform this operation via the command line. First, verify that all devices on the development kit are recognized and identify the JTAG cable number using the following command:
 
@@ -1449,7 +1449,7 @@ quartus_pgm -c 1 -m jtag -o "p;./max10_system_0002aa4F.pof@3" && quartus_pgm -c 
 
 #### Program the onboard Agilex&trade; 7 device
 
-Using Quartus&reg; Programmer Tool version 26.1 GUI, configure the onboard `AGFB027R24C` device with `top.hps.rbf`.
+Using Quartus&reg; Programmer Tool version 26.1.1 GUI, configure the onboard `AGFB027R24C` device with `top.hps.rbf`.
 
 Alternatively, you can perform this operation via the command line. First, verify that all devices on the development kit are recognized and identify the JTAG cable number using the following command:
 
@@ -4072,7 +4072,7 @@ The read operation will return `badc0ffe`. `eth2` is mounted over `/sys/kernel/d
 The system example design supports the F-Tile Transceiver Toolkit for debugging potential link quality issues. Follow the next steps to enable the Transceiver Toolkit:
 
 === "10 GbE"
-    1. With Quartus&reg; Prime Pro version 26.1, open the system example design project.
+    1. With Quartus&reg; Prime Pro version 26.1.1, open the system example design project.
     2. In 'Project Navigator' click on 'Hierarchy' Tab.
     3. Double click on the Ethernet Subsystem IP instance to edit, 'inst_port1_hssi_10G_anlt' for `eth1` or 'inst_port2_hssi_10G_anlt' for `eth2`. IP Parameter Editor will open.
     4. In the 'HSSI Subsystem' >> 'Device 0 Configuration' >> 'Main Configuration' tab, set to 'Enable' the 'Enable JTAG to Avalon Master Bridge' parameter. Refer to the screen shot below.
@@ -4082,7 +4082,7 @@ The system example design supports the F-Tile Transceiver Toolkit for debugging 
     8. Regenerate the Yocto project with the new generated 'core.rbf' file as described in [Yocto Update](#yocto-update).
 
 === "25 GbE"
-    1. With Quartus&reg; Prime Pro version 26.1, open the system example design project.
+    1. With Quartus&reg; Prime Pro version 26.1.1, open the system example design project.
     2. In 'Project Navigator' click on 'Hierarchy' Tab.
     3. Double click on the Ethernet Subsystem IP instance to edit, 'inst_port1_hssi_25G_anlt' for `eth1` or 'inst_port2_hssi_25G_anlt' for `eth2`. IP Parameter Editor will open.
     4. In the 'HSSI Subsystem' >> 'Device 0 Configuration' >> 'Main Configuration' tab, set to 'Enable' the 'Enable JTAG to Avalon Master Bridge' parameter. Refer to the screen shot below.
@@ -4092,7 +4092,7 @@ The system example design supports the F-Tile Transceiver Toolkit for debugging 
     8. Regenerate the Yocto project with the new generated 'core.rbf' file as described in [Yocto Update](#yocto-update).
 
 === "50 GbE"
-    1. With Quartus&reg; Prime Pro version 26.1, open the system example design project.
+    1. With Quartus&reg; Prime Pro version 26.1.1, open the system example design project.
     2. In 'Project Navigator' click on 'Hierarchy' Tab.
     3. Double click on the Ethernet Subsystem IP instance to edit, 'inst_port1_hssi_50G_PAM4_anlt' for `eth1` or 'inst_port2_hssi_50G_PAM4_anlt' for `eth2`. IP Parameter Editor will open.
     4. In the 'HSSI Subsystem' >> 'Device 0 Configuration' >> 'Main Configuration' tab, set to 'Enable' the 'Enable JTAG to Avalon Master Bridge' parameter. Refer to the screen shot below.
@@ -4102,7 +4102,7 @@ The system example design supports the F-Tile Transceiver Toolkit for debugging 
     8. Regenerate the Yocto project with the new generated 'core.rbf' file as described in [Yocto Update](#yocto-update).
 
 === "100 GbE"
-    1. With Quartus&reg; Prime Pro version 26.1, open the system example design project.
+    1. With Quartus&reg; Prime Pro version 26.1.1, open the system example design project.
     2. In 'Project Navigator' click on 'Hierarchy' Tab.
     3. Double click on the Ethernet Subsystem IP instance to edit, 'inst_port1_hssi_100G_PAM4_anlt' for `eth1` or 'inst_port2_hssi_100G_PAM4_anlt' for `eth2`. IP Parameter Editor will open.
     4. In the 'HSSI Subsystem' >> 'Device 0 Configuration' >> 'Main Configuration' tab, set to 'Enable' the 'Enable JTAG to Avalon Master Bridge' parameter. Refer to the screen shot below.
@@ -4112,7 +4112,7 @@ The system example design supports the F-Tile Transceiver Toolkit for debugging 
     8. Regenerate the Yocto project with the new generated 'core.rbf' file as described in [Yocto Update](#yocto-update).
 
 === "DR-10/25GbE"
-    1. With Quartus&reg; Prime Pro version 26.1, open the system example design project.
+    1. With Quartus&reg; Prime Pro version 26.1.1, open the system example design project.
     2. In 'Project Navigator' click on 'Hierarchy' Tab.
     3. Double click on the Ethernet Subsystem IP instance to edit, 'inst_port1_hssi_100G_PAM4_anlt' for `eth1` or 'inst_port2_hssi_100G_PAM4_anlt' for `eth2`. IP Parameter Editor will open.
     4. In the 'HSSI Subsystem' >> 'Device 0 Configuration' >> 'Main Configuration' tab, set to 'Enable' the 'Enable JTAG to Avalon Master Bridge' parameter. Refer to the screen shot below.

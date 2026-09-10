@@ -26,13 +26,13 @@ Two different examples are provided:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the Quartus design.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1
+  * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the design.
 
 ## Example Building Components Separately 
 
-This example is build on top of the Linux Boot Tutorial Example Design, with the modification that the fabric is not configured from U-Boot anymore, but from Linux, with a device tree overlay.
+This example is build on top of the Linux Boot Tutorial Example Design, with the modification that the fabric is not configured from U-Boot anymore, but from Linux, with a device tree overlay. In the interest of saving time, a prebuilt rootfs is used.
 
 The device tree overlay and the Phase 2 configuration bitstream core.rbf are stored in the Linux rootfs folder /lib/firmware, where the Linux overlay framework expects them to be by default. 
 
@@ -71,7 +71,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -86,10 +86,10 @@ source ~/altera_pro/26.1/qinit.sh
 ```bash 
 cd $TOP_FOLDER 
 rm -rf agilex7f-ed-gsrd
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
-unzip QPDS26.1_REL_GSRD_PR.zip
-rm QPDS26.1_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
+unzip QPDS26.1.1_REL_GSRD_PR.zip
+rm QPDS26.1.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS26.1.1_REL_GSRD_PR agilex7f-ed-gsrd
 cd agilex7f-ed-gsrd
 make agf014eb-si-devkit-oobe-baseline-all
 cd ..
@@ -104,7 +104,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf arm-trusted-firmware 
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
 cd arm-trusted-firmware 
 make bl31 PLAT=agilex 
 cd .. 
@@ -119,7 +119,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf u-boot-socfpga 
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk 
@@ -154,7 +154,7 @@ CONFIG_DISTRO_DEFAULTS=n
 CONFIG_HUSH_PARSER=y 
 CONFIG_SYS_PROMPT_HUSH_PS2="> " 
 CONFIG_USE_BOOTCOMMAND=y 
-CONFIG_BOOTCOMMAND="load mmc 0:1 \${loadaddr} ghrd.core.rbf; bridge disable;fpga load 0 \${loadaddr} \${filesize};bridge enable; setenv bootfile Image; setenv fdtimage socfpga_agilex_socdk.dtb; run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot" 
+CONFIG_BOOTCOMMAND="setenv bootfile Image; setenv fdtimage socfpga_agilex_socdk.dtb; run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot" 
 CONFIG_CMD_FAT=y 
 CONFIG_CMD_FS_GENERIC=y 
 CONFIG_DOS_PARTITION=y 
@@ -210,7 +210,7 @@ quartus_pfg -c \
 ```bash 
 cd $TOP_FOLDER 
 rm -rf linux-socfpga 
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
 make clean && make mrproper 
 make defconfig 
@@ -285,22 +285,14 @@ Explanation:
 
 
 
-8\. Build Root Filesystem: 
+8\. Get Root Filesystem: 
 
 
 
 ```bash 
 cd $TOP_FOLDER 
-rm -rf yocto && mkdir yocto && cd yocto 
-git clone -b scarthgap https://git.yoctoproject.org/poky 
-git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga 
-git clone -b scarthgap https://github.com/openembedded/meta-openembedded 
-source poky/oe-init-build-env ./build 
-echo 'MACHINE = "agilex7_dk_si_agf014eb"' >> conf/local.conf 
-echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 
-echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf 
-echo 'IMAGE_FSTYPES = "tar.gz"' >> conf/local.conf
-bitbake core-image-minimal
+rm -f rootfs.tar.gz
+wget -O rootfs.tar.gz https://releases.rocketboards.org/2026.08/gsrd/s10_htile_gsrd/rootfs/console-image-minimal-stratix10.tar.gz
 ```
 
 
@@ -321,7 +313,7 @@ cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image .
 cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dtb . 
 cd .. 
 mkdir rootfs && cd rootfs 
-sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex7_dk_si_agf014eb/core-image-minimal-agilex7_dk_si_agf014eb.rootfs.tar.gz 
+sudo tar xf $TOP_FOLDER/rootfs.tar.gz
 sudo rm -rf lib/modules/* 
 sudo mkdir -p lib/firmware 
 sudo cp $TOP_FOLDER/ghrd.core.rbf lib/firmware/overlay.rbf 
@@ -329,8 +321,8 @@ sudo cp $TOP_FOLDER/overlay.dtb lib/firmware/overlay.dtb
 cd .. 
 sudo python3 make_sdimage_p3.py -f \
 -P fat/*,num=1,format=fat32,size=48M \
--P rootfs/*,num=2,format=ext3,size=32M \
--s 100M \
+-P rootfs/*,num=2,format=ext3,size=400M \
+-s 460M \
 -n sdcard.img 
 cd .. 
 ```
@@ -429,7 +421,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -444,10 +436,10 @@ source ~/altera_pro/26.1/qinit.sh
 ```bash 
 cd $TOP_FOLDER
 rm -rf agilex7f-ed-gsrd
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
-unzip QPDS26.1_REL_GSRD_PR.zip
-rm QPDS26.1_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
+unzip QPDS26.1.1_REL_GSRD_PR.zip
+rm QPDS26.1.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS26.1.1_REL_GSRD_PR agilex7f-ed-gsrd
 cd agilex7f-ed-gsrd
 make agf014eb-si-devkit-oobe-baseline-all
 cd ..
@@ -481,7 +473,7 @@ quartus_pfg -c \
 ```bash 
 cd $TOP_FOLDER 
 rm -rf gsrd-socfpga 
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
 cd gsrd-socfpga 
 . agilex7_dk_si_agf014eb-gsrd-build.sh 
 build_setup 
@@ -498,24 +490,24 @@ build_setup
 ```bash 
 rm -f agilex7-fabric-config-yocto.patch
 base64 -d << EOT | gunzip > agilex7-fabric-config-yocto.patch
-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
+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
 EOT 
 patch -d meta-intel-fpga-refdes -p1 < agilex7-fabric-config-yocto.patch
 ```
@@ -578,12 +570,12 @@ index b9f7b90..38577dc 100644
 --- a/recipes-bsp/ghrd/hw-ref-design.bb
 +++ b/recipes-bsp/ghrd/hw-ref-design.bb
 @@ -182,6 +182,7 @@ do_install () {
-      install -D -m 0644 ${WORKDIR}/${MACHINE}_pr_${ARM64_GHRD_CORE_RBF} ${D}/boot/ghrd_pr.core.rbf
-      install -D -m 0644 ${WORKDIR}/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
-      install -D -m 0644 ${WORKDIR}/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
-+     install -D -m 0644 ${WORKDIR}/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}${base_libdir}/firmware/${ARM64_GHRD_CORE_RBF}
+      install -D -m 0644 ${UNPACKDIR}/${MACHINE}_pr_${ARM64_GHRD_CORE_RBF} ${D}/boot/ghrd_pr.core.rbf
+      install -D -m 0644 ${UNPACKDIR}/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
+      install -D -m 0644 ${UNPACKDIR}/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
++     install -D -m 0644 ${UNPACKDIR}/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}${base_libdir}/firmware/${ARM64_GHRD_CORE_RBF}
     else
-      install -D -m 0644 ${WORKDIR}/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}/boot/${ARM64_GHRD_CORE_RBF}
+      install -D -m 0644 ${UNPACKDIR}/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}/boot/${ARM64_GHRD_CORE_RBF}
     fi
 diff --git a/recipes-bsp/u-boot/files/uboot.txt b/recipes-bsp/u-boot/files/uboot.txt
 index 8577186..3a0288f 100644

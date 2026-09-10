@@ -65,6 +65,18 @@ extra:
     - src: 'embedded-designs/agilex-7/f-series/soc/xen/ug-xen-agx7f-soc.md'
       dests:
         - 'virtualization/hypervisors/xen/ug-xen-agx7f-soc.md'
+    - src: 'embedded-designs/agilex-5/e-series/modular-065a/xen/ug-xen-agx5e-modular-065a.md'
+      dests:
+        - 'virtualization/hypervisors/xen/ug-xen-agx5e-modular-065a.md'
+    - src: 'embedded-designs/agilex-5/e-series/modular-065b/xen/ug-xen-agx5e-modular-065b.md'
+      dests:
+        - 'virtualization/hypervisors/xen/ug-xen-agx5e-modular-065b.md'
+    - src: 'embedded-designs/agilex-5/e-series/premium-065a/xen/ug-xen-agx5e-premium-065a.md'
+      dests:
+        - 'virtualization/hypervisors/xen/ug-xen-agx5e-premium-065a.md'
+    - src: 'embedded-designs/agilex-5/e-series/premium-065b/xen/ug-xen-agx5e-premium-065b.md'
+      dests:
+        - 'virtualization/hypervisors/xen/ug-xen-agx5e-premium-065b.md'        
     - src: 'real-time/rt-overview/rt-overview.md'
       dests:
         - 'real-time/index.md'
@@ -179,8 +191,12 @@ nav:
           - Overview: virtualization/hypervisors/xen/xen-overview.md
           - Examples:
             - Agilex™ 3 C-Series FPGA and SoC Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx3.md
-            - Agilex™ 5 E-Series Premium Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx5e-premium.md
-            - Agilex™ 5 E-Series Modular Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx5e-modular.md
+            - Agilex™ 5 E-Series 065B Premium Development Kit (ES) Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx5e-premium.md
+            - Agilex™ 5 E-Series 065B Premium Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx5e-premium-065b.md
+            - Agilex™ 5 E-Series 065A Premium Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx5e-premium-065a.md
+            - Agilex™ 5 E-Series 065B Modular Development Kit (ES) Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx5e-modular.md
+            - Agilex™ 5 E-Series 065B Modular Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx5e-modular-065b.md
+            - Agilex™ 5 E-Series 065A Modular Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx5e-modular-065a.md
             - Agilex™ 7 F-Series SoC Development Kit Xen Hypervisor GSRD: virtualization/hypervisors/xen/ug-xen-agx7f-soc.md
   - Real-Time:
     - 'real-time/index.md'
@@ -280,22 +296,28 @@ nav:
           - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065b/tsn/rgmii-hps/ug-tsn-rgmii-hps-pdk-065b.md
           - HPS TSN RGMII HVIO System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065b/tsn/rgmii-hvio/ug-tsncfg2-agx5e-pdk-rgmii-hvio-065b.md
         - USB 3.1 Example: embedded-designs/agilex-5/e-series/premium-065b/usb3p1/ug-usb3p1-dev-drd-modes.md
+        - Debugging U-Boot with Arm Development Studio: embedded-designs/agilex-5/e-series/premium-065b/armds-debug-uboot/ug-armds-debug-uboot-agx5e-premium-065b.md
+        - Debugging U-Boot with Ashling RiscFree: embedded-designs/agilex-5/e-series/premium-065b/riscfree-debug-u-boot/ug-riscfree-debug-uboot-agx5e-premium-065b.md        
       - E-Series 065A Premium Development Kit:
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/premium-065a/gsrd/ug-gsrd-agx5e-premium-065a.md
         - HPS Linux Boot Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065a/boot-examples/ug-linux-boot-agx5e-premium-065a.md
+        - HPS Data Mover System Example Design: embedded-designs/agilex-5/e-series/premium-065a/data-mover/ug-data-mover-agx5e-premium-065a.md
         - 2-Port 25GbE PTP1588 System Example Design: embedded-designs/agilex-5/e-series/premium-065a/ptp1588/agx5e-ptp-2p/ug-agx5e-ptp-2p.md
         - TSN Examples:
           - HPS TSN RGMII System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065a/tsn/rgmii-hps/ug-tsn-rgmii-hps-pdk-065a.md
           - HPS TSN RGMII HVIO System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065a/tsn/rgmii-hvio/ug-tsncfg2-agx5e-pdk-rgmii-hvio-065a.md
+        - FreeRTOS Hello World System Example Design User Guide: embedded-designs/agilex-5/e-series/premium-065a/freertos/ug-freertos-hello-agx5e-premium-065a.md
+        - HPS Fabric Configuration from Linux: embedded-designs/agilex-5/e-series/premium-065a/fabric-config-linux/ug-fabric-config-linux-agx5e-premium-065a.md
+        - HPS OpenOCD Debugging: embedded-designs/agilex-5/e-series/premium-065a/openocd/ug-openocd-debug-agx5e-premium-065a.md
       - E-Series 065B Modular Development Kit (ES):
         - FPGA AI Suite Hostless JTAG Example Design: ed-ai-suite/agilex5/hostless_jtag/hostless_jtag_design_example.md
         - FPGA AI Suite SoC Design Example: ed-ai-suite/agilex5/soc/fpga_ai_suite_soc_design_example.md
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular.md
         - HPS Linux Boot Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/modular/boot-examples/ug-linux-boot-agx5e-modular.md
         - HPS Xen Hypervisor GSRD: embedded-designs/agilex-5/e-series/modular/xen/ug-xen-agx5e-modular.md
-      
         - 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k/camera_4k.md
         - 4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k_ai/camera_4k_ai.md
+        - 4Kp60 Multi-Sensor Camera Stitch Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k_stitch/camera_4k_stitch.md
         - Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE-ES.md
         - 1x10G Ethernet System Example Design: embedded-designs/agilex-5/e-series/modular/ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g.md
         - TSN Examples:
@@ -315,6 +337,8 @@ nav:
         - Robotics Camera System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-camera.md
         - HPS PCIe Root Port: embedded-designs/agilex-5/e-series/modular-065b/pcie-rp/ug-pcie_rp-agx5e-modular-065b.md          
         - Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE.md
+        - 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/camera/camera_4k/camera_4k.md
+        - 4Kp60 Multi-Sensor Camera Stitch Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/camera/camera_4k_stitch/camera_4k_stitch.md
       - E-Series 065A Modular Development Kit:
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular-065a/gsrd/ug-gsrd-agx5e-modular-065a.md
         - HPS Linux Boot Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/modular-065a/boot-examples/ug-linux-boot-agx5e-modular-065a.md
@@ -326,6 +350,7 @@ nav:
           - HPS Linux Boot Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/013B/boot-examples/ug-linux-boot-agx5e-013b.md
           - FPGA Crypto Services (FCS) Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/013B/security/crypto/cryptoservices/ug-fpga-cryptoservice-agx5e-soc.md
           - Vendor Authorized Boot (HPS-First) Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/013B/security/vab/hps-first/ug-vab-hps-first-agx5e-soc.md
+          - OP-TEE Hello World Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/013B/optee/ug-optee-agx5e-013b.md
       - Intel Simics Virtual Platform Examples:
         - Simics Linux HPS Baseline System Example Design: embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms.md
         - Simics Zephyr HPS Baseline System Example Design: embedded-designs/agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms.md
@@ -372,6 +397,8 @@ nav:
         - HPS GSRD User Guide: embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc.md
         - CII Example Design: embedded-designs/agilex-7/i-series/avst_cii/agilex7-ed-pcie-cii.md
         - PCIe Root Port: embedded-designs/agilex-7/i-series/pcie_rp/ug-pcie_rp-agx7i-soc.md
+      - M-Series HBM2e Development Kit (3x F-Tile & 1x R-Tile) ES:
+        - HPS GSRD User Guide: embedded-designs/agilex-7/m-series/hbm2e-es/ug-gsrd-agx7m-hbm2e-es.md        
       - M-Series HBM2e Development Kit (3x F-Tile & 1x R-Tile):
         - HPS GSRD User Guide: embedded-designs/agilex-7/m-series/hbm2e/ug-gsrd-agx7m-hbm2e.md
         - PCIe Root Port User Guide: embedded-designs/agilex-7/m-series/pcie_rp/ug-pcie_rp-agx7m-hbm2e.md
@@ -453,3 +480,8 @@ markdown_extensions:
       auto_append:
         - includes/abbreviations.md
 
+
+
+# Build-process hooks (variable subst + md_in_html <center> fix)
+hooks:
+  - hooks.py

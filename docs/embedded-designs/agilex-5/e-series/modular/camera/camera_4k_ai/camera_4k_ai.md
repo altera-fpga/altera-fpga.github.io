@@ -301,7 +301,7 @@ Kit.
   tar -xzf `<name>.wic.gz`
   ```
 
-  * On Windows, use the [7-Zip] program (or similar):
+  * On Windows, use the [7-Zip](https://www.7-zip.org) program (or similar):
     * Right click `<name>.wic.gz` file, and select "Extract All..."
 
 * Write the `<name>.wic` image to the microSD card using a USB writer:
@@ -317,7 +317,7 @@ Kit.
   sync
   ```
 
-  * On Windows, use the [Win32DiskImager] program (or similar):
+  * On Windows, use the [Win32DiskImager](https://sourceforge.net/projects/win32diskimager) program (or similar):
     * Click browse icon and select "\*.\*" filter:
 
     ![disk-imager-browse](../common/images/disk-imager-browse.png){:style="display:block; margin-left:auto; margin-right:auto"}
@@ -342,52 +342,57 @@ Kit.
 
 
 
-[Agilex™ 5 E-Series Modular Development Board GSRD User Guide (25.1)]: https://altera-fpga.github.io/rel-25.1/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/
+
+### **Copying the Compiled AI Models to the microSD Card**
+
+The compiled models must be copied onto the microSD card for the Application
+Software to use at runtime:
+
+* `scp` and `ssh` the compiled models directly to the Development Kit (using its
+  `<ip address>`):
+  * Power up the Modular Development Kit (if not already powered) and set up the
+    serial terminal emulator (minicom, [TeraTerm], [PuTTY], etc.):
+    * Select the correct `COMx` port. (The Modular Development Kit presents 4
+      serial COM ports over a single connection and the Linux system uses the 3rd
+      port in order). Set the port configuration as follows:
+      * 115200 baud rate, 8 Data bits, 1 Stop bit, CRC and Hardware flow control
+        disabled.
+    * The Linux OS will boot.
+    * Take note of the Modular Development Kit IP address.
+      * The IP address can also be found using the terminal by logging in as `root`
+      (no password required) and querying the Ethernet controller:
+
+      ```bash
+      root
+      ifconfig
+      ```
+
+      * `eth0` provides the IPv4 or IPv6 address to connect to.
+ 
+  * Using a Linux terminal (or Windows equivalent like PowerShell) on your Host,
+    copy the files from the output directory to the Development Kit:
+
+    ```bash
+    cd compile/output
+    scp -r * root@<ip address>:
+    ```
+  * Ensure sdcard has stored the files
+    ```bash
+    ssh root@<ip address>
+    sync
+    ls *_categories.txt *.arch
+    ```
+    Outputs:
+    ```bash
+    yolov8n-pose_categories.txt yolov8n_categories.txt
+
+    generated_arch.arch:
+    yolov8n-pose_dla_m2m_compiled_640_384.bin yolov8n_dla_m2m_compiled_640_384.bin
+    ```
+  * The Development Kit can be powered down, and restarted to load the models.
 
 
-
-[Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs (25.1)]: https://www.intel.com/content/www/us/en/docs/programmable/814346/25-1/hard-processor-system-technical-reference.html
-[NiosV Processor for Altera® FPGA]: https://www.altera.com/design/guidance/nios-v-developer
-[Agilex™ 5 FPGA E-Series 065B Modular Development Kit]: https://www.altera.com/products/devkit/a1jui0000061qabmaa/agilex-5-fpga-and-soc-e-series-modular-development-kit-es
-[Agilex™ 5 FPGA E-Series 065B Modular Development Kit Product Brief]: https://www.intel.com/content/www/us/en/content-details/815178/agilex-5-fpga-e-series-065b-modular-development-kit-product-brief.html
-[Altera® FPGA AI Suite]: https://www.altera.com/products/development-tools/fpga-ai-suite
-
-
-[Win32DiskImager]: https://sourceforge.net/projects/win32diskimager
-[7-Zip]: https://www.7-zip.org
-[TeraTerm]: https://github.com/TeraTermProject/teraterm/releases
-[PuTTY]: https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
-
-
-[Framos FSM:GO IMX678C Camera Modules]: https://www.framos.com/en/fsmgo
-[Wide 110deg HFOV Lens]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L110A-PM-A1Q1?qs=%252BHhoWzUJg4KQkNyKsCEDHw%3D%3D
-[Medium 100deg HFOV Lens]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L100A-PM-A1Q1?qs=%252BHhoWzUJg4IesSwD2ACIBQ%3D%3D
-[Narrow 54deg HFOV Lens]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FSMGO-IMX678C-M12-L54A-PM-A1Q1?qs=%252BHhoWzUJg4L5yHZulKgVGA%3D%3D
-[Framos Tripod Mount Adapter]: https://www.framos.com/en/products/fma-mnt-trp1-4-v1c-26333
-[Tripod]: https://thepihut.com/products/small-tripod-for-raspberry-pi-hq-camera
-[150mm flex-cable]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FMA-FC-150-60-V1A?qs=GedFDFLaBXGCmWApKt5QIQ%3D%3D&_gl=1*d93qim*_ga*MTkyOTE4MjMxNy4xNzQxMTcwMzQy*_ga_15W4STQT4T*MTc0MTE3MDM0Mi4xLjEuMTc0MTE3MDQ5OS40NS4wLjA
-[300mm micro-coax cable]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FFA-MC50-Kit-0.3m?qs=%252BHhoWzUJg4K3LtaE207mhw%3D%3D
-[DP to HDMI Adapter]: https://www.amazon.co.uk/gp/product/B01M6WK3KU/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
-[Framos GMSL3 5m]: https://www.mouser.co.uk/ProductDetail/FRAMOS/FFA-GMSL3-Kit-5m?qs=%252BHhoWzUJg4IkLHv%2F6fzsXQ%3D%3D
-[Framos FFA-GMSL-SER-V2A Serializer]: https://www.framos.com/en/products/ffa-gmsl-ser-v2a-27617
-[Framos FFA-GMSL-DES-V2A Deserializer]: https://www.framos.com/en/products/ffa-gmsl-des-v2a-27240
-
-
-[VVP IP Suite]: https://www.altera.com/products/ip/a1jui000004qxfpmak/video-and-vision-processing-suite
-[MIPI DPHY IP and MIPI CSI-2 IP]: https://www.altera.com/products/ip/a1jui0000049uuamam/mipi-d-phy-ip#tab-blade-1-3
-[Nios® V Processor]: https://www.altera.com/products/ip/a1jui0000049uvama2/nios-v-processors
-
-
-[Altera® Quartus® Prime Pro Edition version 25.1 Linux]: https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html
-[Altera® Quartus® Prime Pro Edition version 25.1 Windows]: https://www.intel.com/content/www/us/en/software-kit/851653/intel-quartus-prime-pro-edition-design-software-version-25-1-for-windows.html
-[Altera® Quartus® Prime Pro Edition version 25.1 Programmer and Tools]: https://www.intel.com/content/www/us/en/software-kit/851652/intel-quartus-prime-pro-edition-design-software-version-25-1-for-linux.html
-
-
-[ultralytics YOLO]: https://docs.ultralytics.com
-[ONNX]: https://onnx.ai/
-[OpenVINO Toolkit]: https://storage.openvinotoolkit.org/repositories/openvino/packages/2024.6/linux
-
-
+<br/>
 
 
 

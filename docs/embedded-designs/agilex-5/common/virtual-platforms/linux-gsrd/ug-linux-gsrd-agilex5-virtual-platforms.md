@@ -53,26 +53,26 @@ To exercise the instructions presented on this page (build your binaries and exe
 
 ## Release Content
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
 
 **Note:** Regarding the Hardware Design components in the following table, only the device-specific one is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1_p1_REL_GSRD_PR   |
-| Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main | QPDS26.1_p1_REL_GSRD_PR |
-| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
-| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
-| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
-| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_p1_REL_GSRD_PR |
-| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
-| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
-| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
-| KAS | [https://github.com/jeffhammond/STREAM.git](https://github.com/jeffhammond/STREAM.git) | master | 5.2 |
+| Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1.1_REL_GSRD_PR |
+| Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
+| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
+| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
+| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
+| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
+| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -82,15 +82,15 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the follo
 
 You can find the prebuilt binaries from the HPS Baseline System Example Design prebuilt at the following URL:
 
-* SD Card: [HPS Baseline System Example Design Binaries](https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/). 
+* SD Card: [HPS Baseline System Example Design Binaries](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/). 
 
-* QSPI: [QSPI Binaries](https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e065bb32aea_qspi.baseline-a55/). 
+* QSPI: [QSPI Binaries](https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e065bb32aea_qspi.baseline-a55/). 
 
-* NAND: [NAND Binaries](https://releases.rocketboards.org/2026.04/nand/agilex5_dk_a5e065bb32aea_nand.baseline-a55)
+* NAND: [NAND Binaries](https://releases.rocketboards.org/2026.08/nand/agilex5_dk_a5e065bb32aea_nand.baseline-a55)
 
-You can exercise them using the internal Simics environment included under HPS Baseline System Example Design 2.0 or also from a separate Simics environment in which you need to create and build the project directory manually.
+You can exercise them using the internal Simics framework included under HPS Baseline System Example Design  or also from a separate Simics environment in which you need to create and build the project directory manually.
 
-**Note:** The final images used to boot from QSPI and NAND in Simics are not provided, but the binaries used to generate these are provided, so you can generate the final images following the instructions in [Build QSPI HPS Baseline System Example Design 2.0](#build-qspi-hps-baseline-system-example-design-20) and [Build NAND HPS Baseline System Example Design 2.0](#build-nand-hps-baseline-system-example-design-20) sections.
+**Note:** The final images used to boot from QSPI and NAND in Simics are not provided, but the binaries used to generate these are provided, so you can generate the final images following the instructions in [Build QSPI HPS Baseline System Example Design](#build-qspi-hps-baseline-system-example-design) and [Build NAND HPS Baseline System Example Design](#build-nand-hps-baseline-system-example-design) sections.
 
 **Note:**  Starting from 24.2 release, the binaries targeted for silicon can also be used with Simics simulator.
 
@@ -128,19 +128,19 @@ You can exercise them using the internal Simics environment included under HPS B
 
 #### Known Issues with the Release
 
-For known issues in this release please refer to the [Intel Simics Simulator for FPGA Release page](https://www.intel.com/content/www/us/en/docs/programmable/870556.html).
+For known issues in this release please refer to the [Intel® Simics® Simulator for Altera® FPGAs Release Notes](https://docs.altera.com/r/docs/870556/current/intel-simics-simulator-for-altera-fpgas-release-notes/)
 
-### Build Instructions HPS Baseline System Example Design 2.0
+### Build Instructions for HPS Baseline System Example Design
 
-The HPS Baseline System Example Design 2.0 was introduced on release 25.3. The HPS Baseline System Example Design 2.0 provides a framework based on **kas** and **yocto**, that allows to build be HPS binaries in a more simplified and automated methodology. In the HPS Baseline System Example Design 2.0, the  [agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) repository integrates software and Quartus design components, which differs from the legacy HPS System Example Design build flow in which the software and hardware components were in separate repositories. 
-For the  Simics simulation case specific, the HPS Baseline System Example Design 2.0 also provides a Simics simulation environment allows to run Simics simulations from the HPS Baseline System Example Design build environment using directly the binaries produced from the build. The following steps shows how to produced the required binaries that can be used in Simics simulation.
+The HPS Baseline System Example Design was introduced on release 25.3. The HPS Baseline System Example Design provides a framework based on **kas** and **yocto**, that allows to build be HPS binaries in a more simplified and automated methodology. In the HPS Baseline System Example Design, the  [agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) repository integrates software and Quartus design components, which differs from the legacy HPS System Example Design build flow in which the software and hardware components were in separate repositories. 
+For the  Simics simulation case specific, the HPS Baseline System Example Design also provides a Simics simulation framework which allows you to run Simics simulations using directly the binaries produced from the build. The following steps shows how to produced the required binaries that can be used in Simics simulation.
 
-**Note:** In 26.1 Release, the HPS Baseline System Example Design 2.0 used in this example only provides a directory targeted for **a55** cores in which is expected that the generated binaries have a an **a55** core as the boot core (core 0). In the case of Simics, the selection of the boot core is done through the **hps_boot_core** parameter in the target script simics/linux/<device\>_boot/\*.simics).
-
-
+**Note:** In 26.1 Release, the HPS Baseline System Example Design used in this example only provides a directory targeted for **a55** cores in which is expected that the generated binaries have a an **a55** core as the boot core (core 0). In the case of Simics, the selection of the boot core is done through the **hps_boot_core** parameter in the target script simics/linux/<device\>_boot/\*.simics).
 
 
-For more information about the HPS Baseline System Example Design 2.0 for Agilex 5 device, please refer to the **HPS Baseline System Example Design User Guide: Agilex 5 FPGA E-Series 065B Premium Development Kit** page.
+
+
+For more information about the HPS Baseline System Example Design for Agilex 5 device, please refer to the **HPS Baseline System Example Design User Guide: Agilex 5 FPGA E-Series 065B Premium Development Kit** page.
 
 #### Build Instructions for SD Card and QSPI
 
@@ -164,7 +164,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -182,9 +182,9 @@ source ~/altera_pro/26.1/qinit.sh
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd_sdqspi_a55
 mkdir agilex5_soc_devkit_ghrd_sdqspi_a55 && cd agilex5_soc_devkit_ghrd_sdqspi_a55
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065b-premium-devkit-oobe-baseline-a55.zip
-unzip a5ed065b-premium-devkit-oobe-baseline-a55.zip
-rm -f a5ed065b-premium-devkit-oobe-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aea-enablement-baseline-a55.zip
+unzip dk-a5e065bb32aea-enablement-baseline-a55.zip
+rm -f dk-a5e065bb32aea-enablement-baseline-a55.zip
 make baseline_a55-install-core-rbf
 pushd software/hps_debug && ./build.sh && popd
 quartus_pfg -c output_files/baseline_a55.sof \
@@ -198,17 +198,17 @@ The output from this stage is:
 
 * $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/output_files/ghrd.rbf - Phase 2 Quartus design.
 * $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/output_files/baseline_a55_hps_debug.sof - SOF file with Phase 1 Quartus design and Debug HPS
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux - Clean HPS Baseline System Example Design 2.0 software direcotry (not built yet).
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux - Clean HPS Baseline System Example Design software directory (not built yet).
 
 
 
-##### Build SD Card HPS Baseline System Example Design 2.0
+##### Build SD Card HPS Baseline System Example Design
 
 
 
 This section provides the instructions needed to build the HPS binaries needed to boot from SD Card in Simics. 
 
-**Note:** To Build the HPS Baseline System Example Design 2.0 you need to have the **KAS** version 4.8.2 in your Linux build machine. You also need also install `python3-newt`, and `python3.10-venv` packages. You can get them with:
+**Note:** To Build the HPS Baseline System Example Design you need to have the **KAS** version 4.8.2 in your Linux build machine. You also need also install `python3-newt`, and `python3.10-venv` packages. You can get them with:
 
 ```bash
 $ sudo apt-get install python3-newt python3.10-venv
@@ -216,7 +216,7 @@ $ python3 -m pip install --upgrade kas
 $ kas --version
 kas 4.8.2 (configuration format version 19, earliest compatible version 1)
 ```
-The instructions to build the HPS Baseline System Example Design 2.0 to boot from SD Card are shown next:
+The instructions to build the HPS Baseline System Example Design to boot from SD Card are shown next:
 
 
 ```bash
@@ -245,13 +245,13 @@ The output files that will be used to simulate with Simics are:
 
 
 
-#####  Build QSPI HPS Baseline System Example Design 2.0
+#####  Build QSPI HPS Baseline System Example Design
 
 
 
 This section provides the instructions needed to build the HPS binaries needed to boot from QSPI in Simics. 
 
-**Note:** To Build the HPS Baseline System Example Design 2.0 you need to have the **KAS** version 4.8.2 in your Linux build machine. You also need also install `python3-newt`, and `python3.10-venv` packages. You can do this with:
+**Note:** To Build the HPS Baseline System Example Design you need to have the **KAS** version 4.8.2 or above in your Linux build machine. You also need also install `python3-newt`, and `python3.10-venv` packages. You can do this with:
 
 ```bash
 $ sudo apt-get install python3-newt python3.10-venv
@@ -259,7 +259,7 @@ $ python3 -m pip install --upgrade kas
 $ kas --version
 kas 4.8.2 (configuration format version 19, earliest compatible version 1)
 ```
-The instructions to build the HPS Baseline System Example Design 2.0 to boot from QSPI are shown next:
+The instructions to build the HPS Baseline System Example Design to boot from QSPI are shown next:
 
 
 
@@ -294,9 +294,9 @@ The output files that will be used to generate the final binaries to simulate wi
 
 
 
-At this point you can build the \*.rpd file used in Simics simulation using the Simics environment  integrated into the HPS Baseline System Example Design or building this apart from the HPS Baseline System Example Design environment (i.e. independent directory in which you manually create, deploy and build the Simics project.
+At this point you can build the \*.rpd file used in Simics simulation using the Simics framework  integrated into the HPS Baseline System Example Design or building this apart from the HPS Baseline System Example Design framework (i.e. independent directory in which you manually create, deploy and build the Simics project.
 
-The following step tells you how to build the final \*.rpd to be used outside of the HPS Baseline System Example Design Simics environment. For this,  you require a \*.pfg file with the following layout:
+The following step tells you how to build the final \*.rpd to be used outside of the HPS Baseline System Example Design Simics framework. For this,  you require a \*.pfg file with the following layout:
 
 | Partition    | MTD Partition | UBI Volume | Volume Name | Type         | Image/Individual File               | Group File | Start Addr | Size |
 | :---------------- | :--------- | :--------- | :---------- | :----------- | :----------------------------------- | :--------- | :-------- | ----------- |
@@ -338,7 +338,7 @@ The following files are created after this step:
 
 
 
-Once that you have build the binaries from HPS Baseline System Example Design 2.0, you can exercises these binaries with either the Simics environment included as part of the HPS Baseline System Example Design 2.0 [Exercising Simics Simulation from HPS Baseline System Example Design 2.0](#exercising-simics-simulation-from-hps-baseline-system-example-design-20) or using the a Simics environment apart from the HPS Baseline System Example Design [Use Cases Supported by the Agilex™ 5 E-Series Universal Virtual Platform](#use-cases-supported-by-the-agilextm-5-e-series-universal-virtual-platform).
+Once that you have build the binaries from HPS Baseline System Example Design, you can exercises these binaries with either the Simics framework included as part of the HPS Baseline System Example Design [Exercising Simics Simulation from HPS Baseline System Example Design Framework](#exercising-simics-simulation-from-hps-baseline-system-example-design-framework) or using the a Simics environment apart from the HPS Baseline System Example Design [Use Cases Supported by the Agilex™ 5 E-Series Universal Virtual Platform](#use-cases-supported-by-the-agilextm-5-e-series-universal-virtual-platform).
 
 #### Build Instructions for NAND
 
@@ -362,7 +362,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -380,9 +380,9 @@ source ~/altera_pro/26.1/qinit.sh
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd_nand_a55
 mkdir agilex5_soc_devkit_ghrd_nand_a55 && cd agilex5_soc_devkit_ghrd_nand_a55
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065b-premium-devkit-nand-baseline-a55.zip
-unzip a5ed065b-premium-devkit-nand-baseline-a55.zip
-rm -f a5ed065b-premium-devkit-nand-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aea-nand-baseline-a55.zip
+unzip dk-a5e065bb32aea-nand-baseline-a55.zip
+rm -f dk-a5e065bb32aea-nand-baseline-a55.zip
 make baseline_a55-install-core-rbf
 ```
 
@@ -391,15 +391,15 @@ make baseline_a55-install-core-rbf
 The output from this stage is:
 
 * $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/output_files/ghrd.rbf - Phase 2 Quartus design.
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux - Clean HPS Baseline System Example Design 2.0 software direcotry (not built yet).
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux - Clean HPS Baseline System Example Design software directory (not built yet).
 
-#####  Build NAND HPS Baseline System Example Design 2.0
+#####  Build NAND HPS Baseline System Example Design
 
 
 
 This section provides the instructions needed to build the HPS binaries needed to boot from NAND in Simics. 
 
-**Note:** To Build the HPS Baseline System Example Design 2.0 you need to have the **KAS** version 4.8.2 in your Linux build machine. You also need also install `python3-newt`, and `python3.10-venv` packages. You can do this with:
+**Note:** To Build the HPS Baseline System Example Design you need to have the **KAS** version 4.8.2 or above in your Linux build machine. You also need also install `python3-newt`, and `python3.10-venv` packages. You can do this with:
 
 ```bash
 $ sudo apt-get install python3-newt python3.10-venv
@@ -407,7 +407,7 @@ $ python3 -m pip install --upgrade kas
 $ kas --version
 kas 4.8.2 (configuration format version 19, earliest compatible version 1)
 ```
-The instructions to build the HPS Baseline System Example Design 2.0 to boot from NAND are shown next:
+The instructions to build the HPS Baseline System Example Design to boot from NAND are shown next:
 
 
 ```bash
@@ -473,10 +473,11 @@ dd conv=notrunc bs=1 if='root.ubi' of=$COMBINEDFILE seek=$((0x00200000))
 The final NAND image generated is:
 
 * $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/nand-bin/nand.img
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/nand-bin/u-boot-spl-dtb.bin
 
 
 
-Once that you have build the binaries from HPS Baseline System Example Design 2.0, you can exercises these binaries with either the Simics environment included as part of the HPS Baseline System Example Design 2.0 [Exercising Simics Simulation from HPS Baseline System Example Design 2.0](#exercising-simics-simulation-from-hps-baseline-system-example-design-20) or using the a Simics environment apart from the HPS Baseline System Example Design [Use Cases Supported by the Agilex™ 5 E-Series Universal Virtual Platform](#use-cases-supported-by-the-agilextm-5-e-series-universal-virtual-platform).
+Once that you have build the binaries from HPS Baseline System Example Design, you can exercises these binaries with either the Simics framework included as part of the HPS Baseline System Example Design [Exercising Simics Simulation from HPS Baseline System Example Design Framework](#exercising-simics-simulation-from-hps-baseline-system-example-design-framework) or using the a Simics environment apart from the HPS Baseline System Example Design [Use Cases Supported by the Agilex™ 5 E-Series Universal Virtual Platform](#use-cases-supported-by-the-agilextm-5-e-series-universal-virtual-platform).
 
 
 
@@ -686,18 +687,18 @@ The parameters that you can configure are shown in the following table:
 | **stepping**     | Select the silicon features that the Agilex 5 Simics model supports. | A0 or B0. D-Series corresponds to B0 device.      | A0  |
 | **create_hps_serial0_console<br>create_hps_serial1_console** | Create a console component (serial console) and connect it to the corresponding UART controller peripheral in the Hard Processor System Agilex 5 FPGA IP.<br/>**create_hps_serial0_console** is for UART0 <br/>**create_hps_serial1_console** is for UART1. | Boolean |serial0: True<br>serial1: False|
 
-### Exercising Simics Simulation from HPS Baseline System Example Design 2.0
+### Exercising Simics Simulation from HPS Baseline System Example Design Framework
 
-The HPS Baseline System Example Design 2.0 build framework is provided with the capability to simulate with Simics some reference use cases using the binaries built with this framework. The components included as part of the HPS Baseline System Example Design repository are listed next. These are included at **$TOP_FOLDER/agilex5_soc_devkit_ghrd_\*/simics/linux** directory.
+The HPS Baseline System Example Design build framework is provided with the capability to simulate with Simics some reference use cases using the binaries built with this framework. The components included as part of the HPS Baseline System Example Design repository are listed next. These are included at **$TOP_FOLDER/agilex5_soc_devkit_ghrd_\*/simics/linux** directory.
 
 * [runsimics.sh](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065b-premium-devkit-oobe/baseline/simics/linux/runsimics.sh) : This script is in charge of deploy the Simics project (under $TOP_FOLDER/agilex5_soc_devkit_ghrd\*/simics/linux which becomes the Simics project directory) and build it,  similarly to what is described in the [Simulation Setup section](#simulation-setup).  The script receives as parameter the device used to boot  along with the path of the location of the binaries. <br>
-Parameters:<br>  1\. **Boot mode:** **sdmmc** to boot from sdcard, **qspi** to boot from QSPI or **nand** to boot from NAND. <br>  2\. **Binaries path:** Path where the binares were built. The binaries needed could be the ones listed as output of the [Build SD Card HPS Baseline System Example Design 2.0](#build-sd-card-hps-baseline-system-example-design-20), [Build QSPI HPS Baseline System Example Design 2.0](#build-qspi-hps-baseline-system-example-design-20)  and [Build NAND HPS Baseline System Example Design 2.0](#build-nand-hps-baseline-system-example-design-20) sections, but the binaries could be taken from any other source. 
+Parameters:<br>  1\. **Boot mode:** **sdmmc** to boot from sdcard, **qspi** to boot from QSPI or **nand** to boot from NAND. <br>  2\. **Binaries path:** Path where the binares were built. The binaries needed could be the ones listed as output of the [Build SD Card HPS Baseline System Example Design](#build-sd-card-hps-baseline-system-example-design), [Build QSPI HPS Baseline System Example Design](#build-qspi-hps-baseline-system-example-design)  and [Build NAND HPS Baseline System Example Design](#build-nand-hps-baseline-system-example-design) sections, but the binaries could be taken from any other source. 
 
 * [sdmmc_boot](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/main/a5ed065b-premium-devkit-oobe/baseline-a55/simics/linux/sdmmc_boot) directory: This directory is used to the exercise the boot for SD Card use case. This includes  [sdmmc_gsrd.simics](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065b-premium-devkit-oobe/baseline-a55/simics/linux/sdmmc_boot/sdmmc_gsrd.simics) target script which defines the parameters needed to boot in this mode. The .simics target script calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed. In the binary directory, the SD Card image must be called **gsrd-console-image-agilex5e.rootfs.wic**.
 * [qspi_boot](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/main/a5ed065b-premium-devkit-oobe/baseline-a55/simics/linux/qspi_boot) directory: This directory is used to the exercise the QSPI boot mode. This includes the [qspi_gsrd.simics](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065b-premium-devkit-oobe/baseline-a55/simics/linux/qspi_boot/qspi_gsrd.simics) target script which defines the parameters needed to boot in this mode. The .simics target script in this directory calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed to run the simulation. In the binary directory, the QSPI image must be called **qspi_boot.rpd**.
 * [nand_boot](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/main/a5ed065b-premium-devkit-nand/baseline-a55/simics/linux/nand_boot): This directory is used to the exercise the NAND boot mode. This includes the [nand_gsrd.simics](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065b-premium-devkit-nand/baseline-a55/simics/linux/nand_boot/nand_gsrd.simics) target script which defines the parameters needed to boot in this mode. The .simics target script in this directory calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed to run the simulation. In the binary directory, the NAND image must be called **nand.img**. If this file does not exist, then the **runsimics.sh** script will try to create it using the binaries available in the binaries directory.
 
-The boot modes supported by the HPS Baseline System Example Design 2.0 are:
+The boot modes supported by the HPS Baseline System Example Design are:
 
 * Booting from U-Boot to Linux from SD Card using Agilex 5 Universal Virtual Platform
 * Booting from U-Boot to Linux from QSPI using Agilex 5 Universal Virtual Platform
@@ -705,9 +706,9 @@ The boot modes supported by the HPS Baseline System Example Design 2.0 are:
 
 The use cases that are listed in the [Use Cases Supported by the Agilex™ 5 E-Series Universal Virtual Platform](#use-cases-supported-by-the-agilextm-5-e-series-universal-virtual-platform) are also supported, but require manual update of the **.simics** target scripts included in the boot mode directories listed above.
 
-####  Simulation Setup under HPS Baseline System Example Design 2.0
+####  Simulation Setup under HPS Baseline System Example Design Framework
 
-At this time, it is assumed that you had already built the HPS binaries as indicated in [Build Instructions - HPS Baseline System Example Design 2.0 Baseline](#build-instructions-hps-baseline-system-example-design-20) and you also have installed the Intel Simics Simulator for Altera FPGAs in to your Linux machine.
+At this time, it is assumed that you had already built the HPS binaries as indicated in [Build Instructions for HPS Baseline System Example Design](#build-instructions-for-hps-baseline-system-example-design) and you also have installed the Intel Simics Simulator for Altera FPGAs in to your Linux machine.
 
 You also need to add the following to yout Linux **$PATH** environment variable:
 
@@ -721,12 +722,12 @@ $ cd $TOP_FOLDER
 # Simics installation dir
 $ export PATH=<Simics_installation_dir/simics/bin/:$PATH
 # Quartus Pro
-$ export QUARTUS_ROOTDIR=~/altera_pro/26.1/quartus/
+$ export QUARTUS_ROOTDIR=~/altera_pro/26.1.1/quartus/
 $ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
-#### Exercise SDCard Boot Mode under HPS Baseline System Example Design 2.0 Environment
+#### Exercise SDCard Boot Mode under HPS Baseline System Example Design Framework
 
-It is assumed that the instructions at [Simulation Setup under HPS Baseline System Example Design 2.0](#simulation-setup-under-hps-baseline-system-example-design-20) section have been already executed.
+It is assumed that the instructions at [Simulation Setup under HPS Baseline System Example Design Framework](#simulation-setup-under-hps-baseline-system-example-design-framework) section have been already executed.
 
 The **runsimics.sh** script need to be called, providing as parameters the **sdmmc** boot mode and the location of the binaries.
 ```bash
@@ -740,9 +741,9 @@ When the simulation is launched, the current Linux terminal will become the Simi
 ![](images/SimicsSimGRHD2.0.png)
 
 
-#### Exercise QSPI Boot Mode under HPS Baseline System Example Design 2.0 Environment
+#### Exercise QSPI Boot Mode under HPS Baseline System Example Design Framework
 
-It is assumed that the instructions at [Simulation Setup under HPS Baseline System Example Design 2.0](#simulation-setup-under-hps-baseline-system-example-design-20) section have been already executed.
+It is assumed that the instructions at [Simulation Setup under HPS Baseline System Example Design Framework](#simulation-setup-under-hps-baseline-system-example-design-framework) section have been already executed.
 
 The **runsimics.sh** script need to be called, providing the (**qspi**) boot mode and the location of the binaries used to boot from QSPI as parameters.
 
@@ -755,9 +756,9 @@ This will deploy the **agilex5e-universal** virtual platform under **$TOP_FOLDER
 
 When the simulation is launched, the current Linux terminal will become the Simics CLI and the Serial console will pop up.  To start the simulation enter **"run"** command in the Simics CLI.
 
-#### Exercise NAND Boot Mode under HPS Baseline System Example Design 2.0 Environment
+#### Exercise NAND Boot Mode under HPS Baseline System Example Design Framework
 
-It is assumed that the instructions at [Simulation Setup under HPS Baseline System Example Design 2.0](#simulation-setup-under-hps-baseline-system-example-design-20) section have been already executed.
+It is assumed that the instructions at [Simulation Setup under HPS Baseline System Example Design Framework](#simulation-setup-under-hps-baseline-system-example-framework) section have been already executed.
 
 The **runsimics.sh** script need to be called, providing the (**nand**) boot mode and the location of the binaries used to boot from NAND as parameters.
 
@@ -790,13 +791,13 @@ After subsequence times in which the **runsimics.sh** command is executed, the u
 
 The following sections explain some supported use cases using the **Agilex™ 5 E-Series Universal** virtual platform. 
 
-**Note:** The instructions in each of the use case shows how this can be exercised in a Simics environment apart for the HPS Baseline System Example Design, but these can also be exercise from the Simics environment inside of the HPS Baseline System Example Design. For this last case, you can modify the **\*.simics** target scripts provided inside of the HPS Baseline System Example Design (below **simics/linux/** directory) as indicated in the use case description or create a new target script and call  it from the **runsimics.sh** script. 
+**Note:** The instructions in each of the use case shows how this can be exercised in a Simics environment apart for the HPS Baseline System Example Design, but these can also be exercise from the Simics framework inside of the HPS Baseline System Example Design. For this last case, you can modify the **\*.simics** target scripts provided inside of the HPS Baseline System Example Design (below **simics/linux/** directory) as indicated in the use case description or create a new target script and call  it from the **runsimics.sh** script. 
 
 The preconditions required to execute them are listed in the following section.
 
 #### Simulation Setup 
 
-Consider that the Intel Simics Simulator for Altera® FPGAs Simulator has been installed on a Linux System and the output binaries generated from [Build Instructions - HPS Baseline System Example Design 2.0 Baseline](#build-instructions-hps-baseline-system-example-design-20) section are already available.
+Consider that the Intel Simics Simulator for Altera® FPGAs Simulator has been installed on a Linux System and the output binaries generated from [Build Instructions for HPS Baseline System Example Design](#build-instructions-for-hps-baseline-system-example-design) section are already available.
 
 
 1\. Create a project directory under the Intel Simics Simulator installation directory (Assuming it is **SimicsInstallDir**):
@@ -836,7 +837,7 @@ Consider that the Intel Simics Simulator for Altera® FPGAs Simulator has been i
   Copying agilex5_icon_84x84.png
   ```
 
-4\. Copy the following binaries created in [Build Instructions - HPS Baseline System Example Design 2.0 Baseline](#build-instructions-hps-baseline-system-example-design-20-baseline) section to the Simics project directory:
+4\. Copy the following binaries created in [Build Instructions for HPS Baseline System Example Design](#build-instructions-for-hps-baseline-system-example-design) section to the Simics project directory:
 
 ```bash
 $ cp $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/gsrd-console-image-agilex5e.rootfs.wic .
@@ -1458,7 +1459,7 @@ Perform steps 1 to 4 described in the [Simulation Setup](#simulation-setup) sect
 1\. In the Intel Simics environment at the project directory, generate a compressed version of the .rpd file created (.craff) file using the **craff** tool provided under the Simics Base installation directory:
 
   ```bash
-  <SimicsInstallDir>/simics-7.59.0/bin/craff -o qspi_image.img.craff qspi_boot.rpd
+  <SimicsInstallDir>/simics-7.84.0/bin/craff -o qspi_image.img.craff qspi_boot.rpd
   ```
 
   The following file is created under the Simics project directory:
@@ -1846,11 +1847,11 @@ U_BOOT_CMD(
 );
 ```
 
-Note: You can perform the build of this application by updating the Yocto recipe as part of the flow described in [Build SD Card HPS Baseline System Example Design 2.0](#build-sd-card-hps-baseline-system-example-design-20) section. This can be done by creating a patch in which you describe the files that need to be created/updated in the U-Boot repository and then deploy it. This can be done during the Yocto customization stage (Customize the Yocto Build). To create the u-boot patch (`myUbootExampleApp.patch`), do the following:
+Note: You can perform the build of this application by updating the Yocto recipe as part of the flow described in [Build SD Card HPS Baseline System Example Design](#build-sd-card-hps-baseline-system-example-design) section. This can be done by creating a patch in which you describe the files that need to be created/updated in the U-Boot repository and then deploy it. This can be done during the Yocto customization stage (Customize the Yocto Build). To create the u-boot patch (`myUbootExampleApp.patch`), do the following:
 
 ```bash
 cd $TOP_FOLDER/
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga-patch
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga-patch
 cd u-boot-socfpga-patch/
  - Create cmd/socFPGATrainingExamples.c file with the source code provided of the example application.
  - Edit cmd/Makefile to include the build of socFPGATrainingExamples.c
@@ -1894,11 +1895,11 @@ Start with the setup of the main use case defined at [Simulation Setup]#simulati
 # uboot-linux_sdcard.simics
 :
 add-symbol-file  <path of symbol file>/u-boot  0x7FD0D000 -relative
-add-pathmap-entry "/usr/src/debug/u-boot-socfpga/v2026.01+git/" "<$TOP_FOLDER path>/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2025.10+git/git/"
+add-pathmap-entry "/usr/src/debug/u-boot-socfpga/v2026.04+git/" "<$TOP_FOLDER path>/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2025.10+git/git/"
 bp.source_location.break do_helloTestApp
 ```
 
-**Note:** The symbol file is being loaded with an offset relocation of 0x7FD0D000. This is needed because in a late stage of the U-Boot execution, this relocates itself into a different SDRAM memory location and this should be indicated to the debugger, so there is a match between the addresses indicated in the symbol file and the real memory address location of the symbols. You can obtain this relocation offset by subtracting the real address of a specific function (which can be obtained from the application being executed) and the original offset from the same function in the symbols file (provided in the **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2026.01+git/build/socfpga_agilex5_defconfig/u-boot.sym** file). An example of the calculation of this relocation offset is shown in the following figure (values are from a different release):
+**Note:** The symbol file is being loaded with an offset relocation of 0x7FD0D000. This is needed because in a late stage of the U-Boot execution, this relocates itself into a different SDRAM memory location and this should be indicated to the debugger, so there is a match between the addresses indicated in the symbol file and the real memory address location of the symbols. You can obtain this relocation offset by subtracting the real address of a specific function (which can be obtained from the application being executed) and the original offset from the same function in the symbols file (provided in the **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2026.04+git/build/socfpga_agilex5_defconfig/u-boot.sym** file). An example of the calculation of this relocation offset is shown in the following figure (values are from a different release):
 
 ![ubootApp relocationOffset2.jpg](images/ubootApp_relocationOffset2.jpg)
 
@@ -2046,7 +2047,7 @@ This section requires the **simics-riscfree** script. It is included in your Int
 
 7\. Go to the **PathMap** tab menu and **Add**  a new source code mapping providing the Source and Destination as shown next:
 
-* Source: /usr/src/debug/u-boot-socfpga/v2026.01+git/" 
+* Source: /usr/src/debug/u-boot-socfpga/v2026.04+git/" 
 
 * Destination: <$TOP_FOLDER path>/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2025.10+git/git/
 

@@ -55,7 +55,7 @@ In the log, look for the property `"HPS/FPGA configuration order"` SET TO `"HPS_
 
 <br>
 
-![hps-first](/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/hps-first.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![hps-first](/rel-26.1.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/hps-first.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center>
 
 **HPS First SOF file.**
@@ -103,7 +103,7 @@ In the log, look for the property `"HPS/FPGA configuration order"` SET TO `"AFTE
 
 <br>
 
-![fpga-first](/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/fpga-first.png){:style="display:block; margin-left:auto; margin-right:auto"}
+![fpga-first](/rel-26.1.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/common/images/fpga-first.png){:style="display:block; margin-left:auto; margin-right:auto"}
 <center>
 
 **FPGA First SOF file.**
