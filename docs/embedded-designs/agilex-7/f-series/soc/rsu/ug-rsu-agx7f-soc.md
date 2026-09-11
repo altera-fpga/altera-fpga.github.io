@@ -27,26 +27,26 @@ Refer to [Agilex™ 7 Hard Processor System Remote System Update User Guide](htt
 
 ## Component Versions 
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
 
 **Note:** Regarding the Hardware Design components in the following table, only the device-specific one is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1_p1_REL_GSRD_PR   |
-| Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main | QPDS26.1_p1_REL_GSRD_PR |
-| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
-| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1_REL_GSRD_PR |
-| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
-| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_p1_REL_GSRD_PR |
-| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | scarthgap | latest |
-| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | scarthgap | QPDS26.1_REL_GSRD_PR |
-| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | scarthgap | QPDS26.1_REL_GSRD_PR |
-| KAS | [https://github.com/jeffhammond/STREAM.git](https://github.com/jeffhammond/STREAM.git) | master | 5.2 |
+| Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1.1_REL_GSRD_PR |
+| Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
+| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
+| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
+| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
+| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
+| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
@@ -60,14 +60,14 @@ The following items are required to run the RSU example.
 
 - Host PC running Ubuntu 22.04 LTS (other Linux versions may work too) 
  - Minimum 48 GB of RAM, required for compiling the Quartus designs 
- - Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1  for compiling the Quartus projects, generating the flash images and writing to flash 
+ - Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1  for compiling the Quartus projects, generating the flash images and writing to flash 
 - Access to Internet to download the Quartus project archive, clone the git trees for U-Boot, Arm Trusted Firmware, Linux, zlib and LIBRSU and to build the Linux rootfs using Yocto. 
 - [Agilex 7 Transceiver-SoC Development kit P-Tile E-Tile Production Linear power solution(DK-SI-AGF014EB)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agf014.html)  for running the example. 
 
 ## Building Binaries 
 
 
-The diagram below illustrates the build flow used for this example.
+The diagram below illustrates the build flow used for this example. The image uses 4 Quartus designs but in the example everything is done with a single design to simplify the instructions.
 
 ![](images/rsu-build-flow.svg) 
 
@@ -76,7 +76,7 @@ The end results of the build flow are these.
 - Initial flash image: contains the factory image, an application image and two empty application image partitions aka slots. 
 - SD card image: contains SSBL (U-Boot), ATF (Arm Trusted Firmware), Linux device tree, Linux kernel, Linux rootfs with the Altera® RSU driver, LIBRSU, RSU Client, an application image, a factory update image and a decision firmware update image. 
 
-**Note:** To build binaries for a different development kit than the one used in this page, please refer to the [Building the Quartus Projects](#building-the-quartus-projects) section in the corresponding  **HPS Baseline System Example Design User Guide** page for that development kit, which is the section that may differ from the instructions presented here.
+**Note:** To build binaries for a different development kit than the one used in this page, please refer to the [Building the Quartus Project](#building-the-quartus-project) section in the corresponding  **HPS Baseline System Example Design User Guide** page for that development kit, which is the section that may differ from the instructions presented here.
 
 ### Setting up the Environment 
 
@@ -111,34 +111,33 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
 
 
 
-### Building the Quartus Projects 
+### Building the Quartus Project
 
 
-Create four different Quartus projects, based on the Quartus design provided as part of the HPS Baseline System Example Design from GitHub with a few changes listed next.
+Create a Quartus projects, based on the Quartus design provided as part of the HPS Baseline System Example Design from GitHub with a few changes listed next.
 
-- Change the boot mode to FPGA first 
-- Use a different ID in the SystemID component, to make the binaries for each project slightly different. 
+- Change the boot mode to FPGA first .
+- Use a different ID in the SystemID component.
 - Change the behavior of watchdog timeout, to trigger an RSU event. 
 - Set the max retry parameter to 3, so that each application image and the factory image are tried up to three time when configuration failures occur. 
 
-The commands to create and compile the projects are listed below.
+The commands to create and compile the project are listed below.
 
 
 ```bash 
 cd $TOP_FOLDER 
-# Build 4 versions of the Quartus design
-rm -rf hw && mkdir hw && cd hw
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
-unzip QPDS26.1_REL_GSRD_PR.zip
-rm QPDS26.1_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
+unzip QPDS26.1.1_REL_GSRD_PR.zip
+rm QPDS26.1.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS26.1.1_REL_GSRD_PR agilex7f-ed-gsrd
+cd agilex7f-ed-gsrd
 # boot from FPGA 
 export BOOTS_FIRST=fpga 
 # enable watchdog 
@@ -146,30 +145,19 @@ export ENABLE_WATCHDOG_RST=1
 # treat watchdog timeout as configuration failure to trigger RSU 
 export WATCHDOG_RST_ACTION=remote_update
 # Customize parms in tcl
-sed -i '/STRATIX_JTAG_USER_CODE 4/i set_global_assignment -name RSU_MAX_RETRY_COUNT 3' agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/create_ghrd_quartus.tcl
-for version in {0..3}
-do
-rm -rf ghrd.$version
-cp -r agilex7f-ed-gsrd ghrd.$version
-cd ghrd.$version
+sed -i '/STRATIX_JTAG_USER_CODE 4/i set_global_assignment -name RSU_MAX_RETRY_COUNT 3' agilex_soc_devkit_ghrd/create_ghrd_quartus.tcl
 # update sysid to make binaries slightly different 
 sed -i 's/0xACD5CAFE/0xABAB000'$version'/g' agilex_soc_devkit_ghrd/create_ghrd_qsys.tcl
 # Finsish customization and now building the Quartus design
 make agf014eb-si-devkit-oobe-baseline-all
 cd ..
-done
-rm -rf agilex7f-ed-gsrd 
-cd .. 
 
 ```
 
 
-After completing the above steps, the following SOF files are created.
+After completing the above steps, the following SOF file is created.
 
-- $TOP_FOLDER/hw/ghrd.0/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
-- $TOP_FOLDER/hw/ghrd.1/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
-- $TOP_FOLDER/hw/ghrd.2/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
-- $TOP_FOLDER/hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
+- $TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof  
 
 
 ### Building Arm Trusted Firmware 
@@ -184,7 +172,7 @@ rm -rf arm-trusted-firmware
 git clone https://github.com/altera-fpga/arm-trusted-firmware 
 cd arm-trusted-firmware 
 # checkout the branch used for this document, comment out to use default 
-git checkout -b test -t origin/socfpga_v2.14.0 
+git checkout -b test -t origin/socfpga_v2.14.1 
 make bl31 PLAT=agilex 
 cd .. 
 ```
@@ -207,7 +195,7 @@ rm -rf u-boot-socfpga
 git clone https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga
 # comment out next line to use the latest default branch 
-git checkout -b test -t origin/socfpga_v2026.01 
+git checkout -b test -t origin/socfpga_v2026.04 
 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -285,7 +273,7 @@ rm -rf linux-socfpga
 git clone https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
 # checkout the branch used for this document, comment out to use default
-git checkout -b test -t origin/socfpga-6.18.2-lts 
+git checkout -b test -t origin/socfpga-6.18.20-lts 
 # configure the RSU driver to be built into the kernel
 make clean && make mrproper
 make defconfig
@@ -330,10 +318,10 @@ cat << EOF > initial_image.pfg
     </output_files>
     <bitstreams>
         <bitstream id="Bitstream_1">
-            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">hw/ghrd.0/install/designs/agf014eb_si_devkit_oobe_baseline.sof</path>
+            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof</path>
         </bitstream>
         <bitstream id="Bitstream_2">
-            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">hw/ghrd.1/install/designs/agf014eb_si_devkit_oobe_baseline.sof</path>
+            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof</path>
         </bitstream>
     </bitstreams>
     <flash_devices>
@@ -363,7 +351,7 @@ cat << EOF > initial_image.pfg
 EOF
 
 # Create Initial Image for previous release (in case needed to test  combined application)
-~/altera_pro/25.3.1/quartus/bin/quartus_pfg -c initial_image.pfg
+~/altera_pro/26.1/quartus/bin/quartus_pfg -c initial_image.pfg
 mv initial_image.jic initial_image_prev.jic
 mv initial_image_jic.rpd initial_image_jic_prev.rpd
 mv initial_image_jic.map initial_image_jic_prev.map
@@ -400,7 +388,7 @@ Here are the complete instructions on how to manually create the initial flash i
 
 8. Once the output type was selected, click the **Input Files** tab. 
 
-9. In the **Input Files** tab click the **Add Bitstream** button, then browse to **$TOP_FOLDER/hw/ghrd.0/output_files**, select the file **ghrd_agfb014r24b2e2v.sof**, and then click **Open**. This is the initial factory image. Do the same for the **$TOP_FOLDER/hw/ghrd.1/install/designs/agf014eb_si_devkit_oobe_baseline.sof** image. This is the initial application image. The tab now looks like below.
+9. In the **Input Files** tab click the **Add Bitstream** button, then browse to **$TOP_FOLDER/agilex7f-ed-gsrd/output_files**, select the file **ghrd_agfb014r24b2e2v.sof**, and then click **Open**. This is the initial factory image. Do the same for the **$TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof** image. This is the initial application image. The tab now looks like below.
 
     ![](images/jic-2.png) 
 
@@ -479,7 +467,7 @@ The following commands are used to create the application image used in this exa
 cd $TOP_FOLDER
 mkdir -p images
 rm -rf images/application2.rpd
-quartus_pfg -c hw/ghrd.2/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/application2.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -502,7 +490,7 @@ The following commands are used to create the factory update image used in this 
 cd $TOP_FOLDER
 mkdir -p images
 rm -f images/factory_update.rpd
-quartus_pfg -c hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/factory_update.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -516,6 +504,7 @@ The following factory update image is created.
 - $TOP_FOLDER/images/factory_update.rpd 
 
 
+
 ### Creating the Decision Firmware Update Image 
 
 
@@ -526,7 +515,7 @@ The following commands are used to create the decision firmware update image use
 cd $TOP_FOLDER 
 mkdir -p images
 rm -f images/decision_firmware_update.rpd
-quartus_pfg -c hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/decision_firmware_update.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -553,9 +542,9 @@ The following commands are used to create the combined application image used in
 cd $TOP_FOLDER 
 mkdir -p images
 rm -f images/combined_application.rpd
-quartus_pfg -c hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/combined_application.rpd \
--o app_image=hw/ghrd.2/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+-o app_image=agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o app_image_hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -593,7 +582,7 @@ Run the following commands to build the root file system.
   rm -rf buildroot
   git clone https://github.com/buildroot/buildroot.git
   cd buildroot
-  git checkout 2026.02
+  git checkout 2026.05
   mkdir -p overlay/etc/profile.d/
   # Use regilar prompt used in our devices root@<device>:~# instead of only #
   echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
@@ -924,10 +913,10 @@ This section demonstrates how to use U-Boot to perform the following basic opera
 
     ```bash 
     SOCFPGA # rsu display_dcmf_version 
-    DCMF0 version = 26.1.0
-    DCMF1 version = 26.1.0
-    DCMF2 version = 26.1.0
-    DCMF3 version = 26.1.0
+    DCMF0 version = 26.1.1
+    DCMF1 version = 26.1.1
+    DCMF2 version = 26.1.1
+    DCMF3 version = 26.1.1
     SOCFPGA # rsu slot_count 
     Number of slots = 3. 
     SOCFPGA # rsu slot_get_info 0 
@@ -1773,10 +1762,10 @@ information from U-Boot, this should be a previous version.
 
     ```bash 
     SOCFPGA # rsu display_dcmf_version
-    DCMF0 version = 25.3.1
-    DCMF1 version = 25.3.1
-    DCMF2 version = 25.3.1
-    DCMF3 version = 25.3.1
+    DCMF0 version = 26.1.0
+    DCMF1 version = 26.1.0
+    DCMF2 version = 26.1.0
+    DCMF3 version = 26.1.0
     ```
 
 3. Find an unused slot (slot 1, P2), erase it, write the combined application image to it, verify that it was programmed successfully  and check it is now the highest priority.
@@ -1818,10 +1807,10 @@ application image is running fine.
     Error details : 0x00000000
     Retry counter : 0x00000000
     SOCFPGA # rsu display_dcmf_version
-    DCMF0 version = 26.1.0
-    DCMF1 version = 26.1.0
-    DCMF2 version = 26.1.0
-    DCMF3 version = 26.1.0
+    DCMF0 version = 26.1.1
+    DCMF1 version = 26.1.1
+    DCMF2 version = 26.1.1
+    DCMF3 version = 26.1.1
     ```
 
 7. Power cycle the board, the same combined application image is loaded, as it is the highest priority. But it takes a couple of seconds less, as the decision firmware does not need to be updated.
@@ -1929,10 +1918,10 @@ This section demonstrates how to use the RSU client to perform the following bas
 
     ```bash 
     root@linux:~# ./rsu_client --display-dcmf-version 
-    DCMF0 version = 26.1.0
-    DCMF1 version = 26.1.0
-    DCMF2 version = 26.1.0
-    DCMF3 version = 26.1.0
+    DCMF0 version = 26.1.1
+    DCMF1 version = 26.1.1
+    DCMF2 version = 26.1.1
+    DCMF3 version = 26.1.1
     Operation completed 
     ```
 

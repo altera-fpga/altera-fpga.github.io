@@ -27,8 +27,8 @@ The following are needed:
 
 * [Agilex 3 FPGA and SoC C-Series Development Kit](https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit), ordering code DK-A3W135BM16AEA. Other Agilex 3 development boards will also work in the same manner, just that other set HPS Baseline System Example Design binaries will be used.
 * Host PC with Linux (Ubuntu 22.04 was used, but others should work too)
-* Quartus Pro 26.1 (or just Quartus Pro standalone Programmer 26.1).
-* Ashling RiscFree bundled with Quartus Pro 26.1 (can be installed and use with just the standalone Programmer)
+* Quartus Pro 26.1.1 (or just Quartus Pro standalone Programmer 26.1.1).
+* Ashling RiscFree bundled with Quartus Pro 26.1.1 (can be installed and use with just the standalone Programmer)
 * Network access, for downloading the sources while building the binaries
 
 ## Instructions
@@ -67,7 +67,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -76,7 +76,7 @@ source ~/altera_pro/26.1/qinit.sh
 Sdd RiscFree to the system PATH:
 
 ```bash
- export PATH="$HOME/altera_pro/26.1/riscfree/RiscFree/:$PATH"
+ export PATH="$HOME/altera_pro/26.1.1/riscfree/RiscFree/:$PATH"
 ```
 
 
@@ -90,9 +90,9 @@ Sdd RiscFree to the system PATH:
 
 ```bash
 cd $TOP_FOLDER
-wget https://releases.rocketboards.org/2026.04/gsrd/agilex3_gsrd.baseline/sdimage.tar.gz
+wget https://releases.rocketboards.org/2026.08/gsrd/agilex3_gsrd.baseline/sdimage.tar.gz
 tar xf sdimage.tar.gz
-wget https://releases.rocketboards.org/2026.04/gsrd/agilex3_gsrd.baseline/ghrd.hps.jic
+wget https://releases.rocketboards.org/2026.08/gsrd/agilex3_gsrd.baseline/ghrd.hps.jic
 ```
 
 
@@ -229,29 +229,14 @@ eth0: flags=-28605<UP,BROADCAST,RUNNING,MULTICAST,DYNAMIC>  mtu 1500
         device interrupt 22  base 0x8000  
 ```
 
-> *Note*: In the above example the IP address was `10.244.157.174`. But in your specific case you will more than likely get a different value.
+> *Note*: In the above example the IP address was `10.244.157.174`. But in your specific case it will be a different value.
 
-
-
-2\. Transfer the application binary to the board:
+2\. Transfer the application binary to the board by running the following on your host:
 
 ```bash
-root@agilex3:~# scp radu@big-machine.local:/home/radu/riscfree-linux-app-debug/application .
-The authenticity of host 'big-machine.local (10.244.157.123)' can't be established.
-ED25519 key fingerprint is SHA256:dBidwUjHgxubKfiR0gM6piyTJek4QigISANpbR1SXBw.
-This key is not known by any other names.
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added 'big-machine.local' (ED25519) to the list of known hosts.
-radu@big-machine.local's password: 
-application                                   100% 2808KB  21.5MB/s   00:00    
-root@agilex3:~#
+cd $TOP_FOLDER
+scp application root@10.244.157.174:/home/root
 ```
-
-Adjust the command to match your system:
-
-* Replace `radu` with your host username. 
-* Replace `big-machine.local` with your host name or ip address.
-* Replace `/home/radu/riscfree-linux-app-debug` with the path for your `$TOP_FOLDER`
 
 3\. Make the application executable:
 
@@ -312,7 +297,7 @@ $ RiscFree -data workspace&
 
 ![](images/debug-config-6.png)
 
-15\. Browse to `~/altera_pro/26.1/riscfree/toolchain/Arm/aarch64-none-linux-gnu/bin/` then select `aarch64-none-linux-gnu-gdb` and click **Open**:
+15\. Browse to `~/altera_pro/26.1.1/riscfree/toolchain/Arm/aarch64-none-linux-gnu/bin/` then select `aarch64-none-linux-gnu-gdb` and click **Open**:
 
 ![](images/debug-config-7.png)
 

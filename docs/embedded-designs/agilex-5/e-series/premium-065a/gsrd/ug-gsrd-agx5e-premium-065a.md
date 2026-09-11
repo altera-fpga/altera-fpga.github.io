@@ -36,7 +36,7 @@ The following are required to be able to fully exercise this System Example Desi
   * 200 GB of free disk space for Yocto buils
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 
   * TFTP server. This used to download the eMMC and NAND binaries to board to be flashed by U-Boot
   
 * Local Ethernet network, with DHCP server
@@ -44,36 +44,36 @@ The following are required to be able to fully exercise this System Example Desi
 
 ### Prebuilt Binaries
 
-The binaries for this system example design are located at [https://releases.rocketboards.org/2026.04/](https://releases.rocketboards.org/2026.04/):
+The binaries for this system example design are located at [https://releases.rocketboards.org/2026.08/](https://releases.rocketboards.org/2026.08/):
 
 | HPS Daughter Card | Boot Source | Link |
 | -- | ---------------------- | -- |
-| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065ab32aea_gsrd.baseline-a55/](https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065ab32aea_gsrd.baseline-a55/) |
-| Enablement Board | QSPI | [https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e065ab32aea_qspi.baseline-a55/](https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e065ab32aea_qspi.baseline-a55/) |
-| NAND Board | eMMC | [https://releases.rocketboards.org/2026.04/emmc/agilex5_dk_a5e065ab32aea_emmc.baseline-a55/](https://releases.rocketboards.org/2026.04/emmc/agilex5_dk_a5e065ab32aea_emmc.baseline-a55/) |
-| NAND Board | NAND | [https://releases.rocketboards.org/2026.04/nand/agilex5_dk_a5e065ab32aea_nand.baseline-a55/](https://releases.rocketboards.org/2026.04/nand/agilex5_dk_a5e065ab32aea_nand.baseline-a55/) |
-| Test Board | SD Card | [https://releases.rocketboards.org/2026.04/debug/agilex5_dk_a5e065ab32aea_debug.baseline-a55/](https://releases.rocketboards.org/2026.04/debug/agilex5_dk_a5e065ab32aea_debug.baseline-a55/) |
+| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065ab32aea_gsrd.baseline-a55/](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065ab32aea_gsrd.baseline-a55/) |
+| Enablement Board | QSPI | [https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e065ab32aea_qspi.baseline-a55/](https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e065ab32aea_qspi.baseline-a55/) |
+| NAND Board | eMMC | [https://releases.rocketboards.org/2026.08/emmc/agilex5_dk_a5e065ab32aea_emmc.baseline-a55/](https://releases.rocketboards.org/2026.08/emmc/agilex5_dk_a5e065ab32aea_emmc.baseline-a55/) |
+| NAND Board | NAND | [https://releases.rocketboards.org/2026.08/nand/agilex5_dk_a5e065ab32aea_nand.baseline-a55/](https://releases.rocketboards.org/2026.08/nand/agilex5_dk_a5e065ab32aea_nand.baseline-a55/) |
+| Test Board | SD Card | [https://releases.rocketboards.org/2026.08/debug/agilex5_dk_a5e065ab32aea_debug.baseline-a55/](https://releases.rocketboards.org/2026.08/debug/agilex5_dk_a5e065ab32aea_debug.baseline-a55/) |
 
 ### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
 
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 5 Design | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1_p1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
-| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_p1_REL_GSRD_PR |
-| KAS | [https://github.com/jeffhammond/STREAM.git](https://github.com/jeffhammond/STREAM.git) | master | 5.2 |
+| Agilex 5 Design | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
+| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 ### Release Notes
 
-See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR)
+See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR)
 
 ### Development Kit
 
@@ -238,7 +238,7 @@ This section presents how to use HPS Enablement Board to boot from SD card, and 
 
 1\. Download SD card image archive from the prebuilt binaries:
 
-* [https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/sdimage.tar.gz](https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/sdimage.tar.gz)
+* [https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065ab32aea_gsrd.baseline-a55/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/sdimage.tar.gz)
 
 2\. Extract the archive, obtaining the file `gsrd-console-image-agilex5e.rootfs.wic`
 
@@ -269,7 +269,7 @@ sync
 4\. Download and extract the JIC image:
 
 ```bash
-wget https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/ghrd.hps.jic
+wget https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065ab32aea_gsrd.baseline-a55/ghrd.hps.jic
 ```
 
 5\. Write the JIC file to QSPI:
@@ -434,7 +434,7 @@ Either write 1MB of zeroes at the beginning of the SD card, or remove the SD car
 4\. Download and extract the JIC image:
 
 ```bash
-wget https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e065bb32aea_qspi.baseline-a55/qspi_boot.hps.jic
+wget https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e065ab32aea_qspi.baseline-a55/qspi_boot.hps.jic
 jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;qspi_boot.hps.jic"
 ```
@@ -471,7 +471,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;qspi_boot.hps.jic"
 
 ### HPS NAND Board
 
-This section presents how to use HPS NAND Board to boot from eMMC.
+This section presents how to use HPS NAND Board to boot from eMMC and NAND.
 
 The eMMC and NAND binaries are written to flash using U-Boot helper JIC images, and require you to have a TFTP server for storing the files to be retrieved by the helper through the network.
 
@@ -486,7 +486,7 @@ We are writing the eMMC Flash by using U-Boot commands. We are getting to U-Boot
 
 1\. Download, and extract the eMMC image
 ```bash
-wget https://releases.rocketboards.org/2026.04/emmc/agilex5_dk_a5e065bb32aea_emmc/sdimage.tar.gz
+wget https://releases.rocketboards.org/2026.08/emmc/agilex5_dk_a5e065ab32aea_emmc.baseline-a55/sdimage.tar.gz
 tar xf sdimage.tar.gz
 ```
 2\. Split the eMMC image into 1GB chunks and copy them to your TFT folder:
@@ -503,7 +503,7 @@ This will put the two chunks called `xaa` and `xab` on your TFTP folder.
 
 6\. Download the helper JIC used to write the eMMC image, extract it and write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2026.04/emmc/agilex5_dk_a5e065bb32aea_emmc/qspi_helper.hps.jic
+wget https://releases.rocketboards.org/2026.08/emmc/agilex5_dk_a5e065ab32aea_emmc.baseline-a55/qspi_helper.hps.jic
 jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;qspi_helper.hps.jic"
 ```
@@ -547,7 +547,7 @@ reset
 
 4\. Download the JIC and write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2026.04/emmc/agilex5_dk_a5e065bb32aea_emmc/ghrd.hps.jic 
+wget https://releases.rocketboards.org/2026.08/emmc/agilex5_dk_a5e065ab32aea_emmc.baseline-a55/ghrd.hps.jic 
 jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 ```
@@ -578,7 +578,7 @@ We are writing the NAND Flash by using U-Boot commands. We are getting to U-Boot
 
 4\. Download the helper JIC used to write the NAND image, extract it and write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2026.04/nand/agilex5_dk_a5e065bb32aea_nand/qspi_helper.hps.jic
+wget https://releases.rocketboards.org/2026.08/nand/agilex5_dk_a5e065ab32aea_nand.baseline-a55/qspi_helper.hps.jic
 jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;qspi_helper.hps.jic"
 ```
@@ -596,8 +596,8 @@ quartus_pgm -c 1 -m jtag -o "pvi;qspi_helper.hps.jic"
 9\. Download the NAND binaries, and save them to your TFTP folder on the machine with the TFTP server:
 
 ```bash
-wget https://releases.rocketboards.org/2026.04/nand/agilex5_dk_a5e065bb32aea_nand/u-boot.itb
-wget https://releases.rocketboards.org/2026.04/nand/agilex5_dk_a5e065bb32aea_nand/root.ubi
+wget https://releases.rocketboards.org/2026.08/nand/agilex5_dk_a5e065bb32aea_nand/u-boot.itb
+wget https://releases.rocketboards.org/2026.08/nand/agilex5_dk_a5e065bb32aea_nand/root.ubi
 cp u-boot-itb <tftp_folder>
 cp root.ubi <tftp_folder>
 
@@ -627,7 +627,7 @@ nand write.trimffs $loadaddr root $filesize
 
 4\. Download the JIC and write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2026.04/nand/agilex5_dk_a5e065bb32aea_nand/ghrd.hps.jic 
+wget https://releases.rocketboards.org/2026.08/nand/agilex5_dk_a5e065ab32aea_nand.baseline-a55/ghrd.hps.jic 
 jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic
 ```
@@ -652,7 +652,7 @@ For this scenario we are using the HPS Test Board. There is single dipswitch on 
 
 <h5>Write SD Card</h5>
 
-1\. Download SD card image from the prebuilt binaries https://releases.rocketboards.org/2026.04/debug/agilex5_dk_a5e065bb32aes1_debug/sdimage.tar.gz and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
+1\. Download SD card image from the prebuilt binaries https://releases.rocketboards.org/2026.08/debug/agilex5_dk_a5e065ab32aea_debug.baseline-a55/sdimage.tar.gz and extract the archive (you will obtain a .wic file).
 
 2\. Write the SD card image to the micro SD card using the included USB writer in the host computer, and `dd` utility on Linux, or  Win32DiskImager on Windows, available at [https://sourceforge.net/projects/win32diskimager](https://sourceforge.net/projects/win32diskimager). Please refer to the [Boot from SD Card](#boot-from-sd-card) section for more details about this.
 
@@ -666,10 +666,9 @@ For this scenario we are using the HPS Test Board. There is single dipswitch on 
 
 4\. Download the JIC and write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2026.04/debug/agilex5_dk_a5e065bb32aes1_debug/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz 
-tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+wget https://releases.rocketboards.org/2026.08/debug/agilex5_dk_a5e065ab32aea_debug.baseline-a55/ghrd.hps.jic
 jtagconfig --setparam 1 JtagClock 16M
-quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 ```
 
 <h5>Boot Linux</h5>
@@ -687,7 +686,7 @@ The embedded software for this System Example Design is built with Yocto, using 
 
 [Kas](https://github.com/siemens/kas) is a Python-based lightweight build orchestration layer on top of BitBake/Yocto. Kas allows you to define your build environment in a YAML manifest, so you can perform checkout, environment setup, configuration, and build invocation with a single command. Kas provides a more maintainable build description, it offers improved reproducibility, reduced setup friction, and a clearer abstraction for managing multiple layers, revisions, and configuration fragments. 
 
-The software source code for this System Example Design is released inside the [software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1_REL_GSRD_PR/a5ed065a-premium-devkit-oobe/baseline/software/yocto_linux) directory. Accessing the link will display a README page with details regarding the software.
+The software source code for this System Example Design is released inside the [software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/baseline-a55/software/yocto_linux) directory. Accessing the link will display a README page with details regarding the software.
 
 For more details about Kas, refer to the official documentation at [https://kas.readthedocs.io/en/latest/](https://kas.readthedocs.io/en/latest/).
 
@@ -740,9 +739,9 @@ The following diagram shows an overview of the building process:
 
 
 ```bash
-sudo rm -rf agilex5_065a_base.sd
-mkdir agilex5_065a_base.sd
-cd agilex5_065a_base.sd
+sudo rm -rf agilex5_pdk_065a_base.sd
+mkdir agilex5_pdk_065a_base.sd
+cd agilex5_pdk_065a_base.sd
 export TOP_FOLDER=`pwd`
 ```
 
@@ -751,7 +750,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -767,9 +766,9 @@ source ~/altera_pro/26.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065a-premium-devkit-oobe-baseline-a55.zip
-unzip a5ed065a-premium-devkit-oobe-baseline-a55.zip
-rm -f a5ed065a-premium-devkit-oobe-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement-baseline-a55.zip
+unzip dk-a5e065ab32aea-enablement-baseline-a55.zip
+rm -f dk-a5e065ab32aea-enablement-baseline-a55.zip
 make baseline_a55-install
 ```
 
@@ -868,9 +867,9 @@ The following diagram shows an overview of the building process:
 
 
 ```bash
-sudo rm -rf agilex5_065a_base.qspi
-mkdir agilex5_065a_base.qspi
-cd agilex5_065a_base.qspi
+sudo rm -rf agilex5_pdk_065a_base.qspi
+mkdir agilex5_pdk_065a_base.qspi
+cd agilex5_pdk_065a_base.qspi
 export TOP_FOLDER=`pwd`
 ```
 
@@ -879,7 +878,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -895,9 +894,9 @@ source ~/altera_pro/26.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065a-premium-devkit-oobe-baseline-a55.zip
-unzip a5ed065a-premium-devkit-oobe-baseline-a55.zip
-rm -f a5ed065a-premium-devkit-oobe-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement-baseline-a55.zip
+unzip dk-a5e065ab32aea-enablement-baseline-a55.zip
+rm -f dk-a5e065ab32aea-enablement-baseline-a55.zip
 make baseline_a55-install
 ```
 
@@ -1020,9 +1019,9 @@ The following diagram shows an overview of the building process:
 
 
 ```bash
-sudo rm -rf agilex5_065a_base.emmc
-mkdir agilex5_065a_base.emmc
-cd agilex5_065a_base.emmc
+sudo rm -rf agilex5_pdk_065a_base.emmc
+mkdir agilex5_pdk_065a_base.emmc
+cd agilex5_pdk_065a_base.emmc
 export TOP_FOLDER=`pwd`
 ```
 
@@ -1031,7 +1030,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -1047,9 +1046,9 @@ source ~/altera_pro/26.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065a-premium-devkit-emmc-baseline-a55.zip
-unzip a5ed065a-premium-devkit-emmc-baseline-a55.zip
-rm -f a5ed065a-premium-devkit-emmc-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-emmc-baseline-a55.zip
+unzip dk-a5e065ab32aea-emmc-baseline-a55.zip
+rm -f dk-a5e065ab32aea-emmc-baseline-a55.zip
 make baseline_a55-install
 ```
 
@@ -1169,9 +1168,9 @@ The following diagram shows an overview of the building process:
 
 
 ```bash
-sudo rm -rf agilex5_065a_base.nand
-mkdir agilex5_065a_base.nand
-cd agilex5_065a_base.nand
+sudo rm -rf agilex5_pdk_065a_base.nand
+mkdir agilex5_pdk_065a_base.nand
+cd agilex5_pdk_065a_base.nand
 export TOP_FOLDER=`pwd`
 ```
 
@@ -1180,7 +1179,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -1196,9 +1195,9 @@ source ~/altera_pro/26.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065a-premium-devkit-nand-baseline-a55.zip
-unzip a5ed065a-premium-devkit-nand-baseline-a55.zip
-rm -f a5ed065a-premium-devkit-nand-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-nand-baseline-a55.zip
+unzip dk-a5e065ab32aea-nand-baseline-a55.zip
+rm -f dk-a5e065ab32aea-nand-baseline-a55.zip
 make baseline_a55-install
 ```
 
@@ -1345,9 +1344,9 @@ The following diagram shows an overview of the building process:
 
 
 ```bash
-sudo rm -rf agilex5_065a_base.test
-mkdir agilex5_065a_base.test
-cd agilex5_065a_base.test
+sudo rm -rf agilex5_pdk_065a_base.test
+mkdir agilex5_pdk_065a_base.test
+cd agilex5_pdk_065a_base.test
 export TOP_FOLDER=`pwd`
 ```
 
@@ -1356,7 +1355,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -1372,9 +1371,9 @@ source ~/altera_pro/26.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065a-premium-devkit-debug2-baseline-a55.zip
-unzip a5ed065a-premium-devkit-debug2-baseline-a55.zip
-rm -f a5ed065a-premium-devkit-debug2-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-test-baseline-a55.zip
+unzip dk-a5e065ab32aea-test-baseline-a55.zip
+rm -f dk-a5e065ab32aea-test-baseline-a55.zip
 make baseline_a55-install
 ```
 
@@ -1467,7 +1466,7 @@ The `kas.yml` file is the central configuration file used by Kas to define all c
 
 Kas also offers Kconfig-based customizations to provide a flexible and user-friendly configuration experience. This enables you to select repositories, layers, and build targets through a structured menu interface instead of editing YAML files directly. This approach combines the clarity and reproducibility of Kas with the modular configurability of the Linux kernel?s Kconfig system, making it easier to tailor builds for different platforms or use cases while maintaining a consistent and automated setup.
 
-Review the kas.yml file, the Kconfig options and associated documentation at [https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1_REL_GSRD_PR/a5ed065a-premium-devkit-oobe/baseline-a55/software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1_REL_GSRD_PR/a5ed065a-premium-devkit-oobe/baseline-a55/software/yocto_linux).
+Review the kas.yml file, the Kconfig options and associated documentation at [https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/baseline-a55/software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/baseline-a55/software/yocto_linux).
 
 In the build instructions we did not use the Kconfig options, only the default options from `kas.yml` were used. This section shows how you can use `kas menu` to customize the build.
 
@@ -1621,7 +1620,7 @@ config BENCHMARK_APP_COREMARK
 
 After you make your choose about the applications to be included or excluded, you can continue with the regular Kas Yocto Build.
 
-> **NOTE:** By default, all of the benchmarking applications are already enabled to be built and added in to the Linux file system. You still can use any of the 2 options above to change this default configuration. Also, it is very important to note that **the benchmarking applications are only available when the target image is the gsrd-console-image** . This means that you will not see them when the target is Console Image Minimal (console-image-minimal) nor Core Image Minimal (core-image-minimal). Please observe the implementation of the **software/yocto_linux/kas/gsrd/Kconfig** and the [gsrd-console-image.bb](https://github.com/altera-fpga/meta-altera-fpga/tree/scarthgap/meta-altera-platform/recipes-images/poky/gsrd-console-image.bb) recipe.
+> **NOTE:** By default, all of the benchmarking applications are already enabled to be built and added in to the Linux file system. You still can use any of the 2 options above to change this default configuration. Also, it is very important to note that **the benchmarking applications are only available when the target image is the gsrd-console-image** . This means that you will not see them when the target is Console Image Minimal (console-image-minimal) nor Core Image Minimal (core-image-minimal). Please observe the implementation of the **software/yocto_linux/kas/gsrd/Kconfig** and the [gsrd-console-image.bb](https://github.com/altera-fpga/meta-altera-fpga/tree/wrynose/meta-altera-platform/recipes-images/poky/gsrd-console-image.bb) recipe.
 
 Once your binaries build finishes, you can proceed to program these in to your dev kit.  After your board boots to Linux shell, you will see the benchmarking applications available in the file system under the **/bin/** directory, meaning that you can actually exercise these applications from any path by just entering the application name similarly to how you can run any other Linux command.
 
@@ -1635,7 +1634,7 @@ The following table provides a brief description of the Benchmarking Scripts ava
 | LMbench | *lmbench-run*<br>*bw_mem* | In LMbench,  the **bw_mem** tool is specifically used to measure the memory  bandwidth of a system by performing various types of memory  operations. Among its commands, fcp (fast copy), fwr(fast write),  and frd(fast read) execute memory operations on  contiguous blocks of memory. LM Bench operates on variable  data sizes; users can specify a data size that is less than the HPS  cache size and bring in cache hits when the program executes memory  operations. Each of these commands provides results in megabytes per  second (MB/s), allowing users to analyze and compare the performance of  memory read, write, and copy operations independently.   https://lmbench.sourceforge.net/ | Yes |
 | Sample Benchmark Script | run-hps-benchmarks | Altera provides this sample script that exercises automatically the different benchmarks applications supported. | Yes |
 
-The applications are integrated into the Yocto build flow through recipes (**.bb** or **.bbappend** files). These recipes are located under the [**meta-altera-fpga/meta-altera-platform/recipes-benchmarking**](https://github.com/altera-fpga/meta-altera-fpga/tree/scarthgap/meta-altera-platform/recipes-benchmarking)  repository.
+The applications are integrated into the Yocto build flow through recipes (**.bb** or **.bbappend** files). These recipes are located under the [**meta-altera-fpga/meta-altera-platform/recipes-benchmarking**](https://github.com/altera-fpga/meta-altera-fpga/tree/wrynose/meta-altera-platform/recipes-benchmarking)  repository.
 
 ![](images/benchmarkrecipeLocation.png)
 
@@ -1661,7 +1660,7 @@ The following table shows few examples of how the benchmarking applications can 
 | **Dhrystone** | Focus on single-threaded  execution to highlight the performance of individual cores. Performance increases for multi-threaded execution is also predictable for CPU workloads (approximately proportional to number of cores).<br>Example:<br>**echo 1000000000 \| taskset -c 0 dhry**<br><br>Dhrystone is executed by CPU0 passing 1000000000 as parameter indicating the number of Dhrystone iterations. |
 | **STREAM** | Focus on single-threaded execution since all memory accesses are done through the same HPS-memory interface (no cache hits). Benchmarking runs will not significantly differ in multi-threaded execution when the memory interface is already fully utilized.<br>Example:<br/> **taskset -c 0 stream.mccalpin**<br><br>STREAM is executed by CPU0. By default, this application works on an array size of 10000000 bytes. |
 | **LMbench** | Focus on single-threaded and multi-threaded execution. With multi-threaded execution, users can potentially see great performance increase if memory operations involve cache hits as well.<br>Example:<br>**taskset -c 0 bw_mem -N 1000 -P 1 4K fcp**<br>LMbench is single-threaded executed for by CPU0 using the **bw-mem** memory bandwidth microbenchmark with parameters:<br> -N [*#iterations*] -P [*#processes*] [*memory size tested*] [*type of memory operation*] <br><br>For multi-threaded execution (4 processes):<br>**bw_mem -N 1000 -P 4 4K fcp** |
-| **Sample Benchmark Script** | The script receives as parameters the name of the application(s) that want to be executed. The script iterates over the cores enabled in the system (only one of the same family or CPU ID). <br>Example:<br>**run-hps-benchmarks coremark dhrystone stream lmbench**<br><br>You can see the parameters provided to each one of the applications in the corresponding **run_[application]** function included in [**run-hps-benchmarks.sh**](https://github.com/altera-fpga/meta-altera-fpga/tree/scarthgap/meta-altera-platform/recipes-benchmarking/run-hps-benchmarks/files/run-hps-benchmarks.sh) script .<br>The script produces an independent .log file with the results for each benchmarking application executed in a specific mode bound to a specific core. The output log file has the following format: **[*app_name*]-[*mode*]-[*#core*].log** |
+| **Sample Benchmark Script** | The script receives as parameters the name of the application(s) that want to be executed. The script iterates over the cores enabled in the system (only one of the same family or CPU ID). <br>Example:<br>**run-hps-benchmarks coremark dhrystone stream lmbench**<br><br>You can see the parameters provided to each one of the applications in the corresponding **run_[application]** function included in [**run-hps-benchmarks.sh**](https://github.com/altera-fpga/meta-altera-fpga/tree/wrynose/meta-altera-platform/recipes-benchmarking/run-hps-benchmarks/files/run-hps-benchmarks.sh) script .<br>The script produces an independent .log file with the results for each benchmarking application executed in a specific mode bound to a specific core. The output log file has the following format: **[*app_name*]-[*mode*]-[*#core*].log** |
 
 **Note**: The **taskset** command in these examples enforces single-threaded execution on the CPU provided after the **-c** parameter.
 
@@ -1822,136 +1821,6 @@ The **wic** command allows you to inspect the content of a SD Card image, delete
    ```
 
 **NOTE**: The **wic** application also allows you to modify any image with compatible vfat and ext* type partitions which also covers images used for **eMMC** boot flow.
-
-
-## Build and Exercise Roll Your Own Binaries
-
-The "Roll Your Own" enables you to build a Linux system without using Yocto.
-
-The key differences versus the Yocto/Kas build flow are:
-
-* Each software component is built separately: ATF, U-Boot, Linux kernel, Linux root filesystem
-* FPGA fabric is not configured
-* The device tree from Linux kernel source code is used. This device tree does not enable IP from the FPGA fabric side
-* Root filesystem is built with [Toybox](https://landley.net/toybox/)
-* Root filesystem is used as initramfs. That makes it immutable, changes are not saved
-* Binaries are not included, just build instructions
-* Just the HPS Enablement Daughtercard, boot from SD card scenario is supported
-
-### HPS Enablement Board
-
-#### Build SD Card Binaries
-
-The overall build flow is presented in the following diagram:
-
-![](images/agilex5-ryo-flow-sd.svg)
-
-The following diagram shows details on the flow used by the included roll your own build script:
-
-![](images/agilex5-ryo-script-sd.svg)
-
-The complete build instructions are presented below.
-
-
-
-<h5>Prerequisites</h5>
-
-The `mtools` are required in order to create the SD card image containing a single FAT partition. Install them on your Linux host. For Ubuntu you can use the following command:
-
-```bash
-sudo apt-get install mtools
-```
-
-<h5>Setup Environment</h5>
-
-1\. Create the top folder to store all the build artifacts:
-
-
-```bash
-sudo rm -rf agilex5_065a_ryo.sd
-mkdir agilex5_065a_ryo.sd
-cd agilex5_065a_ryo.sd
-export TOP_FOLDER=`pwd`
-```
-
-
-Enable Quartus tools to be called from command line:
-
-
-```bash
-source ~/altera_pro/26.1/qinit.sh
-```
-
-
-
-
-
-
-<h5>Build Quartus Design</h5>
-
-
-
-
-```bash
-cd $TOP_FOLDER
-rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065a-premium-devkit-oobe-baseline-a55.zip
-unzip a5ed065a-premium-devkit-oobe-baseline-a55.zip
-rm -f a5ed065a-premium-devkit-oobe-baseline-a55.zip
-make baseline_a55-install
-```
-
-
-The following files are created:
-
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55_hps_debug.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
-
-
-<h5>Build Software Components</h5>
-
-
-1\. Run the provided script to build the embedded software components: ATF, U-Boot, Linux Kernel & Device Tree, Linux rootfs:
-
-
-```bash
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/ryo_linux
-./ryo_linux_sd.sh
-```
-
-
-The following relevant files are created in `$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/ryo_linux/build_output/`:
-
-* `sdcard.img`
-* `u-boot-socfpga/spl/u-boot-spl-dtb.hex`
-
-
-
-<h5>Build QSPI Image</h5>
-
-
-```bash
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/ryo_linux/build_output/
-rm -f output_file.hps.jic output_file.core.rbf
-quartus_pfg \
--c  $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof output_file.jic \
--o device=MT25QU128 \
--o flash_loader=A5ED065AB32AE1V \
--o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
--o mode=ASX4 \
--o hps=1
-```
-
-
-The following file is created in `$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/ryo_linux/build_output/`:
-
-* `output_file.hps.jic`
-
-
-
-
-Refer to the [Boot from SD Card](#boot-from-sd-card) section for details on how to write the SD card image and QSPI image, then boot to Linux. Note that the roll your own root filesystem is immutable, so any changes you may make will be discarded once you power cycle the board or reboot Linux. Also note that it is a simple, small root filesystem, without the sample applications or the webserver.
 
 ## Notices & Disclaimers
 

@@ -28,13 +28,13 @@ You will need the following items:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the Quartus design.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1
+  * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the design.
 
 ## Example Building Components Separately 
 
-This example is build on top of HPS Linux Boot Tutorial Example Design for Stratix 10, with the modification that the fabric is not configured from U-Boot anymore, but from Linux, with a device tree overlay. 
+This example is build on top of HPS Linux Boot Tutorial Example Design for Stratix 10, with the modification that the fabric is not configured from U-Boot anymore, but from Linux, with a device tree overlay. In the interest of saving time, a prebuilt rootfs is used. 
 
 The device tree overlay and the Phase 2 configuration bitstream core.rbf are stored in the Linux rootfs folder `/lib/firmware`, where the Linux overlay framework expects them to be by default. 
 
@@ -73,7 +73,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -87,10 +87,10 @@ source ~/altera_pro/26.1/qinit.sh
 
 ```bash 
 rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
-unzip QPDS26.1_REL_GSRD_PR.zip
-rm -f QPDS26.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS26.1_REL_GSRD_PR stratix10-ed-gsrd
+wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
+unzip QPDS26.1.1_REL_GSRD_PR.zip
+rm -f QPDS26.1.1_REL_GSRD_PR.zip
+mv stratix10-ed-gsrd-QPDS26.1.1_REL_GSRD_PR stratix10-ed-gsrd
 cd stratix10-ed-gsrd
 make s10-htile-soc-devkit-oobe-baseline-all
 cd ..
@@ -105,7 +105,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf arm-trusted-firmware 
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
 cd arm-trusted-firmware 
 make -j 48 bl31 PLAT=stratix10 
 cd .. 
@@ -120,7 +120,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf u-boot-socfpga 
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk 
@@ -157,7 +157,7 @@ CONFIG_DISTRO_DEFAULTS=n
 CONFIG_HUSH_PARSER=y 
 CONFIG_SYS_PROMPT_HUSH_PS2="> " 
 CONFIG_USE_BOOTCOMMAND=y 
-CONFIG_BOOTCOMMAND="load mmc 0:1 \${loadaddr} ghrd.core.rbf; bridge disable; fpga load 0 \${loadaddr} \${filesize};bridge enable;setenv bootfile Image;run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot" 
+CONFIG_BOOTCOMMAND="setenv bootfile Image;run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot" 
 CONFIG_CMD_FAT=y 
 CONFIG_CMD_FS_GENERIC=y 
 CONFIG_DOS_PARTITION=y 
@@ -209,7 +209,7 @@ quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_basel
 ```bash 
 cd $TOP_FOLDER 
 rm -rf linux-socfpga 
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga 
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga 
 cd linux-socfpga 
 make clean && make mrproper 
 make defconfig 
@@ -290,16 +290,8 @@ Explanation:
 
 ```bash 
 cd $TOP_FOLDER 
-rm -rf yocto && mkdir yocto && cd yocto 
-git clone -b scarthgap https://git.yoctoproject.org/poky 
-git clone -b scarthgap https://git.yoctoproject.org/meta-intel-fpga 
-git clone -b scarthgap https://github.com/openembedded/meta-openembedded 
-source poky/oe-init-build-env ./build 
-echo 'MACHINE = "stratix10_htile"' >> conf/local.conf 
-echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 
-echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf 
-echo 'IMAGE_FSTYPES = "tar.gz"' >> conf/local.conf 
-bitbake core-image-minimal 
+rm -f rootfs.tar.gz
+wget -O rootfs.tar.gz https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_si_agf014eb_gsrd/rootfs/console-image-minimal-agilex7.tar.gz
 ```
 
 
@@ -320,7 +312,7 @@ cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image .
 cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtb . 
 cd .. 
 mkdir rootfs && cd rootfs 
-sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/stratix10_htile/core-image-minimal-stratix10_htile.rootfs.tar.gz
+sudo tar xf $TOP_FOLDER/rootfs.tar.gz
 sudo rm -rf lib/modules/* 
 sudo mkdir -p lib/firmware 
 sudo cp $TOP_FOLDER/ghrd.core.rbf lib/firmware/overlay.rbf 
@@ -328,8 +320,8 @@ sudo cp $TOP_FOLDER/overlay.dtb lib/firmware/overlay.dtb
 cd .. 
 sudo python3 make_sdimage_p3.py -f \
 -P fat/*,num=1,format=fat32,size=48M \
--P rootfs/*,num=2,format=ext3,size=32M \
--s 100M \
+-P rootfs/*,num=2,format=ext3,size=400M \
+-s 460M \
 -n sdcard.img 
 cd .. 
 ```
@@ -428,7 +420,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1/qinit.sh
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
 
@@ -442,10 +434,10 @@ source ~/altera_pro/26.1/qinit.sh
 
 ```bash 
 rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
-unzip QPDS26.1_REL_GSRD_PR.zip
-rm -f QPDS26.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS26.1_REL_GSRD_PR stratix10-ed-gsrd
+wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
+unzip QPDS26.1.1_REL_GSRD_PR.zip
+rm -f QPDS26.1.1_REL_GSRD_PR.zip
+mv stratix10-ed-gsrd-QPDS26.1.1_REL_GSRD_PR stratix10-ed-gsrd
 cd stratix10-ed-gsrd
 make s10-htile-soc-devkit-oobe-baseline-all
 cd ..
@@ -479,7 +471,7 @@ rm ghrd.hps.jic
 ```bash 
 cd $TOP_FOLDER 
 rm -rf gsrd-socfpga 
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
 cd gsrd-socfpga 
 . stratix10_htile-gsrd-build.sh 
 build_setup 
@@ -496,24 +488,24 @@ build_setup
 ```bash
 rm -f stratix10-fabric-config-yocto.patch
 base64 -d << EOT | gunzip > stratix10-fabric-config-yocto.patch
-H4sIALQ/4WkCA61WbY/aOBD+vPwKi/KhFThxgMCye5y2t9teV6deJU6n+3JSZMdOsJo4qW3eDvHf
-bxygpSx0s6iWEr89nhnPPJkJl0mCME6lRdTXIpalMJiZ0udiLmOBrRbicOwxhlhNYEMqLpZoOLoO
-hRh5XtwXvSQJUUDIoN9vYIxr62y02+36eu/uEA77nQFqw3uIYPrX5D76e/J4Q8tSKH5jrKZWLgMS
-Ta3MBBqjJvq3ga5cS2Dhxve/QUodlUKbQlHicWvqAIOTwCJOypRGMovdtoT99uF+QpmWcRQXKpFp
-VMyFzujqO0HNBmocX4WmcHoZRvxzRENBBiFjvS4VJthditcJsLPA/MAAdunJhhIL5DAoL7jYR37L
-C7Jtnje6TngSbAnhhPtqlmXPRPw5vY4CpENQO+h0e8CARtuHZTwP/FsYltkslaoaonWjjY5aomma
-C2XvyKnd42apToXFJbVT53PfBRlrkcpCNW+fP/6Kcq6FMTgWWWZAwi9k2f21zkEj/xMvPhXt3RRF
-dS7306z9OdYfN01VKnYCCPr2vB9tybVfIt1qeomKROp8QbXAiuZVpkinmntxoYWnWdK8QOKWrjgu
-8jITFggtc1HMLJ5VF+ntvgtn68tlm5WRPPoCXURutrN6LD5taA6slmybIWlmdaeSiLs9r9/sfLcU
-eOQSX1RBFOlBBMlR5FwLLoqca5JXPu2TcEigEHUvleNiZCzNy8rSS6Rsapw5hXFr8JzN446O/nQB
-GSfBXBiZqqc1+iRml4bZKBmyEaTh7qA/jOPe+fJ8WsrTPH0a5zJyMKqqsuuqssyLSCpwa5ah12+A
-pVDm9nP8gHCOnCWotf7n0+SPh8fJxm+tP769//D457uNq7at9dvJx0E/+v3D5CG6/zR5F01+e78B
-/MPGZ0VhK0sA+PVrfamCr3UfzlZiW2tGjYgyybjUG3+fG/xD4IVKgrpKKqD7daitJDXghh8465zC
-00fgfol0fyJX0tl7x5g3g78oA15WloJRr5s7zS5FxKs4K5QI3djqmXB9QjPjBvzN5hbZqVDn2T3D
-VSC35X7mxp5d2iPCnQbt+H0dDofB9cDzekMyGIXsPL/PiHlK8DNAx/Ae6YSoXb1hCg6ykDbAS9uf
-hI3Lo4oq3tzdG13NmIQESPm8yACWFZS7CrtBn4VWIrvdIbiwNJ66mYGKoebIKQWRBjUF1dkKXI9K
-qmQ8xgHSsDdurZ0eN9wgvajWFhTc6waJsatSjEFwYhC8vdzycQDpG185ufmhIa9YQTXHQBHXR5K7
-fHQWRsBEIMf/0XwnG1YMAAA=
+H4sIAAAAAAACA61WbY/aOBD+vPwKi+6HVuDEAQLL7nHavd32ujq1V1H120mRHTvBauLkbPN2KP/9
+xgFaykKXRbWUeGzPm2eezITLJEEYp9Ii6msRy1IYzEzpczGTscBWC7FLe4whdiJjQyouFmgwvAqF
+GHpe3BPdJAlRQEi/12tgjE+22Wi1Wqfbvb1FOOy1+6gF7wGC5efxffRl/HhNy1Iofm2splYuAhJN
+rMwEGqEm+qeBLtxIYOPa97+zlDoqhTaFosTj1pzCGBxkLOKkTGkks9gdSzhv7Z4nlGkZR3GhEplG
+xUzojC5/UNRsoMb+VWgK0osw4l8jGgrSDxnrdqgwweZS/JQEOw/MTxxg50o2lJgjx4Pygott5te4
+IOvhecOrhCfBGhBOua+mWfZMxp+z6yBA2gS1gnanCwhotHzYxrPAvwGyzKapVDWJVo0W2huJpmku
+lL0lh073h6U6FRaX1E5czH2XZKxFKgvVvHle/BXlXAtjcCyyzICG38ii8/spgkb+J14sFW3DFEWn
+XO6XeftrvN8fmqpUbBQQ9P15N1yDa7tFOvXyHBOJ1PmcaoEVzetKkU409+JCC0+zpHmGxjVccVzk
+ZSYsAFrmophaPK0v0t18F87Xl+s2SyN59C9MEbler05D8WFHc0C1ZOsKSTOr27VG3Ol6vWb7h63A
+I+fEok6iSHcySPYy50ZwVubckLyOaY+EAwKNqHOuHpcjY2le1p6eo6U6QeYQj9uD52gdd3D0J3Oo
+OAnmwshUPe3RB3k2ZZgNkwEbQhnu9HuDOO4eb8+HtTyt04f5XEUOhnVXdlPdlnkRSQVhzTL0+g2g
+FNrcdo0fEM6R8wRdrr58/HR3/9fD47jyL1cf7u7fP358W7l+e7m6G3/o96I/348fovu/x2+j8R/v
+KpB4qHxWFLb2BRi/fa8vN/Gt94N0rfhyxagRUSYZl7ryt/XB32U820xwqpma0f1AvMBMaiAYPwnZ
+MZOHReCOiXR/JBfSeXzLmDeFvykDsVaWgluvmxvLrlTEyzgrlAgdbfVUuDmhmXEEf1PdIDsR6jjK
+p7hO57rtTx3t2YXdA95hpg3Or8LBILjqe153QPrDkB3H+RE1T4F+hNEhvUvaIWrVb1hCgCyUD4jS
++mehcvVUUcWbm3ujiymTUAgpnxUZsGUF5a7TVuir0EpkNxsOLiyNJ25loHOoGXJGQaVBTUF1toTQ
+o5IqGY9wgDScjS5Xzo4jK6Tn9d6cQngdkRi7LMUIFCcGwdvLLR8FUMbxhdOb7zryihVUcwwQcXMk
+uatLR9kIuAjg+B/yzsIMXgwAAA==
 EOT
 patch -d meta-intel-fpga-refdes -p1 < stratix10-fabric-config-yocto.patch 
 ```
@@ -576,18 +568,18 @@ index eccd99d..0b3c639 100644
 --- a/recipes-bsp/ghrd/hw-ref-design.bb
 +++ b/recipes-bsp/ghrd/hw-ref-design.bb
 @@ -233,6 +233,7 @@ do_install () {
-    install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_${ARM64_GHRD_CORE_RBF} ${D}/boot/ghrd_pr.core.rbf
-    install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
-    install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
-+   install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}${base_libdir}/firmware/${ARM64_GHRD_CORE_RBF}
+    install -D -m 0644 ${UNPACKDIR}/sources/${MACHINE}_pr_${ARM64_GHRD_CORE_RBF} ${D}/boot/ghrd_pr.core.rbf
+    install -D -m 0644 ${UNPACKDIR}/sources/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
+    install -D -m 0644 ${UNPACKDIR}/sources/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
++   install -D -m 0644 ${UNPACKDIR}/sources/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}${base_libdir}/firmware/${ARM64_GHRD_CORE_RBF}
   fi
  
   if ${@bb.utils.contains("MACHINE", "stratix10_htile", "true", "false", d)}; then
 @@ -241,6 +242,7 @@ do_install () {
-    install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_${ARM64_GHRD_CORE_RBF} ${D}/boot/ghrd_pr.core.rbf
-    install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
-    install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
-+   install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}${base_libdir}/firmware/${ARM64_GHRD_CORE_RBF}
+    install -D -m 0644 ${UNPACKDIR}/sources/${MACHINE}_pr_${ARM64_GHRD_CORE_RBF} ${D}/boot/ghrd_pr.core.rbf
+    install -D -m 0644 ${UNPACKDIR}/sources/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
+    install -D -m 0644 ${UNPACKDIR}/sources/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
++   install -D -m 0644 ${UNPACKDIR}/sources/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}${base_libdir}/firmware/${ARM64_GHRD_CORE_RBF}
   fi
  
   if ${@bb.utils.contains("MACHINE", "cyclone5", "true", "false", d)}; then
