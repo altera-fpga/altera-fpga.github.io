@@ -4242,6 +4242,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_8_3_5" id="__nav_8_3_5_label" tabindex="0">
@@ -4264,6 +4266,20 @@
     <li class="md-nav__item">
       <a href="../../gsrd/ug-gsrd-agx5e-modular-065b/" class="md-nav__link">
         HPS GSRD User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ethernet/agx5e-ethernet-tse/ug-agx5e-ethernet-tse/" class="md-nav__link">
+        Triple Speed Ethernet System Example Design
       </a>
     </li>
   
@@ -4309,7 +4325,7 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_5_4" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_5_5" >
       
       
         
@@ -4319,13 +4335,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_8_3_5_4" id="__nav_8_3_5_4_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_8_3_5_5" id="__nav_8_3_5_5_label" tabindex="0">
           TSN Example
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_8_3_5_4_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_8_3_5_4">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_8_3_5_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8_3_5_5">
           <span class="md-nav__icon md-icon"></span>
           TSN Example
         </label>
@@ -4741,6 +4757,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_8_3_6" id="__nav_8_3_6_label" tabindex="0">
@@ -4788,13 +4806,27 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../../modular-065a/ethernet/agx5e-ethernet/ug-agx5e-ethernet/" class="md-nav__link">
+        1-Port Ethernet System Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_6_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_6_4" >
       
       
         
@@ -4802,13 +4834,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_8_3_6_3" id="__nav_8_3_6_3_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_8_3_6_4" id="__nav_8_3_6_4_label" tabindex="0">
           TSN Example
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_8_3_6_3_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_8_3_6_3">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_8_3_6_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8_3_6_4">
           <span class="md-nav__icon md-icon"></span>
           TSN Example
         </label>
@@ -7257,40 +7289,6 @@ ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo bmaptool copy core-image-minimal-agilex5_mk_a5e065bb32aea.wic.gz /dev/sda
 </code></pre></div>
 <h3 id="flash-the-qspi">Flash the QSPI<a class="headerlink" href="#flash-the-qspi" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Download the <code>.jic</code> image from the prebuilt binary links above.</li>
-<li>Power down the board.</li>
-<li>Set <strong>MSEL</strong> dipswitch <strong>S1</strong> on SOM to <strong>JTAG: OFF-OFF</strong></li>
-<li>Power up the board.</li>
-<li>Program the QSPI with the following command. See: <a href="https://docs.altera.com/r/docs/847422/25.3.1/device-configuration-user-guide-agilextm-3-fpgas-and-socs/understanding-configuration-status-using-quartus_pgm-command">quartus_pgm command</a><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>quartus_pgm<span class="w"> </span>-c<span class="w"> </span><span class="m">1</span><span class="w"> </span>-m<span class="w"> </span>jtag<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;pvi;top.hps.jic&quot;</span>
-</code></pre></div>
-</li>
-</ul>
-<ul>
-<li>
-<p><strong>(Optional)</strong> Use the Quartus® Programmer GUI</p>
-<ul>
-<li>Launch the Quartus® Programmer and Configure the <strong>"Hardware Setup..."</strong>
-  and select the SOM device (SM27 MDK OB-SOM UBIII)</li>
-</ul>
-<ul>
-<li>Click "Auto Detect", select the device <code>A5ED065BB32A</code> and press
-  <strong>"Change File.."</strong></li>
-</ul>
-<ul>
-<li>Select the <code>.jic</code> file you downloaded earlier. The <code>MT25QU02G</code> device
-  should now show. Select the <strong>"Program/Configure"</strong> box, and press <strong>"Start"</strong>.
-  Wait until completed (It could take several minutes).
-<br></li>
-</ul>
-<p><a class="glightbox" href="../common/images/programmer-agx5-2.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="programmer-agx5-2" src="../common/images/programmer-agx5-2.png" style="display:block; margin-left:auto; margin-right:auto" /></a></p>
-<p><br></p>
-</li>
-</ul>
-<ul>
-<li>Power down the board. Set <strong>MSEL</strong> dip switch <strong>S1</strong> on SOM to <strong>ASX4 (QSPI): ON-ON</strong>
-<br></li>
-</ul>
 <h3 id="bring-up-the-board">Bring up the board<a class="headerlink" href="#bring-up-the-board" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Power up the board and set up the serial terminal (minicom, PuTTY, etc.):<ul>
@@ -7313,10 +7311,10 @@ ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
 <p class="admonition-title">Note</p>
 <p>An internet connection is required to run the following commands.</p>
 </div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>alterafpga/ros2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>alterafpga/ros2
 </code></pre></div>
 <p>The Docker image <code>alterafpga/ros2</code> should now be listed when you run the following command.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>image<span class="w"> </span>ls
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>image<span class="w"> </span>ls
 </code></pre></div>
 <p>The Docker image includes the <a href="https://github.com/altera-fpga/altera-ros2">Altera ROS 2</a> packages and examples pre-installed and ready to use.</p>
 <h3 id="run-the-ros-pick-place-with-vision-example-client">Run the ROS Pick &amp; Place With Vision Example Client<a class="headerlink" href="#run-the-ros-pick-place-with-vision-example-client" title="Permanent link">&para;</a></h3>
@@ -7324,7 +7322,7 @@ ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
 <p>The example application can either control a physical <a href="https://www.ufactory.cc/lite-6-collaborative-robot/">UFACTORY Lite 6 robot arm</a> or a simulated robot arm driven by Drive-on-Chip simulated motors in the FPGA. Similarly, it can work with a real camera stream or the test pattern stream with generated ArUco markers. The video stream from the FPGA video pipeline is handled the same in software regardless of the source.</p>
 <p>Here we will run the fully simulated variant which requires no additional hardware.</p>
 <p>On the HPS, start a container using the image pulled in the previous section:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>--device<span class="w"> </span>/dev/uio0<span class="w"> </span>--device<span class="w"> </span>/dev/uio1<span class="w"> </span>--device<span class="w"> </span>/dev/uio2<span class="w"> </span>--device<span class="w"> </span>/dev/uio3<span class="w"> </span>--device<span class="w"> </span>/dev/uio4<span class="w"> </span>--device<span class="w"> </span>/dev/uio5<span class="w"> </span>alterafpga/ros2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>--device<span class="w"> </span>/dev/uio0<span class="w"> </span>--device<span class="w"> </span>/dev/uio1<span class="w"> </span>--device<span class="w"> </span>/dev/uio2<span class="w"> </span>--device<span class="w"> </span>/dev/uio3<span class="w"> </span>--device<span class="w"> </span>/dev/uio4<span class="w"> </span>--device<span class="w"> </span>/dev/uio5<span class="w"> </span>alterafpga/ros2
 </code></pre></div>
 <p>5 Userpace I/O (UIO) devices are passed through to the container:</p>
 <ul>
@@ -7334,13 +7332,13 @@ ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
 </ul>
 <p>Note that the container is run with host networking passthrough mode so the board can communicate to other machines on the same LAN.</p>
 <p>Next launch the example application:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>xarm_block_camera_demo<span class="w"> </span>lite6_simulated_client.launch.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>xarm_block_camera_demo<span class="w"> </span>lite6_simulated_client.launch.py
 </code></pre></div>
 <p>Upon successful initialization, you should see planning and execution activity similar to:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>ros2_control_node<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>lite6_traj_controller<span class="o">]</span>:<span class="w"> </span>Received<span class="w"> </span>new<span class="w"> </span>action<span class="w"> </span>goal
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="o">[</span>ros2_control_node<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>lite6_traj_controller<span class="o">]</span>:<span class="w"> </span>Accepted<span class="w"> </span>new<span class="w"> </span>action<span class="w"> </span>goal
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="o">[</span>move_group<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>moveit.simple_controller_manager.follow_joint_trajectory_controller_handle<span class="o">]</span>:<span class="w"> </span>lite6_traj_controller<span class="w"> </span>started<span class="w"> </span>execution
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="o">[</span>move_group-2<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>moveit.simple_controller_manager.follow_joint_trajectory_controller_handle<span class="o">]</span>:<span class="w"> </span>Goal<span class="w"> </span>request<span class="w"> </span>accepted!
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>ros2_control_node<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>lite6_traj_controller<span class="o">]</span>:<span class="w"> </span>Received<span class="w"> </span>new<span class="w"> </span>action<span class="w"> </span>goal
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="o">[</span>ros2_control_node<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>lite6_traj_controller<span class="o">]</span>:<span class="w"> </span>Accepted<span class="w"> </span>new<span class="w"> </span>action<span class="w"> </span>goal
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="o">[</span>move_group<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>moveit.simple_controller_manager.follow_joint_trajectory_controller_handle<span class="o">]</span>:<span class="w"> </span>lite6_traj_controller<span class="w"> </span>started<span class="w"> </span>execution
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="o">[</span>move_group-2<span class="o">]</span><span class="w"> </span><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>moveit.simple_controller_manager.follow_joint_trajectory_controller_handle<span class="o">]</span>:<span class="w"> </span>Goal<span class="w"> </span>request<span class="w"> </span>accepted!
 </code></pre></div>
 <h3 id="ros-robot-visualizer-rviz">ROS Robot Visualizer (RViz)<a class="headerlink" href="#ros-robot-visualizer-rviz" title="Permanent link">&para;</a></h3>
 <p>To visualize what is happening in the example application robotics pipeline on a host PC, run RViz in a container. <a href="https://github.com/osrf/rocker">Rocker</a> is recommended for running graphical applications in a <a href="https://docs.docker.com/engine/install/">Docker</a> container. The host PC needs to be on the same LAN as the HPS running the ROS example application.</p>
@@ -7350,17 +7348,17 @@ ASx4 (QSPI):  SOM SW4[2:1]=ON:ON</p>
 <p class="admonition-title">Note</p>
 <p>An internet connection is required to run the following commands.</p>
 </div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>alterafpga/ros2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>alterafpga/ros2
 </code></pre></div>
 <p>Next, launch RViz in a <a href="https://docs.docker.com/engine/install/">Docker</a> container using the following commands:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>rocker<span class="w"> </span>--x11<span class="w"> </span>--devices<span class="w"> </span>/dev/dri<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>alterafpga/ros2
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>rocker<span class="w"> </span>--x11<span class="w"> </span>--devices<span class="w"> </span>/dev/dri<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>alterafpga/ros2
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The command above is for systems with Intel® integrated or discrete GPUs. On systems with an <strong>Nvidia®</strong> GPU, follow the <a href="https://github.com/osrf/rocker#nvidia-settings">Rocker Nvidia® steps</a> and add the <code>--nvidia</code> flag.</p>
 </div>
 <p>Once the container starts run the following command to launch RViz:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>rviz2<span class="w"> </span>-d<span class="w"> </span>xarm_block_camera_demo/config/moveit_demo.rviz
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>rviz2<span class="w"> </span>-d<span class="w"> </span>xarm_block_camera_demo/config/moveit_demo.rviz
 </code></pre></div>
 <p>You should see output similar to the screenshot below once the RViz interface loads. The planning scene shows a live view of the robot arm and detected blocks. The image view in the bottom left shows the published camera stream including an overlay of detected ArUco markers.</p>
 <p><br></p>
@@ -7579,7 +7577,7 @@ the Khronos Group™.</p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 10, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 11, 2026</span>
       
         <br>
         Created:
