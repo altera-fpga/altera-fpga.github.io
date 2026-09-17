@@ -11,10 +11,10 @@
         <link rel="canonical" href="https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/camera/camera_4k_stitch/camera_4k_stitch/">
       
       
-        <link rel="prev" href="../../camera_4k/camera_4k/">
+        <link rel="prev" href="../../camera_4k_ai/camera_4k_ai/">
       
       
-        <link rel="next" href="../../../../modular-065a/gsrd/ug-gsrd-agx5e-modular-065a/">
+        <link rel="next" href="../../camera_4k_ai_warp/camera_4k_ai_warp/">
       
       <link rel="icon" href="../../../../../../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
@@ -3810,6 +3810,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_8_3_4" id="__nav_8_3_4_label" tabindex="0">
@@ -3942,6 +3944,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../modular/camera/camera_4k_ai_warp/camera_4k_ai_warp/" class="md-nav__link">
+        4K Multi-Sensor Fisheye Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../modular/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE-ES/" class="md-nav__link">
         Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices
       </a>
@@ -3975,7 +3991,7 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_4_11" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_4_12" >
       
       
         
@@ -3985,13 +4001,13 @@
         
       
       
-        <label class="md-nav__link" for="__nav_8_3_4_11" id="__nav_8_3_4_11_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_8_3_4_12" id="__nav_8_3_4_12_label" tabindex="0">
           TSN Examples
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_8_3_4_11_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_8_3_4_11">
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_8_3_4_12_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8_3_4_12">
           <span class="md-nav__icon md-icon"></span>
           TSN Examples
         </label>
@@ -4055,6 +4071,10 @@
       <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_5" checked>
       
       
+        
+          
+        
+          
         
           
         
@@ -4338,6 +4358,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../../camera_4k_ai/camera_4k_ai/" class="md-nav__link">
+        4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -4398,6 +4432,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../camera_4k_ai_warp/camera_4k_ai_warp/" class="md-nav__link">
+        4K Multi-Sensor Fisheye Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices
+      </a>
     </li>
   
 
@@ -6506,12 +6554,26 @@ tool for camera product development.</p>
 <table>
 <thead>
 <tr>
+<th><center markdown="1">Left Image</th>
+<th><center markdown="1">Right Image</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="glightbox" href="../images/stitch_left.jpg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="stitch-overview" src="../images/stitch_left.jpg" /></a></td>
+<td><a class="glightbox" href="../images/stitch_right.jpg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="stitch-overview" src="../images/stitch_right.jpg" /></a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
 <th><center markdown="1">An example of Image Stitching</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a class="glightbox" href="../images/Stitch_Overview.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="stitch-overview" src="../images/Stitch_Overview.png" /></a></td>
+<td><a class="glightbox" href="../images/stitch.jpg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="stitch-overview" src="../images/stitch.jpg" /></a></td>
 </tr>
 </tbody>
 </table>
@@ -6520,7 +6582,7 @@ interface, enabling seamless data reception from multiple 4K image sensors to
 the FPGA fabric for further processing. Each MIPI CSI-2 IP instance converts
 pixel data to AXI4-Streaming outputs, enabling connectivity to other IP cores
 within Altera®'s Video and Vision Processing (VVP) Suite.</p>
-<p>The design is a hardware-software co-design, whose hardware component comprises
+<p>The design is a hardware-software co-design. The hardware component comprises
 dual Image Signal Processors (ISPs) with Stitch, various VVP IPs, Hard
 Processor Subsystem (HPS) and various connectivity IPs. The software stack is
 Linux based and runs on the HPS.</p>
@@ -6535,16 +6597,16 @@ color transformations and conversions and the adaptive local tone mapping (TMO)
 for handling wide dynamic range scenes. The design creates a full 4Kp60 output
 letterbox style image from the stitched output image. The design drives the
 resulting 4Kp60 streaming video output data through an Altera® DisplayPort IP.</p>
-<p>The software stack consists of an application software binary running on Linux
-operating system with various layers of drivers. The backend part of the
-application software interrogates the hardware, discovers the IP components
-dynamically and configures them. Multiple feedback loops monitor the hardware
-and keep various hardware components in lockstep. Some of the notable feedback
-loops are Automatic White Balance (AWB), Auto Exposure (AE), and Adaptive Noise
-Reduction (ANR) algorithms, reading their relevant statistics and adjusting
-various coefficients and Look Up Tables (LUTs) in real time. The frontend of
-the software creates a web based Graphical User Interface (GUI) and runs it
-over a web server.</p>
+<p>The software stack consists of an application software binary running on the
+Linux operating system with various layers of drivers. The backend part of the
+application software interrogates the hardware, dynamically discovers the IP
+components and configures them. Multiple feedback loops, in the application
+software, monitor the hardware and keep various hardware components in
+lockstep. Some of the notable feedback loops are Automatic White Balance (AWB),
+Auto Exposure (AE), and Adaptive Noise Reduction (ANR) algorithms, reading
+their relevant statistics and adjusting various coefficients and Look Up Tables
+(LUTs) in real time. The frontend of the software creates a web-based Graphical
+User Interface (GUI) and runs it over a web server.</p>
 <h2 id="detailed-design">Detailed Design<a class="headerlink" href="#detailed-design" title="Permanent link">&para;</a></h2>
 <p>The detailed design can be found at <a href="https://github.com/altera-fpga/agilex5-ed-camera/blob/rel/26.1/docs/camera/camera_4k_stitch/camera_4k_stitch.md">camera_4k_stitch.md</a></p>
 <p>The project GitHub repository can be found at <a href="https://github.com/altera-fpga/agilex5-ed-camera">https://github.com/altera-fpga/agilex5-ed-camera</a></p>
@@ -6568,7 +6630,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 14, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 17, 2026</span>
       
         <br>
         Created:
@@ -6603,7 +6665,7 @@ You are responsible for safety of the overall system, including compliance with 
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../../camera_4k/camera_4k/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices" rel="prev">
+          <a href="../../camera_4k_ai/camera_4k_ai/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices" rel="prev">
             <div class="md-footer__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
             </div>
@@ -6612,20 +6674,20 @@ You are responsible for safety of the overall system, including compliance with 
                 Previous
               </span>
               <div class="md-ellipsis">
-                4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices
+                4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../../../modular-065a/gsrd/ug-gsrd-agx5e-modular-065a/" class="md-footer__link md-footer__link--next" aria-label="Next: HPS GSRD User Guide" rel="next">
+          <a href="../../camera_4k_ai_warp/camera_4k_ai_warp/" class="md-footer__link md-footer__link--next" aria-label="Next: 4K Multi-Sensor Fisheye Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                HPS GSRD User Guide
+                4K Multi-Sensor Fisheye Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices
               </div>
             </div>
             <div class="md-footer__button md-icon">
