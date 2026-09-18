@@ -3,6 +3,8 @@
 
 # USB 3.1 Gen-1 Controller in Host Mode, Device Mode, and Dual-Role Device Mode
 
+<span style="color: red;"> **NOTE:** This page is not available in this release. USB 3.1 Gen-1 Controller in Host Mode, Device Mode, and Dual-Role Device Mode is only available in Quartus Prime Pro Edition v26.1. Please refer to this page to access the latest documentation: [USB 3.1 Gen-1 Controller in Host Mode, Device Mode, and Dual-Role Device Mode](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/usb3p1/ug-usb3p1-dev-drd-modes/).  </span>  
+
 ## Introduction
 
 USB 3.1 is a significant advancement of the Universal Serial Bus (USB) standard, delivering notable improvements in data transfer speed, power efficiency, and overall system performance. The USB 3.1 Gen 1 controller integrated in the Agilex™ 5 E-Series supports SuperSpeed operation with a maximum data transfer rate of up to 5 gigabits per second (5 Gbps). It maintains backward compatibility with USB 2.0 devices and supports both the traditional Type-A connector and the versatile USB Type-C interface.

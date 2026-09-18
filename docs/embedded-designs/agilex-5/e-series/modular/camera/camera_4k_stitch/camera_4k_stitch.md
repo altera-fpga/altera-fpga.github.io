@@ -13,9 +13,13 @@ exclusive support for industry-standard Mobile Industry Processor Interface
 (MIPI) D-PHY and MIPI CSI-2 interface on Agilex™ 5 FPGAs provides a powerful
 tool for camera product development.
 
+| <center markdown="1">Left Image | <center markdown="1">Right Image |
+|-|-|
+| ![stitch-overview](./images/stitch_left.jpg) | ![stitch-overview](./images/stitch_right.jpg) |
+
 |<center markdown="1">An example of Image Stitching|
 |-|
-| ![stitch-overview](../camera_4k_stitch/images/Stitch_Overview.png) |
+| ![stitch-overview](./images/stitch.jpg) |
 
 The MIPI interface supports up to 2.5Gbps per lane and up to 8x lanes per MIPI
 interface, enabling seamless data reception from multiple 4K image sensors to
@@ -23,7 +27,7 @@ the FPGA fabric for further processing. Each MIPI CSI-2 IP instance converts
 pixel data to AXI4-Streaming outputs, enabling connectivity to other IP cores
 within Altera®'s Video and Vision Processing (VVP) Suite.
 
-The design is a hardware-software co-design, whose hardware component comprises
+The design is a hardware-software co-design. The hardware component comprises
 dual Image Signal Processors (ISPs) with Stitch, various VVP IPs, Hard
 Processor Subsystem (HPS) and various connectivity IPs. The software stack is
 Linux based and runs on the HPS.
@@ -40,16 +44,16 @@ for handling wide dynamic range scenes. The design creates a full 4Kp60 output
 letterbox style image from the stitched output image. The design drives the
 resulting 4Kp60 streaming video output data through an Altera® DisplayPort IP.
 
-The software stack consists of an application software binary running on Linux
-operating system with various layers of drivers. The backend part of the
-application software interrogates the hardware, discovers the IP components
-dynamically and configures them. Multiple feedback loops monitor the hardware
-and keep various hardware components in lockstep. Some of the notable feedback
-loops are Automatic White Balance (AWB), Auto Exposure (AE), and Adaptive Noise
-Reduction (ANR) algorithms, reading their relevant statistics and adjusting
-various coefficients and Look Up Tables (LUTs) in real time. The frontend of
-the software creates a web based Graphical User Interface (GUI) and runs it
-over a web server.
+The software stack consists of an application software binary running on the
+Linux operating system with various layers of drivers. The backend part of the
+application software interrogates the hardware, dynamically discovers the IP
+components and configures them. Multiple feedback loops, in the application
+software, monitor the hardware and keep various hardware components in
+lockstep. Some of the notable feedback loops are Automatic White Balance (AWB),
+Auto Exposure (AE), and Adaptive Noise Reduction (ANR) algorithms, reading
+their relevant statistics and adjusting various coefficients and Look Up Tables
+(LUTs) in real time. The frontend of the software creates a web-based Graphical
+User Interface (GUI) and runs it over a web server.
 
 ## Detailed Design
 

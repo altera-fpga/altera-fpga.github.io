@@ -15,7 +15,7 @@ product development.
 
 |<center markdown="1">Sensor Output (ISP Input)</center>|<center markdown="1">ISP Output</center>|
 |-|-|
-| ![Input Capture](../camera_4k/images/Input_Capture.png) | ![Output Capture](../camera_4k/images/Output_Capture.png) |
+| ![Input Capture](./images/Input_Capture.png) | ![Output Capture](./images/Output_Capture.png) |
 
 The MIPI interface supports up to 2.5Gbps per lane and up to 8x lanes per MIPI
 interface, enabling seamless data reception from multiple 4K image sensors to
@@ -23,7 +23,7 @@ the FPGA fabric for further processing. Each MIPI CSI-2 IP instance converts
 pixel data to AXI4-Streaming outputs, enabling connectivity to other IP cores
 within Altera®'s Video and Vision Processing (VVP) Suite.
 
-The design is a hardware-software co-design, whose hardware component comprises
+The design is a hardware-software co-design. The hardware component comprises
 an Image Signal Processor (ISP), various VVP IPs, Hard Processor Subsystem
 (HPS) and various connectivity IPs. The software stack is Linux based and runs
 on the HPS.
@@ -38,16 +38,23 @@ conversion, and a high-performance Warp IP core for geometric distortion
 correction. The design drives the resulting 4Kp60 streaming video output data
 through an Altera® DisplayPort IP.
 
-The software stack consists of an application software binary running on Linux
-operating system with various layers of drivers. The backend part of the
-application software interrogates the hardware, discovers the IP components
-dynamically and configures them. Multiple feedback loops monitor the hardware
-and keep various hardware components in lockstep. Some of the notable feedback
-loops are Automatic White Balance (AWB), Auto Exposure (AE), and Adaptive Noise
-Reduction (ANR) algorithms, reading their relevant statistics and adjusting
-various coefficients and Look Up Tables (LUTs) in real time. The frontend of
-the software creates a web based Graphical User Interface (GUI) and runs it
-over a web server.
+The software stack consists of an application software binary running on the
+Linux operating system with various layers of drivers. The backend part of the
+application software interrogates the hardware, dynamically discovers the IP
+components and configures them. Multiple feedback loops, in the application
+software, monitor the hardware and keep various hardware components in
+lockstep. Some of the notable feedback loops are Automatic White Balance (AWB),
+Auto Exposure (AE), and Adaptive Noise Reduction (ANR) algorithms, reading
+their relevant statistics and adjusting various coefficients and Look Up Tables
+(LUTs) in real time. The frontend of the software creates a web-based Graphical
+User Interface (GUI) and runs it over a web server.
+
+In addition, the 4Kp60 Multi-Sensor HDR Camera Solution System Example Design
+for Agilex™ 5 Devices features built-in calibration tools that, when used with
+the additional offline calibration tools, can help calibrate the ISP pipeline
+for any given Image Sensor. Image Sensor ingest is via externally captured raw
+bayer images that can be uploaded and played using the Input Frame Reader
+function.
 
 ## Detailed Design
 

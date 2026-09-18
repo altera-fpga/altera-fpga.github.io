@@ -100,14 +100,14 @@ Refer to [GSRD\#Development Kit](https://altera-fpga.github.io/rel-26.1.1/embedd
 
 Host PC with:
 
-*   64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
+*   64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design").
 *   Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.
 *   Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
 *   Altera&reg; Quartus&reg; Prime Pro Edition version. Used to recompile the hardware design. If only writing binaries is required, then the smaller Altera&reg; Quartus&reg; Prime Pro Edition Programmer is sufficient.
 *   The prebuilt binaries were built using Quartus version 26.1.1
 *   The instructions for rebuilding the binaries use Quartus version 26.1.1
 *   Local Ethernet network, with DHCP server
-*   Internet connection. For downloading the files, especially when rebuilding the GSRD.
+*   Internet connection. For downloading the files, especially when rebuilding the HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design").
 
 
 ### Release Contents
@@ -225,61 +225,25 @@ There are two ways to test the design based on use case.
 
 #### Download and setup the build toolchain
 1\. Create the top folder to store all the build artifacts:
-
+//
 ```bash
-sudo rm -rf gsrd.enablement
-mkdir gsrd.enablement
-cd gsrd.enablement
+sudo rm -rf tsn-rgmii-hvio.enablement
+mkdir tsn-rgmii-hvio.enablement
+cd tsn-rgmii-hvio.enablement
 export TOP_FOLDER=`pwd` # The $TOP_FOLDER must be defined for every fresh terminal session.
 ```
 
-2\. Download and setup the build toolchain. It will be used only by the GHRD makefile to build the debug HPS FSBL, to build the \_hps\_debug.sof file:
-
 Note that this is installed in the `TOP_FOLDER`. You may installed this is in other location, but note the path and export it accordingly
 
-#### Toolchain Yocto Build Prerequisites
+#### Install dependencies for SW compilation
 
-```bash
-cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
-arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
-export ARCH=arm64
-export CROSS_COMPILE=aarch64-none-linux-gnu-
-```
-
-3\. Set up the Quartus tools in the PATH, so they are accessible without full path.
+2\. Set up the Quartus tools in the PATH, so they are accessible without full path.
 
 Note: The following must be re-done for fresh terminal session
 
 ```bash
 export QUARTUS_ROOTDIR=~/altera_pro/26.1.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
-```
-
-#### Install dependencies for SW compilation
-
-Make sure you have Yocto system requirements met: [Yocto Requirements](https://docs.yoctoproject.org/3.4.1/ref-manual/system-requirements.html#supported-linux-distributions).
-
-The command to install the required packages on Ubuntu 22.04-LTS is:
-
-```bash
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \
-build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
-python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit mesa-common-dev zstd \
-liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \
-tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
-device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
-```
-
-On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to `/bin/dash`:
-
-```bash
-sudo ln -sf /bin/bash /bin/sh
 ```
 
 ### Compilation Flow
@@ -289,129 +253,53 @@ sudo ln -sf /bin/bash /bin/sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-tsn-cfg2.zip
-unzip a5ed065es-premium-devkit-oobe-legacy-tsn-cfg2.zip
-rm -f a5ed065es-premium-devkit-oobe-legacy-tsn-cfg2.zip
-make legacy_tsn_cfg2-build
-pushd software/hps_debug && ./build.sh && popd
-quartus_pfg -c output_files/legacy_tsn_cfg2.sof \
-  output_files/legacy_tsn_cfg2_hps_debug.sof \
-  -o hps_path=software/hps_debug/hps_wipe.ihex
-cd ..
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aes1-enablement-tsn-rgmii-hvio.zip
+unzip dk-a5e065bb32aes1-enablement-tsn-rgmii-hvio.zip
+rm -f dk-a5e065bb32aes1-enablement-tsn-rgmii-hvio.zip
+make tsn_rgmii_hvio-build
 ```
 
 The following files are created:
 
-*   `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy-tsn-cfg2.sof`
-*   `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy-tsn-cfg2_hps_debug.sof`
+*   `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/tsn_rgmii_hvio.sof`
 
 ##### Build Core RBF
 
 ```bash
-cd $TOP_FOLDER
-rm -rf ghrd_a5ed065bb32ae6sr0.rbf
-quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/legacy-tsn-cfg2_hps_debug.sof ghrd_a5ed065bb32ae6sr0.rbf -o hps=1
+make tsn_rgmii_hvio-install-core-rbf
 ```
 
 The following file is created:
 
-* `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd.rbf`
 
 #### Software Compilation Flow
 
+The following page shows an overview of how the build process works for this use case:
 
-##### Set Up Yocto
-
-1\. Clone the Yocto script and prepare the build:
-
-```bash
-cd $TOP_FOLDER
-rm -rf gsrd-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
-cd gsrd-socfpga
-. agilex5_dk_a5e065bb32aes1-gsrd-build.sh
-build_setup
-```
-
-##### Customize Yocto
-
-1\. Save the `core.rbf` as `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf`
-
-2\. Update the recipe `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb` as follows:
-
-*  Replace the entry `${GHRD_REPO}/agilex5_dk_a5e065bb32aes1_gsrd_${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_gsrd_core` with `file://agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf;sha256sum=<CORE_SHA>` where `CORE_SHA` is the sha256 checksum of the file
-*  Delete the line `SRC_URI[agilex5_dk_a5e065bb32aes1_gsrd_core.sha256sum] = "bf11c8cb3b6d9487f93ce0e055b1e5256998a25b25ac4690bef3fcd6225ee1ae"`  
-    The above are achieved by the following instructions:
-
-```bash
-CORE_RBF=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf
-ln -s $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf $CORE_RBF
-OLD_URI="\${GHRD_REPO}\/agilex5_dk_a5e065bb32aes1_gsrd_\${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_gsrd_core"
-CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ")
-NEW_URI="file:\/\/agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf;sha256sum=$CORE_SHA"
-sed -i "s/$OLD_URI/$NEW_URI/g" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
-sed -i "/agilex5_dk_a5e065bb32aes1_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
-```
-
-##### Build Yocto
-
-Build Yocto:
-
-```bash
-bitbake_image
-```
-
-Gather files:
-
-```bash
-package
-```
-
-The following files are created:
-
-*   `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex`
-*   `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb`
-*   `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz`
-
-
-#### Building HPS Bootable Configuration Files
-
-Ensure you have completed the [Hardware Compilation Flow](#hardware-compilation-flow) and [Software Compilation Flow](#software-compilation-flow) successfully before continuing below.
+Please refer this page:
+[Rebuild Binaries](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#rebuild-binaries) 
+>[Note:]
+>SKip "Build Hardware Design" and direct to "Build Yocto Using Kas" and rename the design file as below
+$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf to 
+$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/tsn_rgmii_hvio_hps_debug.core.rbf
 
 ##### Build QSPI Image
 
 ```
 cd $TOP_FOLDER
-rm -f ghrd_a5ed065bb32ae6sr0.hps.jic ghrd_a5ed065bb32ae6sr0.core.rbf
+rm -f tsn_rgmii_hvio.hps.jic tsn_rgmii_hvio.core.rbf
 quartus_pfg \
--c agilex5_soc_devkit_ghrd/output_files/legacy_tsn_cfg2.sof ghrd_a5ed065bb32ae6sr0.jic \
+-c agilex5_soc_devkit_ghrd/output_files/tsn_rgmii_hvio.sof tsn_rgmii_hvio.jic \
 -o device=MT25QU128 \
 -o flash_loader=A5ED065BB32AE6SR0 \
--o hps_path=gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+-o hps_path=agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
 -o hps=1
 ```
-
 The following file is created:
 
-* `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic`
-
-##### Build HPS RBF
-
-This is an *optional* step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.
-
-```
-cd $TOP_FOLDER
-rm -f ghrd_a5ed065bb32ae6sr0.hps.rbf
-quartus_pfg \
--c agilex5_soc_devkit_ghrd/output_files/legacy_tsn_cfg2.sof  ghrd_a5ed065bb32ae6sr0.rbf \
--o hps_path=gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
--o hps=1
-```
-
-The following file is created:
-
-*   `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf`
+* $TOP_FOLDER/tsn_rgmii_hvio.hps.jic
 
 
 ### Programming the Binaries
@@ -477,9 +365,8 @@ All the scenarios included in this release require a serial connection. This sec
 
 ```bash
 cd $TOP_FOLDER
-wget https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
-tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
-quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
+wget https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/ghrd.hps.jic
+quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 ```
 
 <h5> Using compiled image </h5>
@@ -488,7 +375,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 
 ```bash
 cd $TOP_FOLDER
-quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;tsn_rgmii_hvio.hps.jic"
 ```
 
 
@@ -500,8 +387,10 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 
 <h5>For compiled image:</h5>
 
-- Extract sdcard image from the archive located at `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz` 
+The following relevant files are created in $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/:
 
+* gsrd-console-image-agilex5e.rootfs.wic
+* u-boot-spl-dtb.hex
 
 ##### Write SD Card
 1\. Write the gsrd-console-image-agilex5\_devkit.wic. SD card image to the micro SD card using the included USB writer in the host computer:
@@ -563,7 +452,7 @@ Devkit #2 : $ ifconfig eth1 192.168.1.200
 
 #### Run TSN Application
 
-The following examples are demonstrated using 2 units of the Agilex 5 platform.  Please take note of the notation "[Board A or B]". The following steps assumes both platforms are connected to each other via an Ethernet connection.
+The following examples are demonstrated using 2 units of the Agilex platform.  Please take note of the notation "[Board A or B]". The following steps assumes both platforms are connected to each other via an Ethernet connection.
 
 1\. Boot to Linux
 

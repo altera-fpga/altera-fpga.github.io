@@ -16,7 +16,7 @@ development.
 
 |<center markdown="1">An example of AI Detect</center>|<center markdown="1">An example of AI Pose</center>|
 |-|-|
-| ![Detect example](../camera_4k_ai/images/detect_hd.png) | ![POSE example](../camera_4k_ai/images/pose_hd.png) |
+| ![Detect example](./images/detect_hd.png) | ![POSE example](./images/pose_hd.png) |
 
 The MIPI interface supports up to 2.5Gbps per lane and up to 8x lanes per MIPI
 interface, enabling seamless data reception from multiple 4K image sensors to
@@ -45,20 +45,20 @@ video suitable for AI processing. The backend of the AI pipeline drives the
 resulting 4Kp30 streaming video output data (complete with AI inference
 overlay) through an Altera® DisplayPort IP.
 
-The software stack consists of an application software binary running on the Linux
-operating system with various layers of drivers. The backend part of the
-application software interrogates the hardware, dynamically discovers the IP components
-and configures them. The AI inference part of the application 
-software schedules inference requests to Altera®'s FPGA AI Suite IP, and 
+The software stack consists of an application software binary running on the
+Linux operating system with various layers of drivers. The backend part of the
+application software interrogates the hardware, dynamically discovers the IP
+components and configures them. The AI inference part of the application
+software schedules inference requests to Altera®'s FPGA AI Suite IP, and
 processes the inference results. The results are rendered as graphics in a
-frame buffer, which the hardware overlays on the video stream.
-Multiple feedback loops, in the application software, monitor the hardware
-and keep various hardware components in lockstep. Some of the notable feedback
-loops are Automatic White Balance (AWB), Auto Exposure (AE), and Adaptive Noise
-Reduction (ANR) algorithms, reading their relevant statistics and adjusting
-various coefficients and Look Up Tables (LUTs) in real time. The frontend of
-the software creates a web-based Graphical User Interface (GUI) and runs it
-over a web server.
+frame buffer, which the hardware overlays on the video stream. Multiple
+feedback loops, in the application software, monitor the hardware and keep
+various hardware components in lockstep. Some of the notable feedback loops are
+Automatic White Balance (AWB), Auto Exposure (AE), and Adaptive Noise Reduction
+(ANR) algorithms, reading their relevant statistics and adjusting various
+coefficients and Look Up Tables (LUTs) in real time. The frontend of the
+software creates a web-based Graphical User Interface (GUI) and runs it over a
+web server.
 
 ## Detailed Design
 

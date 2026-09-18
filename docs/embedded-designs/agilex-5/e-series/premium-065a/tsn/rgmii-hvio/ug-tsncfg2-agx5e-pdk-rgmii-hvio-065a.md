@@ -99,14 +99,14 @@ Refer to [GSRD\#Development Kit](https://altera-fpga.github.io/rel-26.1.1/embedd
 
 Host PC with:
 
-*   64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
+*   64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design").
 *   Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.
 *   Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
 *   Altera&reg; Quartus&reg; Prime Pro Edition version. Used to recompile the hardware design. If only writing binaries is required, then the smaller Altera&reg; Quartus&reg; Prime Pro Edition Programmer is sufficient.
 *   The prebuilt binaries were built using Quartus version 26.1.1
 *   The instructions for rebuilding the binaries use Quartus version 26.1.1
 *   Local Ethernet network, with DHCP server
-*   Internet connection. For downloading the files, especially when rebuilding the GSRD.
+*   Internet connection. For downloading the files, especially when rebuilding the HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design").
 
 
 ### Release Contents
@@ -226,9 +226,9 @@ There are two ways to test the design based on use case
 1\. Create the top folder to store all the build artifacts:
 
 ```bash
-sudo rm -rf gsrd2.enablement
-mkdir gsrd2.enablement
-cd gsrd.enablement
+sudo rm -rf tsn-rgmii-hvio.enablement
+mkdir tsn-rgmii-hvio.enablement
+cd tsn-rgmii-hvio.enablement
 export TOP_FOLDER=`pwd` # The $TOP_FOLDER must be defined for every fresh terminal session.
 ```
 
@@ -252,20 +252,20 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed065a-premium-devkit-oobe-tsn-cfg2.zip
-unzip a5ed065a-premium-devkit-oobe-tsn-cfg2.zip
-rm -f a5ed065a-premium-devkit-oobe-tsn-cfg2.zip
-make tsn_cfg2-build
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement-tsn-rgmii-hvio.zip
+unzip dk-a5e065ab32aea-enablement-tsn-rgmii-hvio.zip
+rm -f dk-a5e065ab32aea-enablement-tsn-rgmii-hvio.zip
+make tsn_rgmii_hvio-build
 ```
 
 The following files are created:
 
-*   `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/tsn-cfg2.sof`
+*   `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/tsn_rgmii_hvio.sof`
 
 ##### Build Core RBF
 
 ```bash
-make tsn_cfg2-install-core-rbf
+make tsn_rgmii_hvio-install-core-rbf
 ```
 
 The following file is created:
@@ -281,23 +281,23 @@ Please refer this page:
 >[Note:]
 >SKip "Build Hardware Design" and direct to "Build Yocto Using Kas" and rename the design file as below
 $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf to 
-$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/tsn_cfg2_hps_debug.core.rbf
+$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/tsn_rgmii_hvio_hps_debug.core.rbf
 
 #### Build QSPI Image
 ```bash
 cd $TOP_FOLDER
-rm -f tsn_cfg2.hps.jic tsn_cfg2.core.rbf
+rm -f tsn_rgmii_hvio.hps.jic tsn_rgmii_hvio.core.rbf
 quartus_pfg \
--c agilex5_soc_devkit_ghrd/output_files/tsn_cfg2.sof tsn_cfg2.jic \
+-c agilex5_soc_devkit_ghrd/output_files/tsn_rgmii_hvio.sof tsn_rgmii_hvio.jic \
 -o device=MT25QU128 \
--o flash_loader=A5ED065BB32AE6SR0 \
+-o flash_loader=A5ED065AB32AE1V \
 -o hps_path=agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
 -o hps=1
 ```
 The following file is created:
 
-* $TOP_FOLDER/tsn_cfg2.hps.jic
+* $TOP_FOLDER/tsn_rgmii_hvio.hps.jic
 
 ### Programming the Binaries
 
@@ -372,7 +372,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 
 ```bash
 cd $TOP_FOLDER
-quartus_pgm -c 1 -m jtag -o "pvi;tsn_cfg2.hps.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;tsn_rgmii_hvio.hps.jic"
 ```
 
 
@@ -450,7 +450,7 @@ Devkit #2 : $ ifconfig eth1 192.168.1.200
 
 #### Run TSN Application
 
-The following examples are demonstrated using 2 units of the Agilex 5 platform.  Please take note of the notation "[Board A or B]". The following steps assumes both platforms are connected to each other via an Ethernet connection.
+The following examples are demonstrated using 2 units of the Agilex platform.  Please take note of the notation "[Board A or B]". The following steps assumes both platforms are connected to each other via an Ethernet connection.
 
 1\. Boot to Linux
 

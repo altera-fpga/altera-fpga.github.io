@@ -246,6 +246,8 @@ nav:
         - HPS OpenOCD Debugging: embedded-designs/agilex-3/c-series/openocd/ug-openocd-debug-agx3.md
         - HPS Linux Application Debuging with Ashling RiscFree: embedded-designs/agilex-3/c-series/riscfree-linux-app-debug/ug-riscfree-linux-app-debug-agx3.md
         - HPS Fabric Configuration from Linux: embedded-designs/agilex-3/c-series/fabric-config-linux/ug-fabric-config-linux-agx3.md
+        - TSN Examples:
+          - HPS TSN RGMII HVIO System Example Design User Guide: embedded-designs/agilex-3/c-series/tsn/rgmii-hvio/ug-tsncfg2-agx3c-dk-rgmii-hvio.md
       - Intel Simics Virtual Platform Examples:
         - Simics Linux HPS Baseline System Example Design: embedded-designs/agilex-3/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex3-virtual-platforms.md  
       - Atum A3 Nano (Atum Nios® V Starter Kit):
@@ -318,6 +320,7 @@ nav:
         - 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k/camera_4k.md
         - 4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k_ai/camera_4k_ai.md
         - 4Kp60 Multi-Sensor Camera Stitch Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k_stitch/camera_4k_stitch.md
+        - 4K Multi-Sensor Fisheye Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/camera/camera_4k_ai_warp/camera_4k_ai_warp.md
         - Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE-ES.md
         - 1x10G Ethernet System Example Design: embedded-designs/agilex-5/e-series/modular/ethernet/agx5e-ethernet-10g/ug-agx5e-ethernet-10g.md
         - TSN Examples:
@@ -339,7 +342,9 @@ nav:
         - HPS PCIe Root Port: embedded-designs/agilex-5/e-series/modular-065b/pcie-rp/ug-pcie_rp-agx5e-modular-065b.md          
         - Holoscan Sensor Bridge MIPI to 10GbE System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/holoscan-sensor-bridge/mipi/hsb-mipi-10GbE.md
         - 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/camera/camera_4k/camera_4k.md
+        - 4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/camera/camera_4k_ai/camera_4k_ai.md
         - 4Kp60 Multi-Sensor Camera Stitch Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/camera/camera_4k_stitch/camera_4k_stitch.md
+        - 4K Multi-Sensor Fisheye Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/camera/camera_4k_ai_warp/camera_4k_ai_warp.md
       - E-Series 065A Modular Development Kit:
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular-065a/gsrd/ug-gsrd-agx5e-modular-065a.md
         - HPS Linux Boot Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/modular-065a/boot-examples/ug-linux-boot-agx5e-modular-065a.md

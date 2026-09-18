@@ -195,7 +195,7 @@ Devkit #2 : $ ifconfig eth0 192.168.1.200
 
 #### Run TSN Application
 
-The following examples are demonstrated using 2 units of the Agilex 5 platform.  Please take note of the notation "[Board A or B]". The following steps assumes both platforms are connected to each other via an Ethernet connection.
+The following examples are demonstrated using 2 units of the Agilex platform.  Please take note of the notation "[Board A or B]". The following steps assumes both platforms are connected to each other via an Ethernet connection.
 
 1\. Boot to Linux
 

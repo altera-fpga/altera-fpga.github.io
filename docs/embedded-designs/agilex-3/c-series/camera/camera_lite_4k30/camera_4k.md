@@ -531,7 +531,7 @@ Please note that this is a demonstration design and is not suitable for producti
 |-|-|-|
 |Assets Release Tag|[https://github.com/altera-fpga/agilex3-ed-camera/releases/tag/rel-25.3](https://github.com/altera-fpga/agilex3-ed-camera/releases/tag/rel-25.3)| rel-25.3|
 |Repository|[https://github.com/altera-fpga/agilex3-ed-camera](https://github.com/altera-fpga/agilex3-ed-camera)|rel-25.3|
-|Modular Design Toolkit|[https://github.com/altera-fpga/modular-design-toolkit](https://github.com/altera-fpga/modular-design-toolkit)|rel-25.3|
+|Modular Design Toolkit|[https://github.com/altera-fpga/modular-design-toolkit]|rel-25.3|
 
 </center>
 
@@ -805,7 +805,7 @@ The MDT flow consists of 2 separate main steps; a create step and a build step.
 
 !!! note "Related Information"
 
-    [Modular Design Toolkit](https://github.com/altera-fpga/modular-design-toolkit)
+    [Modular Design Toolkit]
 
 <br>
 
@@ -815,9 +815,9 @@ Follow the next steps to create the Quartus® and Platform Designer Project for
 the 4Kp30 Camera Lite Solution System Example Design:
 
 * Currently, there are available two design description files, provided in a XML format:
-  * `AGX_3C_SoC_Devkit_ISP_Lite.xml` for [Agilex™ 3 FPGA and SoC C-Series Development Kit](https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit)
+  * `AGX_3C_SoC_Devkit_ISP_Lite.xml` for [Agilex™ 3 FPGA and SoC C-Series Development Kit]
     * Device Part Number: A3CW135BM16AE6S
-  * `AGX_3C_FPGA_Devkit_ISP_Lite.xml` for [Agilex™ 3 FPGA C-Series Development Kit](https://www.altera.com/products/devkit/po-2999/agilex-3-fpga-c-series-development-kit)
+  * `AGX_3C_FPGA_Devkit_ISP_Lite.xml` for [Agilex™ 3 FPGA C-Series Development Kit]
     * Device Part Number: A3CY135BM16AE6S
 
 * Create your workspace and clone the repository using `--recurse-submodules`:
@@ -911,19 +911,19 @@ during compilation.
 ## **Other Repositories Used**
 |Component |Location |Branch |
 |-|-|-|
-|Modular Design Toolkit|[https://github.com/altera-fpga/modular-design-toolkit](https://github.com/altera-fpga/modular-design-toolkit)|rel-25.3|
+|Modular Design Toolkit|[https://github.com/altera-fpga/modular-design-toolkit]|rel-25.3|
 
 <br>
 
 ## **Useful User Manuals and Reference Materials**
 * [Agilex™ 3 FPGA and SoC C-Series Development Kit User Guide](https://docs.altera.com/r/docs/851698/current/agilextm-3-fpga-and-soc-c-series-development-kit-user-guide/overview).
 * [Raspberry Pi High Quality Camera with C/CS mount](https://www.raspberrypi.com/products/raspberry-pi-high-quality-camera/)
-* [Video and Vision Processing Suite Altera® FPGA IP User Guide](https://docs.altera.com/r/docs/683329/25.1/video-and-vision-processing-suite-ip-user-guide/about-the-video-and-vision-processing-suite).
-* [Altera® FPGA Streaming Video Protocol Specification](https://docs.altera.com/r/docs/683397/current/altera-streaming-video-protocol-specification/about-the-altera-streaming-video-protocol)
-* [AMBA 4 AXI4-Stream Protocol Specification](https://developer.arm.com/documentation/ihi0051/a/)
-* [Avalon® Interface Specifications – Avalon® Streaming Interfaces](https://www.intel.com/content/www/us/en/docs/programmable/683091/20-1/streaming-interfaces.html)
-* [MIPI DPHY IP and MIPI CSI-2 IP](https://www.altera.com/products/ip/po-3062/mipi-d-phy-ip).
-* [Nios® V Processor](https://www.altera.com/products/ip/po-3098/nios-v-processors).
+* [Video and Vision Processing Suite Altera® FPGA IP User Guide].
+* [Altera® FPGA Streaming Video Protocol Specification]
+* [AMBA 4 AXI4-Stream Protocol Specification]
+* [Avalon® Interface Specifications – Avalon® Streaming Interfaces]
+* [MIPI DPHY IP and MIPI CSI-2 IP].
+* [Nios® V Processor].
 
 <br>
 
