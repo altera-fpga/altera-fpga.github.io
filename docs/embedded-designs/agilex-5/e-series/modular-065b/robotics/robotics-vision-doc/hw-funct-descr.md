@@ -84,7 +84,7 @@
 
 # Robot Controller with Vision System Example Design — FPGA Hardware Functional Description
 
-This document describes the functionality of the **[HPS_ISP_VIS_DOC3x2_ROBOTICS](https://github.com/altera-fpga/agilex-ed-robotics/tree/rel/26.1/HPS_ISP_VIS_DOC3x2_ROBOTICS)** hardware variant using the Platform Designer
+This document describes the functionality of the **[HPS_ISP_VIS_DOC3x2_ROBOTICS]** hardware variant using the Platform Designer
 subsystems as a reference. The variant merges a 6-axis Drive-on-Chip stack with a robotics-oriented vision pipeline derived from
 the Robotics Camera, 4Kp60 Multi-Sensor HDR Camera, and 4Kp30 Camera Lite example designs.
 
@@ -126,7 +126,7 @@ subsystems using memory mapped interfaces. The lower section shows three dual-ax
 Drive, MotorModel, Control) connected to the HPS through AXI bridges.
 
 The following diagram is color-coded to match the Platform Designer view and the XML file (Modular Design Toolkit methodology)
-for this design (see: [AGX_5E_Modular_Devkit_HPS_ISP_VIS_DOC3x2_ROB.xml](https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/HPS_ISP_VIS_DOC3x2_ROBOTICS/AGX_5E_Modular_Devkit_HPS_ISP_VIS_DOC3x2_ROB.xml)). The following figure correlates the XML file and
+for this design (see: [AGX_5E_Modular_Devkit_HPS_ISP_VIS_DOC3x2_ROB.xml]). The following figure correlates the XML file and
 the Platform Designer view:
 
 <br>
@@ -426,7 +426,7 @@ display pipeline in ISP Lite Out and DisplayPort output.
 
 ### Motor control subsystems (6-axis, 3×2 topology)
 
-The lower portion of the design reuses the [6-axis Drive-on-Chip design](https://github.com/altera-fpga/agilex-ed-drive-on-chip/tree/rel/26.1/HPS_NIOSVg_DoC_3x2_axis) architecture, as documented in the
+The lower portion of the design reuses the [6-axis Drive-on-Chip design] architecture, as documented in the
 [ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-crc). Three **NiosV/g** processor subsystems
 each manage **two** drive axes (dual-axis Drive-on-Chip slice), for six axes total in FPGA fabric with **emulated**
 motor and power-stage models.

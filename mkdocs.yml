@@ -345,6 +345,8 @@ nav:
         - 4Kp30 Multi-Sensor Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/camera/camera_4k_ai/camera_4k_ai.md
         - 4Kp60 Multi-Sensor Camera Stitch Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/camera/camera_4k_stitch/camera_4k_stitch.md
         - 4K Multi-Sensor Fisheye Camera with AI Inference Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/camera/camera_4k_ai_warp/camera_4k_ai_warp.md
+        - 4Kp60 Multi-Video Connectivity Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/vvp_ed/4k_mvc/doc-mvc-fluid.md
+        - 4Kp60 SDI-based Genlock HDR Video Pipeline Solution System Example Design for Agilex™ 5 Devices: embedded-designs/agilex-5/e-series/modular-065b/vvp_ed/4k_sdi_genclok_hdr/doc-genlock-hdr-fluid.md
       - E-Series 065A Modular Development Kit:
         - HPS GSRD User Guide: embedded-designs/agilex-5/e-series/modular-065a/gsrd/ug-gsrd-agx5e-modular-065a.md
         - HPS Linux Boot Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/modular-065a/boot-examples/ug-linux-boot-agx5e-modular-065a.md
@@ -357,7 +359,10 @@ nav:
           - HPS Linux Boot Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/013B/boot-examples/ug-linux-boot-agx5e-013b.md
           - FPGA Crypto Services (FCS) Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/013B/security/crypto/cryptoservices/ug-fpga-cryptoservice-agx5e-soc.md
           - Vendor Authorized Boot (HPS-First) Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/013B/security/vab/hps-first/ug-vab-hps-first-agx5e-soc.md
-          - OP-TEE Hello World Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/013B/optee/ug-optee-agx5e-013b.md
+      - DE25-Nano Development and Education Board:
+        - HPS GSRD User Guide: embedded-designs/agilex-5/terasic-de25-nano/gsrd/ug-baseline-de25-nano.md
+        # - HPS Linux Boot Tutorial Example Design User Guide: embedded-designs/agilex-5/terasic-de25-nano/boot-examples/ug-linux-boot-agx5e-de25-nano.md
+        - OP-TEE Hello World Tutorial Example Design User Guide: embedded-designs/agilex-5/e-series/013B/optee/ug-optee-agx5e-013b.md
       - Intel Simics Virtual Platform Examples:
         - Simics Linux HPS Baseline System Example Design: embedded-designs/agilex-5/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex5-virtual-platforms.md
         - Simics Zephyr HPS Baseline System Example Design: embedded-designs/agilex-5/common/virtual-platforms/zephyr-gsrd/ug-zephyr-gsrd-agilex5-virtual-platforms.md

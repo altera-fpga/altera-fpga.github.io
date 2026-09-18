@@ -1,14 +1,14 @@
 
 
-# HPS GSRD User Guide for the Agilex™ 5 FPGA E-Series 065B Modular Development Kit (ES)
+# HPS Baseline System Example Design User Guide for the Agilex™ 5 FPGA E-Series 065B Modular Development Kit (ES)
 
 ## Introduction
 
-### GSRD Overview
+### HPS Baseline System Example Design Overview
 
-The Golden System Reference Design (GSRD) is a reference design running on the Agilex&trade; 5 E-Series 065B Modular Development Kit(ES).
+The HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design") is a reference design running on the Agilex&trade; 5 E-Series 065B Modular Development Kit(ES).
 
-The GSRD is comprised of the following components:
+The HPS Baseline System Example Design is comprised of the following components:
 
 - Golden Hardware Reference Design (GHRD)
 - Reference HPS software including:
@@ -18,11 +18,9 @@ The GSRD is comprised of the following components:
   - Linux Drivers
   - Sample Applications
 
-> <span style="color: red; font-weight: bold;">Important Note</span>: In order to simplify the GSRD build process, Altera introduced GSRD 2.0, which uses Kas as a lightweight build orchestration layer on top of BitBake / Yocto. In this release, the HPS Enablement daughter card is supported, for both booting from SD card and QSPI. In future releases, all HPS daughtercards will be supported by GSRD 2.0.
-
 ### Prerequisites
 
-The following are required to be able to fully exercise the Agilex  5 E-Series 065B Modular Development Kit(ES) GSRD:
+The following are required to be able to fully exercise the Agilex  5 E-Series 065B Modular Development Kit(ES) HPS Baseline System Example Design:
 
 * Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Modular Development Kit, ordering code MK-A5E065BB32AES1. Refer to [board documentation](https://www.altera.com/products/devkit/po-3001/agilex-5-fpga-and-soc-e-series-modular-development-kit-es) for more information about the development kit.
   * Power supply
@@ -30,23 +28,23 @@ The following are required to be able to fully exercise the Agilex  5 E-Series 0
   * Ethernet Cable
   * Micro SD card and USB card writer
 * Host PC with
-  * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
+  * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the HPS Baseline System Example Design.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
   * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 
 * Local Ethernet network, with DHCP server
-* Internet connection. For downloading the files, especially when rebuilding the GSRD.
+* Internet connection. For downloading the files, especially when rebuilding the HPS Baseline System Example Design.
 
 ### Prebuilt Binaries
 
-The Agilex 5 Modular Development Kit GSRD binaries are located at [https://releases.rocketboards.org/2026.08/](https://releases.rocketboards.org/2026.08/):
+The Agilex 5 Modular Development Kit HPS Baseline System Example Design binaries are located at [https://releases.rocketboards.org/2026.08/](https://releases.rocketboards.org/2026.08/):
 
 Boot Source | Link |
 | ---------------------- | -- |
-| SD Card | [https://releases.rocketboards.org/2026.08/gsrd/agilex5_mk_a5e065bb32aes1_gsrd/](https://releases.rocketboards.org/2026.08/gsrd/agilex5_mk_a5e065bb32aes1_gsrd/) |
-| QSPI | [https://releases.rocketboards.org/2026.08/qspi/agilex5_mk_a5e065bb32aes1_qspi/](https://releases.rocketboards.org/2026.08/qspi/agilex5_mk_a5e065bb32aes1_qspi/) |
+| SD Card | [https://releases.rocketboards.org/2026.08/gsrd/agilex5_mk_a5e065bb32aes1_gsrd.baseline-a55/](https://releases.rocketboards.org/2026.08/gsrd/aagilex5_mk_a5e065bb32aes1_gsrd.baseline-a55/) |
+| QSPI | [https://releases.rocketboards.org/2026.08/qspi/agilex5_mk_a5e065bb32aes1_qspi.baseline-a55/](https://releases.rocketboards.org/2026.08/qspi/agilex5_mk_a5e065bb32aes1_qspi.baseline-a55/) |
 
-> *Note*: The GSRD release for the HPS Enablement Board comes in two versions: one which uses a Cortex-A55 as the boot core, and one which uses a Cortex-A76 as the boot core. The rest of the functionality is the same, and all cores are enabled in Linux by default. The instructions on how to exercise the binaries are the same for both versions. And the instructions for rebuilding the binaries are similar, just using a different version of the GHRD which has the respective option selected. 
+> *Note*: The HPS Baseline System Example Design release for the HPS Enablement Board comes in two versions: one which uses a Cortex-A55 as the boot core, and one which uses a Cortex-A76 as the boot core. The rest of the functionality is the same, and all cores are enabled in Linux by default. The instructions on how to exercise the binaries are the same for both versions. And the instructions for rebuilding the binaries are similar, just using a different version of the GHRD which has the respective option selected. 
 
 ### Component Versions
 
@@ -87,7 +85,7 @@ The MSEL settings are:
 
 ### GHRD Overview
 
-The Golden Hardware Reference Design is an important part of the GSRD and consists of the following components:
+The Golden Hardware Reference Design is an important part of the HPS Baseline System Example Design and consists of the following components:
 
 - Hard Processor System (HPS)
   - Dual core Arm Cortex-A76 processor
@@ -159,7 +157,7 @@ The HPS exposes 64 interrupt inputs for the FPGA logic. The following table list
 
 ## Exercising Prebuilt Binaries
 
-This section presents how to use the prebuilt binaries included with the GSRD release.
+This section presents how to use the prebuilt binaries included with the HPS Baseline System Example Design release.
 
 ### Configure Board
 
@@ -226,7 +224,7 @@ Notes:
 <hr/>
 <h4 id="write-sd-card-image">Write SD Card</h4>
 
-1\. Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.08/gsrd/agilex5_mk_a5e065bb32aes1_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/agilex5_mk_a5e065bb32aes1_gsrd/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
+1\. Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.08/gsrd/agilex5_mk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/agilex5_mk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
 
 2\. Write the gsrd-console-image-agilex5_devkit.wic. SD card image to the micro SD card using the included USB writer in the host computer:
 
@@ -254,10 +252,9 @@ sync
 
 4\. Download and extract the JIC image, then write it to QSPI
 ```bash
-wget https://releases.rocketboards.org/2026.08/gsrd/agilex5_mk_a5e065bb32aes1_gsrd/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
-tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+wget https://releases.rocketboards.org/2026.08/gsrd/agilex5_mk_a5e065bb32aes1_gsrd.baseline-a55/ghrd.hps.jic
 jtagconfig --setparam 1 JtagClock 16M
-quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 ```
 
 <h4>Boot Linux</h4>
@@ -368,10 +365,9 @@ Either write 1MB of zeroes at the beginning of the SD card, or remove the SD car
 
 4\. Download and extract the JIC image, then write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2026.08/qspi/agilex5_mk_a5e065bb32aes1_qspi/agilex_flash_image.hps.jic.tar.gz
-tar xf agilex_flash_image.hps.jic.tar.gz
+wget https://releases.rocketboards.org/2026.08/qspi/agilex5_mk_a5e065bb32aes1_qspi.baseline-a55/qspi_boot.hps.jic
 jtagconfig --setparam 1 JtagClock 16M
-quartus_pgm -c 1 -m jtag -o "pvi;agilex_flash_image.hps.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;qspi_boot.hps.jic"
 ```
 
 <h4>Boot Linux</h4>
@@ -398,15 +394,13 @@ quartus_pgm -c 1 -m jtag -o "pvi;agilex_flash_image.hps.jic"
 [  243.332653] UBIFS (ubi0:4): FS size: 167117440 bytes (159 MiB, 2555 LEBs), max 6500 LEBs, journal size 
 ```
 
-## Build GSRD 2.0 Binaries
+## Rebuild Binaries Using Kas
 
-Kas is a Python-based lightweight build orchestration layer on top of BitBake/Yocto. Kas allows you to define your build environment in a YAML manifest, so you can perform checkout, environment setup, configuration, and build invocation with a single command. 
+This section presents how to rebuild the binaries for the HPS Enablement board, with Yocto, using Kas.
 
-In order to simplify the GSRD build process, Altera introduces GSRD 2.0, which uses [Kas](https://github.com/siemens/kas). In this release, the HPS Enablement daughter card is supported, for both booting from SD card and QSPI. In the future, more boards and daughter cards will be supported.
+Kas is a Python-based lightweight build orchestration layer on top of BitBake/Yocto. Kas allows you to define your build environment in a YAML manifest, so you can perform checkout, environment setup, configuration, and build invocation with a single command. Kas provides a more maintainable build description, it offers improved reproducibility, reduced setup friction, and a clearer abstraction for managing multiple layers, revisions, and configuration fragments.
 
-Kas replaces the [gsrd-socfpga repository](https://github.com/altera-fpga/gsrd-socfpga), providing a more maintainable build description. It offers improved reproducibility, reduced setup friction, and a clearer abstraction for managing multiple layers, revisions, and configuration fragments. Once all GSRD variations move to Kas, the gsrd-soc-fpga repository and GSRD build script will be retired.
-
-The GSRD 2.0 software source code is released inside the [software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/a5ed065es-modular-devkit-som/baseline-a55/software/yocto_linux) directory of the Agilex 5 E-Series Golden Hardware Reference Design (GHRD). Accessing the link will display a README page with details on how the GSRD 2.0 is organized around the Kas tool.
+The software source code is released inside the [software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/a5ed065es-modular-devkit-som/baseline-a55/software/yocto_linux) . Accessing the link will display a README page with details on how the GSRD 2.0 is organized around the Kas tool.
 
 For more details about Kas, refer to the official documentation at [https://kas.readthedocs.io/en/latest/](https://kas.readthedocs.io/en/latest/).
 
@@ -453,9 +447,9 @@ sudo apt-get install python3-newt python3.10-venv
 
 
 ```bash
-sudo rm -rf agilex5_gsrd_20.mdk_sd
-mkdir agilex5_gsrd_20.mdk_sd
-cd agilex5_gsrd_20.mdk_sd
+sudo rm -rf agilex5_baseline.mdk_sd
+mkdir agilex5_baseline.mdk_sd
+cd agilex5_baseline.mdk_sd
 export TOP_FOLDER=`pwd`
 ```
 
@@ -479,9 +473,9 @@ source ~/altera_pro/26.1.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed065es-modular-devkit-som-baseline-a55.zip
-unzip a5ed065es-modular-devkit-som-baseline-a55.zip
-rm -f a5ed065es-modular-devkit-som-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/mk-a5e065bb32aes1-baseline-a55.zip
+unzip mk-a5e065bb32aes1-baseline-a55.zip
+rm -f mk-a5e065bb32aes1-baseline-a55.zip
 make baseline_a55-build
 make baseline_a55-install-core-rbf
 cd ..
@@ -494,8 +488,6 @@ The following files are created:
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
 
 
-
-<span style="color: red;">**Important Note:**</span> Please refer to [Migrate Hardware Design from GSRD 1.0 to GSRD 2.0](#migrate-hardware-design-from-gsrd-10-to-gsrd-20) section for important information about how to migrate from a hardware design based on GSRD 1.0 to GSRD 2.0.
 
 <h5>Build Yocto Using Kas</h5>
 
@@ -580,9 +572,9 @@ The following file is created:
 
 
 ```bash
-sudo rm -rf agilex5_gsrd_20.mdk_qspi
-mkdir agilex5_gsrd_20.mdk_qspi
-cd agilex5_gsrd_20.mdk_qspi
+sudo rm -rf agilex5_baseline.mdk_qspi
+mkdir agilex5_baseline.mdk_qspi
+cd agilex5_baseline.mdk_qspi
 export TOP_FOLDER=`pwd`
 ```
 
@@ -607,9 +599,9 @@ source ~/altera_pro/26.1.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed065es-modular-devkit-som-baseline-a55.zip
-unzip a5ed065es-modular-devkit-som-baseline-a55.zip
-rm -f a5ed065es-modular-devkit-som-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/mk-a5e065bb32aes1-baseline-a55.zip
+unzip mk-a5e065bb32aes1-baseline-a55.zip
+rm -f mk-a5e065bb32aes1-baseline-a55.zip
 make baseline_a55-build
 make baseline_a55-install-core-rbf
 cd ..
@@ -622,8 +614,6 @@ The following files are created:
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
 
 
-
-<span style="color: red;">**Important Note:**</span> Please refer to [Migrate Hardware Design from GSRD 1.0 to GSRD 2.0](#migrate-hardware-design-from-gsrd-10-to-gsrd-20) section for important information about how to migrate from a hardware design based on GSRD 1.0 to GSRD 2.0.
 
 <h5>Build Yocto Using Kas</h5>
 
@@ -735,7 +725,7 @@ Kas also offers Kconfig-based customizations to provide a flexible and user-frie
 
 Review the kas.yml file, the Kconfig options and associated documentation at [https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/a5ed065es-modular-devkit-som/baseline-a55/software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/a5ed065es-modular-devkit-som/baseline-a55/software/yocto_linux).
 
-In the build instructions presented in [Rebuilding GSRD 2.0 Binaries](#rebuilding-gsrd-20-binaries), we did not use the Kconfig options, only the default options from `kas.yml` were used. This section shows how you can use `kas menu` to customize the build.
+In the build instructions presented, we did not use the Kconfig options, only the default options from `kas.yml` were used. This section shows how you can use `kas menu` to customize the build.
 
 When using `kas menu`, the initial settings from `kas.yml` are customized with the user selected options through Kconfig, and are saved to a file called `.config.yaml` which is then used for build purposes.
 
@@ -843,16 +833,6 @@ bitbake core-image-minimal
 bitbake console-image-minimal
 bitbake gsrd-console-image
 ```
-
-#### Migrate Hardware Design from GSRD 1.0 to GSRD 2.0
-
-If your hardware design was originally based on the HPS Legacy System Example Design 1.0, and you want to migrate it to  be used with HPS Baseline System Example Design 2.0, you must ensure that the **JTAG user code** parameter gets defined  with a value of 0 or not defined (FFFFFFFF). This parameter can be found in Quartus Pro from the **Assignments** >> **Device** >> **Device and Pin Options** >> **General** menu. Alternatively, this parameter can also be defined in the **.qsf** file  in your Quartus project directory as **STRATIX_JTAG_USER_CODE**, so you can set this parameter to 0 or just delete the assignment line. This change is needed because in the HPS Legacy System Example Design 1.0, this parameter is used to indicate to U-Boot which configuration components (kernel image, device tree and 2nd phase fabric design) need to be loaded from the kernel.itb binary. The most relevant configurations supported in HPS Legacy System Example Design 1.0 were  for booting from OOO daughter card, booting from eMMC/NAND daughter card and exercise Partial Reconfiguration. In each one of these configurations a specific value in the **JTAG user code**/**STRATIX_JTAG_USER_CODE** was used. In the case of HPS Baseline System Example Design 2.0, the valid value for this parameter are:
-
-* 0:  Load kernel image, device tree and 2nd phase fabric design from kernel.itb. FPGA is configured.
-* 1: Load kernel image and device tree from kernel.itb. FPGA is not configured. Used for debug purposes.
-* FFFFFFFF or undefined: U-Boot assumes that the parameter is 0 and performs the actions described above.
-
-For any other value, U-Boot will fail to load a valid set of Linux components and 2nd phase fabric design.  
 
 #### Update kernel.itb File
 

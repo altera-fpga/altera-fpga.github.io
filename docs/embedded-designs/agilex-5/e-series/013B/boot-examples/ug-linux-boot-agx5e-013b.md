@@ -1,7 +1,7 @@
 
 
 
-# HPS GHRD Linux Boot Tutorial Example Design: Agilex™ 5 FPGA E-Series 013B Development Kit
+# HPS Linux Boot Tutorial Example Design: Agilex™ 5 FPGA E-Series 013B Development Kit
 
 ## Introduction
 
@@ -9,7 +9,7 @@
 
 This page contains instructions on how to build Linux systems from separate components: Hardware Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the Golden System Reference Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
 
-The key differences versus the GSRD are:
+The key differences versus the HPS Baseline System Example Design are:
 
  * Fabric is configured from U-Boot directly with the rbf file, with `fpga load` command, instead of using the `bootm` command with the core.rbf part of the kernel.itb file
  * Single image boot is disabled in U-Boot, and it boots directly with the slected boot source, not trying them all
@@ -21,7 +21,7 @@ The following scenarios are covered:
 *  Boot from QSPI
 
 
-The instructions on this page are based on the [GSRD](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/013B/ug-gsrd-agx5e-013b/).
+The instructions on this page are based on the [HPS Baseline System Example Design](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/013B/ug-gsrd-agx5e-013b/).
 
 ### Prerequisites
 
@@ -123,9 +123,9 @@ source ~/altera_pro/26.1.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed013-devkit-oobe-baseline-a55.zip
-unzip a5ed013-devkit-oobe-baseline-a55.zip
-rm -f a5ed013-devkit-oobe-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e013bm16aea-baseline-a55.zip
+unzip dk-a5e013bm16aea-baseline-a55.zip
+rm -f dk-a5e013bm16aea-baseline-a55.zip
 make baseline_a55-build
 make baseline_a55-install-core-rbf
 cd ..
@@ -872,9 +872,9 @@ source ~/altera_pro/26.1.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/a5ed013-devkit-oobe-baseline-a55.zip
-unzip a5ed013-devkit-oobe-baseline-a55.zip
-rm -f a5ed013-devkit-oobe-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e013bm16aea-baseline-a55.zip
+unzip dk-a5e013bm16aea-baseline-a55.zip
+rm -f dk-a5e013bm16aea-baseline-a55.zip
 make baseline_a55-build
 make baseline_a55-install-core-rbf
 cd ..
