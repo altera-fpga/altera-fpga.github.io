@@ -711,6 +711,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/modular-065b/vvp_ed/4k_mvc/doc-mvc-fluid/</loc>
+         <lastmod>2026-09-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/modular-065b/vvp_ed/4k_sdi_genclok_hdr/doc-genlock-hdr-fluid/</loc>
+         <lastmod>2026-09-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/modular-065b/xen/ug-xen-agx5e-modular-065b/</loc>
          <lastmod>2026-09-18</lastmod>
          <changefreq>daily</changefreq>
@@ -917,6 +927,11 @@
     </url>
     <url>
          <loc>https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium-065b/xen/ug-xen-agx5e-premium-065b/</loc>
+         <lastmod>2026-09-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/terasic-de25-nano/gsrd/ug-baseline-de25-nano/</loc>
          <lastmod>2026-09-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
