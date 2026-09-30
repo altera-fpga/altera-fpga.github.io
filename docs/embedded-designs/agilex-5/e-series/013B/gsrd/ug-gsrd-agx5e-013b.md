@@ -2,11 +2,11 @@
 
 ## Introduction
 
-### HPS Baseline System Example Design Overview
+### GSRD Overview
 
-The HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design") is a reference design running on the Agilex&trade; 5 FPGA E-Series 013B Development Kit
+The Golden System Reference Design (GSRD) is a reference design running on the Agilex&trade; 5 FPGA E-Series 013B Development Kit
 
-The HPS Baseline System Example Design is comprised of the following components:
+The GSRD is comprised of the following components:
 
 - Golden Hardware Reference Design (GHRD)
 - Reference HPS software including:
@@ -18,49 +18,49 @@ The HPS Baseline System Example Design is comprised of the following components:
 
 ### Prerequisites
 
-The following are required to be able to fully exercise the Agilex 5 FPGA E-Series 013B Development Kit HPS Baseline System Example Design:
+The following are required to be able to fully exercise the Agilex 5 FPGA E-Series 013B Development Kit GSRD:
 
 * Altera&reg; Agilex&trade; 5 FPGA E-Series 013B Development Kit, ordering code DK-A5E013BM16AEA. Refer to [board documentation](https://www.altera.com/products/devkit/po-3196/agilex-5-fpga-e-series-013b-development-kit) for more information about the development kit.
 
 * Host PC with:
 
-  * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the HPS Baseline System Example Design.
+  * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1
   
 * Local Ethernet network, with DHCP server
-* Internet connection. For downloading the files, especially when rebuilding the HPS Baseline System Example Design.
+* Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
 ### Prebuilt Binaries
 
-The Agilex&trade; 5 FPGA E-Series 013B Development Kit HPS Baseline System Example Design binaries are located at [https://releases.rocketboards.org/2026.08/](https://releases.rocketboards.org/2026.08/):
+The Agilex&trade; 5 FPGA E-Series 013B Development Kit GSRD binaries are located at [https://releases.rocketboards.org/2026.04/](https://releases.rocketboards.org/2026.04/):
 
 | Boot Source | Link |
 | ---------------------- | -- |
-| SD Card | [https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e013bm16aea_gsrd.baseline-a55/](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e013bm16aea_gsrd.baseline-a55/) |
-| QSPI | [https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/](https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/) |
+| SD Card | [https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e013bm16aea_gsrd](https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e013bm16aea_gsrd) |
+| QSPI | [https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e013bm16aea_gsrd](https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e013bm16aea_gsrd) |
 
 ### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions integrate the 26.1 release. 
 
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 5 Design | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
-| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
+| Agilex 5 Design | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1_p1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.2-lts | QPDS26.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.0   | QPDS26.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.01 | QPDS26.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | scarthgap | latest              |
+| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | scarthgap | QPDS26.1_p1_REL_GSRD_PR |
+| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.2 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 ### Release Notes
 
-See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR)
+See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1_REL_GSRD_PR)
 
 ### Development Kit
 
@@ -73,7 +73,7 @@ The default configuration is AS x4 (Fast) using a 512 Mb QSPI flash device.
 
 ### GHRD Overview
 
-The Golden Hardware Reference Design is an important part of the HPS Baseline System Example Design and consists of the following components:
+The Golden Hardware Reference Design is an important part of the GSRD and consists of the following components:
 
 - Hard Processor System (HPS)
   - Dual core Arm Cortex-A55 processor
@@ -142,7 +142,7 @@ The HPS exposes 64 interrupt inputs for the FPGA logic. The following table list
 
 ## Exercising Prebuilt Binaries
 
-This section presents how to use the prebuilt binaries included with the HPS Baseline System Example Design release.
+This section presents how to use the prebuilt binaries included with the GSRD release.
 
 ### Configure Board
 
@@ -185,7 +185,7 @@ All the scenarios included in this release require a serial connection. This sec
 <hr/>
 <h5 id="write-sd-card-image">Write SD Card</h5>
 
-1\. Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e013bm16aea_gsrd.baseline-a55/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e013bm16aea_gsrd.baseline-a55/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5.wic`.
+1\. Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e013bm16aea_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e013bm16aea_gsrd/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5.wic`.
 
 2\. Write the gsrd-console-image-agilex5.wic. SD card image to the micro SD card using the included USB writer in the host computer:
 
@@ -211,9 +211,10 @@ sync
 
 3\. Download and extract the JIC image, then write it to QSPI
 ```bash
-wget https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e013bm16aea_gsrd.baseline-a55/ghrd.hps.jic
+wget https://releases.rocketboards.org/2026.04/gsrd/agilex5_dk_a5e013bm16aea_gsrd/ghrd_a5ed013bm16ae4scs.hps.jic.tar.gz
+tar xf ghrd_a5ed013bm16ae4scs.hps.jic.tar.gz
 jtagconfig --setparam 1 JtagClock 16M
-quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed013bm16ae4scs.hps.jic"
 ```
 
 <h5>Boot Linux</h5>
@@ -327,9 +328,10 @@ Either write 1MB of zeroes at the beginning of the SD card, or remove the SD car
 
 3\. Download and extract the JIC image, then write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/qspi_boot.hps.jic
+wget https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e013bm16aea_qspi/ghrd_a5ed013bm16ae4scs.hps.jic.tar.gz
+tar xf ghrd_a5ed013bm16ae4scs.hps.jic.tar.gz
 jtagconfig --setparam 1 JtagClock 16M
-quartus_pgm -c 1 -m jtag -o "pvi;qspi_boot.hps.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;agilex_flash_image.hps.jic"
 ```
 
 <h5>Boot Linux</h5>
@@ -357,13 +359,15 @@ quartus_pgm -c 1 -m jtag -o "pvi;qspi_boot.hps.jic"
 
 ```
 
-## Build Binaries
+## Build GSRD 2.0 Binaries
 
-The embedded software for this System Example Design is built with Yocto, using KAS.
+Kas is a Python-based lightweight build orchestration layer on top of BitBake/Yocto. Kas allows you to define your build environment in a YAML manifest, so you can perform checkout, environment setup, configuration, and build invocation with a single command. 
 
-Kas is a Python-based lightweight build orchestration layer on top of BitBake/Yocto. Kas allows you to define your build environment in a YAML manifest, so you can perform checkout, environment setup, configuration, and build invocation with a single command. Kas provides a more maintainable build description, it offers improved reproducibility, reduced setup friction, and a clearer abstraction for managing multiple layers, revisions, and configuration fragments.
+In order to simplify the GSRD build process, Altera introduces GSRD 2.0, which uses [Kas](https://github.com/siemens/kas). In this release, the HPS Enablement daughter card is supported, for both booting from SD card and QSPI. In the future, more boards and daughter cards will be supported.
 
-The software source code for this System Example Design is released inside the software/yocto_linux directory. Accessing the link will display a README page with details regarding the software.
+Kas replaces the [gsrd-socfpga repository](https://github.com/altera-fpga/gsrd-socfpga), providing a more maintainable build description. It offers improved reproducibility, reduced setup friction, and a clearer abstraction for managing multiple layers, revisions, and configuration fragments. Once all GSRD variations move to Kas, the gsrd-soc-fpga repository and GSRD build script will be retired.
+
+The GSRD 2.0 software source code is released inside the [software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1_REL_GSRD_PR/a5ed013-devkit-oobe/baseline-a55/software/yocto_linux) directory of the Agilex 5 E-Series Golden Hardware Reference Design (GHRD). Accessing the link will display a README page with details on how the GSRD 2.0 is organized around the Kas tool.
 
 For more details about Kas, refer to the official documentation at [https://kas.readthedocs.io/en/latest/](https://kas.readthedocs.io/en/latest/).
 
@@ -412,9 +416,9 @@ sudo apt-get install python3-newt python3.10-venv
 
 
 ```bash
-sudo rm -rf agilex5-013b_baseline.enablement_sd
-mkdir agilex5-013b_baseline.enablement_sd
-cd agilex5-013b_baseline.enablement_sd
+sudo rm -rf agilex5-013b_gsrd_20.enablement_sd
+mkdir agilex5-013b_gsrd_20.enablement_sd
+cd agilex5-013b_gsrd_20.enablement_sd
 export TOP_FOLDER=`pwd`
 ```
 
@@ -423,7 +427,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.1/qinit.sh
 ```
 
 
@@ -441,9 +445,9 @@ source ~/altera_pro/26.1.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e013bm16aea-baseline-a55.zip
-unzip dk-a5e013bm16aea-baseline-a55.zip
-rm -f dk-a5e013bm16aea-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed013-devkit-oobe-baseline-a55.zip
+unzip a5ed013-devkit-oobe-baseline-a55.zip
+rm -f a5ed013-devkit-oobe-baseline-a55.zip
 make baseline_a55-build
 make baseline_a55-install-core-rbf
 ```
@@ -455,6 +459,7 @@ The following files are created:
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
 
 
+<span style="color: red;">**Important Note:**</span> Please refer to [Migrate Hardware Design from GSRD 1.0 to GSRD 2.0](#migrate-hardware-design-from-gsrd-10-to-gsrd-20) section for important information about how to migrate from a hardware design based on GSRD 1.0 to GSRD 2.0.
 
 <h5>Build Yocto Using Kas</h5>
 
@@ -539,9 +544,9 @@ The following file is created:
 
 
 ```bash
-sudo rm -rf agilex5-013b_baseline.enablement_qspi
-mkdir agilex5-013b_baseline.enablement_qspi
-cd agilex5-013b_baseline.enablement_qspi
+sudo rm -rf agilex5-013b_gsrd_20.enablement_qspi
+mkdir agilex5-013b_gsrd_20.enablement_qspi
+cd agilex5-013b_gsrd_20.enablement_qspi
 export TOP_FOLDER=`pwd`
 ```
 
@@ -550,7 +555,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.1/qinit.sh
 ```
 
 
@@ -566,9 +571,9 @@ source ~/altera_pro/26.1.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e013bm16aea-baseline-a55.zip
-unzip dk-a5e013bm16aea-baseline-a55.zip
-rm -f dk-a5e013bm16aea-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed013-devkit-oobe-baseline-a55.zip
+unzip a5ed013-devkit-oobe-baseline-a55.zip
+rm -f a5ed013-devkit-oobe-baseline-a55.zip
 make baseline_a55-build
 make baseline_a55-install-core-rbf
 cd ..
@@ -580,6 +585,8 @@ The following files are created:
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof`
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
 
+
+<span style="color: red;">**Important Note:**</span> Please refer to [Migrate Hardware Design from GSRD 1.0 to GSRD 2.0](#migrate-hardware-design-from-gsrd-10-to-gsrd-20) section for important information about how to migrate from a hardware design based on GSRD 1.0 to GSRD 2.0.
 
 <h5>Build Yocto Using Kas</h5>
 
@@ -642,9 +649,9 @@ cd qspi_boot
 2\. Get the `ubinize_nor.cfg` file which contains the details on how to build the `root.ubi` volume, and `qspi_boot.pfg` which contains the instructions for Programming File Generator on how to create the .jic filem and the `uboot.env` containing the U-Boot environment:
 
 ```bash
-wget https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/ubinize_nor.cfg
-wget https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/qspi_boot.pfg
-wget https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/uboot.env
+wget https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/ubinize_nor.cfg
+wget https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/qspi_boot.pfg
+wget https://releases.rocketboards.org/2026.04/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/uboot.env
 ```
 
 3\. Link to the files that are needed from building the hardware design, and yocto:
@@ -690,9 +697,9 @@ The `kas.yml` file is the central configuration file used by Kas to define all c
 
 Kas also offers Kconfig-based customizations to provide a flexible and user-friendly configuration experience. This enables you to select repositories, layers, and build targets through a structured menu interface instead of editing YAML files directly. This approach combines the clarity and reproducibility of Kas with the modular configurability of the Linux kernel’s Kconfig system, making it easier to tailor builds for different platforms or use cases while maintaining a consistent and automated setup.
 
-Review the kas.yml file, the Kconfig options and associated documentation at [https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e013bm16aea/baseline-a55/software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e013bm16aea/baseline-a55/software/yocto_linux).
+Review the kas.yml file, the Kconfig options and associated documentation at [https://github.com/altera-fpga/agilex5e_013b-ed-gsrd/tree/QPDS26.1_REL_GSRD_PR/a5ed013-devkit-oobe/baseline-a55/software/yocto_linux](https://github.com/altera-fpga/agilex5e_013b-ed-gsrd/tree/QPDS26.1_REL_GSRD_PR/a5ed013-devkit-oobe/baseline-a55/software/yocto_linux).
 
-In the build instructions we did not use the Kconfig options, we did not use the Kconfig options, only the default options from `kas.yml` were used. This section shows how you can use `kas menu` to customize the build.
+In the build instructions presented in [Rebuilding GSRD 2.0 Binaries](#rebuilding-gsrd-20-binaries), we did not use the Kconfig options, only the default options from `kas.yml` were used. This section shows how you can use `kas menu` to customize the build.
 
 When using `kas menu`, the initial settings from `kas.yml` are customized with the user selected options through Kconfig, and are saved to a file called `.config.yaml` which is then used for build purposes.
 
@@ -800,6 +807,16 @@ bitbake console-image-minimal
 bitbake gsrd-console-image
 ```
 
+#### Migrate Hardware Design from GSRD 1.0 to GSRD 2.0
+
+If your hardware design was originally based on the HPS Legacy System Example Design 1.0, and you want to migrate it to  be used with HPS Baseline System Example Design 2.0, you must ensure that the **JTAG user code** parameter gets defined  with a value of 0 or not defined (FFFFFFFF). This parameter can be found in Quartus Pro from the **Assignments** >> **Device** >> **Device and Pin Options** >> **General** menu. Alternatively, this parameter can also be defined in the **.qsf** file  in your Quartus project directory as **STRATIX_JTAG_USER_CODE**, so you can set this parameter to 0 or just delete the assignment line. This change is needed because in the HPS Legacy System Example Design 1.0, this parameter is used to indicate to U-Boot which configuration components (kernel image, device tree and 2nd phase fabric design) need to be loaded from the kernel.itb binary. The most relevant configurations supported in HPS Legacy System Example Design 1.0 were  for booting from OOO daughter card, booting from eMMC/NAND daughter card and exercise Partial Reconfiguration. In each one of these configurations a specific value in the **JTAG user code**/**STRATIX_JTAG_USER_CODE** was used. In the case of HPS Baseline System Example Design 2.0, the valid value for this parameter are:
+
+* 0:  Load kernel image, device tree and 2nd phase fabric design from kernel.itb. FPGA is configured.
+* 1: Load kernel image and device tree from kernel.itb. FPGA is not configured. Used for debug purposes.
+* FFFFFFFF or undefined: U-Boot assumes that the parameter is 0 and performs the actions described above.
+
+For any other value, U-Boot will fail to load a valid set of Linux components and 2nd phase fabric design.  
+
 #### Using Beanchmarking Applications
 
 The HPS Baseline System Example Design provides you a set of Linux benchmarking applications that allow you to evaluate the performance of your system. These applications aim to evaluate areas such a CPUs performance and memory transfer performance among others.
@@ -844,7 +861,7 @@ config BENCHMARK_APP_COREMARK
 
 After you make your choose about the applications to be included or excluded, you can continue with the regular Kas Yocto Build.
 
-> **NOTE:** By default, all of the benchmarking applications are already enabled to be built and added in to the Linux file system. You still can use any of the 2 options above to change this default configuration. Also, it is very important to note that **the benchmarking applications are only available when the target image is the gsrd-console-image** . This means that you will not see them when the target is Console Image Minimal (console-image-minimal) nor Core Image Minimal (core-image-minimal). Please observe the implementation of the **software/yocto_linux/kas/gsrd/Kconfig** and the [gsrd-console-image.bb](https://github.com/altera-fpga/meta-altera-fpga/tree/wrynose/meta-altera-platform/recipes-images/poky/gsrd-console-image.bb) recipe.
+> **NOTE:** By default, all of the benchmarking applications are already enabled to be built and added in to the Linux file system. You still can use any of the 2 options above to change this default configuration. Also, it is very important to note that **the benchmarking applications are only available when the target image is the gsrd-console-image** . This means that you will not see them when the target is Console Image Minimal (console-image-minimal) nor Core Image Minimal (core-image-minimal). Please observe the implementation of the **software/yocto_linux/kas/gsrd/Kconfig** and the [gsrd-console-image.bb](https://github.com/altera-fpga/meta-altera-fpga/tree/scarthgap/meta-altera-platform/recipes-images/poky/gsrd-console-image.bb) recipe.
 
 Once your binaries build finishes, you can proceed to program these in to your dev kit.  After your board boots to Linux shell, you will see the benchmarking applications available in the file system under the **/bin/** directory, meaning that you can actually exercise these applications from any path by just entering the application name similarly to how you can run any other Linux command.
 
@@ -858,7 +875,7 @@ The following table provides a brief description of the Benchmarking Scripts ava
 | LMbench | *lmbench-run*<br>*bw_mem* | In LMbench,  the **bw_mem** tool is specifically used to measure the memory  bandwidth of a system by performing various types of memory  operations. Among its commands, fcp (fast copy), fwr(fast write),  and frd(fast read) execute memory operations on  contiguous blocks of memory. LM Bench operates on variable  data sizes; users can specify a data size that is less than the HPS  cache size and bring in cache hits when the program executes memory  operations. Each of these commands provides results in megabytes per  second (MB/s), allowing users to analyze and compare the performance of  memory read, write, and copy operations independently.   https://lmbench.sourceforge.net/ | Yes |
 | Sample Benchmark Script | run-hps-benchmarks | Altera provides this sample script that exercises automatically the different benchmarks applications supported. | Yes |
 
-The applications are integrated into the Yocto build flow through recipes (**.bb** or **.bbappend** files). These recipes are located under the [**meta-altera-fpga/meta-altera-platform/recipes-benchmarking**](https://github.com/altera-fpga/meta-altera-fpga/tree/wrynose/meta-altera-platform/recipes-benchmarking)  repository.
+The applications are integrated into the Yocto build flow through recipes (**.bb** or **.bbappend** files). These recipes are located under the [**meta-altera-fpga/meta-altera-platform/recipes-benchmarking**](https://github.com/altera-fpga/meta-altera-fpga/tree/scarthgap/meta-altera-platform/recipes-benchmarking)  repository.
 
 ![](images/benchmarkrecipeLocation.png)
 
@@ -884,7 +901,7 @@ The following table shows few examples of how the benchmarking applications can 
 | **Dhrystone** | Focus on single-threaded  execution to highlight the performance of individual cores. Performance increases for multi-threaded execution is also predictable for CPU workloads (approximately proportional to number of cores).<br>Example:<br>**echo 1000000000 \| taskset -c 0 dhry**<br><br>Dhrystone is executed by CPU0 passing 1000000000 as parameter indicating the number of Dhrystone iterations. |
 | **STREAM** | Focus on single-threaded execution since all memory accesses are done through the same HPS-memory interface (no cache hits). Benchmarking runs will not significantly differ in multi-threaded execution when the memory interface is already fully utilized.<br>Example:<br/> **taskset -c 0 stream.mccalpin**<br><br>STREAM is executed by CPU0. By default, this application works on an array size of 10000000 bytes. |
 | **LMbench** | Focus on single-threaded and multi-threaded execution. With multi-threaded execution, users can potentially see great performance increase if memory operations involve cache hits as well.<br>Example:<br>**taskset -c 0 bw_mem -N 1000 -P 1 4K fcp**<br>LMbench is single-threaded executed for by CPU0 using the **bw-mem** memory bandwidth microbenchmark with parameters:<br> -N [*#iterations*] -P [*#processes*] [*memory size tested*] [*type of memory operation*] <br><br>For multi-threaded execution (4 processes):<br>**bw_mem -N 1000 -P 4 4K fcp** |
-| **Sample Benchmark Script** | The script receives as parameters the name of the application(s) that want to be executed. The script iterates over the cores enabled in the system (only one of the same family or CPU ID). <br>Example:<br>**run-hps-benchmarks coremark dhrystone stream lmbench**<br><br>You can see the parameters provided to each one of the applications in the corresponding **run_[application]** function included in [**run-hps-benchmarks.sh**](https://github.com/altera-fpga/meta-altera-fpga/tree/wrynose/meta-altera-platform/recipes-benchmarking/run-hps-benchmarks/files/run-hps-benchmarks.sh) script .<br>The script produces an independent .log file with the results for each benchmarking application executed in a specific mode bound to a specific core. The output log file has the following format: **[*app_name*]-[*mode*]-[*#core*].log** |
+| **Sample Benchmark Script** | The script receives as parameters the name of the application(s) that want to be executed. The script iterates over the cores enabled in the system (only one of the same family or CPU ID). <br>Example:<br>**run-hps-benchmarks coremark dhrystone stream lmbench**<br><br>You can see the parameters provided to each one of the applications in the corresponding **run_[application]** function included in [**run-hps-benchmarks.sh**](https://github.com/altera-fpga/meta-altera-fpga/tree/scarthgap/meta-altera-platform/recipes-benchmarking/run-hps-benchmarks/files/run-hps-benchmarks.sh) script .<br>The script produces an independent .log file with the results for each benchmarking application executed in a specific mode bound to a specific core. The output log file has the following format: **[*app_name*]-[*mode*]-[*#core*].log** |
 
 **Note**: The **taskset** command in these examples enforces single-threaded execution on the CPU provided after the **-c** parameter.
 

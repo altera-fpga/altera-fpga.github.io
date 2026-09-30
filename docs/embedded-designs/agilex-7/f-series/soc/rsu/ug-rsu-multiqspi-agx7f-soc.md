@@ -70,7 +70,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.1/qinit.sh
 ```
 
 
@@ -78,28 +78,27 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 
 
-### Building the Quartus Project
+### Building the Quartus Projects 
 
 
-Create a Quartus project, based on the Quartus design provided as part of the HPS Baseline System Example Design from GitHub with a few changes.
+Create four different Quartus projects, based on the Quartus design provided as part of the HPS Baseline System Example Design from GitHub with a few changes.
 
-- Change the boot mode to FPGA first. 
-- Use a different ID in the SystemID component. 
+- Change the boot mode to FPGA first 
+- Use a different ID in the SystemID component, to make the binaries for each project slightly different. 
 - Change the behavior of watchdog timeout, to trigger an RSU event. 
 - Set the max retry parameter to 3, so that each application image and the factory image are tried up to three time when configuration failures occur. 
 
-The commands to create and compile the project are listed below.
-
+The commands to create and compile the projects are listed below.
 
 
 ```bash 
 cd $TOP_FOLDER
 # Build 4 versions of the Quartus design
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-unzip QPDS26.1.1_REL_GSRD_PR.zip
-rm QPDS26.1.1_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS26.1.1_REL_GSRD_PR agilex7f-ed-gsrd
-cd agilex7f-ed-gsrd
+rm -rf hw && mkdir hw && cd hw
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1_REL_GSRD_PR.zip
+unzip QPDS26.1_REL_GSRD_PR.zip
+rm QPDS26.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS26.1_REL_GSRD_PR agilex7f-ed-gsrd
 # boot from FPGA
 export BOOTS_FIRST=fpga
 # enable watchdog
@@ -107,20 +106,31 @@ export ENABLE_WATCHDOG_RST=1
 # treat watchdog timeout as configuration failure to trigger RSU
 export WATCHDOG_RST_ACTION=remote_update
 # Customize parms in tcl
-sed -i '/STRATIX_JTAG_USER_CODE 4/i set_global_assignment -name RSU_MAX_RETRY_COUNT 3' agilex_soc_devkit_ghrd/create_ghrd_quartus.tcl
+sed -i '/STRATIX_JTAG_USER_CODE 4/i set_global_assignment -name RSU_MAX_RETRY_COUNT 3' agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/create_ghrd_quartus.tcl
 # Set QSPI clock to 25 Mhz (needed for multi-qspi support)
-sed -i '/STRATIX_JTAG_USER_CODE 4/i set_global_assignment -name ACTIVE_SERIAL_CLOCK AS_FREQ_25MHZ' agilex_soc_devkit_ghrd/create_ghrd_quartus.tcl
+sed -i '/STRATIX_JTAG_USER_CODE 4/i set_global_assignment -name ACTIVE_SERIAL_CLOCK AS_FREQ_25MHZ' agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/create_ghrd_quartus.tcl
+for version in {0..3}
+do
+rm -rf ghrd.$version
+cp -r agilex7f-ed-gsrd ghrd.$version
+cd ghrd.$version
 # update sysid to make binaries slightly different 
-sed -i 's/0xACD5CAFE/0xABAB1234/g' agilex_soc_devkit_ghrd/create_ghrd_qsys.tcl
+sed -i 's/0xACD5CAFE/0xABAB000'$version'/g' agilex_soc_devkit_ghrd/create_ghrd_qsys.tcl
 # Finsish customization and now building the Quartus design
-make agf014eb-si-devkit-oobe-baseline-all 
+make agf014eb-si-devkit-oobe-baseline-all
+cd ..
+done
+rm -rf agilex7f-ed-gsrd 
 cd .. 
 ```
 
 
-After completing the above steps, the following SOF file is created.
+After completing the above steps, the following SOF files are created.
 
-- $TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof
+- $TOP_FOLDER/hw/ghrd.0/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
+- $TOP_FOLDER/hw/ghrd.1/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
+- $TOP_FOLDER/hw/ghrd.2/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
+- $TOP_FOLDER/hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
 
 
 
@@ -136,7 +146,7 @@ rm -rf arm-trusted-firmware
 git clone https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 # checkout the branch used for this document, comment out to use default
-git checkout -b test -t origin/socfpga_v2.14.1
+git checkout -b test -t origin/socfpga_v2.14.0
 make bl31 PLAT=agilex
 cd ..
 ```
@@ -165,7 +175,7 @@ rm -rf u-boot-socfpga
 git clone https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga
 # comment out next line to use the latest default branch 
-git checkout -b test -t origin/socfpga_v2026.04
+git checkout -b test -t origin/socfpga_v2026.01
 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -293,7 +303,7 @@ rm -rf linux-socfpga
 git clone https://github.com/altera-fpga/linux-socfpga 
 cd linux-socfpga 
 # checkout the branch used for this document, comment out to use default 
-git checkout -b test -t origin/socfpga-6.18.20-lts 
+git checkout -b test -t origin/socfpga-6.18.2-lts 
 
 # configure the RSU driver to be built into the kernel 
 make clean && make mrproper 
@@ -343,10 +353,10 @@ cat << EOF > initial_image_multiQSPI.pfg
     </output_files>
     <bitstreams>
         <bitstream id="Bitstream_1">
-            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof</path>
+            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">hw/ghrd.0/install/designs/agf014eb_si_devkit_oobe_baseline.sof</path>
         </bitstream>
         <bitstream id="Bitstream_2">
-            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof</path>
+            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">hw/ghrd.1/install/designs/agf014eb_si_devkit_oobe_baseline.sof</path>
         </bitstream>
     </bitstreams>
     <flash_devices>
@@ -413,7 +423,7 @@ The following commands are used to create the application image used in this exa
 cd $TOP_FOLDER
 mkdir -p images
 rm -rf images/application2.rpd
-quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+quartus_pfg -c hw/ghrd.2/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/application2.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -437,7 +447,7 @@ The following commands are used to create the factory update image used in this 
 cd $TOP_FOLDER
 mkdir -p images
 rm -f images/factory_update.rpd
-quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+quartus_pfg -c hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/factory_update.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -462,7 +472,7 @@ The following commands are used to create the decision firmware update image use
 cd $TOP_FOLDER 
 mkdir -p images 
 rm -f images/decision_firmware_update.rpd
-quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+quartus_pfg -c hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/decision_firmware_update.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -491,9 +501,9 @@ The following commands are used to create the combined application image used in
 cd $TOP_FOLDER
 mkdir -p images
 rm -f images/combined_application.rpd
-quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+quartus_pfg -c hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/combined_application.rpd \
--o app_image=agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+-o app_image=hw/ghrd.2/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o app_image_hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -522,7 +532,7 @@ Run the following commands to build the root file system.
   rm -rf buildroot
   git clone https://github.com/buildroot/buildroot.git
   cd buildroot
-  git checkout 2026.05
+  git checkout 2026.02
   mkdir -p overlay/etc/profile.d/
   # Use regilar prompt used in our devices root@<device>:~# instead of only #
   echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
@@ -651,7 +661,7 @@ sudo cp $TOP_FOLDER/images/*.rpd root/
 sudo cp $TOP_FOLDER/intel-rsu/example/rsu_client root/
 sudo cp $TOP_FOLDER/intel-rsu/lib/librsu.so usr/lib/
 sudo cp $TOP_FOLDER/intel-rsu/etc/qspi.rc etc/librsu.rc
-sudo cp $TOP_FOLDER/zlib/libz.so* lib/
+sudo cp $TOP_FOLDER/libz.so* lib/
 cd ..
 # create sd card image 
 sudo python3 ./make_sdimage_p3.py -f \

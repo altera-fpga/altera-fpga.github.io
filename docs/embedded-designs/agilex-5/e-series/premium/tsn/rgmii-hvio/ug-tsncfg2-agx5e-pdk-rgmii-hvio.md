@@ -50,8 +50,8 @@ This design utilizes the HPS GMII-to-RGMII adapter IP to convert GMII to RGMII p
 
 Please refer to the following documentation for further information:
 
-1. Agilex™ 5 Hard Processor System Technical Reference Manual: chapter 12.3.1. [GMII to RGMII through RGMII adapter via FPGA HVIOs](https://www.intel.com/content/www/us/en/docs/programmable/814346/26.1.1/gmii-to-rgmii-through-rgmii-adapter.html)
-2. Embedded Peripherals IP User Guide: chapter 50 [HPS GMII to RGMII Adapter Altera® FPGA IP](https://www.intel.com/content/www/us/en/docs/programmable/683130/26.1.1/hps-gmii-to-rgmii-adapter.html)
+1. Agilex™ 5 Hard Processor System Technical Reference Manual: chapter 12.3.1. [GMII to RGMII through RGMII adapter via FPGA HVIOs](https://www.intel.com/content/www/us/en/docs/programmable/814346/26.1/gmii-to-rgmii-through-rgmii-adapter.html)
+2. Embedded Peripherals IP User Guide: chapter 50 [HPS GMII to RGMII Adapter Altera® FPGA IP](https://www.intel.com/content/www/us/en/docs/programmable/683130/26.1/hps-gmii-to-rgmii-adapter.html)
 
 This System Example Design comprises the following components:
 
@@ -72,13 +72,13 @@ TSN Solution Architecture for this SED is illustrated as:
 
 ### Prerequisites
 
-This system example design is based on the [Agilex 5 E-Series Premium Development Kit GSRD](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/). It is recommended that you familiarize yourself with the GSRD development flow before proceeding with this design.
+This system example design is based on the [Agilex 5 E-Series Premium Development Kit GSRD](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/). It is recommended that you familiarize yourself with the GSRD development flow before proceeding with this design.
 The TSN through FPGA IO System Example Design requires the HPS Enablement Expansion Board (also referred as HPS Daughter Card), which is included with the development kit.
 
 #### Development Kit
 
 This Example Design targets the Agilex 5 FPGA E-Series 065B Premium Development Kit, utilizing the HPS. 
-Refer to [GSRD\#Development Kit](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#development-kit) for details about the board, including how to install the HPS Daughter Card.
+Refer to [GSRD\#Development Kit](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#development-kit) for details about the board, including how to install the HPS Daughter Card.
 
 * Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit
 * HPS Enablement Expansion Board. Included with the development kit.
@@ -100,14 +100,14 @@ Refer to [GSRD\#Development Kit](https://altera-fpga.github.io/rel-26.1.1/embedd
 
 Host PC with:
 
-*   64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design").
+*   64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
 *   Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.
 *   Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
 *   Altera&reg; Quartus&reg; Prime Pro Edition version. Used to recompile the hardware design. If only writing binaries is required, then the smaller Altera&reg; Quartus&reg; Prime Pro Edition Programmer is sufficient.
-*   The prebuilt binaries were built using Quartus version 26.1.1
-*   The instructions for rebuilding the binaries use Quartus version 26.1.1
+*   The prebuilt binaries were built using Quartus version 26.1
+*   The instructions for rebuilding the binaries use Quartus version 26.1
 *   Local Ethernet network, with DHCP server
-*   Internet connection. For downloading the files, especially when rebuilding the HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design").
+*   Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
 
 ### Release Contents
@@ -117,19 +117,19 @@ This page documents the following:
 
 #### Prebuilt Binaries
 
-The Agilex 5 Premium Development Kit 26.1.1 Example Design binaries are located at [https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/](https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/):
+The Agilex 5 Premium Development Kit 26.1 Example Design binaries are located at [https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/](https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/):
 
 | HPS Daughter Card | Boot Source | Link |
 | --- | --- | --- |
-| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/](https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/) |
+| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/](https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/) |
 
 #### Sources
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions were used to build the provided prebuilt binaries:
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1 and the following software component versions were used to build the provided prebuilt binaries:
 
 ### Release Notes
 
-See [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1)
+See [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1)
 
 
 
@@ -193,7 +193,7 @@ In this design example, `gmac1` is routed to the FPGA IO and the corresponding d
 There are two ways to test the design based on use case. 
     <a id="UserFlow1"></a> 
  
-* User Flow 1: Testing with [Prebuilt Binaries](https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/) and next to [Programming the binaries](#programming-the-binaries)
+* User Flow 1: Testing with [Prebuilt Binaries](https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/) and next to [Programming the binaries](#programming-the-binaries)
  
     <a id="UserFlow2"></a> 
  
@@ -217,7 +217,7 @@ There are two ways to test the design based on use case.
 
 1. Quartus Prime Pro
 
-    Please download and install the Quartus&reg; Prime Pro Edition version 26.1.1 version software.
+    Please download and install the Quartus&reg; Prime Pro Edition version 26.1 version software.
 
 2. Win32 Disk Imager
 
@@ -225,25 +225,61 @@ There are two ways to test the design based on use case.
 
 #### Download and setup the build toolchain
 1\. Create the top folder to store all the build artifacts:
-//
+
 ```bash
-sudo rm -rf tsn-rgmii-hvio.enablement
-mkdir tsn-rgmii-hvio.enablement
-cd tsn-rgmii-hvio.enablement
+sudo rm -rf gsrd.enablement
+mkdir gsrd.enablement
+cd gsrd.enablement
 export TOP_FOLDER=`pwd` # The $TOP_FOLDER must be defined for every fresh terminal session.
 ```
 
+2\. Download and setup the build toolchain. It will be used only by the GHRD makefile to build the debug HPS FSBL, to build the \_hps\_debug.sof file:
+
 Note that this is installed in the `TOP_FOLDER`. You may installed this is in other location, but note the path and export it accordingly
 
-#### Install dependencies for SW compilation
+#### Toolchain Yocto Build Prerequisites
 
-2\. Set up the Quartus tools in the PATH, so they are accessible without full path.
+```bash
+cd $TOP_FOLDER
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-none-linux-gnu-
+```
+
+3\. Set up the Quartus tools in the PATH, so they are accessible without full path.
 
 Note: The following must be re-done for fresh terminal session
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/26.1.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/26.1/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+```
+
+#### Install dependencies for SW compilation
+
+Make sure you have Yocto system requirements met: [Yocto Requirements](https://docs.yoctoproject.org/3.4.1/ref-manual/system-requirements.html#supported-linux-distributions).
+
+The command to install the required packages on Ubuntu 22.04-LTS is:
+
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \
+build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
+python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit mesa-common-dev zstd \
+liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \
+tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
+device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
+```
+
+On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to `/bin/dash`:
+
+```bash
+sudo ln -sf /bin/bash /bin/sh
 ```
 
 ### Compilation Flow
@@ -253,53 +289,129 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aes1-enablement-tsn-rgmii-hvio.zip
-unzip dk-a5e065bb32aes1-enablement-tsn-rgmii-hvio.zip
-rm -f dk-a5e065bb32aes1-enablement-tsn-rgmii-hvio.zip
-make tsn_rgmii_hvio-build
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-legacy-tsn-cfg2.zip
+unzip a5ed065es-premium-devkit-oobe-legacy-tsn-cfg2.zip
+rm -f a5ed065es-premium-devkit-oobe-legacy-tsn-cfg2.zip
+make legacy_tsn_cfg2-build
+pushd software/hps_debug && ./build.sh && popd
+quartus_pfg -c output_files/legacy_tsn_cfg2.sof \
+  output_files/legacy_tsn_cfg2_hps_debug.sof \
+  -o hps_path=software/hps_debug/hps_wipe.ihex
+cd ..
 ```
 
 The following files are created:
 
-*   `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/tsn_rgmii_hvio.sof`
+*   `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy-tsn-cfg2.sof`
+*   `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy-tsn-cfg2_hps_debug.sof`
 
 ##### Build Core RBF
 
 ```bash
-make tsn_rgmii_hvio-install-core-rbf
+cd $TOP_FOLDER
+rm -rf ghrd_a5ed065bb32ae6sr0.rbf
+quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/legacy-tsn-cfg2_hps_debug.sof ghrd_a5ed065bb32ae6sr0.rbf -o hps=1
 ```
 
 The following file is created:
 
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/ghrd.rbf`
+* `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf`
 
 #### Software Compilation Flow
 
-The following page shows an overview of how the build process works for this use case:
 
-Please refer this page:
-[Rebuild Binaries](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#rebuild-binaries) 
->[Note:]
->SKip "Build Hardware Design" and direct to "Build Yocto Using Kas" and rename the design file as below
-$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf to 
-$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/tsn_rgmii_hvio_hps_debug.core.rbf
+##### Set Up Yocto
+
+1\. Clone the Yocto script and prepare the build:
+
+```bash
+cd $TOP_FOLDER
+rm -rf gsrd-socfpga
+git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-opensource/gsrd-socfpga
+cd gsrd-socfpga
+. agilex5_dk_a5e065bb32aes1-gsrd-build.sh
+build_setup
+```
+
+##### Customize Yocto
+
+1\. Save the `core.rbf` as `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf`
+
+2\. Update the recipe `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb` as follows:
+
+*  Replace the entry `${GHRD_REPO}/agilex5_dk_a5e065bb32aes1_gsrd_${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_gsrd_core` with `file://agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf;sha256sum=<CORE_SHA>` where `CORE_SHA` is the sha256 checksum of the file
+*  Delete the line `SRC_URI[agilex5_dk_a5e065bb32aes1_gsrd_core.sha256sum] = "bf11c8cb3b6d9487f93ce0e055b1e5256998a25b25ac4690bef3fcd6225ee1ae"`  
+    The above are achieved by the following instructions:
+
+```bash
+CORE_RBF=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf
+ln -s $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf $CORE_RBF
+OLD_URI="\${GHRD_REPO}\/agilex5_dk_a5e065bb32aes1_gsrd_\${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_gsrd_core"
+CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ")
+NEW_URI="file:\/\/agilex5_dk_a5e065bb32aes1_gsrd_ghrd.core.rbf;sha256sum=$CORE_SHA"
+sed -i "s/$OLD_URI/$NEW_URI/g" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+sed -i "/agilex5_dk_a5e065bb32aes1_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+```
+
+##### Build Yocto
+
+Build Yocto:
+
+```bash
+bitbake_image
+```
+
+Gather files:
+
+```bash
+package
+```
+
+The following files are created:
+
+*   `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex`
+*   `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb`
+*   `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz`
+
+
+#### Building HPS Bootable Configuration Files
+
+Ensure you have completed the [Hardware Compilation Flow](#hardware-compilation-flow) and [Software Compilation Flow](#software-compilation-flow) successfully before continuing below.
 
 ##### Build QSPI Image
 
 ```
 cd $TOP_FOLDER
-rm -f tsn_rgmii_hvio.hps.jic tsn_rgmii_hvio.core.rbf
+rm -f ghrd_a5ed065bb32ae6sr0.hps.jic ghrd_a5ed065bb32ae6sr0.core.rbf
 quartus_pfg \
--c agilex5_soc_devkit_ghrd/output_files/tsn_rgmii_hvio.sof tsn_rgmii_hvio.jic \
+-c agilex5_soc_devkit_ghrd/output_files/legacy_tsn_cfg2.sof ghrd_a5ed065bb32ae6sr0.jic \
 -o device=MT25QU128 \
 -o flash_loader=A5ED065BB32AE6SR0 \
--o hps_path=agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex \
+-o hps_path=gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
 -o hps=1
 ```
+
 The following file is created:
 
-* $TOP_FOLDER/tsn_rgmii_hvio.hps.jic
+* `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic`
+
+##### Build HPS RBF
+
+This is an *optional* step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.
+
+```
+cd $TOP_FOLDER
+rm -f ghrd_a5ed065bb32ae6sr0.hps.rbf
+quartus_pfg \
+-c agilex5_soc_devkit_ghrd/output_files/legacy_tsn_cfg2.sof  ghrd_a5ed065bb32ae6sr0.rbf \
+-o hps_path=gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+-o hps=1
+```
+
+The following file is created:
+
+*   `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf`
 
 
 ### Programming the Binaries
@@ -365,8 +477,9 @@ All the scenarios included in this release require a serial connection. This sec
 
 ```bash
 cd $TOP_FOLDER
-wget https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/ghrd.hps.jic
-quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
+wget https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
+quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 ```
 
 <h5> Using compiled image </h5>
@@ -375,7 +488,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 
 ```bash
 cd $TOP_FOLDER
-quartus_pgm -c 1 -m jtag -o "pvi;tsn_rgmii_hvio.hps.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 ```
 
 
@@ -383,14 +496,12 @@ quartus_pgm -c 1 -m jtag -o "pvi;tsn_rgmii_hvio.hps.jic"
 
 <h5>For Prebuilt:</h5>
 
-- Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
+- Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/sdimage.tar.gz](https://releases.rocketboards.org/2026.04/tsn-rgmii-hvio/agilex5_dk_a5e065bb32aes1_tsn-rgmii-hvio/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
 
 <h5>For compiled image:</h5>
 
-The following relevant files are created in $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/:
+- Extract sdcard image from the archive located at `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz` 
 
-* gsrd-console-image-agilex5e.rootfs.wic
-* u-boot-spl-dtb.hex
 
 ##### Write SD Card
 1\. Write the gsrd-console-image-agilex5\_devkit.wic. SD card image to the micro SD card using the included USB writer in the host computer:
@@ -452,7 +563,7 @@ Devkit #2 : $ ifconfig eth1 192.168.1.200
 
 #### Run TSN Application
 
-The following examples are demonstrated using 2 units of the Agilex platform.  Please take note of the notation "[Board A or B]". The following steps assumes both platforms are connected to each other via an Ethernet connection.
+The following examples are demonstrated using 2 units of the Agilex 5 platform.  Please take note of the notation "[Board A or B]". The following steps assumes both platforms are connected to each other via an Ethernet connection.
 
 1\. Boot to Linux
 
@@ -520,11 +631,11 @@ Once the test is completed, copy the following files from Board B (listener) to 
 
 Import 'afpkt-rxtstamps.txt' and 'afxdp-rxtstamps.txt' to excel in 2 seperate sheets.
 
-<img src="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
+<img src="https://altera-fpga.github.io/rel-26.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
 
 Plot Column 1 for each sheets using Scatter chart,
 
-<img src="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
+<img src="https://altera-fpga.github.io/rel-26.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
 
 
 This will generate plot for AFPKT and AFXDP with latency(on Y-axis) against packet count (on X-axis).
