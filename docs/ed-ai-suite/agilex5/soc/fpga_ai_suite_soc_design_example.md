@@ -12,8 +12,10 @@ Documentation for the FPGA AI Suite is split across a few publications. Use the 
 
 | Title and Description | Link |
 |----------------------|------|
-| **Release Notes**<br>Provides late-breaking information about the FPGA AI Suite including new features, important bug fixes, and known issues. | [Link](https://docs.altera.com/r/docs/772497/2026.1.1/fpga-ai-suite-version-2026.1.1-release-notes/fpga-ai-suite-version-2026.1.1-release-notes) |
-| **FPGA AI Suite Handbook**<br>Get up and running with the FPGA AI Suite by learning how to initialize your compiler environment and reviewing the various design examples and tutorials provided with the FPGA AI Suite <br>Describes the use modes of the graph compiler (`dla_compiler`). It also provides details about the compiler command options and the format of compilation inputs and outputs. | [Link](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/fpga-ai-suite-handbook) |
+| **Release Notes**<br>Provides late-breaking information about the FPGA AI Suite including new features, important bug fixes, and known issues. | [Link](https://www.intel.com/content/www/us/en/docs/programmable/772497/2025-3/version-release-notes.html) |
+| **FPGA AI Suite Handbook**<br>Get up and running with the FPGA AI Suite by learning how to initialize your compiler environment and reviewing the various design examples and tutorials provided with the FPGA AI Suite <br>Describes the use modes of the graph compiler (`dla_compiler`). It also provides details about the compiler command options and the format of compilation inputs and outputs. | [Link](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/handbook.html) |
+| **AN 1008: Using the FPGA AI Suite Docker Image**<br>Describes how to install and run the FPGA AI Suite Docker image with a Docker client running on a Microsoft* Windows* system. The containerized FPGA AI Suite enables easy and quick access to the various tools in FPGA AI Suite.<br>Provides an overview of the FPGA AI Suite IP and the parameters you can set to customize it. This document also covers the FPGA AI Suite IP generation utility. | [Link](https://www.intel.com/content/www/us/en/docs/programmable/820119/2025-1/using-the-docker-image-overview.html) |
+
 
 # 2.0 FPGA AI Suite Design Examples
 
@@ -23,25 +25,24 @@ The following is a comprehensive list of the available FPGA AI Suite Design Exam
 
 | Design Example | Description |
 |---------------|-------------|
-| [PCIe-attach design example](https://altera-fpga.github.io/rel-26.1/ed-ai-suite/agilex7/pcie/pcie_getting_started_extended/) | Demonstrates how OpenVINO toolkit and the FPGA AI Suite support the look-aside deep learning acceleration model.<br><br>This design example targets the Terasic* DE10-Agilex™ Development Board (DE10-Agilex-B2E2). |
-| [OFS PCIe-attach design example](https://altera-fpga.github.io/rel-26.1/ed-ai-suite/agilex7/ofs/ofs_pcie_getting_started) | Demonstrates the OpenVINO toolkit and the FPGA AI Suite that target Open FPGA Stack (OFS)-based boards.<br><br>This design example targets the following Open FPGA Stack (OFS)-based boards:<br>* Agilex™ 7 FPGA I-Series Development Kit ES2 (DK-DEV-AGI027RBES)<br>* Silicom FPGA SmartNIC N6001-PL Platform (without Ethernet controller) |
-| [Hostless DDR-Free design examples](https://altera-fpga.github.io/rel-26.1/ed-ai-suite/agilex7/hostless_ddr_free_ed/hostless_ddr_free_design_example) | Demonstrates hostless DDR-free operation of the FPGA AI Suite IP. Graph filters, bias, and FPGA AI Suite IP configurations are stored in internal memory on the FPGA device.<br><br>This design example targets the Agilex™ 7 FPGA I-Series Development Kit ES2 (DK-DEV-AGI027RBES). |
-| [Hostless JTAG design example](https://altera-fpga.github.io/rel-26.1/ed-ai-suite/agilex5/hostless_jtag/hostless_jtag_design_example) | Demonstrates the step-by-step sequence of configuring FPGA AI Suite IP and starting inference by writing into CSRs directly via JTAG.<br><br>This design example targets the Agilex™ 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1). |
-| [SoC design example](https://altera-fpga.github.io/rel-26.1/ed-ai-suite/agilex5/soc/fpga_ai_suite_soc_design_example) | Demonstrates how OpenVINO toolkit and the FPGA AI Suite support the CPU-offload deep-learning acceleration model in an embedded system.<br><br>The design example targets the following development boards:<br>* Agilex™ 3 FPGA and SoC C-Series Development Kit (DK-A3W135BM16AEA)<br>* Agilex™ 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1)<br>* Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (DK-SIAGI027FC)<br>* Arria® 10 SX SoC FPGA Development Kit (DK-SOC-10AS066S) |
+| [PCIe-attach design example](todo) | Demonstrates how OpenVINO toolkit and the FPGA AI Suite support the look-aside deep learning acceleration model.<br><br>This design example targets the Terasic* DE10-Agilex Development Board (DE10-Agilex-B2E2). |
+| [OFS PCIe-attach design example](todo) | Demonstrates the OpenVINO toolkit and the FPGA AI Suite that target Open FPGA Stack (OFS)-based boards.<br><br>This design example targets the following Open FPGA Stack (OFS)-based boards:<br>* Agilex™ 7 FPGA I-Series Development Kit ES2 (DK-DEV-AGI027RBES)<br>* Intel FPGA SmartNIC N6001-PL Platform (without Ethernet controller) |
+| [Hostless DDR-Free design examples](todo) | Demonstrates hostless DDR-free operation of the FPGA AI Suite IP. Graph filters, bias, and FPGA AI Suite IP configurations are stored in internal memory on the FPGA device.<br><br>This design example targets the Agilex 7 FPGA I-Series Development Kit ES2 (DK-DEV-AGI027RBES). |
+| [Hostless JTAG design example](todo) | Demonstrates the step-by-step sequence of configuring FPGA AI Suite IP and starting inference by writing into CSRs directly via JTAG.<br><br>This design example targets the Agilex 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1). |
+| [SoC design example](todo) | Demonstrates how OpenVINO toolkit and the FPGA AI Suite support the CPU-offload deep-learning acceleration model in an embedded system.<br><br>The design example targets the following development boards:<br>* Agilex 7 FPGA I-Series Transceiver-SoC Development Kit (DK-SIAGI027FC)<br>* Arria® 10 SX SoC FPGA Development Kit (DK-SOC-10AS066S) |
 
 ## Table 3. FPGA AI Suite Design Examples Properties Overview
 
 | Example | Design Type | Target FPGA Device | Host | Memory | Stream* | Design Example Identifier** | Supported Development Kit |
 |---------|-------------|-------------------|------|--------|---------|---------------------------|---------------------------|
-| PCIe-Attached | Agilex™ 7 | External host processor | DDR | M2M | agx7_de10_pcie | [Terasic DE10-Agilex™ Development Board (DE10-Agilex™-B2E2)](https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=142&No=1252) |
-| PCIe-Attached| Agilex™ 7 |External host processor |DDR |M2M | agx7_iseries_ofs_pcie | [Agilex™ 7 FPGA I-Series Development Kit ES2 (DK-DEV-AGI027RBES)](https://www.altera.com/products/devkit/a1jui0000049utmmam/agilex-7-fpga-i-series-development-kit-2x-r-tile-and-1x-f-tile) |
-| PCIe-Attached|Agilex™ 7 |External host processor |DDR |M2M | agx7_n6001_ofs_pcie | [Silicom FPGA SmartNIC N6001-PL Platform (without Ethernet controller)](https://www.altera.com/asap/offering/po-2750/silicom-fpga-smartnic-n60106011-n6001-pln6000-pl-arrow-creek) |
-| Hostless DDR-Free | Agilex™ 7 | Hostless | DDR-Free | Direct | agx7_iseries_ddrfree | [Agilex™ 7 FPGA I-Series Development Kit ES2 (DK-DEV-AGI027RBES)](https://www.altera.com/products/devkit/po-3012/agilex-7-fpga-i-series-development-kit-2x-r-tile-and-1x-f-tile) |
-| Hostless JTAG Attached | Agilex™ 5 |Hostless | DDR | M2M | agx5e_modular_jtag | [Agilex™ 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1)](https://www.altera.com/products/devkit/po-3274/agilex-5-fpga-and-soc-e-series-065b-modular-development-kit) |
-|SoC | Agilex™ 3 |On-device HPS |DDR |M2M | agx3_soc_m2m<br> | [Agilex™ 3 FPGA and SoC C-Series Development Kit (DK-A3W135BM16AEA)](https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit) |
-|SoC | Agilex™ 5 |On-device HPS |DDR |M2M and S2M | agx5_soc_m2m<br>agx5_soc_s2m | [Agilex™ 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1)](https://www.altera.com/products/devkit/po-3274/agilex-5-fpga-and-soc-e-series-065b-modular-development-kit) |
-| SoC | Agilex™ 7 | On-device HPS | DDR | M2M and S2M | agx7_soc_m2m<br>agx7_soc_s2m | [Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (DK-SIAGI027FC)](https://www.altera.com/products/devkit/po-3013/agilex-7-fpga-i-series-transceiver-soc-development-kit-4x-f-tile) |
-|SoC | Arria® 10 |On-device HPS |DDR |M2M and S2M | a10_soc_m2m<br>a10_soc_s2m | [Arria® 10 SX SoC FPGA Development Kit (DK-SOC-10AS066S)](https://www.altera.com/products/devkit/po-3006/arria-10-sx-soc-development-kit) |
+| PCIe-Attached | Agilex 7 | External host processor | DDR | M2M | agx7_de10_pcie | [Terasic DE10-Agilex Development Board (DE10-Agilex-B2E2)](https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=142&No=1252&PartNo=2#contents) |
+| PCIe-Attached|Agilex 7 |External host processor |DDR |M2M | agx7_iseries_ofs_pcie | [Agilex 7 FPGA I-Series Development Kit ES2 (DK-DEV-AGI027RBES)](https://www.altera.com/products/devkit/a1jui0000049utmmam/agilex-7-fpga-i-series-development-kit-2x-r-tile-and-1x-f-tile) |
+| PCIe-Attached|Agilex 7 |External host processor |DDR |M2M | agx7_n6001_ofs_pcie | [Intel FPGA SmartNIC N6001-PL Platform (without Ethernet controller)](https://www.intel.com/content/www/us/en/content-details/779620/a-smartnic-for-accelerating-communications-and-networking-workloads.html) |
+| Hostless DDR-Free | Agilex 7 | Hostless | DDR-Free | Direct | agx7_iseries_ddrfree | [Agilex 7 FPGA I-Series Development Kit ES2 (DK-DEV-AGI027RBES)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/agi027.html) |
+| Hostless JTAG Attached | Agilex 5 |Hostless | DDR | M2M | agx5e_modular_jtag | [Agilex 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html) |
+| SoC | Agilex 7 | On-device HPS | DDR | M2M and S2M | agx7_soc_m2m<br>agx7_soc_s2m | [Agilex 7 FPGA I-Series Transceiver-SoC Development Kit (DK-SIAGI027FC)](https://www.altera.com/products/devkit/a1jui0000049utnmam/agilex-7-fpga-i-series-transceiver-soc-development-kit-4x-f-tile) |
+|SoC | Arria 10 |On-device HPS |DDR |M2M and S2M | a10_soc_m2m<br>a10_soc_s2m | [Arria 10 SX SoC FPGA Development Kit (DK-SOC-10AS066S)](https://www.altera.com/products/devkit/a1jui0000049utgmam/arria-10-sx-soc-development-kit) |
+|SoC | Agilex 5 |On-device HPS |DDR |M2M and S2M | agx5_soc_m2m<br>agx5_soc_s2m | [Agilex 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1)](https://www.altera.com/products/devkit/a1jui0000049utbmam/agilex-5-fpga-and-soc-e-series-development-kit-modular) |
 
 \*For the **Design Example Identifier** column, these entries are the value to use with the FPGA AI Suite Design Example Utility (`dla_build_example_design.py`) command to build the design example
 
@@ -61,7 +62,7 @@ The main entry point into the example design build system is the FPGA AI Suite d
 
 *Note: There is no '.py' extension on `dla_build_example_design` when using the FPGA AI Suite on Windows.*
 
-To use the FPGA AI Suite design example build utility, ensure that your local development environment has been setup according to the steps in ["Installing FPGA AI Suite Compile and IP Generation Tools" in FPGA AI Suite Handbook](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/installing-the-fpga-ai-suite-compiler-and-ip-generation-tools).
+To use the FPGA AI Suite design example build utility, ensure that your local development environment has been setup according to the steps in ["Installing FPGA AI Suite Compile and IP Generation Tools" in FPGA AI Suite Handbook](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/installing-the-compiler-and-ip-generation.html).
 
 ### 3.1.1. The `dla_build_example_design.py` Command
 
@@ -77,13 +78,13 @@ where [action] is one of the following actions:
 
 | Action | Description |
 |--------|-------------|
-| `list` | List the available example designs. |
-| `build` | Build an example design. |
-| `qor` | Generate QoR reports. |
-| `quartus-compile` | Run a Quartus® Prime compile. |
-| `scripts` | Managed the build support scripts. |
+| list | List the available example designs. |
+| build | Build an example design. |
+| qor | Generate QoR reports. |
+| quartus-compile | Run a Quartus® Prime compile. |
+| scripts | Managed the build support scripts. |
 
-Some of the command actions have different additional required and optional parameters. Use the command `help` to see a list of available options for the command and its actions.
+Some of the command actions have different additional required and optional parameters. Use the command help to see a list of available options for the command and its actions.
 
 By default, the `dla_build_example_design.py` command always instructs the `dla_create_ip` command to create licensed IP. If no license can be found, inference-limited, unlicensed RTL is generated. The build log indicates if the IP is licensed or unlicensed. For more information about licensed and unlicensed IP, refer to ["The --unlicensed/--licensed Options" in FPGA AI Suite IP Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/ip-generation-utility-outputs.html).
 
@@ -119,7 +120,7 @@ dla_build_example_design.py list
 
 This command shows the design example identifiers (used with the build action of the design example utility) along with a short description of the design example and its target Quartus Prime version.
 
-A list of the design examples and their identifiers is also available in [FPGA AI Suite Design Examples Properties Overview](#table-3-fpga-ai-suite-design-examples-properties-overview).
+A list of the design examples and their identifiers is also available in [FPGA AI Suite Design Examples Properties Overview](todo).
 
 ### 3.1.3. Building FPGA AI Suite Design Examples
 
@@ -133,7 +134,7 @@ dla_build_example_design.py build \
 <architecture file>
 ```
 
-For example, use the following command to build the Agilex™ 7 PCIe-based design example that targets the **DE10-Agilex-B2E2** board using the AGX7_Generic architecture:
+For example, use the following command to build the Agilex 7 PCIe-based design example that targets the DE10-Agilex-B2E2 board using the AGX7_Generic architecture:
 
 ```
 dla_build_example_design.py build \
@@ -154,19 +155,19 @@ Be default, the utility also prevents the build directory from being overwritten
 
 After the build is complete, the build directory has the following files and folders:
 
-* **coredla_ip/**
+* **coredla_ip/**  
 This folder contains the RTL for the configured FPGA AI Suite IP.
 
-* **hw/**
+* **hw/**  
 This folder contains the Quartus Prime or Open FPGA Stack (OFS) project files. It also includes its own self-contained copy of the contents of the `coredla_ip/` folder
 
-* **.build.json**
+* **.build.json**  
 This contents of this file (sometimes referred to as the "build context" file) allow the build to be split into multiple steps.
 
-* **Reports**
+* **Reports**  
 The build directory will contain any log files generated by the build utility (such as `build.log`) and the QoR summary that is generated by a successful compilation.
 
-* **Bitstreams**
+* **Bitstreams**  
 This build directory will contain the bitstreams to program the target FPGA device as follows:
   - For OFS-based designs, `.gbs` files.
   - For other designs, `.sof` and `.rbf` files.
@@ -192,10 +193,10 @@ You can run the `dla_build_example_design.py quartus-compile` and `dla_build_exa
 
 You can also directly call the design compilation script. An FPGA AI Suite design example uses one of the following scripts, depending on whether the design example can built in a WSL 2 environment:
 
-* **generate_sof.tcl**
+* **generate_sof.tcl**  
 Design examples with this design compilation script can be built in a WSL 2 environment.
 
-* **build_project.sh**
+* **build_project.sh**  
 Design examples with this design compilation script cannot be built in a WSL 2 environment.
 
 If a design example uses a `generate_sof.tcl` script, then you can invoke the design compilation script either after opening the design example project in Quartus Prime or by running the following command:
@@ -242,7 +243,7 @@ For a typical design example, the following components comprise the runtime stac
 
 The design example contains the source files and Makefiles to build the FPGA AI Suite runtime plugin. The OpenVINO component (and OPAE components, where used) is external and must be manually preinstalled.
 
-A separate flow compiles the AI network graph using the FPGA AI Suite compiler, as shown in [Figure 1 Software Stacks for FPGA AI Suite Inference](#figure-1-software-stacks-for-fpga-ai-suite-inference) that follows as the Compilation Software Stack.
+A separate flow compiles the AI network graph using the FPGA AI Suite compiler, as shown in [Figure 1 Software Stacks for FPGA AI Suite Inference](todo) that follows as the Compilation Software Stack.
 
 The compilation flow output is a single binary file called `CompiledNetwork.bin` that contains the compiled network partitions for FPGA and CPU devices along with the network weights. The network is compiled for a specific FPGA AI Suite architecture and batch size. This binary is created on-disk only when using the Ahead-Of-Time flow; when the JIT flow is used, the compiled object stays in-memory only.
 
@@ -288,7 +289,7 @@ The following applications use the OpenVINO API. They support the OpenVINO HETER
 * `object_detection_demo_yolov3_async`
 * `segmentation_demo`
 
-Each of these applications serve as a runtime executable for the FPGA AI Suite. You might want to write your own OpenVINO-based front ends to wrap the FPGA plugin. For information about writing your own OpenVINO-based front ends, refer to the [OpenVINO documentation](https://docs.openvino.ai/2025/index.html).
+Each of these applications serve as a runtime executable for the FPGA AI Suite. You might want to write your own OpenVINO-based front ends to wrap the FPGA plugin. For information about writing your own OpenVINO-based front ends, refer to the [OpenVINO documentation](https://docs.openvino.ai/2024/index.html).
 
 Some of the responsibilities of the OpenVINO FPGA plugin are as follows:
 
@@ -304,13 +305,13 @@ Some of the responsibilities of the OpenVINO FPGA plugin are as follows:
 
 The FPGA runtime plugin uses the OpenVINO Inference Engine Plugin API.
 
-The OpenVINO Plugin architecture is described in the [OpenVINO Developer Guide for Inference Engine Plugin Library](https://docs.openvino.ai/2025/documentation/openvino-extensibility/openvino-plugin-library.html).
+The OpenVINO Plugin architecture is described in the [OpenVINO Developer Guide for Inference Engine Plugin Library](https://docs.openvino.ai/2024/documentation/openvino-extensibility/openvino-plugin-library.html).
 
 The source files are located under `runtime/plugin`. The three main components of the runtime plugin are the Plugin class, the Executable Network class, and the Inference Request class. The primary responsibilities for each class are as follows:
 
 **Plugin class**
 
-* Initializes the runtime plugin with an FPGA AI Suite architecture file which you set as an OpenVINO configuration key (refer to [PCIE - Running the Ported OpenVINO Demonstration Applications](https://altera-fpga.github.io/rel-26.1/ed-ai-suite/agilex7/pcie/pcie_getting_started_extended)).
+* Initializes the runtime plugin with an FPGA AI Suite architecture file which you set as an OpenVINO configuration key (refer to [ PCIE - Running the Ported OpenVINO Demonstration Applications](todo)).
 
 * Contains `QueryNetwork` function that analyzes network layers and returns a list of layers that the specified architecture supports. This function allows network execution to be distributed between FPGA and other devices and is enabled with the HETERO mode.
 
@@ -398,7 +399,7 @@ The FPGA AI Suite runtime MMD software uses a driver to access and interact with
 If your board vendor provides a BSP, you can use the MMD Wrapper to interface the BSP with the FPGA AI Suite IP. Review the following sections for examples of adapting a vendor-provided BSP to use with the FPGA AI Suite IP:
 
 * [Terasic DE10-Agilex Development Board BSP Example](#337-board-support-package-bsp-overview)
-* [Agilex™ 7 PCIe-Attach OFS-based BSP Example](#3372-agilex-7-pcie-attach-ofs-based-bsp-example)
+* [Agilex 7 PCIe-Attach OFS-based BSP Example](#3372-agilex-7-pcie-attach-ofs-based-bsp-example)
 
 You can create a custom BSP for your board, but that process can be complex and can require more work.
 
@@ -414,7 +415,7 @@ Contact your FPGA board vendor for information about the BSP for your FPGA board
 
 Contact your FPGA board vendor for information about the OPAE driver for your FPGA board.
 
-For the FPGA AI Suite OFS for PCIe attach design example, the OPAE driver is installed when you follow the steps in [Getting Started with Open FPGA Stack (OFS) for PCIe-Attach Design Examples](https://altera-fpga.github.io/rel-26.1/ed-ai-suite/agilex7/ofs/ofs_pcie_getting_started.md).
+For the FPGA AI Suite OFS for PCIe attach design example, the OPAE driver is installed when you follow the steps in [Getting Started with Open FPGA Stack (OFS) for PCIe-Attach Design Examples](todo).
 
 ### 3.3.6. FPGA AI Suite Runtime MMD API
 
@@ -596,9 +597,9 @@ The BSPs available for the boards supported by the FPGA AI Suite design example 
 
 [Open FPGA Stack (OFS) documentation.](https://ofs.github.io/ofs-2025.1-1/)
 
-#### 3.3.7.1. Terasic DE10-Agilex™ Development Board BSP Example
+#### 3.3.7.1. Terasic DE10-Agilex Development Board BSP Example
 
-For the Agilex™ 7 PCIe-based design example on the Terasic DE10-Agilex Development Board, the BSP provided by Terasic is adapted to work with the FPGA AI Suite IP. The Terasic-provided BSP is OpenCL™-based.
+For the Agilex 7 PCIe-based design example on the Terasic DE10-Agilex Development Board, the BSP provided by Terasic is adapted to work with the FPGA AI Suite IP. The Terasic-provided BSP is OpenCL™-based.
 
 The following diagram shows the high-level interactions between the FPGA interface IPs on the platform, and the a custom OpenCL kernel. The different colors in the diagram indicate different clock domains.
 
@@ -618,13 +619,13 @@ Platform Designer automatically adds clock-domain crossings between Avalon memor
 
 For a custom platform, consider following a similar approach of modifying the BSP provided by the vendor to integrate in the FPGA AI Suite IP.
 
-#### 3.3.7.2. Agilex™ 7 PCIe-Attach OFS-based BSP Example
+#### 3.3.7.2. Agilex 7 PCIe-Attach OFS-based BSP Example
 
 For OFS-based devices, the BSP consists of a platform-specific FPGA interface manager (FIM) and a platform-agnostic accelerator functional unit (AFU).
 
-The FPGA AI Suite OFS for PCIe attach design example supports Agilex™ 7 PCIe Attach OFS.
+The FPGA AI Suite OFS for PCIe attach design example supports Agilex 7 PCIe Attach OFS.
 
-You can obtain the source files needed to build a Agilex™ 7 PCIe Attach FIM or obtain prebuillt FIMs for some boards from [OFS Agilex™ 7 PCIe Attach FPGA Development Directory in GitHub](https://github.com/OFS/ofs-agx7-pcie-attach).
+You can obtain the source files needed to build a Agilex 7 PCIe Attach FIM or obtain prebuillt FIMs for some boards from [OFS Agilex 7 PCIe Attach FPGA Development Directory in GitHub](https://github.com/OFS/ofs-agx7-pcie-attach).
 
 The AFU wraps the FPGA AI Suite IP and must meet the following general requirements:
 
@@ -648,38 +649,34 @@ If you are creating your own FPGA AI Suite AFU, consider starting with an AFU ex
 
 * [Direct memory access (DMA) AFU example on GitHub](https://github.com/OFS/examples-afu/tree/main/tutorial/afu_types/01_pim_ifc/dma)
 * [oneAPI accelerator support package (ASP) on GitHub](https://github.com/OFS/oneapi-asp)
-* [Agilex™ 7 PCIe Attach OFS documentation](https://ofs.github.io/ofs-2025.1-1/hw/doc_modules/contents_agx7_pcie_attach/)
-* [Agilex™ 7 PCIe Attach OFS Workload Development Guide](https://ofs.github.io/ofs-2025.1-1/hw/common/user_guides/afu_dev/ug_dev_afu_ofs_agx7_pcie_attach/ug_dev_afu_ofs_agx7_pcie_attach/)
+* [Agilex 7 PCIe Attach OFS documentation](https://ofs.github.io/ofs-2025.1-1/hw/doc_modules/contents_agx7_pcie_attach/)
+* [Agilex 7 PCIe Attach OFS Workload Development Guide](https://ofs.github.io/ofs-2025.1-1/hw/common/user_guides/afu_dev/ug_dev_afu_ofs_agx7_pcie_attach/ug_dev_afu_ofs_agx7_pcie_attach/)
 
 # 4.0  FPGA AI Suite SoC Design Example Prerequisites
 
 The SoC design example requires one of the following development kits:
+*  Agilex 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1)
+This development kit features and Agilex 5 E-Series devices (OPN:
+A5ED065BB32AE6S-R0).
 
-* Agilex™ 3 FPGA and SoC C-Series Development Kit (DK-A3W135BM16AEA)
-This development kit features and Agilex™ 3 C-Series devices (OPN: A3CW135BM16AE6S)
+    * *For more details about this development kit, refer to the following URL: [https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html).*
 
-    * For more details about this development kit, refer to the following URL: [https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit](https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit)
-* Agilex™ 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1)
-This development kit features and Agilex™ 5 E-Series devices (OPN: A5ED065BB32AE6S-R0).
+* Agilex 7 FPGA I-Series Transceiver-SoC Development Kit (DK-SI-AGI027FC) This development kit features an Agilex 7 I-Series SoC device with 4 F-Tiles (OPN: AGIB027R31B1E1V).
 
-    * For more details about this development kit, refer to the following URL: [https://www.altera.com/products/devkit/po-3274/agilex-5-fpga-and-soc-e-series-065b-modular-development-kit](https://www.altera.com/products/devkit/po-3274/agilex-5-fpga-and-soc-e-series-065b-modular-development-kit).
-
-* Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (DK-SI-AGI027FC) This development kit features an Agilex™ 7 I-Series SoC device with 4 F-Tiles (OPN: AGIB027R31B1E1V).
-
-    * Important: The FPGA AI Suite requires DDR4 memory with an x8 or higher
-    component data width. The RAM device provided with the Agilex™ 7
+    * *Important: The FPGA AI Suite requires DDR4 memory with an x8 or higher
+    component data width. The RAM device provided with the Agilex 7
     FPGA I-Series Transceiver-SoC Development Kit provides only a x4
     component data width. For more details and recommended RAM
-    modules, refer to [Agilex™ 7 FPGA I-Series Transceiver-SoC
-    Development Kit Hardware Requirements](#41-agilex-7-fpga-i-series-transceiver-soc-development-kit-hardware-requirements)
+    modules, refer to [Agilex 7 FPGA I-Series Transceiver-SoC
+    Development Kit Hardware Requirements](#41-agilex-7-fpga-i-series-transceiver-soc-development-kit-hardware-requirements)*
 
-    * For more details about this development kit, refer to the following URL: [https://www.altera.com/products/devkit/po-3013/agilex-7-fpga-i-series-transceiver-soc-development-kit-4x-f-tile](https://www.altera.com/products/devkit/po-3013/agilex-7-fpga-i-series-transceiver-soc-development-kit-4x-f-tile)
+For more details about this development kit, refer to the following URL: [https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agi027.html](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/si-agi027.html)
 
-* Arria® 10 SX SoC FPGA Development Kit (DK-SOC-10AS066S)
-This development kit features an Arria® 10 SX 660 device (OPN:
+* Arria 10 SX SoC FPGA Development Kit (DK-SOC-10AS066S)
+This development kit features an Arria 10 SX 660 device (OPN:
 10AS066N3F40E2SG) with a “ -2” speed grade with the included DDR4 HILO
 memory cards.
-    * For more details about this development kit, refer to the following URL: [https://www.altera.com/products/devkit/po-3006/arria-10-sx-soc-development-kit](https://www.altera.com/products/devkit/po-3006/arria-10-sx-soc-development-kit)
+    * *For more details about this development kit, refer to the following URL: [https://www.intel.com/content/www/us/en/products/details/fpga/developmentkits/arria/10-sx.html*](https://www.intel.com/content/www/us/en/products/details/fpga/developmentkits/arria/10-sx.html*)
 
 In addition, the following hardware components are required:
 * SDHC flash card, class 10 speed or faster (minimum 2 GB but 4 GB or more is
@@ -688,27 +685,27 @@ recommended)
 * Ethernet cable suitable for connecting the development board to a network to
 provide access from a host PC on the same network
 
-The host PC must use a supported operating system (Red Hat* Enterprise Linux* 8/9,
-Ubuntu 22.04/24.04 LTS), and must have an internet connection to install the
-software dependencies.
+The host PC must use a supported operating system (Red Hat* Enterprise Linux* 8,
+Ubuntu* 20.04, or Ubuntu 22.04), and must have an internet connection to install the
+software dependencies.  
 
-To build bitstreams, Quartus Prime Pro Edition Version 26.1 must be installed on the
-host system.
+To build bitstreams, Quartus Prime Pro Edition Version 25.3 must be installed on the
+host system.  
 
 Although the development host system does not need to be the same as the system
 used to build packages and bitstreams, this guide does not explicitly cover the
-scenario where they are distinct.
+scenario where they are distinct.  
 
-# 4.1 Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit Hardware Requirements
+# 4.1 Agilex 7 FPGA I-Series Transceiver-SoC Development Kit Hardware Requirements
 
 The FPGA AI Suite SoC design example requires x8 (or wider) DDR4 memory.
 
-The RAM module provided with the Agilex™ 7 FPGA I-Series Transceiver-SoC
+The RAM module provided with the Agilex 7 FPGA I-Series Transceiver-SoC
 Development Kit does not support the FPGA AI Suite SoC design example because the
 included RAM module provides only an x4 width.
 
 The design example has been verified on a development kit fitted with a Kingston* x8
-RDIMM (KSM32RS8/16MFR). Altera recommends using this memory module to help you
+RDIMM (KSM32RS8/16MFR). Intel recommends using this memory module to help you
 successfully use the design example.
 
 # 4.2 FPGA AI Suite SoC Design Example Quick Start Tutorial
@@ -728,27 +725,26 @@ The SoC design examples are implemented with the following components:
 * The community-supported OpenVINO ARM plugin
 * Sample hardware and software systems that illustrate the use of these components
 * Arm*-Linux build scripts built using Yocto frameworks for the hard processor systems (HPSs) on the following FPGA SoC devices:
-  - Agilex™ 3 C-Series SoC
-  - Agilex™ 5 E-Series SoC
-  - Agilex™ 7 I-Series SoC
-  - Arria® 10 SX SoC
+  - Agilex 5 E-Series SoC
+  - Agilex 7 I-Series SoC
+  - Arria 10 SX SoC
 
 For an easier initial experience, these design examples include prebuilt FPGA bitstreams and a Linux-compiled system image that correspond to pre-optimized FPGA AI Suite architecture files.
 
 You can copy this disk-image to an SD card and insert the card into a supported FPGA development kit. Additionally, you can use the design example scripts to choose from a variety of architecture files and build (or rebuild) your own bitstreams, subject to IP licensing limitations.
 
-This quick start tutorial assumes that you have reviewed the following sections in the FPGA AI Suite Handbook:
+This quick start tutorial assumes that you have reviewed the following sections in the FPGA AI Suite Getting Started Guide:
 
-- [What is the FPGA AI Suite](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/fpga-ai-suite-handbook)
-- [Installing the FPGA AI Suite](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/installing-fpga-ai-suite-overview)
+- [What is the FPGA AI Suite](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/what-is-the.html)
+- [Installing the FPGA AI Suite](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/installing-11298.html)
 
 ## SoC Design Example Quick Start Tutorial Prerequisites
 
-Before you start the tutorial ensure that you have successfully completed the installation tasks outlined in [“Installing the FPGA AI Suite Compiler and IP Generation Tools”](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/installing-the-fpga-ai-suite-compiler-and-ip-generation-tools) in the FPGA AI Suite Handbook.
+Before you start the tutorial ensure that you have successfully completed the installation tasks outlined in [“Installing the FPGA AI Suite Compiler and IP Generation Tools” in the FPGA AI Suite Handbook](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/installing-the-compiler-and-ip-generation.html).
 
 The remaining sections of the FPGA AI Suite Getting Started Guide can help you understand the overall flow of using the FPGA AI Suite, but they are not required to complete this quick start tutorial.
 
-In this section, some sequenctial architecture (`.arch`) files referred to in the instructions include the suffix *“LayoutTransform”*. This indicates that the FPGA AI Suite internal layout transform (described in the *FPGA AI Suite IP Reference Manual*) is enabled. On Agilex™ 5 and Agilex™ 7 devices, this internal layout transform must be enabled for S2M operation, and is optional for M2M operation.
+In this section, some overlay architecture (`.arch`) files referred to in the instructions include the suffix *“LayoutTransform”*. This indicates that the FPGA AI Suite internal layout transform (described in the *FPGA AI Suite IP Reference Manual*) is enabled. On Agilex 7 devices, this internal layout transform must be enabled for S2M operation, and is optional for M2M operation.
 
 ## 4.2.1 Initial Setup
 
@@ -757,10 +753,10 @@ The quick start tutorial instructions assume that you have initialized your envi
 The FPGA AI Suite `init_env.sh` script might already be part of your shell login script. If not, then use the following command to initialize your shell environment:
 
 ```sh
-source <ai suite installation path>fpga_ai_suite_2026.1.1/dla/setupvars.sh
+source /opt/intel/fpga_ai_suite_2025.3/dla/bin/init_env.sh
 ```
 
-This command assumes that the FPGA AI Suite is installed in the default location. If you are using an FPGA AI Suite version other than 2026.1, adjust the path to script accordingly.
+This command assumes that the FPGA AI Suite is installed in the default location. If you are using an FPGA AI Suite version other than 2025.3, adjust the path to script accordingly.
 
 ## 4.2.2 Initializing a Work Directory
 
@@ -772,7 +768,7 @@ cd ~/coredla_work
 source dla_init_local_directory.sh
 ```
 
-If you created a work directory while following the instructions in the *FPGA AI Suite Handbook*, the `dla_init_local_directory.sh` script prompts you to use the `coredla_work.sh` script instead to set the `$COREDLA_WORK` environment variable.
+If you created a work directory while following the instructions in the *FPGA AI Suite Getting Started Guide*, the `dla_init_local_directory.sh` script prompts you to use the `coredla_work.sh` script instead to set the `$COREDLA_WORK` environment variable.
 
 ## 4.2.3 (Optional) Create an SD Card Image (`.wic`)
 
@@ -786,28 +782,23 @@ If you want to use the prebuilt image, skip this section and go to [Writing the 
 
 Building the SD card image requires the following additional software:
 
-- Quartus Prime Pro Edition Version 26.1
+- Quartus Prime Pro Edition Version 25.3
 - Ashling* RiscFree* IDE for Altera®
-- (Ubuntu 22 only) Ubuntu package `libncurses5`
-- (Ubuntu 24 only) Ubuntu package `libncurses6`
+- (Ubuntu only) Ubuntu package `libncurses5`PATH
 
-If you did not install Quartus Prime Pro Edition Version 26.1 when following the instructions in the FPGA AI Suite Handbook, you must install it now.
+If you did not install Quartus Prime Pro Edition Version 25.3 when following the instructions in the FPGA AI Suite Getting Started Guide, you must install it now.
 
 Building the SD card image also requires tools provided by Ashling RiscFree IDE for Altera. You can install Ashling RiscFree IDE from a separate installation package or part of your Quartus Prime bundled installation package.
 
-You can download the required software from the following URL: [https://www.altera.com/downloads/fpga-development-tools/quartus-prime-pro-edition-design-software-version-26-1-linux](https://www.altera.com/downloads/fpga-development-tools/quartus-prime-pro-edition-design-software-version-26-1-linux).
+You can download the required software from the following URL: [https://www.altera.com/downloads/fpga-development-tools/quartus-prime-pro-edition-design-software-version-25-3-linux](https://www.altera.com/downloads/fpga-development-tools/quartus-prime-pro-edition-design-software-version-25-3-linux).
 
 To install the prerequisite software for building an SD card image:
 
 1. Install Quartus Prime Pro Edition and Ashling RiscFree IDE for Altera
 2. (Ubuntu only) Install Ubuntu package libcurses with the following command:
-- Ubuntu 22:
+
 	```sh
 	sudo apt install libncurses5
-	```
-- Ubuntu 24:
-	```sh
-	sudo apt install libncurses6
 	```
 
 3. Ensure that the QUARTUS_ROOTDIR environment variable is set properly:
@@ -819,7 +810,7 @@ To install the prerequisite software for building an SD card image:
 	If the QUARTUS_ROODIR is not set, run the following command:
 
 	```sh
-	export QUARTUS_ROOTDIR=/opt/altera/altera_pro/26.1/quartus
+	export QUARTUS_ROOTDIR=/opt/intel/intelFPGA_pro/25.3/quartus
 	```
 
 	If you chose install Quartus Prime in a location other than the default location, adjust the path in export command to match your Quartus Prime installation location
@@ -827,12 +818,13 @@ To install the prerequisite software for building an SD card image:
 4. Ensure your `$PATH` environment variable includes paths to the installed Quartus Prime and Ashling RiscFree IDE binaries. Adjust the following commands appropriately if you did not install into the default location:
 
 	```sh
-	export PATH=$PATH:/opt/altera/altera_pro/26.1/niosv/bin
-	export PATH=$PATH:/opt/altera/altera_pro/26.1/nios2eds/bin
-	export PATH=$PATH:/opt/altera/altera_pro/26.1/riscfree/toolchain/riscv32-unknown-elf/bin
+	export PATH=$PATH:/opt/intel/intelFPGA_pro/25.3/niosv/bin
+	export PATH=$PATH:/opt/intel/intelFPGA_pro/25.3/nios2eds/bin
+	export PATH=$PATH:/opt/intel/intelFPGA_pro/25.3/riscfree/toolchain/riscv32-
+	unknown-elf/bin
 	```
 
-5. Confirm that Quartus Prime Pro Edition Version 26.1 is installed by running the following command:
+5. Confirm that Quartus Prime Pro Edition Version 25.3 is installed by running the following command:
 
 	```sh
 	quartus_sh -v
@@ -841,64 +833,51 @@ To install the prerequisite software for building an SD card image:
 **Related Information**
 
 - [Ashling RiscFree IDE for Altera User Guide](https://www.intel.com/content/www/us/en/docs/programmable/730783/25-1-1/about-this-document.html)
-- [Altera FPGA Software Installation and Licensing](https://docs.altera.com/r/docs/683472/26.1/altera-fpga-software-installation-and-licensing/answers-to-top-faqs)
+- [Intel FPGA Software Installation and Licensing](https://www.intel.com/content/www/us/en/docs/programmable/683472/25-3/faq.html)
 
 ## 4.2.4 Building the FPGA Bitstreams
 
 The FPGA AI Suite SoC design example also includes prebuilt demonstration FPGA bitstreams. If you want to use the prebuilt demonstration bitstreams in your SD card image, skip ahead to [Installing HPS Disk Image Build Prerequisites](#425-installing-hps-disk-image-build-prerequisites).
 
-If you build your own bitstreams and do not have an FPGA AI Suite IP license, then your bitstream have a limit of 100,000 inferences. After 100,000 inferences, the unlicensed IP refuses to perform any additional inference. To reset the limit, reprogram the FPGA device.
+If you build your own bitstreams and do not have an FPGA AI Suite IP license, then your bitstream have a limit of 10000 inferences. After 10000 inferences, the unlicensed IP refuses to perform any additional inference. To reset the limit, reprogram the FPGA device.
 
-### Building the FPGA Bitstream for the Agilex™ 3 FPGA C-Series Development Kit
+### Building the FPGA Bitstream for the Agilex 5 FPGA E-Series 065B Modular Development Kit
 
-To build the FPGA bitstream for the, Agilex™ 3 FPGA C-Series Development Kit run the following command:
-
-```sh
-dla_build_example_design.py build \
---output-dir $COREDLA_WORK/agx3_perf_bitstream \
---num-instances 1 \
-agx3_soc_m2m \
-$COREDLA_ROOT/example_architectures/AGX3_Performance.arch
-```
-The bitstream built by this command supports only the M2M execution model.
-
-### Building the FPGA Bitstream for the Agilex™ 5 FPGA E-Series 065B Modular Development Kit
-
-To build the FPGA bitstream for the, Agilex™ 5 FPGA E-Series 065B Modular Development Kit run the following command:
+To build the FPGA bitstream for the, Agilex 5 FPGA E-Series 065B Modular Development Kit run the following command:
 
 ```sh
 dla_build_example_design.py build \
 --output-dir $COREDLA_WORK/agx5_perf_bitstream \
---num-instances 1 \
+-n 1 \
 agx5_soc_s2m \
-$COREDLA_ROOT/example_architectures/AGX5_Performance_LayoutTransform.arch
+$COREDLA_ROOT/example_architectures/AGX5_Performance.arch
 ```
 The bitstream built by this command supports both the M2M execution model and the S2M execution model.
 
-### Building the FPGA Bitstream for the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit
+### Building the FPGA Bitstream for the Agilex 7 FPGA I-Series Transceiver-SoC Development Kit
 
-To build the FPGA bitstream for the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit, run the following command:
+To build the FPGA bitstream for the Agilex 7 FPGA I-Series Transceiver-SoC Development Kit, run the following command:
 
 ```sh
 dla_build_example_design.py build \
 --output-dir $COREDLA_WORK/agx7_perf_bitstream \
---num-instances 1 \
+-n 1 \
 agx7_soc_s2m \
 $COREDLA_ROOT/example_architectures/AGX7_Performance_LayoutTransform.arch
 ```
 
 The bitstream built by this command supports both the M2M execution model and the S2M execution model.
 
-This design example bitstream is built with a “LayoutTransform” architecture because the design example uses the FPGA AI Suite IP internal layout transform rather than an external layout transform for converting image buffers to the target memory format. The layout transform is required for S2M bitstreams, but is optional for M2M bitstreams. For more information about the layout transform hardware, refer to [“Input Feature Tensor In-Memory Format” in FPGA AI Suite Handbook](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/input-feature-tensor-in-memory-format).
+This design example bitstream is built with a “LayoutTransform” architecture because the design example uses the FPGA AI Suite IP internal layout transform rather than an external layout transform for converting image buffers to the target memory format. The layout transform is required for S2M bitstreams, but is optional for M2M bitstreams. For more information about the layout transform hardware, refer to [“Input Feature Tensor In-Memory Format” in FPGA AI Suite Handbook](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/input-feature-tensor-in-memory-format.html).
 
-### Building the FPGA Bitstream for the Arria® 10 SX SoC FPGA Development Kit
+### Building the FPGA Bitstream for the Arria 10 SX SoC FPGA Development Kit
 
-To build the FPGA bitstream for the Arria® 10 SX SoC FPGA Development Kit, run the following command:
+To build the FPGA bitstream for the Arria 10 SX SoC FPGA Development Kit, run the following command:
 
 ```sh
 dla_build_example_design.py build \
 --output-dir $COREDLA_WORK/a10_perf_bitstream \
---num-instances 1 \
+-n 1 \
 a10_soc_s2m \
 $COREDLA_ROOT/example_architectures/A10_Performance.arch
 ```
@@ -911,6 +890,7 @@ The process to build the HPS disk image has additional prerequisites. To install
 
 - [Red Hat Enterprise Linux 8 Prerequisites](#red-hat-enterprise-linux-8-prerequisites)
 - [Red Hat Enterprise Linux 9 Prerequisites](#red-hat-enterprise-linux-9-prerequisites)
+- [Ubuntu 20 Prerequisites](#ubuntu-20-prerequisites)
 - [Ubuntu 22 Prerequisites](#ubuntu-21-prerequisites)
 - [Ubuntu 24 Prerequisites](#ubuntu-22-prerequisites)
 
@@ -932,7 +912,7 @@ To install the prerequisites for Red Hat Enterprise Linux 8:
 
 	```sh
 	sudo dnf install gawk wget git diffstat unzip texinfo gcc gcc-c++ make \
-	chrpath socat cpio python3 python3-pexpect xz iputils python3-jinja2 python3-packaging \
+	chrpath socat cpio python3 python3-pexpect xz iputils python3-jinja2 \
 	mesa-libEGL SDL xterm python3-subunit rpcgen zstd lz4 perl-open.noarch \
 	perl-Thread-Queue numactl-devel cmake git curl graphviz gcc gcc-c++ redhat-lsb \
   tbb-devel gflags-devel boost-devel ninja-build
@@ -948,7 +928,7 @@ To install the prerequisites for Red Hat Enterprise Linux 8:
 	uboot-tools-2018.03-3.fc28.x86_64.rpm
 	sudo dnf install ./uboot-tools-2018.03-3.fc28.x86_64.rpm
 	sudo dnf install ninja-build fakeroot
-	sudo -E python3 -m pip install pylint passlib scons patchelf
+	sudo python3 -m pip install pylint passlib scons
 	```
 
 4. Install CMake Version 3.16.3 or later:
@@ -983,10 +963,6 @@ To install the prerequisites for Red Hat Enterprise Linux 8:
 
 	```sh
 	export PATH="/sbin:$PATH"
-	```
-7. Switch SELinux to permissive mode:
-	```sh
-	sudo setenforce 0
 	```
 
 ### Red Hat Enterprise Linux 9 Prerequisites
@@ -1007,11 +983,10 @@ To install the prerequisites for Red Hat Enterprise Linux 9:
 
 	```sh
 	sudo dnf install gawk wget git diffstat unzip texinfo gcc gcc-c++ make \
-	chrpath socat cpio python3 python3-pexpect xz iputils python3-jinja2 python3-packaging \
+	chrpath socat cpio python3 python3-pexpect xz iputils python3-jinja2 \
 	mesa-libEGL SDL xterm python3-subunit rpcgen zstd lz4 perl-open.noarch \
-	perl-Thread-Queue scons libomp-devel mtools patch perl-File-Compare perl-FindBin \
-	numactl-devel cmake git curl graphviz gcc gcc-c++ \
-	tbb-devel gflags-devel boost-devel ninja-build
+	perl-Thread-Queue numactl-devel cmake git curl graphviz gcc gcc-c++ \
+ tbb-devel gflags-devel boost-devel ninja-build
 	```
 
 3. Install packages required to create the flash card image and FPGA AI Suite runtime and dependencies:
@@ -1024,7 +999,7 @@ To install the prerequisites for Red Hat Enterprise Linux 9:
 	uboot-tools-2018.03-3.fc28.x86_64.rpm
 	sudo dnf install ./uboot-tools-2018.03-3.fc28.x86_64.rpm
 	sudo dnf install ninja-build fakeroot
-	sudo -E python3 -m pip install pylint passlib scons patchelf
+	sudo python3 -m pip install pylint passlib scons
 	```
 
 4. Install CMake Version 3.16.3 or later:
@@ -1061,30 +1036,53 @@ To install the prerequisites for Red Hat Enterprise Linux 9:
 	export PATH="/sbin:$PATH"
 	```
 
+### Ubuntu 20 Prerequisites
+
+To install the prerequisites for Ubuntu 20:
+
+1. Install the dependency packages:
+
+	```sh
+	sudo apt install gawk wget git diffstat unzip texinfo gcc build-essential \
+	chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils \
+	iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 \
+	xterm python3-subunit mesa-common-dev zstd liblz4-tool device-tree-compiler \
+	mtools libnuma-dev cmake git curl graphviz unzip lsb libtbb-dev libgflags-dev libboost-all-dev ninja-build
+	```
+
+2. Install packages required to create the flash card image and FPGA AI Suite runtime and dependencies:
+
+	```sh
+	sudo apt install ninja-build u-boot-tools scons fakeroot
+	```
+
+3. Add the /sbin directory to your `$PATH` environment variable:
+
+	```sh
+	export PATH="/sbin:$PATH"
+	```
+
 ### Ubuntu 22 Prerequisites
 
 To install the prerequisites for Ubuntu 22:
 
-1. If you have not already installed *libcurses5*, install the library now:
-	```sh
-	sudo apt install libncurses5
-	```
-2. Install the dependency packages:
+1. Install the dependency packages:
 
 	```sh
 	sudo apt install gawk wget git diffstat unzip texinfo gcc build-essential \
 	chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils \
 	iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev xterm \
 	python3-subunit mesa-common-dev zstd liblz4-tool device-tree-compiler mtools \
-	libnuma-dev cmake git curl graphviz unzip lsb libtbb-dev libgflags-dev \
-	libboost-all-dev ninja-build
+  libnuma-dev cmake git curl graphviz unzip lsb libtbb-dev libgflags-dev libboost-all-dev ninja-build
 	```
-3. Install packages required to create the flash card image and FPGA AI Suite runtime and dependencies:
+
+2. Install packages required to create the flash card image and FPGA AI Suite runtime and dependencies:
 
 	```sh
 	sudo apt install ninja-build u-boot-tools scons fakeroot
 	```
-4. Add the /sbin directory to your `$PATH` environment variable:
+
+3. Add the /sbin directory to your `$PATH` environment variable:
 
 	```sh
 	export PATH="/sbin:$PATH"
@@ -1094,25 +1092,23 @@ To install the prerequisites for Ubuntu 22:
 
 To install the prerequisites for Ubuntu 24:
 
-1. If you have not already installed *libcurses6*, install the library now:
+1. Install the dependency packages:
 
-	```sh
-	sudo apt install libncurses6
-	```
-2. Install the dependency packages:
 	```sh
 	sudo apt install gawk wget git diffstat unzip texinfo gcc build-essential \
 	chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils \
 	iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev xterm \
 	python3-subunit mesa-common-dev zstd liblz4-tool device-tree-compiler mtools \
-	libnuma-dev cmake git curl graphviz unzip libtbb-dev libgflags-dev libboost-all-dev ninja-build
+  libnuma-dev cmake git curl graphviz unzip libtbb-dev libgflags-dev libboost-all-dev ninja-build
 	```
-3. Install packages required to create the flash card image and FPGA AI Suite runtime and dependencies:
+
+2. Install packages required to create the flash card image and FPGA AI Suite runtime and dependencies:
 
 	```sh
 	sudo apt install ninja-build u-boot-tools scons fakeroot
 	```
-4. Add the /sbin directory to your `$PATH` environment variable:
+
+3. Add the /sbin directory to your `$PATH` environment variable:
 
 	```sh
 	export PATH="/sbin:$PATH"
@@ -1149,31 +1145,8 @@ The SD card image is build with the `create_hps_image.sh` command, which does th
 For more details about the `create_hps_image.sh` command, refer to [Building the Bootable SD Card Image (.wic)](#62-building-the-bootable-sd-card-image-wic).
 
 To build the SD card image, run the following commands:
-1. **Ubuntu 24.04** Users: Check if AppArmor is restricting unprivileged user
-namespaces with the following command:
-	```sh
-	sysctl kernel.apparmor_restrict_unprivileged_userns
-	```
-	If the result is `kernel.apparmor_restrict_unprivileged_userns = 1`, temporarily disable the restriction
-	to allow the Yocto Project BitBake tool to run correctly when building the SD card image with the
-	following command:
 
-	```sh
-	sudo sysctl kernel.apparmor_restrict_unprivileged_userns=0
-	```
-2. Build the SD card image for your board with one of the following commands:
-
-- Agilex™ 3 FPGA C-Series Development Kit (DK-A3W135BM16AEA)
-
-  ```sh
-  cd $COREDLA_WORK/runtime
-  ./create_hps_image.sh \
-  -f $COREDLA_WORK/agx3_perf_bitstream/hw/output_files \
-  -o <output_dir> -u \
-  -m agilex3
-  ```
-
-- Agilex™ 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1)
+- Agilex 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1)
 
   ```sh
   cd $COREDLA_WORK/runtime
@@ -1183,17 +1156,17 @@ namespaces with the following command:
   -m agilex5_mk_a5e065bb32aes1
   ```
 
-- Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit
+- Agilex 7 FPGA I-Series Transceiver-SoC Development Kit
 
   ```sh
   cd $COREDLA_WORK/runtime
   ./create_hps_image.sh \
   -f $COREDLA_WORK/agx7_perf_bitstream/hw/output_files \
   -o <output_dir> -u \
-  -m agilex7_dk_si_agi027fc
+  -m agilex7_dk_si_agi027fa
   ```
 
-- Arria® 10 SX SoC FPGA Development Kit
+- Arria 10 SX SoC FPGA Development Kit
 
   ```sh
   cd $COREDLA_WORK/runtime
@@ -1211,17 +1184,18 @@ Before running the demonstration, you must create a bootable SD card for the FPG
 
 The precompiled SD card image (`.wic`) is in the following location:
 
-- Agilex™ 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1)
+- Agilex 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1)
   $COREDLA_ROOT/demo/ed4/agx5_soc_s2m/sd-card/coredla-image-agilex5_mk_a5e065bb32aes1.wic
-- Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit
-  $COREDLA_ROOT/demo/ed4/agx7_soc_s2m/sd-card/coredla-image-agilex7_dk_si_agi027fc.wic
-- Arria® 10 SX SoC FPGA Development Kit
+- Agilex 7 FPGA I-Series Transceiver-SoC Development Kit
+  $COREDLA_ROOT/demo/ed4/agx7_soc_s2m/sd-card/coredla-imageagilex7_
+  dk_si_agi027fa.wic
+- Arria 10 SX SoC FPGA Development Kit
   $COREDLA_ROOT/demo/ed4/a10_soc_s2m/sd-card/coredla-image-arria10.wic
 
 If you built your own SD card image following the instructions in [(Optional) Create an SD Card Image (`.wic`)](#423-optional-create-an-sd-card-image-wic), then your SD card image is located in the directory that you specified for the `-o` option of the `create_hps_image.sh` command.
 
 To write the SD card image to an SD card:
-- On Linux, use the `dd` utility as shown next:
+
 1. Determine the device associated with the SD card on the host by running the following command before and after inserting the SD card:
 
 	```sh
@@ -1241,48 +1215,48 @@ To write the SD card image to an SD card:
 	```
 
 After the SD card image is written, insert the SD card into the development kit SD card slot.
-- On Windows, use the Win32DiskImager program, available at [https://sourceforge.net/projects/win32diskimager](https://sourceforge.net/projects/win32diskimager). For this, first rename the card image (`.wic`) to an `.img` file (sdcard.img for example) and write the image as shown in the next figure:
-![alt text](images/win32diskimager.png)
+
+If you want to use a Microsoft Windows system to write the SD card image to the SD card, refer to the GSRD manuals available at the following URL: [https://www.rocketboards.org/foswiki/Documentation/GSRD](https://www.rocketboards.org/foswiki/Documentation/GSRD).
 
 ## 4.4 Preparing SoC FPGA Development Kits for the FPGA AI Suite SoC Design Example
 
 To prepare an FPGA development kit for the FPGA AI Suite SoC design example:
 
 1. Prepare one of the supported development kits:
-	- [Prepare the Agilex™ 5 FPGA E-Series 065B Modular Development Kit.](#441-preparing-the-agilex-5-fpga-e-series-065b-modular-development-kit)
-	- [Prepare the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit.](#442-preparing-the-agilex-7-fpga-i-series-transceiver-soc-development-kit)
-	- [Prepare the Arria® 10 SX SoC FPGA Development Kit.](#443-preparing-the-arria-10-sx-soc-fpga-development-kit)
+	- [Prepare the Agilex 5 FPGA E-Series 065B Modular Development Kit.](#441-preparing-the-agilex-5-fpga-e-series-065b-modular-development-kit)
+	- [Prepare the Agilex 7 FPGA I-Series Transceiver-SoC Development Kit.](#442-preparing-the-agilex-7-fpga-i-series-transceiver-soc-development-kit)
+	- [Prepare the Arria 10 SX SoC FPGA Development Kit.](#443-preparing-the-arria-10-sx-soc-fpga-development-kit)
 2. [Configure the SoC FPGA development kit UART connection.](#444-configuring-the-soc-fpga-development-kit-uart-connection)
 3. [Determine the SoC FPGA development kit IP address.](#445-determining-the-soc-fpga-development-kit-ip-address)
 
-### 4.4.1 Preparing the Agilex™ 5 FPGA E-Series 065B Modular Development Kit
+### 4.4.1 Preparing the Agilex 5 FPGA E-Series 065B Modular Development Kit
 
-Prepare the Agilex™ 5 FPGA E-Series 065B Modular Development Kit for the FPGA AI Suite SoC design example with the following steps:
+Prepare the Agilex 5 FPGA E-Series 065B Modular Development Kit for the FPGA AI Suite SoC design example with the following steps:
 
-1. [Confirming the Agilex™ 5 FPGA E-Series 065B Modular Development Kit Board Setup](#4411-confirming-the-agilex-5-fpga-e-series-065b-modular-development-kit-board-setup).
+1. [Confirming the Agilex 5 FPGA E-Series 065B Modular Development Kit Board Setup](#4411-confirming-the-agilex-5-fpga-e-series-065b-modular-development-kit-board-setup).
 2. Programming the FPGA device on the board in one of the following ways:
-	- [Programming the Agilex™ 5 FPGA Device with the JTAG Indirect Configuration (`.jic`) File](#4412-programming-the-agilex-5-fpga-device-with-the-jtag-indirect-configuration-jic-file).
+	- [Programming the Agilex 5 FPGA Device with the JTAG Indirect Configuration (`.jic`) File](#4412-programming-the-agilex-5-fpga-device-with-the-jtag-indirect-configuration-jic-file).
 	  This method programs the QSPI flash memory, which then programs the FPGA device when the board is powered up. With this method, the FPGA programming can be persisted between board power cycles.
 	  This method is preferred for deployment or testing the other parts of your application after your FPGA bitstream is finalized.
-	- [Programming the Agilex™ 5 FPGA Device with the SRAM Object File (`.sof`)](#4413-programming-the-agilex-5-fpga-device-with-the-sram-object-file-sof).
+	- [Programming the Agilex 5 FPGA Device with the SRAM Object File (`.sof`)](#4413-programming-the-agilex-5-fpga-device-with-the-sram-object-file-sof).
 	  This method programs the FPGA device directly. The FPGA programming is not persisted between board power cycles. This method is typically faster than programming the QSPI flash memory with `.jic` file that then programs the FPGA device.
 	  This method is preferred when developing or debugging your FPGA bitstream.
-3. [Connecting the Agilex™ 5 FPGA E-Series 065B Modular Development Kit to the Host Development System](#4414-connecting-the-agilex-5-fpga-e-series-065b-modular-development-kit-to-the-host-development-system).
+3. [Connecting the Agilex 5 FPGA E-Series 065B Modular Development Kit to the Host Development System](#4414-connecting-the-agilex-5-fpga-e-series-065b-modular-development-kit-to-the-host-development-system).
 
-#### 4.4.1.1 Confirming the Agilex™ 5 FPGA E-Series 065B Modular Development Kit Board Setup
+### 4.4.1.1 Confirming the Agilex 5 FPGA E-Series 065B Modular Development Kit Board Setup
 
 Confirm the board settings as follows:
 
-1. Ensure that the Agilex™ 5 FPGA E-Series 065B Modular Development Kit DIP switch and jumpers are set to their default settings. For this design example, you change the settings for some DIP switches depending on what are doing with the board:
+1. Ensure that the Agilex 5 FPGA E-Series 065B Modular Development Kit DIP switch and jumpers are set to their default settings. For this design example, you change the settings for some DIP switches depending on what are doing with the board:
 	- For programming the FPGA device on the board, you will set the S4 DIP switch for JTAG mode.
 	- For booting the FPGA device from flash memory, you will set the S4 DIP switch for QSPI mode.
 	- To get power over the ATX connector, ensure that the SW2 switch is set to ATX power mode.
 
-	For more details about default DIP switch and jumper settings, refer to [“Default Settings” in the Agilex™ 5 FPGA E-Series 065B Modular Development Kit User Guide](https://docs.altera.com/r/docs/814550/current/agilextm-5-fpga-e-series-065b-premium-development-kit-user-guide/default-settings).
+	For more details about default DIP switch and jumper settings, refer to [“Default Settings” in the Agilex 5 FPGA E-Series 065B Modular Development Kit User Guide](https://www.intel.com/content/www/us/en/docs/programmable/820977/current/default-settings.html).
 
 2. Ensure that the SD card with the programmed Yocto image is installed on the board.
 
-When configured and connected, the Agilex™ 5 FPGA E-Series 065B Modular Development Kit should resemble the following image:
+When configured and connected, the Agilex 5 FPGA E-Series 065B Modular Development Kit should resemble the following image:
 
 ![alt text](images/image-3.png)
 
@@ -1294,13 +1268,13 @@ The board connections serve the following purposes:
   - To monitor the serial output from the HPS during operation.
   - To provide command-line input to the HPS during operation.
 
-#### 4.4.1.2 Programming the Agilex™ 5 FPGA Device with the JTAG Indirect Configuration (`.jic`) File
+### 4.4.1.2 Programming the Agilex 5 FPGA Device with the JTAG Indirect Configuration (`.jic`) File
 
-Programming the Agilex™ 5 device with the JTAG indirect configuration (`.jic`) file programs the QSPI flash memory and allows the FPGA device to be automatically configured when power is applied to the board.
+Programming the Agilex 5 device with the JTAG indirect configuration (`.jic`) file programs the QSPI flash memory and allows the FPGA device to be automatically configured when power is applied to the board.
 
-To program the Agilex™ 5 FPGA device with the JTAG indirect configuration (`.jic`) file:
+To program the Agilex 5 FPGA device with the JTAG indirect configuration (`.jic`) file:
 
-1. Connect the Agilex™ 5 FPGA E-Series 065B Modular Development Kit to your host development system via JTAG micro USB connection as shown in the following diagram:
+1. Connect the Agilex 5 FPGA E-Series 065B Modular Development Kit to your host development system via JTAG micro USB connection as shown in the following diagram:
 
     ![alt text](images/image-9.png)
 
@@ -1319,15 +1293,15 @@ To program the Agilex™ 5 FPGA device with the JTAG indirect configuration (`.j
 
 4. Switch the board into QSPI mode by setting the S4[1:2] DIP switch to ON/ON and cycle the power to the board.
 
-    At boot time, the Agilex™ 5 FPGA device is configured from the QSPI flash memory.
+    At boot time, the Agilex 5 FPGA device is configured from the QSPI flash memory.
 
-#### 4.4.1.3 Programming the Agilex™ 5 FPGA Device with the SRAM Object File (`.sof`)
+### 4.4.1.3 Programming the Agilex 5 FPGA Device with the SRAM Object File (`.sof`)
 
-Programming the Agilex™ 5 device with the SRAM object file (`.sof`) programs FPGA device directly. The FPGA configuration is lost when power is removed from the board.
+Programming the Agilex 5 device with the SRAM object file (`.sof`) programs FPGA device directly. The FPGA configuration is lost when power is removed from the board.
 
-To program the Agilex™ 5 FPGA device with the SRAM object file (`.sof`):
+To program the Agilex 5 FPGA device with the SRAM object file (`.sof`):
 
-1. Connect the Agilex™ 5 FPGA E-Series 065B Modular Development Kit to your host development system via JTAG micro USB connection as shown in the following diagram:
+1. Connect the Agilex 5 FPGA E-Series 065B Modular Development Kit to your host development system via JTAG micro USB connection as shown in the following diagram:
 
     ![alt text](images/image-10.png)
 
@@ -1340,47 +1314,45 @@ To program the Agilex™ 5 FPGA device with the SRAM object file (`.sof`):
 	quartus_pgm -m jtag -o "p;u-boot-spl-dtb.hex.sof"
 	```
 
-The Agilex™ 5 FPGA device now boots. The device will lose its configuration when you remove power from the board.
+The Agilex 5 FPGA device now boots. The device will lose its configuration when you remove power from the board.
 
-#### 4.4.1.4 Connecting the Agilex™ 5 FPGA E-Series 065B Modular Development Kit to the Host Development System
+### 4.4.1.4 Connecting the Agilex 5 FPGA E-Series 065B Modular Development Kit to the Host Development System
 
-Connect the Agilex™ 5 FPGA E-Series 065B Modular Development Kit to your host development system via Ethernet and serial micro USB UART connections as shown in the following diagram:
+Connect the Agilex 5 FPGA E-Series 065B Modular Development Kit to your host development system via Ethernet and serial micro USB UART connections as shown in the following diagram:
 
-<p align="left">
-  <img src="images/image-11.png" alt="alt text">
-</p>
+    ![alt text](images/image-11.png)
 
 There are 4 COM ports on the one USB connection. The COM port connected to the HPS should be the 3rd available COM port.
 
-### 4.4.2 Preparing the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit
+### 4.4.2 Preparing the Agilex 7 FPGA I-Series Transceiver-SoC Development Kit
 
-Prepare the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit for the FPGA AI Suite SoC design example with the following steps:
+Prepare the Agilex 7 FPGA I-Series Transceiver-SoC Development Kit for the FPGA AI Suite SoC design example with the following steps:
 
-1. [Confirming Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit Board Set Up](#4421-confirming-agilex-7-fpga-i-series-transceiver-soc-development-kit-board-set-up).
+1. [Confirming Agilex 7 FPGA I-Series Transceiver-SoC Development Kit Board Set Up](#4421-confirming-agilex-7-fpga-i-series-transceiver-soc-development-kit-board-set-up).
 2. Programming the FPGA device on the board in one of the following ways:
-	- [Programming the Agilex™ 7 FPGA Device with the JTAG Indirect Configuration (`.jic`) File](#4422-programming-the-agilex-7-fpga-device-with-the-jtag-indirect-configuration-jic-file).
+	- [Programming the Agilex 7 FPGA Device with the JTAG Indirect Configuration (`.jic`) File](#4422-programming-the-agilex-7-fpga-device-with-the-jtag-indirect-configuration-jic-file).
 	  This method programs the QSPI flash memory, which then programs the FPGA device when the board is powered up. With this method, the FPGA programming can be persisted between board power cycles.
 	  This method is preferred for deployment or testing the other parts of your application after your FPGA bitstream is finalized.
-	- [Programming the Agilex™ 7 FPGA Device with the SRAM Object File (`.sof`)](#4423-programming-the-agilex-7-fpga-device-with-the-sram-object-file-sof).
+	- [Programming the Agilex 7 FPGA Device with the SRAM Object File (`.sof`)](#4423-programming-the-agilex-7-fpga-device-with-the-sram-object-file-sof).
 	  This method programs the FPGA device directly. The FPGA programming is not persisted between board power cycles. This method is typically faster than programming the QSPI flash memory with `.jic` file that then programs the FPGA device.
 	  This method is preferred when developing or debugging your FPGA bitstream.
-3. [Connecting the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit to the Host Development System](#4424-connecting-the-agilex-7-fpga-i-series-transceiver-soc-development-kit-to-the-host-development-system).
+3. [Connecting the Agilex 7 FPGA I-Series Transceiver-SoC Development Kit to the Host Development System](#4424-connecting-the-agilex-7-fpga-i-series-transceiver-soc-development-kit-to-the-host-development-system).
 
-#### 4.4.2.1 Confirming Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit Board Set Up
+### 4.4.2.1 Confirming Agilex 7 FPGA I-Series Transceiver-SoC Development Kit Board Set Up
 
 Confirm the board settings as follows:
 
-1. Ensure that the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit DIP switch and jumpers are set to their default settings. For this design example, you change the settings for the S9 DIP switch depending on what are doing with the board:
+1. Ensure that the Agilex 7 FPGA I-Series Transceiver-SoC Development Kit DIP switch and jumpers are set to their default settings. For this design example, you change the settings for the S9 DIP switch depending on what are doing with the board:
     - For programming the FPGA device on the board, you will set the S9 DIP switch for JTAG mode.
 	- For booting the FPGA device from flash memory, you will set the S9 DIP switch for QSPI mode.
 
-For more details about default DIP switch and jumper settings, refer to [“Default Settings” in the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit User Guide](https://docs.altera.com/r/docs/721605/current/agilextm-7-fpga-i-series-transceiver-soc-development-kit-user-guide/default-settings).
+For more details about default DIP switch and jumper settings, refer to [“Default Settings” in the Agilex 7 FPGA I-Series Transceiver-SoC Development Kit User Guide](https://www.intel.com/content/www/us/en/docs/programmable/721605/current/default-settings.html).
 
 1. Ensure that the HPS IO48 OOBE daughter card is installed in connector J4 on the development kit, and the SD card with the programmed Yocto image is installed in the daughter card.
 
-2. Ensure that the DDR4 x8 RDIMM is installed in the PCIe slot furthest from the fan. For RDIMM requirements, refer to [Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit Hardware Requirements](#41-agilex-7-fpga-i-series-transceiver-soc-development-kit-hardware-requirements).
+2. Ensure that the DDR4 x8 RDIMM is installed in the PCIe slot furthest from the fan. For RDIMM requirements, refer to [Agilex 7 FPGA I-Series Transceiver-SoC Development Kit Hardware Requirements](#41-agilex-7-fpga-i-series-transceiver-soc-development-kit-hardware-requirements).
 
-When configured and connected, the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit should resemble the following image:
+When configured and connected, the Agilex 7 FPGA I-Series Transceiver-SoC Development Kit should resemble the following image:
 
 ![alt text](images/image-5.png)
 
@@ -1392,13 +1364,13 @@ The board connections serve the following purposes:
 	- To monitor the serial output from the HPS during operation.
 	- To provide command-line input to the HPS during operation.
 
-#### 4.4.2.2 Programming the Agilex™ 7 FPGA Device with the JTAG Indirect Configuration (`.jic`) File
+### 4.4.2.2 Programming the Agilex 7 FPGA Device with the JTAG Indirect Configuration (`.jic`) File
 
-Programming the Agilex™ 7 device with the JTAG indirect configuration (`.jic`) file programs the QSPI flash memory and allows the FPGA device to be automatically configured when power is applied to the board.
+Programming the Agilex 7 device with the JTAG indirect configuration (`.jic`) file programs the QSPI flash memory and allows the FPGA device to be automatically configured when power is applied to the board.
 
-To program the Agilex™ 7 FPGA device with the JTAG indirect configuration (`.jic`) file:
+To program the Agilex 7 FPGA device with the JTAG indirect configuration (`.jic`) file:
 
-1. Connect the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit to your host development system via USB 2.0 connection as shown in the following diagram:
+1. Connect the Agilex 7 FPGA I-Series Transceiver-SoC Development Kit to your host development system via USB 2.0 connection as shown in the following diagram:
 
     ![alt text](images/image-12.png)
 
@@ -1412,20 +1384,20 @@ To program the Agilex™ 7 FPGA device with the JTAG indirect configuration (`.j
     cd $COREDLA_ROOT/demo/ed4/agx7_soc_s2m/sd-card/
     quartus_pgm -m jtag -o "pvi;u-boot-spl-dtb.hex.jic@<device_number>"
     ```
-
+    
     where <*device_number*> is 1 or 2, depending on whether the HPS is already running (that is, the prior state of the device). Use 1 if the HPS is not running, and 2 if the HPS is already running. If you do not know the state of the device, try 1. If that fails, try 2.
 
 4. Switch the board into QSPI mode by setting the S9[1:4] DIP switch to ON/OFF/OFF/OFF and cycle power to the board:
 
-    At boot time, the Agilex™ 7 FPGA device is configured from the QSPI flash memory.
+    At boot time, the Agilex 7 FPGA device is configured from the QSPI flash memory.
 
-#### 4.4.2.3 Programming the Agilex™ 7 FPGA Device with the SRAM Object File (`.sof`)
+### 4.4.2.3 Programming the Agilex 7 FPGA Device with the SRAM Object File (`.sof`)
 
-Programming the Agilex™ 7 device with the SRAM object file (`.sof`) programs FPGA device directly. The FPGA configuration is lost when power is removed from the board.
+Programming the Agilex 7 device with the SRAM object file (`.sof`) programs FPGA device directly. The FPGA configuration is lost when power is removed from the board.
 
-To program the Agilex™ 7 FPGA device with the SRAM object file (`.sof`):
+To program the Agilex 7 FPGA device with the SRAM object file (`.sof`):
 
-1. Connect the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit to your host development system via USB 2.0 connection as shown in the following diagram:
+1. Connect the Agilex 7 FPGA I-Series Transceiver-SoC Development Kit to your host development system via USB 2.0 connection as shown in the following diagram:
 
     ![alt text](images/image-13.png)
 
@@ -1440,60 +1412,54 @@ cd $COREDLA_ROOT/demo/ed4/agx7_soc_s2m/sd-card/
 quartus_pgm -m jtag -o "p;u-boot-spl-dtb.hex.sof"
 ```
 
-The Agilex™ 7 FPGA device now boots. The device will lose its configuration when you remove power from the board.
+The Agilex 7 FPGA device now boots. The device will lose its configuration when you remove power from the board.
 
-#### 4.4.2.4 Connecting the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit to the Host Development System
+### 4.4.2.4 Connecting the Agilex 7 FPGA I-Series Transceiver-SoC Development Kit to the Host Development System
 
-Connect the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit to your host development system via Ethernet and USB UART connections as shown in the following diagram:
+Connect the Agilex 7 FPGA I-Series Transceiver-SoC Development Kit to your host development system via Ethernet and USB UART connections as shown in the following diagram:
 
-<p align="left">
-  <img src="images/image-15.png" alt="alt text">
-</p>
+    ![alt text](images/image-15.png)
 
-### 4.4.3 Preparing the Arria® 10 SX SoC FPGA Development Kit
+### 4.4.3 Preparing the Arria 10 SX SoC FPGA Development Kit
 
-To prepare the Arria® 10 SX SoC FPGA Development Kit for the FPGA AI Suite SoC design example:
+To prepare the Arria 10 SX SoC FPGA Development Kit for the FPGA AI Suite SoC design example:
 
-1. [Confirming Arria® 10 SX SoC FPGA Development Kit Board Settings](#4431-confirming-arria-10-sx-soc-fpga-development-kit-board-settings).
-2. [Connecting the Arria® 10 SX SoC FPGA Development Kit to the Host Development System](#4432-connecting-the-arria-10-sx-soc-fpga-development-kit-to-the-host-development-system).
+1. [Confirming Arria 10 SX SoC FPGA Development Kit Board Settings](#4431-confirming-arria-10-sx-soc-fpga-development-kit-board-settings).
+2. [Connecting the Arria 10 SX SoC FPGA Development Kit to the Host Development System](#4432-connecting-the-arria-10-sx-soc-fpga-development-kit-to-the-host-development-system).
 
-#### 4.4.3.1 Confirming Arria® 10 SX SoC FPGA Development Kit Board Settings
+### 4.4.3.1 Confirming Arria 10 SX SoC FPGA Development Kit Board Settings
 
 Confirm the board settings as follows:
 
-1. Ensure that the Arria® 10 SX SoC FPGA Development Kit has the required DIP switch and jumper settings. The SoC example design requires that all DIP switches have their default settings except for SW2 switches 5, 6, 7, and 8, which should be switched ON:
+1. Ensure that the Arria 10 SX SoC FPGA Development Kit has the required DIP switch and jumper settings. The SoC example design requires that all DIP switches have their default settings except for SW2 switches 5, 6, 7, and 8, which should be switched ON:
 
     ![alt text](images/image-16.png)
 
-    For more details about default DIP switch and jumper settings, refer to [Arria® 10 SoC Development Kit User Guide](https://docs.altera.com/r/docs/683227/current/arria-10-sx-soc-development-kit-user-guide/default-switch-and-jumper-settings).
+    For more details about default DIP switch and jumper settings, refer to [Arria 10 SoC Development Kit User Guide](https://www.intel.com/content/www/us/en/docs/programmable/683227/current/default-switch-and-jumper-settings.html).
 
-2. Ensure that the HILO cards are fitted correctly.
+1. Ensure that the HILO cards are fitted correctly.
 
-    The Arria® 10 SX SoC FPGA Development Kit includes two DDR4 HILO cards: the HPS memory (1GB) and the FPGA memory (2GB). Both the HPS Memory and FPGA Memory DDR4 HILO modules must be fitted as shown in the following image:
+    The Arria 10 SX SoC FPGA Development Kit includes two DDR4 HILO cards: the HPS memory (1GB) and the FPGA memory (2GB). Both the HPS Memory and FPGA Memory DDR4 HILO modules must be fitted as shown in the following image:
 
     ![alt text](images/image-17.png)
 
-#### 4.4.3.2 Connecting the Arria® 10 SX SoC FPGA Development Kit to the Host Development System
+### 4.4.3.2 Connecting the Arria 10 SX SoC FPGA Development Kit to the Host Development System
 
-Connect the Arria® 10 SX SoC FPGA Development Kit to your host development system via Ethernet and USB UART connections as shown in the following diagram:
+Connect the Arria 10 SX SoC FPGA Development Kit to your host development system via Ethernet and USB UART connections as shown in the following diagram:
 
 ![alt text](images/image-18.png)
 
 ### 4.4.4 Configuring the SoC FPGA Development Kit UART Connection
 
 The SoC FPGA development kit boards have USB-to-serial converters that allows the host computer to see the board as a virtual serial port:
-- The Agilex™ 3 FPGA C-Series Development Kit has a FTDI USB-to-serial converter chip.
-- The Agilex™ 5 FPGA E-Series 065B Modular Development Kit has a FTDI USB-to-serial converter chip.
-- The Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit has a USB-to-serial converter on the IO48 daughter card.
-- The Arria® 10 SX SoC FPGA Development Kit (DK-SOC-10AS066S) has a FTDI USB-to-serial converter chip.
+
+- The Agilex 5 FPGA E-Series 065B Modular Development Kit has a FTDI USB-to-serial converter chip.
+- The Agilex 7 FPGA I-Series Transceiver-SoC Development Kit has a USB-to-serial converter on the IO48 daughter card.
+- The Arria 10 SX SoC FPGA Development Kit (DK-SOC-10AS066S) has a FTDI USB-to-serial converter chip.
 
 Ubuntu, Red Hat Enterprise Linux, and other modern Linux distributions have built-in drivers for the FTDI USB-to-serial converter chip, so no driver installation is necessary on those platforms.
 
-On Microsoft Windows, the Windows SoC EDS installer automatically installs the necessary drivers. For details, see the SoC GSRD for your SoC FPGA development kit:
-- [HPS GSRD User Guide for the Agilex™ 3 C-Series Development Kit](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/)
-- [HPS GSRD User Guide for the Agilex™ 5 FPGA E-Series 065B Modular Development Kit](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/)
-- [HPS GSRD User Guide for the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (4x F-Tile)](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/)
-- [HPS GSRD User Guide for the Arria® 10 SX SoC Development Kit](https://altera-fpga.github.io/rel-26.1/embedded-designs/arria-10/sx/soc/gsrd/ug-gsrd-a10sx-soc/)
+On Microsoft Windows, the Windows SoC EDS installer automatically installs the necessary drivers. For details, see the SoC GSRD for your SoC FPGA development kit at the following URL: [https://www.rocketboards.org/foswiki/Documentation/GSRD](https://www.rocketboards.org/foswiki/Documentation/GSRD)
 
 The serial communication parameters are as follows:
 
@@ -1595,33 +1561,33 @@ You can use the host name when you need to transfer files to the running system 
 
 ## 4.5 Adding Compiled Graphs (AOT files) to the SD Card
 
-An AOT file contains instructions for the FPGA AI Suite IP to "execute" in order to perform inference. For Agilex™ 5 and Agilex™ 7, the M2M design variant and the S2M design variant require different AOT files. The instructions in this section create both AOT files.
+An AOT file contains instructions for the FPGA AI Suite IP to "execute" in order to perform inference. For Agilex 5 and Arria 10, the M2M design variant and the S2M design variant require different AOT files. The instructions in this section create both AOT files.
 
-For Arria® 10, the M2M design variant and the S2M design variant use the same AOT file.
+For Agilex 7, the M2M design variant and the S2M design variant use the same AOT file.
 
 To add the compiled graphs to the development kit SD card:
 
-**Tip**: If you completed installing the FPGA AI Suite by following the instructions in the [FPGA AI Suite Handbook](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/installing-fpga-ai-suite-overview), you can skip steps 1-3.
+**Tip**: If you completed the [FPGA AI Suite Quick Start Tutorial](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/quick-start-tutorial.html) in the FPGA AI Suite Getting Started Guide, you can skip steps 1-3.
 
 1. [Create the `$COREDLA_WORK` directory](#422-initializing-a-work-directory), if you have not already done so.
 2. [Prepare OpenVINO Model Zoo and Model Optimizer](#451-preparing-openvino-model-zoo).
 3. [Prepare a model](#452-preparing-a-model).
 
-    **Tip**: If you completed AI Suite Installation, you have already completed these first three steps.
+    **Tip**: If you completed the FPGA AI Suite Quick Start Tutorial in the FPGA AI Suite Getting Started Guide, you have already completed these first three steps.
 
 4. Confirm that you have the following directory:
 
     ```
     $COREDLA_WORK/demo/models/public/resnet-50-tf/FP32/
     ```
-
+    
     If you do not have this directory, confirm that you have completed the first three steps.
 
 5. Compile the graphs.
 6. Copy the compiled graphs to the SD card.
 
 **Related Information**
-[FPGA AI Suite Quick Start Tutorial](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/fpga-ai-suite-quick-start-tutorial)
+[FPGA AI Suite Quick Start Tutorial](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/quick-start-tutorial.html)
 
 ### 4.5.1 Preparing OpenVINO Model Zoo
 
@@ -1658,7 +1624,7 @@ The directory `$COREDLA_WORK/demo/open_model_zoo/models/public/resnet-50-tf/` co
 - The *README.md* file describes background information about the model.
 - The `model.yml` file shows the detailed command-line information given to Model Optimizer (`mo.py`) when it converts the model to a pair of `.bin` and `.xml` files
 
-For a list OpenVINO Model Zoo models that the [FPGA AI Suite supports, refer to the FPGA AI Suite Handbook](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/models-supported-by-the-fpga-ai-suite-sequential-ip).
+For a list OpenVINO Model Zoo models that the [FPGA AI Suite supports, refer to the FPGA AI Suite Handbook](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/supported-models.html).
 
 **Troubleshooting OpenVINO Open Model Zoo Converter Errors**
 
@@ -1708,11 +1674,11 @@ mo \
 
 The precompiled SD card image (`.wic`) provided with the FPGA AI Suite uses one of the following files as the IP architecture configuration file:
 
-- Agilex™ 5 FPGA E-Series 065B Modular Development Kit
-  AGX5_Performance_LayoutTransform.arch
-- Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit
+- Agilex 5 FPGA E-Series 065B Modular Development Kit  
+  AGX5_Performance.arch
+- Agilex 7 FPGA I-Series Transceiver-SoC Development Kit  
   AGX7_Performance_LayoutTransform.arch
-- Arria® 10 SX SoC FPGA Development Kit
+- Arria 10 SX SoC FPGA Development Kit  
   A10_Performance.arch
 
 To create the AOT file for the M2M variant (which uses the `dla_benchmark` utility), run the following command:
@@ -1723,7 +1689,7 @@ dla_compiler \
 --march $COREDLA_ROOT/example_architectures/<IP arch config file> \
 --network-file ./resnet-50-tf.xml \
 --foutput-format=open_vino_hetero \
---o $COREDLA_WORK/demo/RN50_Performance_b1.aot \
+--o $COREDLA_WORK/demo/RN50_Performance_b1.bin \
 --batch-size=1 \
 --fanalyze-performance
 ```
@@ -1738,7 +1704,7 @@ dla_compiler \
 --march $COREDLA_ROOT/example_architectures/<IP arch config file> \
 --network-file ./resnet-50-tf.xml \
 --foutput-format=open_vino_hetero \
---o $COREDLA_WORK/demo/RN50_Performance_no_folding.aot \
+--o $COREDLA_WORK/demo/RN50_Performance_no_folding.bin \
 --batch-size=1 \
 --fanalyze-performance \
 --ffolding-option=0
@@ -1746,14 +1712,16 @@ dla_compiler \
 
 where <*IP arch config file*> is one of the IP architecture configuration files listed earlier.
 
+Agilex 7 devices use the same AOT file created without the `--ffolding-option=0` option for both M2M and S2M operation.
+
 After running either these commands, the compiled models and demonstration files are in the following locations:
 
 | Compiled Models | |
 |---|---|
-| Compiled Models| $COREDLA_WORK/demo/RN50_Performance_b1.aot |
-| Compiled Models| $COREDLA_WORK/demo/RN50_Performance_no_folding.aot |
+| Compiled Models| $COREDLA_WORK/demo/RN50_Performance_b1.bin |
+| Compiled Models| $COREDLA_WORK/demo/RN50_Performance_no_folding.bin |
 | Sample Images | $COREDLA_WORK/demo/sample_images/ |
-| Architecture File | Agilex™ 5 `$COREDLA_ROOT/example_architectures/AGX5_Performance_LayoutTransform.arch`<br>Agilex™ 7 `$COREDLA_ROOT/example_architectures/AGX7_Performance_LayoutTransform.arch`<br> Arria® 10 `$COREDLA_ROOT/example_architectures/A10_Performance.arch`|
+| Architecture File | Agilex 5 $COREDLA_ROOT/example_architectures/AGX5_Performance.arch <br>Agilex 7 $COREDLA_ROOT/example_architectures/AGX7_Performance_LayoutTransform.arch <br> Arria 10 $COREDLA_ROOT/example_architectures/A10_Performance.arch |
 
 ### 4.5.4 Copying the Compiled Graphs to the SD card
 
@@ -1771,7 +1739,7 @@ mkdir ~/resnet-50-tf
 TARGET_IP=<Development Kit Hostname>.local
 TARGET="root@$TARGET_IP:~/resnet-50-tf"
 demodir=$COREDLA_WORK/demo
-scp $demodir/*.aot $TARGET/.
+scp $demodir/*.bin $TARGET/.
 scp -r $demodir/sample_images/ $TARGET/.
 scp $COREDLA_ROOT/example_architectures/<architecture file> $TARGET/.
 scp $COREDLA_ROOT/build_os.txt $TARGET/../app/
@@ -1779,13 +1747,11 @@ scp $COREDLA_ROOT/build_os.txt $TARGET/../app/
 
 where <architecture file\> is one of the following files, depending on your development kit:
 
-- Agilex™ 3 FPGA C-Series Development Kit
-  AGX3_Performance.arch
-- Agilex™ 5 FPGA E-Series 065B Modular Development Kit
-  AGX5_Performance_LayoutTransform.arch
-- Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit
+- Agilex 5 FPGA E-Series 065B Modular Development Kit  
+  AGX5_Performance.arch
+- Agilex 7 FPGA I-Series Transceiver-SoC Development Kit  
   AGX7_Performance_LayoutTransform.arch
-- Arria® 10 SX SoC FPGA Development Kit
+- Arria 10 SX SoC FPGA Development Kit  
   A10_Performance.arch
 
 3. [Optional] In the serial console run the sync command to ensure that the data is flushed to disk.
@@ -1848,7 +1814,7 @@ To run inference on the SoC FPGA development kit:
 2. In the SSH terminal, run the following commands:
 
 ```sh
-export compiled_model=~/resnet-50-tf/RN50_Performance_b1.aot
+export compiled_model=~/resnet-50-tf/RN50_Performance_b1.bin
 export imgdir=~/resnet-50-tf/sample_images
 export archfile=~/resnet-50-tf/<architecture file>
 cd ~/app
@@ -1874,16 +1840,14 @@ export LD_LIBRARY_PATH=.
 
 where <architecture file\> is one of the following files, depending on your development kit:
 
-- Agilex™ 3 FPGA C-Series Development Kit
-  ```AGX3_Performance.arch```
-- Agilex™ 5 FPGA E-Series 065B Modular Development Kit
-  ```AGX5_Performance_LayoutTransform.arch```
-- Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit
+- Agilex 5 FPGA E-Series 065B Modular Development Kit  
+  ```AGX5_Performance.arch```
+- Agilex 7 FPGA I-Series Transceiver-SoC Development Kit  
  ``` AGX7_Performance_LayoutTransform.arch```
-- Arria® 10 SX SoC FPGA Development Kit
+- Arria 10 SX SoC FPGA Development Kit  
   ```A10_Performance.arch```
 
-The `dla_benchmark` command generates output similar to the following example output for each step. This example output was generated using an Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit.
+The `dla_benchmark` command generates output similar to the following example output for each step. This example output was generated using an Agilex 7 FPGA I-Series Transceiver-SoC Development Kit.
 
 ```
 [Step 11/12] Dumping statistics report
@@ -1917,6 +1881,7 @@ To run the streaming demonstration application:
 
 1. Open an SSH connection to the SoC FPGA development kit:
 
+
    a. Start a new terminal session
 
    b. Run the following command:
@@ -1935,21 +1900,19 @@ To run the streaming demonstration application:
 
 2. Repeat step 1 to open a second SSH connection to the SoC FPGA development kit.
 
-3. **Agilex™ 5 only**: The `~/app/run_inference_stream.sh` script in the prebuilt `coredla-image-agilex5_mk_a5e065bb32aes1.wic` image has the incorrect architecture file as an argument. Before running the script, edit `run_inference_stream.sh` and change `AGX5_Performance.arch` to `AGX5_Performance_LayoutTransform.arch`.
+3. In a terminal session, run the following commands:
 
-4. In a terminal session, run the following commands:
+```sh
+cd /home/root/app
+./run_inference_stream.sh
+```
 
-	```sh
-	cd /home/root/app
-	./run_inference_stream.sh
-	```
+4. In the other terminal session, run the following commands:
 
-5. In the other terminal session, run the following commands:
-
-	```sh
-	cd /home/root/app
-	./run_image_stream.sh
-	```
+```sh
+cd /home/root/app
+./run_image_stream.sh
+```
 
 The first terminal session (where you ran the `run_inference_stream.sh` command) then shows output similar to the following example:
 
@@ -1997,22 +1960,22 @@ The `stream_image_app` used for the S2M variant of the SoC design example assume
 
 The network as described in the `.xml` and `.bin` files (created by the Model Optimizer) is compiled for a specific FPGA AI Suite architecture file by using the FPGA AI Suite compiler.
 
-The FPGA AI Suite compiler compiles the network and exports it to a `.aot` file with the format required by the OpenVINO Inference Engine. For instructions on how to compile the `.xml` and `.bin` files into AOT file suitable for use with the FPGA AI Suite IP, refer to [Compiling the Graphs](#453-compiling-the-graphs).
+The FPGA AI Suite compiler compiles the network and exports it to a `.bin` file with the format required by the OpenVINO Inference Engine. For instructions on how to compile the `.xml` and `.bin` files into AOT file suitable for use with the FPGA AI Suite IP, refer to [Compiling the Graphs](#453-compiling-the-graphs).
 
-This `.aot file created by the compiler contains the compiled network parameters for all the target devices (FPGA, CPU, or both) along with the weights and biases. The inference application imports this file at runtime.
+This `.bin` file created by the compiler contains the compiled network parameters for all the target devices (FPGA, CPU, or both) along with the weights and biases. The inference application imports this file at runtime.
 
 The FPGA AI Suite compiler can also compile the graph and provide estimated area or performance metrics for a given architecture file or produce an optimized architecture file.
 
 For the demonstration SD card, the FPGA bitstream has been built using one of the following IP architecture configuration files, so the architecture file for your development kit for compiling the OpenVINO™ Model:
 
-- Agilex™ 5 FPGA E-Series 065B Modular Development Kit
-  ```AGX5_Performance_LayoutTransform.arch```
-- Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit
+- Agilex 5 FPGA E-Series 065B Modular Development Kit  
+  ```AGX5_Performance.arch```
+- Agilex 7 FPGA I-Series Transceiver-SoC Development Kit  
   ```AGX7_Performance_LayoutTransform.arch```
-- Arria® 10 SX SoC FPGA Development Kit
+- Arria 10 SX SoC FPGA Development Kit  
   ```A10_Performance.arch```
 
-For more details about the FPGA AI Suite compiler, refer to the [FPGA AI Suite Handbook](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/the-fpga-ai-suite-compiler).
+For more details about the FPGA AI Suite compiler, refer to the [FPGA AI Suite Handbook](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/compiling-your-model-with-the-compiler.html).
 
 # 6.0 FPGA AI Suite SoC Design Example Build Process
 
@@ -2050,15 +2013,14 @@ You can build the following SoC design example variants with the `dla_build_exam
 
 | Design Example Variant Identifier | Description | Layout Transform |
 |---|---|---|
-| *agx3_soc_m2m* | Builds a memory-to-memory (M2M) design for the Agilex™ 3 FPGA C-Series Development Kit | External demonstration transform as described in [The Layout Transform IP as an Application-Specific Block](#2235-the-layout-transform-ip-as-an-application-specific-block). |
-| *agx5_soc_m2m* | Builds a memory-to-memory (M2M) design for the Agilex™ 5 FPGA E-Series 065B Modular Development Kit | External demonstration transform as described in [The Layout Transform IP as an Application-Specific Block](#2235-the-layout-transform-ip-as-an-application-specific-block). |
-| *agx5_soc_s2m* | Builds a memory-to-memory (M2M) design for the Agilex™ 5 FPGA E-Series 065B Modular Development Kit | External demonstration transform as described in [The Layout Transform IP as an Application-Specific Block](#2235-the-layout-transform-ip-as-an-application-specific-block). |
-| *agx7_soc_m2m* | Builds a memory-to-memory (M2M) design for the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit | External demonstration transform as described in [The Layout Transform IP as an Application-Specific Block](#2235-the-layout-transform-ip-as-an-application-specific-block). |
-| *agx7_soc_s2m* | Builds a streaming-to-memory (S2M) design for the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit | FPGA AI Suite IP input layout transform must be enabled in the architecture file. For information about the input layout transform, refer to "Input Layout Transform Hardware" in FPGA AI Suite IP Reference Manual. |
-| *a10_soc_m2m* | Builds a memory-to-memory (M2M) design for the Arria® 10 SX SoC FPGA Development Kit | External demonstration transform as described in [The Layout Transform IP as an Application-Specific Block](#2235-the-layout-transform-ip-as-an-application-specific-block). |
-| *a10_soc_s2m* | Builds a streaming-to-memory (S2M) design for the Arria® 10 SX SoC FPGA Development Kit | External demonstration transform as described in [The Layout Transform IP as an Application-Specific Block](#2235-the-layout-transform-ip-as-an-application-specific-block). |
+| *agx5_soc_m2m* | Builds a memory-to-memory (M2M) design for the Agilex 5 FPGA E-Series 065B Modular Development Kit | External demonstration transform as described in [The Layout Transform IP as an Application-Specific Block](#2235-the-layout-transform-ip-as-an-application-specific-block). |
+| *agx5_soc_s2m* | Builds a memory-to-memory (M2M) design for the Agilex 5 FPGA E-Series 065B Modular Development Kit | External demonstration transform as described in [The Layout Transform IP as an Application-Specific Block](#2235-the-layout-transform-ip-as-an-application-specific-block). |
+| *agx7_soc_m2m* | Builds a memory-to-memory (M2M) design for the Agilex 7 FPGA I-Series Transceiver-SoC Development Kit | External demonstration transform as described in [The Layout Transform IP as an Application-Specific Block](#2235-the-layout-transform-ip-as-an-application-specific-block). |
+| *agx7_soc_s2m* | Builds a streaming-to-memory (S2M) design for the Agilex 7 FPGA I-Series Transceiver-SoC Development Kit | FPGA AI Suite IP input layout transform must be enabled in the architecture file. For information about the input layout transform, refer to "Input Layout Transform Hardware" in FPGA AI Suite IP Reference Manual. |
+| *a10_soc_m2m* | Builds a memory-to-memory (M2M) design for the Arria 10 SX SoC FPGA Development Kit | External demonstration transform as described in [The Layout Transform IP as an Application-Specific Block](#2235-the-layout-transform-ip-as-an-application-specific-block). |
+| *a10_soc_s2m* | Builds a streaming-to-memory (S2M) design for the Arria 10 SX SoC FPGA Development Kit | External demonstration transform as described in [The Layout Transform IP as an Application-Specific Block](#2235-the-layout-transform-ip-as-an-application-specific-block). |
 
-An example of building the Arria® 10 S2M variant with the A10_Performance architecture is as follows:
+An example of building the Arria 10 S2M variant with the A10_Performance architecture is as follows:
 
 ```sh
 dla_build_example_design.py build \
@@ -2070,13 +2032,13 @@ $COREDLA_ROOT/example_architectures/A10_Performance.arch
 
 After the design is built, the output products (`.sof` or `.rbf` files) must be combined with the SoC Linux system in order to be used. This is done in one of the steps in the `create_hps_image.sh` script.
 
-For Agilex™ 5 and Agilex™ 7, the `.sof` file is combined with a `u-boot-spl-dtb.hex` file to create either a bootable `.sof` file or a `.jic` file that can program the flash memory.
+For Agilex 5 and Agilex 7, the `.sof` file is combined with a `u-boot-spl-dtb.hex` file to create either a bootable `.sof` file or a `.jic` file that can program the flash memory.
 
-For Arria® 10, the `.rbf` files are added to the `.wic` image so that the FPGA device can be programmed from the SD card.
+For Arria 10, the `.rbf` files are added to the `.wic` image so that the FPGA device can be programmed from the SD card.
 
 If you attempt to reprogram a running Linux system with a new `.sof` file, the Linux system crashes and the reprogramming results in an unpredictable outcome.
 
-The FPGA device is programmed by booting the Linux system on the SoC via the SD card (for Arria® 10) or by programming over JTAG (for Agilex™ 5 and Agilex™ 7), which then boots the Linux system from the SD card. For details about creating a functional solution by combining the build `.rbf` files with the SD card image or by creating the bootable `.sof` or `.jic` files, refer to [Building the Bootable SD Card Image (`.wic`)](#62-building-the-bootable-sd-card-image-wic).
+The FPGA device is programmed by booting the Linux system on the SoC via the SD card (for Arria 10) or by programming over JTAG (for Agilex 5 and Agilex 7), which then boots the Linux system from the SD card. For details about creating a functional solution by combining the build `.rbf` files with the SD card image or by creating the bootable `.sof` or `.jic` files, refer to [Building the Bootable SD Card Image (`.wic`)](#62-building-the-bootable-sd-card-image-wic).
 
 #### 6.1.1.1 Build Synchronization of FPGA with Software
 
@@ -2148,7 +2110,7 @@ cd $COREDLA_WORK/runtime
 -m <FPGA_target>
 ```
 
-where <FPGA_target\> is `agilex3`, `agilex5_mk_a5e065bb32aes1`, `agilex7_dk_si_agi027fc`, or `arria10`.
+where <FPGA_target\> is `agilex5_mk_a5e065bb32aes1`, `agilex7_dk_si_agi027fa`, or `arria10`.
 
 The `create_hps_image.sh` script performs the following steps:
 
@@ -2177,34 +2139,34 @@ The defined Yocto Image recipe is `coredla-image` and can be found in `$COREDLA_
 
 A Yocto SDK is also built as part of the build and this SDK is used in subsequent build steps to cross-compile the software for the Arm HPS subsystem:
 
-- Agilex™ 5:
+- Agilex 5:
   ```
   $COREDLA_WORK/runtime/build_Yocto/build/tmp/deploy/sdk/pokyglibc-x86_64-coredla-image-armv8a-agilex5_mk_a5e065bb32aes1-toolchain-4.2.3.sh
   ```
 
-- Agilex™ 7:
+- Agilex 7:
   ```
-  $COREDLA_WORK/runtime/build_Yocto/build/tmp/deploy/sdk/pokyglibc-x86_64-coredla-image-armv8a-agilex7_dk_si_agi027fc-toolchain-4.2.3.sh
+  $COREDLA_WORK/runtime/build_Yocto/build/tmp/deploy/sdk/pokyglibc-x86_64-coredla-image-armv8a-agilex7_dk_si_agi027fatoolchain-4.2.3.sh
   ```
 
-- Arria® 10:
+- Arria 10:
   ```
   $COREDLA_WORK/runtime/build_Yocto/build/tmp/deploy/sdk/pokyglibc-x86_64-lbs-image-poky-cortexa9t2hf-neon-arria10-toolchain-4.1.2.sh
   ```
 
 The SD card image (WIC file) is in the following location:
 
-- Agilex™ 5:
+- Agilex 5:
   ```
   $COREDLA_WORK/runtime/build_Yocto/build/tmp/deploy/images/agilex5_mk_a5e065bb32aes1/*
   ```
 
-- Agilex™ 7:
+- Agilex 7:
   ```
-  $COREDLA_WORK/runtime/build_Yocto/build/tmp/deploy/images/agilex7_dk_si_agi027fc/*
+  $COREDLA_WORK/runtime/build_Yocto/build/tmp/deploy/images/agilex7_dk_si_agi027fa/*
   ```
 
-- Arria® 10:
+- Arria 10:
   ```
   $COREDLA_WORK/runtime/build_Yocto/build/tmp/deploy/images/arria10/*
   ```
@@ -2220,7 +2182,7 @@ By default, the `create_hps_image.sh` script builds Yocto from scratch. However,
 -m <FPGA_target>
 ```
 
-where <FPGA_target\> is agilex3, agilex5_mk_a5e065bb32aes1, agilex7_dk_si_agi027fc, or arria10.
+where <FPGA_target\> is agilex5_mk_a5e065bb32aes1, agilex7_dk_si_agi027fa, or arria10.
 
 This -y option loads the Yocto SDK from <PREBUILT_YOCTO_DIR>/build/tmp/deploy/sdk/ and the `.wic` image from <PREBUILT_YOCTO_DIR\>/build/tmp/deploy/images/<FPGA_target\> without rerunning a Yocto build.
 
@@ -2244,11 +2206,11 @@ The `update_sd_card.sh` script takes the output products from the previous build
 
 The software binaries are installed to the Ext4 partition under the `/home/root/app` directory.
 
-For Arria® 10, the `.rbf` files are used to create an RTL `fit_spl_fpga.itb` file is copied to the Fat32 partition.
+For Arria 10, the `.rbf` files are used to create an RTL `fit_spl_fpga.itb` file is copied to the Fat32 partition.
 
-For Agilex™ 5 and Agilex™ 7, the `.sof` file is combined with a `u-boot-spl-dtb.hex` file to create a bootable `.sof` file and a flashable `.jic` file.
+For Agilex 5 and Agilex 7, the `.sof` file is combined with a `u-boot-spl-dtb.hex` file to create a bootable `.sof` file and a flashable `.jic` file.
 
-For the commands that create the software binaries, review create_<FPGA_target\>_fpga.sh script, where <FPGA_target\> is agilex3, agilex5_mk_a5e065bb32aes1, agilex7_dk_si_agi027fc, or arria10. You can also run the commands found in the script manually, if needed.
+For the commands that create the software binaries, review create_<FPGA_target\>_fpga.sh script, where <FPGA_target\> is agilex5_mk_a5e065bb32aes1, agilex7_dk_si_agi027fa, or arria10. You can also run the commands found in the script manually, if needed.
 
 You can skip updating the SD card while building the rest of the SoC Example Design by omitting the `-f` and `-u` options:
 
@@ -2258,7 +2220,7 @@ You can skip updating the SD card while building the rest of the SoC Example Des
 -m <FPGA_target>
 ```
 
-where <FPGA_target\> is agilex3, agilex5_mk_a5e065bb32aes1, agilex7_dk_si_agi027fc, or arria10.
+where <FPGA_target\> is agilex5_mk_a5e065bb32aes1, agilex7_dk_si_agi027fa, or arria10.
 
 When you skip updating the SD card image, you can build bitstreams and an HPS image (Yocto, HPS packages, FPGA AI Suite runtime) concurrently. You can update the SD card image (`.wic` file) image after all the files are ready:
 
@@ -2271,7 +2233,7 @@ When you skip updating the SD card image, you can build bitstreams and an HPS im
 -m <FPGA_target>
 ```
 
-where <FPGA_target\> is agilex3, agilex5_mk_a5e065bb32aes1, agilex7_dk_si_agi027fc, or arria10.
+where <FPGA_target\> is agilex5_mk_a5e065bb32aes1, agilex7_dk_si_agi027fa, or arria10.
 
 During regular development you might want to build the runtime software binaries and copy them over to the board app directory manually, without building the bitstream, updating the `.wic` image, or rebuilding Yocto:
 
@@ -2282,7 +2244,7 @@ During regular development you might want to build the runtime software binaries
 -m <FPGA_target>
 ```
 
-where <FPGA_target\> is agilex3, agilex5_mk_a5e065bb32aes1, agilex7_dk_si_agi027fc, or arria10.
+where <FPGA_target\> is agilex5_mk_a5e065bb32aes1, agilex7_dk_si_agi027fa, or arria10.
 
 # 7.0 FPGA AI Suite SoC Design Example Quartus Prime System Architecture
 
@@ -2305,7 +2267,7 @@ These two variants demonstrate FPGA AI Suite operations in the two most common u
 
   You can use this variant as a starting point for larger designs that stream input data to the FPGA AI Suite IP with minimal host intervention.
 
-On the Agilex™ 7, the S2M mode uses the FPGA AI Suite IP internal layout transform capability instead of the external demonstration layout transform described in [The Layout Transform IP as an Application-Specific Block](#2235-the-layout-transform-ip-as-an-application-specific-block). The internal transform capability allows for a wider range of input bus widths and supports folding. For more information about the internal transform capability, refer to ["Transforming Input Data Layout" in FPGA AI Suite IP Reference Manual](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/transforming-the-layout-of-input-data).
+On the Agilex 7, the S2M mode uses the FPGA AI Suite IP internal layout transform capability instead of the external demonstration layout transform described in [The Layout Transform IP as an Application-Specific Block](#2235-the-layout-transform-ip-as-an-application-specific-block). The internal transform capability allows for a wider range of input bus widths and supports folding. For more information about the internal transform capability, refer to ["Transforming Input Data Layout" in FPGA AI Suite IP Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/transforming-input-data-layout.html).
 
 ## 7.1 FPGA AI Suite SoC Design Example Inference Sequence Overview
 
@@ -2331,13 +2293,13 @@ The FPGA AI Suite inference application and library software are responsible for
 
 ![alt text](images/image-21.png)
 
-For a detailed overview of the FPGA AI Suite IP inference sequence, refer to the [FPGA AI Suite Handbook](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/fpga-ai-suite-soc-design-example-inference-sequence-overview).
+For a detailed overview of the FPGA AI Suite IP inference sequence, refer to the [FPGA AI Suite Handbook](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/soc-design-example-inference-sequence.html).
 
 ## 7.2 Memory-to-Memory (M2M) Variant Design
 
 The memory-to-memory (M2M) variant of the SoC design example illustrates a technique for embedded (SoC) FPGA AI Suite operations where the input data sets are primarily drawn from a memory or file sources. In this scenario, the data is typically not real time and is processed as fast as possible.
 
-This design combines the HPS SoC FPGA device with an additional DMA engine to allow for efficient transfer of data to and from the CPU and system memory. The HPS is an Arm Cortex*-A76/A55 on Agilex™ 5, an Arm Cortex-A53 on Agilex™ 7, and Arm Cortex-A9 on Arria® 10.
+This design combines the HPS SoC FPGA device with an additional DMA engine to allow for efficient transfer of data to and from the CPU and system memory. The HPS is an Arm Cortex*-A76/A55 on Agilex 5, an Arm Cortex-A53 on Agilex 7, and Arm Cortex-A9 on Arria 10.
 
 In the M2M design, the source data originally resides within the host CPU domain on an SD card. The application uses the DMA controller to move the host-side data to the device side domain. This movement mimics the process that an application would typically do.
 
@@ -2381,11 +2343,11 @@ The application example is a typical video stream being processed with ResNet50 
 
 In the example, test images are stored on the SD card file system. These images are loaded into host memory and a DMA (memory-to-streaming) IP is used to create a simulated video stream.
 
-### Figure 6: Block Diagram of S2M Variant for Agilex™ 5 and Arria® 10
+### Figure 6: Block Diagram of S2M Variant for Agilex 5 and Arria 10
 
 ![alt text](images/image-24.png)
 
-In the Agilex™ 7 version of the S2M variant, the "Layout Transform" block is not present. The layout transform occurs within the FPGA AI Suite IP.
+In the Agilex 7 version of the S2M variant, the "Layout Transform" block is not present. The layout transform occurs within the FPGA AI Suite IP.
 
 The S2M variant appears in Platform Designer as follows:
 
@@ -2469,9 +2431,9 @@ If buffer dropping is not desired, you can try to alleviate buffer dropping and 
 
 ### 22.3.5. The Layout Transform IP as an Application-Specific Block
 
-For Agilex™ 5 and Arria® 10, the layout transformation IP in the S2M design is provided as RTL source as an example layout transformation within a video inferencing application.
+For Agilex 5 and Arria 10, the layout transformation IP in the S2M design is provided as RTL source as an example layout transformation within a video inferencing application.
 
-For Agilex™ 7, the layout transform is part of the FPGA AI Suite IP. For details about layout transform within the FPGA AI Suite IP,refer to ["Transforming Input Data Layout" in FPGA AI Suite Handbook](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/transforming-the-layout-of-input-data).
+For Agilex 7, the layout transform is part of the FPGA AI Suite IP. For details about layout transform within the FPGA AI Suite IP,refer to ["Transforming Input Data Layout" in FPGA AI Suite Handbook](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/transforming-input-data-layout.html).
 
 The flexibility of the FPGA AI Suite and the scope of projects it can support means that a layout transformation IP cannot serve all inference applications.
 
@@ -2495,10 +2457,10 @@ As the input data comprise only three channels of input data, the input data mus
 
 In the first example where `c_vector` is set to 8, the first pixel of RGB is placed on the input stream filling the first 3 channels, but there are 5 more channels remaining that must be initialized. These are filled with zero (represented by the white squares). This padded stream is then fed into the Nios subsystem.
 
-This example layout transform does not support input folding. Input folding is an input preprocessing step that reduces the amount of zero padding in the c_vector. This folding then enables more efficient use of the dot product engine in the FPGA AI Suite IP. The efficiency gains can be significant depending on the graph and C_VEC. For more details, refer to ["Folding Input" in FPGA AI Suite Handbook](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/folding-input).
+This example layout transform does not support input folding. Input folding is an input preprocessing step that reduces the amount of zero padding in the c_vector. This folding then enables more efficient use of the dot product engine in the FPGA AI Suite IP. The efficiency gains can be significant depending on the graph and C_VEC. For more details, refer to ["Folding Input" in FPGA AI Suite Handbook](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/folding-input.html).
 
 **Related Information**
-["Parameter: `c_vector`" in FPGA AI Suite IP Reference Manual](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/parameter-group-global-parameters)
+["Parameter: `c_vector`" in FPGA AI Suite IP Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/parameter-group-global-parameters.html)
 
 #### 22.3.5.1. Layout Transform Considerations
 
@@ -2575,13 +2537,13 @@ This register is write-only and returns 0xFFFFFFFF when reading.
 
 #### 22.3.5.3. Layout Transform Configuration Options
 
-For SoC design examples other than the Agilex™ 7 S2M design, the example layout transform has a range of parameters to adjust to the data width based on the number of input planes being processed.
+For SoC design examples other than the Agilex 7 S2M design, the example layout transform has a range of parameters to adjust to the data width based on the number of input planes being processed.
 
 A maximum of 16 CSR mean and variance values are supported. The **Planes per sample** field sets this upper threshold.
 
 All output data is in FP16 format which is the expected input format for the FPGA AI Suite.
 
-The Input Layout Transform IP is not required for the Agilex™ 7 S2M design.
+The Input Layout Transform IP is not required for the Agilex 7 S2M design.
 
 ![alt text](images/image-29.png)
 
@@ -2596,18 +2558,18 @@ After the Quartus Prime project has finished compiling, the design should look s
 The top-level Verilog file and HPS configuration is derived directly from the GSRD designs located at the Altera FPGA Developer Site ([https://altera-fpga.github.io](https://altera-fpga.github.io)) or [RocketBoards.org](RocketBoards.org):
 
 
-- For more information about the GSRD for the Agilex™ 5 FPGA E-Series 065B Modular Development Kit, refer to the following URL: [https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5emodular/](https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5emodular/).
-- For more information about the GSRD for the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit, refer to the following URL: [https://altera-fpga.github.io/latest/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/](https://altera-fpga.github.io/latest/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/).
-- For more information about the GSRD for the Arria® 10 SX SoC FPGA Development Kit, refer to the following URL: [https://www.rocketboards.org/foswiki/Documentation/arria10SoCGSRD](https://www.rocketboards.org/foswiki/Documentation/arria10SoCGSRD).
+- For more information about the GSRD for the Agilex 5 FPGA E-Series 065B Modular Development Kit, refer to the following URL: [https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5emodular/](https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5emodular/).
+- For more information about the GSRD for the Agilex 7 FPGA I-Series Transceiver-SoC Development Kit, refer to the following URL: [https://altera-fpga.github.io/latest/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/](https://altera-fpga.github.io/latest/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/).
+- For more information about the GSRD for the Arria 10 SX SoC FPGA Development Kit, refer to the following URL: [https://www.rocketboards.org/foswiki/Documentation/arria10SoCGSRD](https://www.rocketboards.org/foswiki/Documentation/arria10SoCGSRD).
 
 The GSRD designs have been modified to include the FPGA AI Suite IP. All unnecessary logic has been removed, which provides a concise design example.
 
 The main FPGA AI Suite SoC design example is contained within a single Platform Designer **system**, called system. Double-click this node in the Quartus Prime Project Navigator to launch Platform Designer.
 
 **Related Information**
-- [GSRD for Agilex™ 5 E-Series Modular Development Kit at Altera FPGA Developer Site](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/)
-- [GSRD for Agilex™ 7 I-Series Transceiver-SoC DevKit (4x F-Tile) at Altera FPGA Developer Site](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/)
-- [Arria® 10 SoC GSRD at RocketBoards.org](https://www.rocketboards.org/foswiki/Documentation/arria10SoCGSRD)
+- [GSRD for Agilex 5 E-Series Modular Development Kit at Altera FPGA Developer Site](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5e-modular/)
+- [GSRD for Agilex 7 I-Series Transceiver-SoC DevKit (4x F-Tile) at Altera FPGA Developer Site](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/)
+- [Arria 10 SoC GSRD at RocketBoards.org](https://www.rocketboards.org/foswiki/Documentation/arria10SoCGSRD)
 
 ### 22.4.1. Clock Domains
 
@@ -2617,7 +2579,7 @@ The design clocks are as follows:
 
 #### Table 7: SDC Clock Domains for SoC Design Example
 
-| Clock | Clock Description | Agilex™ 5 Design Clock Frequency | Agilex™ 7 Design Clock Frequency | Arria® 10 Design Clock Frequency |
+| Clock | Clock Description | Agilex 5 Design Clock Frequency | Agilex 7 Design Clock Frequency | Arria 10 Design Clock Frequency |
 |---|---|---|---|---|
 | **Board clock** | This clock is used for all mSGDMA infrastructure and CPU CSR interfaces. The HPS AXI interfaces all run off this clock. | 100 MHz | 100 MHz | 100 MHz |
 | **DLA clock** | This clock is used only by the FPGA AI Suite IP. It feeds the dla_clk pin and is used inside FPGA AI Suite IP PE array. | 200 MHz | 400 MHz | 200 MHz |
@@ -2678,14 +2640,14 @@ The FPGA AI Suite SoC design example contains a software environment for the run
 The software environment for the supported FPGA development kits consists of the following components:
 
 - Yocto build and runtime Linux environment
-- Intel Distribution of OpenVINO toolkit Version 2025.4 LTS (Inference Engine, Heterogeneous plugin)
+- Intel Distribution of OpenVINO toolkit Version 2024.6 LTS (Inference Engine, Heterogeneous plugin)
 - OpenVINO Arm CPU plugin
 - FPGA AI Suite runtime plugin
 - MMD hardware library
 
 The FPGA AI Suite SoC design example contains the source files, Makefiles, and scripts to cross compile all the software for the supported FPGA development kit. The Yocto SDK provides the cross compiler, and is the first component that must be built.
 
-The machine learning network graph is compiled separately using the OpenVINO Model Optimizer and the FPGA AI Suite compiler (`dla_compiler`) command. When you compile the graph for the FPGA AI Suite SoC design example, ensure that you specify the `--foutput-format=open_vino_hetero` and `-o <path_to_file>/CompiledNetwork.aot` options.
+The machine learning network graph is compiled separately using the OpenVINO Model Optimizer and the FPGA AI Suite compiler (`dla_compiler`) command. When you compile the graph for the FPGA AI Suite SoC design example, ensure that you specify the `--foutput-format=open_vino_hetero` and `-o <path_to_file>/CompiledNetwork.bin` options.
 
 The AOT file from the FPGA AI Suite compiler contains the compiled network partitions for FPGA and CPU devices along with the network weights. The network is compiled for a specific FPGA AI Suite architecture and batch size.
 
@@ -2700,9 +2662,10 @@ The runtime inference on the SoC FPGA device uses the OpenVINO Arm CPU plugin. T
 In some cases, a layer might be supported by the FPGA even though the OpenVINO Arm CPU plugin does not support the layer. This support is handled by the HETERO plugin and the layer is executed on the FPGA as expected. As an example, 3D convolution layers are not supported by the OpenVINO Arm CPU plugin but still work properly provided that the `.arch` file used for the FPGA AI Suite IP configuration has enabled support for 3D convolutions.
 
 **Related Information**
-- ["Running the Model Compiler" in FPGA AI Suite Handbook](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/running-the-model-compiler)
-- ["Architecture Description File Parameters" in FPGA AI Suite Handbook](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/architecture-description-file-parameters)
-- ["Compilation Options (dla_compiler Command Options)" in FPGA AI Suite Handbook](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/compilation-options-dla_compiler-command-options)
+- ["Running the Graph Compiler" in FPGA AI Suite Handbook](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/running-the-graph-compiler.html)
+- ["Compiling a Graph" in FPGA AI Suite Handbook](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/compiling-a-graph.html)
+- ["Architecture Description File Parameters" in FPGA AI Suite Handbook](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/architecture-description-file-parameters.html)
+- ["Compilation Options (dla_compiler Command Options)" in FPGA AI Suite Handbook](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/compilation-options-dla-compiler-command.html)
 
 ## 8.1 Yocto Build and Runtime Linux Environment
 
@@ -2724,7 +2687,7 @@ The `IMAGE_INSTALL:append` section defines extra packages for the FPGA AI Suite 
 
 ### 8.1.2 Yocto Recipe: recipes-bsp/u-boot/u-boot-socfpga_%.bbappend
 
-This Yocto recipe appends to the *meta-intel-fpga/recipes-bsp* recipe and enables the FPGA to SDRAM bridge, if it is required for the device target. This bridge is not required for Arria® 10 designs.
+This Yocto recipe appends to the *meta-intel-fpga/recipes-bsp* recipe and enables the FPGA to SDRAM bridge, if it is required for the device target. This bridge is not required for Arria 10 designs.
 
 On devices that require the bridge, the bridge allows mSGDMA to access the HPS SDRAM. This access exposes the full HPS SDRAM to the FPGA device.
 
@@ -2749,11 +2712,11 @@ The device tree settings are set to assign base addresses and IRQs for the FPGA 
 This Yocto recipe applies the 0001-altera-msgdma.patch, which does the following fixes:
 
 - Set the FPGA DDR src and dest addresses to allow memory to and from the device to work correctly.
-- Fixes the calculation of the number of descriptors used for a transfer on an Arria® 10 device.
+- Fixes the calculation of the number of descriptors used for a transfer on an Arria 10 device.
 
-For Agilex™ 7 devices, the `agilex-dts.patch` patch enables necessary drivers in the device tree.
+For Agilex 7 devices, the `agilex-dts.patch` patch enables necessary drivers in the device tree.
 
-For Arria® 10 devices, the `coredla-dts.patch` patch enables necessary drivers in the device tree.
+For Arria 10 devices, the `coredla-dts.patch` patch enables necessary drivers in the device tree.
 
 This recipe also includes `enable-coredla-mod.cfg`, which is the kernel configuration file to enable *altera-msgdma* driver, *uio*, and *uio_pdrv_genirq* drivers.
 
@@ -2763,11 +2726,11 @@ This Yocto recipe downloads, compiles, and installs The devmem2 utility from [ht
 
 ### 8.1.7 Yocto Recipe: wic
 
-This Yocto recipe contains four files that define the layout of the SD card image. Each file defines the layout for one of the following devices: Agilex™ 5, Agilex™ 7, Arria® 10, and Stratix® 10 (not currently supported by the SoC design example). The partitions are as follows:
+This Yocto recipe contains four files that define the layout of the SD card image. Each file defines the layout for one of the following devices: Agilex 5, Agilex 7, Arria 10, and Stratix® 10 (not currently supported by the SoC design example). The partitions are as follows:
 
 - **vfat** - Storage for the Linux kernel, device tree, FPGA image, and u-boot
 - **ext4** - Root file system
-- **raw** - Arria® 10 only. A custom raw partition labeled "a2". This is used for the first-stage boot loader.
+- **raw** - Arria 10 only. A custom raw partition labeled "a2". This is used for the first-stage boot loader.
 
 ## 8.2 FPGA AI Suite Runtime Plugin
 
@@ -2838,9 +2801,9 @@ A typical use case of the FPGA AI Suite IP is to run inferences on live input da
 
 For simplicity, the S2M demonstration only simulates a live video source. The streaming demonstration consists of the following applications that run on the target SoC device:
 
-- **streaming_inference_app**
+- **streaming_inference_app**  
   This application loads and runs a network and captures the results.
-- **image_streaming_app**
+- **image_streaming_app**  
   This application loads bitmap files from a folder on the SD card and continuously sends the images to the EMIF, simulating a running video source
 
 The images are passed through a layout transform IP that maps the incoming images from their frame buffer encoding to the layout required by the FPGA AI Suite IP.
@@ -3010,9 +2973,9 @@ The application depends on the following shared libraries. The system build adds
 
 You also need a compiled network binary file and an `.arch` file (which describes the FPGA AI Suite IP parameterization) to run inferences. These have been copied to the `/home/root/resnet-50-tf` directory.
 
-For example, a ResNet50 model compiled for an Arria® 10 might have the following files:
+For example, a ResNet50 model compiled for an Arria 10 might have the following files:
 
-- RN50_Performance_no_folding.aot
+- RN50_Performance_no_folding.bin
 - A10_Performance.arch
 
 Before running the application, set the `LD_LIBRARY_PATH` shell environment variable to define the location of the shared libraries:
@@ -3030,7 +2993,7 @@ Usage:
 streaming_inference_app -model=<model\> -arch=<arch\> -device=<device\>
 
 Where:
-<model> is the compiled model binary file, eg /home/root/resnet-50-tf/RN50_Performance_no_folding.aot
+<model> is the compiled model binary file, eg /home/root/resnet-50-tf/RN50_Performance_no_folding.bin
 <arch> is the architecture file, eg /home/root/resnet-50-tf/A10_Performance.arch
 <device> is the OpenVINO device ID, eg HETERO:FPGA or HETERO:FPGA,CPU
 ```
@@ -3039,16 +3002,16 @@ Start the streaming inference app with a command like this:
 
 ```sh
 # ./streaming_inference_app \
--model=/home/root/resnet-50-tf/RN50_Performance_no_folding.aot \
+-model=/home/root/resnet-50-tf/RN50_Performance_no_folding.bin \
 -arch=/home/root/resnet-50-tf/A10_Performance.arch \
 -device=HETERO:FPGA
 ```
 
 The distribution includes a shell script utility called `run_inference_stream.sh` which calls this command above.
 
-For Agilex™ 5 and Arria® 10, the layout transform IP core does not support folding on the input buffer. For streaming, you must use models that have been compiled by the `dla_compiler` command with the `--ffolding-option=0` command line option specified.
+For Agilex 5 and Arria 10, the layout transform IP core does not support folding on the input buffer. For streaming, you must use models that have been compiled by the `dla_compiler` command with the `--ffolding-option=0` command line option specified.
 
-For Agilex™ 7, folding is supported on the input buffer.
+For Agilex 7, folding is supported on the input buffer.
 
 ## 9.6 The image_streaming_app Application
 

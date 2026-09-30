@@ -1,42 +1,41 @@
 
 
+# SoC Fabric Configuration from Linux Example for the Stratix® 10 SX SoC Development Kit
+
 ## Introduction 
 
 When using HPS Boot First method, the FPGA device is first configured with a small Phase 1 bitstream, which configures the periphery, and brings up HPS. Then, at a later time, HPS configures the FPGA fabric using a larger Phase 2 bitstream. 
 
-The HPS can configure the fabric either from U-Boot or Linux. The HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design") configures the fabric from U-Boot. The examples in this page demonstrate how to configure the FPGA fabric from Linux, using device tree overlays. 
+The HPS can configure the fabric either from U-Boot or Linux. The Golden System Reference Design (GSRD) configures the fabric from U-Boot. The examples in this page demonstrate how to configure the FPGA fabric from Linux, using device tree overlays. 
 
 Two different examples are provided: 
 
-- Example building components separately   
-  - Manages overlays directly
-  - Based on HPS Linux Boot Tutorial Example Design for Stratix 10
+- Example building components separately 
+ - based on the [Building Bootloader for Stratix10](https://www.rocketboards.org/foswiki/Documentation/BuildingBootloaderStratix10) example. 
+ - Manages overlays directly. 
 - Example building everything with Yocto 
-  - Based on HPS Linux Boot Tutorial Example Design for Stratix 10
-  - Manages overlays with the [dtbt](https://github.com/altera-fpga/dtbt) utility 
+ - Based on the [Stratix&reg; 10 SoC H-Tile GSRD](https://www.rocketboards.org/foswiki/Documentation/Stratix10SoCGSRDHTile). 
+ - Manages overlays with the [dtbt](https://github.com/altera-fpga/dtbt) utility 
 
 ### Prerequisites 
 
 You will need the following items: 
 
-* [Stratix® 10 SX SoC FPGA Development Kit (H-Tile)](https://www.altera.com/products/devkit/po-3031/stratix-10-sx-soc-development-kit), ordering code DK-SOC-1SSX-H-D
-  * OOBE/SD HPS Daughtercard
-  * Mini USB cable for serial output
-  * Micro USB cable for on-board Altera® FPGA Download Cable II
-  * SDM QSPI Bootcard with MT25QU02G flash device 
-* Host PC with:  
-  * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the Quartus design.
-  * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
-  * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1
-* Local Ethernet network, with DHCP server
-* Internet connection. For downloading the files, especially when rebuilding the design.
+- Stratix&reg; 10 SX SoC Development Kit, production version, H-Tile (ordering code DK-SOC-1SSX-H-D):
+  - NAND/eMMC HPS Daughtercard 
+  - SDM QSPI Bootcard with MT25QU02G flash device 
+- Linux host PC (Ubuntu 22.04LTS was used for developing this project, but other versions may work too) 
+- Internet access (for downloading files attached to this page, and cloning git trees from github) 
+- TFTP server running on host computer (or other accessible computer on the local network) 
+- Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
+
+Refer to [board documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/stratix/10-sx.html) for more details about the development kit.
 
 ## Example Building Components Separately 
 
-This example is build on top of HPS Linux Boot Tutorial Example Design for Stratix 10, with the modification that the fabric is not configured from U-Boot anymore, but from Linux, with a device tree overlay. In the interest of saving time, a prebuilt rootfs is used. 
+This example is build on top of the [Building Bootloader for Stratix10](https://www.rocketboards.org/foswiki/Documentation/BuildingBootloaderStratix10) example, with the modification that the fabric is not configured from U-Boot anymore, but from Linux, with a device tree overlay. 
 
-The device tree overlay and the Phase 2 configuration bitstream core.rbf are stored in the Linux rootfs folder `/lib/firmware`, where the Linux overlay framework expects them to be by default. 
+The device tree overlay and the Phase 2 configuration bitstream core.rbf are stored in the Linux rootfs folder /lib/firmware, where the Linux overlay framework expects them to be by default. 
 
 Full instructions for building and running the example are provided. 
 
@@ -73,24 +72,24 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
 
 
 
 
-
-2\. Build Quartus Design 
+2\. Build Hardware Design 
 
 
 
 ```bash 
 rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-unzip QPDS26.1.1_REL_GSRD_PR.zip
-rm -f QPDS26.1.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS26.1.1_REL_GSRD_PR stratix10-ed-gsrd
+wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
+unzip QPDS25.3_REL_GSRD_PR.zip
+rm -f QPDS25.3_REL_GSRD_PR.zip
+mv stratix10-ed-gsrd-QPDS25.3_REL_GSRD_PR stratix10-ed-gsrd
 cd stratix10-ed-gsrd
 make s10-htile-soc-devkit-oobe-baseline-all
 cd ..
@@ -105,7 +104,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf arm-trusted-firmware 
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
 cd arm-trusted-firmware 
 make -j 48 bl31 PLAT=stratix10 
 cd .. 
@@ -120,7 +119,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf u-boot-socfpga 
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk 
@@ -157,7 +156,7 @@ CONFIG_DISTRO_DEFAULTS=n
 CONFIG_HUSH_PARSER=y 
 CONFIG_SYS_PROMPT_HUSH_PS2="> " 
 CONFIG_USE_BOOTCOMMAND=y 
-CONFIG_BOOTCOMMAND="setenv bootfile Image;run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot" 
+CONFIG_BOOTCOMMAND="load mmc 0:1 \${loadaddr} ghrd.core.rbf; bridge disable; fpga load 0 \${loadaddr} \${filesize};bridge enable;setenv bootfile Image;run mmcload;run linux_qspi_enable;run rsu_status;run mmcboot" 
 CONFIG_CMD_FAT=y 
 CONFIG_CMD_FS_GENERIC=y 
 CONFIG_DOS_PARTITION=y 
@@ -209,7 +208,7 @@ quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_basel
 ```bash 
 cd $TOP_FOLDER 
 rm -rf linux-socfpga 
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga 
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga 
 cd linux-socfpga 
 make clean && make mrproper 
 make defconfig 
@@ -290,8 +289,16 @@ Explanation:
 
 ```bash 
 cd $TOP_FOLDER 
-rm -f rootfs.tar.gz
-wget -O rootfs.tar.gz https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_si_agf014eb_gsrd/rootfs/console-image-minimal-agilex7.tar.gz
+rm -rf yocto && mkdir yocto && cd yocto 
+git clone -b walnascar https://git.yoctoproject.org/poky 
+git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga 
+git clone -b walnascar https://github.com/openembedded/meta-openembedded 
+source poky/oe-init-build-env ./build 
+echo 'MACHINE = "stratix10_htile"' >> conf/local.conf 
+echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 
+echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf 
+echo 'IMAGE_FSTYPES = "tar.gz"' >> conf/local.conf 
+bitbake core-image-minimal 
 ```
 
 
@@ -312,7 +319,7 @@ cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image .
 cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dtb . 
 cd .. 
 mkdir rootfs && cd rootfs 
-sudo tar xf $TOP_FOLDER/rootfs.tar.gz
+sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/stratix10_htile/core-image-minimal-stratix10_htile.rootfs.tar.gz
 sudo rm -rf lib/modules/* 
 sudo mkdir -p lib/firmware 
 sudo cp $TOP_FOLDER/ghrd.core.rbf lib/firmware/overlay.rbf 
@@ -320,8 +327,8 @@ sudo cp $TOP_FOLDER/overlay.dtb lib/firmware/overlay.dtb
 cd .. 
 sudo python3 make_sdimage_p3.py -f \
 -P fat/*,num=1,format=fat32,size=48M \
--P rootfs/*,num=2,format=ext3,size=400M \
--s 460M \
+-P rootfs/*,num=2,format=ext3,size=32M \
+-s 100M \
 -n sdcard.img 
 cd .. 
 ```
@@ -384,7 +391,7 @@ root@stratix10:~# find / -name sysid
 ## Example Building Everything with Yocto 
 
 
-This example is build on top of HPS Linux Boot Tutorial Example Design for Stratix 10 with the modification that the fabric is not configured from U-Boot anymore, instead through a device tree overlay. 
+This example is build on top of the [Stratix 10 SoC L-Tile GSRD](https://www.rocketboards.org/foswiki/Documentation/Stratix10SoCGSRD), with the modification that the fabric is not configured from U-Boot anymore, instead through a device tree overlay. 
 
 Full instructions for building and running the example are provided. 
 
@@ -420,24 +427,24 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
 
 
 
 
-
-2\. Build Quartus design:
+2\. Build hardware design:
 
 
 
 ```bash 
 rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-unzip QPDS26.1.1_REL_GSRD_PR.zip
-rm -f QPDS26.1.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS26.1.1_REL_GSRD_PR stratix10-ed-gsrd
+wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
+unzip QPDS25.3_REL_GSRD_PR.zip
+rm -f QPDS25.3_REL_GSRD_PR.zip
+mv stratix10-ed-gsrd-QPDS25.3_REL_GSRD_PR stratix10-ed-gsrd
 cd stratix10-ed-gsrd
 make s10-htile-soc-devkit-oobe-baseline-all
 cd ..
@@ -471,7 +478,7 @@ rm ghrd.hps.jic
 ```bash 
 cd $TOP_FOLDER 
 rm -rf gsrd-socfpga 
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
 cd gsrd-socfpga 
 . stratix10_htile-gsrd-build.sh 
 build_setup 
@@ -487,26 +494,7 @@ build_setup
   
 ```bash
 rm -f stratix10-fabric-config-yocto.patch
-base64 -d << EOT | gunzip > stratix10-fabric-config-yocto.patch
-H4sIAAAAAAACA61WbY/aOBD+vPwKi+6HVuDEAQLL7nHavd32ujq1V1H120mRHTvBauLkbPN2KP/9
-xgFaykKXRbWUeGzPm2eezITLJEEYp9Ii6msRy1IYzEzpczGTscBWC7FLe4whdiJjQyouFmgwvAqF
-GHpe3BPdJAlRQEi/12tgjE+22Wi1Wqfbvb1FOOy1+6gF7wGC5efxffRl/HhNy1Iofm2splYuAhJN
-rMwEGqEm+qeBLtxIYOPa97+zlDoqhTaFosTj1pzCGBxkLOKkTGkks9gdSzhv7Z4nlGkZR3GhEplG
-xUzojC5/UNRsoMb+VWgK0osw4l8jGgrSDxnrdqgwweZS/JQEOw/MTxxg50o2lJgjx4Pygott5te4
-IOvhecOrhCfBGhBOua+mWfZMxp+z6yBA2gS1gnanCwhotHzYxrPAvwGyzKapVDWJVo0W2huJpmku
-lL0lh073h6U6FRaX1E5czH2XZKxFKgvVvHle/BXlXAtjcCyyzICG38ii8/spgkb+J14sFW3DFEWn
-XO6XeftrvN8fmqpUbBQQ9P15N1yDa7tFOvXyHBOJ1PmcaoEVzetKkU409+JCC0+zpHmGxjVccVzk
-ZSYsAFrmophaPK0v0t18F87Xl+s2SyN59C9MEbler05D8WFHc0C1ZOsKSTOr27VG3Ol6vWb7h63A
-I+fEok6iSHcySPYy50ZwVubckLyOaY+EAwKNqHOuHpcjY2le1p6eo6U6QeYQj9uD52gdd3D0J3Oo
-OAnmwshUPe3RB3k2ZZgNkwEbQhnu9HuDOO4eb8+HtTyt04f5XEUOhnVXdlPdlnkRSQVhzTL0+g2g
-FNrcdo0fEM6R8wRdrr58/HR3/9fD47jyL1cf7u7fP358W7l+e7m6G3/o96I/348fovu/x2+j8R/v
-KpB4qHxWFLb2BRi/fa8vN/Gt94N0rfhyxagRUSYZl7ryt/XB32U820xwqpma0f1AvMBMaiAYPwnZ
-MZOHReCOiXR/JBfSeXzLmDeFvykDsVaWgluvmxvLrlTEyzgrlAgdbfVUuDmhmXEEf1PdIDsR6jjK
-p7hO57rtTx3t2YXdA95hpg3Or8LBILjqe153QPrDkB3H+RE1T4F+hNEhvUvaIWrVb1hCgCyUD4jS
-+mehcvVUUcWbm3ujiymTUAgpnxUZsGUF5a7TVuir0EpkNxsOLiyNJ25loHOoGXJGQaVBTUF1toTQ
-o5IqGY9wgDScjS5Xzo4jK6Tn9d6cQngdkRi7LMUIFCcGwdvLLR8FUMbxhdOb7zryihVUcwwQcXMk
-uatLR9kIuAjg+B/yzsIMXgwAAA==
-EOT
+wget https://altera-fpga.github.io/rel-25.3/embedded-designs/stratix-10/sx/soc/fabric-config/collateral/stratix10-fabric-config-yocto.patch 
 patch -d meta-intel-fpga-refdes -p1 < stratix10-fabric-config-yocto.patch 
 ```
 
@@ -519,19 +507,19 @@ index 6516834..a283d16 100644
 --- a/recipes-bsp/device-tree/device-tree.bb
 +++ b/recipes-bsp/device-tree/device-tree.bb
 @@ -66,6 +66,7 @@ SRC_URI:append:stratix10 = " \
-          file://stratix10_pr_persona0.dts \
-          file://stratix10_pr_persona1.dts \
-          file://socfpga_ilc.dtsi \
-+         file://fabric_config_overlay.dts \
-          "
+ 					file://stratix10_pr_persona0.dts \
+ 					file://stratix10_pr_persona1.dts \
+ 					file://socfpga_ilc.dtsi \
++					file://fabric_config_overlay.dts \
+ 					"
  
  SRC_URI:append:stratix10_htile = " \
 @@ -75,6 +76,7 @@ SRC_URI:append:stratix10_htile = " \
-          file://stratix10_pr_persona0.dts \
-          file://stratix10_pr_persona1.dts \
-          file://socfpga_ilc.dtsi \
-+         file://fabric_config_overlay.dts \
-          "
+ 					file://stratix10_pr_persona0.dts \
+ 					file://stratix10_pr_persona1.dts \
+ 					file://socfpga_ilc.dtsi \
++					file://fabric_config_overlay.dts \
+ 					"
  
  SRC_URI:append:agilex5_dk_a5e065bb32aes1 = " \
 diff --git a/recipes-bsp/device-tree/files/fabric_config_overlay.dts b/recipes-bsp/device-tree/files/fabric_config_overlay.dts
@@ -568,32 +556,33 @@ index eccd99d..0b3c639 100644
 --- a/recipes-bsp/ghrd/hw-ref-design.bb
 +++ b/recipes-bsp/ghrd/hw-ref-design.bb
 @@ -233,6 +233,7 @@ do_install () {
-    install -D -m 0644 ${UNPACKDIR}/sources/${MACHINE}_pr_${ARM64_GHRD_CORE_RBF} ${D}/boot/ghrd_pr.core.rbf
-    install -D -m 0644 ${UNPACKDIR}/sources/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
-    install -D -m 0644 ${UNPACKDIR}/sources/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
-+   install -D -m 0644 ${UNPACKDIR}/sources/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}${base_libdir}/firmware/${ARM64_GHRD_CORE_RBF}
-  fi
+ 		install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_${ARM64_GHRD_CORE_RBF} ${D}/boot/ghrd_pr.core.rbf
+ 		install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
+ 		install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
++		install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}${base_libdir}/firmware/${ARM64_GHRD_CORE_RBF}
+ 	fi
  
-  if ${@bb.utils.contains("MACHINE", "stratix10_htile", "true", "false", d)}; then
+ 	if ${@bb.utils.contains("MACHINE", "stratix10_htile", "true", "false", d)}; then
 @@ -241,6 +242,7 @@ do_install () {
-    install -D -m 0644 ${UNPACKDIR}/sources/${MACHINE}_pr_${ARM64_GHRD_CORE_RBF} ${D}/boot/ghrd_pr.core.rbf
-    install -D -m 0644 ${UNPACKDIR}/sources/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
-    install -D -m 0644 ${UNPACKDIR}/sources/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
-+   install -D -m 0644 ${UNPACKDIR}/sources/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}${base_libdir}/firmware/${ARM64_GHRD_CORE_RBF}
-  fi
+ 		install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_${ARM64_GHRD_CORE_RBF} ${D}/boot/ghrd_pr.core.rbf
+ 		install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona0.rbf ${D}${base_libdir}/firmware/persona0.rbf
+ 		install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_pr_persona1.rbf ${D}${base_libdir}/firmware/persona1.rbf
++		install -D -m 0644 ${WORKDIR}/sources/${MACHINE}_gsrd_${ARM64_GHRD_CORE_RBF} ${D}${base_libdir}/firmware/${ARM64_GHRD_CORE_RBF}
+ 	fi
  
-  if ${@bb.utils.contains("MACHINE", "cyclone5", "true", "false", d)}; then
+ 	if ${@bb.utils.contains("MACHINE", "cyclone5", "true", "false", d)}; then
 diff --git a/recipes-bsp/u-boot/files/uboot.txt b/recipes-bsp/u-boot/files/uboot.txt
 index 8577186..370695b 100644
 --- a/recipes-bsp/u-boot/files/uboot.txt
 +++ b/recipes-bsp/u-boot/files/uboot.txt
 @@ -30,5 +30,5 @@ if test ${target} = "nand"; then
-  ubi readvol ${loadaddr} kernel;
-  ubi detach;
-  setenv bootargs "earlycon panic=-1 root=${nandroot} rw rootwait rootfstype=ubifs ubi.mtd=1";
-- bootm ${loadaddr}#board-${board_id};
-+ bootm ${loadaddr}#board-0;
+ 	ubi readvol ${loadaddr} kernel;
+ 	ubi detach;
+ 	setenv bootargs "earlycon panic=-1 root=${nandroot} rw rootwait rootfstype=ubifs ubi.mtd=1";
+-	bootm ${loadaddr}#board-${board_id};
++	bootm ${loadaddr}#board-0;
  fi
+
 ```
 
 6\. Customize Yocto Build: 
@@ -714,4 +703,3 @@ You are responsible for safety of the overall system, including compliance with 
 <sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
 
 OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™.  
-

@@ -1,4 +1,4 @@
-The following examples are demonstrated using 2 units of the Agilex platform.  Please take note of the notation "[Board A or B]". The following steps assumes both platforms are connected to each other via an Ethernet connection.
+The following examples are demonstrated using 2 units of the Agilex 5 platform.  Please take note of the notation "[Board A or B]". The following steps assumes both platforms are connected to each other via an Ethernet connection.
 
 1\. Boot to Linux
 
@@ -66,11 +66,11 @@ Once the test is completed, copy the following files from Board B (listener) to 
 
 Import 'afpkt-rxtstamps.txt' and 'afxdp-rxtstamps.txt' to excel in 2 seperate sheets.
 
-<img src="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
+<img src="https://altera-fpga.github.io/rel-25.3/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
 
 Plot Column 1 for each sheets using Scatter chart,
 
-<img src="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
+<img src="https://altera-fpga.github.io/rel-25.3/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
 
 
 This will generate plot for AFPKT and AFXDP with latency(on Y-axis) against packet count (on X-axis).

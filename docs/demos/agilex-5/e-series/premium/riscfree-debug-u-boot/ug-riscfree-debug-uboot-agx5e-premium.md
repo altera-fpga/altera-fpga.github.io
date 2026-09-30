@@ -1,26 +1,28 @@
 
 
+# Debugging U-Boot with Ashling RiscFree Tutorial Example Design: Agilex™ 5 Premium Development Kit
+
 ## Introduction
 
 RiscFree* is Ashling’s Eclipse* C/C++ Development Toolkit (CDT) based integrated development environment (IDE) for Altera® FPGAs Arm*-based HPS and RISC-V based Nios® V processors.
 
 This page demonstrates how to use RiscFree* to debug U-Boot SPL and U-Boot.
 
-For further information about RiscFree*, visit [The Ashling RiscFree IDE for Altera® FPGAs](https://www.altera.com/products/development-tools/ashling).
+For further information about RiscFree*, consult [Ashling RiscFree* IDE for Altera® FPGAs User Guide](https://www.intel.com/content/www/us/en/docs/programmable/730783/24-3.html).
 
 ## Prerequisites
 
 The following are needed:
 
-- [Agilex 5 FPGA E-Series 065B Premium Development Kit (ES)](https://www.altera.com/products/devkit/po-3002/agilex-5-fpga-and-soc-e-series-premium-development-kit-es), ordering code DK-A5E065BB32AES1.
+- Altera® Agilex™ 5 FPGA E-Series 065B Premium Development Kit, ordering code DK A5E065BB32AES1, with the HPS Enablement Board. Refer to [Agilex™ 5 FPGA E-Series 065B Premium Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html) for information about the development kit.
 
 - Host PC with:
   - 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   - Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   - Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  - Altera® Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1
+  - Altera® Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3
 
-You will also need to compile the [HPS Linux Boot Tutorial Example Design User Guide: Agilex 5 FPGA E-Series 065B Premium Development Kit (ES)](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium), refer to the *Boot from SD Card* section.
+You will also need to compile the Agilex 5 GHRD Linux Boot Example targeting the HPS Enablement board, as described [here](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/#boot-from-sd-card). 
 
 ## Debug U-Boot
 
@@ -30,17 +32,17 @@ You will also need to compile the [HPS Linux Boot Tutorial Example Design User G
 
 3\. Set MSEL dipswitch to JTAG, as specified in the design from the [Prerequisites](#prerequisites) section, then power cycle the board. That will ensure the device is not configured from QSPI.
 
-4\.Add the Quartus and RiscFree* tools to the PATH:
+4\. Go to the folder where the example was built, add the Quartus and RiscFree* tools in the path:
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
-export PATH=~/altera_pro/26.1.1/riscfree/RiscFree:$PATH
+cd $TOP_FOLDER
+export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$QUARTUS_ROOTDIR/../riscfree/RiscFree:$PATH
 ```
 5\. Configure the device with the 'debug' SOF, which contains an empty loop HPS FSBL, designed specifically for a debugger to connect afterwards:
 
 ```bash
-cd $TOP_FOLDER
-quartus_pgm -c 1 -m jtag -o "p;agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.sof"
+quartus_pgm -c 1 -m jtag -o "p;agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof"
 ```
 
 6\. Start RiscFree* Eclipse using a new workspace in the current folder:
@@ -95,6 +97,25 @@ symbol-file u-boot-socfpga/spl/u-boot-spl
 set $pc=0x0
 step
 ```
+
+If you have watchdog(s) enabled, you also need to add the following instructions in the above sequence, between 'interrupt' and 'delete breakpoints' commands, in order to disable watchdog while debugging:
+
+```bash
+monitor memwrite APB:0x15c20140 0x03
+monitor memwrite APB:0x15c20020 0x01
+monitor memwrite APB:0x1580d000 0x01
+monitor memwrite APB:0x1580d0b8 0x01
+monitor memwrite APB:0x1580d0bc 0x01
+monitor memwrite APB:0x1580d0c0 0x01
+monitor memwrite APB:0x1580d0c4 0x01
+monitor memwrite APB:0x1580d0c8 0x02
+monitor memwrite APB:0x1580d0cc 0x02
+monitor memwrite APB:0x1580d0d0 0x02
+monitor memwrite APB:0x1580d0d4 0x02
+monitor memwrite APB:0x1580d140 0x03
+```
+
+*Note*: The above commands will be performed automatically in a future version of RiscFree.
 
 If you want to run U-Boot SPL up to where it decides which image to load next, add the following lines to the previous step:
 

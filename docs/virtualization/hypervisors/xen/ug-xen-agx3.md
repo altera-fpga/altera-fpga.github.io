@@ -1,8 +1,10 @@
 
 
+# HPS Xen Hypervisor GSRD System Example Design: Agilex™ 3 FPGA and SoC C-Series Development Kit
+
 ##  Introduction
 
-This page presents the Xen System Example Design, which is based on the [HPS Baseline System Example Design User Guide: Agilex 3 FPGA and SoC C-Series Development Kit](https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit). 
+This page presents the Xen GSRD, which is based on the [Linux GSRD for the Agilex™ 3 FPGA and SoC C-Series Development Kit](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/). The Xen GSRD uses the HPS Enablement Board, and SD card for storing the root filesystem.
 
 ### Xen Overview
 
@@ -16,7 +18,7 @@ In Xen's architecture, there are two domains. Dom0 is the privileged management 
 
 The following are required to be able to fully exercise the guides from this page:
 
-* Agilex 3 FPGA and SoC C-Series Development Kit, ordering code [DK-A3W135BM16AEA](https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit).
+* Agilex™ 3 FPGA and SoC C-Series Development Kit, ordering code DK-A3W135BM16AEA.
 
 * Host PC with:
 
@@ -24,62 +26,82 @@ The following are required to be able to fully exercise the guides from this pag
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
   * SSH server installer, to enable using 'scp' command from target board to host PC
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 
   
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
+
+ Refer to [board documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a3y135b.html) for more information about the development kit.
+
 ### Prebuilt Binaries
 
-The Agilex 3 FPGA and SoC C-Series Development Kit Xen GSRD binaries are located at [https://releases.rocketboards.org/2026.08/xen/agilex3_xen.baseline/](https://releases.rocketboards.org/2026.08/xen/agilex3_xen.baseline/).
+The Agilex™ 3 FPGA and SoC C-Series Development Kit Xen GSRD binaries are located at [https://releases.rocketboards.org/2025.10/xen/agilex3_xen/](https://releases.rocketboards.org/2025.10/xen/agilex3_xen/).
 
 ### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3 and the following software component versions integrate the 25.3 release. 
 
+**Note:** Regarding the GHRD components in the following table, only the device-specific GHRD is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
-| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
+| Agilex 3 GHRD | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.3_REL_GSRD_PR   |
+| Agilex 5 GHRD - Include GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3_REL_GSRD_PR |
+| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
+| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.3_REL_GSRD_PR |
+| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS25.3_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.33-lts | QPDS25.3_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.0   | QPDS25.3_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.07 | QPDS25.3_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
+| Yocto Project: meta-altera-fpga (for GSRD 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga (for Legacy GSRD) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest |
+| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3_REL_GSRD_PR |
+| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3_REL_GSRD_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 ### Release Notes
 
-See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR).
+See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3_REL_GSRD_PR).
 
 ## Exercise Prebuilt Binaries
 
 This section presents how to use the prebuilt binaries included with this Xen example.
 
+Running the boot from SD card section of the GSRD is a prerequisite step for running the Xen examples, as not all steps are as detailed on this page as in the GSRD page. Refer to the following links for help on getting started:
+
+| Link | Description |
+| :- | :- |
+| [Board Documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a3y135b.html) | Board user guide, schematics, etc |
+| [GSRD Development Kit Section](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/#development-kit) | Details about the development kit |
+| [GSRD Board Setup Section](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/#configure-board) | Setting up the development kit |
+| [GSRD Serial Console Section](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/#configure-serial-console) | Setting up serial console |
+| [GSRD Write SD Card Section](https://altera-fpga.github.io/rel-25.3/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/#booting-from-sd-card)  | Writing SD card image |
+
 ### Write Binaries
 
 This section shows presents downloading and flashing the SD card image and JIC files, and downloading the xen rootfs cpio archive to be used by DomUs VMs.
 
-1\. Download and write to SD card the image [https://releases.rocketboards.org/2026.08/xen/agilex3_xen.baseline/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/xen/agilex3_xen.baseline/sdimage.tar.gz)
+1\. Download and write to SD card the image [https://releases.rocketboards.org/2025.10/xen/agilex3_xen/sdimage.tar.gz](https://releases.rocketboards.org/2025.10/xen/agilex3_xen/sdimage.tar.gz)
 
-2\. Download and write to QSPI flash the JIC file [https://releases.rocketboards.org/2026.08/xen/agilex3_xen.baseline/ghrd.hps.jic](https://releases.rocketboards.org/2026.08/xen/agilex3_xen.baseline/ghrd.hps.jic)
+2\. Download and write to QSPI flash the JIC file [https://releases.rocketboards.org/2025.10/xen/agilex3_xen/ghrd_a3cw135bm16ae6s.hps.jic.tar.gz](https://releases.rocketboards.org/2025.10/xen/agilex3_xen/ghrd_a3cw135bm16ae6s.hps.jic.tar.gz)
 
 3\. On the host computer, download the xen rootf cpio archive:
 
 ```bash
-wget https://releases.rocketboards.org/2026.08/xen/agilex3_xen.baseline/xen-image-minimal-agilex3.rootfs.cpio.gz
+wget https://releases.rocketboards.org/2025.10/xen/agilex3_xen/xen-image-minimal-agilex3.cpio.gz
 ```
 
 5\. On the Linux on target board, copy over the above downloaded file in 'xen' folder:
 
 ```bash
 cd xen
-scp <host_user>@<host-ip>:/<host-folder>/xen-image-minimal-agilex3.rootfs.cpio.gz .
+scp <host_user>@<host-ip>:/<host-folder>/xen-image-minimal-agilex3.cpio.gz .
 ```
 
-### Boot Xen Example Design
+### Boot Xen GSRD
 
 This section shows how to boot the Xen GSRD. By default, if no other operation is done, the board boots into normal, non-Xen enabled GSRD on a power cycle. In order to boot with the Xen Hypervisor, you need to stop the U-Boot countdown, and boot Linux manually using the commands shown in the below sections. This is provided for convenience, and when used in a real production system, U-Boot can be configured to boot the required Xen configuration automatically.
 
@@ -186,21 +208,15 @@ xl list
 ```
 
 
-## Rebuild Xen System Example Design
+## Rebuild Xen GSRD
 
-The embedded software for this System Example Design is built with Yocto, using KAS.
+This section presents how to build the Xen GSRD binaries. The instructions are the same as for the GSRD, except that the environment variable BUILD_HYP=1 needs to be set for building the Xen enabled GSRD version. This environment variable is only used by the Yocto GSRD script.
 
-[Kas](https://github.com/siemens/kas) is a Python-based lightweight build orchestration layer on top of BitBake/Yocto. Kas allows you to define your build environment in a YAML manifest, so you can perform checkout, environment setup, configuration, and build invocation with a single command. Kas provides a more maintainable build description, it offers improved reproducibility, reduced setup friction, and a clearer abstraction for managing multiple layers, revisions, and configuration fragments. 
 
-The software source code for this System Example Design is released inside the [software/yocto_linux](https://github.com/altera-fpga/agilex3c-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a3w135bm16aea/baseline/software/yocto_linux) directory. Accessing the link will display a README page with details regarding the software.
 
-For more details about Kas, refer to the official documentation at [https://kas.readthedocs.io/en/latest/](https://kas.readthedocs.io/en/latest/).
+<h5>Yocto Build Prerequisites</h5>
 
-### Kas Build Prerequisites
-
-Firtst, the same [prerequisites](#yocto-build-prerequisites) as for regular Yocto build are required. 
-
-1\. Make sure you have Yocto system requirements met: [https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions](https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions).
+1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
 
 The command to install the required packages on Ubuntu 22.04 is:
 
@@ -223,19 +239,9 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 
 **Note**: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.
 
-In addition to the above, you must also install `python3-newt`, and `python3.10-venv` with a command like this:
+The following diagram shows an overview of how the build process works for this use case:
 
-```bash
-sudo apt-get install python3-newt python3.10-venv
-```
-
-### Build SD Card Binaries
-
-
-
-The following diagram shows an overview of the building process:
-
-![](images/kas-sd.svg)
+![](images/agilex3-build-sd-flow.svg)
 
 <h5>Setup Environment</h5>
 
@@ -243,95 +249,133 @@ The following diagram shows an overview of the building process:
 
 
 ```bash
-sudo rm -rf agilex3_xen
-mkdir agilex3_xen
-cd agilex3_xen
+sudo rm -rf agilex3_gsrd.xen
+mkdir agilex3_gsrd.xen
+cd agilex3_gsrd.xen
 export TOP_FOLDER=`pwd`
 ```
 
+
+Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
+
+
+```bash
+cd $TOP_FOLDER
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-none-linux-gnu-
+```
 
 Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
 
 
 
 
-
-<h5>Build Quartus Design</h5>
-
-
+<h5>Build Hardware Design</h5>
 
 
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex3_soc_devkit_ghrd && mkdir agilex3_soc_devkit_ghrd && cd agilex3_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a3w135bm16aea-baseline.zip
-unzip dk-a3w135bm16aea-baseline.zip
-rm -f dk-a3w135bm16aea-baseline.zip
-make baseline-install
+wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS25.3_REL_GSRD_PR/a3cw135-devkit-oobe-legacy-baseline.zip
+unzip a3cw135-devkit-oobe-legacy-baseline.zip
+rm -f a3cw135-devkit-oobe-legacy-baseline.zip
+make legacy_baseline-build
+make legacy_baseline-sw-build
+quartus_pfg -c output_files/legacy_baseline.sof \
+  output_files/legacy_baseline_hps_debug.sof \
+  -o hps_path=software/hps_debug/hps_wipe.ihex
+cd ..
 ```
 
 
 The following files are created:
 
-* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/install/binaries/baseline.sof`
-* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/install/binaries/baseline_hps_debug.sof`
-* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
+* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/legacy_baseline.sof`
+* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof`
+<h5>Build Core RBF</h5>
 
-
-<h5>Build Yocto Using Kas</h5>
-
-
-
-1\. Create and enter a new Python virtual environment:
 
 
 ```bash
-cd $TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux
-python3 -m venv venv --system-site-packages
-source venv/bin/activate
-pip install --upgrade pip
-pip install kas
-pip install --upgrade kas
-pip install kconfiglib
+cd $TOP_FOLDER
+rm -f ghrd_a3cw135bm16ae6s.rbf
+quartus_pfg -c agilex3_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof ghrd_a3cw135bm16ae6s.rbf -o hps=1
 ```
 
 
-2\. Copy the core.rbf file to where Kas expects it to be:
+The following file is created:
 
+* `$TOP_FOLDER/ghrd_a3cw135bm16ae6s.core.rbf`
+
+
+<h5>Set Up Yocto</h5>
+
+1\. Clone the Yocto script and prepare the build:
 
 ```bash
-cp $TOP_FOLDER/agilex3_soc_devkit_ghrd/install/binaries/ghrd.core.rbf \
-   $TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_hps_debug.core.rbf
+cd $TOP_FOLDER
+rm -rf gsrd-socfpga
+git clone -b walnascar https://github.com/altera-fpga/gsrd-socfpga
+cd gsrd-socfpga
+export HYP_BUILD=1
+. agilex3-gsrd-build.sh
+build_setup
 ```
 
 
-3\. Build Yocto with Kas:
+<h5>Customize Yocto</h5>
 
+1\. Save the `core.rbf` as `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex3_gsrd_ghrd.core.rbf`
+
+2\. Update the recipe `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb` as follows:  
+
+* Replace the entry `${GHRD_REPO}/agilex3_gsrd_${ARM64_GHRD_CORE_RBF};name=agilex3_gsrd_core` with `file://agilex3_gsrd_ghrd.core.rbf;sha256sum=<CORE_SHA>` where `CORE_SHA` is the sha256 checksum of the file
+* Delete the line `SRC_URI[agilex3_gsrd_core.sha256sum] = "bf11c8cb3b6d9487f93ce0e055b1e5256998a25b25ac4690bef3fcd6225ee1ae"`
+The above are achieved by the following instructions:
 
 ```bash
-kas build kas.yml:xen_enable.yml gsrd-console-image
+CORE_RBF=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex3_gsrd_ghrd.core.rbf
+ln -s $TOP_FOLDER/ghrd_a3cw135bm16ae6s.core.rbf $CORE_RBF
+OLD_URI="\${GHRD_REPO}\/agilex3_gsrd_\${ARM64_GHRD_CORE_RBF};name=agilex3_gsrd_core"
+CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ")
+NEW_URI="file:\/\/agilex3_gsrd_ghrd.core.rbf;sha256sum=$CORE_SHA"
+sed -i "s/$OLD_URI/$NEW_URI/g" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+sed -i "/agilex3_gsrd_core\.sha256sum/d" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
 ```
 
 
-The following relevant files are created in `$TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex3/`:
+<h5>Build Yocto</h5>
 
-* `gsrd-console-image-agilex3.rootfs.wic`
-* `u-boot-spl-dtb.hex`
-
-> **Note**: If you experience build failures related to file-locks, you can work around these by reducing the parallelism of your build by running the following commands before running `kas`:
+Build Yocto:
 
 ```bash
-export PARALLEL_MAKE="-j 8"
-export BB_NUMBER_THREADS="8"
-export BB_ENV_PASSTHROUGH_ADDITIONS="$BB_ENV_PASSTHROUGH_ADDITIONS PARALLEL_MAKE BB_NUMBER_THREADS"
+bitbake_image
 ```
 
+Gather files:
+
+```bash
+package
+```
+
+
+The following files are created:
+
+* `$TOP_FOLDER/gsrd-socfpga/agilex3-gsrd-images/u-boot-agilex3-socdk-gsrd-atf/u-boot-spl-dtb.hex`
+* `$TOP_FOLDER/gsrd-socfpga/agilex3-gsrd-images/u-boot.itb`
+* `$TOP_FOLDER/gsrd-socfpga/agilex3-gsrd-images/sdimage.tar.gz`
 
 
 <h5>Build QSPI Image</h5>
@@ -339,12 +383,12 @@ export BB_ENV_PASSTHROUGH_ADDITIONS="$BB_ENV_PASSTHROUGH_ADDITIONS PARALLEL_MAKE
 
 ```bash
 cd $TOP_FOLDER
-rm -f baseline.hps.jic baseline.core.rbf
+rm -f ghrd_a3cw135bm16ae6s.hps.jic ghrd_a3cw135bm16ae6s.core.rbf
 quartus_pfg \
--c agilex3_soc_devkit_ghrd/install/binaries/baseline.sof baseline.jic \
+-c agilex3_soc_devkit_ghrd/output_files/legacy_baseline.sof ghrd_a3cw135bm16ae6s.jic \
 -o device=MT25QU128 \
 -o flash_loader=A3CW135BM16AE6S \
--o hps_path=agilex3_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.hex \
+-o hps_path=gsrd-socfpga/agilex3-gsrd-images/u-boot-agilex3-socdk-gsrd-atf/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
 -o hps=1
 ```
@@ -352,8 +396,25 @@ quartus_pfg \
 
 The following file is created:
 
-* `$TOP_FOLDER/baseline.hps.jic`
+* `$TOP_FOLDER/ghrd_a3cw135bm16ae6s.hps.jic`
 
+<h5>Build HPS RBF</h5>
+This is an optional step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.
+
+
+```bash
+cd $TOP_FOLDER
+rm -f ghrd_a3cw135bm16ae6s.hps.rbf
+quartus_pfg \
+-c agilex3_soc_devkit_ghrd/output_files/legacy_baseline.sof  ghrd_a3cw135bm16ae6s.rbf \
+-o hps_path=gsrd-socfpga/agilex3-gsrd-images/u-boot-agilex3-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+-o hps=1
+```
+
+
+The following file is created:
+
+* `$TOP_FOLDER/ghrd_a3cw135bm16ae6s.hps.rbf`
 
 
 

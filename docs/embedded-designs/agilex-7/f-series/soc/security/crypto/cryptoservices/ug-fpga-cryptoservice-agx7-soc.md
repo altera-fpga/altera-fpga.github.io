@@ -39,9 +39,9 @@ The new FCS architecture software stack and its components can be found in the f
 | **SW Component** | **Repository**                                               | **Branch/tag/Version** |
 | ---------------- | ------------------------------------------------------------ | ---------------------- |
 | LibFCS           | [altera-fpga/libfcs: Altera FPGA Crypto Services Library](https://github.com/altera-fpga/libfcs) | main                   |
-| Linux            | [altera-fpga/linux-socfpga: Linux development repository for socfpga](https://github.com/altera-fpga/linux-socfpga) | QPDS26.1.1_REL_GSRD_PR      |
-| U-Boot           | [altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | QPDS26.1.1_REL_GSRD_PR      |
-| ATF              | [altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | QPDS26.1.1_REL_GSRD_PR      |
+| Linux            | [altera-fpga/linux-socfpga: Linux development repository for socfpga](https://github.com/altera-fpga/linux-socfpga) | QPDS25.3_REL_GSRD_PR      |
+| U-Boot           | [altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | QPDS25.3_REL_GSRD_PR      |
+| ATF              | [altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | QPDS25.3_REL_GSRD_PR      |
 
 ## Environment Setup
 
@@ -68,7 +68,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 3\. Enable Quartus tools to be called from command line:
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/26.1.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/25.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -99,7 +99,7 @@ sudo ln -sf /bin/bash /bin/sh
 
 ```bash
 cd $TOP_FOLDER
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
 cd arm-trusted-firmware 
 make bl31 PLAT=agilex 
 cd ..
@@ -110,7 +110,7 @@ cd ..
 ```bash
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -181,7 +181,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR  https://github.com/altera-fpga/linux-socfpga linux-socfpga
+git clone -b QPDS25.3_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga
 cd linux-socfpga
 make defconfig 
 ```
@@ -269,22 +269,31 @@ mkdir -p privatekeys; mkdir -p publickeys; mkdir -p qky
 Start a Nios V command shell to have all Quartus tools in the PATH:
 
 ```bash
-~/altera_pro/26.1.1/quartus/niosv/bin/niosv-shell
+~/altera_pro/25.3/niosv/bin/niosv-shell
 ```
 
 ### Generate Root Key
 
 ```bash
-quartus_sign --family=agilex7 --operation=make_private_pem --curve=secp384r1 --no_passphrase privatekeys/root0_private.pem
-quartus_sign --family=agilex7 --operation=make_public_pem privatekeys/root0_private.pem publickeys/root0_public.pem
-quartus_sign --family=agilex7 --operation=make_root publickeys/root0_public.pem qky/root0.qky
+quartus_sign --family=agilex7 --operation=make_private_pem --curve=secp384r1 --no_passphrase privatekeys/private_root0.pem
+quartus_sign --family=agilex7 --operation=make_public_pem privatekeys/private_root0.pem publickeys/public_root0.pem
+quartus_sign --family=agilex7 --operation=make_root publickeys/public_root0.pem qky/root0.qky
 ```
 
-### Generate FPGA Signing Keys
+### Generate Signing Keys
+
+FPGA Signing
 
 ```bash
-quartus_sign --family=agilex7 --operation=make_private_pem --curve=secp384r1 --no_passphrase privatekeys/sign0.pem
-quartus_sign --family=agilex7 --operation=make_public_pem privatekeys/sign0.pem publickeys/sign0_public.pem
+quartus_sign --family=agilex7 --operation=make_private_pem --curve=secp384r1 --no_passphrase privatekeys/private_sign0.pem
+quartus_sign --family=agilex7 --operation=make_public_pem privatekeys/private_sign0.pem publickeys/public_sign0.pem
+```
+
+SDOS Service Root (If SDOS is used)
+
+```bash
+quartus_sign --family=agilex7 --operation=make_private_pem --curve=secp384r1 --no_passphrase privatekeys/private_sdos.pem
+quartus_sign --family=agilex7 --operation=make_public_pem privatekeys/private_sdos.pem publickeys/public_sdos.pem
 ```
 
 ### Generate Signature Chain
@@ -292,7 +301,14 @@ quartus_sign --family=agilex7 --operation=make_public_pem privatekeys/sign0.pem 
 FPGA Signing - Cancel ID 1 – Permissions: FPGA/HPS/HPS Debug
 
 ```bash
-quartus_sign --family=agilex7 --operation=append_key --previous_pem=privatekeys/root0_private.pem --previous_qky=qky/root0.qky --permission=14 --cancel=1 --input_pem=publickeys/sign0_public.pem qky/sign0_cancel1.qky
+quartus_sign --family=agilex7 --operation=append_key --previous_pem=privatekeys/private_root0.pem --previous_qky=qky/root0.qky --permission=14 --cancel=1 --input_pem=publickeys/public_sign0.pem qky/sign0_cancel1.qky
+```
+
+SDOS Service Root Key Compact Certificate Signing (If SDOS is used)
+
+```bash
+quartus_sign --family=agilex7 --operation=append_key --previous_pem=privatekeys/private_root0.pem --previous_qky=qky/root0.qky \
+--permission=0x8000 --cancel=1 --input_pem=publickeys/public_sdos.pem qky/sdosccert1_sign_chain.qky
 ```
 
 ## Build Hardware Design
@@ -301,10 +317,10 @@ quartus_sign --family=agilex7 --operation=append_key --previous_pem=privatekeys/
 
 ```bash
 cd $TOP_FOLDER
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-unzip QPDS26.1.1_REL_GSRD_PR.zip
-rm QPDS26.1.1_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS26.1.1_REL_GSRD_PR agilex7f-ed-gsrd
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3_REL_GSRD_PR.zip
+unzip QPDS25.3_REL_GSRD_PR.zip
+rm QPDS25.3_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS25.3_REL_GSRD_PR agilex7f-ed-gsrd
 cd agilex7f-ed-gsrd
 make agf014eb-si-devkit-oobe-baseline-all
 cd ..
@@ -350,39 +366,25 @@ Finally, sign the .rbf files:
 
 ```bash
 quartus_sign --family=agilex7 --operation=sign --qky=../keys/qky/sign0_cancel1.qky \
---pem=../keys/privatekeys/sign0.pem ghrd.core.rbf signed_bitstream_core.rbf
+--pem=../keys/privatekeys/private_sign0.pem ghrd.core.rbf signed_bitstream_core.rbf
 quartus_sign --family=agilex7 --operation=sign --qky=../keys/qky/sign0_cancel1.qky \
---pem=../keys/privatekeys/sign0.pem ghrd.hps.rbf signed_bitstream_hps.rbf
+--pem=../keys/privatekeys/private_sign0.pem ghrd.hps.rbf signed_bitstream_hps.rbf
 ```
 
-## Generate SDOS Signed Certificate (If SDOS is needed)
+### Generate SDOS Signed Certificate (If SDOS is needed)
 
 Generate the SDOS signed certificate using the command below:
 
-First, generate the SDOS Service Root Key compact certificate:
-
 ```bash
 quartus_pfg -ccert -o ccert_type=PROV_SERVICE_ROOT_KEY -o entropy=<32-byte hex string> unsigned_prov_srk.ccert
-```
-
-Next, create a signature chain with the correct permission bit set using the following command:
-
-```bash
-quartus_sign --family=agilex7 --operation=append_key \
---previous_pem=root0_private.pem \
---previous_qky=root0.qky \
---permission=0x8000 \
---cancel=1 \
---input_pem=sdosccert1_public.pem \
-sdosccert1_sign_chain.qky
 ```
 
 Finally, sign the generated compact certificate using the following command:
 
 ```bash
 quartus_sign --family=agilex --operation=sign \
---pem=sdosccert1_private.pem \
---qky=sdosccert1_sign_chain.qky \
+--pem=../keys/privatekeys/private_sdos.pem \
+--qky=../keys/qky/sdosccert1_sign_chain.qky \
 unsigned_prov_srk.ccert signed_prov_srk.ccert
 ```
 
@@ -393,8 +395,8 @@ First, create the key data file in .txt format:
 ```bash
 cd $TOP_FOLDER
 mkdir fcs_prepare && cd fcs_prepare
-cp ../libfcs/build_prepare/tools/fcs_prepare/fcs_prepare .
-echo  111111112222222233333333444444445555555566666666777777778888888899999999aaaaAAAAbbbbBBBBccccCCCC >> key.txt
+cp $TOP_FOLDER/libfcs/build_prepare/tools/fcs_prepare/fcs_prepare .
+echo 1111122222333333444444555555666666777777888888999999aaAAbbBBccCC >> key.txt
 ./fcs_prepare -G aes_key.obj -i 14 -x 256 -k 1 -u 0x3 -t key.txt
 ```
 
@@ -417,8 +419,8 @@ Print crypto service key object
     key_protection      0
     key_wrap_version    0
     data          
-        11 11 11 11 22 22 22 22 33 33 33 33 44 44 44 44
-        55 55 55 55 66 66 66 66 77 77 77 77 88 88 88 88
+		11 11 12 22 22 33 33 33 44 44 44 55 55 55 66 66
+        66 77 77 77 88 88 88 99 99 99 aa aa bb bb cc cc
     iv            
         00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
     mac           
@@ -434,17 +436,11 @@ Print crypto service key object
 ```bash
 Cd $TOP_FOLDER
 mkdir fcs_client_bins && cd fcs_client_bins
-cp ../../libfcs/build/bin/fcs_client .
-mkdir fcs_drivers && fcs_drivers
+cp ../libfcs/build/bin/fcs_client .
+mkdir fcs_drivers && cd fcs_drivers
 cp ../../libfcs/build/lib/libFCS* .
 cd ..
-```
-
-### Copy the key object file
-
-```bash
-cp ../fcs_prepare/aes_test.obj .
-cp ..
+cp ../fcs_prepare/aes_key.obj .
 ```
 
 ## Create SD Card Image
@@ -508,7 +504,7 @@ On Windows, use the Win32DiskImager program, available at https://sourceforge.ne
 ```bash
 cd $TOP_FOLDER/bitstreams
 quartus_pgm -c 1 -m jtag -o "pi;../keys/qky/root0.qky"
-quartus_pgm -c 1 -m jtag -o "p;signed_prov_service_root_key_uds_efuse.ccert"
+quartus_pgm -c 1 -m jtag -o "p;signed_prov_srk.ccert"
 quartus_pgm -c 1 -m jtag -o "p;signed_bitstream_hps.rbf"
 ```
 
