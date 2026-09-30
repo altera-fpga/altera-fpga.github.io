@@ -1,29 +1,34 @@
 
 
-## Introduction
+# HPS GSRD User Guide for the Agilex™ 5 E-Series Premium Dev Kit
 
-### Overview
 
-The HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design") demonstrates basic HPS functionality on the Agilex 5 FPGA E-Series 065B Premium Development Kit (ES).
+##  Introduction
 
-The design is comprised of the following components:
+### GSRD Overview
 
-- Quartus Design 
-- HPS software:
+The Golden System Reference Design (GSRD) is a reference design running on the Agilex&trade; 5 E-Series Premium  Development Kit.
+
+The GSRD is comprised of the following components:
+
+- Golden Hardware Reference Design (GHRD)
+- Reference HPS software including:
   - Arm Trusted Firmware
   - U-Boot
   - Linux Kernel
   - Linux Drivers
   - Sample Applications
 
+> <span style="color: red; font-weight: bold;">Important Note</span>: In order to simplify the GSRD build process, Altera introduced GSRD 2.0, which uses Kas as a lightweight build orchestration layer on top of BitBake / Yocto. In this release, the HPS Enablement daughter card is supported, for both booting from SD card and QSPI. In future releases, all HPS daughtercards will be supported by GSRD 2.0.
+
 ### Prerequisites
 
-The following are required to be able to fully exercise this System Example Design:
+The following are required to be able to fully exercise the Agilex 5 Premium Development Kit GSRD:
 
-* Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit, ordering code DK-A5E065BB32AES1. Refer to [board documentation](https://www.altera.com/products/devkit/po-3002/agilex-5-fpga-and-soc-e-series-premium-development-kit-es) for more information.
+* Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit, ordering code DK-A5E065BB32AES1. Refer to [board documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html) for more information about the development kit.
 
   * HPS Enablement Expansion Board. Included with the development kit.
-  * HPS NAND Board. Enables eMMC storage option for HPS. Orderable separately.
+  * HPS NAND Board. Enables eMMC storage for HPS. Orderable separately.
   * HPS Test Board. Supports SD card boot, and external Arm tracing. Orderable separately.
   * Mini USB Cable. Included with the development kit.
   * Micro USB Cable. Included with the development kit.
@@ -32,53 +37,64 @@ The following are required to be able to fully exercise this System Example Desi
 
 * Host PC with:
 
-  * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the System Example Design.
+  * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   * 200 GB of free disk space for Yocto buils
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 
-  * TFTP server. This used to download the eMMC and NAND binaries to board to be flashed by U-Boot
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1 
+  * TFTP server. This used to download the eMMC binaries to board to be flashed by U-Boot
   
 * Local Ethernet network, with DHCP server
-* Internet connection. For downloading the files, especially when rebuilding the System Example Design.
+* Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
 ### Prebuilt Binaries
 
-The binaries for this system example design are located at [https://releases.rocketboards.org/2026.08/](https://releases.rocketboards.org/2026.08/):
+The Agilex&trade; 5 Premium Development Kit GSRD binaries are located at [https://releases.rocketboards.org/2026.01/](https://releases.rocketboards.org/2026.01/):
 
 | HPS Daughter Card | Boot Source | Link |
 | -- | ---------------------- | -- |
-| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/) |
-| Enablement Board | QSPI | [https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a55/](https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a55/) |
-| NAND Board | eMMC | [https://releases.rocketboards.org/2026.08/emmc/agilex5_dk_a5e065bb32aes1_emmc.baseline-a55/](https://releases.rocketboards.org/2026.08/emmc/agilex5_dk_a5e065bb32aes1_emmc.baseline-a55/) |
-| Test Board | SD Card | [https://releases.rocketboards.org/2026.08/debug/agilex5_dk_a5e065bb32aes1_debug.baseline-a55/](https://releases.rocketboards.org/2026.08/debug/agilex5_dk_a5e065bb32aes1_debug.baseline-a55/) |
+| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/](https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/) |
+| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/](https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/) |
+| Enablement Board | QSPI | [https://releases.rocketboards.org/2026.01/qspi/agilex5_dk_a5e065bb32aes1_qspi](https://releases.rocketboards.org/2026.01/qspi/agilex5_dk_a5e065bb32aes1_qspi) |
+| NAND Board | eMMC | [https://releases.rocketboards.org/2026.01/emmc/agilex5_dk_a5e065bb32aes1_emmc](https://releases.rocketboards.org/2026.01/emmc/agilex5_dk_a5e065bb32aes1_emmc) |
+| Test Board | SD Card | [https://releases.rocketboards.org/2026.01/debug/agilex5_dk_a5e065bb32aes1_debug](https://releases.rocketboards.org/2026.01/debug/agilex5_dk_a5e065bb32aes1_debug) |
+
+
+> *Note*: The GSRD release for the HPS Enablement Board comes in two versions: one which uses a Cortex-A55 as the boot core, and one which uses a Cortex-A76 as the boot core. The rest of the functionality is the same, and all cores are enabled in Linux by default. The instructions on how to exercise the binaries are the same for both versions. And the instructions for rebuilding the binaries are similar, just using a different version of the GHRD which has the respective option selected. 
 
 ### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1 and the following software component versions integrate the 25.3.1 release. 
 
+**Note:** Regarding the GHRD components in the following table, only the device-specific GHRD is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 5 Design | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
-| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
+| Agilex 3 GHRD | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.3.1_REL_GSRD_PR   |
+| Agilex 5 GHRD - Include GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3.1_REL_GSRD_PR |
+| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.3.1_REL_GSRD_PR |
+| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.3.1_REL_GSRD_PR |
+| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS25.3.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.43-lts | QPDS25.3.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.1   | QPDS25.3.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.10 | QPDS25.3.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
+| Yocto Project: meta-altera-fpga (for GSRD 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3.1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga (for Legacy GSRD) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest |
+| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3.1_REL_GSRD_PR |
+| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3.1_REL_GSRD_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 ### Release Notes
 
-See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR)
+See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3.1_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3.1_REL_GSRD_PR)
 
 ### Development Kit
 
-This design targets the * Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit, ordering code DK-A5E065BB32AES1. Refer to [board documentation](https://www.altera.com/products/devkit/po-3002/agilex-5-fpga-and-soc-e-series-premium-development-kit-es) for more information.
+This release targets the Agilex 5 FPGA E-Series 065B Premium Development Kit. Refer to [board documentation](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html) for more information about the development kit.
 
-![](images/agilex5-premium-devkit.png)
+![](images/agilex5-premium-devkit-es.png)
 
 <h4>Installing HPS Daughtercard</h4>
 
@@ -113,9 +129,9 @@ Configuration OFF-ON-ON-OFF corresponds to QSPI:
 
 ![](images/devkit-msel-qspi.png)
 
-### Quartus Design Overview
+### GHRD Overview
 
-The Quartus Design is an important part of the HPS Baseline System Example Design and consists of the following components:
+The Golden Hardware Reference Design is an important part of the GSRD and consists of the following components:
 
 - Hard Processor System (HPS)
   - Dual core Arm Cortex-A76 processor
@@ -138,7 +154,7 @@ The Quartus Design is an important part of the HPS Baseline System Example Desig
 
 ![](images/agilex5_ghrd.png) 
 
-The HPS Baseline System Example Design allows Quartus Designers to access each peripheral in the FPGA portion of the SoC with System Console, through the JTAG master module. This signal-level access is independent of the driver readiness of each peripheral.
+The GHRD allows hardware designers to access each peripheral in the FPGA portion of the SoC with System Console, through the JTAG master module. This signal-level access is independent of the driver readiness of each peripheral.
 
 <h4> MPU Address Maps</h4>
 
@@ -187,7 +203,7 @@ The HPS exposes 64 interrupt inputs for the FPGA logic. The following table list
 
 ## Exercise Prebuilt Binaries
 
-This section presents how to use the prebuilt binaries included with this System Example Design
+This section presents how to use the prebuilt binaries included with the GSRD release. 
 
 ### Configure Board
 
@@ -235,25 +251,26 @@ This section presents how to use HPS Enablement Board to boot from SD card, and 
 <hr/>
 <h5 id="write-sd-card-image">Write SD Card</h5>
 
-1\. Download SD card image archive from the prebuilt binaries:
+1\. Download SD card image archive from the prebuilt binaries, for either Cortex-A55 or Cortex-A76 as the boot core:
 
-* [https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/sdimage.tar.gz)
+* [https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz](https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/sdimage.tar.gz)
+* [https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/sdimage.tar.gz](https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/sdimage.tar.gz)
 
-2\. Extract the archive, obtaining the file `gsrd-console-image-agilex5e.rootfs.wic`
+2\. Extract the archive, obtaining the file `gsrd-console-image-agilex5.wic`
 
-3\. Write the `gsrd-console-image-agilex5e.rootfs.wic. SD card image to the micro SD card using the included USB writer in the host computer:
+3\. Write the gsrd-console-image-agilex5_devkit.wic. SD card image to the micro SD card using the included USB writer in the host computer:
 
 - On Linux, use the `dd` utility as shown next:
 ```bash
-# Determine the device asociated with the SD card on the host computer. 
+# Determine the device asociated with the SD card on the host computer.	
 cat /proc/partitions
 # This will return for example /dev/sdx
 # Use dd to write the image in the corresponding device
-sudo dd if=gsrd-console-image-agilex5e.rootfs.wic of=/dev/sdx bs=1M
+sudo dd if=gsrd-console-image-agilex5.wic of=/dev/sdx bs=1M
 # Flush the changes to the SD card
 sync
 ```
-- On Windows, use the Win32DiskImager program, available at [https://sourceforge.net/projects/win32diskimager](https://sourceforge.net/projects/win32diskimager). For this, first rename the `gsrd-console-image-agilex5e.rootfs.wic` to an `.img` file (`sdcard.img` for example) and write the image as shown in the next figure:
+- On Windows, use the Win32DiskImager program, available at [https://sourceforge.net/projects/win32diskimager](https://sourceforge.net/projects/win32diskimager). For this, first rename the gsrd-console-image-agilex5_devkit.wic to an .img file (sdcard.img for example) and write the image as shown in the next figure:
 
 ![](images/win32diskimager.png) 
 
@@ -267,15 +284,23 @@ sync
 
 4\. Download and extract the JIC image:
 
+When using Cortex-A55 as the boot core:
+
 ```bash
-wget https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/ghrd.hps.jic
+wget https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a55/uboot.jic
+```
+
+When using Cortex-A76 as the boot core:
+
+```bash
+wget https://releases.rocketboards.org/2026.01/gsrd/agilex5_dk_a5e065bb32aes1_gsrd.baseline-a76/uboot.jic
 ```
 
 5\. Write the JIC file to QSPI:
 
 ```bash
 jtagconfig --setparam 1 JtagClock 16M
-quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;uboot.jic "
 ```
 
 <h5>Boot Linux</h5>
@@ -287,6 +312,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 3\. Power up the board
 
 4\. Wait for Linux to boot, use `root` as user name, and no password wil be requested.
+
 
 <h5>Connect to Board Using SSH</h5>
 
@@ -322,11 +348,13 @@ ssh root@192.168.1.153
 
 <h5>Run Sample Applications</h5>
 
+> <span style="color: red; font-weight: bold;">Important Note</span>: By default, the sample applications are not built into the image. You need to rebuild the GSRD with the corresponding options enabled in Kas configuration: *Altera Linux Applications*>*Syschck*, *Example Applications*>*Hello World*.
+
 1\. Boot to Linux
 
-2\. Change current folder to `alteraFPGA` folder
+2\. Change current folder to `intelFPGA` folder
 ```bash
-cd alteraFPGA
+cd intelFPGA
 ```
 3\. Run the hello world application
 ```bash
@@ -339,6 +367,9 @@ cd alteraFPGA
 Press `q` to exit the `syscheck` application.
 
 <h5>Control LEDs Connected to FPGA Fabric</h5>
+
+> <span style="color: red; font-weight: bold;">Important Note</span>: By default, the LED control apps are not built into the image. You need to rebuild the GSRD with the corresponding option enabled in Kas configuration *Altera Linux Applications*: *LED Control*.
+
 
 The following LEDs are exercised:
 
@@ -380,6 +411,7 @@ The **delay** specifies the desired scrolling behavior:
 - **delay < 0** - stop scrolling
 - **delay = 0** - display current scroll delay
 
+
 You can also control the LEDs directly by accessing the following sysfs entries:
 
 * /sys/class/leds/fpga_led0/brightness
@@ -395,7 +427,7 @@ echo -e 1 > /sys/class/leds/fpga_led1/brightness
 
 <h5>Visit Board Web Page</h5>
 
-> <span style="color: red; font-weight: bold;">Important Note</span>: By default, the web server functionality is not built into the image. You need to rebuild the System Example Design with the corresponding option enabled in Kas configuration *Altera Linux Applications*: *LED Control*. If you use the default image, the webserver will sever a simple page that says "It works!"
+> <span style="color: red; font-weight: bold;">Important Note</span>: By default, the web server functionality is not built into the image. You need to rebuild the GSRD with the corresponding option enabled in Kas configuration *Altera Linux Applications*: *LED Control*. If you use the default image, the webserver will sever a simple page that says "It works!"
 
 
 1\. Boot to Linux  
@@ -432,16 +464,24 @@ Either write 1MB of zeroes at the beginning of the SD card, or remove the SD car
 
 4\. Download and extract the JIC image:
 
+To use Cortex-A55 as the boot core:
 ```bash
-wget https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a55/qspi_boot.hps.jic
+wget https://releases.rocketboards.org/2026.01/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a55/qspi_flash_image.hps.jic
 jtagconfig --setparam 1 JtagClock 16M
-quartus_pgm -c 1 -m jtag -o "pvi;qspi_boot.hps.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;qspi_flash_image.hps.jic"
+```
+
+To use Cortex-A76 as the boot core:
+```bash
+wget https://releases.rocketboards.org/2026.01/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a76/qspi_flash_image.hps.jic
+jtagconfig --setparam 1 JtagClock 16M
+quartus_pgm -c 1 -m jtag -o "pvi;qspi_flash_image.hps.jic"
 ```
 
 5\. Write JIC image to QSPI:
 ```bash
 jtagconfig --setparam 1 JtagClock 16M
-quartus_pgm -c 1 -m jtag -o "pvi;qspi_boot.hps.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;qspi_flash_image.hps.jic"
 ```
 
 <h5>Boot Linux</h5>
@@ -472,8 +512,6 @@ quartus_pgm -c 1 -m jtag -o "pvi;qspi_boot.hps.jic"
 
 This section presents how to use HPS NAND Board to boot from eMMC.
 
-The eMMC binaries are written to flash using U-Boot helper JIC images, and require you to have a TFTP server for storing the files to be retrieved by the helper through the network.
-
 #### Boot from eMMC
 <hr/>
 <h5>Configure Board</h5>
@@ -485,12 +523,12 @@ We are writing the eMMC Flash by using U-Boot commands. We are getting to U-Boot
 
 1\. Download, and extract the eMMC image
 ```bash
-wget https://releases.rocketboards.org/2026.08/emmc/agilex5_dk_a5e065bb32aes1_emmc.baseline-a55/sdimage.tar.gz
+wget https://releases.rocketboards.org/2026.01/emmc/agilex5_dk_a5e065bb32aes1_emmc/sdimage.tar.gz
 tar xf sdimage.tar.gz
 ```
 2\. Split the eMMC image into 1GB chunks and copy them to your TFT folder:
 ```bash
-split --bytes=1G gsrd-console-image-agilex5e.rootfs.wic
+split --bytes=1G gsrd-console-image-agilex5.wic
 mv xa* <your_tfp_folder>
 ```
 This will put the two chunks called `xaa` and `xab` on your TFTP folder.
@@ -502,9 +540,9 @@ This will put the two chunks called `xaa` and `xab` on your TFTP folder.
 
 6\. Download the helper JIC used to write the eMMC image, extract it and write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2026.08/emmc/agilex5_dk_a5e065bb32aes1_emmc.baseline-a55/qspi_helper.hps.jic
+wget https://releases.rocketboards.org/2026.01/emmc/agilex5_dk_a5e065bb32aes1_emmc/uboot.jic
 jtagconfig --setparam 1 JtagClock 16M
-quartus_pgm -c 1 -m jtag -o "pvi;qspi_helper.hps.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;uboot.jic"
 ```
 7\. Determine your host IP address using `ifconfig` to use it as the IP address of the TFTP server
 
@@ -546,9 +584,9 @@ reset
 
 4\. Download the JIC and write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2026.08/emmc/agilex5_dk_a5e065bb32aes1_emmc.baseline-a55/ghrd.hps.jic 
+wget https://releases.rocketboards.org/2026.01/emmc/agilex5_dk_a5e065bb32aes1_emmc/uboot.jic 
 jtagconfig --setparam 1 JtagClock 16M
-quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;uboot.jic"
 ```
 <h5>Boot Linux</h5>
 1\. Power down the board. 
@@ -558,7 +596,6 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 3\. Power up the board
 
 4\. Board will boot to Linux. Enter `root` as username, no password will be requested
-
 
 ### HPS Test Board
 
@@ -572,7 +609,7 @@ For this scenario we are using the HPS Test Board. There is single dipswitch on 
 
 <h5>Write SD Card</h5>
 
-1\. Download SD card image from the prebuilt binaries https://releases.rocketboards.org/2026.08/debug/agilex5_dk_a5e065bb32aes1_debug.baseline-a55/sdimage.tar.gz and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
+1\. Download SD card image from the prebuilt binaries https://releases.rocketboards.org/2026.01/debug/agilex5_dk_a5e065bb32aes1_debug/sdimage.tar.gz and extract the archive, obtaining the file `gsrd-console-image-agilex5_devkit.wic`.
 
 2\. Write the SD card image to the micro SD card using the included USB writer in the host computer, and `dd` utility on Linux, or  Win32DiskImager on Windows, available at [https://sourceforge.net/projects/win32diskimager](https://sourceforge.net/projects/win32diskimager). Please refer to the [Boot from SD Card](#boot-from-sd-card) section for more details about this.
 
@@ -586,9 +623,10 @@ For this scenario we are using the HPS Test Board. There is single dipswitch on 
 
 4\. Download the JIC and write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2026.08/debug/agilex5_dk_a5e065bb32aes1_debug.baseline-a55/ghrd.hps.jic 
+wget https://releases.rocketboards.org/2026.01/debug/agilex5_dk_a5e065bb32aes1_debug/ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz 
+tar xf ghrd_a5ed065bb32ae6sr0.hps.jic.tar.gz
 jtagconfig --setparam 1 JtagClock 16M
-quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;ghrd_a5ed065bb32ae6sr0.hps.jic"
 ```
 
 <h5>Boot Linux</h5>
@@ -600,21 +638,24 @@ quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 3\. Power up the board
 
 4\. Board will boot to Linux. Enter `root` as username, no password will be requested
-## Rebuild Binaries
 
-The embedded software for this System Example Design is built with Yocto, using KAS.
+## Build GSRD 2.0 Binaries
 
-[Kas](https://github.com/siemens/kas) is a Python-based lightweight build orchestration layer on top of BitBake/Yocto. Kas allows you to define your build environment in a YAML manifest, so you can perform checkout, environment setup, configuration, and build invocation with a single command. Kas provides a more maintainable build description, it offers improved reproducibility, reduced setup friction, and a clearer abstraction for managing multiple layers, revisions, and configuration fragments. 
+Kas is a Python-based lightweight build orchestration layer on top of BitBake/Yocto. Kas allows you to define your build environment in a YAML manifest, so you can perform checkout, environment setup, configuration, and build invocation with a single command. 
 
-The software source code for this System Example Design is released inside the [software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aes1-enablement/baseline/software/yocto_linux) directory. Accessing the link will display a README page with details regarding the software.
+In order to simplify the GSRD build process, Altera introduces GSRD 2.0, which uses [Kas](https://github.com/siemens/kas). In this release, the HPS Enablement daughter card is supported, for both booting from SD card and QSPI. In the future, more boards and daughter cards will be supported.
+
+Kas replaces the [gsrd-socfpga repository](https://github.com/altera-fpga/gsrd-socfpga), providing a more maintainable build description. It offers improved reproducibility, reduced setup friction, and a clearer abstraction for managing multiple layers, revisions, and configuration fragments. Once all GSRD variations move to Kas, the gsrd-soc-fpga repository and GSRD build script will be retired.
+
+The GSRD 2.0 software source code is released inside the [software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe/baseline/software/yocto_linux) directory of the Agilex 5 E-Series Golden Hardware Reference Design (GHRD). Accessing the link will display a README page with details on how the GSRD 2.0 is organized around the Kas tool.
 
 For more details about Kas, refer to the official documentation at [https://kas.readthedocs.io/en/latest/](https://kas.readthedocs.io/en/latest/).
 
 ### Kas Build Prerequisites
 
-Firtst, the same [prerequisites](#yocto-build-prerequisites) as for regular Yocto build are required. 
+The same [prerequisites](#yocto-build-prerequisites) as for regular Yocto build are required. 
 
-1\. Make sure you have Yocto system requirements met: [https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions](https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions).
+1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
 
 The command to install the required packages on Ubuntu 22.04 is:
 
@@ -649,19 +690,15 @@ sudo apt-get install python3-newt python3.10-venv
 
 
 
-The following diagram shows an overview of the building process:
-
-![](images/kas-sd.svg)
-
 <h5>Setup Environment</h5>
 
 1\. Create the top folder to store all the build artifacts:
 
 
 ```bash
-sudo rm -rf agilex5_pdk_065b_es_base.sd
-mkdir agilex5_pdk_065b_es_base.sd
-cd agilex5_pdk_065b_es_base.sd
+sudo rm -rf agilex5_gsrd_20.enablement_sd
+mkdir agilex5_gsrd_20.enablement_sd
+cd agilex5_gsrd_20.enablement_sd
 export TOP_FOLDER=`pwd`
 ```
 
@@ -670,7 +707,8 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
 
@@ -678,7 +716,9 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 
 
-<h5>Build Quartus Design</h5>
+<h5>Build Hardware Design</h5>
+
+
 
 
 
@@ -686,19 +726,21 @@ source ~/altera_pro/26.1.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aes1-enablement-baseline-a55.zip
-unzip dk-a5e065bb32aes1-enablement-baseline-a55.zip
-rm -f dk-a5e065bb32aes1-enablement-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
+unzip a5ed065es-premium-devkit-oobe-baseline-a55.zip
+rm -f a5ed065es-premium-devkit-oobe-baseline-a55.zip
 make baseline_a55-install
 ```
 
 
 The following files are created:
 
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55_hps_debug.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.core.rbf`
 
+
+<span style="color: red;">**Important Note:**</span> Please refer to [Migrate Hardware Design from GSRD 1.0 to GSRD 2.0](#migrate-hardware-design-from-gsrd-10-to-gsrd-20) section for important information about how to migrate from a hardware design based on GSRD 1.0 to GSRD 2.0.
 
 <h5>Build Yocto Using Kas</h5>
 
@@ -722,8 +764,8 @@ pip install kconfiglib
 
 
 ```bash
-cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf \
-   $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf
+cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.core.rbf \
+   $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/
 ```
 
 
@@ -757,7 +799,7 @@ export BB_ENV_PASSTHROUGH_ADDITIONS="$BB_ENV_PASSTHROUGH_ADDITIONS PARALLEL_MAKE
 cd $TOP_FOLDER
 rm -f baseline.hps.jic baseline.core.rbf
 quartus_pfg \
--c agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof baseline.jic \
+-c agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof baseline.jic \
 -o device=MT25QU128 \
 -o flash_loader=A5ED065BB32AE6SR0 \
 -o hps_path=agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex \
@@ -777,19 +819,15 @@ The following file is created:
 
 
 
-The following diagram shows an overview of the building process:
-
-![](images/kas-qspi.svg)
-
 <h5>Setup Environment</h5>
 
 1\. Create the top folder to store all the build artifacts:
 
 
 ```bash
-sudo rm -rf agilex5_pdk_065b_es_base.qspi
-mkdir agilex5_pdk_065b_es_base.qspi
-cd agilex5_pdk_065b_es_base.qspi
+sudo rm -rf agilex5_gsrd_20.enablement_qspi
+mkdir agilex5_gsrd_20.enablement_qspi
+cd agilex5_gsrd_20.enablement_qspi
 export TOP_FOLDER=`pwd`
 ```
 
@@ -798,7 +836,8 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
 
@@ -806,7 +845,7 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 
 
-<h5>Build Quartus Design</h5>
+<h5>Build Hardware Design</h5>
 
 
 
@@ -814,19 +853,21 @@ source ~/altera_pro/26.1.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aes1-enablement-baseline-a55.zip
-unzip dk-a5e065bb32aes1-enablement-baseline-a55.zip
-rm -f dk-a5e065bb32aes1-enablement-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
+unzip a5ed065es-premium-devkit-oobe-baseline-a55.zip
+rm -f a5ed065es-premium-devkit-oobe-baseline-a55.zip
 make baseline_a55-install
 ```
 
 
 The following files are created:
 
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55_hps_debug.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.core.rbf`
 
+
+<span style="color: red;">**Important Note:**</span> Please refer to [Migrate Hardware Design from GSRD 1.0 to GSRD 2.0](#migrate-hardware-design-from-gsrd-10-to-gsrd-20) section for important information about how to migrate from a hardware design based on GSRD 1.0 to GSRD 2.0.
 
 <h5>Build Yocto Using Kas</h5>
 
@@ -849,8 +890,8 @@ pip install kconfiglib
 
 
 ```bash
-cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf \
-   $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf
+cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.core.rbf \
+   $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/
 ```
 
 
@@ -886,348 +927,70 @@ mkdir qspi_boot
 cd qspi_boot
 ```
 
-
-2\. Link to the files that are needed from building the Quartus Design, and Yocto:
+2\. Get the `ubinize_nor.cfg` file which contains the details on how to build the `root.ubi` volume, and `agilex5_devkit_flash_image_hps.pfg` which contains the instructions for Programming File Generator on how to create the .jic filem and the `uboot.env` containing the U-Boot environment:
 
 ```bash
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof ghrd.sof
+wget https://releases.rocketboards.org/2026.01/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a55/ubinize_nor.cfg
+wget https://releases.rocketboards.org/2026.01/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a55/flash_image_hps.pfg
+wget https://releases.rocketboards.org/2026.01/qspi/agilex5_dk_a5e065bb32aes1_qspi.baseline-a55/uboot.env
+```
+
+3\. Link to the files that are needed from building the hardware design, and yocto:
+
+```bash
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof ghrd.sof
 ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex .
 ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot.itb u-boot.bin
 ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nor.ubifs .
 ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/kernel.itb .
 ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/boot.scr.uimg .
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/uboot.env .
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/scripts/ubinize_nor.cfg .
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/scripts/qspi_boot.pfg .
 ```
 
 
-3\. Create the `root.ubi` file and rename it to `hps.bin` as Programming File Generator needs the `.bin` extension:
+4\. Create the `root.ubi` file and rename it to `hps.bin` as Programming File Generator needs the `.bin` extension:
 
 ```bash
 ubinize -o root.ubi -p 65536 -m 1 -s 1 ubinize_nor.cfg
 ln -s root.ubi hps.bin
 ```
 
-4\. Create the JIC file:
+5\. Create the JIC file:
 
 ```bash
-quartus_pfg -c qspi_boot.pfg
+quartus_pfg -c flash_image_hps.pfg
 ```
 
 
 The following file will be created:
 
-* `$TOP_FOLDER/qspi_boot/qspi_boot.hps.jic`
-
-
-
-
-### HPS NAND Board
-
-#### Build eMMC Binaries
-
-
-
-The following diagram shows an overview of the building process:
-
-![](images/kas-sd.svg)
-
-<h5>Setup Environment</h5>
-
-1\. Create the top folder to store all the build artifacts:
-
-
-```bash
-sudo rm -rf agilex5_pdk_065b_es_base.emmc
-mkdir agilex5_pdk_065b_es_base.emmc
-cd agilex5_pdk_065b_es_base.emmc
-export TOP_FOLDER=`pwd`
-```
-
-
-Enable Quartus tools to be called from command line:
-
-
-```bash
-source ~/altera_pro/26.1.1/qinit.sh
-```
-
-
-
-
-
-
-<h5>Build Quartus Design</h5>
-
-
-
-
-```bash
-cd $TOP_FOLDER
-rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aes1-emmc-baseline-a55.zip
-unzip dk-a5e065bb32aes1-emmc-baseline-a55.zip
-rm -f dk-a5e065bb32aes1-emmc-baseline-a55.zip
-make baseline_a55-install
-```
-
-
-The following files are created:
-
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55_hps_debug.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
-
-
-<h5>Build Yocto Using Kas</h5>
-
-
-
-1\. Create and enter a new Python virtual environment:
-
-
-```bash
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux
-python3 -m venv venv --system-site-packages
-source venv/bin/activate
-pip install --upgrade pip
-pip install kas
-pip install --upgrade kas
-pip install kconfiglib
-```
-
-
-2\. Copy the core.rbf file to where Kas expects it to be:
-
-
-```bash
-cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf \
-   $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf
-```
-
-
-3\. Build Yocto with Kas:
-
-
-```bash
-kas build kas.yml gsrd-console-image
-```
-
-
-The following relevant files are created in `$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/`:
-
-* `gsrd-console-image-agilex5e.rootfs.wic`
-* `u-boot-spl-dtb.hex`
-
-> **Note**: If you experience build failures related to file-locks, you can work around these by reducing the parallelism of your build by running the following commands before running `kas`:
-
-```bash
-export PARALLEL_MAKE="-j 8"
-export BB_NUMBER_THREADS="8"
-export BB_ENV_PASSTHROUGH_ADDITIONS="$BB_ENV_PASSTHROUGH_ADDITIONS PARALLEL_MAKE BB_NUMBER_THREADS"
-```
-
-
-
-<h5>Build QSPI Image</h5>
-
-
-```bash
-cd $TOP_FOLDER
-rm -f baseline.hps.jic baseline.core.rbf
-quartus_pfg \
--c agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof baseline.jic \
--o device=MT25QU128 \
--o flash_loader=A5ED065BB32AE6SR0 \
--o hps_path=agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex \
--o mode=ASX4 \
--o hps=1
-```
-
-
-The following file is created:
-
-* `$TOP_FOLDER/baseline.hps.jic`
-
-
-
-<h5>Build QSPI Helper Image</h5>
-
-
-
-```bash
-cd $TOP_FOLDER
-rm -rf qspi_helper && mkdir qspi_helper && cd qspi_helper
-ln -s ../agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof ghrd.sof
-ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex u-boot-spl-dtb.hex
-ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot.itb u-boot.bin
-ln -s ../agilex5_soc_devkit_ghrd/software/yocto_linux/scripts/qspi_helper.pfg .
-quartus_pfg -c qspi_helper.pfg
-```
-
-
-The following file is created:
-
-* `$TOP_FOLDER/qspi_helper/qspi_helper.hps.jic`
-
-
-
-
-
-
-### HPS Test Board
-
-#### Build SD Card Binaries
-
-
-
-The following diagram shows an overview of the building process:
-
-![](images/kas-sd.svg)
-
-<h5>Setup Environment</h5>
-
-1\. Create the top folder to store all the build artifacts:
-
-
-```bash
-sudo rm -rf agilex5_pdk_065b_es_base.test
-mkdir agilex5_pdk_065b_es_base.test
-cd agilex5_pdk_065b_es_base.test
-export TOP_FOLDER=`pwd`
-```
-
-
-Enable Quartus tools to be called from command line:
-
-
-```bash
-source ~/altera_pro/26.1.1/qinit.sh
-```
-
-
-
-
-
-
-<h5>Build Quartus Design</h5>
-
-
-
-
-```bash
-cd $TOP_FOLDER
-rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aes1-test-baseline-a55.zip
-unzip dk-a5e065bb32aes1-test-baseline-a55.zip
-rm -f dk-a5e065bb32aes1-test-baseline-a55.zip
-make baseline_a55-install
-```
-
-
-The following files are created:
-
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55_hps_debug.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
-
-
-<h5>Build Yocto Using Kas</h5>
-
-
-
-1\. Create and enter a new Python virtual environment:
-
-
-```bash
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux
-python3 -m venv venv --system-site-packages
-source venv/bin/activate
-pip install --upgrade pip
-pip install kas
-pip install --upgrade kas
-pip install kconfiglib
-```
-
-
-2\. Copy the core.rbf file to where Kas expects it to be:
-
-
-```bash
-cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf \
-   $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf
-```
-
-
-3\. Build Yocto with Kas:
-
-
-```bash
-kas build kas.yml gsrd-console-image
-```
-
-
-The following relevant files are created in `$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/`:
-
-* `gsrd-console-image-agilex5e.rootfs.wic`
-* `u-boot-spl-dtb.hex`
-
-> **Note**: If you experience build failures related to file-locks, you can work around these by reducing the parallelism of your build by running the following commands before running `kas`:
-
-```bash
-export PARALLEL_MAKE="-j 8"
-export BB_NUMBER_THREADS="8"
-export BB_ENV_PASSTHROUGH_ADDITIONS="$BB_ENV_PASSTHROUGH_ADDITIONS PARALLEL_MAKE BB_NUMBER_THREADS"
-```
-
-
-
-<h5>Build QSPI Image</h5>
-
-
-```bash
-cd $TOP_FOLDER
-rm -f baseline.hps.jic baseline.core.rbf
-quartus_pfg \
--c agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof baseline.jic \
--o device=MT25QU128 \
--o flash_loader=A5ED065BB32AE6SR0 \
--o hps_path=agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex \
--o mode=ASX4 \
--o hps=1
-```
-
-
-The following file is created:
-
-* `$TOP_FOLDER/baseline.hps.jic`
+* `$TOP_FOLDER/qspi_boot/qspi_flash_image.hps.jic`
 
 
 
 
 ### Additional Guides
 
+
 #### Customize Kas Build
 
 The `kas.yml` file is the central configuration file used by Kas to define all components required for a reproducible Yocto build environment. It specifies the repositories, branches, layers, and build targets, as well as optional environment variables and machine settings. By consolidating this information into a single YAML file, `kas.yml` eliminates manual setup steps and ensures that builds can be easily replicated across systems or shared with collaborators. This makes it an essential part of version-controlled, automated build workflows.
 
-Kas also offers Kconfig-based customizations to provide a flexible and user-friendly configuration experience. This enables you to select repositories, layers, and build targets through a structured menu interface instead of editing YAML files directly. This approach combines the clarity and reproducibility of Kas with the modular configurability of the Linux kernel?s Kconfig system, making it easier to tailor builds for different platforms or use cases while maintaining a consistent and automated setup.
+Kas also offers Kconfig-based customizations to provide a flexible and user-friendly configuration experience. This enables you to select repositories, layers, and build targets through a structured menu interface instead of editing YAML files directly. This approach combines the clarity and reproducibility of Kas with the modular configurability of the Linux kernel’s Kconfig system, making it easier to tailor builds for different platforms or use cases while maintaining a consistent and automated setup.
 
-Review the kas.yml file, the Kconfig options and associated documentation at [https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aes1-enablement/baseline-a55/software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aes1-enablement/baseline-a55/software/yocto_linux).
+Review the kas.yml file, the Kconfig options and associated documentation at [https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe/baseline-a55/software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe/baseline-a55/software/yocto_linux).
 
-In the build instructions we did not use the Kconfig options, only the default options from `kas.yml` were used. This section shows how you can use `kas menu` to customize the build.
+In the build instructions presented in [Rebuilding GSRD 2.0 Binaries](#rebuilding-gsrd-20-binaries), we did not use the Kconfig options, only the default options from `kas.yml` were used. This section shows how you can use `kas menu` to customize the build.
 
 When using `kas menu`, the initial settings from `kas.yml` are customized with the user selected options through Kconfig, and are saved to a file called `.config.yaml` which is then used for build purposes.
 
 
-1\. Build the Quartus Design as mentioned before. Note the same Quartus Design is used for both booting from SD card and booting from QSPI.
+1\. Build the hardware design as mentioned before. Note the same hardware design is used for both booting from SD card and booting from QSPI.
 
-2\. Copy the core.rbf file to where Kas needs it to be:
+2\. Copy the core.rbf file to where Kas needs it to be. Note that the filename when using Kconfig is different than when using the `kas.yml` alone (`top.core.rbf` vs `baseline_a55_hps_debug.core.rbf`)
 
 ```bash
-cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf \
-   $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf
+cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.core.rbf \
+   $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/top.core.rbf
 ```
 
 3\. Create an enter a new Python virtual environment, not to interfere with the current system Python packages:
@@ -1264,30 +1027,44 @@ kas menu
 
 ![](images/kas-4-networking.png)
 
+
 9\. Go to **Altera Linux Applications** screen and select the desired applications:
 
-![](images/kas-6-altera-linux-applications.png)
+![](images/kas-5-altera-linux-applications.png)
 
 10\. Go to **Example Applications** screen and select what you need:
 
-![](images/kas-7-example-applications.png)
+![](images/kas-6-example-applications.png)
 
 11\. Once you have selected all the options you want, you can clik the **Build** button to start the build process:
 
-![](images/kas-8-build.png)
+![](images/kas-7-build.png)
+
+
+See below the locations where different components selected above are located in the generated filesystem:
+
+```bash
+/usr/bin/hello-world
+/usr/bin/coremark
+/usr/bin/etherlink
+/home/root/intelFPGA/blink
+/home/root/intelFPGA/scroll_client
+/home/root/intelFPGA/syschk
+/home/root/intelFPGA/toggle
+```
 
 #### Build Kas Interactively
 
 In addition to using `kas build` to build Yocto based on the `kas.yml` and `kas menu` to build Yocto based on Kconfig options selected from the text GUI, there is also the `kas shell` option, which allows you to build Yocto interactively.
 
 
-1\. Build the Quartus Design as mentioned before. Note the same Quartus Design is used for both booting from SD card and booting from QSPI.
+1\. Build the hardware design as mentioned before. Note the same hardware design is used for both booting from SD card and booting from QSPI.
 
-2\. Copy the core.rbf file to where Kas needs it to be:
+2\. Copy the core.rbf file to where bitbake needs it to be. 
 
 ```bash
-cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf \
-   $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf
+cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.core.rbf \
+   $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/
 ```
 
 3\. Create an enter a new Python virtual environment, not to interfere with the current system Python packages:
@@ -1320,7 +1097,18 @@ bitbake console-image-minimal
 bitbake gsrd-console-image
 ```
 
+#### Migrate Hardware Design from GSRD 1.0 to GSRD 2.0
+
+If your hardware design was originally based on the legacy GHRD in GSRD 1.0, and you want to migrate it to  be used with GSRD 2.0, you must ensure that the **JTAG user code** parameter gets defined  with a value of 0 or not defined (FFFFFFFF). This parameter can be found in Quartus Pro from the **Assignments** >> **Device** >> **Device and Pin Options** >> **General** menu. Alternatively, this parameter can also be defined in the **.qsf** file  in your Quartus project directory as **STRATIX_JTAG_USER_CODE**, so you can set this parameter to 0 or just delete the assignment line. This change is needed because in the GSRD 1.0, this parameter is used to indicate to U-Boot which configuration components (kernel image, device tree and 2nd phase fabric design) need to be loaded from the kernel.itb binary. The most relevant configurations supported in GSRD 1.0 were  for booting from OOO daughter card, booting from eMMC/NAND daughter card and exercise Partial Reconfiguration. In each one of these configurations a specific value in the **JTAG user code**/**STRATIX_JTAG_USER_CODE** was used. In the case of GSRD 2.0, the valid value for this parameter are:
+
+* 0:  Load kernel image, device tree and 2nd phase fabric design from kernel.itb. FPGA is configured.
+* 1: Load kernel image and device tree from kernel.itb. FPGA is not configured. Used for debug purposes.
+* FFFFFFFF or undefined: U-Boot assumes that the parameter is 0 and performs the actions described above.
+
+For any other value, U-Boot will fail to load a valid set of Linux components and 2nd phase fabric design.  
+
 #### Update kernel.itb File
+
 
 
 
@@ -1334,12 +1122,12 @@ The **kernel.itb** file is a Flattattened Image Tree (FIT) file that includes th
 
  \* One or more of these components to support the different board configurations.
 
-The **kernel.itb** is created from a **.its** (Image Tree Source file) that describes its structure. In the HPS Baseline System Example Design, the  **kernel.itb** file is generated in the following directory. In this directory you can also find the **.its** files and all other the components needed to create the **kernel.itb** :
+The **kernel.itb** is created from a **.its** (Image Tree Source file) that describes its structure. In the GSRD 2.0, the  **kernel.itb** file is generated in the following directory. In this directory you can also find the **.its** files and all other the components needed to create the **kernel.itb** :
 
-* **$TOP_FOLDER/<*gsrd-directory*>/<*project-directory*>/software/yocto_linux/build/tmp*/work/<*device*>-poky-linux/linux-socfpga-lts/<*linux-branch*>+git/linux-<*device*>-standard-build/**
+* **$TOP_FOLDER/<*gsrd-directory*>/<*project-directory*>/software/yocto_linux/build/tmp/work/<*device*>-poky-linux/linux-socfpga-lts/<*linux-branch*>+git/linux-<*device*>-standard-build/**
 
 As an example of this path, for the Agilex 5 device you will find this directory as
-$TOP_FOLDER/a5ed065es-premium-devkit-oobe/baseline-a55/software/yocto_linux/build/tmp*/work/agilex5e-poky-linux/linux-socfpga-lts/6.12.43-lts+git/linux-agilex5e-standard-build
+$TOP_FOLDER/a5ed065es-premium-devkit-oobe/baseline-a55/software/yocto_linux/build/tmp/work/agilex5e-poky-linux/linux-socfpga-lts/6.12.43-lts+git/linux-agilex5e-standard-build
 
 If you want to modify the **kernel.itb** by replacing one of the component or modifying any board configuration, you can do the following:
 
@@ -1349,9 +1137,9 @@ If you want to modify the **kernel.itb** by replacing one of the component or mo
    $ sudo apt install mtools
    ```
    
-2. Go to the folder in which the **kernel.itb** is being created under the HPS Baseline System Example Design.
+2. Go to the folder in which the **kernel.itb** is being created under the GSRD.
    ```bash
-   $ cd $TOP_FOLDER/<gsrd-directory>/<project-directory>/software/yocto_linux/build/tmp*/work/<device>-poky-linux/linux-socfpga-lts/<linux-branch>+git/linux-<device>-standard-build/
+   $ cd $TOP_FOLDER/<gsrd-directory>/<project-directory>/software/yocto_linux/build/tmp/work/<device>-poky-linux/linux-socfpga-lts/<linux-branch>+git/linux-<device>-standard-build/
    $ ls *.its
    fit_<device>_kernel_.its
    ```
@@ -1383,13 +1171,13 @@ Once that you have completed this procedure, you can use the new **kernel.itb** 
 #### Update SD Card Image
 
 
-As part of the Yocto HPS Baseline System Example Designbuild flow, the SD Card image is built for the SD Card boot flow. This image includes a couple of partitions. One of these partition (a FAT32) includes the U-Boot proper, the Distroboot boot script, U-Boot environment and the Linux **.itb** - which includes the Linux kernel image, the Linux device tree, the phase 2 FPGA configuration bitstream and board configuration (there may be several versions of these last 3 components). The 2nd partition (an EXT3 or EXT4 ) includes the Linux file system. 
+As part of the Yocto GSRD build flow, the SD Card image is built for the SD Card boot flow. This image includes a couple of partitions. One of these partition (a FAT32) includes the U-Boot proper, the Distroboot boot script, U-Boot environment and the Linux **.itb** - which includes the Linux kernel image, the Linux device tree, the phase 2 FPGA configuration bitstream and board configuration (there may be several versions of these last 3 components). The 2nd partition (an EXT3 or EXT4 ) includes the Linux file system. 
 
-![](images/sdcard_img.png){: style="height:500px"}
+![](/rel-25.3.1/embedded-designs/doc_modules/gsrd/images/sdcard_img.png){: style="height:500px"}
 
 If you want to replace any the components or add a new item in any of these partitions, without having to run again the Yocto build flow. 
 
-This can be done through the **wic** script available on the **Poky** repository that is included as part of the HPS Baseline System Example Design build directory:
+This can be done through the **wic** script available on the **Poky** repository that is included as part of the GSRD build directory:
 
 * **$TOP_FOLDER/<*gsrd-directory*>/<*project-directory*>/software/yocto_linux/poky/scripts/wic** 
 
@@ -1428,7 +1216,7 @@ The **wic** command allows you to inspect the content of a SD Card image, delete
     :
     :
    ```
-
+   
    The following steps show you how to replace the **kernel.itb** file inside of the fat32 partition in a .wic image.
 
 1. The **wic ls** command allows you to inspect or navigate over the directory structure inside of the SD Card image. For example you can observe the partitions  in the SD Card image in this way.
@@ -1455,7 +1243,7 @@ The **wic** command allows you to inspect the content of a SD Card image, delete
                         509 370 368 bytes free
 
   ```
-
+   
 2. The **wic rm** command allows you to delete any of the components in the selected partition. For example, you can delete the **kernel.itb** image from the partition 1(fat32 partition).
 
    ```bash
@@ -1469,6 +1257,712 @@ The **wic** command allows you to inspect the content of a SD Card image, delete
    ```
 
 **NOTE**: The **wic** application also allows you to modify any image with compatible vfat and ext* type partitions which also covers images used for **eMMC** boot flow.
+
+
+## Build GSRD 2.0 Roll Your Own Binaries
+
+Starting with release 25.3.1, a "roll your own" build flow is included. The key differences versus the Yocto/Kas build flow are:
+
+* Each software component is built separately: ATF, U-Boot, Linux kernel, Linux root filesystem
+* FPGA fabric is not configured
+* The device tree from Linux kernel source code is used. This device tree does not enable IP from the FPGA fabric side
+* Root filesystem is built with [Toybox](https://landley.net/toybox/)
+* Root filesystem is used as initramfs. That makes it immutable, changes are not saved
+* Binaries are not included, just build instructions
+* Just the HPS Enablement Daughtercard, boot from SD card scenario is supported
+
+*Note*: A similar example is presented in the [Linux Boot Tutorial Example Design](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/e-series/premium/boot-examples/ug-linux-boot-agx5e-premium/). The key differences for that example are:
+
+* FPGA fabric is configured from U-Boot before booting Linux
+* Software components are built separately: ATF, U-Boot, Linux kernel
+* Root filesystem is built with Yocto
+* Root filesystem is stored in an EXT3 partition on the SD card, it is not immutable.
+* Linux kernel modules are included in the root filesystem.
+
+### HPS Enablement Board
+
+#### Build SD Card Binaries
+
+The overall build flow is presented in the following diagram:
+
+![](images/agilex5-ryo-flow-sd.svg)
+
+The following diagram shows details on the flow used by the included roll your own build script:
+
+![](images/agilex5-ryo-script-sd.svg)
+
+The complete build instructions are presented below.
+
+
+
+<h5>Prerequisites</h5>
+
+The `mtools` are required in order to create the SD card image containing a single FAT partition. Install them on your Linux host. For Ubuntu you can use the following command:
+
+```bash
+sudo apt-get install mtools
+```
+
+<h5>Setup Environment</h5>
+
+1\. Create the top folder to store all the build artifacts:
+
+
+```bash
+sudo rm -rf agilex5_gsrd_20.ryo
+mkdir agilex5_gsrd_20.ryo
+cd agilex5_gsrd_20.ryo
+export TOP_FOLDER=`pwd`
+```
+
+
+Enable Quartus tools to be called from command line:
+
+
+```bash
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+```
+
+
+
+
+
+
+<h5>Build Hardware Design</h5>
+
+
+
+
+```bash
+cd $TOP_FOLDER
+rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
+unzip a5ed065es-premium-devkit-oobe-baseline-a55.zip
+rm -f a5ed065es-premium-devkit-oobe-baseline-a55.zip
+make baseline_a55-install
+```
+
+
+The following files are created:
+
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.core.rbf`
+
+
+<span style="color: red;">**Important Note:**</span> Please refer to [Migrate Hardware Design from GSRD 1.0 to GSRD 2.0](#migrate-hardware-design-from-gsrd-10-to-gsrd-20) section for important information about how to migrate from a hardware design based on GSRD 1.0 to GSRD 2.0.
+
+<h5>Build Software Components</h5>
+
+
+1\. Run the provided script to build the embedded software components: ATF, U-Boot, Linux Kernel & Device Tree, Linux rootfs:
+
+
+```bash
+cd $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/ryo_linux
+./ryo_linux_sd.sh
+```
+
+
+The following relevant files are created in `$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/ryo_linux/build_output/`:
+
+* `sdcard.img`
+* `u-boot-socfpga/spl/u-boot-spl-dtb.hex`
+
+
+
+<h5>Build QSPI Image</h5>
+
+
+```bash
+cd $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/ryo_linux/build_output/
+rm -f output_file.hps.jic output_file.core.rbf
+quartus_pfg \
+-c  $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof output_file.jic \
+-o device=MT25QU128 \
+-o flash_loader=A5ED065BB32AE6SR0 \
+-o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o hps=1
+```
+
+
+The following file is created in `$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/ryo_linux/build_output/`:
+
+* `output_file.hps.jic`
+
+
+
+
+Refer to the [Boot from SD Card](#boot-from-sd-card) section for details on how to write the SD card image and QSPI image, then boot to Linux. Note that the roll your own root filesystem is immutable, so any changes you may make will be discarded once you power cycle the board or reboot Linux. Also note that it is a simple, small root filesystem, without the sample applications or the webserver.
+
+## Build GSRD 1.0 Binaries
+
+### Yocto Build Prerequisites
+
+1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
+
+The command to install the required packages on Ubuntu 22.04 is:
+
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \
+build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
+python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit mesa-common-dev zstd \
+liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \
+tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
+device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
+```
+
+On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:
+
+```bash
+ sudo ln -sf /bin/bash /bin/sh
+```
+
+**Note**: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.
+
+### HPS NAND Board
+
+This section presents how to build the binaries for HPS NAND Board, for booting from eMMC.
+
+#### Build eMMC binaries
+<hr/>
+
+The following diagram shows how to build the eMMC binaries that target the HPS NAND Daughtercard:
+![](images/agilex5-build-sd-flow.svg)
+<h5>Setup Environment</h5>
+
+1\. Create the top folder to store all the build artifacts:
+
+```bash
+sudo rm -rf agilex5_gsrd.emmc
+mkdir agilex5_gsrd.emmc
+cd agilex5_gsrd.emmc
+export TOP_FOLDER=`pwd`
+```
+
+
+Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
+
+
+```bash
+cd $TOP_FOLDER
+wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
+arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
+export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-none-linux-gnu-
+```
+
+Enable Quartus tools to be called from command line:
+
+
+```bash
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+```
+
+
+
+
+
+<h5>Build Hardware Design</h5>
+
+
+```bash
+cd $TOP_FOLDER
+rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-emmc-legacy-baseline.zip
+unzip a5ed065es-premium-devkit-emmc-legacy-baseline.zip
+rm -f a5ed065es-premium-devkit-emmc-legacy-baseline.zip
+make legacy_baseline-build
+pushd software/hps_debug && ./build.sh && popd
+quartus_pfg -c output_files/legacy_baseline.sof \
+  output_files/legacy_baseline_hps_debug.sof \
+  -o hps_path=software/hps_debug/hps_wipe.ihex
+cd ..
+```
+
+
+The following files are created:
+
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof`
+
+<h5>Build Core RBF</h5>
+
+
+```bash
+cd $TOP_FOLDER
+rm -f ghrd_a5ed065bb32ae6sr0.rbf
+quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof ghrd_a5ed065bb32ae6sr0.rbf -o hps=1
+```
+
+
+The following file is created:
+
+* `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf`
+
+
+
+
+<h5>Set Up Yocto</h5>
+
+1\. Clone the Yocto script and prepare the build:
+
+```bash
+cd $TOP_FOLDER
+rm -rf gsrd-socfpga
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+cd gsrd-socfpga
+. agilex5_dk_a5e065bb32aes1-gsrd-build.sh
+build_setup
+```
+
+
+<h5>Customize Yocto</h5>
+1\. Save the `core.rbf` as `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_emmc_ghrd.core.rbf`  
+
+2\. Update the recipe `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb` as follows:  
+
+* Replace the entry `${GHRD_REPO}/agilex5_dk_a5e065bb32aes1_emmc_${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_emmc_core` with `file://agilex5_dk_a5e065bb32aes1_emmc_ghrd.core.rbf;sha256sum=<CORE_SHA>` where `CORE_SHA` is the sha256 checksum of the file
+* Delete the line `SRC_URI[agilex5_dk_a5e065bb32aes1_emmc_core.sha256sum] = "bf11c8cb3b6d9487f93ce0e055b1e5256998a25b25ac4690bef3fcd6225ee1ae"`
+The above are achieved by the following instructions:
+
+```bash
+CORE_RBF=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_emmc_ghrd.core.rbf
+ln -s $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf $CORE_RBF
+OLD_URI="\${GHRD_REPO}\/agilex5_dk_a5e065bb32aes1_emmc_\${ARM64_GHRD_CORE_RBF};name=agilex5_dk_a5e065bb32aes1_emmc_core"
+CORE_SHA=$(sha256sum $CORE_RBF | cut -f1 -d" ")
+NEW_URI="file:\/\/agilex5_dk_a5e065bb32aes1_emmc_ghrd.core.rbf;sha256sum=$CORE_SHA"
+sed -i "s/$OLD_URI/$NEW_URI/g" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+sed -i "/agilex5_dk_a5e065bb32aes1_emmc_core\.sha256sum/d" $WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb
+```
+
+
+<h5>Build Yocto</h5>
+
+Build Yocto:
+
+```bash
+bitbake_image
+```
+
+Gather files:
+
+```bash
+package
+```
+
+
+The following files are created:
+
+* `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex`
+* `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot.itb`
+* `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz`
+
+
+<h5>Build QSPI Image</h5>
+
+
+```bash
+cd $TOP_FOLDER
+rm -f ghrd_a5ed065bb32ae6sr0.hps.jic ghrd_a5ed065bb32ae6sr0.core.rbf
+quartus_pfg \
+-c agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof ghrd_a5ed065bb32ae6sr0.jic \
+-o device=MT25QU128 \
+-o flash_loader=A5ED065BB32AE6SR0 \
+-o hps_path=gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o hps=1
+```
+
+The following file is created:
+
+* `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic`
+
+
+<h5>Build HPS RBF</h5>
+This is an optional step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.
+
+
+```bash
+cd $TOP_FOLDER
+rm -f ghrd_a5ed065bb32ae6sr0.hps.rbf
+quartus_pfg \
+-c agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof  ghrd_a5ed065bb32ae6sr0.rbf \
+-o hps_path=gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+-o hps=1
+```
+
+
+The following file is created:
+
+* `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf`
+
+<h5>Building QSPI Helper JIC</h5>
+
+We are writing the eMMC Flash by using U-Boot commands. We are getting to U-Boot prompt by booting from QSPI using a helper JIC image which contains U-Boot, thereby not relying on what is already in eMMC.
+The following diagram illustrates how the helper JIC is built, base on the GHRD and Yocto compilation results:
+![](images/agilex5-build-helper-flow.svg)
+
+1\. Create folder to contain the helper JIC artifacts
+
+```bash
+cd $TOP_FOLDER
+rm -rf jic-helper
+mkdir jic-helper
+```
+
+2\. Retrieve the .pfg file instructing the Quartus Programming File Generator on how to create the JIC file, and tweak it a little bit to make it smaller:
+
+```bash
+cd jic-helper
+wget https://releases.rocketboards.org/2026.01/emmc/agilex5_dk_a5e065bb32aes1_emmc/uboot-only.pfg
+sed -i 's/directory=/hps="1" directory=/g' uboot-only.pfg
+sed -i 's/type="JIC"/type="PERIPH_JIC"/g' uboot-only.pfg
+sed -i 's/MT25QU02G/MT25QU01G/g' uboot-only.pfg
+sed -i 's/ghrd_a5ed065bb32ae6sr0\.sof/legacy_baseline.sof/g' uboot-only.pfg
+```
+
+3\. Bring in the files that are needed:
+
+```bash
+ln -s $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex .
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof .
+```
+
+4\. Process `u-boot.itb` file to be exactly 2MB in size, and have a `.bin` extension as needed by Quartus Programming File Generator:
+
+```bash
+cp $TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot.itb .
+uboot_part_size=2*1024*1024
+uboot_size=`wc -c < u-boot.itb`
+uboot_pad="$((uboot_part_size-uboot_size))"
+truncate -s +$uboot_pad u-boot.itb
+mv u-boot.itb u-boot.bin
+```
+
+5\. Create the JIC file:
+
+```bash
+quartus_pfg -c uboot-only.pfg
+```
+
+The following file will be created:
+
+* `$TOP_FOLDER/jic-helper/agilex_flash_image.hps.jic`
+
+
+
+### HPS Test Board
+
+This section presents how to build the binaries for HPS Test Board.
+
+#### Build SD Card Binaries
+<hr/>
+
+The following diagram shows how the binaries are built for the HPS Test Daughtercard:  
+
+![](images/agilex5-build-sd-flow.svg)
+<h5>Setup Environment</h5>
+
+1\. Create the top folder to store all the build artifacts:
+
+```bash
+sudo rm -rf agilex5_gsrd.test
+mkdir agilex5_gsrd.test
+cd agilex5_gsrd.test
+export TOP_FOLDER=`pwd`
+```
+
+
+Enable Quartus tools to be called from command line:
+
+
+```bash
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+```
+
+
+
+
+
+
+<h5>Build Hardware Design</h5>
+
+
+```bash
+cd $TOP_FOLDER
+rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-debug2-legacy-baseline.zip
+unzip a5ed065es-premium-devkit-debug2-legacy-baseline.zip
+rm -f a5ed065es-premium-devkit-debug2-legacy-baseline.zip
+make legacy_baseline-build
+pushd software/hps_debug && ./build.sh && popd
+quartus_pfg -c output_files/legacy_baseline.sof \
+  output_files/legacy_baseline_hps_debug.sof \
+  -o hps_path=software/hps_debug/hps_wipe.ihex
+cd ..
+```
+
+
+The following files are created:
+
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof`
+<h5>Build Core RBF</h5>
+
+
+```bash
+cd $TOP_FOLDER
+rm -f ghrd_a5ed065bb32ae6sr0.rbf
+quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof ghrd_a5ed065bb32ae6sr0.rbf -o hps=1
+```
+
+
+
+The following file is created:
+
+* `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf`
+
+
+
+<h5>Set Up Yocto</h5>
+
+1\. Clone the Yocto script and prepare the build:
+
+```bash
+cd $TOP_FOLDER
+rm -rf gsrd-socfpga
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+cd gsrd-socfpga
+. agilex5_dk_a5e065bb32aes1-gsrd-build.sh
+build_setup
+```
+
+
+<h5>Customize Yocto</h5>
+Replace the file `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_debug2_ghrd.core.rbf` with the rebuilt core.rbf file:
+
+```bash
+CORE_RBF=$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/files/agilex5_dk_a5e065bb32aes1_debug2_ghrd.core.rbf
+rm -f $CORE_RBF
+ln -s $TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.core.rbf $CORE_RBF
+```
+
+
+<h5>Build Yocto</h5>
+
+Build Yocto:
+
+```bash
+bitbake_image
+```
+
+Gather files:
+
+```bash
+package
+```
+
+The following files are created:
+
+* `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex`
+* `$TOP_FOLDER/gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/sdimage.tar.gz`
+
+
+<h5>Build QSPI Image</h5>
+
+
+```bash
+cd $TOP_FOLDER
+rm -f ghrd_a5ed065bb32ae6sr0.hps.jic ghrd_a5ed065bb32ae6sr0.core.rbf
+quartus_pfg \
+-c agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof ghrd_a5ed065bb32ae6sr0.jic \
+-o device=MT25QU128 \
+-o flash_loader=A5ED065BB32AE6SR0 \
+-o hps_path=gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o hps=1
+```
+
+
+The following file is created:
+
+* `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.jic`
+
+
+<h5>Build HPS RBF</h5>
+This is an optional step, in which you can build an HPS RBF file, which can be used to configure the HPS through JTAG instead of QSPI though the JIC file.
+
+
+
+```bash
+cd $TOP_FOLDER
+rm -f ghrd_a5ed065bb32ae6sr0.hps.rbf
+quartus_pfg \
+-c agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof  ghrd_a5ed065bb32ae6sr0.rbf \
+-o hps_path=gsrd-socfpga/agilex5_dk_a5e065bb32aes1-gsrd-images/u-boot-agilex5-socdk-gsrd-atf/u-boot-spl-dtb.hex \
+-o hps=1
+```
+
+
+The following file is created:
+
+* `$TOP_FOLDER/ghrd_a5ed065bb32ae6sr0.hps.rbf`
+
+
+
+
+### Additional Guides
+
+#### Update kernel.itb File
+
+
+
+
+The **kernel.itb** file is a Flattattened Image Tree (FIT) file that includes the following components:
+
+* Linux kernel.
+* Several board configurations that indicate what components from the **kernel.itb** (Linux kernel, device tree and 2nd Phase fabric design) should be used for a specific board.
+* Linux device tree*.
+* 2nd Phase Fabric Design*.
+
+ \* One or more of these components to support the different board configurations.
+
+The **kernel.itb** is created from a **.its** (Image Tree Source file) that describes its structure. In the GSRD, the  **kernel.itb** file is located in the following directory, where you can find also all the components needed to create it, including the .its file:
+
+* **$TOP_FOLDER/gsrd-socfpga/<*device-devkit*>-gsrd-rootfs/tmp/work/<*device-devkit*>-poky-linux/linux-socfpga-lts/<*linux branch*>+git/linux-<*device devkit*>-standard-build/**
+
+If you want to modify the kernel.itb by replacing one of the component or modifying any board configuration, you can do the following:
+
+1. Install **mtools** package in your Linux machine.
+   ```bash
+   $ sudo apt update
+   $ sudo apt install mtools
+   ```
+   
+2. Go to the folder in which the **kernel.itb** is being created under the GSRD.
+   ```bash
+   $ cd $TOP_FOLDER/gsrd-socfpga/<device-devkit>-gsrd-rootfs/tmp/work/<device-devkit>-poky-linux/linux-socfpga-lts/<linux branch>+git/linux-<device-devkit>-standard-build/
+   $ ls *.its
+   fit_kernel_<device-devkit>.its
+   ```
+   
+3. In the .its file, observe the components that integrates the kernel.itb identifying the nodes as indicated next:
+
+   **images** node:<br>
+   - **kernel** node - Linux kernel defined with the **data** parameter in the node.<br>
+   - **fdt-X** node    - Device tree X defined with the **data** parameter in the node.<br>
+   - **fpga-X** node -  2nd Phase FPGA Configuration .rbf defined with the **data** parameter in the node.
+   
+   **configurations** node:<br>
+   - **board-X** node - Board configuration with the name defined with the **description** parameter. The components for a specific board configuration are defined with the **kernel**, **fdt** and **fpga** parameters.   
+
+4. In this directory, you can replace any of the files corresponding to any of the components that integrate the **kernel.itb**, or you can also modify the **.its** to change the name/location of any of the components or change the board configuration.
+
+5. Finally, you need to re-generate the new **kernel.itb** as indicated next.
+   ```bash
+   $ rm kernel.itb
+   $ mkimage -f fit_kernel_<device-devkit>.its kernel.itb
+   ```
+
+At this point you can use the new **kernel.itb** as needed. Some options could be:
+
+* Use U-Boot to bring it to your SDRAM board through TFTP to boot Linux or to write it to a SD Card device
+* Update the flash image (QSPI, SD Card, eMMC or NAND) from your working machine.
+ 
+
+#### Update SD Card Image
+
+
+As part of the Yocto GSRD build flow, the SD Card image is built for the SD Card boot flow. This image includes a couple of partitions. One of these partition (a FAT32) includes the U-Boot proper, a Distroboot boot script and the Linux **.itb** - which includes the Linux kernel image, , the Linux device tree, the phase 2 FPGA configuration bitstream and board configuration (there may be several versions of these last 3 components). The 2nd partition (an EXT3 or EXT4 ) includes the Linux file system. 
+
+![](/rel-25.3.1/embedded-designs/doc_modules/gsrd/images/sdcard_img.png){: style="height:500px"}
+
+If you want to replace any the components or add a new item in any of these partitions, without having to run again the Yocto build flow. 
+
+This can be done through the **wic** application available on the **Poky** repository that is included as part of the GSRD build directory: **$TOP_FOLDER/gsrd-socfpga/poky/scripts/wic** 
+
+This command requires to be run in the Yocto build environment that can be setup as shown next in a Linux terminal:
+  ```bash
+  cd $TOP_FOLDER/gsrd-socfpga/
+  source poky/oe-init-build-env build
+  ```
+You can verify that the Yocto environment has been setup using the **which bitbake** command, which will respond with the path of the **bitbake** command located at **poky/bitbake/bin/bitbake**.
+
+The **wic** command allows you to inspect the content of a SD Card image, delete, add or replace any component inside of the image. This command is also provided with help support:
+
+   ```bash
+   $ $TOP_FOLDER/gsrd-socfpga/poky/scripts/wic help
+   
+   Creates a customized OpenEmbedded image.
+
+   Usage:  wic [--version]
+           wic help [COMMAND or TOPIC]
+           wic COMMAND [ARGS]
+
+       usage 1: Returns the current version of Wic
+       usage 2: Returns detailed help for a COMMAND or TOPIC
+       usage 3: Executes COMMAND
+
+   COMMAND:
+
+    list   -   List available canned images and source plugins
+    ls     -   List contents of partitioned image or partition
+    rm     -   Remove files or directories from the vfat or ext* partitions
+    help   -   Show help for a wic COMMAND or TOPIC
+    write  -   Write an image to a device
+    cp     -   Copy files and directories to the vfat or ext* partitions
+    create -   Create a new OpenEmbedded image
+    :
+    :
+   ```
+   The following steps show you how to replace the **kernel.itb** file inside of the fat32 partition in a .wic image.
+
+1. The **wic ls** command allows you to inspect or navigate over the directory structure inside of the SD Card image. For example you can observe the partitions  in the SD Card image in this way:
+
+   ```bash
+   # Here you can inspect the content a wic image see the 2 partitions inside of the SD Card image
+   $ $TOP_FOLDER/gsrd-socfpga/poky/scripts/wic ls my_image.wic
+   Num     Start        End          Size      Fstype
+   1       1048576    525336575    524288000  fat32    
+   2     525336576   2098200575   1572864000  ext4   
+   
+   # Here you can naviagate inside of the partition 1
+   $ $TOP_FOLDER/gsrd-socfpga/poky/scripts/wic ls my_image.wic:1
+   Volume in drive : is boot       
+   Volume Serial Number is 9D2B-6341
+   Directory for ::/
+   
+   BOOTSC~1 UIM      2431 2011-04-05  23:00  boot.scr.uimg
+   kernel   itb  15160867 2011-04-05  23:00 
+   u-boot   itb   1052180 2011-04-05  23:00 
+        3 files          16 215 478 bytes
+                        506 990 592 bytes free
+   ```
+   
+2. The **wic rm** command allows you to delete any of the components in the selected partition. For example, you can delete the **kernel.itb** image from the partition 1(fat32 partition).
+
+   ```bash
+   $ $TOP_FOLDER/gsrd-socfpga/poky/scripts/wic rm my_image.wic:1/kernel.itb
+   ```
+
+3. The **wic cp** command allows you to copy any new item or file from your Linux machine to a specific partition and location inside of the SD Card image. For example, you can copy a new **kernel.itb** to the partition 1.
+
+   ```bash
+   $ $TOP_FOLDER/gsrd-socfpga/poky/scripts/wic cp <path_new_kernel.itb> my_image.wic:1/kernel.itb
+   ```
+
+**NOTE**: The **wic** application also allows you to modify any image with compatible vfat and ext* type partitions which also covers images used for **eMMC** boot flow. 
+
 
 ## Notices & Disclaimers
 

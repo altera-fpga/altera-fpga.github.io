@@ -1,0 +1,31 @@
+
+package require qsys
+
+add_component intel_jop_blaster_0 ip/fabric_subsys/fabric_subsys_intel_jop_blaster_0.ip intel_jop_blaster intel_jop_blaster_0
+
+load_component intel_jop_blaster_0
+set_component_parameter_value EXPORT_SLD_ED {0}
+set_component_parameter_value MEM_SIZE {4096}
+set_component_parameter_value MEM_WIDTH {64}
+set_component_parameter_value USE_TCK_ENA {1}
+set_component_project_property HIDE_FROM_IP_CATALOG {false}
+save_component
+
+
+add_connection u_system_clock.out_clk/intel_jop_blaster_0.clk
+set_connection_parameter_value u_system_clock.out_clk/intel_jop_blaster_0.clk clockDomainSysInfo {1}
+set_connection_parameter_value u_system_clock.out_clk/intel_jop_blaster_0.clk clockRateSysInfo {100000000.0}
+set_connection_parameter_value u_system_clock.out_clk/intel_jop_blaster_0.clk clockResetSysInfo {}
+set_connection_parameter_value u_system_clock.out_clk/intel_jop_blaster_0.clk resetDomainSysInfo {1}
+
+add_connection u_system_reset.out_reset/intel_jop_blaster_0.reset
+set_connection_parameter_value u_system_reset.out_reset/intel_jop_blaster_0.reset clockDomainSysInfo {2}
+set_connection_parameter_value u_system_reset.out_reset/intel_jop_blaster_0.reset clockResetSysInfo {}
+set_connection_parameter_value u_system_reset.out_reset/intel_jop_blaster_0.reset resetDomainSysInfo {2}
+
+add_connection u_peripherals_mm_bridge.m0/intel_jop_blaster_0.avmm_s
+set_connection_parameter_value u_peripherals_mm_bridge.m0/intel_jop_blaster_0.avmm_s baseAddress {0x00014000}
+
+save_system fabric_subsys
+
+puts "Update complete."

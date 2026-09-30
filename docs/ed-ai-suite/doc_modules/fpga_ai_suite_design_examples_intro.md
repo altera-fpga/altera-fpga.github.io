@@ -8,8 +8,10 @@ Documentation for the FPGA AI Suite is split across a few publications. Use the 
 
 | Title and Description | Link |
 |----------------------|------|
-| **Release Notes**<br>Provides late-breaking information about the FPGA AI Suite including new features, important bug fixes, and known issues. | [Link](https://docs.altera.com/r/docs/772497/2026.1.1/fpga-ai-suite-version-2026.1.1-release-notes/fpga-ai-suite-version-2026.1.1-release-notes) |
-| **FPGA AI Suite Handbook**<br>Get up and running with the FPGA AI Suite by learning how to initialize your compiler environment and reviewing the various design examples and tutorials provided with the FPGA AI Suite <br>Describes the use modes of the graph compiler (`dla_compiler`). It also provides details about the compiler command options and the format of compilation inputs and outputs. | [Link](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/fpga-ai-suite-handbook) |
+| **Release Notes**<br>Provides late-breaking information about the FPGA AI Suite including new features, important bug fixes, and known issues. | [Link](https://www.intel.com/content/www/us/en/docs/programmable/772497/2025-3/version-release-notes.html) |
+| **FPGA AI Suite Handbook**<br>Get up and running with the FPGA AI Suite by learning how to initialize your compiler environment and reviewing the various design examples and tutorials provided with the FPGA AI Suite <br>Describes the use modes of the graph compiler (`dla_compiler`). It also provides details about the compiler command options and the format of compilation inputs and outputs. | [Link](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/handbook.html) |
+| **AN 1008: Using the FPGA AI Suite Docker Image**<br>Describes how to install and run the FPGA AI Suite Docker image with a Docker client running on a Microsoft* Windows* system. The containerized FPGA AI Suite enables easy and quick access to the various tools in FPGA AI Suite.<br>Provides an overview of the FPGA AI Suite IP and the parameters you can set to customize it. This document also covers the FPGA AI Suite IP generation utility. | [Link](https://www.intel.com/content/www/us/en/docs/programmable/820119/2025-1/using-the-docker-image-overview.html) |
+
 
 # 2.0 FPGA AI Suite Design Examples
 
@@ -19,25 +21,24 @@ The following is a comprehensive list of the available FPGA AI Suite Design Exam
 
 | Design Example | Description |
 |---------------|-------------|
-| [PCIe-attach design example](https://altera-fpga.github.io/rel-26.1/ed-ai-suite/agilex7/pcie/pcie_getting_started_extended/) | Demonstrates how OpenVINO toolkit and the FPGA AI Suite support the look-aside deep learning acceleration model.<br><br>This design example targets the Terasic* DE10-Agilex™ Development Board (DE10-Agilex-B2E2). |
-| [OFS PCIe-attach design example](https://altera-fpga.github.io/rel-26.1/ed-ai-suite/agilex7/ofs/ofs_pcie_getting_started) | Demonstrates the OpenVINO toolkit and the FPGA AI Suite that target Open FPGA Stack (OFS)-based boards.<br><br>This design example targets the following Open FPGA Stack (OFS)-based boards:<br>* Agilex™ 7 FPGA I-Series Development Kit ES2 (DK-DEV-AGI027RBES)<br>* Silicom FPGA SmartNIC N6001-PL Platform (without Ethernet controller) |
-| [Hostless DDR-Free design examples](https://altera-fpga.github.io/rel-26.1/ed-ai-suite/agilex7/hostless_ddr_free_ed/hostless_ddr_free_design_example) | Demonstrates hostless DDR-free operation of the FPGA AI Suite IP. Graph filters, bias, and FPGA AI Suite IP configurations are stored in internal memory on the FPGA device.<br><br>This design example targets the Agilex™ 7 FPGA I-Series Development Kit ES2 (DK-DEV-AGI027RBES). |
-| [Hostless JTAG design example](https://altera-fpga.github.io/rel-26.1/ed-ai-suite/agilex5/hostless_jtag/hostless_jtag_design_example) | Demonstrates the step-by-step sequence of configuring FPGA AI Suite IP and starting inference by writing into CSRs directly via JTAG.<br><br>This design example targets the Agilex™ 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1). |
-| [SoC design example](https://altera-fpga.github.io/rel-26.1/ed-ai-suite/agilex5/soc/fpga_ai_suite_soc_design_example) | Demonstrates how OpenVINO toolkit and the FPGA AI Suite support the CPU-offload deep-learning acceleration model in an embedded system.<br><br>The design example targets the following development boards:<br>* Agilex™ 3 FPGA and SoC C-Series Development Kit (DK-A3W135BM16AEA)<br>* Agilex™ 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1)<br>* Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (DK-SIAGI027FC)<br>* Arria® 10 SX SoC FPGA Development Kit (DK-SOC-10AS066S) |
+| [PCIe-attach design example](todo) | Demonstrates how OpenVINO toolkit and the FPGA AI Suite support the look-aside deep learning acceleration model.<br><br>This design example targets the Terasic* DE10-Agilex Development Board (DE10-Agilex-B2E2). |
+| [OFS PCIe-attach design example](todo) | Demonstrates the OpenVINO toolkit and the FPGA AI Suite that target Open FPGA Stack (OFS)-based boards.<br><br>This design example targets the following Open FPGA Stack (OFS)-based boards:<br>* Agilex™ 7 FPGA I-Series Development Kit ES2 (DK-DEV-AGI027RBES)<br>* Intel FPGA SmartNIC N6001-PL Platform (without Ethernet controller) |
+| [Hostless DDR-Free design examples](todo) | Demonstrates hostless DDR-free operation of the FPGA AI Suite IP. Graph filters, bias, and FPGA AI Suite IP configurations are stored in internal memory on the FPGA device.<br><br>This design example targets the Agilex 7 FPGA I-Series Development Kit ES2 (DK-DEV-AGI027RBES). |
+| [Hostless JTAG design example](todo) | Demonstrates the step-by-step sequence of configuring FPGA AI Suite IP and starting inference by writing into CSRs directly via JTAG.<br><br>This design example targets the Agilex 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1). |
+| [SoC design example](todo) | Demonstrates how OpenVINO toolkit and the FPGA AI Suite support the CPU-offload deep-learning acceleration model in an embedded system.<br><br>The design example targets the following development boards:<br>* Agilex 7 FPGA I-Series Transceiver-SoC Development Kit (DK-SIAGI027FC)<br>* Arria® 10 SX SoC FPGA Development Kit (DK-SOC-10AS066S) |
 
 ## Table 3. FPGA AI Suite Design Examples Properties Overview
 
 | Example | Design Type | Target FPGA Device | Host | Memory | Stream* | Design Example Identifier** | Supported Development Kit |
 |---------|-------------|-------------------|------|--------|---------|---------------------------|---------------------------|
-| PCIe-Attached | Agilex™ 7 | External host processor | DDR | M2M | agx7_de10_pcie | [Terasic DE10-Agilex™ Development Board (DE10-Agilex™-B2E2)](https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=142&No=1252) |
-| PCIe-Attached| Agilex™ 7 |External host processor |DDR |M2M | agx7_iseries_ofs_pcie | [Agilex™ 7 FPGA I-Series Development Kit ES2 (DK-DEV-AGI027RBES)](https://www.altera.com/products/devkit/a1jui0000049utmmam/agilex-7-fpga-i-series-development-kit-2x-r-tile-and-1x-f-tile) |
-| PCIe-Attached|Agilex™ 7 |External host processor |DDR |M2M | agx7_n6001_ofs_pcie | [Silicom FPGA SmartNIC N6001-PL Platform (without Ethernet controller)](https://www.altera.com/asap/offering/po-2750/silicom-fpga-smartnic-n60106011-n6001-pln6000-pl-arrow-creek) |
-| Hostless DDR-Free | Agilex™ 7 | Hostless | DDR-Free | Direct | agx7_iseries_ddrfree | [Agilex™ 7 FPGA I-Series Development Kit ES2 (DK-DEV-AGI027RBES)](https://www.altera.com/products/devkit/po-3012/agilex-7-fpga-i-series-development-kit-2x-r-tile-and-1x-f-tile) |
-| Hostless JTAG Attached | Agilex™ 5 |Hostless | DDR | M2M | agx5e_modular_jtag | [Agilex™ 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1)](https://www.altera.com/products/devkit/po-3274/agilex-5-fpga-and-soc-e-series-065b-modular-development-kit) |
-|SoC | Agilex™ 3 |On-device HPS |DDR |M2M | agx3_soc_m2m<br> | [Agilex™ 3 FPGA and SoC C-Series Development Kit (DK-A3W135BM16AEA)](https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit) |
-|SoC | Agilex™ 5 |On-device HPS |DDR |M2M and S2M | agx5_soc_m2m<br>agx5_soc_s2m | [Agilex™ 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1)](https://www.altera.com/products/devkit/po-3274/agilex-5-fpga-and-soc-e-series-065b-modular-development-kit) |
-| SoC | Agilex™ 7 | On-device HPS | DDR | M2M and S2M | agx7_soc_m2m<br>agx7_soc_s2m | [Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (DK-SIAGI027FC)](https://www.altera.com/products/devkit/po-3013/agilex-7-fpga-i-series-transceiver-soc-development-kit-4x-f-tile) |
-|SoC | Arria® 10 |On-device HPS |DDR |M2M and S2M | a10_soc_m2m<br>a10_soc_s2m | [Arria® 10 SX SoC FPGA Development Kit (DK-SOC-10AS066S)](https://www.altera.com/products/devkit/po-3006/arria-10-sx-soc-development-kit) |
+| PCIe-Attached | Agilex 7 | External host processor | DDR | M2M | agx7_de10_pcie | [Terasic DE10-Agilex Development Board (DE10-Agilex-B2E2)](https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&CategoryNo=142&No=1252&PartNo=2#contents) |
+| PCIe-Attached|Agilex 7 |External host processor |DDR |M2M | agx7_iseries_ofs_pcie | [Agilex 7 FPGA I-Series Development Kit ES2 (DK-DEV-AGI027RBES)](https://www.altera.com/products/devkit/a1jui0000049utmmam/agilex-7-fpga-i-series-development-kit-2x-r-tile-and-1x-f-tile) |
+| PCIe-Attached|Agilex 7 |External host processor |DDR |M2M | agx7_n6001_ofs_pcie | [Intel FPGA SmartNIC N6001-PL Platform (without Ethernet controller)](https://www.intel.com/content/www/us/en/content-details/779620/a-smartnic-for-accelerating-communications-and-networking-workloads.html) |
+| Hostless DDR-Free | Agilex 7 | Hostless | DDR-Free | Direct | agx7_iseries_ddrfree | [Agilex 7 FPGA I-Series Development Kit ES2 (DK-DEV-AGI027RBES)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/agi027.html) |
+| Hostless JTAG Attached | Agilex 5 |Hostless | DDR | M2M | agx5e_modular_jtag | [Agilex 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1)](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-modular.html) |
+| SoC | Agilex 7 | On-device HPS | DDR | M2M and S2M | agx7_soc_m2m<br>agx7_soc_s2m | [Agilex 7 FPGA I-Series Transceiver-SoC Development Kit (DK-SIAGI027FC)](https://www.altera.com/products/devkit/a1jui0000049utnmam/agilex-7-fpga-i-series-transceiver-soc-development-kit-4x-f-tile) |
+|SoC | Arria 10 |On-device HPS |DDR |M2M and S2M | a10_soc_m2m<br>a10_soc_s2m | [Arria 10 SX SoC FPGA Development Kit (DK-SOC-10AS066S)](https://www.altera.com/products/devkit/a1jui0000049utgmam/arria-10-sx-soc-development-kit) |
+|SoC | Agilex 5 |On-device HPS |DDR |M2M and S2M | agx5_soc_m2m<br>agx5_soc_s2m | [Agilex 5 FPGA E-Series 065B Modular Development Kit (MK-A5E065BB32AES1)](https://www.altera.com/products/devkit/a1jui0000049utbmam/agilex-5-fpga-and-soc-e-series-development-kit-modular) |
 
 \*For the **Design Example Identifier** column, these entries are the value to use with the FPGA AI Suite Design Example Utility (`dla_build_example_design.py`) command to build the design example
 
@@ -57,7 +58,7 @@ The main entry point into the example design build system is the FPGA AI Suite d
 
 *Note: There is no '.py' extension on `dla_build_example_design` when using the FPGA AI Suite on Windows.*
 
-To use the FPGA AI Suite design example build utility, ensure that your local development environment has been setup according to the steps in ["Installing FPGA AI Suite Compile and IP Generation Tools" in FPGA AI Suite Handbook](https://docs.altera.com/r/docs/863373/2026.1.1/fpga-ai-suite-handbook/installing-the-fpga-ai-suite-compiler-and-ip-generation-tools).
+To use the FPGA AI Suite design example build utility, ensure that your local development environment has been setup according to the steps in ["Installing FPGA AI Suite Compile and IP Generation Tools" in FPGA AI Suite Handbook](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/installing-the-compiler-and-ip-generation.html).
 
 ### 3.1.1. The `dla_build_example_design.py` Command
 
@@ -73,13 +74,13 @@ where [action] is one of the following actions:
 
 | Action | Description |
 |--------|-------------|
-| `list` | List the available example designs. |
-| `build` | Build an example design. |
-| `qor` | Generate QoR reports. |
-| `quartus-compile` | Run a Quartus® Prime compile. |
-| `scripts` | Managed the build support scripts. |
+| list | List the available example designs. |
+| build | Build an example design. |
+| qor | Generate QoR reports. |
+| quartus-compile | Run a Quartus® Prime compile. |
+| scripts | Managed the build support scripts. |
 
-Some of the command actions have different additional required and optional parameters. Use the command `help` to see a list of available options for the command and its actions.
+Some of the command actions have different additional required and optional parameters. Use the command help to see a list of available options for the command and its actions.
 
 By default, the `dla_build_example_design.py` command always instructs the `dla_create_ip` command to create licensed IP. If no license can be found, inference-limited, unlicensed RTL is generated. The build log indicates if the IP is licensed or unlicensed. For more information about licensed and unlicensed IP, refer to ["The --unlicensed/--licensed Options" in FPGA AI Suite IP Reference Manual](https://www.intel.com/content/www/us/en/docs/programmable/863373/2025-3/ip-generation-utility-outputs.html).
 
@@ -115,7 +116,7 @@ dla_build_example_design.py list
 
 This command shows the design example identifiers (used with the build action of the design example utility) along with a short description of the design example and its target Quartus Prime version.
 
-A list of the design examples and their identifiers is also available in [FPGA AI Suite Design Examples Properties Overview](#table-3-fpga-ai-suite-design-examples-properties-overview).
+A list of the design examples and their identifiers is also available in [FPGA AI Suite Design Examples Properties Overview](todo).
 
 ### 3.1.3. Building FPGA AI Suite Design Examples
 
@@ -129,7 +130,7 @@ dla_build_example_design.py build \
 <architecture file>
 ```
 
-For example, use the following command to build the Agilex™ 7 PCIe-based design example that targets the **DE10-Agilex-B2E2** board using the AGX7_Generic architecture:
+For example, use the following command to build the Agilex 7 PCIe-based design example that targets the DE10-Agilex-B2E2 board using the AGX7_Generic architecture:
 
 ```
 dla_build_example_design.py build \
@@ -150,19 +151,19 @@ Be default, the utility also prevents the build directory from being overwritten
 
 After the build is complete, the build directory has the following files and folders:
 
-* **coredla_ip/**
+* **coredla_ip/**  
 This folder contains the RTL for the configured FPGA AI Suite IP.
 
-* **hw/**
+* **hw/**  
 This folder contains the Quartus Prime or Open FPGA Stack (OFS) project files. It also includes its own self-contained copy of the contents of the `coredla_ip/` folder
 
-* **.build.json**
+* **.build.json**  
 This contents of this file (sometimes referred to as the "build context" file) allow the build to be split into multiple steps.
 
-* **Reports**
+* **Reports**  
 The build directory will contain any log files generated by the build utility (such as `build.log`) and the QoR summary that is generated by a successful compilation.
 
-* **Bitstreams**
+* **Bitstreams**  
 This build directory will contain the bitstreams to program the target FPGA device as follows:
   - For OFS-based designs, `.gbs` files.
   - For other designs, `.sof` and `.rbf` files.
@@ -188,10 +189,10 @@ You can run the `dla_build_example_design.py quartus-compile` and `dla_build_exa
 
 You can also directly call the design compilation script. An FPGA AI Suite design example uses one of the following scripts, depending on whether the design example can built in a WSL 2 environment:
 
-* **generate_sof.tcl**
+* **generate_sof.tcl**  
 Design examples with this design compilation script can be built in a WSL 2 environment.
 
-* **build_project.sh**
+* **build_project.sh**  
 Design examples with this design compilation script cannot be built in a WSL 2 environment.
 
 If a design example uses a `generate_sof.tcl` script, then you can invoke the design compilation script either after opening the design example project in Quartus Prime or by running the following command:
@@ -238,7 +239,7 @@ For a typical design example, the following components comprise the runtime stac
 
 The design example contains the source files and Makefiles to build the FPGA AI Suite runtime plugin. The OpenVINO component (and OPAE components, where used) is external and must be manually preinstalled.
 
-A separate flow compiles the AI network graph using the FPGA AI Suite compiler, as shown in [Figure 1 Software Stacks for FPGA AI Suite Inference](#figure-1-software-stacks-for-fpga-ai-suite-inference) that follows as the Compilation Software Stack.
+A separate flow compiles the AI network graph using the FPGA AI Suite compiler, as shown in [Figure 1 Software Stacks for FPGA AI Suite Inference](todo) that follows as the Compilation Software Stack.
 
 The compilation flow output is a single binary file called `CompiledNetwork.bin` that contains the compiled network partitions for FPGA and CPU devices along with the network weights. The network is compiled for a specific FPGA AI Suite architecture and batch size. This binary is created on-disk only when using the Ahead-Of-Time flow; when the JIT flow is used, the compiled object stays in-memory only.
 
@@ -284,7 +285,7 @@ The following applications use the OpenVINO API. They support the OpenVINO HETER
 * `object_detection_demo_yolov3_async`
 * `segmentation_demo`
 
-Each of these applications serve as a runtime executable for the FPGA AI Suite. You might want to write your own OpenVINO-based front ends to wrap the FPGA plugin. For information about writing your own OpenVINO-based front ends, refer to the [OpenVINO documentation](https://docs.openvino.ai/2025/index.html).
+Each of these applications serve as a runtime executable for the FPGA AI Suite. You might want to write your own OpenVINO-based front ends to wrap the FPGA plugin. For information about writing your own OpenVINO-based front ends, refer to the [OpenVINO documentation](https://docs.openvino.ai/2024/index.html).
 
 Some of the responsibilities of the OpenVINO FPGA plugin are as follows:
 
@@ -300,13 +301,13 @@ Some of the responsibilities of the OpenVINO FPGA plugin are as follows:
 
 The FPGA runtime plugin uses the OpenVINO Inference Engine Plugin API.
 
-The OpenVINO Plugin architecture is described in the [OpenVINO Developer Guide for Inference Engine Plugin Library](https://docs.openvino.ai/2025/documentation/openvino-extensibility/openvino-plugin-library.html).
+The OpenVINO Plugin architecture is described in the [OpenVINO Developer Guide for Inference Engine Plugin Library](https://docs.openvino.ai/2024/documentation/openvino-extensibility/openvino-plugin-library.html).
 
 The source files are located under `runtime/plugin`. The three main components of the runtime plugin are the Plugin class, the Executable Network class, and the Inference Request class. The primary responsibilities for each class are as follows:
 
 **Plugin class**
 
-* Initializes the runtime plugin with an FPGA AI Suite architecture file which you set as an OpenVINO configuration key (refer to [PCIE - Running the Ported OpenVINO Demonstration Applications](https://altera-fpga.github.io/rel-26.1/ed-ai-suite/agilex7/pcie/pcie_getting_started_extended)).
+* Initializes the runtime plugin with an FPGA AI Suite architecture file which you set as an OpenVINO configuration key (refer to [ PCIE - Running the Ported OpenVINO Demonstration Applications](todo)).
 
 * Contains `QueryNetwork` function that analyzes network layers and returns a list of layers that the specified architecture supports. This function allows network execution to be distributed between FPGA and other devices and is enabled with the HETERO mode.
 
@@ -394,7 +395,7 @@ The FPGA AI Suite runtime MMD software uses a driver to access and interact with
 If your board vendor provides a BSP, you can use the MMD Wrapper to interface the BSP with the FPGA AI Suite IP. Review the following sections for examples of adapting a vendor-provided BSP to use with the FPGA AI Suite IP:
 
 * [Terasic DE10-Agilex Development Board BSP Example](#337-board-support-package-bsp-overview)
-* [Agilex™ 7 PCIe-Attach OFS-based BSP Example](#3372-agilex-7-pcie-attach-ofs-based-bsp-example)
+* [Agilex 7 PCIe-Attach OFS-based BSP Example](#3372-agilex-7-pcie-attach-ofs-based-bsp-example)
 
 You can create a custom BSP for your board, but that process can be complex and can require more work.
 
@@ -410,7 +411,7 @@ Contact your FPGA board vendor for information about the BSP for your FPGA board
 
 Contact your FPGA board vendor for information about the OPAE driver for your FPGA board.
 
-For the FPGA AI Suite OFS for PCIe attach design example, the OPAE driver is installed when you follow the steps in [Getting Started with Open FPGA Stack (OFS) for PCIe-Attach Design Examples](https://altera-fpga.github.io/rel-26.1/ed-ai-suite/agilex7/ofs/ofs_pcie_getting_started.md).
+For the FPGA AI Suite OFS for PCIe attach design example, the OPAE driver is installed when you follow the steps in [Getting Started with Open FPGA Stack (OFS) for PCIe-Attach Design Examples](todo).
 
 ### 3.3.6. FPGA AI Suite Runtime MMD API
 
@@ -592,9 +593,9 @@ The BSPs available for the boards supported by the FPGA AI Suite design example 
 
 [Open FPGA Stack (OFS) documentation.](https://ofs.github.io/ofs-2025.1-1/)
 
-#### 3.3.7.1. Terasic DE10-Agilex™ Development Board BSP Example
+#### 3.3.7.1. Terasic DE10-Agilex Development Board BSP Example
 
-For the Agilex™ 7 PCIe-based design example on the Terasic DE10-Agilex Development Board, the BSP provided by Terasic is adapted to work with the FPGA AI Suite IP. The Terasic-provided BSP is OpenCL™-based.
+For the Agilex 7 PCIe-based design example on the Terasic DE10-Agilex Development Board, the BSP provided by Terasic is adapted to work with the FPGA AI Suite IP. The Terasic-provided BSP is OpenCL™-based.
 
 The following diagram shows the high-level interactions between the FPGA interface IPs on the platform, and the a custom OpenCL kernel. The different colors in the diagram indicate different clock domains.
 
@@ -614,13 +615,13 @@ Platform Designer automatically adds clock-domain crossings between Avalon memor
 
 For a custom platform, consider following a similar approach of modifying the BSP provided by the vendor to integrate in the FPGA AI Suite IP.
 
-#### 3.3.7.2. Agilex™ 7 PCIe-Attach OFS-based BSP Example
+#### 3.3.7.2. Agilex 7 PCIe-Attach OFS-based BSP Example
 
 For OFS-based devices, the BSP consists of a platform-specific FPGA interface manager (FIM) and a platform-agnostic accelerator functional unit (AFU).
 
-The FPGA AI Suite OFS for PCIe attach design example supports Agilex™ 7 PCIe Attach OFS.
+The FPGA AI Suite OFS for PCIe attach design example supports Agilex 7 PCIe Attach OFS.
 
-You can obtain the source files needed to build a Agilex™ 7 PCIe Attach FIM or obtain prebuillt FIMs for some boards from [OFS Agilex™ 7 PCIe Attach FPGA Development Directory in GitHub](https://github.com/OFS/ofs-agx7-pcie-attach).
+You can obtain the source files needed to build a Agilex 7 PCIe Attach FIM or obtain prebuillt FIMs for some boards from [OFS Agilex 7 PCIe Attach FPGA Development Directory in GitHub](https://github.com/OFS/ofs-agx7-pcie-attach).
 
 The AFU wraps the FPGA AI Suite IP and must meet the following general requirements:
 
@@ -644,5 +645,5 @@ If you are creating your own FPGA AI Suite AFU, consider starting with an AFU ex
 
 * [Direct memory access (DMA) AFU example on GitHub](https://github.com/OFS/examples-afu/tree/main/tutorial/afu_types/01_pim_ifc/dma)
 * [oneAPI accelerator support package (ASP) on GitHub](https://github.com/OFS/oneapi-asp)
-* [Agilex™ 7 PCIe Attach OFS documentation](https://ofs.github.io/ofs-2025.1-1/hw/doc_modules/contents_agx7_pcie_attach/)
-* [Agilex™ 7 PCIe Attach OFS Workload Development Guide](https://ofs.github.io/ofs-2025.1-1/hw/common/user_guides/afu_dev/ug_dev_afu_ofs_agx7_pcie_attach/ug_dev_afu_ofs_agx7_pcie_attach/)
+* [Agilex 7 PCIe Attach OFS documentation](https://ofs.github.io/ofs-2025.1-1/hw/doc_modules/contents_agx7_pcie_attach/)
+* [Agilex 7 PCIe Attach OFS Workload Development Guide](https://ofs.github.io/ofs-2025.1-1/hw/common/user_guides/afu_dev/ug_dev_afu_ofs_agx7_pcie_attach/ug_dev_afu_ofs_agx7_pcie_attach/)

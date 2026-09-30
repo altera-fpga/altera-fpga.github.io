@@ -1,8 +1,10 @@
 
 
+# HPS Multi-QSPI Remote System Update Tutorial Example Design: Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile)
+
 ## Intro 
 
-This page is an extension of the  **Agilex™ 7 SoC HPS Remote System Update Tutorial Example Design User Guide** and it will show you how to build RSU images with multi QSPI support. This feature allows you to extend the flash space available to store the RSU applications so the size of these could be increased. This feature allows you to support up to 4 QSPI flash devices of the same model (i.e. same size). 
+This page is an extension of the  [Agilex 7 SoC HPS Remote System Update Example](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/) and will show you how to build RSU images with multi QSPI support. This feature allows you to extend the flash space available to store the RSU applications so the size of these could be increased. This feature allows you to support up to 4 QSPI flash devices of the same model (i.e. same size). 
 
 **Note**: This feature is first enabled in 24.3 release.
 
@@ -70,7 +72,8 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
 
@@ -78,28 +81,27 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 
 
-### Building the Quartus Project
+### Building the Hardware Projects 
 
 
-Create a Quartus project, based on the Quartus design provided as part of the HPS Baseline System Example Design from GitHub with a few changes.
+Create four different hardware projects, based on the GHRD from GitHub with a few changes.
 
-- Change the boot mode to FPGA first. 
-- Use a different ID in the SystemID component. 
+- Change the boot mode to FPGA first 
+- Use a different ID in the SystemID component, to make the binaries for each project slightly different. 
 - Change the behavior of watchdog timeout, to trigger an RSU event. 
 - Set the max retry parameter to 3, so that each application image and the factory image are tried up to three time when configuration failures occur. 
 
-The commands to create and compile the project are listed below.
-
+The commands to create and compile the projects are listed below.
 
 
 ```bash 
 cd $TOP_FOLDER
-# Build 4 versions of the Quartus design
-wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-unzip QPDS26.1.1_REL_GSRD_PR.zip
-rm QPDS26.1.1_REL_GSRD_PR.zip
-mv agilex7f-ed-gsrd-QPDS26.1.1_REL_GSRD_PR agilex7f-ed-gsrd
-cd agilex7f-ed-gsrd
+# Build 4 versions of the hardware design
+rm -rf hw && mkdir hw && cd hw
+wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS25.3.1_REL_GSRD_PR.zip
+unzip QPDS25.3.1_REL_GSRD_PR.zip
+rm QPDS25.3.1_REL_GSRD_PR.zip
+mv agilex7f-ed-gsrd-QPDS25.3.1_REL_GSRD_PR agilex7f-ed-gsrd
 # boot from FPGA
 export BOOTS_FIRST=fpga
 # enable watchdog
@@ -107,20 +109,31 @@ export ENABLE_WATCHDOG_RST=1
 # treat watchdog timeout as configuration failure to trigger RSU
 export WATCHDOG_RST_ACTION=remote_update
 # Customize parms in tcl
-sed -i '/STRATIX_JTAG_USER_CODE 4/i set_global_assignment -name RSU_MAX_RETRY_COUNT 3' agilex_soc_devkit_ghrd/create_ghrd_quartus.tcl
+sed -i '/STRATIX_JTAG_USER_CODE 4/i set_global_assignment -name RSU_MAX_RETRY_COUNT 3' agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/create_ghrd_quartus.tcl
 # Set QSPI clock to 25 Mhz (needed for multi-qspi support)
-sed -i '/STRATIX_JTAG_USER_CODE 4/i set_global_assignment -name ACTIVE_SERIAL_CLOCK AS_FREQ_25MHZ' agilex_soc_devkit_ghrd/create_ghrd_quartus.tcl
+sed -i '/STRATIX_JTAG_USER_CODE 4/i set_global_assignment -name ACTIVE_SERIAL_CLOCK AS_FREQ_25MHZ' agilex7f-ed-gsrd/agilex_soc_devkit_ghrd/create_ghrd_quartus.tcl
+for version in {0..3}
+do
+rm -rf ghrd.$version
+cp -r agilex7f-ed-gsrd ghrd.$version
+cd ghrd.$version
 # update sysid to make binaries slightly different 
-sed -i 's/0xACD5CAFE/0xABAB1234/g' agilex_soc_devkit_ghrd/create_ghrd_qsys.tcl
-# Finsish customization and now building the Quartus design
-make agf014eb-si-devkit-oobe-baseline-all 
+sed -i 's/0xACD5CAFE/0xABAB000'$version'/g' agilex_soc_devkit_ghrd/create_ghrd_qsys.tcl
+# Finsish customization and now building the hardware design
+make agf014eb-si-devkit-oobe-baseline-all
+cd ..
+done
+rm -rf agilex7f-ed-gsrd 
 cd .. 
 ```
 
 
-After completing the above steps, the following SOF file is created.
+After completing the above steps, the following SOF files are created.
 
-- $TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof
+- $TOP_FOLDER/hw/ghrd.0/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
+- $TOP_FOLDER/hw/ghrd.1/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
+- $TOP_FOLDER/hw/ghrd.2/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
+- $TOP_FOLDER/hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof 
 
 
 
@@ -136,7 +149,7 @@ rm -rf arm-trusted-firmware
 git clone https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 # checkout the branch used for this document, comment out to use default
-git checkout -b test -t origin/socfpga_v2.14.1
+git checkout -b test -t origin/socfpga_v2.13.1
 make bl31 PLAT=agilex
 cd ..
 ```
@@ -164,8 +177,11 @@ cd $TOP_FOLDER
 rm -rf u-boot-socfpga
 git clone https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga
+# For 25.3.1 use this line to use the tag with the fix for the WDT issue 
+# (HSD:14026809936).Remove this in 26.1 and re-enable the original one below
+git checkout -b QPDS25.3.1_Agilex7_WDT_fix
 # comment out next line to use the latest default branch 
-git checkout -b test -t origin/socfpga_v2026.04
+#git checkout -b test -t origin/socfpga_v2025.10
 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -293,7 +309,7 @@ rm -rf linux-socfpga
 git clone https://github.com/altera-fpga/linux-socfpga 
 cd linux-socfpga 
 # checkout the branch used for this document, comment out to use default 
-git checkout -b test -t origin/socfpga-6.18.20-lts 
+git checkout -b test -t origin/socfpga-6.12.43-lts 
 
 # configure the RSU driver to be built into the kernel 
 make clean && make mrproper 
@@ -343,10 +359,10 @@ cat << EOF > initial_image_multiQSPI.pfg
     </output_files>
     <bitstreams>
         <bitstream id="Bitstream_1">
-            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof</path>
+            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">hw/ghrd.0/install/designs/agf014eb_si_devkit_oobe_baseline.sof</path>
         </bitstream>
         <bitstream id="Bitstream_2">
-            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof</path>
+            <path signing="OFF" finalize_encryption="0" hps_path="u-boot-socfpga/spl/u-boot-spl-dtb.hex">hw/ghrd.1/install/designs/agf014eb_si_devkit_oobe_baseline.sof</path>
         </bitstream>
     </bitstreams>
     <flash_devices>
@@ -375,7 +391,7 @@ cat << EOF > initial_image_multiQSPI.pfg
 EOF
 
 # MultiQSPI is supported starting in 24.3
-~/altera_pro/26.1/quartus/bin/quartus_pfg -c initial_image_multiQSPI.pfg
+~/altera_pro/25.3/quartus/bin/quartus_pfg -c initial_image_multiQSPI.pfg
 mv initial_image_multiQSPI.jic initial_image_multiQSPI_prev.jic
 mv initial_image_multiQSPI_jic_2Gb_cs0.rpd initial_image_multiQSPI_jic_2Gb_cs0_prev.rpd
 mv initial_image_multiQSPI_jic_2Gb_cs1.rpd initial_image_multiQSPI_jic_2Gb_cs1_prev.rpd
@@ -392,7 +408,7 @@ After completion of this stage you should see the following files created. These
 * $TOP_FOLDER/initial_image_multiQSPI.jic - Initial QSPI image used for regular RSU use cases.
 * $TOP_FOLDER/initial_image_multiQSPI_prev.jic - Initial QSPI image used to exercise combined application use case. - Not available in 24.3 release.
 
-For detailed instructions on how to create the .pfg, please refer to the **Creating the initial flash-image** section in in main RSU page (**HPS Remote System Update Tutorial Example Design User Guide: Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tile and E-Tile**). For a multi-QSPI initial image there are some variations that need to be obserrved and these are described next.
+For detailed instructions on how to create the .pfg, please refer to the [Creating the initial flash-image](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/#creating-the-initial-flash-image) in main RSU page. For a multi-QSPI initial image there are some variations that need to be obserrved and these are described next.
 
 * When selecting the flash device in Configuration Device tab and clicking Add Device you need to select as device any of the QSPI0xG devices depending on the total size of the multi-QSPI system (in bits). In the figure below are shown the possible options. These options gets available when building an RSU image. In this figure, the QSPI04G is being selected for a 4 Gbit system (512 MB) integrated by 2 flash devices of 2Gbit each one.
 
@@ -413,7 +429,7 @@ The following commands are used to create the application image used in this exa
 cd $TOP_FOLDER
 mkdir -p images
 rm -rf images/application2.rpd
-quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+quartus_pfg -c hw/ghrd.2/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/application2.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -437,7 +453,7 @@ The following commands are used to create the factory update image used in this 
 cd $TOP_FOLDER
 mkdir -p images
 rm -f images/factory_update.rpd
-quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+quartus_pfg -c hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/factory_update.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -462,7 +478,7 @@ The following commands are used to create the decision firmware update image use
 cd $TOP_FOLDER 
 mkdir -p images 
 rm -f images/decision_firmware_update.rpd
-quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+quartus_pfg -c hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/decision_firmware_update.rpd \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -491,9 +507,9 @@ The following commands are used to create the combined application image used in
 cd $TOP_FOLDER
 mkdir -p images
 rm -f images/combined_application.rpd
-quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+quartus_pfg -c hw/ghrd.3/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 images/combined_application.rpd \
--o app_image=agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+-o app_image=hw/ghrd.2/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
 -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o app_image_hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
@@ -511,43 +527,56 @@ The following file is created.
 ### Building the Root File System 
 
 
-A root file system is required to boot Linux. There are a lot of ways to build a root file system, depending on your specific needs. This section shows how to build a small root file system using Buildroot.
+A root file system is required to boot Linux. There are a lot of ways to build a root file system, depending on your specific needs. This section shows how to build a small root file system using Yocto. 
 
-Run the following commands to build the root file system.
+1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
+
+The command to install the required packages on Ubuntu 22.04 is:
+
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \
+build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
+python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit mesa-common-dev zstd \
+liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \
+tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
+device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
+```
+
+On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:
+
+```bash
+ sudo ln -sf /bin/bash /bin/sh
+```
+
+**Note**: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.
+
+2\. Run the following commands to build the root file system.
 
   
 
   ```bash 
   cd $TOP_FOLDER 
-  rm -rf buildroot
-  git clone https://github.com/buildroot/buildroot.git
-  cd buildroot
-  git checkout 2026.05
-  mkdir -p overlay/etc/profile.d/
-  # Use regilar prompt used in our devices root@<device>:~# instead of only #
-  echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
-  # Adding applications that we normaly need
-  cat > configs/agilex7_defconfig <<EOT
-  BR2_aarch64=y
-  BR2_TOOLCHAIN_BUILDROOT_CXX=y
-  BR2_KERNEL_HEADERS_6_12=y
-  BR2_PACKAGE_HOST_GDB=y
-  BR2_GDB_VERSION_14=y
-  BR2_PACKAGE_GDB=y
-  BR2_PACKAGE_DROPBEAR=y
-  BR2_SYSTEM_DHCP="eth0"
-  BR2_TARGET_ROOTFS_TAR_GZIP=y
-  BR2_TARGET_GENERIC_HOSTNAME="linux"
-  BR2_ROOTFS_OVERLAY="overlay"
-  EOT
-  make agilex7_defconfig
-  make -j 64
+  rm -rf yocto && mkdir yocto && cd yocto
+  git clone -b walnascar https://git.yoctoproject.org/poky
+  git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga
+  git clone -b walnascar https://github.com/openembedded/meta-openembedded
+  # work around issue
+  echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
+  source poky/oe-init-build-env ./build 
+  echo 'MACHINE = "agilex7_dk_si_agf014eb"' >> conf/local.conf 
+  echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf 
+  echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf 
+  echo 'IMAGE_FSTYPES = "tar.gz"' >> conf/local.conf
+  echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf
+  bitbake core-image-minimal 
   ```
   
 
-After the build completes, which can take a few minutes, the following root file system archive is created.
+After the build completes, which can take a few hours depending on your host system processing power and Internet connection speed, the following root file system archive is created.
 
-- $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex7_dk_si_agf014eb/core-image-minimal-agilex7_dk_si_agf014eb.rootfs.tar.gz
+- $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex7_dk_si_agf014eb/core-image-minimal-agilex7_dk_si_agf014eb.rootfs.tar.gz 
 
 
 
@@ -560,26 +589,25 @@ The ZLIB is required by LIBRSU. The following steps can be used to compile it.
 
 ```bash 
 cd $TOP_FOLDER 
-rm -rf zlib
-wget https://zlib.net/current/zlib.tar.gz
-tar xf zlib.tar.gz
-rm zlib.tar.gz
-mv zlib-* zlib
-cd zlib/
-export CROSS_PREFIX=${CROSS_COMPILE}
-./configure
-make
-export ZLIB_PATH=`pwd`
-cd ..
+rm -rf zlib-1.3.1 
+wget http://zlib.net/zlib-1.3.1.tar.gz 
+tar xf zlib-1.3.1.tar.gz 
+rm zlib-1.3.1.tar.gz 
+cd zlib-1.3.1/ 
+export CROSS_PREFIX=${CROSS_COMPILE} 
+./configure 
+make 
+export ZLIB_PATH=`pwd` 
+cd .. 
 ```
 
 
 After the above steps are completed, the following items are available.
 
-- $TOP_FOLDER/zlib/zlib.h - header file, used to compile files using zlib services 
-- $TOP_FOLDER/zlib/libz.so* - shared objects, used to run executables linked against zlib APIs 
+- $TOP_FOLDER/zlib-1.3.1/zlib.h - header file, used to compile files using zlib services 
+- $TOP_FOLDER/zlib-1.3.1/libz.so* - shared objects, used to run executables linked against zlib APIs 
 
-**Note**: The version of zlib that was tested in this release was 1.3.2. The build instructions uses the latest version, which may differ with the one used here. 
+**Note**: The version of zlib mentioned above is the one that was tested with this release. You may want to use the latest zlib version, as it may contain updates and bug fixes. 
 
 
 
@@ -628,7 +656,6 @@ The following files are created.
 The following commands can be used to create the SD card image used in this example.
 
 
-
 ```bash 
 cd $TOP_FOLDER
 sudo rm -rf sd_card && mkdir sd_card && cd sd_card
@@ -645,19 +672,20 @@ cp $TOP_FOLDER/images/*.rpd .
 cd ..
 # prepare the rootfs partition contents
 mkdir rootfs && cd rootfs
-sudo tar xf $TOP_FOLDER/buildroot/output/images/rootfs.tar.gz 
-sudo cp $TOP_FOLDER/images/*.rpd root/
-# This also could be copy to /usr/bin/ so it can be accessed from anywhere
-sudo cp $TOP_FOLDER/intel-rsu/example/rsu_client root/
-sudo cp $TOP_FOLDER/intel-rsu/lib/librsu.so usr/lib/
+sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex7_dk_si_agf014eb/core-image-minimal-agilex7_dk_si_agf014eb.rootfs.tar.gz
+sudo sed -i 's/agilex7_dk_si_agf014eb/linux/g' etc/hostname
+sudo rm -rf lib/modules/*
+sudo cp $TOP_FOLDER/images/*.rpd home/root
+sudo cp $TOP_FOLDER/intel-rsu/example/rsu_client home/root/
+sudo cp $TOP_FOLDER/intel-rsu/lib/librsu.so lib/
 sudo cp $TOP_FOLDER/intel-rsu/etc/qspi.rc etc/librsu.rc
-sudo cp $TOP_FOLDER/zlib/libz.so* lib/
-cd ..
+sudo cp $TOP_FOLDER/zlib-1.3.1/libz.so* lib/
+cd .. 
 # create sd card image 
 sudo python3 ./make_sdimage_p3.py -f \
--P fat/*,num=1,format=vfat,size=64M \
--P rootfs/*,num=2,format=ext3,size=64M \
--s 128M \
+-P fat/*,num=1,format=vfat,size=100M \
+-P rootfs/*,num=2,format=ext3,size=100M \
+-s 256M \
 -n sdcard_rsu.img
 cd ..
 ```
@@ -685,8 +713,6 @@ The following items are included in the rootfs on the SD card.
 
 ## Flashing Binaries 
 
-The following sections describe how to program the HPS binaries generated previously.
-
 ### Writing Initial multi-QSPI RSU Image to QSPI 
 
 1. Make sure to install the QSPI SDM boot card on the Agilex 7 SoC Development Kit 
@@ -713,7 +739,7 @@ The following sections describe how to program the HPS binaries generated previo
 
 ### Exercise RSU Binaries
 
-The same RSU exercises for U-Boot and Linux described at **HPS Remote System Update Tutorial Example Design User Guide: Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tile and E-Tile)** page are supported for multi-QSPI. You can exercise all of them, but in the command responses just consider the new layout used in here (i.e. the location of the partitions will be different ). 
+The same RSU exercises for U-Boot and Linux described at [Agilex 7 SoC HPS Remote System Update Example](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-7/f-series/soc/rsu/ug-rsu-agx7f-soc/) are supported for multi-QSPI. You can exercise all of them, but in the command responses just consider the new layout used in here (i.e. the location of the partitions will be different ). 
 
 In the scenario in which an application is being corrupted using a U-Boot command, you also will need to use the correct location of the application. Also remember that in multi-QSPI the **sf probe** U-Boot command is used to select the appropriate flash device before performing any read, write or erase operation. The **sf erase**, **sf write** and **sd read** U-Boot commands use as memory address the relative address in the chip selected.
 

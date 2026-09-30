@@ -1,0 +1,22 @@
+--- variables -- start --
+CAMERA_4K_TITLE: 4Kp60 Multi-Sensor HDR Camera Solution System Example Design for Agilex™ 5 Devices
+CAMERA_4K_TOP: ../camera_4k
+CAMERA_4K_TOP_MD: ../camera_4k/camera_4k.md
+CAMERA_4K_DESIGN_DIR: ../camera_4k
+CAMERA_4K_DESIGN_IMAGES: ../camera_4k/images
+CAMERA_4K_AI: <!---
+CAMERA_4K_END_AI: --->
+CAMERA_4K_NO_AI: <!--- --->
+CAMERA_4K_END_NO_AI: <!--- --->
+CAMERA_4K_EXPOSURE_FUSION: <!--- --->
+CAMERA_4K_END_EXPOSURE_FUSION: <!--- --->
+CAMERA_4K_EARLY_1DLUT: <!--- --->
+CAMERA_4K_END_EARLY_1DLUT: <!--- --->
+CAMERA_4K_WARP: <!--- --->
+CAMERA_4K_END_WARP: <!--- --->
+CAMERA_4K_LATE_1DLUT: <!---
+CAMERA_4K_END_LATE_1DLUT: --->
+CAMERA_4K_PIP: 2
+CAMERA_4K_DP_PIP: 4
+VIDEO_SINK_REQUIREMENT: 4Kp60 recommended
+--- variables -- end --

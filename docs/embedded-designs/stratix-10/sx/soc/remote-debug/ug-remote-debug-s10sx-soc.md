@@ -1,4 +1,7 @@
 
 
-<b style="color: red;">Note</b>: This example is not availble in this release. Refer to [https://altera-fpga.github.io/rel-26.1/embedded-designs/stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc/](https://altera-fpga.github.io/rel-26.1/embedded-designs/stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc/) for the latest available version.
+# SoC FPGA Remote Debug Tutorial Example Design User Guide: Stratix® 10 SX SoC Development Kit
+
+<span style="color: red;"> **NOTE:** This page is not available in this release. The latest release in which this page is supported corresponds to 25.3. Please refer to the following page to access the latest documentation: [SoC FPGA Remote Debug Tutorial Example Design User Guide: Stratix® 10 SX SoC Development Kit](https://altera-fpga.github.io/rel-25.3/embedded-designs/stratix-10/sx/soc/remote-debug/ug-remote-debug-s10sx-soc/). </span>
+
 

@@ -1,7 +1,5 @@
 
 
-
-
 [CLUSTERPARTCR]:https://developer.arm.com/documentation/100453/0400/register-descriptions/control-registers/clusterpartcr--cluster-partition-control-register
 [CLUSTERBUSQOS]:https://developer.arm.com/documentation/100453/0401/Control-registers/CLUSTERBUSQOS--Cluster-Bus-QoS-Control-Register
 [ACTLR_EL3]:https://developer.arm.com/documentation/100442/0200/Register-descriptions/AArch64-system-registers/ACTLR-EL3--Auxiliary-Control-Register--EL3
@@ -14,11 +12,10 @@
 [Altera® FPGA Real-Time Meta Layer]:https://github.com/altera-fpga/meta-altera-rt
 [Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs]:https://docs.altera.com/r/docs/814346/current
 [HPS GSRD User Guide for the Agilex™ 5 E-Series Premium Dev Kit]:https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-gsrd-20-binaries
-[Agilex 5 HPS CPU Cluster Latency]:https://altera-fpga.github.io/latest/real-time/agilex5-hps-cpu-cluster-latency/agilex5_hps_cpu_cluster_latency/
+
 
 
 [QPDS25.3.1_REL_GSRD_PR]:https://github.com/altera-fpga/meta-altera-rt/tree/QPDS25.3.1_REL_GSRD_PR
-[QPDS26.1_REL_GSRD_PR]:https://github.com/altera-fpga/meta-altera-rt/tree/QPDS26.1_REL_GSRD_PR
 
 # Embedded Linux Real-Time Tuning using Kas/Yocto
 
@@ -95,7 +92,6 @@ verified release tags.
 | GSRD 2.0 version | Location | Commit ID/Tag |
 | ---------------------------------- | ---- | --- |
 | [HPS GSRD User Guide for the Agilex™ 5 E-Series Premium Dev Kit]  | https://github.com/altera-fpga/meta-altera-rt  | [QPDS25.3.1_REL_GSRD_PR] |
-| [HPS GSRD User Guide for the Agilex™ 5 E-Series Premium Dev Kit]  | https://github.com/altera-fpga/meta-altera-rt  | [QPDS26.1_REL_GSRD_PR] |
 
 ## Get Started
 
@@ -131,7 +127,7 @@ to your use case. More importantly, use this as a guide to help you tune your sy
 
 ## ATF level optimizations for Yocto-Kas build
 
-These optimizations are fully explained in the Real-time guide [Agilex 5 HPS CPU Cluster Latency]. They consist of a set of HPS cluster
+These optimizations are fully explained in the Real-time guide [**"Agilex 5 HPS CPU Cluster Latency"**](../agilex5-hps-cpu-cluster-latency/agilex5_hps_cpu_cluster_latency.md). They consist of a set of HPS cluster
 configurations that can help in the execution of tasks. The configuration is integrated into the Yocto/Kas build through a
  `.bbappend` recipe that modifies the Arm Trusted Firmware (ATF) build process. The file can be found at:
 `meta-altera-rt/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_%.bbappend`
@@ -594,6 +590,7 @@ Summary of Scheduling Policies in Linux
 |SCHED_RR       |Round-robin real-time policy. Similar to SCHED_FIFO but tasks get a time slice before the next task runs. |
 
 </center>
+
 
 ### Basic Real-Time Thread creation in C programming
 

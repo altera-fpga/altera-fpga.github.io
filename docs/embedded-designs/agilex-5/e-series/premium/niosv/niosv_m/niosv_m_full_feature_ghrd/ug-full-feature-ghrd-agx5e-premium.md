@@ -5,9 +5,9 @@
 
 ## Introduction
 
-### Nios® V/m Soft-SoC System Example Design Overview
+### Nios® V/m Full Feature Golden Hardware Reference Design (GHRD) Overview
 
- This design demonstrates the Soft-SoC System Example Design for a Nios® V/m processor in Agilex™ 5 FPGA E-Series 065B Premium Development Kit. </br>
+ This design demonstrates the full feature Golden Hardware Reference Design (GHRD) for a Nios® V/m processor in Agilex™ 5 FPGA E-Series 065B Premium Development Kit. </br>
  The design is built with popular peripherals required for common application execution:
 
  - LPDDR4 External Memory Interface (EMIF) IP with Address Span Extender IP for large data or application.
@@ -26,13 +26,13 @@
  - Agilex™ 5 FPGA E-Series 065B Premium Development Kit, ordering code DK- A5E065BB32AES1. </br> Refer to the board documentation for more information about the development kit.
  - Mini and Micro USB Cable. Included with the development kit.
  - Host PC with 64 GB of RAM. Less will be fine for only exercising the prebuilt binaries, and not rebuilding the design.
- - Quartus® Prime Pro Edition Software version 25.3.1
+ - Quartus® Prime Pro Edition Software version 25.3
  - Ashling* RiscFree* IDE for Altera® FPGAs
  
 ### Release Contents  
 
 Every Nios V processor design example is maintained based on this folder structure. </br>
-Here is the Github link to root directory of this design example: [Nios® V/m Soft-SoC System Example Design Github link](https://github.com/altera-fpga/agilex5e-nios-ed/tree/rel/25.3.1/niosv_m/niosv_m_full_feature_ghrd)
+Here is the Github link to root directory of this design example: [Nios® V/m Full Feature Golden Hardware Reference Design (GHRD) Github link](https://github.com/altera-fpga/agilex5e-nios-ed/tree/rel/25.3.0/niosv_m/niosv_m_full_feature_ghrd)
 
 ```mermaid 
 ---
@@ -61,7 +61,7 @@ graph LR
 ```
 
 
-## Nios® V/m Soft-SoC System Example Design Architecture
+## Nios® V/m Full Feature Golden Hardware Reference Design (GHRD) Architecture
  This example design includes a Nios® V/m processor connected to multiple soft IP peripherals. </br>
  The objective of the design is to accomplish data transfer between the processor and soft IP peripherals:
 
@@ -180,17 +180,6 @@ The following components are used in this design:
 Refer to [Agilex™ 5 FPGA Premium Development Kit User Guide](https://www.intel.com/content/www/us/en/docs/programmable/814550.html) to setup the development kit. </br> Set the MSEL DIP switch SW27[3:1] as ASx4 FAST [on on off] or ASx4 Normal [on off off].
 
 ![Development Kit](../../devkit-img/devkit.png?raw=true)
-
-## Environment Setup
-
-Download the Quartus® Prime Pro Edition and Ashling* RiscFree* IDE for Altera® FPGAs (software version 25.3.1) from the [Quartus® Prime Design Software - Download](https://www.altera.com/products/development-tools/quartus#download) from Altera website. </br>
-Follow the on-screen instructions to complete the installation process.
-
-Next, set up the Quartus® Prime Pro Edition and Ashling* RiscFree* IDE tools in the PATH.
-```console
-export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
-export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$QUARTUS_ROOTDIR/../riscfree/RiscFree:$QUARTUS_ROOTDIR/../niosv/bin/$PATH
-```
 
 ## Exercising Prebuilt Binaries
 

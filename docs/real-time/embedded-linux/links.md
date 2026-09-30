@@ -12,8 +12,7 @@
 [Altera® FPGA Real-Time Meta Layer]:https://github.com/altera-fpga/meta-altera-rt
 [Hard Processor System Technical Reference Manual: Agilex™ 5 SoCs]:https://docs.altera.com/r/docs/814346/current
 [HPS GSRD User Guide for the Agilex™ 5 E-Series Premium Dev Kit]:https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#build-gsrd-20-binaries
-[Agilex 5 HPS CPU Cluster Latency]:https://altera-fpga.github.io/latest/real-time/agilex5-hps-cpu-cluster-latency/agilex5_hps_cpu_cluster_latency/
+
 
 
 [QPDS25.3.1_REL_GSRD_PR]:https://github.com/altera-fpga/meta-altera-rt/tree/QPDS25.3.1_REL_GSRD_PR
-[QPDS26.1_REL_GSRD_PR]:https://github.com/altera-fpga/meta-altera-rt/tree/QPDS26.1_REL_GSRD_PR

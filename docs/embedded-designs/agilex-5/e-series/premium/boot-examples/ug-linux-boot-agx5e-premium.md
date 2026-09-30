@@ -1,10 +1,14 @@
 
 
+# HPS GHRD Linux Boot Tutorial Example Design: Agilex™ 5 FPGA E-Series 065B Premium Development Kit
+
 ##  Introduction
 
-This page contains instructions on how to build Linux systems from separate components: Quartus Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the HPS Baseline System Example Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
+### Overview
 
-The key differences versus the HPS Baseline System Example Design are:
+This page contains instructions on how to build Linux systems from separate components: Hardware Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the Golden System Reference Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
+
+The key differences versus the GSRD are:
 
  * Fabric is configured from U-Boot directly with the rbf file, with `fpga load` command, instead of using the `bootm` command with the core.rbf part of the kernel.itb file
  * Single image boot is disabled in U-Boot, and it boots directly with the slected boot source, not trying them all
@@ -16,13 +20,13 @@ The following scenarios are covered:
 * HPS NAND Board: boot from eMMC flash
 * HPS Test Board: boot from SD card
 
-The instructions on this page are based on the **HPS Baseline System Example Design User Guide: Agilex 5 FPGA E-Series 065B Premium Development Kit (ES)** page.
+The instructions on this page are based on the [GSRD](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/).
 
 ### Prerequisites
 
 The following are required to be able to fully exercise the guides from this page:
 
-* [Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit(ES)](https://www.altera.com/products/devkit/po-3002/agilex-5-fpga-and-soc-e-series-premium-development-kit-es), ordering code DK-A5E065BB32AES1.
+* [Altera&reg; Agilex&trade; 5 FPGA E-Series 065B Premium Development Kit](https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/a5e065b-premium.html), ordering code DK-A5E065BB32AES1.
   * HPS Enablement  Expansion Board. Included with the development kit
   * HPS NAND Board. Enables eMMC storage for HPS. Orderable separately
   * HPS Test Board. Supports SD card boot, and external Arm tracing. Orderable separately
@@ -34,43 +38,42 @@ The following are required to be able to fully exercise the guides from this pag
   * 64 GB of RAM or more
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1 
   * TFTP server. This used to download the eMMC binaries to board to be flashed by U-Boot
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files.
 
 ### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 25.3.1 and the following software component versions integrate the 25.3.1 release. 
 
-**Note:** Regarding the Hardware Design components in the following table, only the device-specific one is used in this page.
+**Note:** Regarding the GHRD components in the following table, only the device-specific GHRD is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1.1_REL_GSRD_PR |
-| Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
-| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
-| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
-| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1.1_REL_GSRD_PR |
-| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
-| Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
-| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1.1_REL_GSRD_PR |
-| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
-| KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
+| Agilex 3 GHRD | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS25.3.1_REL_GSRD_PR   |
+| Agilex 5 GHRD - Include GSRD 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS25.3.1_REL_GSRD_PR |
+| Agilex 7 GHRD                         | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS25.3.1_REL_GSRD_PR |
+| Stratix 10 GHRD                       | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS25.3.1_REL_GSRD_PR |
+| Arria 10 GHRD                         | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS25.3.1_REL_GSRD_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.12.43-lts | QPDS25.3.1_REL_GSRD_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.13.1   | QPDS25.3.1_REL_GSRD_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2025.10 | QPDS25.3.1_REL_GSRD_PR |
+| Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | walnascar | latest              |
+| Yocto Project: meta-altera-fpga (for GSRD 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | walnascar | QPDS25.3.1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga (for Legacy GSRD) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | walnascar | latest |
+| Yocto Project: meta-intel-fpga-refdes (for Legacy GSRD) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | walnascar | QPDS25.3.1_REL_GSRD_PR |
+| Legacy GSRD | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | walnascar | QPDS25.3.1_REL_GSRD_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
 ### Development Kit
 
-Refer to **Development Kit** section in the **HPS Baseline System Example Design User Guide: Agilex 5 FPGA E-Series 065B Premium Development Kit (ES)** page for details about the board, including how to install the HPS Boards, and how to set MSEL dip-switches.
+Refer to [Development Kit](https://altera-fpga.github.io/rel-25.3.1/embedded-designs/agilex-5/e-series/premium/gsrd/ug-gsrd-agx5e-premium/#development-kit) for details about the board, including how to install the HPS Boards, and how to set MSEL dispswitches.
 
 ### Release Notes
 
-Refer to [Release Notes](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR) for release readiness information and known issues.
+Refer to [Release Notes](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS25.3.1_REL_GSRD_PR) for release readiness information and known issues.
 
 
 ## HPS Enablement Board
@@ -113,7 +116,8 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
 
@@ -121,17 +125,16 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 
 
-<h4>Build Quartus Design</h4>
-
+<h4>Build Hardware Design</h4>
 
 
 
 ```bash
 cd $TOP_FOLDER
-rm -rf agilex5_soc_devkit_ghrd_a55 && mkdir agilex5_soc_devkit_ghrd_a55 && cd agilex5_soc_devkit_ghrd_a55
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aes1-enablement-baseline-a55.zip
-unzip dk-a5e065bb32aes1-enablement-baseline-a55.zip
-rm -f dk-a5e065bb32aes1-enablement-baseline-a55.zip
+rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd_a55 && cd agilex5_soc_devkit_ghrd_a55
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
+unzip a5ed065es-premium-devkit-oobe-baseline-a55.zip
+rm -f a5ed065es-premium-devkit-oobe-baseline-a55.zip
 make baseline_a55-build
 pushd software/hps_debug && ./build.sh && popd
 quartus_pfg -c output_files/baseline_a55.sof \
@@ -147,7 +150,7 @@ The following files are created:
 
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/output_files/baseline_a55_hps_debug.sof`
 
-**NOTE:** In this example we build the Quartus design using **a5ed065es-premium-devkit-oobe-baseline-a55.zip** which uses one of the **a55** cores (core 0) as the **boot core** . You can also start with the **a5ed065es-premium-devkit-oobe-baseline-a76.zip** to use one of the **a76** cores (core 2) as the **boot core**. In that case, the **make baseline_a76-build** command would be required to build the Quartus design producing the **baseline_a76.sof** file. 
+**NOTE:** In this example we build the hardware design using **a5ed065es-premium-devkit-oobe-baseline-a55.zip** which uses one of the **a55** cores (core 0) as the **boot core** . You can also start with the **a5ed065es-premium-devkit-oobe-baseline-a76.zip** to use one of the **a76** cores (core 2) as the **boot core**. In that case, the **make baseline_a76-build** command would be required to build the hardware design producing the **baseline_a76.sof** file. 
 
 
 
@@ -158,7 +161,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 make -j 48 PLAT=agilex5 bl31 
 cd ..
@@ -177,7 +180,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -185,11 +188,6 @@ sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-
 sed -i 's/u-boot,spl-boot-order.*/u-boot\,spl-boot-order = \&mmc;/g' arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi
 # disable NAND in the device tree
 sed -i '/&nand {/!b;n;c\\tstatus = "disabled";' arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi
-# Prevent booting in the default mode SDR104 which is not supported by ES device
-sed -i '/sd-uhs-sdr104/d'  arch/arm/dts/socfpga_agilex5_socdk.dts
-sed -i 's/sdhci-caps-mask.*/sdhci-caps-mask = <0x00002007 0x0000ff00>;/g' arch/arm/dts/socfpga_agilex5_socdk.dts
-sed -i '/sdhci-caps-mask/a \\tno-1-8-v;' arch/arm/dts/socfpga_agilex5_socdk.dts
-
 # link to atf
 ln -s ../arm-trusted-firmware/build/agilex5/release/bl31.bin 
 # create configuration custom file. 
@@ -292,17 +290,9 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
-# Prevent booting in the default mode SDR104 which is not supported by ES device
-sed -i '/sd-uhs-sdr104/d' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-sed -i 's/sdhci-caps-mask.*/sdhci-caps-mask = <0x00002007 0x0000ff00>;/g' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-sed -i '/sdhci-caps-mask/a \\tno-1-8-v;' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
-
 cat << EOF > config-fragment-agilex5
-# WA: Needed from 26.1.1 on for ES-14728 Won't be fixed
-# See https://community.altera.com/kb/knowledge-base/why-does-linux-fail-to-access-qspi-flash-components-across-all-supported-devices/356427
-CONFIG_MTD_SPI_NOR_USE_4K_SECTORS=n
 # Enable Ethernet connectivity so we can get an IP address
 CONFIG_MARVELL_PHY=y
 EOF
@@ -340,43 +330,54 @@ make -j 32 modules_install INSTALL_MOD_PATH=`pwd`/module_install_dir
 
 The built modules are created under the following directory:
 
-* `$TOP_FOLDER/linux-socfpga/module_install_dir
+* `$TOP_FOLDER/linux-socfpga/module_install_dir`
 
+<h4>Install Yocto Dependencies</h4>
+
+1\. Make sure you have Yocto system requirements met: https://docs.yoctoproject.org/5.0.1/ref-manual/system-requirements.html#supported-linux-distributions.
+
+The command to install the required packages on Ubuntu 22.04 is:
+
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install openssh-server mc libgmp3-dev libmpc-dev gawk wget git diffstat unzip texinfo gcc \
+build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping \
+python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint xterm python3-subunit mesa-common-dev zstd \
+liblz4-tool git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison xinetd \
+tftpd tftp nfs-kernel-server libncurses5 libc6-i386 libstdc++6:i386 libgcc++1:i386 lib32z1 \
+device-tree-compiler curl mtd-utils u-boot-tools net-tools swig -y
+```
+
+On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the default is a link to /bin/dash:
+
+```bash
+ sudo ln -sf /bin/bash /bin/sh
+```
+
+**Note**: You can also use a Docker container to build the Yocto recipes, refer to https://rocketboards.org/foswiki/Documentation/DockerYoctoBuild for details. When using a Docker container, it does not matter what Linux distribution or packages you have installed on your host, as all dependencies are provided by the Docker container.
 
 <h4>Build Rootfs</h4>
 
 
 
 ```bash
-cd $TOP_FOLDER 
-rm -rf buildroot
-git clone https://github.com/buildroot/buildroot.git
-cd buildroot
-git checkout 2026.05
-mkdir -p overlay/etc/profile.d/
-# Use regilar prompt used in our devices root@<device>:~# instead of only #
-echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
-# Adding applications that we normaly need
-cat > configs/agilex5_defconfig <<EOT
-BR2_aarch64=y
-BR2_TOOLCHAIN_BUILDROOT_CXX=y
-BR2_KERNEL_HEADERS_6_12=y
-BR2_PACKAGE_HOST_GDB=y
-BR2_GDB_VERSION_14=y
-BR2_PACKAGE_GDB=y
-BR2_PACKAGE_DROPBEAR=y
-BR2_SYSTEM_DHCP="eth0"
-BR2_TARGET_ROOTFS_TAR_GZIP=y
-BR2_TARGET_GENERIC_HOSTNAME="agilex5"
-BR2_ROOTFS_OVERLAY="overlay"
-EOT
-make agilex5_defconfig
-make -j 64
+cd $TOP_FOLDER
+rm -rf yocto && mkdir yocto && cd yocto
+git clone -b walnascar https://git.yoctoproject.org/poky
+git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga
+git clone -b walnascar https://github.com/openembedded/meta-openembedded
+source poky/oe-init-build-env ./build
+echo 'MACHINE = "agilex5_dk_a5e065bb32aes1"' >> conf/local.conf
+echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
+echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf
+echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf
+bitbake core-image-minimal
 ```
 
 The following file is created:
 
-* `$TOP_FOLDER/buildroot/output/images/rootfs.tar.gz`
+* `$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz`
 
 
 
@@ -397,25 +398,8 @@ cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image .
 cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dtb .
 cd ..
 mkdir rootfs && cd rootfs
-sudo tar xf $TOP_FOLDER/buildroot/output/images/rootfs.tar.gz
+sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz
 sudo cp -r $TOP_FOLDER/linux-socfpga/module_install_dir/lib/modules lib/
-# Needed to mount debugfs to get available /sys/kernel/debug features
-cat << EOF > ../S99mountSysKrnDbg.sh
-#!/bin/sh
-# SPDX-License-Identifier: GPL-2.0-only
-
-### BEGIN INIT INFO
-# Provides: banner
-# Required-Start:
-# Required-Stop:
-# Default-Start:     S
-# Default-Stop:
-### END INIT INFO
-echo "Mounting debugfs..."
-mount -t debugfs none /sys/kernel/debug/
-EOF
-sudo cp ../S99mountSysKrnDbg.sh etc/init.d/
-sudo chmod +x etc/init.d/S99mountSysKrnDbg.sh
 cd ..
 sudo python3 make_sdimage_p3.py -f \
 -P fatfs/*,num=1,format=fat32,size=64M \
@@ -482,7 +466,7 @@ This section demonstrates how to build Linux system from separate components, wh
 **NOTE:**  This section assumes that the [Boot from SD Card](#boot-from-sd-card) section has been already built and the environment setup in that section is still available.
 
 This section presents how to build the binaries and boot from QSPI with the HPS Enablement Board.
-While the example is based on the HPS Baseline System Example Design, it contains the following differences:
+While the example is based on the GSRD, it contains the following differences:
 
 * U-Boot tries to boot only from QSPI flash, does not try SD card
 * U-Boot does not use a script to boot, instead it used the `BOOTCMD` environment variable directly
@@ -503,7 +487,7 @@ mkdir $TOP_FOLDER/qspi-boot
 ```bash
 cd $TOP_FOLDER/qspi-boot
 rm -rf u-boot-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -667,29 +651,10 @@ mv u-boot.itb u-boot.bin
 5\. Build the `rootfs.ubifs` file:
 
 
-
 ```bash
 rm -rf rootfs rootfs.ubifs
 mkdir rootfs 
-tar -xzvf $TOP_FOLDER/buildroot/output/images/rootfs.tar.gz -C rootfs
-cd rootfs
-cat << EOF > ../S99mountSysKrnDbg.sh
-#!/bin/sh
-# SPDX-License-Identifier: GPL-2.0-only
-
-### BEGIN INIT INFO
-# Provides: banner
-# Required-Start:
-# Required-Stop:
-# Default-Start:     S
-# Default-Stop:
-### END INIT INFO
-echo "Mounting debugfs..."
-mount -t debugfs none /sys/kernel/debug/
-EOF
-sudo cp ../S99mountSysKrnDbg.sh etc/init.d/
-sudo chmod +x etc/init.d/S99mountSysKrnDbg.sh
-cd ..
+tar -xzvf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz -C rootfs 
 mkfs.ubifs -r rootfs -F -e 65408 -m 1 -c 6500 -o rootfs.ubifs 
 ```
 
@@ -874,7 +839,8 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
 
@@ -882,29 +848,28 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 
 
-<h4>Build Quartus Design</h4>
-
+<h4>Build Hardware Design</h4>
 
 
 
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aes1-emmc-baseline-a55.zip
-unzip dk-a5e065bb32aes1-emmc-baseline-a55.zip
-rm -f dk-a5e065bb32aes1-emmc-baseline-a55.zip
-make baseline_a55-build
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-emmc-legacy-baseline.zip
+unzip a5ed065es-premium-devkit-emmc-legacy-baseline.zip
+rm -f a5ed065es-premium-devkit-emmc-legacy-baseline.zip
+make legacy_baseline-build
 pushd software/hps_debug && ./build.sh && popd
-quartus_pfg -c output_files/baseline_a55.sof \
-  output_files/baseline_a55_hps_debug.sof \
+quartus_pfg -c output_files/legacy_baseline.sof \
+  output_files/legacy_baseline_hps_debug.sof \
   -o hps_path=software/hps_debug/hps_wipe.ihex
 cd ..
 ```
 
 The following files are created:
 
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof`
 
 
 <h4>Build Arm Trusted Firmware</h4>
@@ -914,7 +879,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 make -j 48 PLAT=agilex5 bl31 
 cd ..
@@ -933,7 +898,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -1007,7 +972,7 @@ The following files are created:
 
 ```bash
 cd $TOP_FOLDER
-quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof ghrd.jic \
+quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof ghrd.jic \
 -o device=MT25QU128 \
 -o flash_loader=A5ED065BB32AE6SR0 \
 -o hps_path=$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex \
@@ -1028,7 +993,7 @@ This is an optional step, in which you can build an HPS RBF file, which can be u
 
 ```bash
 cd $TOP_FOLDER
-quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof ghrd.rbf \
+quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof ghrd.rbf \
 -o hps_path=$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o hps=1
 ```
@@ -1045,10 +1010,8 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
-# WA: Adding no-1-8-v; to mmc node fix problem in 26.1 release 
-sed -i '/mmc-hs200-1_8v;/a \\tno-1-8-v;' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_emmc.dts
 make defconfig 
 make -j 64 Image && make intel/socfpga_agilex5_socdk_emmc.dtb
 ```
@@ -1092,35 +1055,24 @@ The built modules are created under the following directory:
 
 
 ```bash
-cd $TOP_FOLDER 
-rm -rf buildroot
-git clone https://github.com/buildroot/buildroot.git
-cd buildroot
-git checkout 2026.05
-mkdir -p overlay/etc/profile.d/
-# Use regilar prompt used in our devices root@<device>:~# instead of only #
-echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
-# Adding applications that we normaly need
-cat > configs/agilex5_defconfig <<EOT
-BR2_aarch64=y
-BR2_TOOLCHAIN_BUILDROOT_CXX=y
-BR2_KERNEL_HEADERS_6_12=y
-BR2_PACKAGE_HOST_GDB=y
-BR2_GDB_VERSION_14=y
-BR2_PACKAGE_GDB=y
-BR2_PACKAGE_DROPBEAR=y
-BR2_SYSTEM_DHCP="eth0"
-BR2_TARGET_ROOTFS_TAR_GZIP=y
-BR2_TARGET_GENERIC_HOSTNAME="agilex5"
-BR2_ROOTFS_OVERLAY="overlay"
-EOT
-make agilex5_defconfig
-make -j 64
+cd $TOP_FOLDER
+rm -rf yocto && mkdir yocto && cd yocto
+git clone -b walnascar https://git.yoctoproject.org/poky
+git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga
+git clone -b walnascar https://github.com/openembedded/meta-openembedded
+# work around issue
+echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
+source poky/oe-init-build-env ./build
+echo 'MACHINE = "agilex5_dk_a5e065bb32aes1"' >> conf/local.conf
+echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
+echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf
+echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf
+bitbake core-image-minimal
 ```
 
 The following file is created:
 
-* `$TOP_FOLDER/buildroot/output/images/rootfs.tar.gz`
+* `$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz`
 
 
 
@@ -1141,25 +1093,8 @@ cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image .
 cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_emmc.dtb .
 cd ..
 mkdir rootfs && cd rootfs
-sudo tar xf $TOP_FOLDER/buildroot/output/images/rootfs.tar.gz
+sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz
 sudo cp -r $TOP_FOLDER/linux-socfpga/module_install_dir/lib/modules lib/
-# Needed to mount debugfs to get available /sys/kernel/debug features
-cat << EOF > ../S99mountSysKrnDbg.sh
-#!/bin/sh
-# SPDX-License-Identifier: GPL-2.0-only
-
-### BEGIN INIT INFO
-# Provides: banner
-# Required-Start:
-# Required-Stop:
-# Default-Start:     S
-# Default-Stop:
-### END INIT INFO
-echo "Mounting debugfs..."
-mount -t debugfs none /sys/kernel/debug/
-EOF
-sudo cp ../S99mountSysKrnDbg.sh etc/init.d/
-sudo chmod +x etc/init.d/S99mountSysKrnDbg.sh
 cd ..
 sudo python3 make_sdimage_p3.py -f \
 -P fatfs/*,num=1,format=fat32,size=64M \
@@ -1194,7 +1129,7 @@ mkdir $TOP_FOLDER/helper-jic
 ```bash
 cd $TOP_FOLDER/helper-jic
 rm -rf u-boot-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -1272,7 +1207,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER/helper-jic
 rm -f flash.pfg fpga.sof u-boot.bin spl.hex *.jic *.rbf
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof fpga.sof
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof fpga.sof
 ln -s u-boot-socfpga/u-boot.itb u-boot.bin
 ln -s u-boot-socfpga/spl/u-boot-spl-dtb.hex spl.hex
 cat << EOF > flash.pfg
@@ -1427,7 +1362,8 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
 
@@ -1435,29 +1371,28 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 
 
-<h4>Build Quartus Design</h4>
-
+<h4>Build Hardware Design</h4>
 
 
 
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aes1-test-baseline-a55.zip
-unzip dk-a5e065bb32aes1-test-baseline-a55.zip
-rm -f dk-a5e065bb32aes1-test-baseline-a55.zip
-make baseline_a55-build
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-debug2-legacy-baseline.zip
+unzip a5ed065es-premium-devkit-debug2-legacy-baseline.zip
+rm -f a5ed065es-premium-devkit-debug2-legacy-baseline.zip
+make legacy_baseline-build
 pushd software/hps_debug && ./build.sh && popd
-quartus_pfg -c output_files/baseline_a55.sof \
-  output_files/baseline_a55_hps_debug.sof \
+quartus_pfg -c output_files/legacy_baseline.sof \
+  output_files/legacy_baseline_hps_debug.sof \
   -o hps_path=software/hps_debug/hps_wipe.ihex
 cd ..
 ```
 
 The following files are created:
 
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55_hps_debug.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/legacy_baseline_hps_debug.sof`
 
 
 <h4>Build Arm Trusted Firmware</h4>
@@ -1467,7 +1402,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware
 cd arm-trusted-firmware
 make -j 48 PLAT=agilex5 bl31 
 cd ..
@@ -1486,7 +1421,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf u-boot-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -1560,7 +1495,7 @@ The following files are created:
 
 ```bash
 cd $TOP_FOLDER
-quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof ghrd.jic \
+quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof ghrd.jic \
 -o device=MT25QU128 \
 -o flash_loader=A5ED065BB32AE6SR0 \
 -o hps_path=$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex \
@@ -1581,7 +1516,7 @@ This is an optional step, in which you can build an HPS RBF file, which can be u
 
 ```bash
 cd $TOP_FOLDER
-quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof ghrd.rbf \
+quartus_pfg -c agilex5_soc_devkit_ghrd/output_files/legacy_baseline.sof ghrd.rbf \
 -o hps_path=$TOP_FOLDER/u-boot-socfpga/spl/u-boot-spl-dtb.hex \
 -o hps=1
 ```
@@ -1599,7 +1534,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
 make defconfig 
 make -j 64 Image && make intel/socfpga_agilex5_socdk_debug.dtb
@@ -1643,34 +1578,23 @@ The built modules are created under the following directory:
 
 ```bash
 cd $TOP_FOLDER
-rm -rf buildroot
-git clone https://github.com/buildroot/buildroot.git
-cd buildroot
-git checkout 2026.05
-mkdir -p overlay/etc/profile.d/
-# Use regilar prompt used in our devices root@<device>:~# instead of only #
-echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
-# Adding applications that we normally need
-cat > configs/agilex5_defconfig <<EOT
-BR2_aarch64=y
-BR2_TOOLCHAIN_BUILDROOT_CXX=y
-BR2_KERNEL_HEADERS_6_12=y
-BR2_PACKAGE_HOST_GDB=y
-BR2_GDB_VERSION_14=y
-BR2_PACKAGE_GDB=y
-BR2_PACKAGE_DROPBEAR=y
-BR2_SYSTEM_DHCP="eth0"
-BR2_TARGET_ROOTFS_TAR_GZIP=y
-BR2_TARGET_GENERIC_HOSTNAME="agilex5"
-BR2_ROOTFS_OVERLAY="overlay"
-EOT
-make agilex5_defconfig
-make -j 64
+rm -rf yocto && mkdir yocto && cd yocto
+git clone -b walnascar https://git.yoctoproject.org/poky
+git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga
+git clone -b walnascar https://github.com/openembedded/meta-openembedded
+# work around issue
+echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
+source poky/oe-init-build-env ./build
+echo 'MACHINE = "agilex5_dk_a5e065bb32aes1"' >> conf/local.conf
+echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
+echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf
+echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf
+bitbake core-image-minimal
 ```
 
 The following file is created:
 
-* `$TOP_FOLDER/buildroot/output/images/rootfs.tar.gz`
+* `$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz`
 
 
 
@@ -1691,25 +1615,8 @@ cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image .
 cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_debug.dtb .
 cd ..
 mkdir rootfs && cd rootfs
-sudo tar xf $TOP_FOLDER/buildroot/output/images/rootfs.tar.gz
+sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz
 sudo cp -r $TOP_FOLDER/linux-socfpga/module_install_dir/lib/modules lib/
-# Needed to mount debugfs to get available /sys/kernel/debug features
-cat << EOF > ../S99mountSysKrnDbg.sh
-#!/bin/sh
-# SPDX-License-Identifier: GPL-2.0-only
-
-### BEGIN INIT INFO
-# Provides: banner
-# Required-Start:
-# Required-Stop:
-# Default-Start:     S
-# Default-Stop:
-### END INIT INFO
-echo "Mounting debugfs..."
-mount -t debugfs none /sys/kernel/debug/
-EOF
-sudo cp ../S99mountSysKrnDbg.sh etc/init.d/
-sudo chmod +x etc/init.d/S99mountSysKrnDbg.sh
 cd ..
 sudo python3 make_sdimage_p3.py -f \
 -P fatfs/*,num=1,format=fat32,size=64M \
@@ -1775,7 +1682,7 @@ Starting from 24.3.1 release, the Agilex™ 5 device is provided with the suppor
 
    ![](images/ATF_Linux_bootflow.svg) 
 
-In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and Quartus design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (Secure Monitor) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI, SDCard, NAND or eMMC). 
+In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and hardware design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (Secure Monitor) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI, SDCard, NAND or eMMC). 
 
 When creating the flash image, it's necessary to provide the location in where ATF expects to find the FIP image (fip.bin). This is hardcoded in the ATF code (**plat/intel/soc/common/include/platform_def.h**) for each one of the flash devices in which this boot flow is supported as indicated in the next table:
 
@@ -1791,7 +1698,7 @@ The following sections provide instructions about how to generate the binaries t
 
 ### Boot from SD Card
 
-Here we provide all the steps needed to create the binaries that allow you to exercise the ATF to Linux boot flow from a SD Card device. This includes building the Quartus design, ATF (BL2, BL31), Linux file system, and Linux. These are some notes about the build instructions:
+Here we provide all the steps needed to create the binaries that allow you to exercise the ATF to Linux boot flow from a SD Card device. This includes building the hardware design, ATF (BL2, BL31), Linux file system, and Linux. These are some notes about the build instructions:
 
 * Exercise the HPS boot first flow.
 * When building ATF, we indicate the device used to boot from. We also indicate the SDRAM memory locations where the Linux kernel image and device tree will be loaded and launched from. In this boot flow, Linux is referred to as BL33.
@@ -1830,23 +1737,24 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
 
 
 
 
-<h4>Build Quartus Design</h4>
+<h4>Build Hardware Design</h4>
 
 
 
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd_sdqspi && mkdir agilex5_soc_devkit_ghrd_sdqspi && cd agilex5_soc_devkit_ghrd_sdqspi
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aes1-enablement-baseline-a55.zip
-unzip dk-a5e065bb32aes1-enablement-baseline-a55.zip
-rm -f dk-a5e065bb32aes1-enablement-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-oobe-baseline-a55.zip
+unzip a5ed065es-premium-devkit-oobe-baseline-a55.zip
+rm -f a5ed065es-premium-devkit-oobe-baseline-a55.zip
 make baseline_a55-build
 pushd software/hps_debug && ./build.sh && popd
 quartus_pfg -c output_files/baseline_a55.sof \
@@ -1861,7 +1769,7 @@ The following file is created:
 
 * $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi/output_files/baseline_a55.sof
 
-**NOTE:** In this example we build the Quartus design using **a5ed065es-premium-devkit-oobe-baseline-a55.zip** which uses one of the **a55** cores (core 0) as the **boot core** . You can also start with the **a5ed065es-premium-devkit-oobe-baseline-a76.zip** to use one of the **a76** cores (core 2) as the **boot core**. In that case, the **make baseline_a76-build** command would be required to build the Quartus design producing the **baseline_a76.sof** file. 
+**NOTE:** In this example we build the hardware design using **a5ed065es-premium-devkit-oobe-baseline-a55.zip** which uses one of the **a55** cores (core 0) as the **boot core** . You can also start with the **a5ed065es-premium-devkit-oobe-baseline-a76.zip** to use one of the **a76** cores (core 2) as the **boot core**. In that case, the **make baseline_a76-build** command would be required to build the hardware design producing the **baseline_a76.sof** file. 
 
 <h4>Build Arm Trusted Firmware</h4>
 
@@ -1871,7 +1779,7 @@ The following file is created:
 ```bash
 cd $TOP_FOLDER
 rm -rf arm-trusted-firmware-sdcard
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-sdcard
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-sdcard
 cd arm-trusted-firmware-sdcard
 make realclean
 # Setting Bootsource as SDMMC
@@ -1894,7 +1802,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga-sdcard
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-sdcard
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-sdcard
 cd linux-socfpga-sdcard
 
 cat << EOF > config-fragment-agilex5
@@ -1908,7 +1816,7 @@ CONFIG_INITRAMFS_ROOT_GID=0
 CONFIG_INITRAMFS_COMPRESSION_GZIP=y
 
 # Include these configs if wanted to perform fpga reconfiguration using overlays (enable device tree overlays and fpga bridges)
-# Taken from SoC Fabric Configuration from Linux Example for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile) page
+# Taken from https://altera-fpga.github.io/latest/embedded-designs/agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc/
 CONFIG_OF_RESOLVE=y
 CONFIG_OF_OVERLAY=y
 CONFIG_OF_CONFIGFS=y
@@ -1974,41 +1882,28 @@ The built modules are created under the following directory:
 
 ```bash
 cd $TOP_FOLDER
-rm -rf buildroot
-git clone https://github.com/buildroot/buildroot.git
-cd buildroot
-git checkout 2026.05
-mkdir -p overlay/etc/profile.d/
-# Use regilar prompt used in our devices root@<device>:~# instead of only #
-echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
-# Adding applications that we normally need
-cat > configs/agilex5_defconfig <<EOT
-BR2_aarch64=y
-BR2_TOOLCHAIN_BUILDROOT_CXX=y
-BR2_KERNEL_HEADERS_6_12=y
-BR2_PACKAGE_HOST_GDB=y
-BR2_GDB_VERSION_14=y
-BR2_PACKAGE_GDB=y
-BR2_PACKAGE_DROPBEAR=y
-BR2_SYSTEM_DHCP="eth0"
-BR2_TARGET_ROOTFS_TAR_GZIP=y
-BR2_TARGET_ROOTFS_JFFS2=y
-BR2_TARGET_ROOTFS_JFFS2_CUSTOM=y
-BR2_TARGET_ROOTFS_JFFS2_CUSTOM_EBSIZE=0x10000
-BR2_TARGET_ROOTFS_JFFS2_EBSIZE=0x10000
-BR2_TARGET_GENERIC_HOSTNAME="agilex5"
-BR2_ROOTFS_OVERLAY="overlay"
-EOT
-make agilex5_defconfig
-make -j 64
+rm -rf yocto && mkdir yocto && cd yocto
+git clone -b walnascar https://git.yoctoproject.org/poky
+git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga
+git clone -b walnascar https://github.com/openembedded/meta-openembedded
+# work around issue
+echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
+source poky/oe-init-build-env ./build
+echo 'MACHINE = "agilex5_dk_a5e065bb32aes1"' >> conf/local.conf
+echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
+echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf
+echo 'IMAGE_FSTYPES = "tar.gz cpio jffs2"' >> conf/local.conf
+echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver devmem2"' >> conf/local.conf
+bitbake core-image-minimal
+
 ```
 
 
 
 The following files are created:
 
-* $TOP_FOLDER/buildroot/output/images/rootfs.tar.gz
-* $TOP_FOLDER/buildroot/output/images/rootfs.jffs2
+* $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz
+* $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.jffs2
 
 <h4>Build QSPI Image</h4>
 
@@ -2058,31 +1953,15 @@ wget https://releases.rocketboards.org/release/2020.11/gsrd/tools/make_sdimage_p
 sed -i 's/\"\-F 32\",//g' make_sdimage_p3.py
 chmod +x make_sdimage_p3.py
 mkdir rootfs && cd rootfs
-sudo tar -xf $TOP_FOLDER/buildroot/output/images/rootfs.tar.gz
-sudo cp $TOP_FOLDER/jic_sdcard/design_atf.core.rbf root/
+sudo tar -xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz
+sudo cp $TOP_FOLDER/jic_sdcard/design_atf.core.rbf home/root/
 sudo cp -r $TOP_FOLDER/linux-socfpga-sdcard/module_install_dir/lib/modules lib/
-# Needed to mount debugfs to get available /sys/kernel/debug features
-cat << EOF > ../S99mountSysKrnDbg.sh
-#!/bin/sh
-# SPDX-License-Identifier: GPL-2.0-only
-
-### BEGIN INIT INFO
-# Provides: banner
-# Required-Start:
-# Required-Stop:
-# Default-Start:     S
-# Default-Stop:
-### END INIT INFO
-echo "Mounting debugfs..."
-mount -t debugfs none /sys/kernel/debug/
-EOF
-sudo cp ../S99mountSysKrnDbg.sh etc/init.d/
-sudo chmod +x etc/init.d/S99mountSysKrnDbg.sh
 cd ..
 sudo python3 make_sdimage_p3.py -f \
 -P fip.bin,num=1,format=raw,size=64M,type=a2 \
 -P rootfs/*,num=2,format=ext3,size=448M \
 -s 512M -n sdimage_atf.img
+
 ```
 
 
@@ -2151,9 +2030,9 @@ This section provides instructions to build binaries to exercise ATF to Linux di
 
 **NOTE:** This section depends on some steps from the [ATF to Linux from SD Card](#atf-to-linux-from-sd-card) section. So, to build the binaries in this section, the instructions in the following sections need to be executed earlier:
 
-* Toolchain Setup  in [Boot from SD Card in ATF2Linux flow](#boot-from-sd-card_2)
-* Build Quartus Design in [Boot from SD Card in ATF2Linux flow](#boot-from-sd-card_2)
-* Build Linux File System  in [Boot from SD Card in ATF2Linux flow](#boot-from-sd-card_2) 
+* [Toolchain Setup (ATF-To-Linux)](#toolchain-setup-atf-to-linux)
+* [Build Hardware Design SD_QSPI (ATF-To-Linux)](#build-hardware-design-sd_qspi-atf-to-linux)
+* [Build Linux File System  (ATF-To-Linux)](#build-linux-file-system-atf-to-linux)
 
 ATF requires to be rebuilt to enable booting from QSPI by setting **SOCFPGA_BOOT_SOURCE_QSPI** to '1'. Linux also need to be rebuild since this time we are including a JFFS2 file system and since booting from QSPI we need to change some parameters in the device tree. The FIP image is created in the same way but this time the FIP image is put into the QSPI image using a specific .pfg file. In this .pfg file, we are indicating that the fip file will be located at **0x3C00000** location in the QSPI since this is also indicated by the **PLAT_QSPI_DATA_BASE** definition in the ATF.
 
@@ -2168,7 +2047,7 @@ ATF requires to be rebuilt to enable booting from QSPI by setting **SOCFPGA_BOOT
 cd $TOP_FOLDER
 # Building ATF
 rm -rf arm-trusted-firmware-qspi
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-qspi
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-qspi
 cd arm-trusted-firmware-qspi
 
 make realclean
@@ -2193,7 +2072,7 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga-qspi
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-qspi
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-qspi
 cd linux-socfpga-qspi
 
 ## Modify QSPI clock frequency to 50 MHz to match ATF and modify the QSPI partitions ranges to fit the current images
@@ -2215,7 +2094,7 @@ CONFIG_INITRAMFS_ROOT_GID=0
 CONFIG_INITRAMFS_COMPRESSION_GZIP=y
 
 # Include these configs if wanted to perform fpga reconfiguration using overlays (enable device tree overlays and fpga bridges)
-# Taken from SoC Fabric Configuration from Linux Example for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile) page
+# Taken from https://altera-fpga.github.io/latest/embedded-designs/agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc/
 CONFIG_OF_RESOLVE=y
 CONFIG_OF_OVERLAY=y
 CONFIG_OF_CONFIGFS=y
@@ -2227,9 +2106,7 @@ CONFIG_OVERLAY_FS=y
 CONFIG_ALTERA_SYSID=y
 # Enabling JFFS2 File system
 CONFIG_JFFS2_FS=y
-# WA: Needed from 26.1.1 on for ES-14728 Won't be fixed
-# See https://community.altera.com/kb/knowledge-base/why-does-linux-fail-to-access-qspi-flash-components-across-all-supported-devices/356427
-CONFIG_MTD_SPI_NOR_USE_4K_SECTORS=n
+
 # Needed for netwrok connectivity
 CONFIG_MARVELL_PHY=y
 EOF
@@ -2319,7 +2196,7 @@ $TOP_FOLDER/arm-trusted-firmware-qspi/build/agilex5/release/tools/fiptool/fiptoo
 
 # Create the jic file
 ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi/output_files/baseline_a55.sof baseline_a55.sof
-ln -s $TOP_FOLDER/buildroot/output/images/rootfs.jffs2 rootfs.bin
+ln -s $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.jffs2 rootfs.bin
 quartus_pfg -c qspi_flash_image_agilex5_boot.pfg
 
 ```
@@ -2381,21 +2258,12 @@ root@agilex5_dk_a5e065bb32aes1:~#
 ```
 
 
-**NOTE: ** In case you need a service from **/sys/kernel/debug** in Linux, you need to manually mount **debugfs**  with the following command:
-
-```
-mount -t debugfs none /sys/kernel/debug/
-```
-
-
-
-
 
 ### Boot from eMMC
 
 This section provides instructions to build binaries to exercise ATF to Linux direct boot flow booting from a eMMC card.
 
-The Quartus design must be re-built as this time it's required a Quartus design specific to boot from eMMC.  ATF also requires to be rebuilt to enable booting from eMMC by setting SOCFPGA_BOOT_SOURCE_SDMMC to '1' and setting MMC_DEVICE_TYPE to '0' (eMMC used instead of SD Card). Linux also need to be re-built because we need to addapt the device tree to use the correct configuration to boot from eMMC. The FIP image and the eMMC image are created in the same way than for the SD Card use case.
+The GHRD must be re-built as this time it's required a hardware design specific to boot from eMMC.  ATF also requires to be rebuilt to enable booting from eMMC by setting SOCFPGA_BOOT_SOURCE_SDMMC to '1' and setting MMC_DEVICE_TYPE to '0' (eMMC used instead of SD Card). Linux also need to be re-built because we need to addapt the device tree to use the correct configuration to boot from eMMC. The FIP image and the eMMC image are created in the same way than for the SD Card use case.
 
    ![](images/ATF_Linux_Image_eMMC.jpg) 
 
@@ -2428,7 +2296,8 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+export QUARTUS_ROOTDIR=~/altera_pro/25.3.1/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
 
@@ -2444,14 +2313,11 @@ source ~/altera_pro/26.1.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd_emmc && mkdir agilex5_soc_devkit_ghrd_emmc && cd agilex5_soc_devkit_ghrd_emmc
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aes1-emmc-baseline-a55.zip
-unzip dk-a5e065bb32aes1-emmc-baseline-a55.zip
-rm -f dk-a5e065bb32aes1-emmc-baseline-a55.zip
-make baseline_a55-build
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS25.3.1_REL_GSRD_PR/a5ed065es-premium-devkit-emmc-legacy-baseline.zip
+unzip a5ed065es-premium-devkit-emmc-legacy-baseline.zip
+rm -f a5ed065es-premium-devkit-emmc-legacy-baseline.zip
+make legacy_baseline-build
 pushd software/hps_debug && ./build.sh && popd
-quartus_pfg -c output_files/baseline_a55.sof \
-  output_files/baseline_a55_hps_debug.sof \
-  -o hps_path=software/hps_debug/hps_wipe.ihex
 cd ..
 ```
 
@@ -2459,7 +2325,7 @@ cd ..
 
 The following file is created:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_emmc/output_files/baseline_a55.sof
+* $TOP_FOLDER/agilex5_soc_devkit_ghrd_emmc/output_files/legacy_baseline.sof
 
 
 <h4>Build Arm Trusted Firmware</h4>
@@ -2471,7 +2337,7 @@ The following file is created:
 cd $TOP_FOLDER
 # Building ATF
 rm -rf arm-trusted-firmware-emmc
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-emmc
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-emmc
 cd arm-trusted-firmware-emmc
 # Indicate that we will boot from eMMC instead of SDCard
 sed -i 's/\#define MMC_DEVICE_TYPE.*/\#define MMC_DEVICE_TYPE						0  \/\* MMC = 0, SD = 1 \*\//g' plat/intel/soc/agilex5/include/socfpga_plat_def.h
@@ -2499,11 +2365,9 @@ The following files are created:
 ```bash
 cd $TOP_FOLDER
 rm -rf linux-socfpga-emmc
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-emmc
+git clone -b QPDS25.3.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-emmc
 cd linux-socfpga-emmc
 
-# WA: Adding no-1-8-v; to mmc node fix problem in 26.1 release
-sed -i '/mmc-hs200-1_8v;/a \\tno-1-8-v;' arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_emmc.dts
 cat << EOF > config-fragment-agilex5
 # Enable DHCP 
 CONFIG_IP_PNP_DHCP=y
@@ -2515,7 +2379,7 @@ CONFIG_INITRAMFS_ROOT_GID=0
 CONFIG_INITRAMFS_COMPRESSION_GZIP=y
 
 # Include these configs if wanted to perform fpga reconfiguration using overlays (enable device tree overlays and fpga bridges)
-# Taken from SoC Fabric Configuration from Linux Example for the Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tiles & E-Tile) page
+# Taken from https://altera-fpga.github.io/latest/embedded-designs/agilex-7/f-series/soc/fabric-config/ug-linux-fabric-config-agx7f-soc/
 CONFIG_OF_RESOLVE=y
 CONFIG_OF_OVERLAY=y
 CONFIG_OF_CONFIGFS=y
@@ -2581,9 +2445,9 @@ rm -rf jic_emmc
 mkdir jic_emmc && cd jic_emmc
 # Convert fsbl
 aarch64-none-linux-gnu-objcopy -v -I binary -O ihex --change-addresses 0x00000000 $TOP_FOLDER/arm-trusted-firmware-emmc/build/agilex5/release/bl2.bin fsbl.hex
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_emmc/output_files/baseline_a55.sof baseline_a55.sof
+ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_emmc/output_files/legacy_baseline.sof legacy_baseline.sof
 # Create .jic file
-quartus_pfg -c baseline_a55.sof \
+quartus_pfg -c legacy_baseline.sof \
 emmc_atf.jic \
 -o hps_path=fsbl.hex \
 -o device=MT25QU128 \
@@ -2607,36 +2471,26 @@ The following files are created:
 
 ```bash
 cd $TOP_FOLDER
-rm -rf buildroot
-git clone https://github.com/buildroot/buildroot.git
-cd buildroot
-git checkout 2026.05
-mkdir -p overlay/etc/profile.d/
-# Use regilar prompt used in our devices root@<device>:~# instead of only #
-echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
-# Adding applications that we normally need
-cat > configs/agilex5_defconfig <<EOT
-BR2_aarch64=y
-BR2_TOOLCHAIN_BUILDROOT_CXX=y
-BR2_KERNEL_HEADERS_6_12=y
-BR2_PACKAGE_HOST_GDB=y
-BR2_GDB_VERSION_14=y
-BR2_PACKAGE_GDB=y
-BR2_PACKAGE_DROPBEAR=y
-BR2_SYSTEM_DHCP="eth0"
-BR2_TARGET_ROOTFS_TAR_GZIP=y
-BR2_TARGET_GENERIC_HOSTNAME="agilex5"
-BR2_ROOTFS_OVERLAY="overlay"
-EOT
-make agilex5_defconfig
-make -j 64
+rm -rf yocto && mkdir yocto && cd yocto
+git clone -b walnascar https://git.yoctoproject.org/poky
+git clone -b walnascar https://git.yoctoproject.org/meta-intel-fpga
+git clone -b walnascar https://github.com/openembedded/meta-openembedded
+# work around issue
+echo 'do_package_qa[noexec] = "1"' >> $(find meta-intel-fpga -name linux-socfpga_6.6.bb)
+source poky/oe-init-build-env ./build
+echo 'MACHINE = "agilex5_dk_a5e065bb32aes1"' >> conf/local.conf
+echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
+echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf
+echo 'IMAGE_FSTYPES = "tar.gz cpio jffs2"' >> conf/local.conf
+echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver devmem2"' >> conf/local.conf
+bitbake core-image-minimal
 ```
 
 
 
 The following file is created:
 
-* $TOP_FOLDER/buildroot/output/images/rootfs.tar.gz 
+* $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz
 
 <h4>Build eMMC Image</h4>
 
@@ -2659,26 +2513,9 @@ wget https://releases.rocketboards.org/release/2020.11/gsrd/tools/make_sdimage_p
 sed -i 's/\"\-F 32\",//g' make_sdimage_p3.py
 chmod +x make_sdimage_p3.py
 mkdir rootfs && cd rootfs
-sudo tar -xf $TOP_FOLDER/buildroot/output/images/rootfs.tar.gz
-sudo cp $TOP_FOLDER/jic_emmc/emmc_atf.core.rbf root/
+sudo tar -xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz
+sudo cp $TOP_FOLDER/jic_emmc/emmc_atf.core.rbf home/root/
 sudo cp -r $TOP_FOLDER/linux-socfpga-emmc/module_install_dir/lib/modules lib/
-# Needed to mount debugfs to get available /sys/kernel/debug features
-cat << EOF > ../S99mountSysKrnDbg.sh
-#!/bin/sh
-# SPDX-License-Identifier: GPL-2.0-only
-
-### BEGIN INIT INFO
-# Provides: banner
-# Required-Start:
-# Required-Stop:
-# Default-Start:     S
-# Default-Stop:
-### END INIT INFO
-echo "Mounting debugfs..."
-mount -t debugfs none /sys/kernel/debug/
-EOF
-sudo cp ../S99mountSysKrnDbg.sh etc/init.d/
-sudo chmod +x etc/init.d/S99mountSysKrnDbg.sh
 cd ..
 sudo python3 make_sdimage_p3.py -f \
 -P fip.bin,num=1,format=raw,size=64M,type=a2 \
@@ -2787,7 +2624,7 @@ agilex5_dk_a5e065bb32aes1 login:
 ```
 
 ## Reconfiguring Core Fabric from U-Boot
-The HPS (Legacy and Baseline) System Example Design configures the FPGA core fabric only once by U-boot during the Linux launch using the **bootm** command. In the bootloaders build flow, the reconfiguration is done in the U-Boot Shell through the **fpga load** command.
+The GSRD configures the FPGA core fabric only once by U-boot during the Linux launch using the **bootm** command. In the bootloaders build flow, the reconfiguration is done in the U-Boot Shell through the **fpga load** command.
 
 **Important**: If the FPGA fabric is already configured and bridges are enabled, you must call the **bridge disable** command from U-Boot before issuing the **bootm** or **fpga load** commands to reconfigure the fabric. Only do this if you are using an **arm-trusted-firmware** version more recent than the following:
 
@@ -2937,7 +2774,7 @@ When you build the Linux* kernel for this feature, two <*.dtb> files are generat
 * overlay.dtb --- The *.dtb file used to trigger FPGA configuration in OS.
 
 
-4\. In your hardware design compilation output folder, rename the FPGA configuration file (.rbf) to "overlay.rbf". Then, copy both the **overlay.rbf** and the **overlay.dtb** files to the Root File System:
+4\. In your hardware (GHRD) compilation output folder, rename the FPGA configuration file (.rbf) to "overlay.rbf". Then, copy both the **overlay.rbf** and the **overlay.dtb** files to the Root File System:
 
 ```bash
 $ mkdir -p $TOP_FOLDER/sd_card/rootfs/lib/firmware
