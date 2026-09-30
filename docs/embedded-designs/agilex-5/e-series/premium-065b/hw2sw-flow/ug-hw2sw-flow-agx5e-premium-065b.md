@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This tutorial demonstrates how to extend the [HPS Baseline System Example Design](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#hardware-design-overview) Quartus project by adding an IP core to the fabric subsystem and enabling it through the software stack. You will integrate a [Lightweight UART Core](https://docs.altera.com/r/docs/683130/26.1/embedded-peripherals-ip-user-guide/lightweight-uart-core) to simulate a custom IP that lacks a native Linux kernel driver. Rather than developing a complex kernel-space driver from scratch, this tutorial highlights the standard hardware-to-software enablement path utilizing the generic User Space I/O (UIO) platform driver.
+This tutorial demonstrates how to extend the [HPS Baseline System Example Design](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#hardware-design-overview) Quartus project by adding an IP core to the fabric subsystem and enabling it through the software stack. You will integrate a [Lightweight UART Core](https://docs.altera.com/r/docs/683130/26.1/embedded-peripherals-ip-user-guide/lightweight-uart-core) to simulate a custom IP that lacks a native Linux kernel driver. Rather than developing a complex kernel-space driver from scratch, this tutorial highlights the standard hardware-to-software enablement path utilizing the generic User Space I/O (UIO) platform driver.
 
 The hardware architecture interfaces the new UART IP with the Hard Processor System (HPS) via the Lightweight AXI Bridge. To facilitate a self-contained validation process without requiring external wiring, the design incorporates a System ID Peripheral IP — acting as a verifiable hardware fingerprint — and utilizes an internal loopback (TX to RX) within the SystemVerilog top-level wrapper.
 
@@ -20,7 +20,7 @@ The following figure shows the Yocto Project structure from the HPS Baseline Sys
 
 ![](images/flow-tut-002.png)
 
-This tutorial utilizes the [HPS Expansion Board (HPS-EB)](https://docs.altera.com/r/docs/814550/current/agilex-5-fpga-e-series-065b-premium-development-kit-user-guide/hps-expansion-board-hps-eb?tocId=RnMgo4C4EyXZyqa%7ErswC8A) mounted on an Agilex™ 5 FPGA E-Series 065B Premium Development Kit. It employs an HPS-First, split-boot topology. In this configuration, the HPS is responsible for configuring the FPGA fabric logic. The First Stage Bootloader (FSBL) executes directly from onboard QSPI memory to initialize the system, while the Second Stage Bootloader (SSBL), Linux kernel, device tree, and root filesystem are subsequently loaded from a micro SD card.
+This tutorial utilizes the [HPS Expansion Board (HPS-EB)](https://docs.altera.com/r/docs/814550/current/agilex-5-fpga-e-series-065b-premium-development-kit-user-guide/hps-expansion-board-hps-eb?tocId=RnMgo4C4EyXZyqa%7ErswC8A) mounted on an [Agilex™ 5 FPGA E-Series 065B Premium Development Kit](https://www.altera.com/products/devkit/po-3284/agilex-5-fpga-e-series-065b-premium-development-kit). It employs an HPS-First, split-boot topology. In this configuration, the HPS is responsible for configuring the FPGA fabric logic. The First Stage Bootloader (FSBL) executes directly from onboard QSPI memory to initialize the system, while the Second Stage Bootloader (SSBL), Linux kernel, device tree, and root filesystem are subsequently loaded from a micro SD card.
 
 ### Tutorial Organization
 
@@ -30,7 +30,7 @@ The tutorial follows a progressive building-block approach, where each section v
 
 - **Baseline System Configuration**: Build the initial HPS Baseline System Example Design to validate the toolchain and establish a software baseline.
 - **Hardware IP Integration**: Add the Lightweight UART IP in Platform Designer, map its memory space, and route its signals through the SystemVerilog top-level wrapper.
-- **U-Boot Enablement**: Use the ["Roll Your Own"](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#build-and-exercise-roll-your-own-binaries) (RYO) flow to build a standalone bootloader and verify hardware connectivity before loading an OS.
+- **U-Boot Enablement**: Use the ["Roll Your Own"](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-5/e-series/premium-065b/gsrd/ug-gsrd-agx5e-premium-065b/#build-and-exercise-roll-your-own-binaries) (RYO) flow to build a standalone bootloader and verify hardware connectivity before loading an OS.
 
 #### Level 2: Linux Integration and Driver Binding
 
@@ -48,26 +48,22 @@ Ensure you have the following hardware and software:
 
 **Agilex 5 Development Kit**
 
-- [**Agilex™ 5 FPGA and SoC E-Series Premium Development Kit (Production)**](https://www.altera.com/products/devkit/po-3284/agilex-5-fpga-e-series-065b-premium-development-kit) (Ordering code: DK-A5E065BB32AEA).
-- **Required Accessories**: HPS-EB, Mini USB, Micro USB, Ethernet cables, Micro SD card, and USB card writer.
+- [**Agilex® 5 FPGA E-Series 065B Premium Development Kit**](https://www.altera.com/products/devkit/po-3284/agilex-5-fpga-e-series-065b-premium-development-kit) (Ordering code: DK-A5E065BB32AEA).
+- **Required Accessories**: HPS-EB dauther card, Mini USB cable, Micro USB cable, Micro SD card, and USB card writer.
 
 **Host PC Requirements**
 
 - **OS**: Linux (Ubuntu 22.04 LTS recommended).
 - **Hardware**: Minimum 64 GB RAM and 200 GB free disk space.
-- **Software**: Altera® Quartus® Prime Pro Edition Version 26.1.1.
+- **Software**: Altera® Quartus® Prime Pro Edition Version 26.1.1 and Ashling* RiscFree* IDE for Altera Version 26.1.1.
 - **Serial Terminal**: GtkTerm, Minicom, TeraTerm, or PuTTY.
-
-**Network & Connectivity**
-
-- **Local Ethernet**: Connection to a network with an active DHCP server.
 - **Internet Access**: Required for downloading Yocto dependencies.
 
 #### Hardware Components & Layout
 
 To facilitate the identification of physical interfaces and jumpers mentioned throughout this tutorial, refer to the development kit layout below.
 
-![](images/flow-tut-003.png)
+![](images/flow-tut-003.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 For users new to this hardware, it is critical to follow official handling and power-up procedures to avoid equipment damage. Please consult the following Altera documentation before proceeding:
 
@@ -96,13 +92,20 @@ Configure Bash as the default system shell:
 sudo ln -sf /bin/bash /bin/sh
 ```
 
-Add the Quartus® Prime Pro Edition Version 26.1.1 binaries to your system path:
+Add the Quartus® Prime Pro Edition Version 26.1.1 binaries to your system path. The command below assume that Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 is installed in your home directory. Adjust the paths if necessary.
 
-``` bash
-source ~/altera_pro/26.1/qinit.sh
+Enable Quartus tools to be called from command line:
+
+
+```bash
+source ~/altera_pro/26.1.1/qinit.sh
 ```
 
-> To make this change permanent, add these lines to `~/.bashrc` or `~/.profile`.
+
+
+
+!!! note
+    To make this change permanent, add these lines to `~/.bashrc` or `~/.profile`.
 
 ---
 
@@ -117,9 +120,9 @@ Clone the hardware design project from the [altera-fpga](https://github.com/alte
 ``` bash
 git clone --filter=blob:none --sparse https://github.com/altera-fpga/agilex5e-ed-gsrd.git
 cd agilex5e-ed-gsrd
-git checkout QPDS26.1_REL_GSRD_PR
-git sparse-checkout set a5ed065b-premium-devkit-oobe/baseline-a55
-cd  a5ed065b-premium-devkit-oobe/baseline-a55
+git checkout QPDS26.1.1_REL_GSRD_PR
+git sparse-checkout set dk-a5e065bb32aea-enablement/baseline-a55
+cd  dk-a5e065bb32aea-enablement/baseline-a55
 CWD=`pwd`
 ```
 
@@ -130,12 +133,16 @@ Compile the Quartus project to generate the FPGA configuration bitstream:
 ``` bash
 make baseline_a55-build
 ```
-As a result, `$CDW/output_files/baseline_a55.sof` bitstream is created.
+
+As a result, `$CWD/output_files/baseline_a55.sof` bitstream is created.
+
+!!! warning
+    `make baseline_a55-build` will fail if Ashling* RiscFree* installation path is not present in your system PATH variable.
 
 
 #### First Stage Bootloader (FSBL) Generation
 
-A FPGA fabric bitstream is needed for a Yocto Linux build. This process requires an intermediate **dummy [FSBL](https://docs.altera.com/r/docs/813762/25.3/hard-processor-system-booting-user-guide-agilextm-3-and-agilextm-5-socs/first-stage-bootloader?tocId=wHsT9dAUiMQRMfKF6TnSOQ)** artifact, which you will update with the production bootloader later.
+A FPGA fabric bitstream is needed for a Yocto Linux build. This process requires an intermediate **dummy [FSBL](https://docs.altera.com/r/docs/813762/26.1/hard-processor-system-booting-user-guide-agilex-3-and-agilex-5-socs/first-stage-bootloader?tocId=wHsT9dAUiMQRMfKF6TnSOQ)** artifact, which you will update with the production bootloader later.
 
 Compile the `hps_debug` source to create this placeholder FSBL:
 
@@ -176,18 +183,20 @@ Customize the Yocto project using the `meta-custom` layer, which provides recipe
 Copy the `baseline_a55_hps_debug.core.rbf` to the FPGA bitstream recipe folder:
 
 ``` bash
+cd $CWD
 cp output_files/baseline_a55_hps_debug.core.rbf software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf
 ```
 
-> The Yocto build requires the filename `baseline_a55_hps_debug.core.rbf`. To use a different name, update the KAS configuration as described in the `software/yocto_linux/README.md`.
+!!! warning
+    The Yocto build requires the filename `baseline_a55_hps_debug.core.rbf`. To use a different name, update the KAS configuration as described in the `software/yocto_linux/README.md`.
 
-Identify your custom build by appending a unique string to the Linux kernel version. Use the `linux-socfpga-lts_%.bbappend` recipe in the `meta-custom` layer to modify the kernel configuration. Apply the `forcevariable` override to set `LINUX_VERSION_EXTENSION` to `-altera-F06D06`:
+Identify your custom build by appending a unique string to the Linux kernel version. Use the `linux-socfpga-lts_%.bbappend` recipe in the `meta-custom` layer to modify the kernel configuration. Apply the `forcevariable` override to set `LINUX_VERSION_EXTENSION` to `-altera-f06d06`:
 
 ``` bash
 cat <<EOF >> software/yocto_linux/meta-custom/recipes-kernel/linux/linux-socfpga-lts_%.bbappend 
 
 # Use the forcevariable override to ensure this value sticks
-LINUX_VERSION_EXTENSION:forcevariable = "-altera-F06D06" 
+LINUX_VERSION_EXTENSION:forcevariable = "-altera-f06d06" 
 EOF
 ```
 
@@ -211,11 +220,8 @@ To reactivate the Python virtual environment in a future session, run the follow
 source ./venv/bin/activate
 ```
 
-To exit and active python virtual environment, execute:
-
-``` bash
-deactivate
-```
+!!! tip
+    To exit and active python virtual environment, execute `deactivate`
 
 #### Image Assembly and Artifact Deployment
 
@@ -227,8 +233,8 @@ kas build kas.yml gsrd-console-image
 
 Upon completion, the build produces the following deployment artifacts:
 
-- `./build/tmp/deploy/images/agilex5e/gsrd-console-image-agilex5e.rootfs.wic`
-- `./build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex`
+- `$CWD/software/yocto_linux/build/tmp/deploy/images/agilex5e/gsrd-console-image-agilex5e.rootfs.wic`
+- `$CWD/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex`
 
 Exit the Python virtual environment by executing the following command:
 
@@ -278,7 +284,10 @@ cd $CWD
 quartus_pfg -c output_files/baseline_a55.sof output_files/baseline_a55.jic -o device=MT25QU128 -o flash_loader=A5ED065BB32AE4S -o hps_path=software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex -o mode=ASX4 -o hps=1
 ```
 
-> Ensure the board is connected via the USB-Blaster II cable and recognized by `jtagconfig` before running the programmer command.
+As a result `$CWD/output_files/baseline_a55.hps.jic` is generated.
+
+!!! tip
+    Ensure the board is connected via the USB-Blaster II cable and recognized by `jtagconfig` before running the programmer command.
 
 Flash the `.jic` bitstream to the QSPI memory:
 
@@ -289,7 +298,7 @@ Flash the `.jic` bitstream to the QSPI memory:
 
 ``` bash
 jtagconfig --setparam 1 JtagClock 16M
-quartus_pgm -c 1 -m jtag -o "pvi;output_files/baseline_a55.hps.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;$CWD/output_files/baseline_a55.hps.jic"
 ```
 
 #### System Power-Up and Software Validation
@@ -307,7 +316,7 @@ Verify your custom build by checking the kernel version string:
 uname -r
 ```
 
-The expected output should contain the kernel version with the **-altera-F06D06-** suffix. This confirms that the system is running the specific kernel image generated by your Yocto build.
+The expected output should contain the customized kernel version `6.18.20-altera-f06d06-gd8e46bd82a1e-dirty`. This confirms that the system is running the specific kernel image generated by your Yocto build.
 
 ### Hardware IP Integration
 
@@ -322,7 +331,7 @@ quartus top.qpf &
 
 To modify the hardware, open the `u_fabric_subsys` Platform Designer system by double-clicking its instance within the **Project Navigator** panel in Quartus Prime.
 
-![](images/flow-tut-004.png)
+![](images/flow-tut-004.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
 #### Component Integration in Platform Designer
 
@@ -339,7 +348,7 @@ Add the new IP into the system by following these steps:
   - **Reset**: Connect `u_user_lw_uart|reset` to `u_system_reset|out_reset`.
   - **Clock**: Connect `u_user_lw_uart|clk` to `u_system_clock|out_clk`.
 
-![](images/flow-tut-005.png)
+![](images/flow-tut-005.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 #### Address Mapping and I/O Export
 
@@ -356,7 +365,7 @@ Finalize the IP integration by mapping memory interfaces and exporting signals f
 
 3. **Assign Base Addresses**: Manually set the base address to `0x0001_00a0`. As the Lightweight UART IP is connected to the HPS thought the Lightweight HPS2FPGA Bridge, the system memory address to the IP is the [Lightweight HPS2FPGA Bridge base address](https://docs.altera.com/r/docs/814346/26.1/hard-processor-system-technical-reference-manual-agilextm-5-socs/total-address-map-tabular) (`0x2000_0000`) plus the Lightweight UART IP offset (`0x0001_00a0`). The resulting address `0x2001_00a0` will be use in the Linux device tree file to indicate where the OS can access the new hardware IP.
 
-![](images/flow-tut-006.png)
+![](images/flow-tut-006.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 #### Fabric Subsystem Identification Update
 
@@ -380,7 +389,7 @@ Configure the top-level system to export the UART signals and route interrupts t
 4. Connect the **`external_lw_uart_irq`** port (exported from `u_fabric_subsys`) to the **`f2h_irq0_in`** port.
 5. **Save** `baseline_top.qsys` and select **Generate HDL...**.
 
-![](images/flow-tut-007.png)
+![](images/flow-tut-007.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 #### Top-Level Wrapper Modification
 
@@ -397,9 +406,11 @@ Update the top-level System Verilog wrapper, `baseline_a55.sv`, to loopback the 
       assign fpga_lw_uart_rxd = fpga_lw_uart_txd;
   ```
 
-2. **Integrate Port Mappings**: At **line 193**, insert the following into the `u_baseline_top` instance:
+2. **Integrate Port Mappings**: At **line 300**, insert the following into the `u_baseline_top` instance:
 
   ``` verilog
+      // 
+      // Lightweight Uart
       .user_lw_uart_rxd                     (fpga_lw_uart_rxd),
       .user_lw_uart_txd                     (fpga_lw_uart_txd),
   ```
@@ -411,7 +422,9 @@ Update the top-level System Verilog wrapper, `baseline_a55.sv`, to loopback the 
   make baseline_a55-build
   ```
 
-> The `make clean` command removes all generated artifacts from the Baseline Quartus Design and Baseline System Example Design project folders, including the compiled binaries and the Python virtual environment.
+!!! warning
+    The `make clean` command removes all generated artifacts from the Baseline Quartus Design and Baseline System Example Design project folders, including the compiled binaries and the Python virtual environment.
+    Backup any files that you want to keep before executing `make clean`
 
 ---
 
@@ -445,7 +458,7 @@ export CROSS_COMPILE=aarch64-none-linux-gnu-
 Clone the Altera Arm Trusted Firmware repository and compile the binary for the Agilex 5 platform:
 
 ``` bash
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware
 cd arm-trusted-firmware
 make clean
 make -j "$(nproc)" PLAT=agilex5 bl31
@@ -457,7 +470,7 @@ cd ..
 Clone the Altera U-Boot repository and enable debug messages within the compiler output to assist with potential troubleshooting:
 
 ``` bash
-git clone -b QPDS26.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga
+git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga
 cd u-boot-socfpga
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
 ```
@@ -542,6 +555,8 @@ cd $CWD
 quartus_pfg -c output_files/baseline_a55.sof  output_files/baseline_a55_u-boot.jic -o device=MT25QU128 -o flash_loader=A5ED065BB32AE4S -o hps_path=software/ryo_linux/u-boot-socfpga/spl/u-boot-spl-dtb.hex -o mode=ASX4 -o hps=1
 ```
 
+As a result `$CWD/output_files/baseline_a55_u-boot.core.rbf` and `$CWD/output_files/baseline_a55_u-boot.hps.jic` are created.
+
 Create an SD card image containing the SSBL and the FPGA core logic bitstream:
 
 ``` bash
@@ -566,6 +581,12 @@ mkimage -A arm64 -O linux -T script -C none -a 0 -e 0 -n "Hardware Sanity Check 
 mcopy -i sdcard.img ./hw_sanity_check.scr ::
 ```
 
+!!! tip
+    Run the following command to list the contents of the SD card image:
+    ``` bash
+    7z l sdcard.img
+    ```
+
 #### SD Card Image Deployment
 
 Connect the USB card writer and micro SD card to your host PC. 
@@ -577,12 +598,6 @@ Flash the U-Boot image to the micro SD card using the `dd` utility. Replace `sdX
 sudo dd if=./sdcard.img of=/dev/sdx bs=1M 
 # Flush the changes to the SD card
 sync
-```
-
-Run the following command to list the contents of the SD card image:
-
-``` bash
-7z l sdcard.img
 ```
 
 This utility displays the partition structure and file details without needing to mount the image to your file system.
@@ -599,7 +614,7 @@ Flash the `.jic` bitstream to the QSPI memory:
 ``` bash
 cd $CWD
 jtagconfig --setparam 1 JtagClock 16M
-quartus_pgm -c 1 -m jtag -o "pvi;output_files/baseline_a55_u-boot.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;output_files/baseline_a55_u-boot.hps.jic"
 ```
 
 Complete the boot sequence:
@@ -710,7 +725,7 @@ Configure the Linux boot arguments to bind the `uio_pdrv_genirq` driver to your 
   earlycon panic=-1 root=/dev/mmcblk0p2 rw rootwait uio_pdrv_genirq.of_id=generic-uio
   ```
 
-  ![](images/flow-tut-008.png)
+  ![](images/flow-tut-008.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 4. Select **Ok**, then choose **Save & Exit**. 
 
@@ -736,15 +751,15 @@ Configure the Yocto Linux Kernel (`linux-socfpga-lts`) to include UIO support as
 
 2. Navigate to `Device Drivers --->` and hit enter.
 
-  ![](images/flow-tut-008a.png)
+  ![](images/flow-tut-008a.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 3. Navigate to `Userspace I/O drivers --->` and hit the space bar. `Userspace I/O drivers` are now tagged '<*>' to be compiled as a built-in module.
 
-  ![](images/flow-tut-008b.png)
+  ![](images/flow-tut-008b.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 4. Navigate to `Userspace I/O drivers --->` and hit enter. Go to `userspace I/O platform driver with generic IRQ handling` and hit the space bar. `userspace I/O platform driver with generic IRQ handling` is now tagged '<*>' to be compiled as a built-in module.
 
-  ![](images/flow-tut-008c.png)
+  ![](images/flow-tut-008c.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 5. Navigating to `Save` and hit enter. When prompted, keep the `.config` file name, navigate to `Ok` and hit enter.
 6. Navigate to `Exit` and hit enter. Repeat this step until you exit from the Kernel configuration tool.
@@ -1037,50 +1052,50 @@ Import the `uio-bist-uart` binary and source code into the RiscFree workspace:
 1. On the RiscFree IDE, go to the **File** menu and select **Import...**.
 2. In the Import window, select **C/C++ > C/C++ Executable** and select **Next**.
 
-  ![](images/flow-tut-009.png)
+  ![](images/flow-tut-009.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 3. In the **Import Executable** window, navigate to **Select executable** and select the **Browse** button.
 4. Select the `uio-bist-uart` binary from the file browser.
 5. Back in the **Import Executable** window, select **Next**.
 
-  ![](images/flow-tut-010.png)
+  ![](images/flow-tut-010.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 6. Select the **Create Launch Configuration** to be **C/C++ Remote Application**, then select **Finish**.
 
-  ![](images/flow-tut-011.png)
+  ![](images/flow-tut-011.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 #### Debug Launcher and Target Connection
 
 1. In the **Debug Configurations** window, **Main** tab, select **Select one...** on the **Multiple launchers available** at the bottom left.
 
-  ![](images/flow-tut-012.png)
+  ![](images/flow-tut-012.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 2. In the **Select Preferred Launcher** window, check **Use configuration specific settings**, select the **GDB (DSF) Manual Remote Debugging Launcher**, and select **OK**.
 
-  ![](images/flow-tut-013.png)
+  ![](images/flow-tut-013.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 3. In the **Debugger** tab, check **Stop on startup at main**.
 
-  ![](images/flow-tut-014.png)
+  ![](images/flow-tut-014.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 4. Under **Debugger > Main > GDB Debugger**, select **Browse**.
 5. Select the **aarch64-none-linux-gdb** debugger shipped with RiscFree, typically installed in the `~/altera_fpga/26.1/riscfree/toolchain/Arm/aarch64-none-linux-gnu/bin/` folder, and select **Open**.
 
-  ![](images/flow-tut-015.png)
+  ![](images/flow-tut-015.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 6. Go to the **Connection** tab and update the **Host Name or IP Address** to the IP address of your development kit.
 7. Change the **Port number** to `1000`.
 
-  ![](images/flow-tut-016.png)
+  ![](images/flow-tut-016.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 8. Select **Apply** at the bottom of the window, then select **Close**.
 9. Select the dropdown next to the **debug** icon in the toolbar and choose **Organize Favorites...**.
 
-  ![](images/flow-tut-017.png)
+  ![](images/flow-tut-017.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 10. Select **Add**, choose **Debug_uio-bist-uart**, and select **OK** to close the dialog boxes.
 
-  ![](images/flow-tut-018.png)
+  ![](images/flow-tut-018.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 #### Establish Remote Debugging Connection
 
@@ -1088,7 +1103,7 @@ Import the `uio-bist-uart` binary and source code into the RiscFree workspace:
 2. Select **Switch** when prompted to switch perspectives.
 3. The debugger will now load the application and stop at the `main()` function, allowing you to begin debugging.
 
-  ![](images/flow-tut-019.png)
+  ![](images/flow-tut-019.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 > Refer to [HPS Linux Application Debuging with Ashling RiscFree](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/premium-065b/riscfree-linux-app-debug/ug-riscfree-linux-app-debug-agx5e-premium-065b/) document for additional information on debugging with RiscFree.
 
@@ -1174,7 +1189,7 @@ pip install kconfiglib
 kas menu
 ```
 
-![](images/flow-tut-020.png)
+![](images/flow-tut-020.png){:style="width:45%; display:block; margin-left:auto; margin-right:auto"}
 
 After enabling the **uio-bist-uart.bb** recipe in the configuration menu, launch the compilation to generate the final Yocto image. In the Kas GUI, navigate to the **Build** button and press **Enter** to start the build process. This integrates the `uio-bist-uart` binary as a user-executable installed in the `/usr/bin` directory of the Linux image.
 

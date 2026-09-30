@@ -1489,7 +1489,7 @@ The SoC FPGA development kit boards have USB-to-serial converters that allows th
 
 Ubuntu, Red Hat Enterprise Linux, and other modern Linux distributions have built-in drivers for the FTDI USB-to-serial converter chip, so no driver installation is necessary on those platforms.
 
-On Microsoft Windows, the Windows SoC EDS installer automatically installs the necessary drivers. For details, see the SoC GSRD for your SoC FPGA development kit:
+Microsoft Windows 10 and 11 automatically install the necessary drivers. For details, see the SoC GSRD for your SoC FPGA development kit:
 - [HPS GSRD User Guide for the Agilex™ 3 C-Series Development Kit](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/)
 - [HPS GSRD User Guide for the Agilex™ 5 FPGA E-Series 065B Modular Development Kit](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/gsrd/ug-gsrd-agx5e-modular-065b/)
 - [HPS GSRD User Guide for the Agilex™ 7 FPGA I-Series Transceiver-SoC Development Kit (4x F-Tile)](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-7/i-series/soc/gsrd/ug-gsrd-agx7i-soc/)
