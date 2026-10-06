@@ -6,7 +6,7 @@
 
 This page contains instructions on how to build Linux systems from separate components: Quartus Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the HPS Baseline System Example Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
 
-The key differences versus the HPS Baseline System Example Design are:
+The key differences¹ versus the HPS Baseline System Example Design are:
 
  * Fabric is configured from U-Boot directly with the rbf file, with `fpga load` command, instead of using the `bootm` command with the core.rbf part of the kernel.itb file
  * Single image boot is disabled in U-Boot, and it boots directly with the slected boot source, not trying them all
@@ -17,6 +17,8 @@ The following scenarios are covered:
 * HPS Enablement Board: boot from SD card, and boot from QSPI
 * HPS NAND Board: boot from eMMC flash and boot from NAND
 * HPS Test Board: boot from SD card
+
+**¹Note:** The Roll Your Own build flow includes their own key differences.
 
 The instructions on this page are based on the **HPS Baseline System Example Design User Guide Agilex 5 FPGA E-Series 065A Premium Development Kit** page.
 
@@ -74,13 +76,123 @@ Refer to **Development Kit** section in the **HPS Baseline System Example Design
 
 Refer to [Release Notes](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR) for release readiness information and known issues.
 
+## Roll Your Own Example from SED 
+
+The "Roll Your Own" (RYO) enables you to build a Linux system without using Yocto. The RYO script is included as part of the System Example Design (SED) repository. This example demonstrates how to build  binaries from individual components as an alterantive method to the Yocto build supported by the SED. 
+
+The key differences versus the Yocto/Kas build flow are:
+
+* Each software component is built separately: ATF, U-Boot, Linux kernel, Linux root filesystem.
+* FPGA fabric is not configured.
+* The device tree from Linux kernel source code is used. This device tree does not enable IP from the FPGA fabric side.
+* Root filesystem is built with [Toybox](https://landley.net/toybox/).
+* Root filesystem is used as initramfs. That makes it immutable, changes are not saved.
+* Binaries are not included, just build instructions.
+
+The examples presented in this sections can be used as refernece for all other examples described in this page. 
+
+### RYO Boot from HPS Enablement Board
+
+This section build binaries (ATF, U-boot, Linux) for the HPS enablement board with the build script provided as part of the SED. The required tool chain is also set  up as part of the build script. 
+
+
+
+<h4>Boot from SD Card</h4>
+
+The overall build flow to obtain the binaries to boot from the SD Card is presented in the following diagram:
+
+![](images/agilex5-ryo-flow-sd.svg)
+
+**1\. Setup the environment**
+
+
+
+```bash
+sudo rm -rf agilex5_ryo.enablement
+mkdir agilex5_ryo.enablement
+cd agilex5_ryo.enablement
+export TOP_FOLDER=`pwd`
+```
+
+
+Enable Quartus tools to be called from command line:
+
+
+```bash
+source ~/altera_pro/26.1.1/qinit.sh
+```
+
+
+
+
+
+**2\. Build the Quartus design**
+
+
+
+```bash
+cd $TOP_FOLDER
+rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd_a55 && cd agilex5_soc_devkit_ghrd_a55
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement-baseline-a55.zip
+unzip dk-a5e065ab32aea-enablement-baseline-a55.zip
+rm -f dk-a5e065ab32aea-enablement-baseline-a55.zip
+make baseline_a55-build
+```
+
+
+The following file is created:
+
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/output_files/baseline_a55.sof`
+
+
+**3\. Build the binaries with RYO script**
+
+
+
+
+```bash
+cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/ryo_linux
+./ryo_linux_sd.sh --jobs="$(nproc)"
+```
+
+The following files are created:
+
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/ryo_linux/build_output/arm-trusted-firmware/build/agilex5/release/bl31.bin` - Arm Trusted Firmware BL31
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/ryo_linux/build_output/u-boot-socfpga/spl/u-boot-spl-dtb.hex` - FSBL (U-Boot SPL)
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/ryo_linux/build_output/u-boot-socfpga/u-boot.itb` - SSBL (U-Boot Proper)
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/ryo_linux/build_output/linux-socfpga/arch/arm64/boot/Image` - Linux Kernel
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/ryo_linux/build_output/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dtb` - Linux Device tree
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/ryo_linux/build_output/sdcard.img` - SD Card Image
+
+
+**4\. Build the QSPI .jic**
+
+
+
+```bash
+cd $TOP_FOLDER
+quartus_pfg -c agilex5_soc_devkit_ghrd_a55/output_files/baseline_a55.sof ghrd.jic \
+-o device=MT25QU128 \
+-o flash_loader=A5ED065AB32AE1V \
+-o hps_path=$TOP_FOLDER/agilex5_soc_devkit_ghrd_a55/software/ryo_linux/build_output/u-boot-socfpga/spl/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o hps=1
+```
+
+
+The following file is created:
+
+* `$TOP_FOLDER/ghrd.hps.jic`
+
+
+
 
 ## HPS Enablement Board
 
 This section demonstrates how to build a Linux system from separate components, targetting the HPS Enablement Board. Both booting from SD card and booting from QSPI are covered.
 
-
 ### Boot from SD Card 
+
 
 
 <h4>Setup Environment</h4>

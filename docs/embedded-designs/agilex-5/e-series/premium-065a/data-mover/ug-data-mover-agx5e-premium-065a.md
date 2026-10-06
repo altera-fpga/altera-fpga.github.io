@@ -165,7 +165,7 @@ Each of the applications described above includes an implementation-specific set
 
   The source code of this task is shown at the following path:
 
-  **single-threaded:** [datamover-app/single-threaded/datamover_tasks/f2h_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/f2h_task.c)<br>
+  **single-threaded:** [datamover-app/single-threaded/datamover_tasks/f2h_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/f2h_task.c)<br>
   **multi-threaded:** [datamover-app/multi-threaded/datamover_tasks/f2h_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/f2h_task.c)<br>
 
   The execution time is configurable using the **TEN_SECONDS** definition from the datamover_tasks/datamover_tasks.h header file.
@@ -176,7 +176,7 @@ Each of the applications described above includes an implementation-specific set
   
   The source code of this task is shown at the following path:
   
-  **single-threaded:** [datamover-app/single-threaded/datamover_tasks/f2sdram_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/f2sdram_task.c)<br>
+  **single-threaded:** [datamover-app/single-threaded/datamover_tasks/f2sdram_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/f2sdram_task.c)<br>
   **multi-threaded:** [datamover-app/multi-threaded/datamover_tasks/f2sdram_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/f2sdram_task.c)<br>
   
   The execution time is configurable using the **TEN_SECONDS** definition from the datamover_tasks/datamover_tasks.h header file.
@@ -191,7 +191,7 @@ Each of the applications described above includes an implementation-specific set
   
   The source code of this task is shown at the following path:
 
-  **single-threaded:** [datamover-app/single-threaded/datamover_tasks/s2s_dma_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/s2s_dma_task.c)<br>
+  **single-threaded:** [datamover-app/single-threaded/datamover_tasks/s2s_dma_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/s2s_dma_task.c)<br>
   **multi-threaded:** [datamover-app/multi-threaded/datamover_tasks/s2s_dma_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/s2s_dma_task.c)<br>
   
   The execution time is configurable using the **TEN_SECONDS** definition from the datamover_tasks/datamover_tasks.h header file.
@@ -202,7 +202,7 @@ Each of the applications described above includes an implementation-specific set
   
   The source code of this task is shown at the following path:
   
-  **single-threaded:** [datamover-app/single-threaded/datamover_tasks/s2s_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/s2s_task.c)<br>
+  **single-threaded:** [datamover-app/single-threaded/datamover_tasks/s2s_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/s2s_task.c)<br>
   **multi-threaded:** [datamover-app/multi-threaded/datamover_tasks/s2s_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/s2s_task.c)<br>
   
   The execution time is configurable using the **TEN_SECONDS** definition from the datamover_tasks/datamover_tasks.h header file.
@@ -624,7 +624,7 @@ There are some properties or parameters that can be customized in each applicati
 | Enable any other set of data mover tasks in the application | N/A as all apps are enabled | Modify **main()** function to enable creating the desired tasks. You also need to modify the **ALL_THREADS** definition to include the flags for all the task enabled. These updates are done in **main.c**. |
 
 
-Please refer to the application [README]( https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/datamover/software/freertos/datamover-app/README.md) for more detail about building the applications.
+Please refer to the application [README]( https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/README.md) for more detail about building the applications.
 
 ## Notices & Disclaimers
 

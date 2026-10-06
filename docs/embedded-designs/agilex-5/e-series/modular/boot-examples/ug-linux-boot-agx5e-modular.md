@@ -302,6 +302,9 @@ rm -rf linux-socfpga
 git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga
 cd linux-socfpga
 cat << EOF > config-fragment-agilex5
+# WA: Needed from 26.1.1 on for ES-14728 Won't be fixed
+# See https://community.altera.com/kb/knowledge-base/why-does-linux-fail-to-access-qspi-flash-components-across-all-supported-devices/356427
+CONFIG_MTD_SPI_NOR_USE_4K_SECTORS=n
 # Enable Ethernet connectivity so we can get an IP address
 CONFIG_MARVELL_PHY=y
 EOF
@@ -348,24 +351,36 @@ The built modules are created under the following directory:
 
 
 
-
 ```bash
-cd $TOP_FOLDER
-rm -rf yocto && mkdir yocto && cd yocto
-git clone -b wrynose https://git.yoctoproject.org/poky
-git clone -b wrynose https://git.yoctoproject.org/meta-intel-fpga
-git clone -b wrynose https://github.com/openembedded/meta-openembedded
-source poky/oe-init-build-env ./build
-echo 'MACHINE = "agilex5_dk_a5e065bb32aes1"' >> conf/local.conf
-echo 'BBLAYERS += " ${TOPDIR}/../meta-intel-fpga "' >> conf/bblayers.conf
-echo 'BBLAYERS += " ${TOPDIR}/../meta-openembedded/meta-oe "' >> conf/bblayers.conf
-echo 'CORE_IMAGE_EXTRA_INSTALL += "openssh gdbserver"' >> conf/local.conf
-bitbake core-image-minimal
+cd $TOP_FOLDER 
+rm -rf buildroot
+git clone https://github.com/buildroot/buildroot.git
+cd buildroot
+git checkout 2026.05
+mkdir -p overlay/etc/profile.d/
+# Use regilar prompt used in our devices root@<device>:~# instead of only #
+echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
+# Adding applications that we normaly need
+cat > configs/agilex5_defconfig <<EOT
+BR2_aarch64=y
+BR2_TOOLCHAIN_BUILDROOT_CXX=y
+BR2_KERNEL_HEADERS_6_12=y
+BR2_PACKAGE_HOST_GDB=y
+BR2_GDB_VERSION_14=y
+BR2_PACKAGE_GDB=y
+BR2_PACKAGE_DROPBEAR=y
+BR2_SYSTEM_DHCP="eth0"
+BR2_TARGET_ROOTFS_TAR_GZIP=y
+BR2_TARGET_GENERIC_HOSTNAME="agilex5"
+BR2_ROOTFS_OVERLAY="overlay"
+EOT
+make agilex5_defconfig
+make -j 64
 ```
 
 The following file is created:
 
-* `$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz`
+* `$TOP_FOLDER/buildroot/output/images/rootfs.tar.gz`
 
 
 <h3>Create SD Card Image</h3>
@@ -385,8 +400,24 @@ cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/Image .
 cp $TOP_FOLDER/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dtb .
 cd ..
 mkdir rootfs && cd rootfs
-sudo tar xf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz
+sudo tar xf $TOP_FOLDER/buildroot/output/images/rootfs.tar.gz
 sudo cp -r $TOP_FOLDER/linux-socfpga/module_install_dir/lib/modules lib/
+cat << EOF > ../S99mountSysKrnDbg.sh
+#!/bin/sh
+# SPDX-License-Identifier: GPL-2.0-only
+
+### BEGIN INIT INFO
+# Provides: banner
+# Required-Start:
+# Required-Stop:
+# Default-Start:     S
+# Default-Stop:
+### END INIT INFO
+echo "Mounting debugfs..."
+mount -t debugfs none /sys/kernel/debug/
+EOF
+sudo cp ../S99mountSysKrnDbg.sh etc/init.d/
+sudo chmod +x etc/init.d/S99mountSysKrnDbg.sh
 cd ..
 sudo python3 make_sdimage_p3.py -f \
 -P fatfs/*,num=1,format=fat32,size=64M \
@@ -641,7 +672,26 @@ mv u-boot.itb u-boot.bin
 ```bash
 rm -rf rootfs rootfs.ubifs
 mkdir rootfs 
-tar -xzvf $TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz -C rootfs 
+tar -xzvf $TOP_FOLDER/buildroot/output/images/rootfs.tar.gz -C rootfs
+cd rootfs
+sudo cp -r $TOP_FOLDER/linux-socfpga/module_install_dir/lib/modules lib/
+cat << EOF > ../S99mountSysKrnDbg.sh
+#!/bin/sh
+# SPDX-License-Identifier: GPL-2.0-only
+
+### BEGIN INIT INFO
+# Provides: banner
+# Required-Start:
+# Required-Stop:
+# Default-Start:     S
+# Default-Stop:
+### END INIT INFO
+echo "Mounting debugfs..."
+mount -t debugfs none /sys/kernel/debug/
+EOF
+sudo cp ../S99mountSysKrnDbg.sh etc/init.d/
+sudo chmod +x etc/init.d/S99mountSysKrnDbg.sh
+cd ..
 mkfs.ubifs -r rootfs -F -e 65408 -m 1 -c 6500 -o rootfs.ubifs 
 ```
 
