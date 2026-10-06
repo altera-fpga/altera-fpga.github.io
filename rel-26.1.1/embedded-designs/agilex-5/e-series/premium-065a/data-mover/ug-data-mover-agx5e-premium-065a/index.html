@@ -5016,6 +5016,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_8_3_7" id="__nav_8_3_7_label" tabindex="0">
@@ -5086,6 +5088,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../013B/optee/ug-optee-agx5e-013b/" class="md-nav__link">
+        OP-TEE Hello World Tutorial Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -5146,8 +5162,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../013B/optee/ug-optee-agx5e-013b/" class="md-nav__link">
-        OP-TEE Hello World Tutorial Example Design User Guide
+      <a href="../../../../terasic-de25-nano/boot-examples/ug-linux-boot-de25-nano/" class="md-nav__link">
+        HPS Linux Boot Tutorial Example Design User Guide
       </a>
     </li>
   
@@ -7414,7 +7430,7 @@ The source code for Multi-Threaded application and the data movement tasks can b
 <p><strong>F2H Data Movement Task - f2h_task()</strong>: This exercises the data movement using the F2H bridge during a configurable period of time ( defined through the <strong>transaction_seconds</strong> input parameter ). The function creates 2 data buffers in SDRAM of 20 MB (each one with space to store 40 blocks of 512 KB data).The buffer 1 is initialized with a data pattern. The data movement consists of moving  chunks of data with size of 512 KB from one of the SDRAM buffers to the OCM-C using the READ MSGDMA controller in the F2H_DMAC component and then moving back this chunk of data from the OCM-C to the second SDRAM buffer using the WRITE MSGDMA controller in the the F2H_DMAC component. The data movement is coordinated by this task using a set of 80 descriptors (40 used for reading from buffer 1 and 40 used for writing to buffer 2) that are pre-filled and used to configure the MSGDMAs (using the common <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/fabric_dmac/">fabric_dmac</a> library also included as part of this example design). Each one of these descriptors indicates the size of the data block to move, the source and destination address of source/target components. This task also relies on semaphores and interrupts to coordinate the data transfer. The MSGDMA controllers are configured to trigger an  interrupt when the data transfer completes. To signal the completion of the data transfer, the READ MSGDMA uses <strong>FPGA2HPS_Interrupt0</strong> and the WRITE MSGDMA uses <strong>FPGA2HPS_Interrupt1</strong>. In this task, every time that a block of data transfer is started in any direction, the task waits there until data transfer completes. The wait makes use of a semaphore which is taken during the wait and released at the interrupt handler, executed when the data transfer completes and the corresponding interrupt triggers. At this time, the task proceeds to push the next descriptor to continue with the next data movement (the descriptors are defined in a Read -&gt; Write order to move data from buffer1 to OCM, i.e. read, and then from OCM to buffer2, i.e. write). This process continues until all data in buffer 1 has been moved to the buffer 2. This task continuously monitors the execution time and if the execution period of time has not elapsed, then the data movement process is repeated from the initial chunk of data in the buffer 1. The task also keeps track of the total of bytes that have been transferred. When the execution time has finished, the task calculates and displays the average data transfer rate for benchmarking purposes. The next figure shows the data path that is followed by this task.</p>
 <p><a class="glightbox" href="../images/f2hDataFlow.svg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/f2hDataFlow.svg" style="display:block; margin-left:auto; margin-right:auto; width: 110%" /></a></p>
 <p>The source code of this task is shown at the following path:</p>
-<p><strong>single-threaded:</strong> <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/f2h_task.c">datamover-app/single-threaded/datamover_tasks/f2h_task.c</a><br>
+<p><strong>single-threaded:</strong> <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/f2h_task.c">datamover-app/single-threaded/datamover_tasks/f2h_task.c</a><br>
 <strong>multi-threaded:</strong> <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/f2h_task.c">datamover-app/multi-threaded/datamover_tasks/f2h_task.c</a><br></p>
 <p>The execution time is configurable using the <strong>TEN_SECONDS</strong> definition from the datamover_tasks/datamover_tasks.h header file.</p>
 </li>
@@ -7424,7 +7440,7 @@ The source code for Multi-Threaded application and the data movement tasks can b
 <p><strong>F2SDRAM Data Movement Task - f2sdram_task()</strong>: This exercises the data movement using the F2SDRAM bridge during a configurable period of time ( defined through the <strong>transaction_seconds</strong> input parameter ). The function creates 2 data buffers in SDRAM of 20 MB (each one with space to store 40 blocks of 512 KB data). The buffer 1 is initialized with a data pattern. The data movement consists of moving  chunks of data with size of 512 KB from one of the SDRAM buffers to the OCM-D using the READ MSGDMA controller in the F2SDRAM_DMAC component and then moving back this chunk of data from the OCM-D to the second SDRAM buffer using the WRITE MSGDMA controller in the F2SDRAM_DMAC component. The data movement is coordinated by this task using a set of 80 descriptors (40 used for reading from buffer 1 and 40 used for writing to buffer 2) that are pre-filled and used to configure the MSGDMAs (using the common <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/fabric_dmac/">fabric_dmac</a> software library also included as part of this example design). Each one of these descriptors indicates the size of the data block to move, the source and destination address of the source/target components. This task also relies on semaphores and interrupts to coordinate the data transfer. The MSGDMA controllers are configured to trigger an  interrupt when the data transfer completes. To signal the completion of the data transfer, the READ MSGDMA uses <strong>FPGA2HPS_Interrupt2</strong> and the WRITE MSGDMA uses <strong>FPGA2HPS_Interrupt3</strong>. In this task, every time that a block of data transfer is started in any direction, the task waits there until data transfer completes. The wait makes use of a semaphore which is taken during the wait and released at the interrupt handler, executed when the data transfer completes and the corresponding interrupt triggers. At this time, the task proceeds to push the next descriptor to continue with the next data movement (the descriptors are defined in a Read -&gt; Write order to move data from buffer1 to OCM, i.e. read, and then from OCM to buffer2, i.e. write). This process continues until all data in buffer 1 has been moved to the buffer 2. This task continuously monitors the execution time and if the execution period of time has not elapsed, then the data movement process is repeated from the initial chunk of data in the buffer 1. The task also keeps track of the total of bytes that have been transferred. When the execution time has finished, the task calculates and displays the average data transfer rate for benchmarking purposes. The next figure shows the data path that is followed by this task.</p>
 <p><a class="glightbox" href="../images/f2sdramDataFlow.svg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/f2sdramDataFlow.svg" style="display:block; margin-left:auto; margin-right:auto; width: 110%" /></a></p>
 <p>The source code of this task is shown at the following path:</p>
-<p><strong>single-threaded:</strong> <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/f2sdram_task.c">datamover-app/single-threaded/datamover_tasks/f2sdram_task.c</a><br>
+<p><strong>single-threaded:</strong> <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/f2sdram_task.c">datamover-app/single-threaded/datamover_tasks/f2sdram_task.c</a><br>
 <strong>multi-threaded:</strong> <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/f2sdram_task.c">datamover-app/multi-threaded/datamover_tasks/f2sdram_task.c</a><br></p>
 <p>The execution time is configurable using the <strong>TEN_SECONDS</strong> definition from the datamover_tasks/datamover_tasks.h header file.</p>
 </li>
@@ -7436,7 +7452,7 @@ The source code for Multi-Threaded application and the data movement tasks can b
 <p>The next figure shows the data path that is followed by this task.</p>
 <p><a class="glightbox" href="../images/s2sDMADataFlow.svg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/s2sDMADataFlow.svg" style="display:block; margin-left:auto; margin-right:auto; width: 55%" /></a></p>
 <p>The source code of this task is shown at the following path:</p>
-<p><strong>single-threaded:</strong> <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/s2s_dma_task.c">datamover-app/single-threaded/datamover_tasks/s2s_dma_task.c</a><br>
+<p><strong>single-threaded:</strong> <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/s2s_dma_task.c">datamover-app/single-threaded/datamover_tasks/s2s_dma_task.c</a><br>
 <strong>multi-threaded:</strong> <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/s2s_dma_task.c">datamover-app/multi-threaded/datamover_tasks/s2s_dma_task.c</a><br></p>
 <p>The execution time is configurable using the <strong>TEN_SECONDS</strong> definition from the datamover_tasks/datamover_tasks.h header file.</p>
 </li>
@@ -7446,7 +7462,7 @@ The source code for Multi-Threaded application and the data movement tasks can b
 <p><strong>S2S Data Movement Task - s2s_task():</strong> This exercises the data movement from SDRAM to SDRAM using direct CPU read and write operations during a configurable period of time ( defined through the <strong>transaction_seconds</strong> input parameter). The function creates 2 data buffers in SDRAM of 20 MB. The buffer 1 is initialized with a data pattern and the CPU moves single 8-bytes words from buffer 1 to buffer 2. This task monitors the execution time, and when it finishes to transfer the full content of buffer 1 to buffer 2, it checks if the execution period of time has not elapsed. If this is the case, then the data movement process is restarted from the initial data in the buffer 1. The task also keeps track of the total of bytes that have been transferred. When the execution time has finished, the task calculates and displays the average data transfer rate for benchmarking purposes. The next figure shows the data path that is followed by this task.</p>
 <p><a class="glightbox" href="../images/s2sDataFlow.svg" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="" src="../images/s2sDataFlow.svg" style="display:block; margin-left:auto; margin-right:auto; width: 60%" /></a></p>
 <p>The source code of this task is shown at the following path:</p>
-<p><strong>single-threaded:</strong> <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/s2s_task.c">datamover-app/single-threaded/datamover_tasks/s2s_task.c</a><br>
+<p><strong>single-threaded:</strong> <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/s2s_task.c">datamover-app/single-threaded/datamover_tasks/s2s_task.c</a><br>
 <strong>multi-threaded:</strong> <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/s2s_task.c">datamover-app/multi-threaded/datamover_tasks/s2s_task.c</a><br></p>
 <p>The execution time is configurable using the <strong>TEN_SECONDS</strong> definition from the datamover_tasks/datamover_tasks.h header file.</p>
 </li>
@@ -7856,7 +7872,7 @@ Please refer to the <a href="https://docs.altera.com/r/docs/817760/25.1.1/perfor
 </tr>
 </tbody>
 </table>
-<p>Please refer to the application <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/datamover/software/freertos/datamover-app/README.md">README</a> for more detail about building the applications.</p>
+<p>Please refer to the application <a href="https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/README.md">README</a> for more detail about building the applications.</p>
 <h2 id="notices-disclaimers">Notices &amp; Disclaimers<a class="headerlink" href="#notices-disclaimers" title="Permanent link">&para;</a></h2>
 <p>Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
 No product or component can be absolutely secure. 
@@ -7875,7 +7891,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 11, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 6, 2026</span>
       
         <br>
         Created:

@@ -4945,6 +4945,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_8_3_7" id="__nav_8_3_7_label" tabindex="0">
@@ -5015,6 +5017,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../013B/optee/ug-optee-agx5e-013b/" class="md-nav__link">
+        OP-TEE Hello World Tutorial Example Design User Guide
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -5075,8 +5091,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../013B/optee/ug-optee-agx5e-013b/" class="md-nav__link">
-        OP-TEE Hello World Tutorial Example Design User Guide
+      <a href="../../../../terasic-de25-nano/boot-examples/ug-linux-boot-de25-nano/" class="md-nav__link">
+        HPS Linux Boot Tutorial Example Design User Guide
       </a>
     </li>
   
@@ -7346,14 +7362,17 @@
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>QPDS26.1.1_REL_GSRD_PR<span class="w"> </span>https://github.com/altera-fpga/linux-socfpga
 <a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nb">cd</span><span class="w"> </span>linux-socfpga
 <a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; config-fragment-agilex5</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="s"># Enable Ethernet connectivity so we can get an IP address</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="s">CONFIG_MARVELL_PHY=y</span>
-<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="s">EOF</span>
-<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>make<span class="w"> </span>defconfig
-<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="c1"># Apply custom Configs in file</span>
-<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>./scripts/kconfig/merge_config.sh<span class="w"> </span>-O<span class="w"> </span>./<span class="w"> </span>./.config<span class="w"> </span>./config-fragment-agilex5
-<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>make<span class="w"> </span>oldconfig
-<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">64</span><span class="w"> </span>Image<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>intel/socfpga_agilex5_socdk.dtb
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="s"># WA: Needed from 26.1.1 on for ES-14728 Won&#39;t be fixed</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="s"># See https://community.altera.com/kb/knowledge-base/why-does-linux-fail-to-access-qspi-flash-components-across-all-supported-devices/356427</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="s">CONFIG_MTD_SPI_NOR_USE_4K_SECTORS=n</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="s"># Enable Ethernet connectivity so we can get an IP address</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="s">CONFIG_MARVELL_PHY=y</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="s">EOF</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>make<span class="w"> </span>defconfig
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="c1"># Apply custom Configs in file</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>./scripts/kconfig/merge_config.sh<span class="w"> </span>-O<span class="w"> </span>./<span class="w"> </span>./.config<span class="w"> </span>./config-fragment-agilex5
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>make<span class="w"> </span>oldconfig
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">64</span><span class="w"> </span>Image<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>intel/socfpga_agilex5_socdk.dtb
 </code></pre></div>
 <p>The following files are created:</p>
 <ul>
@@ -7377,21 +7396,34 @@
 </ul>
 <h3>Build Rootfs</h3>
 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>yocto<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>yocto<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>yocto
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>wrynose<span class="w"> </span>https://git.yoctoproject.org/poky
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>wrynose<span class="w"> </span>https://git.yoctoproject.org/meta-intel-fpga
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>wrynose<span class="w"> </span>https://github.com/openembedded/meta-openembedded
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="nb">source</span><span class="w"> </span>poky/oe-init-build-env<span class="w"> </span>./build
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;MACHINE = &quot;agilex5_dk_a5e065bb32aes1&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-intel-fpga &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;BBLAYERS += &quot; ${TOPDIR}/../meta-openembedded/meta-oe &quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/bblayers.conf
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;CORE_IMAGE_EXTRA_INSTALL += &quot;openssh gdbserver&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>conf/local.conf
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>bitbake<span class="w"> </span>core-image-minimal
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$TOP_FOLDER</span><span class="w"> </span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>buildroot
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/buildroot/buildroot.git
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nb">cd</span><span class="w"> </span>buildroot
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>git<span class="w"> </span>checkout<span class="w"> </span><span class="m">2026</span>.05
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>overlay/etc/profile.d/
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1"># Use regilar prompt used in our devices root@&lt;device&gt;:~# instead of only #</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;export PS1=&#39;\\u@\\h:\\w\\</span>$<span class="s2"> &#39;&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>overlay/etc/profile.d/prompt.sh
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="c1"># Adding applications that we normaly need</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>configs/agilex5_defconfig<span class="w"> </span><span class="s">&lt;&lt;EOT</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="s">BR2_aarch64=y</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="s">BR2_TOOLCHAIN_BUILDROOT_CXX=y</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="s">BR2_KERNEL_HEADERS_6_12=y</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="s">BR2_PACKAGE_HOST_GDB=y</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="s">BR2_GDB_VERSION_14=y</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="s">BR2_PACKAGE_GDB=y</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="s">BR2_PACKAGE_DROPBEAR=y</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="s">BR2_SYSTEM_DHCP=&quot;eth0&quot;</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="s">BR2_TARGET_ROOTFS_TAR_GZIP=y</span>
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="s">BR2_TARGET_GENERIC_HOSTNAME=&quot;agilex5&quot;</span>
+<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a><span class="s">BR2_ROOTFS_OVERLAY=&quot;overlay&quot;</span>
+<a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a><span class="s">EOT</span>
+<a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>make<span class="w"> </span>agilex5_defconfig
+<a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>make<span class="w"> </span>-j<span class="w"> </span><span class="m">64</span>
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
-<li><code>$TOP_FOLDER/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz</code></li>
+<li><code>$TOP_FOLDER/buildroot/output/images/rootfs.tar.gz</code></li>
 </ul>
 <h3>Create SD Card Image</h3>
 
@@ -7407,15 +7439,31 @@
 <a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>cp<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dtb<span class="w"> </span>.
 <a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="nb">cd</span><span class="w"> </span>..
 <a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>mkdir<span class="w"> </span>rootfs<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>rootfs
-<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>sudo<span class="w"> </span>tar<span class="w"> </span>xf<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>sudo<span class="w"> </span>tar<span class="w"> </span>xf<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/buildroot/output/images/rootfs.tar.gz
 <a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>sudo<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/linux-socfpga/module_install_dir/lib/modules<span class="w"> </span>lib/
-<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="nb">cd</span><span class="w"> </span>..
-<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>sudo<span class="w"> </span>python3<span class="w"> </span>make_sdimage_p3.py<span class="w"> </span>-f<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>-P<span class="w"> </span>fatfs/*,num<span class="o">=</span><span class="m">1</span>,format<span class="o">=</span>fat32,size<span class="o">=</span>64M<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>-P<span class="w"> </span>rootfs/*,num<span class="o">=</span><span class="m">2</span>,format<span class="o">=</span>ext3,size<span class="o">=</span>448M<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>-s<span class="w"> </span>512M<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>-n<span class="w"> </span>sdcard.img
-<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="nb">cd</span><span class="w"> </span>..
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; ../S99mountSysKrnDbg.sh</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="s">#!/bin/sh</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="s"># SPDX-License-Identifier: GPL-2.0-only</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="s">### BEGIN INIT INFO</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="s"># Provides: banner</span>
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="s"># Required-Start:</span>
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="s"># Required-Stop:</span>
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="s"># Default-Start:     S</span>
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="s"># Default-Stop:</span>
+<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="s">### END INIT INFO</span>
+<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a><span class="s">echo &quot;Mounting debugfs...&quot;</span>
+<a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a><span class="s">mount -t debugfs none /sys/kernel/debug/</span>
+<a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a><span class="s">EOF</span>
+<a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a>sudo<span class="w"> </span>cp<span class="w"> </span>../S99mountSysKrnDbg.sh<span class="w"> </span>etc/init.d/
+<a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a>sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>etc/init.d/S99mountSysKrnDbg.sh
+<a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a><span class="nb">cd</span><span class="w"> </span>..
+<a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a>sudo<span class="w"> </span>python3<span class="w"> </span>make_sdimage_p3.py<span class="w"> </span>-f<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a>-P<span class="w"> </span>fatfs/*,num<span class="o">=</span><span class="m">1</span>,format<span class="o">=</span>fat32,size<span class="o">=</span>64M<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a>-P<span class="w"> </span>rootfs/*,num<span class="o">=</span><span class="m">2</span>,format<span class="o">=</span>ext3,size<span class="o">=</span>448M<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a>-s<span class="w"> </span>512M<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a>-n<span class="w"> </span>sdcard.img
+<a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a><span class="nb">cd</span><span class="w"> </span>..
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
@@ -7624,8 +7672,27 @@ While the example is based on the GSRD, it contains the following differences:</
 <p>5. Build the <code>rootfs.ubifs</code> file:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>rm<span class="w"> </span>-rf<span class="w"> </span>rootfs<span class="w"> </span>rootfs.ubifs
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>mkdir<span class="w"> </span>rootfs<span class="w"> </span>
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>tar<span class="w"> </span>-xzvf<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/yocto/build/tmp/deploy/images/agilex5_dk_a5e065bb32aes1/core-image-minimal-agilex5_dk_a5e065bb32aes1.rootfs.tar.gz<span class="w"> </span>-C<span class="w"> </span>rootfs<span class="w"> </span>
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>mkfs.ubifs<span class="w"> </span>-r<span class="w"> </span>rootfs<span class="w"> </span>-F<span class="w"> </span>-e<span class="w"> </span><span class="m">65408</span><span class="w"> </span>-m<span class="w"> </span><span class="m">1</span><span class="w"> </span>-c<span class="w"> </span><span class="m">6500</span><span class="w"> </span>-o<span class="w"> </span>rootfs.ubifs<span class="w"> </span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>tar<span class="w"> </span>-xzvf<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/buildroot/output/images/rootfs.tar.gz<span class="w"> </span>-C<span class="w"> </span>rootfs
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="nb">cd</span><span class="w"> </span>rootfs
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>sudo<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$TOP_FOLDER</span>/linux-socfpga/module_install_dir/lib/modules<span class="w"> </span>lib/
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; ../S99mountSysKrnDbg.sh</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="s">#!/bin/sh</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="s"># SPDX-License-Identifier: GPL-2.0-only</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="s">### BEGIN INIT INFO</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="s"># Provides: banner</span>
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="s"># Required-Start:</span>
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="s"># Required-Stop:</span>
+<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="s"># Default-Start:     S</span>
+<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="s"># Default-Stop:</span>
+<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="s">### END INIT INFO</span>
+<a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="s">echo &quot;Mounting debugfs...&quot;</span>
+<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a><span class="s">mount -t debugfs none /sys/kernel/debug/</span>
+<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="s">EOF</span>
+<a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a>sudo<span class="w"> </span>cp<span class="w"> </span>../S99mountSysKrnDbg.sh<span class="w"> </span>etc/init.d/
+<a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>sudo<span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>etc/init.d/S99mountSysKrnDbg.sh
+<a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a><span class="nb">cd</span><span class="w"> </span>..
+<a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a>mkfs.ubifs<span class="w"> </span>-r<span class="w"> </span>rootfs<span class="w"> </span>-F<span class="w"> </span>-e<span class="w"> </span><span class="m">65408</span><span class="w"> </span>-m<span class="w"> </span><span class="m">1</span><span class="w"> </span>-c<span class="w"> </span><span class="m">6500</span><span class="w"> </span>-o<span class="w"> </span>rootfs.ubifs<span class="w"> </span>
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
@@ -7990,7 +8057,7 @@ You are responsible for safety of the overall system, including compliance with 
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 11, 2026</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 6, 2026</span>
       
         <br>
         Created:
