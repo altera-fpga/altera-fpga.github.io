@@ -248,6 +248,7 @@ nav:
         - HPS Fabric Configuration from Linux: embedded-designs/agilex-3/c-series/fabric-config-linux/ug-fabric-config-linux-agx3.md
         - TSN Examples:
           - HPS TSN RGMII HVIO System Example Design User Guide: embedded-designs/agilex-3/c-series/tsn/rgmii-hvio/ug-tsncfg2-agx3c-dk-rgmii-hvio.md
+        - MIPI CSI-2 Camera to DSI-2 Display System Example Design for Agilex™ 3 Devices: embedded-designs/agilex-3/c-series/camera/csi_to_dsi_lite_4k30/csi_to_dsi_lite_4k.md
       - Intel Simics Virtual Platform Examples:
         - Simics Linux HPS Baseline System Example Design: embedded-designs/agilex-3/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex3-virtual-platforms.md  
       - Atum A3 Nano (Atum Nios® V Starter Kit):

@@ -83,7 +83,7 @@
 
 # Robotics Camera System Example Design — FPGA Hardware Functional Description
 
-This document describes the functionality of the **[HPS_ISP_CAM_ROBOTICS](https://github.com/altera-fpga/agilex-ed-robotics/tree/rel/26.1/HPS_ISP_CAM_ROBOTICS)** hardware variant, using Platform Designer subsystems as
+This document describes the functionality of the **[HPS_ISP_CAM_ROBOTICS]** hardware variant, using Platform Designer subsystems as
 a reference. The variant implements a robotics-oriented **glass-to-glass** camera path from the MIPI sensor through ISP to DisplayPort.
 
 This page documents **FPGA hardware** subsystems, interconnect, and registers. **Higher-level robotics software** can run perception
@@ -117,7 +117,7 @@ Blue interconnect in the diagram is the live video path (**MIPI In → ISP In �
 Grey paths are control and memory access from the Nios® V and HPS subsystems.
 
 The diagram is color-coded to match the Platform Designer view and the XML file (Modular Design Toolkit methodology) for
-this design (see: [AGX_5E_Modular_Devkit_HPS_ISP_CAM_ROB.xml](https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/HPS_ISP_CAM_ROBOTICS/AGX_5E_Modular_Devkit_HPS_ISP_CAM_ROB.xml)). The following figure correlates the
+this design (see: [AGX_5E_Modular_Devkit_HPS_ISP_CAM_ROB.xml]). The following figure correlates the
 XML file, and the Platform Designer view:
 
 <br>

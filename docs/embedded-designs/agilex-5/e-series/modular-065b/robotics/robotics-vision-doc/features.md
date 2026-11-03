@@ -111,7 +111,7 @@ This design combines robotics vision processing with a 6-axis (3×2) Drive-on-Ch
 
 * **Linux image via KAS:** Yocto/KAS flow with [kas-vision-doc.yml](https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/sw/kas-vision-doc.yml) for reproducible software builds.
 * Additional Yocto Layer(s) supporting Docker (meta-altera-fpga).
-* **ROS 2 integration:** validated container flow with [Altera ROS 2](https://github.com/altera-fpga/altera-ros2).
+* **ROS 2 integration:** validated container flow with [Altera ROS 2].
 * **ROS control path:** compatible with the [ROS Control hardware interface](https://github.com/altera-fpga/altera-ros2/tree/main/fpga_doc_control_driver) approach used by Drive-on-Chip based flows.
 * **MDT-first project generation:** scalable create/build flow from [HPS_ISP_VIS_DOC3x2_ROBOTICS](https://github.com/altera-fpga/agilex-ed-robotics/tree/rel/26.1/HPS_ISP_VIS_DOC3x2_ROBOTICS) and
   [Creating and Building the Design based on Modular Design Toolkit (MDT).](https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/HPS_ISP_VIS_DOC3x2_ROBOTICS/Readme.md).
