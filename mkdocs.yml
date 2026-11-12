@@ -230,6 +230,8 @@ nav:
         - HPS OpenOCD Debugging: embedded-designs/agilex-3/c-series/openocd/ug-openocd-debug-agx3.md
         - HPS Linux Application Debuging with Ashling RiscFree: embedded-designs/agilex-3/c-series/riscfree-linux-app-debug/ug-riscfree-linux-app-debug-agx3.md
         - HPS Fabric Configuration from Linux: embedded-designs/agilex-3/c-series/fabric-config-linux/ug-fabric-config-linux-agx3.md
+        - TSN Examples:
+          - HPS TSN SGMII XCVR System 1x1G Example Design User Guide: embedded-designs/agilex-3/c-series/tsn/sgmii_xcvr_1x1G/ug-tsn-sgmii-xcvr-1x1G-agilex3.md
       - Intel Simics Virtual Platform Examples:
         - Simics Linux HPS Baseline System Example Design: embedded-designs/agilex-3/common/virtual-platforms/linux-gsrd/ug-linux-gsrd-agilex3-virtual-platforms.md  
       - Atum A3 Nano (Atum Nios® V Starter Kit):
