@@ -13280,7 +13280,7 @@ There is no register map access needed as the hps_gmii conduit interface will co
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>wget<span class="w"> </span>https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a3w135bm16aea-tsn-dc-tsn-rgmii-hvio.zip
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>unzip<span class="w"> </span>dk-a3w135bm16aea-tsn-dc-tsn-rgmii-hvio.zip
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>rm<span class="w"> </span>-f<span class="w"> </span>dk-a3w135bm16aea-tsn-dc-tsn-rgmii-hvio.zip
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>make<span class="w"> </span>make<span class="w"> </span>tsn_rgmii_hvio-build
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>make<span class="w"> </span>tsn_rgmii_hvio-build
 </code></pre></div>
 <p>The following files are created:</p>
 <ul>
@@ -13291,7 +13291,7 @@ There is no register map access needed as the hps_gmii conduit interface will co
 </code></pre></div>
 <p>The following file is created:</p>
 <ul>
-<li><code>$TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/ghrd.rbf</code></li>
+<li><code>$TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/tsn_rgmii_hvio.core.rbf</code></li>
 </ul>
 <h4 id="software-compilation-flow">Software Compilation Flow<a class="headerlink" href="#software-compilation-flow" title="Permanent link">¶</a></h4>
 <p>The following page shows an overview of how the build process works for this use case:</p>
@@ -13372,7 +13372,7 @@ The following file is created:<p></p>
 <h5>For Prebuilt:</h5>
 
 <ul>
-<li>Download SD card image from the prebuilt binaries <a href="https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex3_tsn-rgmii-hvio/sdimage.tar.gz">https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex3_tsn-rgmii-hvio/sdimage.tar.gz</a> and extract the archive, obtaining the file <code>gsrd-console-image-agilex3_devkit.wic</code>.</li>
+<li>Download SD card image from the prebuilt binaries <a href="https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex3_tsn-rgmii-hvio/sdimage.tar.gz">https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex3_tsn-rgmii-hvio/sdimage.tar.gz</a> and extract the archive, obtaining the file <code>gsrd-console-image-agilex3.rootfs.wic</code>.</li>
 </ul>
 <h5>For compiled image:</h5>
 
@@ -13382,7 +13382,7 @@ The following file is created:<p></p>
 <li>u-boot-spl-dtb.hex</li>
 </ul>
 <h5 id="write-sd-card">Write SD Card<a class="headerlink" href="#write-sd-card" title="Permanent link">¶</a></h5>
-<p>1. Write the gsrd-console-image-agilex3_devkit.wic. SD card image to the micro SD card using the included USB writer in the host computer:</p>
+<p>1. Write the gsrd-console-image-agilex3.rootfs.wic. SD card image to the micro SD card using the included USB writer in the host computer:</p>
 <ul>
 <li>On Linux, use the <code>dd</code> utility as shown next:</li>
 </ul>
@@ -13390,12 +13390,12 @@ The following file is created:<p></p>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">cat</span><span class="w"> </span><span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">partitions</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="cp"># This will return for example /dev/sdx</span>
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="cp"># Use dd to write the image in the corresponding device</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">sudo</span><span class="w"> </span><span class="n">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=</span><span class="n">gsrd</span><span class="o">-</span><span class="n">console</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">agilex3_devkit</span><span class="p">.</span><span class="n">wic</span><span class="w"> </span><span class="n">of</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdx</span><span class="w"> </span><span class="n">bs</span><span class="o">=</span><span class="mi">1</span><span class="n">M</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">sudo</span><span class="w"> </span><span class="n">dd</span><span class="w"> </span><span class="k">if</span><span class="o">=</span><span class="n">gsrd</span><span class="o">-</span><span class="n">console</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">agilex3</span><span class="p">.</span><span class="n">rootfs</span><span class="p">.</span><span class="n">wic</span><span class="w"> </span><span class="n">of</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdx</span><span class="w"> </span><span class="n">bs</span><span class="o">=</span><span class="mi">1</span><span class="n">M</span>
 <a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="cp"># Flush the changes to the SD card</span>
 <a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">sync</span>
 </code></pre></div>
 <ul>
-<li>On Windows, use the Win32DiskImager program. For this, first rename the extension of gsrd-console-image-agilex3_devkit.wic to an <strong>.img</strong> file (sdcard.img for example) and write the image as shown in the next figure:</li>
+<li>On Windows, use the Win32DiskImager program. For this, first rename the extension of gsrd-console-image-agilex3.rootfs.wic to an <strong>.img</strong> file (sdcard.img for example) and write the image as shown in the next figure:</li>
 </ul>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/win32diskimager.png" data-desc-position="bottom"><img alt="" src="../images/win32diskimager.png"></a></p>
 <h4 id="linux-boot">Linux Boot<a class="headerlink" href="#linux-boot" title="Permanent link">¶</a></h4>
@@ -13481,7 +13481,7 @@ You are responsible for safety of the overall system, including compliance with 
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 3, 2026 16:47:11 UTC">November 3, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 12, 2026 17:49:06 UTC">November 12, 2026</span>
   </span>
 
     
