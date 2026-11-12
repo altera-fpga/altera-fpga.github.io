@@ -142,10 +142,10 @@ higher-level robotics software (for example [ROS 2](https://www.ros.org/) percep
 Blue interconnect in the diagram is the live video path (MIPI In → ISP In → ISP Lite → ISP Robotics → ISP Lite Out → DisplayPort).
 Dashed paths are control and memory access from the Nios® V and HPS subsystems.
 
-Subsystem names and grouping match the Modular Design Toolkit (MDT) view and the variant XML ([AGX_5E_Modular_Devkit_HPS_ISP_CAM_ROB.xml](https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/HPS_ISP_CAM_ROBOTICS/AGX_5E_Modular_Devkit_HPS_ISP_CAM_ROB.xml)).
+Subsystem names and grouping match the Modular Design Toolkit (MDT) view and the variant XML ([AGX_5E_Modular_Devkit_HPS_ISP_CAM_ROB.xml]).
 
-The hardware variant **[AGX_5E_Modular_Devkit_HPS_ISP_CAM_ROB.xml](https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/HPS_ISP_CAM_ROBOTICS/AGX_5E_Modular_Devkit_HPS_ISP_CAM_ROB.xml)** is built with the [Modular Design Toolkit](https://github.com/altera-fpga/modular-design-toolkit) from
-the [https://github.com/altera-fpga/agilex-ed-robotics](https://github.com/altera-fpga/agilex-ed-robotics) repository. See the [HPS_ISP_CAM_ROBOTICS](https://github.com/altera-fpga/agilex-ed-robotics/tree/rel/26.1/HPS_ISP_CAM_ROBOTICS) README for MDT create and build steps.
+The hardware variant **[AGX_5E_Modular_Devkit_HPS_ISP_CAM_ROB.xml]** is built with the [Modular Design Toolkit](https://github.com/altera-fpga/modular-design-toolkit) from
+the [https://github.com/altera-fpga/agilex-ed-robotics](https://github.com/altera-fpga/agilex-ed-robotics) repository. See the [HPS_ISP_CAM_ROBOTICS] README for MDT create and build steps.
 
 <br>
 
@@ -237,8 +237,8 @@ Follow these steps to run the example on the Agilex™ 5 E-Series 065B Modular D
 
 | Boot Source | Link |
 | ----------- | ---- |
-| SD Card Image | [wic.gz](https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-camera-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.gz), [wic.bmap](https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-camera-26.1/core-image-minimal-agilex5_mk_a5e065bb32aea.rootfs.wic.bmap) |
-| QSPI | [top.hps.jic](https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-camera-26.1/top.hps.jic) |
+| SD Card Image | [wic.gz], [wic.bmap] |
+| QSPI | [top.hps.jic] |
 
 </center>
 
@@ -557,9 +557,9 @@ design example. Additionally, there are two extra user flows that you can explor
 
 | Source | Link |
 | ------ | ---- |
-| Pre-created QAR | [ROBOTICS_ISP_CAMERA.qar](https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-camera-26.1/ROBOTICS_ISP_CAMERA.qar) |
-| JIC / RBF | [top.hps.jic](https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-camera-26.1/top.hps.jic), [top.core.rbf](https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-camera-26.1/top.core.rbf) |
-| u-boot-spl-dtb.hex | [u-boot-spl-dtb.hex](https://github.com/altera-fpga/agilex-ed-robotics/releases/download/rel-camera-26.1/u-boot-spl-dtb.hex) |
+| Pre-created QAR | [ROBOTICS_ISP_CAMERA.qar] |
+| JIC / RBF | [top.hps.jic], [top.core.rbf] |
+| u-boot-spl-dtb.hex | [u-boot-spl-dtb.hex] |
 
 </center>
 
@@ -581,9 +581,9 @@ g { color: Green; font-weight: bold; }
  |              | [Download the minimum Pre-built Binaries.](#download-the-minimum-pre-built-binaries)              |<g>&check;</g>|<r>&cross;</r>|<r>&cross;</r>|
  |HW-Compilation| [Compile pre-created QAR with Quartus®.](https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-camera/other-user-flow/#compiling-the-project-using-a-mdt-qar-file)     |<r>&cross;</r>|<g>&check;</g>|<r>&cross;</r>|
  |              | [Generating and Building the NiosV application and BSP.](https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-camera/other-user-flow/#compiling-and-building-the-niosv-application-and-bsp)     |<r>&cross;</r>|<g>&check;</g>|<r>&cross;</r>|
- |              | [Creating and Building the Design based on Modular Design Toolkit (MDT).](https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/HPS_ISP_CAM_ROBOTICS/Readme.md)                         |<r>&cross;</r>|<r>&cross;</r>|<g>&check;</g>|
+ |              | [Creating and Building the Design based on Modular Design Toolkit (MDT).]                         |<r>&cross;</r>|<r>&cross;</r>|<g>&check;</g>|
  |              | [Creating the QSPI Flash and SD card configuration bitstreams for the board (JIC/RBF).](https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular-065b/robotics/robotics-camera/other-user-flow/#creating-the-qspi-flash-and-sd-card-configuration-bitstreams-for-the-board) <br> <r>Warning!</r>: this procedure requires a `u-boot-spl-dtb.hex` file, which is generated in the step below. |<r>&cross;</r>|<g>&check;</g>|<g>&check;</g>|
- |SW-Compilation| [Create SD card image (.wic) using YOCTO/KAS](https://github.com/altera-fpga/agilex-ed-robotics/blob/rel/26.1/sw/README.md) <br> <r>NOTE</r>: use <g>**KAS_MACHINE=agilex5_mk_a5e065bb32aea**</g> and <g>**kas-camera.yml**</g> configuration                                                                                                      |<r>&cross;</r>|<g>&check;</g>|<g>&check;</g>|
+ |SW-Compilation| [Create SD card image (.wic) using YOCTO/KAS] <br> <r>NOTE</r>: use <g>**KAS_MACHINE=agilex5_mk_a5e065bb32aea**</g> and <g>**kas-camera.yml**</g> configuration                                                                                                      |<r>&cross;</r>|<g>&check;</g>|<g>&check;</g>|
  |Programming   | [Setting Up your Development Board.](#setting-up-your-development-board)                          |<g>&check;</g>|<g>&check;</g>|<g>&check;</g>|
  |              | [SD Card Image Flashing.](#sd-card-image-flashing)                                                |<g>&check;</g>|<g>&check;</g>|<g>&check;</g>|
  |              | [Program the QSPI Flash Memory.](#flash-the-qspi)                                  |<g>&check;</g>|<g>&check;</g>|<g>&check;</g>|

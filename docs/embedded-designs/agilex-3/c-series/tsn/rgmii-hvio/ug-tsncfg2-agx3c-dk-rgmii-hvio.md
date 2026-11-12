@@ -256,7 +256,7 @@ rm -rf agilex3_soc_devkit_ghrd && mkdir agilex3_soc_devkit_ghrd && cd agilex3_so
 wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a3w135bm16aea-tsn-dc-tsn-rgmii-hvio.zip
 unzip dk-a3w135bm16aea-tsn-dc-tsn-rgmii-hvio.zip
 rm -f dk-a3w135bm16aea-tsn-dc-tsn-rgmii-hvio.zip
-make make tsn_rgmii_hvio-build
+make tsn_rgmii_hvio-build
 ```
 
 The following files are created:
@@ -271,7 +271,7 @@ make tsn_cfg2-install-core-rbf
 
 The following file is created:
 
-* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/ghrd.rbf`
+* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/tsn_rgmii_hvio.core.rbf`
 
 #### Software Compilation Flow
 
@@ -380,7 +380,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;tsn_rgmii_hvio.hps.jic"
 
 <h5>For Prebuilt:</h5>
 
-- Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex3_tsn-rgmii-hvio/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex3_tsn-rgmii-hvio/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex3_devkit.wic`.
+- Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex3_tsn-rgmii-hvio/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex3_tsn-rgmii-hvio/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex3.rootfs.wic`.
 
 <h5>For compiled image:</h5>
 
@@ -391,7 +391,7 @@ The following relevant files are created in $TOP_FOLDER/agilex3_soc_devkit_ghrd/
 
 
 ##### Write SD Card
-1\. Write the gsrd-console-image-agilex3\_devkit.wic. SD card image to the micro SD card using the included USB writer in the host computer:
+1\. Write the gsrd-console-image-agilex3.rootfs.wic. SD card image to the micro SD card using the included USB writer in the host computer:
 
 * On Linux, use the `dd` utility as shown next:
 
@@ -400,12 +400,12 @@ The following relevant files are created in $TOP_FOLDER/agilex3_soc_devkit_ghrd/
 cat /proc/partitions
 # This will return for example /dev/sdx
 # Use dd to write the image in the corresponding device
-sudo dd if=gsrd-console-image-agilex3_devkit.wic of=/dev/sdx bs=1M
+sudo dd if=gsrd-console-image-agilex3.rootfs.wic of=/dev/sdx bs=1M
 # Flush the changes to the SD card
 sync
 ```
 
-* On Windows, use the Win32DiskImager program. For this, first rename the extension of gsrd-console-image-agilex3\_devkit.wic to an **.img** file (sdcard.img for example) and write the image as shown in the next figure:
+* On Windows, use the Win32DiskImager program. For this, first rename the extension of gsrd-console-image-agilex3.rootfs.wic to an **.img** file (sdcard.img for example) and write the image as shown in the next figure:
 
 ![](images/win32diskimager.png)
 
@@ -447,167 +447,6 @@ Devkit #2 : $ ifconfig eth1 192.168.1.200
 
     _Note : Update the Devkit #1 DUT IP address in above command._
 
-#### Run TSN Application
-
-The following examples are demonstrated using 2 units of the Agilex platform.  Please take note of the notation "[Board A or B]". The following steps assumes both platforms are connected to each other via an Ethernet connection.
-
-1\. Boot to Linux
-
-2\. Navigate to the `tsn` directory
-
-```bash
-cd tsn
-```
-
-<h5>Configuration for Both Boards</h5>
-
-<h6>Step I: Setup Environment Path on Both Boards</h6>
-
-3\. Board A
-
-   ```bash
-   export LIBXDP_OBJECT_PATH=/usr/lib64/bpf
-   export LD_LIBRARY_PATH=/usr/lib/custom_bpf/lib 
-   ```
-
-4\. Board B
-
-   ```bash
-   export LIBXDP_OBJECT_PATH=/usr/lib64/bpf
-   export LD_LIBRARY_PATH=/usr/lib/custom_bpf/lib 
-   ```
-
-<h5>TXRX-TSN App</h5>
-
-<h6>Step II: Run Configuration Script</h6>
-
-5\. Board A: Run the configuration script and wait for it to configure the IP and MAC address, start clock synchronization, and set up TAPRIO qdisc.
-
-   ```bash
-   ./run.sh agilex5 eth0 vs1a setup
-   ```
-
-6\. Board B: Run the configuration script and wait for it to configure the IP and MAC address, start clock synchronization, and set up ingress qdiscs.
-
-   ```bash
-   ./run.sh agilex5 eth0 vs1b setup
-   ```
-
-<h6>Step III: Start the Application</h6>
-
-7\. Board B: Run the application.
-
-   ```bash
-   ./run.sh agilex5 eth0 vs1b run
-   ```
-
-8\. Board A: Immediately after starting the application on Board B, run the application on Board A.
-
-   ```bash
-   ./run.sh agilex5 eth0 vs1a run
-   ```
-
-<h5>Post-Test Procedure</h5>
-Once the test is completed, copy the following files from Board B (listener) to the host machine:
-
-- afpkt-rxtstamps.txt
-- afxdp-rxtstamps.txt
-
-<h5>Generating Latency Plot Using Excel</h5>
-
-Import 'afpkt-rxtstamps.txt' and 'afxdp-rxtstamps.txt' to excel in 2 seperate sheets.
-
-<img src="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
-
-Plot Column 1 for each sheets using Scatter chart,
-
-<img src="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
-
-
-This will generate plot for AFPKT and AFXDP with latency(on Y-axis) against packet count (on X-axis).
-  
-
-The latency for this design example can be seen as below:
-![](images/cfg1_ag5-pdk_af_latency.jpg)
-
-#### Run Time Synchronization commands
-
-
-You may use the following command guide to perform time synchronization on the Agilex&trade; 5 system using PTP4L and PHC2SYS, and to obtain delay values
-
-__End-to-End PTP master and slave synchronization__
-
-- Board B (as slave):
-
-    ```bash
-    ptp4l -i eth0  -s -H -E -2 -m
-    ```
-
-    ``` 
-    -i  eth0: This option specifies the `eth0` as the network interface to use for PTP.
-    -s  This option enables the slave-only mode. 
-    -H  This option enables hardware time stamping. 
-    -E  This option selects the end-to-end (E2E) delay measurement mechanism. This is the default.The E2E mechanism is also referred to as the delay “request-response” mechanism.
-    -2  Use Ethernet Layer (L2)
-    -m  This option enables printing of messages to the standard output.
-    ```
-
-- Boards A (as master):
-
-    ```bash
-    ptp4l -i eth0  -H -E -2 -m
-    ```
-
-
-- At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.
-
-    ```bash
-    phc2sys -s eth0 -w -m -c CLOCK_REALTIME -O 0 -n 0
-    ```
-
-__Peer-to-Peer PTP synchronization__:
-
-- Board B (as slave):
-    ```bash
-    slave: ptp4l -i eth0  -s -H -P -2 -m
-    ```
-
-    -P: This option enables the use of the Peer Delay Mechanism.
-
-
-- Board A (as master):
-    ```bash
-    master: ptp4l -i eth0  -H -P -2 -m
-    ```
-
-
-- At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.
-
-    ```bash
-    phc2sys -s eth0 -w -m -c CLOCK_REALTIME -O 0 -n 0
-    ```
-
-
-__gPTP synchronization__:
-
-- Board B (as slave):
-
-    ```bash
-    ptp4l -i eth0  -s -H -P -2 -m --transportSpecific=1
-    ```
-
-- Board A (as master): 
-
-    ```bash
-    ptp4l -i eth0  -H -P -2 -m --transportSpecific=1
-    ```
-
-
-- At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.
-
-    ```bash
-    phc2sys -s eth0 -w -m --transportSpecific 1 -c CLOCK_REALTIME -O 0 -n 0
-    ```
 
 [End of ## User Flow]: <>
 

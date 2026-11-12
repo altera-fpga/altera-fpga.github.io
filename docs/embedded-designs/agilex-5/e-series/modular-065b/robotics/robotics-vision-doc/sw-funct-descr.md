@@ -86,7 +86,7 @@
 
 ## Linux image
 
-Build the HPS software stack from [agilex-ed-robotics/sw](https://github.com/altera-fpga/agilex-ed-robotics/tree/rel/26.1/sw):
+Build the HPS software stack from [agilex-ed-robotics/sw]:
 
 ```bash
 cd <workspace>/agilex-ed-robotics/sw
@@ -99,6 +99,6 @@ The `-sw_compile` MDT build produces `.elf` / `.hex` files for embedded NiosV/g 
 
 ## Integration with ROS 2
 
-For a full robot controller stack, combine this FPGA design with the [ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices](https://altera-fpga.github.io/rel-26.1/embedded-designs/agilex-5/e-series/modular-065b/drive-on-chip/doc-crc) and [Altera ROS 2](https://github.com/altera-fpga/altera-ros2) packages on the HPS.
+For a full robot controller stack, combine this FPGA design with the [ROS Consolidated Robot Controller Example Design for Agilex™ 5 Devices] and [Altera ROS 2] packages on the HPS.
 
 <br>

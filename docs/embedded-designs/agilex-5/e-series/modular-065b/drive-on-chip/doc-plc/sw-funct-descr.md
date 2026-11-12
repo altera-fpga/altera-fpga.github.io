@@ -123,10 +123,10 @@ In summary:
   This include patches to enable Agilex™ Hardware selection in the OpenPLC
   Runtime web-server interface.
 * OpenPLC Motion Control Library (Implemented using RT Motion library) based
-  on PLCOpen standard IEC-61131-3. See: [PLCopen Motion Control Specification](https://www.plcopen.org/guidelines/user-guidelines/)
+  on PLCOpen standard IEC-61131-3. See: [PLCopen Motion Control Specification]
 * Integration of Ruckig Motion Planner Library, to generate trajectories
   constrained by velocity, acceleration and other parameters. See:
-  [Ruckig: Instantaneous Motion Generation for Robots and Machines](https://github.com/pantor/ruckig)
+  [Ruckig: Instantaneous Motion Generation for Robots and Machines]
 * OpenPLC Runtime: An Open Source Programmable Logic Controller implementation
   created in accordance to the IEC 61131-3 standard that defines architecture
   and basic programming languages for PLCs.
@@ -141,17 +141,17 @@ In summary:
 For the Drive-On-Chip with PLC Design Example for Agilex™ Devices,
 Altera® provides the files to build the Linux system to run the PLC Software
 Stack enclosed in a Docker Container. The custom version of linux is built
-based on KAS (see: [agilex-ed-drive-on-chip/sw](https://github.com/altera-fpga/agilex-ed-drive-on-chip/tree/rel/26.1/sw)). An it is compose of two main
+based on KAS (see: [agilex-ed-drive-on-chip/sw]). An it is compose of two main
 meta-layers. In this document the files relevant for the "Drive-On-Chip
 with PLC Design Example for Agilex™ Devices" are highlighted.
 
 ### FPGA Embedded Layer
 
-* See **[meta-altera-fpga](https://github.com/altera-fpga/agilex-ed-drive-on-chip/tree/rel/26.1/sw/meta-altera-fpga)**
+* See **[meta-altera-fpga]**
 
 ### Drive-On-Chip Layer
 
-* See **[meta-driveonchip](https://github.com/altera-fpga/agilex-ed-drive-on-chip/tree/rel/26.1/sw/meta-driveonchip)**
+* See **[meta-driveonchip]**
 
 ### b.1. Necessary elements in the meta-layers to bind Software and Hardware
 
@@ -281,17 +281,17 @@ the necessary applications and libraries to operate the web server,
 application database, and PLC control application. The Docker container
 image deployed on the target Agilex™ device is built and cross-compiled
 for ARM64 architecture, using a `Dockerfile` provided in the Altera® FPGA PLC
-repository ([https://github.com/altera-fpga/altera-openplc](https://github.com/altera-fpga/altera-openplc)).
+repository ([https://github.com/altera-fpga/altera-openplc]).
 
 The main instructions to build the docker image in the provided Dockerfile are:
 
 * Specifies the base image for building the container using the Debian 11
   "Bullseye" release with a specific update (July 22, 2024) from the docker
-  registry, see: [docker-bullseye-20240722](https://hub.docker.com/layers/library/debian/bullseye-20240722/images/sha256-315c507d52a055dc8143d48e81666575ce34f1bb0538d189edff09dfc2314260)
+  registry, see: [docker-bullseye-20240722]
 * Installs necessary build tools (cmake, git, build-essentials, etc).
 * Clones the OpenPLC and installs Ruckig repositories:
-  * [OpenPLC Runtime version 3](https://github.com/thiagoralves/OpenPLC_v3).
-  * [Ruckig: Instantaneous Motion Generation for Robots and Machines](https://github.com/pantor/ruckig).
+  * [OpenPLC Runtime version 3].
+  * [Ruckig: Instantaneous Motion Generation for Robots and Machines].
 * Installs PLC Motion libraries and applies patches for Agilex™ hardware support.
 * Installs OpenPLC Runtime.
 * Entrypoint is defined as OpenPLC Runtime with the `start_openplc.sh` script.
@@ -421,10 +421,10 @@ Ruckig is used for motion planning operations: calculating the optimum
 speed profile for the axis so the system moves efficiently but within
 the constraints of maximum acceleration and jerk (rate of change of
 acceleration). For more details see:
-[Ruckig: Instantaneous Motion Generation for Robots and Machines](https://github.com/pantor/ruckig).
+[Ruckig: Instantaneous Motion Generation for Robots and Machines].
 
 A copy of the RTmotion library is included into the Altera® FPGA PLC
-repository [https://github.com/altera-fpga/altera-openplc](https://github.com/altera-fpga/altera-openplc).
+repository [https://github.com/altera-fpga/altera-openplc].
 
 <br>
 
@@ -458,7 +458,7 @@ Structured Text output:
 The Drive-on-Chip with PLC Design Example for Agilex™ Devices uses the first
 option to build and deploy ST program.
 
-More information about OpenPLC can be found in: [OpenPLC Documentation](https://autonomylogic.com/)
+More information about OpenPLC can be found in: [OpenPLC Documentation]
 
 <br>
 
