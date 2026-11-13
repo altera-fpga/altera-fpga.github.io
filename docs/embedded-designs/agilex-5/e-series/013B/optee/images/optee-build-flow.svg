@@ -46,7 +46,7 @@
 		<v:layer v:name="Connector" v:index="0"/>
 		<g id="shape15-1" v:mID="15" v:groupContext="shape" transform="translate(8.72773,-687.047)">
 			<title>Rounded Rectangle.15</title>
-			<desc>optee_os repo</desc>
+			<desc>optee_os repo + patch</desc>
 			<v:userDefs>
 				<v:ud v:nameU="CTypeTopLeftSnip" v:prompt="" v:val="VT0(0):5"/>
 				<v:ud v:nameU="CTypeTopRightSnip" v:prompt="" v:val="VT0(0):5"/>
@@ -71,7 +71,7 @@
 						 695.77 L9.32 695.77 A9.32462 9.32462 -180 0 0 -0 705.1 L0 729.65 A9.32462 9.32462 -180 0 0 9.32 738.97 Z"
 					class="st1"/>
 			<text x="27.63" y="714.37" class="st3" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>optee_os<v:lf/><tspan
-						x="37.13" dy="1.2em" class="st4">repo</tspan></text>		</g>
+						x="16.5" dy="1.2em" class="st4">repo + patch</tspan></text>		</g>
 		<g id="shape16-7" v:mID="16" v:groupContext="shape" transform="translate(128.975,-687.047)">
 			<title>Rounded Rectangle.16</title>
 			<desc>OPTEE OS Build</desc>
@@ -101,7 +101,7 @@
 			<text x="15.27" y="720.37" class="st3" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>OPTEE OS Build</text>		</g>
 		<g id="shape17-11" v:mID="17" v:groupContext="shape" transform="translate(271.978,-687.047)">
 			<title>Rounded Rectangle.22</title>
-			<desc>tee_pager_v2.bin (BL32)</desc>
+			<desc>tee-pager_v2.bin (BL32)</desc>
 			<v:userDefs>
 				<v:ud v:nameU="CTypeTopLeftSnip" v:prompt="" v:val="VT0(0):5"/>
 				<v:ud v:nameU="CTypeTopRightSnip" v:prompt="" v:val="VT0(0):5"/>
@@ -125,7 +125,7 @@
 			<path d="M9.32 738.97 L83.92 738.97 A9.32462 9.32462 -180 0 0 93.25 729.65 L93.25 705.1 A9.32462 9.32462 -180 0 0 83.92
 						 695.77 L9.32 695.77 A9.32462 9.32462 -180 0 0 0 705.1 L0 729.65 A9.32462 9.32462 -180 0 0 9.32 738.97 Z"
 					class="st6"/>
-			<text x="10.93" y="714.37" class="st3" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>tee_pager_v2.bin<v:lf/><tspan
+			<text x="10.93" y="714.37" class="st3" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>tee-pager_v2.bin<v:lf/><tspan
 						x="33.7" dy="1.2em" class="st4">(BL32)</tspan></text>		</g>
 		<g id="shape18-16" v:mID="18" v:groupContext="shape" v:layerMember="0" transform="translate(101.975,-699.647)">
 			<title>Dynamic connector.18</title>
@@ -256,7 +256,7 @@
 			<text x="20.14" y="732.57" class="st13" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>Legend</text>		</g>
 		<g id="shape50-48" v:mID="50" v:groupContext="shape" transform="translate(8.72773,-630.797)">
 			<title>Rounded Rectangle.50</title>
-			<desc>arm-trusted-firmware repo</desc>
+			<desc>arm-trusted-firmware repo + patch</desc>
 			<v:userDefs>
 				<v:ud v:nameU="CTypeTopLeftSnip" v:prompt="" v:val="VT0(0):5"/>
 				<v:ud v:nameU="CTypeTopRightSnip" v:prompt="" v:val="VT0(0):5"/>
@@ -281,7 +281,7 @@
 						 695.77 L9.32 695.77 A9.32462 9.32462 -180 0 0 -0 705.1 L0 729.65 A9.32462 9.32462 -180 0 0 9.32 738.97 Z"
 					class="st1"/>
 			<text x="20.64" y="708.37" class="st3" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>arm-trusted-<tspan
-						x="28.01" dy="1.2em" class="st4">firmware<v:lf/></tspan><tspan x="37.13" dy="1.2em" class="st4">repo</tspan></text>		</g>
+						x="28.01" dy="1.2em" class="st4">firmware<v:lf/></tspan><tspan x="16.5" dy="1.2em" class="st4">repo + patch</tspan></text>		</g>
 		<g id="shape51-54" v:mID="51" v:groupContext="shape" transform="translate(128.975,-630.797)">
 			<title>Rounded Rectangle.51</title>
 			<desc>TF-A Build</desc>
@@ -441,7 +441,7 @@
 		</g>
 		<g id="shape65-101" v:mID="65" v:groupContext="shape" transform="translate(271.978,-492.647)">
 			<title>Rounded Rectangle.65</title>
-			<desc>u-Boot-spl-dtb.hex</desc>
+			<desc>u-boot-spl-dtb.hex</desc>
 			<v:userDefs>
 				<v:ud v:nameU="CTypeTopLeftSnip" v:prompt="" v:val="VT0(0):5"/>
 				<v:ud v:nameU="CTypeTopRightSnip" v:prompt="" v:val="VT0(0):5"/>
@@ -465,10 +465,10 @@
 			<path d="M9.32 738.97 L83.92 738.97 A9.32462 9.32462 -180 0 0 93.25 729.65 L93.25 705.1 A9.32462 9.32462 -180 0 0 83.92
 						 695.77 L9.32 695.77 A9.32462 9.32462 -180 0 0 0 705.1 L0 729.65 A9.32462 9.32462 -180 0 0 9.32 738.97 Z"
 					class="st6"/>
-			<text x="8.54" y="720.37" class="st3" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>u-Boot-spl-dtb.hex</text>		</g>
+			<text x="8.54" y="720.37" class="st3" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>u-boot-spl-dtb.hex</text>		</g>
 		<g id="shape67-105" v:mID="67" v:groupContext="shape" transform="translate(8.72773,-266.859)">
 			<title>Rounded Rectangle.67</title>
-			<desc>optee_client repo</desc>
+			<desc>optee_client and optee_examples repos</desc>
 			<v:userDefs>
 				<v:ud v:nameU="CTypeTopLeftSnip" v:prompt="" v:val="VT0(0):5"/>
 				<v:ud v:nameU="CTypeTopRightSnip" v:prompt="" v:val="VT0(0):5"/>
@@ -493,7 +493,7 @@
 						 695.77 L9.32 695.77 A9.32462 9.32462 -180 0 0 -0 705.1 L0 729.65 A9.32462 9.32462 -180 0 0 9.32 738.97 Z"
 					class="st1"/>
 			<text x="21.02" y="714.37" class="st3" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>optee_client<v:newlineChar/><tspan
-						x="37.13" dy="1.2em" class="st4">repo</tspan></text>		</g>
+						x="14.2" dy="1.2em" class="st4">and examples</tspan></text>		</g>
 		<g id="shape68-110" v:mID="68" v:groupContext="shape" transform="translate(128.975,-266.859)">
 			<title>Rounded Rectangle.68</title>
 			<desc>Client + TA Build</desc>
@@ -601,8 +601,8 @@
 			<path d="M9.32 738.97 L83.92 738.97 A9.32462 9.32462 -180 0 0 93.25 729.65 L93.25 705.1 A9.32462 9.32462 -180 0 0 83.92
 						 695.77 L9.32 695.77 A9.32462 9.32462 -180 0 0 0 705.1 L0 729.65 A9.32462 9.32462 -180 0 0 9.32 738.97 Z"
 					class="st6"/>
-			<text x="5.01" y="714.37" class="st3" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>optee_example_hell<tspan
-						x="29.77" dy="1.2em" class="st4">o_world</tspan></text>		</g>
+			<text x="11.5" y="714.37" class="st3" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>optee_example_<tspan
+						x="22.4" dy="1.2em" class="st4">hello_world</tspan></text>		</g>
 		<g id="shape72-127" v:mID="72" v:groupContext="shape" v:layerMember="0" transform="translate(222.223,-288.459)">
 			<title>Dynamic connector.72</title>
 			<path d="M0 738.97 L17.66 738.97 L17.66 689.02 L39.94 689.02" class="st7"/>
@@ -621,7 +621,7 @@
 		</g>
 		<g id="shape78-147" v:mID="78" v:groupContext="shape" transform="translate(8.72773,-160.547)">
 			<title>Rounded Rectangle.78</title>
-			<desc>altera-linux-socfpga repo</desc>
+			<desc>linux-socfpga repo</desc>
 			<v:userDefs>
 				<v:ud v:nameU="CTypeTopLeftSnip" v:prompt="" v:val="VT0(0):5"/>
 				<v:ud v:nameU="CTypeTopRightSnip" v:prompt="" v:val="VT0(0):5"/>
@@ -645,7 +645,7 @@
 			<path d="M9.32 738.97 L83.92 738.97 A9.32462 9.32462 -180 0 0 93.25 729.65 L93.25 705.1 A9.32462 9.32462 -180 0 0 83.92
 						 695.77 L9.32 695.77 A9.32462 9.32462 -180 0 0 -0 705.1 L0 729.65 A9.32462 9.32462 -180 0 0 9.32 738.97 Z"
 					class="st1"/>
-			<text x="6.4" y="714.37" class="st3" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>altera-linux-socfpga<v:newlineChar/><tspan
+			<text x="15.75" y="714.37" class="st3" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>linux-socfpga<v:newlineChar/><tspan
 						x="37.13" dy="1.2em" class="st4">repo</tspan></text>		</g>
 		<g id="shape79-152" v:mID="79" v:groupContext="shape" transform="translate(128.975,-160.547)">
 			<title>Rounded Rectangle.79</title>
@@ -773,7 +773,7 @@
 		</g>
 		<g id="shape87-188" v:mID="87" v:groupContext="shape" transform="translate(8.72773,-416.597)">
 			<title>Rounded Rectangle.87</title>
-			<desc>Prebuilt SOF</desc>
+			<desc>GHRD SOF</desc>
 			<v:userDefs>
 				<v:ud v:nameU="CTypeTopLeftSnip" v:prompt="" v:val="VT0(0):5"/>
 				<v:ud v:nameU="CTypeTopRightSnip" v:prompt="" v:val="VT0(0):5"/>
@@ -796,8 +796,8 @@
 			<v:textRect cx="46.6239" cy="717.375" width="93.25" height="43.2"/>
 			<path d="M9.32 738.97 L83.92 738.97 A9.32462 9.32462 -180 0 0 93.25 729.65 L93.25 705.1 A9.32462 9.32462 -180 0 0 83.92
 						 695.77 L9.32 695.77 A9.32462 9.32462 -180 0 0 -0 705.1 L0 729.65 A9.32462 9.32462 -180 0 0 9.32 738.97 Z"
-					class="st14"/>
-			<text x="30.59" y="714.37" class="st11" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>Prebuilt<v:lf/><tspan
+					class="st6"/>
+			<text x="36.4" y="714.37" class="st3" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>GHRD<v:lf/><tspan
 						x="38.72" dy="1.2em" class="st4">SOF</tspan></text>		</g>
 		<g id="shape89-193" v:mID="89" v:groupContext="shape" transform="translate(128.975,-416.597)">
 			<title>Rounded Rectangle.89</title>

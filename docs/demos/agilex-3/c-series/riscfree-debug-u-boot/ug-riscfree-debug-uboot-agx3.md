@@ -18,9 +18,9 @@ The following are needed:
   - 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the GSRD.
   - Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   - Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  - Altera® Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1
+  - Altera® Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3
 
-You will also need to compile the [HPS Linux Boot Tutorial Example Design User Guide: Agilex™ 3 FPGA and SoC C-Series](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-3/c-series/boot-examples/ug-linux-boot-agx3/).
+You will also need to compile the [HPS Linux Boot Tutorial Example Design User Guide: Agilex™ 3 FPGA and SoC C-Series](https://altera-fpga.github.io/rel-26.3/embedded-designs/agilex-3/c-series/boot-examples/ug-linux-boot-agx3/).
 
 ## Debug U-Boot
 
@@ -33,8 +33,8 @@ You will also need to compile the [HPS Linux Boot Tutorial Example Design User G
 4\. Add the Quartus and RiscFree* tools to the PATH:
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
-export PATH=~/altera_pro/26.1.1/riscfree/RiscFree:$PATH
+source ~/altera_pro/26.3/qinit.sh
+export PATH=~/altera_pro/26.3/riscfree/RiscFree:$PATH
 ```
 
 5\. Configure the device with the 'debug' SOF, which contains an empty loop HPS FSBL, designed specifically for a debugger to connect afterwards:

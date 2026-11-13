@@ -30,60 +30,63 @@ The following are required to be able to fully exercise this System Example Desi
   - Linux - Ubuntu 22.04 was used to create this page, other versions and distributions may work too
   - Serial terminal (for example Minicom on Linux and TeraTerm or PuTTY on Windows)
   - Micro SD card slot or Micro SD card writer/reader
-  - Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1
+  - Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3
   - Local Ethernet network, with DHCP server (will be used to provide IP address to the board)
 
 ### Release Contents
 
 #### Release Notes
 
-The Altera® FPGA HPS Embedded Software release notes can be accessed here: [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR)
+The Altera® FPGA HPS Embedded Software release notes can be accessed here: [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS26.3_REL_BASELINE_PR](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/QPDS26.3_REL_BASELINE_PR)
 
 #### Prebuilt Binaries
 
 <h5>Binaries for SD Card Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2026.08/gsrd/s10_htile_gsrd/](https://releases.rocketboards.org/2026.08/gsrd/s10_htile_gsrd/)
+The release files are accessible at [https://releases.rocketboards.org/2026.10/gsrd/s10_htile_gsrd/](https://releases.rocketboards.org/2026.10/gsrd/s10_htile_gsrd/)
 
 The source code is also included on the SD card in the Linux rootfs path `/home/root`:
 
 | **File** | **Description** | 
 | :-- | :-- | 
-| linux-socfpga-v6.18.20-lts-src.tar.gz | Source code for Linux kernel | 
-| u-boot-socfpga-v2026.04-src.tar.gz | Source code for U-Boot | 
-| arm-trusted-firmware-v2.14.1-src.tar.gz | Source code for Arm Trusted Firmware | 
+| linux-socfpga-v6.18.37-lts-src.tar.gz | Source code for Linux kernel | 
+| u-boot-socfpga-v2026.07-src.tar.gz | Source code for U-Boot | 
+| arm-trusted-firmware-v2.15.0-src.tar.gz | Source code for Arm Trusted Firmware | 
 
 
 <h5>Binaries for QSPI Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2026.08/qspi/s10_htile_qspi/](https://releases.rocketboards.org/2026.08/qspi/s10_htile_qspi/)
+The release files are accessible at [https://releases.rocketboards.org/2026.10/qspi/s10_htile_qspi/](https://releases.rocketboards.org/2026.10/qspi/s10_htile_qspi/)
 
 **Note**: To boot from QSPI is needed to remove SD card memory as SD Card memory has higher precedence in the boot order.
 
 <h5>Binaries for NAND Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2026.08/nand/s10_htile_nand/](https://releases.rocketboards.org/2026.08/nand/s10_htile_nand/)
+The release files are accessible at [https://releases.rocketboards.org/2026.10/nand/s10_htile_nand/](https://releases.rocketboards.org/2026.10/nand/s10_htile_nand/)
 
 <h5>Binaries for eMMC Boot</h5>
 
-The release files are accessible at [https://releases.rocketboards.org/2026.08/emmc/s10_htile_emmc/](https://releases.rocketboards.org/2026.08/emmc/s10_htile_emmc/)
+The release files are accessible at [https://releases.rocketboards.org/2026.10/emmc/s10_htile_emmc/](https://releases.rocketboards.org/2026.10/emmc/s10_htile_emmc/)
 
 #### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3 and the following software component versions integrate the 26.3 release. 
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| HPS Baseline System Example Design | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1.1_REL_GSRD_PR |
+| HPS Baseline System Example Design | [https://github.com/altera-fpga/stratix10-ed-hps-baseline](https://github.com/altera-fpga/stratix10-ed-hps-baseline) | main | QPDS26.3_REL_BASELINE_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.37-lts | QPDS26.3_REL_BASELINE_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.15.0   | QPDS26.3_REL_BASELINE_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.07 | QPDS26.3_REL_BASELINE_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
 | Yocto Project: meta-intel-fpga | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
-| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1.1_REL_GSRD_PR |
-| Yocto Build Script | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga-refdes | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.3_REL_BASELINE_PR |
+| Yocto Build Script | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.3_REL_BASELINE_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
+
+**Note:** Starting from 26.3 Quartus release, the build of the Quartus projects in the System Example Designs are based only on Visual Designer Studio (VDS).
+
 
 ### Quartus Design Overview
 
@@ -235,42 +238,7 @@ Then the board switches need to be configured as follows:
 
 ### Configure Serial Connection
 
-The OOBE Daughter Card has a built-in FTDI USB to Serial converter chip that allows the host computer to see the board as a virtual serial port. Ubuntu and other modern Linux distributions have built-in drivers for the FTDI USB to Serial converter chip, so no driver installation is necessary on those platforms. Microsoft Windows 10 and 11 automatically install the necessary drivers.
 
-The serial communication parameters are:
-
-- Baud-rate: 115,200
-- Parity: none
-- Flow control: none
-- Stop bits: 1
-
-On Windows, utilities such as TeraTerm and PuTTY can be used to connect to the board. They are easily configured from the tool menus.
-
-On Linux, the minicom utility can be used. Here is how to configure it:
-
-The virtual serial port is usually named /dev/ttyUSB0. In order to determine the device name associated with the virtual serial port on your host PC, please perform the following:
-
-- Use the following command to determine which USB serial devices are already installed: ls /dev/ttyUSB*
-- Connect mini USB cable from J7 to the PC. This will enable the PC to communicate with the board, even if the board is not powered yet.
-- Use the ls /dev/ttyUSB* command command again to determine which new USB serial device appeared.
-- Install **minicom** application on host PC, if not installed.
-
-- On Ubuntu, use *sudo apt-get install minicom*
-- Configure minicom.
-
-```bash
-$ sudo minicom -s
-```
-
-Under **Serial Port Setup** choose the following:
-
-- Serial Device: **/dev/ttyUSB0** (edit to match the system as necessary)
-- Bps/Par/Bits: **115200 8N1**
-- Hardware Flow Control: **No**
-- Software Flow Control: **No**
-- Hit **[ESC]** to return to the main configuration menu
-
-Select **Save Setup as dfl** to save the default setup. Then select **Exit**.
 
 ### Boot from SD Card
 
@@ -283,9 +251,8 @@ The QSPI JIC image contains the FPGA configuration bitstream, and the U-Boot SPL
 1\. Download and extract the image file:
 
 ```bash
-wget https://releases.rocketboards.org/2026.08/gsrd/s10_htile_gsrd/ghrd_1sx280hu2f50e1vgas.jic.tar.gz
-
-tar xf ghrd_1sx280hu2f50e1vgas.jic.tar.gz
+wget https://releases.rocketboards.org/2026.10/gsrd/s10_htile_gsrd/ghrd_1sx280hu2f50e1vg.hps.jic.tar.gz
+tar xf ghrd_1sx280hu2f50e1vg.hps.jic.tar.gz
 ```
 
 2\. Configure MSEL to JTAG:
@@ -297,7 +264,7 @@ tar xf ghrd_1sx280hu2f50e1vgas.jic.tar.gz
 4\. Write the image using the following commands:
 
 ```bash
-quartus_pgm -c 1 -m jtag -o "pvi;ghrd_1sx280hu2f50e1vgas.jic"
+quartus_pgm -c 1 -m jtag -o "pvi;ghrd_1sx280hu2f50e1vg.hps.jic"
 ```
 
 5\. Configure MSEL back to QSPI:
@@ -310,9 +277,9 @@ This section explains how to create the SD card necessary to boot Linux, using t
 
 <h5>Write SD Card on Linux</h5>
 
-1\. Download the SD card image from [https://releases.rocketboards.org/2026.08/gsrd/s10_htile_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/s10_htile_gsrd/sdimage.tar.gz) and extract it.
+1\. Download the SD card image from [https://releases.rocketboards.org/2026.10/gsrd/s10_htile_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.10/gsrd/s10_htile_gsrd/sdimage.tar.gz) and extract it.
 
-The extacted file is named `gsrd-console-image-stratix10.wic`.
+The extracted file is named `gsrd-console-image-stratix10.wic`.
 
 2\. Determine the device associated with the SD card on the host by running the following command before and after inserting the card.
 
@@ -338,7 +305,7 @@ $ sudo sync
 
 <h5>Write SD Card on Windows</h5>
 
-1\. Download the SD card image from [https://releases.rocketboards.org/2026.08/gsrd/s10_htile_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/s10_htile_gsrd/sdimage.tar.gz) and extract it.
+1\. Download the SD card image from [https://releases.rocketboards.org/2026.10/gsrd/s10_htile_gsrd/sdimage.tar.gz](https://releases.rocketboards.org/2026.10/gsrd/s10_htile_gsrd/sdimage.tar.gz) and extract it.
 
 The extacted file is named `gsrd-console-image-stratix10.wic`.
 
@@ -603,7 +570,7 @@ root@stratix10:~/alteraFPGA# rmmod gpio_interrupt
 7\. Register the pushbutton interrupt, using the appropriate GPIO number as determine on a previous step
 
 ```bash
-rroot@stratix10:~/alteraFPGA# modprobe gpio_interrupt gpio_number=1960 intr_type=2
+root@stratix10:~/alteraFPGA# modprobe gpio_interrupt gpio_number=1960 intr_type=2
 [ 1138.025297] Interrupt for GPIO:1960
 [ 1138.025297] registered
 ```
@@ -843,7 +810,7 @@ The flow for writing the eMMC image is:
 3. Split the eMMC image into 1GB chunks and copy them to your TFT folder:
 
 ```bash
-split --bytes=1G split --bytes=1G gsrd-console-image-stratix10.wic
+split --bytes=1G gsrd-console-image-stratix10.wic
 mv xa* <your_tfp_folder>
 ```
 
@@ -927,25 +894,11 @@ export TOP_FOLDER=$(pwd)
 ```
 
 
-Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
-
-
-```bash
-cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
-arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
-export ARCH=arm64
-export CROSS_COMPILE=aarch64-none-linux-gnu-
-```
-
 Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
@@ -959,12 +912,12 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 ```bash
 cd $TOP_FOLDER
-rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-unzip QPDS26.1.1_REL_GSRD_PR.zip
-rm -f QPDS26.1.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS26.1.1_REL_GSRD_PR stratix10-ed-gsrd
-cd stratix10-ed-gsrd
+rm -rf stratix10-ed-hps-baseline
+wget https://github.com/altera-fpga/stratix10-ed-hps-baseline/archive/refs/tags/QPDS26.3_REL_BASELINE_PR.zip
+unzip QPDS26.3_REL_BASELINE_PR.zip
+rm -f QPDS26.3_REL_BASELINE_PR.zip
+mv stratix10-ed-hps-baseline-QPDS26.3_REL_BASELINE_PR stratix10-ed-hps-baseline
+cd stratix10-ed-hps-baseline
 make s10-htile-soc-devkit-oobe-baseline-all
 cd ..
 ```
@@ -972,8 +925,8 @@ cd ..
 
 The following files are created in $TOP_FOLDER/s10_soc_devkit_ghrd/output_files:
 
-- `$TOP_FOLDER/stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline.sof`: FPGA SOF file, without HPS FSBL
-- `$TOP_FOLDER/stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline_hps_debug.sof`: FPGA SOF, with HPS Debug FSBL
+- `$TOP_FOLDER/stratix10-ed-hps-baseline/install/designs/s10_htile_soc_devkit_oobe_baseline.sof`: FPGA SOF file, without HPS FSBL
+- `$TOP_FOLDER/stratix10-ed-hps-baseline/install/designs/s10_htile_soc_devkit_oobe_baseline_hps_debug.sof`: FPGA SOF, with HPS Debug FSBL
 
 
 #### Build Core RBF
@@ -984,7 +937,7 @@ Create the Core RBF file to be used in the rootfs created by Yocto by using the 
 
 ```bash
 cd $TOP_FOLDER
-quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline_hps_debug.sof \
+quartus_pfg -c stratix10-ed-hps-baseline/install/designs/s10_htile_soc_devkit_oobe_baseline_hps_debug.sof \
  ghrd_1sx280hu2f50e1vgas.jic \
  -o device=MT25QU02G \
  -o flash_loader=1SX280HU2 \
@@ -1035,7 +988,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+git clone -b QPDS26.3_REL_BASELINE_PR https://github.com/altera-fpga/gsrd-socfpga
 cd gsrd-socfpga
 . stratix10_htile-gsrd-build.sh
 build_setup
@@ -1069,7 +1022,7 @@ cp $TOP_FOLDER/ghrd_1sx280hu2f50e1vgas.core.rbf $CORE_RBF
 ```
 
 
-2\. Update the Yocto recipe at `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb` to change the `SRC_URI:stratix10` from the orginal value:
+2\. Update the Yocto recipe at `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb` to change the `SRC_URI:stratix10` from the original value:
 
 ```bash
 SRC_URI:stratix10 ?= "\
@@ -1174,7 +1127,7 @@ The QSPI image will contain the FPGA configuration data and the HPS FSBL and it 
 
 ```bash
 cd $TOP_FOLDER
-quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline.sof \
+quartus_pfg -c stratix10-ed-hps-baseline/install/designs/s10_htile_soc_devkit_oobe_baseline.sof \
  ghrd_1sx280hu2f50e1vgas.jic \
  -o device=MT25QU02G \
  -o flash_loader=1SX280HU2 \
@@ -1233,7 +1186,7 @@ The same binaries as when booting from SD card can be used to boot from QSPI, be
 ```bash
 cd $TOP_FOLDER
 rm -rf qspi-boot && mkdir qspi-boot && cd qspi-boot
-ln -s $TOP_FOLDER/stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline.sof fpga.sof
+ln -s $TOP_FOLDER/stratix10-ed-hps-baseline/install/designs/s10_htile_soc_devkit_oobe_baseline.sof fpga.sof
 ln -s $TOP_FOLDER/gsrd-socfpga/stratix10_htile-gsrd-images/u-boot-stratix10-socdk-gsrd-atf/u-boot-spl-dtb.hex spl.hex
 ln -s $TOP_FOLDER/gsrd-socfpga/stratix10_htile-gsrd-images/u-boot-stratix10-socdk-gsrd-atf/boot.scr.uimg .
 ln -s $TOP_FOLDER/gsrd-socfpga/stratix10_htile-gsrd-images/kernel.itb .
@@ -1298,7 +1251,7 @@ ln -s root.ubi hps.bin
 
 ```bash
 cd $TOP_FOLDER/qspi-boot
-wget https://releases.rocketboards.org/2026.08/qspi/s10_htile_qspi/s10_htile_flash_image_hps.pfg
+wget https://releases.rocketboards.org/2026.10/qspi/s10_htile_qspi/s10_htile_flash_image_hps.pfg
 quartus_pfg -c s10_htile_flash_image_hps.pfg
 ```
 
@@ -1311,7 +1264,7 @@ The following files will be generated:
 
 #### Create Programming File Generator File
 
-This section presents how to manually re-create the PFG file provided at [https://releases.rocketboards.org/2026.08/qspi/s10_htile_qspi/s10_htile_flash_image_hps.pfg](https://releases.rocketboards.org/2026.08/qspi/s10_htile_qspi/s10_htile_flash_image_hps.pfg)
+This section presents how to manually re-create the PFG file provided at [https://releases.rocketboards.org/2026.10/qspi/s10_htile_qspi/s10_htile_flash_image_hps.pfg](https://releases.rocketboards.org/2026.10/qspi/s10_htile_qspi/s10_htile_flash_image_hps.pfg)
 
 1\. Start Quartus Programming File Generator GUI:
 
@@ -1416,25 +1369,11 @@ export TOP_FOLDER=$(pwd)
 ```
 
 
-Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
-
-
-```bash
-cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
-arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
-export ARCH=arm64
-export CROSS_COMPILE=aarch64-none-linux-gnu-
-```
-
 Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
@@ -1450,12 +1389,12 @@ Build the Quartus Design targeting the NAND HPS daughtercard, by passing the cor
 
 ```bash
 cd $TOP_FOLDER
-rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-unzip QPDS26.1.1_REL_GSRD_PR.zip
-rm -f QPDS26.1.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS26.1.1_REL_GSRD_PR stratix10-ed-gsrd
-cd stratix10-ed-gsrd
+rm -rf stratix10-ed-hps-baseline
+wget https://github.com/altera-fpga/stratix10-ed-hps-baseline/archive/refs/tags/QPDS26.3_REL_BASELINE_PR.zip
+unzip QPDS26.3_REL_BASELINE_PR.zip
+rm -f QPDS26.3_REL_BASELINE_PR.zip
+mv stratix10-ed-hps-baseline-QPDS26.3_REL_BASELINE_PR stratix10-ed-hps-baseline
+cd stratix10-ed-hps-baseline
 make s10-htile-soc-devkit-nand-baseline-all  
 cd ..
 ```
@@ -1463,8 +1402,8 @@ cd ..
 
 The following files are created in $TOP_FOLDER/s10_soc_devkit_ghrd/output_files:
 
-- `$TOP_FOLDER/stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_nand_baseline.sof`: FPGA SOF file, without HPS FSBL
-- `$TOP_FOLDER/stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_nand_baseline_hps_debug.sof`: FPGA SOF, with HPS Debug FSBL
+- `$TOP_FOLDER/stratix10-ed-hps-baseline/install/designs/s10_htile_soc_devkit_nand_baseline.sof`: FPGA SOF file, without HPS FSBL
+- `$TOP_FOLDER/stratix10-ed-hps-baseline/install/designs/s10_htile_soc_devkit_nand_baseline_hps_debug.sof`: FPGA SOF, with HPS Debug FSBL
 
 
 #### Build Core RBF
@@ -1475,7 +1414,7 @@ Create the Core RBF file to be used in the rootfs created by Yocto by using the 
 
 ```bash
 cd $TOP_FOLDER
-quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_nand_baseline_hps_debug.sof \
+quartus_pfg -c stratix10-ed-hps-baseline/install/designs/s10_htile_soc_devkit_nand_baseline_hps_debug.sof \
  ghrd_1sx280hu2f50e1vgas.jic \
  -o device=MT25QU02G \
  -o flash_loader=1SX280HU2 \
@@ -1525,7 +1464,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+git clone -b QPDS26.3_REL_BASELINE_PR https://github.com/altera-fpga/gsrd-socfpga
 cd gsrd-socfpga
 . stratix10_htile-gsrd-build.sh
 build_setup
@@ -1559,7 +1498,7 @@ cp $TOP_FOLDER/ghrd_1sx280hu2f50e1vgas.core.rbf $CORE_RBF
 ```
 
 
-2\. Update the Yocto recipe at `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb` to change the `SRC_URI:stratix10` from the orginal value:
+2\. Update the Yocto recipe at `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb` to change the `SRC_URI:stratix10` from the original value:
 
 ```bash
 SRC_URI:stratix10 ?= "\
@@ -1666,7 +1605,7 @@ The QSPI image will contain the FPGA configuration data and the HPS FSBL and it 
 
 ```bash
 cd $TOP_FOLDER
-quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_nand_baseline.sof \
+quartus_pfg -c stratix10-ed-hps-baseline/install/designs/s10_htile_soc_devkit_nand_baseline.sof \
  ghrd_1sx280hu2f50e1vgas.jic \
  -o device=MT25QU02G \
  -o flash_loader=1SX280HU2 \
@@ -1800,25 +1739,11 @@ export TOP_FOLDER=$(pwd)
 ```
 
 
-Download the compiler toolchain, add it to the PATH variable, to be used by the GHRD makefile to build the HPS Debug FSBL:
-
-
-```bash
-cd $TOP_FOLDER
-wget https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/\
-arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-tar xf arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-rm -f arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-export PATH=`pwd`/arm-gnu-toolchain-14.3.rel1-x86_64-aarch64-none-linux-gnu/bin/:$PATH
-export ARCH=arm64
-export CROSS_COMPILE=aarch64-none-linux-gnu-
-```
-
 Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
@@ -1832,12 +1757,12 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 ```bash
 cd $TOP_FOLDER
-rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-unzip QPDS26.1.1_REL_GSRD_PR.zip
-rm -f QPDS26.1.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS26.1.1_REL_GSRD_PR stratix10-ed-gsrd
-cd stratix10-ed-gsrd
+rm -rf stratix10-ed-hps-baseline
+wget https://github.com/altera-fpga/stratix10-ed-hps-baseline/archive/refs/tags/QPDS26.3_REL_BASELINE_PR.zip
+unzip QPDS26.3_REL_BASELINE_PR.zip
+rm -f QPDS26.3_REL_BASELINE_PR.zip
+mv stratix10-ed-hps-baseline-QPDS26.3_REL_BASELINE_PR stratix10-ed-hps-baseline
+cd stratix10-ed-hps-baseline
 make s10-htile-soc-devkit-emmc-baseline-all
 cd ..
 ```
@@ -1845,8 +1770,8 @@ cd ..
 
 The following files are created in $TOP_FOLDER/s10_soc_devkit_ghrd/output_files:
 
-- `$TOP_FOLDER/stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_emmc_baseline.sof`: FPGA SOF file, without HPS FSBL
-- `$TOP_FOLDER/stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_emmc_baseline_hps_debug.sof`: FPGA SOF, with HPS Debug FSBL
+- `$TOP_FOLDER/stratix10-ed-hps-baseline/install/designs/s10_htile_soc_devkit_emmc_baseline.sof`: FPGA SOF file, without HPS FSBL
+- `$TOP_FOLDER/stratix10-ed-hps-baseline/install/designs/s10_htile_soc_devkit_emmc_baseline_hps_debug.sof`: FPGA SOF, with HPS Debug FSBL
 
 
 #### Build Core RBF
@@ -1857,7 +1782,7 @@ Create the Core RBF file to be used in the rootfs created by Yocto by using the 
 
 ```bash
 cd $TOP_FOLDER
-quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_emmc_baseline_hps_debug.sof \
+quartus_pfg -c stratix10-ed-hps-baseline/install/designs/s10_htile_soc_devkit_emmc_baseline_hps_debug.sof \
  ghrd_1sx280hu2f50e1vgas.jic \
  -o device=MT25QU02G \
  -o flash_loader=1SX280HU2 \
@@ -1908,7 +1833,7 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 ```bash
 cd $TOP_FOLDER
 rm -rf gsrd-socfpga
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga
+git clone -b QPDS26.3_REL_BASELINE_PR https://github.com/altera-fpga/gsrd-socfpga
 cd gsrd-socfpga
 . stratix10_htile-gsrd-build.sh
 build_setup
@@ -1939,7 +1864,7 @@ cp $TOP_FOLDER/ghrd_1sx280hu2f50e1vgas.core.rbf $CORE_RBF
 ```
 
 
-2\. Update the Yocto recipe at `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb` to change the `SRC_URI:stratix10` from the orginal value:
+2\. Update the Yocto recipe at `$WORKSPACE/meta-intel-fpga-refdes/recipes-bsp/ghrd/hw-ref-design.bb` to change the `SRC_URI:stratix10` from the original value:
 
 ```bash
 SRC_URI:stratix10 ?= "\
@@ -2042,7 +1967,7 @@ The QSPI image will contain the FPGA configuration data and the HPS FSBL and it 
 
 ```bash
 cd $TOP_FOLDER
-quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_emmc_baseline.sof \
+quartus_pfg -c stratix10-ed-hps-baseline/install/designs/s10_htile_soc_devkit_emmc_baseline.sof \
  ghrd_1sx280hu2f50e1vgas.jic \
  -o device=MT25QU02G \
  -o flash_loader=1SX280HU2 \

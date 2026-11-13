@@ -17,8 +17,8 @@ The following are needed:
 
 * [Agilex 5 FPGA E-Series 065A Premium Development Kit](https://www.altera.com/products/devkit/po-3285/agilex-5-fpga-e-series-065a-premium-development-kit), ordering code DK-A5E065AB32AEA. Other Agilex 5 development boards will also work in the same manner, just that other set HPS Baseline System Example Design binaries will be used.
 * Host PC with Linux (Ubuntu 22.04 was used, but others should work too)
-* Quartus Pro 26.1.1 (or just Quartus Pro standalone Programmer 26.1.1).
-* Ashling RiscFree bundled with Quartus Pro 26.1.1 (can be installed and use with just the standalone Programmer)
+* Quartus Pro 26.3 (or just Quartus Pro standalone Programmer 26.3).
+* Ashling RiscFree bundled with Quartus Pro 26.3 (can be installed and use with just the standalone Programmer)
 * Network access, for downloading the sources while building the binaries
 
 ## Build Example Design
@@ -43,7 +43,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
@@ -61,7 +61,7 @@ source ~/altera_pro/26.1.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5-ed-hps-baseline/releases/download/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement-baseline-a55.zip
 unzip dk-a5e065ab32aea-enablement-baseline-a55.zip
 rm -f dk-a5e065ab32aea-enablement-baseline-a55.zip
 make baseline_a55-install
@@ -71,7 +71,7 @@ make baseline_a55-install
 The following files are created:
 
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.core.rbf`
 
 
 
@@ -84,8 +84,8 @@ The following files are created:
 
 ```bash
 cd $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux
-cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf \
-   $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/
+cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.core.rbf \
+   $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/ghrd.core.rbf
 ```
 
 
@@ -94,66 +94,66 @@ cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf \
 
 ```bash
 base64 -d <<'EOF' | gunzip > fabric-config-linux.patch
-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
-4iHycv4t/A+GJXOnMCYAAA==
+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
 EOF
 ```
 
@@ -161,10 +161,10 @@ EOF
 For reference, the `fabric-config-linux.patch` looks like this:
 ```diff
 diff --git a/kas.yml b/kas.yml
-index 1e65ede..cf7eb7a 100644
+index 38f6377..9c97d4d 100644
 --- a/kas.yml
 +++ b/kas.yml
-@@ -41,9 +41,11 @@ local_conf_header:
+@@ -55,9 +55,11 @@ local_conf_header:
      CUSTOM_LINUX_DEVICE_TREE = "0"
  
    # RBF file should be placed in meta-custom/recipes-fpga/fpga-bitstream/files/
@@ -172,19 +172,19 @@ index 1e65ede..cf7eb7a 100644
 +  # installed to /lib/firmware in the rootfs for Linux-side fabric configuration.
    fpga-bitstream: |
 -    FPGA_ENABLE_CORE_PGM ?= "1"
--    FPGA_RBF_FILE ?= "baseline_a55_hps_debug.core.rbf"
+-    FPGA_RBF_FILE ?= "baseline_a55.core.rbf"
 +    FPGA_ENABLE_CORE_PGM ?= "0"
 +    FPGA_RBF_FILE ?= "ghrd.core.rbf"
  
    kernel-modules: |
      KERNEL_MODULE_PROBECONF = "cfg80211"
 diff --git a/meta-custom/conf/layer.conf b/meta-custom/conf/layer.conf
-index 15a2b0a..7c5edbd 100644
+index 244bb8d..02897b4 100644
 --- a/meta-custom/conf/layer.conf
 +++ b/meta-custom/conf/layer.conf
-@@ -48,6 +48,10 @@ IMAGE_INSTALL:append = "${@bb.utils.contains('GPIO_INT_TEST', 'true', ' pio-inte
- IMAGE_INSTALL:append = "${@bb.utils.contains('HELLO_WORLD_APP', 'true', ' hello', '', d)}"
+@@ -49,6 +49,10 @@ IMAGE_INSTALL:append = "${@bb.utils.contains('HELLO_WORLD_APP', 'true', ' hello'
  IMAGE_INSTALL:append = " rootfs-files"
+ IMAGE_INSTALL:append = "${@'' if d.getVar('SSBL_BOOT_SOURCE') == 'qspi' else ' test-suite-agilex5'}"
  
 +# Linux-side FPGA fabric configuration:
 +# ghrd.core.rbf and fabric_overlay.dtb are installed to /lib/firmware (${nonarch_base_libdir}) in the rootfs.
@@ -372,7 +372,7 @@ index 0000000..38f32f4
 \ No newline at end of file
 diff --git a/meta-custom/recipes-fpga/fpga-linux-overlay/fpga-linux-overlay.bb b/meta-custom/recipes-fpga/fpga-linux-overlay/fpga-linux-overlay.bb
 new file mode 100644
-index 0000000..7a79f66
+index 0000000..d209c7a
 --- /dev/null
 +++ b/meta-custom/recipes-fpga/fpga-linux-overlay/fpga-linux-overlay.bb
 @@ -0,0 +1,32 @@
@@ -431,7 +431,7 @@ index c5d0ec8..8a4764d 100644
  CONFIG_DW_I3C_MASTER=m
 +CONFIG_GPIO_ALTERA=y
 diff --git a/meta-custom/recipes-kernel/linux/linux-socfpga-lts_%.bbappend b/meta-custom/recipes-kernel/linux/linux-socfpga-lts_%.bbappend
-index 5571dec..ec29f17 100644
+index 5cbb2ab..44eb927 100644
 --- a/meta-custom/recipes-kernel/linux/linux-socfpga-lts_%.bbappend
 +++ b/meta-custom/recipes-kernel/linux/linux-socfpga-lts_%.bbappend
 @@ -104,4 +104,9 @@ do_patch:append() {
@@ -444,7 +444,7 @@ index 5571dec..ec29f17 100644
 +KERNEL_DTC_FLAGS:append = " -@"
 +
  addtask do_patch after do_unpack before do_configure
- ```
+```
 
 3\. Apply the patch file:
 

@@ -62,28 +62,33 @@ To exercise the instructions presented on this page (build your binaries and exe
 
 ## Release Content
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3 and the following software component versions integrate the 26.3 release. 
 
 **Note:** Regarding the Hardware Design components in the following table, only the device-specific one is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1.1_REL_GSRD_PR |
-| Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
-| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
-| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
-| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1.1_REL_GSRD_PR |
+| Agilex 27 Design  | [https://github.com/altera-fpga/agilex27-ed-hps-baseline](https://github.com/altera-fpga/agilex27-ed-hps-baseline)|           main           | QPDS26.3_REL_BASELINE_PR |
+| Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.3_REL_BASELINE_PR |
+| Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5-ed-hps-baseline](https://github.com/altera-fpga/agilex5-ed-hps-baseline) | main | QPDS26.3_REL_BASELINE_PR |
+| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7-ed-hps-baseline](https://github.com/altera-fpga/agilex7-ed-hps-baseline) | main | QPDS26.3_REL_BASELINE_PR |
+| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-hps-baseline](https://github.com/altera-fpga/stratix10-ed-hps-baseline) | main | QPDS26.3_REL_BASELINE_PR |
+| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-hps-baseline](https://github.com/altera-fpga/arria10-ed-hps-baseline)  | main | QPDS26.3_REL_BASELINE_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.37-lts | QPDS26.3_REL_BASELINE_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.15.0   | QPDS26.3_REL_BASELINE_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.07 | QPDS26.3_REL_BASELINE_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.3_REL_BASELINE_PR |
 | Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
-| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1.1_REL_GSRD_PR |
-| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.3_REL_BASELINE_PR |
+| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.3_REL_BASELINE_PR |
 | KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
+
+**Note:** Starting from 26.3 Quartus release, the build of the Quartus projects in the System Example Designs are based only on Visual Designer Studio (VDS).<br>
+Please review the following KDB if you face Quartus design build problems when the RTL was generated with VDS:<br>
+[Why do Quartus® Prime Pro 26.3 and earlier fail to build a Agilex® 5/Agilex® 3/Agilex® 7 FPGA M-Series VDS based design whose RTL has been generated with VDS?](https://community.altera.com/kb/knowledge-base/why-do-quartus%C2%AE-prime-pro-26-3-and-earlier-fail-to-build-a-agilex%C2%AE-5agilex%C2%AE-3agi/357511).
 
 
 
@@ -91,8 +96,8 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the fol
 
 You can find the prebuilt binaries from the HPS Baseline System Example Design prebuilt at the following URL:
 
-- SD Card: [HPS Baseline System Example Design Binaries](https://releases.rocketboards.org/2026.08/gsrd/agilex3_gsrd.baseline/)
-- QSPI: [QSPI Binaries](https://releases.rocketboards.org/2026.08/qspi/agilex3_qspi.baseline/)
+- SD Card: [HPS Baseline System Example Design Binaries](https://releases.rocketboards.org/2026.10/gsrd/agilex3_gsrd.baseline/)
+- QSPI: [QSPI Binaries](https://releases.rocketboards.org/2026.10/qspi/agilex3_qspi.baseline/)
 
 You can exercise them using the internal Simics framework included under HPS Baseline System Example Design or also from a separate Simics environment in which you need to create and build the project directory manually.
 
@@ -136,7 +141,7 @@ For known issues in this release please refer to the [Intel Simics Simulator for
 
 ### Build Instructions For HPS Baseline System Example Design
 
-The HPS Baseline System Example Design was intruduced on release 25.3. The HPS Baseline System Example Design provides a framework based on **kas** and **yocto**, that allows to build be HPS binaries in a more simplified and automated methodology. In the HPS Baseline System Example Design, the  [agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd) repository integrates HPS Baseline System Example Design and Quartus design components, which differs from the legacy GSRD build flow in which the HPS Baseline System Example Design and Quartus design components were in separate repositories. 
+The HPS Baseline System Example Design was intruduced on release 25.3. The HPS Baseline System Example Design provides a framework based on **kas** and **yocto**, that allows to build be HPS binaries in a more simplified and automated methodology. In the HPS Baseline System Example Design, the  [agilex3-ed-hps-baseline](https://github.com/altera-fpga/agilex3-ed-hps-baseline) repository integrates HPS Baseline System Example Design and Quartus design components, which differs from the legacy GSRD build flow in which the HPS Baseline System Example Design and Quartus design components were in separate repositories. 
 For the  Simics simulation case specific, the HPS Baseline System Example Design also provides a Simics simulation framework which allows to run Simics simulations from the HPS Baseline System Example Design build environment using directly the binaries produced from the build. The following steps shows how to produce the required binaries that can be used in Simics simulation.
 
 
@@ -178,9 +183,9 @@ On Ubuntu 22.04 you will also need to point the /bin/sh to /bin/bash, as the def
 
 
 ```bash
-sudo rm -rf agilex3_gsrd20_sd_qspi
-mkdir agilex3_gsrd20_sd_qspi
-cd agilex3_gsrd20_sd_qspi
+sudo rm -rf agilex3_sed_sd_qspi
+mkdir agilex3_sed_sd_qspi
+cd agilex3_sed_sd_qspi
 export TOP_FOLDER=$(pwd)
 ```
 
@@ -192,7 +197,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
@@ -208,9 +213,9 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 ```bash
 cd $TOP_FOLDER
-rm -rf agilex3_soc_devkit_ghrd_sdqspi
-mkdir agilex3_soc_devkit_ghrd_sdqspi && cd agilex3_soc_devkit_ghrd_sdqspi
-wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a3w135bm16aea-baseline.zip
+rm -rf agilex3_soc_devkit_sed_sdqspi
+mkdir agilex3_soc_devkit_sed_sdqspi && cd agilex3_soc_devkit_sed_sdqspi
+wget https://github.com/altera-fpga/agilex3-ed-hps-baseline/releases/download/QPDS26.3_REL_BASELINE_PR/dk-a3w135bm16aea-baseline.zip
 unzip dk-a3w135bm16aea-baseline.zip
 rm -f dk-a3w135bm16aea-baseline.zip
 make baseline-install-core-rbf
@@ -225,9 +230,9 @@ cd ..
 
 The output from this stage is:
 
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/output_files/ghrd.rbf - Phase 2 Quartus design.
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/output_files/baseline_hps_debug.sof - SOF file with Phase 1 Quartus design and Debug HPS
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux - Clean HPS Baseline System Example Design software directory (not built yet).
+* $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/output_files/ghrd.rbf - Phase 2 Quartus design.
+* $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/output_files/baseline_hps_debug.sof - SOF file with Phase 1 Quartus design and Debug HPS
+* $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux - Clean HPS Baseline System Example Design software directory (not built yet).
 
 
 
@@ -256,22 +261,22 @@ export SSTATE_DIR="$HOME/tasks/yocto/sstate"
  
 # Build sd binaries with kas
 cd $TOP_FOLDER
-cp -r $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_sd
-cd $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_sd
+cp -r $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_sd
+cd $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_sd
 # Add some tools used to exercise use cases
 sed -i '/local_conf_header:/a\\n  add-tools: |\n    CORE_IMAGE_EXTRA_INSTALL \+= \"gdbserver devmem2 openssh\"\n' kas.yml
 # Remove optimizations that are not needed in machines with high amount of memory.
 sed -i '/BB_NUMBER_THREADS\|PARALLEL_MAKE/d' kas.yml
 
-time ./build.sh $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/output_files/ghrd.rbf sd
+time ./build.sh $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/output_files/ghrd.rbf sd
 ```
 
 
 
 The output files that will be used to simulate with Simics are:
 
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_sd/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.bin
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_sd/build/tmp/deploy/images/agilex3/gsrd-console-image-agilex3.rootfs.wic
+* $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_sd/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.bin
+* $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_sd/build/tmp/deploy/images/agilex3/gsrd-console-image-agilex3.rootfs.wic
 
 <h5> Build QSPI Card HPS Baseline System Example Design</h5>
 
@@ -297,28 +302,28 @@ export SSTATE_DIR="$HOME/tasks/yocto/sstate"
  
 # Build qspi dependencies with kas
 cd $TOP_FOLDER
-cp -r $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi
-cd $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi
+cp -r $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi
+cd $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi
 # Add some tools used to exercise use cases
 # Removed openssh as conflicts with dropbear
 sed -i '/local_conf_header:/a\\n  add-tools: |\n    CORE_IMAGE_EXTRA_INSTALL \+= \"gdbserver devmem2\"\n' kas.yml
 # Remove optimizations that are not needed in machines with high amount of memory.
 sed -i '/BB_NUMBER_THREADS\|PARALLEL_MAKE/d' kas.yml
 
-time ./build.sh $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/output_files/ghrd.rbf qspi
+time ./build.sh $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/output_files/ghrd.rbf qspi
 ```
 
 
 
 The output files that will be used to generate the final binaries to simulate with Simics are:
 
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.bin
-* 										$TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.hex
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/u-boot.itb
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/core-image-minimal-agilex3.rootfs_nor.ubifs
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/kernel.itb
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/boot.scr.uimg
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/uboot.env
+* $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.bin
+* 										$TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.hex
+* $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/u-boot.itb
+* $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/core-image-minimal-agilex3.rootfs_nor.ubifs
+* $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/kernel.itb
+* $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/boot.scr.uimg
+* $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/uboot.env
 
 <h5> Build the RPD Image </h5>
 
@@ -345,19 +350,19 @@ You also require to use the  **ubinize** command and the **ubinize_nor.cfg** fil
 
 
 ```bash
-cd $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/
+cd $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/
 rm -rf qspi_rpd
 mkdir qspi_rpd && cd qspi_rpd
-cp $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/u-boot.itb u-boot.itb
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi/scripts/qspi_boot.pfg qspi_boot.pfg
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi/scripts/ubinize_nor.cfg ubinize.cfg
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/output_files/baseline_hps_debug.sof ghrd.sof 
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.bin u-boot-spl-dtb.bin
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.hex u-boot-spl-dtb.hex
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/uboot.env uboot.env
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/boot.scr.uimg boot.scr.uimg
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/kernel.itb kernel.itb
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/core-image-minimal-agilex3.rootfs_nor.ubifs .
+cp $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/u-boot.itb u-boot.itb
+ln -s $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi/scripts/qspi_boot.pfg qspi_boot.pfg
+ln -s $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi/scripts/ubinize_nor.cfg ubinize.cfg
+ln -s $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/output_files/baseline_hps_debug.sof ghrd.sof 
+ln -s $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.bin u-boot-spl-dtb.bin
+ln -s $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.hex u-boot-spl-dtb.hex
+ln -s $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/uboot.env uboot.env
+ln -s $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/boot.scr.uimg boot.scr.uimg
+ln -s $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/kernel.itb kernel.itb
+ln -s $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_qspi/build/tmp/deploy/images/agilex3/core-image-minimal-agilex3.rootfs_nor.ubifs .
 # Truncate u-boot.itb to 2 MB
 uboot_part_size=2*1024*1024
 uboot_size=`wc -c < u-boot.itb`
@@ -375,8 +380,8 @@ quartus_pfg -c qspi_boot.pfg
 
 The following files are created after this step:
 
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/qspi_rpd/qspi_boot.rpd
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/qspi_rpd/u-boot-spl-dtb.bin
+* $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/qspi_rpd/qspi_boot.rpd
+* $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/qspi_rpd/u-boot-spl-dtb.bin
 
 
 
@@ -405,13 +410,13 @@ As mentioned before, both virtual platforms instantiates the HPS model of the Ag
 
 ### Exercising Simics Simulation from HPS Baseline System Example Design
 
-The HPS Baseline System Example Design build framework is provided with the capability to simulate with Simics some reference use cases using the binaries built with this framework. The components included as part of the HPS Baseline System Example Design repository are listed next. These are included at **$TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/simics/linux** directory.
+The HPS Baseline System Example Design build framework is provided with the capability to simulate with Simics some reference use cases using the binaries built with this framework. The components included as part of the HPS Baseline System Example Design repository are listed next. These are included at **$TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/simics/linux** directory.
 
-* [runsimics.sh](https://github.com/altera-fpga/agilex3c-ed-gsrd/blob/main/a3cw135-devkit-oobe/baseline/simics/linux/runsimics.sh) : This script is in charge of deploy the Simics project (under $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/simics/linux which becomes the Simics project directory) and build it,  similarly to what is described in the [Simulation Setup section](#simulation-setup).  The script receives as parameter the device used to boot  along with the path of the location of the binaries. <br>
+* [runsimics.sh](https://github.com/altera-fpga/agilex3-ed-hps-baseline/blob/QPDS26.3_REL_BASELINE_PR/dk-a3w135bm16aea/baseline/simics/linux/runsimics.sh) : This script is in charge of deploy the Simics project (under $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/simics/linux which becomes the Simics project directory) and build it,  similarly to what is described in the [Simulation Setup section](#simulation-setup).  The script receives as parameter the device used to boot  along with the path of the location of the binaries. <br>
 Parameters:<br>  1\. **Boot mode:** **sdmmc** to boot from sdcard, **qspi** to boot from QSPI. <br>  2\. **Binaries path:** Path where the binares were built. The binaries needed could be the ones listed as output of the  [Build Instructions for SD Card and QSPI](#build-instructions-for-sd-card-and-qspi) section, but the binaries could be taken from any other source. 
 
-* [sdmmc_boot](https://github.com/altera-fpga/agilex3c-ed-gsrd/blob/main/a3cw135-devkit-oobe/baseline/simics/linux/sdmmc_boot) directory: This directory is used to the exercise the boot for SD Card use case. This includes  [sdmmc_gsrd.simics](https://github.com/altera-fpga/agilex3c-ed-gsrd/blob/main/a3cw135-devkit-oobe/baseline/simics/linux/sdmmc_boot/sdmmc_gsrd.simics) target script which defines the parameters needed to boot in this mode. The .simics target script calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed. In the binary directory, the SD Card image must be called **gsrd-console-image-agilex3.rootfs.wic**.
-* [qspi_boot](https://github.com/altera-fpga/agilex3c-ed-gsrd/blob/main/a3cw135-devkit-oobe/baseline/simics/linux/qspi_boot) directory: This directory is used to the exercise the QSPI boot mode. This includes the [qspi_gsrd.simics](https://github.com/altera-fpga/agilex3c-ed-gsrd/blob/main/a3cw135-devkit-oobe/baseline/simics/linux/qspi_boot/qspi_gsrd.simics) target script which defines the parameters needed to boot in this mode. The .simics target script in this directory calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed to run the simulation. In the binary directory, the QSPI image must be called **qspi_boot.rpd**.
+* [sdmmc_boot](https://github.com/altera-fpga/agilex3-ed-hps-baseline/blob/QPDS26.3_REL_BASELINE_PR/dk-a3w135bm16aea/baseline/simics/linux/sdmmc_boot) directory: This directory is used to the exercise the boot for SD Card use case. This includes  [sdmmc_gsrd.simics](https://github.com/altera-fpga/agilex3-ed-hps-baseline/blob/QPDS26.3_REL_BASELINE_PR/dk-a3w135bm16aea/baseline/simics/linux/sdmmc_boot/sdmmc_gsrd.simics) target script which defines the parameters needed to boot in this mode. The .simics target script calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed. In the binary directory, the SD Card image must be called **gsrd-console-image-agilex3.rootfs.wic**.
+* [qspi_boot](https://github.com/altera-fpga/agilex3-ed-hps-baseline/blob/QPDS26.3_REL_BASELINE_PR/dk-a3w135bm16aea/baseline/simics/linux/qspi_boot) directory: This directory is used to the exercise the QSPI boot mode. This includes the [qspi_gsrd.simics](https://github.com/altera-fpga/agilex3-ed-hps-baseline/blob/QPDS26.3_REL_BASELINE_PR/dk-a3w135bm16aea/baseline/simics/linux/qspi_boot/qspi_gsrd.simics) target script which defines the parameters needed to boot in this mode. The .simics target script in this directory calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed to run the simulation. In the binary directory, the QSPI image must be called **qspi_boot.rpd**.
 
 The boot modes supported by the HPS Baseline System Example Design are:
 
@@ -436,7 +441,7 @@ $ cd $TOP_FOLDER
 # Simics installation dir
 $ export PATH=<Simics_installation_dir/simics/bin/:$PATH
 # Quartus Pro
-$ export QUARTUS_ROOTDIR=~/altera_pro/26.1.1/quartus/
+$ export QUARTUS_ROOTDIR=~/altera_pro/26.3/quartus/
 $ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 #### Exercise SDCard Boot Mode under HPS Baseline System Example Design Framework
@@ -445,10 +450,10 @@ It is assumed that the instructions at [Simulation Setup under HPS Baseline Syst
 
 The **runsimics.sh** script need to be called, providing as parameters the **sdmmc** boot mode and the location of the binaries.
 ```bash
-$ cd $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/simics/linux/
-$ ./runsimics.sh  sdmmc $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_sd/build/tmp/deploy/images/agilex3
+$ cd $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/simics/linux/
+$ ./runsimics.sh  sdmmc $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_sd/build/tmp/deploy/images/agilex3
 ```
-This will deploy the **agilex3c-universal** virtual platform under **$TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/simics/linux/** directory, create the Simics project and build it. This will also launch the Simics simulation using **$TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/simics/linux/sdmmc_boot/sdmmc_gsrd.simics** as target script. 
+This will deploy the **agilex3c-universal** virtual platform under **$TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/simics/linux/** directory, create the Simics project and build it. This will also launch the Simics simulation using **$TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/simics/linux/sdmmc_boot/sdmmc_gsrd.simics** as target script. 
 
 When the simulation is launched, the current Linux terminal will become the Simics CLI and the Serial console will pop up.  To start the simulation enter **"run"** command in the Simics CLI.
 
@@ -462,11 +467,11 @@ It is assumed that the instructions at [Simulation Setup under HPS Baseline Syst
 The **runsimics.sh** script need to be called, providing the (**qspi**) boot mode and the location of the binaries used to boot from QSPI as parameters.
 
 ```bash
-$ cd $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/simics/linux/
-$ ./runsimics.sh  qspi $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/qspi_rpd
+$ cd $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/simics/linux/
+$ ./runsimics.sh  qspi $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/qspi_rpd
 ```
 
-This will deploy the **agilex3c-universal** virtual platform under **$TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/simics/linux/** directory, create the Simics project and build it. This will also launch the Simics simulation using **$TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/simics/linux/qspi_boot/qspi_gsrd.simics** as target script.
+This will deploy the **agilex3c-universal** virtual platform under **$TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/simics/linux/** directory, create the Simics project and build it. This will also launch the Simics simulation using **$TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/simics/linux/qspi_boot/qspi_gsrd.simics** as target script.
 
 When the simulation is launched, the current Linux terminal will become the Simics CLI and the Serial console will pop up.  To start the simulation enter **"run"** command in the Simics CLI.
 
@@ -539,13 +544,13 @@ Consider that the Intel Simics Simulator for Altera® FPGAs Simulator has been i
 
  SD Boot:<br>
 
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_sd/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.bin
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/yocto_linux_sd/build/tmp/deploy/images/agilex3/gsrd-console-image-agilex3.rootfs.wic
+* $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_sd/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.bin
+* $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/yocto_linux_sd/build/tmp/deploy/images/agilex3/gsrd-console-image-agilex3.rootfs.wic
 
 QSPI Boot:<br>
 
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/qspi_rpd/qspi_boot.rpd
-* $TOP_FOLDER/agilex3_soc_devkit_ghrd_sdqspi/software/qspi_rpd/u-boot-spl-dtb.bin
+* $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/qspi_rpd/qspi_boot.rpd
+* $TOP_FOLDER/agilex3_soc_devkit_sed_sdqspi/software/qspi_rpd/u-boot-spl-dtb.bin
 
 5. Customize the configuration of the **Agilex™ 3 C-Series Universal Virtual Platform**, according to the setup required to exercise any specific use case.  Use the following guideness:
    * Set up the **fsbl_image_filename** parameter with the first-stage bootloader. 

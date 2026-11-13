@@ -1,0 +1,3 @@
+## Introduction
+
+[Bao](https://github.com/bao-project/bao-hypervisor) is an open-source static-partitioning hypervisor. It runs at EL2. A configuration file compiled into the hypervisor image assigns each guest its cores, its memory, and its devices, and the guest keeps that assignment for the life of the boot. Bao installs a stage-2 translation for each guest and a virtual GICv3 for the interrupts named in the configuration. Guests exchange data through a shared-memory region. A hypercall asks Bao to inject an interrupt into the peer guest.

@@ -2,7 +2,7 @@
 
 ## Intro
 
-This page contains instructions on how to build Linux systems from separate components: Quartus Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the HPS Baseline System Example Design, where all the software is built through Yocto. While the instructions use Yocto for building the root file system, alternatives could be used there, such as the buildroot utility for example.
+This page contains instructions on how to build Linux systems from separate components: Quartus Design, U-Boot, Arm Trusted Firmware, Linux kernel and device tree, Linux root filesystem. This is different from the HPS Baseline System Example Design, where all the software is built through Yocto. While the instructions use Buildroot for building the root file system, alternatives could be used there, such as the buildroot utility for example.
 
 The key differences versus the HPS Baseline System Example Design are:
 
@@ -14,28 +14,33 @@ The examples provided in this page are focus on the Agilex™ 7 Transceiver-SoC 
 
 ## Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3 and the following software component versions integrate the 26.3 release. 
 
 **Note:** Regarding the Hardware Design components in the following table, only the device-specific one is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1.1_REL_GSRD_PR |
-| Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
-| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
-| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
-| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1.1_REL_GSRD_PR |
+| Agilex 27 Design  | [https://github.com/altera-fpga/agilex27-ed-hps-baseline](https://github.com/altera-fpga/agilex27-ed-hps-baseline)|           main           | QPDS26.3_REL_BASELINE_PR |
+| Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.3_REL_BASELINE_PR |
+| Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5-ed-hps-baseline](https://github.com/altera-fpga/agilex5-ed-hps-baseline) | main | QPDS26.3_REL_BASELINE_PR |
+| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7-ed-hps-baseline](https://github.com/altera-fpga/agilex7-ed-hps-baseline) | main | QPDS26.3_REL_BASELINE_PR |
+| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-hps-baseline](https://github.com/altera-fpga/stratix10-ed-hps-baseline) | main | QPDS26.3_REL_BASELINE_PR |
+| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-hps-baseline](https://github.com/altera-fpga/arria10-ed-hps-baseline)  | main | QPDS26.3_REL_BASELINE_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.37-lts | QPDS26.3_REL_BASELINE_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.15.0   | QPDS26.3_REL_BASELINE_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.07 | QPDS26.3_REL_BASELINE_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.3_REL_BASELINE_PR |
 | Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
-| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1.1_REL_GSRD_PR |
-| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.3_REL_BASELINE_PR |
+| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.3_REL_BASELINE_PR |
 | KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
+
+**Note:** Starting from 26.3 Quartus release, the build of the Quartus projects in the System Example Designs are based only on Visual Designer Studio (VDS).<br>
+Please review the following KDB if you face Quartus design build problems when the RTL was generated with VDS:<br>
+[Why do Quartus® Prime Pro 26.3 and earlier fail to build a Agilex® 5/Agilex® 3/Agilex® 7 FPGA M-Series VDS based design whose RTL has been generated with VDS?](https://community.altera.com/kb/knowledge-base/why-do-quartus%C2%AE-prime-pro-26-3-and-earlier-fail-to-build-a-agilex%C2%AE-5agilex%C2%AE-3agi/357511).
 
 Starting with SoC EDS Pro version 19.3, the following changes were made:
 The bootloader source code was removed from SoC EDS. Instead, the user needs to clone the git trees from https://github.com/altera-fpga/u-boot-socfpga.
@@ -46,7 +51,7 @@ Starting with Quartus® Pro 20.3, the SoC EDS was discontinued, and the function
 
 ## Release Notes
 
-Refer to [Release Notes](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR) for release readiness information and known issues.
+Refer to [Release Notes](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.3_REL_BASELINE_PR) for release readiness information and known issues.
 
 ## U-Boot Build Flow
 
@@ -107,7 +112,7 @@ The following build instructions produce a QSPI(.jic) and an SDCard Image (.img)
 
 This example uses building U-Boot manually. See the **HPS Baseline System Example Design User Guide: Agilex™ 7 FPGA F-Series Transceiver-SoC Development Kit (P-Tile and E-Tile)** page for the full fledged booting from SD card example, where U-Boot is built through Yocto recipes.
 
-This example, and the current HPS Baseline System Example Design release target the production version of the Altera® Agilex™ 7 F-Series Transceiver-SoC Development Kit. You can confirm you have a production version of the board by checking that it's serial number, on a sticker on the back of the board, is greater than AGF61SI0000576. Refer to https://www.intel.com/content/www/us/en/products/details/fpga/development-kits/agilex/f-series-transceiver.html for more details about the board.
+This example, and the current HPS Baseline System Example Design release target the production version of the Altera® Agilex™ 7 F-Series Transceiver-SoC Development Kit. You can confirm you have a production version of the board by checking that it's serial number, on a sticker on the back of the board, is greater than AGF61SI0000576. Refer to https://www.altera.com/products/devkit/po-3003/agilex-7-fpga-f-series-transceiver-soc-development-kit-p-tile-and-e-tile for more details about the board.
 
 ### Prerequisites
 
@@ -116,7 +121,7 @@ The following are required:
 * Host machine running Linux. Ubuntu 22.04 was used, but other versions may work too.
 * Internet connection to download the tools and clone the U-Boot git tree from github. If you are behind a firewall you will need your system administrator to enable you to get to the git trees.
 * Agilex™ 7 Transceiver-SoC Development kit P-Tile E-Tile production (DK-SI-AGF014EB).
-* Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1
+* Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3
 
 Note that the examples presented on this page boot to Linux and they require Linux kernel, device tree and rootfilesystem to boot. However, you can omit the Linux binaries and just boot to U-Boot prompt if you want to.
 
@@ -132,7 +137,7 @@ Create a top folder to store the example files.
   ```bash 
   sudo rm -rf agilex7UbootToLinux.sdmmc
   mkdir agilex7UbootToLinux.sdmmc && cd agilex7UbootToLinux.sdmmc 
-  export set TOP_FOLDER=`pwd` 
+  export TOP_FOLDER=`pwd` 
   ```
 
 
@@ -156,7 +161,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
@@ -171,12 +176,16 @@ source ~/altera_pro/26.1.1/qinit.sh
 
   ```bash 
   cd $TOP_FOLDER
-  wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-  unzip QPDS26.1.1_REL_GSRD_PR.zip
-  rm QPDS26.1.1_REL_GSRD_PR.zip
-  mv agilex7f-ed-gsrd-QPDS26.1.1_REL_GSRD_PR agilex7f-ed-gsrd
-  cd agilex7f-ed-gsrd
-  make agf014eb-si-devkit-oobe-baseline-all
+  rm -rf agilex7f-sed && mkdir agilex7f-sed && cd agilex7f-sed
+  wget https://github.com/altera-fpga/agilex7-ed-hps-baseline/releases/download/QPDS26.3_REL_BASELINE_PR/dk-si-agf014eb-oobe-baseline.zip
+  unzip dk-si-agf014eb-oobe-baseline.zip
+  rm dk-si-agf014eb-oobe-baseline.zip
+  make baseline-install
+  pushd software/hps_debug && ./build.sh && popd
+  quartus_pfg -c output_files/baseline.sof \
+    output_files/baseline_hps_debug.sof \
+    -o hps_path=software/hps_debug/hps_debug.ihex
+  
   cd ..
   ```
 
@@ -184,7 +193,8 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 After building the Quartus design the following binary is created:
 
-- $TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof
+- $TOP_FOLDER/agilex7f-sed/output_files/baseline.sof
+- $TOP_FOLDER/agilex7f-sed/output_files/baseline_hps_debug.sof
 
 ### Build Arm Trusted Firmware
 
@@ -195,7 +205,7 @@ The following commands are used to retrieve the Arm Trusted Firmware (ATF) and c
   ```bash
   cd $TOP_FOLDER 
   rm -rf arm-trusted-firmware 
-  git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
+  git clone -b QPDS26.3_REL_BASELINE_PR https://github.com/altera-fpga/arm-trusted-firmware 
   cd arm-trusted-firmware 
   make bl31 PLAT=agilex 
   cd .. 
@@ -215,7 +225,7 @@ After completing the above steps, the Arm Trusted Firmware binary file is create
   ```bash 
   cd $TOP_FOLDER
   rm -rf u-boot-socfpga
-  git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga
+  git clone -b QPDS26.3_REL_BASELINE_PR https://github.com/altera-fpga/u-boot-socfpga
   cd u-boot-socfpga
   # enable dwarf4 debug info, for compatibility with arm ds 
   sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk
@@ -288,7 +298,7 @@ After completing the above steps, the following files are created.
 **Note:** The following commands are ran before starting Linux:
 
 * **run linux_qspi_enable**: This passes the QSPI reference clock value to Linux. See [QSPI Reference Clock](#qspi-reference-clock) section..
-* **run rsu_status**: This performs some RSU operations that must be done before booting Linux. Only needed when enabling RSU. See: [Agilex™ 7 HPS Remote System Update User Guide](https://www.intel.com/content/www/us/en/docs/programmable/683184/21-4.html).
+* **run rsu_status**: This performs some RSU operations that must be done before booting Linux. Only needed when enabling RSU. See: [Agilex™ 7 HPS Remote System Update User Guide](https://docs.altera.com/r/docs/683184/current).
 
 **Important:** If the fabric is already configured, before running the 'fpga load' command, you must first run the 'bridge disable' command as shown in the above example. If the fabric is not already configured, the command will fail without any adverse effects.
 
@@ -298,7 +308,7 @@ After completing the above steps, the following files are created.
 
   ```bash 
   quartus_pfg -c \
-  agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+  agilex7f-sed/output_files/baseline.sof \
   ghrd.jic \
   -o device=MT25QU128 \
   -o flash_loader=AGFB014R24B2E2V \
@@ -324,7 +334,7 @@ The following commands can be used to obtain the Linux source code and build Lin
   ```bash 
   cd $TOP_FOLDER
   rm -rf linux-socfpga
-  git clone -b QPDS26.1.1_REL_GSRD_PR  https://github.com/altera-fpga/linux-socfpga linux-socfpga
+  git clone -b QPDS26.3_REL_BASELINE_PR  https://github.com/altera-fpga/linux-socfpga linux-socfpga
   cd linux-socfpga
   make clean && make mrproper
   make defconfig
@@ -379,17 +389,17 @@ This section presents how to build the Linux rootfs using Buildroot.
   rm -rf buildroot
   git clone https://github.com/buildroot/buildroot.git
   cd buildroot
-  git checkout 2026.05
+  git checkout 2026.08
   mkdir -p overlay/etc/profile.d/
-  # Use regilar prompt used in our devices root@<device>:~# instead of only #
+  # Use regular prompt used in our devices root@<device>:~# instead of only #
   echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
-  # Adding applications that we normaly need
+  # Adding applications that we normally need
   cat > configs/agilex7_defconfig <<EOT
   BR2_aarch64=y
   BR2_TOOLCHAIN_BUILDROOT_CXX=y
   BR2_KERNEL_HEADERS_6_12=y
   BR2_PACKAGE_HOST_GDB=y
-  BR2_GDB_VERSION_14=y
+  BR2_GDB_VERSION_17=y
   BR2_PACKAGE_GDB=y
   BR2_PACKAGE_DROPBEAR=y
   BR2_SYSTEM_DHCP="eth0"
@@ -527,7 +537,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ```
    quartus_pgm -c 1 -m jtag -o "p;@2"
   ```
-  If the HPS is not present in the jtagconfig output above, please remove the "agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline_hps_debug.sof@2" from the command line above.
+  If the HPS is not present in the jtagconfig output above, please remove the "agilex7f-sed/output_files/baseline_hps_debug.sof@2" from the command line above.
 
   4.-  Create debugger script:
   ```
@@ -563,7 +573,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ```
   6.- The serial console will show SPL then U-Boot being run:
   ```
-  U-Boot SPL 2026.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
+  U-Boot SPL 2026.07-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)
   Reset state: Cold
   MPU          1200000 kHz
   L4 Main	      400000 kHz
@@ -580,10 +590,10 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
   ## Checking hash(es) for Image atf … crc32+ OK
   ## Checking hash(es) for Image uboot … crc32+ OK
   ## Checking hash(es) for Image fdt-0 … crc32+ OK
-  NOTICE:  BL31: v2.14.1(release):QPDS26.1.1_REL_GSRD_PR
+  NOTICE:  BL31: v2.15.0(release):QPDS26.3_REL_BASELINE_PR
   NOTICE:  BL31: Built : 11:03:24, Jan 29 2025
 
-  U-Boot 2026.04-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_agilex
+  U-Boot 2026.07-35102-g135e53726d-dirty (Jan 29 2025 - 11:04:08 -0600)socfpga_agilex
 
   CPU:   Altera® FPGA SoCFPGA Platform (ARMv8 64bit Cortex-A53)
   Model: SoCFPGA Agilex SoCDK
@@ -624,7 +634,7 @@ This section presents examples of how to run U-Boot with the Arm Development Stu
 
   3.- Configure the FPGA with the debug SOF:
   ```
-    quartus_pgm -c 1 -m jtag -o "p;agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline_hps_debug.sof@2"
+    quartus_pgm -c 1 -m jtag -o "p;agilex7f-sed/output_files/baseline_hps_debug.sof@2"
   ```
 
   If the HPS is not present in the jtagconfig output above, please remove the "@2" from the command line above.
@@ -732,7 +742,7 @@ Starting from 24.2 release, the Agilex™ 7 device is provided with the support 
 
  In this boot flow, the BL2 (FSBL) is included in the bitstream together with the SDM FW and Quartus design (first phase only in HPS boot first mode). When booting from QSPI, this bitstream is stored in the QSPI memory. In this boot flow, the BL31 (System Monitor) is packed with the Linux kernel and device tree into a FIP format image. This format provides to ATF the information about the components included in the image in a partition header. The resulting FIP image is added to the final flash image used to boot from (QSPI or SDCard). 
 
-When creating the flash image, it's necessary to provide the location in where ATF expects to find the FIP image (fip.bin). This is hardcoded in the ATF code (**plat/intel/soc/common/include/platform_def.h**) for each one of the flash devices in which this boot flow is supported as indicated in the next table:
+When creating the flash image, it's necessary to provide the location in where ATF expects to find the FIP image (fip.bin). This is hardcoded in the ATF code (**plat/altera/soc/common/include/platform_def.h**) for each one of the flash devices in which this boot flow is supported as indicated in the next table:
 
 | Flash Device | Definition | Location in Flash device |
 | :-- | :-- | :-- | 
@@ -786,7 +796,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
@@ -799,12 +809,16 @@ source ~/altera_pro/26.1.1/qinit.sh
 
   ```bash
   cd $TOP_FOLDER
-  wget https://github.com/altera-fpga/agilex7f-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-  unzip QPDS26.1.1_REL_GSRD_PR.zip
-  rm QPDS26.1.1_REL_GSRD_PR.zip
-  mv agilex7f-ed-gsrd-QPDS26.1.1_REL_GSRD_PR agilex7f-ed-gsrd
-  cd agilex7f-ed-gsrd
-  make agf014eb-si-devkit-oobe-baseline-all
+  rm -rf agilex7f-sed && mkdir agilex7f-sed && cd agilex7f-sed
+  wget https://github.com/altera-fpga/agilex7-ed-hps-baseline/releases/download/QPDS26.3_REL_BASELINE_PR/dk-si-agf014eb-oobe-baseline.zip
+  unzip dk-si-agf014eb-oobe-baseline.zip
+  rm dk-si-agf014eb-oobe-baseline.zip
+  make baseline-install
+  pushd software/hps_debug && ./build.sh && popd
+  quartus_pfg -c output_files/baseline.sof \
+    output_files/baseline_hps_debug.sof \
+    -o hps_path=software/hps_debug/hps_debug.ihex
+  
   cd ..
   ```
 
@@ -812,7 +826,8 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 The following file is created:
 
-* $TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof
+* $TOP_FOLDER/agilex7f-sed/output_files/baseline.sof
+* $TOP_FOLDER/agilex7f-sed/output_files/baseline_hps_debug.sof
 
 #### Build Arm Trusted Firmware for SDCard (ATF-To-Linux)
 
@@ -821,7 +836,7 @@ The following file is created:
   ```bash
   cd $TOP_FOLDER
   rm -rf arm-trusted-firmware-sdcard
-  git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-sdcard
+  git clone -b QPDS26.3_REL_BASELINE_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-sdcard
   cd arm-trusted-firmware-sdcard 
   make realclean
   # Setting Bootsource as SDMMC
@@ -846,9 +861,9 @@ The following files are created:
   rm -rf buildroot
   git clone https://github.com/buildroot/buildroot.git
   cd buildroot
-  git checkout 2026.05
+  git checkout 2026.08
   mkdir -p overlay/etc/profile.d/
-  # Use regilar prompt used in our devices root@<device>:~# instead of only #
+  # Use regular prompt used in our devices root@<device>:~# instead of only #
   echo "export PS1='\\u@\\h:\\w\\$ '" >> overlay/etc/profile.d/prompt.sh
   # Adding applications that we normally need
   cat > configs/agilex7_defconfig <<EOT
@@ -856,7 +871,7 @@ The following files are created:
   BR2_TOOLCHAIN_BUILDROOT_CXX=y
   BR2_KERNEL_HEADERS_6_12=y
   BR2_PACKAGE_HOST_GDB=y
-  BR2_GDB_VERSION_14=y
+  BR2_GDB_VERSION_17=y
   BR2_PACKAGE_GDB=y
   BR2_PACKAGE_DROPBEAR=y
   BR2_SYSTEM_DHCP="eth0"
@@ -888,12 +903,9 @@ The following files are created:
   ```bash
   cd $TOP_FOLDER
   rm -rf linux-socfpga
-  git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-sdcard
+  git clone -b QPDS26.3_REL_BASELINE_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-sdcard
   cd linux-socfpga-sdcard
-  
-  # Use socfpga_agilex_socdk_sdmmc_atfboot.dts to fix HSD:14023675777
-  # Still pending to fix HSD:14023884834 related to disable GMAC
-    
+   
   cat << EOF > config-fragment-agilex
   # enable kernel debugging with RiscFree
   CONFIG_DEBUG_INFO=y
@@ -1014,7 +1026,7 @@ The following file is created:
   # Convert fsbl
   aarch64-none-linux-gnu-objcopy -v -I binary -O ihex --change-addresses 0xffe00000 arm-trusted-firmware-sdcard/build/agilex/release/bl2.bin fsbl.hex
   # Create .jic file
-  quartus_pfg -c agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof \
+  quartus_pfg -c agilex7f-sed/output_files/baseline.sof \
   design_atf.jic \
   -o hps_path=fsbl.hex \
   -o device=MT25QU128 \
@@ -1034,13 +1046,13 @@ You can exercise ATF to Linux boot flow from SD Card using the following binarie
 When booting with the binaries generated, this is the log that you will see:
   ```
   NOTICE:  SDMMC boot
-  NOTICE:  BL2: 2.14.1(release):QPDS26.1.1_REL_GSRD_PR
+  NOTICE:  BL2: 2.15.0(release):QPDS26.3_REL_BASELINE_PR
   NOTICE:  BL2: Built : 11:48:31, Jan 29 2025
   NOTICE:  BL2: Booting BL31
-  NOTICE:  BL31: 2.14.1(release):QPDS26.1.1_REL_GSRD_PR
+  NOTICE:  BL31: 2.15.0(release):QPDS26.3_REL_BASELINE_PR
   NOTICE:  BL31: Built : 11:48:36, Jan 29 2025
   [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
-  [    0.000000] Linux version 6.18.20-lts-g346486b5245f-dirty (rolando@rolando2-linux-lab) (aarch64-none-linux-gnu-gcc (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 11.2.1 20220111, GNU ld (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 2.37.20220122) #1 SMP PREEMPT Wed Jan 29 11:56:17 CST 2025
+  [    0.000000] Linux version 6.18.37-lts-g346486b5245f-dirty (rolando@rolando2-linux-lab) (aarch64-none-linux-gnu-gcc (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 11.2.1 20220111, GNU ld (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 2.37.20220122) #1 SMP PREEMPT Wed Jan 29 11:56:17 CST 2025
   [    0.000000] KASLR disabled due to lack of seed
   [    0.000000] Machine model: SoCFPGA Agilex SoCDK
   [    0.000000] efi: UEFI not found.
@@ -1082,7 +1094,7 @@ ATF requires to be rebuilt to enable booting from QSPI updating BOOT_SOURCE to B
   cd $TOP_FOLDER
   # Building ATF
   rm -rf arm-trusted-firmware-qspi
-  git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-qspi
+  git clone -b QPDS26.3_REL_BASELINE_PR https://github.com/altera-fpga/arm-trusted-firmware arm-trusted-firmware-qspi
   cd arm-trusted-firmware-qspi
 
   # Select QSPI as boot source
@@ -1107,12 +1119,9 @@ The following files are created:
   ```bash
   cd $TOP_FOLDER
   rm -rf linux-socfpga-qspi
-  git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-qspi
+  git clone -b QPDS26.3_REL_BASELINE_PR https://github.com/altera-fpga/linux-socfpga linux-socfpga-qspi
   cd linux-socfpga-qspi
     
-  # Using socfpga_agilex_socdk_qspi_atfboot.dts to fix HSD:14023675777
-  # GMAC is still disabled from HSD: 14023884834 
-
   cat << EOF > config-fragment-agilex
   # enable kernel debugging with RiscFree
   CONFIG_DEBUG_INFO=y
@@ -1176,7 +1185,7 @@ The output files from this stage are:
     </output_files>
     <bitstreams>
         <bitstream id="Bitstream_1">
-            <path hps_path="./fsbl.hex">./agf014eb_si_devkit_oobe_baseline.sof</path>
+            <path hps_path="./fsbl.hex">./baseline.sof</path>
         </bitstream>
     </bitstreams>
     <raw_files>
@@ -1228,7 +1237,7 @@ The following file will be created:
   aarch64-none-linux-gnu-objcopy -v -I binary -O ihex --change-addresses 0xffe00000 arm-trusted-firmware-qspi/build/agilex/release/bl2.bin fsbl.hex
 
   # Create the local links to .sof and rootfs
-  ln -s $TOP_FOLDER/agilex7f-ed-gsrd/install/designs/agf014eb_si_devkit_oobe_baseline.sof .
+  ln -s $TOP_FOLDER/agilex7f-sed/output_files/baseline.sof .
   ln -s $TOP_FOLDER/buildroot/output/images/rootfs.jffs2 rootfs.bin
   #Create final .jic
   quartus_pfg -c qspi_flash_image_agilex_boot.pfg
@@ -1247,10 +1256,10 @@ When booting with flash_image_atf_qspi.jic, this is the log that you will see:
 
   ```
   NOTICE:  QSPI boot
-  NOTICE:  BL2: v2.14.1(release):QPDS26.1.1_REL_GSRD_PR
+  NOTICE:  BL2: v2.15.0(release):QPDS26.3_REL_BASELINE_PR
   NOTICE:  BL2: Built : 11:57:29, Jan 29 2025
   NOTICE:  BL2: Booting BL31
-  NOTICE:  BL31: v2.14.1(release):QPDS24.3_REL_GSRD_PR
+  NOTICE:  BL31: v2.15.0(release):QPDS24.3_REL_GSRD_PR
   NOTICE:  BL31: Built : 11:57:34, Jan 29 2025
   [    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd034]
   [    0.000000] Linux version 6.6.37-g346486b5245f-dirty (rolando@rolando2-linux-lab) (aarch64-none-linux-gnu-gcc (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 11.2.1 20220111, GNU ld (GNU Toolchain for the Arm Architecture 11.2-2022.02 (arm-11.14)) 2.37.20220122) #1 SMP PREEMPT Wed Jan 29 12:03:28 CST 2025

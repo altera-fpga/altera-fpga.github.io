@@ -85,7 +85,7 @@
 
 ## Linux image
 
-The Yocto/KAS configuration for this design is in [agilex-ed-robotics/sw]. Build with:
+The Yocto/KAS configuration for this design is in [agilex-ed-robotics/sw](https://github.com/altera-fpga/agilex-ed-robotics/tree/rel/26.1/sw). Build with:
 
 ```bash
 cd <workspace>/agilex-ed-robotics/sw

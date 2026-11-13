@@ -17,8 +17,8 @@ The following are needed:
 
 * [Agilex 3 FPGA and SoC C-Series Development Kit](https://www.altera.com/products/devkit/po-3000/agilex-3-fpga-and-soc-c-series-development-kit), ordering code DK-A3W135BM16AEA. Other Agilex 3 development boards will also work in the same manner, just that other set HPS Baseline System Example Design binaries will be used.
 * Host PC with Linux (Ubuntu 22.04 was used, but others should work too)
-* Quartus Pro 26.1.1 (or just Quartus Pro standalone Programmer 26.1.1).
-* Ashling RiscFree bundled with Quartus Pro 26.1.1 (can be installed and use with just the standalone Programmer)
+* Quartus Pro 26.3 (or just Quartus Pro standalone Programmer 26.3).
+* Ashling RiscFree bundled with Quartus Pro 26.3 (can be installed and use with just the standalone Programmer)
 * Network access, for downloading the sources while building the binaries
 
 ## Build Example Design
@@ -42,7 +42,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
@@ -64,7 +64,7 @@ The following instructions are used:
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex3_soc_devkit_ghrd && mkdir agilex3_soc_devkit_ghrd && cd agilex3_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a3w135bm16aea-baseline.zip
+wget https://github.com/altera-fpga/agilex3-ed-hps-baseline/releases/download/QPDS26.3_REL_BASELINE_PR/dk-a3w135bm16aea-baseline.zip
 unzip dk-a3w135bm16aea-baseline.zip
 rm -f dk-a3w135bm16aea-baseline.zip
 make baseline-install
@@ -98,65 +98,67 @@ cp $TOP_FOLDER/agilex3_soc_devkit_ghrd/install/binaries/ghrd.core.rbf \
 
 ```bash
 base64 -d <<'EOF' | gunzip > fabric-config-linux.patch
-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
+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
+AA==
 EOF
 ```
 
@@ -164,10 +166,10 @@ EOF
 For reference, the `fabric-config-linux.patch` looks like this:
 ```diff
 diff --git a/kas.yml b/kas.yml
-index f3409fa..0ad3121 100644
+index 8ad21a7..9c97d4d 100644
 --- a/kas.yml
 +++ b/kas.yml
-@@ -41,9 +41,11 @@ local_conf_header:
+@@ -55,9 +55,11 @@ local_conf_header:
      CUSTOM_LINUX_DEVICE_TREE = "0"
  
    # RBF file should be placed in meta-custom/recipes-fpga/fpga-bitstream/files/
@@ -182,14 +184,15 @@ index f3409fa..0ad3121 100644
    kernel-modules: |
      KERNEL_MODULE_PROBECONF = "cfg80211"
 diff --git a/meta-custom/conf/layer.conf b/meta-custom/conf/layer.conf
-index 8971475..00139c8 100644
+index 382d28a..1ad53c7 100644
 --- a/meta-custom/conf/layer.conf
 +++ b/meta-custom/conf/layer.conf
-@@ -46,6 +46,9 @@ IMAGE_INSTALL:append = "${@bb.utils.contains('GPIO_INT_TEST', 'true', ' pio-inte
+@@ -46,6 +46,10 @@ IMAGE_INSTALL:append = "${@bb.utils.contains('GPIO_INT_TEST', 'true', ' pio-inte
  IMAGE_INSTALL:append = "${@bb.utils.contains('HELLO_WORLD_APP', 'true', ' hello', '', d) if d.getVar('SSBL_BOOT_SOURCE') != 'qspi' else ''}"
  IMAGE_INSTALL:append = "${@'' if d.getVar('SSBL_BOOT_SOURCE') == 'qspi' else ' rootfs-files'}"
  
-+# Install ghrd.core.rbf and fabric_overlay.dtb to /lib/firmware in the rootfs.
++# Linux-side FPGA fabric configuration:
++# ghrd.core.rbf and fabric_overlay.dtb are installed to /lib/firmware (${nonarch_base_libdir}) in the rootfs.
 +IMAGE_INSTALL:append = " fpga-bitstream fpga-linux-overlay"
 +
  # Add variables for wic creation of sdcard image
@@ -259,7 +262,7 @@ index 0000000..299fc18
 +
 +FILESEXTRAPATHS:prepend := "${THISDIR}/bootscr:"
 diff --git a/meta-custom/recipes-fpga/fpga-bitstream/fpga-bitstream.bbappend b/meta-custom/recipes-fpga/fpga-bitstream/fpga-bitstream.bbappend
-index 9da6b0a..9dabc77 100644
+index 9da6b0a..5e3159f 100644
 --- a/meta-custom/recipes-fpga/fpga-bitstream/fpga-bitstream.bbappend
 +++ b/meta-custom/recipes-fpga/fpga-bitstream/fpga-bitstream.bbappend
 @@ -7,4 +7,18 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
@@ -274,7 +277,7 @@ index 9da6b0a..9dabc77 100644
 +# Always include the RBF in SRC_URI regardless of FPGA_CORE_PGM_ENABLE.
 +SRC_URI:append = " file://${FPGA_RBF_FILE}"
 +
-+# Install core.rbf to /lib/firmware
++# Install core.rbf to /lib/firmware for Linux-side FPGA configuration
 +do_install () {
 +    install -D -m 0644 ${S}/${FPGA_RBF_FILE} \
 +        ${D}${nonarch_base_libdir}/firmware/${FPGA_RBF_FILE}
@@ -283,10 +286,10 @@ index 9da6b0a..9dabc77 100644
 +FILES:${PN} = "${nonarch_base_libdir}/firmware/*"
 diff --git a/meta-custom/recipes-fpga/fpga-linux-overlay/files/fabric_overlay.dts b/meta-custom/recipes-fpga/fpga-linux-overlay/files/fabric_overlay.dts
 new file mode 100644
-index 0000000..9d5b461
+index 0000000..38f32f4
 --- /dev/null
 +++ b/meta-custom/recipes-fpga/fpga-linux-overlay/files/fabric_overlay.dts
-@@ -0,0 +1,76 @@
+@@ -0,0 +1,84 @@
 +/dts-v1/;
 +/plugin/;
 +
@@ -331,6 +334,14 @@ index 0000000..9d5b461
 +               #gpio-cells = <2>;
 +               gpio-controller;
 +           };
++
++           /* FPGA DIP switch PIO – input, no interrupt */
++           dipsw_pio: gpio@10070 {
++               compatible = "altr,pio-1.0";
++               reg = <0x0 0x10070 0x0 0x10>;
++               #gpio-cells = <2>;
++               gpio-controller;
++           };
 +       };
 +   };
 +
@@ -363,9 +374,10 @@ index 0000000..9d5b461
 +       };
 +   };
 +};
+\ No newline at end of file
 diff --git a/meta-custom/recipes-fpga/fpga-linux-overlay/fpga-linux-overlay.bb b/meta-custom/recipes-fpga/fpga-linux-overlay/fpga-linux-overlay.bb
 new file mode 100644
-index 0000000..7a79f66
+index 0000000..d209c7a
 --- /dev/null
 +++ b/meta-custom/recipes-fpga/fpga-linux-overlay/fpga-linux-overlay.bb
 @@ -0,0 +1,32 @@
@@ -424,7 +436,7 @@ index c5d0ec8..8a4764d 100644
  CONFIG_DW_I3C_MASTER=m
 +CONFIG_GPIO_ALTERA=y
 diff --git a/meta-custom/recipes-kernel/linux/linux-socfpga-lts_%.bbappend b/meta-custom/recipes-kernel/linux/linux-socfpga-lts_%.bbappend
-index 5571dec..ec29f17 100644
+index 5cbb2ab..44eb927 100644
 --- a/meta-custom/recipes-kernel/linux/linux-socfpga-lts_%.bbappend
 +++ b/meta-custom/recipes-kernel/linux/linux-socfpga-lts_%.bbappend
 @@ -104,4 +104,9 @@ do_patch:append() {
@@ -437,7 +449,7 @@ index 5571dec..ec29f17 100644
 +KERNEL_DTC_FLAGS:append = " -@"
 +
  addtask do_patch after do_unpack before do_configure
- ```
+```
 
 3\. Apply the patch file:
 

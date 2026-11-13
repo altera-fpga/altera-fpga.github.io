@@ -718,7 +718,7 @@ Both terminal will remain inactive until the Agilex&trade; 5 device is configure
 
 #### Altera Quartus Prime Pro
 
-Download the Quartus&reg; Prime Pro Edition software version 26.1.1 from the [FPGA Software Download Center](https://www.altera.com/downloads/fpga-development-tools/quartus-prime-pro-edition-design-software-version-26-1-1-linux). Follow the on-screen instructions to complete the installation process.
+Download the Quartus&reg; Prime Pro Edition software version 26.3 from the [FPGA Software Download Center](https://www.altera.com/downloads/fpga-development-tools/quartus-prime-pro-edition-design-software-version-26-1-1-linux). Follow the on-screen instructions to complete the installation process.
 
 Refer to [Altera&reg; FPGA Software Installation and Licensing](https://docs.altera.com/r/docs/683472/26.1.1/altera-fpga-software-installation-and-licensing/answers-to-top-faqs) for more information on the installation and licensing process.
 

@@ -53,28 +53,33 @@ To exercise the instructions presented on this page (build your binaries and exe
 
 ## Release Content
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3 and the following software component versions integrate the 26.3 release. 
 
 **Note:** Regarding the Hardware Design components in the following table, only the device-specific one is used in this page.
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1.1_REL_GSRD_PR |
-| Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
-| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7f-ed-gsrd](https://github.com/altera-fpga/agilex7f-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
-| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-gsrd](https://github.com/altera-fpga/stratix10-ed-gsrd) | main | QPDS26.1.1_REL_GSRD_PR |
-| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-gsrd](https://github.com/altera-fpga/arria10-ed-gsrd)  | main | QPDS26.1.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1.1_REL_GSRD_PR |
+| Agilex 27 Design  | [https://github.com/altera-fpga/agilex27-ed-hps-baseline](https://github.com/altera-fpga/agilex27-ed-hps-baseline)|           main           | QPDS26.3_REL_BASELINE_PR |
+| Agilex 3 Hardware Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.3_REL_BASELINE_PR |
+| Agilex 5 Hardware Design - Include HPS Baseline System Example Design 2.0 baseline design + meta_custom | [https://github.com/altera-fpga/agilex5-ed-hps-baseline](https://github.com/altera-fpga/agilex5-ed-hps-baseline) | main | QPDS26.3_REL_BASELINE_PR |
+| Agilex 7 Hardware Design          | [https://github.com/altera-fpga/agilex7-ed-hps-baseline](https://github.com/altera-fpga/agilex7-ed-hps-baseline) | main | QPDS26.3_REL_BASELINE_PR |
+| Stratix 10 Hardware Design         | [https://github.com/altera-fpga/stratix10-ed-hps-baseline](https://github.com/altera-fpga/stratix10-ed-hps-baseline) | main | QPDS26.3_REL_BASELINE_PR |
+| Arria 10 Hardware Design          | [https://github.com/altera-fpga/arria10-ed-hps-baseline](https://github.com/altera-fpga/arria10-ed-hps-baseline)  | main | QPDS26.3_REL_BASELINE_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.37-lts | QPDS26.3_REL_BASELINE_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.15.0   | QPDS26.3_REL_BASELINE_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.07 | QPDS26.3_REL_BASELINE_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| Yocto Project: meta-altera-fpga (for HPS Baseline System Example Design 2.0) | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.3_REL_BASELINE_PR |
 | Yocto Project: meta-intel-fpga (for HPS Legacy System Example Design) | [https://git.yoctoproject.org/meta-intel-fpga](https://git.yoctoproject.org/meta-intel-fpga) | wrynose | latest |
-| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.1.1_REL_GSRD_PR |
-| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| Yocto Project: meta-intel-fpga-refdes (for HPS Legacy System Example Design) | [https://github.com/altera-fpga/meta-intel-fpga-refdes](https://github.com/altera-fpga/meta-intel-fpga-refdes) | wrynose | QPDS26.3_REL_BASELINE_PR |
+| HPS Legacy System Example Design | [https://github.com/altera-fpga/gsrd-socfpga](https://github.com/altera-fpga/gsrd-socfpga) | wrynose | QPDS26.3_REL_BASELINE_PR |
 | KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
+
+**Note:** Starting from 26.3 Quartus release, the build of the Quartus projects in the System Example Designs are based only on Visual Designer Studio (VDS).<br>
+Please review the following KDB if you face Quartus design build problems when the RTL was generated with VDS:<br>
+[Why do Quartus® Prime Pro 26.3 and earlier fail to build a Agilex® 5/Agilex® 3/Agilex® 7 FPGA M-Series VDS based design whose RTL has been generated with VDS?](https://community.altera.com/kb/knowledge-base/why-do-quartus%C2%AE-prime-pro-26-3-and-earlier-fail-to-build-a-agilex%C2%AE-5agilex%C2%AE-3agi/357511).
 
 **Note:** For information prior 24.2 release, please refer to [Linux  Simics Virtual Platform HPS Baseline System Example Design for Altera® 5 E-Series](https://www.rocketboards.org/foswiki/Documentation/Agilex5SoCSimicsVirtualPlatformsReferenceGuide). 
 
@@ -82,11 +87,11 @@ Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the fol
 
 You can find the prebuilt binaries from the HPS Baseline System Example Design prebuilt at the following URL:
 
-* SD Card: [HPS Baseline System Example Design Binaries](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/). 
+* SD Card: [HPS Baseline System Example Design Binaries](https://releases.rocketboards.org/2026.10/gsrd/agilex5_dk_a5e065bb32aea_gsrd.baseline-a55/). 
 
-* QSPI: [QSPI Binaries](https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e065bb32aea_qspi.baseline-a55/). 
+* QSPI: [QSPI Binaries](https://releases.rocketboards.org/2026.10/qspi/agilex5_dk_a5e065bb32aea_qspi.baseline-a55/). 
 
-* NAND: [NAND Binaries](https://releases.rocketboards.org/2026.08/nand/agilex5_dk_a5e065bb32aea_nand.baseline-a55)
+* NAND: [NAND Binaries](https://releases.rocketboards.org/2026.10/nand/agilex5_dk_a5e065bb32aea_nand.baseline-a55)
 
 You can exercise them using the internal Simics framework included under HPS Baseline System Example Design  or also from a separate Simics environment in which you need to create and build the project directory manually.
 
@@ -132,7 +137,7 @@ For known issues in this release please refer to the [Intel® Simics® Simulator
 
 ### Build Instructions for HPS Baseline System Example Design
 
-The HPS Baseline System Example Design was introduced on release 25.3. The HPS Baseline System Example Design provides a framework based on **kas** and **yocto**, that allows to build be HPS binaries in a more simplified and automated methodology. In the HPS Baseline System Example Design, the  [agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) repository integrates software and Quartus design components, which differs from the legacy HPS System Example Design build flow in which the software and hardware components were in separate repositories. 
+The HPS Baseline System Example Design was introduced on release 25.3. The HPS Baseline System Example Design provides a framework based on **kas** and **yocto**, that allows to build be HPS binaries in a more simplified and automated methodology. In the HPS Baseline System Example Design, the  [agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5-ed-hps-baseline) repository integrates software and Quartus design components, which differs from the legacy HPS System Example Design build flow in which the software and hardware components were in separate repositories. 
 For the  Simics simulation case specific, the HPS Baseline System Example Design also provides a Simics simulation framework which allows you to run Simics simulations using directly the binaries produced from the build. The following steps shows how to produced the required binaries that can be used in Simics simulation.
 
 **Note:** In 26.1 Release, the HPS Baseline System Example Design used in this example only provides a directory targeted for **a55** cores in which is expected that the generated binaries have a an **a55** core as the boot core (core 0). In the case of Simics, the selection of the boot core is done through the **hps_boot_core** parameter in the target script simics/linux/<device\>_boot/\*.simics).
@@ -164,7 +169,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
@@ -180,25 +185,21 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 ```bash
 cd $TOP_FOLDER
-rm -rf agilex5_soc_devkit_ghrd_sdqspi_a55
-mkdir agilex5_soc_devkit_ghrd_sdqspi_a55 && cd agilex5_soc_devkit_ghrd_sdqspi_a55
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aea-enablement-baseline-a55.zip
+rm -rf agilex5_soc_devkit_sed_sdqspi_a55
+mkdir agilex5_soc_devkit_sed_sdqspi_a55 && cd agilex5_soc_devkit_sed_sdqspi_a55
+wget https://github.com/altera-fpga/agilex5-ed-hps-baseline/releases/download/QPDS26.3_REL_BASELINE_PR/dk-a5e065bb32aea-enablement-baseline-a55.zip
 unzip dk-a5e065bb32aea-enablement-baseline-a55.zip
 rm -f dk-a5e065bb32aea-enablement-baseline-a55.zip
-make baseline_a55-install-core-rbf
-pushd software/hps_debug && ./build.sh && popd
-quartus_pfg -c output_files/baseline_a55.sof \
-  output_files/baseline_a55_hps_debug.sof \
-  -o hps_path=software/hps_debug/hps_wipe.ihex
+make  baseline_a55-install
 cd ..
 ```
 
 
 The output from this stage is:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/output_files/ghrd.rbf - Phase 2 Quartus design.
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/output_files/baseline_a55_hps_debug.sof - SOF file with Phase 1 Quartus design and Debug HPS
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux - Clean HPS Baseline System Example Design software directory (not built yet).
+* $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/output_files/baseline_a55.core.rbf - Phase 2 Quartus design.
+* $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/output_files/baseline_a55.sof - SOF file with Phase 1 Quartus design
+* $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux - Clean HPS Baseline System Example Design software directory (not built yet).
 
 
 
@@ -227,21 +228,21 @@ export SSTATE_DIR="$HOME/tasks/yocto/sstate"
  
 # Build sd binaries with kas
 cd $TOP_FOLDER
-cp -r $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd
+cp -r $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_sd
+cd $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_sd
 # Add some tools used to exercise use cases
 sed -i '/local_conf_header:/a\\n  add-tools: |\n    CORE_IMAGE_EXTRA_INSTALL \+= \"gdbserver devmem2 openssh\"\n' kas.yml
 # Remove optimizations that are not needed in machines with high amount of memory.
 sed -i '/BB_NUMBER_THREADS\|PARALLEL_MAKE/d' kas.yml
 
-time ./build.sh $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/output_files/ghrd.rbf sd
+time ./build.sh $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/output_files/baseline_a55.core.rbf sd
 ```
 
 
 The output files that will be used to simulate with Simics are:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/gsrd-console-image-agilex5e.rootfs.wic
+* $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin
+* $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/gsrd-console-image-agilex5e.rootfs.wic
 
 
 
@@ -271,26 +272,26 @@ export SSTATE_DIR="$HOME/tasks/yocto/sstate"
  
 # Build qspi dependencies with kas
 cd $TOP_FOLDER
-cp -r $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi
+cp -r $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi
+cd $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi
 # Add some tools used to exercise use cases
 sed -i '/local_conf_header:/a\\n  add-tools: |\n    CORE_IMAGE_EXTRA_INSTALL \+= \"gdbserver devmem2 openssh\"\n' kas.yml
 # Remove optimizations that are not needed in machines with high amount of memory.
 sed -i '/BB_NUMBER_THREADS\|PARALLEL_MAKE/d' kas.yml
 
-time ./build.sh $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/output_files/ghrd.rbf qspi
+time ./build.sh $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/output_files/baseline_a55.core.rbf qspi
 ```
 
 
 The output files that will be used to generate the final binaries to simulate with Simics are:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin
-* 										$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot.itb
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nor.ubifs
-* TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/kernel.itb
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/boot.scr.uimg
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/uboot.env
+* $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin
+* 										$TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex
+* $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot.itb
+* $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nor.ubifs
+* TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/kernel.itb
+* $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/boot.scr.uimg
+* $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/uboot.env
 
 
 
@@ -312,19 +313,19 @@ You also require to use the  **ubinize** command and the **ubinize_nor.cfg** fil
 
 
 ```bash
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/
+cd $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/
 rm -rf qspi_rpd
 mkdir qspi_rpd && cd qspi_rpd
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/scripts/qspi_boot.pfg qspi_flash_image_agilex5-final.pfg
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/scripts/ubinize_nor.cfg ubinize.cfg
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/output_files/baseline_a55_hps_debug.sof ghrd.sof 
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin u-boot-spl-dtb.bin
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex u-boot-spl-dtb.hex
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot.itb u-boot.bin
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/uboot.env uboot.env
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/boot.scr.uimg boot.scr.uimg
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/kernel.itb kernel.itb
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nor.ubifs .
+ln -s $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/scripts/qspi_boot.pfg qspi_flash_image_agilex5-final.pfg
+ln -s $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/scripts/ubinize_nor.cfg ubinize.cfg
+ln -s $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/output_files/baseline_a55.sof ghrd.sof 
+ln -s $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin u-boot-spl-dtb.bin
+ln -s $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.hex u-boot-spl-dtb.hex
+ln -s $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot.itb u-boot.bin
+ln -s $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/uboot.env uboot.env
+ln -s $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/boot.scr.uimg boot.scr.uimg
+ln -s $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/kernel.itb kernel.itb
+ln -s $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nor.ubifs .
 ubinize -o hps.bin -p 65536 -m 1 -s 1 ubinize.cfg
 quartus_pfg -c qspi_flash_image_agilex5-final.pfg
 ```
@@ -332,8 +333,8 @@ quartus_pfg -c qspi_flash_image_agilex5-final.pfg
 
 The following files are created after this step:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/qspi_rpd/qspi_boot.rpd
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/qspi_rpd/u-boot-spl-dtb.bin
+* $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/qspi_rpd/qspi_boot.rpd
+* $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/qspi_rpd/u-boot-spl-dtb.bin
 
 
 
@@ -362,7 +363,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
@@ -378,20 +379,20 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 ```bash
 cd $TOP_FOLDER
-rm -rf agilex5_soc_devkit_ghrd_nand_a55
-mkdir agilex5_soc_devkit_ghrd_nand_a55 && cd agilex5_soc_devkit_ghrd_nand_a55
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065bb32aea-nand-baseline-a55.zip
+rm -rf agilex5_soc_devkit_sed_nand_a55
+mkdir agilex5_soc_devkit_sed_nand_a55 && cd agilex5_soc_devkit_sed_nand_a55
+wget https://github.com/altera-fpga/agilex5-ed-hps-baseline/releases/download/QPDS26.3_REL_BASELINE_PR/dk-a5e065bb32aea-nand-baseline-a55.zip
 unzip dk-a5e065bb32aea-nand-baseline-a55.zip
 rm -f dk-a5e065bb32aea-nand-baseline-a55.zip
-make baseline_a55-install-core-rbf
+make baseline_a55-install
 ```
 
 
 
 The output from this stage is:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/output_files/ghrd.rbf - Phase 2 Quartus design.
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux - Clean HPS Baseline System Example Design software directory (not built yet).
+* $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/output_files/baseline_a55.core.rbf - Phase 2 Quartus design.
+* $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/yocto_linux - Clean HPS Baseline System Example Design software directory (not built yet).
 
 #####  Build NAND HPS Baseline System Example Design
 
@@ -415,22 +416,22 @@ export BB_ENV_PASSTHROUGH_ADDITIONS="DL_DIR SSTATE_DIR"
 export DL_DIR="$HOME/tasks/yocto/downloads"
 export SSTATE_DIR="$HOME/tasks/yocto/sstate"
 
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/
+cd $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/yocto_linux/
 # Add some tools used to exercise use cases
 sed -i '/local_conf_header:/a\\n  add-tools: |\n    CORE_IMAGE_EXTRA_INSTALL \+= \"gdbserver devmem2 openssh\"\n' kas.yml
-time ./build.sh $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/output_files/ghrd.rbf nand
+time ./build.sh $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/output_files/baseline_a55.core.rbf nand
 ```
 
 
 
 The output files that will be used to generate the final binaries to simulate with Simics are:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin - U-Boot FSBL
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/boot.scr.uimg - Boot script
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot.itb - U-Boot SSBL
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/kernel.itb - Linux Kernel + Device tree
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/socfpga_agilex5_socdk_nand.dtb - NAND device tree (not used)
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nand.ubifs - File system for NAND Boot
+* $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin - U-Boot FSBL
+* $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/boot.scr.uimg - Boot script
+* $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot.itb - U-Boot SSBL
+* $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/kernel.itb - Linux Kernel + Device tree
+* $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/socfpga_agilex5_socdk_nand.dtb - NAND device tree (not used)
+* $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nand.ubifs - File system for NAND Boot
 
 The next step consists of creating the NAND image that will be used in the simulation to exercise boot from NAND. For this, the NAND image will have the layout shown in the following table:
 
@@ -448,15 +449,15 @@ Create a directory,  populate it with all the required binaries and then generat
 
 
 ```bash
-cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/
+cd $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/
 rm -rf nand-bin && mkdir nand-bin && cd nand-bin
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/scripts/ubinize_nand.cfg ubinize_nand.cfg
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin u-boot-spl-dtb.bin
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/uboot.env uboot.env
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/boot.scr.uimg boot.scr.uimg
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot.itb u-boot.itb
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/kernel.itb kernel.itb
-ln -s $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nand.ubifs console-image-minimal-agilex5e.rootfs_nand.ubifs
+ln -s $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/yocto_linux/scripts/ubinize_nand.cfg ubinize_nand.cfg
+ln -s $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin u-boot-spl-dtb.bin
+ln -s $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/uboot.env uboot.env
+ln -s $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/boot.scr.uimg boot.scr.uimg
+ln -s $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/u-boot.itb u-boot.itb
+ln -s $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/kernel.itb kernel.itb
+ln -s $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/yocto_linux/build/tmp/deploy/images/agilex5e/console-image-minimal-agilex5e.rootfs_nand.ubifs console-image-minimal-agilex5e.rootfs_nand.ubifs
 # Create root.ubi 
 ubinize -o root.ubi -p 1024KiB -m 8192 -s 8192 ubinize_nand.cfg
 # Creating the NAND image
@@ -472,8 +473,8 @@ dd conv=notrunc bs=1 if='root.ubi' of=$COMBINEDFILE seek=$((0x00200000))
 
 The final NAND image generated is:
 
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/nand-bin/nand.img
-* $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/nand-bin/u-boot-spl-dtb.bin
+* $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/nand-bin/nand.img
+* $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/nand-bin/u-boot-spl-dtb.bin
 
 
 
@@ -689,14 +690,14 @@ The parameters that you can configure are shown in the following table:
 
 ### Exercising Simics Simulation from HPS Baseline System Example Design Framework
 
-The HPS Baseline System Example Design build framework is provided with the capability to simulate with Simics some reference use cases using the binaries built with this framework. The components included as part of the HPS Baseline System Example Design repository are listed next. These are included at **$TOP_FOLDER/agilex5_soc_devkit_ghrd_\*/simics/linux** directory.
+The HPS Baseline System Example Design build framework is provided with the capability to simulate with Simics some reference use cases using the binaries built with this framework. The components included as part of the HPS Baseline System Example Design repository are listed next. These are included at **$TOP_FOLDER/agilex5_soc_devkit_sed_\*/simics/linux** directory.
 
-* [runsimics.sh](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065b-premium-devkit-oobe/baseline/simics/linux/runsimics.sh) : This script is in charge of deploy the Simics project (under $TOP_FOLDER/agilex5_soc_devkit_ghrd\*/simics/linux which becomes the Simics project directory) and build it,  similarly to what is described in the [Simulation Setup section](#simulation-setup).  The script receives as parameter the device used to boot  along with the path of the location of the binaries. <br>
+* [runsimics.sh](https://github.com/altera-fpga/agilex5-ed-hps-baseline/blob/main/a5ed065b-premium-devkit-oobe/baseline/simics/linux/runsimics.sh) : This script is in charge of deploy the Simics project (under $TOP_FOLDER/agilex5_soc_devkit_sed\*/simics/linux which becomes the Simics project directory) and build it,  similarly to what is described in the [Simulation Setup section](#simulation-setup).  The script receives as parameter the device used to boot  along with the path of the location of the binaries. <br>
 Parameters:<br>  1\. **Boot mode:** **sdmmc** to boot from sdcard, **qspi** to boot from QSPI or **nand** to boot from NAND. <br>  2\. **Binaries path:** Path where the binares were built. The binaries needed could be the ones listed as output of the [Build SD Card HPS Baseline System Example Design](#build-sd-card-hps-baseline-system-example-design), [Build QSPI HPS Baseline System Example Design](#build-qspi-hps-baseline-system-example-design)  and [Build NAND HPS Baseline System Example Design](#build-nand-hps-baseline-system-example-design) sections, but the binaries could be taken from any other source. 
 
-* [sdmmc_boot](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/main/a5ed065b-premium-devkit-oobe/baseline-a55/simics/linux/sdmmc_boot) directory: This directory is used to the exercise the boot for SD Card use case. This includes  [sdmmc_gsrd.simics](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065b-premium-devkit-oobe/baseline-a55/simics/linux/sdmmc_boot/sdmmc_gsrd.simics) target script which defines the parameters needed to boot in this mode. The .simics target script calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed. In the binary directory, the SD Card image must be called **gsrd-console-image-agilex5e.rootfs.wic**.
-* [qspi_boot](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/main/a5ed065b-premium-devkit-oobe/baseline-a55/simics/linux/qspi_boot) directory: This directory is used to the exercise the QSPI boot mode. This includes the [qspi_gsrd.simics](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065b-premium-devkit-oobe/baseline-a55/simics/linux/qspi_boot/qspi_gsrd.simics) target script which defines the parameters needed to boot in this mode. The .simics target script in this directory calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed to run the simulation. In the binary directory, the QSPI image must be called **qspi_boot.rpd**.
-* [nand_boot](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/main/a5ed065b-premium-devkit-nand/baseline-a55/simics/linux/nand_boot): This directory is used to the exercise the NAND boot mode. This includes the [nand_gsrd.simics](https://github.com/altera-fpga/agilex5e-ed-gsrd/blob/main/a5ed065b-premium-devkit-nand/baseline-a55/simics/linux/nand_boot/nand_gsrd.simics) target script which defines the parameters needed to boot in this mode. The .simics target script in this directory calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed to run the simulation. In the binary directory, the NAND image must be called **nand.img**. If this file does not exist, then the **runsimics.sh** script will try to create it using the binaries available in the binaries directory.
+* [sdmmc_boot](https://github.com/altera-fpga/agilex5-ed-hps-baseline/tree/main/a5ed065b-premium-devkit-oobe/baseline-a55/simics/linux/sdmmc_boot) directory: This directory is used to the exercise the boot for SD Card use case. This includes  [sdmmc_gsrd.simics](https://github.com/altera-fpga/agilex5-ed-hps-baseline/blob/main/a5ed065b-premium-devkit-oobe/baseline-a55/simics/linux/sdmmc_boot/sdmmc_gsrd.simics) target script which defines the parameters needed to boot in this mode. The .simics target script calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed. In the binary directory, the SD Card image must be called **gsrd-console-image-agilex5e.rootfs.wic**.
+* [qspi_boot](https://github.com/altera-fpga/agilex5-ed-hps-baseline/tree/main/a5ed065b-premium-devkit-oobe/baseline-a55/simics/linux/qspi_boot) directory: This directory is used to the exercise the QSPI boot mode. This includes the [qspi_gsrd.simics](https://github.com/altera-fpga/agilex5-ed-hps-baseline/blob/main/a5ed065b-premium-devkit-oobe/baseline-a55/simics/linux/qspi_boot/qspi_gsrd.simics) target script which defines the parameters needed to boot in this mode. The .simics target script in this directory calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed to run the simulation. In the binary directory, the QSPI image must be called **qspi_boot.rpd**.
+* [nand_boot](https://github.com/altera-fpga/agilex5-ed-hps-baseline/tree/main/a5ed065b-premium-devkit-nand/baseline-a55/simics/linux/nand_boot): This directory is used to the exercise the NAND boot mode. This includes the [nand_gsrd.simics](https://github.com/altera-fpga/agilex5-ed-hps-baseline/blob/main/a5ed065b-premium-devkit-nand/baseline-a55/simics/linux/nand_boot/nand_gsrd.simics) target script which defines the parameters needed to boot in this mode. The .simics target script in this directory calls the Agilex 5 Universal Virtual Platform target script which is the one that configures this virtual platform, loading all the components needed to run the simulation. In the binary directory, the NAND image must be called **nand.img**. If this file does not exist, then the **runsimics.sh** script will try to create it using the binaries available in the binaries directory.
 
 The boot modes supported by the HPS Baseline System Example Design are:
 
@@ -722,7 +723,7 @@ $ cd $TOP_FOLDER
 # Simics installation dir
 $ export PATH=<Simics_installation_dir/simics/bin/:$PATH
 # Quartus Pro
-$ export QUARTUS_ROOTDIR=~/altera_pro/26.1.1/quartus/
+$ export QUARTUS_ROOTDIR=~/altera_pro/26.3/quartus/
 $ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 #### Exercise SDCard Boot Mode under HPS Baseline System Example Design Framework
@@ -731,10 +732,10 @@ It is assumed that the instructions at [Simulation Setup under HPS Baseline Syst
 
 The **runsimics.sh** script need to be called, providing as parameters the **sdmmc** boot mode and the location of the binaries.
 ```bash
-$ cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/simics/linux/
-$ ./runsimics.sh  sdmmc $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e
+$ cd $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/simics/linux/
+$ ./runsimics.sh  sdmmc $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e
 ```
-This will deploy the **agilex5e-universal** virtual platform under **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/simics/linux/** directory, create the Simics project and build it. This will also launch the Simics simulation using **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/simics/linux/sdmmc_boot/sdmmc_gsrd.simics** as target script. 
+This will deploy the **agilex5e-universal** virtual platform under **$TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/simics/linux/** directory, create the Simics project and build it. This will also launch the Simics simulation using **$TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/simics/linux/sdmmc_boot/sdmmc_gsrd.simics** as target script. 
 
 When the simulation is launched, the current Linux terminal will become the Simics CLI and the Serial console will pop up.  To start the simulation enter **"run"** command in the Simics CLI.
 
@@ -748,11 +749,11 @@ It is assumed that the instructions at [Simulation Setup under HPS Baseline Syst
 The **runsimics.sh** script need to be called, providing the (**qspi**) boot mode and the location of the binaries used to boot from QSPI as parameters.
 
 ```bash
-$ cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/simics/linux/
-$ ./runsimics.sh  qspi $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/qspi_rpd
+$ cd $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/simics/linux/
+$ ./runsimics.sh  qspi $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/qspi_rpd
 ```
 
-This will deploy the **agilex5e-universal** virtual platform under **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/simics/linux/** directory, create the Simics project and build it. This will also launch the Simics simulation using **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/simics/linux/qspi_boot/qspi_gsrd.simics** as target script.
+This will deploy the **agilex5e-universal** virtual platform under **$TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/simics/linux/** directory, create the Simics project and build it. This will also launch the Simics simulation using **$TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/simics/linux/qspi_boot/qspi_gsrd.simics** as target script.
 
 When the simulation is launched, the current Linux terminal will become the Simics CLI and the Serial console will pop up.  To start the simulation enter **"run"** command in the Simics CLI.
 
@@ -763,11 +764,11 @@ It is assumed that the instructions at [Simulation Setup under HPS Baseline Syst
 The **runsimics.sh** script need to be called, providing the (**nand**) boot mode and the location of the binaries used to boot from NAND as parameters.
 
 ```bash
-$ cd $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/simics/linux/
-$ ./runsimics.sh  nand $TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/software/nand-bin
+$ cd $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/simics/linux/
+$ ./runsimics.sh  nand $TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/software/nand-bin
 ```
 
-This will deploy the **agilex5e-universal** virtual platform under **$TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/simics/linux/** directory, create the Simics project and build it. This will also launch the Simics simulation using **$TOP_FOLDER/agilex5_soc_devkit_ghrd_nand_a55/simics/linux/qspi_boot/qspi_gsrd.simics** as target script.
+This will deploy the **agilex5e-universal** virtual platform under **$TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/simics/linux/** directory, create the Simics project and build it. This will also launch the Simics simulation using **$TOP_FOLDER/agilex5_soc_devkit_sed_nand_a55/simics/linux/qspi_boot/qspi_gsrd.simics** as target script.
 
 When the simulation is launched, the current Linux terminal will become the Simics CLI and the Serial console will pop up.  To start the simulation enter **"run"** command in the Simics CLI.
 
@@ -840,11 +841,11 @@ Consider that the Intel Simics Simulator for Altera® FPGAs Simulator has been i
 4\. Copy the following binaries created in [Build Instructions for HPS Baseline System Example Design](#build-instructions-for-hps-baseline-system-example-design) section to the Simics project directory:
 
 ```bash
-$ cp $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/gsrd-console-image-agilex5e.rootfs.wic .
+$ cp $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/gsrd-console-image-agilex5e.rootfs.wic .
 $ cp
-$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin .
-$ cp $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/qspi_rpd/qspi_boot.rpd .
-$ cp $TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin u-boot-spl-dtb_qspi.bin
+$TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin .
+$ cp $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/qspi_rpd/qspi_boot.rpd .
+$ cp $TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_qspi/build/tmp/deploy/images/agilex5e/u-boot-spl-dtb.bin u-boot-spl-dtb_qspi.bin
 ```
 
 5.\ Customize the configuration of the Agilex™ 5 E-Series Universal virtual platform, according to the setup required to exercise any specific use case. Set up the **fsbl_image_filename** parameter with the first-stage bootloader. If the boot implies booting from an SD Card device, configure **sd_image_filename** and **create_hps_sd_card** parameters (this image should include the main bootloader and the OS and/or application images). As part of the configuration, select the core used to boot using the **hps_boot_core** parameter, which could be core 0 (A55) or core 2 (A76).
@@ -1851,7 +1852,7 @@ Note: You can perform the build of this application by updating the Yocto recipe
 
 ```bash
 cd $TOP_FOLDER/
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga-patch
+git clone -b QPDS26.3_REL_BASELINE_PR https://github.com/altera-fpga/u-boot-socfpga u-boot-socfpga-patch
 cd u-boot-socfpga-patch/
  - Create cmd/socFPGATrainingExamples.c file with the source code provided of the example application.
  - Edit cmd/Makefile to include the build of socFPGATrainingExamples.c
@@ -1869,15 +1870,15 @@ sed -i '1i Upstream-Status: Pending\n' myUbootExampleApp.patch
 
 To deploy the patch in the Yocto build flow do the following just before calling the **time ./build.sh** command:
 
-1\. Copy the `$TOP_FOLDER/u-boot-socfpga-patch/myUbootExampleApp.patch` file to the **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/meta-custom/recipes-bsp/u-boot/files/patches/** directory.
+1\. Copy the `$TOP_FOLDER/u-boot-socfpga-patch/myUbootExampleApp.patch` file to the **$TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_sd/meta-custom/recipes-bsp/u-boot/files/patches/** directory.
 
-2\. Request to deploy the path by adding a patch to the **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/meta-custom/recipes-bsp/u-boot/u-boot-socfpga_%.bbappend** file:
+2\. Request to deploy the path by adding a patch to the **$TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_sd/meta-custom/recipes-bsp/u-boot/u-boot-socfpga_%.bbappend** file:
 
 ```bash
   # Set path for configs and source patches
   FILESEXTRAPATHS:prepend := "${THISDIR}/files/configs:${THISDIR}/files/patches:"
   
-  SRC_URI:append = " \      
+  SRC_URI:append = " \
         file://myUbootExampleApp.patch \
         "
 ```
@@ -1885,7 +1886,7 @@ To deploy the patch in the Yocto build flow do the following just before calling
 3\. Continue with the rest of the Yocto build flow indicated with the time **./build.sh command**.
 
 
-After these steps, the application is included in the U-Boot binary file (**uboot.itb**), which is part of the SDCard image created (**gsrd-console-image-agilex5e.rootfs.wic**) and a symbol file corresponding to the U-Boot image, located at **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/u-boot**. The symbol file is used later during the setup of the debug session.
+After these steps, the application is included in the U-Boot binary file (**uboot.itb**), which is part of the SDCard image created (**gsrd-console-image-agilex5e.rootfs.wic**) and a symbol file corresponding to the U-Boot image, located at **$TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_sd/build/tmp/deploy/images/agilex5e/u-boot**. The symbol file is used later during the setup of the debug session.
 
 <h5>Setup</h5>
 
@@ -1895,11 +1896,11 @@ Start with the setup of the main use case defined at [Simulation Setup]#simulati
 # uboot-linux_sdcard.simics
 :
 add-symbol-file  <path of symbol file>/u-boot  0x7FD0D000 -relative
-add-pathmap-entry "/usr/src/debug/u-boot-socfpga/v2026.04+git/" "<$TOP_FOLDER path>/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2025.10+git/git/"
+add-pathmap-entry "/usr/src/debug/u-boot-socfpga/v2026.07+git/" "<$TOP_FOLDER path>/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2026.07+git/sources/u-boot-socfpga-v2026.07+git/"
 bp.source_location.break do_helloTestApp
 ```
 
-**Note:** The symbol file is being loaded with an offset relocation of 0x7FD0D000. This is needed because in a late stage of the U-Boot execution, this relocates itself into a different SDRAM memory location and this should be indicated to the debugger, so there is a match between the addresses indicated in the symbol file and the real memory address location of the symbols. You can obtain this relocation offset by subtracting the real address of a specific function (which can be obtained from the application being executed) and the original offset from the same function in the symbols file (provided in the **$TOP_FOLDER/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2026.04+git/build/socfpga_agilex5_defconfig/u-boot.sym** file). An example of the calculation of this relocation offset is shown in the following figure (values are from a different release):
+**Note:** The symbol file is being loaded with an offset relocation of 0x7FD0D000. This is needed because in a late stage of the U-Boot execution, this relocates itself into a different SDRAM memory location and this should be indicated to the debugger, so there is a match between the addresses indicated in the symbol file and the real memory address location of the symbols. You can obtain this relocation offset by subtracting the real address of a specific function (which can be obtained from the application being executed) and the original offset from the same function in the symbols file (provided in the **$TOP_FOLDER/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2026.07+git/build/socfpga_agilex5_defconfig-agilex5e-socdk-atf/u-boot.sym** file). An example of the calculation of this relocation offset is shown in the following figure (values are from a different release):
 
 ![ubootApp relocationOffset2.jpg](images/ubootApp_relocationOffset2.jpg)
 
@@ -2047,9 +2048,9 @@ This section requires the **simics-riscfree** script. It is included in your Int
 
 7\. Go to the **PathMap** tab menu and **Add**  a new source code mapping providing the Source and Destination as shown next:
 
-* Source: /usr/src/debug/u-boot-socfpga/v2026.04+git/" 
+* Source: /usr/src/debug/u-boot-socfpga/v2026.07+git/" 
 
-* Destination: <$TOP_FOLDER path>/agilex5_soc_devkit_ghrd_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2025.10+git/git/
+* Destination: <$TOP_FOLDER path>/agilex5_soc_devkit_sed_sdqspi_a55/software/yocto_linux_sd/build/tmp/work/agilex5e-poky-linux/u-boot-socfpga/v2025.10+git/git/
 
 * Keep **Context query** empty.
 

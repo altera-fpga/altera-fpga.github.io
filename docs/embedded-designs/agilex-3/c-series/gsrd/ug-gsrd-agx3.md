@@ -29,7 +29,7 @@ The following are required to be able to fully exercise the Agilex 3 FPGA and So
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the HPS Baseline System Example Design .
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3 
   * TFTP server. This used to download the eMMC binaries to board to be flashed by U-Boot
   
 * Local Ethernet network, with DHCP server
@@ -37,33 +37,37 @@ The following are required to be able to fully exercise the Agilex 3 FPGA and So
 
 ### Prebuilt Binaries
 
-The Agilex&trade; 3 FPGA and SoC C-Series Development Kit HPS Baseline System Example Design  binaries are located at [https://releases.rocketboards.org/2026.08/](https://releases.rocketboards.org/2026.08/):
+The Agilex&trade; 3 FPGA and SoC C-Series Development Kit HPS Baseline System Example Design  binaries are located at [https://releases.rocketboards.org/2026.10/](https://releases.rocketboards.org/2026.10/):
 
 | Boot Source | Link |
 | ---------------------- | -- |
-| SD Card | [https://releases.rocketboards.org/2026.08/gsrd/agilex3_gsrd.baseline](https://releases.rocketboards.org/2026.08/gsrd/agilex3_gsrd.baseline) |
-| QSPI | [https://releases.rocketboards.org/2026.08/qspi/agilex3_qspi](https://releases.rocketboards.org/2026.08/qspi/agilex3_qspi.baseline) |
+| SD Card | [https://releases.rocketboards.org/2026.10/gsrd/agilex3_gsrd.baseline](https://releases.rocketboards.org/2026.10/gsrd/agilex3_gsrd.baseline) |
+| QSPI | [https://releases.rocketboards.org/2026.10/qspi/agilex3_qspi](https://releases.rocketboards.org/2026.10/qspi/agilex3_qspi.baseline) |
 
 ### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3 and the following software component versions integrate the 26.3 release. 
 
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 3 Design | [https://github.com/altera-fpga/agilex3c-ed-gsrd](https://github.com/altera-fpga/agilex3c-ed-gsrd)    | main  | QPDS26.1.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1.1_REL_GSRD_PR |
+| Agilex 3 Design | [https://github.com/altera-fpga/agilex3-ed-hps-baseline](https://github.com/altera-fpga/agilex3-ed-hps-baseline)    | main  | QPDS26.3_REL_BASELINE_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.37-lts | QPDS26.3_REL_BASELINE_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.15.0   | QPDS26.3_REL_BASELINE_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.07 | QPDS26.3_REL_BASELINE_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.3_REL_BASELINE_PR |
 | KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
+**Note:** Starting from 26.3 Quartus release, the build of the Quartus projects in the System Example Designs are based only on Visual Designer Studio (VDS).<br>
+Please review the following KDB if you face Quartus design build problems when the RTL was generated with VDS:<br>
+[Why do Quartus® Prime Pro 26.3 and earlier fail to build a Agilex® 5/Agilex® 3/Agilex® 7 FPGA M-Series VDS based design whose RTL has been generated with VDS?](https://community.altera.com/kb/knowledge-base/why-do-quartus%C2%AE-prime-pro-26-3-and-earlier-fail-to-build-a-agilex%C2%AE-5agilex%C2%AE-3agi/357511).
+
 ### Release Notes
 
-See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR)
+See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.3_REL_BASELINE_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.3_REL_BASELINE_PR)
 
 ### Development Kit
 
@@ -188,7 +192,7 @@ All the scenarios included in this release require a serial connection. This sec
 <hr/>
 <h5 id="write-sd-card-image">Write SD Card</h5>
 
-1\. Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.08/gsrd/agilex3_gsrd.baseline/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/agilex3_gsrd.baseline/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex3.rootfs.wic`.
+1\. Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.10/gsrd/agilex3_gsrd.baseline/sdimage.tar.gz](https://releases.rocketboards.org/2026.10/gsrd/agilex3_gsrd.baseline/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex3.rootfs.wic`.
 
 2\. Write the gsrd-console-image-agilex3_devkit.wic. SD card image to the micro SD card using the included USB writer in the host computer:
 
@@ -214,7 +218,7 @@ sync
 
 3\. Download and extract the JIC image, then write it to QSPI
 ```bash
-wget https://releases.rocketboards.org/2026.08/gsrd/agilex3_gsrd.baseline/ghrd.hps.jic
+wget https://releases.rocketboards.org/2026.10/gsrd/agilex3_gsrd.baseline/ghrd.hps.jic
 jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 ```
@@ -330,7 +334,7 @@ Either write 1MB of zeroes at the beginning of the SD card, or remove the SD car
 
 3\. Download and extract the JIC image, then write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2026.08/qspi/agilex3_qspi.baseline/qspi_boot.hps.jic
+wget https://releases.rocketboards.org/2026.10/qspi/agilex3_qspi.baseline/qspi_boot.hps.jic
 jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;qspi_boot.hps.jic"
 ```
@@ -366,13 +370,11 @@ This section presents how to rebuild the binaries for the HPS Enablement board, 
 
 Kas is a Python-based lightweight build orchestration layer on top of BitBake/Yocto. Kas allows you to define your build environment in a YAML manifest, so you can perform checkout, environment setup, configuration, and build invocation with a single command. Kas provides a more maintainable build description, it offers improved reproducibility, reduced setup friction, and a clearer abstraction for managing multiple layers, revisions, and configuration fragments.
 
-The GSRD 2.0 software source code is released inside the [software/yocto_linux](https://github.com/altera-fpga/agilex3c-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/a3cw135-devkit-oobe/baseline/software/yocto_linux) . Accessing the link will display a README page with details on how the Kas tool.
+The GSRD 2.0 software source code is released inside the [software/yocto_linux](https://github.com/altera-fpga/agilex3c-ed-gsrd/tree/QPDS26.3_REL_BASELINE_PR/dk-a3w135bm16aea/baseline/software/yocto_linux) . Accessing the link will display a README page with details on how the Kas tool.
 
 For more details about Kas, refer to the official documentation at [https://kas.readthedocs.io/en/latest/](https://kas.readthedocs.io/en/latest/).
 
 ### Kas Build Prerequisites
-
-The same [prerequisites](#yocto-build-prerequisites) as for regular Yocto build are required. 
 
 1\. Make sure you have Yocto system requirements met: [https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions](https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions).
 
@@ -426,7 +428,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
@@ -441,24 +443,22 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 ```bash
 cd $TOP_FOLDER
-rm -rf agilex3_soc_devkit_ghrd && mkdir agilex3_soc_devkit_ghrd && cd agilex3_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a3w135bm16aea-baseline.zip
+rm -rf agilex3_soc_devkit_baseline && mkdir agilex3_soc_devkit_baseline && cd agilex3_soc_devkit_baseline
+wget https://github.com/altera-fpga/agilex3-ed-hps-baseline/releases/download/QPDS26.3_REL_BASELINE_PR/dk-a3w135bm16aea-baseline.zip
 unzip dk-a3w135bm16aea-baseline.zip
 rm -f dk-a3w135bm16aea-baseline.zip
-make baseline-build
-make baseline-install-core-rbf
+make baseline_a55-build
+make baseline_a55-install
 cd ..
 ```
 
 
 The following files are created:
 
-* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/baseline.sof`
-* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
+* `$TOP_FOLDER/agilex3_soc_devkit_baseline/output_files/baseline_a55.sof`
+* `$TOP_FOLDER/agilex3_soc_devkit_baseline/install/binaries/baseline_a55.core.rbf`
 
 
-
-<span style="color: red;">**Important Note:**</span> Please refer to [Migrate Hardware Design from GSRD 1.0 to GSRD 2.0](#migrate-hardware-design-from-gsrd-10-to-gsrd-20) section for important information about how to migrate from a hardware design based on GSRD 1.0 to GSRD 2.0.
 
 <h5>Build Yocto Using Kas</h5>
 
@@ -468,7 +468,7 @@ The following files are created:
 
 
 ```bash
-cd $TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux
+cd $TOP_FOLDER/agilex3_soc_devkit_baseline/software/yocto_linux
 python3 -m venv venv --system-site-packages
 source venv/bin/activate
 pip install --upgrade pip
@@ -482,8 +482,8 @@ pip install kconfiglib
 
 
 ```bash
-cp $TOP_FOLDER/agilex3_soc_devkit_ghrd/install/binaries/ghrd.core.rbf \
-   $TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_hps_debug.core.rbf
+cp $TOP_FOLDER/agilex3_soc_devkit_baseline/install/binaries/baseline_a55.core.rbf \
+   $TOP_FOLDER/agilex3_soc_devkit_baseline/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55.core.rbf
 ```
 
 
@@ -495,7 +495,7 @@ kas build kas.yml gsrd-console-image
 ```
 
 
-The following relevant files are created in `$TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex3/`:
+The following relevant files are created in `$TOP_FOLDER/agilex3_soc_devkit_baseline/software/yocto_linux/build/tmp/deploy/images/agilex3/`:
 
 * `gsrd-console-image-agilex3.rootfs.wic`
 * `u-boot-spl-dtb.hex`
@@ -517,10 +517,10 @@ export BB_ENV_PASSTHROUGH_ADDITIONS="$BB_ENV_PASSTHROUGH_ADDITIONS PARALLEL_MAKE
 cd $TOP_FOLDER
 rm -f baseline.hps.jic baseline.core.rbf
 quartus_pfg \
--c agilex3_soc_devkit_ghrd/output_files/baseline.sof baseline.jic \
+-c agilex3_soc_devkit_baseline/output_files/baseline.sof baseline.jic \
 -o device=MT25QU128  \
 -o flash_loader=A3CW135BM16AE6S \
--o hps_path=agilex3_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.hex \
+-o hps_path=agilex3_soc_devkit_baseline/software/yocto_linux/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.hex \
 -o mode=ASX4 \
 -o hps=1
 ```
@@ -554,7 +554,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
@@ -569,24 +569,22 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 ```bash
 cd $TOP_FOLDER
-rm -rf agilex3_soc_devkit_ghrd && mkdir agilex3_soc_devkit_ghrd && cd agilex3_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a3w135bm16aea-baseline.zip
-unzip a3cw135-devkit-oobe-baseline.zip
-rm -f a3cw135-devkit-oobe-baseline.zip
+rm -rf agilex3_soc_devkit_baseline && mkdir agilex3_soc_devkit_baseline && cd agilex3_soc_devkit_baseline
+wget https://github.com/altera-fpga/agilex3-ed-hps-baseline/releases/download/QPDS26.3_REL_BASELINE_PR/dk-a3w135bm16aea-baseline.zip
+unzip dk-a3w135bm16aea-baseline.zip
+rm -f dk-a3w135bm16aea-baseline.zip
 make baseline-build
-make baseline-install-core-rbf
+make baseline-install
 cd ..
 ```
 
 
 The following files are created:
 
-* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/baseline.sof`
-* `$TOP_FOLDER/agilex3_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
+* `$TOP_FOLDER/agilex3_soc_devkit_baseline/output_files/baseline.sof`
+* `$TOP_FOLDER/agilex3_soc_devkit_baseline/install/binaries/ghrd.core.rbf`
 
 
-
-<span style="color: red;">**Important Note:**</span> Please refer to [Migrate Hardware Design from GSRD 1.0 to GSRD 2.0](#migrate-hardware-design-from-gsrd-10-to-gsrd-20) section for important information about how to migrate from a hardware design based on GSRD 1.0 to GSRD 2.0.
 
 <h5>Build Yocto Using Kas</h5>
 
@@ -595,7 +593,7 @@ The following files are created:
 
 
 ```bash
-cd $TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux
+cd $TOP_FOLDER/agilex3_soc_devkit_baseline/software/yocto_linux
 python3 -m venv venv --system-site-packages
 source venv/bin/activate
 pip install --upgrade pip
@@ -609,8 +607,8 @@ pip install kconfiglib
 
 
 ```bash
-cp $TOP_FOLDER/agilex3_soc_devkit_ghrd/install/binaries/ghrd.core.rbf \
-   $TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_hps_debug.core.rbf
+cp $TOP_FOLDER/agilex3_soc_devkit_baseline/install/binaries/baseline_a55.core.rbf \
+   $TOP_FOLDER/agilex3_soc_devkit_baseline/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55.core.rbf
 ```
 
 
@@ -622,9 +620,9 @@ kas build kas.yml:qspi_boot_src.yml
 ```
 
 
-> **Note**: If you wish to customize your Linux image, you can use the `kas menu` command instead. The options here are explained in section [Customizing Yocto Kas Build](#customizing-yocto-kas-build) below.
+> **Note**: If you wish to customize your Linux image, you can use the `kas menu` command instead. The options here are explained in section [Customizing Yocto Kas Build](#Customize Kas Build) below.
 
-The following relevant files are created in `$TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex3/`:
+The following relevant files are created in `$TOP_FOLDER/agilex3_soc_devkit_baseline/software/yocto_linux/build/tmp/deploy/images/agilex3/`:
 
 * `u-boot-spl-dtb.hex`
 * `u-boot.itb`
@@ -646,23 +644,23 @@ mkdir qspi_boot
 cd qspi_boot
 ```
 
-2\. Get the `ubinize_nor.cfg` file which contains the details on how to build the `root.ubi` volume, and `qspi_boot.pfg` which contains the instructions for Programming File Generator on how to create the .jic filem and the `uboot.env` containing the U-Boot environment:
+2\. Get the `ubinize_nor.cfg` file which contains the details on how to build the `root.ubi` volume, and `qspi_boot.pfg` which contains the instructions for Programming File Generator on how to create the .jic file and the `uboot.env` containing the U-Boot environment:
 
 ```bash
-wget https://releases.rocketboards.org/2026.08/qspi/agilex3_qspi.baseline/ubinize_nor.cfg
-wget https://releases.rocketboards.org/2026.08/qspi/agilex3_qspi.baseline/qspi_boot.pfg
-wget https://releases.rocketboards.org/2026.08/qspi/agilex3_qspi.baseline/uboot.env
+wget https://releases.rocketboards.org/2026.10/qspi/agilex3_qspi.baseline/ubinize_nor.cfg
+wget https://releases.rocketboards.org/2026.10/qspi/agilex3_qspi.baseline/qspi_boot.pfg
+wget https://releases.rocketboards.org/2026.10/qspi/agilex3_qspi.baseline/uboot.env
 ```
 
 3\. Link to the files that are needed from building the hardware design, and yocto:
 
 ```bash
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd/output_files/baseline.sof ghrd.sof
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.hex .
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex3/u-boot.itb u-boot.bin
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex3/core-image-minimal-agilex3.rootfs_nor.ubifs .
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex3/kernel.itb .
-ln -s $TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex3/boot.scr.uimg .
+ln -s $TOP_FOLDER/agilex3_soc_devkit_baseline/output_files/baseline.sof ghrd.sof
+ln -s $TOP_FOLDER/agilex3_soc_devkit_baseline/software/yocto_linux/build/tmp/deploy/images/agilex3/u-boot-spl-dtb.hex .
+ln -s $TOP_FOLDER/agilex3_soc_devkit_baseline/software/yocto_linux/build/tmp/deploy/images/agilex3/u-boot.itb u-boot.bin
+ln -s $TOP_FOLDER/agilex3_soc_devkit_baseline/software/yocto_linux/build/tmp/deploy/images/agilex3/core-image-minimal-agilex3.rootfs_nor.ubifs .
+ln -s $TOP_FOLDER/agilex3_soc_devkit_baseline/software/yocto_linux/build/tmp/deploy/images/agilex3/kernel.itb .
+ln -s $TOP_FOLDER/agilex3_soc_devkit_baseline/software/yocto_linux/build/tmp/deploy/images/agilex3/boot.scr.uimg .
 ```
 
 
@@ -695,7 +693,7 @@ The `kas.yml` file is the central configuration file used by Kas to define all c
 
 Kas also offers Kconfig-based customizations to provide a flexible and user-friendly configuration experience. This enables you to select repositories, layers, and build targets through a structured menu interface instead of editing YAML files directly. This approach combines the clarity and reproducibility of Kas with the modular configurability of the Linux kernel’s Kconfig system, making it easier to tailor builds for different platforms or use cases while maintaining a consistent and automated setup.
 
-Review the kas.yml file, the Kconfig options and associated documentation at [https://github.com/altera-fpga/agilex3-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/a3cw135-devkit-oobe/baseline/software/yocto_linux](https://github.com/altera-fpga/agilex3-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/a3cw135-devkit-oobe/baseline/software/yocto_linux).
+Review the kas.yml file, the Kconfig options and associated documentation at [https://github.com/altera-fpga/agilex3c-ed-gsrd/tree/QPDS26.3_REL_BASELINE_PR/dk-a3w135bm16aea/baseline/software/yocto_linux](https://github.com/altera-fpga/agilex3c-ed-gsrd/tree/QPDS26.3_REL_BASELINE_PR/dk-a3w135bm16aea/baseline/software/yocto_linux).
 
 In the build instructions presented, we did not use the Kconfig options, only the default options from `kas.yml` were used. This section shows how you can use `kas menu` to customize the build.
 
@@ -707,14 +705,14 @@ When using `kas menu`, the initial settings from `kas.yml` are customized with t
 2\. Copy the core.rbf file to where Kas needs it to be. Note that the filename when using Kconfig is different than when using the `kas.yml` alone (`top.core.rbf` vs `ghrd.core.rbf`)
 
 ```bash
-cp $TOP_FOLDER/agilex3_soc_devkit_ghrd/install/binaries/ghrd.core.rbf \
-   $TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/top.core.rbf
+cp $TOP_FOLDER/agilex3_soc_devkit_baseline/install/binaries/ghrd.core.rbf \
+   $TOP_FOLDER/agilex3_soc_devkit_baseline/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/top.core.rbf
 ```
 
 3\. Create an enter a new Python virtual environment, not to interfere with the current system Python packages:
 
 ```bash
-cd $TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux
+cd $TOP_FOLDER/agilex3_soc_devkit_baseline/software/yocto_linux
 python3 -m venv venv --system-site-packages
 source venv/bin/activate
 pip install --upgrade pip
@@ -771,14 +769,14 @@ In addition to using `kas build` to build Yocto based on the `kas.yml` and `kas 
 2\. Copy the core.rbf file to where bitbake needs it to be. 
 
 ```bash
-cp $TOP_FOLDER/agilex3_soc_devkit_ghrd/install/binaries/ghrd.core.rbf\
-   $TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/
+cp $TOP_FOLDER/agilex3_soc_devkit_baseline/install/binaries/ghrd.core.rbf\
+   $TOP_FOLDER/agilex3_soc_devkit_baseline/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/
 ```
 
 3\. Create an enter a new Python virtual environment, not to interfere with the current system Python packages:
 
 ```bash
-cd $TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux
+cd $TOP_FOLDER/agilex3_soc_devkit_baseline/software/yocto_linux
 python3 -m venv venv --system-site-packages
 source venv/bin/activate
 pip install --upgrade pip

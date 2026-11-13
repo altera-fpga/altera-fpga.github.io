@@ -28,7 +28,7 @@ You will need the following items:
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the Quartus design.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1
+  * Altera&trade; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the design.
 
@@ -73,7 +73,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
@@ -86,12 +86,12 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 
 ```bash 
-rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-unzip QPDS26.1.1_REL_GSRD_PR.zip
-rm -f QPDS26.1.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS26.1.1_REL_GSRD_PR stratix10-ed-gsrd
-cd stratix10-ed-gsrd
+rm -rf stratix10-ed-hps-baseline
+wget https://github.com/altera-fpga/stratix10-ed-hps-baseline/archive/refs/tags/QPDS26.3_REL_BASELINE_PR.zip
+unzip QPDS26.3_REL_BASELINE_PR.zip
+rm -f QPDS26.3_REL_BASELINE_PR.zip
+mv stratix10-ed-hps-baseline-QPDS26.3_REL_BASELINE_PR stratix10-ed-hps-baseline
+cd stratix10-ed-hps-baseline
 make s10-htile-soc-devkit-oobe-baseline-all
 cd ..
 ```
@@ -105,7 +105,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf arm-trusted-firmware 
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/arm-trusted-firmware 
+git clone -b QPDS26.3_REL_BASELINE_PR https://github.com/altera-fpga/arm-trusted-firmware 
 cd arm-trusted-firmware 
 make -j 48 bl31 PLAT=stratix10 
 cd .. 
@@ -120,7 +120,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -rf u-boot-socfpga 
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/u-boot-socfpga 
+git clone -b QPDS26.3_REL_BASELINE_PR https://github.com/altera-fpga/u-boot-socfpga 
 cd u-boot-socfpga 
 # enable dwarf4 debug info, for compatibility with arm ds 
 sed -i 's/PLATFORM_CPPFLAGS += -D__ARM__/PLATFORM_CPPFLAGS += -D__ARM__ -gdwarf-4/g' arch/arm/config.mk 
@@ -192,7 +192,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -f ghrd.hps.jic ghrd.core.rbf 
-quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline.sof ghrd.jic \
+quartus_pfg -c stratix10-ed-hps-baseline/install/designs/s10_htile_soc_devkit_oobe_baseline.sof ghrd.jic \
  -o device=MT25QU128 \
  -o flash_loader=1SX280HU2 \
  -o hps_path=u-boot-socfpga/spl/u-boot-spl-dtb.hex \
@@ -209,7 +209,7 @@ quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_basel
 ```bash 
 cd $TOP_FOLDER 
 rm -rf linux-socfpga 
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/linux-socfpga 
+git clone -b QPDS26.3_REL_BASELINE_PR https://github.com/altera-fpga/linux-socfpga 
 cd linux-socfpga 
 make clean && make mrproper 
 make defconfig 
@@ -291,7 +291,7 @@ Explanation:
 ```bash 
 cd $TOP_FOLDER 
 rm -f rootfs.tar.gz
-wget -O rootfs.tar.gz https://releases.rocketboards.org/2026.08/gsrd/agilex7_dk_si_agf014eb_gsrd/rootfs/console-image-minimal-agilex7.tar.gz
+wget -O rootfs.tar.gz https://releases.rocketboards.org/2026.10/gsrd/agilex7_dk_si_agf014eb_gsrd/rootfs/console-image-minimal-agilex7.tar.gz
 ```
 
 
@@ -392,7 +392,7 @@ Full instructions for building and running the example are provided.
 
 1\. Set up environment:
 
-
+ 
 
 ```bash 
 sudo rm -rf stratix10.fabric_config.yocto 
@@ -420,7 +420,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
@@ -433,12 +433,12 @@ source ~/altera_pro/26.1.1/qinit.sh
 
 
 ```bash 
-rm -rf stratix10-ed-gsrd
-wget https://github.com/altera-fpga/stratix10-ed-gsrd/archive/refs/tags/QPDS26.1.1_REL_GSRD_PR.zip
-unzip QPDS26.1.1_REL_GSRD_PR.zip
-rm -f QPDS26.1.1_REL_GSRD_PR.zip
-mv stratix10-ed-gsrd-QPDS26.1.1_REL_GSRD_PR stratix10-ed-gsrd
-cd stratix10-ed-gsrd
+rm -rf stratix10-ed-hps-baseline
+wget https://github.com/altera-fpga/stratix10-ed-hps-baseline/archive/refs/tags/QPDS26.3_REL_BASELINE_PR.zip
+unzip QPDS26.3_REL_BASELINE_PR.zip
+rm -f QPDS26.3_REL_BASELINE_PR.zip
+mv stratix10-ed-hps-baseline-QPDS26.3_REL_BASELINE_PR stratix10-ed-hps-baseline
+cd stratix10-ed-hps-baseline
 make s10-htile-soc-devkit-oobe-baseline-all
 cd ..
 ```
@@ -452,7 +452,7 @@ cd ..
 ```bash 
 cd $TOP_FOLDER 
 rm -f ghrd.hps.jic ghrd.core.rbf 
- quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline_hps_debug.sof \
+ quartus_pfg -c stratix10-ed-hps-baseline/install/designs/s10_htile_soc_devkit_oobe_baseline_hps_debug.sof \
  ghrd.jic \
  -o device=MT25QU128 \
  -o flash_loader=1SX280HU2 \
@@ -471,7 +471,7 @@ rm ghrd.hps.jic
 ```bash 
 cd $TOP_FOLDER 
 rm -rf gsrd-socfpga 
-git clone -b QPDS26.1.1_REL_GSRD_PR https://github.com/altera-fpga/gsrd-socfpga 
+git clone -b QPDS26.3_REL_BASELINE_PR https://github.com/altera-fpga/gsrd-socfpga 
 cd gsrd-socfpga 
 . stratix10_htile-gsrd-build.sh 
 build_setup 
@@ -631,7 +631,7 @@ package
 ```bash 
 cd $TOP_FOLDER 
 rm -f *jic* *rbf* 
- quartus_pfg -c stratix10-ed-gsrd/install/designs/s10_htile_soc_devkit_oobe_baseline.sof \
+ quartus_pfg -c stratix10-ed-hps-baseline/install/designs/s10_htile_soc_devkit_oobe_baseline.sof \
  ghrd.jic \
  -o hps_path=gsrd-socfpga/stratix10_htile-gsrd-images/u-boot-stratix10-socdk-gsrd-atf/u-boot-spl-dtb.hex \
  -o device=MT25QU128 \

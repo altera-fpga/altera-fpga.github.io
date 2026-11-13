@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560">
+  <title>Bao Linux and FreeRTOS architecture</title>
+  <defs>
+    <style>
+      .h { font-family: Calibri, "Segoe UI", Arial, sans-serif; font-size: 16px; font-weight: 700; fill: #1a1a1a; }
+      .hw { font-family: Calibri, "Segoe UI", Arial, sans-serif; font-size: 16px; font-weight: 700; fill: #ffffff; }
+      .t { font-family: Calibri, "Segoe UI", Arial, sans-serif; font-size: 14px; fill: #1a1a1a; }
+      .tw { font-family: Calibri, "Segoe UI", Arial, sans-serif; font-size: 14px; fill: #ffffff; }
+      .box { stroke: #222; stroke-width: 1; }
+      .linux { fill: #ffd965; }
+      .frt { fill: #b7c8e8; }
+      .idle { fill: #f2f2f2; }
+      .ipc { fill: #deebf7; }
+      .hyp { fill: #7030a0; }
+      .hwb { fill: #00b050; }
+      .boot { fill: #f7f7f7; stroke: #c8c8c8; stroke-width: 1; }
+    </style>
+  </defs>
+
+  <rect class="box linux" x="16" y="16" width="500" height="188" rx="6"/>
+  <text class="h" x="266" y="44" text-anchor="middle">Linux - 2x Cortex-A76, SMP</text>
+  <text class="t" x="266" y="72" text-anchor="middle">Serial console on UART0.</text>
+  <text class="t" x="266" y="94" text-anchor="middle">SD/MMC rootfs, gmac2 Ethernet, USB 3.1, QSPI.</text>
+  <text class="t" x="266" y="116" text-anchor="middle">SMMUv3 stage-2 for SDMMC, gmac2, and USB.</text>
+  <text class="t" x="266" y="138" text-anchor="middle">Cache-colored RAM. L3 colors 4-15 (1.5 MiB).</text>
+  <text class="t" x="266" y="160" text-anchor="middle">linux.bin loaded at 0x82000000.</text>
+  <text class="t" x="266" y="182" text-anchor="middle">bao-rproc attaches to the running FreeRTOS guest.</text>
+
+  <rect class="box frt" x="532" y="16" width="292" height="188" rx="6"/>
+  <text class="h" x="678" y="44" text-anchor="middle">FreeRTOS - A55 core 0</text>
+  <text class="t" x="678" y="72" text-anchor="middle">rpmsg_console.</text>
+  <text class="t" x="678" y="94" text-anchor="middle">Heartbeats and ILC text</text>
+  <text class="t" x="678" y="116" text-anchor="middle">on /dev/rpmsg0.</text>
+  <text class="t" x="678" y="138" text-anchor="middle">ILC, interval timer, GPIO LED.</text>
+  <text class="t" x="678" y="160" text-anchor="middle">16 MiB at 0x90000000,</text>
+  <text class="t" x="678" y="182" text-anchor="middle">inside bao.bin. L3 colors 0-3.</text>
+
+  <rect class="box idle" x="840" y="16" width="104" height="188" rx="6"/>
+  <text class="h" x="892" y="100" text-anchor="middle">A55</text>
+  <text class="h" x="892" y="122" text-anchor="middle">core 1</text>
+  <text class="t" x="892" y="148" text-anchor="middle">Idle</text>
+
+  <rect class="box ipc" x="16" y="220" width="928" height="88" rx="6"/>
+  <text class="h" x="480" y="248" text-anchor="middle">RPMsg shared memory - 64 KiB at IPA 0xC4000000</text>
+  <text class="t" x="480" y="270" text-anchor="middle">OpenAMP resource table, two virtio rings, and the buffer pool.</text>
+  <text class="t" x="480" y="292" text-anchor="middle">A kick is a hypercall. Bao injects interrupt 52 into the peer VM.</text>
+
+  <rect class="box hyp" x="16" y="324" width="928" height="78" rx="6"/>
+  <text class="hw" x="480" y="354" text-anchor="middle">Bao hypervisor - EL2, entered at 0xE0000000</text>
+  <text class="tw" x="480" y="376" text-anchor="middle">Stage-2 map, virtual GICv3, cache coloring. FreeRTOS is linked inside bao.bin.</text>
+
+  <rect class="box hwb" x="16" y="418" width="928" height="64" rx="6"/>
+  <text class="hw" x="480" y="444" text-anchor="middle">Agilex 5 HPS and FPGA fabric</text>
+  <text class="tw" x="480" y="464" text-anchor="middle">2x Cortex-A55, 2x Cortex-A76, GICv3, UART0, DDR, SMMUv3. ILC behind the HPS-to-FPGA bridge.</text>
+
+  <rect class="boot" x="16" y="498" width="928" height="46" rx="6"/>
+  <text class="t" x="480" y="518" text-anchor="middle">Boot: QSPI holds U-Boot SPL. SD FAT holds u-boot.itb, linux.bin, bao.bin, boot.scr, and fpga.rbf.</text>
+  <text class="t" x="480" y="536" text-anchor="middle">The second partition is the Buildroot ext4 root filesystem.</text>
+</svg>

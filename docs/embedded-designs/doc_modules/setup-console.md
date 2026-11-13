@@ -1,11 +1,11 @@
-The OOBE Daughter Card has a built-in FTDI USB to Serial converter chip that allows the host computer to see the board as a virtual serial port. Ubuntu and other modern Linux distributions have built-in drivers for the FTDI USB to Serial converter chip, so no driver installation is necessary on those platforms. Microsoft Windows 10 and 11 automatically install the necessary drivers.
+The HPS Enablement Daughtercard has a built-in FTDI USB to Serial converter chip that allows the host computer to see the board as a virtual serial port. Ubuntu and other modern Linux distributions have built-in drivers for the FTDI USB to Serial converter chip, so no driver installation is necessary on those platforms. Microsoft Windows 10 and 11 automatically install the necessary drivers.
 
 The serial communication parameters are:
 
-- Baud-rate: 115,200
-- Parity: none
-- Flow control: none
-- Stop bits: 1
+- Baud-rate: **115,200**
+- Parity: **none**
+- Flow control: **none**
+- Stop bits: **1**
 
 On Windows, utilities such as TeraTerm and PuTTY can be used to connect to the board. They are easily configured from the tool menus.
 
@@ -13,13 +13,12 @@ On Linux, the minicom utility can be used. Here is how to configure it:
 
 The virtual serial port is usually named /dev/ttyUSB0. In order to determine the device name associated with the virtual serial port on your host PC, please perform the following:
 
-- Use the following command to determine which USB serial devices are already installed: ls /dev/ttyUSB*
+- Use the following command to determine which USB serial devices are already installed: `ls /dev/ttyUSB*`
 - Connect mini USB cable from J7 to the PC. This will enable the PC to communicate with the board, even if the board is not powered yet.
-- Use the ls /dev/ttyUSB* command command again to determine which new USB serial device appeared.
-- Install **minicom** application on host PC, if not installed.
-
-- On Ubuntu, use *sudo apt-get install minicom*
-- Configure minicom.
+- Use the `ls /dev/ttyUSB*` command command again to determine which new USB serial device appeared.
+- Install **minicom** application on host PC, if not installed:
+  - On Ubuntu, use `sudo apt-get install minicom`
+- Configure minicom with the next command:
 
 ```bash
 $ sudo minicom -s

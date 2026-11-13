@@ -27,40 +27,44 @@ The following are required to be able to fully exercise the Agilex 5 FPGA E-Seri
   * 64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the HPS Baseline System Example Design.
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3
   
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the HPS Baseline System Example Design.
 
 ### Prebuilt Binaries
 
-The Agilex&trade; 5 FPGA E-Series 013B Development Kit HPS Baseline System Example Design binaries are located at [https://releases.rocketboards.org/2026.08/](https://releases.rocketboards.org/2026.08/):
+The Agilex&trade; 5 FPGA E-Series 013B Development Kit HPS Baseline System Example Design binaries are located at [https://releases.rocketboards.org/2026.10/](https://releases.rocketboards.org/2026.10/):
 
 | Boot Source | Link |
 | ---------------------- | -- |
-| SD Card | [https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e013bm16aea_gsrd.baseline-a55/](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e013bm16aea_gsrd.baseline-a55/) |
-| QSPI | [https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/](https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/) |
+| SD Card | [https://releases.rocketboards.org/2026.10/gsrd/agilex5_dk_a5e013bm16aea_gsrd.baseline-a55/](https://releases.rocketboards.org/2026.10/gsrd/agilex5_dk_a5e013bm16aea_gsrd.baseline-a55/) |
+| QSPI | [https://releases.rocketboards.org/2026.10/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/](https://releases.rocketboards.org/2026.10/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/) |
 
 ### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3 and the following software component versions integrate the 26.3 release. 
 
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 5 Design | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1.1_REL_GSRD_PR |
-| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.20-lts | QPDS26.1.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
-| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.04 | QPDS26.1.1_REL_GSRD_PR |
+| Agilex 5 Design | [https://github.com/altera-fpga/agilex5-ed-hps-baseline](https://github.com/altera-fpga/agilex5-ed-hps-baseline) | main                    | QPDS26.3_REL_BASELINE_PR |
+| Linux                                 | [https://github.com/altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | socfpga-6.18.37-lts | QPDS26.3_REL_BASELINE_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.15.0   | QPDS26.3_REL_BASELINE_PR |
+| U-Boot                                | [https://github.com/altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | socfpga_v2026.07 | QPDS26.3_REL_BASELINE_PR |
 | Yocto Project                         | [https://git.yoctoproject.org/poky](https://git.yoctoproject.org/poky) | wrynose | latest              |
-| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.1.1_REL_GSRD_PR |
+| Yocto meta-altera-fpga Layer | [https://github.com/altera-fpga/meta-altera-fpga](https://github.com/altera-fpga/meta-altera-fpga) | wrynose | QPDS26.3_REL_BASELINE_PR |
 | KAS | [https://github.com/siemens/kas/](https://github.com/siemens/kas/) | master | 5.4 |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
+**Note:** Starting from 26.3 Quartus release, the build of the Quartus projects in the System Example Designs are based only on Visual Designer Studio (VDS).<br>
+Please review the following KDB if you face Quartus design build problems when the RTL was generated with VDS:<br>
+[Why do Quartus® Prime Pro 26.3 and earlier fail to build a Agilex® 5/Agilex® 3/Agilex® 7 FPGA M-Series VDS based design whose RTL has been generated with VDS?](https://community.altera.com/kb/knowledge-base/why-do-quartus%C2%AE-prime-pro-26-3-and-earlier-fail-to-build-a-agilex%C2%AE-5agilex%C2%AE-3agi/357511).
+
 ### Release Notes
 
-See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.1.1_REL_GSRD_PR)
+See [https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.3_REL_BASELINE_PR](https://github.com/altera-fpga/gsrd-socfpga/releases/tag/QPDS26.3_REL_BASELINE_PR)
 
 ### Development Kit
 
@@ -152,7 +156,7 @@ This section presents how to use the prebuilt binaries included with the HPS Bas
 
 3\. Connect Ethernet cable from HPS Board to an Ethernet switch connected to local network. Local network must provide a DCHP server.
 
-**Note:** Please refer to [Powering Up the Development Board](https://www.intel.com/content/www/us/en/docs/programmable/860700/current/powering-up-the-development-board.html)  for instructions about how to powering up correctly the development kit.
+**Note:** Please refer to [Powering Up the Development Board](https://docs.altera.com/r/docs/860700/current/agilex-5-fpga-e-series-013b-development-kit-user-guide/powering-up-the-development-board)  for instructions about how to powering up correctly the development kit.
 
 ### Configure Serial Console
 
@@ -185,9 +189,9 @@ All the scenarios included in this release require a serial connection. This sec
 <hr/>
 <h5 id="write-sd-card-image">Write SD Card</h5>
 
-1\. Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e013bm16aea_gsrd.baseline-a55/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e013bm16aea_gsrd.baseline-a55/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5.wic`.
+1\. Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.10/gsrd/agilex5_dk_a5e013bm16aea_gsrd.baseline-a55/sdimage.tar.gz](https://releases.rocketboards.org/2026.10/gsrd/agilex5_dk_a5e013bm16aea_gsrd.baseline-a55/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5e_013b.rootfs.wic`.
 
-2\. Write the gsrd-console-image-agilex5.wic. SD card image to the micro SD card using the included USB writer in the host computer:
+2\. Write the gsrd-console-image-agilex5e_013b.rootfs.wic. SD card image to the micro SD card using the included USB writer in the host computer:
 
 - On Linux, use the `dd` utility as shown next:
 ```bash
@@ -195,11 +199,11 @@ All the scenarios included in this release require a serial connection. This sec
 cat /proc/partitions
 # This will return for example /dev/sdx
 # Use dd to write the image in the corresponding device
-sudo dd if=gsrd-console-image-agilex5.wic of=/dev/sdx bs=1M
+sudo dd if=gsrd-console-image-agilex5e_013b.rootfs.wic of=/dev/sdx bs=1M
 # Flush the changes to the SD card
 sync
 ```
-- On Windows, use the Win32DiskImager program, available at [https://sourceforge.net/projects/win32diskimager](https://sourceforge.net/projects/win32diskimager). For this, first rename the gsrd-console-image-agilex5.wic to an .img file (sdcard.img for example) and write the image as shown in the next figure:
+- On Windows, use the Win32DiskImager program, available at [https://sourceforge.net/projects/win32diskimager](https://sourceforge.net/projects/win32diskimager). For this, first rename the gsrd-console-image-agilex5e_013b.rootfs.wic to an .img file (sdcard.img for example) and write the image as shown in the next figure:
 
 ![](images/win32diskimager.png) 
 
@@ -211,7 +215,7 @@ sync
 
 3\. Download and extract the JIC image, then write it to QSPI
 ```bash
-wget https://releases.rocketboards.org/2026.08/gsrd/agilex5_dk_a5e013bm16aea_gsrd.baseline-a55/ghrd.hps.jic
+wget https://releases.rocketboards.org/2026.10/gsrd/agilex5_dk_a5e013bm16aea_gsrd.baseline-a55/ghrd.hps.jic
 jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 ```
@@ -327,7 +331,7 @@ Either write 1MB of zeroes at the beginning of the SD card, or remove the SD car
 
 3\. Download and extract the JIC image, then write it to QSPI:
 ```bash
-wget https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/qspi_boot.hps.jic
+wget https://releases.rocketboards.org/2026.10/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/qspi_boot.hps.jic
 jtagconfig --setparam 1 JtagClock 16M
 quartus_pgm -c 1 -m jtag -o "pvi;qspi_boot.hps.jic"
 ```
@@ -368,8 +372,6 @@ The software source code for this System Example Design is released inside the s
 For more details about Kas, refer to the official documentation at [https://kas.readthedocs.io/en/latest/](https://kas.readthedocs.io/en/latest/).
 
 ### Kas Build Prerequisites
-
-The same [prerequisites](#yocto-build-prerequisites) as for regular Yocto build are required. 
 
 1\. Make sure you have Yocto system requirements met: [https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions](https://docs.yoctoproject.org/scarthgap/ref-manual/system-requirements.html#supported-linux-distributions).
 
@@ -423,7 +425,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
@@ -441,18 +443,18 @@ source ~/altera_pro/26.1.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e013bm16aea-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5-ed-hps-baseline/releases/download/QPDS26.3_REL_BASELINE_PR/dk-a5e013bm16aea-baseline-a55.zip
 unzip dk-a5e013bm16aea-baseline-a55.zip
 rm -f dk-a5e013bm16aea-baseline-a55.zip
 make baseline_a55-build
-make baseline_a55-install-core-rbf
+make baseline_a55-install
 ```
 
 
 The following files are created:
 
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.core.rbf`
 
 
 
@@ -478,8 +480,8 @@ pip install kconfiglib
 
 
 ```bash
-cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf \
-   $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf
+cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.core.rbf \
+   $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55.core.rbf
 ```
 
 
@@ -550,7 +552,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
@@ -566,11 +568,11 @@ source ~/altera_pro/26.1.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e013bm16aea-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5-ed-hps-baseline/releases/download/QPDS26.3_REL_BASELINE_PR/dk-a5e013bm16aea-baseline-a55.zip
 unzip dk-a5e013bm16aea-baseline-a55.zip
 rm -f dk-a5e013bm16aea-baseline-a55.zip
 make baseline_a55-build
-make baseline_a55-install-core-rbf
+make baseline_a55-install
 cd ..
 ```
 
@@ -578,7 +580,7 @@ cd ..
 The following files are created:
 
 * `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof`
-* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf`
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/baseline_a55.core.rbf`
 
 
 <h5>Build Yocto Using Kas</h5>
@@ -602,8 +604,8 @@ pip install kconfiglib
 
 
 ```bash
-cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf \
-   $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf
+cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.core.rbf \
+   $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55.core.rbf
 ```
 
 
@@ -642,9 +644,9 @@ cd qspi_boot
 2\. Get the `ubinize_nor.cfg` file which contains the details on how to build the `root.ubi` volume, and `qspi_boot.pfg` which contains the instructions for Programming File Generator on how to create the .jic filem and the `uboot.env` containing the U-Boot environment:
 
 ```bash
-wget https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/ubinize_nor.cfg
-wget https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/qspi_boot.pfg
-wget https://releases.rocketboards.org/2026.08/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/uboot.env
+wget https://releases.rocketboards.org/2026.10/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/ubinize_nor.cfg
+wget https://releases.rocketboards.org/2026.10/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/qspi_boot.pfg
+wget https://releases.rocketboards.org/2026.10/qspi/agilex5_dk_a5e013bm16aea_qspi.baseline-a55/uboot.env
 ```
 
 3\. Link to the files that are needed from building the hardware design, and yocto:
@@ -690,7 +692,7 @@ The `kas.yml` file is the central configuration file used by Kas to define all c
 
 Kas also offers Kconfig-based customizations to provide a flexible and user-friendly configuration experience. This enables you to select repositories, layers, and build targets through a structured menu interface instead of editing YAML files directly. This approach combines the clarity and reproducibility of Kas with the modular configurability of the Linux kernel’s Kconfig system, making it easier to tailor builds for different platforms or use cases while maintaining a consistent and automated setup.
 
-Review the kas.yml file, the Kconfig options and associated documentation at [https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e013bm16aea/baseline-a55/software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e013bm16aea/baseline-a55/software/yocto_linux).
+Review the kas.yml file, the Kconfig options and associated documentation at [https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e013bm16aea/baseline-a55/software/yocto_linux](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e013bm16aea/baseline-a55/software/yocto_linux).
 
 In the build instructions we did not use the Kconfig options, we did not use the Kconfig options, only the default options from `kas.yml` were used. This section shows how you can use `kas menu` to customize the build.
 
@@ -702,7 +704,7 @@ When using `kas menu`, the initial settings from `kas.yml` are customized with t
 2\. Copy the core.rbf file to where Kas needs it to be. Note that the filename when using Kconfig is different than when using the `kas.yml` alone (`top.core.rbf` vs `ghrd.core.rbf`)
 
 ```bash
-cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf \
+cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.core.rbf \
    $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/top.core.rbf
 ```
 
@@ -766,7 +768,7 @@ In addition to using `kas build` to build Yocto based on the `kas.yml` and `kas 
 2\. Copy the core.rbf file to where bitbake needs it to be. 
 
 ```bash
-cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/install/binaries/ghrd.core.rbf \
+cp $TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.core.rbf \
    $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_a55_hps_debug.core.rbf
 ```
 

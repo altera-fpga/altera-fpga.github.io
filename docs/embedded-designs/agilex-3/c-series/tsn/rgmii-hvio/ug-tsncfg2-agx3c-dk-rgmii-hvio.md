@@ -49,8 +49,8 @@ This design utilizes the HPS GMII-to-RGMII adapter IP to convert GMII to RGMII p
 
 Please refer to the following documentation for further information:
 
-1. Agilex™ 3 Hard Processor System Technical Reference Manual: chapter 12.3.1. [GMII to RGMII through RGMII adapter via FPGA HVIOs](https://www.intel.com/content/www/us/en/docs/programmable/814346/26.1.1/gmii-to-rgmii-through-rgmii-adapter.html)
-2. Embedded Peripherals IP User Guide: chapter 50 [HPS GMII to RGMII Adapter Altera® FPGA IP](https://www.intel.com/content/www/us/en/docs/programmable/683130/26.1.1/hps-gmii-to-rgmii-adapter.html)
+1. Agilex™ 3 Hard Processor System Technical Reference Manual: chapter 12.3.1. [GMII to RGMII through RGMII adapter via FPGA HVIOs](https://www.intel.com/content/www/us/en/docs/programmable/814346/26.3/gmii-to-rgmii-through-rgmii-adapter.html)
+2. Embedded Peripherals IP User Guide: chapter 50 [HPS GMII to RGMII Adapter Altera® FPGA IP](https://www.intel.com/content/www/us/en/docs/programmable/683130/26.3/hps-gmii-to-rgmii-adapter.html)
 
 This System Example Design comprises the following components:
 
@@ -69,13 +69,13 @@ TSN Solution Architecture for this SED is illustrated as:
 
 ### Prerequisites
 
-This system example design is based on the [Agilex 3 C-Series Development Kit HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design")](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/). It is recommended that you familiarize yourself with the Baseline System Example Design development flow before proceeding with this design.
+This system example design is based on the [Agilex 3 C-Series Development Kit HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design")](https://altera-fpga.github.io/rel-26.3/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/). It is recommended that you familiarize yourself with the Baseline System Example Design development flow before proceeding with this design.
 The TSN through FPGA IO System Example Design requires the HPS Enablement Expansion Board (also referred as HPS Daughter Card), which is included with the development kit.
 
 #### Development Kit
 
 This Example Design targets the Agilex 3 FPGA C-Series Development Kit, utilizing the Baseline System Example Design. 
-Refer to [GSRD\#Development Kit](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/#development-kit) for details about the board, including how to install the HPS Daughter Card.
+Refer to [GSRD\#Development Kit](https://altera-fpga.github.io/rel-26.3/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/#development-kit) for details about the board, including how to install the HPS Daughter Card.
 
 * Altera&reg; Agilex&trade; 3 FPGA C-Series Development Kit
 * HPS Enablement Expansion Board. Included with the development kit.
@@ -86,7 +86,7 @@ Refer to [GSRD\#Development Kit](https://altera-fpga.github.io/rel-26.1.1/embedd
 
 **Altera&reg; Agilex&trade; 3 FPGA C-Series Development Kit:**
 
-![Agilex 3 FPGA C-Series Development Kit](images/agilex3_DK.png)
+![Agilex 3 FPGA C-Series Development Kit](images/agilex3_dk.png)
 
 **TSN Daughter card:**
 
@@ -103,8 +103,8 @@ Host PC with:
 *   Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.
 *   Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
 *   Altera&reg; Quartus&reg; Prime Pro Edition version. Used to recompile the hardware design. If only writing binaries is required, then the smaller Altera&reg; Quartus&reg; Prime Pro Edition Programmer is sufficient.
-*   The prebuilt binaries were built using Quartus version 26.1.1
-*   The instructions for rebuilding the binaries use Quartus version 26.1.1
+*   The prebuilt binaries were built using Quartus version 26.3
+*   The instructions for rebuilding the binaries use Quartus version 26.3
 *   Local Ethernet network, with DHCP server
 *   Internet connection. For downloading the files, especially when rebuilding the HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design").
 
@@ -116,19 +116,19 @@ This page documents the following:
 
 #### Prebuilt Binaries
 
-The Agilex 3 Development Kit 26.1.1 Example Design binaries are located at [https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/](https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/):
+The Agilex 3 Development Kit 26.3 Example Design binaries are located at [https://releases.rocketboards.org/2026.10/tsn-rgmii-hvio/](https://releases.rocketboards.org/2026.10/tsn-rgmii-hvio/):
 
 | HPS Daughter Card | Boot Source | Link |
 | --- | --- | --- |
-| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/](https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/) |
+| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.10/tsn-rgmii-hvio/](https://releases.rocketboards.org/2026.10/tsn-rgmii-hvio/) |
 
 #### Sources
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions were used to build the provided prebuilt binaries:
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3 and the following software component versions were used to build the provided prebuilt binaries:
 
 ### Release Notes
 
-See [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1)
+See [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3)
 
 
 
@@ -192,7 +192,7 @@ In this design example, `gmac1` is routed to the FPGA IO and the corresponding d
 There are two ways to test the design based on use case. 
     <a id="UserFlow1"></a> 
  
-* User Flow 1: Testing with [Prebuilt Binaries](https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex3_tsn-rgmii-hvio/) and next to [Programming the binaries](#programming-the-binaries)
+* User Flow 1: Testing with [Prebuilt Binaries](https://releases.rocketboards.org/2026.10/tsn-rgmii-hvio/agilex3_tsn-rgmii-hvio/) and next to [Programming the binaries](#programming-the-binaries)
  
     <a id="UserFlow2"></a> 
  
@@ -216,7 +216,7 @@ There are two ways to test the design based on use case.
 
 1. Quartus Prime Pro
 
-    Please download and install the Quartus&reg; Prime Pro Edition version 26.1.1 version software.
+    Please download and install the Quartus&reg; Prime Pro Edition version 26.3 version software.
 
 2. Win32 Disk Imager
 
@@ -242,7 +242,7 @@ Note that this is installed in the `TOP_FOLDER`. You may installed this is in ot
 Note: The following must be re-done for fresh terminal session
 
 ```bash
-export QUARTUS_ROOTDIR=~/altera_pro/26.1.1/quartus/
+export QUARTUS_ROOTDIR=~/altera_pro/26.3/quartus/
 export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
 ```
 
@@ -253,7 +253,7 @@ export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qs
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex3_soc_devkit_ghrd && mkdir agilex3_soc_devkit_ghrd && cd agilex3_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a3w135bm16aea-tsn-dc-tsn-rgmii-hvio.zip
+wget https://github.com/altera-fpga/agilex3c-ed-gsrd/releases/download/QPDS26.3_REL_BASELINE_PR/dk-a3w135bm16aea-tsn-dc-tsn-rgmii-hvio.zip
 unzip dk-a3w135bm16aea-tsn-dc-tsn-rgmii-hvio.zip
 rm -f dk-a3w135bm16aea-tsn-dc-tsn-rgmii-hvio.zip
 make make tsn_rgmii_hvio-build
@@ -278,7 +278,7 @@ The following file is created:
 The following page shows an overview of how the build process works for this use case:
 
 Please refer this page:
-[Rebuild Binaries](https://altera-fpga.github.io/rel-26.1.1/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/#build-gsrd-20-binaries)
+[Rebuild Binaries](https://altera-fpga.github.io/rel-26.3/embedded-designs/agilex-3/c-series/gsrd/ug-gsrd-agx3/#build-gsrd-20-binaries)
 >[Note:]
 >SKip "Build Hardware Design" and direct to "Build Yocto Using Kas" and rename the design file as below
 $TOP_FOLDER/agilex3_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_hps_debug.core.rbf to 
@@ -362,7 +362,7 @@ All the scenarios included in this release require a serial connection. This sec
 
 ```bash
 cd $TOP_FOLDER
-wget https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex3_tsn-rgmii-hvio/ghrd.hps.jic
+wget https://releases.rocketboards.org/2026.10/tsn-rgmii-hvio/agilex3_tsn-rgmii-hvio/ghrd.hps.jic
 quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
 ```
 
@@ -380,7 +380,7 @@ quartus_pgm -c 1 -m jtag -o "pvi;tsn_rgmii_hvio.hps.jic"
 
 <h5>For Prebuilt:</h5>
 
-- Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex3_tsn-rgmii-hvio/sdimage.tar.gz](https://releases.rocketboards.org/2026.08/tsn-rgmii-hvio/agilex3_tsn-rgmii-hvio/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex3_devkit.wic`.
+- Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.10/tsn-rgmii-hvio/agilex3_tsn-rgmii-hvio/sdimage.tar.gz](https://releases.rocketboards.org/2026.10/tsn-rgmii-hvio/agilex3_tsn-rgmii-hvio/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex3_devkit.wic`.
 
 <h5>For compiled image:</h5>
 
@@ -447,167 +447,6 @@ Devkit #2 : $ ifconfig eth1 192.168.1.200
 
     _Note : Update the Devkit #1 DUT IP address in above command._
 
-#### Run TSN Application
-
-The following examples are demonstrated using 2 units of the Agilex platform.  Please take note of the notation "[Board A or B]". The following steps assumes both platforms are connected to each other via an Ethernet connection.
-
-1\. Boot to Linux
-
-2\. Navigate to the `tsn` directory
-
-```bash
-cd tsn
-```
-
-<h5>Configuration for Both Boards</h5>
-
-<h6>Step I: Setup Environment Path on Both Boards</h6>
-
-3\. Board A
-
-   ```bash
-   export LIBXDP_OBJECT_PATH=/usr/lib64/bpf
-   export LD_LIBRARY_PATH=/usr/lib/custom_bpf/lib 
-   ```
-
-4\. Board B
-
-   ```bash
-   export LIBXDP_OBJECT_PATH=/usr/lib64/bpf
-   export LD_LIBRARY_PATH=/usr/lib/custom_bpf/lib 
-   ```
-
-<h5>TXRX-TSN App</h5>
-
-<h6>Step II: Run Configuration Script</h6>
-
-5\. Board A: Run the configuration script and wait for it to configure the IP and MAC address, start clock synchronization, and set up TAPRIO qdisc.
-
-   ```bash
-   ./run.sh agilex5 eth0 vs1a setup
-   ```
-
-6\. Board B: Run the configuration script and wait for it to configure the IP and MAC address, start clock synchronization, and set up ingress qdiscs.
-
-   ```bash
-   ./run.sh agilex5 eth0 vs1b setup
-   ```
-
-<h6>Step III: Start the Application</h6>
-
-7\. Board B: Run the application.
-
-   ```bash
-   ./run.sh agilex5 eth0 vs1b run
-   ```
-
-8\. Board A: Immediately after starting the application on Board B, run the application on Board A.
-
-   ```bash
-   ./run.sh agilex5 eth0 vs1a run
-   ```
-
-<h5>Post-Test Procedure</h5>
-Once the test is completed, copy the following files from Board B (listener) to the host machine:
-
-- afpkt-rxtstamps.txt
-- afxdp-rxtstamps.txt
-
-<h5>Generating Latency Plot Using Excel</h5>
-
-Import 'afpkt-rxtstamps.txt' and 'afxdp-rxtstamps.txt' to excel in 2 seperate sheets.
-
-<img src="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/doc_modules/tsn/images/1_excelview.png" alt="Import.txt File"  width="800">
-
-Plot Column 1 for each sheets using Scatter chart,
-
-<img src="https://altera-fpga.github.io/rel-26.1.1/embedded-designs/doc_modules/tsn/images/2_excelview.png" alt="Plot Scatter Chart"  width="800">
-
-
-This will generate plot for AFPKT and AFXDP with latency(on Y-axis) against packet count (on X-axis).
-  
-
-The latency for this design example can be seen as below:
-![](images/cfg1_ag5-pdk_af_latency.jpg)
-
-#### Run Time Synchronization commands
-
-
-You may use the following command guide to perform time synchronization on the Agilex&trade; 5 system using PTP4L and PHC2SYS, and to obtain delay values
-
-__End-to-End PTP master and slave synchronization__
-
-- Board B (as slave):
-
-    ```bash
-    ptp4l -i eth0  -s -H -E -2 -m
-    ```
-
-    ``` 
-    -i  eth0: This option specifies the `eth0` as the network interface to use for PTP.
-    -s  This option enables the slave-only mode. 
-    -H  This option enables hardware time stamping. 
-    -E  This option selects the end-to-end (E2E) delay measurement mechanism. This is the default.The E2E mechanism is also referred to as the delay “request-response” mechanism.
-    -2  Use Ethernet Layer (L2)
-    -m  This option enables printing of messages to the standard output.
-    ```
-
-- Boards A (as master):
-
-    ```bash
-    ptp4l -i eth0  -H -E -2 -m
-    ```
-
-
-- At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.
-
-    ```bash
-    phc2sys -s eth0 -w -m -c CLOCK_REALTIME -O 0 -n 0
-    ```
-
-__Peer-to-Peer PTP synchronization__:
-
-- Board B (as slave):
-    ```bash
-    slave: ptp4l -i eth0  -s -H -P -2 -m
-    ```
-
-    -P: This option enables the use of the Peer Delay Mechanism.
-
-
-- Board A (as master):
-    ```bash
-    master: ptp4l -i eth0  -H -P -2 -m
-    ```
-
-
-- At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.
-
-    ```bash
-    phc2sys -s eth0 -w -m -c CLOCK_REALTIME -O 0 -n 0
-    ```
-
-
-__gPTP synchronization__:
-
-- Board B (as slave):
-
-    ```bash
-    ptp4l -i eth0  -s -H -P -2 -m --transportSpecific=1
-    ```
-
-- Board A (as master): 
-
-    ```bash
-    ptp4l -i eth0  -H -P -2 -m --transportSpecific=1
-    ```
-
-
-- At Board B (as slave), perform sync on local System Clock with EMAC Hardwware Clock.
-
-    ```bash
-    phc2sys -s eth0 -w -m --transportSpecific 1 -c CLOCK_REALTIME -O 0 -n 0
-    ```
 
 [End of ## User Flow]: <>
 

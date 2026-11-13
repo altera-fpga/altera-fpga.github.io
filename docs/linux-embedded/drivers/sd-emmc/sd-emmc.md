@@ -1,6 +1,6 @@
 # **SD/eMMC Driver for Hard Processor System**
 
-Last updated: **October 06, 2026** 
+Last updated: **November 13, 2026** 
 
 **Upstream Status**: [Upstreamed](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/mmc/host/sdhci-cadence.c)
 
@@ -60,16 +60,16 @@ Example Device tree location to configure the SD/eMMC:
 
 | Device Tree Target | File Path |
 | :------------ | :---------- |
-| SD Card | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.20-lts/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts |
-| eMMC | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.20-lts/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_emmc.dts |
-| SD Card<br/>DK-A5E013B | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.20-lts/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_013b.dts |
+| SD Card | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.37-lts/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts |
+| eMMC | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.37-lts/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_emmc.dts |
+| SD Card<br/>DK-A5E013B | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.37-lts/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_013b.dts |
 
 **Agilex™ 3**
 
 | Device Tree Target | File Path |
 | :------------ | :---------- |
-| SD Card | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.20-lts/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts  |
-| eMMC | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.20-lts/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_emmc.dts |
+| SD Card | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.37-lts/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk.dts  |
+| eMMC | https://github.com/altera-fpga/linux-socfpga/blob/socfpga-6.18.37-lts/arch/arm64/boot/dts/intel/socfpga_agilex3_socdk_emmc.dts |
 
 ![sdmmc_device_tree](images/sdmmc_device_tree.png)
 
@@ -148,19 +148,19 @@ The following device trees and Config U-Boot files are the ones that define the 
 
 | Target | File Path |
 | :------------ | :---------- |
-| CONFIG SD Card | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.04/configs/socfpga_agilex5_defconfig |
-| CONFIG eMMC | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.04/configs/socfpga_agilex5_emmc_defconfig |
-| CONFIG SD Card <br/>DK-A5E013B | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.04/configs/socfpga_agilex5_013b_defconfig ||
-| Device Tree SD Card |  https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.04/arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi |
-| Device Tree eMMC | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.04/arch/arm/dts/socfpga_agilex5_socdk_emmc-u-boot.dtsi |
-| Device Tree SD Card <br/>DK-A5E013B | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.04/arch/arm/dts/socfpga_agilex5_socdk_013b-u-boot.dtsi |
+| CONFIG SD Card | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.07/configs/socfpga_agilex5_defconfig |
+| CONFIG eMMC | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.07/configs/socfpga_agilex5_emmc_defconfig |
+| CONFIG SD Card <br/>DK-A5E013B | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.07/configs/socfpga_agilex5_013b_defconfig ||
+| Device Tree SD Card |  https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.07/arch/arm/dts/socfpga_agilex5_socdk-u-boot.dtsi |
+| Device Tree eMMC | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.07/arch/arm/dts/socfpga_agilex5_socdk_emmc-u-boot.dtsi |
+| Device Tree SD Card <br/>DK-A5E013B | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.07/arch/arm/dts/socfpga_agilex5_socdk_013b-u-boot.dtsi |
 
 **Agilex™ 3**
 
 | Target | File Path |
 | :------------ | :---------- |
-| CONFIG SDCard | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.04/configs/socfpga_agilex3_defconfig |
-| Device Tree SDCard | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.04/arch/arm/dts/socfpga_agilex3_socdk-u-boot.dtsi |
+| CONFIG SDCard | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.07/configs/socfpga_agilex3_defconfig |
+| Device Tree SDCard | https://github.com/altera-fpga/u-boot-socfpga/blob/socfpga_v2026.07/arch/arm/dts/socfpga_agilex3_socdk-u-boot.dtsi |
 
 
 The next table shows some U-Boot configurations that allow the SD/eMMC controller to operate in a specific mode:
@@ -168,7 +168,7 @@ The next table shows some U-Boot configurations that allow the SD/eMMC controlle
 | Operation Mode ➜ <br> Configuration ↓ | SD High Speed | SD SDR12² |SD SDR104³ | eMMC High Speed  | eMMC HS-200² | eMMC HS-400² |
 | :------------ | :---------- |  :---------- | :---------- | :----- | :----- | :----- |
 | sdhci-caps⁴ | <0x00000000<br> 0x0000c800> | <0x00000000<br/> 0x0000c800> | <0x00000000<br>0x0000c800> | <0x00000000<br>0x0004c800> | <0x00000000<br>0x0004c800> | <0x00000000<br>0x0004c800> |
-| sdhci-caps-mask⁴ | <0x00002007<br>0x0000ff00> | <0x00002007<br/>0x0000ff00> |<0x00002000<br>0x0000ff00> | <0x00000000<br/>0x0004ff00> | <0x00000000<br/>0x0004ff00> | <0x00000000<br/>0x0004ff00> |
+| sdhci-caps-mask⁴ | <0x00002007<br>0x0000ff00> | <0x00002007<br/>0x0020ff00> |<0x00002000<br>0x0000ff00> | <0x00000000<br/>0x0004ff00> | <0x00000000<br/>0x0004ff00> | <0x00000000<br/>0x0004ff00> |
 | cap-sd-highspeed | Yes |No| Yes | No | No | No |
 | sd-uhs-sdr12 | No | Yes | No | No | No | No |
 | sd-uhs-sdr104 | No | No | Yes | No | No | No |
@@ -186,7 +186,7 @@ The next table shows some U-Boot configurations that allow the SD/eMMC controlle
 
 ¹ The frequency should be at least the minimum value provided in **Min** value.
 
-² This configuration requires a temporary workaroud the driver source code. Please refer to the [Known Issues](#known-issues) section for more details.
+² This configuration is explained in the KDB listed in the [Known Issues](#known-issues) section.
 
 ³ This mode may not be functional in Agilex™ 5 ES device. Please refer to the [Known Issues](#known-issues) section for more details.
 
@@ -268,7 +268,7 @@ MMC read: dev # 0, block # 8264, count 20480 ... 20480 blocks read: OK
 
 * SD Card DDR50 mode is not functional in Agilex™ 5 and Agilex™ 3 device due to CRC errors observed in the SD Card interface. Please refer to the [350306](https://community.altera.com/kb/knowledge-base/why-does-agilex%E2%84%A2-5-agilex%E2%84%A2-3-fpgas-fail-to-boot-from-sd-card-in-ddr50-mode/350306) KDB.
 * Agilex 5 ES (Engineering Sample) fails to boot from SD Card and eMMC devices operating in SDR104, HS400 and HS200 modes. Please refer to the [350691](https://community.altera.com/kb/knowledge-base/why-does-agilex%E2%84%A2-5-fpga-es-fails-to-boot-from-sdcard-and-emmc-devices-in-sdr104-/350691) KDB.
-* SD Card SDR12 mode in U-Boot requires a driver source code workaround in 26.1 release.  Please refer to the [351127](https://community.altera.com/kb/knowledge-base/why-does-the-sdemmc-u-boot-driver-fail-to-select-the-sdr12-mode-for-agilex%C2%AE-5-fp/351127) KDB.
+* SD Card SDR12 mode configuration in U-Boot is explained in the [351127](https://community.altera.com/kb/knowledge-base/why-does-the-sdemmc-u-boot-driver-fail-to-select-the-sdr12-mode-for-agilex%C2%AE-5-fp/351127) KDB.
 * U-Boot fails to boot from SD Card in High Speed Mode in 26.1 release in Agilex™ 5 and Agilex™ 3 production devices when the SOFT PHY  Clock is different than 200 MHz. A temporary workaround for this problem, you can enable a tuning mechanism. Please refer to [353736](https://community.altera.com/kb/knowledge-base/why-does-u-boot-fail-to-boot-from-sd-card-in-sd-high-speed-mode-in-agilex%C2%AE-5-and/353736) KDB.
 
 ## Notices & Disclaimers

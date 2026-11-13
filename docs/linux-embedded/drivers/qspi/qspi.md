@@ -1,6 +1,6 @@
 # **QSPI Driver for Hard Processor System (HPS)**
 
-Last updated: **October 06, 2026** 
+Last updated: **November 13, 2026** 
 
 **Upstream Status**: Not Upstreamed
 
@@ -122,7 +122,7 @@ Observe that the 0x108d2000 address corresponds to the address of the QSPI contr
    Copied 65536 bytes from address 0x0bdf0000 in flash to read.img
    ```
 
-7. Compare the data read in **read.img** file against the random data writen stored in the **empty.img** file. Observed that no output indicates that the files match.
+7. Compare the data read in **read.img** file against the random data written stored in the **empty.img** file. Observed that no output indicates that the files match.
 
    ```
    root@testsocfpga:~# diff -q empty.img read.img

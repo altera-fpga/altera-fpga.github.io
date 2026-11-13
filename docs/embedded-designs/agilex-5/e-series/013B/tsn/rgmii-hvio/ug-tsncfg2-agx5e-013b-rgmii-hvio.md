@@ -1,0 +1,501 @@
+
+
+
+## Introduction
+
+IEEE Ethernet is a core technology which is a backbone for IT operations and was designed to provide best effort communication suitable for IT operations. Operational Technology vendors have innovatively used Core IEEE Ethernet technology with proprietary solutions for enabling time-bounded communication. To address the need for precision timing, traffic shaping, and time-bounded communication over networks, IEEE introduced a suite of standards known as Time Sensitive Networking (TSN).
+
+Agilex&trade; 5 E-Series is designed as an end point for Industrial automation application with support for the following TSN protocols:
+
+* __Time Synchronization Protocols__:
+  * IEEE 1588-2008 Advanced Timestamp (Precision Time Protocol - PTP):
+    * Function: Provides sub-microsecond accuracy for time synchronization between computing systems over a local area network.
+    * Key Features: 2-step synchronization, PTP offload, and timestamping.
+    * Use Case: Synchronizing industrial devices to operate in unison, ensuring coordinated actions across factory or plant operations.
+  * IEEE 802.1AS (Timing and Synchronization):
+    * Function: A profile of PTP (version 2) that ensures precise time synchronization in a hierarchical master-slave architecture.
+    * Key Features: Prioritizes accuracy and variability of timing, crucial for industrial and automotive systems.
+    * Use Case: Synchronizing devices to a common time for optimal operation and collaboration.
+
+* __Credit Based Shaper Protocol__:
+  * IEEE 802.1Qav (Time-Sensitive Streams Forwarding and Queuing):
+    * Function: Provides low-latency, time-synchronized delivery of audio and video streams over Ethernet networks.
+    * Key Features: Credit-based shaper ensuring end-to-end guaranteed bandwidth with fairness to best-effort traffic.
+    * Use Case: Ensuring dedicated bandwidth for audio-video bridging (AVB) streams with minimal latency.
+
+* __Traffic Scheduling Protocols__:
+  * IEEE 802.1Qbv (Time-Scheduled Traffic Enhancements):
+    * Function: Enables the transmission of frames at specific scheduled times within microsecond ranges.
+    * Key Features: Critical for time-sensitive scheduled traffic in industrial applications.
+    * Use Case: Facilitating precise, time-critical communication for industrial devices like PLCs and drives.
+  * IEEE 802.1Qbu (Frame Preemption):
+    * Function: Allows high-priority frames to preempt lower-priority frames, reducing latency and jitter.
+    * Key Features: Utilizes Express Media Access Control (eMAC) and Preemptable Media Access Control (pMAC).
+    * Use Case: Ensuring high-priority frames arrive with fixed latency, crucial for applications requiring consistent timing.
+
+These TSN standards collectively enable precise timing, traffic shaping, and time-bounded communication, making them indispensable for applications requiring high reliability and determinism. 
+
+The details of TSN is not in the scope of this document. Here are some reference to the TSN specifications
+
+- [IEEE Std 802.1AS™-2011 "Timing and Synchronization for Time-Sensitive Applications in Bridged Local Area Networks"](https://standards.ieee.org/standard/802_1AS-2011.html?oslc_config.context=https%3A%2F%2Frtc.intel.com%2Fgc%2Fconfiguration%2F964)
+- [IEEE Std 802.1Qav™-2009 “Forwarding and Queuing Enhancements for Time-Sensitive Streams”](https://standards.ieee.org/standard/802_1Qav-2009.html?oslc_config.context=https%3A%2F%2Frtc.intel.com%2Fgc%2Fconfiguration%2F964)
+- [IEEE Std 802.1Qbv™-2015 “Enhancements for Scheduled Traffic”](https://standards.ieee.org/standard/802_1Qbv-2015.html?oslc_config.context=https%3A%2F%2Frtc.intel.com%2Fgc%2Fconfiguration%2F964)
+- [IEEE Std 802.1Qbu™-2016 “Frame Preemption”](https://standards.ieee.org/standard/802_1Qbu-2016.html?oslc_config.context=https%3A%2F%2Frtc.intel.com%2Fgc%2Fconfiguration%2F964)
+
+### TSN RGMII HVIO System Example Design Overview
+
+The Time Sensitive Network (TSN) through Hard Processor System (HPS) with RGMII HVIO (FPGA IO) System Example Design (SED) is a reference design implemented on the Agilex™ 5 E-Series Development Kit. 
+This design utilizes the HPS GMII-to-RGMII adapter IP to convert GMII to RGMII protocol within the FPGA. The converted RGMII signal is then routed to the FPGA High-Voltage Input/Output (HVIO) for interfacing with the external RGMII PHY. The conversion to RGMII is advantageous because it significantly reduces the number of pins required for the interface compared to using GMII directly.
+
+Please refer to the following documentation for further information:
+
+1. Agilex™ 3 Hard Processor System Technical Reference Manual: chapter 12.3.1. [GMII to RGMII through RGMII adapter via FPGA HVIOs](https://www.intel.com/content/www/us/en/docs/programmable/814346/26.3/gmii-to-rgmii-through-rgmii-adapter.html)
+2. Embedded Peripherals IP User Guide: chapter 50 [HPS GMII to RGMII Adapter Altera® FPGA IP](https://www.intel.com/content/www/us/en/docs/programmable/683130/26.3/hps-gmii-to-rgmii-adapter.html)
+
+This System Example Design comprises the following components:
+
+* Hardware Reference Design
+* Reference HPS software including:
+  * Arm Trusted Firmware
+  * U-Boot
+  * Linux Kernel
+  * Linux Drivers
+  * Sample Applications
+
+TSN Solution Architecture for this SED is illustrated as:
+
+![TSN Solution Arch](./images/tsncfg2_soln_arch.png)
+
+
+### Prerequisites
+
+This system example design is based on the [Agilex 5 E-Series 013B Development Kit HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design")](https://altera-fpga.github.io/rel-26.3/embedded-designs/agilex-5/e-series/013B/gsrd/ug-gsrd-agx5e-013b/). It is recommended that you familiarize yourself with the Baseline System Example Design development flow before proceeding with this design.
+The TSN through FPGA IO System Example Design requires the HPS Enablement Expansion Board (also referred as HPS Daughter Card), which is included with the development kit.
+
+#### Development Kit
+
+This Example Design targets the Agilex 5 FPGA E-Series 013B Development Kit, utilizing the Baseline System Example Design. 
+Refer to [GSRD\#Development Kit](https://altera-fpga.github.io/rel-26.3/embedded-designs/agilex-5/e-series/013B/gsrd/ug-gsrd-agx5e-013b/#development-kit) for details about the board, including how to install the HPS Daughter Card.
+
+* Altera&reg; Agilex&trade; 5 FPGA E-Series 013B Development Kit
+* HPS Enablement Expansion Board. Included with the development kit.
+* Mini USB Cable
+* Micro USB Cable
+* Ethernet Cable
+* Micro SD card and USB card writer
+
+**Altera&reg; Agilex&trade; 5 FPGA E-Series Development Kit:**
+
+
+![](images/agilex5-013b.png)
+
+
+**TSN Daughter card:**
+
+![HPS OOBE Card:](images/TSN_daughter_card.png)
+
+TSN daughter card is required for this design.
+
+
+#### Development Environment
+
+Host PC with:
+
+*   64 GB of RAM. Less will be fine for only exercising the binaries, and not rebuilding the HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design").
+*   Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too.
+*   Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
+*   Altera&reg; Quartus&reg; Prime Pro Edition version. Used to recompile the hardware design. If only writing binaries is required, then the smaller Altera&reg; Quartus&reg; Prime Pro Edition Programmer is sufficient.
+*   The prebuilt binaries were built using Quartus version 26.3
+*   The instructions for rebuilding the binaries use Quartus version 26.3
+*   Local Ethernet network, with DHCP server
+*   Internet connection. For downloading the files, especially when rebuilding the HPS Baseline System Example Design (formerly known as "GSRD" or "Golden System Reference Design").
+
+
+### Release Contents
+
+This page documents the following:
+
+
+#### Prebuilt Binaries
+
+The Agilex™ 5 FPGA E-Series 013B Development Kit 26.3 Example Design binaries are located at [https://releases.rocketboards.org/2026.10/tsn-rgmii-hvio/](https://releases.rocketboards.org/2026.10/tsn-rgmii-hvio/):
+
+| HPS Daughter Card | Boot Source | Link |
+| --- | --- | --- |
+| Enablement Board | SD Card | [https://releases.rocketboards.org/2026.10/tsn-rgmii-hvio/](https://releases.rocketboards.org/2026.10/tsn-rgmii-hvio/) |
+
+#### Sources
+
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3 and the following software component versions were used to build the provided prebuilt binaries:
+
+### Release Notes
+
+See [https://github.com/altera-opensource/gsrd-socfpga/releases/tag/Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3](https://github.com/altera-opensource/gsrd-socfpga/releases/tag/Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3)
+
+
+
+## TSN RGMII Architecture
+
+This system example design showcases Ethernet solution using the HPS EMAC controller with FPGA HVIO as the RGMII interface. This design uses the HPS GMII to RGMII Adapter Altera FPGA IP to convert GMII interface from HPS EMAC to the FPGA fabric. The support for TSN features (IEEE 802.1AS, IEEE 802.1Qav, IEEE 802.1Qbv, IEEE 802.1Qbu) are from the HPS EMAC controller.
+
+![](images/tsncfg2_arch.png)
+
+* HPS Peripherals connected to HPS Enablement Expansion Board for this design:
+
+  * Micro SD Card
+  * EMAC
+  * HPS JTAG debug
+  * UART
+
+#### HPS Subsystem
+The following are the key connections of the HPS to other design components;
+
+* HPS Ethernet MAC controller provide an 8-bit EMAC GMII interface to FPGA fabric.
+* EMAC MDIO PHY Management Interface (through FPGA HVIO pins) to manage external PHY.
+
+
+#### FPGA RGMII Subsystem
+
+* The GMII to RGMII adapter core provides a single to double data rate conversion of the  data coming out from the EMAC1. The RGMII interface is connected to an onboard MaxLinear PHY (MXL86111C).
+* IOPLL provides two reference clock 2.5MHz and 25MHz to the adapter core. 2.5Mhz reference clock is used for generating a 10Mbps TX clock while the 25MHz reference clock is used for generating 100Mbps TX clock.
+
+>[Note:]
+>There is no register map access needed as the hps_gmii conduit interface will connect directly to HPS exported GMII conduit interface into SoC-FPGA Interface in Platform Designer.
+ 
+#### Software Subsystem
+
+The software subsystem for the TSN RGMII HVIO System Example Design is built on the Linux OS, which is responsible for managing the proper register settings of the peripheral components. A crucial part of this setup involves configuring the Device Tree Source (.dts) file to ensure the correct operation. In this design, the MAC signals are GMII, while the PHY signals are RGMII, so the .dts file must explicitly describe the MAC and PHY modes.
+
+In this design example, `gmac1` is routed to the FPGA IO and the corresponding device tree node `gmac1` is described as follows:
+<br />(Note that while the `phy-mode` remains `rgmii`, the `mac-mode` should be specified as `gmii`.)
+
+```c
+&gmac1 {
+	status = "disabled";
+	phy-mode = "rgmii";
+	mac-mode = "gmii";
+	phy-handle = <&emac1_phy0>;
+
+	max-frame-size = <9000>;
+
+	mdio0 {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		compatible = "snps,dwmac-mdio";
+		emac1_phy0: ethernet-phy@0 {
+			reg = <0>;
+		};
+	};
+};
+```
+
+## User Flow 
+ 
+There are two ways to test the design based on use case. 
+    <a id="UserFlow1"></a> 
+ 
+* User Flow 1: Testing with [Prebuilt Binaries](https://releases.rocketboards.org/2026.10/tsn-rgmii-hvio/agilex5_dk_a5e013bm16aea_tsn-rgmii-hvio/) and next to [Programming the binaries](#programming-the-binaries)
+ 
+    <a id="UserFlow2"></a> 
+ 
+* User Flow 2: Testing Complete Flow. Start from [Tools Download and Installation](#tools-download-and-installation).
+
+| User Flow | Description | Required for [Userflow#1](#UserFlow1) | Required for [Userflow#2](#UserFlow2) |
+| --- | --- | --- | --- |
+|Environment Setup|[Tools Download and Installation](#tools-download-and-installation)|Yes|Yes|
+||[Install dependencies for SW compilation](#install-dependencies-for-sw-compilation)|No|Yes|
+ |Compilation|Simulation|No|No|
+||[Hardware Compilation](#hardware-compilation-flow)|No|Yes|
+||[Software Compilation](#software-compilation-flow)|No|Yes|
+| Programming | [Programming the binaries](#programming-the-binaries) | Yes | Yes |
+| | [Linux boot](#linux-boot) | Yes | Yes |
+| [Testing](#testing)|[Run Ping Test](#ping-test)|Yes|Yes|
+|| [Run TSN Reference Application](#run-tsn-application) | Yes | Yes |
+
+### Environment Setup
+
+#### Tools Download and Installation
+
+1. Quartus Prime Pro
+
+    Please download and install the Quartus&reg; Prime Pro Edition version 26.3 version software.
+
+2. Win32 Disk Imager
+
+    Please download and install the latest Win32 Disk Imager, available at [https://win32diskimager.org/](https://win32diskimager.org/)
+
+#### Download and setup the build toolchain
+1\. Create the top folder to store all the build artifacts:
+
+```bash
+sudo rm -rf tsn-rgmii-hvio.enablement
+mkdir tsn-rgmii-hvio.enablement
+cd tsn-rgmii-hvio.enablement
+export TOP_FOLDER=`pwd` # The $TOP_FOLDER must be defined for every fresh terminal session.
+```
+
+Note that this is installed in the `TOP_FOLDER`. You may installed this is in other location, but note the path and export it accordingly
+
+#### Install dependencies for SW compilation
+
+
+2\. Set up the Quartus tools in the PATH, so they are accessible without full path.
+
+Note: The following must be re-done for fresh terminal session
+
+```bash
+export QUARTUS_ROOTDIR=~/altera_pro/26.3/quartus/
+export PATH=$QUARTUS_ROOTDIR/bin:$QUARTUS_ROOTDIR/linux64:$QUARTUS_ROOTDIR/../qsys/bin:$PATH
+```
+
+### Compilation Flow
+
+#### Hardware Compilation Flow
+
+```bash
+cd $TOP_FOLDER
+rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
+wget https://github.com/altera-fpga/agilex5-ed-hps-baseline/releases/download/QPDS26.3_REL_BASELINE_PR/dk-a5e013bm16aea-tsn-dc-tsn-rgmii-hvio.zip
+unzip dk-a5e013bm16aea-tsn-dc-tsn-rgmii-hvio.zip
+rm -f dk-a5e013bm16aea-tsn-dc-tsn-rgmii-hvio.zip
+make tsn_rgmii_hvio-build
+```
+
+The following files are created:
+
+*   `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/tsn_rgmii_hvio.sof`
+
+##### Build Core RBF
+
+```bash
+make tsn_cfg2-install-core-rbf
+```
+
+The following file is created:
+
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/tsn_rgmii_hvio.core.rbf`
+
+#### Software Compilation Flow
+
+The following page shows an overview of how the build process works for this use case:
+
+Please refer this page:
+[Rebuild Binaries](https://altera-fpga.github.io/rel-26.3/embedded-designs/agilex-5/e-series/013B/gsrd/ug-gsrd-agx5e-013b/#build-binaries)
+>[Note:]
+>SKip "Build Hardware Design" and direct to "Build Yocto Using Kas" and rename the design file as below
+$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/baseline_hps_debug.core.rbf to 
+$TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/meta-custom/recipes-fpga/fpga-bitstream/files/tsn_rgmii_hvio_hps_debug.core.rbf
+
+
+#### Build QSPI Image
+```bash
+cd $TOP_FOLDER
+rm -f tsn_rgmii_hvio.hps.jic tsn_rgmii_hvio.core.rbf
+quartus_pfg \
+-c agilex5_soc_devkit_ghrd/output_files/tsn_rgmii_hvio.sof tsn_rgmii_hvio.jic \
+-o device=QSPI512 \
+-o flash_loader=A5ED013BM16AE4SCS \
+-o hps_path=agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e_013b/u-boot-spl-dtb.hex \
+-o mode=ASX4 \
+-o hps=1
+```
+The following file is created:
+
+* $TOP_FOLDER/tsn_rgmii_hvio.hps.jic
+
+### Programming the Binaries
+
+This section presents how to use the prebuilt binaries included with the System Example Design release.
+
+_Note: Please download Prebuilt Binaries, if you are leveraging [userflow#1](#UserFlow1)._
+
+
+
+
+#### Configure Board
+
+1\. Leave all jumpers and switches in their default configuration.
+
+2\. Install the appropriate HPS Daughtercard.
+
+3\. Connect mini USB cable from vertical connector on HPS Daughtercard to host PC. This is used for the HPS serial console.
+
+4\. Connect micro USB cable from development board to host PC. This is used by the tools for JTAG communication.
+
+5\. Connect Ethernet cable from HPS Daughter Card to an Ethernet switch connected to local network. Local network must provide a DCHP server.
+
+#### Configure Serial Console
+
+All the scenarios included in this release require a serial connection. This section presents how to configure the serial connection.
+
+1\. Install a serial terminal emulator application on your host PC:
+
+*   For Windows: TeraTerm or PuTTY are available
+*   For Linux: GtkTerm or Minicom are available
+
+2\. Power down your board if powered up. This is important, as once powered up, with the micro USB JTAG cable connected, a couple more USB serial ports will enumerate, and you may choose the wrong port.
+
+3\. Connect mini-USB cable from the vertical mini-USB connector on the HPS Daughter Card to the host PC
+
+4\. On the host PC, an USB serial port will enumerate. On Windows machines it will be something like `COM4`, while on Linux machines it will be something like `/dev/tty/USB0`.
+
+5\. Configure your serial terminal emulator to use the following settings:
+
+*   Serial port: as mentioned above
+*   Baud rate: 115,200
+*   Data bits: 8
+*   Stop bits: 1
+*   CRC: disabled
+*   Hardware flow control: disabled
+
+6\. Connect your terminal emulator
+
+#### Write QSPI Flash
+
+1\. Power down board
+
+2\. Power up the board
+
+3\. Write QSPI Flash:
+
+<h5> Using pre-built image </h5>
+
+- Download and extract the JIC image, then write it to QSPI
+
+```bash
+cd $TOP_FOLDER
+wget https://releases.rocketboards.org/2026.10/tsn-rgmii-hvio/agilex5_dk_a5e013bm16aea_tsn-rgmii-hvio/ghrd.hps.jic
+quartus_pgm -c 1 -m jtag -o "pvi;ghrd.hps.jic"
+```
+
+<h5> Using compiled image </h5>
+
+- Write JIC image to QSPI:
+
+```bash
+cd $TOP_FOLDER
+quartus_pgm -c 1 -m jtag -o "pvi;tsn_rgmii_hvio.hps.jic"
+```
+
+
+#### Programming Software Image
+
+<h5>For Prebuilt:</h5>
+
+- Download SD card image from the prebuilt binaries [https://releases.rocketboards.org/2026.10/tsn-rgmii-hvio/agilex5_dk_a5e013bm16aea_tsn-rgmii-hvio/sdimage.tar.gz](https://releases.rocketboards.org/2026.10/tsn-rgmii-hvio/agilex5_dk_a5e013bm16aea_tsn-rgmii-hvio/sdimage.tar.gz) and extract the archive, obtaining the file `gsrd-console-image-agilex5e_013b.rootfs.wic`.
+
+<h5>For compiled image:</h5>
+
+The following relevant files are created in $TOP_FOLDER/agilex5_soc_devkit_ghrd/software/yocto_linux/build/tmp/deploy/images/agilex5e_013b/:
+
+* gsrd-console-image-agilex5e_013b.rootfs.wic
+* u-boot-spl-dtb.hex
+
+
+##### Write SD Card
+1\. Write the gsrd-console-image-agilex5_013b.rootfs.wic. SD card image to the micro SD card using the included USB writer in the host computer:
+
+* On Linux, use the `dd` utility as shown next:
+
+```c
+# Determine the device associated with the SD card on the host computer.
+cat /proc/partitions
+# This will return for example /dev/sdx
+# Use dd to write the image in the corresponding device
+sudo dd if=gsrd-console-image-agilex5e_013b.rootfs.wic of=/dev/sdx bs=1M
+# Flush the changes to the SD card
+sync
+```
+
+* On Windows, use the Win32DiskImager program. For this, first rename the extension of gsrd-console-image-agilex5_013b.rootfs.wic to an **.img** file (sdcard.img for example) and write the image as shown in the next figure:
+
+![](images/win32diskimager.png)
+
+
+#### Linux Boot
+
+1. Power down board
+2. Power up the board
+3. Wait for Linux to boot, use `root` as user name, and no password will be requested.
+
+___
+
+### Testing
+
+For the purpose of demonstration, 2 development kits (refer to Baseline System Example Design) will be required with Ethernet connected back to back from one board to another. 
+
+Note: Ethernet port is on the HPS Enablement Expansion Board attached.
+
+![](images/AG3_TSN_DCx2.png)
+
+#### Ping Test
+Use ifconfig to configure the IP address on both the Devkit DUT and start testing.
+
+Example:-
+
+Devkit #1 : $ ifconfig eth1 192.168.1.100
+
+Devkit #2 : $ ifconfig eth1 192.168.1.200
+
+#### Running _iperf_ Test:
+
+1. Execute below command on Devkit #1 DUT.
+
+    `iperf3 -s eth1`
+
+2. Execute below command on Devkit #2 DUT.
+
+    `iperf3 eth1 -c 192.168.1.100 -b 0 -l 1500`
+
+    _Note : Update the Devkit #1 DUT IP address in above command._
+
+```bash
+root@agilex5e013b:~# iperf3 -s
+-----------------------------------------------------------
+Server listening on 5201 (test #1)
+-----------------------------------------------------------
+Accepted connection from 192.168.1.100, port 59616
+[  5] local 192.168.1.200 port 5201 connected to 192.168.1.100 port 59626
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.00   sec   111 MBytes   927 Mbits/sec
+[  5]   1.00-2.00   sec   112 MBytes   941 Mbits/sec
+[  5]   2.00-3.00   sec   112 MBytes   939 Mbits/sec
+[  5]   3.00-4.00   sec   112 MBytes   942 Mbits/sec
+[  5]   4.00-5.00   sec   112 MBytes   941 Mbits/sec
+[  5]   5.00-6.00   sec   112 MBytes   940 Mbits/sec
+[  5]   6.00-7.00   sec   112 MBytes   941 Mbits/sec
+[  5]   7.00-8.00   sec   112 MBytes   941 Mbits/sec
+[  5]   8.00-9.00   sec   112 MBytes   941 Mbits/sec
+[  5]   9.00-10.00  sec   112 MBytes   940 Mbits/sec
+[  5]  10.00-10.02  sec  2.25 MBytes   941 Mbits/sec
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-10.02  sec  1.10 GBytes   939 Mbits/sec                  receiver
+```
+
+
+
+[End of ## User Flow]: <>
+
+___
+
+### Known Issues/Workarounds (Ethernet/TSN related)
+This section capture issues specific to Ethernet/TSN use case that are not covered in [Release Notes](#release-note), and/or may involve third party components beyond Altera's control.
+
+| Issue | Workaround | HSD (Internal Use) | Impacted Branch/Tag |
+|--- |--- | --- | --- |
+
+## Notices & Disclaimers
+
+Altera<sup>&reg;</sup> Corporation technologies may require enabled hardware, software or service activation.
+No product or component can be absolutely secure. 
+Performance varies by use, configuration and other factors.
+Your costs and results may vary. 
+You may not use or facilitate the use of this document in connection with any infringement or other legal analysis concerning Altera or Intel products described herein. You agree to grant Altera Corporation a non-exclusive, royalty-free license to any patent claim thereafter drafted which includes subject matter disclosed herein.
+No license (express or implied, by estoppel or otherwise) to any intellectual property rights is granted by this document, with the sole exception that you may publish an unmodified copy. You may create software implementations based on this document and in compliance with the foregoing that are intended to execute on the Altera or Intel product(s) referenced in this document. No rights are granted to create modifications or derivatives of this document.
+The products described may contain design defects or errors known as errata which may cause the product to deviate from published specifications.  Current characterized errata are available on request.
+Altera disclaims all express and implied warranties, including without limitation, the implied warranties of merchantability, fitness for a particular purpose, and non-infringement, as well as any warranty arising from course of performance, course of dealing, or usage in trade.
+You are responsible for safety of the overall system, including compliance with applicable safety-related requirements or standards. 
+<sup>&copy;</sup> Altera Corporation.  Altera, the Altera logo, and other Altera marks are trademarks of Altera Corporation.  Other names and brands may be claimed as the property of others. 
+
+OpenCL* and the OpenCL* logo are trademarks of Apple Inc. used by permission of the Khronos Group™. 

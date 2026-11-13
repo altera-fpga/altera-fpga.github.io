@@ -2593,7 +2593,7 @@ After the Quartus Prime project has finished compiling, the design should look s
 
 ![alt text](images/image-30.png)
 
-The top-level Verilog file and HPS configuration is derived directly from the GSRD designs located at the Altera FPGA Developer Site ([https://altera-fpga.github.io](https://altera-fpga.github.io)) or [RocketBoards.org](RocketBoards.org):
+The top-level Verilog file and HPS configuration is derived directly from the GSRD designs located at the Altera FPGA Developer Site ([https://altera-fpga.github.io](https://altera-fpga.github.io)) or [RocketBoards.org](https://www.rocketboards.org):
 
 
 - For more information about the GSRD for the Agilex™ 5 FPGA E-Series 065B Modular Development Kit, refer to the following URL: [https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5emodular/](https://altera-fpga.github.io/latest/embedded-designs/agilex-5/e-series/modular/gsrd/ug-gsrd-agx5emodular/).

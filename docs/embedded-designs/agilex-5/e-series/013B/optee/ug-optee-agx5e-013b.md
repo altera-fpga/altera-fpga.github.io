@@ -1,5 +1,4 @@
 
-Agilex&trade; 5 FPGA E-Series 013B Development Kit, ordering code DK-A5E013BM16AEA
 
 ## Introduction
 
@@ -15,7 +14,7 @@ The following are required to be able to fully exercise the Agilex 5 FPGA E-Seri
 * Host PC with:
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1. Only Quartus Programmer is actually needed.
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3. The hardware build uses a full Quartus compile, and the software script uses `quartus_pfg` to generate the QSPI image.
  
 * Internet connection. For downloading the files, especially when rebuilding the GSRD.
 
@@ -23,24 +22,29 @@ The following are required to be able to fully exercise the Agilex 5 FPGA E-Seri
 
 | Component | Repository | Selection made by the script | Recorded revision |
 | --- | --- | --- | --- |
-| This GHRD | [altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | Repository containing this example; tag `QPDS26.1.1_REL_GSRD_PR` | `d970f25424bb413081fa7d4329535b0071d79627` |
-| OP-TEE OS | [BenjaminLimJL/optee_os](https://github.com/BenjaminLimJL/optee_os) | Branch `socfpga_agilex5_optee` | `38bbd8423336b88cbfc0d6c00609bb4814985b60` |
+| This GHRD | [altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | Repository containing this example; tag `QPDS26.3_REL_BASELINE_PR` | `8d88fc5aaa426942f63684d2a7cbc8acab82bb73` |
+| OP-TEE OS | [BenjaminLimJL/optee_os](https://github.com/BenjaminLimJL/optee_os) | Branch `socfpga_agilex5_optee` | `38bbd8423336b88cbfc0d6c00609bb4814985b60` before local patches |
 | OP-TEE Client | [OP-TEE/optee_client](https://github.com/OP-TEE/optee_client) | Tag `4.5.0` | `6486773583b5983af8250a47cf07eca938e0e422` |
-| OP-TEE examples | [BenjaminLimJL/optee_examples](https://github.com/BenjaminLimJL/optee_examples) | Branch `master` | `934c7edb74a26e90f68024cf441073528444177f` |
-| TF-A | [altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | Default branch (`socfpga_v2.14.1` at capture time); release tag `QPDS26.1.1_REL_GSRD_PR` | `2ea5afda7f34774ddcc677fb3a728fa57f780a1e` |
-| U-Boot | [altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | Default branch (`socfpga_v2026.04` at capture time); release tag `QPDS26.1.1_REL_GSRD_PR` | `e09d6fcc95f33b8a60377103f6e37e635660a3ee` before local patches |
-| Linux | [altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | Shallow clone of the default branch (`socfpga-6.18.20-lts` at capture time); release tag `QPDS26.1.1_REL_GSRD_PR` | `d8e46bd82a1e1dbbc641db7f0f57d7ddeb2621b1` before local patches |
+| OP-TEE examples | [BenjaminLimJL/optee_examples](https://github.com/BenjaminLimJL/optee_examples) | Branch `master` | `934c7edb74a26e90f68024cf441073528444177f` before local patches |
+| TF-A | [altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | Default branch (`socfpga_v2.15.0` at capture time); release tag `QPDS26.3_REL_BASELINE_PR` | `09c4dc6628810d8570af69db43918d344f9e80e9` before local patches |
+| U-Boot | [altera-fpga/u-boot-socfpga](https://github.com/altera-fpga/u-boot-socfpga) | Default branch (`socfpga_v2026.07` at capture time); release tag `QPDS26.3_REL_BASELINE_PR` | `5ba74aeda63ed07e98670f8c2f0135de06543ba0` before local patches |
+| Linux | [altera-fpga/linux-socfpga](https://github.com/altera-fpga/linux-socfpga) | Shallow clone of the default branch (`socfpga-6.18.37-lts` at capture time); release tag `QPDS26.3_REL_BASELINE_PR` | `0c0e456cdde08783d0a56ef593af45899f5d11af` before local patches |
 
 ### Local patches
 
 | Patch | Mail patch ID | Effect |
 | --- | --- | --- |
-| `0001-arm-socfpga-Add-OP-TEE-memory-to-SDRAM-firewall_uboot.patch` | `e2b47d4c8ee3f3e54db474e81c512f90bfe70ad9` | Protects the OP-TEE TZDRAM gap in the MPU, non-MPU, and F2SDRAM firewalls |
-| `0002-arm-socfpga-Add-OP-TEE-OS-as-a-loadable-firmware-in-_uboot.patch` | `ff18a40bc9d1ce86c18081788a12ef36b2acc570` | Adds OP-TEE to the U-Boot FIT and moves the kernel load address |
-| `0001-arm64-agilex5-enable-optee-support-for-agilex5_linux.patch` | `804e3a5c3e297530700dbd02955ef37ee259d23e` | Adds TZDRAM reservation and the OP-TEE firmware node to the 013B DTB | 
-| `0002-arm64-agilex5-enable-optee-support-for-agilex5_013b-_linux.patch` | `30ecf98c8e791d1333f4e3c80becc1c73fb1db4c` | Adds the same nodes to the alternate SDMMC/TF-A DTB |
+| `0001-optee_platform_agilex5.patch` | — | Adds the Agilex 5 OP-TEE platform: TZDRAM at `0x83000000` (32 MiB), GICv3, 8250 UART, and TF-A integration. Applied with `git apply`. |
+| `0001-svc-pta-Add-OP-TEE-OS_sdm_svc_pta.patch` | — | Adds the SDM Services pseudo-TA. Applied with `git apply`. |
+| `optee_examples_agilex5/*.patch` (16 patches) | — | Adds SDM service examples (host application and trusted application). `hello_world` is built from the unmodified tree before these patches are applied. |
+| `0002-feat-altera-intel-NJP-support-for-ATF.patch` | `d1c47cb0e5486915c4ce1e36b33f77545eb661e4` | Adds SDM eFuse and VAB secure-mailbox SiP calls, and limits which of those SMCs non-secure world may invoke |
+| `0001-arm-socfpga-Add-OP-TEE-memory-to-SDRAM-firewall_uboot.patch` | `5fa2bf529f7348405954507522edbb7ec1fd016f` | Protects the OP-TEE TZDRAM gap in the MPU, non-MPU, and F2SDRAM firewalls |
+| `0002-arm-socfpga-Add-OP-TEE-OS-as-a-loadable-firmware-in-_uboot.patch` | `9ff76096ec0308df321aba6960ff01a0c2d2683c` | Adds OP-TEE to the U-Boot FIT at `0x83000000`, moves `kernel_addr_r` to `0x85000000`, and lets SPL find the image under `/images` as well as `/fit-images` |
+| `0001-arm64-agilex5-enable-optee-support-for-agilex5_linux.patch` | `804e3a5c3e297530700dbd02955ef37ee259d23e` | Adds the TZDRAM reservation and the OP-TEE firmware node to `socfpga_agilex5_socdk_013b.dts`, which is the DTB copied to the SD card |
+| `0002-arm64-agilex5-enable-optee-support-for-agilex5_013b-_linux.patch` | `30ecf98c8e791d1333f4e3c80becc1c73fb1db4c` | Adds the same nodes to `socfpga_agilex5_socdk_013b_sdmmc_atfboot.dts` |
 
 ## Build Example Design
+
 
 
 
@@ -69,7 +73,7 @@ sudo apt-get install \
 ```bash
 sudo rm -rf agilex5-013b.optee_hello
 mkdir agilex5-013b.optee_hello
-cd mkdir agilex5-013b.optee_hello
+cd agilex5-013b.optee_hello
 export TOP_FOLDER=`pwd`
 ```
 
@@ -78,20 +82,33 @@ export TOP_FOLDER=`pwd`
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
-4\. Get the example files
+
+
+4\. Get the example design files and build the hardware design:
+
+
 
 
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_ghrd && mkdir agilex5_soc_devkit_ghrd && cd agilex5_soc_devkit_ghrd
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e013bm16aea-baseline-a55.zip
+wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.3_REL_BASELINE_PR/dk-a5e013bm16aea-baseline-a55.zip
 unzip dk-a5e013bm16aea-baseline-a55.zip
 rm -f dk-a5e013bm16aea-baseline-a55.zip
+make baseline_a55-build
 ```
+
+
+The following files are created:
+
+* `$TOP_FOLDER/agilex5_soc_devkit_ghrd/output_files/baseline_a55.sof`
+
+
+
 
 
 5\. Go to example folder, replace `/netbatch` with `/tmp` as that folder may not be available on your machine, but `/tmp` always is:
@@ -103,7 +120,15 @@ sed -i 's|/netbatch/|/tmp/|g' ryo_optee_sd.sh
 ```
 
 
-6\. Invoke the build script:
+6\. Provide the SOF file to where the build script needs it:
+
+
+```bash
+ln -s ../../output_files/baseline_a55.sof ghrd_a5ed013bm16ae4scs.sof
+```
+
+
+7\. Invoke the build script:
 
 
 ```bash
@@ -113,21 +138,20 @@ CMAKE_POLICY_VERSION_MINIMUM=3.5 ./ryo_optee_sd.sh --jobs="$(nproc)"
 
 
 
-
 Once the build is done, it displays this message:
 
 ```bash
-  ========================================                                                                                                                      
-  DONE                                                                                                                                                                                                      
-  ========================================                                                                                                                                                                  
-  Key outputs:                                                                                                                                                                                              
-    OP-TEE OS : optee_os/out/agilex5/core/tee-pager_v2.bin                                                                                                                                                  
-    BL31 : arm-trusted-firmware/build/agilex5/release/bl31.bin                                                                                                                                              
-    U-Boot ITB : uboot-socfpga/u-boot.itb                                                                                                                                                                   
-    Kernel : linux-socfpga/arch/arm64/boot/Image                                                                                                                                                            
-    DTB : linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_013b.dtb                                                                                                                            
-    SD image : sd_image/sdcard.img                                                                                                                                                                          
-    JIC : ghrd_sd.hps.jic                                                                                                                                                                                   
+========================================
+DONE
+========================================
+Key outputs:
+  OP-TEE OS : optee_os/out/agilex5/core/tee-pager_v2.bin
+  BL31      : arm-trusted-firmware/build/agilex5/release/bl31.bin
+  U-Boot ITB : uboot-socfpga/u-boot.itb
+  Kernel    : linux-socfpga/arch/arm64/boot/Image
+  DTB       : linux-socfpga/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_013b.dtb
+  SD image  : sd_image/sdcard.img
+  JIC       : ghrd_sd.hps.jic
 ```
 
 ## Run Example Design
@@ -161,7 +185,7 @@ root@agilex5dka5e013bm16aea:~# dmesg | grep -i optee
 
 This shows:
 
-* **Reserved memory**: The 32 MiB carve-out at 0x830000000x84FFFFFF is OP-TEE's secure DDR, declared in the devicetree with no-map so Linux never creates a mapping for it. It matches what OP-TEE OS was built with (CFG_TZDRAM_START/CFG_TZDRAM_SIZE).
+* **Reserved memory**: The 32 MiB carve-out at 0x83000000-0x84FFFFFF is OP-TEE's secure DDR, declared in the devicetree with no-map so Linux never creates a mapping for it. It matches what OP-TEE OS was built with (CFG_TZDRAM_START/CFG_TZDRAM_SIZE).
 * **Driver probe**: Revision 4.9 is OP-TEE OS reporting itself over the SMC interface, and that hash is the build ID of the running secure image. Dynamic shared memory is enabled means the kernel can register arbitrary normal-world pages with secure world on demand instead of being limited to a small fixed static SHM pool.
 
 
@@ -201,9 +225,9 @@ I/TA: Goodbye!
 D/TA:  TA_DestroyEntryPoint:29 has been called
 ```
 
-The warnings are relaed to the fact that OP-TEE wants a hardware monotonic counter to protect the REE filesystem secure storage against rollback. That is typically provided by an eMMC device which is not present in this design.
+The warnings are related to the fact that OP-TEE wants a hardware monotonic counter to protect the REE filesystem secure storage against rollback. That is typically provided by an eMMC device which is not present in this design.
 
-The `D/TA` and `I/TA` prefixed lines are are logs coming from the secure world. The messages without the prefix are coming from the normal world.
+The `D/TA` and `I/TA` prefixed lines are logs coming from the secure world. The messages without the prefix are coming from the normal world.
 
 
 ## Notices & Disclaimers

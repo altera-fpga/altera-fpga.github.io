@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600">
+  <title>Bare-metal example build flow</title>
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="7.2" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#222"/>
+    </marker>
+    <style>
+      .label { font-family: Calibri, "Segoe UI", Arial, sans-serif; font-size: 15px; font-weight: 700; fill: #1a1a1a; }
+      .sub { font-family: Calibri, "Segoe UI", Arial, sans-serif; font-size: 13px; font-weight: 700; fill: #1a1a1a; }
+      .t { font-family: Calibri, "Segoe UI", Arial, sans-serif; font-size: 13px; fill: #1a1a1a; }
+      .tw { font-family: Calibri, "Segoe UI", Arial, sans-serif; font-size: 12px; fill: #ffffff; }
+      .ts { font-family: Calibri, "Segoe UI", Arial, sans-serif; font-size: 12px; fill: #1a1a1a; }
+      .src { fill: #fbd7bb; stroke: #222; stroke-width: 1; }
+      .step { fill: #d7e3bf; stroke: #222; stroke-width: 1; }
+      .file { fill: #b7dde8; stroke: #222; stroke-width: 1; }
+      .out { fill: #7e649e; stroke: #222; stroke-width: 1; }
+      .band { fill: #f7f7f7; stroke: #e2e2e2; stroke-width: 1; }
+      .ln { fill: none; stroke: #222; stroke-width: 1.4; marker-end: url(#arr); }
+      .legend { font-family: Calibri, "Segoe UI", Arial, sans-serif; font-size: 13px; fill: #1a1a1a; }
+    </style>
+  </defs>
+
+  <rect class="band" x="8" y="8" width="944" height="96" rx="8"/>
+  <text class="label" x="24" y="28">Hardware design</text>
+  <rect class="src" x="24" y="40" width="250" height="52" rx="6"/>
+  <text class="t" x="149" y="61" text-anchor="middle">HPS baseline</text>
+  <text class="ts" x="149" y="78" text-anchor="middle">baseline</text>
+  <line class="ln" x1="274" y1="66" x2="332" y2="66"/>
+  <rect class="step" x="340" y="40" width="250" height="52" rx="6"/>
+  <text class="t" x="465" y="70" text-anchor="middle">make baseline-build</text>
+  <line class="ln" x1="590" y1="66" x2="648" y2="66"/>
+  <rect class="file" x="656" y="40" width="280" height="52" rx="6"/>
+  <text class="t" x="796" y="70" text-anchor="middle">baseline.sof</text>
+
+  <rect class="band" x="8" y="116" width="944" height="108" rx="8"/>
+  <text class="label" x="24" y="136">OCRAM example</text>
+  <rect class="src" x="24" y="148" width="168" height="60" rx="6"/>
+  <text class="t" x="108" y="172" text-anchor="middle">baremetal-drivers</text>
+  <text class="ts" x="108" y="190" text-anchor="middle">and main.c</text>
+  <line class="ln" x1="192" y1="178" x2="214" y2="178"/>
+  <rect class="step" x="222" y="148" width="156" height="60" rx="6"/>
+  <text class="t" x="300" y="172" text-anchor="middle">./build.sh</text>
+  <text class="ts" x="300" y="190" text-anchor="middle">BUILD_MODE=OCRAM</text>
+  <line class="ln" x1="378" y1="178" x2="400" y2="178"/>
+  <rect class="file" x="408" y="148" width="168" height="60" rx="6"/>
+  <text class="t" x="492" y="172" text-anchor="middle">hps_baremetal.elf</text>
+  <text class="ts" x="492" y="190" text-anchor="middle">.bin and .hex</text>
+  <line class="ln" x1="576" y1="178" x2="600" y2="178"/>
+  <rect class="step" x="608" y="148" width="120" height="60" rx="6"/>
+  <text class="t" x="668" y="172" text-anchor="middle">quartus_pfg</text>
+  <text class="ts" x="668" y="190" text-anchor="middle">SOF + HEX</text>
+  <line class="ln" x1="728" y1="178" x2="752" y2="178"/>
+  <rect class="out" x="760" y="148" width="180" height="60" rx="6"/>
+  <text class="tw" x="850" y="172" text-anchor="middle">hps_baremetal.hps.jic</text>
+  <text class="tw" x="850" y="190" text-anchor="middle">hps_baremetal.hps.rbf</text>
+
+  <rect class="band" x="8" y="236" width="944" height="292" rx="8"/>
+  <text class="label" x="24" y="256">DDR example, SD boot</text>
+  <rect class="src" x="24" y="268" width="210" height="56" rx="6"/>
+  <text class="t" x="129" y="290" text-anchor="middle">baremetal-drivers</text>
+  <text class="ts" x="129" y="308" text-anchor="middle">main.c and TF-A</text>
+  <line class="ln" x1="234" y1="296" x2="258" y2="296"/>
+  <rect class="step" x="266" y="268" width="150" height="56" rx="6"/>
+  <text class="t" x="341" y="300" text-anchor="middle">./build.sh sd</text>
+  <line class="ln" x1="416" y1="296" x2="440" y2="296"/>
+  <rect class="file" x="448" y="268" width="488" height="56" rx="6"/>
+  <text class="t" x="692" y="290" text-anchor="middle">hps_baremetal.elf, .bin, .hex</text>
+  <text class="ts" x="692" y="308" text-anchor="middle">bl2.hex, bl31.bin, fip.bin</text>
+
+  <text class="sub" x="24" y="354">SD card image</text>
+  <rect class="file" x="24" y="366" width="140" height="48" rx="6"/>
+  <text class="t" x="94" y="395" text-anchor="middle">fip.bin</text>
+  <line class="ln" x1="164" y1="390" x2="188" y2="390"/>
+  <rect class="step" x="196" y="366" width="180" height="48" rx="6"/>
+  <text class="t" x="286" y="395" text-anchor="middle">sdimage_build.sh</text>
+  <line class="ln" x1="376" y1="390" x2="400" y2="390"/>
+  <rect class="out" x="408" y="366" width="250" height="48" rx="6"/>
+  <text class="tw" x="533" y="395" text-anchor="middle">hps_baremetal.hps.sd.img</text>
+
+  <text class="sub" x="24" y="444">QSPI image</text>
+  <rect class="file" x="24" y="456" width="168" height="52" rx="6"/>
+  <text class="t" x="108" y="477" text-anchor="middle">bl2.hex + SOF</text>
+  <text class="ts" x="108" y="494" text-anchor="middle">baseline.sof</text>
+  <line class="ln" x1="192" y1="482" x2="214" y2="482"/>
+  <rect class="step" x="222" y="456" width="120" height="52" rx="6"/>
+  <text class="t" x="282" y="486" text-anchor="middle">quartus_pfg</text>
+  <line class="ln" x1="342" y1="482" x2="364" y2="482"/>
+  <rect class="file" x="372" y="456" width="130" height="52" rx="6"/>
+  <text class="t" x="437" y="486" text-anchor="middle">fsbl_sd.sof</text>
+  <line class="ln" x1="502" y1="482" x2="524" y2="482"/>
+  <rect class="step" x="532" y="456" width="120" height="52" rx="6"/>
+  <text class="t" x="592" y="486" text-anchor="middle">quartus_pfg</text>
+  <line class="ln" x1="652" y1="482" x2="674" y2="482"/>
+  <rect class="out" x="682" y="456" width="250" height="52" rx="6"/>
+  <text class="tw" x="807" y="486" text-anchor="middle">hps_baremetal.hps.jic</text>
+
+  <rect class="src" x="24" y="568" width="18" height="18" rx="3"/>
+  <text class="legend" x="48" y="582">Source</text>
+  <rect class="step" x="120" y="568" width="18" height="18" rx="3"/>
+  <text class="legend" x="144" y="582">Build step</text>
+  <rect class="file" x="240" y="568" width="18" height="18" rx="3"/>
+  <text class="legend" x="264" y="582">Intermediate file</text>
+  <rect class="out" x="410" y="568" width="18" height="18" rx="3"/>
+  <text class="legend" x="434" y="582">Programming image</text>
+</svg>

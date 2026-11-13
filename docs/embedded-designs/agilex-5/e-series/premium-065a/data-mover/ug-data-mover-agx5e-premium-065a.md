@@ -1,5 +1,9 @@
 
 
+
+
+
+
 ## Introduction
 
 This example demonstrates how to exercise a set of FreeRTOS applications in which data is moved between different components such as HPS SDRAM and OCRAMs in the fabric, following different data paths. The example is exercised in a development kit and. The example describes the hardware project, the FreeRTOS applications and also provides instructions on how to build the hardware design and HPS software binaries.
@@ -22,20 +26,18 @@ The example includes:
 
 The HPS software, the initial bitstream  and the 2nd Phase fabric design are integrated into a **.jic** image that is loaded into the QSPI device in the development kit.
 
-The complete Data Mover System Example is located at the following path: [https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover)
+The complete Data Mover System Example is located at the following path: [https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover)
 
 ### Data Mover Hardware Design
 
 The hardware design for this example  is based on the Baseline hardware reference design but adds the **dm_fab_system** component. This new component complements the original Baseline hardware reference design by adding additional fabric modules that exercise the data movement in different paths. These data movement paths include:
 
-* Moving data between HPS SDRAM and OCM-A through **H2F bridge** ¹.
-* Moving data between HPS SDRAM and OCM-B through **LWH2F bridge** ¹.
+* Moving data between HPS SDRAM and OCM-A through **H2F bridge**.
+* Moving data between HPS SDRAM and OCM-B through **LWH2F bridge**.
 * Moving data between HPS SDRAM and OCM-C through **F2H bridge**.
 * Moving data between HPS SDRAM and OCM-D through **F2SDRAM bridge**.
 * Moving data between different HPS SDRAM regions  through HPS DMA controllers(**S2S_DMA**).
 * Moving data between different HPS SDRAM regions  through direct CPU read/write operations (**S2S**).
-
-**¹** This data path is not exercised in this version of the example.
 
 A block diagram of the hardware design with the relevant components for this example is shown in the next diagram.
 
@@ -113,7 +115,7 @@ The example design includes 2 main applications: **Single-Threaded** and **Multi
 
 For the 2nd Phase FPGA configuration, each FreeRTOS application needs to determine the size of the core.rbf file so it can know the number of bytes it needs to read from the QSPI device. The size is obtained by reading the first 4 bytes from the .rbf file in the jic. Once the HPS knows the size of file, it proceed to load the actual core.rbf (located at the location of the .rbf + 4) and then perform the FPGA configuration with this.
 
-Both applications support **Symmetric Multi Processing** to allow to split the applications workload among the available HPS CPUs. You can enable this feature at build time. This can be enabled by changing the **-DSMP=ON** setting in the [datamover-app/build.sh](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/build.sh) script.
+Both applications support **Symmetric Multi Processing** to allow to split the applications workload among the available HPS CPUs. You can enable this feature at build time. This can be enabled by changing the **-DSMP=ON** setting in the [datamover-app/build.sh](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/build.sh) script.
 
 The following sections describe these 2 main applications, and also each one of the data mover tasks that are exercised.
 
@@ -125,11 +127,13 @@ This application starts by performing the FPGA configuration in which it loads i
 * Data movement exercising the F2SDRAM path (SDRAM to OCM and back)  using **mSGDMA** DMA controller in the fabric.
 * Data movement exercising S2S DMA path ( SDRAM to SDRAM) using HPS DMA controllers.
 * Data movement exercising S2S path ( SDRAM to SDRAM) moving data word by word through CPU direct read and write operations.
+* Data movement exercising H2F data path (OCM to SDRAM and back) using HPS DMA controllers.
+* Data movement exercising LWH2F data path (OCM to SDRAM and back) using HPS DMA controllers.
 
 The source code for Single-Threaded application can be found at:
- [https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded]( https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded)
+ [https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded]( https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded)
 
-The **application source code** is [datamover-app/single-threaded/main.c]( https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/main.c).
+The **application source code** is [datamover-app/single-threaded/main.c]( https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/main.c).
 
 The following image shows  the high-level flow diagram of the Single-Threaded application.
 
@@ -146,9 +150,9 @@ This application executes the functions that perform the FPGA configuration and 
 
 You can edit this application to change the tasks that you want to execute in parallel.
 The source code for Multi-Threaded application and the data movement tasks can be found at:
-   [https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded)
+   [https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded)
 
-The **application source code** is [datamover-app/multi-threaded/main.c]( https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/main.c) .
+The **application source code** is [datamover-app/multi-threaded/main.c]( https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/main.c) .
 
 The following image shows  the high-level flow diagram of the Multi-Threaded application.
 
@@ -158,31 +162,37 @@ The following image shows  the high-level flow diagram of the Multi-Threaded app
 
 Each of the applications described above includes an implementation-specific set of the data movement functions. These are located at the **datamover_tasks/** directory under the specific application directory. This is a brief description of the actions that the data mover functions do: 
 
-* **F2H Data Movement Task - f2h_task()**: This exercises the data movement using the F2H bridge during a configurable period of time ( defined through the **transaction_seconds** input parameter ). The function creates 2 data buffers in SDRAM of 20 MB (each one with space to store 40 blocks of 512 KB data).The buffer 1 is initialized with a data pattern. The data movement consists of moving  chunks of data with size of 512 KB from one of the SDRAM buffers to the OCM-C using the READ MSGDMA controller in the F2H_DMAC component and then moving back this chunk of data from the OCM-C to the second SDRAM buffer using the WRITE MSGDMA controller in the the F2H_DMAC component. The data movement is coordinated by this task using a set of 80 descriptors (40 used for reading from buffer 1 and 40 used for writing to buffer 2) that are pre-filled and used to configure the MSGDMAs (using the common [fabric_dmac]( https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/fabric_dmac/) library also included as part of this example design). Each one of these descriptors indicates the size of the data block to move, the source and destination address of source/target components. This task also relies on semaphores and interrupts to coordinate the data transfer. The MSGDMA controllers are configured to trigger an  interrupt when the data transfer completes. To signal the completion of the data transfer, the READ MSGDMA uses **FPGA2HPS_Interrupt0** and the WRITE MSGDMA uses **FPGA2HPS_Interrupt1**. In this task, every time that a block of data transfer is started in any direction, the task waits there until data transfer completes. The wait makes use of a semaphore which is taken during the wait and released at the interrupt handler, executed when the data transfer completes and the corresponding interrupt triggers. At this time, the task proceeds to push the next descriptor to continue with the next data movement (the descriptors are defined in a Read -> Write order to move data from buffer1 to OCM, i.e. read, and then from OCM to buffer2, i.e. write). This process continues until all data in buffer 1 has been moved to the buffer 2. This task continuously monitors the execution time and if the execution period of time has not elapsed, then the data movement process is repeated from the initial chunk of data in the buffer 1. The task also keeps track of the total of bytes that have been transferred. When the execution time has finished, the task calculates and displays the average data transfer rate for benchmarking purposes. The next figure shows the data path that is followed by this task.
+* **F2H Data Movement Tasks - f2h_write_task(),f2h_read_task() **: These exercise the data movement using the F2H bridge during a configurable period of time ( defined through the **transaction_seconds** input parameter ). Each function creates a data buffers in SDRAM of 20 MB (each one with space to store 40 blocks of 512 KB data).The buffer 1 is initialized with a data pattern. The data movement consists of moving  chunks of data with size of 512 KB from one of the SDRAM buffers to the OCM-C using the READ MSGDMA controller in the F2H_DMAC component and then moving back this chunk of data from the OCM-C to the second SDRAM buffer using the WRITE MSGDMA controller in the the F2H_DMAC component. The data movement is coordinated by these tasks using a set of descriptors (40 used for reading from buffer 1 and 40 used for writing to buffer 2) that are pre-filled and used to configure the MSGDMAs (using the common [fabric_dmac]( https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/fabric_dmac/) library also included as part of this example design). Each one of these descriptors indicates the size of the data block to move, the source and destination address of source/target components. These tasks also rely on semaphores and interrupts to coordinate the data transfer. The MSGDMA controllers are configured to trigger an  interrupt when the data transfer completes. To signal the completion of the data transfer, the READ MSGDMA uses **FPGA2HPS_Interrupt0** and the WRITE MSGDMA uses **FPGA2HPS_Interrupt1**. In these tasks, every time that a block of data transfer is started in any direction, the tasks waits there until data transfer completes. The wait makes use of a semaphore which is taken during the wait and released at the interrupt handler, executed when the data transfer completes and the corresponding interrupt triggers. At this time, the tasks proceed to push the next descriptor to continue with the next data movement (the descriptors are defined in a Read -> Write order to move data from buffer1 to OCM, i.e. read, and then from OCM to buffer2, i.e. write). This process continues until all data in buffer 1 has been moved to the buffer 2. These tasks continuously monitor the execution time and if the execution period of time has not elapsed, then the data movement process is repeated from the initial chunk of data in the buffer 1. The tasks also keep track of the total of bytes that have been transferred. When the execution time has finished, the tasks calculate and display the average data transfer rate for benchmarking purposes. The next figure shows the data path that is followed by these tasks.
   
   ![](images/f2hDataFlow.svg){:style="display:block; margin-left:auto; margin-right:auto; width: 110%"}
   
 
   The source code of this task is shown at the following path:
 
-  **single-threaded:** [datamover-app/single-threaded/datamover_tasks/f2h_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/f2h_task.c)<br>
-  **multi-threaded:** [datamover-app/multi-threaded/datamover_tasks/f2h_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/f2h_task.c)<br>
-
+  **single-threaded read:** [datamover-app/single-threaded/datamover_tasks/f2h_read_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/f2h_read_task.c)<br>
+  
+  **single-threaded write:** [datamover-app/single-threaded/datamover_tasks/f2h_write_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/f2h_write_task.c)<br>**multi-threaded read:** [datamover-app/multi-threaded/datamover_tasks/f2h_read_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/f2h_read_task.c)<br>
+  
+  **multi-threaded write:** [datamover-app/multi-threaded/datamover_tasks/f2h_write_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/f2h_write_task.c)<br>
+  
   The execution time is configurable using the **TEN_SECONDS** definition from the datamover_tasks/datamover_tasks.h header file.
-
-* **F2SDRAM Data Movement Task - f2sdram_task()**: This exercises the data movement using the F2SDRAM bridge during a configurable period of time ( defined through the **transaction_seconds** input parameter ). The function creates 2 data buffers in SDRAM of 20 MB (each one with space to store 40 blocks of 512 KB data). The buffer 1 is initialized with a data pattern. The data movement consists of moving  chunks of data with size of 512 KB from one of the SDRAM buffers to the OCM-D using the READ MSGDMA controller in the F2SDRAM_DMAC component and then moving back this chunk of data from the OCM-D to the second SDRAM buffer using the WRITE MSGDMA controller in the F2SDRAM_DMAC component. The data movement is coordinated by this task using a set of 80 descriptors (40 used for reading from buffer 1 and 40 used for writing to buffer 2) that are pre-filled and used to configure the MSGDMAs (using the common [fabric_dmac]( https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/fabric_dmac/) software library also included as part of this example design). Each one of these descriptors indicates the size of the data block to move, the source and destination address of the source/target components. This task also relies on semaphores and interrupts to coordinate the data transfer. The MSGDMA controllers are configured to trigger an  interrupt when the data transfer completes. To signal the completion of the data transfer, the READ MSGDMA uses **FPGA2HPS_Interrupt2** and the WRITE MSGDMA uses **FPGA2HPS_Interrupt3**. In this task, every time that a block of data transfer is started in any direction, the task waits there until data transfer completes. The wait makes use of a semaphore which is taken during the wait and released at the interrupt handler, executed when the data transfer completes and the corresponding interrupt triggers. At this time, the task proceeds to push the next descriptor to continue with the next data movement (the descriptors are defined in a Read -> Write order to move data from buffer1 to OCM, i.e. read, and then from OCM to buffer2, i.e. write). This process continues until all data in buffer 1 has been moved to the buffer 2. This task continuously monitors the execution time and if the execution period of time has not elapsed, then the data movement process is repeated from the initial chunk of data in the buffer 1. The task also keeps track of the total of bytes that have been transferred. When the execution time has finished, the task calculates and displays the average data transfer rate for benchmarking purposes. The next figure shows the data path that is followed by this task.
+  
+* **F2SDRAM Data Movement Tasks - f2sdram_read_task() and f2sdram_write_task()**: These tasks exercise the data movement using the F2SDRAM bridge during a configurable period of time ( defined through the **transaction_seconds** input parameter ). Each function creates a data buffer in SDRAM of 20 MB (each one with space to store 40 blocks of 512 KB data). The buffer 1 is initialized with a data pattern. The data movement consists of moving  chunks of data with size of 512 KB from one of the SDRAM buffers to the OCM-D using the READ MSGDMA controller in the F2SDRAM_DMAC component and then moving back this chunk of data from the OCM-D to the second SDRAM buffer using the WRITE MSGDMA controller in the F2SDRAM_DMAC component. The data movement is coordinated by these tasks using a set of descriptors (40 used for reading from buffer 1 and 40 used for writing to buffer 2) that are pre-filled and used to configure the MSGDMAs (using the common [fabric_dmac]( https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/fabric_dmac/) software library also included as part of this example design). Each one of these descriptors indicates the size of the data block to move, the source and destination address of the source/target components. These tasks also rely on semaphores and interrupts to coordinate the data transfer. The MSGDMA controllers are configured to trigger an  interrupt when the data transfer completes. To signal the completion of the data transfer, the READ MSGDMA uses **FPGA2HPS_Interrupt2** and the WRITE MSGDMA uses **FPGA2HPS_Interrupt3**. In these tasks, every time that a block of data transfer is started in any direction, the tasks wait there until data transfer completes. The wait makes use of a semaphore which is taken during the wait and released at the interrupt handler, executed when the data transfer completes and the corresponding interrupt triggers. At this time, these tasks proceed to push the next descriptor to continue with the next data movement (the descriptors are defined in a Read -> Write order to move data from buffer1 to OCM, i.e. read, and then from OCM to buffer2, i.e. write). This process continues until all data in buffer 1 has been moved to the buffer 2. These tasks continuously monitor the execution time and if the execution period of time has not elapsed, then the data movement process is repeated from the initial chunk of data in the buffer 1. The tasks also keep track of the total of bytes that have been transferred. When the execution time has finished, the tasks calculate and display the average data transfer rate for benchmarking purposes. The next figure shows the data path that is followed by these tasks.
   
   ![](images/f2sdramDataFlow.svg){:style="display:block; margin-left:auto; margin-right:auto; width: 110%"}
   
   The source code of this task is shown at the following path:
   
-  **single-threaded:** [datamover-app/single-threaded/datamover_tasks/f2sdram_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/f2sdram_task.c)<br>
-  **multi-threaded:** [datamover-app/multi-threaded/datamover_tasks/f2sdram_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/f2sdram_task.c)<br>
+  **single-threaded read:** [datamover-app/single-threaded/datamover_tasks/f2sdram_read_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/f2sdram_read_task.c)<br>
+  
+  **single-threaded write:** [datamover-app/single-threaded/datamover_tasks/f2sdram_write_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/f2sdram_write_task.c)<br>**multi-threaded read:** [datamover-app/multi-threaded/datamover_tasks/f2sdram_read_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/f2sdram_read_task.c)<br>
+  
+  **multi-threaded write:** [datamover-app/multi-threaded/datamover_tasks/f2sdram_write_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/f2sdram_write_task.c)<br>
   
   The execution time is configurable using the **TEN_SECONDS** definition from the datamover_tasks/datamover_tasks.h header file.
 
 
-* **S2S DMA Data Movement Task - s2s_dma_task()**: This exercises the data movement using the HPS DMACs (DMAC0 and DMAC1) controllers during a configurable period of time ( defined through the **transaction_seconds** input parameter ). The function creates 2 data buffers in SDRAM of 20 MB (each one with space to store 40 blocks of 512 KB data). The buffer 1 is initialized with a data pattern. The data movement consists of moving  chunks of data with size of 512 KB from one of the SDRAM buffers to the other. The 512 KB of data is split in 8 smaller data blocks of 64 KB and each one of these is transferred in parallel using a dedicated DMAC channel (each DMAC controller supports 4 channels, so the 8 channels available in DMAC0 and DMAC1 are used). To coordinate the data movement, this task creates 8 transfer lists (one per channel) of 40 items. Each item in the transfer lists indicates the size of the transfer block to move, start address of the source buffer and the start address of the destination buffer. When using the HPS DMAC the data transfer of the full 20 MB of data is done automatically using the **next_xfer_cfg** field in each one of the items in the transfer list. This field is initialized with the address of the next item in the transfer list, so when the data transfer of each 64 KB data chunk finishes, the next item pointed by **next_xfer_cfg** is processed to start automatically the new 64KB data transfer. This occurs in parallel for each one of the DMA channels. This task also relies on semaphores and interrupts to coordinate the data transfer. In this case, each one of the DMA channels is considered a resource, so when the initial transfer of  64 KB of data is started the task enters into a wait, taking a resource (each channel takes a resource) and remains there until all resources are released. When all of the 8 channels finish the automatic transfer of the 40 data chunks, the DMAC interrupt triggers, it executes the corresponding ISR handler in which the resource is released. When all channels finish their transfer, all the resources are released and the task exits from the wait. This task continuously monitors the execution time and if the execution period of time has not elapsed, then the data movement process is repeated from the initial chunks of data in the buffer 1. The task also keeps track of the total of bytes that have been transferred. When the execution time has finished, the task calculates and displays the average data transfer rate for benchmarking purposes.<br>
+* **S2S DMA Data Movement Task -s2s_dma_task()**: This exercises the data movement using the HPS DMACs (DMAC0 and DMAC1) controllers during a configurable period of time ( defined through the **transaction_seconds** input parameter ). The function creates 2 data buffers in SDRAM of 20 MB (each one with space to store 40 blocks of 512 KB data). The buffer 1 is initialized with a data pattern. The data movement consists of moving  chunks of data with size of 512 KB from one of the SDRAM buffers to the other. The 512 KB of data is split in 8 smaller data blocks of 64 KB and each one of these is transferred in parallel using a dedicated DMAC channel (each DMAC controller supports 4 channels, so the 8 channels available in DMAC0 and DMAC1 are used). To coordinate the data movement, this task creates 8 transfer lists (one per channel) of 40 items. Each item in the transfer lists indicates the size of the transfer block to move, start address of the source buffer and the start address of the destination buffer. When using the HPS DMAC the data transfer of the full 20 MB of data is done automatically using the **next_xfer_cfg** field in each one of the items in the transfer list. This field is initialized with the address of the next item in the transfer list, so when the data transfer of each 64 KB data chunk finishes, the next item pointed by **next_xfer_cfg** is processed to start automatically the new 64KB data transfer. This occurs in parallel for each one of the DMA channels. This task also relies on semaphores and interrupts to coordinate the data transfer. In this case, each one of the DMA channels is considered a resource, so when the initial transfer of  64 KB of data is started the task enters into a wait, taking a resource (each channel takes a resource) and remains there until all resources are released. When all of the 8 channels finish the automatic transfer of the 40 data chunks, the DMAC interrupt triggers, it executes the corresponding ISR handler in which the resource is released. When all channels finish their transfer, all the resources are released and the task exits from the wait. This task continuously monitors the execution time and if the execution period of time has not elapsed, then the data movement process is repeated from the initial chunks of data in the buffer 1. The task also keeps track of the total of bytes that have been transferred. When the execution time has finished, the task calculates and displays the average data transfer rate for benchmarking purposes.<br>
   <span style="color: red;">**NOTE**: Using DMAC0/DMAC1 controllers in the  HPS to move data between SDRAM regions is not the ideal path because the performance is not the best (as you can see it in the [Data Mover Benchmark Results](#data-mover-benchmark-results) section). For this purpose, it's recommended to use the F2H or F2SDRAM paths. </span>
   
   The next figure shows the data path that is followed by this task.
@@ -191,8 +201,8 @@ Each of the applications described above includes an implementation-specific set
   
   The source code of this task is shown at the following path:
 
-  **single-threaded:** [datamover-app/single-threaded/datamover_tasks/s2s_dma_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/s2s_dma_task.c)<br>
-  **multi-threaded:** [datamover-app/multi-threaded/datamover_tasks/s2s_dma_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/s2s_dma_task.c)<br>
+  **single-threaded:** [datamover-app/single-threaded/datamover_tasks/s2s_dma_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/s2s_dma_task.c)<br>
+  **multi-threaded:** [datamover-app/multi-threaded/datamover_tasks/s2s_dma_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/s2s_dma_task.c)<br>
   
   The execution time is configurable using the **TEN_SECONDS** definition from the datamover_tasks/datamover_tasks.h header file.
   
@@ -202,12 +212,40 @@ Each of the applications described above includes an implementation-specific set
   
   The source code of this task is shown at the following path:
   
-  **single-threaded:** [datamover-app/single-threaded/datamover_tasks/s2s_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/s2s_task.c)<br>
-  **multi-threaded:** [datamover-app/multi-threaded/datamover_tasks/s2s_task.c](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/s2s_task.c)<br>
+  **single-threaded:** [datamover-app/single-threaded/datamover_tasks/s2s_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/s2s_task.c)<br>
+  **multi-threaded:** [datamover-app/multi-threaded/datamover_tasks/s2s_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/s2s_task.c)<br>
   
   The execution time is configurable using the **TEN_SECONDS** definition from the datamover_tasks/datamover_tasks.h header file.
 
-* **QOS Generator Configuration function - configure_qos_generator()**: The Quality-of-Service (QoS) feature  allows user to specify a mode and priority to the transaction order of different traffic sources when they attempt to use the same interconnect at the same time. In this example, data contention occurs when different sources from fabric-HPS bridges and the HPS attempt to use the EMIF interface for external memory access. Users can manipulate QoS values when such scenarios occur to find optimal data movement solutions on Agilex™ 5 FPGAs. The QOS is applicable to the  **Multi-Threaded application**, in which 2 or more tasks that access the SDRAM are executed in parallel, so this application calls the  **configure_qos_generator()** function as part of the **setup_fpga()** function. The four fabric-HPS data bridges can be configured with different QoS values by directly writing to the corresponding QoS registers in the HPS. In this design, users can modify the **setup_fpga()** function in [datamover-app/multi-threaded/main.c]( https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/main.c) to call **configure_qos_generator()** with the QOS address register and value as parameters to assign a different mode and priority to a specific transaction. By default the mode and priority assigned to all paths is mode **Fixed** (0) and **Priority/Urgency** is 0 for read and write transactions. The source code and header files created to control the QOS is also provided as part of this example and is located at  [datamover-app/qos_generator](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/qos_generator) directory.  The QOS components that are relevant and supported by this example design are:
+* **H2F Data Movement Tasks - h2f_read_task() and h2f_write_task()**: These tasks  exercise the data movement using the H2F bridge during a configurable period of time ( defined through the **transaction_seconds** input parameter ). Each function creates a data buffer in SDRAM of 20 MB (40 blocks of 512 KB data). The data movement is done between  the buffers created and the OCM-A in the fabric using the 4 channels of 2 HPS DMA controllers. The 8 DMA channels move chunks of 512 KB splitting these in 64 KB per channel using 40 descriptors (one per each 512 KB block size).  The  **h2f_read_task()** function moves data from OCM-A to one of the SDRAM buffers. The **h2f_write_task()** moves data from the other buffer (initialized with random data) to the OCM-A. The data movement in each channel and in both directions, occurs in parallel for each one of the DMA channels in both DMA controllers. The tasks also rely on semaphores and interrupts to coordinate the data transfer. In this case, each one of the DMA channels is considered a resource, so when the initial transfer of  64 KB of data is started the task enters into a wait, taking a resource (each channel takes a resource) and remains there until all resources are released. When each of the 8 channels finishes the automatic transfer of the 40 64 KB-data chunks, the DMAC interrupt triggers, it executes the corresponding ISR handler in which the resource (semaphore) is released. When all channels finish their transfer, all the resources are released and the task exits from the wait. This task continuously monitors the execution time and if the execution period of time has not elapsed, then the data movement process is repeated from the initial chunks of data. The tasks also keep track of the total of bytes that have been transferred. When the execution time has finished, the task calculates and displays the average data transfer rate for benchmarking purposes.<br>
+  
+  ![](images/h2fDataFlow.svg){:style="display:block; margin-left:auto; margin-right:auto; width: 110%"}
+  
+  The source code of this task is shown at the following path:
+  
+  **single-threaded read:** [datamover-app/single-threaded/datamover_tasks/h2f_read_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/h2f_read_task.c)<br>
+  **single-threaded write:** [datamover-app/single-threaded/datamover_tasks/h2f_write_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/h2f_write_task.c)<br>
+  **multi-threaded read:** [datamover-app/multi-threaded/datamover_tasks/h2f_read_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/h2f_read_task.c)<br>
+  **multi-threaded write:** [datamover-app/multi-threaded/datamover_tasks/h2f_write_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/h2f_write_task.c)<br>
+  
+  The execution time is configurable using the **TEN_SECONDS** definition from the datamover_tasks/datamover_tasks.h header file.
+  
+* **LWH2F Data Movement Tasks - lwh2f_read_task() and lwh2f_write_task()**: These tasks  exercise the data movement using the LWH2F bridge during a configurable period of time ( defined through the **transaction_seconds** input parameter ). Each function creates a data buffer in SDRAM of 20 MB (40 blocks of 512 KB data). The data movement is done between  the buffers created and the OCM-B in the fabric using the 4 channels of 2 HPS DMA controllers. The 8 DMA channels move chunks of 512 KB splitting these in 64 KB per channel using 40 descriptors (one per each 512 KB block size).  The  **lwh2f_read_task()** function moves data from OCM-B to one of the SDRAM buffers. The **lwh2f_write_task()** moves data from the other buffer (initialized with random data) to the OCM-B. The data movement in each channel and in both directions, occurs in parallel for each DMA channel in both DMA controllers. The tasks also rely on semaphores and interrupts to coordinate the data transfer. In this case, each one of the DMA channels is considered a resource, so when the initial transfer of  64 KB of data is started the task enters into a wait, taking a resource (each channel takes a resource) and remains there until all resources are released. When each of the 8 channels finishes the automatic transfer of the 40 64 KB-data chunks, the DMAC interrupt triggers, it executes the corresponding ISR handler in which the resource (semaphore) is released. When all channels finish their transfer, all the resources are released and the task exits from the wait. This task continuously monitors the execution time and if the execution period of time has not elapsed, then the data movement process is repeated from the initial chunks of data. The tasks also keep track of the total of bytes that have been transferred. When the execution time has finished, the task calculates and displays the average data transfer rate for benchmarking purposes.<br>
+  
+  ![](images/lwh2fDataFlow.svg){:style="display:block; margin-left:auto; margin-right:auto; width: 110%"}
+  
+  The source code of this task is shown at the following path:
+  
+  **single-threaded read:** [datamover-app/single-threaded/datamover_tasks/lwh2f_read_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/lwh2f_read_task.c)<br>
+  **single-threaded write:** [datamover-app/single-threaded/datamover_tasks/lwh2f_write_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/single-threaded/datamover_tasks/lwh2f_write_task.c)<br>
+  **multi-threaded read:** [datamover-app/multi-threaded/datamover_tasks/lwh2f_read_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/lwh2f_read_task.c)<br>
+  **multi-threaded write:** [datamover-app/multi-threaded/datamover_tasks/lwh2f_write_task.c](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/datamover_tasks/lwh2f_write_task.c)<br>
+  
+  The execution time is configurable using the **TEN_SECONDS** definition from the datamover_tasks/datamover_tasks.h header file.
+  
+  
+  
+* **QOS Generator Configuration function - configure_qos_generator()**: The Quality-of-Service (QoS) feature  allows user to specify a mode and priority to the transaction order of different traffic sources when they attempt to use the same interconnect at the same time. In this example, data contention occurs when different sources from fabric-HPS bridges and the HPS attempt to use the EMIF interface for external memory access. Users can manipulate QoS values when such scenarios occur to find optimal data movement solutions on Agilex™ 5 FPGAs. The QOS is applicable to the  **Multi-Threaded application**, in which 2 or more tasks that access the SDRAM are executed in parallel, so this application calls the  **configure_qos_generator()** function as part of the **setup_fpga()** function. The four fabric-HPS data bridges can be configured with different QoS values by directly writing to the corresponding QoS registers in the HPS. In this design, users can modify the **setup_fpga()** function in [datamover-app/multi-threaded/main.c]( https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/multi-threaded/main.c) to call **configure_qos_generator()** with the QOS address register and value as parameters to assign a different mode and priority to a specific transaction. By default the mode and priority assigned to all paths is mode **Fixed** (0) and **Priority/Urgency** is 0 for read and write transactions. The source code and header files created to control the QOS is also provided as part of this example and is located at  [datamover-app/qos_generator](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/qos_generator) directory.  The QOS components that are relevant and supported by this example design are:
 
   * CCU_DMI0 - HPS CCU cache initiator 0, used by  F2H Data Movement Task.
   * CCU_DMI1 - HPS CCU cache initiator 1, used by  F2H Data Movement Task.
@@ -234,7 +272,7 @@ The following are required to be able to fully exercise this System Example Desi
   * 10 GB of free disk space for FreeRTOS builds
   * Linux OS installed. Ubuntu 22.04LTS was used to create this page, other versions and distributions may work too
   * Serial terminal (for example GtkTerm or Minicom on Linux and TeraTerm or PuTTY on Windows)
-  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 
+  * Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3 
   
 * Local Ethernet network, with DHCP server
 * Internet connection. For downloading the files, especially when rebuilding the System Example Design.
@@ -243,20 +281,24 @@ For more information about the development kit setup, please refer to the corres
 
 ### Component Versions
 
-Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.1.1 and the following software component versions integrate the 26.1.1 release. 
+Altera&reg; Quartus<sup>&reg;</sup> Prime Pro Edition Version 26.3 and the following software component versions integrate the 26.3 release. 
 
 
 | Component                             | Location                                                     | Branch                       | Commit ID/Tag       |
 | :------------------------------------ | :----------------------------------------------------------- | :--------------------------- | :------------------ |
-| Agilex 5 Design | [https://github.com/altera-fpga/agilex5e-ed-gsrd](https://github.com/altera-fpga/agilex5e-ed-gsrd) | main                    | QPDS26.1.1_REL_GSRD_PR |
-| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.14.1   | QPDS26.1.1_REL_GSRD_PR |
-| FreeRTOS      | [https://github.com/Ignitarium-Technology/freertos-socfpga](https://github.com/Ignitarium-Technology/freertos-socfpga)   | main | 7000df2db62f |
+| Agilex 5 System Example Design | [https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges) | main                    | QPDS26.3_REL_BASELINE_PR |
+| Arm Trusted Firmware                  | [https://github.com/altera-fpga/arm-trusted-firmware](https://github.com/altera-fpga/arm-trusted-firmware) | socfpga_v2.15.0   | QPDS26.3_REL_BASELINE_PR |
+| FreeRTOS      | [https://github.com/altera-fpga/freertos-socfpga](https://github.com/altera-fpga/freertos-socfpga)   | main | QPDS26.3_REL_BASELINE_PR |
 
 **Note:** The combination of the component versions indicated in the table above has been validated through the use cases described in this page and it is strongly recommended to use these versions together. If you decided to use any component with different version than the indicated, there is not warranty that this will work.
 
+**Note:** Starting from 26.3 Quartus release, the build of the Quartus projects in the System Example Designs are based only on Visual Designer Studio (VDS).<br>
+Please review the following KDB if you face Quartus design build problems when the RTL was generated with VDS:<br>
+[Why do Quartus® Prime Pro 26.3 and earlier fail to build a Agilex® 5/Agilex® 3/Agilex® 7 FPGA M-Series VDS based design whose RTL has been generated with VDS?](https://community.altera.com/kb/knowledge-base/why-do-quartus%C2%AE-prime-pro-26-3-and-earlier-fail-to-build-a-agilex%C2%AE-5agilex%C2%AE-3agi/357511).
+
 ### Pre-Built Binaries
 
-The pre-built binaries for the Data Mover System Example Design are located at: [https://releases.rocketboards.org/2026.08/datamover/agilex5_dk_a5e065ab32aea_datamover/freertos/](https://releases.rocketboards.org/2026.08/datamover/agilex5_dk_a5e065ab32aea_datamover/freertos/). These consist of a  jic file for each one of the supported  applications (single-threaded and multi-threaded applications). The .sof for the Quartus project is common for the applications and this is located at  [https://releases.rocketboards.org/2026.08/datamover/agilex5_dk_a5e065ab32aea_datamover/](https://releases.rocketboards.org/2026.08/datamover/agilex5_dk_a5e065ab32aea_datamover/) directory.
+The pre-built binaries for the Data Mover System Example Design are located at: [https://releases.rocketboards.org/2026.10/datamover/agilex5_dk_a5e065ab32aea_datamover/freertos/](https://releases.rocketboards.org/2026.10/datamover/agilex5_dk_a5e065ab32aea_datamover/freertos/). These consist of a  jic file for each one of the supported  applications (single-threaded and multi-threaded applications). The .sof for the Quartus project is common for the applications and this is located at  [https://releases.rocketboards.org/2026.10/datamover/agilex5_dk_a5e065ab32aea_datamover/](https://releases.rocketboards.org/2026.10/datamover/agilex5_dk_a5e065ab32aea_datamover/) directory.
 
 ## Exercise Pre-Built Binaries
 
@@ -310,11 +352,11 @@ All the scenarios included in this release require a serial connection. This sec
 
 For Single-Threaded application:
 ```bash
-wget https://releases.rocketboards.org/2026.08/datamover/agilex5_dk_a5e065ab32aea_datamover/freertos/single-threaded/qspi_image.jic
+wget https://releases.rocketboards.org/2026.10/datamover/agilex5_dk_a5e065ab32aea_datamover/freertos/single-threaded/qspi_image.jic
 ```
 For Multi-Threaded application:
 ```bash
-wget https://releases.rocketboards.org/2026.08/datamover/agilex5_dk_a5e065ab32aea_datamover/freertos/multi-threaded/qspi_image.jic
+wget https://releases.rocketboards.org/2026.10/datamover/agilex5_dk_a5e065ab32aea_datamover/freertos/multi-threaded/qspi_image.jic
 ```
 5\. Write the JIC file to QSPI:
 
@@ -345,48 +387,53 @@ NOTICE:  ###DDR:init success###
 NOTICE:  DFI interface selected successfully to SDEMMC
 NOTICE:  SOCFPGA: QSPI boot
 NOTICE:  BL2: v2.14.0(release):
-NOTICE:  BL2: Built : 18:15:56, Jun  1 2026
+NOTICE:  BL2: Built : 18:40:00, Oct 26 2026
 NOTICE:  BL2: Booting BL31
 NOTICE:  SOCFPGA: Boot Core = 0
 NOTICE:  SOCFPGA: CPU ID = 0
 NOTICE:  SOCFPGA: Setting CLUSTERECTRL_EL1
 NOTICE:  BL31: v2.14.0(release):
-NOTICE:  BL31: Built : 18:15:56, Jun  1 2026
+NOTICE:  BL31: Built : 18:40:00, Oct 26 2026
 =====================================
 Data Mover FreeRTOS Program Starting.
 =====================================
 
-Bitstream size: 3878912 bytes
+Bitstream size: 4104192 bytes
 Flushing bitstream data from cache to memory...
 Loading FPGA bitstream...
 Bitstream data send successfully
 FPGA bitstream loaded successfully.
 
-Waiting finished!
-
 Starting Data Mover Tasks...
 
-FPGA2HPS bridge disabled
-FPGA2HPS bridge enabled
-Starting F2H transfers for 10 seconds ...
-Total data transferred for F2H transfers in 10.005549 seconds: 63585 MB -- Average transfer bandwidth is: 6354.973535 MB/s
-F2H Task completed.
+Starting F2H write transfers for 10 seconds ...
+Total data transferred in a 10-second F2H write operation: 65536 MB -- Average transfer bandwidth is: 6552.704406 MB/s
+F2H Write Task completed.
 
-FPGA2SDRAM bridge disabled
-FPGA2SDRAM bridge enabled
-Starting F2SDRAM transfers for 10 seconds ...
-Total data transferred for F2SDRAM transfers in 10.003209 seconds: 65179 MB -- Average transfer bandwidth is: 6515.809095 MB/s
-F2SDRAM Task completed.
+Starting F2H read transfers for 10 seconds ...
+Total data transferred in a 10-second F2H read operation: 68996 MB -- Average transfer bandwidth is: 6897.564686 MB/s
+F2H Read Task completed.
 
-Starting S2S DMA transfers for 10 seconds ...
-Total data transferred for S2S transfers in 10.030906 seconds: 26373 MB -- Average transfer bandwidth is: 2633.487747 MB/s
-S2S DMA Task completed.
+Starting F2SDRAM write transfers for 10 seconds ...
+Total data transferred in a 10-second F2SDRAM write operation: 65536 MB -- Average transfer bandwidth is: 6552.501098 MB/s
+F2SDRAM Write Task completed.
 
-Starting S2S transfers for 10 seconds ...
-Total data transferred for S2S transfers in 10.005372 seconds: 51799 MB -- Average transfer bandwidth is: 5177.118973 MB/s
-S2S Task completed.
+Starting F2SDRAM read transfers for 10 seconds ...
+Total data transferred in a 10-second F2SDRAM read operation: 65682 MB -- Average transfer bandwidth is: 6567.798936 MB/s
+F2SDRAM Read Task completed.
 
-Data Mover FreeRTOS Program Completed.
+Starting H2F read transfers for 10 seconds ...
+Total data transferred in a 10-second H2F read operation: 15812 MB -- Average transfer bandwidth is: 1580.226877 MB/s
+H2F Read Task completed.
+
+Starting H2F write transfers for 10 seconds ...
+Total data transferred in a 10-second H2F write operation: 18916 MB -- Average transfer bandwidth is: 1891.046664 MB/s
+H2F Write Task completed.
+
+Starting LWH2F read transfers for 10 seconds ...
+Total data transferred in a 10-second LWH2F read operation: 4152 MB -- Average transfer bandwidth is: 414.689642 MB/s
+LWH2F Read Task completed.
+
 ```
 
 
@@ -402,7 +449,7 @@ Once the QSPI has been programmed with the Multi-Threaded JIC file, you need per
 
 4\. Observe in the Serial console the output that the application displays. Here you can see that ATF starts booting after the power cycle, and later this launches the FreeRTOS application. The log shows that the 2nd Phase fabric design configuration is performed followed by the FPGA setup. After this, the data mover tasks are executed in parallel and both finish after 10 seconds . By the time the data movement tasks finish, they print the average data transfer that the tasks calculate.
 
-**NOTE:** To get the best performance, you need to build this application with SMP (Symmetric Multi Processing) enabled. See [Build Binaries for Data Mover Applications](#build-binaries-for-data-mover-applications) section for details on how to do it.
+**NOTE:** To get the best performance, you need to build this application with SMP (Symmetric Multi Processing) enabled whcih is the default. See [Build Binaries for Data Mover Applications](#build-binaries-for-data-mover-applications) section for details on how to do it.
 
 ```bash
 NOTICE:  DDR: Reset type is 'Power-On'
@@ -415,30 +462,42 @@ NOTICE:  ###DDR:init success###
 NOTICE:  DFI interface selected successfully to SDEMMC
 NOTICE:  SOCFPGA: QSPI boot
 NOTICE:  BL2: v2.14.0(release):
-NOTICE:  BL2: Built : 19:50:18, Jun  4 2026
+NOTICE:  BL2: Built : 18:58:22, Oct 26 2026
 NOTICE:  BL2: Booting BL31
 NOTICE:  SOCFPGA: Boot Core = 0
 NOTICE:  SOCFPGA: CPU ID = 0
 NOTICE:  SOCFPGA: Setting CLUSTERECTRL_EL1
 NOTICE:  BL31: v2.14.0(release):
-NOTICE:  BL31: Built : 19:50:18, Jun  4 2026
+NOTICE:  BL31: Built : 18:58:22, Oct 26 2026
 =====================================
 Data Mover FreeRTOS Program Starting.
 =====================================
 
-Bitstream size: 3878912 bytes
+Bitstream size: 4104192 bytes
 Flushing bitstream data from cache to memory...
 Loading FPGA bitstream...
 Bitstream data send successfully
 FPGA bitstream loaded successfully.
 
 FPGA setup complete.
-F2H Task Started.S2S Task Started.
-
-Starting F2H transfers for 10 seconds ...
+F2H Read Task Started.
+F2H Write Task Started.
+F2SDRAM Read Task Started.
+F2SDRAM Write Task Started.
+S2S DMA Task Started.
+S2S Task Started.
+Starting F2H write transfers for 10 seconds ...
+Starting F2SDRAM write transfers for 10 seconds ...
+Starting F2H read transfers for 10 seconds ...
+Starting F2SDRAM read transfers for 10 seconds ...
+Starting S2S DMA transfers for 10 seconds ...
 Starting S2S transfers for 10 seconds ...
-Total data transferred for S2S transfers in 10.011555 seconds: 28647 MB -- Average transfer bandwidth is: 2861.393713 MB/s
-Total data transferred for F2H transfers in 10.012349 seconds: 22817 MB -- Average transfer bandwidth is: 2278.885913 MB/s
+Total data transferred in a 10-second F2SDRAM write operation: 19377 MB -- Average transfer bandwidth is: 1937.602447 MB/s
+Total data transferred in a 10-second F2SDRAM read operation: 19755 MB -- Average transfer bandwidth is: 1974.698171 MB/s
+Total data transferred in a 10-second F2H read operation: 5284 MB -- Average transfer bandwidth is: 528.124870 MB/s
+Total data transferred in a 10-second S2S transfer operation: 6417 MB -- Average transfer bandwidth is: 641.225572 MB/s
+Total data transferred in a 10-second F2H write operation: 5368 MB -- Average transfer bandwidth is: 536.326009 MB/s
+Total data transferred in a 10-second S2S DMA transfer operation: 2768 MB -- Average transfer bandwidth is: 276.196742 MB/s
 ```
 ### Getting Performance Data from Performance Monitor
 
@@ -456,7 +515,7 @@ Follow the next steps to retrieve the information captured by the performance mo
 
 5\. In a terminal in which Quartus has been setup, open the System Console using **system-console --cli** command. The terminal will become the System Console CLI.
 
-6\. At the System Console terminal, execute the [datamover_pmon.tcl](https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/pmon/datamover_pmon.tcl) script included as part of this System Example Design. This script continuously retrieves information from the performance monitors in the design and will show the captured metrics.
+6\. At the System Console terminal, execute the [datamover_pmon.tcl](https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/pmon/datamover_pmon.tcl) script included as part of this System Example Design. This script continuously retrieves information from the performance monitors in the design and will show the captured metrics.
 
 **Note:** Since the PMON access is only available after FPGA bitstream configuration, if you want to start capturing the metrics by the time the data movement begins, you may want to add a 30 second delay after the 2nd Phase FPGA configuration is performed and then rebuild the application. This delay can be added as shown next ( the example is based on the Single-Threaded application at the software/freertos/datamover-app/single-threaded/main.c path):
 
@@ -485,36 +544,30 @@ $ system-console --cli
 % source  pmon/datamover_pmon.tcl
 PMON 0
 Monitor 0 (Unit ID: 2) Configuration detected: Basic Efficiency
-Read Efficiency is 39.4 % 
-Write Efficiency is 39.4 % 
-Average number of data transactions per cycle is 0.788 
+Read Efficiency is 64.6 % 
+Write Efficiency is 61.4 % 
+Average number of data transactions per cycle is 0.630 
 
 
 PMON 1
 Monitor 0 (Unit ID: 3) Configuration detected: Basic Efficiency
-Read Efficiency is 40.7 % 
-Write Efficiency is 40.7 % 
-Average number of data transactions per cycle is 0.814 
+Read Efficiency is 61.6 % 
+Write Efficiency is 61.4 % 
+Average number of data transactions per cycle is 0.615 
 
 
 PMON 2
 Monitor 0 (Unit ID: 0) Configuration detected: Basic Efficiency
-No Read traffic detected
-No Write traffic detected
-No Traffic detected
-Read Efficiency is 0.0 % 
-Write Efficiency is 0.0 % 
-Average number of data transactions per cycle is 0.000 
+Read Efficiency is 39.5 % 
+Write Efficiency is 47.3 % 
+Average number of data transactions per cycle is 0.434 
 
 
 PMON 3
 Monitor 0 (Unit ID: 1) Configuration detected: Basic Efficiency
-No Read traffic detected
-No Write traffic detected
-No Traffic detected
-Read Efficiency is 0.0 % 
-Write Efficiency is 0.0 % 
-Average number of data transactions per cycle is 0.000 
+Read Efficiency is 41.5 % 
+Write Efficiency is 73.1 % 
+Average number of data transactions per cycle is 0.573 
 
 ```
 Please refer to the [Performance Monitor FPGA IP User Guide Agilex™ 3, Agilex™ 5, and Agilex™ 7 FPGAs](https://docs.altera.com/r/docs/817760/25.1.1/performance-monitor-fpga-ip-user-guide-agilextm-3-agilextm-5-and-agilextm-7-fpgas/about-the-performance-monitor-pmon-fpga-ip) for more information about the Performance Monitor IP and how the metrics are calculated (refer to the **PDF** version which provides the equations used to calculate these metrics).
@@ -522,14 +575,22 @@ Please refer to the [Performance Monitor FPGA IP User Guide Agilex™ 3, Agilex�
 
 ### Data Mover Benchmark Results
 
-The following table summarizes the benchmark results obtained from the execution of the data mover tasks.
+The following table summarizes the benchmark results obtained from the execution of the F2H & H2F data mover tasks.
 
-| Data Mover Task | Bandwidth measured<br> MB/s | Theoretical Bandwidth<br> MB/s | % Yield<br> real vs theoretical |
+| Data Mover Task | Theoretical Bandwidth<br> MB/s | Read Bandwidth measured<br> MB/s | % Read Yield<br> real vs theoretical |  Write Bandwidth measured<br> MB/s | % Write Yield<br> real vs theoretical |
+| :-- | :-- |  :-- | :-- | :-- | :-- |
+| F2H | 10667 | 6894 | 64.6 | 6553 | 61.4 |
+| F2SDRAM  | 10667 | 6568 | 61.6 | 6552 | 61.4 |
+| H2F | 3200 | 1581 | 49.4 | 1893 | 59.2 |
+| LWH2F | 1000 | 415 | 41.15 | 731 | 73.1 |
+
+
+This table descirbes the copy bandwith of the S2S Data mover tasks.
+
+| Data Mover Task | Theoretical Copy Bandwidth<br>MB/s | Copy Bandwidth<br> MB/s | %  Copy Yield<br> real vs theoretical |
 | :-- | :-- |  :-- | :-- |
-| F2H | 6315 | 8000 | 78.9 |
-| F2SDRAM  | 6516 | 8000 | 81.4  |
-| S2S DMA  | 2622 | 3200 | 81.9 |
-| S2S (non-DMA) | 5178 | 10667 | 48.5 |
+| S2S DMA  | 3200 | 2623 | 81.9 |
+| S2S (non-DMA) | 10667 | 5216 | 48.9 |
 
 
 ## Rebuild FreeRTOS Binaries
@@ -557,7 +618,7 @@ Enable Quartus tools to be called from command line:
 
 
 ```bash
-source ~/altera_pro/26.1.1/qinit.sh
+source ~/altera_pro/26.3/qinit.sh
 ```
 
 
@@ -573,7 +634,7 @@ source ~/altera_pro/26.1.1/qinit.sh
 ```bash
 cd $TOP_FOLDER
 rm -rf agilex5_soc_devkit_sed && mkdir agilex5_soc_devkit_sed && cd agilex5_soc_devkit_sed
-wget https://github.com/altera-fpga/agilex5e-ed-gsrd/releases/download/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement-datamover.zip 
+wget https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/releases/download/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement-datamover.zip 
 unzip dk-a5e065ab32aea-enablement-datamover.zip
 rm -f dk-a5e065ab32aea-enablement-datamover.zip
 make datamover-install 
@@ -616,15 +677,15 @@ There are some properties or parameters that can be customized in each applicati
 
 | Property | Where to update in ST App | Where to update in MT App |
 | :-- | :-- | :-- |
-| Execution time of each data movement task | Replace **TEN_SECOND** input parameter in the calling of  **f2h_task(), f2sdram_task(), s2s_dma_task(), s2s_task()** functions at **run()** function in **main.c**. | Replace **TEN_SECOND** input parameter when calling **f2h_task(), f2sdram_task(), s2s_dma_task(), s2s_task()** functions in **main.c** |
-| Memory buffers size in SDRAM | This is based on the NUM_BLOCKS and OCM_SIZE definitions in **datamover_tasks.h** (each item in the buffer has an 8-byte size) | This is based on the NUM_BLOCKS and OCM_SIZE definitions in **datamover_tasks.h** (each item in the buffer has an 8-byte size) |
+| Execution time of each data movement task | Replace **TEN_SECOND** input parameter in the calling of  **f2h_read_task()**, **f2h_write_task()**, **f2sdram_write_task()**, **f2sdram_write_task()**, **h2f_read_task()**, **h2f_write_task()**, **lwh2f_read_task()**, **lwh2f_write_tasks()**, **s2s_dma_task()** and **s2s_task()** functions at **run()** function in **main.c**. | Replace **TEN_SECOND** input parameter when calling **f2h_read_task()**, **f2h_write_task()**, **f2sdram_write_task()**, **f2sdram_write_task()**, **h2f_read_task()**, **h2f_write_task()**, **lwh2f_read_task()**, **lwh2f_write_tasks()**, **s2s_dma_task()** and **s2s_task()** functions at in **main.c**. |
+| Memory buffers size in SDRAM | This is based on the **NUM_BLOCKS** and **OCM_SIZE** definitions in **datamover_tasks.h** (each item in the buffer has an 8-byte size) | This is based on the **NUM_BLOCKS** and **OCM_SIZE** definitions in **datamover_tasks.h** (each item in the buffer has an 8-byte size) |
 | Transfer data block size | Tied to the size of the OCM set by **OCM_SIZE** definition in **datamover_tasks.h**. | Tied to the size of the OCM set by **OCM_SIZE** definition in **datamover_tasks.h**. |
 | QoS generator values | N/A | Values defined in **setup_fpga()** function in **main.c** |
-| SMP Enable/Disable | Not needed as applications are run serially. | Set in the **datamover-app/build.sh** with the **-DSMP=OFF/ON** switch when creating the **$PATH** variable. |
+| SMP Enable/Disable | Not needed as applications are run serially. | Set in the **datamover-app/build.sh** with the **-DSMP=OFF/ON** switch when creating the **$PATH** variable. Automatically set to ON by default. |
 | Enable any other set of data mover tasks in the application | N/A as all apps are enabled | Modify **main()** function to enable creating the desired tasks. You also need to modify the **ALL_THREADS** definition to include the flags for all the task enabled. These updates are done in **main.c**. |
 
 
-Please refer to the application [README]( https://github.com/altera-fpga/agilex5e-ed-gsrd/tree/QPDS26.1.1_REL_GSRD_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/README.md) for more detail about building the applications.
+Please refer to the application [README]( https://github.com/altera-fpga/agilex5-ed-hps-fpga-bridges/tree/QPDS26.3_REL_BASELINE_PR/dk-a5e065ab32aea-enablement/datamover/software/freertos/datamover-app/README.md) for more detail about building the applications.
 
 ## Notices & Disclaimers
 

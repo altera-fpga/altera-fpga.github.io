@@ -765,6 +765,7 @@ design example. Additionally, there are two extra user flows that you can explor
 **More resources.**
 
 === "Agilex™ 5"
+
     | Source | Link |
     | ---------------------------------- | ---- |
     | Pre-created QAR file               | [DOC_PLC_TANDEM_MOTORSIM_AGILEX5.qar](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/DOC_PLC_TANDEM_MOTORSIM_AGILEX5.qar) |
@@ -772,6 +773,7 @@ design example. Additionally, there are two extra user flows that you can explor
     | u-boot-spl-dtb.hex                 | [u-boot-spl-dtb.hex](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/u-boot-spl-dtb.hex) |
 
 === "Agilex™ 3"
+
     | Source | Link |
     | ---------------------------------- | ---- |
     | Pre-created QAR file               | [DOC_PLC_TANDEM_MOTORSIM_AGILEX3.qar](https://github.com/altera-fpga/agilex-ed-drive-on-chip/releases/download/rel-plc-26.1/DOC_PLC_TANDEM_MOTORSIM_AGILEX3.qar) |
