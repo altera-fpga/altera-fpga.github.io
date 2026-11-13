@@ -1,0 +1,61 @@
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+index bde447f..b921ff9 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+@@ -539,5 +539,55 @@
+ 				};
+ 			};
+ 		};
++
++		s10_hps_bridges: bridge@80000000 {
++			compatible = "simple-bus";
++			reg = <0x80000000 0x20200000>,
++				<0xf9000000 0x00100000>;
++			reg-names = "axi_h2f", "axi_h2f_lw";
++			#address-cells = <2>;
++			#size-cells = <1>;
++			ranges = <0x00000000 0x00000000 0x80000000 0x00040000>,
++				<0x00000000 0x10000000 0x90000000 0x10000000>,
++				<0x00000000 0x20000000 0xa0000000 0x00200000>,
++				<0x00000001 0x00010000 0xf9010000 0x00008000>,
++				<0x00000001 0x00018000 0xf9018000 0x00000080>,
++				<0x00000001 0x00018080 0xf9018080 0x00000010>;
++
++			pcie_0_pcie_s10: pcie@A0000000 {
++				compatible = "altr,pcie-root-port-2.0";
++				reg = 	<0x00000000 0x20000000 0x00200000>,
++					<0x00000000 0x10000000 0x10000000>,
++					<0x00000001 0x00010000 0x00008000>;
++				reg-names = "Hip", "Txs", "Cra";
++				interrupt-parent = <&intc>;
++				interrupts = <0 20 4>;
++				interrupt-controller;
++				#interrupt-cells = <1>;
++				device_type = "pci";    /* embeddedsw.dts.params.device_type type STRING */
++				bus-range = <0x00000000 0x000000ff>;
++				ranges = <0x82000000 0x00000000 0x00000000 0x00000000 0x10000000 0x00000000 0x10000000>;
++				msi-parent = <&pcie_0_msi_irq>;
++				#address-cells = <3>;
++				#size-cells = <2>;
++				dma-coherent;
++				interrupt-map-mask = <0 0 0 7>;
++				interrupt-map = <0 0 0 1 &pcie_0_pcie_s10 1>,
++						<0 0 0 2 &pcie_0_pcie_s10 2>,
++						<0 0 0 3 &pcie_0_pcie_s10 3>,
++						<0 0 0 4 &pcie_0_pcie_s10 4>;
++			}; //end pcie@0x010000000 (pcie_0_pcie_s10)
++
++			pcie_0_msi_irq: msi@10008080 {
++				compatible = "altr,msi-1.0";
++				reg = <0x00000001 0x00018080 0x00000010>,
++					<0x00000001 0x00018000 0x00000080>;
++				reg-names = "csr", "vector_slave";
++				interrupt-parent = <&intc>;
++				interrupts = <0 19 4>;
++				msi-controller = <1>;   /* embeddedsw.dts.params.msi-controller type NUMBER */
++				num-vectors = <32>;     /* embeddedsw.dts.params.num-vectors type NUMBER */
++			}; //end msi@0x100008000 (pcie_0_msi_irq)
++		};
+ 	};
+ };
+ 

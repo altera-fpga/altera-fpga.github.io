@@ -1,10 +1,15 @@
 [
   {
-    "version": "rel-26.1.1",
-    "title": "rel-26.1.1",
+    "version": "rel-26.3",
+    "title": "rel-26.3",
     "aliases": [
       "latest"
     ]
+  },
+  {
+    "version": "rel-26.1.1",
+    "title": "rel-26.1.1",
+    "aliases": []
   },
   {
     "version": "rel-26.1",

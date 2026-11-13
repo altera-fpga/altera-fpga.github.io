@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <title>Bao baremetal guest architecture</title>
+  <defs>
+    <style>
+      .h { font-family: Calibri, "Segoe UI", Arial, sans-serif; font-size: 16px; font-weight: 700; fill: #1a1a1a; }
+      .hw { font-family: Calibri, "Segoe UI", Arial, sans-serif; font-size: 16px; font-weight: 700; fill: #ffffff; }
+      .t { font-family: Calibri, "Segoe UI", Arial, sans-serif; font-size: 14px; fill: #1a1a1a; }
+      .tw { font-family: Calibri, "Segoe UI", Arial, sans-serif; font-size: 14px; fill: #ffffff; }
+      .box { stroke: #222; stroke-width: 1; }
+      .vm1 { fill: #ffd965; }
+      .vm2 { fill: #b7c8e8; }
+      .ipc { fill: #deebf7; }
+      .hyp { fill: #7030a0; }
+      .hwb { fill: #00b050; }
+      .boot { fill: #f7f7f7; stroke: #c8c8c8; stroke-width: 1; }
+    </style>
+  </defs>
+
+  <rect class="box vm1" x="16" y="16" width="454" height="176" rx="6"/>
+  <text class="h" x="243" y="44" text-anchor="middle">VM1 - Cortex-A55 core 0</text>
+  <text class="t" x="243" y="72" text-anchor="middle">UART printer. Owns UART0, interrupt 140.</text>
+  <text class="t" x="243" y="94" text-anchor="middle">Drains the shared-memory log and prints it.</text>
+  <text class="t" x="243" y="116" text-anchor="middle">Measures VM2 to VM1 IPC latency.</text>
+  <text class="t" x="243" y="138" text-anchor="middle">64 MiB RAM at IPA 0x82000000.</text>
+  <text class="t" x="243" y="160" text-anchor="middle">L3 colors 0-7 (1 MiB).</text>
+
+  <rect class="box vm2" x="490" y="16" width="454" height="176" rx="6"/>
+  <text class="h" x="717" y="44" text-anchor="middle">VM2 - Cortex-A55 core 1</text>
+  <text class="t" x="717" y="72" text-anchor="middle">ILC worker.</text>
+  <text class="t" x="717" y="94" text-anchor="middle">Interval timer and ILC at 0x20000000, irq 50.</text>
+  <text class="t" x="717" y="116" text-anchor="middle">GPIO LED and the reset manager.</text>
+  <text class="t" x="717" y="138" text-anchor="middle">Writes the log, then sends a Bao IPC hypercall.</text>
+  <text class="t" x="717" y="160" text-anchor="middle">64 MiB RAM at IPA 0x82000000. L3 colors 8-15.</text>
+
+  <rect class="box ipc" x="16" y="208" width="928" height="84" rx="6"/>
+  <text class="h" x="480" y="236" text-anchor="middle">Shared memory and Bao IPC</text>
+  <text class="t" x="480" y="258" text-anchor="middle">256 MiB at PA 0xD0000000, mapped in both guests at IPA 0xC0000000.</text>
+  <text class="t" x="480" y="278" text-anchor="middle">Left out of cache coloring. VM2 hypercall: Bao delivers SGI 2 to VM1.</text>
+
+  <rect class="box hyp" x="16" y="308" width="928" height="72" rx="6"/>
+  <text class="hw" x="480" y="336" text-anchor="middle">Bao hypervisor - EL2</text>
+  <text class="tw" x="480" y="358" text-anchor="middle">Static core assignment, stage-2 translation, virtual GICv3, cache coloring.</text>
+
+  <rect class="box hwb" x="16" y="396" width="928" height="64" rx="6"/>
+  <text class="hw" x="480" y="422" text-anchor="middle">Agilex 5 HPS and FPGA fabric</text>
+  <text class="tw" x="480" y="442" text-anchor="middle">2x Cortex-A55, 2x Cortex-A76, GICv3, UART0, DDR. ILC behind the HPS-to-FPGA bridge.</text>
+
+  <rect class="boot" x="16" y="476" width="928" height="44" rx="6"/>
+  <text class="t" x="480" y="503" text-anchor="middle">Boot: QSPI holds U-Boot SPL. SD FAT holds u-boot.itb, bao.bin at 0x90200000, boot.scr, fpga.rbf, ilc_demo.bin.</text>
+</svg>

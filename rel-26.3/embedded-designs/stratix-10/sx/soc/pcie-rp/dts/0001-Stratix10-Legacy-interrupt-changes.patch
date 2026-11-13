@@ -1,0 +1,1091 @@
+From c871a32c749f21a2d65395bb45a0b818de60be88 Mon Sep 17 00:00:00 2001
+From: Mahesh Vaidya <mahesh.vaidya@altera.com>
+Date: Wed, 12 Nov 2025 21:13:13 -0800
+Subject: [PATCH] Stratix10 Legacy interrupt changes
+
+Signed-off-by: Mahesh Vaidya <mahesh.vaidya@altera.com>
+---
+ arch/arm64/boot/dts/altera/check.dts          | 955 ++++++++++++++++++
+ .../boot/dts/altera/socfpga_stratix10.dtsi    |  53 +
+ drivers/pci/controller/pcie-altera.c          |  24 +-
+ 3 files changed, 1031 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/altera/check.dts
+
+diff --git a/arch/arm64/boot/dts/altera/check.dts b/arch/arm64/boot/dts/altera/check.dts
+new file mode 100644
+index 000000000000..04829c790b82
+--- /dev/null
++++ b/arch/arm64/boot/dts/altera/check.dts
+@@ -0,0 +1,955 @@
++/dts-v1/;
++
++/ {
++	compatible = "altr,socfpga-stratix10-socdk\0altr,socfpga-stratix10";
++	#address-cells = <0x02>;
++	#size-cells = <0x02>;
++	model = "SoCFPGA Stratix 10 SoCDK";
++
++	reserved-memory {
++		#address-cells = <0x02>;
++		#size-cells = <0x02>;
++		ranges;
++
++		svcbuffer@0 {
++			compatible = "shared-dma-pool";
++			reg = <0x00 0x00 0x00 0x1000000>;
++			alignment = <0x1000>;
++			no-map;
++			phandle = <0x18>;
++		};
++	};
++
++	cpus {
++		#address-cells = <0x01>;
++		#size-cells = <0x00>;
++
++		cpu@0 {
++			compatible = "arm,cortex-a53";
++			device_type = "cpu";
++			enable-method = "psci";
++			reg = <0x00>;
++			phandle = <0x01>;
++		};
++
++		cpu@1 {
++			compatible = "arm,cortex-a53";
++			device_type = "cpu";
++			enable-method = "psci";
++			reg = <0x01>;
++			phandle = <0x02>;
++		};
++
++		cpu@2 {
++			compatible = "arm,cortex-a53";
++			device_type = "cpu";
++			enable-method = "psci";
++			reg = <0x02>;
++			phandle = <0x03>;
++		};
++
++		cpu@3 {
++			compatible = "arm,cortex-a53";
++			device_type = "cpu";
++			enable-method = "psci";
++			reg = <0x03>;
++			phandle = <0x04>;
++		};
++	};
++
++	pmu {
++		compatible = "arm,armv8-pmuv3";
++		interrupts = <0x00 0xaa 0x04 0x00 0xab 0x04 0x00 0xac 0x04 0x00 0xad 0x04>;
++		interrupt-affinity = <0x01 0x02 0x03 0x04>;
++		interrupt-parent = <0x05>;
++	};
++
++	psci {
++		compatible = "arm,psci-0.2";
++		method = "smc";
++	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts = <0x01 0x0d 0xf08 0x01 0x0e 0xf08 0x01 0x0b 0xf08 0x01 0x0a 0xf08>;
++		interrupt-parent = <0x05>;
++	};
++
++	interrupt-controller@fffc1000 {
++		compatible = "arm,gic-400\0arm,cortex-a15-gic";
++		#interrupt-cells = <0x03>;
++		interrupt-controller;
++		reg = <0x00 0xfffc1000 0x00 0x1000 0x00 0xfffc2000 0x00 0x2000 0x00 0xfffc4000 0x00 0x2000 0x00 0xfffc6000 0x00 0x2000>;
++		phandle = <0x05>;
++	};
++
++	clocks {
++
++		cb-intosc-hs-div2-clk {
++			#clock-cells = <0x00>;
++			compatible = "fixed-clock";
++			phandle = <0x1a>;
++		};
++
++		cb-intosc-ls-clk {
++			#clock-cells = <0x00>;
++			compatible = "fixed-clock";
++			phandle = <0x1b>;
++		};
++
++		f2s-free-clk {
++			#clock-cells = <0x00>;
++			compatible = "fixed-clock";
++			phandle = <0x1c>;
++		};
++
++		osc1 {
++			#clock-cells = <0x00>;
++			compatible = "fixed-clock";
++			clock-frequency = <0x17d7840>;
++			phandle = <0x1d>;
++		};
++
++		qspi-clk {
++			#clock-cells = <0x00>;
++			compatible = "fixed-clock";
++			clock-frequency = <0xbebc200>;
++			phandle = <0x16>;
++		};
++	};
++
++	soc {
++		#address-cells = <0x01>;
++		#size-cells = <0x01>;
++		compatible = "simple-bus";
++		device_type = "soc";
++		interrupt-parent = <0x05>;
++		ranges = <0x00 0x00 0x00 0xffffffff>;
++
++		base_fpga_region {
++			#address-cells = <0x02>;
++			#size-cells = <0x02>;
++			compatible = "fpga-region";
++			fpga-mgr = <0x06>;
++		};
++
++		clock-controller@ffd10000 {
++			compatible = "intel,stratix10-clkmgr";
++			reg = <0xffd10000 0x1000>;
++			#clock-cells = <0x01>;
++			phandle = <0x08>;
++		};
++
++		ethernet@ff800000 {
++			compatible = "altr,socfpga-stmmac-a10-s10\0snps,dwmac-3.74a\0snps,dwmac";
++			reg = <0xff800000 0x2000>;
++			interrupts = <0x00 0x5a 0x04>;
++			interrupt-names = "macirq";
++			mac-address = [00 00 00 00 00 00];
++			resets = <0x07 0x20 0x07 0x28>;
++			reset-names = "stmmaceth\0ahb";
++			clocks = <0x08 0x34 0x08 0x37>;
++			clock-names = "stmmaceth\0ptp_ref";
++			tx-fifo-depth = <0x4000>;
++			rx-fifo-depth = <0x4000>;
++			snps,multicast-filter-bins = <0x100>;
++			iommus = <0x09 0x01>;
++			altr,sysmgr-syscon = <0x0a 0x44 0x00>;
++			status = "okay";
++			phy-mode = "rgmii";
++			phy-handle = <0x0b>;
++			max-frame-size = <0x2328>;
++			phandle = <0x14>;
++
++			mdio0 {
++				#address-cells = <0x01>;
++				#size-cells = <0x00>;
++				compatible = "snps,dwmac-mdio";
++
++				ethernet-phy@0 {
++					reg = <0x04>;
++					txd0-skew-ps = <0x00>;
++					txd1-skew-ps = <0x00>;
++					txd2-skew-ps = <0x00>;
++					txd3-skew-ps = <0x00>;
++					rxd0-skew-ps = <0x1a4>;
++					rxd1-skew-ps = <0x1a4>;
++					rxd2-skew-ps = <0x1a4>;
++					rxd3-skew-ps = <0x1a4>;
++					txen-skew-ps = <0x00>;
++					txc-skew-ps = <0x384>;
++					rxdv-skew-ps = <0x1a4>;
++					rxc-skew-ps = <0x690>;
++					phandle = <0x0b>;
++				};
++			};
++		};
++
++		ethernet@ff802000 {
++			compatible = "altr,socfpga-stmmac-a10-s10\0snps,dwmac-3.74a\0snps,dwmac";
++			reg = <0xff802000 0x2000>;
++			interrupts = <0x00 0x5b 0x04>;
++			interrupt-names = "macirq";
++			mac-address = [00 00 00 00 00 00];
++			resets = <0x07 0x21 0x07 0x29>;
++			reset-names = "stmmaceth\0ahb";
++			clocks = <0x08 0x35 0x08 0x37>;
++			clock-names = "stmmaceth\0ptp_ref";
++			tx-fifo-depth = <0x4000>;
++			rx-fifo-depth = <0x4000>;
++			snps,multicast-filter-bins = <0x100>;
++			iommus = <0x09 0x02>;
++			altr,sysmgr-syscon = <0x0a 0x48 0x08>;
++			status = "disabled";
++			phandle = <0x1e>;
++		};
++
++		ethernet@ff804000 {
++			compatible = "altr,socfpga-stmmac-a10-s10\0snps,dwmac-3.74a\0snps,dwmac";
++			reg = <0xff804000 0x2000>;
++			interrupts = <0x00 0x5c 0x04>;
++			interrupt-names = "macirq";
++			mac-address = [00 00 00 00 00 00];
++			resets = <0x07 0x22 0x07 0x2a>;
++			reset-names = "stmmaceth\0ahb";
++			clocks = <0x08 0x36 0x08 0x37>;
++			clock-names = "stmmaceth\0ptp_ref";
++			tx-fifo-depth = <0x4000>;
++			rx-fifo-depth = <0x4000>;
++			snps,multicast-filter-bins = <0x100>;
++			iommus = <0x09 0x03>;
++			altr,sysmgr-syscon = <0x0a 0x4c 0x10>;
++			status = "disabled";
++			phandle = <0x1f>;
++		};
++
++		gpio@ffc03200 {
++			#address-cells = <0x01>;
++			#size-cells = <0x00>;
++			compatible = "snps,dw-apb-gpio";
++			reg = <0xffc03200 0x100>;
++			resets = <0x07 0x58>;
++			status = "disabled";
++			phandle = <0x20>;
++
++			gpio-controller@0 {
++				compatible = "snps,dw-apb-gpio-port";
++				gpio-controller;
++				#gpio-cells = <0x02>;
++				ngpios = <0x18>;
++				reg = <0x00>;
++				interrupt-controller;
++				#interrupt-cells = <0x02>;
++				interrupts = <0x00 0x6e 0x04>;
++				phandle = <0x21>;
++			};
++		};
++
++		gpio@ffc03300 {
++			#address-cells = <0x01>;
++			#size-cells = <0x00>;
++			compatible = "snps,dw-apb-gpio";
++			reg = <0xffc03300 0x100>;
++			resets = <0x07 0x59>;
++			status = "okay";
++			phandle = <0x22>;
++
++			gpio-controller@0 {
++				compatible = "snps,dw-apb-gpio-port";
++				gpio-controller;
++				#gpio-cells = <0x02>;
++				ngpios = <0x18>;
++				reg = <0x00>;
++				interrupt-controller;
++				#interrupt-cells = <0x02>;
++				interrupts = <0x00 0x6f 0x04>;
++				phandle = <0x0e>;
++			};
++		};
++
++		i2c@ffc02800 {
++			#address-cells = <0x01>;
++			#size-cells = <0x00>;
++			compatible = "intel,socfpga-i2c\0snps,designware-i2c";
++			reg = <0xffc02800 0x100>;
++			interrupts = <0x00 0x67 0x04>;
++			resets = <0x07 0x48>;
++			clocks = <0x08 0x2d>;
++			status = "disabled";
++			phandle = <0x23>;
++		};
++
++		i2c@ffc02900 {
++			#address-cells = <0x01>;
++			#size-cells = <0x00>;
++			compatible = "intel,socfpga-i2c\0snps,designware-i2c";
++			reg = <0xffc02900 0x100>;
++			interrupts = <0x00 0x68 0x04>;
++			resets = <0x07 0x49>;
++			clocks = <0x08 0x2d>;
++			status = "okay";
++			clock-frequency = <0x186a0>;
++			i2c-sda-falling-time-ns = <0x37a>;
++			i2c-scl-falling-time-ns = <0x37a>;
++			pinctrl-names = "default\0gpio";
++			pinctrl-0 = <0x0c>;
++			pinctrl-1 = <0x0d>;
++			scl-gpios = <0x0e 0x06 0x06>;
++			sda-gpios = <0x0e 0x07 0x06>;
++			phandle = <0x24>;
++
++			adc@14 {
++				compatible = "lltc,ltc2497";
++				reg = <0x14>;
++				vref-supply = <0x0f>;
++			};
++
++			temp@4c {
++				compatible = "maxim,max1619";
++				reg = <0x4c>;
++			};
++
++			eeprom@51 {
++				compatible = "atmel,24c32";
++				reg = <0x51>;
++				pagesize = <0x20>;
++			};
++
++			rtc@68 {
++				compatible = "dallas,ds1339";
++				reg = <0x68>;
++			};
++		};
++
++		i2c@ffc02a00 {
++			#address-cells = <0x01>;
++			#size-cells = <0x00>;
++			reg = <0xffc02a00 0x100>;
++			compatible = "intel,socfpga-i2c\0snps,designware-i2c";
++			interrupts = <0x00 0x69 0x04>;
++			resets = <0x07 0x4a>;
++			clocks = <0x08 0x2d>;
++			status = "disabled";
++			phandle = <0x25>;
++		};
++
++		i2c@ffc02b00 {
++			#address-cells = <0x01>;
++			#size-cells = <0x00>;
++			compatible = "intel,socfpga-i2c\0snps,designware-i2c";
++			reg = <0xffc02b00 0x100>;
++			interrupts = <0x00 0x6a 0x04>;
++			resets = <0x07 0x4b>;
++			clocks = <0x08 0x2d>;
++			status = "disabled";
++			phandle = <0x26>;
++		};
++
++		i2c@ffc02c00 {
++			#address-cells = <0x01>;
++			#size-cells = <0x00>;
++			compatible = "intel,socfpga-i2c\0snps,designware-i2c";
++			reg = <0xffc02c00 0x100>;
++			interrupts = <0x00 0x6b 0x04>;
++			resets = <0x07 0x4c>;
++			clocks = <0x08 0x2d>;
++			status = "disabled";
++			phandle = <0x27>;
++		};
++
++		mmc@ff808000 {
++			#address-cells = <0x01>;
++			#size-cells = <0x00>;
++			compatible = "altr,socfpga-dw-mshc";
++			reg = <0xff808000 0x1000>;
++			interrupts = <0x00 0x60 0x04>;
++			fifo-depth = <0x400>;
++			resets = <0x07 0x27>;
++			reset-names = "reset";
++			clocks = <0x08 0x2c 0x08 0x39>;
++			clock-names = "biu\0ciu";
++			iommus = <0x09 0x05>;
++			altr,sysmgr-syscon = <0x0a 0x28 0x04>;
++			status = "okay";
++			cap-sd-highspeed;
++			cap-mmc-highspeed;
++			broken-cd;
++			bus-width = <0x04>;
++			clk-phase-sd-hs = <0x00 0x87>;
++			phandle = <0x15>;
++		};
++
++		nand-controller@ffb90000 {
++			#address-cells = <0x01>;
++			#size-cells = <0x00>;
++			compatible = "altr,socfpga-denali-nand";
++			reg = <0xffb90000 0x10000 0xffb80000 0x1000>;
++			reg-names = "nand_data\0denali_reg";
++			interrupts = <0x00 0x61 0x04>;
++			clocks = <0x08 0x3d 0x08 0x3e 0x08 0x3f>;
++			clock-names = "nand\0nand_x\0ecc";
++			resets = <0x07 0x25 0x07 0x2d>;
++			status = "disabled";
++			phandle = <0x28>;
++		};
++
++		sram@ffe00000 {
++			compatible = "mmio-sram";
++			reg = <0xffe00000 0x100000>;
++			#address-cells = <0x01>;
++			#size-cells = <0x01>;
++			ranges = <0x00 0xffe00000 0x100000>;
++			phandle = <0x12>;
++		};
++
++		dma-controller@ffda0000 {
++			compatible = "arm,pl330\0arm,primecell";
++			reg = <0xffda0000 0x1000>;
++			interrupts = <0x00 0x51 0x04 0x00 0x52 0x04 0x00 0x53 0x04 0x00 0x54 0x04 0x00 0x55 0x04 0x00 0x56 0x04 0x00 0x57 0x04 0x00 0x58 0x04 0x00 0x59 0x04>;
++			#dma-cells = <0x01>;
++			clocks = <0x08 0x2b>;
++			clock-names = "apb_pclk";
++			resets = <0x07 0x30 0x07 0x35>;
++			reset-names = "dma\0dma-ocp";
++			phandle = <0x29>;
++		};
++
++		pinctrl@ffd13000 {
++			compatible = "pinctrl-single";
++			reg = <0xffd13000 0xa0>;
++			#pinctrl-cells = <0x01>;
++			pinctrl-single,register-width = <0x20>;
++			pinctrl-single,function-mask = <0x0f>;
++			phandle = <0x2a>;
++
++			i2c1-pmx-func {
++				pinctrl-single,pins = <0x78 0x04 0x7c 0x04>;
++				phandle = <0x0c>;
++			};
++
++			i2c1-pmx-func-gpio {
++				pinctrl-single,pins = <0x78 0x08 0x7c 0x08>;
++				phandle = <0x0d>;
++			};
++		};
++
++		pinctrl@ffd13100 {
++			compatible = "pinctrl-single";
++			reg = <0xffd13100 0x20>;
++			#pinctrl-cells = <0x01>;
++			pinctrl-single,register-width = <0x20>;
++			pinctrl-single,function-mask = <0x0f>;
++			phandle = <0x2b>;
++		};
++
++		rstmgr@ffd11000 {
++			#reset-cells = <0x01>;
++			compatible = "altr,stratix10-rst-mgr";
++			reg = <0xffd11000 0x1000>;
++			phandle = <0x07>;
++		};
++
++		iommu@fa000000 {
++			compatible = "arm,mmu-500\0arm,smmu-v2";
++			reg = <0xfa000000 0x40000>;
++			#global-interrupts = <0x02>;
++			#iommu-cells = <0x01>;
++			clocks = <0x08 0x2b>;
++			clock-names = "iommu";
++			interrupt-parent = <0x05>;
++			interrupts = <0x00 0x80 0x04 0x00 0x81 0x04 0x00 0x8a 0x04 0x00 0x8b 0x04 0x00 0x8c 0x04 0x00 0x8d 0x04 0x00 0x8e 0x04 0x00 0x8f 0x04 0x00 0x90 0x04 0x00 0x91 0x04 0x00 0x92 0x04 0x00 0x93 0x04 0x00 0x94 0x04 0x00 0x95 0x04 0x00 0x96 0x04 0x00 0x97 0x04 0x00 0x98 0x04 0x00 0x99 0x04 0x00 0x9a 0x04 0x00 0x9b 0x04 0x00 0x9c 0x04 0x00 0x9d 0x04 0x00 0x9e 0x04 0x00 0x9f 0x04 0x00 0xa0 0x04 0x00 0xa1 0x04 0x00 0xa2 0x04 0x00 0xa3 0x04 0x00 0xa4 0x04 0x00 0xa5 0x04 0x00 0xa6 0x04 0x00 0xa7 0x04 0x00 0xa8 0x04 0x00 0xa9 0x04>;
++			stream-match-mask = <0x7ff0>;
++			status = "disabled";
++			phandle = <0x09>;
++		};
++
++		spi@ffda4000 {
++			compatible = "snps,dw-apb-ssi";
++			#address-cells = <0x01>;
++			#size-cells = <0x00>;
++			reg = <0xffda4000 0x1000>;
++			interrupts = <0x00 0x63 0x04>;
++			resets = <0x07 0x31>;
++			reset-names = "spi";
++			reg-io-width = <0x04>;
++			num-cs = <0x04>;
++			clocks = <0x08 0x2b>;
++			status = "disabled";
++			phandle = <0x2c>;
++		};
++
++		spi@ffda5000 {
++			compatible = "snps,dw-apb-ssi";
++			#address-cells = <0x01>;
++			#size-cells = <0x00>;
++			reg = <0xffda5000 0x1000>;
++			interrupts = <0x00 0x64 0x04>;
++			resets = <0x07 0x32>;
++			reset-names = "spi";
++			reg-io-width = <0x04>;
++			num-cs = <0x04>;
++			clocks = <0x08 0x2b>;
++			status = "disabled";
++			phandle = <0x2d>;
++		};
++
++		sysmgr@ffd12000 {
++			compatible = "altr,sys-mgr-s10\0altr,sys-mgr";
++			reg = <0xffd12000 0x228>;
++			phandle = <0x0a>;
++		};
++
++		timer0@ffc03000 {
++			compatible = "snps,dw-apb-timer";
++			interrupts = <0x00 0x71 0x04>;
++			reg = <0xffc03000 0x100>;
++			clocks = <0x08 0x2d>;
++			clock-names = "timer";
++			phandle = <0x2e>;
++		};
++
++		timer1@ffc03100 {
++			compatible = "snps,dw-apb-timer";
++			interrupts = <0x00 0x72 0x04>;
++			reg = <0xffc03100 0x100>;
++			clocks = <0x08 0x2d>;
++			clock-names = "timer";
++			phandle = <0x2f>;
++		};
++
++		timer2@ffd00000 {
++			compatible = "snps,dw-apb-timer";
++			interrupts = <0x00 0x73 0x04>;
++			reg = <0xffd00000 0x100>;
++			clocks = <0x08 0x2d>;
++			clock-names = "timer";
++			phandle = <0x30>;
++		};
++
++		timer3@ffd00100 {
++			compatible = "snps,dw-apb-timer";
++			interrupts = <0x00 0x74 0x04>;
++			reg = <0xffd00100 0x100>;
++			clocks = <0x08 0x2d>;
++			clock-names = "timer";
++			phandle = <0x31>;
++		};
++
++		serial@ffc02000 {
++			compatible = "snps,dw-apb-uart";
++			reg = <0xffc02000 0x100>;
++			interrupts = <0x00 0x6c 0x04>;
++			reg-shift = <0x02>;
++			reg-io-width = <0x04>;
++			resets = <0x07 0x50>;
++			clocks = <0x08 0x2d>;
++			status = "okay";
++			phandle = <0x32>;
++		};
++
++		serial@ffc02100 {
++			compatible = "snps,dw-apb-uart";
++			reg = <0xffc02100 0x100>;
++			interrupts = <0x00 0x6d 0x04>;
++			reg-shift = <0x02>;
++			reg-io-width = <0x04>;
++			resets = <0x07 0x51>;
++			clocks = <0x08 0x2d>;
++			status = "disabled";
++			phandle = <0x33>;
++		};
++
++		usb@ffb00000 {
++			compatible = "snps,dwc2";
++			reg = <0xffb00000 0x40000>;
++			interrupts = <0x00 0x5d 0x04>;
++			phys = <0x10>;
++			phy-names = "usb2-phy";
++			resets = <0x07 0x23 0x07 0x2b>;
++			reset-names = "dwc2\0dwc2-ecc";
++			clocks = <0x08 0x3b>;
++			clock-names = "otg";
++			iommus = <0x09 0x06>;
++			status = "okay";
++			disable-over-current;
++			phandle = <0x13>;
++		};
++
++		usb@ffb40000 {
++			compatible = "snps,dwc2";
++			reg = <0xffb40000 0x40000>;
++			interrupts = <0x00 0x5e 0x04>;
++			phys = <0x10>;
++			phy-names = "usb2-phy";
++			resets = <0x07 0x24 0x07 0x2c>;
++			reset-names = "dwc2\0dwc2-ecc";
++			clocks = <0x08 0x3b>;
++			iommus = <0x09 0x07>;
++			status = "disabled";
++			phandle = <0x34>;
++		};
++
++		watchdog@ffd00200 {
++			compatible = "snps,dw-wdt";
++			reg = <0xffd00200 0x100>;
++			interrupts = <0x00 0x75 0x04>;
++			resets = <0x07 0x40>;
++			clocks = <0x08 0x04>;
++			status = "okay";
++			phandle = <0x35>;
++		};
++
++		watchdog@ffd00300 {
++			compatible = "snps,dw-wdt";
++			reg = <0xffd00300 0x100>;
++			interrupts = <0x00 0x76 0x04>;
++			resets = <0x07 0x41>;
++			clocks = <0x08 0x04>;
++			status = "disabled";
++			phandle = <0x36>;
++		};
++
++		watchdog@ffd00400 {
++			compatible = "snps,dw-wdt";
++			reg = <0xffd00400 0x100>;
++			interrupts = <0x00 0x7d 0x04>;
++			resets = <0x07 0x42>;
++			clocks = <0x08 0x04>;
++			status = "disabled";
++			phandle = <0x37>;
++		};
++
++		watchdog@ffd00500 {
++			compatible = "snps,dw-wdt";
++			reg = <0xffd00500 0x100>;
++			interrupts = <0x00 0x7e 0x04>;
++			resets = <0x07 0x43>;
++			clocks = <0x08 0x04>;
++			status = "disabled";
++			phandle = <0x38>;
++		};
++
++		sdr@f8011100 {
++			compatible = "altr,sdr-ctl\0syscon";
++			reg = <0xf8011100 0xc0>;
++			phandle = <0x11>;
++		};
++
++		eccmgr {
++			compatible = "altr,socfpga-s10-ecc-manager\0altr,socfpga-a10-ecc-manager";
++			altr,sysmgr-syscon = <0x0a>;
++			#address-cells = <0x01>;
++			#size-cells = <0x01>;
++			interrupts = <0x00 0x0f 0x04>;
++			interrupt-controller;
++			#interrupt-cells = <0x02>;
++			ranges;
++
++			sdramedac {
++				compatible = "altr,sdram-edac-s10";
++				altr,sdr-syscon = <0x11>;
++				interrupts = <0x10 0x04>;
++			};
++
++			ocram-ecc@ff8cc000 {
++				compatible = "altr,socfpga-s10-ocram-ecc\0altr,socfpga-a10-ocram-ecc";
++				reg = <0xff8cc000 0x100>;
++				altr,ecc-parent = <0x12>;
++				interrupts = <0x01 0x04>;
++			};
++
++			usb0-ecc@ff8c4000 {
++				compatible = "altr,socfpga-s10-usb-ecc\0altr,socfpga-usb-ecc";
++				reg = <0xff8c4000 0x100>;
++				altr,ecc-parent = <0x13>;
++				interrupts = <0x02 0x04>;
++			};
++
++			emac0-rx-ecc@ff8c0000 {
++				compatible = "altr,socfpga-s10-eth-mac-ecc\0altr,socfpga-eth-mac-ecc";
++				reg = <0xff8c0000 0x100>;
++				altr,ecc-parent = <0x14>;
++				interrupts = <0x04 0x04>;
++			};
++
++			emac0-tx-ecc@ff8c0400 {
++				compatible = "altr,socfpga-s10-eth-mac-ecc\0altr,socfpga-eth-mac-ecc";
++				reg = <0xff8c0400 0x100>;
++				altr,ecc-parent = <0x14>;
++				interrupts = <0x05 0x04>;
++			};
++
++			sdmmca-ecc@ff8c8c00 {
++				compatible = "altr,socfpga-s10-sdmmc-ecc\0altr,socfpga-sdmmc-ecc";
++				reg = <0xff8c8c00 0x100>;
++				altr,ecc-parent = <0x15>;
++				interrupts = <0x0e 0x04 0x0f 0x04>;
++			};
++		};
++
++		spi@ff8d2000 {
++			compatible = "intel,socfpga-qspi\0cdns,qspi-nor";
++			#address-cells = <0x01>;
++			#size-cells = <0x00>;
++			reg = <0xff8d2000 0x100 0xff900000 0x100000>;
++			interrupts = <0x00 0x03 0x04>;
++			cdns,fifo-depth = <0x80>;
++			cdns,fifo-width = <0x04>;
++			cdns,trigger-address = <0x00>;
++			clocks = <0x16>;
++			status = "okay";
++			phandle = <0x39>;
++
++			flash@0 {
++				#address-cells = <0x01>;
++				#size-cells = <0x01>;
++				compatible = "micron,mt25qu02g\0jedec,spi-nor";
++				reg = <0x00>;
++				spi-max-frequency = <0x5f5e100>;
++				m25p,fast-read;
++				cdns,page-size = <0x100>;
++				cdns,block-size = <0x10>;
++				cdns,read-delay = <0x01>;
++				cdns,tshsl-ns = <0x32>;
++				cdns,tsd2d-ns = <0x32>;
++				cdns,tchsh-ns = <0x04>;
++				cdns,tslch-ns = <0x04>;
++
++				partitions {
++					compatible = "fixed-partitions";
++					#address-cells = <0x01>;
++					#size-cells = <0x01>;
++					rsu-handle = <0x17>;
++
++					partition@0 {
++						label = "u-boot";
++						reg = <0x00 0x4200000>;
++						phandle = <0x17>;
++					};
++
++					partition@4200000 {
++						label = "root";
++						reg = <0x4200000 0xbe00000>;
++						phandle = <0x3a>;
++					};
++				};
++			};
++		};
++
++		firmware {
++
++			svc {
++				compatible = "intel,stratix10-svc";
++				method = "smc";
++				memory-region = <0x18>;
++
++				fpga-mgr {
++					compatible = "intel,stratix10-soc-fpga-mgr";
++					phandle = <0x06>;
++				};
++
++				fcs {
++					compatible = "intel,stratix10-soc-fcs";
++					platform = "stratix10";
++					phandle = <0x3b>;
++				};
++
++				hwmon {
++					compatible = "intel,soc64-hwmon";
++					phandle = <0x3c>;
++
++					voltage {
++						#address-cells = <0x01>;
++						#size-cells = <0x00>;
++
++						input@2 {
++							label = "0.8V VCC";
++							reg = <0x02>;
++						};
++
++						input@3 {
++							label = "1.0V VCCIO";
++							reg = <0x03>;
++						};
++
++						input@6 {
++							label = "0.9V VCCERAM";
++							reg = <0x06>;
++						};
++					};
++
++					temperature {
++						#address-cells = <0x01>;
++						#size-cells = <0x00>;
++
++						input@0 {
++							label = "Main Die SDM";
++							reg = <0x00>;
++						};
++					};
++				};
++			};
++		};
++
++		bridge@80000000 {
++			compatible = "simple-bus";
++			reg = <0x80000000 0x20200000 0xf9000000 0x100000>;
++			reg-names = "axi_h2f\0axi_h2f_lw";
++			#address-cells = <0x02>;
++			#size-cells = <0x01>;
++			ranges = <0x00 0x00 0x80000000 0x40000 0x00 0x10000000 0x90000000 0x10000000 0x00 0x20000000 0xa0000000 0x200000 0x01 0x10000 0xf9010000 0x8000 0x01 0x18000 0xf9018000 0x80 0x01 0x18080 0xf9018080 0x10>;
++			phandle = <0x3d>;
++
++			pcie@A0000000 {
++				compatible = "altr,pcie-root-port-2.0";
++				reg = <0x00 0x20000000 0x200000 0x00 0x10000000 0x10000000 0x01 0x10000 0x8000>;
++				reg-names = "Hip\0Txs\0Cra";
++				interrupt-parent = <0x05>;
++				interrupts = <0x00 0x14 0x04>;
++				#interrupt-cells = <0x01>;
++				device_type = "pci";
++				bus-range = <0x00 0xff>;
++				ranges = <0x82000000 0x00 0x00 0x00 0x10000000 0x00 0x10000000>;
++				#address-cells = <0x03>;
++				#size-cells = <0x02>;
++				dma-coherent;
++				interrupt-map-mask = <0x00 0x00 0x00 0x07>;
++				interrupt-map = <0x00 0x00 0x00 0x01 0x19 0x01 0x00 0x00 0x00 0x02 0x19 0x02 0x00 0x00 0x00 0x03 0x19 0x03 0x00 0x00 0x00 0x04 0x19 0x04>;
++				phandle = <0x3e>;
++
++				legacy-interrupt-controller {
++					interrupt-controller;
++					#address-cells = <0x00>;
++					#interrupt-cells = <0x01>;
++					phandle = <0x19>;
++				};
++			};
++
++			msi@10008080 {
++				compatible = "altr,msi-1.0";
++				reg = <0x01 0x18080 0x10 0x01 0x18000 0x80>;
++				reg-names = "csr\0vector_slave";
++				interrupt-parent = <0x05>;
++				interrupts = <0x00 0x13 0x04>;
++				msi-controller = <0x01>;
++				num-vectors = <0x20>;
++				phandle = <0x3f>;
++			};
++		};
++	};
++
++	usbphy0 {
++		compatible = "usb-nop-xceiv";
++		#phy-cells = <0x00>;
++		phandle = <0x10>;
++	};
++
++	aliases {
++		serial0 = "/soc/serial@ffc02000";
++		ethernet0 = "/soc/ethernet@ff800000";
++		ethernet1 = "/soc/ethernet@ff802000";
++		ethernet2 = "/soc/ethernet@ff804000";
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		led-hps0 {
++			label = "hps_led0";
++			gpios = <0x0e 0x14 0x00>;
++		};
++
++		led-hps1 {
++			label = "hps_led1";
++			gpios = <0x0e 0x13 0x00>;
++		};
++
++		led-hps2 {
++			label = "hps_led2";
++			gpios = <0x0e 0x15 0x00>;
++		};
++	};
++
++	memory@80000000 {
++		device_type = "memory";
++		reg = <0x00 0x80000000 0x00 0x00>;
++	};
++
++	regulator-v-ref {
++		compatible = "regulator-fixed";
++		regulator-name = "0.33V";
++		regulator-min-microvolt = <0x50910>;
++		regulator-max-microvolt = <0x50910>;
++		phandle = <0x0f>;
++	};
++
++	__symbols__ {
++		service_reserved = "/reserved-memory/svcbuffer@0";
++		cpu0 = "/cpus/cpu@0";
++		cpu1 = "/cpus/cpu@1";
++		cpu2 = "/cpus/cpu@2";
++		cpu3 = "/cpus/cpu@3";
++		intc = "/interrupt-controller@fffc1000";
++		cb_intosc_hs_div2_clk = "/clocks/cb-intosc-hs-div2-clk";
++		cb_intosc_ls_clk = "/clocks/cb-intosc-ls-clk";
++		f2s_free_clk = "/clocks/f2s-free-clk";
++		osc1 = "/clocks/osc1";
++		qspi_clk = "/clocks/qspi-clk";
++		clkmgr = "/soc/clock-controller@ffd10000";
++		gmac0 = "/soc/ethernet@ff800000";
++		phy0 = "/soc/ethernet@ff800000/mdio0/ethernet-phy@0";
++		gmac1 = "/soc/ethernet@ff802000";
++		gmac2 = "/soc/ethernet@ff804000";
++		gpio0 = "/soc/gpio@ffc03200";
++		porta = "/soc/gpio@ffc03200/gpio-controller@0";
++		gpio1 = "/soc/gpio@ffc03300";
++		portb = "/soc/gpio@ffc03300/gpio-controller@0";
++		i2c0 = "/soc/i2c@ffc02800";
++		i2c1 = "/soc/i2c@ffc02900";
++		i2c2 = "/soc/i2c@ffc02a00";
++		i2c3 = "/soc/i2c@ffc02b00";
++		i2c4 = "/soc/i2c@ffc02c00";
++		mmc = "/soc/mmc@ff808000";
++		nand = "/soc/nand-controller@ffb90000";
++		ocram = "/soc/sram@ffe00000";
++		pdma = "/soc/dma-controller@ffda0000";
++		pinctrl0 = "/soc/pinctrl@ffd13000";
++		i2c1_pmx_func = "/soc/pinctrl@ffd13000/i2c1-pmx-func";
++		i2c1_pmx_func_gpio = "/soc/pinctrl@ffd13000/i2c1-pmx-func-gpio";
++		pinctrl1 = "/soc/pinctrl@ffd13100";
++		rst = "/soc/rstmgr@ffd11000";
++		smmu = "/soc/iommu@fa000000";
++		spi0 = "/soc/spi@ffda4000";
++		spi1 = "/soc/spi@ffda5000";
++		sysmgr = "/soc/sysmgr@ffd12000";
++		timer0 = "/soc/timer0@ffc03000";
++		timer1 = "/soc/timer1@ffc03100";
++		timer2 = "/soc/timer2@ffd00000";
++		timer3 = "/soc/timer3@ffd00100";
++		uart0 = "/soc/serial@ffc02000";
++		uart1 = "/soc/serial@ffc02100";
++		usb0 = "/soc/usb@ffb00000";
++		usb1 = "/soc/usb@ffb40000";
++		watchdog0 = "/soc/watchdog@ffd00200";
++		watchdog1 = "/soc/watchdog@ffd00300";
++		watchdog2 = "/soc/watchdog@ffd00400";
++		watchdog3 = "/soc/watchdog@ffd00500";
++		sdr = "/soc/sdr@f8011100";
++		qspi = "/soc/spi@ff8d2000";
++		qspi_boot = "/soc/spi@ff8d2000/flash@0/partitions/partition@0";
++		root = "/soc/spi@ff8d2000/flash@0/partitions/partition@4200000";
++		fpga_mgr = "/soc/firmware/svc/fpga-mgr";
++		fcs = "/soc/firmware/svc/fcs";
++		temp_volt = "/soc/firmware/svc/hwmon";
++		s10_hps_bridges = "/soc/bridge@80000000";
++		pcie_0_pcie_s10 = "/soc/bridge@80000000/pcie@A0000000";
++		pcie_intc = "/soc/bridge@80000000/pcie@A0000000/legacy-interrupt-controller";
++		pcie_0_msi_irq = "/soc/bridge@80000000/msi@10008080";
++		usbphy0 = "/usbphy0";
++		ref_033v = "/regulator-v-ref";
++	};
++};
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+index 8d24513924aa..4c1103e37d81 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+@@ -641,6 +641,59 @@ temp_volt: hwmon {
+ 				};
+ 			};
+ 		};
++
++		s10_hps_bridges: bridge@80000000 {
++			compatible = "simple-bus";
++			reg = <0x80000000 0x20200000>,
++				<0xf9000000 0x00100000>;
++			reg-names = "axi_h2f", "axi_h2f_lw";
++			#address-cells = <2>;
++			#size-cells = <1>;
++			ranges = <0x00000000 0x00000000 0x80000000 0x00040000>,
++				<0x00000000 0x10000000 0x90000000 0x10000000>,
++				<0x00000000 0x20000000 0xa0000000 0x00200000>,
++				<0x00000001 0x00010000 0xf9010000 0x00008000>,
++				<0x00000001 0x00018000 0xf9018000 0x00000080>,
++				<0x00000001 0x00018080 0xf9018080 0x00000010>;
++
++			pcie_0_pcie_s10: pcie@A0000000 {
++				compatible = "altr,pcie-root-port-2.0";
++				reg = 	<0x00000000 0x20000000 0x00200000>,
++					<0x00000000 0x10000000 0x10000000>,
++					<0x00000001 0x00010000 0x00008000>;
++				reg-names = "Hip", "Txs", "Cra";
++				interrupt-parent = <&intc>;
++				interrupts = <0 20 4>;
++				#interrupt-cells = <1>;
++				device_type = "pci";    /* embeddedsw.dts.params.device_type type STRING */
++				bus-range = <0x00000000 0x000000ff>;
++				ranges = <0x82000000 0x00000000 0x00000000 0x00000000 0x10000000 0x00000000 0x10000000>;
++				#address-cells = <3>;
++				#size-cells = <2>;
++				dma-coherent;
++				interrupt-map-mask = <0 0 0 7>;
++				interrupt-map = <0 0 0 1 &pcie_intc 1>,
++						<0 0 0 2 &pcie_intc 2>,
++						<0 0 0 3 &pcie_intc 3>,
++						<0 0 0 4 &pcie_intc 4>;
++				pcie_intc: legacy-interrupt-controller {
++					interrupt-controller;
++					#address-cells = <0>;
++					#interrupt-cells = <1>;
++				};
++			}; //end pcie@0x010000000 (pcie_0_pcie_s10)
++
++			pcie_0_msi_irq: msi@10008080 {
++				compatible = "altr,msi-1.0";
++				reg = <0x00000001 0x00018080 0x00000010>,
++					<0x00000001 0x00018000 0x00000080>;
++				reg-names = "csr", "vector_slave";
++				interrupt-parent = <&intc>;
++				interrupts = <0 19 4>;
++				msi-controller = <1>;   /* embeddedsw.dts.params.msi-controller type NUMBER */
++				num-vectors = <32>;     /* embeddedsw.dts.params.num-vectors type NUMBER */
++			}; //end msi@0x100008000 (pcie_0_msi_irq)
++		};		
+ 	};
+ 
+ 	usbphy0: usbphy0 {
+diff --git a/drivers/pci/controller/pcie-altera.c b/drivers/pci/controller/pcie-altera.c
+index 7f1d5a92b161..a1da0a3c3573 100644
+--- a/drivers/pci/controller/pcie-altera.c
++++ b/drivers/pci/controller/pcie-altera.c
+@@ -289,6 +289,7 @@ static int s10_tlp_read_packet(struct altera_pcie *pcie, u32 *value)
+ 	u32 comp_status;
+ 	u32 dw[4];
+ 	u32 count;
++	int i;
+ 	struct device *dev = &pcie->pdev->dev;
+ 
+ 	for (count = 0; count < TLP_LOOP; count++) {
+@@ -324,7 +325,23 @@ static int s10_tlp_read_packet(struct altera_pcie *pcie, u32 *value)
+ 			return PCIBIOS_SUCCESSFUL;
+ 		}
+ 	}
++	for (i = 0; i < 5; i++) {
++
++                ctrl = cra_readl(pcie, S10_RP_RXCPL_STATUS);
++
++                dw[count-1] = cra_readl(pcie, S10_RP_RXCPL_REG);
++
++ 
++
++                printk("status %x data %x\n",ctrl,dw[count-1]);
+ 
++                if (ctrl & RP_RXCPL_EOP) {
++
++                        return PCIBIOS_SUCCESSFUL;
++
++                }
++
++        }
+ 	dev_warn(dev, "Malformed TLP packet\n");
+ 
+ 	return PCIBIOS_DEVICE_NOT_FOUND;
+@@ -847,7 +864,12 @@ static int altera_pcie_init_irq_domain(struct altera_pcie *pcie)
+ 	struct device_node *node = dev->of_node;
+ 
+ 	/* Setup INTx */
+-	pcie->irq_domain = irq_domain_add_linear(node, PCI_NUM_INTX,
++	struct device_node *legacy_intc_np = of_get_child_by_name(node, "legacy-interrupt-controller");
++	if (!legacy_intc_np) {
++		dev_err(dev, "Failed finding legacy intr controller node\n");
++		return -ENODEV;
++	}
++	pcie->irq_domain = irq_domain_add_linear(legacy_intc_np, PCI_NUM_INTX,
+ 						 &intx_domain_ops, pcie);
+ 	if (!pcie->irq_domain) {
+ 		dev_err(dev, "Failed to get a INTx IRQ domain\n");
+-- 
+2.34.1
+
